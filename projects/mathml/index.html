@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE>Mozilla での MathML</TITLE>
+
+<!--
+1.41	rbs%maths.uq.edu.au	Jan 13 23:58	 	style fixups
+1.43	bug%annevankesteren.nl	2004-09-15 13:28	 	Making it match the markup guide
+1.44
+1.45	rbs%maths.uq.edu.au	2005-11-29 17:46	 	Firefox 1.5 is out
+
+担当：山口 no_spam_syamagu@mozilla-japan.org
+
+-->
+
+<link rel="alternate" hreflang="en" modified="November 29, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/mathml/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+ <h1>Mozilla での <abbr title="Mathematical Markup Language">MathML</abbr></h1>
+ <p>Maintained by Roger B. Sidje &lt;<a href="mailto:rbs@maths.uq.edu.au">rbs@maths.uq.edu.au</a>&gt;
+ <div class="sidenote">
+  <h2>アップデート</h2>
+  <ul>
+   <li><a href="../../products/firefox/">Mozilla Firefox 1.5</a> がリリースされました。このリリースは、このプロジェクトの成果を取り入れ、すべてのプラットフォーム （Windows、Linux、Mac） は、ネイティブで MathML をサポートしています。このリリースではまた、 <a href="../svg/">SVG をネイティブでサポート</a> しています。
+
+<!--
+   <li>本プロジェクトの成果であるネイティブの MathML 対応付きの <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7.1</a> がすべてのプラットフォーム（Windows、Linux、Mac）でリリースされました。
+-->
+   </li>
+
+   <li><a href="http://pear.math.pitt.edu/mathzilla/Examples/markupOftheWeek.mhtml">今週のマークアップ</a>（あるいは二週間分の ...）
+
+   <li><a href="update.html">各タグのステータス（ライヴデモを含む） - 2001年 12月 7日</a>
+  </ul>
+
+  <h2>ディスカッションフォーラム</h2>
+
+  <p>MathML に関連する議論は、ニュースグループ <a href="news://news.mozilla.org/netscape.public.mozilla.mathml">netscape.public.mozilla.mathml</a> で行われています。Mozilla <a href="news://news.mozilla.org/netscape.public.mozilla.mathml"><abbr>MathML</abbr> ニュースグループ</a> に送られたメッセージは、Mozilla <a href="mailto:mozilla-mathml@mozilla.org?subject=Message"><abbr>MathML</abbr> メーリングリスト</a> に転送されます。またその逆も行われています。メーリングリストは、<a href="mailto:mozilla-mathml-request@mozilla.org?subject=subscribe">講読</a> または <a href="mailto:mozilla-mathml-request@mozilla.org?subject=unsubscribe">u講読解除</a> することができます。（本文は空白にしておいてください）
+
+  <h2>リンク</h2>
+
+  <ul>
+   <li><a href="http://www.w3.org/TR/2003/REC-MathML2-20031021/"><abbr>MathML</abbr> Version 2.0 (Second Edition)</a> - <abbr>W3C</abbr> 勧告 2003年 10月 21日
+
+  <li><a href="http://www.w3.org/Math/testsuite/"><abbr>W3C</abbr> <abbr>MathML</abbr> テストスイート</a> - 各属性（またはビルトインのレンダリング挙動）ごとにそれぞれの要素が実装されているかを、徹底的に確認するためにデザインされています。
+  </ul>
+
+  <h3><a href="fonts/">フォント</a> および <abbr>MathML</abbr> 利用可能な Mozilla バイナリ</h3>
+  <ul>
+   <li><a href="http://ftp.mozilla.org/pub/mozilla/nightly/latest/">ナイトリービルド</a>
+   <li><a href="../../releases/">マイルストーンビルド</a>
+   <li><a href="enable.html">その他のプラットフォーム</a>
+
+  </ul>
+  <h3><abbr>MathML</abbr> サンプルドキュメント</h3>
+  <ul>
+   <li><a href="demo/tester.html">テスタ ...</a>
+   <li><a href="screenshots/">スクリーンショット</a>
+   <li><a href="start.xhtml"><abbr>MathML</abbr> スタートページ</a>（<a href="start-hebrew.xhtml">ヘブライ語</a> と <a href="start-thai.xhtml">タイ語</a>）
+   <li><a href="demo/texvsmml.xhtml"><abbr>MathML</abbr> 極限テスト</a>
+   <li><a href="http://www.math.pitt.edu/~gartside/math0450/chaos/">混沌の世界</a>
+   <li><a href="http://www.ifi.unizh.ch/math/bmwcs/">コンピュータ科学者のための数学</a>
+   <li><a href="demo/">さらに ...</a>
+  </ul>
+
+  <h3><abbr>MathML</abbr> ドキュメントを作成する</h3>
+  <ul>
+   <li><a href="authoring.html">オーサリングガイドライン</a> - 最新の Mozilla <abbr>MathML</abbr> 描画エンジンのほとんどを網羅
+   <li><a href="http://pear.math.pitt.edu/mathzilla/">MathZilla</a> - <a href="http://pear.math.pitt.edu/mathzilla/itex2mml.html"><abbr>itex2MML</abbr> を使った <a href="http://pear.math.pitt.edu/mathzilla/itex2mmlFrag.html">リアルタイム変換</a> にスポット
+   <li><a href="http://hutchinson.belmont.ma.us/tth/mml/"><abbr>TtM</abbr></a> - LaTeX から <abbr>MathML</abbr> への変換
+   <li><a href="http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html"><abbr>TeX4ht</abbr></a> - LaTeX から MathML への変換
+   <li><a href="http://www.inrialpes.fr/opera/people/Emmanuel.Pietriga/mathmlc2p.html"><abbr>MathMLc2p</abbr></a> - Content Markup から Presentation Markup へ（XSL-T スタイルシート）
+   <li><a href="fonts/">フォント</a> - 科学論文のためのキャラクタ・実体
+  </ul>
+ </div>
+
+ <div class="figure"><img alt="" src="mathboard.gif" width="184" height="137"></div>
+ <p class="note">以下のテキストは、プロジェクトが発足した 1999年 5月のものです。それ以来、いくつかの<a href="screenshots/">マイルストーン</a>が出来上がり、エレガントな MathML 描画部が最大の焦点とされてきたと共に、新しいツールも登場しました。例えば、<a href="http://pear.math.pitt.edu/mathzilla/itex2mmlFrag.html">ライヴ TeX-to-MathML 変換</a>は、<a href="http://pear.math.pitt.edu/mathzilla/itex2mml.html">itex2MML</a> といったサーバーサイドのコンバータと共に利用可能になっています。また、プロトタイプの <a href="http://www.newmexico.mackichan.com/MathML/mathmled.htm">JavaScripted MathML エディタ</a>のおかげで、&lt;object type="text/mathml"&gt;...&lt;/object&gt; は、かつてほど奇妙なものではなくなっています。さらに、<a href="../xslt/">XSLT</a> や <a href="http://lxr.mozilla.org/seamonkey/source/extensions/xmlextras/docs/Soap_Scripts_in_Mozilla.html">SOAP</a> といった、他の相互運用的なアプローチも開発されています。
+
+ <h2>概観</h2>
+
+ <p>このプロジェクトでは <a href="http://www.w3.org/Math"><abbr>MathML</abbr></a> の入出力に関する研究を行なっています。
+ <ul>
+
+  <li>このプロジェクトの優先課題は、MathML の高速かつコンパクトな処理系を提供し、<a href="../../newlayout/">Gecko</a> によって数式表現である <code>&lt;math&gt;...&lt;/math&gt;</code> のグラフィカルな描画を可能にすることにあります。
+
+  <li>もう一つの目標は、<abbr>MathML</abbr> の <abbr>WYSIWYG</abbr> なインターフェースを提供することです。これは、標準的な MathML テキスト内で内部表現を採用するグラフィカルな数式エディタとなるでしょう。したがって、次のような基本機能を提供するはずです：
+    <ul>
+
+     <li><a href="../../editor/">Composer</a> での数式編集ボタン；
+     <li>
+      <p>インプットフィールド
+      <pre class="code example">&lt;form&gt;
+ &lt;object type="application/mathml+xml"&gt;...&lt;/object&gt;
+&lt;/form&gt;</pre>
+のサポート
+    </ul>
+
+  <li><a href="../../blue-sky/extension/199805/preprocess.html">変換サービス</a>もまた、<a href="http://www.bucksch.com/projects/mozilla/">重要です</a>。数式が多用される文書での <em>lingua franca</em> （共通言語）は <a href="http://www.tug.org/">TeX/LaTeX</a> であって、MathML は未だ広まっていません。したがって、TeX から <abbr>MathML</abbr> への数式コンバータがあると便利でしょう。他にも MathML へのコンバータが便利であるという根拠が存在します。<abbr>MathML</abbr> 処理系のコア部分をコンパクトかつ高速に維持しておくためには、<abbr>MathML</abbr> 以外のフォーマットをサポートするわけにはいきません。興味を持ったグループが、<abbr>MathML</abbr> 処理系のコアに連結できるような独立したコンバータを貢献できるように、適切なモジュールデザイン原理を採用することが望まれます。これによって、数式を表現する際に多く用いられる厄介なインライン <abbr>GIF</abbr> や Java アプレットに代わる、よりよい代替手段を提供することができるはずです。
+ </ul>
+
+ <h2>実装</h2> 
+ <p>数式は、ボックスの集合体として表現されます。ボックスとは、数学エンティティ（記号、演算子、デリミタなど）を囲むバウンディングボックスのことです。これらエンティティの配置決定規則（下付添字、上付添字、分数など）があれば、再帰的な手法で数式の構文解析ツリーを解釈することにより、ボックスモデルを構築することが可能になります。
+
+ <p>オブジェクト指向パラダイムを用いることで、それぞれのボックスを、固有の性質を保持し、且つ、共通の性質は共有するオブジェクトとみなせます。<abbr>CSS</abbr> パラダイムによって、各ボックスは、別の <abbr>CSS</abbr> フレームを埋め込むことができる <abbr>CSS</abbr> フレームとみなすことができます。ゆえに、この二つのパラダイム間で直接的な対応づけが可能なのです。
+
+ <p><abbr>MathML</abbr> は、<a href="http://www.w3.org/TR/REC-MathML/chap3_1.html">presentational タグ</a>と <a href="http://www.w3.org/TR/REC-MathML/chap4_1.html">semantic/content タグ</a>という、二種類の数式表現形式を提供します。どちらの形式で数式が与えられても、レイアウトと表示を行なう <a href="../../newlayout/">Gecko</a> へ渡せるような、CSS フレームの塊を構築することが <abbr>MathML</abbr> プロジェクトの最終目標です。
+
+ <p>このプロジェクトのグラフィカル入力部は、数式表現を作成・編集するために「ポイント・アンド・クリック」的なオーサリングツールを提供することを目指しています。しかし、グラフィカルな外見の下には、<a href="../../editor/">Composer</a> や <a href="../../newlayout/doc/forms.html">form</a> 入力フィールドに入れることができるような、素の <abbr>MathML</abbr> テキストが存在します。
+
+ <p>スタイルシートや JavaScript、カット・アンド・ペーストなどについてはどうでしょうか？　おわかりのように、基礎を十分に構築するだけでなく、このプロジェクトへのあなたのアドバイスと手助けを待っている問題がまだまだたくさんあるのです！
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/mathml/index.html">英語版</a> 2005/11/29</span> - <span>和訳版 2006/02/12</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/mathml/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

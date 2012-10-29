@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla Thunderbird ビルドガイド</title>
+<link rel="alternate" hreflang="en" modified="June 10, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/thunderbird/build.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla Thunderbird ビルドガイド</h1>
+<p>ここでは、<a href="/build/">mozilla source</a> のビルドの仕方をあなたがすでに知っていることを前提にしています。もし自分で Thunderbird をビルドしたくなければ、ナイトリービルドを <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/thunderbird/nightly/">ftp.mozilla.org</a> で見つけることが出来ます。</p>
+<p>Thunderbird 0.5 とそれより古いバージョンをビルドするには、<a href="old-build.html">以前のビルドガイド</a>を参照して下さい。</p>
+<p>現在活発な開発作業が Mozilla trunk で行われています。今までの Mozilla ビルドに加えて、二つの新しいディレクトリからもソースを引き出しています：<a href="http://lxr.mozilla.org/mozilla/source/toolkit">mozilla/toolkit</a> と <a href="http://lxr.mozilla.org/mozilla/source/mail">mozilla/mail</a> です。</p>
+<p>trunk の代わりに最新のマイルストーンをビルドするには、CVS タグに THUNDERBIRD_0_6_RELEASE を使います。CVS を使いたくなければ最新の 0.6 マイルストーン用の <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/thunderbird/releases/0.6/thunderbird-0.6-source.tar.gz">source tarball</a> をダウンロードすることが出来ます。</p>
+<p>今の時点では Thunderbird と他の Mozilla アプリケーションに同じ tree を使用しないようにして下さい。Thunderbird はそのビルドの過程で chrome 中のさまざまなメールとツールキットのファイルを置き換えます。そしてその結果、Mozilla スイートとは互換性のない JAR ファイルが生成されてそこに残ります。</p>
+<h2>オプティマイズド（最適化）かデバッグか？</h2>
+<p>日常的に使用するためのビルドを作成するのならオプティマイズド（Optimized - 最適化）がいいでしょう。バグのフィックスが目的ならデバッグがいいでしょう。デフォルトではオプティマイズドでビルドされます。スタティック（静的）か非スタティックか？</p>
+<h2>スタティック（静的）か非スタティックか？</h2>
+<p>Thunderbird 0.7 以降のリリースではいまのところ、非スタティック・ビルドのプロセスよりも（特に計測はしていませんが）優れた性能を発揮するスタティック・ビルド・プロセスを採用しています。しかしスタティック・ビルドは、C++ のコードを変更する度にほとんど毎回メインの実行ファイルを再リンクする必要があるので、開発には不向きです。これには優れたハードウェアでさえしばらく時間のかかることがあります。もしインストーラを作成するのなら、パッケージ作成スクリプトはスタティック・ビルドによって生成されたより小さいファイルセットの扱いしかできないので、スタティック・ビルドが必要になります。</p>
+<h2>.mozconfig ファイルの作成</h2>
+<p>CVS 環境変数を正しく設定し次のチェックアウトコマンドを走らせます： </p>
+<blockquote><code>cvs co mozilla/client.mk mozilla/mail/config</code></blockquote>
+<p>そして .mozconfig ファイルを client.mk のある mozilla/ ディレクトリに作成し次の行を書き入れます：</p>
+<blockquote><code>. $topsrcdir/mail/config/mozconfig</code></blockquote>
+<h3>最適化されたビルド</h3>
+<p>上記のデフォルト設定ではデバッグバージョンをビルドします。最適化されたビルドを作成するには次の行を加えます：</p>
+<blockquote><code>ac_add_options --disable-debug<br>ac_add_options --enable-optimize</code></blockquote>
+<p><em>Linux では --enable-optimize=-Os、MacOS X では --enable-optimize=-O2 を、スピードとサイズの最適化のための追加設定である上記の --enable-optimize の代わりに使用します。</em>Windows では -O2 の使用には問題があるのでデフォルトレベルしか使用しません。それにこのビルドバイナリは標準の最適化でも十分なスピードが得られます。</p>
+<h3>スタティック・ビルド</h3>
+<p>上記のデフォルト設定では非スタティックをビルドします。Thunderbird 0.7 以降ではスタティックビルドをサポートするようになりました。スタティックをビルドするには（例えばリリース版やインストーラを作成したい場合）以下のラインを追記します：</p>
+<blockquote><code>ac_add_options --disable-shared<br>ac_add_options --enable-static</blockquote>
+<h3>その他の役に立つオプション</h3>
+<p>エンドユーザに配付するものをビルドするには次を追加します：</p>
+<blockquote><code>export BUILD_OFFICIAL=1<br>export MOZILLA_OFFICIAL=1<br>mk_add_options BUILD_OFFICIAL=1<br>mk_add_options MOZILLA_OFFICIAL=1</code></blockquote>
+<p>Linux ビルドには次のいくつか、もしくはすべてを追加するとよいでしょう：</p>
+<blockquote><code>ac_add_options --enable-xft<br>ac_add_options --enable-freetype2<br>ac_add_options --enable-default-toolkit=gtk2</code></blockquote>
+<h2>ソースをビルドする</h2>
+<p>では、ソースを引き出してビルドします：</p>
+<blockquote><code>make -f client.mk pull_all<br>make -f client.mk build_all</code></blockquote>
+<p>Thunderbird のビルドプロセスには最後に特別なステップがあります。Thunderbird に必要なライブラリとファイルを新しいディレクトリ、dist/thunderbird にコピーするのです。Thunderbird はこのディレクトリから起動します。また、配布用のビルドには、dist/bin ではなくこのディレクトリをパッケージングします。今のところ、これがあてはまるのは Windows と Unix のみですが、OSX のパッケージングに関しても間もなく適用されるようになります。（訳注：Mac OS X では少し異なりますので「<a href="/build/distribution.html">Mozilla のディストリビューションをビルドする</a>」を参照してください）</p>
+<h2>共通の問題</h2>
+<ul>
+  <li>もしビルドが JAR のパッケージング中に mozilla/toolkit/components/console に入り込んでしまったら、それはおそらく xul pre-processor が死んでしまう <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=206785">Bug 206785</a> に遭遇したことを意味します。暫定的な対処法がそのバグにリストされています。</li>
+</ul>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/thunderbird/build.html">英語版</a> 2004/06/10</span> - <span>和訳版 2005/05/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/thunderbird/build.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

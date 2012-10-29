@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>インストール方法</title>
+<link rel="alternate" hreflang="en" modified="June 7, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.8a1/installation.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla 1.8 Alpha1 のインストール方法</h1>
+
+<div class="important">
+	<p><strong>過去のバージョンとの非互換性によって引き起こされる問題を避けるため、Mozilla のインストーラは、インストールディレクトリが空でない場合、これを削除して良いかどうかを尋ねます。プロファイルその他の個人用ファイルをインストールディレクトリに置いてある場合は NO を選択してください。そうしないと、これらのファイルはすべて削除されてしまいます。プロファイルが標準の場所に置かれている場合は問題ありません。</strong></p>
+	<p><strong>プロファイルのバックアップに関するヘルプは <a href="/start/1.5/faq/profile.html">プロファイル FAQ</a> をご覧ください。</strong></p>
+</div>
+
+<p>このドキュメントには、Mozilla 1.8 Alpha1 のシステム必要条件、互換性情報、インストール方法が書かれています。</p>
+<ul>
+	<li><strong><a href="#linux">Linux</a></strong>
+		<ul>
+			<li><a href="#linux_require">必要条件</a></li>
+			<li><a href="#linux_install">インストール方法</a>
+				<ul>
+					<li><a href="#linux_install_installer">インストーラを使う場合</a></li>
+					<li><a href="#linux_install_manual">tar.gz アーカイブを使って手作業でインストールする場合</a></li>
+					<li><a href="#linux_install_multiuser">マルチユーザインストール</a></li>
+					<li><a href="#linux_install_gnome">GNOME パネルに Mozilla を追加する</a></li>
+					<li><a href="#linux_install_rpm">RPM バイナリのインストール</a></li>
+				</ul>
+			</li>
+			<li><a href="#linux_uninstall">アンインストール方法</a></li>
+		</ul>
+	</li>
+	<li><strong><a href="#mac">Macintosh</a></strong> (Mac OS X) 
+		<ul>
+			<li><a href="#mac_requirements">必要条件</a></li>
+			<li><a href="#mac_install">インストール方法</a></li>
+			<li><a href="#mac_uninstall">アンインストール方法</a></li>
+		</ul>
+	</li>
+	<li><strong><a href="#win">Windows</a></strong> 
+		<ul>
+			<li><a href="#win_requirements">必要条件</a></li>
+			<li><a href="#win_install">インストール方法</a> 
+				<ul>
+					<li><a href="#win_install_installer">インストーラを使う場合</a></li>
+					<li><a href="#win_install_manually">ZIP ファイルを使って手作業でインストールする場合</a></li>
+				</ul>
+			</li>
+			<li><a href="#win_uninstall">アンインストール方法</a></li>
+		</ul>
+	</li>
+	<li><strong><a href="installation-ports.html">ポート (その他の OS)</a></strong> 
+		<ul>
+			<li><a href="installation-ports.html#ports_openvms">OpenVMS</a></li>
+			<li><a href="installation-ports.html#ports_solaris">Solaris</a></li>
+			<li><a href="installation-ports.html#ports_aix">AIX</a></li>
+			<li><a href="installation-ports.html#ports_hpux">HP-UX</a></li>
+			<li><a href="installation-ports.html#ports_irix">IRIX</a></li>
+			<li><a href="installation-ports.html#ports_os2">OS/2</a></li>
+		</ul>
+	</li>
+	<li><a href="#files">Mozilla が生成・使用するファイル</a>
+		<ul>
+			<li><a href="#files_profiles">プロファイルの場所</a></li>
+		</ul>
+	</li>
+	<li><a href="installation-extras.html">Java、プラグイン、その他拡張機能のインストール</a></li>
+</ul>
+
+<h1><a name="linux">Linux</a></h1>
+<h2><a name="linux_require" id="linux_require">システム必要条件</a></h2>
+<ul>
+	<li>以下のバージョンのライブラリ (またはその互換ライブラリ) が必要です: glibc 2.<b>2.4</b>、XFree86 3.3.x、GTK 1.2.x、Glib 1.2.x、Libstdc++ 2.9.0。Red Hat Linux <b>7</b>.0、Debian 3.0、and SuSE 7.3 (以降) で動作します。</li>
+	<li>Intel Pentium クラスのプロセッサ (233 MHz 以上を推奨)</li>
+	<li>64 MB の RAM</li>
+	<li>26 MB のハードディスク空き容量</li>
+</ul>
+<h2><a name="linux_install">インストール方法</a></h2>
+<p class="important"><strong>注意</strong>: Mozilla 1.8 Alpha1 をインストールする前に、これまでのバージョンの Mozilla をアンインストールすることをお勧めします。これによって、プロファイルディレクトリに保存されているブックマークや履歴、Cookie などの情報が削除されることはありません。</p>
+<p class="important"><strong>注意</strong>: (Mozilla をインストールした人が) 少なくとも 1 度は Mozilla を起動して自動登録を完了させ、インストールしたディレクトリに compreg.dat ファイルを書き込ませなければいけません。別のユーザ (Mozilla をインストールした人以外のユーザ) が最初にプログラムを起動するとコアダンプが起こります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49345" title="Bug 49345 - Document that admins must run product once after installation">49345</a>)</p>
+<p><strong>注意</strong>: この手順は bash シェルを使っています。他のシェルを使っている場合は、bash シェルを使うか、お使いのシェルに応じてコマンドを合わせてください。</p>
+<h3><a name="linux_install_installer">インストーラを使ってインストールする場合</a></h3>
+<p>インストーラをダウンロードして Mozilla をインストールするには、以下の手順に従ってください。</p>
+<ol>
+	<li>mozilla1.8a1 という名前のディレクトリを作って (mkdir mozilla1.8a1) そのディレクトリに移動 (cd mozilla1.8a1) してください。</li>
+	<li>インストーラ (mozilla-i686-pc-linux-gnu-1.8a1-installer.tar.gz) をダウンロードしてください。</li>
+	<li>次のコマンドでアーカイブを展開してください。<br>gunzip -dc &lt;ファイル名&gt; | tar -xvf -<br>(これで mozilla1.8a1 のサブディレクトリ mozilla-installer にインストーラが置かれます)</li>
+	<li>mozilla-installer ディレクトリに移動 (cd mozilla-installer) して ./mozilla-installer コマンドでインストーラを実行してください。</li>
+	<li>インストールウィザードの手順に従って Mozilla をインストールしてください。</li>
+	<li>Mozilla を起動するには、Mozilla をインストールしたディレクトリに移動して ./mozilla コマンドを実行してください。</li>
+</ol>
+<h3><a name="linux_install_manual">tar.gz アーカイブを使って手作業でインストールする場合</a></h3>
+<p>tar.gz アーカイブをダウンロードして Mozilla を手作業でインストールするには、以下の手順に従ってください。</p>
+<ol>
+	<li>mozilla1.8a1 という名前のディレクトリを作って (mkdir mozilla1.8a1) そのディレクトリに移動 (cd mozilla1.8a1) してください。</li>
+	<li>tar.gz アーカイブ (mozilla-i686-pc-linux-gnu-1.8a1.tar.gz) を mozilla1.8a1 ディレクトリにダウンロードしてください。</li>
+	<li>次のコマンドでアーカイブを展開してください。<br>gunzip -dc &lt;ファイル名&gt; | tar -xvf -<br>(これで mozilla1.8a1 ディレクトリの下に mozilla サブディレクトリが作られます)</li>
+	<li>mozilla ディレクトリに移動 (cd mozilla) してください。</li>
+	<li>./mozilla コマンドで Mozilla を起動してください。</li>
+</ol>
+<h3><a name="linux_install_multiuser">マルチユーザインストール</a></h3>
+<p>Unix で マルチユーザ用に Mozilla をインストールするには、普通にインストールした後、Mozilla ディレクトリに以下のスクリプトを作成してください。スクリプトを実行可能に (chmod u+x &lt;スクリプト名&gt;) してから、その Mozilla ディレクトリに書き込み権限のあるユーザ名 (root など) で実行してください。<strong>このスクリプトを su[do] root 権限で実行しないでください</strong>。 (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=52653" title="Bug 52653 - regxpcom creates .mozilla in Real User's home">52653</a>)</p>
+<blockquote>#!/bin/sh<br>dist_bin=`dirname $0`<br>MOZILLA_FIVE_HOME=$dist_bin<br>LD_LIBRARY_PATH=$dist_bin<br>export MOZILLA_FIVE_HOME LD_LIBRARY_PATH<br>$dist_bin/regxpcom<br>$dist_bin/regchrome<br>touch $dist_bin/chrome/user-skins.rdf $dist_bin/chrome/user-locales.rdf</blockquote>
+<p>これで、インストールされた Mozilla にアクセス権限を持つすべてのユーザが Mozilla を実行できるはずです。</p>
+<h3><a name="linux_install_gnome">GNOME パネルに Mozilla を追加する</a></h3>
+<ol>
+	<li>GNOME メインメニューボタンをクリックして Panel メニューを開き、Add to Panel サブメニューから Launcher を選択してください。</li>
+	<li>パネルの Mozilla アイコンを右クリックして次のコマンドを入力してください。<blockquote>&lt;ディレクトリ名&gt;/mozilla</blockquote>ディレクトリ名の部分は Mozilla をダウンロードしたディレクトリの名前です。Mozilla が指定するデフォルトディレクトリの場合は /usr/local/mozilla になります。</li>
+	<li>アイコンに名前をつけ、必要に応じてコメントをつけてください。</li>
+	<li>アイコンボタンをクリックし、アイコンの場所として次のように入力してください。<blockquote>&lt;ディレクトリ名&gt;/icons/mozicon50.xpm</blockquote>ディレクトリ名の部分は Mozilla をインストールしたディレクトリの名前です。デフォルトディレクトリの場合は /usr/local/mozilla/icons/mozicon50.xpm になります。</li>
+</ol>
+<h3><a name="linux_install_rpm">RPM ビルドのインストール</a></h3>
+<p>Red Hat RPM ビルドは、デフォルトの Red Hat 7.x/8.x で動くように作られています。これらの RPM ビルドを SuSE で使うには、<a href="http://rpmfind.net/linux/rpm2html/search.php?query=gdk-pixbuf">gdk-pixbuf</a> パッケージをインストールする必要があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=85218" title="Bug 85218 - mozilla-0.9.1-rpm libgdk_pixbuf.so.2 missing">85218</a>)</p>
+<h2><a name="linux_uninstall">アンインストール方法</a></h2>
+<ul>
+	<li>Mozilla をインストールした mozilla1.8a1 ディレクトリを削除します。</li>
+	<li><a href="#files_profiles">プロファイル情報</a> が保存されている ~/.mozilla ディレクトリを削除します。</li>
+</ul>
+
+<h1><a name="mac" id="mac">Macintosh</a></h1>
+<h2><a name="mac_requirements">システム必要条件</a></h2>
+<ul>
+	<li>Mac OS X 以降 (v10.2 以降を推奨)</li>
+	<li>PowerPC プロセッサ (266 MHz 以上を推奨)</li>
+	<li>64 MB の RAM</li>
+	<li>36 MB のハードディスク空き容量</li>
+</ul>
+<h2><a name="mac_install">インストール方法</a></h2>
+<p>ディスクイメージをダウンロードして Mozilla をインストールするには、以下の手順に従ってください。</p>
+<ol>
+	<li>お使いのマシンにディスクイメージ (mozilla-mac-1.8a1.dmg.gz) をダウンロードしてください。デフォルトでは、ダウンロードしたファイルはデスクトップに置かれます。</li>
+	<li>ディスクイメージをダウンロードしたら、それを Stuffit Expander にドラッグして展開します (Stuffit Expander が自動的に起動して、ファイルが展開されます)。ディスクイメージが自動的にマウントされない場合は dmg ファイルをダブルクリックしてマウントしてください。これでもマウントできず、そのファイルがディスクイメージに見えないときは、ファイルメニューから「情報を見る」を選択し、「このアプリケーションで開く」カテゴリで「ディスクコピー」を選択してください。Mac OS X v10.2 以降では、コンテキストメニューから「このアプリケーションで開く」を使ってください。</li>
+	<li>ディスクイメージをマウントしたら、それを開いて、Mozilla アイコンをハードディスクにドラッグします。</li>
+	<li>このアイコンはアプリケーションフォルダにコピーすることをお勧めします。</li>
+	<li>ディスクイメージを取り出します。</li>
+	<li>必要に応じて Dock に Mozilla を追加しておけば、いつでも簡単にアクセスできます。また、(Web タブの下にある) インターネットシステム環境設定ペインから、Mozilla をデフォルトブラウザとして選択することもできます (訳注: Mac OS X v10.3 以降では、デフォルトブラウザの変更は Safari の環境設定から行います)。</li>
+</ol>
+<h2><a name="mac_uninstall">アンインストール方法</a></h2>
+<ol>
+	<li>/Users/&lt;ユーザ名&gt;/Library/Mozilla にあるアプリケーションファイルを削除してください (ただし Profiles というサブフォルダは残してください)。</li>
+	<li>/Users/&lt;ユーザ名&gt;/Library/Preferences から Mozilla Registry というファイルを削除してください。</li>
+	<li>インストールした場所 (例: /Applications) から Mozilla を削除してください。</li>
+</ol>
+
+<h1><a name="win">Windows</a></h1>
+<h2><a name="win_requirements" id="win_requirements">システム必要条件</a></h2>
+<ul>
+	<li>Windows 95/98/98SE/ME/NT 4.0/2000/XP</li>
+	<li>Intel Pentium クラスのプロセッサ (233 MHz 以上を推奨)</li>
+	<li>64 MB の RAM</li>
+	<li>26 MB のハードディスク空き容量</li>
+</ul>
+<p class="important">一部の ATI ビデオドライバは Mozilla と互換性がなく、クラッシュの原因となる場合があります。クラッシュに遭遇した場合は最新の ATI ドライバに <a href="http://mirror.ati.com/support/driver.html">アップグレード</a> してみてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=101055" title="Bug 101055 - Scrolling vertically crashes system - ATI Video Driver Problem">101055</a>)</p>
+<h2><a name="win_install" id="win_install">インストール方法</a></h2>
+<p class="important"><strong>注意</strong>: セットアッププログラムを実行する前に、すべてのプログラムを終了することを強くお勧めします。また、ウイルス検出ソフトが起動している場合は、一時的に無効にしてください。</p>
+<h3><a name="win_install_installer"></a>インストーラを使ってインストールする場合</h3>
+<p>インストーラをダウンロードして Mozilla をインストールするには、以下の手順に従ってください。</p>
+<ol>
+	<li>お使いのマシンにインストーラ (mozilla-win32-1.8a1-installer.exe) をダウンロードしてください。</li>
+	<li>ダウンロードしたファイルのある場所に移動し、Mozilla のプログラムアイコンをダブルクリックしてセットアッププログラムを起動してください。</li>
+	<li>セットアッププログラムの手順に従って Mozilla をインストールしてください。初回は Mozilla が自動的に起動します。</li>
+</ol>
+<h3><a name="win_install_manually"></a>ZIP ファイルを使って手作業でインストールする場合</h3>
+<p>ZIP ファイルをダウンロードして Mozilla を手作業でインストールするには、以下の手順に従ってください。</p>
+<ol>
+	<li>お使いのマシンに ZIP ファイル (mozilla-win32-1.8a1.zip) をダウンロードしてください。</li>
+	<li>ダウンロードしたファイルのある場所に移動し、ZIP ファイルをダブルクリックしてください。注意: この手順は、あなたが最近のバージョンの WinZip をインストールしていて、その使い方を知っていることを前提としています。そうでなければ、WinZip とこのプログラムに関する情報を <a href="http://www.winzip.com/">www.winzip.com</a> [<a href="http://www.panda.co.jp/winzip/">日本語版</a>] で入手してください。</li>
+	<li>C:&yen;Program Files&yen;Mozilla 1.8 Alpha1 などのディレクトリに ZIP ファイルを展開してください。</li>
+	<li>Mozilla を起動するには、Mozilla を展開したディレクトリに移動し、Mozilla.exe アイコンをダブルクリックしてください。</li>
+</ol>
+<h3><a name="win_uninstall">アンインストール方法</a></h3>
+<ul>
+	<li>インストーラを使った場合は、[設定] &gt; [コントロール パネル] &gt; [プログラムの追加と削除] を開き、Mozilla 1.8a1 を選択、削除してください。</li>
+	<li>ZIP ビルドを使った場合は、Mozilla をインストールした Mozilla 1.8 Alpha1 ディレクトリと <a href="#files_profiles">プロファイルディレクトリ</a> を削除してください。</li>
+</ul>
+
+<h1><a name="files">Mozilla が生成・使用するファイル</a></h1>
+<p>Mozilla は、個人用データを <a href="#profiles">プロファイル</a> という場所に保存します。プロファイルには、設定、メールフォルダ、履歴、Cookie、アドレス帳などの重要データが含まれています。以下のリストは、それらのファイルを一覧にまとめたものです。</p>
+<p>訳注: OS の種類、インストールしたビルドの違い、インストール時のコンポーネント選択、追加インストール (XPI) の有無などによって、すべてのディレクトリやファイルがあるとは限りません。</p>
+
+<table cellspacing="3" cellpadding="3" class="files">
+	<tr><th>ディレクトリ</th><th></th></tr>
+	<tr><td>Cache</td><td>キャッシュファイル (インターネット一時ファイル) - 詳しい情報を見るには、アドレスバーに about:cache と入力してください。</td></tr>
+	<tr><td>chrome</td><td>ユーザ定義スタイル、インストールされているテーマとアプリケーション</td></tr>
+	<tr><td>ImapMail</td><td>IMAP メール</td></tr>
+	<tr><td>Mail</td><td>ローカルフォルダと POP3 メール</td></tr>
+	<tr><td>News</td><td>Usenet ニュースグループ</td></tr>
+	<tr><th>ファイル</th></tr>
+	<tr><td>&lt;ランダムな数字&gt;.s</td><td><acronym title="ツール &gt; パスワードマネージャ &gt; 保存したパスワードを管理">パスワードデータ</acronym></td></tr>
+	<tr><td>&lt;ランダムな数字&gt;.w</td><td><acronym title="ツール &gt; フォームマネージャ &gt; フォーム情報を編集">フォーム自動保存データ</acronym></td></tr>
+	<tr><td>.autoreg</td><td>XPCOM 自動登録クルー - 新たにインストールされたコンポーネントを Mozilla が次回起動時にチェックする目印になります。</td></tr>
+	<tr><td>appreg<br>registry.dat<br>registry</td><td>アプリケーションレジストリ - ユーザプロファイルのログが保存されます。</td></tr>
+	<tr><td>abook.mab</td><td><acronym title="ウィンドウ &gt; アドレス帳">個人用アドレス帳</acronym></td></tr>
+	<tr><td>bookmarks.html</td><td><acronym title="ブックマーク &gt; ブックマークの管理">ブックマーク</acronym></td></tr>
+	<tr><td>cert7.db</td><td><acronym title="編集 &gt; 設定 &gt; プライバシーとセキュリティ &gt; 証明書 &gt; 証明書マネージャ">クライアント認証データベース</acronym></td></tr>
+	<tr><td>compreg.dat</td><td>Mozilla XPCOM レジストリ - Mozilla が自身のコンポーネント情報を保存するファイルです。</td></tr>
+	<tr><td>cookies.txt</td><td><acronym title="ツール &gt; Cookie マネージャ &gt; 保存した Cookie を管理">Cookie</acronym></td></tr>
+	<tr><td>hostperm.1</td><td><acronym title="ツール &gt; Cookie マネージャ &gt; 保存した Cookie を管理 &gt; Cookie サイトの設定">Cookie</acronym>、<acronym title="ツール &gt; 画像マネージャ &gt; 画像表示の許可を管理">画像</acronym>、<acronym title="ツール &gt; ポップアップマネージャ &gt; ポップアップを管理">ポップアップ</acronym> のパーミッション - これまでのバージョンでは cookperm.txt に保存されていた情報です。</td></tr>
+	<tr><td>history.dat</td><td><a title="移動 &gt; 履歴">URL 履歴</a></td></tr>
+	<tr><td>history.mab</td><td><acronym title="ウィンドウ &gt; アドレス帳 &gt; 収集アドレス帳">収集アドレス帳</acronym></td></tr>
+	<tr><td>key3.db</td><td><acronym title="編集 &gt; 設定 &gt; プライバシーとセキュリティ &gt; 証明書 &gt; 証明書マネージャ">認証鍵データベース</acronym></td></tr>
+	<tr><td>localstore.rdf</td><td>デフォルトウィンドウの設定 - ツールバーの状態、ウィンドウのサイズ、位置など、持続性の情報が保存されます。</td></tr>
+	<tr><td>downloads.rdf</td><td>ダウンロード履歴</td></tr>
+	<tr><td>training.dat</td><td><a href="/mailnews/spam.html">ジャンクメールフィルタ</a> のトレーニングデータ</td></tr>
+	<tr><td>mimeTypes.rdf</td><td><acronym title="編集 &gt; 設定 &gt; Navigator &gt; ヘルパーアプリケーション">ヘルパーアプリケーション</acronym> で認識可能なファイルの MIME タイプ定義</td></tr>
+	<tr><td>panacea.dat</td><td>メールフォルダキャッシュ - Mail &amp; News データベース全体の中の一部フィールドの要約で、主にフォルダペインの表示に使用されます。</td></tr>
+	<tr><td>panels.rdf</td><td>サイドバーにどのパネルを表示するかの情報</td></tr>
+	<tr><td>prefs.js</td><td>ユーザ設定全般 - 詳しい情報を見るには、アドレスバーに about:config と入力してください。</td></tr>
+	<tr><td>pluginreg.dat</td><td>登録されているプラグイン - 詳しい情報を見るには、アドレスバーに about:plugins と入力してください。</td></tr>
+	<tr><td>search.rdf</td><td>サイドバーで使用する検索プラグインの情報</td></tr>
+	<tr><td>secmod.db</td><td><acronym title="編集 &gt; 設定 &gt; プライバシーとセキュリティ &gt; 証明書 &gt; セキュリティデバイスマネージャ">セキュリティモジュールデータベース</acronym></td></tr>
+	<tr><td>URL.tbl</td><td><acronym title="ツール &gt; フォームマネージャ &gt; サイトを管理 &gt; 保存されないフォーム">フォームデータ自動保存の対象外にしたサイト</acronym></td></tr>
+	<tr><td>user.js</td><td>Mozilla 起動後に prefs.js に書き込まれるユーザ設定</td></tr>
+	<tr><td>xpti.dat</td><td>XPCOM タイプライブラリ情報カタログ</td></tr>
+	<tr><td>XUL.mfl<br>XUL FastLoad File<br>XUL.mfasl</td><td>XUL 高速読み込みファイル - コンパイル済クローム、JavaScript を含みます。</td></tr>
+	<tr><td>Invalid.mfasl<br>Aborted.mfasl</td><td>XUL 高速読み込みファイルが無効化され、これらのファイルが作成される場合があります。デバッグの必要がなければ削除してかまいません。</td></tr>
+	<tr><td>mozver.dat</td><td>(Windows) コンポーネントのバージョンを保存</td></tr>
+	<tr><td>MozillaUninstall.exe</td><td>(Windows) アンインストーラの実行ファイル</td></tr>
+	<tr><th>その他のファイル</th></tr>
+	<tr><td><i>*</i>.msf</td><td>メール要約ファイル。メールフォルダの要約が保持されます。ImapMail や Mail ディレクトリに置かれます。</td></tr>
+	<tr><td>msgFilterRules.dat</td><td><acronym title="ツール &gt; メッセージフィルタ">現サーバでのメールフィルタ</acronym> が保持されます - ImapMail や Mail ディレクトリに置かれます。</td></tr>
+	<tr><td><i>*</i>.rc</td><td>現サーバでの購読ニュースグループが保存されます。News ディレクトリに置かれます。</td></tr>
+	<tr><td>hostinfo.dat</td><td>現サーバで利用可能なすべてのニュースグループが保存されます。News ディレクトリに置かれます。</td></tr>
+</table>
+<h2><a name="files_profiles" id="files_profiles">プロファイルの場所</a></h2>
+<p>次のリストは <strong>標準的な</strong> プロファイルの場所を表したものです。</p>
+<dl>
+	<dt>Windows</dt>
+	<dd>
+		<p>(ログインを必要としない) Windows 95/98/ME では、標準的なプロファイルディレクトリは<br>&nbsp;&nbsp;C:&yen;Windows&yen;Application Data&yen;Mozilla&yen;Profiles&yen;&lt;ユーザプロファイル&gt;&yen;&lt;ランダムな文字列&gt;.slt&yen;</p>
+		<p>(ログインを必要とする) Windows 95/98/ME では、標準的なプロファイルディレクトリは<br>&nbsp;&nbsp;C:&yen;Windows&yen;Profiles&yen;&lt;ログイン名&gt;&yen;Application Data&yen;Mozilla&yen;Profiles&yen;&lt;ユーザプロファイル&gt;&yen;&lt;ランダムな文字列&gt;.slt&yen;</p>
+		<p>Windows 2000/XP では、標準的なプロファイルディレクトリは<br>&nbsp;&nbsp;C:&yen;Documents and Settings&yen;&lt;ログイン名&gt;&yen;Application Data&yen;Mozilla&yen;Profiles&yen;&lt;ユーザプロファイル&gt;&yen;&lt;ランダムな文字列&gt;.slt&yen;</p>
+		<p>注: Windows 2000/XP では、Document and Settings ディレクトリは二重に隠されています。このディレクトリにアクセスするには、Windows Explorer からシステムディレクトリ・ファイルの表示と隠しディレクトリ・ファイルの表示を有効にする必要があります。</p>
+	</dd>
+	<dt>Mac OS X</dt>
+	<dd>
+		<p>標準的なプロファイルの場所は<br>&nbsp;&nbsp;~/Library/Mozilla/Profiles/&lt;プロファイル名&gt;/&lt;ランダムな文字列&gt;.slt/</p>
+	</dd>
+	<dt>Linux</dt>
+	<dd>
+		<p>標準的なプロファイルの場所は<br>&nbsp;&nbsp;~/.mozilla/&lt;プロファイル名&gt;/&lt;ランダムな文字列&gt;.slt/</p>
+	</dd>
+</dl>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.8a1/installation.html">英語版</a> 2004/06/07</span> - <span>和訳版 2005/01/14</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.8a1/installation.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

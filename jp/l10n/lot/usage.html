@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+
+
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tt="http://dynamis.jp/2003/TransTools" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/">
+<head>
+	
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP"/>
+	<link href="../../../news.rdf" rel="alternate" type="application/xml" title="RSS"/>
+	<link href="../../../" rel="home" title="Home"/>
+	<link href="../../../css/print.css" rel="stylesheet" type="text/css" media="print"/>
+	<link href="../../../css/base/content.css" rel="stylesheet" type="text/css" media="all"/>
+	<link href="../../../css/cavendish/content.css" rel="stylesheet" type="text/css" title="Cavendish" media="all"/>
+	<link href="../../../css/base/template.css" rel="stylesheet" type="text/css" media="screen"/>
+	<link href="../../../css/cavendish/template.css" rel="stylesheet" type="text/css" title="Cavendish" media="screen"/>
+	<link href="../../../images/mozilla-16.png" rel="icon" type="image/png"/>
+
+	<link href="../../../jp/l10n/css/l10n.css" rel="stylesheet" type="text/css"/>
+	<meta name="keywords" content="localization, JLP, L10N, japanese, mozilla, firefox, thunderbird"/>
+
+<title>ローカライズセンター - Localization Tools の使い方</title></head>
+<body>
+<div id="container">
+	<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+	
+	<div id="header">
+		<h1><a href="../../../" title="ホームページへ戻る" accesskey="1">Mozilla</a></h1>
+		<ul>
+			<li><a href="../../../about/" title="Mozilla Japan について">組織概要</a></li>
+			<li><a href="../../../developer/" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+
+			<li><a href="../../../support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+			<li><a href="../../../products/" title="Mozilla 製品概要">製品情報</a></li>
+		</ul>
+		<form id="search" method="get" action="http://www.google.co.jp/custom" title="mozilla-japan.org 検索">
+			<div>
+				<label for="q" title="mozilla-japan.org サイトの検索">サイト内検索:</label>
+				<input type="hidden" name="domains" value="mozilla-japan.org"/>
+				<input type="hidden" name="sitesearch" value="mozilla-japan.org"/>
+				<input type="hidden" name="client" value="pub-8666734350947173"/>
+				<input type="hidden" name="forid" value="1"/>
+				<input type="hidden" name="channel" value="2059762724"/>
+				<input type="hidden" name="ie" value="EUC-JP"/>
+
+				<input type="hidden" name="oe" value="EUC-JP"/>
+				<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;LH:37;LW:175;L:http://www.mozilla-japan.org/images/mozilla-logo.gif;S:http://www.mozilla-japan.org/;FORID:1;"/>
+				<input type="hidden" name="hl" value="ja"/>
+				<input type="text" id="q" name="q" accesskey="s" size="30"/>
+				<input type="submit" id="submit" value="検索"/>
+			</div>
+		</form>
+	</div>
+
+	<hr class="hide"/>
+	<div id="mBody">
+		
+	<div id="side">
+		<ul id="nav">
+			<li><a href="../../../jp/l10n/"><strong>ローカライズセンター</strong></a></li>
+			
+	<li title="日本語化に関する総合フォーラム"><a href="http://forums.firehacks.org/l10n/"><strong>L10N フォーラム</strong></a>
+	<ul>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=1" title="Release Announcement フォーラム">リリース告知</a></li>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=4" title="Main Products フォーラム">フィードバック</a></li>
+	</ul>
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/firefox/" title="次世代ブラウザを日本へ"><strong>Firefox</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/thunderbird/" title="次世代メールクライアントの日本語化"><strong>Thunderbird</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/suite/" title="成熟したインターネットスイートを日本語に"><strong>Mozilla</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/library.html" title="日本語化に関するツールとドキュメント"><strong>L10N ライブラリ</strong></a>
+	<ul>
+		<li><a href="../../../jp/l10n/lot/" title="JLP メンテナンス用 Ant スクリプト">Localization Tools</a></li>
+		
+		<li><a href="../../../jp/l10n/faq/" title="ローカライズセンターとその製品についてよくある質問">L10N FAQ</a></li>
+		<li><a href="../../../jp/l10n/guide.html" title="ローカライズセンターでの日本語化ガイドライン">L10N ガイドライン</a></li>
+		<li><a href="../../../jp/l10n/term/" title="ローカライズセンター指定訳語など">用語データベース</a></li>
+		<li><a href="../../../jp/l10n/links.html" title="ローカライズ関連リンク集">関連リンク</a></li>
+	</ul>
+	</li>
+
+			
+	<li><span><strong>活動内容と参加方法</strong></span>
+	<ul>
+		<li><a href="../../../jp/l10n/about.html">ローカライズセンターについて</a></li>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=3" title="準備中 (取りあえずフォーラムへのリンク)">協力者募集</a></li>
+		<li><a href="../../../jp/l10n/thanks.html" title="謝辞">Acknowlegement</a></li>
+	</ul>
+	</li>
+
+		</ul>
+	</div>
+
+		<hr class="hide"/>
+		<div id="mainContent">
+			
+	<h1 title="今日からあなたも JLP 開発者">Localization Tools の使い方</h1><address>
+				author: 
+				<dc:creator>dynamis</dc:creator><br/>
+				target: 
+				<dcterms:audience>developers</dcterms:audience><br/></address>
+	
+	<ul id="toc"><li><a href="#nibbling">つまみ食い</a></li><li><a href="#ant">Ant コマンドのいろは</a><ul><li><a href="#ant_terms">Ant 用語</a></li><li><a href="#ant_commandline">コマンドライン</a></li></ul></li><li><a href="#bibliography">参考文献</a></li></ul>
+	
+	<div id="nibbling" class="section ">
+		<h2>つまみ食い</h2>
+		<p>つまみ食いは好きですか？私は大好きです。</p>
+		<p><a href="http://java.sun.com/">JDK (または Java 2 SDK)</a> と <a href="http://ant.apache.org/">Apache Ant</a> がインストールできたら Localization Tools (以後 lot) のアーカイブをダウンロードしてきて、好きなディレクトリで展開しましょう。取りあえずそのディレクトリ上でオプション指定無しで ant コマンドを実行してみてください。</p>
+		<p class="indent"><kbd>ant</kbd></p>
+		<p>ビルド開始の確認メッセージが表示されたら Enter(Return) キーを押してください。すると、だらだらだらーっとなにやらいろいろ表示され、 loose や dest などのディレクトリが増えています。ビルドが終わるまでしばらく待ってから dest/firefox/ ディレクトリを覗いてみると、Firefox JLP の XPI パッケージができています。完成です。以上。お疲れ様でした。(^^;</p>
+		<p>次は Mozilla Japan の FTP サーバから <a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.5/firefox-1.5.ja.langpack-1.5.xpi">Firefox 1.5 リリース時の JLP</a> をダウンロードして、さっき作った JLP と仲良く一緒に dest/firefox/ ディレクトリに入れてあげてください。<br/>
+			ちょっと長いですが次のコマンドを実行しましょう。</p>
+		<p class="indent"><kbd>ant lpdiff-xpi -Ddiff.xpi.fromfxversion=1.5 -Dfromrevision=1.5 -Dlocale=ja</kbd><br/>
+			<kbd>ant lpdiff-xpi -Ddiff.xpi.fromfxversion=1.5 -Dfromrevision=1.5 -Dlocale=ja-JP-mac</kbd></p>
+		<p>今度は lpdiff/mozilla1.8/firefox/xpi/ ディレクトリに html ファイルができました。ダウンロードしてきた Firefox 1.5 の JLP と、先程ビルドしたてのほやほやの XPI パッケージとの差分です。これは lot に同梱している <a href="../../../jp/l10n/lpdiff/">LpDiff</a> という言語リソース差分生成ツールによる出力で、青は変更、赤は追加、緑は削除されたリソースを表しています。</p>
+		<p>これで lpdiff/mozilla1.8/firefox/src/ ディレクトリに、英語と日本語の比較対照表が生成されました。生成された対照表をよーく見て、誤訳や typo を探してください。見つかったらすぐに <a href="http://forums.firehacks.org/l10n/">L10N フォーラム</a>までお知らせください。m(_ _)m</p>
+		<p>人が作ったものを見るだけじゃぁ面白くないので、次は自分独自のオリジナル JLP を作ってみましょう。<br/>
+			早速…という前に、何か間違えても大丈夫なように言語リソースファイルをバックアップしておきましょう。</p>
+		<p class="indent"><kbd>ant backup-src</kbd></p>
+		<p>backup ディレクトリに src ディレクトリ以下の全ファイルがバックアップされました。これで間違ってファイルを削除してしまっても大丈夫。さぁ、src ディレクトリの中の好きな言語リソースファイルを好きなだけ書き換えてください…<br/>
+			…それくらいでよいですか？それでは早速、XPI を作りましょう。</p>
+		<p class="indent"><kbd>ant</kbd></p>
+		<p>おや、最初と違って今度は一時ファイルを削除してよいかとか、ディレクトリを削除して良いかとか確認してきます。 2 度目以降のビルドでは既存の一時ファイルや中間ファイルを一度削除してから生成することになるが、その確認なのです。これらすべてに <kbd>YES</kbd> と答えていけば XPI パッケージが作成できますが、このままでは変更前の JLP に上書きで独自 JLP が作成されることになります。それでもまぁ構わないのですが、毎回 YES と答えるのは面倒ですし、JLP は上書きではなく変更前とは別名で作成したいところです。ここは <kbd>NO</kbd> と答えてキャンセルし、lot の設定ファイルを書き換えましょう。<br/>
+			config/lot.conf ファイルを開き、 <var>mozilla1.8.firefox.langpack.revision</var> の値を <var>mozilla1.8.firefox.langpack.revision.pre</var> に移してから、適当な値に変更しましょう。また、JLP の作者名などは config/mozilla1.8/firefox.conf で定義されています。 firefox.conf の <var>package.creator</var> を自分の名前に書き換えるなどしたら、いよいよ独自 JLP のビルドです。</p>
+		<p class="indent"><kbd>ant auto build</kbd></p>
+		<p>auto は文字通り自動処理するもので、それ以後すべての処理で削除や上書きなどの確認がなくなります。続けて指定している build というのが lot のデフォルト処理(ターゲット)であり、Firefox の JLP を生成します。最初に <kbd>ant</kbd> 単独で実行していたのは <kbd>ant build</kbd> を実行していたということで、今回は全自動にするために auto を指定したのです。</p>
+		<p>さて、これでオリジナル JLP ができました。早速 Firefox にインストールしてテストしてみてください。問題なければ "これがオレの独自 JLP だぁ~" と周りの人に自慢してください。但し、ここで彼女や妻あるいは娘や息子に自慢するのは止めておきましょう。冷たい視線を浴びても私は責任をとりかねます。<br/>
+			修正とテストを繰り返して立派なオリジナル JLP ができたら、JLP だけでなく lot パッケージでソースも一緒に公開しましょう。</p>
+		<p class="indent"><kbd>ant backuplot</kbd></p>
+		<p>backup/lot ディレクトリに src ディレクトリ以下のファイルと lot 本体や設定ファイルなどをまとめたパッケージが作成されます。あなたが今味見しているこの lot パッケージもこのコマンドで作られたものです。</p>
+		<p>さて、お口に合いましたでしょうか？勿論これ以外にもまだまだいろいろなことができます。勘のいい方はファイル構成などを見て既に気づいていることと思いますが、lot では Firefox の JLP だけでなく Thunderbird の JLP もビルドできます。 <kbd>ant -Dpackage=thunderbird</kbd> あるいは <kbd>ant buildtb</kbd> などを実行するだけです。 Venkman-JP をビルドするには <kbd>ant -Dmode=extension -Dpackage=venkman</kbd> です。<br/>
+			また、ここでは詳しく述べませんが、lot はマルチプラットフォームであるだけでなくロケールにも依存しないように書かれているので、ちょっと設定ファイルを追加するだけで ja/ja-JP-mac 以外の言語パックも作成できます。英語のパッケージなら <kbd>ant -Dlocale=en-US</kbd> を実行するだけです。</p>
+		<p>機能面でも言語間の差分生成をしたり(<kbd>ant lpdiff-src</kbd>)、diff コマンドを利用した差分生成をしたり(<kbd>ant diff-xpi -Dlocale=ja</kbd>)、cvs コマンドを利用して Mozilla Foundation のサーバから言語リソースを src ディレクトリに export したり(<kbd>ant cvs-exportsrc -Dlocale=fr</kbd>)することもできます。ちょっと準備すれば、標準で含まれている Venkman など以外の拡張機能を日本語化する際のスクリプトとしても使用できます。</p>
+		<p>いろいろ味付けしてみて、何か新しい料理を思いついたらレシピを送ってください。</p>
+	</div>
+	
+	<div id="ant" class="section ">
+		<h2>Ant コマンドのいろは</h2>
+		<p>lot は独立した単一プログラムではなく、Ant ビルドスクリプトを中心に <a href="../../../jp/l10n/lpdiff/">LpDiff</a> やソースファイルなどをまとめたものです。従って、Ant コマンドの使い方とビルドスクリプトの書き方が分かっていれば lot は自由自在に操ることができます。詳しいことは分からなくとも JLP のメンテナンスをする上で必要なことは一通りできますが、lot を使用する上で知っておいた方がよい基本だけさっくり確認しておきましょう。</p>
+		
+		<div id="ant_terms" class="subsection ">
+			<h3>Ant 用語</h3>
+			<dl>
+				<dt>ビルドファイル</dt>
+				<dd>Ant のビルドスクリプトを記述しているファイルを「ビルドファイル」といい、デフォルトでは build.xml という名前の XML ファイルです。 Ant コマンドの実行時にオプション指定することで別のビルドファイルを実行することもできます。<br/>
+					<code class="indent">ant -f &lt;buildfile&gt;</code><br/>
+					lot ではビルドスクリプトを単一ファイルにすべて記述するのではなく、処理内容別のファイルに記述しています。設定(プロパティ)に応じて動的にビルドファイルを読み込むことで、スクリプトの動作を選択するなどしているため、lot には多数のビルドスクリプトが含まれています。
+				</dd>
+				<dt>ターゲット</dt>
+				<dd>Ant で実行する一連の処理のことを「ターゲット」といいます。具体的には lot の使用時に ant コマンドに続けて指定する backup-src とか lpdiff-xpi などのことです。オブジェクト指向的にいえば、ビルドファイルが定義するクラスのメソッドがターゲットといった感じです。<br/>
+					<code class="indent">ant &lt;targetname&gt;</code><br/>
+					なお、ant コマンドに -p オプションを指定すれば、ターゲット名とその簡単な説明が一覧表示されます。<br/>
+					<code class="indent">ant -p</code></dd>
+				<dt>タスク</dt>
+				<dd>Ant における処理単位が「タスク」です。ファイルをコピーするとか削除するとか ZIP 圧縮するといった基本的な処理にはそれぞれ専用のタスクが定義されています。プログラミング的には関数のようなものです。カスタマイズせずに lot を使用する上ではあまり気にする必要ありません。</dd>
+				<dt>プロパティ</dt>
+				<dd>Ant ビルドスクリプトには一般的なプログラムで使用するような変数はありませんが、その代わりに使用できるものとして「プロパティ」というものがあります。プロパティの定義が書かれている conf ファイルを書き換えたり、コマンド実行時に -D オプションで指定することで lot の動作を細かく指定することができます。なお、プロパティは大文字小文字を区別しますので入力時には注意してください。<br/>
+					<code class="indent">ant -D&lt;property&gt;=&lt;value&gt;</code></dd>
+			</dl>
+			<p>自分でビルドスクリプトを書くのであれば知っておくべき事はまだまだありますが、lot を使うだけであればこの程度が分かっていれば必要十分かと思います。</p>
+		</div>
+		
+		<div id="ant_commandline" class="subsection ">
+			<h3>コマンドライン</h3>
+			<p>ant コマンドの書式はとても単純です。 ant に続けて必要に応じてターゲット名とオプションを指定するだけです。</p>
+			<p class="indent"><code>ant [options] [target [target2 [target3] ...]]</code></p>
+			<p>ターゲット名は指定順序に実行されるので順序に注意が必要ですが、オプションの順序やオプションとターゲット名の順序は問いません。</p>
+			<p>オプションはいろいろとありますが、lot であれば普通はプロパティを指定する -D オプションしか使いません。他はせいぜいコマンドラインの確認に -h オプション、ターゲット名の確認に -p オプション、独自ビルドファイルの指定に -f オプションを使う程度でしょう。</p>
+		</div>
+	</div>
+	
+	
+	
+	<div id="bibliography" class="section ">
+		<h2>参考文献</h2>
+		<p>Localization Tools に関する参考文献はありませんが、lot というのは結局のところ Ant のスクリプトですので、Ant に関する参考資料を挙げておきます。</p>
+		<dl>
+			<dt><a href="http://ant.apache.org/manual/index.html">Apache Ant User Manual</a> <span class="comment">(英語)</span></dt>
+			<dd>公式マニュアル。最新の機能や詳細についてはやはりこれを見るのが一番。</dd>
+			<dt><a href="http://ant.apache.org/faq.html">Frequently Asked Questions</a> <span class="comment">(英語)</span></dt>
+			<dd>公式サイトの FAQ ページ。</dd>
+			<dt><a href="http://www.jajakarta.org/ant/">Ja-Jakarta - Ant 翻訳サブプロジェクト</a></dt>
+			<dd>Apache Ant ユーザマニュアルの日本語訳。最新の機能などは載っていなかったりしますが、英語が苦手な方には心強い味方かと。</dd>
+			<dt><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774120006/mozillajapan-www-22/ref%3Dnosim">Apache Ant (技術評論社)</a></dt>
+			<dd>Ant 入門書。後半のリファレンスは公式マニュアルに載っているターゲットから主張なものだけ選んで、ちょっと手を入れながら(一部誤訳もあるが概ね適切に)訳したような感じ。対応バージョンは 1.6.0 だが、スタートとしてはそれでも大丈夫。</dd>
+			<dt><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112656/mozillajapan-www-22/ref%3Dnosim">Apache Ant (オライリージャパン)</a></dt>
+			<dd>原書第二版の訳にあたる、オライリーによる Ant 本。入門から少し高度なところまで解説してくれる。</dd>
+			<dt><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797325186/mozillajapan-www-22/ref%3Dnosim">JavaデベロッパーのためのApache Ant入門 (ソフトバンククリエイティブ)</a></dt>
+			<dd>内容未確認。私の知る限り元も古い日本語 Ant 解説書。</dd>
+			<dt><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4798008540/mozillajapan-www-22/ref%3Dnosim">Jakartaプロジェクト カンタンAnt (秀和システム)</a></dt>
+			<dd>内容未確認。入門書か。</dd>
+		</dl>
+		<p>私(dynamis)は最初技術評論社の「<a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774120006/mozillajapan-www-22/ref%3Dnosim">Apache Ant</a>」で Ant の基本を学びました。情報が古いし基本的な機能しか紹介されていませんが、ざっくり知って数日で使えるようになるという目的にはちょうど良かったですし、基本機能の確認にはリファレンスがある程度役立ちます。基本が分かった後はやはり <a href="http://ant.apache.org/manual/index.html">User Manual 原文</a> が一番かと思いますが。</p>
+	</div>
+	
+
+		</div>
+	</div>
+	<hr class="hide"/>
+	
+	<div id="footer">
+		<ul id="bn" style="margin-bottom: .6em;">
+			<li><a href="../../../security/">セキュリティ情報</a></li>
+			<li><a href="../../../press/">プレスルーム</a></li>
+			<li><a href="../../../contact/">お問い合わせ</a></li>
+			<li><a href="../../../sitemap.html">サイトマップ</a></li>
+		</ul>
+		<p>© 2005 Mozilla Japan and <a href="http://www.mozilla.org/">Mozilla Foundation</a> - Mozilla Japan は Mozilla Foundation の公式アフィリエイトです。</p>
+		<p>このドキュメントは Mozilla Japan ローカライズセンターにより作成・管理されています。<br/>
+			このドキュメントに関するお問い合わせは <a href="http://forums.firehacks.org/l10n/viewforum.php?f=10">L10N フォーラム</a>までお寄せください。</p>
+	</div>
+
+</div>
+</body>
+</html>
+

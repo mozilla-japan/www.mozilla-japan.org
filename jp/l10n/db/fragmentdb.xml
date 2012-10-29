@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tt:database xml:lang="ja" lang="ja" type="fragment"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:tt="http://dynamis.jp/2003/TransTools">
+
+<!-- 
+<tt:fragment id="" parsed="yes|no">
+	tt:include で置き換えたい XML 断片
+</tt:fragment>
+id:		tt:include 要素の idref 属性で指定
+parsed:	パース対象であるかどうか。 XML の解析対象という意味ではなく apply-templates/copy-of いずれで処理するか。
+ -->
+
+
+<!-- * HTML header * -->
+<tt:fragment id="htmlheader-default" parsed="yes" xml:space="preserve">
+	<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> -->
+	<!-- <link rel="alternate" type="application/xml" title="RSS" href="${firehacks-rss}"/> -->
+	<link rel="home" title="Home" href="${firehacks}"/>
+	<link rel="stylesheet" type="text/css" href="${firehacks-css-markup}"/>
+	<link rel="stylesheet" type="text/css" href="${firehacks-css-foundation}"/>
+	<link rel="shortcut icon" href="${firehacks-icon-tara16}"/>
+</tt:fragment>
+
+
+<tt:fragment id="htmlheader-mj" parsed="yes" xml:space="preserve">
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP"/>
+	<link rel="alternate" type="application/xml" title="RSS" href="${mj-rdf-news}"/>
+	<link rel="home" title="Home" href="${mj}"/>
+	<link rel="stylesheet" type="text/css" href="${mj-css-print}" media="print"/>
+	<link rel="stylesheet" type="text/css" href="${mj-css-base-content}" media="all"/>
+	<link rel="stylesheet" type="text/css" href="${mj-css-cavendish-content}" title="Cavendish" media="all"/>
+	<link rel="stylesheet" type="text/css" href="${mj-css-base-template}"  media="screen"/>
+	<link rel="stylesheet" type="text/css" href="${mj-css-cavendish-template}" title="Cavendish" media="screen"/>
+	<link rel="icon" href="${mj-icon-mozilla}" type="image/png"/>
+</tt:fragment>
+
+<tt:fragment id="htmlheader-l10n" parsed="yes" xml:space="preserve">
+	<tt:include idref="htmlheader-mj"/>
+	<link rel="stylesheet" type="text/css" href="${l10n-css-l10n}"/>
+	<meta name="keywords" content="localization, JLP, L10N, japanese, mozilla, firefox, thunderbird"/>
+</tt:fragment>
+
+
+
+<!-- * page header/side/footer filed * -->
+<tt:fragment id="header-mj" parsed="yes">
+	<div id="header">
+		<h1><a href="${mj}" title="ホームページへ戻る" accesskey="1">Mozilla</a></h1>
+		<ul>
+			<li><a href="${mj-about}" title="Mozilla Japan について">組織概要</a></li>
+			<li><a href="${mj-developer}" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+
+			<li><a href="${mj-support}" title="個人および法人向けのサービス・サポート">サポート</a></li>
+			<li><a href="${mj-products}" title="Mozilla 製品概要">製品情報</a></li>
+		</ul>
+		<form id="search" method="get" action="http://www.google.co.jp/custom" title="mozilla-japan.org 検索">
+			<div>
+				<label for="q" title="mozilla-japan.org サイトの検索">サイト内検索:</label>
+				<input type="hidden" name="domains" value="mozilla-japan.org"/>
+				<input type="hidden" name="sitesearch" value="mozilla-japan.org"/>
+				<input type="hidden" name="client" value="pub-8666734350947173"/>
+				<input type="hidden" name="forid" value="1"/>
+				<input type="hidden" name="channel" value="2059762724"/>
+				<input type="hidden" name="ie" value="EUC-JP"/>
+
+				<input type="hidden" name="oe" value="EUC-JP"/>
+				<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;LH:37;LW:175;L:http://www.mozilla-japan.org/images/mozilla-logo.gif;S:http://www.mozilla-japan.org/;FORID:1;"/>
+				<input type="hidden" name="hl" value="ja"/>
+				<input type="text" id="q" name="q" accesskey="s" size="30"/>
+				<input type="submit" id="submit" value="検索"/>
+			</div>
+		</form>
+	</div><!-- close #header  -->
+</tt:fragment>
+
+
+<tt:fragment id="footer-l10n" parsed="yes">
+	<div id="footer">
+		<ul id="bn" style="margin-bottom: .6em;">
+			<li><a href="${mj-security}">セキュリティ情報</a></li>
+			<li><a href="${mj-press}">プレスルーム</a></li>
+			<li><a href="${mj-about-contact}">お問い合わせ</a></li>
+			<li><a href="${mj-sitemap}">サイトマップ</a></li>
+		</ul>
+		<p><tt:copy/> 2005 Mozilla Japan and <a href="http://www.mozilla.org/">Mozilla Foundation</a> - Mozilla Japan は Mozilla Foundation の公式アフィリエイトです。</p>
+		<p>このドキュメントは Mozilla Japan ローカライズセンターにより作成・管理されています。<br/>
+			このドキュメントに関するお問い合わせは <a href="${l10n-forum-mj-doc}">L10N フォーラム</a>までお寄せください。</p>
+	</div><!-- close #footer -->
+</tt:fragment>
+
+
+<tt:fragment id="sidebar-l10n" parsed="yes">
+	<div id="side">
+		<ul id="nav">
+			<li><a href="${l10n}"><strong>ローカライズセンター</strong></a></li>
+			<tt:include idref="sidebar-l10n-forum"/>
+			<tt:include idref="sidebar-l10n-firefox"/>
+			<tt:include idref="sidebar-l10n-thunderbird"/>
+			<tt:include idref="sidebar-l10n-suite"/>
+			<tt:include idref="sidebar-l10n-library"/>
+			<tt:include idref="sidebar-l10n-about"/>
+		</ul>
+	</div><!-- close #side -->
+</tt:fragment>
+<tt:fragment id="sidebar-l10n-forum" parsed="yes">
+	<li title="日本語化に関する総合フォーラム"><a href="${l10n-forum}"><strong>L10N フォーラム</strong></a>
+	<ul>
+		<li><a href="${l10n-forum-info-release}" title="Release Announcement フォーラム">リリース告知</a></li>
+		<li><a href="${l10n-forum-dev-main}" title="Main Products フォーラム">フィードバック</a></li>
+	</ul>
+	</li>
+</tt:fragment>
+<tt:fragment id="sidebar-l10n-firefox" parsed="yes">
+	<li><a href="${l10n-firefox}" title="次世代ブラウザを日本へ"><strong>Firefox</strong></a>
+	<!-- <ul>
+		<li><a href="${l10n-firefox-archives}">以前のリリース</a></li>
+	</ul> -->
+	</li>
+</tt:fragment>
+<tt:fragment id="sidebar-l10n-thunderbird" parsed="yes">
+	<li><a href="${l10n-thunderbird}" title="次世代メールクライアントの日本語化"><strong>Thunderbird</strong></a>
+	<!-- <ul>
+		<li><a href="${l10n-thunderbird-archives}">以前のリリース</a></li>
+	</ul> -->
+	</li>
+</tt:fragment>
+<tt:fragment id="sidebar-l10n-suite" parsed="yes">
+	<li><a href="${l10n-suite}" title="成熟したインターネットスイートを日本語に"><strong>Mozilla</strong></a>
+	<!-- <ul>
+		<li><a href="${l10n-suite-archives}">以前のリリース</a></li>
+	</ul> -->
+	</li>
+</tt:fragment>
+<tt:fragment id="sidebar-l10n-library" parsed="yes">
+	<li><a href="${l10n-library}" title="日本語化に関するツールとドキュメント"><strong>L10N ライブラリ</strong></a>
+	<ul>
+		<li><a href="${l10n-lot}" title="JLP メンテナンス用 Ant スクリプト">Localization Tools</a></li>
+		<!-- <li><a href="${l10n-lpdiff}" title="言語リソース比較ツール">LpDiff</a></li> -->
+		<li><a href="${l10n-faq}" title="ローカライズセンターとその製品についてよくある質問">L10N FAQ</a></li>
+		<li><a href="${l10n-guide}" title="ローカライズセンターでの日本語化ガイドライン">L10N ガイドライン</a></li>
+		<li><a href="${l10n-term}" title="ローカライズセンター指定訳語など">用語データベース</a></li>
+		<li><a href="${l10n-links}" title="ローカライズ関連リンク集">関連リンク</a></li>
+	</ul>
+	</li>
+</tt:fragment>
+<tt:fragment id="sidebar-l10n-about" parsed="yes">
+	<li><span><strong>活動内容と参加方法</strong></span>
+	<ul>
+		<li><a href="${l10n-about}">ローカライズセンターについて</a></li>
+		<li><a href="${l10n-forum-info-free}" title="準備中 (取りあえずフォーラムへのリンク)">協力者募集</a></li>
+		<li><a href="${l10n-thanks}" title="謝辞">Acknowlegement</a></li>
+	</ul>
+	</li>
+</tt:fragment>
+
+
+
+<!-- * misc. * -->
+<tt:fragment id="about-dl" parsed="no">
+	<h2>ダウンロードリストについて</h2>
+	<p>これまでにリリースされた日本語版のリストです。インストーラ形式では質問に答えるだけでよく、初心者でも簡単に使えます。既にインストールしている英語版に日本語リソースを追加インストールする際には <abbr title="X(cross) Platform Install">XPI</abbr> パッケージを利用できます。 zip, tar.gz などのアーカイブ形式は好きな場所に展開して使います。バージョンにより用意している形式が一部異なりますが、それぞれお好みの形式をご利用下さい。<br/>
+	なお、XPI パッケージについては<span title="OS に応じた言語リソースにしていたりはします">原則プラットフォームに依存しない</span>ため Win, Linux, Mac OS X 以外にも利用できます。</p>
+	<p class="note">rev.x.x というのは日本語版のリリース番号であり、製品本体のバージョンとは関係ありません。言語リソースが更新されたりするとリリース番号が大きくなります。<br/>
+		<span title="ツールチップはそのファイルのチェックサム">md5 や sha1</span> と書かれたリンクをクリックすると、製品バージョン毎の <span title="gnu md5sum や gnu sha1sum による出力です">チェックサムリストファイル</span>が表示されます。ファイルのダウンロードに失敗していないかなどを確認するためにご利用頂けます。</p>
+</tt:fragment>
+<tt:fragment id="about-package" parsed="no">
+	<h2>パッケージ形式について</h2>
+	<p>ご利用の OS に対応するお好きな形式のものをご利用ください。インストーラ版が質問に答えるだけで自動的にインストールできる初心者向けパッケージであり、各種アーカイブ版は適切なツールを用いて好きなフォルダに展開することでご利用頂けます。 <abbr title="X(cross) Platform Install">XPI</abbr> パッケージというのは上級者向けパッケージであり、インストール済の英語版に日本語リソースを追加インストールするためのものです。</p>
+</tt:fragment>
+
+<tt:fragment id="contributer-list-footer" parsed="no">
+	<p class="note clear right indent">...these names are mainly nickname without prefix in alphabetical order<br/>
+		if you have done well but not in the list, so sorry and tell us please...</p>
+</tt:fragment>
+
+
+
+
+</tt:database>

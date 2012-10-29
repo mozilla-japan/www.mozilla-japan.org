@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+   <TITLE>Bonsai ツリー制御</TITLE>
+   <META NAME="Author" CONTENT="Chris Yeh">
+
+<link rel="alternate" hreflang="en" modified="July  5,  2000">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/hacking/bonsai.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<H1>Bonsai を使って Mozilla をハックする</H1>
+
+<P>Bonsai はもともと、ツリーが不安定であるという問題を解決するために作られました。
+元となる Navigator のコードベースは複数のプラットフォームにまたがって共有される大きなセクションを持っています。
+しばしば、チェックインされたコードは、コンパイルされ、一握りのプラットフォームで実行されます。
+また、100 人とにも上るエンジニアをもってしても、ツリーで不安定さを引き起こしたのが何かを割り出すのは難しいのです。
+Bonsai はこうした問題を解決するために作成されました。
+</P>
+
+<H2>手順</H2>
+
+<OL>
+<LI>ツリーにチェックインした人はだれでも、&quot;the hook&quot;（つなぎとめられている、といった意）と呼ばれるグループに入ります。</LI>
+
+<LI>毎週水曜日の朝、PST（米国太平洋標準時間）午前 8:00 時に、ソースのツリーは閉じられます。</LI>
+
+<LI>ビルドチームは午前 8:00 時のツリーを引っ張り出します。そして、Linux、Win32、MacPPC といった一部のプラットフォーム上でビルドします。</LI>
+
+<LI>午前 10:00、「hook」となっている人は誰もが、ビルドが失敗した場合に備えて待機します。</LI>
+
+<LI>最終的に、ツリーがビルドされ、ツリーは再オープンされます。</LI>
+
+<LI><A HREF="http://bonsai.mozilla.org/toplevel.cgi?treeid=newlayout">このページ</A>は、以下のものを記録します</LI>
+
+<UL>
+<LI>ツリーが OPEN（開いている）なのか CLOSED（閉じている）なのか</LI>
+
+<LI>問題なかったツリーとして知られている最後のもののタイムスタンプはどれか</LI>
+
+<LI>今のツリーで誰が「hook」となっているのか</LI>
+</UL>
+
+<<<<<<< bonsai.html
+<LI>ツリーが開かれる前に、ツリーが閉じられたときに発生したチェックインのリストがレビューされ、ビルドに関連したチェックインのみが行われていることを確認します。</LI>
+
+<LI>ツリーが開かれる前に、<B>相乗りレーン</B>があります。
+相乗り<span class="comment">（訳注：carpool：閉じられたツリーに少人数でチェックインすること、詳細は <a href="/docs/jargon.html">jargon 集</a>を参照のこと）</span>レーンはブランチ上にいなくて、ソースをマージするために安定したツリーの先端を必要としている人が、マージするための先端を取り出せるようにするための場所です。
+相乗りレーン上の人は、チェックインする時、明日のビルドに対して &quot;hook 状態&quot; です。
+<B>相乗りレーン</B>はリリースチームとともに前もってアクセスの準備をする人にだけ利用可能です。</LI>
+
+<LI>ツリーが再開されると、Web ページは更新され、hook 状態はクリアされます。</LI>
+
+<LI>どのチェックインが最近ツリーに行われたか見たり、バージョン間の違いを見たりするために、
+<A HREF="http://bonsai.mozilla.org/cvsqueryform.cgi?cvsroot=/cvsroot">bonsai 検索ツール</A>を使ってください。
+検索についての詳細情報は<A HREF="../bonsai.html">Bonsai 入門</A>を参照してください。</LI>
+=======
+<LI>ツリーが開かれる前に、ツリーが閉じられたときに発生したチェックインのリストがレビューされ、ビルドに関連したチェックインのみが行われていることを確認します。</LI>
+
+<LI>ツリーが開かれる前に、<B>相乗りレーン</B>があります。
+相乗り<span class="comment">（訳注：carpool：閉じられたツリーに少人数でチェックインすること、詳細は<a href="/docs/jargon.html">jargon集</a>を参照のこと）</span>レーンはブランチ上にいなくて、ソースをマージするために安定したツリーの先端を必要としている人が、マージするための先端を取り出せるようにするための場所です。
+相乗りレーン上の人は、チェックインする時、明日のビルドに対して&quot;hook 状態&quot;です。
+<B>相乗りレーン</B>はリリースチームとともに前もってアクセスの準備をする人にだけ利用可能です。</LI>
+
+<LI>ツリーが再開されると、Web ページは更新され、hook 状態はクリアされます。</LI>
+
+<LI>どのチェックインが最近ツリーに行われたか見たり、バージョン間の違いを見たりするために、
+<A HREF="http://bonsai.mozilla.org/cvsqueryform.cgi?cvsroot=/cvsroot">bonsai 検索ツール</A>を使ってください。
+検索についての詳細情報は<A HREF="../bonsai.html">Bonsai 入門</A>を参照してください。</LI>
+>>>>>>> 1.4
+
+</OL>
+
+<H2>規則</H2>
+
+<OL>
+<LI>ツリーが閉じられている時は、ビルドしている人から要求されてビルド上の問題を解決する時以外にチェックインしてはいけません。</LI>
+
+<LI>hook 状態にいる場合、バグ状態を解決するためにビルドチームからの作業を受けられるように準備することを最優先としてください。</LI>
+
+<LI>hook 状態にいる時、連絡可能な状態にいてください。あなたのコードで発生するどんな問題でもすばやく見つけて対応できるために、机の前にいるか、E-mail を絶えずチェックするとか IRC につながっているといった呼び出し可能であるかしてください。</LI>
+</OL>
+
+<H2>助けとなる態度</H2>
+
+<OL>
+<LI>ビルドチームはあなたの友人です。彼らはあまり楽しい仕事をしているわけではありません。ですから、尊敬をもって接してください。</LI>
+
+<LI>&quot;hook 状態&quot; は集団なのです。チームを非難するだけで、立ち去ってしまったりしないでください。</LI>
+
+</OL>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/hacking/bonsai.html">英語版</a> 2000/07/05</span> - <span>和訳版 2004/09/27</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/hacking/bonsai.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

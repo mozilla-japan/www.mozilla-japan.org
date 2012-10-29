@@ -1,0 +1,980 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>過去のリリース (1.1 アルファ版 - 1.4 RC3)</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { text-align: center; }
+	h2 { font-size: 100%; font-weight: normal; }
+	h2 a { font-size: large; font-weight: bold; }
+	h3 { font-size: 100%; }
+	p, dt, dd, blockquote, li { line-height: 1.6; }
+	li { margin: .5em 0em; }
+	.install { margin: 1em; padding: 1em; background-color: #ccc; color: #000; }
+	.install dt { margin: 0em; font-weight: normal; }
+	.install dd { margin: .5em 0em 0em 3em; }
+	.build { border-bottom: 1px solid; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 1.6; }
+	#ringinfo { border: 1px dashed #999; background-color: #eee; color: #000; padding: 1em; font-size: small; }
+	.important { font-size: small; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="October 28, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/old-releases-1.1-1.4rc3.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h1>過去のリリース</h1>
+<p>このページにあるのは古いビルドです。リグレッションテストをするのでなければ、より <a href="./">最新の</a> ビルドを試してみてください。</p>
+<p id="ringinfo">訳注: このページにあるビルドへのリンクは、<a href="http://ftp.mozilla.org/">ftp.mozilla.org</a> ではなく、すべて国内のミラーサーバ (<a href="http://core.ring.gr.jp/">Ring Server</a>) へのリンクに置き換えてあります。万が一リンク先のファイルが見つからない場合は、<a href="http://ftp.mozilla.org/pub/mozilla/releases/">ftp.mozilla.org/pub/mozilla/releases</a> から必要なビルドを探してください。</p>
+<p class="important">このソースコードは、アメリカ合衆国の輸出管理規制及びその他合衆国法の適用対象であり、いくつかの国 (現在は、アフガニスタン (タリバン支配地域)、キューバ、イラン、イラク、リビア、北朝鮮、スーダン、シリア) へは輸出、再輸出することができません。また、合衆国からの輸入を禁止されている個人や組織 (輸出管理局のリストに記載された非合法団体・組織及び特別指定外国人を含む) への輸出、再輸出もできません。</p>
+
+<hr>
+
+<h2><a name="1.4rc3">Mozilla 1.4 Release Candidate 3</a> - 2003 年 6 月 24 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.4rc3/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.4rc3">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - オランダ語 / フランス語 / ガリシア語 / ギリシア語 / イタリア語 / ポーランド語 / スロバキア語 / スロベニア語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。mozilla.org がコンパイルしている Linux バイナリは Sun J2SE v1.4.2 か GCC 3.2 でコンパイルされた Blackdown JDK 1.4.1 が必要です。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-win32-1.4rc3-installer.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-mac-MachO-1.4rc3.dmg.gz">Mac OS X</a> | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-i686-pc-linux-gnu-1.4rc3-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-win32-1.4rc3-installer.exe" class="build">Talkback が有効なフルインストーラ</a> (12 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-win32-1.4rc3-stub-installer.exe" class="build">Talkback が有効なネットインストーラ</a> (222 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-win32-1.4rc3-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (10 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-mac-MachO-1.4rc3.dmg.gz" class="build">Talkback が有効なディスクイメージ</a> (15 MB)<br>自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-i686-pc-linux-gnu-1.4rc3-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (13 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-i686-pc-linux-gnu-1.4rc3-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (95 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-i686-pc-linux-gnu-1.4rc3.tar.gz" class="build">x86 tar.gz フォーマット</a> (12 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-openvms-alpha-e140.sfx_axpexe" class="build">自動展開 PCSI</a> (26.6 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-sparc-sun-solaris2.7-1.4rc3.tar.gz" class="build">sparc Solaris 2.7 用 tar.gz フォーマット</a> (17.2 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-sparc-sun-solaris2.7-1.4rc3.readme">Readme</a></li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-sparc-sun-solaris2.8-1.4rc3.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.3 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-sparc-sun-solaris2.8-1.4rc3.readme">Readme</a></li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-sparc-sun-solaris2.8_1.4rc3.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (16.2 MB)<br>フォルテビルド - Sun Microsystems 提供 - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc3/mozilla-sparc-sun-solaris2.8_1.4rc3.readme">Readme</a></li>
+</ul>
+
+<hr>
+
+<h2><a name="1.4rc2">Mozilla 1.4 Release Candidate 2</a> - 2003 年 6 月 17 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.4rc2/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.4rc2">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - オランダ語 / ガリシア語 / ギリシア語 / イタリア語 / ポーランド語 / スロバキア語 / スロベニア語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。mozilla.org がコンパイルしている Linux バイナリは Sun J2SE v1.4.2 か GCC 3.2 でコンパイルされた Blackdown JDK 1.4.1 が必要です。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-win32-1.4rc2-installer.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-mac-MachO-1.4rc2.dmg.gz">Mac OS X</a> | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-i686-pc-linux-gnu-1.4rc2-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-win32-1.4rc2-installer.exe" class="build">Talkback が有効なフルインストーラ</a> (11.6 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-win32-1.4rc2-stub-installer.exe" class="build">Talkback が有効なネットインストーラ</a> (220 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-win32-1.4rc2-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-mac-MachO-1.4rc2.dmg.gz" class="build">Talkback が有効なディスクイメージ</a> (14.8 MB)<br>自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-i686-pc-linux-gnu-1.4rc2-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (14 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-i686-pc-linux-gnu-1.4rc2-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-i686-pc-linux-gnu-1.4rc2.tar.gz" class="build">x86 tar.gz フォーマット</a> (13 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-i686-pc-linux-egcs-1.1.2-1.4rc2.tar.gz" class="build">x86 tar.gz フォーマット - より古い Linux ディストリビューション向け (glibc 2.1.92 あるいはそれ以前も)</a> (13 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-openvms-alpha-d140.sfx_axpexe" class="build">自動展開 PCSI</a> (26.6 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-os2-vacpp-1.4rc2-installer.exe" class="build">フルインストーラ .exe</a> (17.3 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-os2-vacpp-1.4rc2.zip" class="build">ZIP ファイル</a> (17.0 MB)</li>
+</ul>
+<h3>Solaris SPARC</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-sparc-sun-solaris2.7-1.4rc2.tar.gz" class="build">sparc Solaris 2.7 用 tar.gz フォーマット</a> (17.2 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-sparc-sun-solaris2.7-1.4rc2.readme">Readme</a></li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-sparc-sun-solaris2.8-1.4rc2.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.3 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-sparc-sun-solaris2.8-1.4rc2.readme">Readme</a></li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-sparc-sun-solaris2.8_1.4rc2.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (16.2 MB)<br>フォルテビルド - Sun Microsystems 提供 - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-sparc-sun-solaris2.8_1.4rc2.readme">Readme</a></li>
+</ul>
+<h3>Solaris x86</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-i386-pc-solaris2.8-1.4rc2.tar.gz" class="build">x86 Solaris 2.8 用 tar.gz フォーマット</a> (17.3 MB)<br>フォルテ x86 ビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc2/mozilla-i386-pc-solaris2.8-1.4rc2.readme">Readme</a></li>
+</ul>
+
+<hr>
+
+<h2><a name="1.4rc1">Mozilla 1.4 Release Candidate 1</a> - 2003 年 5 月 29 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.4rc1/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.4rc1">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - オランダ語 / ガリシア語 / イタリア語 / ポーランド語 / スロバキア語 / スロベニア語 / スペイン語 (スペイン) / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-win32-1.4rc1-installer.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-mac-MachO-1.4rc1.dmg.gz">Mac OS X</a> | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-i686-pc-linux-gnu-1.4rc1-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-win32-1.4rc1-installer.exe" class="build">Talkback が有効なフルインストーラ</a> (11.6 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-win32-1.4rc1-stub-installer.exe" class="build">Talkback が有効なネットインストーラ</a> (220 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-win32-1.4rc1-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-mac-MachO-1.4rc1.dmg.gz" class="build">Talkback が有効なディスクイメージ</a> (14.8 MB)<br>自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-i686-pc-linux-gnu-1.4rc1-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (14 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-i686-pc-linux-gnu-1.4rc1-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-i686-pc-linux-gnu-1.4rc1.tar.gz" class="build">x86 tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-openvms-alpha-c140.sfx_axpexe" class="build">自動展開 PCSI</a> (26.5 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-os2-vacpp-1.4rc1-installer.exe" class="build">フルインストーラ .exe</a> (17.3 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-os2-vacpp-1.4rc1.zip" class="build">ZIP ファイル</a> (17.0 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-sparc-sun-solaris2.7-1.4rc1.tar.gz" class="build">sparc Solaris 2.7 用 tar.gz フォーマット</a> (17.2 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-sparc-sun-solaris2.7-1.4rc1.readme">Readme</a></li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-sparc-sun-solaris2.8-1.4rc1.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.3 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-sparc-sun-solaris2.8-1.4rc1.readme">Readme</a></li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-sparc-sun-solaris2.8_1.4rc1.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (16.2 MB)<br>フォルテビルド - Sun Microsystems 提供 - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4rc1/mozilla-sparc-sun-solaris2.8_1.4rc1.readme">Readme</a></li>
+</ul>
+
+<hr>
+
+<h2><a name="1.4b">Mozilla 1.4 ベータ版</a> - 2003 年 5 月 7 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.4b/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/README">Readme</a> ファイルでは、Mozilla 1.4 アルファ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.4b">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - 簡体字中国語 (中国) / オランダ語 / チェコ語 / ドイツ語 / イタリア語 / 韓国語 / ノルウェー・ニューノシュク語 / ポーランド語 / スロバキア語 / スロベニア語 / ソルビア語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-win32-1.4b-installer-sea.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-mac-MachO-1.4b.dmg.gz">Mac OS X</a> | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-i686-pc-linux-gnu-1.4b-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-win32-1.4b-installer-sea.exe" class="build">Talkback が有効なフルインストーラ</a> (11.6 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-win32-1.4b-installer.exe" class="build">Talkback が有効なネットインストーラ</a> (220 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-win32-1.4b-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-mac-MachO-1.4b.dmg.gz" class="build">Talkback が有効なディスクイメージ</a> (14.8 MB)<br>自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-i686-pc-linux-gnu-1.4b-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (14 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-i686-pc-linux-gnu-1.4b-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-i686-pc-linux-gnu-1.4b.tar.gz" class="build">x86 tar.gz フォーマット</a> (13 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-powerpc-linux-gnu-1.4b.tar.gz" class="build">PowerPC tar.gz フォーマット</a> (13.0 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-powerpc-linux-gnu-installer-1.4b.tar.gz" class="build">PowerPC フルインストーラ</a> (12.8 MB)</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-powerpc-ibm-aix4.3.3.0-1.4b.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (18.9 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-openvms-alpha-b140.sfx_axpexe" class="build">自動展開 PCSI</a> (28.7 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-os2-vacpp-1.4b-installer.exe" class="build">フルインストーラ .exe</a> (17.3 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-os2-vacpp-1.4b.zip" class="build">ZIP ファイル</a> (17.0 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-sparc-sun-solaris2.7-1.4b.tar.gz" class="build">sparc Solaris 2.7 用 tar.gz フォーマット</a> (17.2 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-sparc-sun-solaris2.8-1.4b.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.3 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4b/mozilla-sparc-sun-solaris2.8_1.4b.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.3 MB)<br>フォルテビルド - Sun Microsystems 提供</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.3.1">Mozilla 1.3.1</a> - 2003 年 5 月 7 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.3.1/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/src/mozilla-source-1.3.1.tar.bz2">bzip</a> - 30 MB)(<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/src/mozilla-source-1.3.1.tar.gz">gzip</a> - 40 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/README">Readme</a> ファイルでは、Mozilla 1.4 アルファ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.3">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - オーストリア語 / アラビア語 / バスク語 / ベラルーシ語 / ブレトン語 / カタロニア語 / 簡体字中国語 (中国) / 繁体字中国語 (香港) / チェコ語 / デンマーク語 / オランダ語 / 英語 (イギリス) / エスペラント / エストニア語 / フィン語 / フランス語 / ガリシア語 / ドイツ語 / ギリシア語 / ハンガリー語 / ヘブライ語 / イタリア語 / 韓国語 / リトアニア語 / ノルウェー・ニューノシュク語 / ポーランド語 / ポルトガル語 (ブラジル) / ルーマニア語 / ロシア語 / スロバキア語 / スロベニア語 / ソルビア語 / スペイン語 (アルゼンチン) / スペイン語 (スペイン) / トルコ語 / ウクライナ語 / ウェールズ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-win32-1.3.1-installer-sea.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-mac-MachO-1.3.1.dmg.gz">Mac OS X</a> | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-i686-pc-linux-gnu-1.3.1-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-win32-1.3.1-installer-sea.exe" class="build">Talkback が有効なフルインストーラ</a> (12 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-win32-1.3.1-installer.exe" class="build">Talkback が有効なネットインストーラ</a> (218 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-win32-1.3.1-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-mac-MachO-1.3.1.dmg.gz" class="build">Talkback が有効なディスクイメージ</a> (15 MB)<br>自動マウント ディスクイメージ<br></li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-i686-pc-linux-gnu-1.3.1-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (14 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-i686-pc-linux-gnu-1.3.1-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。(最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-i686-pc-linux-gnu-1.3.1.tar.gz" class="build">x86 tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-sparc-sun-solaris2.7-1.3.1.tar.gz" class="build">sparc Solaris 2.7 用 tar.gz フォーマット</a> (18.1 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-sparc-sun-solaris2.8-1.3.1.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (18.1 MB)<br>フォルテビルド - <abbr title="複合テキストレイアウト">CTL</abbr> / <a href="/projects/svg/">SVG</a> サポート付き</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3.1/mozilla-sparc-sun-solaris2.8_1.3.1.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.1 MB)<br>フォルテビルド - Sun Microsystems 提供</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.4a">Mozilla 1.4 アルファ版</a> - 2003 年 4 月 1 日 リリース</h2>
+<ul>
+	<li><a href="mozilla1.4a/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/src/mozilla-source-1.4a.tar.bz2">bzip</a> - 30 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/src/mozilla-source-1.4a.tar.gz">gzip</a> - 40 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/README">Readme</a> ファイルでは、Mozilla 1.4 アルファ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.3">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - 簡体字中国語 (中国) / オランダ語 / エスペラント / ドイツ語 / イタリア語 / 韓国語 / ポーランド語 / スロベニア語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-win32-1.4a-installer-sea.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-mac-MachO-1.4a.dmg.gz">Mac OS X</a> | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-i686-pc-linux-gnu-1.4a-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-win32-1.4a-installer-sea.exe" class="build">Talkback が有効なフルインストーラ</a> (12 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-win32-1.4a-installer.exe" class="build">Talkback が有効なネットインストーラ</a> (218 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-win32-1.4a-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-mac-MachO-1.4a.dmg.gz" class="build">Talkback が有効なディスクイメージ</a> (15 MB)<br>自動マウント ディスクイメージ<br></li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-i686-pc-linux-gnu-1.4a-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (14 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-i686-pc-linux-gnu-1.4a-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-i686-pc-linux-gnu-1.4a.tar.gz" class="build">x86 tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-powerpc-ibm-aix4.3.3.0-1.4a.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (17.4 MB)</li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-hppa2.0w-hp-hpux11.00-1.4a.tar.gz" class="build">HP11.00 用 tar.gz フォーマット</a> (24.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-hppa2.0-hp-hpux10.20-1.4a.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (25.1 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-openvms-alpha-a140.sfx_axpexe" class="build">自動展開 PCSI</a> (29.4 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-os2-vacpp-1.4a-installer.exe" class="build">フルインストーラ .exe</a> (17.3 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-os2-vacpp-1.4a.zip" class="build">ZIP ファイル</a> (17.0 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-sparc-sun-solaris2.7-1.4a.tar.gz" class="build">sparc Solaris 2.7 用 tar.gz フォーマット</a> (18.1 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4a/mozilla-sparc-sun-solaris2.8_1.4a.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.1 MB)<br>フォルテビルド - Sun Microsystems 提供</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.3">Mozilla 1.3</a> - 2003 年 3 月 13 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.3/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/src/mozilla-source-1.3.tar.bz2">bzip</a> - 30 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/src/mozilla-source-1.3.tar.gz">gzip</a> - 40 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/README">Readme</a> ファイルでは、Mozilla 1.3 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.3">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - オーストリア語 / アラビア語 / バスク語 / ベラルーシ語 / ブレトン語 / カタロニア語 / 簡体字中国語 (中国) / 繁体字中国語 (香港) / チェコ語 / デンマーク語 / オランダ語 / 英語 (イギリス) / エスペラント / エストニア語 / フィン語 / フランス語 / ガリシア語 / ドイツ語 / ギリシア語 / ハンガリー語 / ヘブライ語 / イタリア語 / 韓国語 / リトアニア語 / ノルウェー・ニューノシュク語 / ポーランド語 / ポルトガル語 (ブラジル) / ルーマニア語 / ロシア語 / スロバキア語 / スロベニア語 / ソルビア語 / スペイン語 (アルゼンチン) / スペイン語 (スペイン) / トルコ語 / ウクライナ語 / ウェールズ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-win32-1.3-installer.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-mac-MachO-1.3.dmg.gz">Mac OS X</a> | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-i686-pc-linux-gnu-1.3-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-win32-1.3-installer.exe" class="build">Talkback が有効なフルインストーラ</a> (12 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-win32-1.3-stub-installer.exe" class="build">Talkback が有効なネットインストーラ</a> (218 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-win32-1.3-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-mac-MachO-1.3.dmg.gz" class="build">Talkback が有効なディスクイメージ</a> (15 MB)<br>自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-i686-pc-linux-gnu-1.3-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (14 MB)<br>すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-i686-pc-linux-gnu-1.3-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-i686-pc-linux-gnu-1.3.tar.gz" class="build">x86 tar.gz フォーマット</a> (13 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/Red_Hat_8x_RPMS/xft/" class="build">Xft サポート付き Red Hat Linux 8.x 用 RPMS</a><br> (GCC 3.2 でコンパイルしたもの - Java 関連のバグを登録する前に <a href="mozilla1.3/#compatible">リリースノート</a> をお読みください！) (Xprint サポートなし)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/Red_Hat_8x_RPMS/gtk2/" class="build">Gtk2 サポート付き Red Hat Linux 8.x 用 RPMS</a><br> (GCC 3.2 でコンパイルしたもの - ご注意ください！) (Xprint サポートなし)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/Red_Hat_7x_RPMS/" class="build">Red Hat Linux 7.x 用 RPMS</a><br> (Xprint サポートなし)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-powerpc-linux-gnu-1.3.tar.gz" class="build">PowerPC tar.gz フォーマット</a> (12.9 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-powerpc-linux-gnu-installer-1.3.tar.gz" class="build">PowerPC フルインストーラ</a> (12.7 MB)</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-powerpc-ibm-aix4.3.3.0-1.3.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (17.4 MB)</li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-hppa2.0w-hp-hpux11.00-1.3.tar.gz" class="build">HP11.00 用 tar.gz フォーマット</a> (24.1 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-hppa2.0-hp-hpux10.20-1.3.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (25.1 MB)</li>
+</ul>
+<h3>OpenBSD</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-i686-pc-openbsd-static-1.3.tar.gz" class="build">OpenBSD Current 用 tar.gz 固定ビルド (2003-03-01 頃)</a> (46 MB)<br><a href="http://pages.cpsc.ucalgary.ca/~cannings/openbsd/">詳しい情報</a></li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-openvms-alpha-m130.sfx_axpexe" class="build">自動展開 PCSI</a> (24.7 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-os2-1.3-installer.exe" class="build">フルインストーラ .exe</a> (17.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-os2-1.3.zip" class="build">ZIP ファイル</a> (17.3 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-sparc-sun-solaris2.7-1.3.tar.gz" class="build">sparc Solaris 用 tar.gz フォーマット</a> (17.3 MB)<br>フォルテビルド - 複合テキストレイアウト (CTL)／<a href="/projects/svg/">SVG</a> サポート付き</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-sparc-sun-solaris2.8-1.3.tar.gz" class="build">sparc Solaris 2.8/2.9 用 tar.gz フォーマット</a> (16.8 MB)<br>フォルテビルド - Sun Microsystems 提供</li>
+</ul>
+<h3>Tru64 Unix</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3/mozilla-alphaev56-dec-osf5.0_1.3.tar.gz" class="build">OSF 5.0 用 tar.gz フォーマット</a> (20 MB) - Tru64 Unix - HP 提供</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.3b">Mozilla 1.3 ベータ版</a> - 2003 年 2 月 10 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.3b/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/src/mozilla-source-1.3b.tar.gz">gzip</a> - 41 MB)<!-- (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/src/mozilla-source-1.3b.sit.bin">sit.bin</a>, 59 MB) --></li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/README">Readme</a> ファイルでは、Mozilla 1.3 ベータ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.3b">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます -オーストリア語 / カタロニア語 / 簡体字中国語 (中国) / ガリシア語 / ドイツ語 / イタリア語 / ポーランド語 / スロバキア語 / スロベニア語 / ソルビア語 / スペイン語 (アルゼンチン) / スペイン語 (ラテンアメリカ) (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-win32-1.3b-installer.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-i686-pc-linux-gnu-1.3b-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-win32-1.3b-installer.exe" class="build">Talkback が有効なフルインストーラ .exe</a> (12.4 MB)<br>クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-win32-1.3b-stub-installer.exe" class="build">Talkback が有効なネットインストーラ .exe</a> (218 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-win32-1.3b-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (11.4 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-mac-MachO-1.3b.dmg.gz" class="build">ディスクイメージ</a> (14.9 MB) - 自動マウント ディスクイメージ<br></li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-i686-pc-linux-gnu-1.3b-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (13.9 MB)<br>他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-i686-pc-linux-gnu-1.3b-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-i686-pc-linux-gnu-1.3b.tar.gz" class="build">x86 tar.gz フォーマット</a> (13.1 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/Red_Hat_8x_RPMS/" class="build">Red Hat Linux 8.x 用 RPMS</a> (Xprint サポートなし)</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-powerpc-ibm-aix4.3.3.0-1.3b.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (16.7 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-openvms-alpha-b130.sfx_axpexe" class="build">自動展開 PCSI</a> (29.2 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-os2-1.3b-installer.exe" class="build">フルインストーラ .exe</a> (17.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-os2-1.3b.zip" class="build">ZIP ファイル</a> (17.3 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3b/mozilla-sparc-sun-solaris2.7-1.3b.tar.gz" class="build">sparc Solaris 用 tar.gz フォーマット</a> (18.0 MB)<br>複合テキストレイアウト (CTL) / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.3a">Mozilla 1.3 アルファ版</a> - 2002 年 12 月 13 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.3a/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/src/mozilla-source-1.3a.tar.gz">gzip</a> - 41 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/src/mozilla-source-1.3a.sit.bin">sit.bin</a>, 59 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/README">Readme</a> ファイルでは、Mozilla 1.3 アルファ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.3a">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - チェコ語 / 簡体字中国語 (中国) / 繁体字中国語 (台湾) / エスペラント / エストニア語 / ドイツ語 / イタリア語 / ポーランド語 / スロバキア語 / スロベニア語 / スペイン語 (アルゼンチン) / スペイン語 (ラテンアメリカ) (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-win32-1.3a-installer.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-i686-pc-linux-gnu-1.3a-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-win32-1.3a-installer.exe" class="build">Talkback が有効なフルインストーラ .exe</a> (11.2 MB)<br>クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-win32-1.3a-stub-installer.exe" class="build">Talkback が有効なネットインストーラ .exe</a> (214 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-win32-1.3a-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (11.6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-macosX-1.3a.smi.bin" class="build">ディスクイメージ</a> (18 MB) - 自動マウント ディスクイメージ<br></li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-i686-pc-linux-gnu-1.3a-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (12.7 MB)<br>他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-i686-pc-linux-gnu-1.3a-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-i686-pc-linux-gnu-1.3a.tar.gz" class="build">x86 tar.gz フォーマット</a> (12.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/Red_Hat_8x_RPMS/vanilla/" class="build">Red Hat Linux 8.x 用 RPMS</a> (Xprint サポートなし)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/Red_Hat_8x_RPMS/xft/" class="build">Red Hat Linux 8.x 用 RPMS - Xft サポートつき</a></li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-hppa2.0-hp-hpux10.20-1.3a.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (23.4 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-openvms-alpha-a130.sfx_axpexe" class="build">自動展開 PCSI</a> (29.0 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-os2-1.3a-installer.exe" class="build">フルインストーラ .exe</a> (17.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-os2-1.3a.zip" class="build">ZIP ファイル</a> (17.3 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.3a/mozilla-sparc-sun-solaris2.8-1.3a.tar.gz" class="build">sparc Solaris 用 tar.gz フォーマット</a> (18.8 MB) - Sun Microsystems 提供</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.2.1">Mozilla 1.2.1</a> - 2002 年 12 月 2 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.2.1/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/src/mozilla-source-1.2.1.tar.gz">gzip</a> - 39.5 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/src/mozilla-source-1.2.1.tar.bz2">bzip2</a> - 29.5 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/src/mozilla-source-1.2.1.sit.bin">sit.bin</a>, 62 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/README">Readme</a> ファイルでは、Mozilla 1.2.1 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.21">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - オーストリア語 / バスク語 / ベラルーシ語 / ブレトン語 / カタロニア語 / 簡体字中国語 (中国) / 繁体字中国語 (香港) / 繁体字中国語 (台湾) / チェコ語 / デンマーク語 / オランダ語 / 英語 (イギリス) / エスペラント / エストニア語 / フランス語 / ガリシア語 / ドイツ語 / ギリシア語 / ハンガリー語 / イタリア語 / 韓国語 / リトアニア語 / モンゴル語 / ノルウェー・ニューノシュク語 / テルグ語 / トルコ語 / ルーマニア語 / ロシア語 / ソルビア語 / スロバキア語 / スロベニア語 / スペイン語 (ラテンアメリカ) / スペイン語 (アルゼンチン) / スペイン語 (スペイン) / ポーランド語 / ポルトガル語 (ブラジル) / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)<p style="border: 1px dashed #000000; padding: 0.5em; margin-right: 10px;">訳注 : 日本語パックをお求めの方は <a href="http://www2.starcat.ne.jp/%7Eunha/jlp/">JLP 実験室</a> へどうぞ。</p></li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<dl class="install">
+	<dt><strong>ここにある Talkback が有効なビルドを試してください。</strong> Talkback は、あなたがお使いの Mozilla で起きたクラッシュに関する情報を、エンジニアがもっとも頻繁に起きるクラッシュを発見・修正できるデータベースに送信します。普段の使用中にクラッシュを見つけたら、そのたびに報告を送ってください。Talkback を利用すれば、簡単にバグの報告ができますし、時には、他の人の報告と重複しても構いません！</dt>
+	<dd><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-win32-1.2.1-installer.exe">Microsoft Windows</a> (95, 98, ME, NT, 2000, XP) | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-macos9-1.2.1-stub.bin">Mac OS 9.x</a> | <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-i686-pc-linux-gnu-1.2.1-sea.tar.gz">Linux x86</a></dd>
+</dl>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-win32-1.2.1-installer.exe" class="build">Talkback が有効なフルインストーラ .exe</a> (11.2 MB)<br>クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-win32-1.2.1-installer.exe" class="build">Talkback が有効なネットインストーラ .exe</a> (214 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-win32-1.2.1-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (11.6 MB)</li>
+</ul>
+<h3>Mac OS 9.x</h3>
+<ul>
+	<li><b>MacBinary ファイルには <a href="http://www.stuffit.com/expander/macindex.html">StuffIt Expander</a> 4.5 以降が必要です。</b> (訳注 : 日本語版も <a href="http://stuffit.act2.co.jp/mac/">StuffIt オフィシャルサイト</a> からダウンロードできます)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-macos9-1.2.1-full.bin" class="build">Talkback が有効なフルインストーラ</a> (15.5 MB)<br>クラッシュデータを報告できます。他の Mac OS ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-macos9-1.2.1-stub.bin" class="build">Talkback が有効なネットインストーラ</a> (153 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-macosX-1.2.1.smi.bin" class="build">ディスクイメージ</a> (18 MB) - 自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-i686-pc-linux-gnu-1.2.1-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (12.7 MB)<br>他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-i686-pc-linux-gnu-1.2.1-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-i686-pc-linux-gnu-1.2.1.tar.gz" class="build">x86 tar.gz フォーマット</a> (12.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/Red_Hat_8x_RPMS/vanilla/" class="build">Red Hat Linux 8.x 用 RPMS</a> (Xprint サポートなし)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/Red_Hat_8x_RPMS/xft/" class="build">Red Hat Linux 8.x 用 RPMS - Xft サポートつき</a> - <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/Red_Hat_8x_RPMS/xft/README.txt">Readme</a> ファイルをお読みください。</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-powerpc-ibm-aix4.3.3.0-1.2.1.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (15.9 MB)</li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-hppa2.0w-hp-hpux11.00-1.2.1.tar.gz" class="build">HP11.00 用 tar.gz フォーマット</a> (23.1 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-hppa2.0-hp-hpux10.20-1.2.1.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (23.4 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-openvms-alpha-m121.sfx_axpexe" class="build">自動展開 PCSI</a> (25.0 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-os2-1.2.1-installer.exe" class="build">フルインストーラ .exe</a> (17.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-os2-1.2.1.zip" class="build">ZIP ファイル</a> (17.2 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2.1/mozilla-sparc-sun-solaris2.8.tar.gz" class="build">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.5 MB) - Sun Microsystems 提供</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.2">Mozilla 1.2</a> - 2002 年 11 月 26 日 リリース</h2>
+
+<p>Mozilla 1.2 に、DHTML が原因で、一部のサイトで Mozilla が落ちるというバグ (Bug 182500)が見つかりました。私たちはこの問題を修正した <a href="#1.2.1">Mozilla 1.2.1</a> をリリースしました。</p>
+
+<hr>
+
+<h2><a name="1.2b">Mozilla 1.2 ベータ版</a> - 2002 年 10 月 16 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.2b/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/src/mozilla-source-1.2b.tar.gz">gzip</a> - 40 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/src/mozilla-source-1.2b.sit.bin">sit.bin</a> - 62 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/README">Readme</a> ファイルでは、Mozilla 1.2 ベータ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.2b">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - カタロニア語 / 簡体字中国語 (中国) / 英語 (イギリス) / エストニア語 / ノルウェー・ニューノシュク語 / ポーランド語 / ソルビア語 / スペイン語 (ラテンアメリカ) (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>) (訳注 : 日本語パックは <a href="http://www2.starcat.ne.jp/~unha/jlp/">JLP 実験室</a> からダウンロードできます)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-win32-1.2b-installer.exe" class="build">Talkback が有効なフルインストーラ .exe</a> (11.2 MB)<br>クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-win32-1.2b-stub-installer.exe" class="build">Talkback が有効なネットインストーラ .exe</a> (214 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-win32-1.2b-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (11.6 MB)</li>
+</ul>
+<h3>Mac OS 9.x</h3>
+<ul>
+	<li><b>MacBinary ファイルには <a href="http://www.stuffit.com/expander/macindex.html">StuffIt Expander</a> 4.5 以降が必要です。</b> (訳注 : 日本語版も <a href="http://stuffit.act2.co.jp/mac/">StuffIt オフィシャルサイト</a> からダウンロードできます)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-macos9-1.2b-full.bin" class="build">Talkback が有効なフルインストーラ</a> (15.5 MB)<br>クラッシュデータを報告できます。他の Mac OS ビルドが何か分からなければ、このビルドを入手してください。</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-macosX-1.2b.smi.bin" class="build">ディスクイメージ</a> (18 MB) - 自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-i686-pc-linux-gnu-1.2b-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (12.7 MB)<br>他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-i686-pc-linux-gnu-1.2b.tar.gz" class="build">x86 tar.gz フォーマット</a> (12.7 MB)</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-powerpc-ibm-aix4.3.3.0-1.2b.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (16.7 MB)</li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-hppa2.0w-hp-hpux11.00-1.2b.tar.gz" class="build">HP11.00 用 tar.gz フォーマット</a> (23.6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-hppa2.0-hp-hpux10.20-1.2b.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (24.2 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-openvms-alpha-b120.sfx_axpexe" class="build">自動展開 PCSI</a> (24.9 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-os2-1.2b-installer.exe" class="build">フルインストーラ .exe</a> (16.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-os2-1.2b.zip" class="build">ZIP ファイル</a> (16.0 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2b/mozilla-sparc-sun-solaris2.7-1.2b.tar.gz" class="build">sparc Solaris 用 tar.gz フォーマット</a> (16.3 MB) - Sun Microsystems 提供</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.2a">Mozilla 1.2 アルファ版</a> - 2002 年 9 月 11 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.2a/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/src/mozilla-source-1.2a.tar.gz">gzip</a> - 40 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/src/mozilla-source-1.2a.tar.bz2">bzip2</a> - 30 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/src/mozilla-source-1.2a.sit.bin">sit.bin</a> - 59 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/README">Readme</a> ファイルでは、Mozilla 1.2 アルファ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.2a">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - 簡体字中国語 (中国) / エストニア語 / 韓国語 / ポーランド語 / ソルビア語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>) (訳注 : 日本語パックは <a href="http://www2.starcat.ne.jp/~unha/jlp/">JLP 実験室</a> からダウンロードできます)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-win32-1.2a-installer.exe" class="build">Talkback が有効なフルインストーラ .exe</a> (10.6 MB)<br>クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。<br><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/l10n/lang/moz1.2alpha/mozilla-win32-1.2a-zhCN-installer.exe">簡体字中国語 (中国)</a> / <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/l10n/lang/moz1.2alpha/mozilla-win32-1.2a-koKR-installer.exe">韓国語</a> / <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/l10n/lang/moz1.2alpha/mozilla-win32-1.2a-plPL-installer.exe">ポーランド語</a> 版もあります。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-win32-1.2a-stub-installer.exe" class="build">Talkback が有効なネットインストーラ .exe</a> (214 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-win32-1.2a-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h3>Mac OS 9.x</h3>
+<ul>
+	<li><b>MacBinary ファイルには <a href="http://www.stuffit.com/expander/macindex.html">StuffIt Expander</a> 4.5 以降が必要です。</b> (訳注 : 日本語版も <a href="http://stuffit.act2.co.jp/mac/">StuffIt オフィシャルサイト</a> からダウンロードできます)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-mac-12a-full-instal.bin" class="build">Talkback が有効なフルインストーラ</a> (14.6 MB)<br>クラッシュデータを報告できます。他の Mac OS ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-mac-12a-stub-instal.bin" class="build">Talkback が有効なネットインストーラ</a> (153 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-macosX-1.2a.smi.bin" class="build">ディスクイメージ</a> (17 MB) - 自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-i686-pc-linux-gnu-1.2a-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (12.7 MB)<br>他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-i686-pc-linux-gnu-1.2a-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (263 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-i686-pc-linux-gnu-1.2a.tar.gz" class="build">x86 tar.gz フォーマット</a> (12.7 MB)</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-powerpc-ibm-aix4.3.3.0-1.2a.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (16.7 MB)</li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-ia64-hp-hpux11.20-1.2a.tar.gz" class="build">HP11.20 用 tar.gz フォーマット</a> (26.8 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-hppa1.1w-hp-hpux11.00-1.2a.tar.gz" class="build">HP11.00 用 tar.gz フォーマット</a> (23.6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-hppa2.0-hp-hpux10.20-1.2a.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (24.2 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-openvms-alpha-a120.sfx_axpexe" class="build">自動展開 PCSI</a> (24.4 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.2a/mozilla-os2-1.2a-installer.exe" class="build">フルインストーラ .exe</a> (17.1 MB)</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.1">Mozilla 1.1</a> - 2002 年 8 月 26 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.1/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/src/mozilla-source-1.1.tar.gz">gzip</a> - 40 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/src/mozilla-source-1.1.sit.bin">sit.bin</a> - 62 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/README">Readme</a> ファイルでは、Mozilla 1.1 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.1">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - バスク語 / ベラルーシ語 / ブルターニュ語 / 簡体字中国語 (中国) / 繁体字中国語 (香港・台湾) / チェコ語 / デンマーク語 / オランダ語 / 英語 (イギリス) / エスペラント / エストニア語 / フランス語 / ガリシア語 / ドイツ語 / ギリシア語 / ヘブライ語 / ハンガリー語 / イタリア語 / 韓国語 / リトアニア語 / ポーランド語 / ポルトガル語 (ブラジル) / ルーマニア語 / ロシア語 / シスワティ語 / スロバキア語 / ソルビア語 / 北ソト語 / スペイン語 (アルゼンチン) / スペイン語 (スペイン) / ツワナ語 / トルコ語 / ウクライナ語 / ヴェンダ語 / ゾーサ語 / ズールー語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>) (訳注 : 日本語パックは <a href="http://www2.starcat.ne.jp/%7Eunha/jlp/">JLP 実験室</a> からダウンロードできます)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-win32-1.1-installer.exe" class="build">Talkback が有効なフルインストーラ .exe</a> (9.8 MB)<br>クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-win32-1.1-stub-installer.exe" class="build">Talkback が有効なネットインストーラ .exe</a> (214 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-win32-1.1-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h3>Mac OS 9.x</h3>
+<ul>
+	<li><b>MacBinary ファイルには <a href="http://www.stuffit.com/expander/macindex.html">StuffIt Expander</a> 4.5 以降が必要です。</b> (訳注 : 日本語版も <a href="http://stuffit.act2.co.jp/mac/">StuffIt オフィシャルサイト</a> からダウンロードできます)</li>
+	<li><a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla1.1/mozilla-mac-11-full.bin" class="build">Talkback が有効なフルインストーラ</a> (12.8 MB)<br>クラッシュデータを報告できます。他の Mac OS ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla1.1/mozilla-mac-11-stub.bin" class="build">Talkback が有効なネットインストーラ</a> (257 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla1.1/mozilla-macosX-1.1.smi.bin" class="build">ディスクイメージ</a> (14.9 MB) - 自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i686-pc-linux-gnu-1.1-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (11.6 MB)<br>他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i686-pc-linux-gnu-1.1-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (93 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i686-pc-linux-gnu-1.1.tar.gz" class="build">x86 tar.gz フォーマット</a> (11.9 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-sparc64-unknown-linux-gnu-1.1-svg.tar.gz" class="build">sparc64 用 tar.gz フォーマット</a> (13.7 MB) - SVG 付き</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/Red_Hat_7x_RPMS/" class="build">Red Hat Linux 7.x 用 RPMS</a></li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-powerpc-unknown-linux-gnu-1.1.tar.gz" class="build">PowerPC 用 tar.gz フォーマット</a> (12.9 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-powerpc-unknown-linux-gnu-1.1-svg.tar.gz" class="build">PowerPC 用 tar.gz フォーマット</a> (14.8 MB) - SVG 付き
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-powerpc-ibm-aix4.3.3.0-1.1.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (16.7 MB)</li>
+</ul>
+<h3>BeOS</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i586-pc-beos-1.1.zip" class="build">x86 ZIP ファイル</a> (18.7 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i586-pc-beos-1.1-svg.zip" class="build">x86 ZIP ファイル</a> (18.9 MB) - SVG 付き</li>
+</ul>
+<h3>BSD/OS (bsdi)</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i386-pc-bsdi4.3-1.1.tar.gz" class="build">x86 4.3 tar.gz フォーマット</a> (16.9 MB)</li>
+</ul>
+<h3>FreeBSD</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i386-unknown-freebsd4.6-1.1.tar.gz" class="build">i386 FreeBSD 4.6 tar.gz フォーマット</a> (14.2 MB)</li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-ia64-hp-hpux11.20-1.1.tar.gz" class="build">HP11.20 用 tar.gz フォーマット</a> (26.8 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-hppa2.0w-hp-hpux11.00-1.1.tar.gz" class="build">HP11.00 用 tar.gz フォーマット</a> (23.6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-hppa2.0-hp-hpux10.20-1.1.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (24.2 MB)</li>
+</ul>
+<h3>NetBSD</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i386-unknown-netbsdelf1.5.2-1.1.tar.gz" class="build">NetBSD 1.5 用 i386 tar.gz フォーマット</a> (14.6 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-openvms-alpha-m110.sfx_axpexe" class="build">自動展開 PCSI</a> (26.8 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-os2-vacpp-1.1.zip" class="build">x86 ZIP ファイル</a> (15.9 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-sparc-sun-solaris2.7-1.1.tar.gz" class="build">sparc Solaris 2.7 用 tar.gz フォーマット</a> (13.6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-sparc-sun-solaris2.6-1.1.tar.gz" class="build">sparc Solaris 2.6 用 tar.gz フォーマット</a> (14 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i386-pc-solaris2.7-1.1.tar.gz" class="build">x86 Solaris 2.7 用 tar.gz フォーマット</a> (13.4 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i386-pc-solaris2.8-1.1.tar.gz" class="build">x86 Solaris 2.8 用 tar.gz フォーマット</a> (13.5 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1/mozilla-i386-pc-solaris2.8-1.1-svg.tar.gz" class="build">x86 Solaris 2.8 用 tar.gz フォーマット</a> (13.6 MB) - SVG 付き</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.1b">Mozilla 1.1 ベータ版</a> - 2002 年 7 月 22 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.1b/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/src/mozilla-source-1.1b.tar.gz">gzip</a> - 40 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/src/mozilla-source-1.1b.tar.bz2">bzip2</a> - 29.6 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/src/mozilla-source-1.1b.sit.bin">sit.bin</a> - 62 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/README">Readme</a> ファイルでは、Mozilla 1.1 ベータ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.1b">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - 簡体字中国語 (中国) / オランダ語 / エストニア語 / ガリシア語 / ドイツ語 / ハンガリー語 / イタリア語 / 韓国語 / ポーランド語 / スロバキア語 / ソルビア語 / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>) (訳注 : 日本語パックは <a href="http://www2.starcat.ne.jp/~unha/jlp/">JLP 実験室</a> からダウンロードできます)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<h3>Win32</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-win32-1.1b-installer.exe" class="build">Talkback が有効なフルインストーラ .exe</a> (9.8 MB)<br>クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-win32-1.1b-stub-installer.exe" class="build">Talkback が有効なネットインストーラ .exe</a> (214 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-win32-1.1b-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h3>Mac OS 9.x</h3>
+<ul>
+	<li><b>MacBinary ファイルには <a href="http://www.stuffit.com/expander/macindex.html">StuffIt Expander</a> 4.5 以降が必要です。</b> (訳注 : 日本語版も <a href="http://stuffit.act2.co.jp/mac/">StuffIt オフィシャルサイト</a> からダウンロードできます)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-mac-11b-full.bin" class="build">Talkback が有効なフルインストーラ</a> (12.8 MB)<br>クラッシュデータを報告できます。他の Mac OS ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-mac-11b-stub.bin" class="build">Talkback が有効なネットインストーラ</a> (257 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-macosX-11b.smi.bin" class="build">ディスクイメージ</a> (14.9 MB) - 自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-i686-pc-linux-gnu-1.1b-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (11.6 MB)<br>他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-i686-pc-linux-gnu-1.1b-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (93 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-i686-pc-linux-gnu-1.1b.tar.gz" class="build">x86 tar.gz フォーマット</a> (11.9 MB)</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-powerpc-ibm-aix4.3.3.0-1.1b.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (16.7 MB)</li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-hppa2.0w-hp-hpux11.00-1.1b.tar.gz" class="build">HP11.00 用 tar.gz フォーマット</a> (23.6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-hppa2.0-hp-hpux10.20-1.1b.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (24.2 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-openvms-alpha-b110.sfx_axpexe" class="build">自動展開 PCSI</a> (26.8 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1b/mozilla-os2-vacpp-1.1b.zip" class="build">ZIP ファイル</a> (15.9 MB)</li>
+</ul>
+
+<hr>
+
+<h2><a name="1.1a">Mozilla 1.1 アルファ版</a> - 2002 年 7 月 11 日 リリース</h2>
+
+<ul>
+	<li><a href="mozilla1.1a/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/src/mozilla-source-1.1a.tar.gz">gzip</a> - 40 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/src/mozilla-source-1.1a.tar.bz2">bzip2</a> - 29.6 MB) (<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/src/mozilla-source-1.1a.sit.bin">sit.bin</a> - 62 MB)</li>
+	<li>この <a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/README">Readme</a> ファイルでは、Mozilla 1.1 アルファ版 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="http://www.mozilla.org/projects/l10n/mlp_older_1.0-1.4.html#moz_1.1a">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - 簡体字中国語 (中国) / 韓国語 / ポーランド語 / ソルビア語 / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>) (訳注 : 日本語パックは <a href="http://www2.starcat.ne.jp/~unha/jlp/">JLP 実験室</a> からダウンロードできます)</li>
+	<li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Java ランタイム環境 (JRE) v1.4.1</a> プラグインをインストールしてください。Macintosh では、Mozilla はすでにシステムにインストールされている Java のバージョンを使用します。</li>
+</ul>
+<h3>Windows</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-win32-1.1a-installer.exe" class="build">Talkback が有効なフルインストーラ .exe</a> (9.8 MB)<br>クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-win32-1.1a-stub-installer.exe" class="build">Talkback が有効なネットインストーラ .exe</a> (214 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-win32-1.1a-talkback.zip" class="build">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h3>Mac OS 9.x</h3>
+<ul>
+	<li><b>MacBinary ファイルには <a href="http://www.stuffit.com/expander/macindex.html">StuffIt Expander</a> 4.5 以降が必要です。</b> (訳注 : 日本語版も <a href="http://stuffit.act2.co.jp/mac/">StuffIt オフィシャルサイト</a> からダウンロードできます)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-mac-11a-full.bin" class="build">Talkback が有効なフルインストーラ</a> (12.8 MB)<br>クラッシュデータを報告できます。他の Mac OS ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-mac-11a-stub.bin" class="build">Talkback が有効なネットインストーラ</a> (257 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+</ul>
+<h3>Mac OS X</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-macosX-11a.smi.bin" class="build">ディスクイメージ</a> (14.9 MB) - 自動マウント ディスクイメージ</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-i686-pc-linux-gnu-1.1a-sea.tar.gz" class="build">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (11.6 MB)<br>他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-i686-pc-linux-gnu-1.1a-installer.tar.gz" class="build">x86 Talkback が有効なネットインストーラ</a> (93 KB)<br>このビルドは、指定したコンポーネントだけをダウンロード／インストールできます。 (最小で 6 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-i686-pc-linux-gnu-1.1a.tar.gz" class="build">x86 tar.gz フォーマット</a> (11.9 MB)</li>
+</ul>
+<h3>AIX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-powerpc-ibm-aix4.3.3.0-1.1a.tar.gz" class="build">AIX 4.3.3 用 tar.gz フォーマット</a> (16.7 MB)</li>
+</ul>
+<h3>HPUX</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-hppa2.0w-hp-hpux11.00-1.1a.tar.gz" class="build">HP11.00 用 tar.gz フォーマット</a> (22.9 MB)</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-hppa2.0-hp-hpux10.20-1.1a.tar.gz" class="build">HP10.20 用 tar.gz フォーマット</a> (23.5 MB)</li>
+</ul>
+<h3>OpenVMS</h3>
+<ul>
+	<li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-openvms-alpha-a110.sfx_axpexe" class="build">自動展開 PCSI</a> (26.6 MB)</li>
+</ul>
+<h3>OS/2</h3>
+<ul>
+	<li>IBM 提供</li>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-os2-vacpp-1.1a.zip" class="build">x86 ZIP ファイル</a> (16.5 MB)</li>
+</ul>
+<h3>Solaris</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.1a/mozilla-sparc-sun-solaris2.7-1.1a.tar.gz" class="build">sparc Solaris 用 tar.gz フォーマット</a> (15.1 MB)</li>
+</ul>
+<h3>Tru64 Unix</h3>
+<ul>
+	<li><a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla-alphaev56-dec-osf5.0.tar.gz" class="build">OSF 5.0 用 tar.gz フォーマット</a> (36 MB)</li>
+</ul>
+
+<hr>
+
+<p><a name="old-releases">古いビルド</a>については、<a href="mozilla1.0.1.html">Mozilla 1.0.1</a> / <a href="mozilla1.0.html">Mozilla 1.0</a> / <a href="old-releases-0.9.2-1.0rc3.html">Mozilla 0.9.2 - Mozilla 1.0 RC3</a> / <a href="old-releases.html">Mozilla 0.6 - Mozilla 0.9.1</a> / <a href="../projects/seamonkey/release-notes/">Milestone 3 - Milestone 18</a> からダウンロードできます。</p>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/old-releases-1.1-1.4rc3.html">英語版</a> 2003/10/28</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/old-releases-1.1-1.4rc3.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

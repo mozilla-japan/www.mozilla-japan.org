@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta http-equiv="Content-Language" content="ja">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<title>拡張機能のインストール</title>
+<link rel="alternate" hreflang="en" modified="August 2, 2007">
+<link rel="stylesheet" type="text/css" href="../../css/content.css"  media="all">
+
+<link rel="up" href="./" title="SeaMonkey 1.1.4">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/releases/seamonkey1.1.4/installation-extras.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<p class="crumbs"><em>You are here:</em> <a href="../../">SeaMonkey プロジェクト</a> &gt; <a href="../">リリース</a> &gt; <a href="./">SeaMonkey 1.1.4</a> &gt; <strong>拡張機能のインストール</strong>
+</p>
+
+<h1>Java、プラグイン、そしてその他の拡張機能</h1>
+
+<p>この文書は、Java、プラグイン、そしてその他の SeaMonkey 拡張機能のインストールと設定を述べています。追加のユーザヘルプ文書は、<a href="/catalog/end-user/">エンドユーザ</a> 文書ページで見つけることができます。</p>
+
+<p class="important">プラグインに関する詳細情報については、mozdev.org の <a href="http://plugindoc.mozdev.org">PluginDoc</a> を見てください。</p>
+
+<ul>
+  <li><a href="#extras_java">Java</a></li>
+  <li><a href="#extras_palm">Palm サポート (Windows)</a></li>
+   <li><a href="#extras_fonts">Linux フォント</a></li>
+  <li><a href="#extras_addons">その他のアドオン</a></li>
+  <li><a href="#extras_talkback">Talkback</a></li>
+</ul>
+
+<h3><a name="extras_java">Java</a></h3>
+
+<p><strong>Windows と Linux:</strong> Java アプレットを実行するには、<a href="http://java.sun.com/j2se/downloads.html">Java ランタイム環境 (JRE)</a> プラグインをインストールしなければなりません。<br>
+<p><strong>Windows:</strong> インストーラビルドを使っており、かつ既に、システム上に、互換性のある JRE がある場合、SeaMonkey はそれを認識するはずです。自動プラグイン検索を無効にするよう、手動で設定しているならば、以下の方法で Java を動作させることができます：マシンに JRE をインストールした後に、インストールフォルダ（<tt>C:\Program Files\JavaSoft\JRE\&lt;バージョン&gt;\bin</tt> といったもの）から、SeaMonkey プラグインフォルダ（<tt>C:\Program Files\mozilla.org\SeaMonkey\plugins</tt> といったもの）へコピーしてください。</p>
+<p><strong>Linux</strong> <tt>plugins/</tt> ディレクトリ内に、 <tt>/usr/java/jre&lt;version&gt;/plugin/i386/ns610<strong>-gcc32</strong>/libjavaplugin_oji.so</tt> へのシンボリックリンクを置いてください。Java 1.5/5.0 またはそれ以上の場合、<tt>/usr/java/jre&lt;version&gt;/plugin/i386/ns7-gcc29/libjavaplugin_oji.so</tt> <strong>よりも</strong>、<tt>/usr/java/jre&lt;バージョン&gt;/plugin/i386/ns7/libjavaplugin_oji.so</tt> を使ってください。（シンボリックリンクを作成する代わりに、ファイルをコピーすることは、Java をクラッシュさせる原因となることがあるので注意してください。）</p>
+<p>Linux RPM ビルドでは、root ユーザとして Java をインストールしなければなりません。</p>
+<p><strong>Mac OS X</strong> 入手可能な最新の Java VM を利用し、時代遅れの Java 1.3.1 プラグインのいくつかのバグを避ける場合には、<a href="http://javaplugin.sourceforge.net">Java Embedding Plugin for Mac OS X</a> をインストールする必要があります（Bug 274312）。</p>
+<h3><a name="extras_palm" id="extras_palm">Windows に Address Book Palm Sync をインストールする</a></h3>
+
+<p>SeaMonkey のアドレス帳と、あなたの Palm とを同期できるようにするには、スタートプログラムメニューの SeaMonkey グループの中の <i>Address Book Palm Sync Install</i> を選択してください。Palm に、SeaMonkey と、そのアドレス帳を同期するよう設定している場合、そのアドレス帳は、もう Palm デスクトップと同期しないことに注意してください。</p>
+<p>これをし終えるとすぐに、Palm デバイスに接続し、Palm クレードルの HotSync ボタンを押すことができます。これは、あなたのデスクトップ上に HotSync Manager ダイアログを表示し、SeaMonkey を起動するはずです。同期が完了するとすぐに、SeaMonkey を終了し、その後、それを再起動し、同期を確認するために、SeaMonkey アドレス帳を開いてください。</p>
+<p>何人かの Palm ユーザは、追加ステップをこのプロセスに追加し、手動でレジストリキーを追加する必要があるかもしれません。<ol>
+    <li>この <a href="http://ftp.mozilla.org/pub/mozilla/contrib/palm/AddPalmABSyncRegistryKey.reg">レジストリキー</a> をダウンロードし、ハードディスクに保存してください。<em>注意：このリンクはもう機能しないように思われます。</em>
+    </li>
+    <li>あなたの Palm ソフトウェアが C:\Palm にインストールされていない場合は、レジストリキーを編集し、適切なパスを設定してください。指定したパスが、" " 内にあり、各フォルダに対して、区切り記号が 2 つ使われているか（\ ではなく \\ を使ってください）、確かめてください。</li>
+    <li>次に、Windows explorer へ行き、このファイルをダブルクリックしてください。これは、"Information in this file has been successfully entered into the registry" というメッセージを表示するはずです。</li>
+    <li>SeaMonkey Address Book Palm Sync を有効にするために、Address Book Palm Sync Install をやり直してください。</li>
+  </ol><h3><a name="extras_fonts">フォント</a></h3>
+<p>多くの Linux システム（特に Red Hat Linux システム）は、良くない Arial フォントを持っている。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=46415" title="Bug 46415 - Arial looks much smaller than Helvetica at same size, and is">46415</a>) 多くの Web ページ、とりわけ Arial フォントを使っているページは、不明瞭で、小さく見え、読むのが難しい。以下のリンクは、Arial フォントをより良くするために、あなたのフォントサーバを変えられる 2 つの方法を説明しています：</p>
+<p><a href="/docs/end-user/dark-mozilla-fonts.html#ttf"> http://home.online.no/~rut-aane/linux.html#ttf</a><br><a href="/docs/end-user/dark-mozilla-fonts.html#fuzzy"> http://home.online.no/~rut-aane/linux.html#fuzzy</a></p>
+<p>それが動作しないならば、<tt>/usr/share/fonts/ISO8859-2</tt> をリネームするか削除することで、その問題を修正できるかもしれません。例えば、以下のコマンドを打ってください：<br><kbd>mv /usr/share/fonts/ISO8859-2 /usr/share/fonts.ISO8859-2 </kbd>
+  </p>
+<p>そして Linux をログアウトし、再度、ログインしてください。必要ならば、以下のコマンドを打つことで、いつでもこれをやり直せます：<br><kbd>mv /usr/share/fonts.ISO8859-2 /usr/share/fonts/ISO8859-2</kbd>
+  </p>
+
+<h3><a name="extras_addons">アドオン</a></h3>
+
+<p>SeaMonkey への色々な拡張機能は、<a href="http://mycroft.mozdev.org/">追加の検索エンジンプラグイン</a>、Linux  （そしてその他の UNIX システム）上での <a href="http://protozilla.mozdev.org/">telnet:// URL のサポート</a>、<a href="http://multizilla.mozdev.org">タブブラウザ機能強化</a>、そしてその他の SeaMonkey 用のアドオンを含んでいる、<a href="http://www.mozdev.org">mozdev.org</a> より入手できます。これらの拡張機能は、mozilla.org によって公式にはサポートされていませんが、自分の SeaMoney インストールの機能を拡張しようとするユーザにとっては興味深いものでしょう。また、数多くのアドオンは <a href="https://addons.mozilla.org/">Mozilla Update</a> で入手できます。</p>
+  
+<h3><a name="extras_talkback" id="extras_talkback">Quality Feedback Agent</a></h3>
+<p><em>注意：Quality Feedback Agent は現在、SeaMonkey では動作していません。</em></p>
+<p><a href="/quality/qfa.html">Quality Feedback Agent</a> は、クラッシュイベントの内、SeaMonkey に関するデータを収集します。そういった情報は、素早く、クラッシュの原因を特定し、それを修正する SeaMonkey 開発者を手助けします。このソフトウェアは、訪ねた Web サイトやパスワードといった個人情報は収集しません。クラッシュデータを報告することは、ユーザがソフトウェアの品質向上に手助けできる <a href="/quality/">たくさんの方法</a> のうちの 1 つです。参加は必須ではありませんが、強くお奨めします。</p>
+
+<p>Windows 上で、自動プロキシ設定を使っている場合、Quality Feedback Agent を動作させるために <tt>talkback.ini</tt> ファイルを <a href="/quality/qfa.html#proxy">編集</a> する必要があります。</p>
+
+</div>
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/releases/seamonkey1.1.4/installation-extras.html">英語版</a> 2007/08/02</span> - <span>和訳版 2007/09/19</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/releases/seamonkey1.1.4/installation-extras.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

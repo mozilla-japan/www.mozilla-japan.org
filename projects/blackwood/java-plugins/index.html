@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Java Pluglet API</title>
+<link rel="alternate" hreflang="en" modified="July 4, 2001">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/blackwood/java-plugins/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+ <h1>Java Pluglet API</h1>
+ by
+ <a href="mailto:idk@eng.sun.com">Igor Kushnirskiy</a> & Akhil Arora
+<p>
+
+
+<p><em>Pluglet</em> は Java<sup><font size=-2>TM </font></sup>で書かれた
+<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/communicator/plugin/index.htm">プラグイン</a>
+である。 Pluglet は <a href="http://java.sun.com/products/servlet/">Servlet</a>
+の コンセプトに似ている。違いは、Servlet はコンテンツを<b>供給</b>するが、
+Pluglet はそれを<b>消費</b>する。 Java Pluglet <a href="api/">API</a> は
+Mozilla の新しい C++ <a href="http://lxr.mozilla.org/seamonkey/source/modules/plugin/public/">Plug-in
+API</a> の、ほぼ 1:1 対応した移植である。</p>
+
+<ul>
+<li><a href="#Overview">概要</a></li>
+
+<li><a href="#Requirements">必要なもの</a></li>
+
+<li><a href="#Code">コードの取得とビルド</a></li>
+
+<li><a href="#CodeBinary">Pluglet サービスバイナリ</a></li>
+
+<li><a href="#Demos">デモとスクリーンショット</a></li>
+
+<li><a href="#References">リファレンス</a></li>
+</ul>
+
+<p>
+
+<ul><a NAME="Overview"></a>
+<p><li><b>なぜ Pluglets なのか？</b></li><br>
+
+Pluglet は <a href="/projects/blackwood/">Blackwood</a>
+プロジェクトの一部分である。プラグイン開発者にとって、 Java Pluglet による
+Mozilla の拡張を選択することは、 Pluglet に対して Java プラットフォームの持つアドバンテージが適用されることを意味する。</p>
+<ul>
+<li>
+<p><b>プラットフォームに依存しない</b></li><br>
+
+<br>Java でプラグインを書くことは、 すなわち Java 仮想マシン(JVM) が動作する全てのプラットフォームの上で、そのプラグインが動作することである。
+</p>
+
+<p><li><b>コンパクト</b></li><br>
+
+同一の機能について比較すれば、Java バイトコードは一般的に、コンパイルされた
+ネイティブコードよりも小さい。そのため、プラグインのダウンロードに必要な時間は
+少なくなる。
+</p></ul>
+
+<p><li><b>Pluglets vs Applets</b></li><br>
+
+よくある質問(FAQ)は、 Applet と Pluglet はどのように違うのか、というものだ。
+これについては、 <a href="http://www.mozillazine.org/talkback.html?article=712">MozillaZine</a>
+で議論された事がある。 基本的に、２つの違いがある。 Pluglet は、（訳注：ブラウザが）特定の
+Content Type に遭遇した時に起動されるが、Applet は &lt;applet> タグに遭遇した時に起動される。
+もう一つの違いは、Pluglet は Applet とは異なり、ディスク上にインストールされていて、
+それぞれの起動毎にダウンロードされない。
+</p>
+
+<p><li>
+<b>どのように？</b></li><br>
+
+Pluglets を有効にする鍵は Pluglet エンジンである。 Mozilla で Pluglet
+エンジンが起動する仕組みは、 XPCOM サービス と同様である。 Mozilla がある
+MIME タイプのためのハンドラを取得できなかった時、 Mozilla から Pluglet
+エンジンに問い合わせが行なわれる。Pluglet エンジンは、適切な Pluglet があればそれに作業を委任する。C++
+と Java の間を行き来する際に、いくつかの JNI が関与する場合もある。
+</p>
+
+<p><li><b>デザインの目標</b></li><br>
+
+我々は、Java の機能を可能な限り反映させうる範囲で、 Plug-in 作成者が新たな
+API を学習しなくても良いように、Pluglet の API を C++ のそれとできるだけ似たものになるように設計した。別のアダプターを用いて、よりクリーンな、Java
+らしい Plug-in API をデザインする事は容易だが、我々はこの選択を優先するべきであると考えた。
+</p></ul>
+
+<h2><a NAME="Requirements"></a>必要なもの</h2>
+このセクションはあなたが pluglet プロジェクトをビルドする前に 必要となるものについて書いている。
+<ul>
+<ul>
+<li>
+JDK1.2 以降</li>
+
+<li>
+現在の Mozilla ビルド</li>
+</ul>
+</ul>
+
+<h2><a NAME="Code"></a>コードの取得とビルド</h2>
+
+<h3>コードの取得</h3>
+
+<ol>
+<li>
+あなたは最初に最も新しい Mozilla と Pluglet のコードを取得しなければならない。
+これは <a href="../../../cvs.html">http://www.mozilla.org/cvs.html</a> で見つけられるだろう。
+しかし、<nobr><code>cvs checkout SeaMonkeyAll</code> ではなく</nobr> <code><nobr>cvs
+checkout SeaMonkeyBlackwood</nobr></code> を使用する事。</li>
+<p>
+</ol><p>
+
+<h3>コードをビルドする</h3>
+
+<ol>
+<li>
+<a href="../../../build/">http://www.mozilla.org/build/</a> で発見できるインストラクションを使用して
+Mozilla をビルドする。</li><P>
+
+<li>
+<a href="http://lxr.mozilla.org/mozilla/source/java/plugins/README">mozilla/java/plugins/README</a>
+の中の手順に従う。</li><p>
+</ol>
+
+<b>注意事項:</b> ビルドは、現在 NT4.0、Linux、そして Solaris だけのために
+デザインされている。もしあなたが他のプラットフォームで それらをビルドして動作させるように変更した場合には、
+<a href="mailto:idk@eng.sun.com">私</a>にメールしなさい。
+<p>
+
+<h3><a NAME="CodeBinary"></a>Pluglet サービス バイナリ</h3>
+便利な<a href="../downloads/install-trigger.html">blackwood xpi パッケージ</a>があります。
+
+<h4>トラブルシューティング</h4>
+<ol>
+<li>
+問題<br>
+Pluglets が動作しない。pluglet エンジンが登録されていないようだ。
+<p>解決法
+<br>$MOZILLA_FIVE_HOME/ の component.reg を削除して、ブラウザを再起動。
+</ol>
+
+<h2><A NAME="Demos">デモとスクリーンショット</A></h2>
+私達は、４つの有効なデモを持っている。 これは <a href="binaries/pluglets.jpg" target="_new">スクリーンショット</a>
+である。
+<p>
+<table BORDER="1" >
+<tr>
+<td><a href="http://lxr.mozilla.org/mozilla/source/java/plugins/examples/pdf/">Pdf viewer </a><br>
+</td>
+
+<td><a href="http://lxr.mozilla.org/mozilla/source/java/plugins/examples/rtf/">Rtf viewer </a><br>
+</td>
+</tr>
+
+<tr>
+<td><a href="http://lxr.mozilla.org/mozilla/source/java/plugins/examples/zip/">Zip viewer </a><br>
+</td>
+
+<td><a href="http://lxr.mozilla.org/mozilla/source/java/plugins/examples/MediaPlayer/">Media player </a><br>
+</td>
+</tr>
+</table>
+
+<h2><a NAME="References"></a>リファレンス</h2>
+
+<ul>
+<li><a href="api/">Pluglet API</a>
+</li>
+<li><a href="../downloads/install-trigger.html">Blackwood xpi パッケージ</a>
+</li>
+<li><a href="guide/">Pluglet デベロッパ ガイド</a>
+</li>
+<li><a href="http://jsp.java.sun.com/javaone/javaone2000/pdfs/TS-1464.pdf">Java
+One 2000 スライド</a></li>
+
+<li><a href="http://people.netscape.com/ornduff/plugin.htm">Mozilla Plug-in
+API ガイド</a></li>
+
+<li><a href="http://java.sun.com/products/servlet/">サーブレット</a></li>
+</ul>
+
+<hr>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/blackwood/java-plugins/index.html">英語版</a> 2001/07/04</span> - <span>和訳版 2004/12/09</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/blackwood/java-plugins/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

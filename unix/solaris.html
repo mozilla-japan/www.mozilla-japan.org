@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla on Solaris FAQ</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/unix/solaris.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/unix/solaris.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+  
+  
+
+
+
+    <div align="center"><h1>Mozilla on Solaris FAQ</h1>
+        質問やコメントは <a 
+          href="news://news.mozilla.org/netscape.public.mozilla.unix">
+          news://news.mozilla.org/netscape.public.mozilla.unix</a>へ
+
+      <p> 
+      著者: Chris Mcafee &lt;mcafee@netscape.com&gt; およびDan
+        Mosedale &lt;dmose@mozilla.org&gt;
+
+    </div>
+
+    <hr>
+<ol>
+
+<li><a href="http://ucchi.avis.ad.jp/mozilla/unix/solaris.html#patches">Solaris 2.6で必要なパッチ</a></li>
+<li><a href="http://ucchi.avis.ad.jp/mozilla/unix/solaris.html#compiler">何のコンパイラを利用すれば良いのですか?</a></li>
+<li><a href="http://ucchi.avis.ad.jp/mozilla/unix/solaris.html#switch">How do I switch between two compilers?</a></li>
+<li><a href="http://ucchi.avis.ad.jp/mozilla/unix/solaris.html#shmat">"Gdk-WARNING **:shmat failed!"のエラーメッセージ</a></li>
+<li><a href="http://ucchi.avis.ad.jp/mozilla/unix/solaris.html#issues">Cross-compiler plugin/module compatibility, vtables, and name-mangling</a></li>
+</ol>
+
+<hr>
+
+<ol>
+
+<li>
+<b><a NAME="patches"></a>Solaris 2.6で必要なパッチ</b>
+<ul>
+
+<li>
+Fix for <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17221">定義されていない _XlcCompileResourceListシンボル at runtime:"の調整</a><br>
+([Thanks to <a href="mailto:mhw@mft.co.uk">mhw@mft.co.uk</a>]<br>
+これはSunSolveのバグレポート#4239074に見られます、パッチはありません, 代替手段が提案されています:<br>
+<pre>
+ファイル : /usr/openwin/lib/locale/iso8859-1/XI18N_OBJS を編集します
+  この行を削除します 
+  < XOM     xomEuro            _XomGenericOpenOM # XOM_open
+  この行を追加します 
+  > XOM     common/xomLTRTTB   _XomGenericOpenOM # XOM_open
+</pre>
+より多くの議論に関しては<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17221">17221</a>を参照して下さい。
+</li>
+<br>
+<br>
+
+<li>
+<b><a
+          href="http://sunsolve.Sun.COM/pub-cgi/show.pl?target=patches/patch-access">2.6 recommended patch cluster</a>の最新ヴァージョンを入手して下さい。</b>
+
+このパッチクラスタなしでは恐らくしっかりと(もしかしたら全く)Mozillaは機能しません。他の事象の中では、Mozillaが"Wrong Architecture"エラーでスタートアップ時に失敗する所で、これはその問題を解決するでしょう。
+</li>
+
+</ul>
+</li><br>
+
+<li><b><a NAME="compiler">何のコンパイラを利用すれば良いのですか?</a></b><br>
+動作確認が取れている4つのコンパイラ: gcc-2.7.2.3, egcs, WS4.2, WS5.0があります。
+これらには全て兼ね合いがあり、まだちょうど明確なleaderはありません。Tinderboxは現在gcc-2.7.2.3で構築を行っておりますし、何人かのSolarisの貢献者は幾つかの成功例と共にWorkshop 4.2コンパイラを利用しています。<br>
+<table border=1 offset=0>
+<tr>
+
+<td>Compiler</td>
+<td>Good</td>
+<td>Bad</td>
+<td>Notes</td>
+
+</tr>
+
+<tr>
+<td>gcc 2.7.2.3</td>
+<td>
+<li>Classic compiler, lots of support on many platforms.</li>
+<li>Purify support</li>
+</li>
+</td>
+<td>Weak C++ support, defines LCD for tinderbox right now.</td>
+<td>More-recent versions not rock solid yet.</td>
+</tr>
+
+<tr>
+<td>egcs</td>
+<td>
+<li>Benefits from linux coverage.</li>
+</td>
+<td>
+<li>No purify</li>
+<li>Can't step in debugger</li>
+</td>
+<td></td>
+</tr>
+
+<tr>
+<td>WS4.2</td>
+<td>
+<li>dbx has better threading support and is more reliable than gdb, as
+well as purify-like memory checking.</li>
+<li>Purify support</li>
+</td>
+<td>$$</td>
+<td>Picky compiler, some bugs, mostly worked-around with autoconf.</td>
+</tr>
+
+<tr>
+<td>WS5.0</td>
+<td>
+
+<li>dbx has better threading support and is more reliable than gdb, as
+well as purify-like memory checking.</li>
+<li>Purify support</li>
+<li>Built-in performance tools</li>
+
+</td>
+<td>$$</td>
+<td>Some 4.2 bugs fixed, some new ones.</td>
+<td>Builds are painfully slow</td>
+</tr>
+
+</table>
+</li>
+<br>
+Workshop 5.0を利用するときは、Sunからコンパイラーパッチの最近のコピーを必ず得てください。 この文章を書いている時点では、32-vitマシンにおいて、これは少なくとも次のパッチを要することを意味します:
+<pre>
+107289-03
+107295-01
+107311-07
+107357-05
+107740-01
+107742-01
+</pre>
+(少なくとも)WorkShop 5,0を備えたSorasi 2.6においては、C++のランタイムライブラリのパッチ(105591, rev -07 or later)が更に要求されます。貴方がコンパイルしたコードを実行したい誰でも同様にこのパッチを必要とするでしょう。
+</p>
+    <p>
+      さらに、<a
+        href="http://bugzilla.mozilla.org/show_bug.cgi?id=20297">bug
+        20297</a>の中のパッチがCVSに送り込まれるまで、WorkShop 5.0の
+	  ユーザは確かめたく、"-compat=4"スイッチで構築したいと思うでしょう、あるいは手動でパッチを適用して下さい。
+    </p>
+
+<p>
+<li><b><a NAME="switch">How do I switch between two compilers?</a></b><br>
+<p>
+gnuコンパイラと非gnuコンパイラの両方がpathに入っていたら、gnuコンパイラがconfig testで勝つでしょう。これを無効にする、あるいは貴方がpathに入っている幾つかのコンパイラの中からコンパイラを指定するには、貴方が使用したいコンパイラを差すように環境変数CCおよびCXXをセットします。:
+<pre>
+  # Example to override gcc install with WS5.0 using the WS 4.x
+  # compatibility flag
+  setenv CC  /usr/local/workshop/SUNWspro/bin/cc
+  setenv CXX "/usr/local/workshop/SUNWspro/bin/CC -compat=4"
+  ./configure
+</pre>
+さらに、貴方がWorkShopコンパイラのうちの1つを使用しており、貴方のLD_LIBRARY_PATHセットがあれば、WUNWsproライブラリの位置は、任意のGNU g++ライブラリの位置よりLD_LIBRARY_PATHの前の方へ必ず接近させて下さい。動でなければ、間違っているlibiostreamを引きいれようとして、構築が失敗するかも知れません。
+</p>
+</li>
+    <p>
+      <li>
+        <b>
+          <a NAME="shmat">"Gdk-WARNING **:shmat failed!"エラーメッセージ</a>
+        </b>
+
+        <p>
+もしパフォーマンス向上するように構成するために<tt>--enable-x11-shm</tt> オプションをつけて構築を行ったならば、
+前述のエラーメッセージを目にするかも知れません。
+幾つかの(全ての?)ヴァージョンのSolarisでは、
+割り当てることができる共有メモリ番号の1プロセス当たりの限界は6です。
+このエラーが生じるとき、GDKは降参し、共有メモリを全く使用しないことを決定します
+(Mozillaがなお良く機能するだろうということを意味しますが、それはいかなるスピードアップも見られないでしょう)。
+/etc/system に次の行を加え:
+          <pre> set shmsys:shminfo_shmseg = 10
+</pre>
+次にマシンをリブートすることによりこの問題の周りは働く。
+詳細は<a
+          href="http://bugzilla.mozilla.org/show_bug.cgi?id=10498">bug
+          10498</a>を参照して下さい。
+        </p>
+      </li>
+    </p>
+
+    <p>
+      <li>
+        <b>
+          <a NAME="issues">Cross-compiler plugin/module compatibility, vtables, and
+            name-mangling issues</a>
+        </b>
+        <p>
+          これらの問題はなおfleshed outされています。
+	      より多くの論議に関しては<a
+            href="http://bugzilla.mozilla.org/show_bug.cgi?id=20297">bug
+            20297</a>を参照して下さい。
+        </p>
+      </li>
+    </p>
+</p>
+</ol>
+
+  
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/unix/solaris.html">英語版</a> 2000/01/31</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/unix/solaris.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

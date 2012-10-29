@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla セキュリティバグ報奨金制度</title>
+<link rel="alternate" hreflang="en" modified="September 3, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/security/bug-bounty.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla セキュリティバグ報奨金制度</h1>
+<h2>はじめに</h2>
+<p>Mozilla セキュリティバグ報奨金制度は、Mozilla ソフトウェアのセキュリティ調査を奨励し、世界で最も安全なインターネットクライアントを開発する私たちの取り組みに協力してくださった方々に報いるために企画されました。有効で重大なセキュリティバグの報告者には、現金で 500 ドルの報奨金と Mozilla T シャツを差し上げます。</p>
+<p>この試みのための立ち上げ資金を提供してくださった <a href="http://www.linspire.com/">Linspire</a> と <a href="http://www.markshuttleworth.com/">Mark Shuttleworth</a> に深く感謝します。Mark Shuttleworth は、この取り組みを支援するために、ある挑戦をしてくれました。<a href="/foundation/donate.html">あなたも今すぐ寄付をしてください</a>。あなたの寄付は課税控除の対象となり、最高 5000 ドルまで同額が Mark Shuttleworth によって寄付されます。</p>
+<h2>報奨金ガイドライン</h2>
+<p>報奨金は、以下の基準に当てはまる、<a href="bug-bounty-faq.html#critical-bugs">重大な</a> セキュリティバグに対して与えられます。</p>
+<ul>
+  <li>セキュリティバグは独自に発見したものに限ります。過去に報告されているバグは対象となりません。</li>
+  <li>セキュリティバグは、リモート攻撃を引き起こすものに限ります。</li>
+  <li>セキュリティバグは、Mozilla Foundation によってリリースされた、Mozilla Application Suite、Firefox、Thunderbird すべての (あるいはいずれかの) 最新版に存在していることが条件となります。</li>
+  <li>サードパーティの追加ソフト (Java、プラグイン、拡張機能など) に含まれる、あるいはそれらによって引き起こされるセキュリティバグは、報奨金制度の対象となりません。</li>
+  <li>バグを含むコードの作者自身、あるいは (チェックインレビューを提供するなど) そのコードについて Mozilla プロジェクトへの貢献に関わった人は報告できません。</li>
+  <li>Mozilla Foundation の従業員は対象となりません。</li>
+</ul>
+<p>もしあなたが、このセキュリティバグを仕事の一部として (つまり、Mozilla に関する有給作業を行っている途中で) 発見した場合は、報奨金への申し込みをご遠慮くださいますようお願いいたします。私たちの基金には限りがあり、この制度は、Mozilla プロジェクトでも特に給与をもらった作業をしていない、一般の方々に焦点を当てたいと考えているからです。</p>
+<p>2 人以上の方が一緒にバグを報告した場合、500 ドルは人数分で分けられます。</p>
+<h2>手順</h2>
+<p><a href="http://bugzilla.mozilla.org/">バグを登録</a> し、発見したセキュリティバグを説明してください。入力フォームの下の方にあるチェックボックスにチェックを入れ、そのバグレポートを機密扱いに指定してください。バグを登録したら、脆弱性を実証した「概念実証」テストケースまたはリンクを添付してください。そういったテストケースは、必ずしも必要ではありませんが、そのバグの報告を、より迅速かつ的確に判断するための材料として役立ちます。</p>
+<p><a href="mailto:security@mozilla.org?subject=Security%20Bug%20Bounty: &lt;DESCRIPTION&gt;">Mozilla セキュリティグループ</a> にメールを送り、登録したバグのナンバーと要約をお知らせください。もしバグを登録できない場合は、メールに詳細を記述し、概念実正テストケースまたはリンクを添付してください。Mozilla Foundation のスタッフと Mozilla セキュリティグループが、報告されたバグが報奨金の条件に当てはまるかどうかを判断し、あなたに連絡を取ります。</p>
+<p>私たちは、必要に応じて、そのバグに関するさらなる情報を提供していただけるかどうかお伺いします。また、Mozilla の技術者とともに、バグの再現と原因究明、修正作業に協力していただくようお願いします。このプロセスの一環として、私たちはあなたがバグに関する内部議論に参加できるよう、完全なアクセス権を提供します。詳しくは <a href="/projects/security/security-bugs-policy.html">セキュリティバグ取り扱い指針</a> をご覧ください。</p>
+<p>この制度に関する詳しい情報は、<a href="bug-bounty-faq.html">セキュリティバグ報奨金制度 FAQ</a> をご覧ください。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/security/bug-bounty.html">英語版</a> 2004/09/03</span> - <span>和訳版 2005/02/28</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/security/bug-bounty.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

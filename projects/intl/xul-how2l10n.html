@@ -1,0 +1,914 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Localizing Mozilla</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+
+
+<center>
+<h1>
+Localizing Mozilla</h1></center>
+
+<center>by <i><a href="mailto:tao@netscape.com">Tao Cheng&lt;tao@netscapce.com></a></i></center>
+
+<p><br>
+<h2>
+Document History</h2>
+
+<ul>
+<li>
+01/11/2000: Add <a href="#mlp_es-ES">Spanish (es-ES) </a>contribution.</li>
+
+<li>
+01/10/2000: Added <a href="#mlp_ka">Georgian</a> and <a href="#mlp_es-CO">Spanish</a>
+contribution information.</li>
+
+<li>
+01/03/2000: Update <a href="#mlp_cz">Czech</a>,&nbsp; <a href="#mlp_de">German</a>
+(M12 done), <a href="#mlp_pl_pl">Polish</a> (done; except Editor, Preferences,
+acceptkey), and <a href="#mlp_fr">French</a> status.</li>
+
+<li>
+12/23/1999: Upload Japanese translation for <a href="#mlp_ja">M12</a>.</li>
+
+<li>
+12/20/1999: Update German referenece build info. Add <a href="#mlp_ca-ES">Catalan</a>
+and <a href="#mlp_no-NO">Norwegian</a>.</li>
+
+<li>
+12/17/1999: Add <a href="#mlp_pt-BR">Brazilian</a> and <a href="#mlp_de">German</a>.</li>
+
+<li>
+12/14/1999: Add <a href="#mlp_hawa">Hawaiian</a> translation info.</li>
+
+<li>
+12/03/1999: Add <a href="#mlp_el-GR">Greek</a> translation info.</li>
+
+<li>
+12/02/1999: Add Mozilla M11 based translation for <a href="#mlp_ja">Japanese</a>.
+Add <a href="#mlp_pl_pl">Polish</a> translation information.</li>
+
+<li>
+11/10/1999: Add partial translation for <a href="#mlp">Thai</a>. Also,
+updated Danish pack status.</li>
+
+<li>
+10/29/1999: <a href="#mlp">MLP</a>: add Thai and Czech contacts</li>
+
+<li>
+10/18/1999: add <a href="#refs">References and more information...</a>
+section.</li>
+
+<li>
+10/15/1999: Add <a href="#langpacks">table</a> to summarize the current
+contributions.
+<a href="#tools">Add</a> link to Jordi and Henrik's tools.</li>
+
+<li>
+10/01/1999: Minor corrections</li>
+
+<li>
+09/27/1999: Add <a href="#FAQ">FAQ</a> section.</li>
+
+<li>
+09/23/1999: First draft.</li>
+</ul>
+
+<h2>
+Goal</h2>
+
+このドキュメントの目的は、どのようにして Mozilla ブラウザクライアントを
+局地化すれば良いのかの短いイントロダクションを与えるものである。
+そのため、読み手は 彼らの好きな言語での Mozilla の局地化についてだけの
+長いドキュメントを調べる必要がない。
+
+<br>&nbsp;
+<h2>
+<a NAME="what2loc"></a>ローカライズには何が必要か</h2>
+Mozilla では、全ての UI リソースはインストールディレクトリの
+"chrome/" ディレクトリに置かれている。
+ローカライズ可能なファイルは "packageType/locale/locale_name" の
+配下にある。 "packageType" は
+"addressbook", "bookmarks", "navigator", etc...&nbsp; のような
+UI コンポーネントの一つである。
+そして、"locale_name" は Mozilla がローカライズされる言語である。
+
+<p>Mozilla にはローカライズされるために必要な３つのタイプのファイルがある。:
+<ol>
+<li>
+<a NAME="dtdFile"></a> DTD (*.dtd) ファイル。
+この <a href="http://www.mozilla.org/projects/intl/xul-l10n.html#pro1">ドキュメント</a>
+は、私たちの XUL ファイルのローカライズ戦略を説明する。
+一般的な DTD ファイルはローカライズに必要なエンティティのリストを含む。
+エンティティ宣言はこのように見える。:</li>
+
+<br>&nbsp;
+<ol>&lt;!ENTITY browserCmd.label "<font color="#FF0000">New Browser Window</font>"></ol>
+
+<p><br>The entity with name/key, "browserCmd.label", has the entity value,
+"<font color="#FF0000">New Browser Window</font><font color="#000000">".
+エンティティ値はローカライズされるために必要なものである。
+エンティティ名の記述 "</font>browserCmd.label" は自身を説明している 。:
+それは "browserCmd" メニューアイテムのラベル文字列である。
+
+XUL の記述者またはローカライズエンジニアもまた、
+多くのコメントとして DTD ファイルの中に含めようとするだろう。
+それらのコメントはエンティティ宣言の右上に配置され、
+<br>&nbsp;
+<ol>&lt;!-- LOCALIZATION NOTE&nbsp; entity_name: comments --></ol>
+のようにマークされる。
+
+<p><br>例えば,
+<br>&nbsp;
+<ol>&nbsp; <a href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/locale/en-US/navigator.dtd#8">8</a>&lt;!--
+LOCALIZATION NOTE&nbsp; throbber.url: Do NOT localize all the URL -->
+<br>&nbsp; 9 &lt;!ENTITY throbber.url "http://www.mozilla.org"></ol>
+
+<p><br>Mozilla では、XUL/RDF/XML ファイルの
+<i><font color="#FF0000">UTF-8</font> </i>が標準のドキュメントのエンコード方法
+であることを書いておく。
+
+テキストの宣言セクションの中で別に示されない限り
+翻訳された文字列は UTF-8 エンコーディングになるだろう。
+
+
+EUC, SJIS やその他のネイティブなエンコードは、ユーティリティプログラムによって
+UTF-8 にコンバートされることができる。
+nsconv(.exe) はapprunner(.exe)と同じディレクトリの中に提供されている。
+ The usage:
+<br>&nbsp;
+<ol>nsconv -f source_encoding -t target_necoding source_file target_file</ol>
+
+<li>
+<a NAME="proFiles"></a>プロパティファイル(*.properties)。
+プロパティファイルは
+<a href="http://www.mozilla.org/projects/intl/string-resources.html">文字列リソース</a>
+バンドル機構のデータストレージとして使用される。
+プロパティファイルの中の文字列リソースは、</li>
+
+<br>&nbsp;
+<ol>name=<font color="#FF0000">value</font></ol>
+
+<br>&nbsp;
+フォームの中に現れる。
+
+<p><br><font color="#000000">"</font><font color="#FF0000">value</font><font color="#000000">"
+部分は、ローカライズに必要なものである。
+
+Localization notes もまた、必要な場所に追加される。例えば、</font>
+<br>&nbsp;
+<ol><font color="#000000">&nbsp;<a href="http://lxr.mozilla.org/mozilla/source/xpinstall/res/locale/en-US/xpinstall.properties#25">25</a>
+#-----------------------------------------------------------</font>
+<br><font color="#000000">&nbsp;26 #&nbsp;&nbsp; </font>LOCALIZATION NOTE&nbsp;
+InstallFile:...
+<br><font color="#000000">&nbsp;27 #-----------------------------------------------------------</font>
+<br><font color="#000000">&nbsp;28 InstallFile=Installing: %s</font>
+<br><font color="#000000">&nbsp;29 ReplaceFile=Replacing: %s</font></ol>
+
+<p><br><font color="#000000">
+
+"escape-unicode" だけが、プロパティファイルで受け入れられる
+ドキュメントエンコードだということを覚えておくように。
+あなたは、翻訳の間、あなたの好きなエンコードを使い、
+そして、多くの Unix システムで動作するユーティリティである
+"native2ascii" を通して escape-unicode へ変換することができる。
+Java SDK もまた、"native2ascii" を含んでいる。
+加えて、nsconv(.exe) は ネイティブ・エンコードを escape unicode に
+より早く変換するために使うことができる。
+escaped-unicode のために、 "x-u-escaped" の名前を使いなさい。
+</font>
+<br>&nbsp;
+<li>
+<a NAME="chromreg"></a><font color="#000000">
+chrome レジストリ は "chrome/registry.rdf" 。
+
+ローカライズされたパッケージタイプのファイル群は、
+"locale_name"  に関連づけられたサブディレクトリに置かれる。
+Mozilla クライアントは、それに従ってローカライズされたファイルを
+拾い上げ、chrome レジストリの中の名前エントリ(in-between &lt;name>...&lt;/name>)
+は、"locale_name" で置き換えられなければならない。(10/29/99)
+
+レジストリファイルと コンフィグレーション可能な Chrome は
+再構築中であることを
+</font><font color="#FF0000">覚えておくように</font><font color="#000000">。
+
+chrome レジストリのコンフィグレーションを行う新しい方法は
+それが決定した後にポストされるだろう。
+
+今は、あなたは "en-US" ディレクトリの中のファイルをローカライズし、
+後で、それらを再配置することができる。
+
+</font></li>
+</ol>
+
+<h2>
+<a NAME="tools"></a>Localization/Leveraging&nbsp; Tools</h2>
+Localization tools contributed from the net:
+<br>&nbsp;
+<table BORDER WIDTH="100%" NOSAVE >
+<tr NOSAVE>
+<td>Tool Name</td>
+
+<td NOSAVE>Description</td>
+
+<td>Features</td>
+
+<td>Contact</td>
+
+<td>The Package</td>
+
+<td>Source Directory</td>
+</tr>
+
+<tr>
+<td>mozexptool</td>
+
+<td>See "The Package" column</td>
+
+<td>See "The Package" column</td>
+
+<td>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="mailto:jmas@softcatala.org">Jordi
+Mas</a></td>
+
+<td>&nbsp;<a href="http://www.rebost.net/mozexptool/">http://www.rebost.net/mozexptool/</a></td>
+
+<td>&nbsp;<a href="http://lxr.mozilla.org/mozilla/source/l10n/tools/mozexptool">mozexptool
+source</a></td>
+</tr>
+
+<tr>
+<td>MozillaTranslator</td>
+
+<td>See "The Package" column</td>
+
+<td>See "The Package" column</td>
+
+<td>&nbsp; <a href="mailto:Lynggaard@netscape.net">Henrik Lynggaard&nbsp;</a></td>
+
+<td>&nbsp;<a href="http://sites.netscape.net/lynggaard/">http://sites.netscape.net/lynggaard/</a></td>
+
+<td>&nbsp;<a href="http://lxr.mozilla.org/mozilla/source/l10n/tools/mozillatranslator">MozillaTranslator</a></td>
+</tr>
+</table>
+
+<h2>
+<a NAME="mlp"></a>Mozilla Localization Project (MLP)</h2>
+この <a href="http://www.mozilla.org/docs/l10n/l10n-projects.html">ページ</a>
+は、あなたがどのようにすれば、あなたが Mozilla 現地化の作業を Mozilla に
+貢献できるのか、また、Mozilla の現地化プロジェクトの現在の状況を説明する。
+
+<p><a NAME="langpacks"></a>
+以下のテーブルは、現在の Mozilla (5.0) 現地化の貢献のサマリである。
+
+もし、あなたがこれらの言語パックを使って問題が見つかったら、
+オリジナルの貢献者か、
+<a href="mailto: Tao Cheng<tao@netscape.com>">Tao Cheng</a>
+に連絡をとって下さい。
+
+<br>&nbsp;
+<table BORDER WIDTH="100%" NOSAVE >
+<tr BGCOLOR="#33FF33" NOSAVE>
+<td NOSAVE>Languages (locale name)</td>
+
+<td>Contributor(s)</td>
+
+<td>Localized Build or Language Packs</td>
+
+<td>Reference Build (ID/Date)</td>
+
+<td>Notes</td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_ba"></a>ボスニア語 (bosnian-BA)</td>
+
+<td>&nbsp;<a href="mailto: Adnan Selimovic <aselimovic@internet.ba>">Adnan
+Selimovic</a> , <a href="mailto:Isan Selimovic<i.selimovic@qssbh.com>">Isan
+Selimovic</a> , <a href="mailto:Jasmin Azemovic <jasmin.a@bih.net.ba>">Jasmin
+Azemovic</a></td>
+
+<td><a href="ftp://ftp-public.soros.org.ba/pub/qss/mozilla-win32.zip">mozilla-win32.zip</a>
+or
+<br><a href="bosnian.zip">bosnian.zip</a></td>
+
+<td>199907614&nbsp;</td>
+
+<td>
+<ol>
+<li>
+&nbsp;<a href="#note2">mozilla-win32.zip&nbsp;</a>&nbsp;</li>
+
+<li>
+&nbsp;<a href="#note3">bosnian.zip</a>&nbsp;</li>
+
+<li>
+&nbsp;<a href="#note_ba">Note from Adnan</a>&nbsp;</li>
+</ol>
+</td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_pt-BR"></a>ブラジル (ポルトガル語)</td>
+
+<td>&nbsp;<a href="mailto: Andrei Bosco<andreibt@zipmail.com.br>">Andrei
+Bosco</a></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_ca-ES"></a>Catalan</td>
+
+<td>&nbsp;<a href="mailto: Jordi Mas <jmas@softcatala.org>">Jordi Mas</a></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_cz"></a>チェコ語</td>
+
+<td>&nbsp;<a href="mailto: Jan Pokorny<pokorny@svkhk.cz>">Jan Pokorny</a></td>
+
+<td></td>
+
+<td>M12</td>
+
+<td>submitting</td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_da"></a>デンマーク語 (da-DK)</td>
+
+<td>&nbsp;<a href="mailto:Lynggaard@netscape.net">Henrik Lynggaard</a></td>
+
+<td>&nbsp;<a href="dkChrome_1999090808.zip">Danish language pack</a></td>
+
+<td>1999090808 (plan to bring it up to 19991215)</td>
+
+<td>&nbsp;<a href="#note4">The zip file.</a></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_fr"></a>フランス語</td>
+
+<td>&nbsp; <a href="mailto: Olivier Bailly <obailly@liberate.com>">Olivier
+Bailly</a></td>
+
+<td>in progress</td>
+
+<td>M12</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_ka"></a>Georgian</td>
+
+<td>&nbsp;<a href="mailto: Gia Shervashidze <giasher@ip.osgf.ge>">Gia Shervashidze</a></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_de"></a>ドイツ語</td>
+
+<td>&nbsp;<a href="mailto:Robert Kaiser <KaiRo@StarTrekMail.com>">Robert
+Kaiser</a></td>
+
+<td>&nbsp; <a href="LangPack-M12-de_en-US.zip">LangPack-M12-de_en-US.zip</a>&nbsp;
+
+<a href="LangPack-M12_de-AT.zip">LangPack-M12_de-AT.zip</a></td>
+
+<td>M12</td>
+
+<td>De-AT パックは ディレクトリ コンフィグレーション可能な Chrome のバグが
+修正されるまで en-US/ にコピーする必要がある。
+<a href="http://abstracts.de/mozilla">関連リンク&nbsp;</a></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_el-GR"></a>ギリシャ語</td>
+
+<td>&nbsp;<a href="mailto:Kyriakos K. Skafas<kskafas@usa.net>">Kyriakos
+K. Skafas</a></td>
+
+<td>in progress</td>
+
+<td>(beta1)</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_hawa"></a>ハワイ語</td>
+
+<td>&nbsp;<a href="mailto: Keola Donaghy<keola@leoki.uhh.hawaii.edu>">Keola
+Donaghy</a></td>
+
+<td>in progress</td>
+
+<td>(M12)</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_ja"></a>日本語</td>
+
+<td>&nbsp;<a href="mailto: Yuta Taniguchi<rwreki24@cypress.ne.jp>">Yuta
+Taniguchi</a></td>
+
+<td>Japanese language pack <a href="m12_ja-JP_over.zip">en-US</a> or
+<a href="m12_ja-JP.zip">ja-JP</a><a href="rw_m11_ja-JP_over_UTF8.zip">(en-US</a>
+or&nbsp;<a href="rw_m11_ja-JP_UTF8.zip"> ja-JP)</a></td>
+
+<td>M12 (M11)</td>
+
+<td>"en-US" パックは "locale/en-US" 配下を全て上書きし、一方、
+"ja-JP" パックは"locale/ja-JP" 配下の翻訳されたファイルである。
+<a href="http://www.nmt.ne.jp/~rwreki24/chrome/">
+日本語化パックの関連情報。</a></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_no-NO"></a>ノルウェー語</td>
+
+<td>&nbsp; <a href="mailto: Karl Ove Hufthammer <huftis@bigfoot.com>">Karl
+Ove Hufthammer</a></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_pl_pl"></a>ポーランド語</td>
+
+<td>&nbsp;<a href="mailto: Marcin Jagodzinsk <marcinj@portfolio.art.pl>">Marcin
+Jagodzinski</a></td>
+
+<td>&nbsp; <a href="moz-m12-pl.tar.gz">moz-m12-pl.tar.gz</a> or&nbsp; <a href="moz_m12_pl.zip">moz_m12_pl.zip</a></td>
+
+<td>M12&nbsp;</td>
+
+<td>(done; except Editor, Preferences, acceptkey) <a href="http://portfolio.art.pl/mozilla/">Related
+documents.</a></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_es-CO"></a>スペイン語 (es-CO)</td>
+
+<td>&nbsp;<a href="mailto: Silvio Andr駸 Salazar Mart?ez <silas@logos.upb.edu.co>">Silvio
+Andr&eacute;s Salazar Mart&iacute;nez</a></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="mlp_es-ES"></a>スペイン語 (es-ES)</td>
+
+<td>&nbsp;<a href="mailto: Alexander Kadlec Aguirre <alexander@telecable.es>">Alexander
+Kadlec Aguirre</a> (<a href="http://www.telecable.es/personales/alexander/mozilla">NAVE</a>
+project)</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><a NAME="ml_th_TH"></a>タイ語</td>
+
+<td>&nbsp;<a href="mailto:Isiya Paireepairit<markpeak@SoftHome.net>">Isiya
+Paireepairit</a></td>
+
+<td>&nbsp;<a href="moz-th_1999100618_m10.zip">Thai Navigator language pack</a></td>
+
+<td>1999100618 (M10)</td>
+
+<td>Navigator ウィンドウだけの、一部分の翻訳。</td>
+</tr>
+</table>
+
+<p><i>Notes</i>
+<ol>
+<li>
+言語パックは、プラットフォームをまたがって適用される。</li>
+
+<li>
+<a NAME="note2"></a><a href="ftp://ftp-public.soros.org.ba/pub/qss/mozilla-win32.zip">mozilla-win32.zip&nbsp;</a>
+は、実行可能な Mozilla、英語ファイル、ボスニア語ファイルを含んでいる。
+デフォルトで、UI 言語はボスニア語である。</li>
+
+<li>
+&nbsp;<a NAME="note3"></a> <a href="bosnian.zip">bosnian.zip</a>
+はボスニア語のために必要なファイルのみ含んでいる。
+あなたはそれらを chrome/ ディレクトリに unzip し、
+chrome/registry.rdf の中のこれらの UI 文字列をピックアップして、
+全ての "en-US" 名前エントリを "da-DK" に変更しなければならない。</li>
+
+<li>
+&nbsp;<a NAME="note_ba"></a>
+
+M8.5 の時点では、いくつかのウィンドウが 特別な UNICODE キャラクタが使用されて
+いた時にクラッシュするため、
+bosnian-BA DTD ファイルの中では、ASCII キャラクタだけが使用されている。
+私は Mozilla が可能な限り上手く動作することを望み、
+それで、私は全ての ASCII one の中に我々の特別な文字に変換した。
+この方法はここに割り当てられて使われている。
+我々のキャラクタを表示させるために、人々は Windows 9x or NT の
+PANEURO バージョンを得る必要がある。
+我々のソフトウェアは、大抵、この特別なキャラクタ無しである。
+次のリリースのために、この変更を計画する。</li>
+
+<li>
+&nbsp;<a NAME="note4"></a>
+この zip ファイルは、デンマーク語のために必要な言語ファイルのみ含んでいる。
+あなたはそれらを chrome/ ディレクトリに unzip し、
+chrome/registry.rdf の中のこれらの UI 文字列をピックアップして、
+全ての "en-US" 名前エントリを "da-DK" に変更しなければならない。
+</li>
+</ol>
+
+<h2>
+<a NAME="cvsaccess"></a>ツリーへのアクセス権限の取得</h2>
+
+局地化の貢献者と翻訳者は、Mozilla への局地化の作業の中で、
+チェックインするために、 CVS アクセス権限を必要とするだろう。
+これはツリールールと、どのようにして CVS アカウントを得るかを
+説明したページへのリンクである。
+
+<blockquote>&nbsp;<a href="http://www.mozilla.org/hacking/">http://www.mozilla.org/hacking/</a></blockquote>
+
+局地化に関連したファイル便宜を計るが、
+他のモジュールのビルドプロセスの破壊を避けるため、
+それらは、Mozilla ツリー mozilla/" の下に作られたディレクトリ "l10n/"
+に納められるだろう。
+
+詳細は次のセクションを見なさい。
+<br>&nbsp;
+<h2>
+<a NAME="l10ndir"></a>局地化関連作業のためのディレクトリ構造</h2>
+以下のツリー構造は、
+Mozilla ツリーの中での全ての局地化関連作業の便宜を計っている。
+<ol>
+<li>
+<b>ディレクトリ構造</b>
+
+Mozilla ツリーを伴うが、
+独立したディレクトリの下の局地化関連のファイルは置かれていない
+CVS リポジトリを共有しなさい。
+
+独立したディレクトリの下の局地化関連のファイルを置いてではない。
+
+Tague Griffith は過去に、オープンソース L10n ツールの便宜を計るために
+新しいディレクトリ "l10n/" を作った。
+
+ツールはサブディレクトリ l10n/tools/" の配下にチェックインされるだろう。
+
+我々は、ツールと同列なサブディレクトリ l10n/lang/" に置かれた
+言語を定義するファイルを持つことができる。
+
+そして、そこは別のサブディレクトリ "l10n/builds" で、それは
+様々なビルド関係ファイルに便宜を計る。&nbsp;
+ディレクトリ構造はこのように見える:</li>
+
+<br>&nbsp;
+<p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p><b>mozilla/</b>
+<ol>[other modules]
+<br>[...]
+<br><b>l10n</b>/
+<ol>tools/
+<ol>mozexptool/
+<br>mozillatranslator/
+<br>etc...</ol>
+<b>lang</b>/
+<ol>addressbook/locale/
+<ol>
+<ol>
+<ol><b>bosnian-BA/</b>
+<br>da-DK/
+<br>da-DK-vendor1
+<br>ja-JP-vendor1
+<br>ja-JP-vendor2
+<br>etc...</ol>
+</ol>
+</ol>
+bookmarks/locale/
+<ol>
+<ol>
+<ol><b>bosnian-BA</b>/
+<br>da-DK/
+<br>da-DK-vendor1/
+<br>ja-JP-vendor1
+<br>ja-JP-vendor2
+<br>etc...</ol>
+</ol>
+</ol>
+[other package types, etc...]</ol>
+builds/
+<ol>[release team's stuff]</ol>
+</ol>
+</ol>
+
+<li>
+<b>Pulling the tree.</b>
+現在の Mozilla ビルドプロセスは "l10n/" を取り寄せていない。
+その結果、他のモジュールデベロッパは、彼らが明確に "l10n/" を
+そのようにしない限り、取り寄せないだろう。
+
+これは、ツリーの取り寄せ時間と無駄なディスク領域の問題についての関係に
+ついて述べている。しかしながら、開発サイクルの間、我々はまだ、
+デフォルトで l10n/ を取り寄せることを選択している。</li>
+
+<br>&nbsp;
+<li>
+<b>The build script. </b>
+局地化されたクライアントの build script は、
+デイリー・ビルドの一部としてセットアップされたり、
+スタンドアロンスクリプトとして動かされることができる。</li>
+</ol>
+このアプローチの優位性を、この後に述べる。
+<ul>
+<li>
+l10n が 毎日の Mozilla ビルド対象の一部ではなかった時から、
+ローカリゼーション・チェックイン("mozilla/l10n" の下に)は
+Tinderbox ルールには制限されておらず、その結果フックされていなかった。
+</li>
+
+<br>&nbsp;
+<li>
+ネット開発者は、アクセス権限を認められ、
+直接、オープンソースツリー上で作業することができる。</li>
+</ul>
+
+"mozilla/l10n" ディレクトリを乱用することを
+人々に推奨しているわけではないことを、覚えておいてもらいたい。
+
+全ての CVS チェックイン・ルールはまだ有効である。
+同じ寄贈者への礼儀や、モジュール・オーナーシップへの尊敬が、
+オープンソース・コミュニティの中で必要とされている。
+
+<br>&nbsp;
+<h2>
+<a NAME="refs"></a>参考文献と、より多くの情報...</h2>
+
+<ul>
+<li>Mozilla 現地語化関連の発行: <a href="news://news.mozilla.org/netscape.public.mozilla.l10n">
+Mozilla Localization newsgroup</a>.</li>
+
+<li>
+&nbsp;<a href="http://www.mozilla.org/projects/intl/xul-styleguide.html">
+XUL コーディング スタイル ガイドライン</a></li>
+
+<li>
+&nbsp;<a href="http://www.mozilla.org/projects/intl/xul-l10n.html">XUL
+localizability issues</a></li>
+</ul>
+
+<h2>
+<a NAME="FAQ"></a>FAQ of MLP</h2>
+
+<ul>
+<li>
+<b>何のライセンス条文 ULP, NPL, or MPL が、
+*.dtd and *.properties のような、翻訳されたリソースファイルの中に
+挿入されるべきだろうか？
+</b></li>
+
+<br>&nbsp;
+<p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p>"
+このファイルの内容は、 Netscape Public License Version 1.1 ( 以後、"License");
+に従属する。
+あなたは、このファイルをライセンスの承諾無しで用いることはできない。
+あなたは、
+<a href="http://www.mozilla.org/NPL/">http://www.mozilla.org/NPL/</a>
+のライセンスのコピーを得るだろう。
+
+<p>
+License の元に配布されるソフトウェアは "AS IS" を基本に
+WITHOUT WARRANTY OF ANY KIND という表現か、それをほのめかして
+配布される。
+Licence の元に正式に管理・制限された、特定の言語のための License を見なさい。
+
+<p>オリジナルコードは Mozilla Communicator クライアントコードであり、
+March 31, 1998. にリリースされた。
+
+<p>
+オリジナルコードの最初のデベロッパは Netscape Communications Corporation である。
+Portions created by Netscape are Copyright (C) 1998-1999 Netscape
+Communications Corporation. All Rights Reserved.
+<p>Contributor(s): ____________________________________."
+<ul>&nbsp;</ul>
+
+<li>
+<b>Netscape ブランドのバージョンはどの言語に対してローカライズされていくのか？</b></li>
+
+<ul>&nbsp;</ul>
+Netscape ブランドのバージョンは少なくともドイツ語、フランス語、日本語に
+ローカライズされるだろう。他の言語のための将来の計画は
+Netscape の判断によりアナウンスされるだろう。
+<ul>&nbsp;</ul>
+
+<li>
+<b>Netscape は Netscape ブランド バージョンの中で、現地語化の作業を
+Mozilla オープンソース・ツリーに対してリリースしようとしているのか？
+OEM とは何だろうか？</b></li>
+
+<ul>&nbsp;</ul>
+Netscape は、ローカライズされたファイルを、
+我々がそれらを利用可能なものとして現地語化する言語の中で、
+mozilla の中にポストするだろう。
+<ul>&nbsp;</ul>
+
+<li>
+<b>我々は、寄贈された翻訳を Netscape ブランド・バージョンの中に組み入れるだろうか？
+</b></li>
+
+<ul>&nbsp;</ul>
+現在、Netscape とそのパートナーは、言語バージョンを生産しており、
+我々はそのビジネス戦略をサポートする必要がある。
+もし、それらの戦略が変更されたら、Netscape は mozilla.org での作業を
+終了したように見えることを選択するだろう。
+
+<br>&nbsp;
+<li>
+<b>我々は、どのように、同じ言語の Netscape バージョンと
+Mozilla バージョンの衝突を論じれば良いのだろうか？</b></li>
+
+<ul>&nbsp;</ul>
+Mozilla と Netscape ブランドの製品は、２つの違うプロダクトになるだろう。;
+オープンソースデベロッパは、Netscape ブランドの製品と衝突しない、
+彼らの mozilla ツリーにチェックされたローカライズされたファイルを持っている。
+</ul>
+
+<br>&nbsp;
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">英語版</a> 2000/01/21</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/intl/xul-how2l10n.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+                      "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <title>Sunbird 0.3 リリースノート</title>
+    <link rel="alternate" hreflang="en" modified="October 18, 2006">
+    <link rel="stylesheet" type="text/css" href="../calendar.css">
+  
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/calendar/releases/sunbird0.3.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+    <div id="mainContent" class="right">
+
+      <div class="key-point">
+
+        <div id="product-desc" class="sunbird-releasenotes">
+          <p>このリリースノートには、Sunbird 0.3 に関する <a href="#new">新機能</a>、<a href="#download">ダウンロード</a>、<a href="#install">インストール方法</a>、<a href="#issues">既知の問題</a>、<a href="#FAQ">よくある質問</a> が載っています。<a href="https://bugzilla.mozilla.org/">Bugzilla</a> にバグを報告する前に、このリリースノートと <a href="http://wiki.mozilla.org/Calendar:QA_Home#Filing_Bugs">バグの登録方法</a> をよくお読みください。</p>
+        </div>
+
+      </div><!-- end #key-point div -->
+
+      <h2><a name="new">Mozilla Sunbird&trade;  0.3 の新機能</a></h2>
+
+      <p>Mozilla Sunbird 0.3 は、独立して動作するカレンダーアプリケーションの最新リリースです。すべてのユーザの皆さんにこの最新バージョンへのアップグレードを推奨します。</p>
+      <ul>
+        <li><strong>新しい保存機構</strong>：何千何百という多数のイベントが記録されているカレンダーをより機敏に扱えるようになりました.</li>
+        <li><strong>より直感的なインターフェース</strong>：必要な事項を見つけやすく、必要のない事項は表示を減らすようになりました。</li>
+        <li><strong>再設計された設定項目</strong>：必要にあわせて簡単に Sunbird のカスタマイズできます。</li>
+        <li><strong>アドオンのサポート</strong>：<a href="http://addons.mozilla.org/">addons.mozilla.org</a> で提供されている拡張機能やテーマ、言語パックなどで Sunbird の機能を拡張できるようになりました。</li>
+        <li><strong>新しい Windows インストーラ</strong>：Windows ユーザでも Sunbird のインストールをこれまで以上に簡単にできます。</li>
+        <li><strong>印刷機能の向上</strong>：カレンダーをさまざまに印刷できます。Mac ユーザも印刷ができるようになりました！  </li>
+        <li><strong>24 時間表示</strong>：数時間だけでなく、一日全体を表示できるようになりました。</li>
+        <li><strong>アラームの信頼性</strong>： イベントやタスクを確実にお知らせします。</li>
+        <li><strong>ローカライゼーションサポートの改善</strong>：Sunbird での言語パックのインストール、有効化、無効化が簡単にできるようになりました。</li>
+        <li><strong>大幅に改善された信頼性</strong>：データを失う可能性が大幅に減少しました。</li>
+        <li><strong>多数のパフォーマンス面の向上</strong></li>
+      </ul>
+      <p>リリース日：2006 年 10 月 11 日</p>
+
+      <h2 id="downloadandinstall">ダウンロードとインストール</h2>
+
+      <h3 id="requirements">必要システム構成</h3>
+      <p>インストールの前に、お使いのコンピュータが <a href="../sunbird/system-requirements.html">必要システム構成</a> を満たしているか確認してください。Sunbird 0.3 より、Mac OS X ユーザの皆さんは Mac OS X 10.2 以降、Windows ユーザの皆さんは Windows 2000 以降をお使いになる必要があります。</p>
+
+      <h3 id="downloading"><a name="download">Sunbird 0.3 のダウンロード</a></h3>
+
+      <p>mozilla.org では Sunbird を Windows、Linux、そして Mac&nbsp;OS&nbsp;X 用に、さまざまな言語で提供しています。Sunbird 0.3 は <a href="../sunbird/download.html">こちらからダウンロード</a> できます。</p>
+
+      <p>提供されていない、他のシステム・言語向けのビルドについては、このページの最後にある「<a href="#contributedbuilds">提供されたビルド</a>」の項目をご覧ください。</p>
+
+      <h3><a name="install">Sunbird のインストール</a></h3>
+      <p>Sunbird をダウンロードしたら、次の説明に従ってインストールしてください：</p>
+      <h3>Windows</h3>
+      <p>Sunbird はインストールの前に削除してください。<kbd>スタート</kbd> メニューから <kbd>コントロールパネル</kbd> を選びます。コントロールパネルが表示されたら、<kbd>アプリケーションの追加と削除</kbd> をダブルクリックします。一覧から 「Mozilla Sunbird」 を選択して、<kbd>削除</kbd> ボタンを押してアンインストールします。</p>
+      <p>そしてインストーラをダブルクリックして、インストールを開始します。</p>
+
+      <h3>Mac OS X</h3>
+      <p><tt class="filename">Sunbird 0.3.dmg</tt> ファイルをダウンロードしたら、Sunbird Disk Image をダブルクリックして展開します。そして Sunbird アプリケーションをハードディスクにドラッグ・アンド・ドロップします。Dock に表示したい場合はアイコンを Dock にドラッグします。</p>
+
+      <h3>Linux/GTK2</h3>
+      <p>Sunbird をインストールしたい場所で tarball を展開します：</p>
+      <p><code>tar -xjvf sunbird-0.3.tar.bz2</code></p>
+
+      <p>これでそのディレクトリ下に <code>sunbird</code> というサブディレクトリが作成されます。</p>
+
+      <h3>その他のプラットフォーム</h3>
+      <p>圧縮アーカイブを展開して <tt>sunbird</tt> を実行します。</p>
+
+      <h3 id="uninstall">Sunbird のアンインストール</h3>
+
+      <p>次の説明に従って Sunbird をアンインストールします：</p>
+      <h3>Windows</h3>
+      <p><kbd>スタート</kbd> メニューから <kbd>コントロールパネル</kbd> を選びます。コントロールパネルが表示されたら、<kbd>アプリケーションの追加と削除</kbd> をダブルクリックします。一覧から 「Mozilla Sunbird (0.3)」 を選択して、<kbd>削除</kbd> ボタンを押してアンインストールします。</p>
+
+      <h3>Mac OS X</h3>
+      <p><tt class="filename">Sunbird</tt> アプリケーションをゴミ箱にドラッグします。</p>
+
+      <h3>その他</h3>
+      <p><tt class="filename">sunbird</tt> フォルダを削除します。</p>
+
+      <p>これらのガイドでは、将来再び Sunbird をインストールする場合を考慮して、プロファイルは削除されません。プロファイルフォルダを削除したい場合は、<strong>「プロファイルフォルダ」</strong> セクションにあるガイドにあるフォルダを削除してください。ただし、プロファイルフォルダを削除すると、すべてのカレンダーや保存されたパスワード、設定などの情報が削除され、再び Sunbird を使用する際にはまっさらなプロファイルが作成されることに注意してください。</p>
+
+      <p>&nbsp;</p>
+      <h2>その他の情報</h2>
+      <h3 id="profilefolder">プロファイルフォルダ</h3>
+      <p>Sunbird はユーザデータをまとめて次の場所に保存します：</p>
+
+      <table style="font-size: smaller; text-align: left;" border="1"
+             cellspacing="0">
+        <tr>
+          <td><img src="/images/ico-win.png" alt="">Windows 2000、XP</td>
+          <td>Documents and Settings\&lt;ユーザ名&gt;\Application Data\Mozilla\Sunbird</td>
+        </tr>
+        <tr>
+          <td><img src="/images/ico-osx.png" alt=""> Mac OS X</td>
+          <td>~/Library/Application Support/Sunbird</td>
+        </tr>
+        <tr>
+          <td><img src="/images/ico-tux.png" alt=""> Linux and Unix</td>
+          <td>~/.mozilla/sunbird</td>
+        </tr>
+      </table>
+
+      <p>&nbsp;</p>
+       <h2><a name="issues">既知の問題</a></h2>
+      <p>Sunbird 0.3 で確認されている問題の一部を掲載します。このリリースに存在するその他の既知の問題は、<a href="common0.3.html">こちらのページ</a> に掲載されています。新しいバグを報告する前に、必ず両方の一覧を確認してください。</p>
+
+      <h3 id="issues-all">すべてのシステム</h3>
+      <ul>
+        <li>Sunbird 0.3 では、Sunbird 0.2 または Mozilla Calendar 拡張機能からのカレンダーファイル （.ICS） を自動的には移行しません。代わりに、プロファイルフォルダから手動でインポートし、リモートカレンダーのファイルを再購読する必要があります。こうすることで確実にデータを変換できます。</li>
+        <li>Sunbird 0.3 は起動時にタイムゾーンを設定しようと試みます。ただし、正確に設定できない場合もありますので、データ入力前に設定 / オプションパネルで正しいタイムゾーンを設定してください。</li>
+        <li>Sunbird 0.3 のタイムゾーンは、合衆国議会が 2005 年に採択した日光節約時間 （サマータイム） をまだサポートしていません。</li>
+        <li>コンピュータにある Mozilla 以外のカレンダークライアントからインポートしたイベントやタスクが、間違ったタイムゾーンに表示されるケースが多々あります。リモートで購読しているカレンダーではこうしたエラーは確認されていません。（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=314339">bug 314339</a>）</li>
+        <li>リモートサーバに保存されているカレンダーを複数の人が編集すると、直前の変更が上書きされてしまう場合があります。（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=329570">bug 329570</a>）</li>
+        <li>コピー・アンド・ペーストや電子メール、またはインポートで他のカレンダークライアントからイベントを追加した場合、イベントの例外設定が処理されません。（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=354578">bug 354578</a>）</li>
+        <li>Sunbird 0.3 は Sunbird 0.2 が作成した .ICS ファイルを読み込めません。（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=352795">bug 352795</a>）</li>
+      </ul>
+
+      <h3 id="issues-windows">Windows</h3>
+      <ul>
+        <li>Mozilla のコアコードに構造的な変更が行われたため、Sunbird 0.3 は Windows 95 や Windows 98、Windows ME では動作しません。これはバグではなく、カレンダーチームの担当範囲外の事です。（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=330276">bug 330276</a>）</li>
+      </ul>
+
+      <h3 id="issues-mac">Mac OS X</h3>
+      <ul>
+        <li>Sunbird 0.3 はユニバーサルバイナリでありません。現時点では PowerPC ネイティブなアプリケーションとしてビルドされています。しかし、Apple の <a href="http://www.apple.com/jp/rosetta/">Rosetta</a> 環境下で快適に動作します。</li>
+      </ul>
+
+      <h3 id="issues-linux">Linux および Unix システム</h3>
+      <ul>
+        <li>Linux では印刷時にクラッシュすることがあります。（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=351944">bug 351944</a>）</li>
+        <li>X でのドラッグ・アンド・ドロップの非同期性と Mozilla の同期モデルとの違いにより、Linux デスクトップでドラッグ・アンド・ドロップをおこなうと、特にリモートの X セッションをまたぐ際にフリースすることがあります。（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=348009">bug 348009</a>）</li>
+      </ul>
+
+      <h2><a name="troubleshooting">トラブルシューティング</a></h2>
+      <ul>
+        <li>設計が悪い、あるいは互換性のない拡張機能を使うと、クラッシュしたり、カレンダーの読み込みが遅くなるなど、Sunbird に問題を引き起こす可能性があります。Sunbird の一部機能が使えない、Sunbird が起動しない、ウィンドウの表示がおかしい、パフォーマンスが低下した、などの問題に遭遇した場合、拡張機能やテーマが原因となっている可能性があります。そのようなときは、Sunbird をセーフモードで再起動してください。Windows では、スタートメニュー内に作成された "Safe Mode" ショートカットを使うか、sunbird.exe -safe-mode で起動してください。Linux では、<code>./sunbird -safe-mode</code> として起動してくださ。Mac OS X では、ターミナルを開いて次のコマンドを実行してください： <code>/Applications/Sunbird.app/Contents/MacOS/sunbird-bin -safe-mode</code> Sunbird がセーフモードで起動すると、すべてのアドオンが無効になります。問題の原因となったアドオンを無効化してから、通常通り起動してください。</li>
+      </ul>
+
+      <p>&nbsp;</p>
+      <h2><a name="FAQ">よくある質問</a></h2>
+      <ol class="faq">
+        <li>どのような協力ができますか？<p>計画されている Sunbird の次期リリースは Sunbird 0.5 です。</p>
+          <p>このリリースに向けた進捗状況を追跡したいユーザの皆さんは、ぜひナイトリービルドをダウンロードしてください。いつもどおり、テストや役に立つバグ報告を大いに歓迎します。バグの提出方法やカレンダーのテストへの参加方法について知りたい場合は、<a href="http://wiki.mozilla.org/Calendar:QA_Home#Filing_Bugs">こちらをご覧ください</a>。</p>
+        </li>
+
+        <li>Sunbird のソースコードはどこにありますか？<p>Sunbird のソースコードは tarball として <a href="http://releases.mozilla.org/pub/mozilla.org/calendar/sunbird/releases/0.3/source/">ダウンロードできます</a>。最新の開発コードは <a href="http://developer.mozilla.org/ja/docs/Mozilla_Source_Code_Via_CVS">cvs</a> を通じて入手可能です。Sunbird 固有のソースは "mozilla/calendar"、"mozilla/toolkit"、"mozilla/chrome" にあります。詳しくは <a href="http://developer.mozilla.org/ja/docs/Build_Documentation">ビルド方法</a> に従ってください。</p>
+        </li>
+      </ol>
+
+      <p>&nbsp;</p>
+      <h2 id="links">その他の関連資料とリンク</h2>
+      <p>以下のリソースには、Sunbird に関して参考になる情報が載っています：</p>
+      
+      <ul>
+        <li><a href="http://wiki.mozilla.org/Calendar:FAQ">Sunbird Help （英語）</a></li>
+        <li><a href="http://wiki.mozilla.org/Calendar:Hacking">開発者情報 （英語）</a></li>
+      </ul>
+
+      <p>&nbsp;</p>
+      <h2><a name="contributedbuilds">提供されたビルド</a></h2>
+      <p>これらは非公式なビルドで、mozilla.org のビルドとは設定が異なる場合があります。また、特定のプラットフォーム向けに最適化、テストされている場合もあります。</p><!--
+      <h3 id="solarisbuilds">Solaris builds (contributed by Sun
+         Microsystems)</h3>
+      <ul>
+        <li>Sunbird for Solaris x86</li>
+        <li>Sunbird for Solaris SPARC</li>
+      </ul>
+-->
+
+
+      <h3 id="othersystems">その他のシステム</h3>
+
+      <p>mozilla.org が公式に提供している 3 種類のプラットフォーム以外に対応したビルドは <a href="http://releases.mozilla.org/pub/mozilla.org/calendar/sunbird/releases/0.3/contrib/">FTP サイト</a> にあります。</p><!--
+            Build contributors, please put your builds under:
+              pub/mozilla.org/calendar/sunbird/releases/<version>/contrib/
+
+            Your build file name should match the pattern set by official
+            builds and include a README explaining any build peculiarities and
+            identifying yourself as the contributor. Thanks.
+          -->
+
+        
+ 
+      <h3 id="otherlanguages">ローカライズビルド</h3>
+      <p>mozilla.org は、数多くのローカライズビルドを <a href="http://wiki.mozilla.org/L10n:Localization_Teams"
+            title="Mozilla ローカライズプロジェクト">その製作者</a> に代わって配布しています。<a href="../sunbird/l10n_download.html">すべてのシステムと言語</a> で、私たちが提供している公式ビルドの一覧をご覧ください。</p>
+
+      <p>Sunbird 0.3 公式ローカライズとして認定されていないビルドは、<a href="http://ftp.mozilla.org/pub/mozilla.org/calendar/sunbird/releases/0.3/contrib-localized/">FTP サイト</a> を参照してください。</p>
+
+      <small>過去のバージョンのリリースノート： <a href="sunbird0.3alpha1.html">0.3a1</a> | <a href="sunbird0.3alpha2.html">0.3a2</a></small> <br><small>Sunbird&trade;  および Sunbird ロゴは Mozilla Foundation の商標です。All rights reserved.</small>
+
+
+    </div><!-- close #mainContent -->
+    
+    <div id="side" class="right">
+      <ul id="nav">
+        <li><a href="../sunbird/">Sunbird トップへ戻る</a></li>
+      </ul>
+
+      <ul id="nav">
+        <li><a href="#requirements">必要システム構成</a></li>
+        <li><a href="#download">ダウンロード</a></li>
+        <li><a href="#install">インストール</a></li>
+        <li><a href="#uninstall">アンインストール</a></li>
+        <li><a href="#profilefolder">プロファイルフォルダ</a></li>
+        <li><a href="#issues">既知の問題</a></li>
+        <li><a href="#troubleshooting">トラブルシューティング</a></li>
+        <li><a href="#FAQ">FAQ</a></li>
+        <li><a href="#othersystems">その他のシステム</a></li>
+        <li><a href="#otherlanguages">その他の言語</a></li>
+        <li><a href="#links">その他の関連資料とリンク</a></li>
+      </ul>
+    </div><!-- end #side div -->
+  
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/calendar/releases/sunbird0.3.html">英語版</a> 2006/10/18</span> - <span>和訳版 2006/10/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/calendar/releases/sunbird0.3.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

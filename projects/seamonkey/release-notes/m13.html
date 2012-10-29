@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>M13 Release Notes</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/seamonkey/release-notes/m13.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/release-notes/m13.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<center>
+<h1>
+M13リリース・ノート</h1></center>
+著者: Vera Horiuchi <a href="mailto:verah@netscape.com">verah@netscape.com</a>
+<br>変更したい場合は直接リリースノートを編集しないで、全てVeraに送ってください。
+<p>これらのリリースノート（最終更新：2000年1月25日）には、インストールの手順とM13リリースに関する既知の問題について記述されています。フィードバックに応じて更新しますので、新しい情報を随時チェックしてください。 
+
+<p><b>Mozillaと関わっていく方法</b>
+<ul>
+<li>
+<b>見つけたバグを報告する</b> <a href="http://bugzilla.mozilla.org/query.cgi">search
+form</a>を使って、あなたの見つけたバグが既に報告されていないかどうかを確認してください。
+もし見つけられなければ、<a href="http://bugzilla.mozilla.org">Bugzilla</a>（これはmozilla.orgの
+バグ追跡システム）に行って、"Before reporting a bug.（バグを報告する前に）"の手順に従ってください。</li>
+
+<li>
+<b>Full Circle buildsを使う</b> もしWindowsかLinuxのユーザーなら、<a href="http://www.mozilla.org/projects/seamonkey/release-notes/">M13　Milestone with Full Circle</a>をダウンロードできます。もしMozillaがクラッシュした場合、Netscape社に
+<a href="news://news.mozilla.org/netscape.public.mozilla.crash-data">crash information</a>を送ることが出来るようになります。これはMozillaの安定性の向上のために使われます。
+</li>
+
+<li>
+<b><a href="http://www.mozillazine.org/talkback.html?article=1074">Bug Day</a>に参加してください。</b>もしMozillaのテストを支援したいが、どこから手をつけて良いかわからない場合、火曜日の 3:00PM PSTにirc.mozilla.orgの#mozillazine <a href="http://www.irchelp.org">IRC</a>チャンネルに参加してください。手順と始める手助けをしてくれる親切な人たちに会えます。
+</li>
+
+<li>
+<b>もしスクリプトが出来るなら、<a href="http://www.mozilla.org/newlayout/bugathon.html">BugAThon.</a></b>に加わってください。テストケースに単純化する作業を行えます。</li>
+</ul>
+もっと深く関わりたい人は、<a href="http://www.mozilla.org/get-involved.html">suggested　starting points（お勧めの開始場所）</a>もご覧ください。
+
+<p><b>関連リンク</b>
+<ul>
+<li>
+さらに既知の不具合に関して知りたい場合には、最新の<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&resolution=FIXED&email1=&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&target_milestone=m13&short_desc=&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&status_whiteboard=&status_whiteboard_type=substring&newqueryname=&form_name=query&order=assign.login_name%2C%20bugs.priority%2C%20bugs.bug_severity">修正されたバグ
+</a>のリストを見ることが出来ます。</li>
+
+<li>
+バグを報告する場合には<a href="http://bugzilla.mozilla.org">Bugzilla</a>を使ってください。.
+ぜひ<a href="http://www.mozilla.org/newlayout/bugathon.html">BugAThon</a>
+に参加して、バグ・レポートをテストケースに単純化する作業を手伝ってください！</li>
+
+<li>
+それぞれのマイルストーンに関する情報や機能を見るには<a href="http://www.mozilla.org/projects/seamonkey/milestones/index.html">milestone
+page.</a>を参照してください。</li>
+</ul>
+<b>この文章の目次</b>
+<br>&nbsp;
+<table BORDER CELLPADDING=3 >
+<tr>
+<td VALIGN=TOP><b>Installation</b>
+<br><a href="m13-detail.html#read_this">インストールする前に読んでください。</a>
+<br><a href="m13-detail.html#UNIX_INSTALL">インストール手順 - Unix</a> 
+<br><a href="m13-detail.html#WIN32_INSTALL">インストール手順 - Win32</a> 
+<br><a href="m13-detail.html#MAC_INSTALL">インストール手順 - Mac OS</a> 
+<br><a href="m13-detail.html#uninstall">M13をアン・インストールするには</a>
+<br><a href="m13-detail.html#FILES_USED">作られる、もしくは参照されるファイル</a></td>
+
+<td VALIGN=TOP><b>限定されている機能</b> 
+<br><a href="m13-detail.html#avail_cache">キャッシング</a>
+<br><a href="m13-detail.html#avail_nav">動作するNavigatorの機能</a>
+<br><a href="m13-detail.html#avail_mail">動作するメール／ニュースの機能</a>
+<br><a href="m13-detail.html#avail_editor">動作するEditorの機能</a>
+<br><a href="m13-detail.html#avail_gecko">動作するGeckoの機能</a></td>
+
+<td VALIGN=TOP><b>既知の不具合</b> 
+<br><a href="m13-detail.html#general_browser">ブラウザーと一般の問題</a> 
+<br><a href="m13-detail.html#printing">プリント</a>
+<br><a href="m13-detail.html#plugins">プラグイン</a>
+<br><a href="m13-detail.html#bookmarks">ブックマークと履歴</a> 
+<br><a href="m13-detail.html#sidebar">サイドバー</a>
+<br><a href="m13-detail.html#profiles">プロファイル</a>
+<br><a href="m13-detail.html#editor">エディター</a>
+<a href="m13-detail.html#java">Java</a>
+<br><a href="m13-detail.html#javascript">Javascript</a>
+<br><a href="m13-detail.html#linux_fonts">LinuxのSmall Fonts</a> 
+<br><a href="m13-detail.html#KNOWN_ISSUES_MAIL">メールとニュース/a> 
+<br><a href="m13-detail.html#INTL_ISSUES">国際化</a></td>
+</tr>
+</table>
+
+<p>このリリースは2000年3月1日 00:01 amに無効になります。</td>
+</tr>
+
+<tr>
+<td ALIGN=RIGHT VALIGN=TOP COLSPAN="2"><font size=-1>Copyright (C) 1998-2000
+The Mozilla Organization.</font>
+<br><font size=-1><a href="http://www.mozilla.org/webtools/bonsai/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/release-notes/m13.html&rev=&root=/cvsroot/">Last
+modified January 26, 2000</a>.</font>
+<div align=right>
+<font size=-1><a href="http://www.mozilla.org/projects/seamonkey/release-notes/m13.html">
+このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。<br>
+</a>またドキュメントの管理の言語は現在も英語です。<br>
+この日本語訳は、利用者の利便のために有志によって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.org/jp/td/index.html">
+http://www.mozilla-japan.org/jp/td/index.html</a></font>
+</div>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/release-notes/m13.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/release-notes/m13.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

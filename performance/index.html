@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Mozilla パフォーマンス</title>
+
+<!--
+***************************************** 覚え書き **************************************
+
+原文
+原題：performance
+URL ：http://www.mozilla.org/performance/
+
+和訳
+
+14版：2002/10/12 山口 （Rev.:1.31 Sep 25 09:29 2002）和訳の調整（dynamis さん、池田さんに感謝）
+15版：2002/10/30 山口 （Rev.:1.32 Oct 18 18:15 2002）更新
+16版：2003/05/23 山口 （Rev.:1.37 May 21 13:14 2003）更新
+17版：2003/06/07 山口 （Rev.:1.38 Jun  6 09:39 2003）更新
+18版：Rev.: 1.40
+
+Rev: 1.39 山口 no_spam_syamagu@mozilla-japan.org
+
+***************************************** 覚え書き **************************************
+-->
+
+<link rel="alternate" hreflang="en" modified="January 30, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/performance/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<h1>Mozilla パフォーマンス</h1>
+
+<h2>ツール</h2>
+
+    <ul>
+        <li><a href="../projects/footprint/codesighs.html">Codesighs</a> - コードサイズおよびデータサイズを分析するツール。</li>
+        <li><a href="tools.html">ツール</a>：パフォーマンス測定用。 ポインターの件では <a href="mailto:zuperdee@penguinpowered.com">Daniel Roberts</a> （zuperdee@penguinpowered.com） に感謝。</li>
+    </ul>
+
+ <h2>テスト</h2>
+
+ <p>Mozilla パフォーマンスのベンチマークとしては <a href="tinderbox-tests.html">Tinderbox パフォーマンステスト</a> が一般的です。</p>
+
+<h2>参考文献</h2>
+    <ul>
+      <li>コードフットプリント <a href="footprint-reduction-techniques.html">削減テクニック</a> では、共通する問題のパターンやその解決法について解説しています。</li>
+      <li><a href="profiling-juju.html">Profiling JuJu</a>：プロファイル作業をするためには知っておくべきこと。いくつかのツールのためのヒントと小技、さらにたくさんの知ってお得な情報。</li>
+      <li>Mac での<a href="mac-performance.html">プロファイリングやメモリリーク分析</a>。</li>
+    </ul>
+
+<h2>発表資料</h2>
+    <ul>
+      <li><a href="footprint-brownbag.html">フットプリントツール</a>：フットプリントツールについての発表資料。</li>
+      <li><a href="startup-perf-brownbag.html">一般的パフォーマンスツール</a>：<i><a href="perf-intro/slide1.xml">スライド</a></i> ‐ 一般的パフォーマンスツールについての発表資料。</li>
+      <li><a href="leak-brownbag.html">リークツール</a>：メモリーリーク検知ツールについての発表資料。</li>
+      <li><a href="mac-performance.html">Mac パフォーマンスツール</a>：Mac で動くパフォーマンスツールについての発表資料。</li>
+    </ul>
+
+<h2>参加したい？</h2>
+    まず初めに次のタスクリストの整理に手を貸してください。
+
+    <ul>
+      <li>古くなってしまった <a href="projects.html">プロジェクト</a> リスト。</li>
+      <li><a href="tasks.html">タスク</a>：熱々アイテムのタスクリスト。最新のパフォーマンスやランタイムの軌跡については、<a href="news://news.mozilla.org/netscape.public.mozilla.porkjockeys">Porkjockeys ニュースグループ</a> <span class="comment">【訳注：英語】</span> を見てください。ブタさん。飛行。その他もろもろ。</li>
+      <li><a href="laundry-list.html">洗い出しリスト</a>：もう一つ、未解決のパフォーマンスバグをまとめたリスト。（とてつもなく古いリスト。アップデートの必要あり！）</li>
+    </ul>
+
+</p>
+
+<h2>他の関連プロジェクト</h2>
+
+    <ul>
+        <li><strong>（アーカイブ）</strong> <a href="../mailnews/win_performance_results.html">Mail-News パフォーマンス統計</a>：Mail-News パフォーマンス統計の歴史。</li>
+        <li><a href="../xpapps/performance">XPApps パフォーマンス</a>：ブラウザのパフォーマンス改善努力。</li>
+        <li><a href="references.html">レファレンス</a>：レファレンス関連の参考文献の溜まり場。</li>
+        <li><a href="../community.html">コミュニティ</a>：<a href="news://news.mozilla.org/netscape.public.mozilla.performance"><tt>netscape.public.mozilla.performance</tt></a> は Mozilla パフォーマンスのニュースグループで、<a href="mailto:mozilla-performance@mozilla.org"><tt>mozilla-performance@mozilla.org</tt></a> は電子メールのミラーです。<br></li>
+    </ul>
+
+ <address>コンタクト：<a href="mailto:cathleen@netscape.com">Cathleen Wang</a> (cathleen@netscape.com)</address>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/performance/index.html">英語版</a> 2005/01/30</span> - <span>和訳版 2005/02/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/performance/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

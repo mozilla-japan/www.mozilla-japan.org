@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP"><meta http-equiv="Content-Language" content="en"><meta http-equiv="Content-Style-Type" content="text/css"><meta http-equiv="Content-Script-Type" content="text/javascript"><title>SeaMonkey
+1.1 Beta</title>
+<link rel="stylesheet" type="text/css" href="../css/content.css" media="all"><link rel="up" href="./" title="SeaMonkey Releases">
+<link rel="alternate" hreflang="en" modified="November 16, 2006">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/releases/1.1b.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<p class="crumbs"><em>現在の場所：</em>
+<a href="../">SeaMonkey プロジェクト</a> &gt; <a href="./">リリース</a> &gt; <strong>SeaMonkey
+1.1 Beta</strong>
+</p><h1><a name="1.1b">SeaMonkey 1.1 Beta</a></h1>
+<p class="release-date">2006 年 11 月 8 日リリース</p>
+<div class="important">このリリースは最新の機能を示していますが完成していない機能も示している可
+能性がある来る安定バージョンのプレビューです。
+開発者とテスターのみ - エンドユーザにではなく - に提供されます。<br>
+エンドユーザのために提供されている最新バージョンを得るには、<a rel="up" href="./">リ
+リース</a>ページへ行ってください。
+</div><div class="key-point"><ul> <li><a href="seamonkey1.1b/">リリースノート</a> -
+リリースノートはインストール方法、システム要件、新機能、そしてバグを報告する前に読むべき既知の問題のリストを含んでいます。
+</li> <li id="source">ソースコード Tarball（<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.source.tar.bz2">bzip</a>、
+34 MB）（<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.source.tar.gz">gzip</a>、
+43 MB） </li> <li> この <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/README">README</a>
+ファイルは CVS からの SeaMonkey 1.1 Beta の取り出し方を説明しています。
+</li><!--
+<li>All <em>official</em> Windows, Linux, and Mac builds include the
+<a href="http://www.mozilla.org/quality/qfa.html">Talkback crash reporting
+utility</a>.</li>
+--></ul></div><h2 id="official">公式ビルド</h2>
+<div class="section"><p class="note">あなたにとってどの
+パッケージが最も良いのか分からないのであれば、あなたのオペレーティングシステム（プラットフォーム）についてのセクションで最初にリストされている
+パッケージを使ってください。<br> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/MD5SUMS">MD5
+sum</a> は公式パッケージとソースコード tarball に利用できます。
+</p><dl> <dt id="win32">Windows（32bit） </dt><dd>
+<strong><a href="http://download.mozilla.org/?product=seamonkey-1.1b&amp;os=win&amp;lang=en-US">フ
+ルインストーラ</a></strong> （13 MB） SeaMonkey
+コンポーネント全てをダウンロードしインストールオプションを指定します。
+</dd> <dd><a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.en-US.win32.stub-installer.exe">ネッ
+トインストーラ</a> （264 KB） 指定したコンポーネントのみをダウンロードします。 </dd>
+<dd> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.en-US.win32.zip">Zip
+ファイル</a>
+（11 MB） </dd> <dt id="mac">Mac OS X </dt><dd>
+<a href="http://download.mozilla.org/?product=seamonkey-1.1b&amp;os=osx&amp;lang=en-US">ディ
+スクイメージ（Universal Binary）</a> （23 MB） 完全な SeaMonkey
+アプリケーションスイーツを含む自己マウント式ディスクイメージ（Universal Binary は PowerPC と Macintosh
+コンピュータで動作する Intel プロセッサーの両方で使えます）。 </dd>
+<dt id="linux-i686">Linux（x86） </dt><dd> <strong><a href="http://download.mozilla.org/?product=seamonkey-1.1b&amp;os=linux&amp;lang=en-US">フ
+ルインストーラ</a></strong> （14 MB） SeaMonkey
+コンポーネント全てをダウンロードしインストールオプションを指定します。 </dd> <dd>
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.en-US.linux-i686.stub-installer.tar.gz">ネッ
+トインストーラ</a> （89 KB） 指定したコンポーネントのみをダウンロードします。 </dd>
+<dd> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.en-US.linux-i686.tar.gz">tar.gz
+フォーマット
+</a> （15 MB） </dd> <dd> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.en-US.linux-i686-gtk1.installer.tar.gz">GTK1
+フルインストーラ</a> （14 MB） SeaMonkey
+コンポーネント全てをダウンロードしインストールオプションを指定します。 </dd> <dd> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.en-US.linux-i686-gtk1.stub-installer.tar.gz">GTK1
+ネットインストーラ</a> （125 KB） 指定したコンポーネントのみをダウンロードします。 </dd> <dd>
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/seamonkey-1.1b.en-US.linux-i686-gtk1.tar.gz">GTK1
+tar.gz フォーマット</a> （14 MB） </dd>
+</dl></div><!--
+Build contributors, please put your builds under:
+pub/mozilla.org/seamonkey/<version>/contrib/
+Your build filename must have the prefix "seamonkey-<ver>-", e.g. "seamonkey-1.1b-"
+see http://developer.mozilla.org/en/docs/Package_Filename_Convention
+and include a README explaining any build peculiarities and identifying
+yourself as the contributor. Thanks.
+--><h2 id="contrib">貢献ビルド</h2>
+<div class="section"><p class="note">これらは非公式ビル
+ドですので公式 SeaMonkey ビルドとは異なった設定がされているかもしれません。</p>
+<dt id="linux-x86_64">Linux/x86_64 </dt><dd> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.linux-x86_64.installer.tar.gz">Linux/x86_64
+インストーラ</a>、 <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.linux-x86_64.tar.gz">Linux/x86_64
+.tar.gz</a> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.linux-x86_64.README">（readme）</a>
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.linux-x86_64.MD5SUMS">（MD5
+sums）</a> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.linux-x86_64.SHA1SUMS">（SHA1
+sums）</a> </dd>
+<dt id="fc1-rpm">Linux/Fedora RPM </dt><dd> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/FC_RPMS/">Linux/Fedora
+RPM（FTP ディレクトリ）</a>、 <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/FC_RPMS/seamonkey-1.1b.fc1-rpm.README">（readme）</a>
+</dd><dt id="os2">OS/2 </dt><dd> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.os2.installer.exe">OS/2
+インストーラ</a>、 <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.os2.zip">OS/2
+zip</a> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.os2.README">（readme）</a>
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.os2.MD5SUMS">（MD5
+sums）</a> </dd>
+<dt id="solaris2.8-sparc">Solaris 2.8（SPARC） - GTK1 </dt><dd>
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.solaris2.8-sparc-gtk1.tar.bz2">Solaris
+2.8（SPARC） GTK1 .tar.bz2</a> <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.solaris2.8-sparc-gtk1.README">（readme）</a>
+</dd><!--
+<dt id="beos">BeOS
+<dd>
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.beos-i586.tar.gz">BeOS tar.gz</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.beos.README">（readme）</a>
+</dd>
+<dt id="mng">MNG（including support for the MNG image format）
+<dd>
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.linux-i686-mng.tar.gz">Linux x86</a>
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib/seamonkey-1.1b.en-US.linux-i686-mng.tar.gz.README">（readme）</a>
+</dd>
+--><h3 id="l10n">ローカライズビルド</h3>
+<p class="note">これらのビルドは <a href="/projects/l10n/" title="Mozilla Localization Project">MLP</a>
+のボランティアによって提供されています。私たちの<a href="http://wiki.mozilla.org/SeaMonkey:Localization_Teams">ロー
+カライズチームリスト</a>を見てください。
+</p><script type="text/javascript">
+// SeaMonkey language pack installation startup JS
+function instWarning（xpi） {
+if（navigator.userAgent.indexOf（'Gecko'） == -1）
+alert（"This package is designed to be installed on Mozilla Gecko "+
+"compatible browsers. "+
+"Browse to ftp.mozilla.org to download locally this file and "+
+"install it later on a Mozilla Gecko compatible browser."）;
+else if（!InstallTrigger.enabled（））
+alert（"The installation of this package requres you to enable "+
+"online installations from the preferences."）;
+else {
+InstallTrigger.install（xpi）;
+}
+}
+</script><ul><!--
+<li id="eu-ES">Basque:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Basque SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.eu-ES.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.eu-ES.linux-i686.installer.tar.gz">Linux x86 installer</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.eu-ES.mac.dmg">Mac OS X dmg</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.eu-ES.win32.installer.exe">Windows installer</a></li>
+<li id="be-BY">Belarusian:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Belarusian SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.be-BY.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a></li>
+<li id="ca-AD">Catalan:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Catalan SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ca-AD.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ca-AD.linux-i686.installer.tar.gz">Linux x86 installer</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ca-AD.linux-i686.tar.gz">Linux x86 tar.gz</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ca-AD.mac.dmg">Mac OS X dmg</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ca-AD.win32.installer.exe">Windows installer</a></li>
+<li id="cs-CZ">Czech:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Czech SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.cs-CZ.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.cs-CZ.win32.installer.exe">Windows installer</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.cs-CZ.win32.zip">Windows zip</a></li>
+<li id="en-GB">English（United Kingdom）:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'English（United Kingdom） SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.en-GB.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a></li>
+<li id="fr-FR">French:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'French SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.fr-FR.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.fr-FR.linux-i686.installer.tar.gz">Linux x86 installer</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.fr-FR.mac.dmg">Mac OS X dmg</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.fr-FR.win32.installer.exe">Windows installer</a></li>
+<li id="ka-GE">Georgian:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Georgian SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ka-GE.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ka-GE.win32.installer.exe">Windows installer</a></li>
+--><li id="de-AT">ドイツ語: <a href="../../../projects/l10n/postinst-notes/sm10.html" onclick=" xpi = {'German SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.de-AT.langpack.xpi'};
+instWarning（xpi）;">インストール可能な言語パック</a>、 <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.de-AT.linux-i686.tar.bz2">Linux
+x86 tar.bz2</a>、 <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.de-AT.linux-i686-gtk1.tar.gz">Linux
+x86 GTK1 tar.gz</a>、 <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.de-AT.mac.dmg">Mac
+OS X dmg</a>、 <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.de-AT.win32.installer.exe">Windows インストーラ</a>、 <a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.de-AT.win32.zip">Windows
+zip</a></li>
+<!--
+<li id="el-GR">Greek:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Greek SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.el-GR.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a></li>
+<li id="he-IL">Hebrew:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Hebrew SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.he-IL.langpack.xpi',
+'SeaMonkey Right to Left Classic theme': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.0/contrib-localized/seamonkey-theme-rtl-classic-1.0.xpi',
+'SeaMonkey Right to Left Modern theme': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.0/contrib-localized/seamonkey-theme-rtl-modern-1.0.xpi'};
+InstallTrigger.install（xpi）;">installable language pack + RTL themes</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.he-IL.win32.installer.exe">Windows installer</a></li>
+<li id="it-IT">Italian:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Italian SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.it-IT.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.it-IT.linux-i686.tar.gz">Linux x86 tar.gz</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.it-IT.win32.installer.exe">Windows installer</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.it-IT.win32.zip">Windows zip</a></li>
+<li id="ne-NP">Nepali:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Nepali SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ne-NP.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a></li>
+<li id="nb-NO">Norwegian Bokm&aring;l:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Norwegian Bokm&aring;l SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.nb-NO.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.nb-NO.win32.installer.exe">Windows installer</a></li>
+<li id="pl-PL">Polish:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Polish SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.pl-PL.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.pl-PL.linux-i686.installer.tar.gz">Linux x86 installer</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.pl-PL.linux-i686.tar.gz">Linux x86 tar.gz2</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.pl-PL.mac.dmg">Mac OS X dmg</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.pl-PL.win32.installer.exe">Windows installer</a></li>
+--><li id="ru-RU">ロシア語: <a href="../../../projects/l10n/postinst-notes/sm10.html" onclick=" xpi = {'Russian SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ru-RU.langpack.xpi'};
+instWarning（xpi）;">インストール可能な言語パック</a><!--,
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ru-RU.linux-i686.tar.bz2">Linux x86 tar.bz2</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.ru-RU.win32.installer.exe">Windows インストーラ</a> --></li>
+<!--
+<li id="es-ES">Spanish（Spain）:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Spanish（Spain） SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.es-ES.langpack.xpi',
+'Spain SeaMonkey Contents Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.es-ES.regpack.xpi'};
+InstallTrigger.install（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.es-ES.linux-i686.tar.gz">Linux x86 tar.gz</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.es-ES.win32.installer.exe">Windows installer</a></li>
+<li id="sv-SE">Swedish:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Swedish SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.sv-SE.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.sv-SE.linux-i686.tar.gz">Linux x86 tar.gz</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.sv-SE.mac.dmg">Mac OS X dmg</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.sv-SE.win32.installer.exe">Windows installer</a></li>
+<li id="tr-TR">Turkish:
+<a href="../../../projects/l10n/postinst-notes/sm10.html" onClick="
+xpi = {'Turkish SeaMonkey Language Pack': 'http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.tr-TR.langpack.xpi'};
+instWarning（xpi）;">installable language pack</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.tr-TR.linux-i686.tar.gz">Linux x86 tar.gz</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.tr-TR.mac.dmg">Mac OS X dmg</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1b/contrib-localized/seamonkey-1.1b.tr-TR.win32.installer.exe">Windows installer</a></li>
+--></ul></div><hr><p class="mice">こ
+のソフトウェアは合衆国輸出管理規制とその他の合衆国法の対象となり、特定の国（現在、キューバ、イラン、リビア、北朝鮮、スーダン、シリア）または合衆
+国からの輸出品の受け取りを禁止された個人または団体（これらは（a） 産業安全保障局禁輸対象者リストまたは禁輸対象団体リスト、（b）
+海外資産管理局特定国籍業者リスト、そして（c） ミサイル技術または核兵器、化学兵器または生物兵器に関連がある人）に輸出・再輸出できません。
+</p><address><a href="mailto:kairo@kairo.at">Robert Kaiser（KaiRo）</a> によって保守されている。</address>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/releases/1.1b.html">英語版</a> 2006/11/16</span> - <span>和訳版 2006/12/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/releases/1.1b.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

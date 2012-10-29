@@ -1,0 +1,2683 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>アクセシビリティ API 相互参照</title>
+
+<link rel="alternate" hreflang="en" modified="September  9,  2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/platform-apis.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>アクセシビリティ API 相互参照</h1>
+
+<p>この相互参照一覧によって今日のアクセシビリティ API (アプリケーションプログラムインターフェイス) 間の相違点が分ります。現在ある全てのアクセシビリティ API は、オブジェクトが果たし得る役割、すなわち、ボタン、メニュー項目、テキストといった汎用型のリストを定義してきました。これら API はまた、focused、read-only、checked といったオプジェクトが示し得る状態のリストを定義しています。
+</p>
+<p> 
+興味深い点としては、Mozilla、Safari/KHTML、Opera、StarOffice や他のアプリケーションはクロスプラットフォームでありながら、現時点ではクロスプラットフォームなアクセシビリティ API が全く存在しない点です。現世代 API で使用されている IPC メカニズムもまたクロスプラットフォームではありません。ただし、将来のクロスプラットフォーム・アクセシビリティ API の中にはソケットで通信ができる可能性もあります。
+</p>
+<p>
+  下記の表では、さまざまなアクセシビリティ API がオブジェクトの果たし得る <i>役割</i>や<i>状態</i> をどのように定義しているのかを解説します。今日あるすべてのアクセシビリティ API は、オブジェクトが果たし得る役割である、ボタンやメニュー項目、テキストといった汎用型のリストを定義しています。これら API はまた、focused、read-only、checked といったオプジェクトが示し得る状態のリストを定義しています。 この表は相互参照の出発点であり、API における相違点と類似点の理解に結びつくでしょう。
+</p>
+<p>Gnome のアクセシビリティ・アーキテクチャは ATK と AT-SPI によって実装されており、Sun Microsystems によって実装されました。Gnome アクセシビリティ・アーキテクチャは、AT-SPI を経由して KDE アクセシビリティに再利用される予定です。 Gnome アクセシビリティは Java のアクセシビリティとよく似た命名規則を使用しています。このために両者はほとんど同じものです。しかしながら、Sun Microsystems のアクセシビリティ API の状態と役割は、MSAA と比較して約 3 分の 1 しか同じではありません。</p>
+<h2>目次</h2>
+<ul>
+<li><a href="#To_do">今後の作業</a></li><li><a href="#Accessible_Roles">アクセシビリティの役割</a></li>
+<li><a href="#State_constants">アクセシビリティの状態</a></li><li><a href="#Accessible_Events"> アクセシビリティのイベント (仕掛中) <br>
+    </a></li>
+</ul>
+<h2><a name="To_do"></a>今後の作業</h2>
+<ul>
+<li>
+Mac API の欄への記入 (<a href="http://developer.apple.com/documentation/Carbon/Conceptual/MakingAppsAccessible/index.html">Mac OS X - Carbon Accessibility API</a> および <a href="http://developer.apple.com/documentation/Carbon/Conceptual/MakingAppsAccessible/index.html">Accessibility Constants</a>) <br>
+</li><li>
+HTML の欄への記入
+</li><li>
+XUL の欄への記入
+</li><li>
+イベント相互参照表の作成 </li>
+  <li>このページの情報を利用して、Mozilla のアクセシビリティ API のカバー範囲を Mac 版まで拡大し、API のフリーズを開始できるようにする</li>
+  <li>Gnome アクセシビリティがオブジェクトの型に依存した多様なインターフェースを使用しているのに対し、MASS が一つのインターフェース (IAccessible) を使用している事実について議論</li>
+  <li>ATK 情報を調べて最新版であることを確認する<br>
+  </li>
+
+</ul>
+<h2><a name="Accessible_Roles"></a>
+   アクセシビリティの役割</h2>
+<table border="2">
+  <thead>
+    <tr>
+      <th><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaaccrf_4nub.asp">
+        MSAA 役割<br> (ROLE_SYSTEM_*) </a>
+      </th>
+　　　<th><DIV 
+      style="WIDTH: 120px; WHITE-SPACE: nowrap">
+	Java<br>アクセシビリティの役割
+      </th>
+      <th><DIV 
+      style="WIDTH: 140px; WHITE-SPACE: nowrap"><a href="http://216.239.51.104/search?q=cache:4fIvGXG_syQJ:developer.gnome.org/doc/API/2.0/atk/AtkObject.html+ATK_ROLE_ALERT&amp;hl=en#AtkRole">
+        Gnome<BR>アクセシビリティの役割<br> (ATK_ROLE_*) </a>
+	</th>
+      <th><DIV 
+      style="WIDTH: 80px; WHITE-SPACE: nowrap">Mac OS X <br>アクセシビリティ<br>の役割
+　　</th>
+<th><DIV 
+      style="WIDTH: 120px; WHITE-SPACE: nowrap">
+        解説/注記
+      </th>
+      <th><DIV 
+      style="WIDTH: 60px; WHITE-SPACE: nowrap">関連する<br> HTML</th>
+      <th><DIV 
+      style="WIDTH: 60px; WHITE-SPACE: nowrap">関連する<br> XUL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        ALERT
+      </td>
+      <td>
+        ALERT
+      </td>
+      <td>
+        ALERT
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td>Java/Gnome ではあらゆる警告表示用、MSAA では他の役割が適用されない限り警告表示用 </td>
+      <td> <br>
+</td><td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        ANIMATION
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        仕様なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        時間で変化するコンテンツ: アニメ化された gif など
+      </td>
+      <td> <br>
+</td><td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        APPLICATION
+      </td>
+      <td>
+        FRAME
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        アプリケーション全てを表すオブジェクト
+      </td>
+      <td> <br>
+</td><td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        BORDER
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ウィンドウ境界全体を一つのオブジェクトとする 
+      </td>
+      <td> <br>
+</td><td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         BUTTONDROPDOWN
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        リスト項目をドロップダウンする特定の種類のボタン、MSAA のみ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         BUTTONDROPDOWN<BR>GRID
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        グリッドをドロップダウンする特定の種類のボタン、MSAA のみ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         BUTTONMENU
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        メニューをドロップダウンする特定の種類のボタン、MSAA のみ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         CARET/キャレット
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        システムのキャレットを表す
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         CELL
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+         TABLE_CELL
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        テーブル内のセル
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         CHARACTER
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        期待とはちがいます、あの目障りな paperclip のキャラクター
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         CHART
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        データを表すグラフィック
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         CHECKBUTTON
+      </td>
+      <td>
+         CHECK_BOX
+      </td>
+      <td>
+         CHECK_BOX
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        チェックボックス、勝手な命名で差が生じた良い例
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        CLOCK
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        意味は取り違いようがない
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        COLUMN
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        テーブル内のセルの列。列ヘッダーや複数のセルに対して、ユーザーが特にこれとして識別してもらえるだろか?
+
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        COLUMNHEADER
+      </td>
+      <td>
+        COLUMN_HEADER
+      </td>
+      <td>
+        COLUMN_HEADER, TABLE_COLUMN_<BR>HEADER
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        テーブルの列のヘッダー
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        COMBOBOX
+      </td>
+      <td>
+         COMBO_BOX
+      </td>
+      <td>
+         COMBO_BOX
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ドロップダウンリストボックスにより編集できるが、ドロップリストとは違う
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        CURSOR
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        マウスポインター、いつどのように使われるのか？
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        (該当なし - PUSHBUTTON か LISTITEM を使う) 
+      </td>
+      <td>
+         DESKTOP_ICON
+      </td>
+      <td>
+         DESKTOP_ICON
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        アイコン化されたアプリケーション
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        DIAGRAM
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        diagram という特定の種類のグラッフィク、ウェブでは定義なし
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        DIAL
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ダイアルまたはノブ。 MSAA のみ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         DIALOG
+      </td>
+      <td>
+        DIALOG
+      </td>
+      <td>
+        DIALOG
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ダイアログ ボックスまたはメッセージ ボックス
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        DOCUMENT
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        MDIドキュメントに対応するウインドウ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+
+         DROPLIST
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ドロップダウンリスト、COMBOBOX とは違う
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        EQUATION
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+
+<td>
+        数学、化学用
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        GRAPHIC
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        MSAA用にしかないのはなぜ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        GRIP
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ウインドウの大きさ調整のためのマウスポインターの一種
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        GROUPING
+      </td>
+      <td>
+         PANEL
+      </td>
+      <td>
+        PANEL
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        多分グループボックスをいう（mozilla のタイトルボックス) 
+
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        HELPBALLOON
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        これをクリックしてから、項目をクリックしてツールチップスタイルのヘルプを出す
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        HOTKEYFIELD
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ユーザーがキーの組み合わせを割り付けることが可能な編集領域
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    
+    </tr><tr>
+      <td>
+        INDICATOR
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        　該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        何かを指し示すグラフィック、矢印など
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        LINK
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        画像やテキストの上にくるハイパーテキストリンク
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        LIST
+      </td>
+      <td>
+        LIST
+      </td>
+      <td>
+        LIST
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        二つ以上を選択可能なリスト
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         LISTITEM
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+         LIST_ITEM
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        リスト内の項目
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        MENUBAR
+      </td>
+      <td>
+        MENU_BAR
+      </td>
+      <td>
+        MENU_BAR
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        アプリケーションのタイトルバーの下のメインメニューバー
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        MENUITEM
+      </td>
+      <td>
+        MENU_ITEM
+      </td>
+      <td>
+        MENU_ITEM
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        メニュー項目
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        MENUPOPUP
+      </td>
+      <td>
+        POPUP_MENU, MENU
+      </td>
+      <td>
+        POPUP_MENU, MENU
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        メニューバー以外の色々なメニュー<br>
+        Javaでは、MENU はプルダウンで、POPUP_MENU はそれ以外すべて
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        OUTLINE
+      </td>
+      <td>
+        TREE
+      </td>
+      <td>
+        TREE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        広がったり折りたたまれたりする構成項目を持つツリー
+      </td>
+
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        OUTLINEITEM
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ツリーの項目
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        PAGETAB
+      </td>
+      <td>
+        PAGE_TAB
+      </td>
+      <td>
+        PAGE_TAB
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        タブ付きダイアログボックスの中のタブ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         PAGETABLIST
+      </td>
+      <td>
+        PAGE_TAB_LIST
+      </td>
+      <td>
+        PAGE_TAB_LIST
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ページ タブ コントロールのコンテナ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        PANE
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        現在表示のウインドウの中のペインまたフレーム
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        PROGRESSBAR
+      </td>
+      <td>
+        PROGRESS_BAR
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        タスクの完了した割合を示す
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        PROPERTYPAGE
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        対象のプロパティーを示すページ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        PUSHBUTTON
+      </td>
+      <td>
+        PUSH_BUTTON
+      </td>
+      <td>
+        PUSH_BUTTON
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        普通のありふれたボタン
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        RADIOBUTTON
+      </td>
+      <td>
+        RADIO_BUTTON
+      </td>
+      <td>
+        RADIO_BUTTON
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        当然ここでは、グループ内で一つだけが選択可能となる
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        ROW
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        表中の行を表す
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        ROWHEADER
+      </td>
+      <td>
+        ROW_HEADER
+      </td>
+      <td>
+        ROW_HEADER, TABLE_ROW_HEADER
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        表の行ヘッダー
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        SCROLLBAR
+      </td>
+      <td>
+        SCROLL_BAR
+      </td>
+      <td>
+        SCROLL_BAR
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        縦または横のスクロールバー
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        SEPARATOR<br> (メニューまた分割ウインドウ枠において) 
+      </td>
+      <td>
+        SEPARATOR<br> (メニューのみ) 
+      </td>
+      <td>
+        SEPARATOR
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        2 つの領域を 2 分割する線
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         SLIDER
+      </td>
+      <td>
+        SLIDER
+      </td>
+      <td>
+        SLIDER
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        最小値と最大値の間を増加単位分の設定をする
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        SOUND
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        システムサウンド
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        SPINBUTTON
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ダイアルに少し似ているが、関連する領域の値を制御する
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        STATICTEXT
+      </td>
+      <td>
+        LABEL
+      </td>
+      <td>
+        LABEL
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        編集不可能なテキスト
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        STATUSBAR
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ステータスバー全体
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         TABLE
+      </td>
+      <td>
+        TABLE
+      </td>
+      <td>
+        TABLE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        表全体を表す
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        TEXT
+      </td>
+      <td>
+        TEXT
+      </td>
+      <td>
+        TEXT
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        状態に応じて編集可能にもなるテキスト
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        TITLEBAR
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ウィンドウのタイトル またはキャプション 
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        TOGGLE_BUTTON
+      </td>
+      <td>
+        TOGGLE_BUTTON
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        押すと沈んだり浮いたりするボタンであるが、押された状態を別に示す
+ことはない
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        TOOLBAR
+      </td>
+      <td>
+        TOOL_BAR
+      </td>
+      <td>
+        TOOL_BAR
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ツールバー
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        TOOLTIP
+      </td>
+      <td>
+        TOOL_TIP
+      </td>
+      <td>
+        TOOL_TIP
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        マウスを対象に被せると、現れるヘルプ用テキストの枠
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        WHITESPACE
+      </td>
+      <td>
+         FILLER
+      </td>
+      <td>
+        FILLER
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        何も見えないから、、、、。次へ行こう
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         WINDOW
+      </td>
+      <td>
+        WINDOW
+      </td>
+      <td>
+        WINDOW
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ウインドウ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+INTERNAL_FRAME, OPTION_PANE, FRAME, DIRECTORY_PANE,
+ROOT_PANE, LAYERED_PANE, SCROLL_PANE, VIEWPORT
+ </td>
+      <td> DESKTOP_FRAME,
+DIRECTORY_PANE, FRAME,&nbsp; LAYERED_PANE, OPTION_PANE,
+ROOT_PANE, SCROLL_PANE,
+VIEWPORT</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        これらの違いが何か分からない
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">INTERNAL_FRAME<br>
+      </td>
+      <td style="vertical-align: top;">INTERNAL_FRAME,</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">MDIアプリケーション内のウインドウ</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">GLASS_PANE</td>
+      <td style="vertical-align: top;">GLASS_PANE</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">一時的なコンテンツのために用意され、最前部を覆うように z-index された見えないレイヤー。例：グラス枠レイヤー上に描かれるツールチップがある<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">SPLIT_PANE</td>
+      <td style="vertical-align: top;">SPLIT_PANE</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">境界に grippy をドラッグすることで、相対的に大きさを変更可能にする隣接する複数の枠<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+<tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td>
+        CANVAS
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        そこに描いたり、イベントを捕らえたりするのに使われるオブジェクト
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+
+      <td>
+        COLOR_CHOOSER
+      </td>
+      <td>
+        COLOR_CHOOSER
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        色選択用ダイアログ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        FILE_CHOOSER
+      </td>
+      <td>
+        FILE_CHOOSER
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        ファイル選択用ダイアログ
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td>
+        INVALID
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        説明なし
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+        <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td>
+        不明
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        アクセシビリティの情報を含むが、役割は不明
+      </td>
+      <td> <br>
+</td>  <td> <br>
+</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<h2><a name="State_constants"></a>アクセシビリティの状態<br>
+
+</h2>
+
+
+
+
+
+
+
+
+
+
+<table border="2">
+
+
+
+
+
+
+  <thead>
+    <tr>
+      <th><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaaccrf_8y2b.asp">
+        MSAA 状態 <br> (STATE_SYSTEM_*) </a>
+      </th>
+      <th><DIV 
+      style="WIDTH: 120px; WHITE-SPACE: nowrap">
+        Java <br>アクセシビリティの状態
+      </th>
+      <th><DIV 
+      style="WIDTH: 140px; WHITE-SPACE: nowrap"><a href="http://developer.gnome.org/doc/API/2.0/atk/atk-AtkState.html#AtkStateType">
+
+        Gnome <br>アクセシビリティの状態<br> (ATK_STATE_*) </a>
+      </th>
+      <th><DIV 
+      style="WIDTH: 80px; WHITE-SPACE: nowrap">Mac OS X <br>アクセシビリティ<br>の状態</th>
+<th><DIV 
+      style="WIDTH: 120px; WHITE-SPACE: nowrap">
+        解説/注記
+      </th>
+      <th><DIV 
+      style="WIDTH: 60px; WHITE-SPACE: nowrap">
+        関連する <br>HTML
+      </th>
+      <th><DIV 
+      style="WIDTH: 60px; WHITE-SPACE: nowrap">
+        関連する <br>XUL
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        INVALID
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        説明なし
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        アクティブ
+
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        現在このウインドウはアクティブである
+
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        ALERT_HIGH
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+　　　<td>即伝えられるべき重大情報
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        ALERT_MEDIUM
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        緊急性はないが、重要情報
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        ALERT_LOW
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        チップや、ヒントなどの優先度の低い情報
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        ANIMATED
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        このオブジェクトは変化していたり、素早く動いている
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        ARMED
+      </td>
+      <td>
+        ARMED
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        用途不明、PRESSED/押されたと同類か
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        BUSY
+      </td>
+      <td>
+        BUSY
+      </td>
+      <td>
+        BUSY
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        この時は、入力が受付けされない
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        CHECKED
+      </td>
+      <td>
+        CHECKED
+      </td>
+      <td>
+        CHECKED
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        あらゆるトグルボタンおよびラジオボタンに使用される 
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        COLLAPSED
+      </td>
+      <td>
+        COLLAPSED
+      </td>
+      <td>
+        COLLAPSED
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        展開していない展開可能な項目を示す 
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+        何かが隠されていることを示す XUL の「collapsed="true"」属性とは異なる
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DEFAULT
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        デフォルトボタンまたはメニュアイテム
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        EXPANDED
+      </td>
+      <td>
+        EXPANDED
+      </td>
+      <td>
+        EXPANDED
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+     子供のあるツリー状の見出しのように、展開された見出し項目
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        EXPANDABLE
+      </td>
+      <td>
+        EXPANDABLE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        子供のあるツリー状の見出しのように、展開可能な見出し項目
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         EXTSELECTABLE
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        広がって選択肢となる
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        FLOATING
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        親の境界内に固定されず、親と一緒に移動しない
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        FOCUSABLE
+      </td>
+      <td>
+        FOCUSABLE
+      </td>
+      <td>
+        FOCUSABLE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        keyboard focus が使える
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        FOCUSED
+      </td>
+      <td>
+        FOCUSED
+      </td>
+      <td>
+        FOCUSED
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        keyboard focus になっている
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        HOTTRACKED
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        マウスが上にくると外観が変化した状態にある
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        HORIZONTAL
+      </td>
+      <td>
+        HORIZONTAL
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        特にスライダーとスクロールバーに使われる
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        INVISIBLE
+      </td>
+      <td>
+        VISIBLE
+      </td>
+      <td>
+        VISIBLE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        MSAA と Sun は反対になっている
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        ICONIFIED
+      </td>
+      <td>
+        ICONIFIED
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        最小化された
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        MARQUEED
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        動くテキスト用タグ、まあ、議論あり<marquee &gr="" tag="" for="" moving="" text="" -="" oh="" controversy=""></marquee></td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        MIXED
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        3 ステート チェック ボックスで第 3 の状態<span class="comment"gt;>【訳注：オンでもオフでもない】</span>
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        MODAL
+      </td>
+      <td>
+        MODAL
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        移動する前に制御上するべきことがある
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        MULTI_LINE
+      </td>
+      <td>
+        MULTI_LINE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        複数行にわたる編集操作
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         MULTISELECTABLE
+      </td>
+      <td>
+        MULTISELECTABLE
+      </td>
+      <td>
+         MULTI_SELECTABLE  	
+
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        2 つ以上の子供を選択可能
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        OFFSCREENGROUP<BR>ING
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        現在画面表示なし
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        OPAQUE
+      </td>
+      <td>
+        OPAQUE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        オブジェクトの四角の領域内の全てのピクセルが色づけされることを示す
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        PRESSED
+      </td>
+      <td>
+        PRESSED
+      </td>
+      <td>
+        PRESSED
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        オブジェクトが現在押された状態である
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        PROTECTED
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        PASSWD_TEXT
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        パスワード用
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        READONLY
+      </td>
+      <td>
+        EDITABLE
+      </td>
+      <td>
+        EDITABLE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        MSAA と Sun は反対になっている
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         SELECTABLE
+      </td>
+      <td>
+        SELECTABLE
+      </td>
+      <td>
+        SELECTABLE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        このオブジェクトは選択可能
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        SELECTED
+      </td>
+      <td>
+        SELECTED
+      </td>
+      <td>
+        SELECTED
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        このオブジェクトは選択された
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td>
+        SENSITIVE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>  “一貫性のある”ボタン。一貫性のないボタンとは、同じ状態にないオブジェクト（メールメッセージの一覧など）のグループに作用する</td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        SELFVOICING
+      </td>
+      <td>
+         該当なし
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        声で説明しなくてもよい。自分自身の声で音声通知してくれる
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        RESIZABLE
+      </td>
+      <td>
+        RESIZABLE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        サイズ変更可能オブジェクト
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        SHOWING
+      </td>
+      <td>
+        SHOWING
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        このオブジェクトとその祖先が見られる
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        SINGLE_LINE
+      </td>
+      <td>
+        SINGLE_LINE
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        一行のテキストを含むだけのオブジェクト
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        TRANSIENT
+      </td>
+      <td>
+        TRANSIENT
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+『このオブジェクトは、イベントを発生させないので、イベントリスナーを追加してはいけない』とアクセシビリティ支援機能に命じる。例えば、もっと上階層のコンテイナーと一緒に使われることになる
+</td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+        UNAVAILABLE
+      </td>
+      <td>
+        ENABLED
+      </td>
+      <td>
+        該当なし
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        greyed out 項目対 available 項目でしょうね。反対の意味ですね　
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         該当なし
+      </td>
+      <td>
+        VERTICAL
+      </td>
+      <td>
+        VERTICAL
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        特にスライダーとスクロールバーに使用される
+      </td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<h2><a name="Accessible_Events"></a>
+   アクセシビリティのイベント</h2>
+<table border="2">
+
+  <thead>
+    <tr>
+      <th><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaaccrf_7jlf.asp">
+        MSAA イベント<br> (EVENT_OBJECT_*,<br
+> EVENT_SYSTEM_*) </a>
+      </th>
+      <th><DIV 
+      style="WIDTH: 120px; WHITE-SPACE: nowrap">
+        Java <br>アクセシビリティ<br>イベント
+      </th>
+      <th><DIV 
+      style="WIDTH: 140px; WHITE-SPACE: nowrap"><a href="http://developer.gnome.org/doc/API/2.0/atk/AtkObject.html#AtkObject-active-descendant-changed">
+        Gnome <br>アクセシビリティシグナル</a></th>
+      <th><DIV 
+      style="WIDTH: 80px; WHITE-SPACE: nowrap">Mac OS X <br>アクセシビリティ<br>イベント</th>
+<th><DIV 
+      style="WIDTH: 120px; WHITE-SPACE: nowrap">
+         解説/注記
+      </th>
+      <th><DIV 
+      style="WIDTH: 60px; WHITE-SPACE: nowrap">
+        関連する<br>HTML
+      </th>
+      <th><DIV 
+      style="WIDTH: 60px; WHITE-SPACE: nowrap">
+        関連する<br>XUL
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+         FOCUS <br>
+</td>
+      <td>
+         
+      <br>
+</td>
+      <td>
+        <br>
+</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>
+         SELECTION<br>
+</td>
+      <td>
+         
+      <br>
+</td>
+      <td>
+        <br>
+</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+        
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+    <tr>
+      <td>STATE_CHANGE
+      </td>
+      <td>
+         
+      <br>
+</td>
+      <td>
+        
+      <br>
+</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+<td>
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+      <td>
+
+      <br>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/platform-apis.html">英語版</a> 2004/09/09</span> - <span>和訳版 2005/01/07</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/platform-apis.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

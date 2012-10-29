@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Bon Echo Alpha 2 スタートページ</title>
+<link rel="alternate" hreflang="en" modified="May 12, 2006">
+<script type="text/javascript">
+  var ids = ["name", "subject", "comments"];
+  
+  function checkSubmitEnable() {
+    /* To enable the button, all fields must have a value */
+    var enable = true;
+  
+    for (var i = 0; i < ids.length; i++) {
+      if (document.getElementById(ids[i]).value == "") {
+        enable = false;
+        break;
+      }  
+    }
+  
+    document.getElementById("send-feedback").disabled = !enable;
+  }
+  
+  function onLoad() {
+    /* Add the event listeners, and disable the button initially */
+    for (var i = 0; i < ids.length; i++) {
+      document.getElementById(ids[i]).onkeyup = checkSubmitEnable;
+    }
+  
+    if (document.getElementById) {
+      var useragent = navigator.userAgent;
+      document.getElementById("useragent").setAttribute("value", useragent);
+    }
+    checkSubmitEnable();
+  } 
+  window.onload = onLoad; 
+</script>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/bonecho/index-2.0a2.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+<div id="mainContent" class="right">
+<div class="key-point">
+  <h2>Bon Echo Alpha 2 スタートページ</h2>
+  <img src="../deerpark/deerpark-icon.png" height="128" width="128" alt="" class="icon" style="float: left;">
+  <p style="margin: 0 10px 10px 144px;"><strong>おめでとうございます!</strong> あなたは Bon Echo Alpha 2 をダウンロード (またはコンパイル) しました。つまり、あなたは Mozilla 製品をテストするコミュニティの一員に名乗りを上げたわけです。協力に時間はかかりませんし、特別な技術も必要ありません。あなたの協力が Firefox の次期バージョンの向上に役立つのです。</p>
+</div>
+<p class="comment">【訳注: このページは、英語版のスタートページを参考のために和訳したもので、実際のスタートページではありません。】</p>
+<p><strong>注意</strong>: あなたがお使いになっている Bon Echo ビルドは、Firefox の <strong>最終版あるいはプレリリース版ではありません</strong>。これはテスト目的に限って公開されているもので、サポートはありません。エンドユーザの方は、<a href="/products/firefox/">Firefox の最新版</a> をお使いになった方が良いでしょう。</p>
+<h2>Bon Echo Alpha 2 のテストに協力するには</h2>
+<dl class="tasklist">
+  <dt>フィードバックの提供</dt>
+  <dd>フィードバックをお送りください。以下のフィードバックフォームから送られた情報は、ニュースグループ <a href="http://groups.google.com/group/mozilla.feedback">mozilla.feedback</a> に投稿され、プロジェクトの貢献者が目を通せるようになります。公開したくない情報は送らないでください。あなたのメールアドレスは迷惑メールから保護されます。</dd>
+  <dd class="comment">【訳注: フィードバックをお送りいただく場合は、開発者が読めるよう、英語でお願いします。】</dd>
+  <dd>
+    <form id="feedback-form" method="post" action="http://hendrix.mozilla.org/">
+      <table id="feedback-table" style="width:150%">
+        <tr><td style="width:8em">お名前:</td><td class="widget"><input id="name" name="name" type="text" value="" /></td></tr>
+        <tr><td style="width:8em">メールアドレス:</td><td class="widget"><input id="email" name="email" type="text" value="" /> (任意)</td></tr>
+        <tr><td style="width:8em">タイトル:</td><td><input id="subject" name="subject" type="text" value="" /></td></tr>
+        <tr><td style="width:8em">コメント:</td><td><textarea id="comments" name="comments" wrap="hard" cols="72"></textarea></td></tr>
+        <tr><td style="width:8em">&nbsp;</td><td><input id="send-feedback" type="submit" value="送信"/></td></tr>
+      </table>
+      <div>
+        <input type="hidden" name="useragent" id="useragent" value=""/>  
+        <input type="hidden" name="action" value="submit"/>
+        <input type="hidden" id="product" name="product" value="Bon Echo">
+      </div>
+    </form>
+  </dd>
+  <dt>報告ツールを使う</dt>
+  <dd>Bon Echo には、正しく表示されない Web サイトを報告するための新しいツールが付属しています。[Help] メニューから [Report Broken Web Site] を選択し、あなたが遭遇している問題に関して、できるだけ多くの情報を提供してください。</dd>
+  <dt>Talkback を有効にする</dt>
+  <dd>Talkback が表示されたときには、それを活用し、報告を送ってください。Talkback レポートは、どのクラッシュがいちばん深刻で、それがどのくらいの頻度で発生するのかといった非常に貴重なデータを私たちに提供してくれます。Tackback がフィードバックを送信するよう求めたら、あなたはただ [OK] をクリックするだけでいいのです。</dd>
+  <dt>品質保証チームへの参加</dt>
+  <dd>Mozilla QA (品質保証) には、協力に参加していただける方法をご紹介するページがあります。技術的な知識は必要ありません。品質保証への参加は、Mozilla や Bon Echo をもっとよく知ってプロジェクトに貢献したいと思っている方に最適です。</dd>
+</dl>
+<h2>既知の問題</h2>
+<p>バグを報告される場合は、その前に <a href="releases/2.0a2.html#issues">リリースノートの既知の問題</a> をご覧ください。</p>
+</div>
+<div id="side" class="right">
+<h2>今回のマイルストーンでの変更点</h2>
+<p>テストとフィードバックを必要としている Bon Echo Alpha 2 の機能は次の通りです。</p>
+<ul class="compact">
+  <li>タブブラウズ機能の動作変更</li>
+  <li>検索プラグインマネージャによる検索エンジンの削除と並べ替え</li>
+  <li>Google と Yahoo! のみ、検索バーの自動補完リストに推測候補 (サジェスト) を表示</li>
+  <li>Web フィードのプレビューおよび購読の改善</li>
+  <li>ブックマークに追加された新しい <a href="http://wiki.mozilla.org/Microsummaries">Microsummaries</a> 機能</li>
+  <li>テキストボックス内でのインラインスペルチェック</li>
+  <li>クラッシュした場合のブラウズセッションの自動復旧</li>
+  <li>拡張機能とテーマを管理できる、統合、改良された新しいアドオンマネージャ</li>
+  <li>拡張された検索プラグインの書式</li>
+  <li>拡張機能システムのアップデート - より強固なセキュリティを提供し、ローカライズがさらに容易に</li>
+  <li>svg:textPath を使った SVG のサポート</li>
+</ul>
+<p>The Burning Edge に、今回のマイルストーンに関する <a href="http://www.squarefree.com/burningedge/releases/2.0a2.html">注目すべきバグの一覧</a> があります。</p>
+<h2>関連資料</h2>
+<ul class="compact">
+  <li><a href="releases/2.0a2.html">リリースノート</a></li>
+  <li><a href="/projects/firefox/">Firefox プロジェクトページ</a></li>
+</ul>
+</div>
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/bonecho/index-2.0a2.html">英語版</a> 2006/05/12</span> - <span>和訳版 2006/05/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/bonecho/index-2.0a2.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

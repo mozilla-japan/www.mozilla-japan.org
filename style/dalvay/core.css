@@ -1,0 +1,83 @@
+/* corner-box.css *********************************************************** */
+
+.corner-box { background: url(/img/corner-box/left-top-corner-box.jpg) top left no-repeat; padding: 12px 15px; }
+.corner-box-right { background: url(/img/corner-box/right-top-corner-box.jpg) top right no-repeat; padding: 12px 15px; }
+.corner-box h3, .portal-box-contents .corner-box h3 { margin-top: 0; }
+
+/* table.css **************************************************************** */
+
+table.dalvay-table { border-collapse: separate; }
+table.dalvay-table thead th { background: none; }
+table.dalvay-table thead td, table.dalvay-table thead th { background: #f9fafa url(/img/dalvay/table/header.png) top repeat-x; border: 0; }
+table.dalvay-table thead .top-left { background: url(/img/dalvay/table/top-left.png) top left no-repeat; }
+table.dalvay-table thead .top-right { background: url(/img/dalvay/table/top-right.png) top right no-repeat; }
+td.left  { border-left:  1px solid #d7d7d7; }
+td.right { border-right: 1px solid #d7d7d7; }
+table.dalvay-table tfoot td { background: #f9fafa url(/img/dalvay/table/footer.png) bottom repeat-x; border: 0; }
+table.dalvay-table tfoot .bottom-left { background: url(/img/dalvay/table/bottom-left.png) bottom left no-repeat; }
+table.dalvay-table tfoot .bottom-right { background: url(/img/dalvay/table/bottom-right.png) bottom right no-repeat; }
+table.dalvay-table tfoot td { height: 12px; }
+table.dalvay-table tr.odd td { background: #fff; }
+table.dalvay-table tr.even td { background: #eee; }
+table.dalvay-table tr:target td { background: yellow; }
+table.dalvay-table td.curVersion { font-weight: bold; }
+table.dalvay-table td.nya { text-align: center; }
+table.dalvay-table td, table.dalvay-table th { margin: 0; padding: 0.5em; }
+table.dalvay-table td.dl, table.dalvay-table th.dl { white-space: nowrap; }
+table.dalvay-table th { text-align: left; }
+
+/* menu-box.css ************************************************************* */
+
+.menu-box { width: 190px; background: url(/img/menu-box/menu-box-top.png) top left no-repeat; font-size: 85%; }
+.menu-box ul { margin: 0; padding: 4px 0; list-style-type: none; background: url(/img/menu-box/menu-box-bottom.png) bottom left no-repeat; }
+.menu-box li { width: 190px; }
+.menu-box ul li a:link, .menu-box ul li a:visited, .menu-box ul li span { display: block; padding: 8px 12px; background: url(/img/menu-box/menu-box-background.png) 0 0 no-repeat; text-decoration: none; font-weight: bold; width: 166px; }
+.menu-box ul li span { background: url(/img/menu-box/menu-box-background.png) -400px 0 no-repeat; }
+.menu-box ul li a:hover, .menu-box ul li a:active { background: url(/img/menu-box/menu-box-background.png) -200px 0 no-repeat; }
+.menu-box ul ul { background: none; padding: 0; }
+.menu-box ul li ul li a:link, .menu-box ul li ul li a:visited, .menu-box ul li ul li a:hover, .menu-box ul li ul li a:active, .menu-box ul li ul li span { padding-left: 24px; width: 154px; }
+
+/* side-box.css ************************************************************* */
+
+.side-box { width: 257px; background: url(/img/side-box/side-box-s-b.png) top left repeat-y; }
+.side-box-right { float: right; margin: 0 0 0 2em; }
+.side-box-left { float: left; margin: 0 2em 0 0; }
+.side-box .side-box-title { background: url(/img/side-box/side-box-top.png) top left no-repeat; }
+.side-box .side-box-title-contents { background: url(/img/side-box/side-box-div.png) bottom left no-repeat; padding: 6px 10px 10px 10px; border: 0; margin: 0; }
+.side-box .side-box-contents { background: url(/img/side-box/side-box-bottom.png) bottom left no-repeat; padding: 10px; margin: 0; }
+.side-box .side-box-contents li { font-size: 85%; margin: 0 0 0.5em 2em; }
+.side-box p { padding: 0 10px; margin-top: 0; }
+
+/* download.css ************************************************************* */
+
+ul.os_windows a.download-link, ul.os_linux a.download-link, ul.os_osx a.download-link { display: block; padding: 0 0 12px 0; margin-bottom: 0.2em; text-decoration: none; color: #256504; margin-left: -8px; width: 332px; background-position: 0 100%; }
+ul.os_windows a.download-link span, ul.os_linux a.download-link span, ul.os_osx a.download-link span { display: block; padding: 35px 14px 4px 100px; margin-bottom: 4px; width: 218px; min-height: 48px; }
+* html ul.os_windows a.download-link span, * html ul.os_linux a.download-link span, * html ul.os_osx a.download-link span { height: 48px; }
+ul.os_windows a.download-link strong, ul.os_linux a.download-link strong, ul.os_osx a.download-link strong { font: 140% sans-serif; letter-spacing: -0.02em; text-decoration: underline; color: #256504; }
+ul.os_windows a.download-link em, ul.os_linux a.download-link em, ul.os_osx a.download-link em { font-style: normal; color: #367D10; letter-spacing: 0; display: block; padding-top: 3px; font-size: 85%; }
+ul.os_windows a.download-link:hover, ul.os_linux a.download-link:hover, ul.os_osx a.download-link:hover, ul.os_windows a.download-link:hover span, ul.os_linux a.download-link:hover span, ul.os_osx a.download-link:hover span, ul.os_windows a.download-link:hover strong, ul.os_linux a.download-link:hover strong, ul.os_osx a.download-link:hover strong { color: #143802; cursor: pointer; background-position: 100% 100%; }
+ul.os_windows a.download-link:hover span, ul.os_linux a.download-link:hover span, ul.os_osx a.download-link:hover span { background-position: 100% 0; }
+.download-other, #main-feature .download-other, #home #main-feature p.download-other { font-size: 85%; color: #515F78; padding-left: 8px; font-weight: normal; margin-left: 38px; margin-top: 0; padding-top: 0; line-height: 100%; min-height: 0; height: auto; }
+.download-other a { padding-right: 0.5em; }
+.download-other a:link, .download-other a:visited { color: #515F78; }
+.download-other a:hover { color: #000; }
+ul.home-download { list-style-type: none; margin: 15px 0px 0px 0px; padding: 0; }
+ul.os_linux li.os_windows, ul.os_linux li.os_osx { display: none; }
+ul.os_windows li.os_linux, ul.os_windows li.os_osx { display: none; }
+ul.os_osx li.os_linux, ul.os_osx li.os_windows { display: none; }
+ul.os_windows a.download-firefox, ul.os_linux a.download-firefox, ul.os_osx a.download-firefox { background-image: url("/img/firefox/download-box.png"); }
+ul.os_windows a.download-firefox span, ul.os_linux a.download-firefox span, ul.os_osx a.download-firefox span { background-image: url("/img/firefox/download-box.png"); }
+ul.os_windows a.download-thunderbird, ul.os_linux a.download-thunderbird, ul.os_osx a.download-thunderbird { background-image: url("/img/thunderbird/download-box.png"); }
+ul.os_windows a.download-thunderbird span, ul.os_linux a.download-thunderbird span, ul.os_osx a.download-thunderbird span { background-image: url("/img/thunderbird/download-box.png"); }
+#main-feature .brief-feature { float: right; margin-right: 50px; padding: 0 0 20px 20px; }
+#main-feature .brief-feature .home-download { float: none; }
+a.download-link abbr { border-bottom: 0; }
+
+/* core.css ***************************************************************** */
+
+#footer { background: url(/img/dalvay/footer.png) top repeat-x; text-align: left; margin-top: 4em; font-size: 85%; }
+#lang_form { float: right; }
+#lang_form select, #lang_form input { font-size: 85%; }
+#footer-contents { border: none; }
+#footer p { margin-top: 0; clear: none; }
+#footer a { color: #888; margin-right: 2em; }

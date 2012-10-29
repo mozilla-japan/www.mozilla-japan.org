@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>キーボード機能: Find As You Type</title>
+
+<style type="text/css" media="screen,tv">
+	li { margin: .5em 0em; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="April 6, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/type-ahead.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<h1>Find As You Type</h1>
+<p>Find As You Type (以前は Type Ahead Find と呼ばれていました) は、表示されているページの (ロケーションバー、編集ボックス、その他フォーム要素を除く) 本文内で文字を続けてタイプしたときに、すばやい Web ページのナビゲーションを可能にする機能です。 Find As You Type のコードは Netscape Corporation によって Mozilla に提供されたものです。</p>
+
+<h2>機能</h2>
+<ul>
+	<li>アクティブなブラウザウィンドウで文字をいくつか続けてタイプすると、そのテキストを含むすべてのリンクへナビゲートします。</li>
+	<li>同じ文字を続けてタイプすると、その文字で始まるすべてのリンクを順番に移動します。ただし、「woods」の「oo」のように、タイプしたのとまったく同じ文字列にマッチした場合は、最初にそこへ移動します。さらに続けて「o」をタイプすると、「o」で始まるリンクを順番に移動します。</li>
+	<li>最後にタイプした文字を取り消すには Backspace キーを使います。</li>
+	<li>リンクだけを対象に検索する場合は、文字列の前に ' をタイプします。すべてのテキストを対象に検索する場合は、文字列の前に / をタイプします。</li>
+	<li>テキスト検索フィールドを使えば、ボタンやテキストボックス、その他のフォームコントロールについても検索できます。その直前のテキストを検索して、そこから移動するときは Tab キーを押します。</li>
+	<li>検索をキャンセルするには、フォーカスを他に移すか、ページをスクロールするか、Escape キーを押すか、タイムアウトになるのを待ちます。</li>
+	<li>Accel+G または F3 を押すと、「次を検索」します。Accel+Shift+G または Shift+F3 を押すと、タイプした現在の文字列で後方検索します。これは現在の「リンクのみ」の設定に従います。注意: 「Accel」は、Windows では Ctrl、Mac では Cmd に当たります。Unix では、「Accel」は通常 Ctrl を指しますが、Alt に設定されている場合もあります。</li>
+	<li>これは、組み込みクライアント、インスタントメッセンジャーの会話ウィンドウ、ヘルプなど、すべての Gecko HTML コンテンツウィンドウで機能します。</li>
+	<li>中国語、日本語、韓国語などの入力に使われる IME を使っても機能します。</li>
+	<li>
+		リンクがフォーカスされると、次のキーを使うことができます。
+		<ul>
+			<li>Enter - リンク先のページに移動します</li>
+			<li>Shift + Enter - リンク先のページを保存します</li>
+			<li>Ctrl + Enter (Mac では Cmd + Enter) - リンクを新しいウィンドウで開きます<br><span class="comment">【訳注: 下記の [タブブラウズ] 設定の [ウィンドウの代わりにタブを開く場合] で [Web ページでリンクを中ボタンクリックか Ctrl + クリックした場合] にチェックが入っている場合、リンクは新しいタブで開かれます】</span></li>
+			<li>Insert - リンクを新しいタブで手前またはバックグラウンドに開きます。これは、設定パネルの [Navigator] &gt; [タブブラウズ] の中にある [バックグラウンドでリンクをロードする] 設定が有効になっているかどうかによります<br><span class="comment">【訳注: この設定にチェックが入っている場合、手前ではなくバックグラウンドにタブが開かれて、そこにページを読み込みます】</span></li>
+			<li>Shift + Insert - Insert と同じですが、(上で説明した) 手前 / バックグラウンドの設定と逆の動作をします<br /><span class="comment">【訳注: 一部のビルドでは Insert も Shift + Insert も動作しないかもしれません】</span></li>
+		</ul>
+	</li>
+</ul>
+
+<h2>無効化</h2>
+<p>現在 Find As You Type はデフォルトインストールに組み込まれています。これを無効にするには、次の行を prefs.js に追加します。</p>
+<p><span class="comment">【訳注: prefs.js ファイルを編集するよりも、アドレスバーに about:config と入力して簡易設定パネルを開き、そこから編集した方が簡単にできます。以下の設定はすべて about:config から設定可能です】</span></p>
+<p>user_pref(&quot;<tt>accessibility.typeaheadfind</tt>&quot;, false);</p>
+<p>また、この機能を完全に削除するには、Mozilla をインストールしたサブディレクトリで *typeaheadfind* にマッチするファイルをすべて検索し、これらのファイルを削除してください。</p>
+
+<h2>再有効化</h2>
+<p>一度無効にした機能を有効に戻すには、次の行を prefs.js に追加します。</p>
+<p>user_pref(&quot;<tt>accessibility.typeaheadfind</tt>&quot;, true);</p>
+
+<h2>設定</h2>
+<p>[設定] &gt; [詳細] の中に、新しい [キーボードナビゲーション] 設定パネルが入りました。ここには、起動時のオプション、タイムアウトやサウンドを有効にするかどうかといった Find As You Type の設定が含まれています。</p>
+<p>設定を手動で調整したい場合、Find As You Type は次の設定をデフォルトとして使っていますが、prefs.js ファイルによって変更することができます。</p>
+<p>user_pref(&quot;<tt>accessibility.typeaheadfind.autostart</tt>&quot;, true); // true の場合、文字をタイプすると自動的に Find As You Type がスタートします。false の場合、検索する前に / (テキストを検索する場合) か ' (リンクを検索する場合) キーを押す必要があります。</p>
+<p>user_pref(&quot;<tt>accessibility.typeaheadfind.linksonly</tt>&quot;, true); // true の場合、ユーザがタイプした文字列の検索対象を「リンクのみ」に標準設定します。ユーザは、全文検索には / を、リンクだけを対象にするには ' を押すことで、これを (無効にして) 切り替えることができます。</p>
+<p>user_pref(&quot;<tt>accessibility.typeaheadfind.startlinksonly</tt>&quot;, false); // true の場合、リンクだけを対象に検索するときに、最初のリンクだけにマッチするようにします。</p>
+<p>user_pref(&quot;<tt>accessibility.typeaheadfind.timeout</tt>&quot;, 3000); // 0 以上の値の場合、ユーザが最後にタイプしてから検索がキャンセルされるまでの時間を、ミリ秒単位で設定します。(この例の場合 3000 ですので 3 秒ということです)</p>
+<p>user_pref(&quot;<tt>ui.textSelectBackgroundAttention</tt>&quot;, &quot;#rrggbb&quot;); // rrggbb には、見つかったテキストに表示したい色を 16 進数で指定します。(たとえば赤なら ff0000 となります)</p>
+<p>user_pref(&quot;<tt>accessibility.typeaheadfind.enablesound</tt>&quot;, false); // 音が鳴りませんか? (現在は、Linux/Unix ではデフォルトでオフ、他のプラットフォームではデフォルトでオンになっています)</p>
+<p>user_pref(&quot;<tt>accessibility.typeaheadfind.soundURL</tt>&quot;, &quot;ファイル名&quot;); // エラー音に独自の wav ファイルを指定できます。また、文字列 &quot;default&quot; にするとデフォルトの音が、&quot;beep&quot; にするとシステムのビープ音が鳴ります。</p>
+
+<h2>動作原理</h2>
+<p>ソースは <a href="http://lxr.mozilla.org/seamonkey/source/extensions/typeaheadfind/">mozilla/extensions/typeaheadfind</a> にチェックインされています。</p>
+<p>大筋では、コンポーネントとして初期化されると、nsIWindowWatcher を通じた domwindowopened イベントの受け取りがスタートし、これらのウィンドウに keypress リスナーが付加されます。新しいウィンドウで keypress が起こるたびに、そのウィンドウで Find As You Type を自動的にアクティブにするべきかどうか (つまり、そのウィンドウがエディタや Mail &amp; News などではないか) をチェックします。</p>
+<p>自動スタートが無効になっている場合 (Find As You Type のスタートに / や ' が必要な場合)、nsICommand インターフェイスを通じてそのコマンドを受け取ります。コマンドは htmlBindings.xml で指定されています。</p>
+<p>その後は、タイプされた文字を単純に記録し、そのテキストが見つかるかどうかを認識するために、ローレベルの nsIFind インターフェイスを使います。実際には 1 ページに対してこれを 2 回実行することで、ページ上に表示されているテキストだけを選ぶことができます。</p>
+
+<h2>組み込み製品向け Find As You Type</h2>
+<p>今や Find As You Type は組み込み製品への選択肢となっています。(2002 年 9 月 28 日現在)</p>
+<ol>
+	<li>mozilla/embedding/config/basebrowser-[yourplatformname] というファイルを検索して、それにリストされているファイルの 2 行をコメントアウトしてください (バイナリファイルと .xpt ファイル)</li>
+	<li>cd mozilla/embedding/config</li>
+	<li>make</li>
+</ol>
+<p>これであなたの dist/Embed ディレクトリで Find As You Type が有効になっているはずです。</p>
+
+<h2>作業予定</h2>
+<ul>
+	<li>ボタンテキストや、画像・オブジェクトのツールチップに使われる alt/title テキストを検索できるようにします。見つかったテキストをハイライトして、ツールチップをポップアップさせます。これは <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=158757">Bug 158757</a> です。</li>
+	<li>ドットフォーカスのアウトラインをより見やすいものに変更します - <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=53927">Bug 53927</a> と <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=151375">Bug 151375</a> をご覧ください。</li>
+</ul>
+
+<h2>フィードバックをお待ちしています</h2>
+<h3>追加向上リクエスト、バグの報告</h3>
+<p><a href="http://bugzilla.mozilla.org/">Bugzilla</a> にバグレポートを登録してください。コンポーネントは「Keyboard: Find As You Type」です。</p>
+<h3>テスト</h3>
+<p>私たちの Find As You Type テストを試して、問題を見つけたらなんでも報告してください! <a href="../../../quality/browser/front-end/testcases/keyboard-nav/typeaheadfind.html">Find As You Type 品質保証ページ</a> をご覧ください。</p>
+
+<h2>ボランティア募集中</h2>
+<p><a href="./">Web ブラウザのアクセシビリティ</a> といったテーマに興味がありますか? ぜひ Mozilla をアクセシブルにする取り組みに参加してください。まず <a href="news://news.mozilla.org/netscape.public.mozilla.accessibility">Mozilla アクセシビリティ ニュースグループ</a> をチェックして、私たちの Mozilla アクセシビリティ開発の取り組みについて話し合いましょう。キーボードを使って Mozilla を操作する方法や、スクリーンリーダー、スクリーン拡大機能、音声入力製品を使って Mozilla を動作させる方法について議論しましょう。メーリングリスト版は <a  href="mailto:mozilla-accessibility-request@mozilla.org?subject=subscribe">mozilla-accessibility-request@mozilla.org</a> を購読してください。または Aaron Leventhal - aaronleventhal&#64;moonset.net までご連絡ください。</p>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/type-ahead.html">英語版</a> 2004/04/06</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/type-ahead.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

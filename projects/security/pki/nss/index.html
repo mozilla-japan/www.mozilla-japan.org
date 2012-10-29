@@ -1,0 +1,416 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>ネットワーク セキュリティ サービス（NSS）</title>
+
+<!--
+**************************************** 覚え書き *************************************
+
+オリジナル文書
+題名：Network Security Services (NSS)
+URL ：http://www.mozilla.org/projects/security/pki/nss/
+
+和訳
+１版：2001/01/25  山口    （Rev: 1.25  Jan 23 2001 10:57）
+
+21版：2003/10/02  山口更新（Rev: 1.53  Oct  1 18:10 2003）
+22版：2004/01/14  山口更新（Rev: 1.55  Jan 13 17:56 2004）
+
+Rev: 1.57 山口 nosupamu_syamagu@mozilla.gr.jp
+Rev: 1.59 山口
+Rev: 1.60 山口
+Rev: 1.61 山口
+
+**************************************** 覚え書き *************************************
+-->
+
+<link rel="alternate" hreflang="en" modified="May 19, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<center>
+<h2>ネットワーク セキュリティ サービス（NSS）</h2></center>
+
+<center><i><font size=-1>ニュースグループ： 
+<a href="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</a></font></i>
+<br><i><font size=-1>メイン テクニカル コンタクト：
+Bob Relyea</font></i>
+<br><i><font size=-1>管理人：Wan-Teh Chang</font></i></center>
+
+<p>
+ネットワーク セキュリティ サービス （Network Security Services： NSS）とは、セキュリティ強化可能なクライアントやサーバアプリケーションのクロスプラットフォーム開発を支援するように設計されたライブラリーの一式です。NSS と共にビルドされたアプリケーションは、
+<a href="../../../../docs/jargon.html#SSL">SSL v2 および v3</a>、
+<a href="../../../../docs/jargon.html#TLS">TLS</a>、
+<a href="../../../../docs/jargon.html#PKCS5">PKCS #5</a>、
+<a href="../../../../docs/jargon.html#PKCS7">PKCS #7</a>、
+<a href="../../../../docs/jargon.html#PKCS11">PKCS #11</a>、
+<a href="../../../../docs/jargon.html#PKCS12">PKCS #12</a>、 
+<a href="../../../../docs/jargon.html#SMIME">S/MIME</a>、
+<a href="../../../../docs/jargon.html#X.509">X.509 v3</a> 証明書、
+その他のセキュリティ規格をサポートします。サポートされている規格についての詳細情報は、<a href="overview.html">NSS 概観</a> をご覧ください。
+
+<p>NSS は Mozilla Public License、GNU General Public License、または GNU Lesser General Public License のもとで利用できます。tar 形式で NSS リリースをダウンロードする際の情報は、<a href="../src/download.html">PKI ソースをダウンロードする</a> をご覧ください。</a>
+
+<p>NSS について現在行われている技術的な議論に参加するには、<tt>irc.mozilla.org</tt> サーバーの <tt>#mozcrypto</tt> IRC チャンネルをご利用ください。
+ 
+<p><a href="#Info">プロジェクト情報</a>
+<br><a href="#smime">S/MIME ツールキットモジュール</a>
+<br><a href="#ssl">SSL/TLS モジュール</a>
+<br><a href="#Documentation">ドキュメント</a>
+<br><a href="#mozillacvs">Mozilla CVS 情報</a>
+<h3>
+
+<hr><a NAME="Info"></a>プロジェクト情報</h3>
+
+<a href="#NSS_3_10">NSS 3.10</a> がリリースされました。
+
+<p>現在は NSS 3.11 に向けた作業をしています。</p>
+
+<h4>
+<a name="NSS_3_10"></a>2005年 5月 19日：NSS 3.10 リリース</h4>
+NSS 3.10 は 2005年 4月 27日に完成しました。CVS タグは NSS_3_10_RTM です。このリリースは、DBM ライブラリー （mozilla/dbm および mozilla/security/dbm） が NSS ソースツリーの一部となった初めてのものです。NSS 3.10 は NSPR 4.5.1 （CVS タグは NSPR_4_5_1_RTM） 以降で利用できます。間もなくリリースノートを掲載する予定です。
+
+<h4>
+<a name="NSS_395"></a>2005年 5月 19日：NSS 3.9.5 リリース</h4>
+
+NSS 3.9.5 は NSS 3.9 の最新パッチリリースです。CVS タグは NSS_3_9_5_RTM です。
+
+<h4>
+<a NAME="NSS_39"></a>2004年 1月 8日：NSS 3.9 リリース</h4>
+NSS 3.9 の新機能と拡張機能には、GeneralizedTime のサポート、RFC 3280 互換をもつ名前制約、そして複数トークンでの重複証明書インスタンスを一覧表示する機能があります。NSS 3.9 は、クラッシュもメモリーリークもすることなく、すべての NISCC <a href="http://www.uniras.gov.uk/vuls/2003/006489/tls.htm">SSL/TLS</a> および <a href="http://www.uniras.gov.uk/vuls/2003/006489/smime.htm">S/MIME</a> テスト（valid なインプットデータを用いた 160 万回のテストケース）を通過します。NSS を利用しているカスタマーには、次回発表するリリースで NSS 3.9 へとアップグレードすることをお勧めします。詳細は <a href="nss-3.9/nss-3.9-release-notes.html">NSS 3.9 リリースノート</a> を御覧ください。
+
+<h4>
+<a NAME="NSS_377"></a>2003年 6月 20日：NSS 3.7.7 がリリース</h4>
+NSS 3.7.7 は NSS 3.7 用のパッチリリースです。NSS 3.7.7 で修正されたバグの一覧は、<a href="nss-3.7.7/nss-3.7.7-release-notes.html">NSS 3.7.7 リリースノート</a> をご覧ください。
+
+<h4>
+<a NAME="NSS_375"></a>2003年 5月 21日：NSS 3.7.5 がリリース</h4>
+NSS 3.7.5 は NSS 3.7 用のパッチリリースです。NSS 3.7.5 で修正されたバグの一覧は、<a href="nss-3.7.5/nss-3.7.5-release-notes.html">NSS 3.7.5 リリースノート</a> をご覧ください。
+
+<h4>
+<a NAME="NSS_38"></a>2003年 4月 10日：NSS 3.8 がリリース</h4>
+NSS 3.8 の新機能や機能強化には、SHA-256、SHA-384、そして SHA-512 アルゴリズム、拡張されたスマートカードサポート、さらに Sun Labs から提供された楕円関数暗号コード（ディフォルトではコンパイルされていません）が含まれています。詳しくは <a href="nss-3.8/nss-3.8-release-notes.html">NSS 3.8 リリースノート</a> をご覧ください。
+
+<h4>
+<a NAME="NSS_373"></a>2003年 3月 20日：NSS 3.7.3 がリリース</h4>
+NSS 3.7.3 は NSS 3.7 用のパッチリリースです。NSS 3.7.3 で修正されたバグのリストは、<a href="nss-3.7.3/nss-3.7.3-release-notes.html">NSS 3.7.3 リリースノート</a> をご覧ください。
+
+<h4>
+<a NAME="NSS_372"></a>2003年 3月 10日：NSS 3.7.2 がリリース</h4>
+NSS 3.7.2 は NSS 3.7 用のパッチリリースです。NSS 3.7.2 で修正されたバグのリストは、<a href="nss-3.7.2/nss-3.7.2-release-notes.html">NSS 3.7.2 リリースノート</a> をご覧ください。
+
+<h4>
+<a NAME="NSS_343"></a>2003年 3月 4日：NSS 3.4.3 がリリース</h4>
+NSS 3.4.3 は NSS 3.4 用のパッチリリースです。NSS 3.4.3 で修正されたバグのリストは、<a href="nss-3.4.3/nss-3.4.3-release-notes.html">NSS 3.4.3 リリースノート</a> をご覧ください。
+
+<h4>2003年 2月 27日：セキュリティの脆弱性：CBC モードブロック暗号への Vaudenay タイミング攻撃</h4>
+
+<p>最近 CBC モードブロック暗号スイートの SSL/TLS 実装に対してタイミングベースの攻撃が<a href="http://lasecwww.epfl.ch/memo_ssl.shtml">明らかにされました</a>。現時点では SSL および TLS の実装は、この攻撃方法に対して無防備な状態です。通常このタイプの脆弱性はサーバ側で明らかになりますが、この欠陥は機密データの受取人側で起こるものです。この攻撃がサーバ側で問題となるのは、次の全てが実装されている時に限ります：</p>
+
+<ul>
+  <li>（NSS 2.8 以降でサポートされている）TLS；</li>
+  <li>ブロック暗号を使用する暗号スイート；</li>
+  <li>パスワードなどの機密データを、単一のクライアントから複数のメッセージと共に全く同時に受信する可能性があるアプリケーションプロトコル。</li>
+</ul>
+
+<p>すでに対策は取られており、近く NSS パッチをリリースする予定です。更新された NSS が利用できるようになるまで、次の対策をお奨めします：</p>
+
+<ul>
+  <li>Netscape/Mozilla ブラウザのユーザは対策をする必要はありません。脆弱性を抱えたサーバへの予防処置として TLS を無効にするか、CBC モードブロック暗号スイートを無効にすることもできます。</li>
+  <li>NSS 2.8 以降を利用しているサーバまたは TLS を利用可能にしているサーバの管理者は対策が必要です。TLS を無効にするか、CBC モードブロック暗号スイートを無効にしてください。</li>
+</ul>
+
+<p>詳細情報は、セキュリティ欠陥についての<a href="news/vaudenay-cbc.html">私たちの記事</a> を参照してください。</p>
+
+<h4><a NAME="NSS_371"></a>2003年 1月 29日：NSS 3.7.1 がリリース</h4>
+NSS 3.7.1 は NSS 3.7 のためのパッチリリースです。NSS 3.7.1 でフィックスされたバグの一覧は、<a href="nss-3.7.1/nss-3.7.1-release-notes.html">NSS 3.7.1 リリースノート</a> をご覧ください。
+
+<h4><a NAME="NSS_37"></a>2002年 12月 20日：NSS 3.7 がリリース</h4>
+NSS 3.7 の新しい機能や拡張機能には、大きな CRL や証明書の題名のための複数電子メールアドレスのサポートが含まれます。詳細は、<a href="nss-3.7/nss-3.7-release-notes.html">NSS 3.7 リリースノート</a> をご覧ください。
+
+<h4><a NAME="NSS_361"></a>2002年 12月 4日：NSS 3.6.1 がリリース</h4>
+NSS 3.6.1 は NSS 3.6 のためのパッチリリースです。NSS 3.6.1 でフィックスされたバグの一覧は、<a href="nss-3.6.1/nss-3.6.1-release-notes.html">NSS 3.6.1 リリースノート</a> をご覧ください。
+
+<h4><a NAME="NSS_36"></a>2002年 10月 18日：NSS 3.6 がリリース</h4>
+NSS 3.6 の新しい機能および拡張機能には、新しい証明書処理機能、SSL 機能、改良された証明書パス機構、格段に改良された CRL パフォーマンスおよびメモリ使用、改良された SSL クライアント認証パフォーマンス、そして PKCS #11 セッションログ機能があります。詳細情報は、<a href="nss-3.6/nss-3.6-release-notes.html">NSS 3.6 リリースノート</a> をご覧ください。
+
+<h4>
+<a NAME="NSS_35"></a>2002年 7月：NSS 3.5 がリリース</h4>
+NSS 3.5 は、Mozilla 1.0.1 および Netscape 7 用に作成された、暫定的なリリースです。その他の NSS クライアントは、NSS 3.6 にアップグレードすることをお奨めします。
+
+<h4>
+<a NAME="NSS_342"></a>2002年 7月 10日：NSS 3.4.2 がリリース</h4>
+NSS 3.4.2 は、NSS 3.4 のためのパッチリリースです。NSS 3.4.2 でフィックスされたバグの一覧は、<a href="nss-3.4.2/nss-3.4.2-release-notes.html">NSS 3.4.2 リリースノート</a> をご覧ください。
+
+<h4>
+
+<a NAME="NSS_341"></a>2002年 5月 6日：NSS 3.4.1 リリース</h4>
+NSS 3.4.1 は NSS 3.4 用のパッチリリースです。NSS 3.4.1 でフィックスされているバグのリストは、<a href="nss-3.4.1/nss-3.4.1-release-notes.html">NSS 3.4.1 リリースノート</a> をご覧ください。
+
+<h4>
+<a NAME="NSS_34"></a>2002年 5月 6日：NSS 3.4 リリース</h4>
+NSS 3.4 には NSS 4.0 （コードネーム：Stan）の中心部分が一部組み込まれています。これは新しい TLS AES 暗号化スイートをサポートします。詳細情報は、<a href="nss-3.4/nss-3.4-release-notes.html">NSS 3.4 リリースノート</a> をご覧ください。
+<h4>
+<a NAME="NSS_332"></a>2001年 12月 12日：NSS 3.3.2 リリース</h4>
+NSS 3.3.2 は NSS 3.3 に関連したパッチです。NSS 3.3.2 でフィックスされたバグのリストは、<a href="release_notes_332.html">NSS 3.3.2 リリースノート</a> をご覧ください。
+
+<h4>
+<a NAME="NSS_331"></a>2001年 11月 9日：NSS 3.3.1 リリース</h4>
+NSS 3.3.1 は NSS 3.3 に関連したパッチです。NSS 3.3.1 でフィックスされたバグのリストは、 <a href="release_notes_331.html">NSS 3.3.1 リリースノート</a> をご覧ください。
+</a>.
+
+<h4><a NAME="NSS_331"></a>2001年 7月 26日：NSS 3.3 リリース</h4>
+<p>NSS 3.3 リリースでは、 JSS（3.1 以降）が NSS の共有ライブラリを利用することができるようになっており、クライアント向けには SSL/TLS 用の 5 つの新しい DHE 暗号スイートが実装されています。詳細情報は <a href="release_notes_33.html">NSS 3.3 リリースノート</a> をご覧ください。</p>
+
+<p>NSS の Java インターフェースのためのソースコードが Mozilla CVS ツリーで利用可能です。詳細情報は <a href="../jss/">Java のためのネットワークセキュリティサービス</a> をご覧ください。</p>
+
+<p>NSS 3.3 ソースが <a href="#mozillacvs">CVS 経由</a> で利用可能です。また<a href="http://lxr.mozilla.org/mozilla/source/security/nss/">http://lxr.mozilla.org/mozilla/source/security/nss/</a> で HTML （LXR ルーツ経由）で見ることができます。</p>
+
+<h4>
+<a NAME="NSS_321"></a>2001年 4月 6日：NSS 3.2.1 リリース</h4>
+
+<p>NSS 3.2.1 では改良された SSL パフォーマンスやバグフィックスが <tt>pk12util</tt> に、また証明書請求操作が部分的に提供されます。詳細は、 <a href="release_notes_321.html">NSS 3.2.1 リリースノート</a> をご覧ください。</a></p>
+
+<p>NSS 3.2.1 はまた、より解りやすくなったビルドインストラクションを備えています。詳細は、 <a href="buildnss_32.html">NSS 3.2.1 リリースのためのビルドガイド</a> をご覧ください。ビルドシステムや将来の開発への提案については、<a href="build_system.html">The NSS Build System: History and Future Directions</a> をご覧ください。</a>
+
+<h4>
+<a NAME="NSS_32"></a>2001年 3月 2日：NSS 3.2 リリース</h4>
+
+<p>NSS 3.2 は初めて共有ライブラリーをサポートします。詳細は、<a href="release_notes_32.html">NSS 3.2 リリースノート</a> をご覧ください。</a>
+
+<p>NSS 3.2 DLL からエクスポートされた <a href="ref/nssfunctions.html">NSS 3.2 Public Functions</a> のみを利用するアプリケーションは、将来発表されるバージョンの共有ライブラリーでも作動することが保証されています。</p>
+<h3>
+
+<hr><a NAME="smime"></a>S/MIME ツールキットモジュール</h3>
+
+S/MIME を利用したアプリケーションのクロスプラットフォーム開発をサポートするようにデザインされた NSS ライブラリについての情報は、<a href="smime/">S/MIME ツールキット</a> をご覧ください。これらライブラリは、もともと Communicator 4.x およびパーソナルセキュリティマネージャ（PSM）で S/MIME をサポートするように作成され、S/MIME アプリケーションのクロスプラットフォーム開発のための新しい S/MIME ツールキットの基礎をなします。
+<h3>
+
+<hr><a NAME="ssl"></a>SSL/TLS モジュール</h3>
+
+SSL や TSL を利用可能にしたアプリケーションのクロスプラットフォーム開発をサポートするようにデザインされた NSS ライブラリについての情報は、<a href="ssl/">SSL/TLS</a> をご覧ください。これらライブラリは SSL モジュールの基礎を形成します。
+<h3>
+
+<hr><a NAME="Documentation"></a>参考文献</h3>
+
+<p>背景を説明した情報：
+
+<ul>
+<li>
+<a href="overview.html">NSS 概観</a>：NSS とその機能の簡単なまとめ。</li>
+
+<li>
+<a href="faq.html">NSS FAQ</a>：NSS についての基本的な質問の答え。</li>
+
+<li>
+<a href="http://enterprise.netscape.com/docs/cms/62/cert/admin/pki.htm">
+公開鍵暗号入門</a>：NSS を基礎にした公開鍵暗号化の基本的な概念についての説明。</li>
+
+<li>
+<a href="http://enterprise.netscape.com/docs/cms/62/cert/admin/SSL.htm">
+SSL 入門</a>：SSL プロトコル入門。SSL によってサポートされている暗号鍵や SSL
+ハンドシェークの手順が含まれます。</li>
+</ul>
+
+<p>歴史：
+<ul>
+    <li><a href="history.html">NSS の歴史</a>： NSS の略歴。
+    <li><a href="plans.html">NSS プロジェクトプラン</a>： 
+    NSS 3.0 以降のリリースのためのプロジェクトプランへのリンク。
+    <li><a href="release_notes.html">NSS リリースノート</a>：
+     NSS 3.0 移行のリリースノートへのリンク。
+    <li><a href="contributors.html">NSS への貢献者</a> では、
+    NSS プロジェクトへの主だった貢献者のリストを掲載しています。
+</ul>
+
+<p>NSS API：
+
+<ul>
+    <li><a href="intro.html">ネットワークセキュリティサービス入門</a>：
+    NSS 3.2 ライブラリやライブラリを利用する際に知っておく必要のある事項についての概観。</li>
+    <li><a href="nss-3.4/nss-3.4-functions.html">NSS 3.4 Public Functions</a>
+    は、NSS 3.4 共有ライブラリからエクスポートされた API について間単に解説します。
+    これら API は将来の NSS 3.4 ライブラリと共に動作することが保証されています。</li>
+   <li><a href="ref/ssl/">SSL リファレンス</a>： SSL 操作を呼び出すために使われる API。
+   <li><a href="nss-guidelines.html">NSS API ガイドライン</a>：
+   ライブラリやコードがどのように整理されているのか、また開発コード
+   （ネーミングコンベンション、エラー処理、スレッドセーフティ、など）
+   について解説します。</li>
+   
+   <li><a href="tech-notes/">NSS テクニカルノート</a>：NSS テクニカルノートへのリンクです。新しい NSS 機能についての最新情報や、NSS を利用したプログラミングに関する高度な話題についての補足的な資料を提供します。</li>
+</ul>
+ 
+
+<p>ツール、テスト、およびその他の技術情報：
+
+<ul>
+<li>NSS のビルドガイド（リンクの情報は <a href="release_notes.html">NSS リリースノート</a> をご覧ください）：
+NSS リリースのチェックアウトおよびビルド方法の解説。</li>
+
+<li><a href="tools/">NSS ツール</a>：
+開発用、デバッグ、そして NSS を利用するアプリケーションの管理。
+
+ <li><a href="testnss_32.html">NSS 3.2 テストスィート</a>：
+標準的な NSS テストをどう行うかを解説します。</li>
+
+<li><a href="performance_reports.html">NSS パフォーマンスレポート</a>：
+NSS 3.2 とそれ以降のパフォーマンスレポートへのリンク。</li>
+
+<li><a href="nss-3.9/nss-3.9-algorithms.html">
+NSS 3.9 で利用可能な暗号技術</a> には、
+NSS 3.9 で利用されている暗号アルゴリズムの一覧があります。</li>
+
+<li><a href="loadable_certs.html">NSS 3.1 ロード可能なルート証明書</a>
+では、ルート CA 証明書をロードする新しい仕組みを解説します。</li>
+
+<li><a href="db_formats.html">cert7.db</a>：
+<tt>cert7.db</tt> データベースの一般フォーマットについて。</li>
+
+<li><a href="versioning.html">証明書データベースのコンテンツバージョン番号</a>：
+<tt>cert7.db</tt> 内のコンテンツバージョン番号に関しての情報。</li>
+</ul> 
+
+<p>暗号化モジュールの実装のための PKCS #11 情報：</p>
+<ul> 
+
+<li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/security/pkcs/index.htm">
+NSS のために PKCS #11 を実装する</a>
+
+<li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/support/faqs/pkcs_11.html">
+PKCS #11 FAQ</a>
+
+<li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/security/jmpkcs/index.htm">
+PKCS #11 暗号化モジュールをインストールするために JAR インストレーションマネジャーを利用する
+</a>
+
+<li><a href="../pkcs11/">PKCS #11 適合性テスト</a> 
+
+</ul> 
+
+
+<p>
+NSS は、Netscape Portable Runtime （NSPR） を基礎にしており、
+NSS を利用している開発者は、何らかの NSPR 機能を呼び出さなければなりません。
+NSPR の情報は、次をご覧ください：
+</p>
+
+   <ul>
+    <li><a href="../../../nspr/">Netscape Portable Runtime</a>： NSPR のプロジェクトページ。
+    <li><a href="../../../nspr/reference/html/">NSPR リファレンス</a>： 
+    NSPR API ドキュメント。
+   </ul>
+
+<h3><hr><a name="mozillacvs">Mozilla CVS 情報</h3>
+
+<p>さまざまな NSS リリースに付いている CVS タグは <a href="release_notes.html">NSS リリースノート</a> に示されています。
+
+<p>NSS ソースコードは <tt>mozilla/security/coreconf/</tt> および <tt>mozilla/security/nss/</tt> ディレクトリ内にあります。
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/index.html">英語版</a> 2005/05/19</span> - <span>和訳版 2005/05/20</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

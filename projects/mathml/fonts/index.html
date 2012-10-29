@@ -1,0 +1,412 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE> MathML が使用可能な Mozilla のためのフォント</TITLE>
+<link rel="alternate" hreflang="en" modified="October 26, 2005">
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/mathml/fonts/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<H2 align="center"> MathML が使用可能な Mozilla のためのフォント</H2>
+
+<table align='right' width='300' border='1'>
+<tr>
+<th align='center' bgcolor='#c0c0c0'>
+<font color='#000000'>インストールするフォント</font>
+</th></tr>
+
+<tr><td>
+<UL>
+<li> Windows では（ Linux ではない場合）、 
+<a href="http://web.mit.edu/atticus/www/mathml/mit-mathml-fonts-1.0-fc1.msi">フォント・インストーラ</a> をダウンロードして、
+ 
+<a href="http://web.mit.edu/is/topics/webpublishing/mathml/fonts-win.html">指示</a>に従ってください。<br><br>
+</li>
+
+<li> Mac OS X では、 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=228804"
+title="mathml rendering is worse on MacOS X after adding Mathematica fonts in 1.3b and later"
+>bug 228804</a> を必ず避けるようにしてください。 Mozilla Gecko 1.8 以降に基づく
+（ Firefox 1.5 以降）ブラウザを使用してください。<br><br> 
+ <a href="http://web.mit.edu/atticus/www/mathml/mit-mathml-fonts-1.0-fc2a.hqx">フォント・インストーラ</a>
+をダウンロードして
+<a href="http://web.mit.edu/is/topics/webpublishing/mathml/fonts-mac.html">指示</a>に従ってください。<br><br>
+</li>
+
+<li>
+ <b>Xft-enabled ビルド</b>の Linux 上では、 TrueType <a HREF="bakoma/texcm-ttf.zip">TeX フォント</a>と <A
+HREF="http://support.wolfram.com/mathematica/systems/windows/general/latestfonts.html">Mathematica 4.1 フォント</A>
+（繰り返します： <b>4.1</b>です）をインストール <i>しなければなりません</i>。
+ TrueType フォントをインストールするには、単に抽出して .ttf ファイルを
+ あなたの ~/.fonts/ ディレクトリ (もしなければ作成してください)にコピーします。
+これらの<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=128153#c81">指示</a>も参照してください。<br><br>
+
+（どの Linux ビルドになっているかを調べるには、
+ブラウザのアドレスバーで <i>about:buildconfig</i> と入力してください。
+こうすればブラウザをビルドするときのオプションを一覧で表示します。
+ <i>--enable-xft</i> がそのどこかに見られればあなたのビルドは Xft-enabled です。）
+<br><br>
+</li>
+
+<li>
+ <b>Xft-disabled ビルド</b>（つまり X11core フォント）の Unix/Linux 上では、 Type1 の
+<A HREF="ftp://ftp.ams.org/pub/tex/psfonts/cm/cmps-unix.tar.gz">TeX フォント</A>と
+ Mathematica 4.1 フォント（繰り返します： <b>4.1</b>です）を 
+<A HREF="http://support.wolfram.com/mathematica/systems/unix/general/manualfontdownload.html">PFA</A>
+ と
+<A HREF="http://support.wolfram.com/mathematica/systems/unix/interface/pcf.html">PCF</A>
+フォーマットでインストール<i>しなければなりません</i>。これらの
+<A HREF="http://swissnet.ai.mit.edu/projects/intelligent-book/mathml/#gnu">指示</A>を参照してください。<br><br>
+</li>
+
+<LI> <B>トラブル解決</B><BR>
+<UL>
+<LI><a href="http://mcelrath.org/Notes/MathML">Linux Xft-enabled builds</a>
+<LI><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=35236#c4">Linux Xft-disabled builds</a>
+<LI><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=142718#c10">Solaris</a>
+</UL>
+</LI>
+
+</UL>
+
+</td></tr>
+
+<tr>
+<th align='center' bgcolor='#c0c0c0'>
+<font color='#000000'>テスト稼動</font>
+</th></tr>
+
+<tr><td align="center">
+目的は、科学技術ドキュメントのための文字／エンティティの
+こちらの<a href="./chars/table.html">リスト</a>の
+中に '?' ができる限り少なく見られるだけになるようにすることです。
+リストは Mozilla など、 Unicode に準拠したブラウザで最適に見ることができます
+（ MathML が使用可能なビルトは <i>ucvmath</i> モジュールを経由して
+さらに多くの文字へのアクセスを与えてくれます）。
+</td></tr>
+</table>
+
+<P>
+MathML には 2000 以上のあらかじめ定義されたエンティティがあります。
+その多くは数学や科学で使用される様々な記号に関連づけられています。最近になって、
+これらの記号の割り当てが Unicode Consortium により承認されました。
+これら多数の割り当ては、あいにく Mozilla が
+サポート対象にしていない plane-1 に含まれていますが、 plane-0 に
+含まれている全ての割り当てについて Mozilla は良い仕事をしています。ただ、
+ユーザーが適切なフォントをインストールすることが前提となります。
+</P>
+
+<P>
+Mozilla は内部で<a href="../../intl/fonts.html"> Unicode に準拠しています</a>。
+その上でさらに、 W3C CSS2 <a href="http://www.w3.org/TR/REC-CSS2/fonts.html">フォントについての推奨事項</a>にしたがって、
+作成者は好きなように（ CSS の<i> font-family </i>プロパティを使用して）
+特定のフォント・リストを指定できます。指定した特定の
+フォントがそのユーザーのシステムに見つからないときはいつも Mozilla のフォントエンジンが、
+代わりとなるフォントを探しに行くという保障つきです。
+与えられた文字に対応する適切なフォントが
+全く見つからなければ、 Mozilla は疑問符 ('?') を表示します。
+</P>
+
+<P>
+それは次のようになります。2 つの似たようなシステムで、一人のユーザーが正しく
+レンダリングされたドキュメントを見ている一方、もう片方のユーザーは 
+<a href="http://bugzilla.mozilla.org/showattachment.cgi?attach_id=7857">まったく異なる</a>
+ものを見ているかもしれません。これを避けるため、 Mozilla で MathML をよりよく体験するためには、
+多くのフォントを適切にインストールする必要があります。 MathML が使用可能なビルドだけでは十分ではありません。
+</P>
+
+<P>
+MathML に含まれている全ての記号に対応している、 
+<a href="http://www.stixfonts.org/"> STIX プロジェクト</a> 
+により作成された網羅的なフォント集合を待っている間、
+現在推奨されているフォント・インストーラが（右の欄に）ありますので、
+もし既にフォントを持っているのでなければ、
+システムにダウンロード／インストールしてください。
+ MIT は Windows と Mac 向けの便利なフォント・インストーラを開発し、
+このプロジェクトを通したライセンス交渉を mozilla.org のスタッフと
+（特に Mozilla のオープンソース気質を考慮して）以下のように行いました。
+尊敬すべきそれぞれのフォントの持ち主はフォントがこれらの
+インストーラに含まれるよう準備を行い、 MathML の導入が主流になるよう
+後押しする手伝いをしました。
+</P>
+
+参考までに、推奨フォントが含まれているのは：
+
+<UL>
+<LI><B> TeX の Computer Modern フォント</B><BR>
+当該の<A HREF="bakoma/texcm-ttf.zip"> TrueType フォント</a>は
+<A HREF="bakoma/license.txt">ライセンス</A>のおかげで提供されています。 
+<A HREF="ftp://ftp.ams.org/pub/tex/psfonts/cm/cmps-unix.tar.gz">Type1</A>
+バージョンは AMS から出ています。 TeX フォントは
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=161137"
+title="MathML renders wrong symbols if TeX fonts are installed"> bug 161137 </a>
+があるため、Mac 版インストーラにはバンドルされていないことに注意してください。
+現時点では Mac にこれらのフォントを<b><i>インストールしないでください。</i></b>
+ TeX フォントがないことを知らせるポップアップウィンドウを表示させないようにするには
+ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=134849#c10"
+title="remove Font-Message">bug 134849</a> を参照してください。<BR><BR></LI>
+
+<LI><B>Mathematica 4.1 フォント</B><BR>
+ TrueType フォントパックが Wolfram Research, Inc. から提供されています。
+<A
+HREF="http://support.wolfram.com/mathematica/systems/windows/general/latestfonts.html">Windows</A> 版と
+<A
+HREF="http://support.wolfram.com/mathematica/systems/macintosh/general/latestfonts.html">Mac</A> 版です。
+ Type1 バージョンは 
+<A HREF="http://support.wolfram.com/mathematica/systems/unix/general/manualfontdownload.html">PFA</A>
+ と
+<A HREF="http://support.wolfram.com/mathematica/systems/unix/interface/pcf.html">PCF</A>
+ フォーマットになっています。
+<BR><BR></LI>
+
+<!--
+http://www.ats.ucla.edu/at/sp/software/symbolic_manipulation/mathematica_fonts.htm
+-->
+
+<LI> <B>他のフォント</B>
+<UL>
+<LI><A HREF="http://www.mathtype.com/support/fonts">MT Extra</A>  -- こちらは
+ Windows のインストーラのみです。
+<LI>Lucida Sans Unicode -- こちらはインストーラではありませんがもしできるならば
+（別々に）インストールする意義があります。この中には役に立つ多くの数学記号が含まれています。
+ Windows ユーザには新しいフォントのインストール方法をこちらの
+<A HREF="http://www.microsoft.com/typography/ttfinst/ttfinst.htm">フォント
+のインストール手順</A>で説明してあります。
+</UL>
+</LI>
+</UL>
+
+上の「インストールするフォント」の欄にある説明を参考にしてください。 
+Unix/Linux ユーザで初期段階でトラブルを経験した人は、提案されている
+トラブル解決のリンク集と他の 
+<a href="http://support.wolfram.com/mathematica/systems/unix/interface/general.html">
+Mathematica フォントのトラブル解決</a>に記された、 Mozilla でフォントを設定する際に関連した一般的な情報に一度目を通されるとよいでしょう。
+
+<H2>既に知られている不具合</H2>
+組み込みエラーから復旧する機構が Mozilla には（まだ）存在しないというフォントの不具合が報告されています。
+
+<UL>
+<LI> Mac において： 
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=161137">bug 161137</a> 
+TeX フォントがインストールされていると MathML が間違った記号を示す。<BR><BR></LI>
+
+<!-- LI>WinNT/2000 において：特定のストレッチ文字がときにストレッチしない。
+ Windows GDI のファンクション GetGlyphOutline() が失敗することによる。<BR>
+<BR>回避策：手動で設定してみる。
+Work-around: Try maneuvering with <i>View -> Enlarge/Reduce Text Size</i>.
+この不具合は特定のフォントサイズでは解消する。<BR><BR></LI -->
+
+<LI> Win9x/NT/2000 において：記号を見たときに（平方根の記号など）形がぎざぎざになる。 
+Bakoma コレクションからの TeX フォントを使っていないときに起こる。
+<BR>
+回避策： Bakoma コレクションから上述のフォントをダウンロードする。<BR><BR></LI>
+
+<!-- LI>Linuxにおいて：
+伸縮する積分記号の中間部分が上手く配置されていないことがある。
+これはビットマップの記号フォントに伴う問題によって起こる。<BR>
+回避策： Type1 Symbol フォントを使用する。
+</LI --> 
+</UL>
+
+<h2><a name="customize">ストレッチ文字に使われるフォントをカスタマイズするには</h2>
+
+ブラウザがさまざまなユーザーに異なる設定で使われるという事実があるため、Mozilla の MathML エンジンは、
+閲覧者側の設定についてあれこれ推測することはせず、ある状況において最適な
+グリフ（文字）を探す際には貪欲に検索を行います。その結果、ドキュメントは異なる特徴を
+持つ文字の混合として表示されることがあります。それは、これらの文字は異なるフォント
+ファミリーから拾われてきたものだからです。
+
+<p>
+閲覧者として、 MathML エンジンにフォントのうちいくつかの望むフォントだけを
+使用するよう指示することができます。以下の記述はストレッチ（引き伸ばし）文字
+だけに影響するフォントに適用します。他の文字は引き続き、別のフォントでレンダリング
+されます（これらについても設定可能ですが、その設定はこちらには記述されていません）。
+あなたは profile ディレクトリ（ヒント： preferences （設定）を見るには、
+ location bar （ロケーションバー）で <i>about:config</i> と入力します）で
+ <a href="/releases/mozilla0.9.9/#setprefs"><i>prefs.js</i> を編集し</a>
+  なければならないでしょう。
+</p>
+
+<p>
+フォントの選択による効果を図解するために、
+同じページを別のストレッチ文字のフォント設定でレンダリングしたスクリーンショット
+がここにあります。これらの図解によれば、それがどうして学術的なものか
+／主観的なものなのか精確な概念を得られることでしょう。しかしひとによっては
+ひとつのフォント設定を主張したり別のフォント設定を主張したりするのは
+むずがゆく思われることでしょう、ちょうどある人が Times を好む一方、 Verdana を
+好む人もいる、というように。
+以下のスクリーンショットは
+<!-- a href="http://numexp.sourceforge.net/documentation/gsl.xml"-->
+ GNU 科学ライブラリーのマニュアルページ<!-- /a -->からの引用文を使っています。
+（参照 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=118475">bug 118475</a> ）：
+<ol>
+<li><a href="http://bugzilla.mozilla.org/showattachment.cgi?attach_id=63751">
+デフォルトのスクリーンショット</a>： これは、デフォルトの設定で得られるデフォルト
+のレンダリングです。<br><br></li>
+
+<li><a href="http://bugzilla.mozilla.org/showattachment.cgi?attach_id=63770">
+ Mathematica のスクリーンショット</a>: これは 文字がストレッチされるときに MathML エンジン
+ に Mathematica のフォントを指定することにより得られるレンダリングです。これは <i>prefs.js</i> に
+ 以下の行を追加することで達成されることができるようになります：
+
+<pre>user_pref("font.mathfont-family", "Math1, Math2, Math4");
+</pre>
+
+</li>
+<li><a href="http://bugzilla.mozilla.org/showattachment.cgi?attach_id=63771">TeX のスクリーンショット</a>： 文字が
+ストレッチされるときに MathML エンジンに TeX の Computer Modern フォントを指定することにより得られるレンダリングです。
+これは <i>prefs.js</i> に以下の行を追加することで達成されることができるようになります：
+<pre>user_pref("font.mathfont-family", "CMSY10, CMEX10");
+</pre>
+</li>
+</ol>
+</p>
+
+<p>
+他の人が制作したページを読むウェブ閲覧者として、上述のサンプルとは
+異なるようにリストを設定することができます。事実、個々の独立したストレッチ文字
+（幾つかの MathML 文字の <a href="http://www.mozilla.org/projects/mathml/fonts/encoding/">符号化データ</a>が含まれている
+ <i>mathfont.properties</i> ファイル内の）ごとにフォントを指定することができます。
+</p>
+
+<p>
+大雑把なやり方を推奨するならフォント全て（もし可能であれば）をインストールすることですが、
+上のスクリーンショットを利用すれば TeX フォントによってレンダリングされたストレッチ文字
+を好むか Mathmatica フォントによるストレッチ文字を好むかを決定して、
+しかるべく <i>font.mathfont-family</i> をセットすることになります。ここで理由となるのは
+これらのフォントの中には通常の（すなわちストレッチでない）文字が含まれていて、
+できればそれらを失いたくない場合です。
+ TeX フォントや Mathematica フォントのどちらも、 Windows や Linux 上で綺麗に動作
+します。上で示したように、 TeX フォントは Mac 上でトラブルを引き起こしますから、
+通常の文字（<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=228804#c32">バグ
+228804 のコメント 32</a> 参照）についても Mathematica フォントが好まれるでしょう。
+</p>
+
+<p>ウェブ作成者として、 MathML エンジンに、ドキュメントにふさわしい望みの
+フォントだけを使うように指定することもできます（ <i>mathml.css</i> の中の説明書を参照して、
+これらが MathML タグの<a href="http://www.mozilla.org/projects/mathml/demo/">デモ</a>の中で、
+代替スタイルシートがどのように表現されているかをご覧ください）。
+留意すべき注意事項：
+<ul>
+<li>閲覧者が上記のように設定を行うと、作成者の（スタイルシートで指定した）
+リストから選択されたフォントは、閲覧者が選んだリストに対して照合されます。
+<br><br></li>
+<li>閲覧者はドキュメントのフォントを全部上書きするように（普通はフォントの
+設定ダイアログに行って、ドキュメントのフォントを許可する、の設定からチェック
+をとるように設定することで）選ぶことができます。</li>
+</ul>
+</p>
+
+<BR><BR><BR>
+<p align="right"><font size="-1">Roger B. Sidje 
+&lt;<i><a href="mailto:rbs@maths.uq.edu.au">rbs@maths.uq.edu.au</a></i>&gt;
+</font>
+</p>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/mathml/fonts/index.html">英語版</a> 2005/10/26</span> - <span>和訳版 2005/11/28</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/mathml/fonts/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

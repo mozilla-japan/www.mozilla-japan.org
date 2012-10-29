@@ -1,0 +1,528 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+  <link rel="Top"      href="/">
+  <link rel="Up"       href="../">
+  <link rel="Prev"     href="/community.html" title="Mozilla Newsgroups">
+  <link rel="Next"     href="http://bugzilla.mozilla.org/duplicates.cgi" title="Most Frequently Reported Bug">
+  <link rel="Help"     href="/catalog/end-user/" title="End-user documentation">
+  <link rel="Author"   href="mailto:mohr.42@osu.edu">
+
+  <link rel="Section"  href="#sect-general"               title="General">
+  <link rel="Section"  href="#sect-security"          title="Privacy and Security">
+  <link rel="Section"  href="#sect-profiles"          title="Profiles">
+  <link rel="Section"  href="#sect-ui"                title="Keyboard and Mouse">
+  <link rel="Section"  href="#sect-browser"           title="Browser">
+  <link rel="Section"  href="#sect-mail"              title="MailNews">
+  <link rel="Section"  href="#sect-composer"          title="Composition">
+  <link rel="Section"  href="#sect-webdev"            title="Web Developer Wishes">
+
+  <link rel="Bookmark" href="#suppress-context"      title="Ability to Block Context (right-click) Menu">
+  <link rel="Bookmark" href="#activex"               title="ActiveX">
+  <link rel="Bookmark" href="#ad-block"              title="Advertisement Blockers">
+  <link rel="Bookmark" href="#always-scroll"         title="Always-on Vertical Scrollbar">
+  <link rel="Bookmark" href="#cache-browse"          title="Browse Cached Files">
+  <link rel="Bookmark" href="#check-bookmark"        title="Check Bookmarks">
+  <link rel="Bookmark" href="#common-inbox"          title="Common Inbox">
+  <link rel="Bookmark" href="#uninstall-comp"        title="Component Uninstaller">
+  <link rel="Bookmark" href="#multiple-addresses"    title="Composing to Multiple Addresses">
+  <link rel="Bookmark" href="#copy-image"            title="Copying Images">
+  <link rel="Bookmark" href="#crypto-moz"            title="Cryptography in Mozilla">
+  <link rel="Bookmark" href="#kbd-shortcut-cust"     title="Customizable Keyboard Shortcuts">
+  <link rel="Bookmark" href="#cust-toolbars"         title="Customizable Toolbars">
+  <link rel="Bookmark" href="#del-attach"            title="Delete attachment">
+  <link rel="Bookmark" href="#dhtml"                 title="DHTML Issues">
+  <link rel="Bookmark" href="#blink"                 title="Disable BLINK Tag">
+  <link rel="Bookmark" href="#download-enh"          title="Download Manager Enhancements">
+  <link rel="Bookmark" href="#edit-bookmarks-inline" title="Edit Bookmarks in Menubar Menu">
+  <link rel="Bookmark" href="#no-flash"              title="Embedded Content Control">
+  <link rel="Bookmark" href="#error-page"            title="Error page for inaccessible pages">
+  <link rel="Bookmark" href="#pop-date"              title="Expiry date for POP messages">
+  <link rel="Bookmark" href="#ext-mailto"            title="External Mail Client With Mozilla">
+  <link rel="Bookmark" href="#zoom"                  title="Full Zooming">
+  <link rel="Bookmark" href="#filter-outgoing"       title="Filter Outgoing Email">
+  <link rel="Bookmark" href="#img-alt"               title="IMG ALT Attribute">
+  <link rel="Bookmark" href="#kiosk"                 title="Kiosk Mode">
+  <link rel="Bookmark" href="#load-image"            title="Load/Reload Images">
+  <link rel="Bookmark" href="#mail-backup"           title="Mail Backup">
+  <link rel="Bookmark" href="#mail-server-hit"       title="Mail - no server hit when reading">
+  <link rel="Bookmark" href="#biff"                  title="Mail Notification (biff) Icon">
+  <link rel="Bookmark" href="#minimize-tray"         title="Minimize Mozilla Thunderbird to the System Tray">
+  <link rel="Bookmark" href="#mouse-gestures"        title="Mouse Gestures">
+  <link rel="Bookmark" href="#mhtml"                 title="MHTML Support">
+  <link rel="Bookmark" href="#page-errors-log"       title="Page Errors Log">
+  <link rel="Bookmark" href="#popup"                 title="Pop-up Blocker Improvements">
+  <link rel="Bookmark" href="#profile-encrypt"       title="Profile Protection">
+  <link rel="Bookmark" href="#profile-custom"        title="Profile - Custom Location">
+  <link rel="Bookmark" href="#profile-backup"        title="Profile Migration and Backup">
+  <link rel="Bookmark" href="#quick-pref"            title="Quick Preferences">
+  <link rel="Bookmark" href="#default-search"        title="Use Default Search Engine for Internet Search">
+  <link rel="Bookmark" href="#junk"                  title="Smart Junk Mail Filtering">
+  <link rel="Bookmark" href="#spell-check"           title="Spell Checker">
+  <link rel="Bookmark" href="#standalone-mail"       title="Standalone MailNews">
+  <link rel="Bookmark" href="#synaptics"             title="Synaptics Touchpad Scrolling">
+  <link rel="Bookmark" href="#tabbed"                title="Tabbed Browser">
+  <link rel="Bookmark" href="#text-selection"        title="Text Selection">
+  <link rel="Bookmark" href="#threaded-view"         title="Threaded, Sorted View">
+  <link rel="Bookmark" href="#whitelists"            title="Whitelists for Cookies, Images, etc.">
+  <link rel="Bookmark" href="#w3c-p3p"               title="W3C Platform for Privacy Preferences (p3p) Support">
+  <link rel="Bookmark" href="#webmail"               title="Webmail Support">
+
+  <link rel="Glossary" href="/docs/jargon.html">
+  <title>Mozilla Wishlist FAQ（最も良くリクエストされる機能）</title>
+
+<!--
+
+1.25 mohr.42%osu.edu Nov 16 16:48
+1.30 mohr.42%osu.edu	Jan 24 18:55 山口
+1.32	mohr.42%osu.edu	Jan 26 09:11 山口
+1.34 mohr.42%osu.edu	Feb 18 06:37 2004 山口
+1.35 山口
+1.36 山口
+
+-->
+
+<link rel="alternate" hreflang="en" modified="October 4, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/wishlist-faq.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h1>Mozilla Wishlist FAQ</h1>
+
+<p>この FAQ （よくある質問）には、wishlist  <a href="community/developer-forums.html#mozilla-wishlist">メーリングリスト</a>または <a href="news:netscape.public.mozilla.wishlist">ニュースグループ</a>で頻繁にリクエストされている情報を掲載しています。このページは Robert Mohr によって管理されています。追加して欲しい項目があれば、メーリングリストかニュースグループに投稿してください。</p>
+
+<p>Mozilla Firefox についてリクエストがある場合は、<a href="http://texturizer.net/firefox/faq.html">FAQ</a> <span class="comment">【訳注：<a href="http://texturizer.net/mozilla/jp/firebird/faq.html">日本語版</a>】</span> や <a href="http://texturizer.net/firefox/tips.html">ヒント &amp; トリック</a> <span class="comment">【訳注：<a href="http://texturizer.net/mozilla/jp/firebird/tips.html">日本語版</a>】</span> を読んでからにしてください。Mozilla Thunderbird についても <a href="http://texturizer.net/thunderbird/faq.html">FAQ</a> <span class="comment">【訳注：<a href="http://nightlybuild.at.infoseek.co.jp/help/faq-ja.html">日本語版</a>】</span> と <a href="http://texturizer.net/thunderbird/tips.html">ヒント &amp; トリック</a> <span class="comment">【訳注：<a href="http://nightlybuild.at.infoseek.co.jp/help/tips-ja.html">日本語版</a>】</span> のページがあります。</p>
+
+<h2>目次</h2>
+<ol>
+  <li><a href="#make-wish">お願いする</a></li>
+  <li><a href="#features">頻繁にリクエストされている機能</a>
+  <ol>
+    <li><a href="#sect-general">一般</a></li>
+    <li><a href="#sect-security">セキュリティ</a></li>
+
+    <li><a href="#sect-profiles">プロファイル</a></li>
+    <li><a href="#sect-ui">キーボードとマウス</a></li>
+    <li><a href="#sect-browser">ブラウザ</a></li>
+    <li><a href="#sect-mail">メール・ニュース</a></li>
+    <li><a href="#sect-composer">編集機能</a></li>
+    <li><a href="#sect-webdev">Web 開発者からの要望</a></li>
+
+  </ol>
+</li>
+</ol>
+
+<h2><a name="make-wish">1 お願いする</a></h2>
+
+<p>Mozilla をより良くする上で提案がありますか？enhancement バグに<a href="/quality/bug-writing-guidelines.html">報告する</a>か、<a href="community/developer-forums.html#mozilla-wishlist">Wishlist フォーラム</a>に投稿して、あなたの大きな夢を語ってください。下の<a href="#features">頻繁にリクエストされている機能バグ</a>と<a href="http://bugzilla.mozilla.org/duplicates.cgi">もっとも頻繁に報告されるバグのリスト</a>確認して、重複を避けてください。</p>
+
+<h3>1.1 Mozilla 開発者からの返事がないようだけれど、私の投稿には重要性がないの？</h3>
+
+<p>あらゆるユーザーフィードバックに感謝しています。しかしながら、ユーザーからの投稿が膨大なものですから、開発者はすべての質問には応えられないのです。辛抱強く、あなたの質問に応えてくれるのを待ちましょう。もし問題にしかるべき注意が払われていないと感じた場合には、その問題についてコメントを沿えるか、誰かがその問題について <a href="http://bugzilla.mozilla.org/">Bugzilla</a> <span class="comment">【訳注：<a href="http://bugzilla.mozilla.gr.jp/">日本語版</a>】</span> に報告していたら、そのバグ報告に投票してください。</p>
+
+<p>この文書やほかのフォーラム、または Bugzilla での無作法はやめてください。<a href="http://bugzilla.mozilla.org/page.cgi?id=etiquette.html">Bugzilla エチケットガイドライン</a>や<a href="/community/etiquette.html">フォーラムルール</a>を参照してください。</p>
+
+<h3>1.2 バグはいつ修正されるの？</h3>
+
+<p>たくさんの注目を集めたバグは、通常<a href="/status/">ステータスアップデート</a>で取り上げられます。特に関心を持っているバグがあれば、自分をバグの CC リストに加えてください。あらゆるコメントやバグ報告への変更を、通知メールとして受け取ることができます。</p>
+
+<h3>1.3 拡張機能については？</h3>
+
+<p>ある特定の機能が Mozilla ビルドに実装されないかとじりじりして待っている方は、<a href="http://extensionroom.mozdev.org">ExtensionRoom</a> でさまざまな Mozilla アドオンを試すことができます。</p>
+
+<h2><a name="features"></a>2 頻繁にリクエストされている機能</h2>
+
+<p>これは、Wishlist フォーラムで頻繁にリクエストされている機能のリストです。もし最新の Mozilla にまだこれらの機能が入っていないなら、それはたいていの場合、誰もその機能を実装する作業に着手していないからです！ あなたも Mozilla に <a href="get-involved.html">参加</a> して、機能の追加に協力してみませんか？</p>
+
+<h3><a name="sect-app"></a>2.1 アプリケーション</h3>
+
+<dl>
+
+<dt><a name="cust-toolbars">カスタマイズ可能なツールバー</a></dt>
+<dd>
+<p>現在、Mozilla は完全にカスタマイズ可能なツールバーを実装していません（Mozilla Firefox では利用可能です）。この機能へのリクエストは、 <a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=15144,22056,86455,48926,51129">bugs 15144, 61710, 22056, 86455, 48926, and 51129</a> を参照してください。</p>
+</dd>
+
+
+<dt><a name="quick-pref">簡易設定</a></dt>
+<dd>
+<p>画像や JavaScript の読み込みを有効／無効にするといった幾つかの設定は、ユーザによって頻繁に変更が可能です。ただし、これらの設定は <a href="http://prefbar.mozdev.org/">PrefBar</a> や同類の拡張がないと変更ができません。Mozilla での似たような実装は、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=prefbar">設定ツールバー</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=131518">メニュー</a>、または<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=42663">サイドバー</a>として扱われています。
+</dd>
+
+<dt><a name="uninstall-comp">コンポーネント・アンインストーラ</a></dt>
+<dd>
+
+<p>現在、Mozilla を再インストールする以外、Mozilla のアドオンを削除する簡単な方法がありません。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=161508">Bug 161508</a> で取り組まれています。Mozilla Firefox や Mozilla Thunderbird では拡張機能を無効にすることができますが、完全に取り除くことはできません。</p></dd>
+
+<dt><a name="copy-image">画像のコピー</a></dt>
+
+<dd>
+<p>Mozilla は現在画像をクリップボードにコピーし、直接他のアプリケーションにペーストすることはできません。この問題は  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21747">bug 21747</a> で扱われています。</p>
+</dd>
+
+</dl>
+
+<h3><a name="sect-security"></a>2.2 プライバシーとセキュリティ</h3>
+
+<dl>
+
+<!--
+<dt><a name="crypto-moz">Mozilla の暗号化機能</a></dt>
+<dd>
+<p>Mozilla <a href="/crypto-faq.html">暗号化 <acronym title="よくある質問">FAQ</acronym></a> を参照してください。</p>
+</dd>
+-->
+
+<dt><a name="w3c-p3p">W3C Platform for Privacy Preferences (P3P) サポート</a></dt>
+<dd>
+<p><a href="http://www.w3.org/P3P/">P3P</a> の部分的なバックエンドサポートは Mozilla 1.4 以降で利用可能です。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=62399">完全実装</a>も計画されています。</p></dd>
+
+<dt><a name="ad-block">広告ブロッカー</a></dt>
+<dd>
+<p>画像ブロッカーは <a href="http://bannerblind.mozdev.org/">外部プロジェクト</a> として開発されています。</p>
+<p>しかし、このソフトをインストールする前に、ページをオープンにアクセス可能にするために、広告収入に頼っている、一部の Web サイトのことを考えてみてください。広告収入を失えば、これらのサイトは会員制モデルに移行しなければならなくなります。
+</p></dd>
+
+<dt><a name="mail-server-hit">メール読み込みの際のサーバーへのアクセス禁止</a></dt>
+<dd><p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=28327">Bug 28327</a> を参照してください。</p></dd>
+
+<dt><a name="no-flash">埋め込みコンテンツのコントロール</a></dt>
+<dd>
+<p>Mozilla は Flash ムービー、Java アプレット、画像といった組み込みメディアをどのように処理するか、ユーザがコントロールできるようにしています。これまでよりも包括的な解決法が提案されて、作業が進められています（<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=94035,147866,78104">bug 94035, 147866, および 78104</a> を参照してください）。
+</dd>
+
+<dt><a name="whitelists">Cookie、画像などのホワイトリスト</a></dt>
+<dd>
+
+<p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=75915">Bug 75915</a> を参照してください。</p></dd>
+
+<dt><a name="popup">ポップアップブロッカーの実装</a></dt>
+<dd>
+<p>Mozilla には既にポップアップブロッカーが実装されています。しかし、多くの <a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=176958&amp;maxdepth=1&amp;hide_resolved=1">ポップアップに関する問題</a> が未解決のままです。</p>
+<!--
+<p>ポップアップマネージャは、Mozilla 1.2 から<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=166442#c104">削除</a>されたことにご注意ください。</p></dd>
+-->
+</dd>
+</dl>
+
+<h3><a name="sect-profiles"></a>2.3 プロファイル</h3>
+
+<dl>
+
+<dt><a name="profile-encrypt">プロファイル保護</a></dt>
+<dd>
+
+<p>プロファイルのパスワード保護とプロファイルデータの暗号化については、<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=16489,19184">Bug 16489, 19184</a> で議論されています。</p></dd>
+
+<dt><a name="profile-custom">カスタマイズ可能なプロファイルの保存場所</a></dt>
+<dd>
+
+<p>Mozilla は常に、プロファイルを、ユーザが利用しているシステムのアプリケーションデータのためのデフォルトディレクトリに保存しますが、共有、ローミングアクセス、その他の目的で、ユーザがカスタムプロファイルディレクトリを指定する方法がありません。より柔軟なプロファイル保存が提案されています（<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=31763,150453,144712">Bug 31763, 150453, 144712</a> を参照してください）。</p></dd>
+
+<dt><a name="profile-backup">プロファイルの移行とバックアップ</a></dt>
+<dd>
+<p>Mozilla がプロファイルデータとリンクしている方法が原因で、別のマシンへの Mozilla プロファイルの移行や、プロファイルデータのバックアップは、通常、手作業によるプロファイルファイルのコピーや編集が必要となります。<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=22689,103993,7067,137006,63918,66259">Bug 22689, 103993, 7067, 137006, 85316, 63918, 66259</a> が解決すれば、ボタンを 1 回クリックするだけといった、簡単な解決策が実現するはずです。</p>
+
+<p>プロファイルデータのバックアップや移動の方法については<a href="/start/1.4/faq/profile.html">プロファイル FAQ</a> を参照してください。</p>
+</dd>
+
+</dl>
+
+<h3><a name="sect-ui"></a>2.4 キーボードとマウス</h3>
+
+<dl>
+
+<dt><a name="synaptics">タッチパッドスクロール</a></dt>
+<dd>
+<p>Mozilla はタッチパッドスクロールをサポートしていますが、古いドライバでは標準設定で無効になっています。ドライバを更新するには <a href="http://www.synaptics.com/support/drive.cfm">synaptics ダウンロードページ</a>を参照してください。</p></dd>
+
+<dt><a name="mouse-gestures">Opera のようなマウスジェスチャー</a></dt>
+<dd>
+<p><a href="http://optimoz.mozdev.org/">Optimoz</a> コンポーネントをインストールすれば、マウスジェスチャーを実現できます。</p></dd>
+
+<dt><a name="kbd-shortcut-cust">キーボードショートカットのカスタマイズ</a></dt>
+<dd>
+<p>現在、キーボードショートカットをカスタマイズすることはできません。関連バグは <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=57805">Bug 57805</a> です。</p></dd>
+
+</dl>
+
+<h3><a name="sect-browser"></a>2.5 ブラウザ</h3>
+
+<dl>
+
+<dt><code>&lt;blink&gt;</code> タグの無効化</dt>
+<dd>
+<p>Mozilla で &lt;blink&gt; タグを無効化するには、ロケーションバーに <q><tt>about:config</tt></q> と入力し、<tt>browser.blink_allowed</tt> を false としてください。</p></dd>
+
+<dt><a name="activex">ActiveX サポート</a></dt>
+<dd>
+<p>現在、Mozilla は ActiveX をサポートしていませんが、Communicator 4.x と同様に、プラグインを利用することができます。</p>
+</dd>
+
+<dt><a name="zoom">フルズーム機能</a></dt>
+<dd>
+<p>テキストと画像両方の拡大を実現する試みは <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=4821">Bug 4821</a> でおこなわれています。</p></dd>
+
+<dt><a name="kiosk">キオスクモード</a></dt>
+<dd>
+<p>フルスクリーンモードで混乱しないようにしてください。本当のキオスクモードは、ユーザやシステム管理者が、他のユーザのブラウジングを制御するために、ブラウザの設定や機能を非表示・無効化・ロックすることができるようにするものです。キオスクモードは <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=3341">Bug 3341</a> で議論されています。</p>
+</dd>
+
+<!--
+<dt><a name="default-search">インターネット検索でのデフォルト検索エンジンの利用</a></dt>
+<dd>
+<p>現在、（Smart Browsing 設定パネルの）「インターネットキーワード」が有効になっている場合、Mozilla は、ロケーションバー検索のデフォルト検索エンジンの代わりに、デフォルトで「インターネットキーワード」サイトを利用します（<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=53171">Bug 53171</a> を参照してください）。一時的な修正によって、「インターネットキーワード」を無効にするか、ロケーションバーに <q><tt>about:config</tt></q> と入力し、<tt>keyword.URL</tt> を <q><kbd>http://www.google.com/search?q=</kbd></q> と設定してください。</p>
+</dd></dd>
+-->
+
+<dt><a name="edit-bookmarks-inline">ブックマークのインライン（メニュー内）編集</a></dt>
+<dd>
+
+<p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=19437">Bug 19437</a> を参照してください。</p></dd>
+
+<dt><a name="mhtml">MHTML サポート</a></dt>
+<dd>
+<p>Mozilla は MHTML （<a href="http://www.ietf.org/rfc/rfc2557.txt">RFC 2557</a>）ファイルの表示・エクスポートをサポートしていません（<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=18764,40873">Bug 18764, 40873</a> を参照してください）。</p></dd>
+
+<dt><a name="cache-browse">キャッシュファイルの参照</a></dt>
+<dd>
+<p>ロケーションバーに「<tt>about:cache</tt>」と入力すれば、ブラウザのキャッシュを参照することができます（<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=66299,157694">Bug 66299 （cacheexplorer）, 157694</a> も参照してください）。</p></dd>
+
+<dt><a name="tabbed">タブブラウザ</a></dt>
+<dd>
+<p>Mozilla のタブブラウザは優れた機能ですが、<a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=126299&amp;hide_resolved=1">タブの並び替え機能</a>、そしてタブの切り離しなど、Web ページを新しいタブまたはウィンドウで 開く機能への<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=75138,142683,105547">設定追加</a>が必要です。これらの機能について我慢できないなら、<a href="http://multizilla.mozdev.org/">MultiZilla</a> をインストールすれば、これらの大部分とそれ以上の機能を手に入れることができますし、Mozilla および Mozilla Firefox 向けには <a href="http://white.sakura.ne.jp/~piro/xul/_tabextensions.html.en">Tabbrowser Extensions</a> があります。</p></dd>
+
+<dt><a name="error-page">アクセス不能なページのためのエラーページ</a></dt>
+<dd><p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=28586">Bug 28586</a> では、ネットワークエラーダイアログを、ページを再度ロードできるようにするエラーページに置き換えようとしています。</p></dd>
+
+<dt><a name="check-bookmark">ブックマークのチェック</a></dt>
+
+<dd><p>ブックマークマネージャ（<kbd>Ctrl+B</kbd>）を使って、特定のブックマークについて内容が更新されたかどうかを定期的にチェックすることができます。これを行うには、チェックしたいブックマークを選択し、<kbd>Ctrl+I</kbd> を押してください。そして Schedule と Notify オプションを設定してください。リンクが壊れていたり、移動されている場合、ブックマークマネージャはブックマークを更新しません。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=171467" title="Run check on bookmark validity">Bug 171467</a> でブックマークの妥当性チェックと更新について取り上げられています。</p></dd>
+
+<dt><a name="load-image">画像の読み込み・再読み込み</a></dt>
+
+<dd><p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=47475" title="Need &quot;Show Image&quot; / &quot;Reload Image&quot; on context menu">Bug 47475</a> で、ページ内の画像のみを読み込み・再読み込みするオプションをコンテンツメニューに加えることについて取り上げられています。</p></dd>
+
+<dt><a name="download-enh">ダウンロードマネージャ拡張</a></dt>
+<dd><p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18004" title="General issues with resumable downloads">Bug 418004</a> では、Mozilla に拡張されたダウンロードマネージャを追加すする方法について扱っています。しかし、現在のビルドにより充実した拡張機能を加えるには、plugindoc にある<a href="http://plugindoc.mozdev.org/windows4.html" title="plugindoc - Download Managers for Windows">ダウンロードマネージャ</a>のページを参照してください。</p></dd>
+
+</dl>
+
+<h3><a name="sect-mail"></a>2.6 メール・ニュース</h3>
+
+<dl>
+
+<dt><a name="ext-mailto">外部メールクライアントの利用</a></dt>
+<dd>
+<p>デフォルトでは、Mozilla はメールのリンクをすべて自身のメールクライアントで開きます。Mozilla に強制的にシステム標準のメールクライアントを利用させるには、ロケーションバーに <tt>about:config</tt> と入力し、<tt>network.protocol-handler.external.mailto</tt> を true にしてください（<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=11459">Bug 11459</a> を参照してください）。</p></dd>
+
+<dt><a name="biff">メール着信通知（biff）アイコン</a></dt>
+<dd>
+<p>
+/Windows/<18729> では、Mail & Newsgroups が開かれ Mozilla が閉じられるまで実行されている時、新しいメールチェックがバックグラウンドで実行されます。この機能は /その他のプラットフォーム/<18730,18731,18732,79127> ではまだ利用できません。人気の高い拡張リクエストの中には、<a href="http://bugzilla.mozilla.org/show_bug.cgi?bug_id=11056">スタンドアローンなメールチェックプログラム</a>、<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=91498,206050">フィルターによって削除または既読とマークされたメールの場合は通知しない</a>、そして<a href="http://bugzilla.mozilla.org/show_bug.cgi?bug_id=189289">ジャンクメール</a>や<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=35892,226885,200157">その他の改良</a>があります。<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=18730,86553,35892,125328
+,24577,71105">bug 18730, 86553, 35892, 125328, 24577, および 71105</a> を参照してください。
+</dd>
+
+<dt><a name="standalone-mail">スタンドアローンのメール・ニュース</a></dt>
+<dd><p><a href="/projects/thunderbird/">Mozilla Thunderbird</a> とコードネームがつけられたスタンドアローンなメールクライアントが開発中です。スタンドアローンなブラウザをビルドするプロジェクトもあります（<a href="/projects/firefox/">Mozilla Firefox</a>）。</p></dd>
+
+<dt><a name="mail-backup">Mail バックアップ</a></dt>
+<dd>
+<p><a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=133095,103993">Bug 133095, 103993</a> を参照してください。関連する拡張機能については、<a href="#sect-profiles">プロファイル</a>セクションを参照してください。</p></dd>
+
+<dt><a name="threaded-view">スレッド化・分類化ビュー</a></dt>
+<dd>
+<p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=72493">Bug 72493</a> を参照してください。</p></dd>
+
+<dt><a name="pop-date">POP メッセージの失効日付</a></dt>
+<dd>
+<p>POP メッセージを一定の日数サーバに残しておくオプションは、Mozilla 1.6 および Mozilla Thunderbird に実装されています。</p></dd>
+
+<dt><a name="junk">スマートなジャンクメールフィルター</a></dt>
+<dt></dt>
+<dd>
+<p>Mozilla 1.3 以降には賢い（ベイズ式）ジャンクフィルターが備わっています。（<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=163188,11035,169638,120599,179637,179984,180010,181394,179588,180004">バグ</a>を参照してください。）. 使い方については<a href="/start/1.5/extra/using-junk-control.html">Mozilla スパムフィルタリング</a>をお読みください。</p>
+</dd>
+
+<dt><a name="del-attach">添付ファイルの削除</a></dt>
+<dd>
+<p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=2920">Bug 2920</a> を参照してください。</p></dd>
+
+<dt><a name="common-inbox">共通の受信箱</a></dt>
+<dd>
+<p>Outlook や Outlook Express の元ユーザの多くが、アカウントごとのフォルダ群ではなく、全てのメールアカウント共通のフォルダをリクエストしています。bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=30057">30057</a> を参照してください。</p>
+</dd>
+
+<dt><a name="multiple-addresses">複数アドレスへのメール作成</a></dt>
+<dd>
+<p>Mozilla Mail のメール作成ウィンドウでは、一つの欄に複数の電子メールアドレスを入力することができません。メールアドレスをコンマやセミコロンで区切るのではなく、リターンキーを利用してください。Mozilla Thunderbird では、メール作成ウィンドウからコンタクトサイドバー（<tt>View | Contacts Sidebar</tt>）を使って、複数の人宛てにメールを作成してください。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=94540">bug 94540</a> および <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=94676">bug 94676</a> を参照してください。</p>
+</dd>
+
+<dt><a name="minimize-tray">Mozilla Thunderbird をシステムトレイに最小化する</a></dt>
+<dd>
+<p>Mozilla Thunderbird は現在、システムトレイに最小化することはできません。&mdash; これは <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=183323">bug 183323</a> です。ただし、Windows ではあらゆるアプリケーションをシステムトレイに最小化することができるアプリケーションが沢山あります。</p>
+</dd>
+
+<dt><a name="filter-outgoing">送信メールのフィルタリング</a></dt>
+<dd>
+<p>送信メッセージのロケーションをフィルターする唯一の方法は、自分宛に BCC: し、自分が送信者となっているルールをフィルターに加えることです。Mozilla MailNews の（<tt>Edit | Mail & Newsgroup Account Settings | &lt;アカウント名&gt; | Copies &amp; Folders</tt>）または Mozilla Thunderbird の（<tt>Tools | Account Settings | &lt;アカウント名&gt; | Copies &amp; Folders</tt>）を参照してください。バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=11039">11038</a> および <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=177040">177040</a> を参照してください。</p>
+</dd>
+
+<dt><a name="webmail">ウェブメールへのアクセス</a></dt>
+<dd>
+<p>Mozilla は、Yahoo! Mail POP3 アクセス（無料ではありません）のような、オフライン用に標準的な POP3 または IMAP プロトコルを使用するウェブメールサービスへのアクセスをサポートしています。一方 Mozilla は、Hotmail、AOL Mail、Netscape ウェブメールなどで使用されているプロプライエタリなプロトコルはサポートしていません（Netscape ウェブメールへのサポートは Netscape が Mozilla に行ったプロプライエタリ拡張の一つです &mdash; これは Mozilla Foundation がアクセスできるコードではありません）。しかし、あらゆるメールクライアントからこうしたウェブメールに直接アクセスできるようにするサービスやソフトウェアがあります。自らの責任でそうしたものを試してみることもできます。</p>
+</dd>
+
+</dl>
+
+<h3><a name="sect-composer"></a>2.7 編集機能</h3>
+
+<dl>
+
+<dt><a name="spell-check">スペルチェッカー</a></dt>
+<dd>
+<p>Mozilla 1.4.1 にはスペルチェッカーが搭載されています（<a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=119232&amp;maxdepth=1&amp;hide_resolved=1">オープンな話題</a>を参照してください）。</p>
+</dd>
+
+</dl>
+
+<h3><a name="sect-webdev"></a>2.8 Web 開発者からの要望</h3>
+
+<p>Web 開発者からの要望の多くで、熱い議論が戦わされています。<a href="http://bugzilla.mozilla.org/page.cgi?id=etiquette.html">Bugzilla エチケットガイドライン</a>を読んで、罵り合いを避けてください。</p>
+<dl>
+
+<dt><a name="page-errors-log">ページエラーログ</a></dt>
+<dd>
+
+<p>Mozilla には、現在、不正な HTML、CSS、DOM など、Web ページの評価や問題をユーザが受け取る機能がありません。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=6211">Bug 6211</a> でこの問題が議論されています。</p></dd>
+
+<dt><a name="img-alt">&lt;img&gt; タグの alt 属性</a></dt>
+<dd>
+<p><code>alt</code> 属性は、視覚障害者など、画像へのアクセスができない人のための代替表示として意図されたアクセシビリティ機能です。アクセシビリティ上の理由から、Mozilla は <code>alt</code> 属性の値をツールチップとしてレンダリングしません。ツールチップを表示させるには <code>title</code> 属性を使ってください。より詳しい解説は、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=NoTooltip#c153">Bug 25537 Comment 153</a> や <a href="/docs/web-developer/faq.html#alttooltip">Mozilla Web ページ作者 FAQ</a> でご覧になれます。<br>
+<span class="comment">【訳注：画像に <code>alt</code> 属性で設定された代替テキストを、NC4 以前や IE などと同様にポップアップ表示するための拡張機能もあります。詳しくは <a href="http://white.sakura.ne.jp/~piro/xul/_popupalt.html">piro さんのページ</a>を参照してください。】</span></p> 
+</dd>
+
+<dt><a name="always-scroll">縦方向スクロールバーの常時表示</a></dt>
+<dd>
+<p>これは長く議論されてきたもうひとつの問題です。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=72540">Bug 72540</a> を参照してください。</p></dd>
+
+<dt><a name="dhtml">DHTML</a></dt>
+<dd>
+<p>DHTML に関してよくリクエストされる二つの機能は、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=42417">getComputedStyle</a> メソッド対応の改良と要素の<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=62536">スクロール位置</a>の取得・設定機能です。 </p></dd>
+
+<dt><a name="suppress-context">コンテキスト（右クリック）メニューをブロックする機能</a></dt>
+<dd>
+<p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=86193" title="There is no way to always open the context menu upon right-click (oncontextmenu?)">Bug 86193</a> では、Web ページ内でコンテキストメニューを無効にするという話題が取り上げられています。</p></dd>
+
+</dl>
+
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/wishlist-faq.html">英語版</a> 2004/10/04</span> - <span>和訳版 2006/07/20</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/wishlist-faq.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

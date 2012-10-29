@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>ヘルパーアプリケーション</title>
+
+<style type="text/css" media="screen,tv">
+	h1, address { text-align: center; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="December 27, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="secondLevel sectionSupport">
+<div id="container">
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+  <li><a href="/support/" title="サポート情報"><strong>サポート</strong></a></li>
+  <li><a href="/support/enduser.html" title="参考資料、コミュニティサポート、関連書籍"><strong>エンドユーザ向けサポート</strong></a>
+    <ul>
+      <li><a href="/support/firefox/" title="Firefox のオンラインヘルプ">Firefox Help</a></li>
+      <li><a href="/support/thunderbird/" title="Thunderbird のオンラインヘルプ">Thunderbird Help</a></li>
+      <li><a href="/support/enduser.html#resources" title="Mozilla 全般に関する参考資料">Mozilla 製品全般の資料</a></li>
+      <li><a href="/support/enduser.html#community" title="フォーラム、メーリングリスト、IRC">コミュニティサポート</a></li>
+      <li><a href="/support/books/" title="市販のガイドブックなど">関連書籍のご案内</a></li>
+    </ul>
+  </li>
+  <li><a href="/support/enterprise.html" title="移行支援、テクニカルサポート"><strong>法人向けサポート</strong></a></li>
+</ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<h1>ヘルパーアプリケーション</h1>
+<address>Christian Biesinger &lt;cbiesinger&#64;web.de&gt;</address>
+<p>このドキュメントは、Mozilla の「ヘルパーアプリケーション」という概念について、それがどういうもので、何に使われるのか、ということを解説する目的で作成されました。ヘルパーアプリケーションのユーザインターフェイスは [Edit (編集)] メニューの [Preferences (設定)] &gt; [Navigator] &gt; [Helper Applications (ヘルパーアプリケーション)] にあり、また Mozilla が処理できない種類のファイルに出会ったときに表示されます。</p>
+<h2>ヘルパーアプリケーションはプラグインではありません</h2>
+<p>これは良くある誤解だと思います。ヘルパーアプリケーションは、ある特定の種類のファイルを Mozilla 本体でもプラグインでも処理できない場合にのみ使われます。このような場合に限って、Mozilla は [Helper Applications] パネルで選ばれたアプリケーションを使ってファイルを開きます。</p>
+<h2>ヘルパーアプリケーションとは</h2>
+<p>Mozilla は時々、zip ファイルなど、自分では表示できない URI を読み込もうとすることがあります。そのような場合、Mozilla はヘルパーアプリケーションの設定を参照し、どのように処理すべきかを確認します。このとき、次のようないくつかの可能性があります。Mozilla はファイルを (システム全体の) デフォルトアプリケーションで開くことができます。また、ユーザが指定したアプリケーションで開いたり、あるいはディスクに保存することもできます。</p>
+<p>これらはすべて [Helper Applications] パネルで設定することができます。Mozilla はまず、サーバが送ってきた MIME タイプを調べ、そこで設定されたエントリーを見つけようとします。それがうまくいかなかった場合、サーバが送ってきたファイルの拡張子を使ってエントリーを探します。このエントリーの設定があった場合、それが使われます。</p>
+<p>エントリーが見つからなかった場合、Mozilla はその処理方法をユーザに尋ねるようデフォルトで設定されています。このときのデフォルトは [Open with default application (デフォルトアプリケーションで開く)] になっています。Mozilla がユーザに尋ねて、ユーザが選択した場合、この選択された設定がその後も使われるよう保存されます。この設定は [Helper Applications] パネルで見ることができます。</p>
+<h2>拡張子と MIME タイプ</h2>
+<p>ローカルファイルその他のファイルで、Mozilla がサーバから MIME タイプを取得できない場合、ヘルパーアプリケーションのエントリーを使って、特定の拡張子の付いたファイルに特定の MIME タイプを割り当てることができます。この設定をするには、[Helper Applications] パネルにエントリーを新規作成し、[MIME Type (MIME タイプ)] 欄に設定したい MIME タイプ、[Extension (拡張子)] 欄に (複数の) 拡張子を入力するだけです。残りはデフォルト値のままにしておいて構いません。</p>
+<p>Mozilla がそのタイプを内部で処理可能になったことを告げるダイアログが表示されるはずです。ファイルに割り当てられた MIME タイプを変更したいだけなら、([Proceed anyway (構わず先に進む)] をクリックして) このメッセージを無視することができます。</p>
+<h2>1 種類の MIME タイプに複数のヘルパーアプリケーションを割り当てる</h2>
+<p>通常、1 種類の MIME タイプには 1 つのアプリケーションしか割り当てることができません。しかし、ファイルが <code>application/octet-stream</code> というタイプの場合、状況が異なってきます。ユーザは、Mozilla がこのタイプの設定を保存せず、MIME タイプによってヘルパーアプリケーションが見つからなかった場合、拡張子からそれを探すという事実を利用することができます。つまり、拡張子 ABC に対して (<code>application/octet-stream</code> 以外のタイプで) ヘルパーアプリケーションのエントリーを作成し、拡張子 XYZ に (こちらも <code>application/octet-stream</code> 以外のタイプで) 別のエントリーを作成すれば良いのです。</p>
+<p>これで、Mozilla が <code>application/octet-stream</code> のタイプで拡張子 ABC が付いたファイルに出会った場合、最初のヘルパーアプリケーションが使われ、拡張子が XYZ だった場合は 2 番目のヘルパーアプリケーションが使われます。この設定は、メールの添付ファイルについても同じように機能します。</p>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/docs/end-user/helper-applications.html">英語版</a> 2003/12/27</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/docs/end-user/helper-applications.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

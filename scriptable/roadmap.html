@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>XPCOM, XPConnect, XPTCall、XPIDLのロードマップ</title>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/scriptable/roadmap.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h3><center>XPCOM, XPConnect, XPTCall, XPIDLのロードマップ</center></h3>
+
+<B>XPCOM</B>は、COMに似たものであり、軽量でクロスプラットフォーム性を兼ね備えています。インタフェース、ファクトリ、参照カウント、QureyInterfaceに基づく'型変換'、autoポインタ、その他の有用なものを提供します。XPCOMは、mozillaにおけるモジュール性の基礎を成すものです。
+<P>
+参考:
+<BR>
+<code>
+&nbsp;&nbsp;<a href="../projects/xpcom/">xpcomのメインページ</a>
+<BR>
+&nbsp;&nbsp;<a href="/lxr/mozilla/source/xpcom">mozilla/source/xpcomのソースコード</a>
+</code>
+<HR>
+
+<B>XPConnect</B>は、ネイティブコードとJavaScriptとの間の呼出しを容易にするサービスです。 
+これを実現するために、外部オブジェクトを透過的に使えるようにするための'ラッパー'オブジェクトを動的に作成しています。
+コードの生成は行っていません。通常の場合、そのインタフェースがXPIDLインタフェース定義言語によって宣言されていること、およびXPCOMの規則と慣例に従っていさえすれば、オブジェクトの使用には制約がありません。
+
+<P>
+<b>XPConnectの特徴</B>
+<UL>
+<LI>言語の境界を越えた透過的な呼び出し
+<LI>参照のカウントとガベージコレクションの自動的なマッピング
+<LI>タイプライブラリに基づいている - コードの生成はなし タイプライブラリは、クロスプラットフォームである。
+<LI>XPCOMの'out'パラメタとJS復帰値のマッピング
+<LI>パラメタと復帰値の自動的な型変換(必要に応じてラッパーも自動生成)
+<LI>nsIXPCScriptableを使って、特別なJavaScriptの振るまいをサポート
+<LI>通常のvtblベースのインタフェースの使用 - IDispatchやデュアルインタフェースは無し
+<LI>ヘッダとタイプライブラリ用のXPIDLインタフェースの宣言は一つ
+<LI>一つのオブジェクトに対して、複数インタフェースのサポート
+<LI>JavaScriptでのXPCOMオブジェクトリポジトリのリフレクション
+<LI>ラップされたネイティブxpcomオブジェクトでの任意のJSプロパティのサポート
+</UL>
+
+参考:
+<BR>
+<code>
+&nbsp;&nbsp;<a href="../scriptable/">メインXPConnectページ</a>
+<BR>
+&nbsp;&nbsp;<a href="/lxr/mozilla/source/js/src/xpconnect/">mozilla/source/js/src/xpconnect/のソースコード</a>
+</code>
+<HR>
+
+<B>XPTCall</B> は、任意のxpcomオブジェクトのメソッドの起動のサポートおよび任意のxpcomインタフェースを実装しているように見せるオブジェクトの実装のサポートをするライブラリです。
+これは、プラットフォーム固有のアセンブラコードにより実現されています。
+XPTCallは、XPConnectが必要としており、XPConnect(およびXPTCallを使っている他のmozillaのコード)が動作するすべてのプラットフォームへ移植する必要があります。
+<P>
+参考: 
+<BR>
+<code>
+&nbsp;&nbsp;<a href="../scriptable/xptcall-faq.html">XPTCall FAQ</a>
+<BR>
+&nbsp;&nbsp;<a href="/lxr/mozilla/source/xpcom/reflect/xptcall/">mozilla/source/xpcom/reflect/xptcall/のソースコード</a>
+</code>
+<HR>
+
+<b>XPIDL</b>は、もう一つのインタフェース定義言語です。
+XPIDLは、xpidlファイルをコンパイルするコンパイラの名前でもあります。
+そのシンタックスはCORBAに基づいています。
+いくつかの拡張が追加されています。また、多くのCORBAの特徴がサポートされていません。コンパイラは、C++のヘッダとタイプライブラリを生成します。
+将来、ツールによってJavadoc風のインタフェースドキュメントを生成する予定です。
+
+<P>
+
+タイプライブラリをマージするリンカ(<a href="typelib_tools.html">xpt_link</a>)とその中身を人が読める形式に表示するダンプユーティリティ(<a href="typelib_tools.html">xpt_dump</a>)があります。
+
+<P>
+
+コンパイラには、JavaScript API(JSAPI)コードを生成する'-m stubs'モードがあります。
+これは、XPConnectがまだ使用できなかったために、暫定的な解決策として実装された一時的なハックです。
+これについては、段階的に廃止する予定です。混乱しないでください。この生成されたコードは、XPConnectではありません。
+
+<P>
+<P>
+参考: 
+<BR>
+<code>
+&nbsp;&nbsp;<a href="../scriptable/xpidl/">メインXPIDLページ</a>
+</code>
+
+<hr>
+<b>Author:</b> <a href="mailto:jband@netscape.com">John Bandhauer &lt;jband@netscape.com&gt;</a><br>
+<b>Last modified:</b> 4 June 1999
+
+<div align="right"><font size="-1">
+<a href="http://www.mozilla.org/scriptable/roadmap.html">
+このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。</a><br>
+またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>
+利用者の利便のためにmozilla.org 和訳プロジェクトによって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.org/jp/td/index.html">
+http://www.mozilla-japan.org/jp/td/index.html</a>
+</font></div>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/scriptable/roadmap.html">英語版</a></span> - <span>和訳版 2004/09/23</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/scriptable/roadmap.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <meta name="GENERATOR" content="Mozilla/4.77 [en]C-AOLNSCP  (Windows NT 5.0; U) [Netscape]">
+   <title>Netscape ポータブル・ランタイム (NSPR)</title>
+<link rel="alternate" hreflang="en" modified="February 10, 2004">
+<!-- 訳者： 池田 譲治  -->
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/nspr/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<h1>
+Netscape ポータブル・ランタイム</h1>
+
+<blockquote>Netscape ポータブル・ランタイム (Netscape Portable Runtime : NSPR)
+は、システムレベルでプラットフォーム中立な API と、libc と同様な機能を提供します。この API は、Mozilla
+クライアントや、Netscape/AOL/iPlanet など多くのソフトウェアで使用されています。
+<p><a href="about-nspr.html">NSPR について</a> をお読みください。このトピックには、NSPR の目標と、どのようにしてそれを行なうかについて、おおまかに記述されています。NSPR についてもっと知りたい場合は、以下を読み進んでください。</p></blockquote>
+
+<h2>目次</h2>
+
+<blockquote><a href="#Status">現状</a> -- NSPR
+プロジェクトの現在の話題。<br>
+<a href="#DocumentationTraining">文書とトレーニング</a> 
+-- あなたのアプリケーションをビルドするのに NSPR を使用する方法を勉強しましょう。<br>
+&nbsp;&nbsp;&nbsp; <a href="#NSPRReference">NSPR リファレンス</a>
+-- NSPR API のプログラマ・リファレンス。<br>
+&nbsp;&nbsp;&nbsp; <a href="#TechNotes">テクニカル・ノート</a> 
+-- アプリケーション開発者と NSPR メンテナに有用な技術レポート。<br>
+&nbsp;&nbsp;&nbsp; <a href="#TrainingMaterials">トレーニング素材</a>
+-- NSPR の API 使用法を学ぶのに使える、その他の素材。<br>
+<a href="#EngineeringPractices">技術的手法</a> -- 商売道具。NSPR を維持、変更、ビルド、リリース、そして貢献するために知っておくべきこと。<br>
+&nbsp;&nbsp;&nbsp; <a href="#CheckoutBuild">チェックアウトとビルド</a>
+-- チェックアウトとソースからビルドする方法。<br>
+&nbsp;&nbsp;&nbsp; <a href="#Testing">NSPR をテストする</a>
+&nbsp; -- NSPR テスト・スイートをビルドして動作させる方法。<br>
+&nbsp;&nbsp;&nbsp; <a href="#ContributorsGuide">NSPR 貢献者ガイド</a>
+ -- では、あなたは NSPR のコードを書きたいのですね？<br>
+&nbsp;&nbsp;&nbsp; <a href="#ReleaseEngineering">リリース・エンジニアリング・ガイド</a> -- NSPR リリースのための技術的手法。<br>
+<a href="#ContactsContributors">連絡先と貢献者</a> --
+NSPR を現在メンテナンスしている人たち。NSPR の過去の貢献者たち。</blockquote>
+
+<h2>
+<a name="Status"></a>現状</h2>
+
+<blockquote>現在の NSPR のリリースは 4.4.1 です。詳細は、
+<a href="release-notes/">NSPR リリースノート</a> をお読みください。
+<p>Netscape/AOL/iPlanet がサポートしているプラットフォームと
+Mozilla コミュニティがビルドしているプラットフォームにおけるビルド前のバイナリは、 
+<b><a href="ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases">ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases</a></b> 
+からダウンロードできるでしょう。</p>
+<p><a href="#NSPRMaintainers">NSPR メンテナ</a> たちは、毎週ではありませんが、火曜日、太平洋標準時の午前11時にミーティングを行なっています。もしあなたが、直接あるいは電話会議の形で参加したいのなら、NSPR メンテナに連絡してください。
+</p><p>ニュースグループの <b><a href="news://news.mozilla.org/netscape.public.mozilla.nspr">netscape.public.mozilla.nspr</a></b>
+では、質問をしたり、NSPR の議論や告知を追いかけることができます。</p>
+<p>NSPR に関するバグの追跡、機能追加、およびその他の活動は <a href="http://bugzilla.mozilla.org/">Bugzilla</a> で行なわれています。バグレポートを投稿するには、プロダクト名に "<b>NSPR</b>" を使用してください。</p>
+<p><a href="#NSPRMaintainers">NSPR メンテナ</a> は、NSPR ソースツリーの先端をビルドしたり実行したりする事に対して、いかなる時点においても保証しません。ツリーの先端は開発の基点です。NSPR 
+をビルドしたいのであれば、タグの付いたチェックアウトを使用してください。</p></blockquote>
+
+<h2>
+<a name="DocumentationTraining"></a>文書とトレーニング</h2>
+
+<blockquote>NSPR には、何種類かの文書があります。"<a href="#NSPRReference">NSPR リファレンス</a>"、いくつかの <a href="#TechNotes">テクニカル・ノート</a>、そしてその他の <a href="#TrainingMaterials">トレーニング素材</a> です。
+<h3>
+<a name="NSPRReference"></a>NSPR リファレンス</h3><a href="reference/html/index.html">NSPR リファレンス</a> には、各 API のパブリック・マクロと、NSPR API の構造と機能が記述されています。決定的なリファレンスとなることを目標としています。
+<p>この項を執筆している時点 （2000年9月19日） では、NSPR リファレンスは、手書きの HTML と自動生成された HTML
+が混在しています。NSPR リファレンスのいくつかの部分は FrameMaker を使用してメンテされ、HTML にエクスポートされています。...
+あなたが言いたいことはわかっています。 ... 将来的には、NSPR リファレンス全体がFrameMaker を使用してメンテされ、HTML
+にエクスポートされるでしょう。文書に対する助言や訂正があれば、 Bugzilla に投稿してください。
+</p>
+<h3><a name="TechNotes"></a>テクニカル・ノート</h3>
+NSPR に関連するテクニカルノートはいくつかあります。NSPR
+を使用あるいはメンテしている開発者なら、これらのテクニカルノートから有益な情報やヒントが得られるでしょう。<br>
+<table border="1" cols="2" width="90%">
+<tbody><tr>
+<td width="25%"><a href="tech-notes/platforms.html">ビルドシステムとサポートされているプラットフォーム</a></td>
+
+<td>NSPR
+は、全てのプラットフォームで共通のビルド技術を使用しています。この文書には、ビルドシステムの機能と、ビルドプロセスをコントロールする
+makefile マクロについての記述があります。NSPR
+が動作すると確認されているプラットフォームをまとめた註釈付きの表は、メンテナに有用でしょう。</td>
+</tr>
+
+<tr>
+<td><a href="tech-notes/abruptexit.html">突然の終了</a></td>
+
+<td>NSPR には、"thread kill" インターフェースがありません。この文書は、なぜ NSPR に thread kill がないのか、そしてこの思慮の足りないコンセプトを使わずに作業する方法について扱っています。</td>
+</tr>
+
+<tr>
+<td><a href="tech-notes/autoaddresses.html">自動変数とスレッド</a></td>
+
+<td>アドレスを (スタック上の) 自動保存クラス変数に渡すと、マルチスレッド環境では非常にやっかいなバグを生じがちです。この文書は、どのよう
+なトラブルが生じるか、そしてこの落とし穴におちないためにはどうしたらいいかを示しています。</td>
+</tr>
+
+<tr>
+<td><a href="tech-notes/forking.html">fork() について</a></td>
+
+<td>fork() を使用すると、ある Unix と別の Unix
+の間で奇妙な振る舞いが生じる事があります。この文書は、この違いのいくつかと、プラットフォーム間での振る舞いを一致させるテクニックを提示しています。</td>
+</tr>
+
+<tr>
+<td><a href="tech-notes/nonblockingio.html">非停止 I/O について</a></td>
+
+<td>NSPR は最初はソケットの停止 (blocking) I/O だけを提供していました。いくつかの正当な理由で、非停止 (non-blocking) I/O が後から追加されました。この文書は、非停止モデルについて記述されています。</td>
+</tr>
+
+<tr>
+<td><a href="tech-notes/ntiotimeoutinterrupt.html">NT の I/O タイムアウトの扱いは ... えー ... 最適ではない</a></td>
+
+<td>Windows NT で I/O
+オペレーションがタイムアウトすると、ソケットは「使用不能」になり、クローズせざるを得ません。この文書は、この問題について記述しており、この「異
+常」に対処するテクニックを提示しています。</td>
+</tr>
+
+<tr>
+<td><a href="tech-notes/appl-hints.html">あなたのアプリケーションを NSPR に最適化する</a></td>
+
+<td>Windows、Unix、Mac などにクロスプラットフォームな API
+を供給するのは困難な事です。代償として、パフォーマンス、利便性、機能、そしてありきたりなオブジェクトという犠牲を払わねばなりません。この文書は、
+あなたのアプリケーション設計に応用すれば、全てのプラットフォームで妥当な結果が得られるようなテクニックのいくつかを記述しています。<br>
+</td>
+</tr>
+
+<tr>
+<td><a href="tech-notes/porting-guide.html">新しいプラットフォームに NSPR を移植する</a></td>
+
+<td>ほとんどの Unix プラットフォームでは、NSPR を移植するのは難しいことではありません。そのほかの環境で NSPR を移植するのには、困難があるかも知れません。このテクニカルノートは、あなたが移植版を作成する手助けを行ないます。</td>
+</tr>
+
+<tr>
+<td><a href="tech-notes/poll-method.html">NSPR のポーリングメソッド</a></td>
+
+<td>NSPR は PRFileDesc のためのポーリングメソッドがあります。このポーリングメソッドは、通常、PR_Poll
+機能によってバックグラウンドで使用されますが、ポーリングメソッドを直接使用することもできます。このテクニカルノートは、NSPR
+リファレンスには記述されていない、このポーリングメソッドについて記述しています。</td>
+</tr>
+</tbody></table>
+
+<h3>
+<a name="TrainingMaterials"></a>トレーニング素材</h3>
+
+<blockquote>NSPR のトレーニング素材はあまり数が多くありません。以下のトピックスでは、NSPR リファレンスやテクニカルノートに記載されていない、NSPR API の使用法についてのガイドになるでしょう。<br>
+
+<h4>実例としての NSPR テストケース</h4>
+
+<blockquote>NSPR のソースツリーには、mozilla/nsprpub/pr/tests
+ディレクトリにまとまったテストケースがあります。このディレクトリにあるプログラムの多くは、アプリケーション・プログラムを論理的に動作させるために
+NSPR API のいろいろな要素をどのように使用するか、についての良い実例です。<a href="#Testing">NSPR をテストする</a> も参照してください。</blockquote>
+
+<h4>「NSPR 概観」スライド</h4>
+
+<blockquote>これは、1999 年の NSPR <a href="training/overview.ppt">概観チュートリアル</a> で使用された、マイクロソフト・パワーポイントのスライドです。</blockquote>
+
+<h4>「NSPR を使用したスレッドのプログラミング」 スライド</h4>
+
+<blockquote>このマイクロソフト・パワーポイントのスライドは、<font size="-1">スレッドの同期に</font> <a href="training/threads.ppt">条件変数を使用する</a> 事についての良いチュートリアルです。<font size="-1">条件変数は、</font><font size="-1">初心者にとって誤用しやすい物ですが、スレッドの同期には柔軟で強力な手段となります。</font></blockquote>
+</blockquote>
+</blockquote>
+
+<h2>
+<a name="EngineeringPractices"></a>技術的手法</h2>
+
+<blockquote>
+<h3>
+<a name="CheckoutBuild"></a>チェックアウトとビルド</h3>
+
+<blockquote>一般論として、NSPR チームは、NSPR のバイナリリリースを使用する事をお勧めします。あなたの興味が API
+のユーザとしてのものだけである場合は、特にそうです。もしあなたがメンテナだったり、貢献したいと思っているのであれば、NSPR
+をチェックアウトしてビルドするための <a href="eng-process/build.html">方法はここにあります</a> 。</blockquote>
+
+<h3>
+<a name="Testing"></a>NSPR をテストする<br>
+</h3>
+
+<blockquote>NSPR には、かなりの量のテストスイートがあります。<a href="eng-process/test.html">詳細はこちらをお読みください。</a></blockquote>
+
+<h3>
+<a name="ContributorsGuide"></a>NSPR 貢献者ガイド</h3>
+
+<blockquote>では、あなたは NSPR に何らかの貢献ができるのですね？ あなたの援助は役に立つと思います。あなたの援助を手助けするために、いくつかの <a href="eng-process/contributors.html">ガイドライン</a>
+を作りました。これは NSPR の目標と安定性を維持するのに大切だと確信しています。</blockquote>
+
+<h3>
+<a name="ReleaseEngineering"></a>NSPR リリース・エンジニアリング・ガイド</h3>
+
+<blockquote><a href="eng-process/release.html">NSPR リリース・エンジニアリング・ガイド</a>
+は、NSPR メンテナ向けの物です。Netscape/AOL/iPlanet のための NSPR
+をビルド、テスト、リリースするのに必要な手順が記載されています。切実に何かを調べなければならないという場合以外は、これを読む必要はありません。</blockquote>
+</blockquote>
+
+<h2>
+<a name="ContactsContributors"></a>連絡先と貢献者</h2>
+
+<blockquote><a name="NSPRMaintainers"></a>NSPR は
+Wan-Teh Chang と Darin Fisher によってメンテナンスされています。Wan-Teh は 1996年からこのプロジェクトに参加しています。Darin は 2003年からこのプロジェクトに参加しています。
+<p>NSPR の主要な貢献者としては、Alan Freier、Srinivas Lingutla、Lawrence Hardiman、Prashant Patel、
+そして Mike Belshe がいます。
+</p><p>Chris Seawood は、現在使われている autoconf ベースのビルドシステムを実装しました。
+</p><p>他にも貢献者は多数います。ここに完全なリストを掲載できない事をお詫びします。</p></blockquote>
+
+<hr width="100%">
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/nspr/index.html">英語版</a> 2004/02/10</span> - <span>和訳版 2004/10/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/nspr/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

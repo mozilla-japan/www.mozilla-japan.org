@@ -1,0 +1,57 @@
+/*
+Blogs Default Stylesheet
+Copyright (C) 2007-2008 Mozilla Japan
+*/
+
+/* Header ******************************************************************* */
+
+body.blogs-portal #header h1 { background-image: url(http://www.mozilla-japan.org/img/dalvay-extended/title/portal.png); }
+body.blogs-inside #header h1 { background-image: url(http://www.mozilla-japan.org/img/dalvay-extended/title/inside.png); }
+body.news-jp #header h1 { background-image: url(http://www.mozilla-japan.org/img/dalvay-extended/title/news-jp.png); }
+
+/* Sidebar ****************************************************************** */
+
+#sec-feedreaders .title h2 { background-position: 0 2px !important; }
+#sec-jpblogroll .title h2 { background-position: 0 -18px !important; }
+#sec-usblogroll .title h2 { background-position: 0 -38px !important; }
+#sec-usblogroll .item li { font-size: 10px; }
+
+/* Portal ******************************************************************* */
+
+.blog-digest .summary h2, .blog-digest .summary ul { position: relative; margin-left: 60px; }
+.blog-digest .summary h2 a { color: #333 !important; }
+.blog-digest .summary h2 img { position: absolute; top: 0; left: -60px; width: 50px; height: 50px; }
+.blog-digest .summary p { margin: .4em 0 .4em 60px !important; }
+.blog-digest .summary li { display: inline; margin-right: 1em; min-height: 16px; }
+.blog-digest .summary li a { padding: .2em 0 0 20px; background: transparent no-repeat center left; }
+.blog-digest .summary li.feed a { background-image: url(http://www.mozilla-japan.org/img/dalvay-extended/icon-16/feed.png); }
+.blog-digest .summary li.visit a { background-image: url(http://www.mozilla-japan.org/img/dalvay-extended/icon-16/bookmark-item.png); }
+.blog-digest .entries h3 { margin: 0; color: #888888; font-size: 10px; font-weight: normal; }
+.blog-digest .entries li { margin-top: .2em; padding: .2em 0 0 20px; min-height: 16px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/icon-16/feed-item.png) no-repeat 0 .3em; }
+
+/* Inside ******************************************************************* */
+
+.menu-box a.feed span { padding: 0; text-indent: 20px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/icon-16/feed.png) no-repeat scroll left center; }
+.subtitle { margin-bottom: 1em; }
+.subtitle.hidden { margin: 0; height: 0; overflow: hidden; }
+.entry { margin-bottom: 2em; border-bottom: 1px solid #e5e5e5; padding-bottom: 2em; overflow: hidden; }
+.entry-header { position: relative; font-size: 10px; }
+.entry-header h3 { width: 360px; font-size: 16px; line-height: 150%; }
+body.news-jp .entry-header h3 { width: 100%; }
+.entry-header h3 a { color: #036; line-height: 150%; }
+.entry-header .avatar { position: absolute; top: 0; right: 0; border: 1px solid #e5e5e5; padding: 5px 0 0 0; width: 150px; overflow: hidden; color: #666; background-color: #fdfdfd; line-height: 1; text-align: right; }
+.entry-header .avatar img { margin: -5px 0 0 .5em; width: 36px; float: right; }
+.entry-header .avatar .name { display: block; font-size: 12px; line-height: 140%; }
+.entry-body { overflow: hidden; }
+.entry-body * { margin-top: 1em; line-height: 1.8; }
+.entry-body * * { margin-top: 0; }
+.entry-body a { text-decoration: underline; }
+#entry-nav, #trackbacks, #comments, #comment-form { margin: 1.5em 0; padding: 12px 15px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/corner-box/left-top-corner-box.png) no-repeat scroll left top; }
+#entry-nav p { font-size: 10px; }
+#entry-nav p a { font-size: 12px; }
+.entry h4 { margin-bottom: 1em; border-bottom: 1px solid #ccc; }
+#trackbacks dt, #comments dt { padding: .2em .5em; background: #f3f3f3; font-size: 10px; }
+#trackbacks dl, #trackbacks dd p, #comments dl, #comments dd p { margin: 1em 0; }
+#comment-form p { margin: 1em 0; font-size: 10px; }
+#comment-form-data input, #comment-form-data textarea { display: block; font-size: 12px; }
+#comment-bake-cookie { display: inline !important; }

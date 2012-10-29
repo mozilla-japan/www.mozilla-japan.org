@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /*		sitedb.xml サイト/ページ/ファイルデータベース
+   - 
+   - URL 属性用の変数定義や、breadcrumbs 生成のために使用される
+   - 外部サイトだけではなく自サイトについても記述することでサイトマップの役割も果たす。
+   - 
+   - */ -->
+
+<!-- <?xml-stylesheet href="../xsl/sitedb.xsl" type="text/xml"?> -->
+
+<database xml:lang="ja" lang="ja" tyle="sitedb"
+	xmlns="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+<!-- /*
+<site id="" url="" name="" name-en="" title="">
+	<section id="" url="" name="" name-en="" title="">
+		<page id="" url="" name="" name-en="" title=""/>
+		<page idref=""/>
+	</section>
+	<site idref=""/>
+	<file id="" url""/>
+</site>
+*/ -->
+
+<!-- * firehacks.org * -->
+<site id="firehacks" url="http://firehacks.org/" name="Firehacks">
+	<section id="firehacks-tt" url="http://firehacks.org/tt/" name="Trans Tools" title="XML/XSL ベースのサイト構築ツール">
+		
+	</section>
+	<section id="firehacks-phpbb" url="http://firehacks.org/phpbb/" name="phpBB++" title="phpBB のカスタム版">
+		
+	</section>
+	<section id="firehacks-venkman" url="http://firehacks.org/venkman/" name="Venkman-JP" title="JavaScript Debugger Venkman の日本語化">
+		
+	</section>
+	<section id="firehacks-presentation" url="http://firehacks.org/presentation/" name="プレゼン資料" title="dynamis のプレゼン資料置き場">
+		
+	</section>
+	
+	<!-- files -->
+	<file id="firehacks-icon-favicon"			url="http://firehacks.org/favicon.ico"/>
+	<file id="firehacks-icon-tara16"			url="http://firehacks.org/images/tara16.ico"/>
+	<!-- <file id="firehacks-rss"				url="http://firehacks.org/rss.rdf"/> -->
+	<file id="firehacks-css-markup"				url="http://firehacks.org/css/markup.css"/>
+	<file id="firehacks-css-foundation"			url="http://firehacks.org/css/foundation.css"/>
+</site>
+
+<!-- * L10N Forum * -->
+<site id="l10n-forum" url="http://forums.firehacks.org/l10n/" name="L10N フォーラム" name-en="L10N Forum">
+	<section id="l10n-forum-info" url="http://forums.firehacks.org/l10n/index.php?c=1" name="Info." title="一般情報 (L10N フォーラム)">
+		<page id="l10n-forum-info-release" url="http://forums.firehacks.org/l10n/viewforum.php?f=1" name="Release" name-en="" title="リリース情報フォーラム"/>
+		<page id="l10n-forum-info-study" url="http://forums.firehacks.org/l10n/viewforum.php?f=2" name="FAQ &amp; Study" name-en="" title="学習用フォーラム"/>
+		<page id="l10n-forum-info-free" url="http://forums.firehacks.org/l10n/viewforum.php?f=3" name="FreeTalk" name-en="" title="フリートークフォーラム"/>
+	</section>
+	<section id="l10n-forum-dev" url="http://forums.firehacks.org/l10n/index.php?c=2" name="Develop &amp; Support" title="開発とサポート (L10N フォーラム)">
+		<page id="l10n-forum-dev-main" url="http://forums.firehacks.org/l10n/viewforum.php?f=4" name="Main Products" title="主要プロダクトのフォーラム"/>
+		<page id="l10n-forum-dev-ext" url="http://forums.firehacks.org/l10n/viewforum.php?f=5" name="Extentions &amp; Themes" title="拡張機能やテーマのフォーラム"/>
+	</section>
+	<section id="l10n-forum-mj" url="http://forums.firehacks.org/l10n/index.php?c=5" name="Mozilla Japan">
+		<page id="l10n-forum-mj-doc" url="http://forums.firehacks.org/l10n/viewforum.php?f=10" name="Documentation" title="ドキュメントに関するフォーラム"/>
+	</section>
+	<page id="l10n-forum-userinfo" url="http://forums.firehacks.org/l10n/profile.php?mode=viewprofile&amp;amp;u=" name="フォーラムユーザ情報" name-en="Forum User Infomation"/>
+</site>
+
+
+
+<!-- *  Mozilla Japan  * -->
+<site id="mozilla-japan" anotherid="mj" url="http://www.mozilla-japan.org/" name="Mozilla Japan">
+	<!-- Localization Center -->
+	<section id="mj-l10n" anotherid="l10n" url="http://www.mozilla-japan.org/jp/l10n/" name="ローカライズセンター">
+		<section id="l10n-firefox" url="http://www.mozilla-japan.org/jp/l10n/firefox/" name="Firefox L10N" title="Mozilla スタンドアロンブラウザのローカライズ">
+			<page id="l10n-firefox-archives" url="http://www.mozilla-japan.org/jp/l10n/firefox/archives.html" name="古いバージョンの Firefox"/>
+			<page idref="mj-firefox-requirements"/>
+		</section>
+		<section id="l10n-thunderbird" url="http://www.mozilla-japan.org/jp/l10n/thunderbird/" name="Thunderbird L10N" title="Mozilla スタンドアロンメーラのローカライズ">
+			<page id="l10n-thunderbird-archives" url="http://www.mozilla-japan.org/jp/l10n/thunderbird/archives.html" name="古いバージョンの Thunderbird"/>
+			<page idref="mj-thunderbird-requirements"/>
+		</section>
+		<section id="l10n-suite" anotherid="l10n-mozilla" url="http://www.mozilla-japan.org/jp/l10n/suite/" name="Mozilla Suite L10N" title="Mozilla アプリケーションスイートのローカライズ">
+			<page id="l10n-suite-archives" anotherid="l10n-mozilla-archives" url="http://www.mozilla-japan.org/jp/l10n/suite/archives.html" name="古いバージョンの Mozilla"/>
+			<page idref="mj-suite-requirements"/>
+		</section>
+		<section id="l10n-library" url="http://www.mozilla-japan.org/jp/l10n/library.html" name="L10N ライブラリ" name-en="L10N Library">
+			<section id="l10n-lot" url="http://www.mozilla-japan.org/jp/l10n/lot/" name="Localization Tools" title="Ant による XPI ビルドスクリプト">
+				<page id="l10n-lot-usage" url="http://www.mozilla-japan.org/jp/l10n/lot/usage.html" name="Localization Tools の使い方" name-en="Localization Tools Usage"/>
+				<page id="l10n-lot-reference" url="http://www.mozilla-japan.org/jp/l10n/lot/reference.html" name="Localization Tools 簡易リファレンス" name-en="Localization Tools Brief Reference"/>
+				<page id="l10n-lot-extension" url="http://www.mozilla-japan.org/jp/l10n/lot/extension.html" name="拡張機能の L10N 手順" name-en="Localizing Extension with Lot"/>
+				<page id="l10n-lot-config" url="http://www.mozilla-japan.org/jp/l10n/lot/config.html" name="Localization Tools の設定ファイル" name-en="Localization Tools Configurations"/>
+			</section>
+			<section id="l10n-lpdiff" url="http://www.mozilla-japan.org/jp/l10n/lpdiff/" name="LpDiff" title="言語リソース差分解析ツール">
+				<page id="l10n-lpdiff-usage" url="http://www.mozilla-japan.org/jp/l10n/lpdiff/usage.html" name="LpDiff の使い方" name-en="LpDiff Usage"/>
+			</section>
+			<page id="l10n-guide" url="http://www.mozilla-japan.org/jp/l10n/guide.html" name="L10N ガイドライン" name-en="L10N Guideline" title="ローカライズセンターでの日本語化ガイドライン"/>
+			<page id="l10n-terminology" url="http://www.mozilla-japan.org/jp/l10n/terminology.html" name="日英用語対照表" name-en="Terminology English-Japanese Table"/>
+			<section id="l10n-term" url="http://www.mozilla-japan.org/jp/l10n/term/" name="用語データベース" name-en="Terminology Database">
+				<page id="l10n-term-all" url="http://www.mozilla-japan.org/jp/l10n/term/all.html" name="日英用語対照表"/>
+				<page id="l10n-term-l10n" url="http://www.mozilla-japan.org/jp/l10n/term/l10n.html" name="L10N 指定訳語一覧"/>
+			</section>
+			<section id="l10n-faq" url="http://www.mozilla-japan.org/jp/l10n/faq/" name="よくある質問" name-en="L10N FAQ">
+				<page id="l10n-faq-about" url="http://www.mozilla-japan.org/jp/l10n/faq/about.html" name="ローカライズセンターについて" name-en="About L10N Center"/>
+				<page id="l10n-faq-jlp" url="http://www.mozilla-japan.org/jp/l10n/faq/jlp.html" name="日本語パックについて" name-en="About JLP"/>
+				<page id="l10n-faq-jajp" url="http://www.mozilla-japan.org/jp/l10n/faq/jajp.html" name="日本語版について" name-en="About Japanese Edition"/>
+				<page id="l10n-faq-general" url="http://www.mozilla-japan.org/jp/l10n/faq/general.html" name="その他の質問" name-en="other question"/>
+				<page id="l10n-faq-help" url="http://www.mozilla-japan.org/jp/l10n/faq/help.html" name="トラブルシューティング" name-en="Troubleshooting"/>
+			</section>
+			<page id="l10n-filename" url="http://www.mozilla-japan.org/jp/l10n/filename.html" name="ファイル名規則" name-en="Filename Convention" title="ローカライズセンターのファイル名規則"/>
+			<page id="l10n-links" url="http://www.mozilla-japan.org/jp/l10n/links.html" name="関連リンク" name-en="Links" title="ローカライズ関連リンク集"/>
+		</section>
+		<page id="l10n-about" url="http://www.mozilla-japan.org/jp/l10n/about.html" name="ローカライズセンターについて"/>
+		<page id="l10n-getinvolved" url="http://www.mozilla-japan.org/jp/l10n/getinvolved.html" name="協力者募集"/>
+		<page id="l10n-thanks" url="http://www.mozilla-japan.org/jp/l10n/thanks.html" name="Acknowlegement"/>
+		
+		<!-- files -->
+		<file id="l10n-tt"				url="http://www.mozilla-japan.org/jp/l10n/build.xml"/>
+		<file id="l10n-tt-library"		url="http://www.mozilla-japan.org/jp/l10n/build.library.xml"/>
+		
+		<file id="l10n-xsl-parser"		url="http://www.mozilla-japan.org/jp/l10n/xsl/parser.xsl"/>
+		<file id="l10n-xsl-page"		url="http://www.mozilla-japan.org/jp/l10n/xsl/page.xsl"/>
+		<file id="l10n-xsl-mj"			url="http://www.mozilla-japan.org/jp/l10n/tpl/mozilla-japan/mozilla-japan.xsl"/>
+		<file id="l10n-xsl-faq"			url="http://www.mozilla-japan.org/jp/l10n/tpl/mozilla-japan/faq.xsl"/>
+		<file id="l10n-xsl-product"		url="http://www.mozilla-japan.org/jp/l10n/tpl/mozilla-japan/product.xsl"/>
+		<file id="l10n-xsl-term"		url="http://www.mozilla-japan.org/jp/l10n/tpl/mozilla-japan/term.xsl"/>
+		
+		<file id="l10n-css-l10n"		url="http://www.mozilla-japan.org/jp/l10n/css/l10n.css"/>
+		<file id="l10n-css-term"		url="http://www.mozilla-japan.org/jp/l10n/css/term.css"/>
+		<file id="l10n-css-noside"		url="http://www.mozilla-japan.org/jp/l10n/css/noside.css"/>
+		
+		<file id="l10n-icon-mozilla"	url="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png"/>
+		<file id="l10n-icon-os-win"		url="http://www.mozilla-japan.org/jp/l10n/img/ico-os-win.gif"/><!-- 21x21 -->
+		<file id="l10n-icon-os-linux"	url="http://www.mozilla-japan.org/jp/l10n/img/ico-os-linux.gif"/>
+		<file id="l10n-icon-os-mac"		url="http://www.mozilla-japan.org/jp/l10n/img/ico-os-mac.gif"/>
+	</section>
+	
+	<!--  Translation Division  -->
+	<section id="mj-products" url="http://www.mozilla-japan.org/products/" name="製品情報" name-en="Products" title="Mozilla 製品概要">
+		<section id="mj-firefox" url="http://www.mozilla-japan.org/products/firefox/" name="Mozilla Firefox" title="Mozilla スタンドアロンブラウザ紹介ページ">
+			<page id="mj-firefox-requirements" url="http://www.mozilla-japan.org/products/firefox/system-requirements.html" name="Firefox システム必要条件"/>
+			<page id="mj-firefox-bottons" url="http://www.mozilla-japan.org/products/firefox/buttons.html" name="Firefox のバナー"/>
+		</section>
+		<section id="mj-thunderbird" url="http://www.mozilla-japan.org/products/thunderbird/" name="Mozilla Thunderbird" title="Mozilla スタンドアロンメーラ紹介ページ">
+			<page id="mj-thunderbird-requirements" url="http://www.mozilla-japan.org/products/thunderbird/system-requirements.html" name="Thunderbird システム必要条件"/>
+		</section>
+		<section id="mj-suite" anotherid="mj-mozilla" url="http://www.mozilla-japan.org/products/mozilla1.x/" name="Mozilla Suite" title="Mozilla アプリケーションスイート紹介ページ">
+			<page id="mj-suite-requirements" anotherid="mj-mozilla-requirements" url="http://www.mozilla-japan.org/products/mozilla1.x/system-requirements.html" name="Mozilla システム必要条件"/>
+		</section>
+	</section>
+	<section id="mj-developer" url="http://www.mozilla-japan.org/developer/" name="開発情報" name-en="Development Infomation" title="Mozilla 製品をあなたのアプリケーションにも">
+		
+	</section>
+	<section id="mj-security" url="http://www.mozilla-japan.org/security/" name="セキュリティセンター" name-en="Sopports">
+		<page id="mj-security-announcement" url="http://www.mozilla-japan.org/security/security-announcement.html" name="セキュリティと Mozilla ブラウザ"/>
+	</section>
+	<page id="mj-roadmap" url="http://www.mozilla-japan.org/roadmap.html" name="ロードマップ" name-en="roadmap" title="今後の Mozilla 開発計画"/>
+	<page id="mj-licensing" url="http://www.mozilla-japan.org/foundation/licensing.html" name="Mozilla ライセンス方針" name-en="Mozilla Licensing Policies"/>
+	<section id="mj-mpl" url="http://www.mozilla-japan.org/MPL/" name="MPL/NPL" title="Mozilla &amp; Netscape Public Licenses (使用許諾文書)">
+		<page id="mj-mpl-faq" url="http://www.mozilla-japan.org/MPL/mpl-faq.html" name="MPL FAQ" title="MPL についてのよくある質問"/>
+		<page id="mj-mpl-relicensing" url="http://www.mozilla-japan.org/MPL/relicensing-faq.html" name="MPL Relicensing FAQ" title="Mozilla のライセンス変更について"/>
+		<page id="mj-mpl-11" url="http://www.mozilla-japan.org/MPL/MPL-1.1J.html" name="MPL 1.1 日本語訳" name-en="MPL 1.1 in Japanese" title="Mozilla Public License 1.1 の日本語訳"/>
+		<page id="mj-npl-11" url="http://www.mozilla-japan.org/MPL/NPL-1.1J.html" name="NPL 1.1 日本語訳" name-en="NPL 1.1 in Japanese" title="Netscape Public License 1.1 の日本語訳"/>
+	</section>
+	<section id="mj-trademark" url="http://www.mozilla-japan.org/foundation/trademarks/" name="Mozilla Foundation 商標ポリシー" name-en="Mozilla Foundation Trademark Policy">
+		<page id="mj-trademark-policy" url="http://www.mozilla-japan.org/foundation/trademarks/policy.html" name="Mozilla 商標ポリシー" name-en="Mozilla Trademark Policy" title="Mozilla 関係の商標に関するポリシー"/>
+	</section>
+	
+	
+	<!-- About Mozilla Japan -->
+	<section id="mj-about" url="http://www.mozilla-japan.org/about/" name="組織概要" name-en="About Mozilla Japan" title="Mozilla Japan について">
+		<page id="mj-about-president" url="http://www.mozilla-japan.org/about/japan-president.html" name="代表理事挨拶"/>
+		<page id="mj-about-statutes" url="http://www.mozilla-japan.org/about/japan-statutes.pdf" name="Mozilla Japan 定款"/>
+		<page id="mj-about-faq" url="http://www.mozilla-japan.org/about/japan-faq.html" name="Mozilla Japan FAQ"/>
+		<page id="mj-about-contact" url="http://www.mozilla-japan.org/contact/" name="お問い合わせ" name-en="Contact"/>
+	</section>
+	<section id="mj-support" url="http://www.mozilla-japan.org/support/" name="サポート" name-en="Sopports" title="個人および法人向けのサービス・サポート">
+		<page id="mj-support-" url="" name=""/>
+	</section>
+	<section id="mj-press" url="http://www.mozilla-japan.org/press/" name="プレスルーム" name-en="Press Room">
+		<page id="mj-press-old" url="http://www.mozilla-japan.org/press/archives.html" name="過去のプレスリリース"/>
+		<page id="mj-preee-start" url="http://www.mozilla-japan.org/press/japan-2004-08-19.html" name="設立発表"/>
+		<page id="mj-press-articles" url="http://www.mozilla-japan.org/press/articles/" name="メディア紹介事例"/>
+	</section>
+	<section id="mj-events" url="http://www.mozilla-japan.org/events/" name="イベント情報" name-en="Events">
+		<page id="mj-events-" url="" name=""/>
+	</section>
+	<page id="mj-sitemap" url="http://www.mozilla-japan.org/sitemap.html" name="サイトマップ" name-en="Sitemap"/>
+	
+	<!-- files -->
+	<file id="mj-icon-mozilla"				url="http://www.mozilla-japan.org/images/mozilla-16.png"/>
+	<file id="mj-icon-rss"					url="http://www.mozilla-japan.org/images/rss.png"/>
+	<file id="mj-rdf-news"					url="http://www.mozilla-japan.org/news.rdf"/>
+	<file id="mj-css-print"					url="http://www.mozilla-japan.org/css/print.css"/>
+	<file id="mj-css-base-content"			url="http://www.mozilla-japan.org/css/base/content.css"/>
+	<file id="mj-css-base-template"			url="http://www.mozilla-japan.org/css/base/template.css"/>
+	<file id="mj-css-cavendish-content"		url="http://www.mozilla-japan.org/css/cavendish/content.css"/>
+	<file id="mj-css-cavendish-template"	url="http://www.mozilla-japan.org/css/cavendish/template.css"/>
+</site>
+
+
+
+<site id="mj-ftp" url="http://ftp.mozilla-japan.org/" name="Mozilla Japan FTP Server">
+	<section id="mj-ftp-org" url="http://ftp.mozilla-japan.org/pub/mozilla.org/">
+		
+	</section>
+	<section id="mj-ftp-mj" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/">
+		<section id="mj-ftp-firefox" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/">
+			<section id="mj-ftp-firefox-releases" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/"/>
+			<section id="mj-ftp-firefox-development" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/"/>
+		</section>
+		<section id="mj-ftp-thunderbird" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/">
+			<section id="mj-ftp-thunderbird-releases" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/"/>
+			<section id="mj-ftp-thunderbird-development" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/"/>
+		</section>
+		<section id="mj-ftp-mozilla" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/">
+			<section id="mj-ftp-mozilla-releases" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/"/>
+			<section id="mj-ftp-mozilla-development" url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/"/>
+		</section>
+	</section>
+</site>
+
+<!-- * もじら組関連サイト * -->
+<site id="mozilla-gumi" anotherid="mogumi" url="http://www.mozilla.gr.jp/" name="もじら組" name-en="Mozilla-Gumi" title="日本最大の Mozilla コミュニティ : もじら組">
+	<page id="mozilla-gumi-forum" anotherid="mogumi-forum" url="http://www.mozilla.gr.jp/forums/" name="もじら組 フォーラム" name-en="Mozilla-Gumi Forum"/>
+	<page id="wazilla" url="http://www.mozilla.gr.jp/wazilla/" name="和ジラ プロジェクト" name-en="Wazilla Project"/>
+	<page id="bugzilla-jp" url="http://bugzilla.mozilla.gr.jp/" name="Bugzilla-jp" title="バグ管理システム"/>
+</site>
+
+
+<!-- * mozilla.org * -->
+<site id="mozillaorg" url="http://www.mozilla.org/" name="mozilla.org" title="Mozilla 開発コミュニティ">
+	<page id="org-suite" url="http://www.mozilla.org/products/mozilla1.x/" name="Mozilla Suite" title="Mozilla アプリケーションスイート紹介ページ"/>
+	<page id="org-firefox" url="http://www.mozilla.org/products/firefox/" name="Mozilla Firefox" title="Mozilla スタンドアロンブラウザ紹介ページ"/>
+	<page id="org-firefox-why" url="http://www.mozilla.org/products/firefox/why/" name="Mozilla Firefox ブラウザに乗り換える理由" name-en="Why You Should Switch to Firefox"/>
+	<page id="org-firebird" url="http://www.mozilla.org/products/firebird/" name="Mozilla Firebird" title="Mozilla スタンドアロンブラウザ紹介ページ(旧)"/>
+	<page id="org-thunderbird" url="http://www.mozilla.org/products/thunderbird/" name="Mozilla Thunderbird" title="Mozilla スタンドアロンメーラ紹介ページ"/>
+	<page id="org-thunderbird-why" url="http://www.mozilla.org/products/thunderbird/why/" name="Mozilla Thunderbird メールを使う理由" name-en="Why You Should Use the Mozilla Thunderbird E-mail Program"/>
+	<page id="org-mlp" url="http://www.mozilla.org/projects/l10n/" name="Mozilla Localization Project" title="Mozilla 地域化プロジェクト"/>
+	<page id="org-mlp-status" url="http://www.mozilla.org/projects/l10n/mlp_status.html" name="MLP Status"/>
+	<page id="org-mlp-ja-JP" url="http://www.mozilla.org/projects/l10n/mlp_status.html#mlp_ja-JP" name="MLP - ja-JP" title="日本語版の MLP 登録"/>
+	<page id="org-roadmap" url="http://www.mozilla.org/roadmap.html" name="Roadmap" title="今後の Mozilla 開発計画"/>
+	<page id="org-mpl" url="http://www.mozilla.org/MPL/" name="MPL" title="Mozilla Public License (使用許諾文書)"/>
+	<page id="org-mpl-faq" url="http://www.mozilla.org/MPL/mpl-faq.html" name="MPL FAQ" title="MPL についてのよくある質問"/>
+	<page id="org-mpl-relicensing" url="http://www.mozilla.org/MPL/relicensing-faq.html" name="MPL Relicensing FAQ" title="Mozilla Public License (使用許諾文書)"/>
+	<page id="org-mpl-11" url="http://www.mozilla.org/MPL/MPL-1.1.html" name="MPL 1.1 原文" name-en="MPL" title="Mozilla Public License 1.1"/>
+	<page id="org-npl-11" url="http://www.mozilla.org/MPL/NPL-1.1.html" name="NPL 1.1 原文" name-en="MPL" title="Netscape Public License 1.1"/>
+	<page id="org-mpl-10" url="http://www.mozilla.org/MPL/MPL-1.0.html" name="MPL 1 原文" name-en="MPL" title="Mozilla Public License 1.0"/>
+	<page id="org-npl-10" url="http://www.mozilla.org/MPL/NPL-1.0.html" name="NPL 1 原文" name-en="MPL" title="Netscape Public License 1.0"/>
+	<page id="org-trademark" url="http://www.mozilla.org/foundation/trademarks/policy.html" name="Mozilla Trademark Policy" title="Mozilla 関係の商標に関するポリシー"/>
+	<site idref="org-ftp"/>
+</site>
+<site id="org-ftp" url="http://ftp.mozilla.org/" name="ftp.mozilla.org"/>
+
+
+
+<!-- * 関係者等の個人サイト * -->
+<site id="casbear-site" anotherid="nyozlla" url="http://suosday.g-com.ne.jp/nyozlla/" name="にょ★ずら" name-en="Nyozlla" title="カスベァさんによる Mozilla 日本語版">
+	<page id="casbear-site-birzlla" anotherid="nyozlla-birzlla" url="http://suosday.g-com.ne.jp/nyozlla/birzlla.htm" name="ばーずら"/>
+	<page id="casbear-site-chotzlla" anotherid="nyozlla-chotzlla" url="http://suosday.g-com.ne.jp/nyozlla/chotzlla.htm" name="ちょっとずら "/>
+</site>
+
+<site id="fortune-site" url="http://n.jpn.ph/mozilla/" name="Mozilla 日本語版" name-en="Mozilla in Japanese"/>
+
+<site id="kazu-site" url="http://www3.tky.3web.ne.jp/~progre/"/>
+
+<site id="kozawa-site" url="http://www013.upp.so-net.ne.jp/unha999/" name="Kozawa's Mozilla Study">
+	<page id="kozawa-site-jlp" url="http://www013.upp.so-net.ne.jp/unha999/jlp/" name="JLP 実験室" name-en="JLP Experiment"/>
+</site>
+
+<site id="level-site" anotherid="m-mozilla" url="http://level.s69.xrea.com/mozilla/" name="えむもじら" name-en="m-mozilla" title="Mozilla ニュースサイト">
+	<page id="level-site-jlp-link" anotherid="m-mozilla-jlp-link" url="http://level.s69.xrea.com/mozilla/jp.html" name="Mozilla 日本語ローカライズ版リンク集" name-en="Mozilla Japanese Localization Links" title="Mozilla 関連プロジェクトの日本語ローカライズ版のリンク集"/>
+	<page id="level-site-jlp-faq" anotherid="m-mozilla-jlp-faq" url="http://level.s69.xrea.com/mozilla/jp-faq.html" name="Mozilla 日本語ローカライズ版 FAQ" name-en="Mozilla Japanese Lozalization FAQ" title="Mozilla 日本語ローカライズ版に関して良くある質問"/>
+	<page id="level-site-jlp-faq" anotherid="m-mozilla-jlp-faq" url="http://level.s69.xrea.com/mozilla/mozbbs/bbs.cgi" name="えむもじら BBS" name-en="m-mozilla bbs"/>
+	<file id="level-site-rss" anotherid="m-mozilla-rss" url="http://level.s69.xrea.com/mozilla/rss.xml"/>
+</site>
+
+<site id="motohiko-site" url="http://www.geocities.co.jp/SiliconValley-SanJose/9076/" name="あ" name-en="a" title="もとひこさんによる Mozilla 日本語版など">
+	<page id="motohiko-site-jlp" url="http://www.geocities.co.jp/SiliconValley-SanJose/9076/JLP/" name="試製JLP" name-en="JLP Test Production"/>
+	<page id="motohiko-site-installer" url="http://www.geocities.co.jp/SiliconValley-SanJose/9076/installer/" name="インストーラ" name-en="Installer"/>
+</site>
+
+<site id="shiten-site" url="http://shiten.s13.xrea.com/" name="Mozilla Firefox 日本語版 (for Win)" name-en="Mozilla Firefox in Japanese (for Win)">
+	<page id="shiten-site-install" url="http://shiten.s13.xrea.com/install.htm" name="Mozilla Firefox インストールガイド" name-en="Mozilal Firefox Install Guide"/>
+	<page id="shiten-site-howto" url="http://shiten.s13.xrea.com/howto.htm" name="HOWTO"/>
+	<page id="shiten-site-localize" url="http://shiten.s13.xrea.com/localize.htm" name="Mozilla Firefox Windows installer のローカライズ手順書" name-en="Mozilla Firefox Windows Installer Localization Process"/>
+</site>
+
+<site id="snip-site" url="http://www33.ocn.ne.jp/~snip/mozilla/" name="まっちゃんの Mozilla 用 JLP" name-en="snip's www" title="">
+	<page id="snip-site-mozilla-jaJP" url="http://www33.ocn.ne.jp/~snip/mozilla/mozilla-jaJP.html" name="JLP 組み込み済 linux 版" name-ne="Mozilla with JLP for linux"/>
+</site>
+
+<site id="toyama-site" url="http://mozjp.hp.infoseek.co.jp/" name="Mozilla Firefox Expo" title="とおやまさんによる Mozilla zip パッケージなど"/>
+
+<site id="mal-site" url="http://www.ash.ne.jp/~mal/mozilla/"/>
+
+
+
+<!-- * その他 * -->
+
+<site id="mozillazine" url="http://forums.mozillazine.org/" name="MozillaZine" title="Mozilla コミュニティ"/>
+<site id="mozillazine-j" url="http://mozillazine.jp/" name="MozillaZine 日本語版" name-en="MozillaZine JP" title="日本語 Mozilla コミュニティ">
+	<page id="mozillazine-j-forum" url="http://mozillazine.jp/forums/" name="mozillazine.jp フォーラム" name-en="mozillazine.jp Forum"/>
+	<file id="mozillazine-j-rss" url="http://mozillazine.jp/?feed=rss2"/>
+</site>
+
+<site id="mozillatranslator" url="http://mozilla.lynggaard.org/Wiki.jsp?page=MozillaTranslator" name="Mozilla Translator" title="Mozilla ローカライゼーション支援ツールセット"/>
+<!-- サイト消滅か？ <site id="mozillatranslator" url="http://www.mozillatranslator.org/general_whatis.jsp" name="Mozilla Translator" title="Mozilla ローカライゼーション支援ツールセット"/> -->
+
+</database>

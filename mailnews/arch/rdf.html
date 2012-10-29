@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<BASE HREF="http://www.mozilla.org/mailnews/arch/">
+    <title>Mail and RDF</title>
+  
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/mailnews/arch/rdf.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+    <h1>MailとRDF</h1>
+
+    <p>Mozilla Mail は、その data 構造のほとんどを、いくつかの datasource を通して、RDF で表現します。これは、<a href="/rdf/doc/xul-template-reference.html">RDF Template</a>を使って、mailnews に特化した data を user interface で表現できるようにします。
+
+    <p>このドキュメントを読む前に、<a href="/rdf/doc/">RDF</a>について学ぶ必要があります。そうしないと、絶望的なほど混乱するでしょう。</p>
+
+    <h2>Mail RDF graphの概要</h2>
+    <p>
+      全ての account, folder, message の root resource は、<tt>msgaccounts:/</tt>と名付けられた<a href="http://lxr.mozilla.org/seamonkey/source/rdf/base/idl/nsIRDFResource.idl">RDF Resource</a>です。
+      この resource から、server, folder, 最終的に message へと到達するいくつかの arc が続きます。最終的に、graph の中の node から mail filter, annotation などをおそらく見付けることができるでしょう。これがどうやって設定されるか1つの例をここで示します。:
+    </p>
+    <p>1つの RDF graph のこの tree-style 表現において、arc は<i>italic</i>、resources は<b>bold</b>で示します。
+    <div style="border: groove; align: center">
+      <pre>
+<b>msgaccounts:/</b>
+    +-- <i>http://home.netscape.com/NC-rdf#child</i> -->
+    |     <b>imap://alecf@imap.mywork.com</b>
+    |   +-- <i>http://home.netscape.com/NC-rdf#IsServer</i> --> "true"
+    |   +-- <i>http://home.netscape.com/NC-rdf#child</i> -->
+    |         <b>imap://alecf@imap.mywork.com/INBOX</b>
+    |       +-- <i>http://home.netscape.com/NC-rdf#TotalMessages</i> --> "4"
+    |       +-- <i>http://home.netscape.com/NC-rdf#IsServer</i> --> "false"
+    |       +-- <i>http://home.netscape.com/NC-rdf#MessageChild</i> -->
+    |       |     <b>imap_message://alecf@imap.mywork.com/INBOX#1</b>
+    |       +-- <i>http://home.netscape.com/NC-rdf#MessageChild</i> -->
+    |       |     <b>imap_message://alecf@imap.mywork.com/INBOX#2</b>
+    |       +-- <i>http://home.netscape.com/NC-rdf#MessageChild</i> -->
+    |       |     <b>imap_message://alecf@imap.mywork.com/INBOX#3</b>
+    |       +-- <i>http://home.netscape.com/NC-rdf#MessageChild</i> -->
+    |             <b>imap_message://alecf@imap.mywork.com/INBOX#4</b>
+    |       etc...          
+    +-- <i>http://home.netscape.com/NC-rdf#child</i> -->
+    |     <b>mailbox://alecf@pop.mywork.com</b>
+    |   +-- <i>http://home.netscape.com/NC-rdf#IsServer</i> --> "true"
+    |   +-- <i>http://home.netscape.com/NC-rdf#child</i> -->
+    |         <b>mailbox://alecf@pop.mywork.com/INBOX</b>
+    |       +-- <i>http://home.netscape.com/NC-rdf#TotalMessages</i> --> "2"
+    |       +-- <i>http://home.netscape.com/NC-rdf#IsServer</i> --> "false"
+    |       +-- <i>http://home.netscape.com/NC-rdf#MessageChild</i> -->
+    |       |     <b>mailbox_message://alecf@pop.mywork.com/INBOX#1</b>
+    |       +-- <i>http://home.netscape.com/NC-rdf#MessageChild</i> -->
+    |             <b>mailbox_message://alecf@pop.mywork.com/INBOX#2</b>
+    |       etc...          
+      </pre>
+    </div>
+    <p>
+      もちろん、RDF で表現された property はもっと多くありますが、しかし、この例はその雰囲気を与えるでしょう。
+    </p>
+
+    <h2>Datasources</h2>
+    mail の中で使われるいくつか基本的な dataresource があります:
+    <ul>
+      <li><a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/src/nsMsgAccountManagerDS.cpp">nsMsgAccountDataSource</a> - は、msgaccounts:/ から出て来る arc について query に答えます。それを msgaccounts:/ の外の #child nodes のために尋ねるなら、account manager の全てのserver の root URI を返します。現在、返された URI の server については何も知らないことに注意しなさい。
+      <li><a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/src/nsMsgFolderDataSource.cpp">nsMsgFolderDataSource</a> - は、
+        toplevel の server folder を含んでいる mail folder の query に答えます。
+        #child arc に沿った1つの folder について尋ねるなら、その folder の中の全ての subfolder の resource を返すでしょう。
+	#MessageChild arc に沿った1つの folder について尋ねるなら、1つの folder の全ての message のための resource を返すでしょう。
+        message の総数、この folder は現在は root server かどうかなど、folder の様々な property についての query に答えるでしょう。
+      <li><a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/src/nsMsgMessageDataSource.cpp">nsMsgMessageDataSource</a> - は、folder の中の message についての query に答えます。
+        現在は、1つの message の全ての RDF property は、含んでいる folder を保存している database から来ます。
+    </ul>
+
+    <h3>DatasourceとUI</h3>
+    <p>
+      Mail は、UI を datasource に"伝統的"な方法で接続していません。
+    </p>
+      全ての UI component に渡って共有された1つの singleton datasource を持つ代わりに、我々は per-view datasource を持ちます。
+      これは、それそれの datasource の view/window に特化した data を扱うために、それそれの template-base の widget を認めます。例えば,,,??? (sorting? そのほかに何かありましたっけ?)
+    <p>
+      それぞれの window の JavaScript が、javascript の source の中で datasource の variables を宣言することによって global な variable として load されるときに、Datasource は作られます。
+      document の onload= handler で、datasource は、それそれの<a href="/rdf/doc/xul-template-reference.html">RDF template</a>の親の element で、<tt>database</tt> property の設定することによって、それらの関連した widget に付けられます。
+    </p>
+
+    <h3>RDFへdataの反映</h3>
+    依存している content が変化したとき更新される1つの dynamic な UI を持つために、1つの datasource は、data を RDF へ反映する2つの key となる方法を実現しなければなりません。 
+    <ul>
+      <li> <b>query への応答</b>: RDF が1つの resource について情報を尋ねるとき、datasource は query の結果を答えます。
+      <li> <b>RDF へ非同期に通知</b> data それ自身が変わるときに、RDF は通知される必要があります。
+    </ul>
+
+    <h4>詳細</h4>
+
+    <p><b>Queryの応答</b></p>
+    <p>Mail は、RDF Resource Factory を、mail に特化した情報を RDF resource に付加するために使います。(RDF Resource Factory の詳細は、現在、RDF documentation にあります。) RDF Resource から、QueryInterface()が、mail/news object に割り当てた後、それから情報にアクセスすることを可能にします。</p>
+
+    <p>例えば、folder の panel は INBOX の中の message の数を表示する必要があります。この column の情報は、tree の<a href="/rdf/doc/xul-template-reference.html">RDF Template</a>が、datasource の GetTarget() method を呼ぶときに、尋ねられます。この質問の target は<tt>mailbox://alecf@pop.myisp.com/INBOX</tt>と名付けられた resource  でして、その property node は、<tt>http://home.netscape.com/NC-rdf#TotalMessages</tt>と名付けられます。次は、舞台裏での基本的な振舞です。:</p>
+    <pre>
+    var target = RDF.GetResource("mailbox://alecf@pop.myisp.com/INBOX");
+    var property = RDF.GetResource("http://home.netscape.com/NC-rdf#TotalMessages");
+    var resultNode = dataSource.GetTarget(target, property, true);
+    </pre>
+    <p>folder datasource の GetTarget() の中で, <tt>target</tt>は<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/public/nsIMsgFolder.idl">nsIMsgFolder</a>へ QueryInterface 付けられます。 全てのmessages を得るために、datasource は nsIMsgFolder.GetTotalMessages()を呼ぶでしょう。最後に、この call の結果を1つの<a href="http://lxr.mozilla.org/seamonkey/source/rdf/base/idl/nsIRDFLiteral.idl">RDF Literal</a>へ変換し、GetTarget() の戻り値として戻すでしょう。</p>
+    <p>これが datasource の内側でどのように働くか示す1つの例:</p>
+    <pre>
+    var msgCountArc = RDF.GetResource("http://home.netscape.com/NC-rdf#TotalMessages");
+
+    function GetTarget(target, property, unused) {
+       var folder = target.QueryInterface(Components.interfaces.nsIMsgFolder);
+       if (property == msgCountArc) {
+           var msgCount = folder.GetTotalMessages(false);
+           var result = RDF.GetLiteral(msgCount.toString());
+           return result;
+       }
+    }
+    </pre>
+    
+    <p><b>RDF の非同期な通知</b></p>
+    <p>
+      ある mail object の data が変化したとき、そのデータは、datasource に登録された RDF の全ての observer に通知されて、RDF の中で反映されます。</p>
+    <p>
+      mail folder の例で、それぞれの folder datasource は、始めにそれ自身を、mail session と共に、1つの nsIFolderListener として、登録します。なぜなら、それは1つの folder が変化したという情報を欲しているからです。
+ それぞれの template は、自分自身を、1つの RDF observer として、登録します。
+folder の content、または、property が変化したとき、mail session に、folder listener に data が変化したことを通知することを伝えます。
+ folder datasource は、それらの property の変化を、OnAssert() または OnUnassert() の observer の呼出へ observer のために変換します。
+<p>
+
+      呼出の流れは品質的には次のようです。:
+    <p>登録:</p>
+    <ol>
+      <li>Folder datasource は自分自身を mail sesstion に folder listener として登録します。
+      <li>RDF Template は自分自身を datasource に content observer として登録します。
+    </ol>
+    通知:
+    <ol>
+      <li>Folder data が変化します。
+      <li>Folder は、mail session へその data が変化したことを通知します。
+      <li>Mail session は、folder listener へ folder が変化したことを通知します。
+      <li>Folder datasource は、RDF Content observers へその変化を通知します。
+      <li>Content observers は UI を更新します。
+    </ol>
+
+    <b>余談: この design の裏に隠れた合理性</b>
+    <p>この design をレビューしたとき、通知/登録を二重化することは必要ないように思えました。folder は、RDF Content observers に、何か変化したときに、なぜ直接通しないのでしょうか?</p>
+    <p>ここに、この design の裏に隠れた合理性があります。:</p>
+    <ul>
+      <li>全ての RDF datasource に関連した code を1箇所、それも、message や folder の場所以外の所にとどめます。
+これは、mail code を、RDF から最も自由にします。
+現在の RDF へ依存は小さいです。そして、RDF を folder や message の外にとどめることは道理にかなったことです。
+      <li>folder の変化を通知するために RDF 以外用の mechanism がある必要があります。
+我々が、RDF で行う必要の無い folder への通知を望んだ所(例えば、JavaScript/XUL から)がいくつかあります。
+RDF を使うためにそれらの listener を要求することは、不必要な API を持った不必要で負荷の高いことでしょう。
+
+      <li>folder、または mail session は、それぞれの datasource で、全ての RDF observer に知られる必要があるでしょう。これは、folder はそれらの observer のそれぞれに通知されなければならないことを意味します。
+この design では、それぞれの datasource が、自身の observer を管理することを認めます。そして、それぞれのmail session が、folder listener の1つのリストを、RDF 的に関連しているそれらの listerner のいくつかを知る必要がなく、管理することを認めます。
+    </ul>
+    <a href="mailto:mozilla-mail-news@mozilla.org?Subject=RDF%20Notifications">コメント</a>をどうぞ!
+    <hr>
+    <address><a href="mailto:alecf@netscape.com">Alec Flett</a></address>
+<!-- Created: Tue Oct  5 22:31:42 PDT 1999 -->
+<!-- hhmts start -->
+Last modified: Thu Oct  7 11:33:42 PDT 1999
+<!-- hhmts end -->
+
+<div align="right"><font size="-1">
+<a href="http://www.mozilla.org/mailnews/arch/rdf.html">
+このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。</a><br>
+またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>
+利用者の利便のためにmozilla.org 和訳プロジェクトによって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.org/jp/td/index.html">
+http://www.mozilla-japan.org/jp/td/index.html</a>
+</font></div>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/mailnews/arch/rdf.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/mailnews/arch/rdf.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

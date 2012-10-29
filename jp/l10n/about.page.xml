@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-about" basename="index" pathtoroot="../../">
+
+<meta>
+	<dc:title>ローカライズセンターについて</dc:title>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 title="人間によるあらゆる創造物の中で最も驚くべきものは、言語である。 － Giles Lytton Strachey"><tt:meta mode="title"/></h1>
+	<p>Mozilla Japan ローカライズセンターでは世界の標準オープンソースブラウザ Mozilla を日本のユーザにも手軽に幅広くご利用頂けるよう、Mozilla 製品の日本語化および関連ソフトの日本語化支援を行っております。 <abbr title="Japanese Language Pack">JLP</abbr>(日本語パック) の作成や Mozilla 製品の日本語化にご協力頂ける方や、関連ソフトの日本語化などに関心のある方は <a href="${l10n-forum}">L10N フォーラム</a> へお越し下さい。</p>
+	
+	
+	
+	<h2>日本語化作業の流れ</h2>
+	<p>Mozilla 製品の日本語化作業は 2004年 9月現在、大きく 4つの作業に分かれています。</p>
+	<ol>
+		<li><abbr title="Japanese Language Pack">JLP</abbr>(日本語パック) の作成</li>
+		<li><abbr title="Quality Assurance">QA</abbr>(品質保証) 作業</li>
+		<li>日本語版の作成</li>
+		<li>フィードバックの反映</li>
+	</ol>
+	<p>日本語版リリースまでの大まかな流れとしては、まず日本語パックを <abbr title="Xross Platform Install">XPI</abbr> 形式で作成し、それを英語版に適用して動作確認や用語のチェックなどの品質保証作業を行います。そして確認が取れたものを日本語版としてインストーラなどの形でリリースするという流れです。実際には各時点でのチェックや修正などもあるのでこれだけではありませんが、単純化すればこんな感じです。<br/>
+		ご覧の皆さんにも開発リリースを使用しての動作確認と<a href="${l10n-forum}" title="バグの報告などフィードバックは L10N フォーラムまでお願いします">フィードバック</a>などを行って頂き、日本語版の品質向上の一翼を担って頂ければ幸いです。</p>
+	
+	<tt:section id="staffs">
+		<h3>ローカライズセンター関係者</h3>
+		<dl>
+			<dt>責任者</dt>
+			<dd>dynamis</dd>
+			<dt>スタッフ</dt>
+			<dd>小沢, ふぉーちゅん, shiten, mar, とおやま, Norah, 池田</dd>
+			<dt>日本語版作成担当</dt>
+			<dd>ふぉーちゅん, shiten, とおやま</dd>
+			<dt>貢献版作成者</dt>
+			<dd>snip, ふぉーちゅん, shiten, Pink</dd>
+			<dt>Firefox ヘルプ作成担当</dt>
+			<dd>mar</dd>
+			<dt>主要な協力者</dt>
+			<dd title="名前順">Joker, level, Makoto, tomomi, ろてぃれる</dd>
+		</dl>
+	</tt:section>
+	
+	<tt:section id="buildsystem">
+		<h3>サイトビルドスクリプト</h3>
+		<p>ローカライズセンターは XSLT のデモサイトでもあります。つまり、ローカライズセンターの全てのページは <a href="http://www.w3.org/TR/xml11/"><abbr title="eXtensible Markup Language">XML</abbr></a> ドキュメントを <a href="http://www.w3.org/TR/xslt"><abbr title="Extensible Stylesheet Language Transformations">XSLT</abbr></a> により <a href="http://www.w3.org/TR/html4/"><abbr title="HyperText Markup Language">HTML</abbr></a> へと変換出力したものです。興味のある方は、各ページの拡張子を .html から .xml へと変更してブラウザ内蔵の XSLT パーサによる動的変換を体験してみて下さい。</p>
+		<p>更にその XML+XSLT も、テンプレートファイルや変数ファイルなどを <a href="http://ant.apache.org/">Apache Ant</a> で処理することにより自動生成されています。全ての元データとビルドスクリプトも公開しておりますので、そちらについても関心のある方は以下を参照してみて下さい。</p>
+		<ul>
+			<li><a href="http://moz.skillup.jp/mj/jp/">ビルドシステム公開ディレクトリ</a></li>
+			<li><a href="http://moz.skillup.jp/mj/jp/readme.txt">ビルドシステムについての簡単な説明</a></li>
+		</ul>
+	</tt:section>
+</tt:htmlbody>
+
+</page>
+</contents>

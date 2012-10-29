@@ -1,0 +1,9 @@
+/* Hack for old release notes menus */
+
+#content { position: relative; }
+
+#side {
+	position: absolute;
+	top: 0;
+	right: 50px;
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-lpdiff" basename="index" pathtoroot="../../../">
+
+<meta>
+	<dc:title>LpDiff</dc:title>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 title="無駄な手間を省いて言語リソースを効率的にメンテナンス"><tt:meta mode="title"/></h1>
+	<a href="lpdiff.browser.dtd.png"><img src="lpdiff.browser.dtd.small.png" class="screenshot" alt="LpDiff のスクリーンショット"/></a>
+	<p>LpDiff (Language Pack Diff) は Java で書かれた<!-- クロスプラットフォーム -->言語リソース差分解析ツールであり、バージョン間の差分を色分け表示したりリソース対照表を生成できます。<br/>
+		リソース対照表の出力は言語リソースファイル毎に個別の HTML を出力するだけでなく、フォルダ内の全リソースを一括比較した結果を 1 つの HTML ファイルにまとめて出力することも可能です。コマンドラインから使用することもできるため処理の自動化も可能であり、言語リソースのメンテナンスには欠かせないツールとなっています。</p>
+	<p>なお、このツールは既に <a href="${l10n-lot}">Localization Tools</a> へと統合されており、その一機能として使用することもできます。</p>
+
+
+	<tt:section id="usage">
+		<h2>使い方</h2>
+		<p>LpDiff の使い方の解説を日英両言語、スクリーンショット付で用意しました。</p>
+		<p class="indent"><a href="${l10n-lpdiff-usage}">LpDiff の使い方</a></p>
+	</tt:section>
+
+	<tt:section id="download">
+		<h2>ダウンロード</h2>
+		<p>特に理由のない限り最新版をご利用になる事をお薦めします。なお、LpDiff は Java で書かれているため、ご利用になるには <span title="Sun JDK 1.4 以降を推奨">Java の実行環境</span>が必要となります。 Java でコーディングされてはいますが、クロスプラットフォームを意識したコードとなっていないため残念ながら Mac OS X などでは動作しないようです。</p>
+		
+		<!-- product.xml からファイルリスト自動生成 -->
+		<tt:versionlist product="lpdiff"/>
+		
+		<p>ファイルの同一性確認には <a href="checksum.md5">MD5 CheckSum</a> をご利用下さい。</p>
+		<p>このソフトウェアは <a href="${org-mpl-11}">MPL 1.1</a>(<a href="${mj-mpl-11}">参考和訳</a>) の下で配布されています。<br/>
+			バグや機能追加の要望などお気づきの点がありましたら <a href="${l10n-forum-info-free}">L10N フォーラム</a> までお知らせ下さい。</p>
+		<p>原作者と現メンテナ: 古川 良一, dynamis, kozawa</p>
+	</tt:section>
+
+
+
+	<!-- 動作の詳細とか…
+	<tt:section id="spec">
+		<h2 title="LpDiff の仕様">Specifications</h2>
+		<p>現在 LpDiff で差分を解析できる言語リソースファイルは rdf, dtd, properties の 3種類です。</p>
+	</tt:section>
+	 -->
+</tt:htmlbody>
+
+</page>
+</contents>

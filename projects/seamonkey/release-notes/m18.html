@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>M18 リリースノート</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/seamonkey/release-notes/m18.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/release-notes/m18.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<center>
+<h1>
+M18 リリースノート</h1></center>
+著者: Sammy Ford <a href="mailto:sammy_ford@hotmail.com">sammy_ford@hotmail.com</a>
+<br>サミーのもとへ提案された変更をすべて送ってください。
+リリース・ノートを直接編集しないでください。
+<p>これらのリリース・ノート（最終更新:2000年11月15日）は、インストールの手順と
+M18 リリースに関係のある既知の問題について記述しています。
+フィードバックに応じて更新しますので、新しい情報を随時チェックしてください。
+<br>&nbsp;
+<table BORDER CELLPADDING=3 BGCOLOR="#99CCCC" >
+<tr>
+<td ALIGN=CENTER COLSPAN="4"><b>このドキュメントの内容</b></td>
+</tr>
+
+<tr>
+<td ALIGN=CENTER><b>インストール</b></td>
+
+<td ALIGN=CENTER COLSPAN="2"><b>既知の問題</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><a href="m18-detail.html#requirements">システムの必要条件</a>
+<br><a href="m18-detail.html#whats_new">新着情報</a>
+<br><a href="m18-detail.html#read_this">インストールする前に</a>
+<br><a href="m18-detail.html#UNIX_INSTALL">インストール - UNIX</a>
+<br><a href="m18-detail.html#WIN32_INSTALL">インストール - Win32</a>
+<br><a href="m18-detail.html#MAC_INSTALL">インストール - Mac OS</a>
+<br><a href="m18-detail.html#uninstall">アンインストール</a>
+<br><a href="m18-detail.html#FILES_USED">作成される、あるいは使用されるファイル</a></td>
+
+<td VALIGN=TOP><a href="m18-detail.html#general">全般(General)</a>
+<br><a href="m18-detail.html#browser">ブラウザ(Browser)</a>
+<br><a href="m18-detail.html#printing">印刷(Printing)</a>
+<br><a href="m18-detail.html#plugins">プラグイン(Plugins)</a>
+<br><a href="m18-detail.html#profiles">プロファイル(Profiles)</a>
+<br><a href="m18-detail.html#editor">エディタ(Editor)</a>
+<br><a href="m18-detail.html#KNOWN_ISSUES_MAIL">メール(Mail)</a>
+</td>
+
+<td VALIGN=TOP><a href="m18-detail.html#crypto">暗号(Crypto)</a>
+<br><a href="m18-detail.html#java">Java</a>
+<br><a href="m18-detail.html#dom">ドキュメント・オブジェクト・モデル(DOM)</a>
+<br><a href="m18-detail.html#event">イベントの取り扱い(Event Handling)</a>
+<br><a href="m18-detail.html#linux_fonts">フォントの問題(Font Issues)</a>
+<br><a href="m18-detail.html#INTL_ISSUES">国際化(International)</a></td>
+</tr>
+</table>
+
+<p><b>Mozilla と関わっていくには</b>
+<ul>
+<li>
+見つけたバグは <a href="http://www.mozilla.org/quality/help/bug-form.html">Bugzilla Helper</a>を使って<b>報告してください</b>。
+<BR>(訳者注: 日本語で報告可能な <a href="http://bugzilla.mozilla.gr.jp/">Bugzilla-ja</a> や、その Bugzilla-ja向けの <a href="/quality/help/bug-form.ja.html">Bugzilla-ja Hepler</a>があります。)
+</li>
+
+<li>
+<b>既知の問題に関する詳細な内容</b>は、 最新の
+<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&resolution=FIXED&email1=&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&target_milestone=m15&short_desc=&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&status_whiteboard=&status_whiteboard_type=substring&newqueryname=&form_name=query&order=assign.login_name%2C%20bugs.priority%2C%20bugs.bug_severity">修正されたバグ</a>
+のリストを見てください。</li>
+
+<li>
+<b>それぞれのマイルストーンの機能の状態や注意事項</b>は、<a href="/projects/seamonkey/milestones/index.html">milestone
+page</a> を見てください。</li>
+
+<!-- 原文コメント ---
+<li>
+<b>Use the Full Circle builds</b> -- now available on all platforms, including
+Mac OS. You can help by downloading the <a href="http://www.mozilla.org/projects/seamonkey/release-notes/">M81
+Milestone with Full Circle</a>. If Mozilla crashes, you are given the option
+to send Netscape <a href="news://news.mozilla.org/netscape.public.mozilla.crash-data">crash
+information</a> that will be used to help improve Mozilla's stability.</li>
+---- 原文コメント -->
+<!-- アンコメントに備えて ---
+<li>
+<b>Full Circle buildsを使う</b> -- 現在は Mac OSを含むすべてのプラットフォームで利用可能です。
+あなたは <a href="/projects/seamonkey/release-notes/">Full Circle を備えた M18 Milestone</a> をダウンロードする事で
+（わたしたちを）手伝うことができます。
+Mozilla がクラッシュしたとき、Netscape 社に <a href="news://news.mozilla.org/netscape.public.mozilla.crash-data">クラッシュ情報（crash information）</a> を送る設定にしてあれば、その情報は Mozilla の安定性の向上のために利用されます。</li>
+---- アンコメントに備えて -->
+
+<li>
+<b><a href="http://www.mozillazine.org/talkback.html?article=1074">Bug Day</a> に参加してください。</b>
+もしもあなたが Mozillaのテストを支援したいのだけどもどこからスタートするべきか判らなければ、火曜日の午後3時（太平洋沿岸標準時）に irc.mozilla.org の #mozillazine という <a href="http://www.irchelp.org">IRC</a> チャンネルに参加してください。手順と始める手助けをしてくれる親切な人たちに会う事ができます。 </li>
+
+<li>
+<b><a href="/newlayout/bugathon.html">BugAThon</a> へ参加して下さい</b>。
+あなたがスクリプトを書くことができれば、テストケースを簡単にすることを支援できます。</li>
+</ul>
+もっと深く関わりたい場合は、<a href="/get-involved.html">お勧めのスタートポイント（suggested starting points）</a>をチェックして下さい。</p>
+
+<br>
+<br>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/release-notes/m18.html">英語版</a> 2000/11/15</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/release-notes/m18.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

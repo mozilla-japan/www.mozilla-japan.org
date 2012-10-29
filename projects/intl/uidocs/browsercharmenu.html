@@ -1,0 +1,1281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>International Browser Character Coding Menu UI/UE Specifications</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/intl/uidocs/browsercharmenu.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/intl/uidocs/browsercharmenu.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+
+
+
+<center>
+<h2>
+Seamonkey ブラウザ 文字コードメニュー UE Specifications</h2></center>
+
+<center>Version 1.3</center>
+
+<p>Written by: <a href="mailto:%20momoi@netscape.com">Katsuhiko Momoi</a>
+<br>Last Update: 11/29/99
+<br>Discussants: <a href="mailto:bobj@netscape.com">Bob Jung</a>, <a href="mailto:momoi@netscape.com">Kat
+Momoi</a>, <a href="mailto:erik@netscape.com">Erik van der Poel,</a> <a href="mailto:cata@netscape.com">Catalin
+Rotaru</a>, <a href="mailto:ftang@netscape.com">Frank Tang</a>, <a href="mailto:mkaply@us.ibm.com">Michael
+Kaply</a>.
+<br>Thanks to earlier comments &amp; suggestions&nbsp; by <a href="mailto:tague@netscape.com">Tague
+Griffith</a> &amp; <a href="mailto:brade@netscape.com">Kathy Brade</a>.
+<br>Comments &amp; Suggestions to: Mail: <a href="mailto:mozilla-i18n@mozilla.org">mozilla-i18n@mozilla.org</a>,
+Newsgroup: <a href="news:netscape.public.mozilla.i18n">netscape.public.mozilla.i18n</a>
+<br>&nbsp;
+<p><b><font color="#000000">コンテンツ:</font></b>
+<ul>
+<li>
+<a href="#preliminary">前書き</a></li>
+
+<li>
+<a href="#general">文字コードメニュー: 一般的な特徴と仕組み</a>.</li>
+
+<ul>
+<li>
+<a href="#treeview">ツリービュー イラストレーション</a></li>
+
+<li>
+<a href="#menuillustr">２段メニュー イラストレーション</a></li>
+</ul>
+
+<li>
+<a href="#definitions">Semantics/Definitions of various concepts</a></li>
+
+<li>
+<a href="#todo">将来の To-Do リスト</a></li>
+
+<li>
+<a href="#version">バージョン履歴</a></li>
+
+<ul>
+<li>
+<a href="#v13">Version 1.3</a></li>
+
+<li>
+<a href="#v12">Version 1.2</a></li>
+</ul>
+</ul>
+
+<p><br><a NAME="preliminary"></a><b><font color="#FF0000">Note 1: </font></b>
+以下は、上に並べた人々との間で議論したものをベースにした、私のオリジナルドキュメントである。
+
+それは、エンコード/文字セット関連の問題や将来の to-do アイテムと同様に、
+ブラウザ文字コードメニュー UI の提案を含んでいる。
+
+以前のバージョン(1.1 and 1.2)との違いは、このドキュメントの最後に
+加えられたバージョン履歴セクションに記述されている。
+
+<br><b><font color="#FF0000">Note 2:</font></b>
+
+このドキュメントは、ブラウザ文字コードメニュー UI 詳説を含んでいる。
+それは、 Editor や Messager とほぼ同じメニューを共有すると思われる。
+しかしながら、他のコンポーネントのための文字コードメニューの詳細は、
+いずれ遅れて来るだろう。
+ここで描かれたメニューの詳説は、より早い段階のドキュメントの中の
+他の提案にとって代わるだろう。
+
+<br><b><font color="#FF0000">Note 3: </font></b><font color="#000000">
+"encoding"(そして "charset") という名前は、
+文字コードメニューの下に並べられた個別アイテムを参照させるために、
+このドキュメントの中で同じ意味で使われるだろう。</font>
+
+<br>&nbsp;
+<h3>
+<a NAME="general"></a><b>(動的な) 文字コードメニュー: 一般的な特徴:</b></h3>
+
+<ul>
+<li>
+<b><font color="#000000">Naming:</font></b></li>
+
+<ul>
+<li>
+<font color="#000000"><b>Browser と Messenger</b> と <b>Editor </b>
+は、同じ</font>
+<b><font color="#FF0000">View | Character Coding</font><font color="#000000">&nbsp;</font></b><font color="#000000">
+メニュー構造を共有する。
+( 他の名称の選択は: <b>Character Encoding</b> と <b>Character Code</b>)
+
+
+<b>Character Coding&nbsp;</b> は mozilla-i18n newsgroup の中で述べられた、
+強力なサポートを持っていた。</font></li>
+</ul>
+
+<li>
+<b><font color="#000000">メニューの利便性:</font></b></li>
+
+<ul>
+<li>
+<font color="#000000"><b>Character Coding </b>メニューは
+<b>View section</b>の下のどのブラウザウィンドウインスタンス上でも利用できるだろう。
+
+それはまた、 <b>View | Frame Character Coding.</b>  配下で現在開いている
+どのフレームの中でも利用可能になるだろう。</font></li>
+
+<li>
+<font color="#000000"><b>Character Coding</b> メニューはまた、
+主な <b>View | Character Coding</b> メニューを持つ全てのウィンドウ上と、
+そのようなウィンドウの中に含まれるフレームの中の Contextual なメニュー から
+利用できるべきである。</font></li>
+
+<li>
+<a NAME="menucriteria"></a><b><font color="#000000">他のウィンドウ:</font></b></li>
+
+<ul>
+<li>
+Editor、Messenger、そして Messenger Compose ウィンドウが標準的で contextual な
+メニューを利用できることが期待されている。</li>
+
+<li>
+他のウィンドウについてはどうだろう？一般的に言えば、文字コードメニューは
+ソースデータエンコーディングが Mozilla で要求されている Unicode では
+ないソースデータエンコーディングの、または、 Mozilla 内部で使用される Unicode
+とは別の、何らかのエンコーディングで出力される、全てのウィンドウ、
+で使用されるために利用できるべきだ。
+
+<a href="#todo">Future To-Do section</a> の中のより多くの情報を見なさい。
+
+</li>
+</ul>
+</ul>
+
+<li>
+<b><font color="#000000">メニュー構造:</font></b></li>
+
+<ul>
+<li>
+<font color="#000000"><b>View | Character Coding&nbsp;</b> メニューは、
+下のイラストのような <b>２階層構造</b>を持つ。(Note: ツリービューの中のイラスト、<b>
+"-->" </b> はメニューの別のレベルのオープンを意味している。)</font></li>
+
+<li>
+<font color="#000000">
+それは、平均的なユーザは階層-1 のメニューを最も使用し、
+階層-2 のメニューはより進んだ国際的なユーザをターゲットとしている
+ことを予期している。</font></li>
+
+<li>
+<font color="#000000">
+カスタマイズ設定ダイアログは階層-1のメニューの中野アイテムのために
+利用されるだろう。それは、一般的なユーザが頻繁に設定ダイアログを
+使用すべきではないという、私たちの希望である。
+これらは、インストレーションで適切に設定されるか、
+ユーザの選択したデフォルト言語に従って調節されて出荷されるべきである。</font></li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<br><a NAME="treeview"></a><b>ツリービュー イラストレーション:</b>
+<ul><b><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+View --></font></b>
+<br><b><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Character Coding -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</font><font color="#3366FF">(The 1st tier)</font></b></ul>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</font><font color="#FF0000">(Auto-Detect modules)</font><font color="#000000">&nbsp;
+--</font><font color="#FF0000"> more than 1 Auto-Detect modules can be
+selected to appear here via</font>
+<br><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Customize ... but only one can have a <b>check mark</b>.</font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Auto-Detect (Japanese)
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</font>Auto-Detect (Korean)
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+----------------------------------------- (solid line separator)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</font><font color="#FF0000">(Static menu items)</font><font color="#000000">
+-- </font><font color="#FF0000">no limit to how many Static encoding items
+can appear here via Customize ... Pref Dialog</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Japanese (Shift_JIS)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Japanese (ISO-2022-JP)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Japanese (EUC-JP)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</font><font color="#FF0000">(Encoding History menu items)&nbsp;</font><font color="#000000">
+-- up to 5 items with recent encodings w/ most recent at top.</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Western (ISO-8859-1)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Cyrillic (KOI8-R)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Chinese Traditional (Big5)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+More ...&nbsp; - ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font color="#3366FF">(The
+2nd tier)</font></b>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(The remaining encoding names listed alphabetically without separators)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Central European (ISO-8859-2)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Central European (Windows-1250)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Central European (MacCE)</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+.....</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+.....</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....</font>
+<br>
+<hr WIDTH="100%">
+<br><a NAME="menuillustr"></a><b>２階層のメニューイラストレーション:</b>
+<p><font size=+2>1st Tier Menu (View | Character Coding):</font>
+<ul>&nbsp;
+<table BORDER CELLSPACING=2 CELLPADDING=0 WIDTH="228" HEIGHT="62" >
+<tr>
+<td WIDTH="100%"><b><font size=-1>Auto-Detect (Japanese)</font></b>
+<br><b><font size=-1>Auto-Detect (Korean)</font></b></td>
+</tr>
+
+<tr>
+<td WIDTH="100%"><b><font color="#000000"><font size=-1>Japanese (Shift_JIS)</font></font></b>
+<br><b><font color="#000000"><font size=-1>Japanese (EUC-JP)</font></font></b>
+<br><b><font color="#000000"><font size=-1>Japanese (ISO-2022-JP)&nbsp;</font></font></b>
+<br><b><font size=-1>Western (ISO-8859-1)</font></b>
+<br><b><font size=-1>Cyrillic (KOI8-R)</font></b>
+<br><b><font size=-1>Chinese Traditional (Big5)</font></b>
+<div align=right><font size=-1>&nbsp; <b>More ...</b></font></div>
+</td>
+</tr>
+</table>
+
+<p>* もし、ユーザが最初のセクションの一つを選択したならば、
+これらは Auto-detectin モジュールに対して <b>check mark</b> されるべきである。
+<br>** それらは、現在のドキュメントの '決定された' エンコーディングに一番近い
+<b>bullet</b> でなくてはならない。</ul>
+
+<p><br><font size=+2>2nd Tier Menu (View | Character Coding | More ...):</font>
+<p><b><font size=-1>** Alphabetical Listing without separators</font></b>
+<ul>&nbsp;
+<table BORDER CELLSPACING=2 CELLPADDING=0 WIDTH="213" >
+<tr>
+<td WIDTH="100%"><b><font size=-1>.Arabic (ISO-8859-6)</font></b>
+<br><b><font size=-1>Arabic (Windows-1256)</font></b>
+<br><b><font size=-1>Armenian (ARMSCII-8)</font></b>
+<br><b><font color="#000000"><font size=-1>Central European (ISO-8859-2)</font></font></b>
+<br><b><font color="#000000"><font size=-1>Central European (Windows-1250)</font></font></b>
+<br><b><font color="#000000"><font size=-1>Central European (MacCE)</font></font></b>
+<br><b><font size=-1>etc.</font></b>
+<br><b><font size=-1>...</font></b>
+<br><b><font size=-1>...</font></b></td>
+</tr>
+</table>
+
+<p>** <b><font color="#000000">Every new window or frame</font></b> should
+have a Character Coding menu consisting of&nbsp; the Tier 1 and Tier 2
+menus. See below for details of these menus.</ul>
+
+<hr WIDTH="100%">
+<ul>
+<ul>
+<li>
+<b><font color="#000000">階層１: View | Character Coding メニュー:</font></b></li>
+
+<ul>
+<li>
+<font color="#000000"><b>Section 1:</b> 自動判別モジュールセクション.
+</font><font color="#FF0000">
+<b>checkmark</b>は使用されているモジュール上に位置する。</font></li>
+
+<ul>
+<li>
+<font color="#000000">
+Netscape ブランドのために、そこには選択された(=checkmardされた)一つの国際的な自動判別モジュール、
+</font>すなわち、
+<b>Auto-Detect(Universal)<font color="#000000">.&nbsp;</font></b>がある。
+<font color="#000000">
+もしそこで </font><b>Auto-Detect (Universal)</b><font color="#000000">
+が利用できない(e.g. Mozilla builds)ならば、</font> 我々はこの階層で
+他のモジュール他のモジュールを持つことになる。最終的なリストは
+存在するモジュールの利便性と有効性に依存し、Mozilla のための提案された２モジュールは:
+<b>Auto-Detect (Japanese) </b> と <b>Auto-Detect (Korean).</b>である。
+
+そこには、Mozilla のあるバージョンのために、少なくとも一つの自動判別モジュール
+がなくてはならない。そこには、Mozilla リリースのためのフィールドから貢献された
+Universal Detector があることが望まれる。</li>
+
+<li>
+<b>自動判別モジュールリストのカスタマイズ:</b></li>
+
+<ul>
+<li>
+設定ダイアログを通してカスタマイズされた何が、階層１のリストに現れるだろう。
+より詳細は、<a href="#customizepref">以下</a>を見なさい。</li>
+
+<li>
+あなたは、ユーザが好む階層１のメニュー上に現れる多くの判別モジュールと
+同じようにカスタマイズすることができるが、
+１度に、１つだけが使われる／有効である。</li>
+</ul>
+
+<li>
+<b>モジュール名: </b>
+現在利用可能なモジュールは以下の名前をつけている。
+<b> </b>(<b>Note</b>:<b> </b>
+"名前" は M11 から変更した。)
+将来のモジュールはこの名称規定に従うべきである。</li>
+
+<ul>
+<li>
+Auto-Detect (Universal)</li>
+
+<li>
+Auto-Detect (Chinese)</li>
+
+<li>
+Auto-Detect (Chinese Simplified)</li>
+
+<li>
+Auto-Detect (Chinese Traditional)</li>
+
+<li>
+Auto-Detect (East Asian) -- covers CJK</li>
+
+<li>
+Auto-Detect (Korean)</li>
+
+<li>
+Auto-Detect (Japanese)</li>
+
+<li>
+Auto-Detect (Russian)</li>
+
+<li>
+Auto-Detect (Ukrainian)</li>
+</ul>
+</ul>
+
+<li>
+<font color="#000000"><b>Section 2:</b>
+静的(カスタマイズ可能)なエンコーディング + ５つの新しいエンコーディングのリストは
+現在のブラウザウィンドウの中で使用される。</font></li>
+
+<ul>
+<li>
+<font color="#000000">
+階層１のメニューの Section 1 と Section 2 の間にはラインセパレータがある。
+</font></li>
+
+<li>
+<font color="#000000">
+<b>このセクションのトップに</b> は<b> 静的で／好みのエンコーディング</b>
+リストである。
+L10n は、違うマーケットのために、そこにあるべきであるどんなエンコーディングにでも
+カスタマイズされるだろう。
+US マーケットのために、デフォルトは<b>Western(ISO-8859-1).</b> であるだろう。
+</font><font color="#FF0000">そこには、このセクションの中に並べられた
+少なくとも一つのエンコーディングリストがユーザのデフォルト言語のために存在する。
+</font>
+<font color="#000000">このリストは何らかの新しく開かれたブラウザウィンドウの中に現れる。
+ユーザはこのリストを <b>Customize Character Coding Menu</b> 設定ダイアログを
+通してカスタマイズできる。( 詳細のために、言語関連の設定の<a href="#customizepref">以下</a>
+を見なさい) いくつの静的なアイテムが階層１に表示されることができるか、制限はない。
+もしカスタマイズ設定ダイアログを通して選択された１つの言語ファミリーより多くければ、
+選択されたエンコーディングはファミリーの間にセパレータ無しで並べられるだろう。</font></li>
+
+<li>
+<font color="#000000"><b>このセクションの次</b> </font><font color="#FF0000">--
+セパレータ無しで --</font><font color="#000000"> は現在のウィンドウコンテキストで
+使用されている<b>新しいエンコーディング(５つ以上の)</b>のリストである。
+エンコーディングのキャッシュ制限は５である。</font></li>
+
+<ul>
+<li>
+<font color="#000000">新しいウィンドウやフレーム毎の<b>エンコーディング キャッシュ</b>
+は一つのグローバルキャッシュリストを参照する。どの新しいウィンドウやフレームも
+新しいカレントエンコーディングを取得したのと同様に、このリストを更新する。
+</font></li>
+
+<li>
+<font color="#000000">エンコーディングキャッシュリストは
+セッションからセッションへと引き継がれるべきである。</font></li>
+</ul>
+
+<li>
+<font color="#000000">マークされたエンコーディングを示す<b>bullet</b> は
+Mozilla で決定された通りの<b>現在の (ドキュメント) エンコーディング／文字セット</b>
+である。
+
+Bullet なアイテムは<b>静的な</b>メニューセクションか<b>最も新しい</b>
+エンコーディングセクションのどちらかになることができる。
+（<b>現在の Encoding/Charset</b> とメニュー関連アクションの意味するところのために
+下を見なさい。）</font></li>
+</ul>
+</ul>
+
+<li>
+<b><font color="#000000">2nd Tier: The rest of available encoding items.</font></b></li>
+
+<ul>
+<li>
+<b><font color="#000000">More ...:</font></b></li>
+
+<ul>
+<li>
+<font color="#000000">This menu will open to a&nbsp; list of the remaining
+Character encoding sorted alphabetically </font><font color="#FF0000">without
+a separator between groups</font><font color="#000000">. For example, all
+Japanese items will precede all Unicode items, etc. The list here will
+include <b>the entire encodings set minus the Static and Most Recent items</b>.
+(Note: This will include "User-Defined".)</font></li>
+
+<li>
+<font color="#000000">We will use the UI names of encodings for sorting.
+Thus the encodings under the same language or encoding family will cluster
+together. We have an internal document by <a href="mailto:bobj@netscape.com">Bob
+Jung</a> which lists the UI names to be used for Mozilla but this is not
+currently externalized to the public. However, UI names used in M11 Release
+builds and later under the 6 sub-menus with names like <b>View | Character
+Set: ISO</b> contain the correct UI names for encodings to be used. Until
+the latter document is externalized, the reader is referred to the encoding
+UI names in recent Mozilla builds.</font></li>
+
+<li>
+<font color="#000000">The menu will include dynamic additions if encoding/charset
+plugins exist in the CharPlugin directory. See </font><a href="http://www.mozilla.org/projects/intl/extensibility-model.html">Cata's
+extensibility model document</a><font color="#000000"> for details.</font></li>
+
+<li>
+<font color="#000000">This menu must be scrollable so that the entire list
+will be visible under all platforms.</font></li>
+</ul>
+</ul>
+</ul>
+
+<li>
+<a NAME="customizepref"></a><b>Customize ... Preference Dialogs:</b></li>
+
+<ul>
+<li>
+Both Auto-Detect menu and Static/Most Recent encodings menu will be customizable
+via <b>Customize ... Preference Dialogs</b>. (In an earlier proposal, these
+Dialogs were also available from the menus, but they were eliminated in
+version 1.2 of the proposal.)</li>
+
+<li>
+These preference dialogs allow the user to modify/customize the target
+menu to add or delete items to/from the menu from/to a complete list of
+encoding/detector items. The dialog window should also allow the user to
+change the ranking of the target list items.</li>
+
+<li>
+The current suggestion for UI is to adopt/adapt the template used in the
+"Customize" dialog window for the Browser and Messenger sidebar window.
+This is a re-usable dialog and easily adaptable to our needs. See this
+Mozilla Customize dialog for Sidebar window for illustration:</li>
+
+<p><br><img SRC="customdlg.jpg" NATURALSIZEFLAG="0" height=328 width=392>
+<br>&nbsp;</ul>
+</ul>
+
+<h3>
+<a NAME="definitions"></a><b><font color="#000000">意味論(Semantics):</font></b></h3>
+
+<ul>
+<ul>
+<li>
+<font color="#000000"><b>View |&nbsp; Character Coding メニュー</b>による選択状況の
+<b>変更</b>は、以下を意味します。</font></li>
+
+<ul>
+<li>
+<font color="#000000">現在のページやメッセージのソースが、</font><b><font
+color="#FF0000">選択された </font></b><font color="#000000">エンコーディングで記
+述されていると仮定して、それらを<b>読み込み/再読み込み</b>します。私達はこの考え
+方にこだわりを持っています。</font></li>
+
+</ul>
+
+<li>
+<font color="#000000"><b>「現在の エンコーディング/文字集合」</b>:</font></li>
+
+<ul>
+<li>
+<font color="#000000">Character Coding メニューにおいては、<b>「現在のエンコーディ
+ング/文字集合」</b>は、常に<b>bullet(黒い丸印)</b>で示されます。全ての Character Coding メ
+ニューにおいて、bulletが示されていなくてはなりせん。「現在のエンコーディング」を
+示す印が付いていないような文書は存在しません。Mozillaにおいては、自動識別モジュー
+ルはもはやエンコーディングの一種としては扱われないということに注意してください。
+これは、<b>bullet</b>が常に現実のエンコーディングを示していることを保証するため
+であり、このようにしなければ、「現在のエンコーディング」の意味が首尾一貫しなくな
+るからです。</font></li>
+
+
+<li>
+「現在のエンコーディング/文字集合」 の決定は、以下の項目の順番で行われます。</li>
+
+<ul>
+<li>
+HTTP Charset (サーバ/スクリプトより)</li>
+
+<li>
+文書の Meta-Charset タグ</li>
+
+<li>
+自動識別されたエンコーディング(選択されていた場合)</li>
+
+<li>
+直前に用いられていた、「現在のエンコーディング/文字集合」</li>
+
+<li>
+「予備のエンコーディング」(Character Coding メニューの一覧の最初に表されているエンコー
+ディング) -- 上記の全てにあてはまらない場合、つまり、ブラウザが **最初に** 開い
+たページが、空白ページであった場合や、HTTP プロトコルによっても、Metaタグによっ
+ても、自動識別によっても charset (文字集合)を得られないような文書であった場合。
+</ul>
+
+<li>
+上記のアルゴリズムは、ユーザが以前読んだページにもう一度戻って来た場合には適用
+<b>されません</b>。そのような場合には、キャッシュされていたエンコーディングが使
+用されます。</li>
+
+
+<li>
+上記のアルゴリズムにおいて、<b>「現在のエンコーディング/文字集合」</b>を <b>直前
+の</b>「現在のエンコーディング」として<b>現時点での</b>「現在のエンコーディング」
+の決定に用いる際には、<b>「現在のエンコーディング/文字集合」</b>は<b>「デフォルトの
+エンコーディング/文字集合」</b>と捉えることができます。それ以外の状況においては、エ
+ンコーディングに bulletが付けられていることは、現時点においてMozillaがそのエンコー
+ディングを文書のエンコーディングと見倣しているということを示しているので、
+bulletが付いているエンコーディングを<b>「現在のエンコーディング」</b>と呼んだ方
+が便利です。上記以外の場合では、以下で述べる<b>予備のエンコーディング</b>の方が
+「デフォルトのエンコーディング」と呼ぶにふさわしいものです。</li>
+
+</ul>
+
+<li>
+<b>自動識別モジュール:</b></li>
+
+<ul>
+<li>
+ユーザは<b>Customize.. 設定ダイアログ</b>を用いて、階層1のリストに表示さ
+れる自動識別モジュールの名前を複数選ぶことができます。しかし、その中で同時に
+使用できるのは、一つだけです。</li>
+
+<li>
+現時点で選択されている自動識別モジュールは<b>チェックマーク</b>で示されます。自
+動識別モジュールは、「現在のエンコーディング」として何が選択されているかに関係な
+く適用されるので、bulletによって示される「現在のエンコーディング」とは視覚的に異
+なる印によって示されます。</li>
+
+<li>
+入手したモジュールを簡単に追加できるようなアーキテクチャが採用されています。モジュ
+ールの追加方法については後で説明します。</li>
+
+<li>
+<b>国際的な自動識別モジュール(Universal Detection module(s)):</b></li>
+
+<ul>
+<li>
+もし、文字コードの<b>国際的な自動識別</b>モジュールとして有効なものを入手できな
+いならば、私達は少くとも一つの自動識別モジュールをメニューに載せます。地域版
+(L10n)は、言語/エンコーディングに固有の、適切な自動識別モジュールと共に配布され
+るでしょう。(現時点での私達の提案については、上記を参照してください。)</li>
+
+<li>
+<b>国際的な自動識別</b>モジュールを入手できた場合は、それを全ての言語版でのデフォ
+ルトの自動識別モジュールとします。ただし、その場合でも、私達は<b><font
+color="#000000">Customize Auto-Detect ...</font>設定ダイアログ</b>によって、他の
+言語/エンコーディングの識別モジュールを使用できるようにするでしょう。
+
+<li>
+この文書が書かれている時点において、Mozillaのビルド(Netscape ブランドのビルドで
+はなく)には、<b>国際的な自動識別</b>モジュールが含まれる予定はありません。その理
+由は、国際的な自動識別に関する私達の現時点での計画は、サードパーティーによる商用
+製品に基づくものだからです。 <font color="#FF0000">Mozillaの共同体の誰かが国際的
+な自動識別モジュールを作ることができるならば、どんなに素晴しいことでしょう。
+</font></li>
+
+</ul>
+
+<li>
+各モジュールの有効性は検証され、有効でないモジュールは、ついにはモジュールの一覧
+から削除されるでしょう。</li>
+</ul>
+
+<li>
+<b>「予備のエンコーディング」:</b></li>
+
+<ul>
+<li>
+コミュニケータ(Communicator)4.x においては、"Set Default Encoding" (「標
+準の文字コードセットに設定」)メニューにおいて、「標準」のエンコーディングを設定
+することができました。</li>
+
+<li>
+Mozillaにおいては、もはやこの設定項目は存在しません。しかし、<b>「予備のエンコー
+ディング」</b>という概念は残してあります。それは、常に<b>静的なエンコーディングのメニュー
+の最初に表示される項目</b>になります。それは、HTTP の charset、meta HTTP-Equive
+タグ、自動識別、直前の「現在のエンコーディング」のいずれを用いてもエンコーディン
+グを決定できないような場合に用いられます。</li>
+
+<li>
+Mozillaにおいては、コミュニケータ4.xの場合とは違い、「予備のエンコーディング」は
+極めて限定された状況でのみ用いられることが期待されます。</li>
+
+<li>
+「予備のエンコーディング」は、設定ダイアログにおいて"<b>Default</b>"という単語を
+後に付けて表示されることが期待されます。詳しくは、<a href="#todo">今後の課題
+</a>の項目を参照してください。</li>
+
+</ul>
+
+<li>
+<b><font color="#000000">文字集合/エンコーディングの上書き:</font></b></li>
+
+<ul>
+<li>
+<font color="#000000">ユーザがメニューを用いてエンコーディングを変更すると、
+1) サーバにより指定された HTTP の charset、
+2) 文書の Meta-charset 情報、
+3) 自動識別の結果、
+4) 直前に選ばれていた/予備のエンコーディング
+<b>を用いて決定されたエンコーディングを、上書きすることができます。</b></font></li>
+
+
+<li>
+<font color="#000000">新しい文書が読み込まれた場合や、現在の文書が
+<b>Super-Reloading</b>によって再読み込みされた場合など、文書がその大元となるペー
+ジを参照して書換えられた場合には、上書きは持続しません。既に行ってしまった上書き
+を取り消すために、ユーザは文書を Super-Reload することができます。</font></li>
+
+
+<li>
+<font color="#000000">通常の再読み込みにおいては、上書きは持続します。</font></li>
+
+<li>
+<b><font color="#FF0000">未解決の問題:</font></b></li>
+
+<ul>
+<li>
+<font color="#FF0000">文字集合/エンコーディングの上書きは、最上位の文書にのみ影響
+すべきでしょうか、それとも最上位の文書に含まれる全てのフレームに影響すべきでしょ
+うか?</font></li>
+
+<li>
+<font color="#FF0000">(Michael Kaplyが提案したように、)設定メニューに、上書きの
+挙動を制御するような項目を設けるべきでしょうか?例えば、「常に文書に指定されたエ
+ンコーディングを尊重する」とか「ユーザ指定のエンコーディングを使う」といったよう
+に。</font></li>
+
+</ul>
+</ul>
+
+<li>
+<b><font color="#000000">継承:</font></b></li>
+
+<ul>
+<li>
+コミュニケータ4.xにおいては、新しいウィンドウを開く際には、親となるウィンドウで
+用いられていたエンコーディングが継承され、親ウィンドウのエンコーディングが不明で
+ある場合にのみ、「標準」のエンコーディングが用いられていました。</li>
+
+<li>
+Mozillaにおいては、新しいウィンドウにおいても、先に述べたアルゴリズムによってエ
+ンコーディングが決定されます。そのアルゴリズムを以下再掲します。(注:「現在のエン
+コーディング」が存在しないような状況で空白ページを開いた場合には、「<b>予備</b>
+のエンコーディングが<b>「現在のエンコーディング」</b>として用いられます。)</li>
+
+<ul>
+<li>
+HTTP Charset (サーバ/スクリプトより)</li>
+
+<li>
+文書の Meta-Charset タグ</li>
+
+<li>
+自動識別されたエンコーディング(選択されていた場合)</li>
+
+<li>
+直前に用いられていた、「現在のエンコーディング/文字集合」</li>
+
+<li>
+「予備のエンコーディング」(Character Coding メニューの一覧の最初に表されているエンコー
+ディング) -- 上記の全てにあてはまらない場合、つまり、ブラウザが **最初に** 開い
+たページが、空白ページであった場合や、HTTP プロトコルによっても、Metaタグによっ
+ても、自動識別によっても charset (文字集合)を得られないような文書であった場合。
+</ul>
+
+</ul>
+</ul>
+
+<li>
+<b>エンコーディングのキャッシュ:</b></li>
+
+<ul>
+<li>
+階層1の、静的な/好みのエンコーディングの項目の下部には、最近使用されたエ
+ンコーディングの一覧が表示されます。</li>
+
+<li>
+最近使用されたエンコーディングのうち、静的なエンコーディング一覧に表示されていないもの5つが表
+示されます。最後に使用されたエンコーディングが最も上に、その前に使用されたエンコー
+ディングが次に、というように表示されます。</li>
+
+<li>
+IE5では、この一覧がいっぱいになった際に削除する項目を決定するために、興味深いア
+ルゴリズムを用いています。私達はさしあたって、時刻の基づく単純な方法を採用するこ
+とにします。最後に使用されたものが最も上に、その前に使用されたものが次に、という
+方法です。</li>
+
+<li>
+新しいウィンドウやフレームが開かれる際には、大域的なエンコーディングのキャッ
+シュの一覧を参照し、必要であれば更新します。これによって、実装が単純になります。
+次にブラウザを使う際に再び利用できるように、最近の5つのエンコーディングからなる
+一覧は、prefs.jsに格納されます。</li>
+
+</ul>
+
+<li>
+<b>フレームと エンコーディングのキャッシュ:</b></li>
+
+<ul>
+<li>
+フォーカスがメインウィンドウ上にあるとき、<b>メインの</b> "View | Character
+Coding" メニューはブラウザのメインウィンドウについての最近のエンコーディングのキャ
+ッシュのみを一覧表示します。フォーカスがフレーム上にあるときは、このメニューは
+"View | Frame Character Coding" メニューに変化します。</li>
+
+<li>
+全てのフレームやウィンドウに関して、 静的なエンコーディング一覧と最近のエンコーディングの一覧
+は、状況依存型のメニューとして取得可能です。(=Caracter Coding メニューは状況依存
+型のメニュー一覧上にある必要があります。)</li>
+
+<li>
+メインウィンドウと、全てのフレーム、新しいウィンドウの各々について、
+エンコーディングのキャッシュの一覧を別々に管理する必要はありません。例えば、あるフ
+レームに関する最近の一覧は、以下のようにして作成可能です。</li>
+
+<ul>
+<li>
+新しいフレームやウィンドウは、現在のセッションの開始時に作成された大域的なエンコー
+ディングのキャッシュの一覧を参照するでしょう。基本的なアイデアは、新しいウィンド
+ウやフレームのための一覧の生成時に、最後に使用されたエンコーディングをその一覧に
+加える(そして、必要に応じて削除する)ということです。</li>
+
+</ul>
+
+<li>
+フォーカスがメインウィンドウ上にあるときは、"View | Page Info" メニューによって、
+メインウィンドウのエンコーディング情報が表示されます。フォーカスがフレーム上にあ
+るときには、"View |Frame Info" メニューが選択可能となり、それによって、フレーム
+のエンコーディング情報を表示できます。すなわち、Page/Frame Info メニューもまた、
+状況依存型のメニューとして利用可能です。</li>
+
+</ul>
+</ul>
+
+<h2>
+<a NAME="todo"></a>今後の課題:</h2>
+
+<ul>
+<li>
+<b>他のウィンドウにおける Character Coding メニューの可用性:</b></li>
+
+<ul>
+<li>
+<font color="#FF0000"><b>未解決の問題:</b> </font>メッセンジャー(Messenger)や、
+コンポーザー(Composer)、メッセージ作成ウィンドウなど、ブラウザ以外のウィンドウに
+おいて、<a href="#menucriteria">上記</a>のような基準によって必要と判断される場合
+に、私達は単純に状況依存型のメニューを提供するかもしれません。</li>
+
+</ul>
+
+<li>
+<b>Encoding/Charset Cache</b></li>
+
+<ul>
+<li>
+文書のエンコーディング情報をキャッシュしなくてはなりません。</li>
+
+<ul>
+最近使用されたエンコーディングを表示するメニューにとって、5個というのが十分な数
+字にならなくてはなりません。</li>
+
+<li>
+エンコーディングのキャッシュは通常の再読み込みや、ページ情報の表示にも使われます。
+以前見たページに戻る際に、キャッシュの情報が必要です。しかし、以前見たページのエ
+ンコーディングを思い出すためには、5個という数字は明らかに十分ではありません。必
+要なキャッシュの一覧の大きさはいくつでしょう?現在のセッションの全てというのはど
+うでしょうか?</li>
+
+<li>
+以前見たページに戻る際に、エンコーディングのキャッシュを作りなおすことも必要です。
+</li>
+
+<li>
+Super-reloading(Shift/Opt +再読み込み)によって、キャッシュの情報は作りなおされ、
+大元の文書に合わせて戻らなくてはなりません。</li>
+
+<li>
+<b><font color="#FF0000">未解決の問題: </font></b>ブラウザ、メッセンジャー、コン
+ポーザーが同じエンコーディングのキャッシュ一覧を用いるようにするか、カテゴリ別に
+別々のものを用いるようにするか決めなくてはなりません。メッセンジャーで用いられる
+文字のエンコーディングはブラウザで用いられるものとは異なる可能性があります。その
+ため、それらを別々に保持しようという議論があります。</li>
+
+<li>
+履歴のキャッシュは既に文書のエンコーディングについての情報を含んでいてもよい。
+それは、現在の状態を知るためにも必要でしょう。(waterson?)</li>
+
+</ul>
+</ul>
+
+<li>
+<b>Customize .. Character Coding メニューダイアログ:</b></li>
+
+<ul>
+<li>
+ある特定のエンコーディングは、<b>Customize... Character Coding ダイアログ</b>の
+一覧から削除されなくてはなりません。例えば T.61-8bit や Modified-UTF7-Imap など
+は、標準的なユーザにとって混乱の原因になるだけであり、通常の用途ではそれらは使用
+されません。バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=15867">15867</a>を参照してくだ
+さい。
+
+<ul>
+<li>
+Mozillaの内部でのみ使用されるような、無視されるべきエンコーディングの名前を自動
+的に区別するための方法の一つとして、それらのエンコーディングの名前の最初に、
+"ig-"という文字を付けるという方法があります。例えば、ig-T.61-8bit という具合です。
+("ig" は、「無視(ignore)」の意味です。)</li>
+
+</ul>
+
+<li>
+エンコーディングの名前を選ぶ際に、全てのエンコーディングの一覧から選ばなくてはい
+けないようにするのではなく、言語やグループによって選択できるようにしなくてはなり
+ません。例えば、日本語を選択すると3種類のエンコーディングが追加されます。そして、
+そのようにして作ったStaticの一覧を、削除したり、並べ替えしたりして、後から調整で
+きるようにしなくてはいけません。</li>
+
+<li>
+自動識別とCharacter Codingのメニューのための<b>Customize...</b><b>ダイアログ
+</b>は、言語に関係する他のダイアログとグループ化されていなくてはなりません。言語
+の設定は、以下の一覧に示される項目を提供しなくてはならず、それらの項目は
+<b>Navigator | Languages</b> または <b>Languages | </b>以下にグループ化されて配
+置されなくてはなりません。
+
+<ul>
+<li>
+<b>Navigator:</b></li>
+
+<ul>
+<li>
+<b>Languages:</b></li>
+
+<ul>
+<li>
+受理する言語のダイアログ</li>
+
+<li>
+自動識別のモジュールのダイアログ</li>
+
+<li>
+Static なエンコーディングメニューのダイアログ</li>
+
+<li>
+その他</li>
+</ul>
+</ul>
+</ul>
+
+<li>
+選択の過程で参照できるように、 Customize... ダイアログにおいてヘルプ情報を提供し
+なくてはなりません。私達はダイアログについての適切な情報を提供することで、
+TechWritingグループを助ける必要があります。</li>
+</ul>
+
+<li>
+<b>メインツールバーへCharacter Coding メニューアイコンを追加するオプション:</b></li>
+
+<ul>
+<li>
+私達は、メインツールバーにCharacter Coding メニューのアイコンを追加するような設定が可能に
+なるよう、望むかもしれない。</li>
+</ul>
+
+<li>
+<b>More... エンコーディング/文字集合の一覧: 階層2の一覧</b></li>
+
+<ul>
+<li>
+現時点では、私達は、More... メニューの設定は変更できるようにはしないという判断を
+しています。しかしながら、そのメニューを設定ダイアログで変更できるようにするため
+の手段を提供すべきと提案している人々の存在にも言及しておきます。何人かは、メニュー
+の残りの部分は多くのユーザにとって無用のものであるので彼等にそれを見ることを強い
+るべきではないと提案しています。このような議論は、メニューがスクロール可能である
+という事実が一覧の要素を無限に生成することを許しているわけではないということを指
+摘しています。</li>
+
+<ul>
+<li>
+一つの可能性は、<b>More... メニュー</b>を表示しなくなるような、設定オプションを
+作ることです。</li>
+
+<li>
+他の可能性としては、ユーザがこのメニューを設定ダイアログで変更可能にすることです。
+</li>
+</ul>
+
+<li>
+単純にスクロール可能にするのではなく、<b>More... メニュー</b>を変更可能にするべ
+きです。</li>
+</ul>
+
+<li>
+<b>ユーザ定義</b>のメニュー項目は、単純に腰掛けのエンコーディングとなります。私
+達はUnicode PUAを用いてこれに対処する必要があります。バグ <a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=6588">6588</a>を参照してくださ
+い。</li>
+
+<li>
+<b>「予備のエンコーディング」:</b></li>
+
+<ul>
+<li>
+それは、静的なエンコーディングメニューの一覧における最初の項目になります。<b>Customize...</b>設
+定ダイアログのエンコーディングの一覧において、<b>(Default)</b>という単語が <font
+color="#FF0000">最初の要素に自動的に</font>付加されるようにしなくてはなりません。
+(例えば、コミュニケータ4.xにおいては、複数のIMAPサーバがサーバ設定で選択された場
+合のデフォルトのIMAPサーバが同様の方法で扱われています。)</li>
+
+</ul>
+
+<li>
+<b>「現在のエンコーディング」が実際のエンコーディングを反映していない場合:</b>
+文書のエンコーディングがHTTPプロトコルや文書のcharsetタグによって与えられていな
+い場合、「現在のエンコーディング」や「予備のエンコーディング」が使われる可能性が
+あります。そのような状況においては、不整合は簡単に起こります。例えば、bulletによっ
+て「現在のエンコーディング」が日本語(Shift_JIS)と示されているにもかかわらず、実
+際のエンコーディングがASCIIである場合などです。これを解決する一つの鍵は、自動識
+別の発達です。苦痛を緩和するもう一つの方法としては、文書がASCII以外の文字を含ん
+でいない場合には、日本語フォントではなくWesternフォントを選択するようなフォント
+選択ルーチンを用いることです。</li>
+
+</ul>
+
+<p><br><a NAME="version"></a><font size=+1>バージョン履歴:</font>
+<p><a NAME="v13"></a><b>バージョン 1.3:</b>
+<ul>
+<li>
+<font size=-1><b>目次</b>を追加.</font></li>
+
+<li>
+<font size=-1>ネットスケープ内部での議論を知らない人にも本ドキュメントが
+分かりやすくなるようにあちこち編集し直した.</font></li>
+
+<li>
+<font size=-1><b>用語の統一: </b>メニュー名として<b>Character Coding</b>,
+個々のメニューアイテム、あるいはそのアイテムが表す「コーディングスキーマ」を
+<b>encoding</b> (あるいは <b>charset</b>)と統一した.</font></li>
+
+<li>
+<font size=-1><b>Character Coding メニュー</b>が
+モジラで通常表示される場所を明確にした.</font></li>
+
+<li>
+<font size=-1><b> メニューの1段めの重要性</b>
+と,ユーザから見た,カスタム設定との関連についての記述を追加.</font></li>
+
+<li>
+<font size=-1>ネットスケープブランド対モジラリリースにおける <b>ユニバーサル自動認識モジュール</b> に関する問題の明確化.</font></li>
+
+<li>
+<font size=-1><b>固定エンコーディングリスト: </b>少なくとも１つはアイテムがないといけないことを追記. 固定リストは空にできない.</font></li>
+
+<li>
+<font size=-1><b>More ...&nbsp; エンコーディングメニュー:</b> (結局のところ)
+スクロール可能になるはずであることを追記.</font></li>
+
+<li>
+<font size=-1><b>文字エンコーディングユーザインタフェース名:</b> 内部ドキュメントへの参照を削除した. 外部へ公開可能になったら再度追記します.</font></li>
+
+<li>
+<font size=-1>ブラウザ履歴(Browser History)メニュー区別するために
+<b>文字集合履歴(Charset History)</b> という語を
+<b>エンコーディングキャッシュ </b>へ変更した.</font></li>
+
+<li>
+<b><font size=-1>文字集合/エンコーディングの再定義:</font></b></li>
+
+<ul>
+<li>
+<font size=-1>振舞の再定義を設定可能にしようという提案を追記.</font></li>
+</ul>
+
+<li>
+<b><font size=-1>エンコーディングキャッシュとフレーム:</font></b></li>
+
+<ul>
+<li>
+<font size=-1>開いている全てのウィンドウ、フレームからアクセス,更新できる
+共通のエンコーディングリストは１つだけであることを明確化.</font></li>
+</ul>
+
+<li>
+<b><font size=-1>残課題:</font></b></li>
+
+<ul>
+<li>
+<b><font size=-1>エンコーディングキャッシュ:</font></b></li>
+
+<ul>
+<li>
+<font size=-1>後のバージョンにおいて考慮すべきことをいくつか追記した.
+これには若干の複雑な問題も含まれます.</font></li>
+</ul>
+
+<li>
+<font size=-1><b>次候補エンコーディング</b>: 次候補エンコーディングの設定ダイアログでデフォルトエンコーディングをどのように指定するかを明確にした.
+</font></li>
+
+<li>
+<font size=-1><b>More ...&nbsp; エンコーディングメニュー: </b>現時点では、我々の計画にはないが, More ... エンコーディングメニューをカスタマイズする方法を扱うという提案をいれた.</font></li>
+
+<li>
+<font size=-1>ドキュメントの<b>今のエンコーディングが必ずしも実際のエンコーディングを正確に表わすわけではない</b>ケースについての小項目を追記.</font></li>
+</ul>
+</ul>
+
+<p><br><a NAME="v12"></a><b>バージョン 1.2:</b>
+<blockquote>
+<li>
+<font size=-1><b>2</b> 自動認識モジュールと文字エンコーディング一覧 の
+<b>カスタマイズ...</b> <b>メニュー</b>は <b>Customize... Preference ダイアログ</b>が優先されるので<b>無視されてしまう</B>.</font></li>
+
+<li>
+<b><font size=-1>自動認識モジュール:</font></b></li>
+
+<blockquote>
+<li>
+<font size=-1>日本語,韓国語のための自動認識モジュールの１枚目の一覧を変更した.
+可能であればユニバーサル自動認識モジュールのみにして出荷したいと考えている.
+さもなければ(しばらくは)日本語と韓国語のモジュールで出荷する予定です.
+** 中国語モジュールがもし実用レベルであれば、追加するかもしれません.
+</font></li>
+
+<li>
+<font size=-1>１枚めのメニューに利用されるモジュール名を定義しました.
+M11から変更されたことに注意してください.
+(このためバグが潜んでるかもしれません.)</font></li>
+
+<li>
+<font size=-1>チェックマークと,正規の文字集合と自動認識モジュール名の違いを
+明確にしました. (4.xでは自動認識モジュールを文字集合の１種として扱ってました.)
+</font></li>
+</blockquote>
+
+<li>
+<b><font size=-1>エンコーディングキャッシュ:</font></b></li>
+
+<blockquote>
+<li>
+<font size=-1>現在のブラウザのセッション中の全てのウィンドウとフレームで
+共有される１つの共通のリストがベースにされる.</font></li>
+</blockquote>
+
+<li>
+<b><font size=-1>エンコーディングキャッシュとフレーム:</font></b></li>
+
+<blockquote>
+<li>
+<font size=-1>Mail/Frame windowに"View | (Frame) Character Coding"メニューのトグルメニューアイテムを追加.</font></li>
+
+<li>
+<font size=-1>フォーカスのあるウィンドウからContextualメニューが使える
+ようになった.</font></li>
+</blockquote>
+
+<li>
+<b><font size=-1>カレント文字集合:</font></b></li>
+
+<blockquote>
+<li>
+<font size=-1>カレントのエンコーディング/文字集合を決定するアルゴリズム
+が修正された. これには、次候補エンコーディングよりも重要なものとして
+"前回のカレントエンコーディング/文字集合"も含みます.
+この次候補エンコーディングは最後の頼みの綱、すなわち初めてブラウザを起動して
+有効なエンコーディング情報が無いときしか使われません.</font></li>
+
+<li>
+<font size=-1>カレントエンコーディングアルゴリズムが適用されるのは
+新規のドキュメント/ページに対してのみであることを明確にした.
+"back" ボタンで以前にアクセスしたページに戻った場合は,
+キャッシュされているエンコーディング情報を表示します.</font></li>
+
+<li>
+<font size=-1>レントエンコーディング/文字集合</b>という用語と,
+<b>デフォルトエンコーディング/文字集合</b>という用語の関係を明確にした.
+あるコンテキストにおいて、後者は前者の役割を表している.</font></li>
+</blockquote>
+
+<li>
+<font size=-1><b>次候補エンコーディング</b>: 4.xで使われているのと比較して
+この概念の意味を明確にした.</font></li>
+
+<li>
+<b><font size=-1>文字集合/エンコーディングオーバライド:</font></b></li>
+
+<blockquote>
+<li>
+<font size=-1>&lt;LANG> 属性への参照は エンコーディング/文字集合オーバライド
+が無効になったときから削除された.</font></li>
+
+<li>
+<font size=-1><b><font color="#FF0000">2通りのオープン方法</font></b><font color="#000000">がこのカテゴリに追加されました:</font></font></li>
+
+<blockquote>
+<li>
+<font color="#000000"><font size=-1>文字集合オーバライド機能は最上位のドキュメントに対してしか有効でないのか？それともその配下のすべてのフレームに対しても有効なのか？(Erik より)</font></font></li>
+
+<li>
+<font color="#000000"><font size=-1>Super Reloadingではオーバライドは
+ずっと有効にすべきですか?</font></font></li>
+</blockquote>
+</blockquote>
+
+<li>
+<b><font color="#000000"><font size=-1>残課題リスト:</font></font></b></li>
+
+<blockquote>
+<li>
+<font color="#000000"><font size=-1>エンコーディングキャッシュ仕様を明確にした
+-- 簡易リロード vs. スーパーリロード.</font></font></li>
+
+<li>
+<font color="#000000"><font size=-1>文字コーディングメニュー -- ちゃんと
+メインツールバーメニューに配置された. ("パーソナルツールバーから移動".)
+</font></font></li>
+
+<li>
+<font color="#000000"><font size=-1><b>More ..</b> 字コーディングメニュー
+--> <b>カスタマイズ ... </b>メニュー項目を用意するという提案が却下され、
+それが可能な設定ダイアログメニューに変わりました.</font></font></li>
+
+<li>
+<font color="#000000"><font size=-1>今後のために,"ユーザ定義"の扱いを残課題
+から切り分けました.</font></font></li>
+</blockquote>
+</blockquote>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/intl/uidocs/browsercharmenu.html">英語版</a> 1999/11/29</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/intl/uidocs/browsercharmenu.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

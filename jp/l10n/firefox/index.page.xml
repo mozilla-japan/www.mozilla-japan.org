@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-firefox" basename="index" pathtoroot="../../../">
+
+<meta>
+	<dc:title>Firefox Localization</dc:title>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 class="image"><img src="../../../images/logo-ff.gif" width="260" height="100" alt="Firefox - ブラウザ、今ふたたび" title="スマートなブラウザは好きですか？"/></h1>
+	<p>Mozilla プロジェクトが贈る、次世代の Web ブラウザ Firefox のローカライズを行っています。<br/>
+		こちらで公開している Firefox は安定性が十分に確認されていない開発リリースや上級者向けの特殊なパッケージとなりますので、通常のご利用に際しては <a href="${mj-firefox}">Firefox 製品情報ページ</a>で配布しているものをご利用下さい。動作確認にご協力頂ける場合には最新の開発リリースをテストして頂き、見つかった問題を <a href="${l10n-forum}">L10N フォーラム</a>までお知らせ頂けると助かります。</p>
+	
+	<p><tt:faqlink entryid="what_is_ja-JPM" text="ja-JPM とは何か"/>とか<tt:faqlink entryid="jlp_for_nightly" text="Nightly 対応 JLP はないのか"/>といった疑問や、<tt:faqlink entryid="jlp_not_enabled" text="日本語にならない"/>とか<tt:faqlink entryid="cannot_start_firefox" text="起動しない"/>などといった問題への対策を含め、<a href="${l10n-faq}">よくある質問</a>を簡単にまとめましたので必要に応じてご参照ください。</p>
+	
+	<tt:include idref="about-package"/>
+	
+	<tt:section id="firefox-mozilla1.8">
+		<h2>Mozilla Firefox Mozilla 1.8 Branch</h2>
+		<dl>
+			<dt>mozilla.org のナイトリービルド</dt>
+			<dd><a href="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.8/">英語版ナイトリー</a> : 
+				<a href="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-mozilla1.8-l10n/">L10N ナイトリー</a></dd>
+			<dt>Mozilla Japan の開発リリース</dt>
+			<dd><a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0+/">1.0+ (20050817~)</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.4.1/">1.4.1 (20051005~)</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.5/">1.5 (20051030~)</a></dd>
+			<dt>L10N フォーラムのトピック</dt>
+			<dd><a href="http://forums.firehacks.org/l10n/viewtopic.php?t=456">開発リリースのアナウンス</a> : 
+				<a href="http://forums.firehacks.org/l10n/viewtopic.php?t=457">開発リリース JLP へのフィードバック</a></dd>
+		</dl>
+		<p>Mozilla 1.8 Branch は Firefox 1.5.x リリースのためのブランチです。</p>
+	</tt:section>
+	
+	<tt:section id="firefox-trunk">
+		<h2>Mozilla Firefox Trunk</h2>
+		<dl>
+			<dt>mozilla.org のナイトリービルド</dt>
+			<dd><a href="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/">英語版ナイトリー</a> : 
+				<a href="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk-l10n/">L10N ナイトリー</a></dd>
+			<dt>Mozilla Japan の開発リリース</dt>
+			<dd><a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0+/">1.0+ (~20050816)</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.6a1/">1.6a1 (20050817~)</a></dd>
+			<dt>L10N フォーラムのトピック</dt>
+			<dd><a href="http://forums.firehacks.org/l10n/viewtopic.php?t=388">開発リリースのアナウンス</a> : 
+				<a href="http://forums.firehacks.org/l10n/viewtopic.php?t=389">開発リリース JLP へのフィードバック</a></dd>
+		</dl>
+		<p>最新版でない Nightly ビルドについては<a href="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/">日付毎のディレクトリ</a>からダウンロードしてください。</p>
+	</tt:section>
+	
+	<tt:section id="firefox-aviary">
+		<h2>Mozilla Firefox Aviary Branch</h2>
+		<dl>
+			<dt>mozilla.org のナイトリービルド</dt>
+			<dd><a href="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-aviary1.0.1/">英語版ナイトリー</a> : 
+				<a href="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-aviary1.0.1-l10n/">L10N ナイトリー</a></dd>
+			<dt>Mozilla Japan の開発リリース</dt>
+			<dd><a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/">1.0rc1</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/">1.0rc2</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0/">1.0</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0.1/">1.0.1</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0.2/">1.0.2</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0.3/">1.0.3</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0.4/">1.0.4</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0.5/">1.0.5</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0.6/">1.0.6</a> : 
+				<a href="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0.7/">1.0.7</a></dd>
+			<dt>L10N フォーラムのトピック</dt>
+			<dd><a href="http://forums.firehacks.org/l10n/viewtopic.php?t=244">開発リリースのアナウンス</a></dd>
+		</dl>
+		<p>Aviary Branch は Firefox 1.0.x リリースのためのブランチです。<br/>
+			公式リリースについては <a href="${mj-firefox}">Firefox 製品情報ページ</a>をご覧ください。</p>
+	</tt:section>
+	
+	<!-- <tt:section id="firefox1.0+">
+		<h2>Mozilla Firefox 1.0+ 日本語版</h2>
+		<tt:packagetable product="firefox" version="1.0+" server="mozilla-japan" lastonly="yes"/>
+	</tt:section>
+	<tt:section id="firefox1.0">
+		<h2>Mozilla Firefox 1.0 日本語版</h2>
+		<tt:packagetable product="firefox" version="1.0" server="mozilla-japan" lastonly="yes"/>
+	</tt:section> -->
+</tt:htmlbody>
+
+</page>
+</contents>

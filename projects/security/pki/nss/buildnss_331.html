@@ -1,0 +1,255 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Build Instructions for NSS 3.3.1</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/security/pki/nss/buildnss_331.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/buildnss_331.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<center>
+<h2>
+NSS 3.3.1 Release ビルド手順書</h2></center>
+
+<center><i><font size=-1>ニュースグループ：<a href="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</a></font></i></center>
+
+<p>これは、 NSS 3.3.1 Release のビルド方法を、順を追って説明する解説書です。
+<p>NSS 3.3.1 Release に関する詳しい情報は、<a href="release_notes_331.html">NSS
+3.3.1 リリースノート</a> を参照してください。
+
+<p><b>重要：</b> NSS をビルドするには、 Mozilla の CVS システムを理解している必要があります。詳細は <a href="/cvs.html">CVS によるソースコードの入手</a> を参照してください。
+<p><b>NSPR のバージョン：</b> NSS 3.3.1 は NSPR のバージョン 4.0 以降と互換性があります。ただし、 NSPR 4.1.2 以降のバージョンの方が、それ以前のものよりパフォーマンスが向上しています。
+<p><a href="#new">新しいビルド手順に対するメモ</a>
+<br><a href="#build">全てのプラットフォームに対するビルド手順</a>
+<br><a href="#tests">テスト</a>
+<p><a NAME="new"></a>
+<h3>
+
+<hr>新しいビルド手順に対するメモ</h3>
+coreconf だけで NSS ( NSPR と DBM を含む ) の全てをビルドできるようになりました。これにより、 Mozilla ブラウザの make システムを使う必要がなくなりました。
+<p>NSS とその関連をビルドするのに、 <tt>mozilla/config</tt> 、 <tt>mozilla/client.mk</tt> や、ブラウザの他の部分をチェックアウトする必要はなくなりました。
+<p><tt>MOZ_</tt> で始まる環境変数は設定する必要がなくなりました。
+<p><b>Windows</b> では、 NSS 、 NSPR または DBM をビルドするのに、 <tt>nmake</tt> や <tt>cygwin</tt> 、または MKS ツールは必要なくなりました。 Netscape wintools の <tt>gmake</tt> だけでそれら全てをカバーします。また、 Microsoft Visual C++ Processor Pack ( <a href="http://msdn.microsoft.com/vstudio/downloads/tools/ppack/download.asp">http://msdn.microsoft.com/vstudio/downloads/tools/ppack/download.asp</a> ) 内の <tt>ml.exe</tt> が必要です。 
+
+<p><b>DBM に関して：</b> NSS 3.3.1 を、ここに書いてあるとおりにビルドしても、 <a href="ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_3_1_RTM/">ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_3_1_RTM/</a> でリリースされたのと同じようなファイルは生成されません。これは、新しい手順が Mozilla の DBM を使うのに対し、 リリースされたバイナリは Netscape 独自の DBM を使って作られたからです。これら 2 つの DBM は互換性があります。
+<p><b>プラットフォームと <tt>gcc</tt> のバージョン：</b> このビルド手順は、以下に示されているプラットフォームと、書かれている GNC C compiler (<tt>gcc</tt>) との組み合わせでのみテストされています。この手順はどの 64 ビットプラットフォームでもテストされていません。
+<table BORDER >
+<tr>
+<td VALIGN=CENTER><b>プラットフォーム</b></td>
+
+<td VALIGN=CENTER>AIX&nbsp;</td>
+
+<td VALIGN=CENTER>HP-UX&nbsp;</td>
+
+<td VALIGN=CENTER>Linux&nbsp;</td>
+
+<td VALIGN=CENTER>Windows&nbsp;</td>
+
+<td VALIGN=CENTER>Compaq Tru64</td>
+
+<td VALIGN=CENTER>Solaris&nbsp;</td>
+
+</tr>
+
+<tr>
+<td VALIGN=CENTER><b><tt>gcc</tt> バージョン</b></td>
+
+<td VALIGN=CENTER><b>????</b></td>
+
+<td VALIGN=CENTER><b>????</b></td>
+
+<td VALIGN=CENTER>2.91.66 (egcs-1.1.2)</td>
+
+<td VALIGN=CENTER><b>????</b></td>
+
+<td VALIGN=CENTER><b>????</b></td>
+
+<td VALIGN=CENTER>2.95.2</td>
+</tr>
+</table>
+
+<p>もし、ここに挙げられていないバージョンの <tt>gcc</tt> で NSS のビルドに成功した場合、その使用したバージョンとプラットフォームを報告してください。
+<p><b>以前のビルド手順：</b> 以前のリリースの時に使用されたビルド手順は、<a href="buildnss_33.html">NSS 3.3 Release ビルド手順書</a> を参照してください。 
+
+<p><a NAME="build"></a>
+<h3>
+
+<hr>全てのプラットフォームに対するビルド手順</h3>
+この新しいビルド手順は、全てのプラットフォームで動くはずです。 ( プラットフォーム依存の必要な変更点は別記されています。 )
+<p>取り掛かる前に： Windows では、 Netscape の wintools ( <a href="/build/win32.html#ss2.1">2.1 必要なハードウェアおよび OS</a> ) が必要ですので、入手して置いてください。
+<ol>
+<li>
+環境変数の設定：</li>
+
+<ol type=a>
+<li>
+
+Windows の場合、 <tt>OS_TARGET</tt> に <tt>WINNT</tt> か <tt>WIN95</tt> を、環境に応じて指定してください。</li>
+
+<li>
+Windows の場合、 Netscape wintools の特別な <tt>gmake</tt> や <tt>shmsdos</tt> があるディレクトリを PATH に追加してください。</li>
+
+<li>
+デバッグではない、最適化されたビルドを作りたいなら、 <tt>BUILD_OPT=1</tt> を設定してください。そうしない場合デバッグビルドが作成されます。 Windows で、システムのデバッグ RTL ライブラリ付きのデバッグビルドを作成したい場合、 <tt>USE_DEBUG_RTL=1</tt> を環境変数として設定してください。</li>
+
+<li>
+Alpha/OSF1 を除く Unix プラットフォームで 64 ビット ABI 用のビルドを作成したい場合、 <tt>USE_64=1</tt> を設定してください。デフォルトでは NSS は Alpha/OSF1 を除く全てのプラットフォームの 32 ビット環境に対してビルドします。</li>
+
+<li>
+環境変数 <tt>CVSROOT</tt> に <tt>:pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot</tt> を設定してください。</li>
+
+<li>
+<tt>gcc</tt> を使って Linux と Windows 以外のプラットフォームでビルドする場合、次の 2 つを設定してください。</li>
+
+<ul><tt>NS_USE_GCC=1</tt>
+<br><tt>NO_MDUPDATE=1</tt></ul>
+
+<li>
+Windows の場合、環境変数 <tt>HOME</tt> が書き込み可能なディレクトリを指しているか、また / や \ で終わっていないか確認してください。正しい例： <tt>c:/home</tt></li>
+
+<li>
+IRIX では、次の 2 つの変数を設定できます：</li>
+
+<ul>n32 バイナリをビルドしたい場合、 <tt>USE_N32</tt> を 1 にしてください。デフォルトでは o32 バイナリを作成します。ドキュメントにあるとおり、 <tt>USE_64</tt> とは同時に指定できません。
+<p>スレッドに IRIX pthreads 拡張を使いたい場合、 <tt>USE_PTHREADS</tt> を 1 にしてください。デフォルトでは IRIX sprocs をスレッドに使用します。</ul>
+</ol>
+
+<li>
+まだしていなければ <tt>cvs login</tt> します。</li>
+
+<br>&nbsp;
+<li>
+以下の CVS チェックアウトを実行してください。注意： CVS では Windows でも / を使います。</li>
+
+<ul>
+<pre>cvs co -r NSPRPUB_RELEASE_4_1_2 mozilla/nsprpub&nbsp;
+cvs co -r NSS_3_3_1_RTM mozilla/security/coreconf
+cvs co -r NSS_3_3_1_RTM mozilla/dbm mozilla/security/dbm
+cvs co -r NSS_3_3_1_RTM mozilla/security/nss</pre>
+</ul>
+
+<li>
+NSPR 、 DBM と NSS をビルドする。</li>
+
+<ul><tt>cd mozilla/security/nss</tt> ( Windows なら <tt>cd mozilla\security\nss</tt>)
+<br><tt>gmake nss_build_all</tt></ul>
+</ol>
+ビルドシステムに関するトラブルシューティングは、<a href="troubleshoot.html">NSS と JSS ビルドシステムに関するトラブルシューティング</a> を参照してください。
+<p><a NAME="tests"></a>
+<h3>
+
+<hr>テスト</h3>
+
+NSS のビルドに成功したら、<a href="testnss_32.html">NSS
+3.2 テストスイート</a> を参照して、そのビルドをテストしてみてください。
+
+<!-- translated text end : mizna.jp -->
+
+
+
+
+
+<hr class="hide" />
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/buildnss_331.html">英語版</a> 2003/10/13</span> - <span>和訳版 2004/09/21</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/buildnss_331.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

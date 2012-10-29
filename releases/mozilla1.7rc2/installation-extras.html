@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>拡張機能のインストール</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/releases/mozilla1.7rc2/installation-extras.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.7rc2/installation-extras.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+<h1>Java、プラグイン、その他の拡張機能</h1>
+<p>このドキュメントには、Java、プラグイン、その他の拡張機能のインストール・設定方法が書かれています。この他のユーザ向けヘルプドキュメントは <a href="/catalog/end-user/">エンドユーザ資料</a> のページからご覧いただけます。</p>
+<p class="important">プラグインに関する詳しい情報は <a href="http://plugindoc.mozdev.org/ja-JP/">PluginDoc</a> (mozdev.org) をご覧ください。</p>
+<ul>
+	<li><a href="#extras_java">Java</a></li>
+	<li><a href="#extras_palm">Palm サポート (Windows 版のみ)</a></li>
+	<li><a href="#extras_fonts">Linux システムのフォント環境</a></li>
+	<li><a href="#extras_addons">その他のアドオン</a></li>
+	<li><a href="#extras_talkback">Talkback</a></li>
+</ul>
+
+<h3><a name="extras_java">Java</a></h3>
+<p><strong>Windows/Linux</strong>: Java アプレットを動かすには <a href="http://java.sun.com/j2se/downloads/">Java ランタイム環境 (JRE)</a> プラグインをインストールする必要があります。</p>
+<p><strong>Windows</strong>: インストーラビルドを使っていて、システムに互換性のある JRE が入っていれば、Mozilla はそれを認識します。マニュアル設定でプラグインの自動検索を無効にしている場合は、次のようにして Java が動くようにしてください: お使いのマシンに JRE がインストールされた状態で、JRE のインストールディレクトリ (たとえば C:&yen;Program Files&yen;JavaSoft&yen;JRE&yen;&lt;バージョン&gt;&yen;bin) にある NPOJI610.dll を、Mozilla のプラグインディレクトリ (たとえば C:&yen;Program Files&yen;mozilla.org&yen;bin&yen;plugins) にコピーしてください。</p>
+<p><strong>Linux</strong>: Mozilla の plugins ディレクトリに /usr/java/jre&lt;バージョン&gt;/plugin/i386/ns610<strong>-gcc32</strong>/libjavaplugin_oji.so へのシンボリックリンクを置いてください。(シンボリックリンクを作らずにファイル自体をコピーすると、Java がクラッシュする可能性がありますのでご注意ください)</p>
+<p>Linux RPM ビルドでは、root 権限で Java をインストールしなければいけません。</p>
+
+<h3><a name="extras_palm" id="extras_palm">Windows に Address Book Palm Sync をインストールする</a></h3>
+<p>Mozilla のアドレス帳と Palm を同期させるには、[スタート] &gt; [プログラム] メニューの Mozilla グループから <strong>Address Book Palm Sync Install</strong> を選択してください。Palm のアドレス帳を Mozilla と同期させるよう設定する場合、アドレス帳は Palm Desctop とは同期しませんのでご注意ください。</p>
+<p>この後、Palm デバイスを接続して、Palm クレイドルにある HotSync ボタンを押してください。これで、デスクトップに HotSync Manager ダイアログが現れ、Mozilla を起動できるはずです。同期が完了したら Mozilla を閉じて再起動し、同期ができているかアドレス帳を開いて確かめてください。</p>
+<p>一部の Palm ユーザは、この手順に加えて特別な作業を行い、レジストリキーを手作業で追加する必要があるかもしれません。</p>
+<ol>
+	<li><a href="http://ring.riken.go.jp/archives/net/www/mozilla/mozilla/contrib/palm/AddPalmABSyncRegistryKey.reg">レジストリキー</a> をダウンロードし、ハードドライブに保存してください。</li>
+	<li>Palm ソフトが C:&yen;Palm にインストールされていない場合は、レジストリキーを編集して適切なパスを設定してください。あなたが指定したパスが &quot; と &quot; に挟まれているか、それから、各ディレクトリにセパレータが 2 つ使われているか (各セパレータを &yen; ではなく &yen;&yen; と指定します) 確かめてください。</li>
+	<li>Windows エクスプローラを開いて、このファイルをダブルクリックしてください。「AddPalmABSyncRegistryKey.reg の情報が、レジストリに正しく入力されました」というメッセージが表示されるはずです。</li>
+	<li>Address Book Palm Sync Install を再起動すれば、Mozilla の Address Book Palm Sync が使えるようになります。</li>
+</ol>
+
+<h3><a name="extras_fonts" id="extras_fonts">フォント</a></h3>
+<p>多くの Linux システム (特に Red Hat Linux) で、Arial フォントに関する不具合があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=46415" title="Bug 46415 - Arial looks much smaller than Helvetica at same size, and is hard to read">46415</a>) 多くの Web ページ、特に Arial フォントを使用しているページで、字がハッキリ読めない、小さい、読みにくいといった問題がある場合は、フォントサーバの Arial フォントの表示を改善できる 2 つの方法が以下のページで紹介されています。</p>
+<blockquote><a href="/docs/end-user/dark-mozilla-fonts.html#ttf">http://home.online.no/~rut-aane/linux.html#ttf</a><br><a href="/docs/end-user/dark-mozilla-fonts.html#fuzzy">http://home.online.no/~rut-aane/linux.html#fuzzy</a></blockquote>
+<p>もしこの方法がうまく行かない場合は、<tt>/usr/share/fonts/ISO8859-2</tt> をリネームするか、移動することで問題が解決されるかもしれません。例えば次のようなコマンドを入力してみてください:</p>
+<blockquote>mv /usr/share/fonts/ISO8859-2 /usr/share/fonts.ISO8859-2</blockquote>
+<p>それから Linux をログアウトして、再度ログインします。この変更を元に戻す必要がある場合は、次のように入力します。</p>
+<blockquote>mv /usr/share/fonts.ISO8859-2 /usr/share/fonts/ISO8859-2</blockquote>
+
+<h3><a name="extras_addons">アドオン</a></h3>
+<p><a href="http://mycroft.mozdev.org/">検索エンジン追加プラグイン</a> (訳注: 日本語サイトに対応したものは <a href="http://www.mozilla.gr.jp/downloads/search/">もじら組のサイト</a> にもあります)、Linux (およびその他の UNIX システム) 用 <a href="http://protozilla.mozdev.org/">telnet URL サポート</a>、<a href="http://multizilla.mozdev.org/">タブブラウズ拡張</a> など、Mozilla 用の各種拡張機能は <a href="http://www.mozdev.org/">mozdev.org</a> から入手できます。これらの拡張機能は mozilla.org によって正式にサポートされているわけではありませんが、自分が使っている Mozilla の機能を拡張しようと考えている人にとっては興味深いものばかりです。</p>
+
+<h3><a name="extras_talkback" id="extras_talkback">Quality Feedback Agent</a></h3>
+<p><a href="/quality/qfa.html">Quality Feedback Agent</a> は、クラッシュが起きた際に Mozilla に関するデータを収集します。これらの情報は、Mozilla 開発者がクラッシュの原因をすばやく発見し、そのバグを修正するのに役立ちます。このソフトは、訪問した Web サイトやパスワードといった機密情報は一切収集しません。クラッシュデータを報告することは、ユーザが Mozilla の品質を向上させるために協力できる <a href="/quality/">様々な方法</a> のうちのひとつです。この協力は必須ではありませんが、強くお勧めします。</p>
+<p>Windows では、自動プロキシ設定を使っている場合に Quality Feedback Agent を作動させるには、talkback.ini を <a href="/quality/qfa.html#proxy">編集する</a> 必要があります。</p>
+
+<hr class="hide" />
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.7rc2/installation-extras.html">英語版</a> 2004/05/17</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.7rc2/installation-extras.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

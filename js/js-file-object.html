@@ -1,0 +1,1092 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>JavaScript File オブジェクトの案</title>
+<link rel="alternate" hreflang="en" modified="May 22, 2000">
+<!-- 翻訳者: 村脇
+最終更新日: 2000年6月4日（日）
+バージョン: 1.9 -->
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/js/js-file-object.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+    <B><FONT SIZE=+3>JavaScript File オブジェクト
+    の案</FONT></B>
+    <BR>
+    <B>by Henri Torgemane,</B>
+    <BR>
+    <B>Michael Ang &lt;<A HREF="mailto:mang@subcarrier.org">mang@subcarrier.org</A>>,</B>
+    <BR>
+    <B>and Vladimir Livshits &lt;<A HREF="mailto:val4@cornell.edu">val4@cornell.edu</A>></B>
+
+    <P>この文書は、JavaScript File オブジェクトについての API <I>案</I>を記述している。
+      多くの API が、<A HREF="#playwithfire">実装</A>された (だがテストしていない)が、
+      また終わっていない作業がある。
+      <A HREF="mailto:nboyd@atg.com">mailto:nboyd@atg.com</A>に意見を送ってください。
+
+    <P>JavaScript で書いた多くのスクリプトは、I/O 機能、特に普通のファイルへのアクセスを必要としている。
+      この文書は、ホストの実装が実装することが出来る、そのような File オブジェクトを説明している。
+
+    <P>そのインターフェースは、Server Side JS File オブジェクトと Java File オブジェクトを混ぜ合わせたもので
+      既にある JavaScript の暗黙のしきたり (例えば、reaLine ではなく readln) に従おうとしている。
+
+    <P>File オブジェクトは、ファイル内のデータへのアクセス方法を二つ提供している。
+      文字を基にしたテキスト志向のアクセスと、バイトを基にしたバイナリ志向のアクセス。
+      テキストモードでは、最大文字列長は現在 256 である。
+      さまざまなエンコーディングが許される。ASCII、UTF8 (unicode)、と UCS2 (binary) が現在サポートされている
+
+    <P>実装は現在ほとんど NSPR の <A HREF="http://warp.mcom.com/hardcore/prj-nspr20/docplan/man/priotyp.htm#420111">PRFileDesc</A>を基にしている (申し訳ないがこれに対する公開リンクはまだない) が、
+      C の標準 FILE タイプを基にファイルを作成することを許すという裏口もある。
+      これは、標準ストリーム stdin、stdout、と stderr を基にした JavaScript のファイルを初期化する機能の提供に使われる。
+      パイプの実装もこれによって行われている。
+      だが、FILE式のファイルでは、操作がすべて一様にどこでもサポートされるわけではない。
+      結局のところ、異なったプラットフォーム間の違いを隠すのが、NSPR の目標だ。&nbsp;
+
+      <HR WIDTH="90%">
+
+      <H2>
+      0.0 Changelog</H2>
+
+      <UL>
+        <LI>
+          <B>1/18/98 </B>- <A HREF="mailto:val4@cornell.edu">volodya</A> が、
+	  追加あるいは修正された特徴を API に文書にするという小さな変更をたくさん追加した。
+	  ネイティブファイルハンドリング、さまざまな場合のこのオブジェクトの作用の仕方などについて説明を追加した。
+	  特に、現在のほとんどの情報に付いては <A HREF="#section5">status</A> を見なさい。</LI>
+
+        <LI>
+          <B>12/18/98</B> - <A HREF="mailto:mang@subcarrier.org">mang</A>は mozilla.org の仕事を暫く休む。
+	  暫定オーナーは<A HREF="mailto:nboyd@atg.com">Norris Boyd</A>。</LI>
+
+        <UL>
+          <LI>
+            <A HREF="nsFileSpec-thread.html">nsFileSpec email thread</A> を追加。
+	    File オブジェクトは、現在のファイル名操作コードに代わって機能性として nsFileSpec を使うべき。</LI>
+
+          <LI>
+	    追加プロパティー、<TT>append</TT>、<TT>autoFlush</TT>、<TT>replace</TT>。
+	    これらのプロパティーは、破棄された <TT>mode</TT> を置きかえる。
+            <A HREF="mailto:mccabe@netscape.com">mccabe@netscape.com</A>より。</LI>
+
+          <LI>
+            <A HREF="#section5">未解決の問題/TODO</A>に深い考えを更に追加。</LI>
+        </UL>
+
+        <LI>
+          <B>12/09/98</B> - ファイルが親を持っていなければ、<TT>parent</TT> プロパティーに
+	  そのファイル自身を入れるのではなく、null をセットするようにした。
+          <A HREF="mailto:fur@geocast.com">fur@geocast.com</A>より。</LI>
+
+        <LI>
+          <B>12/07/98</B> - <TT>in</TT> と <TT>delete</TT> は予約済みの識別子。
+	  <TT>in</TT> を <TT>input</TT>に、<TT>out</TT> を <TT>output</TT> に、
+	  <TT>err</TT> を <TT>error</TT> に、<TT>delete</TT> を <TT>remove</TT> に変更。
+          <A HREF="mailto:brendan@netscape.com">brendan@netscape.com</A>より。</LI>
+      </UL>
+
+      <H2>
+      1.0 ファイル名</H2>
+
+      <UL>
+        ファイル名は、実装定義のフォーマットを持つ文字列をして指定される。
+	標準 "file:" URL の使用が推奨される。
+
+	<P>使用可能なプレフィックス文字列の例としては、Unix のルートディレクトリを示す "/" や、
+	  Windows のドライブ文字を指定する "c:" や、file URL を示す "file:" がある。
+
+	<P>ファイルが作られると、前と後ろのスペースはファイル名から取り除かれる。
+          だから、<TT>new File(" abc.txt&nbsp;&nbsp;&nbsp; ")</TT> は、
+          <TT>abc.txt</TT> と呼ばれるファイルを作る。
+	  '|' で始まり終わるファイル名は Perl 風にパイプと解釈される。
+
+        <P>次のような事が可能だろう:
+
+          <UL>
+            <TT>var mail = new File("|/usr/bin/mail foo@bar.com");</TT>
+            <BR>
+            <TT>mail.writeln("I love JavaScript.\nPipe support is especially good!");</TT>
+            <BR>
+            <TT>mail.close();</TT>
+          </UL>
+
+      </UL>
+
+      <HR WIDTH="90%">
+
+      <H2>
+      2.0 File コンストラクターのプロパティー</H2>
+
+      <UL>
+        &nbsp;
+
+        <TABLE BORDER WIDTH="100%" >
+          <TR>
+            <TD><A HREF="#File">File</A></TD>
+
+            <TD>File コンストラクターメソッド</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#in">input</A></TD>
+
+            <TD>標準入力を表す File オブジェクト。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#out">output</A></TD>
+
+            <TD>標準出力を表す File オブジェクト。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#err">error</A></TD>
+
+            <TD>標準エラー出力を表す File オブジェクト。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#currentDir">currentDir</A></TD>
+
+            <TD>カレントディレクトリを参照する File オブジェクト。このプロパティーは設定されるかもしれない。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#separator">separator</A></TD>
+
+            <TD>システムの名前区切り文字。</TD>
+          </TR>
+        </TABLE>
+
+        <P><B>注: </B>最初の木のプロパティーは、特定の環境下でしか使えないようにするべきかもしれない。
+	  例えばブラウザコンテキストでは不可能など。
+	  例えば isFile のようなメソッドの中には、そのような環境の一つの元で呼ばれると、
+	  エラーをかえすものがあることを留意しなさい。
+      </UL>
+
+      <H2>
+      2.1 File インスタンスのプロパティー</H2>
+
+      <UL>
+        &nbsp;
+
+        <TABLE BORDER WIDTH="100%" >
+          <TR>
+            <TD><A HREF="#name">name</A></TD>
+
+            <TD>ファイルの名前が入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#path">path</A></TD>
+
+            <TD>ファイルへの基準パスが入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#length">length</A></TD>
+
+            <TD>ファイル内の文字の数が入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#parent">parent</A></TD>
+
+            <TD>ファイルを含むディレクトリが入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#type">type</A></TD>
+
+            <TD>データの型かファイル内に含まれているエンコーディングを指定する文字列が入る。
+              現在は "ascii"、"utf8" (UTF8)、 あるいは "ucs2" (UCS2)。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#mode">mode</A></TD>
+
+            <TD>ファイルモードが入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#position">position</A></TD>
+
+            <TD>ファイル内での現在のオフセットが入る。このプロパティーは設定されるかもしれない。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#isFile">isFile</A></TD>
+
+            <TD>ファイルが通常のファイルなら true。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#isDirectory">isDirectory</A></TD>
+
+            <TD>ファイルがディレクトリなら true。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#exists">exists</A></TD>
+
+            <TD>ファイルが存在するなら true。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#opened">isOpen</A></TD>
+
+            <TD>ファイルのオープンに成功したなら true。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#isNative">isNative</A></TD>
+
+            <TD>パイプで標準ストリームに対しては true。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#lastModified">lastModified</A></TD>
+
+            <TD>最後に変更された時を表す Date オブジェクトが入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#canRead">canRead</A></TD>
+
+            <TD>ファイルが読み込み可能なら true。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#canWrite">canWrite</A></TD>
+
+            <TD>ファイルが書きこみ可能なら true。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#append">canAppend</A></TD>
+
+            <TD>ファイルが追加モードか示すフラグが入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#replace">canReplace</A></TD>
+
+            <TD>ファイルが置き換えモードか示すフラグが入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#randomAccess">hasRandomAccess</A></TD>
+
+            <TD>"position" プロパティーを使用可能か示すフラグが入る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#autoFlush">hasAutoFlush</A></TD>
+
+            <TD>ファイルが自動フラッシュモードか示すフラグが入る。</TD>
+          </TR>
+        </TABLE>
+
+      </UL>
+
+      <H2>
+      2.2 インスタンスメソッド</H2>
+
+      <UL>
+        &nbsp;
+
+        <TABLE BORDER WIDTH="100%" >
+          <TR>
+            <TD WIDTH="1%"><A HREF="#open">open(type,mode)</A></TD>
+
+            <TD>ファイルを開く</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#close">close()</A></TD>
+
+            <TD>ファイルを閉じる</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#flush">flush()</A></TD>
+
+            <TD>ファイルへの送信を待つデータをフラッシュする</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#seek">seek(numChars)</A></TD>
+
+            <TD>次の numChars 分の文字をスキップする</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#read">read(numChars)</A></TD>
+
+            <TD>numChars 分の文字を読み、文字列に入れる</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#readln">readln()</A></TD>
+
+            <TD>ファイルから一行分の文字を読む</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#readAll">readAll()</A></TD>
+
+            <TD>ファイル内に残っている行すべてを読み、文字列の配列をかえす</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#write">write(arg0,arg1,...,argn)</A></TD>
+
+            <TD>パラメーターを文字列としてファイルに書きこむ</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#writeln">writeln(arg0,arg1,...,argn)</A></TD>
+
+            <TD><TT>write</TT>と同じで、現在のプラットフォームの改行区切り文字を追加する</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#writeAll">writeAll(Array)</A></TD>
+
+            <TD>オブジェクトの配列を順にファイルに書きこむ</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#remove">remove()</A></TD>
+
+            <TD>ファイルかディレクトリを削除する</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#copyTo">copyTo(filename)</A></TD>
+
+            <TD>ファイルの内容を別の場所にコピーする</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#moveTo">renameTo(filename)</A></TD>
+
+            <TD>ファイルを移動/名前の変更をする</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#list">list(filter)</A></TD>
+
+            <TD>ディレクトリ内のファイルリストを得る。</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#mkdir">mkdir()</A></TD>
+
+            <TD>新しいディレクトリを作成する</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#toString">toString()</A></TD>
+
+            <TD>ファイルへの基準パスをかえす</TD>
+          </TR>
+
+          <TR>
+            <TD><A HREF="#toURL">toURL()</A></TD>
+
+            <TD>可能ならファイル名を "file:" URL でかえす</TD>
+          </TR>
+        </TABLE>
+
+      </UL>
+
+      <HR WIDTH="90%">
+
+      <H2>
+      3.0 File コンストラクターのプロパティー</H2>
+
+      <UL>
+        <A NAME="File"></A><B>File</B>
+
+        <P>File コンストラクター。filename をただ一つの引数として期待する。
+	  filename の前に "file://" を置くことも可能で、置いても取り除かれる。
+	  引数を与えられなかったら、現在のワーキングディレクトリをかえすファイルオブジェクトとする。
+
+        <P><A NAME="in"></A><B>input</B>
+
+        <P>標準入力ストリームを表す File オブジェクト。特定の環境下で初期化される。
+
+        <P><A NAME="in"></A><B>output</B>
+
+        <P>標準出力ストリームを表す File オブジェクト。特定の環境下で初期化される。
+
+        <P><A NAME="in"></A><B>error</B>
+
+        <P>標準エラーストリームを表す File オブジェクト。特定の環境下で初期化される。
+
+        <P><A NAME="currentDir"></A><B>currentDir</B>
+
+        <P>このプロパティーには、カレントディレクトリを指す File オブジェクトが入る。
+	  このプロパティーに代入すると、カレントディレクトリーが変更される。
+	  次のような構文がサポートされている。
+
+          <UL>
+            <TT>File.currentDir = new File("/");</TT>
+            <BR>
+            &nbsp;&nbsp;&nbsp; これは機能上は次と同じ
+            <BR>
+            <TT>File.currentDir = "/";</TT>
+          </UL>
+
+          <A NAME="separator"></A><B>separator</B>
+
+        <P>システムの名前区切り文字。例えば、Unixでは "/"。
+      </UL>
+
+      <H2>
+      3.1 File インスタンスのプロパティー</H2>
+
+      <UL>
+        <A NAME="name"></A><B>name</B>
+
+        <P>このプロパティーにはファイル名が入る。ストリームに対しては、"Standatd input(output/error) stream" と定義される。
+	  パイプに対しては undefined。
+
+        <P><A NAME="path"></A><B>path</B>
+
+        <P>このプロパティーにはファイルへの基準パスが入る。
+	  ストリームに対しては、"Standard input(output/error) stream" と定義される。
+	  パイプに対しては、パイプを作るのに使用したパスをかえす。初めとそれに続くスペースは取り除かれる。
+
+        <P><A NAME="length"></A><B>length</B>
+
+        <P>ディレクトリに対しては、カレントディレクトリと親ディレクトリエントリーを数えないファイルの数である。
+	  ファイルに対しては、このプロパティーはファイル内の文字の数が入る。
+	  パイプと標準ストリームに対しては undefined。
+
+        <P><A NAME="parent"></A><B>parent</B>
+
+        <P>このプロパティーには、そのファイルを含んでいるディレクトリを指す File オブジェクトが入る。
+	  そこファイルに何にも含まれていなければ (ルートディレクトリ)、プロパティーは null である。
+	  パイプと標準ストリームに対しては undefined。
+
+        <P><A NAME="type"></A><B>type</B>
+
+        <P>このプロパティーには、ファイルが開かれた時使われていたデータタイプかエンコーディングを指定する文字列が入る。
+	  指定されたテキストエンコーディングサポートは、"ascii"、"unicode"、と"binary" である。
+	  ディレクトリと閉じてしまったファイルに対しては undefined。
+
+        <P><A NAME="mode"></A><B>mode</B>
+
+	<P>このプロパティーにはファイルのモードが入っている。
+	  属性を繰り返したり ("read,read")、無視される属性があったりすると、
+	  オープンに失敗しなかったものと少々異なることが有り得る。
+	  ファイルが閉じられていると undefined をかえす。
+
+        <P><A NAME="position"></A><B>position</B>
+
+	<P>このプロパティーには、ファイル内の現在のオフセットが入る。
+	  これだけが、設定されてもよいプロパティーだ。
+	  ファイルがランダムアクセスモードでないか、パイプや標準ストリームだと、このプロパティーは undefined である。
+	  閉じてしまったファイルに対しても undefined である。
+	  このプロパティーを設定するとファイル上で seek 操作が行われる。
+
+        <P><A NAME="isFile"></A><B>isFile</B>
+
+	<P>ファイルが世紀のデータファイルなら、このプロパティーには true が入る。
+	  パイプと標準ストリームに対しては false。
+	  注: いくつかのファイルタイプに対して (例えば unix の名前付きパイプ)、"isDirectory" と "isFile" の両方が
+	  false をかえすかもしれないプラットフォームもある。
+
+        <P><A NAME="isDirectory"></A><B>isDirectory</B>
+
+        <P>ファイルがディレクトリならこのプロパティーは true が入っている。
+	  パイプと標準ストリームに対しては false。
+
+        <P><A NAME="exists"></A><B>exists</B>
+
+	<p>ファイルが存在するなら、このプロパティーは true と等しい。
+	  パイプと標準ストリームに対しては false。
+
+        <P><A NAME="opened"></A><B>isOpen</B>
+
+        <P>ファイルをうまく開き、開いた状態のままだと、このプロパティーには true が入る。
+	  標準ストリームとパイプはデフォルトで開かれ、開く必要が無いことを心にとめておきなさい。
+
+        <P><A NAME="isNative"></A><B>isNative</B>
+
+        <P>パイプと標準ストリームに対しては、このプロパティーには true が入る。
+
+        <P><A NAME="lastModified"></A><B>lastModified</B>
+
+        <P>このプロパティーには、ファイルが最後に編集された時を表す Data オブジェクトが入る。
+	  パイプと標準ストリームに対しては undefined。
+
+        <P><A NAME="canRead"></A><B>canRead</B>
+
+	<P>ファイルが読み出し可能なら、このプロパティーには true が入る。
+	  ファイルが開かれたモード (もし開かれたのなら) は考慮される。
+	  File.input に対しては true で、他のストリームに対しては false。
+	  '|' で始まるパイプに対して true で、他は false。
+
+        <P><A NAME="canWrite"></A><B>canWrite</B>
+
+	<P>ファイルが書き込み可能なら、このプロパティーには true が入る。
+	  ファイルが開かれたモード (もし開かれたのなら) は考慮される。
+	  File.output と File.error に対しては true で、File.input に対しては false。
+	  '|' で終わるパイプに対しては true で、他は false。
+
+        <P><A NAME="append"></A><B>canAppend</B>
+
+	<P>ファイルが追加書き込みように開かれたのなら、このプロパティーには true が入る。
+	  パイプと標準ストリームに対しては false。閉じてしまったファイルに対しては undefined。
+
+        <P><A NAME="replace"></A><B>canReplace</B>
+
+	<P>ファイルが置き換えフラグを与えられて開かれているのなら、このプロパティーには true が入る。
+	  パイプと標準ストリームに対しては false。閉じてしまったファイルに対しては undefined。
+
+        <P><A NAME="randomAccess"></A><B>hasRandomAccess</B>
+
+	<P>このプロパティーには、ファイルがランダムアクセスモードで開かれているかを示すフラグが入る。
+	  つまり、"potition" プロパティーは読み出しと設定が可能である。
+	  パイプと標準ストリームに対しては false。閉じてしまったファイルに対しては undefined。
+
+        <P><A NAME="autoFlush"></A><B>hasAutoFlush</B>
+
+	<P>ファイルが自動フラッシュモードだと、このプロパティーには true が入る。
+	  これが true と設定されると、毎度の <A HREF="#writeln">writeln</A> 呼び出しでストリームをフラッシュする。
+	  パイプと標準ストリームに対しては false。閉じたファイルに対しては undefined。
+      </UL>
+
+      <H2>
+      3.1.1 ディレクトリのための特別なプロパティー</H2>
+
+      <UL>
+        ディレクトリを表す File オブジェクトは、ディレクトリ内に含まれるファイルを表す追加プロパティーを得る。
+
+        <P>これらのプロパティーはディレクトリ内のファイルのように同じ名前を持つ。
+          <BR>
+          &nbsp;
+
+          <TABLE BORDER CELLPADDING=3 >
+            <TR>
+              <TD BGCOLOR="#BCC0D3"><B>例</B></TD>
+            </TR>
+
+            <TR>
+              <TD><TT>myDir = new File("some/directory");</TT>
+                <BR>
+                <TT>myFileInDir = myDir.foo;</TT>
+
+		<P>名前付きプロパティールックアップを
+		  通常のプロパティー名としては不正な名前を持つファイルを指すのに使うことが出来る。&nbsp;
+
+                <P><TT>mySameFileInDir = myDir["foo"];</TT>
+                  <BR>
+                  <TT>myOtherFile = myDir["some long filename with spaces and such"];</TT></TD>
+            </TR>
+          </TABLE>
+
+      </UL>
+
+      <H2>
+      3.2 インスタンスメソッド</H2>
+
+      <UL>
+        <A NAME="open"></A><B>open(type,mode)</B>
+
+	<P>mode が指定されなかった場合、通常のファイルに対して使われるデフォルトの mode は、
+          "read,append,create" である。パイプは作成時に、
+	  パイプの形式によるが "read" か "write" をデフォルトの mode として自動的に開かれる。
+	  type が指定されなかった場合、デフォルトの type は "text" である。
+          <BR>
+          &nbsp;
+
+          <TABLE BORDER CELLPADDING=3 >
+            <TR>
+              <TD COLSPAN="2" BGCOLOR="#BCC0D3"><B>有効な mode (合成可能)</B></TD>
+            </TR>
+
+            <TR>
+              <TD>read</TD>
+
+              <TD>読み出しのためにファイルを開くと指定する。</TD>
+            </TR>
+
+            <TR>
+              <TD>write</TD>
+
+              <TD>書き込みのためにファイルを開くと指定する。</TD>
+            </TR>
+
+            <TR>
+              <TD>readWrite</TD>
+
+              <TD>読み出しおよび書き込みのためにファイルを開くと指定する。</TD>
+            </TR>
+
+            <TR>
+              <TD>randomAccess</TD>
+
+              <TD>読み出しおよび書き込みのためにファイルを開くと指定する。</TD>
+            </TR>
+
+            <TR>
+              <TD>append</TD>
+
+              <TD>ファイルポインターの位置をファイルの最後に置く。</TD>
+            </TR>
+
+            <TR>
+              <TD>autoflush</TD>
+
+              <TD>改行文字が書かれたら出力に自動的にフラッシュするように頼む。</TD>
+            </TR>
+
+            <TR>
+              <TD>replace</TD>
+
+              <TD>ファイルを開く前に内容を消去する。</TD>
+            </TR>
+          </TABLE>
+
+        <P>"create=yes, append=yes" などの書式も使うことが出来る。
+	  大文字小文字が違うのに注意してください。
+          <BR>
+          &nbsp;
+
+          <UL>
+            <B>注:</B>
+
+            <UL>
+              <LI>
+                "read" と "write" の両方がセットされると、"readWrite" は自動的にセットされる。</LI>
+
+              <LI>
+                バイナリファイルに対して "randomAccess" は true とセットされる。</LI>
+
+              <LI>
+                "autoflush" はデフォルトで true。</LI>
+            </UL>
+
+          </UL>
+
+          <TABLE BORDER CELLPADDING=3 >
+            <TR>
+              <TD COLSPAN="2" BGCOLOR="#BCC0D3"><B>有効な type</B></TD>
+            </TR>
+
+            <TR>
+              <TD>"text"</TD>
+
+              <TD>デフォルトのファイルエンコーディングを使ってテキストアクセス用にファイルを開く。</TD>
+            </TR>
+
+            <TR>
+              <TD>"binary"</TD>
+
+              <TD>バイナリアクセス用にファイルを開く。</TD>
+            </TR>
+
+            <TR>
+              <TD>"unicode"</TD>
+
+              <TD>Unicode アクセス用にファイルを開く。</TD>
+            </TR>
+          </TABLE>
+
+	<P>ファイルがネイティブファイルやディレクトリだと、警告を出す。
+	  この場合両方とも戻り値は true である。ファイルがネイティブでなく既に開かれていると、
+	  警告が生成されファイルは再び開かれる。
+	  ファイルの先頭に行きたい場合などで意味をなすが、
+	  かわりに <A HREF="#seek">seek&nbsp;</A>を使うことが出来るだろう。
+
+        <P><A NAME="close"></A><B>close()</B>
+
+	<P>このメソッドはファイルを閉じる。ファイルが開かれていなかったりネイティブファイルだと、
+	  警告を出し、false をかえす。
+	  開かれているファイルオブジェクトがスコープの外に出たとき、そのオブジェクト上でこのメソッドは自動的に呼ばれる。
+
+        <P><A NAME="remove"></A><B>remove()</B>
+
+	<P>このメソッドは、ファイルを削除するか、引数として与えられたディレクトリを削除する。
+	  通常ディレクトリで削除が呼ばれたとき、ディレクトリが空のときしか削除されない。
+	  ファイルを開いていると失敗する。
+
+        <P><A NAME="copyTo"></A><B>copyTo(filename)</B>
+
+	<P>このメソッドは、ソースファイルのそのまま目的のファイルへコピーしようと試みる。
+	  ソースファイルが存在しなかったり、ディレクトリだと失敗するだろう。
+
+        <P><A NAME="moveTo"></A><B>renameTo(filename)</B>
+
+        <P>このメソッドは、ファイルを移動/名前の変更をする。ファイルが開かれていると失敗する。
+
+        <P><A NAME="flush"></A><B>flush()</B>
+
+        <P>このメソッドは、ファイルの出力バッファーのフラッシュを強制する。
+	  ファイルが閉じられていたら失敗する。
+
+        <P><A NAME="seek"></A><B>seek(numChars)</B>
+
+	<P>このメソッドは、現在のファイルに対するアクセスモードによるが、次の numChars 分の文字列かバイト列をスキップする。
+	  ファイルが閉じられていた場合、この操作を行う前に開かれる。
+	  この関数は、正負両方のパラメーターを受け付ける。
+	  ディレクトリで呼ばれたら、警告を報告し、undefined をかえす。
+	  この操作が成功すると、ファイル内の現在の位置をかえす。
+
+        <P><A NAME="read"></A><B>read(numChars)</B>
+
+	<P>このメソッドは、numChars 分文字を読みこみ、文字列でかえす。
+	  読みこむ文字列の数が numChars より少ない場合、読めるだけかえされる。
+	  ファイルが EOF にあると、null がかえされる。
+
+        <P><A NAME="readln"></A><B>readln()</B>
+
+	<P>このメソッドは、行/ファイルの終わりがなるまで文字列を読み、
+	  それらの文字列に対して文字列を (end of line 文字を一切除いて) かえす。
+
+        <P><A NAME="readAll"></A><B>readAll()</B>
+
+	<P>このメソッドは、ファイルの残りを読み込み、ファイルの各行に対してスロット付きの配列をかえす。
+
+        <P><A NAME="write"></A><B>write(arg0,arg1,...,argn)</B>
+
+	<P>このメソッドは、各引数を文字列に変換し、ファイルに (セパレーターなしに) 書きこむ。
+
+        <P><A NAME="writeln"></A><B>writeln(arg0,arg1,...,argn)</B>
+
+	<P>このメソッドは <TT>write</TT> と似ているが、最後の引数を出力した後プラットフォーム依存な EOF を追加する。
+
+        <P><A NAME="writeAll"></A><B>writeAll(Array)</B>
+
+	<P>このメソッドは引数に配列を取り、各要素ごとに writeln() を呼ぶ。
+
+        <P><A NAME="list"></A><B>list(filter)</B>
+
+	<P>このメソッドは配列をかえす。ファイルがディレクトリなら、
+	  そのディレクトリ内の各ファイルに対してスロットが作成され、
+	  そのファイル名のプロパティーも作成される。
+	  両方ともファイルを参照する File オブジェクトを指す。
+
+        <P><TT>filter</TT> は、関数が正規表現でなければならないオプションの引数で、
+	  配列のフィルターに用いられる。
+	  引数が正規表現なら、配列にはパターンにマッチしたファイルしか入らない。
+	  引数が関数なら、ファイル名を引数として与えたとき、関数が true をかえしたファイルしか配列には入らない。
+          <BR>
+          &nbsp;
+
+          <TABLE BORDER CELLPADDING=2 >
+            <TR>
+              <TD BGCOLOR="#BCC0D3"><B>例</B></TD>
+            </TR>
+
+            <TR>
+              <TD><TT>File.currentDir.list( function (name) { return name.length==3;
+                } );</TT>
+
+                <P>カレントディレクトリで名前が三文字のファイルしかかえさない。&nbsp;</TD>
+            </TR>
+          </TABLE>
+
+        <P><A NAME="mkdir"></A><B>mkdir()</B>
+
+        <P>このメソッドは、ファイルディレクトリ内にディレクトリを作成しようと試みる。
+          例えば、
+
+          <UL>
+            <TT>f = new File("c:\\")</TT>
+            <BR>
+            <TT>f.mkdir("win95")</TT>
+          </UL>
+
+          c:\win95\ を作成する。この断片も同じ事をする。
+
+          <UL>
+            <TT>f = new File("c:\\user.txt")</TT>
+            <BR>
+            <TT>f.mkdir("win95")</TT>
+          </UL>
+
+          <A NAME="toString"></A><B>toString()</B>
+
+        <P>このメソッドは、ファイルに対する基準パスをかえす。
+
+        <P><A NAME="#toURL"></A><B>toURL()</B>
+
+        <P>ファイル名を "file:" URLとしてかえす。パイプと標準ストリームに対しては undefined。
+      </UL>
+
+      <HR WIDTH="90%">
+
+      <H2>
+      4.0 遊んでみたい</H2>
+
+      <BLOCKQUOTE><A NAME="playwithfire"></A><FONT COLOR="#FF0000">大げさな免責条項:</FONT>
+      ハードドライブが消され無茶苦茶に破壊される覚悟が出来ていなければ、File オブジェクトで遊ぶなかれ!
+      今は大体上手く動いているが、保証はない。</BLOCKQUOTE>
+
+      <UL>
+        &nbsp;
+        <BR>
+	現在 File オブジェクトは、define を使ってコア JS engine 内へビルド可能である。
+	これはよくない。いったん XPCOM が落ち着いたら、File オブジェクトは COM 化するべきだ。
+
+	<P>File オブジェクトで遊ぶ/をハックするには、最新で (通常は) 一番良い JavaScript を
+	  次のように CVS を使って入手しなさい。
+
+        <P><TT>cvs co -rSpiderMonkeyDev_BRANCH mozilla/js/src</TT>
+
+	<P>JavaScript の開発進行中のブランチを入手するのだが、これは安定性にほとんど保証がないと警告しておく。
+
+	<P>File オブジェクト付きで (例えば UNIX 上のリファレンスインタプリターを) ビルドするには、
+	  ビルド時に <TT>JS_HAS_FILE_OBJECT</TT> を define しなさい。
+	  NSPR に対してビルドする必要もあり、<TT>JS_THREADSAFE</TT> を define することでこれは出来る。
+
+        <P><TT>cd mozilla/js/src</TT>
+          <BR>
+          <TT>gmake -f Makefile.ref JS_THREADSAFE=1 JS_HAS_FILE_OBJECT=1</TT>
+      </UL>
+
+      <A NAME="section5"></A>
+      <H2>
+      5.0 状態</H2>
+
+      <UL>
+        <B>コードの状態:</B>
+
+        <UL>
+          <LI>
+	    コードはすべて jsfile.[c|h|msg] にある。とても良い状態にある。
+	    少なくとも1999年12月半ばよりはずっとよい状態である。
+	    まだ冗長な部分の削除、マクロの追加などをする機会がある。</LI>
+
+          <LI>
+	    徐々に、最重要機能は実装さてテストされている。
+	    ファイルのオープン、クローズ、読み出し、書き込みなどを含む。
+	    より多くの例については、テスト一式の中の nspr_files.js を見なさい。
+
+          <LI>
+	    この提案で説明したメソッドとプロパティーは全部実装したと思う。
+	    必ずしもどんなプラットフォームでも動くとは限らない。
+	    特に、誰も Mac でこれをビルドしようとしていない。
+	    注: パイプや場合によっては標準ストリームのような機能が Mac では使用できるようにならない。
+	    NSPR の機能でさえ全部は動かないかもしれない。
+	    Mac が含んでいるどれが必要なのかさえはっきりしない。</LI>
+
+          <LI>
+	    コードについて言うと、File オブジェクトのメソッドの多くはとてもしっかりテストされている。
+	    低水準のファイルアクセスを取り扱うコードにまだ予測のつかないバグがあるだろう。
+	    そのコードはまた、最適化されていない。割と大きなファイルのコピーに<I>しばらく</I>かかる。
+	    ファイル名の操作は書きなおされた。
+	    これと <A HREF="mailto:mcmullen@netscape.com">John McMullen</A> が書いたものを合体させるという話があり、
+            一度彼ら (<A HREF="mailto:wtc@netscape.com">NSPR な人々</A>, <A HREF="mailto:brendan@netscape.com">Brendan</A>)
+	    が NSPR の一部であるべきで実装言語にどれを使うか考え出したら、それほど大変な話ではないだろう。
+	    これについては <A HREF="news:netscape.public.mozilla.xpfe">netscape.public.mozilla.xpfe</A> で議論がある。</LI>
+
+          <LI>
+	    機能の多くをカバーするテスト一式がある。
+	    だが、オブジェクトを酷使したとき潜在的なバグが多くでるだろう。
+	    このバグは発見は難しいが簡単に修正できる。</LI>
+
+          <LI>
+	    コードの多くは、エラー状態を捕捉しエラーメッセージか警告を生成する目的に用いられる。
+	    エラーコードについては jsfile.msg を見なさい。</LI>
+        </UL>
+
+      </UL>
+
+      <UL>
+        <B>すべきこと:</B>
+
+        <UL>
+          <LI>
+	    エラーが起きたとき、例外を生成すべき。例外の書式はどうするべきだろう?
+	    警告を報告する関数もあるし、エラーとなるものもある。
+	    最終的には、すべて例外となるべき。</LI>
+
+          <LI>
+	    エラーメッセージを少し片付けるべき</LI>
+
+          <LI>
+	    セキュリティーコールバックをコードに入れるという話がある。
+	    この目的のために SECURITY_CHECK マクロが残っている。
+	    それは現在空の文字列として define されており、再 define の必要がある。
+	    このマクロは、操作の名前をパラメーターの一つとして取り、その名前は現在メソッド名と一致しているが、
+	    分解してグループ (read、write、exist など) に分けられるはずだ。
+	    セキュリティーチェックは、処理手順にアクセスする個々のメソッドとプロパティーのレベルで実装されており、
+	    根本的な実行関数のレベルで実装されているのではない。
+	    なぜなら、&nbsp; 実行関数はコード内で別の場所から呼ばれる可能性があり、
+	    私たちはセキュリティーチェックの階層化を望んでいないはずだから。
+	    これについては <A HREF="mailto:nboyd@atg.com">Norris</A> に質問しなさい。</LI>
+
+          <LI>
+	    RDF は JS に影響するようになる (<A HREF="mailto:guha@netscape.com">Guha</A> と
+            <A HREF="mailto:clayton@netscape.com">Clayton</A> に聞きなさい)。
+	    現在私たちは、JavaScript ファイルコンストラクタに RDF のなんとかという物を取ってこさせて、
+	    普通の JS File オブジェクトをかえさせたい。
+	    それはつまり、RDF を ファイルシステムを <I>ナビゲートする</I> のに使い、
+	    File オブジェクトを読み書きなどに使うだろうという事。</LI>
+
+          <LI>
+	    js_canonicalPath(...) をどうすべきか考える。この処理手順は、
+	    ".././blah/../../dir/file.txt" のように与えられたファイル名を解決する。
+	    実際には必要ないと思う。ファイルシステムがこの名前を自動的に解決するから。
+	    (最後に fopen 呼び出しの結果皆除去される）
+	    この処理手順は Mac 互換ではなく、潜在的に奇妙な問題や弱いリンクの問題があるかもしれない。
+	    コード内で、マクロ RESOLVE_PATH を探しなさい。
+	    この処理手順は、最初と最後のスペースを取り除いたりといった他の事もする。
+	    js_absolutePath(...) へ移す必要があるかもしれない。</LI>
+
+          <LI>
+	    Purify を通してコードを実行するのは良い。</LI>
+
+          <LI>
+	    jsstr.h にある js_escape をコードで使っている。
+	    何時の日か jsstr.h からそれは消え、クライアントへ移動するだろう。
+	    そしてこのコードがビルド出来なくなる...</LI>
+
+          <LI>
+            (<B>?</B>) nsFileSpec の機能を NSPR に巻き込むのに NSPR グループを得る。
+	    上の議論を見なさい。外部コードが既に大体動いているので、
+	    これが私たちのしたかったことなのかまだ完全には明らかではないが、
+	    調べる価値はある。</LI>
+
+          <LI>
+            (<B>?</B>) XPCOM 化 -- まただが、これにより受ける恩恵がはっきりしないが、
+	    これは大幅な改訂が必要である。</LI>
+
+          <LI>
+            (<B>?</B>) Java での実装ははっきりしない。
+	    何故なら、LiveConnect + java.io.File で既にこの機能はある。</LI>
+
+          <LI>
+            (<B>?</B>) api をソケットなどの使用が出来るように拡張する。(機能は既に PRFile 内にある。)
+	    何のために必要なのかはっきりしないが、簡単に出来る。どうですか?</LI>
+
+          <LI>
+            (<B>?</B>) 低水準ファイルアクセス機能は、能率的でないだろう (js_FileRead(..) などを見なさい)。
+	    比較的小さなファイルのコピーにはしばらくかかる。
+	    最適化できるだろう。既にきちんとバッファリングしているが。</LI>
+        </UL>
+
+        <P><BR>
+          <B>とりとめもない思索:</B>
+
+          <UL>
+            <LI>
+	      サーバーの領域にいる誰かが、同様のもの (Server-side JS?) を書こうとしていて、
+	      XPCOM なファイルオブジェクトもどこかにあるようだ。
+              (<A HREF="mailto:clayton@netscape.com">Clayton</A> に聞きなさい)</LI>
+          </UL>
+
+      </UL>
+
+      <HR>
+
+      <BR>
+      <A HREF="mailto:mailto:nboyd@atg.com?cc=val4@cornell.edu">Norris Boyd</A>に質問しなさい。
+      <BR>
+      <!-- hhmts start -->Last modified: Fri Dec 18 20:47:48 PST 1998<!-- hhmts end -->
+  
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/js/js-file-object.html">英語版</a> 2000/05/22</span> - <span>和訳版 2004/10/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/js/js-file-object.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,777 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <meta name="generator" content="HTML Tidy for OS/2 does not exist. We do this page by hand in Doctor.">
+  
+  <meta http-equiv="Content-Language" content="en">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>Warpzilla</title>
+<link rel="alternate" hreflang="en" modified="August 22, 2009">
+<!--
+********************************************************************************
+
+オリジナル
+題名：Mozilla on OS/2
+URL ：http://www.mozilla.org/ports/os2/
+
+和訳
+2000/12/28　１版：山口
+2001/03/01  更新：山口 (Rev.:1.27 Feb 27 2001 06:54）
+2001/06/30  更新：山口 (Rev.:1.28 Jun 27 2001 06:18）
+                  Announcement of optimized 0.6
+2001/07/21  更新：山口 (Rev.:1.29 Jul 20 2001 09:45）
+                  Build changes
+2001/11/30  更新：山口 (Rev.:1.31 Nov 27 2001 13:00）
+                  News update
+2002/01/04  更新：山口 (Rev.:1.32 Jan 4 2002 13:28）
+                  over haul
+2002/01/07  更新：山口 (Rev.:1.32 Jan 4 2002 13:28）
+                  リンクを相対パスに変更
+2002/01/27  更新：山口 (Rev.:1.33 Jan 28 2002 10:20）
+                  ナイトリービルドへのリンク修正
+
+2004/04/02  更新：山口 Rev.:1.117
+2004/04/16  更新：山口 Rev.:1.121
+2004-04-24  更新: RxOrca Rev.:1.122
+                dl要素中の dt要素の記述違い (Originalも同様)
+                そのほか, こまごまとした修正を含む
+(中略)
+2009-07-27  更新: RxOrca Rev.:1.355
+2009-08-06  更新: RxOrca Rev.:1.356
+2009-08-09  更新: RxOrca Rev.:1.357-1.358
+2009-08-23  更新: RxOrca Rev.:1.359-1.361
+
+********************************************************************************
+-->
+  <style type="text/css" media="screen,tv">
+  p.dl { color: #666; }
+  dl.dl p { margin: 0.3em 0; }
+  dt { margin-left: 50px; }
+  dd { margin-left: 50px; margin-bottom: 1.5em; }
+  dt.im { float: left; width: 40px; margin-left: 0; padding-left: 6px; }
+  #wzlogo {width: 100%; max-width: 900px; min-width: 600px;}
+
+  a[hreflang]::after { content: "[" attr(hreflang) "]"; }
+  a[hreflang='en']::after { color: rgb(32, 160, 64); content: " (英語)"; }
+  </style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/ports/os2/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+  <h1><img id="wzlogo" alt="WarpZilla - Mozilla for OS/2" src="../../ports/os2/warpzilla-logo.gif" width="600" height="65"
+  name="wzlogo"></h1>
+
+  <ul class="snav">
+    <li><a href="#wzdl" title="Warpzilla をダウンロード">ダウンロード</a></li>
+
+    <li><a href="#wzres" title="Warpzilla をめぐるリソース">リソース</a></li>
+
+    <li><a href="#wznews" title="最新 Warpzilla ニュース">ニュース</a></li>
+
+    <li><a href="#wzinst" title="現在のインストールガイドとシステム要件">インストールガイド</a></li>
+  </ul>
+
+  <h2>Warpzilla とは何？</h2>
+
+  <p>Mozilla プロジェクトでは、誉高い・オープンソースな・Firefox ウェブ<!-- ・メールスイート-->と関連製品およびテクノロジーを開発することで、インターネットでの選択肢を提供し 革新を続けています。
+  Warpzilla はこれら製品の OS/2 移植版で、<a class="ex-ref" href="http://www.ibm.com/software/os/warp/" hreflang="en">OS/2&reg;</a> や <a class="ex-ref" href="http://www.ecomstation.com/" hreflang="en">eComStation</a> 上で実行できるようデザインされています。
+  <!-- OS/2 Warp 日本語版 http://www.ibm.com/jp/pspjinfo/os2/ --></p>
+
+  <h2 id="wzdl">Warpzilla をダウンロード</h2>
+
+  <h3>最新の製品のリリース:</h3>
+
+  <dl class="dl">
+
+    <dt class="im"><img src="../../images/ico-ff.png" width="32" height="32" alt=""></dt>
+    <dt><a href="http://www.mozilla.com/ja/firefox/">Firefox 3.5.2</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/3.5.2/contrib/firefox-3.5.2.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/3.5.2/contrib/firefox-3.5.2.en-US.os2.README" title="読み飛ばさないでください (Please do not skip reading!)">README</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/3.5.2/contrib/firefox-3.5.2.en-US.os2.MD5SUM">MD5SUM</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/3.5.2/win32/xpi/">ランゲージパック</a>]
+    </p>
+    </dd>
+
+    <dt class="im"><img src="../../projects/seamonkey/images/seamonkey32.png" width="32" height="32" alt=""></dt>
+    <dt><a href="../../projects/seamonkey/releases/">SeaMonkey 1.1.17</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/seamonkey/releases/1.1.17/contrib/seamonkey-1.1.17.en-US.os2.installer.exe">インストーラ</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/seamonkey/releases/1.1.17/contrib/seamonkey-1.1.17.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/seamonkey/releases/1.1.17/contrib/seamonkey-1.1.17.en-US.os2.README">README</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/seamonkey/releases/1.1.17/contrib/seamonkey-1.1.17.en-US.os2.MD5SUMS">MD5SUMS</a>]
+    </p>
+    </dd>
+
+    <dt class="im"><img src="../../images/ico-tb.gif" width="32" height="32" alt=""></dt>
+    <dt><a href="http://www.mozilla.com/thunderbird/">Thunderbird 2.0.0.23</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/2.0.0.23/contrib/thunderbird-2.0.0.23.en-US.os2.zip">Zip ファイル</a>]
+    </p>
+    </dd>
+
+  </dl>
+
+  <h3>旧い製品:</h3>
+
+  <dl class="dl">
+    <dt class="im"><img src="../../images/ico-ff.png" width="32" height="32" alt=""></dt>
+    <dt><a href="http://www.mozilla.com/ja/firefox/all-older.html">Firefox 3.0.13</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/3.0.13/contrib/firefox-3.0.13.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/3.0.13/contrib/firefox-3.0.13.en-US.os2.README" title="読み飛ばさないでください (Please do not skip reading!)">README</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/3.0.13/contrib/firefox-3.0.13.en-US.os2.MD5SUM">MD5SUM</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/3.0.13/win32/xpi/">ランゲージパック</a>]
+    </p>
+    </dd>
+  </dl>
+
+  <h3>Mercurial ビルド (rv:1.9.1 Gecko):</h3>
+
+  <dl class="dl">
+<!-- these alpha and beta releases are obsolete
+
+    <dt class="im"><img src="http://www.mozilla.org/images/ico-dp.png" width="32" height="32" alt=""></dt>
+    <dt><a href="http://developer.mozilla.org/devnews/index.php/2008/10/14/firefox-31-beta-1-now-available-for-download/">Firefox 3.1 beta 1</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.1b1/contrib/firefox-3.1b1.en-US.os2.zip">Zip ファイル</a>]
+ [<a
+href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.1b1/contrib/firefox-3.1b1.en-US.os2.README">README</a>]
+[<a
+href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.1b1/contrib/firefox-3.1b1.en-US.os2.MD5SUM">MD5SUM</a>]
+    </p>
+    </dd>
+
+    <dt class="im"><img src="http://www.mozilla.org/images/ico-tb.gif" width="32" height="32" alt=""></dt>
+    <dt><a href="http://www.mozillamessaging.com/en-US/thunderbird/3.0a3/releasenotes/">Shredder alpha 3</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/3.0a3/contrib/thunderbird-3.0a3.en-US.os2.zip">Zip ファイル</a>]
+ [<a
+href="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/3.0a3/contrib/thunderbird-3.0a3.en-US.os2.README">README</a>]
+[<a
+href="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/3.0a3/contrib/thunderbird-3.0a3.en-US.os2.MD5SUM">MD5SUM</a>]
+    </p>
+    </dd>
+
+    <dt class="im"><img src="http://www.mozilla.org/projects/seamonkey/images/seamonkey32.png" width="32" height="32" alt=""></dt>
+    <dt><a href="http://www.seamonkey-project.org/releases/2.0a1">SeaMonkey 2.0 alpha 1</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/2.0a1/contrib/seamonkey-2.0a1.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/2.0a1/contrib/seamonkey-2.0a1.en-US.os2.README">README</a>]
+[<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/2.0a1/contrib/seamonkey-2.0a1.en-US.os2.MD5SUM">MD5SUM</a>]
+    </p>
+    </dd>
+-->
+
+    <dt class="im"><img src="../../images/ico-dp.png" width="32" height="32" alt=""></dt>
+    <dt><a href="https://wiki.mozilla.org/Firefox3.5">Firefox 3.5.4pre en-US (Shiretoko) ナイトリー</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-1.9.1/firefox-3.5.4pre.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-1.9.1/firefox-3.5.4pre.en-US.os2.ReadMe">ReadMe</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-1.9.1/">ディレクトリ</a>]
+    </p>
+    </dd>
+
+    <dt class="im"><img src="../../projects/seamonkey/images/seamonkey32.png" width="32" height="32" alt=""></dt>
+    <dt>SeaMonkey 2.0 Beta 2 pre ナイトリー</dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/seamonkey/nightly/contrib/latest-comm-1.9.1/seamonkey-2.0b2pre.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/seamonkey/nightly/contrib/latest-comm-1.9.1/seamonkey-2.0b2pre.en-US.os2.ReadMe">ReadMe</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/seamonkey/nightly/contrib/latest-comm-1.9.1/">ディレクトリ</a>]
+    </p>
+    </dd>
+
+    <dt class="im"><img src="../../images/ico-tb.gif" width="32" height="32" alt=""></dt>
+    <dt>Thunderbird 3.0 Beta 4 pre en-US ナイトリー</dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/nightly/contrib/latest-comm-central/thunderbird-3.0b4pre.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/nightly/contrib/latest-comm-central/thunderbird-3.0b4pre.en-US.os2.ReadMe">ReadMe</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/nightly/contrib/latest-comm-central/">ディレクトリ</a>]
+    </p>
+    </dd>
+
+  </dl>
+
+  <h3>Mercurial ビルド (rv:1.9.2 Gecko):</h3>
+  <dl class="dl">
+    <dt class="im"><img src="../../images/ico-dp.png" width="32" height="32" alt=""></dt>
+    <dt><a href="http://developer.mozilla.org/devnews/index.php/2009/08/07/firefox-3-6-alpha-1-now-available-for-download/">Firefox 3.6 alpha 1</a>
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/namoroka/alpha1/contrib/firefox-3.6a1.en-US.os2.zip">Zip ファイル</a>]
+ [<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/namoroka/alpha1/contrib/firefox-3.6a1.en-US.os2.README">README</a>]
+[<a href="http://www.ring.gr.jp/pub/net/www/mozilla/firefox/releases/namoroka/alpha1/contrib/firefox-3.6a1.en-US.os2.MD5SUM">MD5SUM</a>]
+    </p>
+    </dd>
+
+    <dt class="im"><img src="../../images/ico-dp.png" width="32" height="32" alt=""></dt>
+    <dt>Firefox 3.6 alpha 2 pre en-US (Namoroka) ナイトリー
+    </dt>
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-1.9.2/firefox-3.6a2pre.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-1.9.2/firefox-3.6a2pre.en-US.os2.ReadMe">ReadMe</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-1.9.2/">ディレクトリ</a>]
+    </p>
+    </dd>
+  </dl>
+
+  <h3>Mercurial Development Builds (rv:1.9.3 Gecko):</h3>
+  <dl class="dl">
+    <dt class="im"><img src="../../images/ico-dp.png" width="32" height="32" alt=""></dt>
+    <dt>Firefox 3.7 alpha 1 pre en-US (Minefield) ナイトリー
+    </dt>
+<!-- no useful nightlies yet
+    <dd>
+      <p class="dl">ダウンロード:
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-central/firefox-3.7a1pre.en-US.os2.zip">Zip ファイル</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-central/firefox-3.7a1pre.en-US.os2.ReadMe">ReadMe</a>]
+[<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/contrib/latest-mozilla-central/">ディレクトリ</a>]
+    </p>
+    </dd>
+-->
+  </dl>
+
+
+  <div>
+    <h2 id="wzres">Warpzilla をめぐるリソース</h2>
+
+    <ul>
+      <li><a href="#wzinst">最新のインストールガイドとシステム要件</a></li>
+
+<li><a name="gccrtl">GCC ランタイムライブラリ</a>:
+<ul>
+  <li><a class="ex-ref" href="http://www.os2site.com/sw/dev/gcc/old/libc-0.5.1.exe">[0.5.1 EXE ファイル]</a></li>
+<!--
+  <li><a class="ex-ref" href="http://download.innotek.de/gccos2/runtime/libc-0.5.1.exe">[0.5.1 EXE ファイル]</a></li>
+  <li><a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0.6.0-ga2.zip">[0.6.0 ZIP ファイル]</a></li>
+  <li><a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0_6_1-csd1.exe">[0.6.1 EXE ファイル]</a>
+  <a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0_6_1-csd1.wpi">[0.6.1 WPI パッケージ]</a>
+  <a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0.6.1-csd1.zip">[0.6.1 ZIP ファイル]</a></li>
+  <li><a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0_6_2-csd2.exe">[0.6.2 EXE ファイル]</a>
+  <a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0_6_2-csd2.wpi">[0.6.2 WPI パッケージ]</a>
+  <a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0.6.2-csd2.zip">[0.6.2 ZIP ファイル]</a></li>
+-->
+  <li><a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0_6_3-csd3.exe">[0.6.3 EXE ファイル]</a>
+  <a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0_6_3-csd3.wpi">[0.6.3 WPI パッケージ]</a>
+  <a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/libc-0.6.3-csd3.zip">[0.6.3 ZIP ファイル]</a></li>
+  <li><a class="ex-ref" href="ftp://ftp.netlabs.org/pub/gcc/">[ディレクトリ]</a></li>
+</ul>
+</li>
+
+      <li>InnoTek 社製の <a class="ex-ref" href="http://download.innotek.de/javaos2/mozilla/ipluginw20050915.xpi">
+      Mozilla と IBM Web Browser for OS/2 用の Java Plug-In サポート (更新)</a> (Gecko 1.9 ビルドにより廃止)</li>
+
+      <li>InnoTek 社製の <a class="ex-ref" href="http://www.os2bbs.com/os2news/Warpzilla/InnoTek_FT2LIB_260_Beta1.exe">
+      フォントエンジン for OS/2</a> (Gecko 1.9 ビルドによる廃止)</li>
+
+      <li><a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;op_sys=OS%2F2&amp;order=Bug+Number" hreflang="en">
+      現在 Open な Warpzilla バグ</a></li>
+
+      <li><a href="http://bugzilla.mozilla.org/buglist.cgi?query_format=&amp;op_sys=OS%2F2&amp;order=Bug+Number&amp;chfieldfrom=15d&amp;chfieldto=Now&amp;cmdtype=doit" hreflang="en">
+      最近変更された Warpzilla バグ</a></li>
+
+      <li><a href="http://bugzilla.mozilla.gr.jp/buglist.cgi?&amp;op_sys=OS%2F2&amp;order=Bug+Number">バグジラ (Bugzilla-jp)</a>
+      <span class="comment">【訳注: 日本語ページ追加】</span></li>
+      <li>ニュースやフォーラム <a href="http://www.os2.jp/">OS2.jp</a>
+      <span class="comment">【訳注: 日本語ページ追加】</span></li>
+
+      <li>Steve Wendt の <a class="ex-ref" href="http://www.os2bbs.com/os2news/Warpzilla.html" hreflang="en">Tips for Warpzilla</a></li>
+
+      <li>Peter Weilbacher の <a class="ex-ref" href="http://weilbacher.org/Mozilla/builds.html" hreflang="en">ビルドのページ</a> と <a class="ex-ref" href="http://pmw-warpzilla.sourceforge.net/" hreflang="en">Sourceforge 上の pmw-warpzilla ページ</a></li>
+
+      <li>OS/2 用 Mozilla の <a href="news://news.mozilla.org/mozilla.dev.ports.os2" hreflang="en">ニュースグループ</a></li>
+
+      <li><a class="ex-ref" href="http://groups.google.com/groups?as_q=*&amp;safe=off&amp;ie=ISO-8859-1&amp;as_ugroup=mozilla.dev.ports.os2&amp;as_scoring=d&amp;lr=lang_en&amp;num=50&amp;hl=en" hreflang="en">
+      Google グループ検索</a> - OS/2 対応 Mozilla のみ</li>
+
+      <li><a class="ex-ref" href="http://groups.google.com/groups?as_q=*&amp;safe=off&amp;ie=ISO-8859-1&amp;as_ugroup=*mozilla*&amp;as_scoring=d&amp;lr=lang_en&amp;num=50&amp;hl=en" hreflang="en">
+      Google グループ検索</a> - 全ての Mozilla グループ</li>
+
+      <li>IRC チャンネル <a href="irc://moznet/warpzilla" hreflang="en">#warpzilla</a></li>
+      <!--li>
+<a HREF="http://tinderbox.mozilla.org/SeaMonkey-Ports">Warpzilla Tinderbox</a> not any more
+</li-->
+      <!--li>
+      <a HREF="mailto:grajaman@in.ibm.com" hreflang="en">Warpzilla のオーナーへ電子メール</a> not really/useless
+</li-->
+    </ul>
+
+    <h2 id="wznews">最新 Warpzilla ニュース</h2>
+
+    <div>
+      <ul>
+<li><strong>2009年 8月 22日</strong>
+<a href="http://www.mozilla.com/thunderbird/">Thunderbird 2.0.0.23</a> がリリースされました。
+(<a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/2.0.0.23/contrib/thunderbird-2.0.0.23.en-US.os2.zip">Zip ファイル</a>、<a href="http://www.mozilla.com/ja/thunderbird/2.0.0.23/releasenotes/">リリースノート</a>)
+libc0.6.3 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2009年 8月 4日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.5.2</a> と <a href="http://www.mozilla.com/firefox/">Firefox 3.0.13</a> がリリースされました。
+</li>
+
+<li><strong>2009年 7月 22日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.12</a> がリリースされました。
+</li>
+
+<li><strong>2009年 6月 28日</strong>
+<a href="http://www.seamonkey-project.org/releases/#1.1.17">SeaMonkey 1.1.17</a> がリリースされました。
+OS/2 パッケージは今回、William L. Hartzell によって造られました (thanks!)。
+</li>
+
+<li><strong>2009年 6月 12日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.11</a> がリリースされました。
+</li>
+
+<li><strong>2009年 4月 27日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.10</a> がリリースされました。
+</li>
+
+<li><strong>2009年 4月 22日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.9</a> がリリースされました。
+</li>
+
+<li><strong>2009年 4月 10日</strong>
+<a href="http://www.seamonkey-project.org/releases/#1.1.16">SeaMonkey 1.1.16</a> がリリースされました。
+</li>
+
+<li><strong>2009年 2月 3日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.6</a> がリリースされました。
+</li>
+
+<li><strong>2008年 12月 18日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.5</a> と <a href="../../projects/seamonkey/releases/">SeaMonkey 1.1.14</a> がリリースされました。
+</li>
+
+<li><strong>2008年 11月 14日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.4</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.4/contrib/firefox-3.0.4.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/3.0.4/releasenotes/">リリースノート</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.4/contrib/firefox-3.0.4.en-US.os2.MD5SUM">MD5SUM</a>)。
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+インストールする前に OS/2
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.4/contrib/firefox-3.0.4.en-US.os2.README">README</a>
+を読んでください。
+</li>
+
+<li><strong>2008年 11月 13日</strong>
+<a href="../../projects/seamonkey/releases/">SeaMonkey 1.1.13</a> がリリースされました。 (<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.13/contrib/seamonkey-1.1.13.en-US.os2.installer.exe">インストーラ</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.13/contrib/seamonkey-1.1.13.en-US.os2.zip">Zip ファイル</a>、<a href="#wzinst">インストールガイド</a>、
+<a href="../../projects/seamonkey/releases/seamonkey1.1.13/">リリースノート</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.13/contrib/seamonkey-1.1.13.en-US.os2.MD5SUMS">MD5SUMS</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.13/contrib/seamonkey-1.1.13.en-US.os2.README">README</a>)
+libc0.5.1 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 10月 16日</strong>
+2 日の遅れで、OS/2 版の <a href="http://developer.mozilla.org/devnews/index.php/2008/10/14/firefox-31-beta-1-now-available-for-download/">Firefox 3.1 beta 1</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.1b1/contrib/firefox-3.1b1.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://www.mozilla.com/ja/firefox/3.1b1/releasenotes/">リリースノート</a>, <a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.1b1/contrib/firefox-3.1b1.en-US.os2.README">README</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.1b1/contrib/firefox-3.1b1.en-US.os2.MD5SUM">MD5SUM</a>).
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+</li>
+
+<li><strong>2008年 10月 15日</strong>
+<a href="http://www.mozillamessaging.com/en-US/news/stories/2008-10-14-01">Shredder alpha 3</a> がリリースされた翌日に、OS/2 版もリリースされました。(<a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/3.0a3/contrib/thunderbird-3.0a3.en-US.os2.zip">Zip ファイル</a>、主要な OS/2 特定バグのリストが掲載された <a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/3.0a3/contrib/thunderbird-3.0a3.en-US.os2.README">README</a> に注目、と <a href="http://www.mozillamessaging.com/en-US/thunderbird/3.0a3/releasenotes/">リリースノート</a>)
+libc0.6.3 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+
+<li><strong>2008年 10月 9日</strong>
+遅れる事数日で、待ちに待った OS/2 版 <a href="http://www.seamonkey-project.org/releases/2.0a1">SeaMonkey 2.0 alpha 1</a> がリリースされました。
+(<a href="http://www.ring.gr.jp/pub/net/www/mozilla/seamonkey/releases/2.0a1/contrib/seamonkey-2.0a1.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://www.seamonkey-project.org/releases/seamonkey2.0a1/">リリースノート</a>、
+<a href="http://www.ring.gr.jp/pub/net/www/mozilla/seamonkey/releases/2.0a1/contrib/seamonkey-2.0a1.en-US.os2.README">README</a>、
+<a href="http://www.ring.gr.jp/pub/net/www/mozilla/seamonkey/releases/2.0a1/contrib/seamonkey-2.0a1.en-US.os2.MD5SUM">MD5SUM</a>)
+libc0.6.3 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+</li>
+
+<li><strong>2008年 9月 27日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.3</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.3/contrib/firefox-3.0.3.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/3.0.3/releasenotes/">リリースノート</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.3/contrib/firefox-3.0.3.en-US.os2.MD5SUM">MD5SUM</a>)
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+インストールする前に OS/2
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.3/contrib/firefox-3.0.3.en-US.os2.ReadMe">README</a>
+を読んでください。
+</li>
+
+<li><strong>2008年 9月 26日</strong>
+<a href="http://www.mozilla.com/thunderbird/">Thunderbird 2.0.0.17</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/2.0.0.17/contrib/thunderbird-2.0.0.17.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://www.mozilla.com/ja/thunderbird/2.0.0.17/releasenotes/">リリースノート</a>)
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 9月 25日</strong>
+<a href="http://developer.mozilla.org/devnews/">Firefox 2.0.0.17</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/2.0.0.17/contrib/firefox-2.0.0.17.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/2.0.0.17/releasenotes/">リリースノート</a>)
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 9月 25日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.2</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.2/contrib/firefox-3.0.2.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/3.0.2/releasenotes/">リリースノート</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.2/contrib/firefox-3.0.2.en-US.os2.MD5SUM">MD5SUM</a>)
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+インストールする前に OS/2
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.2/contrib/firefox-3.0.2.en-US.os2.ReadMe">README</a>
+を読んでください。
+</li>
+
+<li><strong>2008年 9月 25日</strong>
+<a href="../../projects/seamonkey/releases/">SeaMonkey 1.1.12</a> がリリースされました。 (<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.12/contrib/seamonkey-1.1.12.en-US.os2.installer.exe">インストーラ</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.12/contrib/seamonkey-1.1.12.en-US.os2.zip">Zip ファイル</a>、<a href="#wzinst">インストールガイド</a>、
+<a href="../../projects/seamonkey/releases/seamonkey1.1.12/">リリースノート</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.12/contrib/seamonkey-1.1.12.en-US.os2.MD5SUMS">MD5SUMS</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.12/contrib/seamonkey-1.1.12.en-US.os2.README">README</a>)
+libc0.5.1 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 9月 9日</strong>
+<a href="http://developer.mozilla.org/devnews/index.php/2008/09/05/firefox-31-alpha-2-now-available-for-download/">Shiretoko 3.1 alpha 2</a> (Firefox 3.1 のα版第 2 弾) がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/shiretoko/alpha2/contrib/firefox-3.1a2.en-US.os2.zip">Zip ファイル</a>、
+<a href="../../projects/firefox/3.1a2/releasenotes/">リリースノート</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/shiretoko/alpha2/contrib/firefox-3.1a2.en-US.os2.ReadMe">README</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/shiretoko/alpha2/contrib/firefox-3.1a2.en-US.os2.MD5SUM">MD5SUM</a>)。
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+</li>
+
+<li><strong>2008年 9月 9日</strong>
+<a href="http://developer.mozilla.org/devnews/">Firefox 2.0.0.16</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/2.0.0.16/contrib/firefox-2.0.0.16.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/2.0.0.16/releasenotes/">リリースノート</a>)
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 8月 18日</strong>
+<a href="http://www.mozillamessaging.com/en-US/news/stories/2008-08-13-01">Shredder alpha 2</a> がリリースされた数日後に、OS/2 版もリリースされました。(<a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/3.0a2/contrib/thunderbird-3.0a2.en-US.os2.zip">Zip ファイル</a>、主要な OS/2 特定バグのリストが掲載された <a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/3.0a2/contrib/thunderbird-3.0a2.en-US.os2.ReadMe">ReadMe</a> に注目、と<a href="http://www.mozillamessaging.com/en-US/thunderbird/3.0a2/releasenotes/">リリースノート</a>)
+libc0.6.3 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 7月 30日</strong>
+<a href="http://developer.mozilla.org/devnews/index.php/2008/07/28/firefox-31-alpha-1-now-available-for-download/">Shiretoko 3.1 alpha 1</a> (Firefox 3.1 に向けた最初の alpha) がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/shiretoko/alpha1/contrib/firefox-3.1a1.en-US.os2.zip">Zip ファイル</a>、
+<a href="../../projects/firefox/3.1a1/releasenotes/">リリースノート</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/shiretoko/alpha1/contrib/firefox-3.1a1.en-US.os2.ReadMe">README</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/shiretoko/alpha1/contrib/firefox-3.1a1.en-US.os2.MD5SUM">MD5SUM</a>)。
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+</li>
+
+<li><strong>2008年 7月 16日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0.1</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.1/contrib/firefox-3.0.1.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/3.0.1/releasenotes/">リリースノート</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.1/contrib/firefox-3.0.1.en-US.os2.MD5SUM">MD5SUM</a>)。
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+インストールする前に OS/2
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.1/contrib/firefox-3.0.1.en-US.os2.ReadMe">README</a>
+を読んでください。
+</li>
+
+<li><strong>2008年 7月 16日</strong>
+<a href="../../projects/seamonkey/releases/">SeaMonkey 1.1.11</a> がリリースされました。 (<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.11/contrib/seamonkey-1.1.11.en-US.os2.installer.exe">インストーラ</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.11/contrib/seamonkey-1.1.11.en-US.os2.zip">Zip ファイル</a>、<a href="#wzinst">インストールガイド</a>、
+<a href="../../projects/seamonkey/releases/seamonkey1.1.11/">リリースノート</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.11/contrib/seamonkey-1.1.11.en-US.os2.MD5SUMS">MD5SUMS</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.11/contrib/seamonkey-1.1.11.en-US.os2.README">README</a>)
+libc0.5.1 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 7月 10日</strong>
+現在まで、Firefox 3.1 リリースにつながる Minefield バージョンの 2 つの「ナイトリー」ビルド (今日の分と 6 月 25 日分) が利用可能です。
+実のところ、Mercurial がまだ OS/2 に移植されていないので、ビルドには多くの手作業を伴います。
+よってナイトリービルドは時間の取れるとき…まぁ隔週くらいのペースで提供されるでしょう。</li>
+
+<li><strong>2008年 7月 2日</strong>
+<a href="../../projects/seamonkey/releases/">SeaMonkey 1.1.10</a> がリリースされました。(<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.10/contrib/seamonkey-1.1.10.en-US.os2.installer.exe">インストーラ</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.10/contrib/seamonkey-1.1.10.en-US.os2.zip">Zip ファイル</a>、<a href="#wzinst">インストールガイド</a>、
+<a href="../../projects/seamonkey/releases/seamonkey1.1.10/">リリースノート</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.10/contrib/seamonkey-1.1.10.en-US.os2.MD5SUMS">MD5SUMS</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.10/contrib/seamonkey-1.1.10.en-US.os2.README">README</a>)
+libc0.5.1 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 6月 17日</strong>
+<a href="http://www.mozilla.com/firefox/">Firefox 3.0</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0/contrib/firefox-3.0.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/3.0/releasenotes/">リリースノート</a>、
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0/contrib/firefox-3.0.en-US.os2.MD5SUM">MD5SUM</a>)。
+libc0.6.3 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。
+インストールする前に OS/2
+<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0/contrib/firefox-3.0.en-US.os2.ReadMe">README</a>
+を読んでください。これはメジャー・バージョンアップグレードです。
+</li>
+
+<li><strong>2008年 5月 14日</strong>
+<a href="http://www.mozilla.com/thunderbird/">Thunderbird 2.0.0.14</a> がリリースされました。
+(<a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/2.0.0.14/contrib/thunderbird-2.0.0.14.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://www.mozilla.com/ja/thunderbird/2.0.0.14/releasenotes/">リリースノート</a>)
+libc0.5.1 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 5月 14日</strong>
+<a href="http://www.mozillamessaging.com/en-US/news/stories/2008-05-12-01">Shredder alpha 1</a> がリリースされた翌日に、OS/2 版もリリースされました。(<a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/3.0a1/contrib/thunderbird-3.0a1.en-US.os2.zip">Zip ファイル</a>、主要な OS/2 特定バグのリストが掲載された <a href="http://www.ring.gr.jp/pub/net/www/mozilla/thunderbird/releases/3.0a1/contrib/thunderbird-3.0a1.en-US.os2.ReadMe">ReadMe</a> に注目、と<a href="http://www.mozillamessaging.com/en-US/thunderbird/3.0a1/releasenotes/">リリースノート</a>)
+libc0.6.3 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 4月 18日</strong>
+<a href="http://developer.mozilla.org/devnews/">Firefox 2.0.0.14</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/2.0.0.14/contrib/firefox-2.0.0.14.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/2.0.0.14/releasenotes/">リリースノート</a>)
+libc0.5.1 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 4月 9日</strong>
+数日の遅れで、OS/2 版の <a href="http://developer.mozilla.org/devnews/index.php/2008/04/02/firefox-3-beta-5-now-available-for-download/">Firefox 3 beta 5</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0b5/contrib/firefox-3.0b5.en-US.os2.zip">Zip ファイル</a>、
+主要な OS/2 特定バグのリストが掲載された <a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0b5/contrib/firefox-3.0b5.en-US.os2.ReadMe">ReadMe</a> に注目、
+と<a href="http://www.mozilla.com/ja/firefox/3.0b5/releasenotes/">リリースノート</a>)
+libc0.6.3 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 4月 2日</strong>
+<a href="http://developer.mozilla.org/devnews/">Firefox 2.0.0.13</a> がリリースされました。
+(<a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/2.0.0.13/contrib/firefox-2.0.0.13.en-US.os2.zip">Zip ファイル</a>、
+<a href="http://ja.www.mozilla.com/ja/firefox/2.0.0.13/releasenotes/">リリースノート</a>)
+libc0.5.1 ベースの
+<a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 3月 27日</strong>
+<a href="../../projects/seamonkey/releases/">SeaMonkey 1.1.9</a> がリリースされました。 (<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.9/contrib/seamonkey-1.1.9.en-US.os2.installer.exe">インストーラ</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.9/contrib/seamonkey-1.1.9.en-US.os2.zip">Zip ファイル</a>、<a href="#wzinst">インストールガイド</a>、
+<a href="../../projects/seamonkey/releases/seamonkey1.1.9/">リリースノート</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.9/contrib/seamonkey-1.1.9.en-US.os2.MD5SUMS">MD5SUMS</a>、<a href="http://releases.mozilla.org/pub/mozilla.org/seamonkey/releases/1.1.9/contrib/seamonkey-1.1.9.en-US.os2.README">README</a>)
+libc0.5.1 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+<li><strong>2008年 3月 19日</strong>
+SeaMonkey と Thunderbird のナイトリービルドが再開され、上記リンクの Mozilla FTP サーバーから利用可能です。
+それらを実際に毎日ビルドする予定はありませんが、少なくとも週に一度は更新する予定です。
+それらは、libc0.6.3 ベースの <a href="#gccrtl">GCC ランタイムライブラリ</a> が必要です。</li>
+
+        <li>*** <a href="oldnews.html">過去のニュースはこちら</a>においてあります。
+        ***</li>
+      </ul>
+    </div><a name="build" id="build"></a>
+
+    <h2>Warpzilla 開発者向け情報</h2>
+
+    <div>
+      <ul>
+        <li><a href="http://developer.mozilla.org/en/docs/OS/2_Build_Prerequisites">最新のビルドガイド</a></li>
+      </ul>
+    </div>
+
+    <h2><a name="wzinst" id="wzinst"></a>現在のインストールガイドとシステム要件</h2>
+
+    <ul><!-- 参考: http://www.mozilla-japan.org/releases/mozilla1.7/installation-ports.html#ports_os2 -->
+      <li>現在このページ上部に記載されている全製品には C runtime DLL
+      (<a href="#gccrtl">libc051</a> か <a href="#gccrtl" title="2005 年 12 月 5 日のトランクビルドからは libc06 が必要です">libc061</a> のどちらか)
+      が必要ですが、ダウンロードした製品内には含まれていません。
+      後者は 2006 年 3 月 22 日のナイトリー 1.8 ブランチ及びトランクビルドから必要となりました。
+      前者は、それ以前のさまざまな古いリリースビルドに必要です。
+      希望のビルドに合う正しいバージョンを決定するためには、上記のそれぞれの README やニュース項目を参照してください。
+      物事を簡単にするには、それらをすべて LIBPATH 内のどこか一ヶ所に置いてください。
+      他の方法としては、製品の exe ファイルと同じディレクトリにそれらを置いてください。
+      インストーラは C runtime DLL を導入<em>しない</em>はずですが、実行のためには<em>必要です</em>。</li>
+
+      <li>Mozilla 全製品の最小必要条件 …
+
+        <ul>
+          <li>Pentium クラスの CPU</li>
+
+          <li>64 MiB RAM</li>
+
+          <li>64 MiB の空きスワップ・スペース</li>
+
+          <li>35 MiB のインストール用 空きハードディスク空間と、
+          ディスクキャッシュとメールのための記憶空間</li>
+
+          <li>OS/2 Warp 4 (Merlin カーネル)</li>
+
+          <li>Fixpack 15 かそれ以降</li>
+
+          <li>MPTS バージョン 5.3 かそれ以降</li>
+
+          <li>TCP/IP バージョン 4.1 かそれ以降</li>
+
+          <li>INETVER: SOCKETS.SYS=5.3007, AFOS2.SYS=5.3001, AFINET.SYS=5.3006
+          かそれ以降
+
+            <p>注記: これら INETVER レベル以前の MPTS ＆ TCP/IP<!--バージョン--> は使用しないでください。
+            古いプロトコルスタックでも Mozilla の起動・実行は正常に動くように思えますが、Mozilla
+            が必要とするいくつかの機能は、古い MPTS バージョンでは実装されていないので、
+            クラッシュやデータ損失を招く恐れがあります。</p>
+          </li>
+
+          <li>長いファイル名をネイティブにサポートしているファイルシステム、例えば HPFS や JFS</li>
+        </ul>
+      </li>
+
+      <li>Mozilla 全製品の推奨動作条件 …
+
+        <ul>
+          <li>500 MHz CPU (もちろん、より速いに超したことはありません)</li>
+	<!-- face-smile.png belongs after just right, but I can't find an URL for it :-( -->
+
+          <li>256 MiB RAM
+
+          <p>注記: より多くの物理 RAM が利用可能であれば、パフォーマンス＆安定性が向上します。
+          特に、長いブラウジングや IRC セッションには、メモリー 512 MiB がお勧めです。</p></li>
+
+          <li>Fixpack 16</li>
+
+          <li>MPTS バージョン 5.5 または 6.0</li>
+
+          <li>TCP/IP バージョン 4.3</li>
+
+          <li>INETVER: SOCKETS.SYS=6.2004, AFOS2.SYS=6.2000, AFINET.SYS=6.2013
+
+            <p>あるいは</p>
+          </li>
+
+          <li>OS/2 Warp 4.52 Convenience Pack 2 (サブスクリプション: 加入)
+
+            <p>あるいは</p>
+          </li>
+
+          <li>eCom Station 1.0 かそれ以降
+
+            <p>注記: MPTS 6 と FP 16 は Software Choice 加入者のみ入手できます。
+            その他のアップグレードは今のところ無償で入手できます。</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Warpzilla の歴史を垣間見る</h2>
+
+    <div>
+      <ul>
+        <li><a class="ex-ref" href="http://people.netscape.com/law/warpzilla" hreflang="en">William A. Law の
+        Warpzilla ページ</a></li>
+
+        <li><a class="ex-ref" href="ftp://joyce.eng.yale.edu/pub/warpzilla/os2build.html" hreflang="en">Joan
+        Touzet の Warpzilla ビルドガイド</a></li>
+
+        <li><a href="code_docs/index.html">M7 からの
+        Mozilla における OS/2 コードについての資料</a></li>
+
+        <li><a href="m7setup.html">M7 のビルド環境を構築する</a></li>
+
+        <li><a href="m7build.html">M7 のトカゲをビルドする</a></li>
+
+        <li><a href="gccsetup.html">過去のビルドガイド</a></li>
+
+        <li>もっと過去のビルドガイド (VACPP を使ったビルド) <a href="setup.html">[セットアップ]</a> <a href="os2build.html">[ビルド]</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/ports/os2/index.html">英語版</a> 2009/08/22</span> - <span>和訳版 2009/08/24</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/ports/os2/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

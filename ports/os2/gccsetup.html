@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Warpzilla ビルドガイド</title>
+  <link rel="alternate" hreflang="en" modified="March 29, 2005">
+  
+<!--
+
+オリジナル
+題名: Warpzilla Build Instructions
+URL: http://www.mozilla.org/ports/os2/gccsetup.html
+
+和訳
+2005-05-13  作成: RxOrca Rev.:1.25
+
+訳注:
+  文書の中で, ":"は日本ではあまり一般的ではないと考え, "…"にした。
+  「処理内容は, 以降」「入力はこんな感じで」 みたいな。
+-->
+<style type="text/css" media="screen,tv">
+span.step { font-weight: bold; padding-right: .3em; }
+</style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/ports/os2/gccsetup.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h2>Warpzilla ビルドガイド、その 1 &#8212; 必要なもの</h2>
+
+<p>このドキュメントで、Warpzilla をビルドするのにどのようなツールが必要かを説明します。
+私たちは、できるだけこのガイドで行えるよう、細部にまで注意しました。
+このドキュメントは、スクラッチからビルド環境を構築する人向きに作られています。
+ビルド環境は、全てのツールを同じドライブに導入するのがよいでしょう。ここの例では、D: を使用します。
+</p>
+
+<h3>新着情報</h3>
+<ul>
+  <li><b>2005/03/13:</b> 最新版の winico へ、最新の GCC 3.2.2 CSD パック、
+                         新 .mozconfig (コンパイルターゲットの選択)</li>
+  <li><b>2004/04/21:</b> 必要とされる新ツール - WINICO.EXE</li>
+  <li><b>2004/03/24:</b> 最新の GCC 3.2.2 Beta 4 へ。glibidl の最新版が必要。</li>
+  <li><b>2003/12/10:</b> サンプルの '.mozconfig' ファイルを更新した。</li>
+  <li><b>2003/11/12:</b> ILINK 5.0 のダウンロードのリンクを追加した。</li>
+  <li><b>2003/10/15:</b> 最新の GCC 3.2.2 Beta 3 へ。glibidl の最新版が必要。</li>
+  <li><b>2003/09/29:</b> FIND.EXE と TAR.EXE を追加した。</li>
+  <li><b>2003/09/24:</b> 最新の GCC 3.2.2 Beta 2 へ。3 倍のビルド時間を減らすために、BASH.EXE の代わりに ASH.EXE を使用してください。
+                         glibidl と setmozenv.cmd の最新版が必要。</li>
+  <li><b>2003/09/10:</b> 最新の GCC 3.2.2 Beta 1 へ。glibidl の最新版が必要。
+                         それから、GNU Make を最新の 3.81rc1 へ。</li>
+</ul>
+
+
+<h3>下記のパッケージをダウンロードしてください:</h3>
+
+<ul>
+
+  <li><a href="http://hobbes.nmsu.edu/pub/os2/dev/emx/v0.9d/emxrt.zip">EMX ランタイム</a><br>
+root<!-- あるいは最上位 --> ディレクトリで EMXRT.ZIP を展開 (unzip) します。EMX というディレクトリが作られるはずです。<br>
+CONFIG.SYS の LIBPATH に、D:\EMX\DLL を加えます。</li>
+
+  <li><a href="http://www.axess.com/users/sobotka/warpzilla/srcs/autoconf-gcc.zip">autoconf</a>
+      <br>
+      root ディレクトリで AUTOCONF.ZIP を展開 (unzip) します。
+      AUTOCONF というディレクトリが作られるはずです。
+      <br>
+  </li>
+
+  <li>
+    <a href="http://www.axess.com/users/sobotka/warpzilla/srcs/glibidl-b4.zip">glib ＆ libidl</a>
+    <br>
+    root ディレクトリで GLIBIDL.ZIP を展開 (unzip) します。
+    GLIBIDL というディレクトリが作られるはずです。
+  </li>
+
+  <li>Perl 5.8.0 (<a href="http://hobbes.nmsu.edu/pub/os2/dev/perl/perl-5.8.0-bin.zip">bin</a>
+&amp; <a href="http://hobbes.nmsu.edu/pub/os2/dev/perl/perl-5.8.0-core.zip">core</a>)
+    <a href="http://hobbes.nmsu.edu/pub/os2/dev/perl/perl-5.6.1.zip"><br><!-- ←コレは無効 (dummy？) -->
+    </a>root ディレクトリで両方の zip を展開 (unzip) します。PERL というディレクトリが作られるはずです。<br>
+PERL\LIB\5.8.0\OS2\CONFIG.PM ファイルの中から <q>archlib</q> タグを探し出し (120 行目)、
+インストールした PERL のドライブ名へ変更します。
+  </li>
+</ul>
+
+<p><b>Note:</b> 以下のパッケージについては、ZIP から、指定のファイルを取り出すだけです。
+私たちは 以下の EXE や DLL のすべてを、MOZTOOLS というディレクトリに入れることを勧めます。
+</p>
+
+<ul>
+
+  <li><a href="http://hobbes.nmsu.edu/pub/os2/dev/util/cvs-m-1.11.2.zip">CVS</a>
+    <ul>
+      <li>cvs.exe</li>
+    </ul>
+  </li>
+
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/source/os2tools.zip">NSINSTALL</a>
+    <ul>
+      <li>nsinstall.exe<br>
+      </li>
+    </ul>
+  </li>
+
+  <li><a href="http://hobbes.nmsu.edu/pub/os2/util/shell/ashos2.zip">BSD Ash</a>
+    <ul>
+      <li>ash.exe </li>
+    </ul>
+  </li>
+
+  <li><a href="http://www2s.biglobe.ne.jp/%7Evtgf3mpr/gnu/sh-util.htm">GNU shell
+      utilities (sh-utils-2.0.zip)</a>
+    <ul>
+      <li>OS2TREE.ZIP を展開します</li>
+      <li>USR\BIN と USR\DLL の中のすべてを MOZTOOLS ディレクトリへコピーします<br></span>
+      </li>
+    </ul>
+  </li>
+
+  <li><a href="http://www2s.biglobe.ne.jp/%7Evtgf3mpr/gnu/text-util.htm">GNU
+      text utilities (textutils-2.0.11.zip)</a>
+    <ul>
+      <li>OS2TREE.ZIP を展開します</li>
+    </ul>
+    <ul>
+      <li>USR\BIN と USR\DLL の中のすべてを MOZTOOLS ディレクトリへコピーします</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www2s.biglobe.ne.jp/%7Evtgf3mpr/gnu/fileutils.htm">GNU
+      file utilities (os2_fileutils-3.16.zip)</a>
+    <ul>
+      <li>FILEUTILS-3.16\BIN と FILEUTILS-3.16\DLL の中のすべてを MOZTOOLS ディレクトリへコピーします</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www2s.biglobe.ne.jp/%7Evtgf3mpr/gnu/diff.htm">GNU
+      diff (diffutils-2.8.zip)</a>
+    <ul>
+      <li>OS2TREE.ZIP を展開します</li>
+      <li>USR\BIN の中のすべてを MOZTOOLS ディレクトリへコピーします</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www.unixos2.org/sw/pub/binary/grep/grep-2_5_1-bin.zip">GNU
+      grep (grep-2_5_1-bin.zip)</a>
+    <ul>
+      <li>BIN の中のすべてを MOZTOOLS ディレクトリへコピーします</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www2s.biglobe.ne.jp/%7Evtgf3mpr/gnu/gawk.htm">GNU
+      awk (gawk304.zip)</a>
+    <ul>
+      <li>EMX-GAWK.ZIP を展開します</li>
+      <li>EMX\BIN\GAWK.EXE を MOZTOOLS ディレクトリへコピーします</li>
+      <li>gawk.exe を awk.exe としてコピーします</li>
+    </ul>
+  </li>
+
+  <li><a href="http://hobbes.nmsu.edu/pub/os2/dev/misc/gnum4.zip">GNU m4 v1.4</a>
+    <ul>
+      <li>m4.exe</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www.unixos2.org/sw/pub/binary/make/make-3_81rc1-bin.zip">
+      GNU make 3.81</a>
+    <ul>
+      <li>make.exe</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www.unixos2.org/sw/pub/binary/gettext/gettext-0_11_5-r2-bin.zip">
+      gettext-0_11_5-r2-bin.zip </a>
+    <ul>
+      <li>intl.dll</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www.unixos2.org/sw/pub/binary/sed/sed-4_0_5-bin.zip">GNU sed v4.0.5</a>
+    <ul>
+      <li>sed.exe</li>
+    </ul>
+  </li>
+
+  <li><a href="http://hobbes.nmsu.edu/pub/os2/util/disk/gnufind.zip">GNU find v4.1</a>
+    <ul>
+      <li>find.exe</li>
+      <li>xargs.exe</li>
+      <li>gnufind.dll</li>
+      <li>gnuregex.dll</li>
+      <li>gnuregex.dll を regex.dll としてコピーします (後者は grep.exe に必要)</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www.info-zip.org">Info-ZIP (Zip ＆ UnZip)</a>
+    <ul>
+      <li>zip.exe</li>
+      <li>unzip.exe</li>
+    </ul>
+  </li>
+
+  <li><a href="ftp://ftp.software.ibm.com/ps/products/warpzilla/os2tk40rc.zip">
+      RC.EXE</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp;← toolkit 付属のものではなく、このリンクのものを使用します
+  </li>
+
+  <li><a href="ftp://ftp.software.ibm.com/ps/products/warpzilla/ilink50.zip">
+      ILINK 5.0</a>
+    <ul>
+      <li>BIN の中のすべてを MOZTOOLS ディレクトリへコピーします</li>
+    </ul>
+  </li>
+
+  <li><a href="http://www2s.biglobe.ne.jp/~vtgf3mpr/gnu/patch.htm">GNU Patch
+      v2.5</a>
+    <ul>
+      <li>patch.exe</li>
+      <li><a href="http://pws.prserv.net/jpinet.jsawa/rpm/unrpm.zip">unrpm</a>
+          スクリプトを使って実行モジュールを取り出します
+      </li>
+    </ul>
+  </li>
+
+  <li><a href="http://hobbes.nmsu.edu/pub/os2/util/archiver/gtar258.zip">GNU Tar
+      v1.10</a>
+    <ul>
+      <li>tar.exe</li>
+    </ul>
+  </li>
+  <li><a href="http://hobbes.nmsu.edu/pub/os2/apps/graphics/convert/winico92-2.zip">Icon converter
+      version 0.92-2</a>
+    <ul>
+      <li>winico.exe</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>GCC 3.2.2</h3>
+
+<p>InnoTek サイトから <a href="http://download.innotek.de/gccos2/3.2.2-Beta4/gcc-3.2.2-beta4.exe">GCC 3.2.2 Beta 4</a> をダウンロードし、インストールしてください。
+そして、最新のアップデート <a href="http://download.innotek.de/gccos2/3.2.2-Beta4/gcc-3.2.2-beta4csd1.zip">GCC 3.2.2 Beta 4 CSD 1</a> をダウンロードし、
+先のインストールを行った場所で展開します。それから、<code>lib</code> ディレクトリに入り、<code>MakeOmfLibs.cmd</code> を実行します。
+(これ以降)残りの説明は、あなたがディレクトリ <span style="color: rgb(255, 0, 0);">D:\GCC322</span> にインストールしたと仮定しています。
+他の場所にインストールしたのなら、適切に変更してください。
+</p>
+
+<h3>OS/2 Toolkit</h3>
+あなたの Warp のバージョンに対応している Toolkit をインストールしてください。
+
+<h2>その 2 &#8212; ビルド</h2>
+<p><span class="step">Step 1:</span> <a href="gcc/setmozenv.cmd">setmozenv.cmd</a> ファイルで環境変数を設定してください。このように …
+</p>
+<ul>
+  <li>setmozenv gcc</li>
+</ul>
+<p>eComStation ユーザーは、setmozenv.cmd へ <code> 'SET PROGRAMS=' </code> の行を追加する必要があるかもしれません。
+何らかの makefile 操作の妨げになる、この環境変数を削除するためです。
+</p>
+
+<p><span class="step">Step 2:</span> コードを入手する準備をします …
+</p>
+<ul>
+  <li>cvs co mozilla/client.mk</li>
+  <li>cd mozilla</li>
+</ul>
+
+<p><span class="step">Step 3:</span> <code>.mozconfig</code> ファイルを生成します。
+それは、あなたが <code>mozilla</code> ディレクトリ内に作成する、ビルドのためのオプションを指定するファイルです。
+より一般のオプションのいくつかが、obj ディレクトリに作成されます (できたコードからソースを分離するものや、セキュリティーを有効にするものなど)。
+<code>.mozconfig</code> ファイルを作成するには、<a href="http://webtools.mozilla.org/build/config.cgi">Unix Build Configurator</a> を参照してください。
+</p>
+
+<p style="margin-left: 30px;"> 私たちは、obj ディレクトリでビルドすることを強く勧めます。 </p>
+
+<p style="margin-left: 30px;"> これは、典型的な .mozconfig ファイルで、Mozilla Suite のデバッグビルドのようなものです … </p>
+
+<pre style="margin-left: 60px;">
+# sh
+# ビルド設定スクリプト
+#
+# ビルドガイド http://www.mozilla-japan.org/build/unix.html を参照してください
+#
+
+# client.mk のオプション
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj
+mk_add_options MOZ_CO_PROJECT=suite
+
+# 'configure' のオプション (コマンドライン・オプションと同じ)
+ac_add_options --enable-application=suite
+#ac_add_options --disable-tests
+#ac_add_options --enable-optimize
+#ac_add_options --disable-debug
+ac_add_options --enable-crypto
+</pre>
+Firefox や Thunderbird をビルドしたいのなら、<a href="../../build/configure-build.html">ビルドオプション</a> のページに注目してください。
+
+<p><span class="step">Step 4:</span> 今度は、mozilla.org の CVS リポジトリから、コードを入手してください …
+</p>
+<ul>
+  <li>make -f client.mk pull_all</li>
+</ul>
+
+<p><span class="step">Step 5:</span> <code>pull_all</code> コマンドは、上記でこれを自動で行うべきですが、
+OS/2 でそれらを正しく生成できるように、
+3 つの <code>configure</code> ファイルの削除がときどき必要になります。
+これは、通常、コードを入手するときに CVS コンフリクト(衝突) が生じた場合に起こります。
+ビルドの間ずっとエラーに遭遇するのなら、netscape.public.mozilla.os2 に助けを請う前に、
+まず最初に <code>configure</code> ファイルの削除を試みるべきです …
+</p>
+<ul>
+  <li>rm mozilla/configure</li>
+  <li>rm mozilla/nsprpub/configure</li>
+  <li>rm mozilla/directory/c-sdk/configure</li>
+</ul>
+<p style="margin-left: 30px;">次のステップで ビルドを開始するとき、これらは対応する <code>configure.in</code> ファイルから自動的に作り直されるはずです。
+それらを手動で作りだすのなら、それぞれのディレクトリに移り、'<code>bash autoconf</code>' を実行してください。
+</p>
+
+<p><span class="step">Step 6:</span> コードをビルドします<!-- (ビルド開始)？--> …</p>
+<ul>
+  <li>make -f client.mk build</li>
+</ul>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/ports/os2/gccsetup.html">英語版</a> 2005/03/29</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/ports/os2/gccsetup.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

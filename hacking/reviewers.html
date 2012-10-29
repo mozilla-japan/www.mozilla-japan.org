@@ -1,0 +1,441 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title>Mozilla コードのレビュー</title>
+
+<!--
+*************************************** 覚え書き ************************************
+
+原文
+題名：mozilla "super-review"
+URL ：http://www.mozilla.org/hacking/reviewers.html
+
+和訳
+１版：2001/05/27 山口（Rev:1.26 May 17 2001 16:27）
+２版：2001/07/06 山口（Rev:1.28 Jul 03 2001 15:36）
+
+24版：2004/02/19 山口（Rev:1.74 Feb 18 12:59 2004）更新
+
+33版：Rev: 1.86
+34版：Rev: 1.88
+35版：Rev: 1.89
+
+*************************************** 覚え書き ************************************
+
+-->
+
+<link rel="alternate" hreflang="en" modified="January 9、2006">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/hacking/reviewers.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+ <h1>Mozilla の「スーパーレビュー」</h1>
+
+ <address class="author"> <a href="mailto:brendan@mozilla.org">Brendan Eich</a> 、 <a href="mailto:mitchell@mozilla.org">Mitchell Baker</a> </address>
+
+<p>mozilla.org では、コードが mozilla.org CVS リポジトリーにチェックインされる前に、モジュールオーナーおよびピアレビューが義務づけられています。Mozilla ツリーにチェックインする際には、ほとんどの（全てではありませんが）場合、チェックイン前のコードレビュー <span class="comment">【原文：pre-check-in code review】</span> も必要です。このレビュー作業は、 <a href="mailto:reviewers@mozilla.org">reviewers@mozilla.org</a> として知られる、任命された強力なハッカー集団によって行われます。このレベルでのレビュー作業が、「スーパーレビュー」 と呼ばれるものとなったのです。mozilla.org のスタッフはこの言葉を特に気に入っているわけではありませんが、どうやらこの言葉が広く使われているようです。</p>
+
+<p>最近では <strong>統合レビュー  <span class="comment">【原文：integration review】</span></strong> がスーパーレビューの替わりによく利用されます。この呼び名に皆さんはどんな印象を持ちますか？　皆さんの考えを  <a href="mailto:brendan@mozilla.org">brendan@mozilla.org</a> で表明してください。</p>
+
+<p>スーパーレビューの目的は、コードの質を高め、最善の開発成果を取り入れ、開発の逆行を防ぐことにあります。このレベルで行われるレビューでは、コードそのものの質を検査し、他のツリー部分への影響を予測し、インターフェースの仕様、そして Mozilla コーディングガイドラインに沿っているかを確認します。場合によっては （真っ先に思い浮かぶのが暗号化です）、スーパーレビューの担当者たちがその領域のコード品質を評価できるほど専門性を備えていない場合もあります。しかしその場合でも、その他の要素については検査をします。</p>
+
+<p>どのような場合においても、スーパーレビューの担当者たちは必要な場合に、「code」 をはじめ 「design」 の赤旗を立てたり、改良を要求する権限を持っています。mozilla.org にはコードレビューに先だったデザインレビューを別途に求めているわけではないため、こうした作業が必要となるのです。その代わり、ハッカー達が自分たちのデザインについて話し合い、仕様を定めたり、目的についてざっくばらんに評価し合って、デザイン・実装段階の全て（普通は秩序だったものではありません）においてフィードバックを得られると考えています。</p>
+
+<p> <a href="mailto:reviewers@mozilla.org">reviewers@mozilla.org</a> というメーリングリストがあり、お決まりの模範的なネーミング  <a href="mailto:mozilla-reviewers@mozilla.org">mail gateway</a> という名前で  <a href="news://news.mozilla.org/netscape.public.mozilla.reviewers"> ニュースグループ</a> でもミラーリングされています。このメール/ニュース設定は、他のレビュー担当者や関心のあるオブザーバーがレビューの要請やレビュー担当者からの反応をみることができるように設けられています（ただ、多くの場合レビュー担当者からの積極的な反応はニュースグループへのメッセージとしてよりも、 <a href="http://bugzilla.mozilla.org">Bugzilla</a> <span class="comment">【訳注：<a href="http://bugzilla.mozilla.gr.jp/">日本語版</a>】</span>でのコメントとして得られます）。このニュースグループ/メールエイリアスは、スーパーレビューへの変更を提案するために利用してください。関心を持った外部の人たちが状況を知り手助けをできるようにするためです。
+
+<p>スーパーレビューが必要かどうかは、どのコードをハッキングするのかによります。
+
+
+<h2 id="what-code-needs-super-review">どのコードがスーパーレビューを必要とするのでしょう？</h2>
+
+<ol>
+<li>現在のルールは：「in-process」 の状態になっているコードか、 Mozilla browser/mail/news/editor アプリケーションと共にビルドされているスウィートであるコードは、スーパーレビューが必要です。</li>
+
+<li>スーパーレビューを必要としない mozilla.org プロジェクトには次のものが含まれます：ウェブツール （例えば Bugzilla）、ネットワークセキュリティシステム （「NSS」）、クライアントカスタマイズキット （「CCK」） および Rhino。ただし、モジュールオーナーやピアレビューを受けたり、特定のプロジェクトで定められたその他のルールには従わなければなりません。</li>
+
+<li>mozilla.org には現時点で in-process となっていないコードがありますが、将来 in-process になるコードがあります。mozilla.org は、このようなコードもスーパーレビューを受けることを強く求めています（でも義務ではありません）。これは、現時点では Mozilla と共にビルドされておらず、将来ビルドに組み込まれる予定のコードについても当てはまります。このようにしないと、コードが準備できたときレビューをしなければならないものが大量になってしまいますし、そうなると永遠にレビューが終わらなくなってしまいます。遅い段階でのレビューでは、さらに悪いことになってしまいます。簡単に事前に見つけることができても解決にはかなりの努力を必要とする問題を見つけられなくなる可能性があるのです。このカテゴリーでは、最初プロセス外 <span class="comment">【原文：out of process】</span> でプロジェクトが開始され、最終的には in-process となるであろうパーソナルセキュリティマネージャ (「PSM」) などのようなプロジェクトを指します。</li>
+
+<li>
+例外もあります。当然ながら基本ルールにはいくつかの例外があります。（いつもそうですよね？）</li>
+</ol>
+
+<h2 id="exceptions">例外</h2>
+
+<p> <a href="mailto:blizzard@mozilla.org">blizzard@mozilla.org</a> は、多くのプラットフォーム固有部分に関連する分野に登場しますが、全てのプラットフォームにわたって専門知識を持っているわけではありません。彼は、ウィジェット、 gfx に関する決定を下してきました。ただし、お互いによく似たプラットフォーム関連コードに関しては、彼の個人的なレビューは必要なく、モジュールオーナーによるレビューで十分です。また blizzard@mozilla.org は、設計段階でのポートのためのフィードバックのため、API の不整合問題については必ず知りたいと考えています。また、buck をどの時点で終えるのか、全てのプラットフォーム関連の決定について、彼が最終判断の権限を持っています。</p>
+
+<!--And he remains the court of last resort、and where the buck stops、for
+all platform-specific decisions.-->
+
+<p> <a href="mailto:cls@seawood.org">cls@seawood.org</a> は、Unix、OS2、そして他の gmake を利用したプラットフォーム向けの  <a href="../owners.html#build-config">autoconf</a> のモジュールオーナーです。上記のシステム向けファイルへの変更をチェックインするには、
+彼のレビューがあれば十分です。 staff@mozilla.org は、この分野でのそれ以上のレビューを求めていません。
+
+<p><abbr>NSPR</abbr> は熟成されて安定しており、長年にわたって Mozilla の先行バージョンでも利用されてきました。これらのファイルをチェックインするためには、ピアおよびモジュールオーナーによるレビューで十分です。staff@mozilla.org ではそれ以上のレビューを求めていません。</p>
+
+<p> <a href="mailto:tao@netscape.com">tao@netscape.com</a> は、mozilla/l10n （Mozilla ローカライゼーション） を担当しています。ローカライズされたコンテンツに関する変更のみをファイルをチェックインするためには、ピアおよびモジュールオーナーによるレビューで十分です。staff@mozilla.org ではそれ以上のレビューを求めていません。</p>
+
+<p><abbr>NSPR</abbr> のような  <a href="/owners.html#javascript">JavaScript</a> エンジンは、もう一つの閉じられた <abbr>CVS</abbr> パーティション（<abbr>NSPR</abbr>）への依存のみを持つ、完成されたコードが入っている閉じた CVS パーティションです。 <a href="http://lxr.mozilla.org/mozilla/source/js/src/">JS</a> コードを変更するためにはモジュールオーナーのレビューで十分です。
+
+<p>モジュール  <a href="/projects/security/pki/psm/">PSM</a> への変更は、オーナー / ピアによるレビューが少なくとも 1 回は必要です。変更を求めている人がオーナーでもピアでもない場合、PSM オーナー、PSM ピア、スーパーレビューアといういずれかのグループに属する第 2 者が変更を承認しなければなりません。すべての Mozilla アプリケーションで共有されている UI （例：エラーメッセージ、パスワードプロンプト、情報ウィンドウ、証明書マネージャ） への変更は、Mozilla Foundation の Unser Experience チームによるレビュー / 承認が必要です。主要なアプリケーションウィンドウにある UI （例：Firefox の設定画面、メールのセキュリティボタン、ステータスバーの項目） への変更は、各アプリケーションの UI オーナーによるレビュー / 承認が必要です。
+
+<p>一般的に、きちんと管理されたモジュールはスーパーレビューの条件から免除されるように  <a href="mailto:super-reviewers@mozilla.org">スーパーレビューア達</a> に要求することができます。閉じた <abbr>CVS</abbr> パーティションに対してのみ依存するどのような免除モジュールも、ビルドできないようなバグや他の予期しない問題を実際場面で修正することができる十分な peer がいる限り、閉じた <abbr>CVS</abbr> モジュールとなることができます。誰かが <abbr>CVS</abbr> へのアクセス権を悪用しているとは考えていませんが、パーティションを閉じることで、強力なオーナーシップを強調することができると共に、偶発的なチェックインによる損害を抑えることができます。
+
+<!--In general、a well-owned module may request
+ <a href="mailto:super-reviewers@mozilla.org">super-reviewers</a> to be exempt
+fromスーパーレビューrequirements.
+Any exempt module that depends only on modules in closed CVS partitions
+may become a closed CVS partition、so long as there are enough peers who are
+actually available to help fix build bustage and other unanticipated problems.
+We do not expect anyone with CVS access to abuse it、but closed partitions
+help limit the damage done by accidental checkins、as well as highlight strong
+ownership.-->
+
+
+
+<p>モジュール（つまりパーティション）についての詳しい情報は  <a href="http://despot.mozilla.org/despot.cgi">despot.cgi</a> を参照してください。
+
+
+<h2 id="seeking">スーパーレビューが必要ですか？</h2>
+
+<p>あなたが誰であれ （そうなんです。次のルールはモジュールオーナーにも Mozilla スーパーレビューアにも当てはまります）、レビューが必要な場合は、レビュー担当者にメールを送る前に次のリストをチェックしてください。</p>
+
+<ol>
+<li>パッチ （あるいは、 Mozilla の拡張に関しては追加された機能）が対応するバグの症状とあなたの診断を説明するファイルに、そのバグが記述されているかを確認してください。</li>
+
+<li>チェックイン前のテスト （pre-checkin test）およびあなたが作成したパッチが作動するか、その他のテストを行ってください。</li>
+
+<li>cvs diff -u フォーマットを使って、そのバグに対応したパッチを最低限添付してください（より読みやすい diff と共に添付ファイルを付けても構いません）。</li>
+
+<li>パッチが何をするのかやパッチを作成した理由を、バグの comment 欄に分かりやすく書いてください。箇条書きはやめてください。というのも、変更が明瞭でない場合は、パッチ内のコードに説明用のコメントがあるはずだからです。</li>
+
+<li><a href="../owners.html">モジュールオーナー</a> や誰でも見つけることができたピアレビュー担当者にコードをレビューしてもらってください。オーナーは、バグのパッチフラッグを <code>review+</code> に設定します。</li>
+
+<li>下の <a href="#rules-and-tips">ルールとヒント</a> を読んで、重要な部分を再度確認してください。</li>
+</ol>
+
+<p>モジュールオーナーは自分のパッチをピアレビューしてもらいましょう。決して自己点検で済まして、問題が起こらないようにと祈るようなことはしないでください。</p>
+
+
+<p> <a href="#the-super-reviewers">下のリスト</a> から適切な スーパーレビューアを選んでください。バグのパッチフラッグを使って、選んだ スーパーレビューアに対してレビューのリクエストをしてください。 <code>super-review</code> で <code>?</code> を設定して、レビューアの名前を記入してください。</p>
+
+
+<h2 id="the-super-reviewers">スーパーレビューアに連絡を取る</h2>
+
+以下に上げた人たちは、 mozilla.org で  <a href="mailto:alecf@flett.org?to=bienvenu@nventure.com&to=firefox@blakeross.com&to=blizzard@mozilla.org&to=brendan@mozilla.org&to=bryner@brianryner.com&to=bzbarsky@mit.edu&to=darin@meer.net&to=dbaron@dbaron.org&to=dmose@mozilla.org&to=dveditz@cruzio.com&to=Henry.Jia@sun.com&to=hyatt@mozilla.org&to=jag@tty.nl&to=jst@mozilla.jstenback.com&to=kinmoz@netscape.net&to=neil@parkwaycc.co.uk&to=peterv@propagandism.org&to=rbs@maths.uq.edu.au&to=roc@ocallahan.org&to=scc@mozilla.org&to=mscott@mozilla.org&to=sfraser@aol.net&to=shaver@mozilla.org&to=sspitzer@mozilla.org&to=tor@acm.org">strong hackers</a> と呼ばれ、ユニバーサルコードレビューを担当しています：
+
+ <ul>
+
+  <li><a href="mailto:alecf@flett.org?cc=reviewers@mozilla.org">alecf@flett.org</a> 
+   (xpcom、embedding) 
+  <li><a href="mailto:bienvenu@nventure.com?cc=reviewers@mozilla.org">bienvenu@nventure.com</a> 
+   (mailnews) 
+  <li><a href="mailto:firefox@blakeross.com?cc=reviewers@mozilla.org">firefox@blakeross.com</a> 
+   (firefox) 
+  <li><a href="mailto:blizzard@mozilla.org?cc=reviewers@mozilla.org">blizzard@mozilla.org</a> 
+   (drag and drop、embedding、event loop、gfx、intl、widget) 
+  <li><a href="mailto:brendan@mozilla.org?cc=reviewers@mozilla.org">brendan@mozilla.org</a> 
+
+   (js、catch-all) 
+  <li><a href="mailto:bryner@brianryner.com?cc=reviewers@mozilla.org">bryner@brianryner.com</a> 
+   (layout/xbl、layout/xul、widget) 
+  <li><a href="mailto:bzbarsky@mit.edu?cc=reviewers@mozilla.org">bzbarsky@mit.edu</a> 
+   (content、layout、necko) 
+  <li><a href="mailto:darin@meer.net?cc=reviewers@mozilla.org">darin@meer.net</a> 
+   (cache、necko) 
+  <li><a href="mailto:dbaron@dbaron.org?cc=reviewers@mozilla.org">dbaron@dbaron.org</a> 
+
+   (content、layout) 
+  <li><a href="mailto:dmose@mozilla.org?cc=reviewers@mozilla.org">dmose@mozilla.org</a> 
+   (directory、mailnews) 
+  <li><a href="mailto:dveditz@cruzio.com?cc=reviewers@mozilla.org">dveditz@cruzio.com</a> 
+   (xpinstall、general) 
+  <li><a href="mailto:Henry.Jia@sun.com?cc=reviewers@mozilla.org">Henry.Jia@sun.com</a> 
+   (mailnews、xpcom) 
+  <li><a href="mailto:hyatt@mozilla.org?cc=reviewers@mozilla.org">hyatt@mozilla.org</a> 
+
+   (xul、xbl、layout/xbl および layout/xul および .xul/.xml sources) 
+  <li><a href="mailto:jag@tty.nl?cc=reviewers@mozilla.org">jag@tty.nl</a> 
+
+   (browser、strings、xpfe) 
+  <li><a href="mailto:jst@mozilla.jstenback.com?cc=reviewers@mozilla.org">jst@mozilla.jstenback.com</a> 
+   (dom、htmlparser、content、layout) 
+  <li><a href="mailto:kinmoz@netscape.net?cc=reviewers@mozilla.org">kinmoz@netscape.net</a> 
+   (editor) 
+  <li><a href="mailto:neil@parkwaycc.co.uk?cc=reviewers@mozilla.org">neil@parkwaycc.co.uk</a> 
+
+   (composer、xpfe) 
+  <li><a href="mailto:peterv@propagandism.org?cc=reviewers@mozilla.org">peterv@propagandism.org</a> 
+   (content、dom、extensions/transformiix、Mac ビルドシステム) 
+  <li><a href="mailto:rbs@maths.uq.edu.au?cc=reviewers@mozilla.org">rbs@maths.uq.edu.au</a> 
+
+   (gfx、layout) 
+  <li><a href="mailto:roc@ocallahan.org?cc=reviewers@mozilla.org">roc@ocallahan.org</a> 
+   (layout) 
+  <li><a href="mailto:scc@mozilla.org?cc=reviewers@mozilla.org">scc@mozilla.org</a> 
+
+   (strings、catch-all) 
+  <li><a href="mailto:mscott@mozilla.org?cc=reviewers@mozilla.org">mscott@mozilla.org</a> 
+   (Mozilla Thunderbird、mailnews、netwerk、uriloader) 
+  <li><a href="mailto:sfraser@aol.net?cc=reviewers@mozilla.org">sfraser@aol.net</a> 
+   (editor) 
+  <li><a href="mailto:shaver@mozilla.org?cc=reviewers@mozilla.org">shaver@mozilla.org</a> 
+
+   (js、xpcom、xpconnect) 
+  <li><a href="mailto:sspitzer@mozilla.org?cc=reviewers@mozilla.org">sspitzer@mozilla.org</a> 
+
+   (mailnews) 
+  <li><a href="mailto:tor@acm.org?cc=reviewers@mozilla.org">tor@acm.org</a> 
+   (image libraries) 
+ </ul>
+
+
+<p>担当分野ごとにインデックス化して、 primary または most-expert reviewer そして aggregating reviewer を <code>mailto:</code> リンクを加えてソートすると次のリストようになります。スーパーレビューには担当分野の専門知識が必要なわけではありません（大抵の場合、モジュールオーナーやピアレビューアーが専門知識を提供します）。下に示した分野は整理棚ではありません。皆さんは下のリストの誰にでもスーパーレビューを要請しても構いません。ただ多くの場合において、リストに掲げられた分野のレビューアーを指名するとより早く返事が得られるでしょう。</p>
+
+ <dl>
+
+  <dt>browser  
+  <dd> <a href="mailto:alecf@flett.org?cc=firefox@blakeross.com&amp;cc=jag@tty.nl&amp;cc=reviewers@mozilla.org">alecf@flett.org、firefox@blakeross.com、jag@tty.nl</a> 
+  <dt>cache
+  <dd> <a href="mailto:darin@meer.net?cc=reviewers@mozilla.org">darin@meer.net</a> 
+  <dt>composer
+  <dd> <a href="mailto:neil@parkwaycc.co.uk?cc=reviewers@mozilla.org">neil@parkwaycc.co.uk</a> 
+  <dt>content、layout
+  <dd> <a href="mailto:dbaron@dbaron.org?cc=roc@ocallahan.org&amp;cc=rbs@maths.uq.edu.au&amp;cc=bzbarsky@mit.edu&amp;cc=bryner@brianryner.com&amp;cc=jst@mozilla.jstenback.com&amp;cc=peterv@propagandism.org&amp;cc=reviewers@mozilla.org">dbaron@dbaron.org,
+   roc@ocallahan.org、rbs@maths.uq.edu.au、bzbarsky@mit.edu、bryner@brianryner.com,
+   jst@mozilla.jstenback.com (content、dom)、peterv@propagandism.org (content)</a> 
+  <dt>directory
+  <dd> <a href="mailto:dmose@mozilla.org?cc=reviewers@mozilla.org">dmose@mozilla.org</a> 
+  <dt>docshell、webshell
+  <dd> <a href="mailto:mscott@mozilla.org?cc=reviewers@mozilla.org">mscott@mozilla.org</a> 
+  <dt>dom
+  <dd> <a href="mailto:jst@mozilla.jstenback.com?cc=peterv@propagandism.org&amp;cc=reviewers@mozilla.org">jst@mozilla.jstenback.com,
+   peterv@propagandism.org</a> 
+  <dt>drag and drop
+  <dd> <a href="mailto:blizzard@mozilla.org?cc=reviewers@mozilla.org">blizzard@mozilla.org</a> 
+  <dt>editor
+  <dd> <a href="mailto:kinmoz@netscape.net?cc=sfraser@aol.net&amp;cc=reviewers@mozilla.org">kinmoz@netscape.net、
+   sfraser@aol.net</a> 
+
+  <dt>embedding
+  <dd> <a href="mailto:blizzard@mozilla.org?cc=reviewers@mozilla.org">blizzard@mozilla.org</a> 
+  <dt>event loop
+  <dd> <a href="mailto:blizzard@mozilla.org?cc=reviewers@mozilla.org">blizzard@mozilla.org</a> 
+  <dt>gfx
+  <dd> <a href="mailto:rbs@maths.uq.edu.au?cc=blizzard@mozilla.org&amp;cc=reviewers@mozilla.org">rbs@maths.uq.edu.au、blizzard@mozilla.org</a> 
+  <dt>htmlparser
+  <dd> <a href="mailto:jst@mozilla.jstenback.com?cc=reviewers@mozilla.org">jst@mozilla.jstenback.com</a> 
+  <dt>image libraries
+  <dd> <a href="mailto:tor@acm.org?cc=reviewers@mozilla.org">tor@acm.org</a> 
+  <dt>intl (i18n)
+  <dd> <a href="mailto:blizzard@mozilla.org?cc=reviewers@mozilla.org">blizzard@mozilla.org</a> 
+  <dt>js
+  <dd> <a href="mailto:brendan@mozilla.org?cc=shaver@mozilla.org&amp;cc=reviewers@mozilla.org">brendan@mozilla.org,
+   shaver@mozilla.org</a> 
+  <dt>mailnews
+  <dd> <a href="mailto:bienvenu@nventure.com?cc=mscott@mozilla.org&amp;cc=sspitzer@mozilla.org&amp;cc=dmose@mozilla.org&amp;cc=Henry.Jia@sun.com&amp;cc=reviewers@mozilla.org">bienvenu@nventure.com,
+   mscott@mozilla.org、sspitzer@mozilla.org、dmose@mozilla.org、Henry.Jia@sun.com</a> 
+
+  <dt>netwerk
+  <dd> <a href="mailto:darin@meer.net?cc=bzbarsky@mit.edu&amp;cc=reviewers@mozilla.org">darin@meer.net、
+   bzbarsky@mit.edu</a> 
+  <dt>strings
+  <dd> <a href="mailto:scc@mozilla.org?cc=jag@tty.nl&amp;cc=reviewers@mozilla.org">scc@mozilla.org、jag@tty.nl</a> 
+  <dt>uriloader
+  <dd> <a href="mailto:mscott@mozilla.org?cc=reviewers@mozilla.org">mscott@mozilla.org</a> 
+  <dt>widget
+  <dd> <a href="mailto:blizzard@mozilla.org?cc=bryner@brianryner.com&amp;cc=reviewers@mozilla.org">blizzard@mozilla.org、bryner@brianryner.com</a> 
+  <dt>xpcom
+  <dd> <a href="mailto:brendan@mozilla.org?cc=scc@mozilla.org&amp;cc=shaver@mozilla.org&amp;cc=Henry.Jia@sun.com&amp;cc=reviewers@mozilla.org">brendan@mozilla.org,
+   scc@mozilla.org、shaver@mozilla.org、Henry.Jia@sun.com</a> 
+  <dt>xpconnect
+  <dd> <a href="mailto:shaver@mozilla.org?cc=brendan@mozilla.org&amp;cc=reviewers@mozilla.org">shaver@mozilla.org、
+   brendan@mozilla.org</a> 
+  <dt>xpfe
+  <dd> <a href="mailto:neil@parkwaycc.co.uk?cc=alecf@flett.org&amp;cc=jag@tty.nl&amp;cc=reviewers@mozilla.org">neil@parkwaycc.co.uk、alecf@flett.org、jag@tty.nl</a> 
+  <dt>xpinstall
+  <dd> <a href="mailto:dveditz@cruzio.com?cc=reviewers@mozilla.org">dveditz@cruzio.com</a> 
+  <dt>xul、xbl
+  <dd> <a href="mailto:hyatt@mozilla.org?cc=bryner@brianryner.com&amp;cc=reviewers@mozilla.org">hyatt@mozilla.org,
+   bryner@brianryner.com</a> 
+  <dt>catch-all、when in doubt
+  <dd> <a href="mailto:brendan@mozilla.org?cc=dveditz@cruzio.com&cc=scc@mozilla.org&cc=reviewers@mozilla.org">brendan@mozilla.org、dveditz@cruzio.com、scc@mozilla.org</a> 
+ </dl>
+
+
+<p>注記： <a href="mailto:ben@bengoodger.com?cc=reviewers@mozilla.org">ben@bengoodger.com</a> はスーパーレビューを認可する権限を持っていますが、パッチのレビューは現在行っていません。</p>
+
+
+<h2 id="rules-and-tips">ルールとヒント</h2>
+
+<p> mozilla.org が全ての開発者に向けてお勧めするドキュメントは、 <a href="../projects/seamonkey/rules/code_review.html">SeaMonkey Code Reviewer's Guide</a> そして  <a href="../projects/seamonkey/rules/bible.html">SeaMonkey Engineering Bible</a> です。このページは先の二つのページを私がまとめたもので、それに様々な人から提案されたり、実際に行われているヒントやルールを加えてあります。以下に 21 のルールとヒントを、質問形式に （うんざりする質問の羅列ではなくて！） まとめてあります。以下の部分で私が 「patch」 として表現しているのは、新しいコードが提供された場合の 「完全に新しいファイル」 のことを表します。</p>
+
+<ol>
+<li>
+モジュールオーナーと複数のピアレビュー担当者がすでにパッチを見ているかを確認してください。バグ報告の中で <code>r=<i>レビュー担当者のメールアドレス</i></code> という形で署名が入っているはずです。モジュールピアの後、他の専門家、または  <a href="mailto:reviewers@mozilla.org">reviewers@mozilla.org</a> さらに  <a href="mailto:porkjockeys@mozilla.org">porkjockeys@mozilla.org</a> に依頼する必要があるかを検討してください。</li>
+
+<li>
+ XP コードへの変更ですか？　それなら、その変更は  <a href="http://www.testdrive.hp.com/">64-bit clean</a> でしょうか？　また  <a href="portable-cpp.html">C++ portability guide</a> に沿っていますか？</li>
+
+<li>
+その変更はエンドユーザーに分かりますか？　もし分かる場合は、 <a href="../projects/l10n/customizable-code.html#what_l12y">ローカライズ</a> できますか？　  <a href="../projects/l10n/customizable-code.html#write_l12y">「ローカライズ・カスタマイズできるコードを書くには」</a> で定められた勧告に従っていますか？</li>
+
+<li>
+変更にはエンドユーザの目に触れる部分である XUL ユーザインタフェースに含まれて / 影響しますか？　もし含まれている / 影響する場合は、 <a href="../projects/ui/accessibility/">アクセシブル</a> <span class="comment">【訳注：ユーザに優しいもの 】</span>ですか？ <a href="../projects/ui/accessibility/accessible-xul-authoring.html">アクセス可能な XUL オーサリング・ガイドライン</a> の勧告に従っていますか？</li>
+
+<li>
+  <a href="../bugs/">バグ</a> がきちんと添付ファイルと一緒にあるかどうか確認してください。</li>
+
+<li>
+関係する分野の専門家で、まだバグを読んでいないレビュー協力者には、気軽に cc: してください。</li>
+
+<li>
+パッチを生成する際には cvs diff -u 形式を使うようにパッチの作成者に勧めてください。またパッチファイルを一つにするために、最も高い位置の共通ディレクトリで cvs diff を行うようにしてください。そうすれば一回のパッチコマンドで済みます。</li>
+
+<li>
+パッチがタブやスペースによる空白部分が多く含む場合、外見のデザイン変更のみを含む場合、パッチを提出する人たちはそのパッチの cvs diff -wu バージョンを、 diff -u 形式の添付ファイルに<strong>加えて</strong>添付するようにしてください。他の人たちがパッチを当てることができるようにするためです。cvs diff -p オプションも利用してください。（diff -pu8 または何か同様のものを .cvsrc ファイルに書き込んでください。）</li>
+
+<li>
+ unified コードやその他のコンテキスト diff だけでなくコード全体も見てください。 <a href="/lxr/">LXR</a> があなたの友です。</li>
+
+<li>
+これまでの問題のなかで、パッチによる完全なフィックスではなく、ただ回避されているファイルにバグがありますか？</li>
+
+<li>
+パッチはどのようにテストされましたか？　  <a href="../quality/precheckin-tests.html">pre-checkin</a> テストを行いましたか？　変更が大きく、分析が難しい場合は、  <a href="../quality/smoketests/">スモークテスト</a> でも確認しましたか？ <a href="../js/tests/library.html">JS テスト</a> や  <a href="http://lxr.mozilla.org/mozilla/source/webshell/tests/viewer/">viewer</a> といったユニットテストやスウィートはどうですか？</li>
+
+<li>
+パッチによってメモリーが割り当てられたり、割り当や既存コードのフリー構造（free constructs） が変更される場合、またデータ構造の strong references を追加、削除、または移動した場合、パッチの提出者は、 <a href="../../projects/xpcom/MemoryTools.html">メモリーツール</a> を作動させ、 <a href="http://tinderbox.mozilla.org/">tinderbox</a> bloat ナンバーと比較しましたか？</li>
+
+<li>
+パッチへの作業が膨大な場合、 Mozilla コミュニティーの複数の人が、そのパッチを当て、そのパッチと共に作動させ、コメントともにバグを更新し、良い評価を得ているでしょうか？　もし好評でない場合は、 patch-buddies を探してください。</li>
+
+<li>
+下部レベルモジュールへのパッチが 「分かりにくい形」 で上部レイヤーモジュール（特に、 XUL、XBL など） に影響を与えるような変更を含んでいますか？　もしそのような変更が含まれている場合は、パッチの提供者はそのパッチが、幅広く上位レイヤー （特に XUL ベースのアプリケーションやダイアログ）に良い結果をもたらすかどうかを実際に確認しましたか？</li>
+
+<li>
+パッチは strong XPCOM references である、 <a href="../projects/xpcom/weak_references.html">nsWeakPtr</a> 向けに  <a href="../projects/xpcom/nsCOMPtr/">nsCOMPtr</a> を使用し （生の C++ インターフェースポインタに対して適切な場合）、また weak XPCOM references にも使用しており、最新の  <a href="../projects/xpcom/string-guide.html">string</a> テクノロジーを使用していますか？　同じような質問が、<i>ProgIDs</i> や新しい  <a href="news://news.mozilla.org/3994AE3E.D96EF810%40netscape.com">contractids</a> （まだ  <a href="mailto:rayw@netscape.com">rayw@netscape.com</a> <i>たち</i> によって contractids に変更されていないコードはどれでも）にも当てはまります。</li>
+
+<li>そのパッチは、はっきりとは報告されていない再入可能性やスレッド・セーフティを使用することを前提にしていますか<!-- （Does the patch make assumptions about reentrancy or thread-safety that are not clearly documented）-->？　もしそうなら、パッチの提供者に対して、意見を求めたり、 Mozilla ニュースグループでの議論に参加を求めたり、最終的にはドキュメントにまとめてもらえるように働きかけてください。</li>
+
+<li>もしパッチが新しい XPCOM インターフェースを定義している場合、そのインターフェースは  <a href="../scriptable/xpidl/">XPIDL</a> 
+を使用して宣言していますか？　もしそうなら、そのインターフェースまたは新しいメソッド、あるいは属性は <code>[scriptable]</code> ですか？　もしそうでないなら、そうでない正当な理由がありますか？　いずれにしても、 <a href="http://java.sun.com/products/jdk/javadoc/">JavaDoc-style</a> コメントは、 <a href="http://unstable.elemental.com/mozilla/">Doxygen</a> によって処理できるタイプのもので、インターフェース定義できちんと用いられていますか？</li>
+
+<li>互換性はどうですか？　フリーズされた XPCOM インターフェースは変更してはいけません （その代わり、新しいインターフェースを作成しなければなりません）。非 XPCOM インターフェースが変更された場合、後方互換が保たれていますか？　 DOM、 XUL、 XBL、などでの変更は、 C または C++ での変更よりも大きな影響を及ぼす可能性があります。もしその変更の後方互換が保たれていない場合、既存の機能を保つような代替手段を講じてください。もし互換性を犠牲にしなければならない場合、ニュースグループおよびバグ報告で告知し、その変更が良く理解され、記録されるようにしてください。</li>
+
+<li> spot-fix のような仕方で特定されている不正なパターンがファイルのほかの場所、あるいは近接するファイルで繰り返されている場合、
+そのパッチはコード内の問題を特定していますか？　もし特定しているなら、そしてもし <a href="../roadmap.html#new-milestones">マイルストーンスケジュール</a> の日程に余裕があるのなら、パッチ提供者とモジュールオーナーに、全ての場所やファイルバグについて必要な作業を行うように要請してください。</li>
+
+<li><a href="../roadmap.html#new-milestones">マイルストーンスケジュール</a> の関係で、リスクを最小化する時期の場合は、できるだけ影響の少ない変更を考えて、バグを修正したり、症状を緩和してください。関連するバグがオープンにしておき、オープンな事項を追跡できるようにしておいてください （ルール/ヒント #8 以前）。</li>
+
+<li>コードをレビューする際、そのパッチではできるだけ一般的なモジュールスタイルに沿ってください（「郷にいれば･･･」）。もしモジュールがぐちゃぐちゃな場合は、オーナーを特定し、コードスタイルを一致させるように要請してください。モジュールがぐちゃぐちゃだということは、それ自体きちんと管理されていないことの現われなのです。それぞれのファイルのトップの  <a href="http://lxr.mozilla.org/mozilla/source/js/src/jsapi.h#1">Emacs モードラインコメント</a> で、ファイルのインディケーションスタイルが正確に特定されており、<code>indent-tabs-mode</code> が <code>nil</code> となっており、適切なスペースを残して、パッチではファイルからタブを除去してください。</li>
+</ol>
+
+<p>最後に、あなたがレビューをしてパッチを受け取り、喜んで自分の名誉を賭けようという場合は、バグ報告に <code>sr=<var>あなたのメールアドレス</var></code> を記入して、誰もがあなたの認証印を見られるようにしてください。ミスは必ず起こるものだと思っておいてください。誰もがミスをするのですから。大切なことは完璧を目指すのでも、慎重になるあまりパッチの受理を必要以上に遅らせてしまうことでもありません。大切なことは、私達が開発しているコードに対しての正しい判断と、多くの人の判断を仰ぐことなのです。</p>
+
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/hacking/reviewers.html">英語版</a> 2006/01/09</span> - <span>和訳版 2006/02/08</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/hacking/reviewers.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

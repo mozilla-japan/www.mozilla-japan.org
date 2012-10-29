@@ -1,0 +1,1370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <meta name="generator" content=
+  "HTML Tidy for Windows (vers 1st June 2004), see www.w3.org" />
+  <meta name="vs_showGrid" content="False" />
+
+  <title>Windows アクセシビリティベンダー向け Gecko 情報</title>
+<link rel="alternate" hreflang="en" modified=" March 5, 2006">
+<style type="text/css" media="screen,tv">
+/*<![CDATA[*/
+ <!-- h3 {font-style: italic; font-size: larger; font-weight: normal;}
+        .indent { margin-left: 2em; }
+        -->
+/*]]>*/
+</style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/windows/at-apis.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+  <h1>Windows アクセシビリティベンダー向け Gecko 情報</h1>
+
+  <div class="indent">
+    <p>この FAQ は Windows のスクリーンリーダ、音声検出パッケージ、拡大鏡ソフトウェアの製作者が、どうすれば Gecko ベースのソフトウェアをサポートできるかについて説明しています。これらの製品に対する私たちのサポートのベースとなるのは、MSAA (Microsoft Active Accessibility)、外部の readonly DOM サポート、およびキーボード API/ ユーザインターフェイスです。</p>
+
+    <p>Firefox とその他の Gecko ベースの製品すべてにとって、この文書は 現在まだ公式リリースになっていない Firefox の最新のビルドにのみ適用されます<span class="comment">【訳注: 05/12/20現在 Firefox 1.5が公式リリースされています】</span>。<a href="http://www.mozilla-japan.org/access/dhtml/#testenv">これらの機能をサポートする Firefox の現行のビルド</a>を参照してください。</p>
+  </div>
+
+  <h2>目次</h2>
+
+  <ul>
+    <li><a href="#definitions">定義</a></li>
+
+    <li><a href="#geckopackages">Gecko レイアウトエンジンに基づく Windows アプリケーション</a></li>
+
+    <li><a href="#content-window">コンテンツウィンドウの見つけ方とドキュメントの読み込み方法</a></li>
+
+    <li><a href="#msaa-methods">MSAA サポート: IAccessible メソッド</a></li>
+
+    <li><a href="#msaa-events">MSAA サポート: イベント追跡と一意の ID</a></li>
+
+    <li><a href="#msaa-notyet">サポートされない MSAA の機能</a></li>
+
+    <li><a href="#knowndif">Internet Explorer との意図的な違い</a></li>
+
+    <li><a href="#roletable">サポートされる MSAA Roles の一覧表</a></li>
+
+    <li><a href="#perf">IEnumVARIANT によるクライアントエンドの性能向上</a></li>
+
+    <li><a href="#memleaks">メモリリークの回避</a></li>
+
+    <li><a href="#externaldom">DOM サポートの追加</a></li>
+
+    <li><a href="#keyboard">キーボード UI 情報</a></li>
+
+    <li><a href="#beyondhtml">HTML を超えて: 他の種類のウェブコンテンツ -- DHTML、MathML、SVG、XForms、XUL</a></li>
+
+    <li><a href="#mailinglist">質問あるいはコメント?</a></li>
+  </ul>
+
+  <h2><a id="definitions" name="definitions"></a>定義</h2>
+
+  <div class="indent">
+    <p>この文書を理解する上で必要になる基本的定義を示します:</p>
+
+    <ul>
+      <li>
+        <a href="../../newlayout/faq.html">Gecko</a>
+      :  Firefox、Thunderbird、Nvu、Mozilla Seamonkey、その他アプリケーション用のレンダリングエンジン。Gecko は Mozilla があらゆる種類のウェブコンテンツを表示するために使う内部エンジンです。HTML、XHTML,Cascading Style Sheets (CSS)、Document Object Model (DOM) をサポートします。</li>
+
+      <li>
+        <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaastart_9w2t.asp">
+          MSAA</a> : Microsoft Active Accessibility は Microsoft によって作られた API です。ソフトウエアーパッケージが MSAA をサポートしていれば、ユーザーインターフェイスの内部で発生している事をアクセシビリティの補助機能が追跡できます。もし MSAA を真剣に理解しようとするならば、MSDN で資料を読み、<a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=4179742f-1f3d-4115-a8ba-2f7a6022b533&amp;displaylang=en">MSAA SDK 1.3</a> によって提供されるアプリケーションとコードを試してみる必要があります。（MSAA SDK 2.0 はテストツールのソースコードを備えていないので、 SDK 1.3 を推奨します。他の違いは重要ではありません。）</li>
+
+      <li><a href="http://www.w3.org/DOM">DOM</a> : Document Object Model。これは、ウェブコンテンツがどのようにして JavaScript や他の言語へ公開されるかについての W3C の仕様です。DOM はコンテンツ、スタイル、イベントをカバーします。Gecko のプロセス内部では、コードは無条件に DOM API にアクセスします。しかし、全 DOM を外部ソフトウェアパッケージに公開することはあまりに大掛かりになります。ひとつには、Firefox において DOM へ変更を加えることは、メインスレッドで行われることになるからです。私たちは、アクセシビリティ補助機器ベンダーに必要とされる、 DOM の readonly メソッドのサブセットを選り抜きました。フォーカスの変更などのイベントは DOM イベントではなく、MSAA イベントによって追跡される必要があります。 </li>
+
+      <li><a href="http://www.xulplanet.com">XUL</a>: ユーザインターフェイスを開発するのに Firefox や Mozilla によって使われる XML をベースとする言語。強力なアプリケーションを作成するのに CSS や JavaScript と組み合わせられる点が、HTML と似ている。HTML よりデスクトップ型のウィジェットをより多く含み、テキストフロー(text-flow)ではなく、ボックスレイアウトの方式を採用します。</li>
+
+      <li>役割、状態、イベント: これらをあまりご存知でなければ、MSDN で MSAA の文書を読んでください。通常余分な言葉を省くことで、短縮形にします。例えば、EVENT_SYSTEM_ALERT とすべて言わずに、EVENT_ALERT とすることができます。</li>
+    </ul>
+
+    <h3>MSAA ツリー対 DOM ツリー：その関係は？</h3>
+
+    <div class="indent">
+      <p><img title=
+      "MSAA ツリーが DOM ツリーのサブセットであることを示す図" alt=
+      "MSAA ツリーが DOM ツリーのサブセットであることを示す図" src=
+      "tree-relativity.gif" /></p>
+
+      <p>MSAA ツリーと DOM ツリーでは、MSAA ツリーは DOM ツリーのサブセットではあるものの、平行的構造を備えています。<code>QueryService()</code> はインターフェイス (IAccessible、ISimpleDOMDocument、ISimpleDOMNode、ISimpleDOMText) を切り替えるのに使われます。DOM ノードに対応する MSAA ノードが存在しない(また反対に MSAA ノードに対応する DOM ノードが存在しない)ならば、<code>QueryService()</code> は null を返します。</p>
+
+      <p>フォーカス可能なものは何であれ、またドキュメントの構造についての重要な情報を伝えるものはすべて、IAccessibles の MSAA ツリーで表示されます。</p>
+    </div>
+  </div>
+
+  <h2><a id="geckopackages" name="geckopackages"></a>Gecko レイアウトエンジンに基づく Windows アプリケーション</h2>
+
+  <div class="indent">
+    <p>Gecko は Mozilla、Netscape、他の新しいブラウザが使うレンダリングエンジンです。Gecko は HTML だけでなく様々なコンテンツを表示可能で、Cascading Style Sheets、JavaScript、W3C DOM などのウェブの重要な標準をサポートします。Gecko はまたユーザーのキー入力やマウスクリックについても扱います。Gecko に基づく全てのアプリケーションにおいてアクセシビリティをサポートするために、私たちは中核の構造体である Gecko にアクセシビリティを追加しているところです。</p>
+
+    <h3>（MSAA をサポートする）埋め込まれたクライアント</h3>
+
+    <div class="indent">
+      <p>埋め込まれたクライアントは、Gecko をコンテンツウィンドウでのみ、また今のところ HTML と共用 XML に対してのみ使用します。それらクライアントは通常、ユーザインターフェイス--クライアントのコンテンツウィンドウの外の領域、およびコンテンツメニュ--に対して、標準の Windows コントロールを使用します。</p>
+
+      <ul>
+        <li><code>MFCEMBED</code> テストクライアント: これは非常に簡単なパッケージであり、あなたの製品や Gecko 表示エンジンによって、基本的な HTML アクセシビリティをテストするのに最適です。コピーのご請求は Aaron Leventhal - aaronleventhal<span style="LETTER-SPACING: -0.1em">@ m o o n s e
+t&nbsp; . </span>net へご連絡下さい。
+
+        <li><a href="http://kmeleon.sourceforge.net/">Kmeleon</a>:
+        さらに進化しているウェブブラウザ</li>
+      </ul>
+    </div>
+
+    <h3>（MSAA をサポートする）XUL ベースのクライアント </h3>
+
+    <div class="indent">
+      <p>HTML コンテンツだけでなく、メニュ、ダイアログボックス、XUL(eXtensible User-interface Language) <span class="comment">【訳注: 正しくは(XML User Interface Language)】</span>と呼ばれる XML 言語を使った全ユーザインターフェイスに対して、XUL ベースのクライアントは Gecko のアーキテクチャーを全面的に使用します。ユーザインターフェイスは、Windows の標準コントロールを含みません。メニュさえも含みません。これは、サポートされるすべてのプラットフォームにおいて共通のルックアンドフィールを確保するためであり、様々なスキン（外観）を有効にするためでもあります。</p>
+
+      <ul>
+        <li>Firefox (<em>バージョン 1.1 アルファ・ビルドかそれ以降のものを使ってください</em>)</li>
+
+        <li>Thunderbird (<em>バージョン 1.1 アルファ・ビルドかそれ以降のものを使ってください</em>)</li>
+
+        <li>Mozilla Seamonkey (<em>バージョン 1.8 アルファ・ビルドかそれ以降のものを使ってください</em>)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2><a id="content-window" name="content-window"></a>コンテンツウィンドウの見つけ方と、ドキュメントの読み込み方法</h2>
+
+  <div class="indent">
+    <p>スクリーンリーダーはその処理中に、現在のドキュメントをバッファに取り込むために、コンテンツウィンドウを見つけ MSAA ツリーの取り込みを開始するポイントを知る必要があります。コンテンツウィンドウはかならず、MozillaContentWindowClass というクラスを備えています。</p>
+
+    <p>Gecko は、全部で以下に示すウィンドウクラスをサポートします:</p>
+
+    <ul>
+      <li>MozillaUIWindowClass - ウィンドウ階層の基になるルート UI ウィンドウ</li>
+
+      <li>MozillaContentWindowClass -- ルートドキュメントウィンドウ</li>
+
+      <li>MozillaContentFrameWindowClass - &lt;frame&gt; や &lt;iframe&gt; 要素によって作られるサブドキュメントのルート</li>
+
+      <li>MozillaHiddenWindowClass - これらのウィンドウを無視してください。他のウィンドウを管理する支援のために使われます。</li>
+
+      <li>MozillaWindowClass - 汎用的代用ウィンドウ、多目的</li>
+    </ul>
+
+    <p>上記のウィンドウのいずれかがフォーカスを受け取ったなら、始めにその役割を調べてください。その時、役割が ROLE_PANE や ROLE_DOCUMENT ならば、スクリーンリーダのデフォルトモードのドキュメントとして処理されるはずです。役割が ROLE_APPLICATION や ROLE_DIALOG であれば、フォーカスの追跡モードにしてください。ドキュメントの解析は必要ありません。さらに、ROLE_ALERT であれば、スクリーンリーダはウィンドウをメッセージボックスとして扱うはずです。つまり、全コンテンツを読むことになります。これらの役割は、著者にドキュメントやコンテナの型を指定することを可能にする新しい <a href="../dhtml">DHTML アクセシビリティテクノロジー</a>のお陰で、コンテンツに応じて生じます。</p>
+
+    <p>ドキュメントがあると一度分かれば、ウィンドウの上層へ、MozillaContentWindowClass か MozillaUIWindowClass を見つけるまで、祖先への連鎖をたどってください。もしそれが、コンテンツウィンドウであれば、AccessibleObjectFromWindow() を使ってコンテンツに対する ルート IAccessible を取得し、そこからツリーの移動を開始できます。</p>
+
+    <p>Gecko はまた、ROLE_DOCUMENT アクセシビリティで 2 つの EVENT_STATE_CHANGE を起動することによって、新しいウィンドウを読み込むべき時期の決定が容易になります。最初の状態の変更はドキュメントのペインが今読み込中であることを示します。2 番目の状態の変更はドキュメントのペインが読み込みを完了したことを示します。イベントを処理するとき、get_accState() を使って STATE_BUSY フラグを調べてください。ドキュメントが読み込みを完了すると、稼動中を示すフラグはクリアーされます。</p>
+  </div>
+
+  <h2><a id="msaa-methods" name="msaa-methods"></a>MSAA サポート: IAccessible 
+      メソッド</h2>
+
+  <div class="indent">
+    <p>Gecko と一緒に MSAA を使用するために、<a href="http://www.microsoft.com/enable/download/msaa/msaasdk.exe">
+          MSAA SDK</a> を備えたツールやドキュメントが必要になります。<code>AccessibleObjectFromWindow()</code> メソッドで、トップレベルのウィンドウに対応するルート IAccessible が取得できます。このルート IAccessible を保持して IAccessible の全ツリーを移動するのに使用して下さい。</p>
+
+    <p>サポートしている IAccessible のメソッド:</p>
+
+    <ul>
+      <li>get_accParent</li>
+
+      <li>get_accChildCount</li>
+
+      <li>get_accChild</li>
+
+      <li>get_accName</li>
+
+      <li>get_accValue</li>
+
+      <li>get_accDescription</li>
+
+      <li>get_accRole</li>
+
+      <li>get_accState</li>
+
+      <li>get_accFocus</li>
+
+      <li>get_accDefaultAction</li>
+
+      <li>accLocation</li>
+
+      <li>accSelect</li>
+
+      <li>accHitTest</li>
+
+      <li>accDoDefaultAction</li>
+
+      <li>accNavigate</li>
+
+      <li>get_accKeyboardShortcut</li>
+    </ul>
+  </div>
+
+  <h2><a id="msaa-events" name="msaa-events"></a>MSAA サポート: IAccessible イベントおよび一意の ID</h2>
+
+  <div class="indent">
+    <h3>サポートされる MSAA イベントは何か？</h3>
+
+    <ul>
+      <li>
+        EVENT_FOCUS はあらゆる種類のフォーカス可能なオブジェクト上でフォーカスの変更のために起動されます。</li>
+
+      <li>
+        EVENT_STATECHANGE はチェックボックス、ラジオボタン、テキスト領域、コンボボックス、リストボックスにおいて使用されます。またそれは、STATE_BUSY フラグが新しいコンテンツを読み込み中の状態からいつ変更になるかを示すのに、ルートペインオブジェクトで使用されます。</li>
+
+      <li>EVENT_SCROLLINGEND は一行だけであっても、ドキュメントがいつスクロールしたかを示すのに使われます。Gecko はスクロールが完了する時、過剰にイベントを起動せずに、このイベントを起動します。</li>
+
+      <li>EVENT_SCROLLINGSTART はユーザがページ内で名前付きのアンカーへ移動した時に起動されます。イベントは移動先のドキュメント側の最初のアクセシビリティのオブジェクトで起動されます。</li>
+
+      <li> EVENT_MENUPOPUPSTART と EVENT_MENUPOPUPEND は XUL メニュバーが開かれた時や閉じられた時に起動されます。</li>
+
+      <li>EVENT_MENUSTART と EVENT_MENUEND は XUL メニュバーが有効になった時や無効になった時に起動されます。</li>
+
+      <li>EVENT_VALUECHANGE は get_accValue() が変更することができるスライダー、プログレスメータ、他のオブジェクトに対して起動されます。</li>
+
+      <li>EVENT_SHOW、 EVENT_HIDE、EVENT_LOCATIONCHANGE はキャレットオブジェクトに対して起動されます。</li>
+
+      <li>EVENT_REORDER は内部に子を持つオブジェクトが、その子が変化する時は必ず親オブジェクト上で起動されます。EVENT_SHOW と EVENT_HIDE は、外観が変わった子に対して、reorder イベントと一緒に起動されることもあります。見せたり隠したりするイベント (show and hide events) は、IAccessibles の新しいサブツリーが外観を変更する時、一番上の IAccessible 以外は 、すべての IAccessible で起動されるわけでありません。例外はプログレスメータであり、それが表示されたり、隠されたりする時、EVENT_SHOW や EVENT_HIDE イベントをかならず起動するようになっています。</li>
+
+      <li>
+EVENT_ALERT は ROLE_ALERT のオブジェクトが出現したり変わったりする時に起動されます。こうして、スクリーンリーダが警告内容を読み上げるように指示を出します（その時オブジェクトは、読み上げられる下位層を備えた、コンテナかもしれません）。</li>
+
+      <li>EVENT_SELECTION は 選択項目がひとつだけのコンテナが備える子において、EVENT_FOCUS と一緒に起動されます。この場合、選択とフォーカスが一緒に移動します。</li>
+
+      <li>EVENT_SELECTIONWITHIN は複数項目を選択するコンテナで、現在の選択が内部で変わる時に起動されます。さらに、選択が変更された子において、EVENT_SELECTIONADD と EVENT_SELECTIONREMOVE が起動されます。</li>
+    </ul>
+
+    <h3>独自開発のオフスクリーンモデルで、イベントの発生場所を追跡する方法</h3>
+
+    <div class="indent">
+      <p>普通、子の ID が添え字 0 から始まるのはイベントを表すのに実用的でありません。問題点は、MSAA が採用する ID システムは、ウィンドウでオブジェクトが深いツリー構造となっている場合うまく機能しないことです。ドキュメントのすべてのノードに 0 から始まる番号をふることは実用的でありません。というのは、ノードが挿入されたり削除される都度、番号付けをやり直すのはプログラム上高価につくからです。そこで、イベントから戻される Firefox の子 ID は関連する内部 DOM モードのポインター値を使うアルゴリズムに基づくようになっています。イベントに対して計算されるこの子 ID は必ず負の数であり、イベントを起動する IAccessible にとって一意です。</p>
+
+      <p>これらのイベントから返される負の数である子 ID は AccessibleObjectFromEvent() によって使用されるか、get_accChild() のような、VARIANT を採るすべての IAccessible のメソッドによってウィンドウのルート accessible で使われます。</p>
+
+      <p>スクリーンリーダは、普通全ドキュメントに匹敵するデータをキャッシュするので、既知のオブジェクトに正しく戻ることを可能にする子 ID を受け取るのは、スクリーンリーダに大変役立ちます。この時、内部モデルでキャッシュされる、すべての IAccessible の一意の ID を返す ISimpleDOMNode::get_nodeInfo() によって、この技術のサポートが提供されます。イベントが受け取られた時、全ドキュメントが保存され、そのまま維持されているなら、負の数の子 ID は、これらのキャッシュされた一意の ID の中のひとつと合致します。内部キャッシュをそのまま維持するとは、EVENT_REORDER が受け取られる時は必ず、重要な変更が発生してその時モデルの一部が無効化されたことを示す IAccessibles の新しいサブツリーを取得することを意味します。</p>
+    </div>
+  </div>
+
+  <h2><a id="msaa-notyet" name="msaa-notyet"></a>サポートされない MSAA 機能</h2>
+
+  <div class="indent">
+    <p>以下の機能はだれにもまだ要請されていません。（必要なものがあれば、<a href="mailto:aaronleventhal@moonset.net">Aaron Leventhal</a> にご連絡ください ):</p>
+
+    <p>現在サポートしていない IAccessible のメソッド:</p>
+
+    <ul>
+      <li>get_accHelp</li>
+
+      <li>get_accHelpTopic</li>
+
+      <li>put_accName</li>
+
+      <li>put_accValue</li>
+
+      <li>IAccessible に対して Visual Basic (IDispatch) のバインディングを現在サポートしていません。</li>
+
+      <li>accNavigate() による方向ナビゲーションは現在サポートしていません。</li>
+
+      <li>  下記に説明していますように、 EVENT_SYSTEM_SCROLLINGEND と ISimpleDOMNode::ScrollTo() はサポートしていますが、IAccessible オブジェクトとしてスクロールバーは現在サポートしていません。</li>
+
+      <li>STATE_SYSTEM_MOVEABLE、STATE_SYSTEM_SIZEABLE や STATE_SYSTEM_MARQUEED は現在サポートしていません。</li>
+
+      <li>ROLE_SYSTEM_ROW を現在サポートしていませんし、Internet Explorer もそれをサポートしていません。その理由ははっきりしているように思えます。HTML の rowspan 属性が複数の行でセルに結合するのに使用される時、ROLE_SYSTEM_ROW がツリーのどこに存在すべきかは明確でありません。現在は表の分析に 2 つの技術が存在します：1) accLocation() を使って各セルの座標を取得し、それを、独自に作られた表データ構造を構築するアルゴリズムへ取り入れるか、または、2) ISimpleDOMNode を使って、表を解析するかです。</li>
+
+      <li><a href="#roletable">サポートされている役割と注記の一覧</a>は下記の表をご参照ください。</li>
+    </ul>
+  </div>
+
+  <h2><a id="knowndif" name="knowndif"></a>Internet 
+      Explorer との意図的な違い</h2>
+
+  <div class="indent">
+    <p>MSAA の機能をサポートするほとんどの部分では、Internet Explorer が MSAA を使用することの再現を試みています。ここに挙げられていない違いに気付かれたならご連絡下さい:</p>
+
+    <h3>アクセシビリティの関係がサポートされる</h3>
+
+    <div class="indent">
+      <p>accNavigate() メソッドは Gecko 向けに定義された新しい定数と一緒に使用できます。結果はかならず VT_DISPATCH.accNavigate() 経由で返されます。
+</p>
+      <pre class="indent">
+enum { NAVRELATION_LABEL_FOR = 0x1002 }; <br />
+enum { NAVRELATION_DESCRIPTION_FOR = 0x100f }; 
+</pre>
+
+      <p>これら 2 つのリレーションは ROLE_STATICTEXT オブジェクトで、どのフォームコントロールがラベル付けされているか、または記述されているか見つけるのに使われます。</p>
+      <pre class="indent">
+enum { NAVRELATION_LABELLED_BY = 0x1003 }; <br />
+enum { NAVRELATION_DESCRIBED_BY = 0x100e }; 
+</pre>
+
+      <p>これら2つのリレーションはそれ自体反対に機能します。つまり、フォームコントロールで使われます。その時、フォームコントロールが accName を備えるなら、もっと多くのフォーマット化情報を得るために、その accName がラベル付けされている IAccessible を取得できます。それはまた、記述を調べるのにも役に立ちます。</p>
+
+      <p>ラベルと記述のリレーションはスクリーンリーダが冗長な情報を提供するのを防止するのに使われることに留意してください。というのは、ラベルや記述は自分自身の名前や記述領域に存在するだけだなく、IAccessible の名前や記述領域にも存在するからです。</p>
+      <pre class="indent">
+enum { NAVRELATION_DEFAULT_BUTTON = 0x100d };
+</pre>
+
+      <p>HTML フォームや XUL ダイアログ内で使われる時、NAVRELATION_DEFAULT_BUTTON リレーションはデフォルトのボタンに対して IAccessible を返します。</p>
+    </div>
+
+    <h3>チェック可能な状態、要求された状態、無効な状態がサポートされる</h3>
+
+    <div class="indent">
+      <p>Gecko はまだ使われていない状態を使って、状態の 3 つの定数を定義します:</p>
+      <pre class="indent">
+const unsigned long STATE_CHECKABLE = STATE_MARQUEED; // メニュアイテム、リストアイテム、ツリーアイテムで有効。STATE_CHECKED が無いと "チェックされていない" と発声されるように指示します。さらに、チェックボックスがトグル切り替えされるイベントで、EVENT_STATE_CHANGE が起動されるように指示します。<br />
+
+const unsigned long STATE_REQUIRED = STATE_ALERT_LOW;  // このフィールドがフォームを送るのに記入されなければならない事を指示するためにフォームコントロールで使われる<br />
+
+const unsigned long STATE_INVALID = STATE_ALERT_HIGH;  // 現在フィールドが正しい値を備えていない事を指示するためにフォームコントロールで使われる<br />
+
+const unsigned long STATE_??? = STATE_ALERT_MEDIUM; // 将来の使用に確保される<br />
+
+</pre>
+    </div>
+
+    <h3>MSAA ツリーに表示されるドキュメント構造</h3>
+
+    <div class="indent">
+      <p>BSTR の役割はマイクロソフトによって定義されていない重要な役割に対して使われます。get_accRole から返される VARIANT に役割が含まれる時、variant.vt == VT_BSTR であるかどうか調べてください。そうなっていれば、variant.bstrVal は、その時役割を表す文字列を保持しています。</p>
+
+      <p>その時、役割の文字列は、HTML のタグ名かもしれません。そして、その後にコンマ、スーペース、現在の要素の名前スペースが続きます。現在たいていは、名前スペースは無視されますが、将来は重要になるかもしれません。以下の HTML タグは BSTR 型として表されます:</p>
+      <pre class="indent">
+abbr、 acronym、 blockquote、 dd、 dl、 dt、 form、 frame、 h1、 h2、 h3、 h4、 h5、 h6、 iframe、 q、 tbody、 tfoot、 thead 
+</pre>
+
+      <p>さらに、HTML のリストは Gecko によるフォーマット化で自動的に挿入される黒丸や数字を示すのに <code>bullet</code> BSTR の役割を使用します。さらに、STATE_READONLY や ROLE_LISTITEM と一緒に ROLE_LIST はリストの構造を示すのに使われます。このために、ROLE_LIST を見つけると STATE_READONLY フラグを調べる事が重要になります。というのは、HTML リストのフォーム要素も ROLE_LIST を使うのですが、STATE_READONLY が設定されないからです。</p>
+    </div>
+
+    <h3 class="indent">位置の記述がサポートされる</h3>
+
+    <div class="indent">
+      <p>以下の役割に対して accDescription フィールドがオーバーライドされます:</p>
+
+      <p>ROLE_LISTITEM、 ROLE_MENUITEM、 ROLE_RADIOBUTTON、
+      ROLE_PAGETAB、ROLE_OUTLINEITEM</p>
+
+      <p>見出し項目以外のすべてに対して、位置の記述は "n of m" の形になっており、n はグループ内の類似する他のオブジェクト中の順番を示す整数です。m はその時グループに存在するオブジェクトの数を表します。例えば、"3 of 5" は 5 つの中の 3 番目のオブジェクトを示します。</p>
+
+      <p>見出し項目に対しては、"L#, n of m with c" というフォーマットで、さらに多くの情報が提供されます。# は見出し項目が存在するレベルであり、c は子の数を表します。n of m の位置はその時現在の見出しレベル内の順番に関連付けられます。</p>
+
+      <p>最後に、記述の前に付加されるテキスト "Description: " によって本当の記述が、ここから表示されます。これによって、本当に読んで欲しい記述が明確になります。上記の文字列にある "Description:" も "of" も決してローカルになっていませんので、両方とも解析されるはずです。</p>
+    </div>
+
+    <h3>DHTML アクセシビリティがサポートされる</h3>
+
+    <div class="indent">
+      <p>この事は、普通 HTML のコンテンツにはない役割を見つける可能性があることを意味します。コンテンツにおいて役割と状態の新しい組合せがある事を予め知っておいてください。例えば、ROLE_SLIDER、ROLE_PROGRESSBAR、STATE_REQUIRED です。さらに、表にある STATE_FOCUSABLE のビットを調べてください。ビットは、探索可能な DHTML のスプレッドシートを示します。この件で、詳細を知りたければ、<a href="../dhtml">DHTML アクセシビリティ文書のページ</a> をご参照ください。</p>
+    </div>
+
+    <h3>IAccessibles は一貫している</h3>
+
+    <div class="indent">
+      <p>ドキュメントが変わらなければ、同じオブジェクトに対して IAccessible を複数回検索すると、同じ IAccessible が返ってきます。一意の ID も同一のままです。もしドキュメントが変わると、変更の発生する場所を指示するのに EVENT_REORDER、EVENT_HIDE、EVENT_SHOW が使われます。一貫性があるので、リレーションとイベントは補助技術の内部モデル内で、マッピングされます。</p>
+    </div>
+
+    <h3>ページの読み込みは、STATE_CHANGE イベント経由で追跡される</h3>
+
+    <div class="indent">
+      <p>新しいドキュメントが読み込まれようとする時、ウィンドウの ROLE_DOCUMENT ルートオブジェクト上で、EVENT_STATE_CHANGE が発生します。そして、STATE_BUSY フラグがルートペイン・オブジェクトに対して設定されます。</p>
+
+      <p>新しいページが、IAccessible ツリー経由で表示され、探索される準備が整うと、古いコンテンツウィンドウは破壊され、新しいウィンドウが作られます。それから、その時ウィンドウの新しい ROLE_DOCUMENT ルートオブジェクトに対して EVENT_STATE_CHANGE がもう一つ起動され、STATE_BUSY フラグがクリアされます。</p>
+    </div>
+  </div>
+
+  <h2><a id="roletable" name="roletable"></a>サポートされる MSAA Roles の一覧表</h2>
+
+  <table id="Table1" cellspacing="1" cellpadding="1" width="90%"
+  border="1" class="indent" summary="This table shows what MSAA roles Gecko supports, 
+  what markup is used to create objects with those roles, and any special features 
+  that objects with those roles support" >
+    <tr>
+      <th>役割</th>
+
+      <th>サポート状況</th>
+
+      <th>固有機能</th>
+    </tr>
+
+    <tr>
+      <td>ROLE_TITLEBAR</td>
+
+      <td>MS Windows によって自動的にサポートされる</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_MENUBAR</td>
+
+      <td>
+        <p>XUL: &lt;menubar&gt;<br />
+        DHTML: xhtml2:role="wairole:menubar"</p>
+      </td>
+
+      <td>EVENT_MENUSTART と EVENT_MENUEND を起動する</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_SCROLLBAR</td>
+
+      <td>サポートされない</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_GRIP</td>
+
+      <td>サポートされない</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_SOUND</td>
+
+      <td>サポートされない</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_CURSOR</td>
+
+      <td>サポートされない</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_CARET</td>
+
+      <td>キャレットに対してサポートされる</td>
+
+      <td>EVENT_SHOW、EVENT_HIDE、EVENT_LOCATIONCHANGE を起動する</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_ALERT</td>
+
+      <td>XUL: &lt;browsermessage&gt;<br />
+      DHTML: xhtml2:role="wairole:alert"</td>
+
+      <td>EVENT_ALERT を起動する</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_WINDOW</td>
+
+      <td>MS Windows によって自動的にサポートされる</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_CLIENT</td>
+
+      <td>
+        <p>XUL: &lt;browser&gt;<br />
+        HTML: &lt;frame&gt; または &lt;iframe&gt;</p>
+      </td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_MENUPOPUP</td>
+
+      <td>
+        <p>DHTML: xhtml2:role="wairole:menu"</p>
+      </td>
+
+      <td>EVENT_MENUPOPUPSTART、EVENT_MENUPOPUPEND を起動する</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_MENUITEM</td>
+
+      <td>
+        <p>XUL: menuitem<br />
+        DHTML: xhtml2:role="wairole:menuitem"</p>
+      </td>
+
+      <td>
+        <p>ラジオボタンや、チェックボックスタイプの選択メニュに対して STATE_CHECKED を設定する</p>
+
+        <p>\t (TAB) 文字の後に Accelerator キーが accName に入る。例えば、"Open\tCtrl+O"</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_TOOLTIP</td>
+
+      <td>XUL: &lt;tooltip&gt; あるいはツールチップテキスト属性</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_APPLICATION</td>
+
+      <td>
+        <p>アプリケーションのルートオブジェクトのデフォルトとしての役割<br />
+        DHTML: xhtml2:role="wairole:application"</p>
+      </td>
+
+      <td>accName() は現在のペインの  &lt;title&gt;  を表す。</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_DOCUMENT</td>
+
+      <td>ドキュメントのルートオブジェクトのデフォルトとしての役割<br />
+      DHTML: xhtml2:role="wairole:document"</td>
+
+      <td>
+        <p>STATE_READONLY を設定すると普通のドキュメントであることを表す。設定しなければ、編集可能になる。</p>
+
+        <p>この領域に新しいドキュメントを読み込み中の時 STATE_BUSY を設定する。</p>
+
+        <p>ドキュメントの読み込みの開始や終了によって、読み込み中のフラグが設定されたり、クリアされる時、EVENT_STATE_CHANGE を起動する。</p>
+　	<p>accValue() は現在のペインの URL を表示する。</p>
+	<p>ccName() は現在のペインの  &lt;title&gt;  を表す。</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_PANE</td>
+
+      <td>&lt;frame&gt; または &lt;iframe&gt; の最初の子</td>
+
+      <td><p>accValue() は現在のドキュメントの URL を表す<p></br>
+	  <p>ccName() は現在のペインの  &lt;title&gt;  を表す。</p></br>
+	<p><a href="http://www.mozilla.org/editor/midasdemo/">designMode 経由で編集可能</a>なフレームでなければ STATE_READONLY を設定する。<p>
+</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_CHART</td>
+
+      <td>サポートされない.</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_DIALOG</td>
+
+      <td>
+        <p>XUL: &lt;dialog&gt;<br />
+        DHTML: xhtml2:role="wairole:dialog"</p>
+	<p>accValue() は現在のダイアログの URL を表示する。</p>
+      </td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_BORDER</td>
+
+      <td>サポートされない.</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_GROUPING</td>
+
+      <td>HTML: &lt;fieldset&gt;<br />XUL: &lt;groupbox&gt;<br/>
+      DHTML: xhtml2:role="wairole:group" または DHTML:
+      xhtml2:role="wairole:radiogroup"</td>
+
+      <td>&lt;fieldset&gt; に対しては名前は &lt;legend&gt; を使って表現される</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_SEPARATOR</td>
+
+      <td>XUL: &lt;separator&gt;<br />
+      HTML: &lt;hr&gt;</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_TOOLBAR</td>
+
+      <td>XUL: &lt;toolbar&gt;<br />
+      DHTML: xhtml2:role="wairole:toolbar"</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_STATUSBAR</td>
+
+      <td>XUL: &lt;statusbar&gt;</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_TABLE</td>
+
+      <td>HTML: &lt;table&gt;<br />
+      DHTML: xhtml2:role="wairole:spreadsheet" (この場合、STATE_FOCUSABLE が設定される)</td>
+
+      <td>accName はテーブルの &lt;caption&gt; の最初の子か、サマリー属性経由でサポートされる</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_COLUMNHEADER</td>
+
+      <td>
+        <p>XUL: ツリーのコラムヘッダー<br />
+        HTML: &lt;th&gt;<br />
+        DHTML: xhtml2:role="wairole:colheader"</p>
+      </td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_ROWHEADER</td>
+
+      <td>DHTML: xhtml2:role="wairole:rowheader"</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_COLUMN</td>
+
+      <td>サポートされない.</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_ROW</td>
+
+      <td>サポートされない. "Internet Explorer との意図的な違い"を参照してください</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_CELL</td>
+
+      <td>
+        <p>HTML: &lt;td&gt;<br />
+        DHTML: xhtml2:role="wairole:gridcell"</p>
+      </td>
+
+      <td>
+        <p>通常の表で STATE_READONLY をサポートする</p>
+
+        <p>データグリッドとスプレッドシートで、STATE_FOCUSABLE を設定する</p>
+
+        <p>データグリッドとスプレッドシートで、STATE_READONLY をクリアする</p>
+
+        <p>セルに選択がある時、スプレッドシートで、STATE_SELECTED を設定する</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_LINK</td>
+
+      <td>XUL: &lt;label class="text-link"&gt; -- 変更されるべき。XUL 用に本当の &lt;リンク&gt; 部品が必用<br />
+      HTML: &lt;a&gt; と &lt;area&gt;</td>
+
+      <td>
+        <p>リンク先があるなら STATE_LINKED を設定する。</p>
+
+        <p>リンクにアクセスが発生したなら STATE_TRAVERSED を設定する。</p>
+
+        <p>名前の付いた HTML のアンカーなら STATE_SELECTABLE を設定する。</p>
+	　<p>accValue() は指定されている URL を示す</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_HELPBALLOON</td>
+
+      <td>サポートされない.</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_CHARACTER</td>
+
+      <td>サポートされない.</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_LIST</td>
+
+      <td>XUL: &lt;listbox&gt;<br />
+      HTML: &lt;select size=""&gt; size が &gt; 1 では--
+      STATE_READONLY は設定されない<br />
+      HTML: &lt;ol&gt; か &lt;ul&gt; であれば、-- STATE_READONLY が設定される<br />
+      DHTML: xhtml2:role="wairole:list"</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_LISTITEM</td>
+
+      <td>HTML:&lt;li&gt;、&lt;option&gt; または&lt;optgroup&gt;<br>
+DHTML: <br>xhtml2:role="wairole:listitem"<br>XUL:&lt;listitem&gt;</td>
+
+      <td>現在のリスト項目が選択されれば、STATE_SELECTED を設定する。</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_OUTLINE</td>
+
+      <td>DHTML: xhtml2:role="wairole:tree"</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_OUTLINEITEM</td>
+
+      <td>DHTML: xhtml2:role="wairole:treeitem"</td>
+
+      <td>
+        <p>現在見えない子達を備えていれば、STATE_COLLAPSED を設定する。</p>
+
+        <p> 現在アクセスされた子達を備えていれば STATE_EXPANDED を設定する。</p>
+
+        <p>現在のツリー項目が選択されれば、STATE_SELECTED を設定する。</p>
+
+        <p>ツリー項目が、展開したり、折り畳まれる時、EVENT_STATE_CHANGE を起動する。</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_PAGETAB</td>
+
+      <td>XUL: &lt;tab&gt;<br />
+      DHTML: xhtml2:role="wairole:tab"</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_PROPERTYPAGE</td>
+
+      <td>XUL: &lt;tabpanel&gt;<br />
+      DHTML: xhtml2:role="wairole:tabpanel"</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_INDICATOR</td>
+
+      <td>サポートされない.</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_GRAPHIC</td>
+
+      <td>XUL: &lt;image&gt;<br />
+      HTML: &lt;img&gt;</td>
+
+      <td>
+        <p>リンク内であれば、STATE_LINKED を設定する。</p>
+
+        <p>アクセス先のリンクであれば、STATE_TRAVERSED を設定する。</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_STATICTEXT</td>
+
+      <td>
+        <p>XUL: &lt;label&gt; または &lt;description&gt;<br />
+        HTML: &lt;label&gt;<br />
+        DHTML: xhtml2:role="wairole:label" また<br />
+        xhtml2:role="wairole:description"</p>
+      </td>
+
+      <td>
+        <p>accNavigate() 経由で、NAVRELATION_LABEL_FOR と NAVRELATION_DESCRIPTION_FOR をサポートする。</p>
+
+        <p>accName は下位層の accNames が集積されたものなので、重複データとなっている可能性が考えらる。</p>
+
+        <p>accName は、この要素<span class="comment">【訳注: ROLE_STATICTEXT をサポートする XUL や HTML の要素】</span>がラベル付けするフォームコントロールの accName にも反映される。このことは、NAVRELATION_LABEL_FOR をチェックする理由となる。</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_TEXT</td>
+
+      <td>
+        <p>通常のウェブテキストは、タグも要素も使わず、STATE_READONLY<br /> を使う。編集可能なテキストに対しては、その状態はクリアされる。<br />
+        XUL: &lt;textbox&gt;<br />
+        HTML: &lt;input type="text"&gt; または &lt;textarea&gt;<br />
+        DHTML: xhtml2:role="wairole:textfield" or<br />
+        xhtml2:role="wairole:textarea"</p>
+      </td>
+
+      <td>
+        <p>リンク内であれば、STATE_LINKED を設定する。</p>
+
+        <p>アクセス先のリンク内であれば、STATE_TRAVERSED を設定する。</p>
+
+        <p>オートコンプリートのテキスト領域に対して STATE_HASPOPUP を設定する。</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_PUSHBUTTON</td>
+
+      <td>
+        <p>XUL: &lt;button&gt;<br />
+        HTML: &lt;input type= "button"&gt; または&lt;button&gt;<br />
+        DHTML: xhtml2:role="wairole:button"</p>
+      </td>
+
+      <td>ボタンを使用しているメニュに対して STATE_HASPOPUP を設定する</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_CHECKBUTTON</td>
+
+      <td>
+        <p>XUL: &lt;checkbox&gt;<br />
+        HTML: &lt;input type="checkbox"&gt;<br />
+        DHTML: xhtml2:role="wairole:checkbox"</p>
+      </td>
+
+      <td>
+        <p>チェックボックスが、チェックされた時、EVENT_STATE_CHANGE を起動する。</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_RADIOBUTTON</td>
+
+      <td>
+        <p>XUL: &lt;radio&gt;<br />
+        HTML: &lt;input type="radio"&gt;<br />
+        DHTML: xhtml2:role="wairole:radio"</p>
+      </td>
+
+      <td>
+        <p>ラジオボタンが設定される時、EVENT_STATE_CHANGE を起動する</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_COMBOBOX</td>
+
+      <td>
+        <p>XUL: &lt;menulist&gt;<br />
+        HTML: &lt;select size="1"&gt;<br />
+        DHTML: xhtml2:role="wairole:combobox"</p>
+      </td>
+
+      <td>コンボボックの現在のオプションが変更になる時、EVENT_VALUECHANGE を起動する。</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_DROPLIST</td>
+
+      <td>サポートされない.</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_PROGRESSBAR</td>
+
+      <td>
+        <p>XUL: &lt;progressmeter&gt;<br />
+        DHTML: xhtml2:role="wairole:progressbar"</p>
+      </td>
+
+      <td>
+        <p>プログレスバーが少なくとも、3 ％移動する時、EVENT_VALUECHANGE を起動する。</p>
+
+        <p>プログレスバーが現れたり、消えたりする時、ROLE_PROGRESSBAR に直接 EVENT_SHOW と EVENT_HIDE を起動する。さらに、外観が変わっているかもしれない上層のコンテナにも同様に起動する。</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_DIAL</td>
+
+      <td>サポートされない</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_HOTKEYFIELD</td>
+
+      <td>サポートされない</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_SLIDER</td>
+
+      <td>
+        <p>XUL: &lt;slider&gt;<br />
+        DHTML: xhtml2:role="wairole:slider"</p>
+      </td>
+
+      <td>
+        <p>スライダーが動く時、EVENT_VALUECHANGE を起動する。</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>ROLE_SPINBUTTON</td>
+
+      <td>DHTML: xhtml2:role="wairole:spinbutton"</td>
+
+      <td>スピンボタンが動く時、EVENT_VALUECHANGE を起動する。</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_DIAGRAM</td>
+
+      <td>サポートされない.</td>
+
+      <td>該当なし</td>
+    </tr>
+
+    <tr>
+      <td>ROLE_ANIMATION</td>
+
+      <td>サポートされない. アニメ画像は、STATE_ANIMATED と一緒に ROLE_GRAPHIC を使う。</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_EQUATION</td>
+
+      <td>現在はサポートされていないが、MathML の方程式を含む場合は使用可能。この役割が必用な場合は、<a href=
+      "mailto:aaronleventhal@moonset.net">Aaron Leventhal</a> にご連絡お願いします。</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_BUTTONDROPDOWN</td>
+
+      <td>サポートされない、ROLE_BUTTON と一緒に STATE_HASPOPUP が代わりに使われる</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_BUTTONMENU</td>
+
+      <td>サポートされない、ROLE_BUTTON と一緒に STATE_HASPOPUP が代わりに使われる</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_BUTTONDROPDOWNGRID</td>
+
+      <td>XUL に対してサポートされる &lt;colorpicker&gt;</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>ROLE_PAGETABLIST</td>
+
+      <td>
+        <p>XUL: &lt;tab&gt;<br />
+        DHTML: xhtml2:role="wairole:tabs"</p>
+      </td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>"abbr"、 " acronym"、 " blockquote"、"dd"、"di"、"dt"、 " form"、 " frame"、 "
+      h1"、 " h2"、 " h3"、 " h4"、 " h5"、 " h6"、 " iframe"、 " q"、 "
+      tbody"、 " tfoot"、 " thead"</td>
+
+      <td>HTML タグは役割を示す文字列によく似ている</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>"bullet"</td>
+
+      <td>HTML のリストを作成するのに &lt;ol&gt; や &lt;ul&gt; が使われる時、黒点 (bullet) に対して間接的に作られる</td>
+
+      <td></td>
+    </tr>  
+ <tr>
+      <td>"abbr"、 "acronym"、 "blockquote"、 "form"、 "frame"、 "h1"、 "h2"、 "h3"、 "h4"、 "h5"、 "h6"、 "iframe"、 "q"、 "tbody"、 "tfoot"、 "thead"</td>
+
+      <td>同じ HTML のマークアップから作成される </td>
+
+      <td>名前なし</td>
+    </tr>
+  </table><a id="perf" name="perf"></a>
+
+  <h2>IEnumVARIANT によるクライアントエンドの性能向上</h2>
+
+  <div class="indent">
+    <p>IAccessible が取得される時はいつも、それを IEnumVARIANT へ QI <span class="comment">【訳注: QueryInteface】</span>できます。QI が上手く行けば、IAccessible は子を備えます。その時、<kbd>IAccessible::get_accNumChildren()</kbd> によって子の数を取得でき、それから子を保持する VARIANT の配列を割付けし、一度の呼出しですべの子を取得するために <kbd>IEnumVARIANT::Next()</kbd> を呼び出すことができます。提供される VARIANT は必ず VT_IDISPATCH です。</p>
+
+    <p>このように IEnumVARIANT を使用すると  <kbd>get_accChild()</kbd> や <kbd>accNavigate()</kbd> で子を得るよりははるかに速く得ることがでいます。もっと情報が必要であれば MSDN をご参照下さい。</p>
+  </div>
+
+  <h2><a id="memleaks" name="memleaks"></a>メモリリークの回避</h2>
+
+  <div class="indent">
+    <p>ウィンドウが破壊されている瞬間を知らせるシステムイベントを監視し、そのウィンドウに関連する IAccessibles をすべて解放するのは補助テクノロジーの責任です。</p>
+  </div>
+
+  <h2><a id="externaldom" name="externaldom"></a>DOM サポートの追加</h2>
+
+  <div class="indent">
+    <p>ドキュメントの HTML や XML の解析で、MSAA によって明らかにされていないたくさんの役立つ事があります。</p>
+
+    <p>この問題を解決するために、2つのインターフェイスを通じて、Gecko ドキュメント用のコンテンツ DOM へのアクセスを提供します:</p>
+
+    <ul>
+      <li> ISimpleDOMNode はノードごとに、実際に解析されたドキュメントの構造を提供します。</li>
+
+      <li> ISimpleDOMText はスクロールと文字ごとの四角い境界情報をサポートします。</li>
+
+      <li> ISimpleDOMDocument はタイトル、URL、ドキュメントタイプ、MIME タイプなどの基本的ドキュメント情報を保持します。</li>
+    </ul>
+
+      <h3>.idl ファイルをコンパイルする</h3>
+      <p>これらのインターフェイスを使用するためには、<a href="lxr/seamonkey/source/accessible/public/msaa/ISimpleDOMNode.idl?raw=1">
+          ISimpleDOMNode.idl</a>、<a href="lxr/seamonkey/source/accessible/public/msaa/ISimpleDOMText.idl?raw=1">
+          ISimpleDOMText.idl</a> と <a href="lxr/seamonkey/source/accessible/public/msaa/ISimpleDOMDocument.idl?raw=1">
+          ISimpleDOMDocument.idl</a> ファイルを取得する必要があります。以下のコマンドを実行してこれらのファイル用にヘッダーファイルを作成しなければなりません</p>
+      <div style="MARGIN-LEFT: 2em">
+        <code>MIDL ISimpleDOMNode.idl<br>
+          MIDL ISimpleDOMText.idl</code>
+      </div>
+      <div style="MARGIN-LEFT: 2em">
+        <code></code><code>MIDL ISimpleDOMDocument.idl</code>
+      </div>
+      <p>そうすると、インターフェイスを定義する ISimpleDOMNode.h と ISimpleDOMDocument.h が作られます。必要な IID 定数を保持する ISimpleDOMNode_i.c と ISimpleDOMDocument_i.c もまた作られます。</p>
+      <h3>ISimpleDOMNode</h3>
+      <p>オブジェクトに ISimpleDOMNode インターフェイスを得るには、IAccessible* から開始して、ISimpleDOMNode* へ &nbsp;QueryService &nbsp; します:</p>
+      <DIV style="MARGIN-LEFT: 2em">
+        <code>IServiceProvider *pServProv = NULL;</code></DIV>
+      <DIV style="MARGIN-LEFT: 2em"><CODE>pAccessible-&gt;QueryInterface(IID_IServiceProvider, 
+          (void**)&amp;pServProv);</CODE></DIV>
+      <DIV style="MARGIN-LEFT: 2em"><CODE>ISimpleDOMNode *pSimpleDOMNode;<br>
+          if (pServProv) {</CODE></DIV>
+      <DIV style="MARGIN-LEFT: 2em"><CODE>&nbsp; const GUID refguid = {0x0c539790, 
+          0x12e4, 0x11cf, 0xb6, 0x61, 0x00, 0xaa, 0x00, 0x4c, 0xd6, 0xd8};</CODE></DIV>
+      <DIV style="MARGIN-LEFT: 2em"><CODE>&nbsp; HRESULT result = 
+          pServProv-&gt;QueryService(refguid, IID_ISimpleDOMNode, 
+          (void**)&amp;pSimpleDOMNode);</CODE></DIV>
+      <DIV style="MARGIN-LEFT: 2em"><CODE>&nbsp; if (SUCCEEDED(hresult) &amp;&amp; 
+          pSimpleDOMNode != NULL) {<br>
+          &nbsp;&nbsp;&nbsp; /* これは Mozilla ノードです。ISimpleDOMNode.idl. に記述されている特別な ISimpleDOMNode メソッドを使用してください*/</CODE></DIV>
+      <DIV style="MARGIN-LEFT: 2em"><CODE> &nbsp; }<br>
+          }</CODE>
+      </DIV>
+      <p><CODE>get_nodeInfo</CODE> メソッドを使って、基本的情報を取得します。使用されるタグの名前、名前スペース ID、ノードタイプ（定義は ISimpleDOMNode.idl を参照）、ノード値（ノードに保持されるテキスト）、イベントの起こる場所を追跡するのに使う一意の ID 、子の数などの情報です。ISimpleDOMDocument インターフェイス（下記を参照）によって、ID 用に名前スペース URI を取得して初めて、名前スペース ID は意味を持ちます。</p>
+      <div style="MARGIN-LEFT: 2em">
+        <code>HRESULT get_nodeInfo(
+          <br>
+          &nbsp; /* [out] */ BSTR&nbsp; *nodeName,&nbsp; &nbsp; // これはエレメント用のタグの名前である。<br>
+          &nbsp; /* [out] */ short&nbsp; *nameSpaceID,<br>
+          &nbsp; /* [out] */ BSTR&nbsp; *nodeValue,
+          <br>
+          &nbsp; /* [out] */ unsigned int&nbsp; *numChildren,
+          <br>
+          &nbsp; /* [out] */ unsigned int&nbsp; *uniqueID, // イベントについての上記項目にある一意の ID の説明を参照のこと。<br>
+          &nbsp; /* [out] */ unsigned short&nbsp; *nodeType);</code>
+      </div>
+      <p><code>get_attributes</code> メソッドは各属性用の名前スペース ID に加えて、任意のノード用に属性と値のペアの組合せを返します。返された値の numAttribs はこのノード用に属性の数を決め、最後の 3 個のパラメーターは、属性、名前スペース ID 、属性値に対応する三つの配列を返します。</p>
+      <div style="MARGIN-LEFT: 2em">
+        <code>HRESULT get_attributes(<br>
+          &nbsp; /* [in]&nbsp; */ unsigned short maxAttribs,<br>
+          &nbsp; /* [out] */ BSTR&nbsp; *attribNames,<br>
+          &nbsp; /* [out] */ short&nbsp; *nameSpaceID,<br>
+          &nbsp; /* [out] */ BSTR&nbsp; *attribValues,<br>
+          &nbsp; /* [out] */ unsigned short&nbsp; *numAttribs);</code>
+      </div>
+      <p>このメソッドの仲間のひとつは <code>get_attributesForNames</code> であり、関心のある属性だけを決定させることで、このメソッドはその時、 attribNames の配列を [in] パラメーターへと変えさせます。この事は、ノードあたり関心のあるごくわずかな属性の回数分のみの実行で済むので、マーシャリングのコストを最小限に抑えます。</p>
+      <div style="MARGIN-LEFT: 2em">
+        <code>HRESULT get_attributesForNames(
+          <br>
+          &nbsp; /* [in]&nbsp; */ unsigned short numAttribs,
+          <br>
+          &nbsp; /* [in]&nbsp; */ BSTR __RPC_FAR *attribNames,<br>
+          &nbsp; /* [in]&nbsp; */ short __RPC_FAR *nameSpaceID,<br>
+          &nbsp; /* [out] */ BSTR __RPC_FAR *attribValues);</code>
+      </div>
+      <p><code>get_computedStyle</code> メソッドはノードに適用されるすべてのスタイルルールに対して累計の、計算された結果を得るのに使われます。戻り値 numStyleProperties はこのノード用のスタイルプロパティーの数を決め、最後の 2 つのパラメーターはスタイルプロパティー名とスタイルプロパティー値に対応する 2 つの配列を返します。もう一つの [in]パラメーター useAlternativeMediaProperties はデフォルトメディア方式（ふつうは画面）用のスタイル情報を必要とするか、もしくは nsISimpleDOMDocument::set_alternateViewMediaType(mediaTypeString) に定められた代替メディア方式を必要とするかどうかを示します。公式な<a href="http://www.w3.org/TR/REC-CSS2/media.html#media-types">
+          メディア方式名</a>の一覧表は W3C のウェブサイトを見てください。残念ながら、今のところ引数 <code>useAlternateView</code> は無視されます。</p>
+      <div style="MARGIN-LEFT: 2em">
+        <code>HRESULT get_computedStyle(<br>
+          &nbsp; /* [in]&nbsp; */ unsigned short maxStyleProperties,<br>
+          &nbsp; /* [in]&nbsp; */ boolean useAlternateView,&nbsp; // TRUE なら、nsIDOMDocument::set_alternateViewMediaTypes に設定されたメディア用プロパティを返す。<br>
+          &nbsp; /* [out] */ BSTR *styleProperties,<br>
+          &nbsp; /* [out] */ BSTR *styleValues,<br>
+          &nbsp; /* [out] */ unsigned short *numStyleProperties);</code>
+      </div>
+      <p>このメソッドの仲間のひとつは <code>get_computedStyleForProperties</code> であり、関心のある属性だけを決定させることで、styleProperties 配列を[IN]パラメーターへと変えさせます。この事は、ノードあたり関心のあるごくわずかなスタイルプロパティの回数分のみの実行で済むので、マーシャリングのコストを最小限に抑えます。</p>
+      <div style="MARGIN-LEFT: 2em">
+        <code>HRESULT get_computedStyleForProperties(<br>
+          &nbsp; /* [in] */&nbsp; unsigned short numStyleProperties,<br>
+          &nbsp; /* [in] */&nbsp; boolean useAlternateView,&nbsp; // TRUE なら、nsIDOMDocument::set_alternateViewMediaTypes におけるセットとしてメディア用プロパティを返す。<br>
+          &nbsp; /* [in] */&nbsp; BSTR *styleProperties,<br>
+          &nbsp; /* [out] */ BSTR *styleValues);</code>
+      </div>
+      <p>ウィンドウで特定の要素が見えるようにドキュメントをスクロールするには、<code>scrollTo(boolean placeTopLeft)</code> を使って下さい。パラメーター <code>placeTopLeft</code> が TRUE ならエレメントがウィンドウの上部左角に来るようにドキュメントがスクロールされます。<code>placeTopLeft</code> が FALSE ならば、もしエレメントがすでに見えなければ、ドキュメントはスクロールされるだけか、また現在のウィンドウのどこかにエレメントを見せるために最低限の移動分だけスクロールされます。</p>
+      <div style="MARGIN-LEFT: 2em">
+        <code>HRESULT scrollTo([in] boolean placeTopLeft); </code>
+      </div>
+      <p>ISimpleDOMNode 構造を探索することで、どこか他のノードへ移動もできます。DOM コンテンツツリーは  MSAA ツリーの上位集合です。つまり、IAccessible から ISimpleDOMNode へ必ず QueryInterface できますが、その逆は簡単には出来ません。</p>
+      <DIV style="MARGIN-LEFT: 2em">
+        <code>HRESULT get_parentNode&nbsp; &nbsp;&nbsp; (/* [in] */ ISimpleDOMNode 
+          *newNodePtr);<br>
+          HRESULT get_firstChild&nbsp; &nbsp;&nbsp; (/* [in] */ ISimpleDOMNode 
+          *newNodePtr);<br>
+          HRESULT get_lastChild&nbsp; &nbsp; &nbsp; (/* [in] */ ISimpleDOMNode 
+          *newNodePtr);<br>
+          HRESULT get_previousSibling(/* [in] */ ISimpleDOMNode *newNodePtr);<br>
+          HRESULT get_nextSibling&nbsp; &nbsp; (/* [in] */ ISimpleDOMNode *newNodePtr);<BR>
+          HRESULT childAt(/* [in] */&nbsp;unsigned childIndex, /* [out] 
+          */&nbsp;ISimpleDOMNode **newNodePtr);<BR>
+        </code>
+      </DIV>
+      <DIV>&nbsp;</DIV>
+      <DIV>次に、DOM 従ツリー内に実際の HTML を取得するための便利なメソッドを提供します。このメソッドはノードが HTML の時だけ適用します。</DIV>
+      <DIV>&nbsp;</DIV>
+      <DIV style="MARGIN-LEFT: 2em">
+        <code>HRESULT innerHTML([out, retval] BSTR *innerHTML);</code></DIV>
+      <DIV>&nbsp;</DIV>
+      <DIV>最後に、英国語の "en" や英国ロンドン訛の "en-cockney" さえも含む現在の <A href="http://en.wikipedia.org/wiki/ISO_639the">ISO 639 language code</A> を取得するためのメソッドを紹介します。</DIV>
+      <DIV>&nbsp;</DIV>
+      <DIV style="MARGIN-LEFT: 2em">
+        <code>HRESULT get_language([out, retval] BSTR *language);</code></DIV>
+      <DIV>&nbsp;</DIV> 	
+      <DIV>パラメーターの型と、ノードタイプの定数の定義については <A href="lxr/seamonkey/source/accessible/public/msaa/ISimpleDOMNode.idl?raw=1">ISimpleDOMNode.idl</A> ファイルを見てください。</DIV>
+      <h3>ISimpleDOMText</h3>
+      <p>テキストノードである DOM ノードは ISimpleDOMText　をサポートします。IAccessib がノードベースのみのサポートを提供する一方で、この拡張は、文字単位での作業をする必要がある場合に役に立ちます。テキストノードはリーフノードでなければいけないので、現在のノードが MSAA や DOM の子を備えているかどうか、このインターフェイスを調べる必要はありません。テキストノードは必ず ISimpleDOMNode と ISimpleDOMText の両方をサポートします。</p>
+      <P>以下が ISimpleDOMText 用のメソッドです。</P>
+      </CODE>
+      <DIV style="MARGIN-LEFT: 2em"><code>// すべての DOM ホワイトスペースを含む、IAccessible::get_accName は保持しないが<br>
+        </code><code>HRESULT get_domText(BSTR *domText);<br>
+        </code><code></code>
+        <br>
+        <code></code><code>// Bounding rect をウィンドウへ留める<br>
+        </code><code>HRESULT get_clippedSubstringBounds(<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] unsigned int 
+          startIndex,</code><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <code>[in] unsigned int endIndex,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] int *x,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] int *y,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] int *width,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] int *height);<br>
+          <br>
+          // Bounding rect を外す<br>
+          HRESULT get_unclippedSubstringBounds(<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in] unsigned int 
+          startIndex,</code><code></code><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <code>[in] unsigned int endIndex,
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] int *x,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] int *y,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] int *width,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out] int *height);<br>
+          <br>
+        </code><code>// subsstring のこの部分へスクロールする<br>
+        </code><code>HRESULT scrollToSubstring([in] unsigned int startIndex,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          [in] unsigned int endIndex); </code>
+      </DIV>
+      <DIV style="MARGIN-LEFT: 2em"><CODE>
+          <BR>
+        // 使用されているフォント取得する --&nbsp;これは </CODE>ISimpleDOMNode<CODE><BR>
+          //  CSS プロパティメソッドを使うよりよい。というのは、</CODE></DIV>
+      <DIV style="MARGIN-LEFT: 2em"><CODE>//コンマで括られた可能性一覧ではなく、単一のフォント名を提供するから<BR>
+HRESULT fontFamily([out] BSTR *fontFamily);</CODE><br>
+      </DIV>
+      <code></code>
+      <h3>ISimpleDOMDocument</h3>
+      <p>Gecko の XML や HTML の各々のドキュメントに対して ISimpleDOMDocument インターフェイスが 1 つずつあります。これを使って、ドキュメントついてグローバルな重要情報を取得できます。もし任意のノードの get_nodeType メソッドが NODETYPE_DOCUMENT を返すならば、ISimpleDOMDocument に QueryInterface 出来ることが分かります。ルートアクセシビリティはまた必ず ISimpleDOMDocument に QueryInterface されます。</p>
+      <p>以下が ISimpleDOMDocument 用メソッドです:</p>
+      <div style="MARGIN-LEFT: 2em">
+        <code>HRESULT get_URL&nbsp; &nbsp; (/* [out] */ BSTR *url);&nbsp; &nbsp; &nbsp; 
+          // ドキュメントの位置<br>
+          HRESULT get_title&nbsp; (/* [out] */ BSTR *title);&nbsp; &nbsp; // &lt;TITLE&gt; から<br>
+          HRESULT get_mimeType(/* [out] */ BSTR *mimeType); // 例えば text/html また 
+          text/plain<br>
+          HRESULT get_docType (/* [out] */ BSTR *docType);&nbsp; // &lt;!DOCTYPE 
+          ..&gt; から<br>
+          HRESULT get_nameSpaceURIForID(&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // 
+          ISimpleDOMNode から名前スペース ID を翻訳する。<br>
+          &nbsp; /* [in] */ unsigned short nameSpaceID,&nbsp; //実際の名前スペース URI へ呼び出す<br>
+          &nbsp; /* [out] */ BSTR&nbsp; *nameSpaceURI);<br>
+          HRESULT put_alternateViewMediaTypes(/* [in] */ BSTR * 
+          commaSeparatedMediaTypes);&nbsp; // 例えば "aural, braille"<br>
+        </code>
+      </div>
+    </div>
+    <h2><a id="keyboard" name="keyboard"></a> キーボードのユーザインターフェイスと API</h2>
+    <div style="MARGIN-LEFT: 2em">
+      <p>幸いに Gecko はサポートされている各プラットフォームに対して標準キーボード API を使います。</p>
+      <p>数多くのキーボードのコマンドにとって、Internet Explorer のキーボードショートカットがエミュレートされます。私たちの <a href="keyboard">キーボードプラン</a> は、現在の設計と将来の様々な可能性について説明します。</p>
+    </div>
+  <h2><a id="beyondhtml" name="beyondhtml"></a> HTML を超えて: 他の種類のウェブコンテンツ</h2>
+
+  <ul>
+    <li style="LIST-STYLE: none none outside">
+      <p>HTML を超えたコンテンツの種類があるのを聞かれた方がいるかもしれません。そして Gecko をベースとした製品がそれらをサポートするかどうか知りたくなるかもしれません:</p>
+    </li>
+
+    <li><a href="../dhtml">DHTML</a>: Gecko およびその他のブラウザは、JavaScriptによって、ページの外観が変化する動的なコンテンツを古くからサポートしています。そして、 HTML にはないメニュ、スプレッドシート、ツリービューなど、デスクトップ型のウィジェットの外観を作成するのに使用できます。また、新しいページを読み込むことなく、急いでコンテンツを完全に変更するのにも使用されます。以前は、これにアクセシビリティを持たせるのは出来ませんでしたが、Firefox 1.1 は <a href=
+    "../dhtml'">DHTML アクセシビリティ</a>用のマークアップ言語を備えることで、進んだウィジェットやウェブアプリケーションに作者がアクセシビリティを持たせることを可能にしました。</li>
+
+    <li>
+        <a href="http://www.w3.org/Math/">MathML</a> : ウェブ上で完全な数学の概念を表示するのに使われる XML 言語です。<a href="/projects/mathml/">MathML をサポートする Mozilla プロジェクトが進行中です。</a>現在は私たちは MathML 用に MSAA をサポートする計画はありません。 - これには外部的に DOM を使用する事を推奨する可能性が大きいです。というのは、数学をサポートするために MSAA は単にそれ自体正しい意味論 (semantics) を備えていないためです。 MathML のサポートは現在 Firefox にとりこまれまれています。</li>
+<li>
+        <a href="http://www.w3.org/Graphics/SVG/Overview.html">SVG</a> : Scaleable 
+        Vector Graphics. 本質的に Flash の W3C XML ベース版で  - 他のマークアップベースのコンテンツと融和しており、DOM をサポートしアクセシビリティ機能を備えています。 <a href="/projects/svg/">
+          Mozilla の SVG プロジェクト</a> は幾多の失敗と再建を経ています。SVG　は他の有名なブラウザに支援されれば、おそらくもっと高い優先度を獲得するでしょう。より良い実装が実現するまでは、SVG アクセシビリティをサポートするかどうか、またその方法も明らかになっていません。Firefox 1.1 は SVG をサポートします。</li>
+
+    <li><a href=
+    "http://www.mozilla.org/projects/xforms/">XForms</a>: XForms は W3C によって計画されてるように、オンラインフォームの将来像です。XML Schema、XPath、XML Events などの他の W3C 標準を備えることで、XForms は現在の　HTML フォームモデルの限界のいくつかを乗り越えようとしています。XForms の主要機能のひとつがアクセシビリティです。</li>
+
+    <li><a href="http://www.xulplanet.com">XUL</a>: Firefox と Mozilla が UI(ユーザインターフェイス) を開発するのに使用している XML ベースの言語。強力なアプリケーションを作成するのに、CSS と JavaScript を組み込める点で、HTML と類似しています。HTML より多くのデスクトップ型のウィジェットを備え、テキストフロー・ベースではなく、ボックスレイアウトモデルに従っています。将来もっと多くのスタンドアロン型のアプリケーションが <a href=
+    "http://wiki.mozilla.org/XUL:Xul_Runner">Xulrunner</a> 経由で XUL を使用するかもしれません。</li>
+  </ul>
+
+ <h2><a id="mailinglist" name="mailinglist"></a> 質問やコメントについて</h2>
+    <div style="MARGIN-LEFT: 2em">
+      <p>
+<a href="mailto:mozilla-accessibility-request@mozilla.org?subject=subscribe">
+          Mozilla-アクセシビリティメールリスト</a>でアクセシビリティの問題について話し合いましょう。また直接私宛に e-mail を送っていただいてもかまいません。 (Aaron 
+        Leventhal) <a href="mailto:aaronleventhal@moonset.net">aaronleventhal@moonset.net</a>
+        .</p>
+    </div>
+    <p align="right"><b>管理者： Aaron Leventhal.</b></p>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/windows/at-apis.html">英語版</a> 2006/03/05</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/windows/at-apis.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

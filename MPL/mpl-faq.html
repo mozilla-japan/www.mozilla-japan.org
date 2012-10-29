@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<link rel="alternate" hreflang="en" modified="May 25, 2006">
+<title>MPL に関する良くある質問 (FAQ)</title>
+<style>
+dt { font-weight: bold; margin: 1em 0; }
+</style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/MPL/mpl-faq.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>MPL に関する良くある質問 (FAQ)</h1>
+<p><a href="http://www.mozilla.org/MPL/mpl-faq.html">英語 (原文)</a> | <a href="http://geckozone.org/articles/41">フランス語</a></p>
+<p>この文書は mozilla.org の MPL に関する良くある質問 (FAQ) です。MPL のもとでコードを使用、配布するにあたって挙げられる、最も一般的な質問に答えるために書かれました。mozilla.org のコードベースの大半は MPL/GPL/LGPL のトリプルライセンスであるため、一部の製品は LGPL あるいは GPL のもとでも使用、配布可能になっています。その場合、これらの質問のいくつかは違った答えになるでしょう。</p>
+<p>この FAQ に間違いを見つけたり、その他の質問に関する提案があれば、<a href="http://www.gerv.net/hacking/before-you-mail-gerv.html">Gerv</a> までメールを送ってください。</p>
+<dl>
+  <dt>mozilla.org によって提供されている、一切変更を加えていない完全なバイナリパッケージを配布したいのですが、何をすれば良いですか？</dt>
+  <dd>
+    <p>何もする必要はありません :-)</p>
+    <p>mozilla.org によって提供されているバイナリパッケージは、すでに <a href="MPL-1.1.html#3.1">3.1</a> 節 (<a href="MPL-1.1J.html#3.1">和訳</a>) から <a href="MPL-1.1.html#3.5">3.5</a> 節 (<a href="MPL-1.1J.html#3.5">和訳</a>) で求められている要件を満たしており、<a href="MPL-1.1.html#3.6">3.6</a> 節 (<a href="MPL-1.1J.html#3.6">和訳</a>) で求められている通知も含んでいます。あなたは、私たちの <a href="http://www.mozilla.org/foundation/trademarks/distribution-policy.html">ディストリビューションポリシー</a> (<a href="/foundation/trademarks/distribution-policy.html">和訳</a>) の条件に従ってパッケージを配布し、Mozilla Corporation の <a href="http://www.mozilla.com/en-US/legal/eula/">EULA</a> の条件に従ってそれを使用することができます。</p>
+    <p>もしあなたが何らかの保証を提供している場合は、その保証があなたのみによって提供されていることを明確にしてください [<a href="MPL-1.1.html#3.5">3.5</a> (<a href="MPL-1.1J.html#3.5">和訳</a>)]。mozilla.org は配布するバイナリに関して一切の保証を行いません。</p>
+    <p><a href="http://www.mozilla.org/foundation/trademarks/">Mozilla Foundation の商標ライセンス</a> (<a href="/foundation/trademarks/">和訳</a>) は必要ありません。</p>
+  </dd>
+  <dt>変更は加えずに自分でコンパイルした Firefox (または MPL 下にあるその他のコード) を配布したいのですが、何をすれば良いですか？</dt>
+  <dd>
+    <p>あなたは以下のことに従わなければなりません。</p>
+    <ul>
+      <li>あなたが配布するバイナリの正確なソースをどこで見つけられるのかを記した、明示的な文書を追加してください。[<a href="MPL-1.1.html#3.6">3.6</a> (<a href="MPL-1.1J.html#3.6">和訳</a>)]<br>(注: Firefox のようなパッケージをコンパイルしている場合、これは <code>about:</code> などにすでに含まれています)</li>
+      <li>あなたの文書に、ライセンスに関するセクション、またはコードに対する受け手の権利に関する項目がある場合、その中に MPL のコピーを置いてください。[<a href="MPL-1.1.html#3.5">3.5</a> (<a href="MPL-1.1J.html#3.5">和訳</a>)]</li>
+    </ul>
+    <p>MPL 下にあるソースに関する受け手の権利を妨害しない限り、あなたが作成したバイナリはすべて、あなたが選択したライセンスのもとで配布することができます [<a href="MPL-1.1.html#3.6">3.6</a> (<a href="MPL-1.1J.html#3.6">和訳</a>)]</p>
+    <p>Mozilla Foundation の商標 (例: Firefox の名前やロゴ) を使用したい場合は、<a href="http://www.mozilla.org/foundation/trademarks/">Mozilla Foundation の商標ライセンス</a> (<a href="/foundation/trademarks/">和訳</a>) が必要となります。</p>
+  </dd>
+  <dt>変更を加えた Firefox (または MPL 下にあるその他のコード) を配布したいのですが、何をすれば良いですか？</dt>
+  <dd>
+    <p>あなたは以下のことに従わなければなりません。</p>
+    <ul>
+      <li>あなたが配布するバイナリの正確なソースをどこで見つけられるのかを記した、明示的な文書を追加してください。[<a href="MPL-1.1.html#3.6">3.6</a> (<a href="MPL-1.1J.html#3.6">和訳</a>)] また、お望みなら、ベースコードとして mozilla.org を指し、私たちのバージョンとあなたのバージョンとの差分を公開してください。</li>
+      <li>あなたの文書にライセンスに関するセクション、またはコードに対する受け手の権利に関するセクションがある場合、その中に MPL のコピーを置いてください。[<a href="MPL-1.1.html#3.5">3.5</a> (<a href="MPL-1.1J.html#3.5">和訳</a>)]</li>
+    </ul>
+    <p>加えて、「変更」に関してはいくつかの義務があります。</p>
+    <ul>
+      <li>あなたは、自分自身による「変更」を配布する権利を持ちます。[<a href="MPL-1.1.html#3.4">3.4 (c)</a> (<a href="MPL-1.1J.html#3.4">和訳</a>)]</li>
+      <li>その「変更」に含まれる新しいファイルには、正しく完全な MPL ヘッダを追加してください。[<a href="MPL-1.1.html#3.5">3.5</a> (<a href="MPL-1.1J.html#3.5">和訳</a>)]</li>
+      <li>その「変更」を、ソースコードの形式で、MPL 下で入手できるようにしてください。[<a href="MPL-1.1.html#3.1">3.1</a> (<a href="MPL-1.1J.html#3.1">和訳</a>)]</li>
+      <li>その「変更」を、実行バージョンと同様の媒体で入手可能にしてください。または、インターネット上で 12 ヶ月間入手可能にしてください。[<a href="MPL-1.1.html#3.2">3.2</a> (<a href="MPL-1.1J.html#3.2">和訳</a>)]</li>
+      <li>その「変更」を文書化してください。[<a href="MPL-1.1.html#3.3">3.3</a> (<a href="MPL-1.1J.html#3.3">和訳</a>)] (この要件を満たすひとつの方法として、変更点を差分で公開する方法があります)</li> 
+      <li>あなたのコードが MPL 下のコード (例: Firefox) の特定部分から派生したものであるという声明文と、その派生元のコードの初期開発者一覧を含めてください。[<a href="MPL-1.1.html#3.3">3.3</a> (<a href="MPL-1.1J.html#3.3">和訳</a>)]</li>
+    </ul>
+    <p>Mozilla Foundation の商標 (例: Firefox の名前やロゴ) を使用したい場合は、<a href="http://www.mozilla.org/foundation/trademarks/">Mozilla Foundation の商標ライセンス</a> (<a href="/foundation/trademarks/">和訳</a>) が必要となります。</p>
+  </dd>
+  <dt>MPL はどの程度「ウイルス的」なのですか？ 自社のプロプライエタリなアプリケーションに MPL 下のコードを使用した場合、すべてのソースコードを手放さなければならないのでしょうか？</dt>
+  <dd>
+    <p>MPL での「コピーレフト」は限られています。つまり、コピーレフトをまったく認めない BSD 系のライセンスよりはコピーレフトを認めていますが、LGPL や GPL ほどではありません。これはライセンス中の「変更」の定義によります。[<a href="MPL-1.1.html#1.9">1.9</a> (<a href="MPL-1.1J.html#1.9">和訳</a>)]</p>
+    <p>「変更」とはどのような意味でしょうか？ MPL 下のファイルや、MPL 下のコードをコピーした新たなファイルへの変更はすべて、この「変更」に相当し、MPL が適用されます。独自コードのみを含む新しいファイルは「変更」と見なされず、MPL の対象外となります。</p>
+    <p>ファイルが「変更」を含んでいるために MPL が適用されるファイルは、ライセンス (またはこの FAQ の中) で定められた通りに入手可能にしなければなりません。その他のファイルはプロプライエタリなコードとして保持することができます。</p>
+    <p>この場合の良く知られた例のひとつとして、Netscape ブランドのブラウザがあります。このブラウザには (元々 Netscape がソースコードを公開した) Mozilla プロジェクトから提供された数多くのファイルがあります。これらのファイルは MPL 下にあります。しかし同ブラウザの中にはプロプライエタリなコードも含まれています。例えば、AOL Instant Messenger サービスと統合するコードがあります。</p>
+  </dd>
+  <dt>MPL 下のコードと BSD ライセンスのコードを同一バイナリ内で結合できますか？</dt>
+  <dd>
+    <p>できます。mozilla.org もやっています。例えば、JPEG 画像をデコードする libjpeg は BSD ライセンス下にあります。</p>
+  </dd>
+  <dt>MPL 下のコードと GPL ライセンスされたコードを同一バイナリ内で結合できますか？</dt>
+  <dd>
+    <p>MPL 下のコードが GPL でも入手可能でない限り、できません。それは例えば mozilla.org のトリプルライセンスを使用している場合です。これは、GPL によって定められている制限を超えた追加の制限を MPL が課しているからです。この状態は GPL の第 6 節と相容れないものです。</p>
+  </dd>
+  <dt>誰が MPL の新しいバージョンを公開する権利を持っているのですか？ [<a href="MPL-1.1.html#6.1">6.1</a> (<a href="MPL-1.1J.html#6.1">和訳</a>)]</dt>
+  <dd>Mozilla Foundation が創設時にこの権利を Netscape から獲得しました。</dd>
+</dl>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/MPL/mpl-faq.html">英語版</a> 2006/05/25</span> - <span>和訳版 2007/01/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/MPL/mpl-faq.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

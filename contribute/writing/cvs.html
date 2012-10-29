@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <meta http-equiv="content-type" content="text/html; charset=EUC-JP">
+  <title>mozilla.org のコンテンツと CVS</title>
+  <!--
+README-cvs.html
+Rev.1.16 November 28,  2003 by Kishimoto Yuu
+Rev. 1.21 山口
+
+/contribute/writing/cvs.html
+
+Rev: 1.19 山口
+Rev: 1.22 山口
+
+-->
+
+<link rel="alternate" hreflang="en" modified="March 30, 2007">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/contribute/writing/cvs.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>mozilla.org のコンテンツと CVS</h1>
+
+<address>Mike Shaver、Terry Weissman、および Jamie Zawinski<br> <!-- first edition -->
+  <a href="http://fantasai.inkedblade.net/contact">fantasai</a> および benc<!-- second edition -->
+</address>
+
+<p>この資料では、mozilla.org のサブツリーにコンテンツを追加する際に従わなければならない、重要な事項について解説します。Web サイトの一部を壊してしまったりしないよう、これらの事項を十分に理解してください。さもないと、後悔の元になりかねません。(私達の説明が拙かったために問題が起こってしまった場合には、もちろん修正のお手伝いをします。そのときには容赦なく叱ってください。)</p>
+  
+<ol class="toc">
+  <li><a href="#build-system">mozilla.org のビルドシステムについて</a>
+  </li><li><a href="#access">Web サイトツリーへの CVS アクセス</a>
+      <ol>
+      <li><a href="#anonymous">匿名 (anonymous) アクセス</a>
+      </li><li><a href="#account">CVS アカウントによるアクセス</a>
+      </li></ol>
+  </li><li><a href="#checkout">チェックアウト</a>
+  </li><li><a href="#checkin">チェックイン</a>
+  </li><li><a href="#doctor">Doctor を用いた Web ベースの CVS アクセス</a>
+  </li><li><a href="#bonsai">Bonsai</a>
+  </li><li><a href="#build">mozilla.org をビルドする</a>
+      <ol>
+      <li><a href="#unix">Unix や Mac OS X でのビルド環境の設定</a>
+      </li><li><a href="#windows">Windows でのビルド環境の設定</a>
+      </li><li><a href="#mac">Mac OS でのビルド環境の設定</a>
+      </li><li><a href="#command">ビルドコマンド</a>
+      </li></ol>
+</li></ol>
+
+<div class="section">
+  <h2><a name="build-system">mozilla.org ビルドシステム</a></h2>
+
+  <p>mozilla.org の Web サイトは全体が、一切装飾のない HTML ファイルからなる CVS ツリーで構成されています。Web サイト上にあるこれら HTML およびその他のファイルは、Web サイトの CVS ルート下の <code class="filename">html</code> サブディレクトリにあります。makefile や Perl スクリプトの一群は、定期的にこれらのファイルを処理して、<code class="filename">output</code> サブディレクトリへと書き出します。<code class="filename">output</code> サブディレクトリ内のコンテンツが、mozilla.og の Web サイトとして公開されます。Web サイトの CVS ツリーを <a href="#access">チェックアウト</a> して、<a href="#build">mozilla.org をビルド </a>すれば、このビルドプロセスをお手元のマシーンでも再現できます。 </p>
+
+  <p><strong><code class="filename">html</code> ディレクトリ下にある CVS リポジトリにチェックインされたすべてのファイルが、Web サイト上に公開されます。</strong></p>
+
+  <p>デフォルトでは HTML ファイルに、mozilla.org 標準の左サイドメニューが追加されます。同じディレクトリ内の <code class="filename">NOWRAP</code> ファイルに記述されている HTML ファイルは、ラップされません。(ラップされるのは HTML ファイルだけなので、イメージファイルを <code class="filename">NOWRAP</code> に含める必要はありません。) 同じディレクトリ内の <code class="filename">NOMENU</code> ファイルに記述されているファイルは、上部のヘッダとフッタのみを足してラップされます。</p>
+
+  <p><strong>作成したファイルは、 <code
+    class="filename">html</code> ディレクトリにあるようなものでなければなりません。つまり、ファイルにあるのはメインコンテントのみで、メニューなどは含まれていない状態です。</strong> メニューバーなどは、Perl による黒魔術で追加されます。左側のメニューに何かを追加したい場合は、私達の誰か に頼まなければなりません。</p>
+
+  <p>すでに登録されているファイルを追加、削除したり、<code class="filename">NOWRAP</code> ファイルを変更する時、特にルートにある <code class="filename">index.html</code> や <code class="filename">news.html</code> を変更する場合は、Web サイトのルートディレクトリからの <kbd class="command">gmake</kbd>/<kbd class="command">make</kbd> がエラーなく完全に終了することを <strong class="very-strong">必ず</strong> 確認してください。これによって、新しいファイルを含めた Makefile が再生成されます。</p>
+
+  <p><code class="command">make</code> プロセスで何らかのエラーが出た場合、改修されるまで、新しいコンテンツは mozilla.org に一切反映されません。この様な事態は、プロジェクト全体に大きな影響を与えますので、避けるようにしてください。コンパイルできないようなソースコードをチェックインしますか？　勿論そんなことはしませんね。同じような状況だと考えてください。</p>
+</div>
+
+<div class="section">
+  <h2><a name="access">Web サイトツリーへの CVS アクセス</a></h2>
+
+  <p>CVS リポジトリへのアクセス方法には二通りあり、ひとつは <code
+    class="filename">cvs.mozilla.org</code> で、もうひとつは読み込みのみの <code class="filename">cvs-mirror.mozilla.org</code> です。プライマリーの CVS リポジトリには <code>ssh</code> 経由でアクセスします。(ミラーにサクセスする場合は <code>pserver</code> を利用してください。)</p>
+
+  <div class="section">
+    <h3><a name="anonymous">匿名 (anonymous) アクセス</a></h3>
+
+    <p><code>$CVSROOT</code> を次のように設定します：</p>
+    <pre>:pserver:anonymous@cvs-mirror.mozilla.org:/www</pre>
+    <p><code>anonymous</code> 用のパスワードは <kbd>anonymous</kbd> です。 </p>
+  </div>
+  <div class="section">
+    <h3><a name="account">CVS アカウントによるアクセス</a></h3>
+    <div class="para">
+      <p><code>$CVSROOT</code> を次のように設定します：</p>
+      <pre><var>your%address</var>@cvs.mozilla.org:/www</pre>
+      <p>上で <var>your%address</var> となっているところは、登録されたメールアドレスの <code>@</code> を <code>%</code> で置き換えたものです。メールアドレスが <code>foo@bar.com</code> の場合、<code>$CVSROOT</code> は次のようになります： </p>
+      <pre>foo%bar.com@cvs.mozilla.org:/www</pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2><a name="checkout">チェックアウト</a></h2>
+
+  <p><code>$CVSROOT</code> が正しく設定できたら、Web サイトをチェックアウトしましょう。ツリー全体は非常に大きいので、最も低いディレクトリのみをチェックアウトするようにしてください。例えば、Networking QA に興味がある人は、/quality/networking さえチェックアウトすれば十分でしょう：<pre><kbd>cvs -z3 co mozilla-org/html/quality/networking</kbd></pre>
+
+  <p><code>-z3</code> は転送の際に圧縮を行うためのオプションです。</p>
+
+  <p>Web サイトを <a href="#build">ビルド</a> しなければならない場合は、ScriptBase モジュールもチェックアウトしてください：<pre><kbd>cvs -z3 co ScriptBase</kbd></pre>
+
+  <p>ScriptBase モジュールは利用可能なもっとも小さなドキュメンテーションモジュールで、必要なスクリプトとラッパー、最小限の資料で構成されています。<!--, including this one-->.</p>
+
+  <p>MozillaOrgTrim モジュールは、大きなファイル類を除いた Web の一部分をチェックアウトします。MozillaOrg モジュールは Web サイト全体をチェックアウトします。モジュールの全一覧を表示するには次のように入力してください：<pre><kbd>cvs co -c</kbd></pre>
+</div>
+
+<div class="section">
+  <h2><a name="checkin">チェックイン</a></h2>
+
+  <p>新しいファイルをコミットする前には必ず <kbd>cvs add</kbd> を行ってください。た、バイナリファイルには <code>-kb</code> オプションを付けてファイルの破損を防ぐといった、その他の CVS の正しいルールに従ってください。 </p>
+
+  <p>一般的な話として、責任ある行動をとってください。そして、よく知らないファイルを変更するようなことはしないでください。編集している内容について確信が持てない場合は、"Documentation" にバグを開き、状況を良く知っている他の貢献者のアドバイスを求めてください。</p>
+
+  <p>いくつかのファイル (特に <code class="filename">mozilla-org/html/index.html</code> や <code>mozilla-org/html/news.html</code>) は厳密に管理されています。これらのファイルは変更できません。どうしても変更を施す必要があり、システムに拒絶されてしまう場合は、<code>webmaster@mozilla.org</code> までご連絡ください。</p>
+</div>
+
+<div class="section">
+  <h2><a name="doctor">Doctor を用いた Web ベースの CVS アクセス</a></h2>
+
+  <p>CVS クライアントを持っていないか、使用できない場合は、<a href="http://doctor.mozilla.org">Doctor</a> というツールを使ってファイルの作成や更新を 行えます。アクティブな CVS アカウントを持っていれば、 Doctor を使って変更内容を確定できます。もしアカウントを持っていなくても、Doctor を使ってパッチを作成できます。</p>
+
+  <p>Doctor を使って既存のページを更新するには、ページ下部にある "Edit this Page" というリンクをクリックするか、Doctor のトップページにあるテキスト欄にページのパスを入力してください。すると、そのページの HTML が編集可能なテキスト欄に表示されます。編集し終わったら、"Review Changes" ボタンをクリックしてください。編集箇所が "diff" 形式で表示されます。CVS アクセスを持っている場合は、そのまま変更をコミットできます。CVS アクセスを持っていない場合は、表示された diff をテキストファイルにコピーして、Bugzilla にパッチとして提供してください。</p>
+
+  <p>新しいページを作成する場合は、<a
+    href="http://doctor.mozilla.org">http://doctor.mozilla.org</a> から行います。</p>
+
+  <p>既に CVS を使用しているか、あるいはこれから CVS を使用するつもりの方には、Doctor はお勧めはしません。</p>
+</div>
+
+<div class="section">
+  <h2><a name="bonsai">Bonsai</a></h2>
+
+  <p><a href="http://bonsai-www.mozilla.org/cvsqueryform.cgi">bonsai</a> では Web サイトの CVS 履歴を検索できます。</p>
+</div>
+
+<div class="section">
+  <h2><a name="build">mozilla.org をビルドする</a></h2>
+
+  <p>mozilla.org をビルドするには次のものが必要です：</p>
+
+  <ul>
+    <li>CVS (ソースのチェックアウト用)</li><li>Perl 5
+    </li><li>Template-Toolkit Perl モジュール (2.13 以降)</li><li>DateManip Perl モジュール</li><li>XML-Simple Perl モジュール (トップページのビルド用)</li><li>GNU make
+  </li></ul>
+  
+  <p>developer.mozilla.org の XML ファイルで作業しようと考えている場合は、libxslt も必要です。</p>
+
+  <div class="section">
+    <a name="mac"></a>
+    <h3><a name="unix">Unix や Mac OS X でのビルド環境の設定</a></h3>
+    <p>Unix/Linux を実行しているのなら、どこからパッケージを取って来れば良いかぐらいは知っているはずです。パッケージ名は通常、<code>cvs</code>、<code>perl</code>、および <code>make</code> です。Mac を使っている場合、<code>perl</code> は既に入っていますので、Developer Tools CD をインストールすれば <code>cvs</code> および <code>make</code> も手に入ります。</p>
+
+    <p>Perl モジュールは次のようなコマンドを使用すれば CPAN からインストールできます：</p>
+
+    <pre>perl -MCPAN -e "install 'Template'"
+<!--  -->perl -MCPAN -e "install 'Date::Manip'"
+<!--  -->perl -MCPAN -e "install 'XML::Simple'"</pre>
+  </div>
+
+  <div class="section">
+    <h3><a name="windows">Windows でのビルド環境の設定</a></h3>
+
+    <p>適切なツールのインストール方法は、当然のことながら、複数あります。個人的には ActivePerl を使っています (良くまとまった添付資料が付いてきます) が、Cygwin Perl も動作すると聞いています。</p>
+
+    <ol>
+      <li><a href="http://www.cygwin.com/">Cygwin</a> をインストールします
+        <ol>
+          <li>改行コードを選択するプロンプトが表示されたら、UNIX スタイルを選択してください。</li><li>パッケージ選択のプロンプトが表示されたら、 <code>cvs</code>、<code>patch</code>、そして <code>make</code> は必ず選択してインストールしてください（必要に応じて <code>libxslt</code> も選択してください。) ActivePerl ではなく Cygwin から Perl をインストールしたい場合は、<code>perl</code> パッケージも選択してください。</li><li><code>PATH</code> 環境変数に cygwin の bin ディレクトリを追加してください。 マイコンピュータを右クリックして表示されるシステムダイアログ (恒久的な設定ができ、こちらを推奨します) か、コマンドプロンプトで <kbd>set PATH=C:\path_to_cygwin\bin;%PATH%</kbd> と入力すると設定できます (コマンドラインでの設定では、そのセッション間のみ有効です)。Date::Manip Perl が正しく動作するように、<code>TZ</code> 環境変数を設定してタイムゾーン (例：<code>PST</code>) も設定してください。 </li></ol>
+      </li><li>Cygwin で Perl をインストールしなかった場合は、<a href="http://www.activestate.com/Products/ActivePerl/">ActivePerl</a> をインストールしましょう。そして <code>PATH</code> 環境にも Perl を追加してください。</li><li>Template-Toolkit、DateManip、そして XML-Simple Perl モジュールをインストールします</li><li>ActivePerl をインストールしている場合は、ppm をつかってこれらのモジュールをインストールできます：<ol>
+          <li>DOS コマンドプロンプトを起動してください</li><li><kbd>ppm</kbd> とタイプして Enter キーを押してください</li><li>もしセットアップガイドが表示されたら、それに従ってください。(あまり気にしなくても大丈夫です。)</li><li>ppm プロンプトに次のコマンドを入力してください：<pre class="screen"><!--          -->
+ppm&gt;<kbd>install Template-Toolkit</kbd>
+<!--          -->ppm&gt;<kbd>install DateManip</kbd>
+<!--          -->ppm&gt;<kbd>install XML-Simple</kbd>
+<!--          -->ppm&gt;<kbd>quit</kbd>
+<!--     --></pre>
+        </li></ol>ActivePerl ではなく Cygwin 経由で Perl をインストールした場合は、Unix と同じように CPAN から必要な Perl モジュールを手に入れることができます：<ol>
+          <li>DOS コマンドプロンプトを起動してください</li><li>次のコマンドを入力してください：<pre class="screen"><!--          -->
+&gt;<kbd>perl -MCPAN -e "install 'Template'"</kbd>
+<!--          -->&gt;<kbd>perl -MCPAN -e "install 'Date::Manip'"</kbd>
+<!--          -->&gt;<kbd>perl -MCPAN -e "install 'XML::Simple'"</kbd>
+<!--     --></pre>初めてモジュールをインストールすると、Perl が設定作業をガイドしてくれます (ppm の時と同様です)。示されるガイドに従ってください。ただし、あまり気にする必要はありません。</li></ol>
+    </li></ol>
+
+  </div>
+
+  <div class="section">
+    <h3><a name="command">ビルドコマンド</a></h3>
+
+    <p>mozilla.org ツリーをビルドするには、<code class="filename">mozilla-org</code> ディレクトリへと移動 (cd) して <kbd class="command">make</kbd> を実行してください。</p>
+
+    <p>make が実行できない場合は、直接 <code class="filename">tools/munge.pl</code> を実行してみてください。</p>
+  </div>
+</div>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/contribute/writing/cvs.html">英語版</a> 2007/03/30</span> - <span>和訳版 2007/04/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/contribute/writing/cvs.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

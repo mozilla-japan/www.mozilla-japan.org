@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2008-68: XSS と JavaScript 特権昇格</title>
+<link rel="alternate" hreflang="en" modified="December 16, 2008">
+<style type="text/css">
+  .label { width: 12em; font-weight: bold; float: left; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<h1>Mozilla Foundation セキュリティアドバイザリ 2008-68</h1>
+
+<p>
+<span class="label">タイトル:</span>      XSS と JavaScript 特権昇格<br>
+<span class="label">重要度:</span>     最高<br>
+<span class="label">公開日:</span>  2008/12/16<br>
+<span class="label">報告者:</span>   moz_bug_r_a4<br>
+<span class="label">影響を受ける製品:</span>   Firefox, Thunderbird, SeaMonkey<br>
+<br>
+<span class="label">修正済みのバージョン:</span>   Firefox 3.0.5<br>
+<span class="label">&nbsp;</span>      Firefox 2.0.0.19<br>
+<span class="label">&nbsp;</span>      Thunderbird 2.0.0.19<br>
+<span class="label">&nbsp;</span>      SeaMonkey 1.1.14<br>
+</p>
+
+
+<h3>概要</h3>
+
+<p>XBL バインディングが、読みこみ未完了ドキュメントに付随していた場合、同一生成元ポリシーに反して、異なる Web サイトのコンテキストで任意の JavaScript を実行できることが、Mozilla セキュリティ研究者の <strong>moz_bug_r_a4</strong> 氏によって報告されました。</p>
+
+<p>また、ページコンテンツが XPCNativeWrappers を汚染し、クローム特権で任意の JavaScript を実行できてしまう 2 件の脆弱性が、同氏によって報告されました。</p>
+
+<p class="note">Thunderbird は Firefox と同じブラウザエンジンを利用しており、JavaScript が有効になっている場合には影響を受けます。デフォルト設定では無効になっており、メールを表示する際は JavaScript を実行させないよう強く推奨します。</p>
+
+<h3>回避策</h3>
+
+<p>修正版にアップグレードするまで JavaScript を無効にしてください。</p>
+
+<h3>参考資料</h3>
+
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=451680,464174">読みこみ未完了ドキュメントへの XBL バインディングを通じた XSS</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-5511">CVE-2008-5511</a></li>
+  <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=370461,453310">JavaScript 特権昇格</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-5512">CVE-2008-5512</a></li>
+</ul>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2008/mfsa2008-68.html">英語版</a> 2008/12/16 &mdash; 和訳版 2011/01/06 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2008/mfsa2008-68.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

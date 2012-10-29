@@ -1,0 +1,875 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<link rel="top" title="Home" href="/">
+
+<title>Mozilla/Gecko キーボード操作の提案</title>
+<link rel="alternate" hreflang="en" modified="December 3, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/keyboard/proposal.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+  
+ 
+<h3 align="center">Mozilla/Gecko キーボード操作の提案</h3>
+ 
+<div align="center"> Kyle Yuan、Ginn Chen、Peter Korn<br>
+ サンマイクロシステムズ社</div>
+ 
+<div align="center">2004 年 11 月 30 日<br>
+ 
+<h3 align="left">始めに</h3>
+ 
+<div align="left"> 
+<blockquote>   
+  <p>この文書は、サンマイクロシステムズ社の Mozilla/Gecko キーボード操作の提案に関する 2 番めの原稿です。膨大な評価情報を受け取ってから、私たちは、たくさんの項目を注意深く再考し、とりわけ、システム設定に対する頻度の高い要求については、特に配慮しました。そのために、この２番めの原稿にあるコマンドの幾つかを省いて、Gecko で直接的に C で実装される中核的な操作のみをカバーすることにしました。システム設定は JavaScript の拡張機能でごく簡単に実現でき、そして、それこそがまさに、「アイテムの操作」の全機能が最大限に実現できる部分だと、私たちは感じております。システム設定はまた、特定のアクセシビリティの必要性に特化した操作が多くの場面で問題を起す部分です。たとえば、普通のキーボードユーザがそれほど便利と思わない場所で、目の不自由なユーザが表の項目を上手く操作することを、特に重要と感じるようなことです。この件で詳細の情報が必要であれば、<a href="file:///C:/docs/GNOME/Mozilla-Keyboard-Accessibility-Proposal-31Oct04-peter-comments.html#X._Item-oriented_Navigation">JavaScript 部品を使用するアイテム指向の操作</a>をご覧ください。</p>
+   
+  <p>サンマイクロシステムズ社は、下記で議論されている特定のキーボード操作のすべてを実装することを計画しています（例外は、明示されていますが）。アイテムの操作は重要と思いますが、私たちは、それを今すぐに実装する必要はないのではと考えています。その理由は、２つあって、実装方法についてのコンセンサスができていないのと、できるだけ早く中核的なキーボード操作を機能させたいためです。キーボード操作のバグとその状態については、<a href="#XII._Buglist">Section XII</a> をご参照ください。<br>
+   </p>
+ </blockquote>
+ </div>
+ </div>
+ 
+<h3>目次</h3>
+ 
+<ul>
+   <li><a href="#I._Introduction">序文</a><br>
+   </li>
+   <li><a href="#II._Keyboard_Navigation_in_a_Block_of">テキストブロックにおけるキーボード操作</a></li>
+   <li><a href="#III._Keyboard_Navigation_Across_Frame">フレームの境界をまたがるキーボード操作</a></li>
+   <li><a href="#V._Form_Control_Navigation_">フォームコントロールの操作</a></li>
+   <li><a href="#VII._Keyboard_Navigation_in_a">クライアント側の画像マップにおけるキーボード操作</a></li>
+   <li><a href="#VIII._Keyboard_Navigation_intoout-of_">プラグインへの出入りにおけるキーボード操作（Java[TM] アプレットも含む）</a></li>
+   <li><a href="#IX._Keyboard_Navigation_in_a_Sample_Web">サンプルウエブページにおけるキーボード操作</a></li>
+   <li><a href="#X._Unresolved_Issues">未解決の問題点</a></li>
+   <li><a href="#IX._Differences_Between_Caret_Browsing_">キャレット検索モードとキャレットなし検索モードの相違点</a></li>
+   <li><a href="#X._Item-oriented_Navigation">JavaScript 部品を使用するアイテム指向の操作</a></li>
+   <li><a href="#XI._Reference">参照先</a></li>
+   <li><a href="#XII._Buglist">バグ一覧</a><br>
+   </li>
+ 
+</ul>
+ 
+<h3><a name="I._Introduction"></a>I.序文</h3>
+ 
+<blockquote> ソフトウェアアプリケーションのキーアクセス性における要件は、アプリケーションのすべての機能がキーボード経由で実行される（描画ソフトなどで例外はありますが）ことです。合衆国連邦政府が調達するソフトウェアに関してこの事を明確に要求している <a href="http://www.section508.gov/index.cfm?FuseAction=Content&amp;ID=12#Software"> 
+セクション 508 § 1194.21(a)</a> をご参照ください。ウェブブラウザのひとつの明らかな機能は、ウェブページからテキスト領域をコピーして、他の場所（作成されているテキスト文書の中）に貼り付けができることです。キーボードだけを使ってすべてのウェブページでテキストの選択と操作を簡単に実現する方法がなければ、ウェブブラウザはこのキーアクセス性に関する要件を充たすことができずに、合衆国連邦政府の調達機関や、アクセス可能なソフトウェアアプリケーションに関心のあるその他の組織に採用されることは無いでしょう。<br>
+   <br>
+テキストの選択をするのにキーボード操作を使うことも含めて、スクリーンリーダのユーザにとってテキストのキーボード操作は重要です。グラフィカルなユーザインターフェイス (GUI) で、ソフトウェアアプリケーションにスクリーンリーダのユーザが対応するごく普通の方法は、コンピュータデスクトップの標準的なキーボード対応メカニズムや、ソフトウェアアプリケーションの独自のメカニズムを使用します。すなわち、キーボードの動作（普通はフォーカスやキャレットイベント）に反応して、スクリーンリーダはアプリケーションからイベントを受け取り、そして反応時にユーザ（あるいは点字ディスプレイ経由であれば読者）へ適切な情報を読み上げます。<br>
+   <br> Mozilla の <a href="/newlayout/">gecko</a> 表示エンジンは (<a href="/products/firefox/">Firefox</a>、<a href="http://galeon.sourceforge.net/">Galeon</a> などのアプリケーションやその他のアプリケーションにも組み込まれていますが)、ウェブコンテンツに対して最低限のキーボード操作しか提供していず、キーボードで F7 のキーをユーザが押すと動作します（「F7 ナビゲーション」とか「キャレット検索モード」などと呼ばれることがあります）。このモードは、現行の Mozilla 1.7、1.8 のコードべースで、ウェブコンテンツ作成用の <a href="/editor/">Mozilla Editor</a> アプリケーションに使用され、書かれる既存のコードを使います。残念ながらこのモードには、2つの重要な問題が存在します。(1)ウェブコンテンツのリッチな構造（例えばテーブル、フォーム) を操作する手段を備えていないのと、(2)バグが多いことです。 </a><br>
+   <br>この文書の内容は、リッチなキーボード操作スキームの要点をまとめている作者による提案になっており、彼らは、Gecko 表示エンジンや、それを使う Mozilla 、Firefox、Galeon、その他 Gecko を組み込んだウェブブラウザにスキームを実装することを計画しています。望ましいのは、オープンソースのウェブアクセシビリティの関係者間で、この提案に基づいて早急に合意が形成され、その結果提案内容が素早く実装されることです。注記：この文書は、ユーザが「キャレット検索モード」になっている時だけ使用可能なキーボード操作メカニズムを提案します。<a href="#IX._Differences_Between_Caret_Browsing_">セクションIX</a>では、これら2つのモード<span class="comment">【訳注: キャレット検索モードとキャレットなし検索モード】</span>の相違点にスポットをあてます。<br>
+ </blockquote>
+ 
+<h3><a name="II._Keyboard_Navigation_in_a_Block_of"></a>II. テキストブロックにおけるキーボード操作</h3>
+
+ 
+<blockquote>   
+  <p>この節は一般に「テキストのキーボード操作｣と名づけられるものです。というのは、段落内であれ、表やフォーム内であれテキストであれば、ブラウザのコンテンツウィンドウ内のすべてのテキストにキーを割り当てることができるからです。<br>
+   </p>
+ </blockquote>
+ 
+<h4>連続操作</h4>
+ 
+<ul>
+   <li>&lt;左&gt; キーはキャレットを一文字左へ移動させます。とりわけ、キャレットが行の開始に在るなら、&lt;左&gt; キーはキャレットを前の行の最後へ移動させます。もし、キャレットがすでに現在のフレームの最初に在るならば、&lt;左&gt; キーはキャレットを移動させません。<br>
+     <br>
+   </li>
+   <li>&lt;右&gt; キーはキャレットを一文字右へ移動させます。とりわけ、キャレットが行の最後に在るなら、&lt;右&gt; キーはキャレットを次の行の最初へ移動させます。もし、キャレットがすでに現在のフレームの最後に在るならば、&lt;右&gt; キーはキャレットを移動させません。<br>
+     <br>
+   </li>
+   <li>&lt;上/下&gt; キーはキャレットを一行上下に移動させます。ブラウザはキャレットの横の移動距離を最小限に保ちます。下記のサンプルを見てください。もし移動先の行がキャレットの距離を保持できる程度に横方向に短かければ、ブラウザは元の位置までの距離を記憶し、可能であればキャレットを元の位置に戻します。キャレットが現在のフレームの最初か最後の行に在るなら、&lt;上/下&gt; キーはキャレットを移動させません。<br>例えば、3行のテキストがあります:<br>
+     
+    <pre> mnopqrst^uvw<br> 123^<br> abcdefgh^ijk<br></pre>
+     
+    <pre>    </pre>
+     
+    <p>キャレットが「h」と「i」の間にある時、&lt;上&gt;キーはキャレットを 「3^」の後へ移動させます。また、キャレットの最後の位置が記憶されるので、&lt;上&gt;キーを再度押すとキャレットは「t^」の後へ移動するか、&lt;下&gt;キーを押すとキャレットは元の位置（「h」と「i」の間）へ戻りリます。<br>
+     <span style="color: rgb(51, 51, 255);"></span></p>
+  </li>
+  <li>&lt;ctrl+左&gt; もし直前の文字が単語の中の一文字であれば、&lt;ctrl+左&gt; キーはキャレットをその単語の最初の文字へ移動させます。もし直前の文字が空白（スペース、タブ）であれば、&lt;ctrl+左&gt; キーはこれらの空白のスペースを飛び越えて、その前の単語の最初の文字へキャレットを移動させます。たとえば:<br>
+     <br>
+ abc def gh^i - &lt;ctrl+左&gt;を次に3回押すときキャレットが止まるのは、'^g','^d', '^a' となり;<br>
+ abc def ^ghi - &lt;ctrl+左&gt;を次に2回押すときキャレットが止まるのは、'^d','^a'となります。<br>
+     <br>
+   </li>
+   <li>&lt;ctrl+右&gt; キーはもっと複雑です。その動きは <span style="font-family: monospace;"> layout.word_select.eat_space_to_next_word</span> の設定[preferences] に依存します。Windows、ではデフォルトで真 [true] ですが、Linux/Solaris/Mac では偽 [false] です。<br><br>
+     <br>
+     
+    <table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+       <tbody>
+         <tr>
+           <td style="vertical-align: top;">layout.word_select.<br>
+ eat_space_to_next_word=<br>
+           </td>
+           <td style="vertical-align: top;">キャレットの現在位置<br>
+           </td>
+           <td style="vertical-align: top;">動き<br>
+           </td>
+           <td style="vertical-align: top;">例<br>
+           </td>
+         </tr>
+         <tr>
+           <td colspan="1" rowspan="2" style="vertical-align: top;"> 
+(GTK では常に)偽<br>
+           </td>
+           <td style="vertical-align: top;">単語の中で<br>
+           </td>
+           <td style="vertical-align: top;">単語の最後へキャレットを移動させる</td>
+           <td style="vertical-align: top;">a^bc def ghi - 次の3回は: 'c^', 'f^', 'i^'で止まる;<br>
+           </td>
+         </tr>
+         <tr>
+           <td style="vertical-align: top;">空白の直前 (スペース、タブ)<br>
+           </td>
+           <td style="vertical-align: top;">空白を飛び越え次の単語の末尾へキャレットを移動させる</td>
+           <td style="vertical-align: top;">abc^ def ghi - 次の2回は: 'f^', 'i^'で止まる。</td>
+         </tr>
+         <tr>
+           <td colspan="1" rowspan="2" style="vertical-align: top;">(Windows では常に)真</td>
+           <td style="vertical-align: top;">単語の中で</td>
+           <td colspan="1" rowspan="2" style="vertical-align: top;">次の単語の最初へキャレットを移動させる</td>
+           <td colspan="1" rowspan="2" style="vertical-align: top;">a^bc def
+ghi -  次の2回は: '^d', '^g''でとまり;<br>
+ abc^ def ghi - 次の2回は: '^d', '^g''で止まる;<br>
+           </td>
+         </tr>
+         <tr>
+           <td style="vertical-align: top;">空白の直前(スペース、タブ)</td>
+         </tr>
+       
+      </tbody>     
+    </table>
+     
+    <p>例外として、HTML のリスト要素 (&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;) では、数字や &lt;li&gt; 要素の黒点マークを無視します。例えば:<br>
+     </p>
+     
+    <ol>
+       <li>abc</li>
+       <li>def</li>
+     
+    </ol>
+     
+    <p>"d"の直前にキャレットがある時、 &lt;左&gt; は、前の行の "c" の直後へキャレットを移動させます。<span style="color: rgb(51, 51, 255);"></span> </p>
+  </li>
+   <li><span style="font-family: monospace;"> layout.word_select.stop_at_punctuation</span>の設定。
+    <br>この設定が真なら、 &lt;ctrl+左/右&gt; は句読点で止めます。例えば、"e-mail" の  "-" で止めます。<br>この設定は、Windows では真ですが、Linux/Solaris/Mac では偽です。</li>
+ 
+</ul>
+<br>
+<blockquote><i><b>連続的操作機能の状態:</b> &lt;left/right/up/down&gt; は、まれにバグが残っているのを見ることがあるものの、基本的にうまく機能します。詳細の状況につきましては、<a href="#Bugs_affect_arrow_movement:_">矢印の動きに関わるバグ</a>を参照してください。&nbsp;&lt;ctrl+左/右&gt; は、バグ修正は完了しています。詳細の状況につきましては、<a href="#Bugs_affect_ctrlarrow_movement:">Ctrl+Arrow の動きに影響するバグ</a>を参照してください。</i><br>
+</blockquote>
+
+ 
+<span style="color: rgb(51, 51, 255);"></span>
+<h4>連続しない操作</h4>
+ 
+<ul>
+   <li>&lt;pgup/pgdn&gt; キーは１ページの内容を上下にスクロールします。キャレットの上下左右の移動距離を、ブラウザはできるだけ短く保とうとします。キャレットが可視領域から外れようとする時、ブラウザは自動的にページをスクロールするので、横方向のスクロールに対して割り当てられるキーはありません。</li>
+   <li>&lt;home/end&gt; キーはキャレットを現在の行の最初や最後へ移動させます。キャレットがもしすでに、現在の行の最初や最後に在るなら、&lt;home/end&gt; キーは作動しません。<span style="font-style: italic;"></span><br>
+   </li>
+   <li>&lt;ctrl+home/end&gt; キーは、キャレットを現在のフレームの最初や最後へ移動させます。キャレットがもしすでに、現在のフレームの最初や最後に在るなら、&lt;ctrl+home/end&gt; キーは作動しません。</li>
+   <li>&lt;タブ&gt; キーはキャレットを次にフォーカスされるウィジェットへ移動させます（リンク、フォームの制御など）。<br>
+   </li>
+   <li>&lt;shift+タブ&gt; キーはキャレットを直前にフォーカスされたウィジェットへ移動させます。</li>
+ 
+</ul>
+ &nbsp;
+<blockquote><i><b>連続しない操作機能の状況:</b> たいていのコマンドは正しく働きますが、Ctrl+Home/End キーで残っている問題が少しあります。詳細の状況については<a href="#Bugs_affect_discontinuous_Navigation:_"></a></i><i><a href="#Bugs_affect_discontinuous_Navigation:_">Affect Discontiuous Navigation連続しない操作に影響するバク</a>を参照してください。<br>
+  </i><br>
+</blockquote><span style="color: rgb(51, 51, 255);"></span> 
+<h4>テキスト選択</h4>
+<blockquote>   
+  <p>&lt;shift&gt;+すべてのキー: 上述のキャレットを移動させるキーは、キャレットを現在の位置(A)から、目的の位置(B)へ移動させ、AB 間のテキストを選択します。たとえば、&lt;shift+右&gt; はキャレットを一文字右へ移動させ現在の文字を選択します。<br>
+   <span style="color: rgb(51, 51, 255);"><br>
+  </span><i><b>テキスト選択機能の状況:</b> テキスト選択のためのキャレットの移動には既知の問題点がいくつかあります。bugzilla.mozilla.org. にバグがファイルされます。</i><i><br>
+   </i><span style="color: rgb(51, 51, 255);"><br>
+  </span></p>
+</blockquote>
+<h3><a name="III._Keyboard_Navigation_Across_Frame"></a>III. フレームの境界をまたがるキーボード操作</h3>
+ 
+<blockquote>   
+  <p>セクションIIで述べたキーの割付を使っても、フレームの境界を超えてキャレットを移動できません。<br>
+   </p>
+   
+  <ul>
+     <li>複数のフレームに対しては、 &lt;F6&gt;/&lt;shift+F6&gt; キーが、現在のドキュメントや URL バー内で、現在のフレームから前後のフレームに切り替わるのに使用されます。</li>
+     <li>&lt;F8&gt; キーはフレームのセパレータをフォーカスするのに、そして &lt;矢印&gt; キーはフレームのサイズを変更するのに使用されます。（未実装であり、すぐに実装するつもりはありません）</li>
+     <li>iframe に対しては、&lt;tab&gt; と &lt;F6&gt; キーが iframe をフォーカスしたり、フォーカスを外したり切り替えるのに使用できます</li>
+   
+  </ul>ブラウザは各フレームの最新のキャレット位置を記憶しており、&lt;F6&gt;/&lt;shift+F6&gt; キーが押された時の位置へキャレットを復帰させます。キャレットがフレームに入るのが始めてであれば、キャレットはフレームの最初の位置に置かれます（そのフレーム内で &lt;ctrl+home&gt; キーが押されたのと同じ位置です）。<br>
+  <br>
+  <i><b>フレームの境界をまたがるキーボード操作の状況:</b> &lt;F6&gt;/&lt;shift-F6&gt;
+キーは機能し、 &lt;F8&gt; と iframe 機能はまだ実装されていません。bugzilla.mozilla.org.にバグがファイルされます。</i><br>
+  <span style="color: rgb(51, 51, 255);"></span></blockquote>
+<br>
+ 
+<h3><a name="V._Form_Control_Navigation_"></a>IV. フォームコントロールの操作<br>
+ </h3>
+ 
+<h4>フォームコントロールへの移動やフォームコントロールからの移動</h4>
+ 
+<blockquote>   
+  <p>キャレットがフォームコントロールへ移動する時、フォームコントロールは自動的にフォーカスされます。その間、すべてのキーボードイベントはこのフォームコントロールに捕そくされます。
+&lt;alt+[/]&gt;キーではフォームコントロールを離れキャレット検索モードへ戻ります。
+&lt;alt+]&gt; キーはキャレットを現在の制御の次の位置へ移動させます(前進）；
+&lt;alt+[&gt; キーはキャレットを現在の制御の前の位置へ移動させます(後退）。<br>
+ (alt+[/] はこのように使用されていますが、長期的に見てキー割付を変更するつもりです。この件では、もうすこし議論が必要です。)<br>
+   <span style="font-style: italic;"> <br>
+   </span>たとえば、キャレットを "input" の "t" の次に移動させた時、下記のように input box へ入り、そこでタイプを始めることが可能です。打ち終わった時、 &lt;alt+]&gt; を押すと input box はフォーカスを失い、キャレットを input box の先に移動させます。すると、&lt;左&gt;、&lt;右&gt;キーなどを使って、キャレットの移動を継続できます。&lt;alt+[&gt;を押すと、 input box はフォーカスを失いキャレットを input box の前に持ってきます（つまり、"input" の "t" の直後です）。<br>
+   <br>
+ input <input id="q" name="q" accesskey="s" size="30" type="text"><br>
+   </p>
+   <span style="color: rgb(51, 51, 255);"></span>
+  <h4>INPUT (type=text); TEXTAREA<br>
+   </h4>
+   
+  <p>&lt;矢印&gt;、&lt;ctrl+arrows&gt;、&lt;home/end/pgup/pgdn&gt;、&lt;ctrl+home/end&gt; キーはキャレットをテキストボックスの中で移動させる;<br>
+ &lt;enter&gt; キーはフォームを送る。<br>
+   </p>
+   
+  <h4>INPUT (type=checkbox/radio)</h4>
+   
+  <p>&lt;space&gt; キーは状態を切り替える。マウスでクリックした場合と同じ;<br>
+   </p>
+   
+  <h4>INPUT (type=button); BUTTON<br>
+   </h4>
+   
+  <p>&lt;space&gt; キーはボタンを押す;<br>
+ &lt;enter&gt; キーはボタンをクリックする;<br>
+   </p>
+   
+  <h4>SELECT (size&gt;1)</h4>
+   
+  <p>&lt;space&gt; キーは現在のアイテムを選択する;<br>
+ &lt;shift+up/down&gt; キーは複数選択リストボックスで選択内容を展開する;<br>
+ &lt;up/down&gt; キーは前後のアイテムへフォーカスを移動させ、選択する;</p>
+ &lt;&gt; キーは離れた項目の選択のために、&lt;ctrl+up/down&gt; や &lt;space&gt　を使う。<br>
+ &lt;ctrl+up/down&gt; キーは現在の選択項目へ影響を与えず、フォーカスインジケータを移動させる;<br>
+ &lt;space&gt;キーは(&lt;ctrl+up/down&gt;　を押した後) フォーカスされたアイテムの選択状態を切り替える。<br>例えば、アイテム 1、3、5　を選択するのに、キーの順序は、アイテム 1 を選択するのに &lt;space&gt;を押し、&lt;&gt; &lt;ctrl+down&gt; を2回押してアイテム3へフォーカスインジケータを移動し、&lt;space&gt;で、アイテム3を選択し、 &lt;ctrl+down&gt;を 2 回押してアイテム5へフォーカスインジケータを移動し、&lt;space&gt; でアイテム5を選択する。  
+  <h4>SELECT (size=1)
+   </h4>&lt;&gt;&lt;up/down&gt; キーはリストを下に展開せずに、リストアイテムを前進、後退し順番に回る;<br>
+ &lt;home/end&gt; キーは最初のアイテム/最後のアイテムを選択する;<br>
+ &lt;alt+up/down&gt; キーはリストを閉じたり/下に展開する:<span style="color: rgb(51, 51, 255);"></span><br>
+  <br>
+  <i><b>フォームコントロール操作の状況:</b> <a href="#Bugs_affect_form_control_navigation:">既知のバグ</a> はすべて修正されています。</i><br>
+ <span style="color: rgb(51, 51, 255);"></span><br>
+ </blockquote>
+ 
+<h3><a name="VII._Keyboard_Navigation_in_a"></a>V. クライアント側の画像マップにおけるキーボード操作</h3>
+ 
+<ul>
+   <li>&lt;tab&gt;/&lt;shift+tab&gt; キーはクライアント側の画像マップの領域から領域へ各々フォーカスを移動させます。</li>
+   <li>&lt;space/enter&gt; キーではフォーカスのある画像マップの領域をマウスでクリックするのと同じ効果を得られます。<br>
+   </li>
+   <li>サーバー側の画像マップをキーボード操作できません。ウェブの作者はそれをしてはいけません。<br>
+     <span style="color: rgb(51, 51, 255);"></span><br>
+ <i><b>クライアント側の画像マップ機能の状況:</b> バグ修正済みです。</i><br>
+ <br>
+   </li>
+ 
+</ul>
+ 
+<h3><a name="VIII._Keyboard_Navigation_intoout-of_"></a>VI. プラグインへの出入りにおけるキーボード操作（Java[TM] アプレットも含む）</h3>
+ 
+<blockquote>   
+  <ul>
+     <li>&lt;tab&gt;/&lt;shift+tab&gt; キーはプラグインも含め、フォーカス可能なウィジェット間でフォーカスを移動させます。ユーザは &lt;tab&gt; を使ってプラグインをフォーカスしたり、プラグインからフォーカスを外すことができるはずです。</li>
+     <li>フォーカスがプラグインにあると、キーボードイベントがプラグインで有効になります。プラグインが自分自身のキー割付を備えることもできます。</li>
+     <li>プラグインにとって不要なキーはブザウザへバブルアップされます。例えば、ほとんどのプラグインでは、alt+left/alt+right　を使ってブラウザに対して履歴の移動を可能にするはずです。<br>
+     </li>
+   
+  </ul>
+   
+  <p>注記：この機能をサポートするには、mozilla &amp; plugin は <a href="/projects/plugins/xembed-plugin-extension.html">xembed</a> プロトコルを実装する必要があります。いまのところ、Java(1.5 以上) プラグインと　Helix　プラグインだけが　xembed を実装しています。Flash と Acrobat reader もこの機能を備えると、それはすばらしいことです。<span style="color: rgb(51, 51, 255);"></span></p>
+  <p><i><b>プラグイン操作機能の状況:</b> &lt;tab&gt; および &lt;shift+tab&gt; キーはフォーカスを plugin/applet へ移動させますが、フォーカスを外すことができません。bugzilla.mozilla.org. にバグが登録されます。</i><br>
+  </p>
+</blockquote>
+<p><br>
+ </p>
+ 
+<h3><a name="IX._Keyboard_Navigation_in_a_Sample_Web"></a>VII. サンプルウエブページにおけるキーボード操作</h3>
+ 
+<blockquote>   
+  <p>この提案がどのようにウェブページに効果を及ぼすかをサンプルで調べることは意味があります。&nbsp; 試験用に <a href="http://www.sun.com/"> http://www.sun.com</a> を選んでみました<br>
+   <br>全ページが表に収まっています。&lt;F7&gt; キーを押すことで、キャレット移動モードを有効にしてください。すると下記の方法を使ってコンテキストを操作できます:<br>
+   </p>
+ </blockquote>
+ 
+<ul>
+   
+  <ul>
+     <li><b>矢印キーによる操作を使用する: </b>&lt;右&gt; キーを押します。するとキャレットは一文字ずづ右へ移動します。&lt;下&gt; キーを押すと、キャレット一行ずづ下へ移動します。<br>
+       <br>
+     </li>
+     <li><b>フォーカス/TAB 操作を使う：</b>&lt;tab&gt;: を使うことで、リンク制御やフォームコントロールすべてをフォーカスが移動できます: "How to buy" -&gt; "My Sun" -&gt;
+"text input" -&gt; "input image button (&gt;&gt;)"&nbsp; -&gt; "Products
+&amp; Services" -&gt; ... -&gt;"Low Cost Computing"&nbsp; -&gt; "Making connections
+in Greece" -&gt; "Affordable,..." -&gt; "HP's Problem" -&gt; "Sun Wins StarOffice
+Deal in Australia&#8220; -&gt; "Find It Fast" -&gt; "Solaris Preview" -&gt; "Sun
+Java Desktop System" -&gt; "Sun Fire V40z" -&gt; "Get Java Technology For
+Free" -&gt; "see all features" -&gt; "see all promotions" -&gt; "Contact"
+-&gt; ... -&gt; "Trademarks".<br>
+       <br>
+     </li>
+     <li><span style="font-weight: bold;">フォームコントロール操作：</span>&lt;右&gt; キーを押します。するとキャレットが一文字ずつ右へ移動し、"sun.com&nbsp;&nbsp;&nbsp;&nbsp; How To Buy | My Sun | Worldwide Sites" の後で、インプットボックスがフォーカスされます。何か入力して &lt;alt+]&gt; キーを押すと、キャレットは input box のあとに移動し、&lt;右&gt; を数回押すと、"&gt;&gt;" ボタンがフォーカスされます。&lt;enter&gt; キーを押すと、検索内容が送られます。<br>
+       <br>
+     </li>
+   
+  </ul>
+ 
+</ul>
+ 
+<h3><a name="X._Unresolved_Issues"></a>VIII. 未解決の問題点</h3>
+ 
+<ol>
+   <li>固定されたり、動いていたりするウィジェットにキーボードを使ってアクセスする方法は？<br>ウィジェットには（広告が多いですが）CSS の絶対位置属性を決めて、ウェブページのどこかの場所に置かれるものもあります。その場合、物理的位置と論理的位置には大きな乖離が存在することもあります。<br>
+注記：この件に関して、ウェブページの固定されたり、動いていたりするウィジェットの使用について論じている、<a href="http://www.w3.org/TR/2004/WD-WCAG20-20040311/">ウェブコンテンツのアクセシビリティ手引き 2.0</a>　には何も記載がりません。<span style="color: rgb(51, 51, 255);"></span><br>
+     <br>
+   </li>
+ 
+</ol>
+ 
+<h3><a name="IX._Differences_Between_Caret_Browsing_"></a>IX. キャレット検索モードとキャレットなし検索モードの相違点<br>
+ </h3>
+ 
+<h4>キャレット検索モードとキャレットなし検索モードにおける異なる動き</h4>
+ 
+<blockquote>   
+  <table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+     <tbody>
+       <tr>
+         <th style="vertical-align: top;">キー割付<br>
+         </th>
+         <th style="vertical-align: top;">キャレット検索モード<br>
+         </th>
+         <th style="vertical-align: top;">キャレットなし検索モード</th>
+       </tr>
+       <tr>
+         <td style="vertical-align: top;">&lt;左/右&gt;<br>
+         </td>
+         <td style="vertical-align: top;">キャレットを一文字左/右へ移動させる</td>
+         <td style="vertical-align: top;">（コンテンツが水平スクロールバーを備えていれば）ページを左/右へ移動させる<br>
+         </td>
+       </tr>
+       <tr>
+         <td style="vertical-align: top;">&lt;上/下&gt;<br>
+         </td>
+         <td style="vertical-align: top;">キャレットを一行上/下へ移動させる</td>
+         <td style="vertical-align: top;">（コンテンツが縦のスクロールバーを備えていれば）ページを上/下にスクロールする</td>
+       </tr>
+       <tr>
+         <td style="vertical-align: top;">&lt;home/end&gt;<br>
+         </td>
+         <td style="vertical-align: top;">現在キャレットのある行の最初/最後へキャレットを移動させる</td>
+         <td style="vertical-align: top;">現在のコンテンツの最初/最後へスクロールする<br>
+         </td>
+       </tr>
+     
+    </tbody>   
+  </table>
+   
+  <h4>キャレット検索モードでのみ可能な動き</h4>
+ </blockquote>
+ 
+<blockquote>   
+  <table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+     <tbody>
+       <tr>
+         <th style="vertical-align: top;">キー割付</th>
+         <th style="vertical-align: top;">動き<br>
+         </th>
+       </tr>
+       <tr>
+         <td style="vertical-align: top;">&lt;ctrl+左/右&gt;</td>
+         <td style="vertical-align: top;">キャレットを一単語左/右へ移動させる</td>
+       </tr>
+       <tr>
+         <td style="vertical-align: top;">&lt;alt+[/]&gt;<br>
+         </td>
+         <td style="vertical-align: top;">キャレットをフォームコントロールから出す<br>
+         </td>
+       </tr>
+     
+    </tbody>   
+  </table>
+ </blockquote>
+ 
+<p><br>
+ </p>
+ 
+<h3><a name="X._Item-oriented_Navigation"></a>X. JavaScript 部品を使用するアイテム指向の操作</h3>
+ 
+<blockquote>   
+  <p>目で見て分かる操作である上/下矢印キーを使用した行ごとの操作以外の、別の操作方法が存在します。それはコンテンツの操作に使われる「アイテム指向の操作」と呼ばれます。そこでは、段落(p)、表のセル、フォームコントロール、選択メニュアイテム、リストアイテムが、1つのアイテム、すなわち操作の最小単位として定義されます。矢印キーも、ctrl/shift/alt と矢印キーとの組合も、これらのアイテムをキャレット検索モードで、文字や行ごとに操作するのではなく、コンテンツ単位の操作をします。そして、&lt;ctrl+F7&gt; はこれら2つのモードを切り替えるように設計されています。<br>
+   </p>
+   
+  <p>Javascript は Mozilla の拡張機能を書くのに便利な言語なので、アイテム指向の操作は Javascript 部品として実装されることが可能です。その利点は:<br>
+   </p>
+   
+  <ul>
+     <li>Gecko での複雑なプログラミング技術の使用や見直し作業を回避する</li>
+     <li>キーボードのイベントに関連づけるのが簡単</li>
+     <li>全体的な設定や、変更が可能である<br>
+     </li>
+     <li>バージョン管理や API の変更の問題を回避できる<br>
+     </li>
+     <li>プラットフォームに左右されない</li>
+   
+  </ul>アイテム指向の操作に対する詳細のキー割付プランは現在なお設計を議論している段階です。別の文書に一覧を作成します。<br>
+ (すぐに実現はされずに、議論がもっと必要です。)<br>
+ </blockquote>
+ <br>
+
+ 
+<h3><a name="XI._Reference"></a>XI. 参照先</h3>
+ 
+<ul>
+   <li> <a href="http://www.mozilla-japan.org/access/keyboard/">Mozilla キーボード・プラン FAQ とクロスリファレンス</a></li>
+   <li> <a href="/projects/ui/accessibility/mozkeylist.html">Mozilla 
+keyboard assignment map</a></li>
+   <li><a href="http://developer.gnome.org/projects/gap/keyboardnav.html">Keyboard 
+Navigation for GNOME 2.0<span class="comment">【訳注: Gnome 関連サイト英文のみ？】</span></a></li>
+   <li><a href="http://www.microsoft.com/enable/products/keyboard.aspx">Windows 
+Keyboard Shortcuts【訳注: MS 関連サイト英文のみ？】</a></li>
+   <li><a href="/access/plugins">Mozilla Plugin Accessibility【訳注:リンク存在しない？】</a></li>
+ 
+</ul>
+ <br>
+ 
+<h3 id="Buglist-jp"><a name="XII._Buglist"></a>XII. バグ一覧</h3>
+04 年 11 月 14 日現在のバグの状況です。バグは最初 <a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/accessibility/sun-mozilla-1.7/">Sun's
+Mozilla 1.7 branch</a> で修正され、次にトランクへ移植されます。もし Mozilla のこの版を完成させたいと思うならば、<a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/accessibility/sun-mozilla-1.7/11-14-2004/src/mozilla1.7_src.tar.gz">source
+tarball for Sun's 1.7 branch from14Nov04</a> をご参照ください<br>
+ 
+<h4>汎用的操作に関わるバク:<br>
+ </h4>
+ 
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+   <tbody>
+     <tr>
+       <td style="vertical-align: top;">バグ ID<br>
+       </td>
+       <td style="vertical-align: top;">記述</td>
+       <td style="vertical-align: top;">mozilla.org での修正<br>
+       </td>
+       <td style="vertical-align: top;">Sun browser 1.7 での修正<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=144000" title="NEW - caret browsing - bad initial position">144000</a></td>
+       <td style="vertical-align: top;">キャレットブラウズ - 初期位置違い</td>
+       <td style="vertical-align: top;">未修正<br>
+       </td>
+       <td style="vertical-align: top;">修正済<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=169297" title="RESOLVED FIXED - caret becomes invisible when switching windows if it's not in linked content">169297</a></strike></td>
+       <td style="vertical-align: top;">キャレットはリンクされたコンテンツになければ、ウィンドウを切り替える時キャレットが見えなくなる</td>
+       <td style="vertical-align: top;">修正済み<br>
+       </td>
+       <td style="vertical-align: top;">修正済み<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=202163" title="RESOLVED FIXED - caret mode: caret disappears after finding text (FAYT text mode)">202163</a></strike></td>
+       <td style="vertical-align: top;">キャレットモード: テキスト発見後キャレットが消える (FAYT テキストモード)</td>
+       <td style="vertical-align: top;">修正済み</td>
+       <td style="vertical-align: top;">修正済み</td>
+     </tr>
+   
+  </tbody> 
+</table>
+ <br>
+ 
+<h4><a name="Bugs_affect_arrow_movement:_"></a><span style="font-weight: bold;"></span>矢印キーの動きに関わるバグ: <br>
+ </h4>
+ 
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+   <tbody>
+     <tr>
+       <td style="vertical-align: top;">バグ ID<br>
+       </td>
+       <td style="vertical-align: top;">記述</td>
+       <td style="vertical-align: top;">mozilla.org での修正<br>
+       </td>
+       <td style="vertical-align: top;">Sun browser 1.7 での修正<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=241038" title="NEW - [keyboard] Up or down arrow keys can't go through a java applet. when caret browsing">241038</a></td>
+       <td style="vertical-align: top;">[キーボード] キャレットブラウズの時、上下キーが Java アプレットを検索できない<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=241042" title="NEW - [keyboard] [table] Can't reach the title of a table in caret browse mode">241042</a></td>
+       <td style="vertical-align: top;">[キーボード] [表] キャレットブラウズモードで、キャレットが表の題名に移動できない<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">上/下矢印は修正済、左/右矢印は未修正<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=250371" title="ASSIGNED - Caret navigation: Links do not activate when using Ctrl+Arrows (Option+Arrows in OS X)">250371</a></td>
+       <td style="vertical-align: top;">キャレット操作: Ctrl+矢印キー(OS X では Option+矢印キー）を使う時、リンクがつながらない。</td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=254997" title="RESOLVED FIXED - Caret tracking by line (down arrow) skips over huge portions of the document">254997</a></strike></td>
+       <td style="vertical-align: top;">（下矢印キーで）行ごとに移動するキャレットが文書の大部分を飛ばして移動する</td>
+       <td style="vertical-align: top;">修正済<br>
+       </td>
+       <td style="vertical-align: top;">修正済<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=256833" title="RESOLVED FIXED - Right arrow skips some text after &lt;HR&gt;">256833</a></strike></td>
+       <td style="vertical-align: top;">右矢印が &lt;HR&gt; の後で、テキストを飛ばして移動する<br>
+       </td>
+       <td style="vertical-align: top;">修正済</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=259984" title="RESOLVED DUPLICATE - Caret moving pause if there is a named archor.">259984</a></strike></td>
+       <td style="vertical-align: top;">名前の付いたアンカがあれば、キャレットの移動が停止する<br>
+       </td>
+       <td style="vertical-align: top;">修正済</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=265203" title="ASSIGNED - When caret is at end of one link, focus displays  to next link">265203</a></td>
+       <td style="vertical-align: top;">キャレットがあるリンクの終わりに来るとフォーカスが次のリンクを表示する<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=269317" title="NEW - Caret/selection circles in sun.com">269317</a></td>
+       <td style="vertical-align: top;">sun.com のウェブページで Caret/selection が回る<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+   
+  </tbody> 
+</table>
+ <br>
+ 
+<h4><a name="Bugs_affect_ctrlarrow_movement:"></a>ctrl+矢印キーの動きに関わるバグ:<br>
+ </h4>
+ 
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+   <tbody>
+     <tr>
+       <td style="vertical-align: top;">バグ ID<br>
+       </td>
+       <td style="vertical-align: top;">記述</td>
+       <td style="vertical-align: top;">mozilla.org での修正<br>
+       </td>
+       <td style="vertical-align: top;">Sun browser 1.7 での修正<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=237228" title="RESOLVED FIXED - pref &quot;layout.word_select.eat_space_to_next_word&quot; can't be set by user in the profile's prefs.js">237228</a></strike></td>
+       <td style="vertical-align: top;">"layout.word_select.eat_space_to_next_word" 設定をプロファイルの prefs.js　でユーザが設定できない<br>
+       </td>
+       <td style="vertical-align: top;">修正済</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=250371" title="ASSIGNED - Caret navigation: Links do not activate when using Ctrl+Arrows (Option+Arrows in OS X)">250371</a></td>
+       <td style="vertical-align: top;">キャレット操作: Ctrl+矢印キー(OS X では Option+矢印キー）を使う時、リンクがつながらない</td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=256252" title="RESOLVED FIXED - ctrl+right arrow sometimes skip a word">256252</a></strike></td>
+       <td style="vertical-align: top;">ctrl+右矢印キーが単語を飛び越えることがある<br>
+       </td>
+       <td style="vertical-align: top;">修正済</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=256835" title="RESOLVED FIXED - [crash]ctrl+left cause crash in bugzilla [@ nsTextFrame::PeekOffset ][@ ntdll.dll - nsFrame::GetFrameFromDirection ]">256835</a></strike></td>
+       <td style="vertical-align: top;">[クラッシュ]ctrl+左キーが bugzilla でクラッシュを引き起こす[@ nsTextFrame::PeekOffset ][@ ntdll.dll - nsFrame::GetFrameFromDirection
+]<br>
+       </td>
+       <td style="vertical-align: top;">修正済</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+   
+  </tbody> 
+</table>
+ <br>
+ 
+<h4><a name="Bugs_affect_discontinuous_Navigation:_"></a>連続しない操作に関わるバグ: <br>
+ </h4>
+ 
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+   <tbody>
+     <tr>
+       <td style="vertical-align: top;">バグ ID<br>
+       </td>
+       <td style="vertical-align: top;">記述</td>
+       <td style="vertical-align: top;">mozilla.org での修正<br>
+       </td>
+       <td style="vertical-align: top;">Sun browser 1.7 での修正<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=70154" title="ASSIGNED - (ctrl)+shift+home/end should select to beginning/end of webpage">70154</a></td>
+       <td style="vertical-align: top;">(ctrl)+shift+home/end キーがウェブページの最初/最後へを選択すべき<br>
+       </td>
+       <td style="vertical-align: top;">未修正<br>
+       </td>
+       <td style="vertical-align: top;">修正済<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=143996" title="ASSIGNED - in caret browsing, home/end must go to start/end of line">143996</a></td>
+       <td style="vertical-align: top;">キャレットブラウズの時、home/end キーは行の最初/最後へと移動しなけばならない<br>
+       </td>
+       <td style="vertical-align: top;">未修正<br>
+       </td>
+       <td style="vertical-align: top;">修正済<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=205846" title="NEW - caret eventually gets stuck when trying to scroll with PageDown / PageUp keys">205846</a></td>
+       <td style="vertical-align: top;">PageDown / PageUp キーを使ってスクロールしようとする時キャレットが終に動かなくなる</td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">未修正</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=244953" title="NEW - Ctrl+End and Ctrl+Home do not work in Caret Browsing mode">244953</a></td>
+       <td style="vertical-align: top;">Ctrl+End キーと Ctrl+Home キーがキャレットブラウズモードで機能しない<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=262497" title="NEW - Ctrl+Home and Ctrl+End problems (apparent with RTL)">262497</a></td>
+       <td style="vertical-align: top;">Ctrl+Home キーと Ctrl+End キーの問題（右から左[RTL：Right-to-Left]で発生する）<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">未修正</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=269318" title="ASSIGNED - TAB doesn't start from selection text after mouse click">269318</a></td>
+       <td style="vertical-align: top;">マウスクリック後に TAB が選択テキストから動かない<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+   
+  </tbody> 
+</table>
+ <br>
+ 
+<h4><a name="Bugs_affect_form_control_navigation:"></a>フォームコントロール操作に関わるバグ:<br>
+ </h4>
+ 
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2" cellspacing="2">
+   <tbody>
+     <tr>
+       <td style="vertical-align: top;">バグ ID<br>
+       </td>
+       <td style="vertical-align: top;">記述</td>
+       <td style="vertical-align: top;">mozilla.org での修正<br>
+       </td>
+       <td style="vertical-align: top;">Sun browser 1.7 での修正<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=202154" title="NEW - caret mode: caret can appear within html listboxes">202154</a></td>
+       <td style="vertical-align: top;">キャレットモード: キャレットが html リストボックス内に現れることがある<br>
+       </td>
+       <td style="vertical-align: top;">未修正<br>
+       </td>
+       <td style="vertical-align: top;">修正済<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=256269" title="NEW - Caret browsing: 上/下 arrow should not get into button text">256269</a></td>
+       <td style="vertical-align: top;">キャレットブラウズ: 上/下 矢印キーで button の text 内に入るべきでない<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><strike><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=260667" title="RESOLVED FIXED - in caret browse mode, can't move out of textarea">260667</a></strike></td>
+       <td style="vertical-align: top;">キャレットブラウズモードで、textarea から抜け出せない<br>
+       </td>
+       <td style="vertical-align: top;">修正済</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=260668" title="NEW - in caret browse mode, caret skip brframe in textbox/textarea">260668</a></td>
+       <td style="vertical-align: top;">キャレットブラウズモードで、キャレットが textbox や textarea で brframe をスキップする</td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=260669" title="NEW - caret shows in wrong place when use 上/下 arrow key to browse between text and textbox">260669</a></td>
+       <td style="vertical-align: top;">text と textbox 間の移動に上/下矢印キーを使う時、キャレットがおかしな場所へ現れる<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=262236" title="NEW - Can't select listitems which are not next to.">262236</a></td>
+       <td style="vertical-align: top;">隣り合っていないリストアイテムを選択できない<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=263999" title="NEW - caret should not show when label is bound with a focusable form control">263999</a></td>
+       <td style="vertical-align: top;">フォーカス可能なフォームコントロールによってラベルが境界を備えている時キャレットが現れてはいけない<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=264475" title="NEW - in caret browse mode, caret shouldn't show when focus in select, button, radio, checkbox if user use tab to switch focus">264475</a></td>
+       <td style="vertical-align: top;">キャレットブラウズモードで、ユーザがタブでフォーカスを切り替えるならば、select、 button、radio、checkbox にフォーカスがある時にキャレットが現れてはいけない<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=269306" title="NEW - use left/right arrow key to move into input element with type=text and textarea element, and out with alt+[/]">269306</a></td>
+       <td style="vertical-align: top;">左/右矢印キーを使って、type=text、textarea の入力要素へ移動し、alt+[/] キーによってそこから抜け出る<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=269307" title="NEW - use left/right key to move into input element with type=button/submit/reset, button element and select element, out of them with alt+[/]">269307</a></td>
+       <td style="vertical-align: top;">左/右矢印キー を使って type=button/submit/reset、button element、select element の入力要素へ移動して、alt+[/] キーによってそこから抜け出る<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=269309" title="NEW - use left/right arrow key to move into input element with type=radio/checkbox, out of with alt+[/]">269309</a></td>
+       <td style="vertical-align: top;">左/右矢印キーを使って、type=radio/checkbox の入力要素へ移動し、alt+[/] キーによってそこから抜け出る<br>
+       </td>
+       <td style="vertical-align: top;">未修正</td>
+       <td style="vertical-align: top;">修正済</td>
+     </tr>
+   
+  </tbody> 
+</table>
+
+
+
+
+
+</div>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/keyboard/proposal.html">英語版</a> 2004/12/03</span> - <span>和訳版 2006/02/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/keyboard/proposal.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>あなたのプライバシーを護るには</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/security/pki/psm/help_20/privacy_help.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/psm/help_20/privacy_help.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+<a NAME="using_maintain"></a>
+<a NAME="privacy:protectingIDX"></a>
+<hr><h1>プライバシー保護機能を使う</h1>
+
+<p>インターネットとは、非常に多くのコンピュータにより構成される公共ネットワークで、全てのコンピュータが情報を共有しています。そのインターネットの上では、無数の接続を通して通信が行き交っており、全ての公共通信網と同様、盗聴・覗き見が可能です。</p>
+
+<p>嬉しいことに、ブラウザにはセキュリティを守ってくれる機能が含まれています。このドキュメントにある情報に加えて、最新のセキュリティについての情報を Netscape の <a href="http://home.netscape.com/security/index.html" target="_blank">Security Center</a> （訳注：<a href="http://home.netscape.com/ja/security/index.html" target="_blank">日本語版</a>） で得られます。ウィルス、安全な電子メール、安全なオンラインショッピングや銀行取引、そして子供のための安全な Web サーフィングなどの情報は、 Security Center にあるドキュメント、<a href="http://home.netscape.com/security/basics/index.html?cp=sciln" target="_blank">Understanding Security</a> をご覧下さい。
+
+<!--Fortunately, your browser contains features that safeguard your privacy. In addition to the information in this document, you can always find the latest news about security at Netscape's <a href="http://home.netscape.com/security/index.html" target="_blank">Security Center</a>.  For more information about privacy and security, including information about viruses, secure email, safe online shopping and banking, and safe surfing for children, see
+<a href="http://home.netscape.com/security/basics/index.html?cp=sciln" target="_blank">Understanding Security</a>, a document located at the Security Center.-->
+
+<p>下の一番最初のリンクをクリックして、インターネット上のプライバシーについての背景情報をご覧下さい。あなたのプライバシーを保護してくれる特定のブラウザ機能の使い方は、使いたい機能についてのトピックをクリックして下さい。</p>
+
+
+<p>&nbsp;</p>
+<table cellpadding=4 cellspacing=2 bgcolor="#cccccc" Width=324>
+<tr>
+<td class="inthissections">
+<p>Privacy Topics:</p>
+<p><a href="#sec_maintain">インターネット上のプライバシー</a></p>
+<p><a href="using_priv_help.html#using_cookies">Cookie マネージャを使う</a></p>
+<p><a href="using_priv_help.html#using_password">パスワードマネージャを使う</a></p>
+<p><a href="using_priv_help.html#using_forms">フォームマネージャを使う</a></p>
+<p><a href="using_priv_help.html#using_encrypt">保存された機密情報を暗号化する
+<!--Encrypting Stored Sensitive Information--></a></p>
+</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<a NAME="sec_maintain"></a>
+<a NAME="privacy:aboutIDX"></a>
+<hr><h1>インターネット上のプライバシー</h1>
+
+<p>この文書では、インターネット上でのプライバシーについての背景情報を解説します。また自分のプライバシーを守るためにできることを紹介します。</p>
+
+<!--This section summarizes some background information about privacy on the Internet. It also describes several things you can do to safeguard your own privacy. -->
+
+<p>プライバシーに関する事項についてのより詳しい解説は、 <a href="chrome://communicator/locale/wallet/privacy.html">プライバシーチュートリアル</a> をご覧下さい。</p>
+
+<!--For a more detailed discussion of privacy issues, see the <a href="chrome://communicator/locale/wallet/privacy.html">Privacy Tutorial</a>.-->
+
+<p>&nbsp;</p>
+<table cellpadding=4 cellspacing=2 bgcolor="#cccccc" Width=324>
+<tr>
+<td class="inthissections">
+<p>このセクションでは：</p>
+<p><a href="#privacy_gatherinfo">Web サイトは私の個人情報をどのように集めるのですか？
+<!--How Does a Web Site Gather Information About Me?--></a></p>
+<p><a href="#privacy_visit">ブラウザはどういう情報を Web サイトに渡しているのですか？
+<!--What Information Does My Browser Give to a Web Site?--></a></p>
+<p><a href="#privacy_cookies"> cookie とは何ですか？どのように使われるのでしょう？
+<!--What Are Cookies, and How Do They Work?--></a></p>
+<p><a href="#privacy_unauth">私の個人情報を私の許可なく使われないようにすればどうすればいいのでしょう？
+<!--How Do I Make Sure Unauthorized People Don't Use Information About Me?--></a></p>
+<p><a href="#privacy_anon">匿名でブラウズする<!--Browsing Anonymously--></a></p></td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<a NAME="privacy_gatherinfo"></a>
+<h2> Web サイトは私の個人情報をどのように集めるのですか？</h2>
+
+<p>あなたの個人情報を集める方法としては二通りあります：</p>
+<!--There are two ways that a site can obtain information about you: -->
+
+<ul>
+<li>あなたがサイトからページを要求した場合、あなたの代わりにブラウザが一定量の情報をサイトに公開します。</li>
+
+<!--When you request to view a page from a site, a certain amount of information is disclosed in the page request that your browser makes on your behalf.-->
+<p>
+<li>もしあなたがオンラインフォームに書き込み、送信した場合は、その情報がサイト側に送信されます。</li>
+<!--If you fill out and submit an online form, the information you filled in is sent to the site.-->
+</ul>
+
+<p>サイトがあなたの個人情報を保存する方法には二通りあります：
+<!--There are two ways for sites to store information about you:-->
+
+<ul>
+<li>ブラウザが Web サイトからページを受け取っている間、サイトはブラウザに対して、あなたのコンピュータのハードディスクに、あなたに関する少量の情報を保存するように要請します。この保存される情報は &quot; cookie &quot; と呼ばれます。 cookie を保存した （&quot;設置した&quot;） サイトは、あなたが次回そのサイトを訪れたときに情報を読み出せるようにブラウザに要請します。</li>
+
+<!--While your browser is getting a page from a web site, the site could ask your browser to store a small amount of information about you on your own hard disk. This stored information is called a&quot;cookie.&quot; A site that stores (or &quot;sets&quot;) a cookie will ask your browser to let it read the cookie the next time you visit.-->
+<p>
+<li>（オンラインフォームに書き込んで） Web サイトに渡したあらゆる情報が、そのサイトのコンピュータに保存されます。</li>
+
+<!--Any information you give a web site (by filling out an online form) could be stored on the web site's computers.-->
+</ul>
+
+<p>あなたが意図的に提供しない限り、あなたの電子メールアドレス、名前、その他個人情報は Web ページには <b>分かりません</b>。あなたが主導権を握っているのです。あなたが許可しない限り、誰もあなたの個人情報を得ることはできません。</p>
+
+<!--A web page <b>can't</b> find out your e-mail address, name, or any 
+other personal information unless you explicity provide it. 
+You are in control---nobody can obtain personal information about 
+you unless you allow it.-->
+
+
+<p>&nbsp;</p>
+<a NAME="privacy_visit"></a>
+<h2>ブラウザはどういう情報を Web サイトに渡しているのですか？</h2>
+
+<p>リンクをクリックしたり、 URL を入力してあなたがページをサイトから要求した場合には、少量の情報がサイト側に渡されます。こうした情報には、あなたの利用環境、あなたのインターネットアドレス （あなたの電子メールアドレスでは<i>ありません</i>）、そしてあなたがどのページから来たのか、が含まれます。
+
+<!--When you ask to view a web page from a site&#151;which you do each time you click a link or type a URL&#151;a small amount of information is given to the site. This information includes your operating environment, your Internet address (<i>not</i> your email address), and the page you're coming from.-->
+
+<p><b>利用環境</b>
+
+<p>サイトは、あなたのブラウザの種類とオペレーティングシステムといった、あなたの利用環境についての情報を受け取ります。この情報によってサイトは、あなたが要求しているページをスクリーン上に最適の状態で表示できるようになります。
+例をあげると、サイトはあなたが mozilla ベースのブラウザのフランス語版を、 Windows 2000 コンピュータで利用している、という情報を得るのです。</p>
+
+<!--The site is told something about your operating environment, such as
+your browser type and operating system. This helps the site present the page 
+in the best way for your screen. For example, the site might learn that you 
+use the French version of a mozilla-based browser on a Windows 2000 computer.-->
+
+<a name="ip"></a>
+<p><b>インターネットアドレス</b>
+
+<p>ブラウザはサイト側にインターネットアドレス （インターネットプロトコル、または IP アドレスとしても知られています） を教えなければなりません。この情報でサイトは、あなたが要求しているページをどこに送ればいいのかが判るのです。あなたの IP アドレスが判からないと、サイトはページを表示できません。</p>
+
+<!--Your browser must tell the site your Internet address (also known as the Internet Protocol, or IP address) so the site knows where to send the page you are requesting. The site can't present the page you want to see unless it knows your IP address.-->
+
+<p>あなたの IP アドレスは一時的なものか、固定 （静的） されたものかのどちらかです。</p>
+
+<!--Your IP address can be either temporary or fixed (static).-->
+
+<p>電話線に繋がれた標準的なモデムでインターネットに接続している場合、インターネットサービスプロバイダ （ISP） は、あなたがログオンする度に一時的な IP アドレスを割り当てています。あなたは、その IP アドレスをそのインターネットセッションの間だけ利用します。 ISP は沢山の IP アドレスを保有しており、ユーザーに対して無作為にアドレスを割り当てています。 Web サイトはその一時的な IP アドレスがどの ISP から来たものなのかは判りますが、その一時的な IP アドレスからあなたの個人情報は一切わかりません。</p>
+
+<!--If you connect to the Internet through a standard modem that's attached to your phone line, then your Internet Service Provider (ISP) assigns you a temporary IP address each time you log on. You use the temporary IP address for the duration of your Internet session. Each ISP has many IP addresses, and they assign the addresses at random to users. A web site can tell which ISP a temporary IP address comes from, but it can't learn anything about you personally from your temporary IP address.-->
+
+<p><b>重要：</b> IP アドレスはあなたの電子メールアドレスでは <b>ありません</b>。電子メールアドレスは、ちょうど現実の世界での社会保障番号のように、サイバースペースであなたを特定することができるものです。一時的な IP アドレスは、電話をかける時にたまたま使用した公衆電話の電話番号のようなものと変わりありません。</p>
+
+<!--Your IP address is <b>not</b> your email address. Your email address uniquely identifies you in cyberspace just as your social security number identifies you in the real world. A temporary IP address is no more a part of your identity than the phone number 
+of a pay telephone you use to make a call.-->
+
+<p>DSL、ケーブルモデム、または光ケーブル接続を行っている場合、インターネットにつなぐ度に固定された IP アドレスを使っている可能性があります。</p>
+
+<!--If you have DSL, a cable modem, or a fiber-optic connection, you may have a fixed IP address that you use every time you connect.-->
+
+<p>IP アドレスが一時的なものであれ、固定されたものであれ、訪れるサイトにその情報を渡したくないこともあるかもしれません。 IP アドレスの流出を防ぐ方法は、 <a href="#privacy_anon">匿名で Web をブラウズする</a> をご覧下さい。
+
+<!--Whether your IP address is temporary or fixed, you might not want that information
+to be given to a site you intend to visit. To block your IP address from being given out, see <a href="#privacy_anon">Browsing Anonymously</a>.-->
+
+<p><b>どのページから要求を送っているか</b>
+
+<p>サイトは、ページのリンクをクリックした時に、そのサイトのどのページを読んでいたのか、という情報を得ます。これによりサイトは、どのサイトがアナタにそのページを教えたのかが判ります。またこの cookie によって、あなたがサイト内を動き回る際にも、あなたがそのサイトのどの部分にいたのかが判るようになるのです。</p>
+
+<!--The site is also told which page you were reading when you clicked a 
+link to see one of the site's pages. This allows the site to know which 
+site referred you. Or, as you traverse the site, it allows the site to know 
+which of its pages you came from.-->
+
+
+<p>&nbsp;</p>
+<a NAME="privacy_cookies"></a>
+<a NAME="privacy:cookies_andIDX"></a>
+<a NAME="cookies:aboutIDX"></a>
+<h2> cookie とは何ですか？どのように使われるのでしょう？</h2>
+
+<p> cookie とはいくつかの Web サイトによって利用される少量の情報です。あなたがそうしたサイトを訪れた時、そのサイトはあなたのブラウザに、一つまたは複数の cookie をあなたのコンピュータのハードディスクに保存するように要請することがあります。</p>
+
+<!--A cookie is a small bit of information used by some web sites. When you visit the site that uses cookies, the site might ask your browser to place one or more cookies on your hard disk.-->
+
+<p>その後、あなたがそのサイトに戻ったとき、あなたがブラウザはその cookie をサイトに送り返します。</p>
+
+<!--Later, when you return to the site, your browser sends back the cookies that belong to the site. -->
+
+<p>標準の設定では、このやり取りはあなたの見えないところで行われ、サイトがいつ cookie を設定したのか、いつあなたのブラウザが Web サイトの cookie を送り返しているのかは、分かりません。
+
+<!--By default, this activity is invisible to you, and you won't know when a site is setting a cookie or when your browser is sending a web site's cookie back. However, you can set your preferences so that you will be asked before a cookie is set. -->
+
+<h3>なぜ cookie が必要なのですか?<!--Why Permit Cookies?--></h3>
+
+<p>あなたが前回訪れた際の情報をサイトが覚えておくように許可することで、あなたにとって便利になる場合もあります。例えば、もしあなたが長い文書を読んでいて 17 ページまで読み進んだとしましょう。あなたが次回に訪れたとき、サイトが 17 ページ目をすぐに表示してくれたら便利ですね。</p>
+
+<!--There are times when it would be to your advantage to allow
+a site to know something about your previous visits. 
+For example, if you were previously filling out a long form and got as
+far as page 17, it would be nice if the site could take you immediately
+to page 17 on your next visit. -->
+
+<h3> cookie を拒否しなければならない理由は何ですか？<!--Why Reject Cookies?--></h3>
+
+<p>あるサイトが cookie を保存できる場合、あなたがそのサイトでしたこと全てを cookie に書き込み、更新して、追跡できるのです。つまり、あなたのプロファイルを作成することができるのです。</p>
+
+<!--If a site can store a cookie, it can keep track of everything you've done 
+while visiting the site by writing these things into a cookie that it keeps
+updating. In this way, a site can build a profile on you.-->
+
+<p>そのサイトがそうして収集した情報で何をするかで、良くも悪くもなります。例えば、もし書籍販売のサイトがあなたが犬に興味を持っている事を知っていて、新しく犬に関する本が発売されたら教えてくれる、というのは良い面でしょう。しかし、もしそのサイトがそうした情報を地域の衛生局に販売する場合は悪い面といえます。そうした情報が、正式な許可を得ていないまま飼い主になる可能性のある人を調査する一つの手がかりになり得るからです。</p>
+
+<!--This may be a good thing or a bad thing depending on what the site 
+does with the information. For example, it might be good if
+a bookseller knew you frequently looked for information on dogs so 
+it could tell you about a new dog book. It might be bad if the bookseller then 
+sold that information to the local dog pound so they could cross-check 
+for potential dog owners who do not have valid dog licenses.-->
+
+<h3>サイトは cookie の情報をどう利用するのですか？</h3>
+<!--How Do Sites Use Cookie Information?-->
+
+<p> Web サイトは cookie の情報を利用して、あなたに対してサイトの表示を最適化できます。また広告主は、そうした情報を利用してあなたに関心のある分野や購買情報に的を絞った広告を出せるのです。定評のあるサイトは、収集した情報をどのように利用するのかを説明した、個人情報を扱う際の指針 （プライバシーポリシー） を公開しています。</p>
+
+<!--Web sites can use cookie information to tailor their presentations to you, and advertisers can use such information to target online ads to your interests and buying information. Reputable web sites have prvacy policies that describe how they use the information they receive.-->
+
+<p>疑問を感じたら、 cookie が設置される前や、（あなたの名前や電子メールアドレスといった） 情報を提出する前に、必ず Web サイトのプライバシーポリシーを確認してください。</p>
+
+<!--When in doubt, always check a web site's privacy policy before permitting a cookie to be set, and before providing any personal information (such as your name and email address).-->
+
+<a name="privacy_foreign"></a>
+<a NAME="cookies:foreignIDX"></a>
+<h3>外部 cookie に対処する</h3>
+
+<p>あるサイトが cookie を保存した場合、将来その cookie はそのサイトのみに返されます。ブラウザは、あるサイトが設置した cookie を他のサイトに渡すようなことはしません。サイトは自身が設置した cookie しか受け取ることができず、
+インターネット全般をブラウズしている際の行動に関してではなく、その特定のサイト上でのあなたの行動に関してのみ追跡できます。</p>
+
+<!--If your browser stores a site's cookie, it will return the cookie only to that particular site. Your browser will not provide one site with cookies set by another. Since a web site can only receive back its own cookies, it can keep track of your activities while you are at that site but not your activities in general while surfing the Web.-->
+
+<p>しかし、あなたが ABC.com というサイトを訪れている際に、 cookie が ABC.com によってではなく、 XYZ.com によって設置された場合を想定して下さい。 ABC.com は XYZ.com からの画像を表示することで簡単にそのような設定ができます。そのため、あなたが ABC.com を訪れた際、ブラウザは画像を取り込みに XYZ.com まで回り道をして、その際に XYZ.com は cookie を設置できるのです。</p>
+
+<!--But suppose that while you visit site ABC.com, a cookie gets
+stored not by ABC.com but by a different site called XYZ.com.
+ABC.com can cause that to happen very simply by displaying an image from
+XYZ.com. So when you visit ABC.com your browser makes a side-trip to 
+XYZ.com to get the image, and XYZ.com stores the cookie at that time.-->
+
+<p>XYZ.com が cookie 設置用の画像を多くのサイトに置いている場合は、そうしたサイトでのあなたの行動を全て含んだ cookie を作成することができるのです。 XYZ.com からの画像を掲載するサイトが増えれば増えるほど、より多くの情報を含んだあなたのプロファイルを作成することができるのです。</p>
+
+<!--If XYZ.com enlists many sites to display its cookie-storing image, 
+it can build up a cookie that contains information about your behavior at 
+all those sites. The more sites that display XYZ.com's image, 
+the more encompassing a profile it can build on you.-->
+
+<p>あなた自身が訪れていると思っているサイトによってではなく、他のサイトによって設置される cookie を <i>外部 cookie </i> と呼びます。もし外部 cookie について心配であれば、外部 cookie は設置せず、普通の cookie のみを設置できるように許可をすることもできます。</p>
+
+<!--Such cookies that are stored by the site other than the one that you
+think you are visiting are called <i>foreign cookies</i>. If you
+are concerned about foreign cookies but not about ordinary cookies, 
+you could give permission for sites to store ordinary cookies only but 
+not foreign ones.-->
+
+<p>あなたのブラウザが受け入れる cookie のタイプの設定は、 Cookie マネージャでできます。
+
+<!--You use Cookie Manager to specify what types of cookies 
+you want your browser to accept.-->
+
+
+<p>&nbsp;</p>
+<a NAME="privacy_unauth"></a>
+<h2>私の個人情報を私の許可なく使われないようにすればどうすればいいのでしょう？</h2>
+
+<p>あなたの個人情報を守るための最も良い方法は、個人情報を他人に提供する際に注意深くなることです。インターネットは公共のネットワークです。もし誰かがあなたの名前、電話番号、住所、およびその他の情報を得た場合は、その情報がそれ以外の人にも共有される可能性があるのです。</p>
+
+<!--The best way to keep your information private is to be cautious about providing it to others. The Internet is a public network, and you should assume that when someone asks you for your name, phone number, address, and other information, they might share that information with others.-->
+
+<p> Web 上であなたの名前、住所、電話番号を提供するということは、電話帳のリストに載るのと同じことです。実際、電話帳に掲載された場合、あなたの名前、住所、電話番号はオンライン登録簿や他の World Wide Web 上のデータベースにも掲載されるでしょう （People Finder や Yellow Page を覗いて見て下さい）。</p>
+
+<!--Providing your name, address, and phone number on the web is like having a listing in the telephone book. In fact, if you are listed in the white pages of the telephone book, your name, address, and phone number are probably listed in online directories and other databases on the World Wide Web. (Try looking yourself up in a directory such as People Finder or Yellow Pages.)-->
+
+<p> Web サイトがアナタに関しての情報を求めてきた場合、先に進む前に、そのサイトのプライバシーポリシーを確認してください。以下に、 Web サイトのプライバシーポリシーに関して確認する項目を挙げました：</p>
+
+<!--If a web site asks for information about you, always check the site's privacy policy before proceeding. Here are some questions you might ask about a web site's privacy policy:-->
+
+<ul>
+<li>そのサイトはどういう種類の個人情報を集めているのか？</li>
+<!--What kinds of personal information is this site gathering?-->
+<li>そのサイトは、集めた情報をどのように利用するつもりなのか？</li>
+<!--How will the site use the information?-->
+<li>そのサイトは、そのサイトとのやり取りは無関係な目的で、
+外部とその情報を共有するつもりなのか？</li>
+<!--Will the site share the information with others, for purposes unrelated to my dealing with the site?-->
+<li>管理や更新のために、
+そのサイトが私に関して集めた情報の一部または全てのデータにアクセスすることができるのか？</li>
+<!--Can I access some or all of the information a site gathers about me, in order to inspect or update it?-->
+<li>そのサイトはどのようにして保存している情報を得ようとする侵入者を防いでいるか？
+<!--How does the site keep intruders from viewing the information?-->
+<li>質問や問題が発生した場合、 Web サイトにどうコンタクトすればよいのか？</li>
+<!--How do I contact the web site if I have questions or problems?-->
+</ul> <p>&nbsp;</p>
+
+<a NAME="privacy_anon"></a>
+<a NAME="browsing_anonymouslyIDX"></a>
+<a NAME="privacy:IP_addressIDX"></a>
+<h2>匿名で Web をブラウズする</h2>
+
+<p>あなたがあるサイトのページを見たいと要求した際、そのページの送信先が分かるように、ブラウザはそのサイトにあなたの <a href="#ip">インターネットアドレス</a> （IP アドレス） を教えなければなりません。あなたの IP アドレスは一時的なものか、固定 （静的） なものかのどちらかです。</p>
+
+<!--When you request to see a page from a site, your browser must tell the site your <a href="#ip">Internet address</a> (IP address) so the site knows where to send the page. Your IP address can be either temporary or fixed (static).-->
+
+<p>あなたの IP アドレスが一時的なものであれ、固定されたものであれ、訪れようとしているサイトに対してその情報を渡したくない場合もあるでしょう。しかし、もしあなたのブラウザがこの情報を渡さないと、サイト側は要求されたページをどこに向けて送信すればいいのかが分からないのです。そのため、この情報だけはブラウザが送信するのを止められないものなのです。</p>
+
+<!--Whether your IP address is temporary or fixed, you might not want that information to be given to a site you intend to visit. But if your browser doesn't provide this information, the site won't know where to deliver the requested page. So this is the one piece of information that you can't ask
+your browser not to reveal.-->
+
+<p>もし本当に IP アドレスをサイト側に渡したくない場合は、信頼できる仲介サイトを利用しなければなりません。そうした仲介サイトに行き、あなたが欲しいページのサイト名を指定します。その仲介サイトは、独自の IP アドレスを使用して、あなたの代わりにページを要求し、ページを受け取ると、そのページをあなたに向けて転送します。そのページを提供したサイトからはあなたの IP アドレスは決してみることはできません。</p>
+
+<!--If you really want to hide your IP address from the site, you need to
+use some trusted intermediate site. You go to the intermediate site
+and tell it the name of the site whose page you want. The intermediate
+site requests the page on your behalf, using its own IP address as the
+return address. Then, when it gets the page, it forwards it on to
+you. The site that supplied the page never gets to see your IP address.-->
+
+<p>このようなサービスを提供するサイトがいくつか存在します。使いなれた検索ページを使って、&quot;anonymous&quot; や &quot;surfing&quot; といったキーワードでページを探してみてください。</p>
+
+<p>
+［&nbsp;<A HREF="#using_maintain">セクションの最初に戻る</A>&nbsp;］
+</p>
+
+
+
+
+<hr>
+
+<p><i>7/13/2001</i></p>
+
+<hr>
+<p>Copyright &copy; 1994-2001 Netscape Communications Corporation.</p>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/psm/help_20/privacy_help.html">英語版</a> 2001/07/17</span> - <span>和訳版 2006/03/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/psm/help_20/privacy_help.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1122 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>セキュリティ モジュール データベース ツールを利用する</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/security/pki/nss/tools/modutil.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/tools/modutil.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+<CENTER><H2><A NAME="1013897">
+セキュリティ モジュール データベース ツールを利用する
+</A></H2></CENTER>
+
+<P><A NAME="1045030"><center><FONT SIZE="-1">
+ニュースグループ： 
+<A href="news://news.mozilla.org/netscape.public.mozilla.crypto">
+netscape.public.mozilla.crypto</A><br>
+
+著者： 
+<A href="mailto:cotter@netscape.com?subject=Modutil Doc Feedback">
+Sean Cotter</A><br>
+
+管理者： 
+<A href="mailto:wtc@netscape.com?subject=Modutil Doc Feedback">
+Bob Lord</A>
+</FONT></center></A></P>
+
+<P><A NAME="1045021">
+セキュリティ モジュール データベース ツールは、ハードウェアトークン内、または
+ <CODE>secmod.db</CODE> ファイル内にある PKCS #11 
+モジュール情報を管理するコマンドライン ユーティリティです。
+このツールを利用して PKCS #11 モジュールの追加／削除、パスワードの変更、
+ディフォルトの設定、モジュールのコンテンツの一覧表示、
+スロットの使用可／不可の決定、 FIPS-140-1 準拠 （FIPS-140-1 compliance） 
+の開始／停止の決定、および暗号化操作のためのディフォルト 
+プロバイダの決定に利用することができます。
+このツールはまた、 <CODE>key3.db</CODE>、 <CODE>cert7.db</CODE>、および
+ <CODE>secmod.db</CODE><VAR> </VAR>の各セキュリティ データ 
+ファイルを作成することもできます。
+</A></P>
+
+<P><A NAME="1043099">
+セキュリティ モジュール データベース管理に関連する作業には、
+多くの場合、暗号鍵データベース （<CODE>key3.db</CODE> ファイル） 
+や証明書データベース （<CODE>cert7.db</CODE> ファイル） の管理プロセスが含まれます。
+暗号鍵、証明書、および PKCS #11 モジュール管理プロセスは、一般的に、
+証明書や証明書データベースを作成し管理するのに必要な、
+暗号鍵や暗号鍵データベースの作成から始まります。
+</A></P>
+
+<P><A NAME="1043101">
+この文書では、セキュリティ モジュール データベースの管理について解説します。
+証明書データベースや暗号鍵データベースの管理についての情報は、
+<A HREF="certutil.html">証明書データベースツールの利用</A> をご覧ください。
+</A></P>
+
+<H2><A NAME="Availability"></A>
+<A NAME="1031698">
+利用環境
+</A></H2>
+
+<P><A NAME="1033637">
+このツールは、 Solaris 2.5.1 （SunOS 5.5.1） および Windows NT 4.0 上でビルドされています。
+</A></P>
+
+<H2><A NAME="Syntax"></A>
+<A NAME="1028268">
+構文
+</A></H2>
+
+<P><A NAME="1033678">
+セキュリティ モジュール データベース ツールを起動するには、
+次のコマンドを入力してください：
+</A></P>
+
+<P><A NAME="1033679">
+<CODE>modutil </CODE><I>option</I><CODE> [</CODE><I>arguments</I><CODE>]</CODE>
+</A></P>
+
+<P><A NAME="1028271">
+ <I>options</I> および <I>arguments</I> となっているところは、
+次のセクションで一覧表示したオプションと引数の組み合わせです。
+それぞれのコマンドには一つのオプションが付きます。
+それぞれのオプションには、引数が全く付かない場合もありますし、
+複数の引数がつく場合もあります。利用法を示す文字列を見たい場合には、
+オプションをつけずにコマンドを入力してください。
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1027593">
+オプションと引数
+</A></H3>
+
+<P><A NAME="1028291">
+オプションは処理 （action） を特定します。オプション引数はその処理を調整します。
+ <CODE>modutil</CODE> に対してのオプションおよび引数は、
+次のように定義されています：
+</A></P>
+
+<P><B></B>
+<TABLE BORDER="2" CELLPADDING=5>
+<TR><TD VALIGN=baseline ALIGN=left>
+<A NAME="1043286"><B>オプション</B></A>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1043288"></A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1032245"><CODE>-create</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left><P><A NAME="1038808">
+新しい <CODE>secmod.db</CODE>、 <CODE>key3.db</CODE>、および <CODE>cert7.db</CODE> 
+ファイルを作ります。引数 <CODE>-dbdir</CODE> <I>directory</I> 
+を利用してディレクトリを指定します。
+もし指定したディレクトリに何らかのデータベースがすでに存在する場合には、
+セキュリティ モジュール データベース ツールは、エラーメッセージを表示します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1032249"><CODE>-list [</CODE><I>modulename</I><CODE>]</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038844">
+ <CODE>secmod.db</CODE> ファイルの内容について基本的な情報を表示します。
+ <I>modulename</I> を利用して、特定のモジュール、
+そのスロット、そしてトークンについての情報を表示します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038660"><CODE>-add </CODE><I>modulename</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038851">
+名前付き PKCS #11 モジュールをデータベースに追加します。
+このオプションは、引数 <CODE>-libfile</CODE>、 <CODE>-ciphers</CODE>、
+および <CODE>-mechanisms</CODE> と共に使用します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038656"><CODE>-jar </CODE><I>JAR-file</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038943">
+名前付き JAR ファイルを使って、新しい PKCS #11 モジュールをデータベースに追加します。
+引数 <CODE>-installdir</CODE> および <CODE>-tempdir</CODE> 
+と共にこのオプションを利用します。 JAR ファイルは、 Netscape Server PKCS #11 JAR
+ フォーマットを使用し、インストールされる全てのファイル、モジュール名、
+メカニズム フラッグ、および暗号フラッグを特定します。 JAR ファイルはまた、
+ PKCS #11 モジュール ライブラリー ファイルやドキュメンテーションのような他のファイルを含めた、
+目的のコンピュータにインストールされるあらゆるファイルを備えていなくてはなりません。
+サーバを通したり、セキュリティ モジュール データベース 
+ツールを利用しての （つまり、 JavaScript サポートのない環境での）
+インストールを行うのに必要な特別なスクリプトについての情報は、
+セクション <A HREF="modutil.html#1043224">JAR インストレーションファイル</A> 
+をご覧ください。一般的なインストールガイドや、 JavaScript 
+によるサポートが得られる環境 （Netscape Communicator でのような） 
+でのモジュールのインストールについては、 
+<A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/security/jmpkcs/jimpkcs.htm" 
+TARGET="_blank"> PKCS #11 暗号モジュールのインストールに JAR 
+インストレーションマネジャーを利用する</A> をご覧ください。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038652"><CODE>-delete </CODE><I>modulename</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038654">
+名前付きモジュールを削除します。 Netscape Communicator のインターナル
+ PKCS #11 モジュールは削除できないことにご注意ください。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038648"><CODE>-changepw </CODE><I>tokenname</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039006">
+名前付きトークンのパスワードを変更します。トークンがイニシャライズされていない場合、
+このオプションはパスワードをイニシャライズします。引数 <CODE>-pwfile</CODE> および
+ <CODE>-newpwfile</CODE> と共にこのオプションを利用します。ここで 「パスワード」 とは、
+個人識別番号 （PIN） に相当するものです。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038644"><CODE>-default </CODE><I>modulename</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039027">
+名前付きモジュールがディフォルトプロバイダとなるセキュリティ機構を指定します。
+セキュリティ機構は、引数 <CODE>-mechanisms</CODE> <I>mechanism-list</I> 
+で指定されます。
+<!--Specify the security mechanisms for which the named module will be a default provider. -->
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038640"><CODE>-undefault </CODE><I>modulename</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039044">
+名前付きモジュールがディフォルトプロバイダと<b>ならない</b>セキュリティ機構を指定します。
+セキュリティ機構は、引数 <CODE>-mechanisms</CODE> <I>mechanism-list</I> で指定されます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038691"><CODE>-enable </CODE><I>modulename</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039376">
+名前付きモジュール上の全てのスロットを利用可能にします。
+引数 <CODE>[-slot </CODE><I>slotname</I><CODE>]</CODE> 
+を使って特定のスロットを利用可能にします。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038687"><CODE>-disable </CODE><I>modulename</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038689">
+名前付きモジュール上の全てのスロットを利用不能にします。
+引数 <CODE>[-slot </CODE><I>slotname</I><CODE>]</CODE> 
+を使って特定のスロットを利用不能にします。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038683"><CODE>-fips [true | false]</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039068">
+Netscape Communicator のインターナルモジュールに対しての
+FIPS-140-1 準拠を開始 （<CODE>true</CODE>） 
+または停止 （<CODE>false</CODE>） にします。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038679"><CODE>-force</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039075">
+セキュリティ モジュール データベース ツールのインターアクティブ プロンプトを、
+スクリプトで走らせることができるように停止します。
+警告に対してそれぞれの予定の操作を手動でテストし、また、
+プロンプトをバイパスすることによってセキュリティに欠陥が起きたり、
+データベースの保全性が失われないことが確認できた後にのみ、
+このオプションを利用してください。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1043282"><B>引数</B></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1043284"></A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038834"><CODE>-dbdir </CODE><I>directory</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039085">
+セキュリティ モジュール データベース ファイルにアクセスしたり、
+作成したりするためのデータベースディレクトリを指定します。
+UNIX でのセキュリティ モジュール データベース ツールは、
+ユーザーのネットスケープ ディレクトリをディフォルトで指定します。
+ Windows NT にはディフォルト ディレクトリがないため、
+ディレクトリを指定するため <CODE>-dbdir</CODE> を使わなければなりません。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038834"><CODE>-dbprefix</CODE> <I>prefix</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P>
+ <CODE>cert7.db</CODE> および <CODE>key3.db</CODE> 
+ファイルで使われるプレフィックスを指定します （例えば、 <CODE>my_cert7.db</CODE> 
+や <CODE>my_key3.db</CODE>）。このオプションは、特別な場合のために提供されています。
+証明書および暗号鍵データベースの名前を変更することはお勧めできません。
+</P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1037903"><CODE>-libfile </CODE><I>library-file</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039095">
+ DLL または他の、データベースに追加されている PKCS #11 インターフェイス 
+モジュールの実装を含むライブラリ ファイルへのパスを指定します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1037899"><CODE>-ciphers </CODE><I>cipher-enable-list</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039102">
+データベースに追加されているモジュール内の特定の暗号を利用可能にします。
+ <I>cipher-enable-list</I> は、コロンにより区切られた暗号名の一覧です。
+スペースが含まれる場合、引用符でこの一覧を囲みます。
+現在利用可能な暗号は次のとおりです：<CODE>FORTEZZA</CODE>
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038731"><CODE>-mechanisms </CODE><I>mechanism-list</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039116">
+特定のモジュールがディフォルトプロバイダとしてフラッグを立てられたセキュリティ機構を指定します。
+<I>mechanism-list</I> は、コロンにより区切られた機構名の一覧です。
+スペースが含まれる場合、引用符でこの一覧を囲みます。
+モジュールは一覧に挙げられた機構のディフォルトプロバイダとなり、
+その機構が利用可能になります。複数のモジュールが特定の機構へのディフォルト
+プロバイダとなっている場合、その機構へのディフォルトプロバイダは未定義のままになります。
+次の機構が現在利用可能です： <CODE>RSA</CODE>, <CODE>DSA</CODE>、 <CODE>RC2</CODE>、
+ <CODE>RC4</CODE>、 <CODE>RC5</CODE>、 <CODE>DES</CODE>、 <CODE>DH</CODE>、
+ <CODE>FORTEZZA</CODE>、 <CODE>SHA1</CODE>、 <CODE>MD5</CODE>、 <CODE>MD2</CODE>、
+ <CODE>RANDOM</CODE> （乱数の生成用）、および <CODE>FRIENDLY</CODE>
+（meaning certificate は一般的に読むことができます）。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038727"><CODE>-installdir </CODE><I>root-installation-directory</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039213">
+オプション <CODE>-jar</CODE> <I>JAR-file</I> 
+でインストールされるファイルに対して相対的なルート インストール ディレクトリを指定します。
+このディレクトリは、ダイナミック ライブラリ ファイルの保存に適切なディレクトリ
+ （例えば、サーバのルート ディレクトリ、または Netscape Communicator のルート ディレクトリ）
+ に対し、一段下のディレクトリでなければなりません。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038723"><CODE>-tempdir </CODE><I>temporary-directory</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039235">
+テンポラリ ディレクトリとは、インストールの過程で、
+オプション <CODE>-jar</CODE> <I>JAR-file</I> によって作られるテンポラリ
+ ファイルが作られる場所のことです。テンポラリ ディレクトリが指定されていない場合、
+カレント ディレクトリが使用されます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038719"><CODE>-pwfile </CODE><I>old-password-file</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039652">
+オプション <CODE>-changepw</CODE> <I>tokenname</I> を使用してパスワードを変更する際、
+自動的にパスワードが入力されるように、
+トークンの既存のパスワードを含むテキストファイルを指定します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038715"><CODE>-newpwfile </CODE><I>new-password-file</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038717">
+オプション <CODE>-changepw</CODE> <I>tokenname</I> 
+を使用してパスワードが自動的に入力されるように、
+新しい、または入れ替えられたパスワードを含むテキストファイルを指定します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038711"><CODE>-slot </CODE><I>slotname</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038713">
+オプション <CODE>-enable</CODE> <I>modulename</I> または <CODE>-disable</CODE>
+ <I>modulename</I> で、使用可能／不能にする特定のスロットを指定します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1043973">-nocertdb</A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1043985">
+証明書データベースまたは暗号鍵データベースを開けないようにして下さい。
+開くことによっていくつかの影響があります：
+</A></P>
+<ul><P></P>
+<LI><P><A NAME="1044076">
+コマンド <CODE>-create</CODE> を利用すると、 
+ <CODE>secmod.db</CODE> ファイルのみが作成されます。
+ <CODE>cert7.db</CODE> および <CODE>key3.db</CODE> は作成されません。
+</A></P>
+<LI><P><A NAME="1044080">
+コマンド <CODE>-jar</CODE> を利用すると、
+ JAR ファイル上の署名はチェックされません。
+</A></P>
+<LI><P><A NAME="1044089">
+コマンド <CODE>-changepw</CODE> を利用すると、 
+ Netscape インターナル モジュールのパスワードが設定または変更できません。
+パスワードが <CODE>key3.db</CODE> に保存されているからです。
+</A></P>
+</ul>
+
+</TABLE>
+<TABLE>
+<TR><TD>
+</TABLE>
+</A></P>
+
+<H2><A NAME="Usage"></A>
+<A NAME="1040302">
+利用例
+</A></H2>
+
+<P><A NAME="1043239">
+上で示したようなオプションと引数を使用したセキュリティ モジュール 
+データベース ツールの機能は、次のように区分けすることができます：
+四角括弧で囲んだオプションと引数はオプショナルであり、
+そうでないものは必ず必要なものです。
+</A></P>
+
+<ul>
+<LI><A NAME="1043240">
+セキュリティ マネージメント データベース ファイルの一式を作成します
+（<CODE>key3.db</CODE>、 <CODE>cert7.db</CODE>、および <CODE>secmod.db</CODE>）：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043241">
+<CODE>-create
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043242">
+モジュールの基本的な情報または、そのモジュールの内容についての詳細情報を表示します：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043243">
+<CODE>-list [</CODE><I>modulename</I><CODE>]
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043244">
+ PKCS #11 モジュールを追加します。このモジュールには、
+サポート ライブラリ ファイルの設定が含まれており、暗号を利用可能にし、
+そして様々なセキュリティ機構に対してのディフォルト 
+プロバイダの状態を設定します：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043245">
+<CODE>-add </CODE><I>modulename</I><CODE> -libfile </CODE><I>library-file</I><CODE> [-ciphers </CODE><I>cipher-enable-list</I><CODE>]<br>
+[-mechanisms </CODE><I>mechanism-list</I><CODE>]
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043246">
+既存の JAR ファイルから PKCS #11 モジュールを追加します：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043247">
+<CODE>-jar </CODE><I>JAR-file</I><CODE> -installdir </CODE><I>root-installation-directory</I><CODE> <br>
+[-tempdir </CODE><I>temporary-directory</I><CODE>]
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043248">
+セキュリティ モジュール データベースから特定の PKCS #11 モジュールを削除します：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043249">
+<CODE>-delete </CODE><I>modulename
+</I></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043250">
+トークンのパスワードを初期化または変更します：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043251">
+<CODE>-changepw </CODE><I>tokenname</I><CODE> [-pwfile </CODE><I>old-password-file</I><CODE>] <br>
+[-newpwfile </CODE><I>new-password-file</I><CODE>]
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043252">
+既存の PKCS #11 モジュール内の様々なセキュリティ機構に対するディフォルト
+ プロバイダの状態を設定します：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043253">
+<CODE>-default </CODE><I>modulename</I><CODE> -mechanisms </CODE><I>mechanism-list</I><CODE> 
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043254">
+既存の PKCS #11 モジュール内の様々なセキュリティ機構に対するディフォルト
+ プロバイダの状態をクリアします：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043255">
+<CODE>-undefault </CODE><I>modulename</I><CODE> -mechanisms </CODE><I>mechanism-list</I><CODE> 
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043256">
+モジュール内の特定のスロット、または全てのスロットを利用可能にします：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043257">
+<CODE>-enable </CODE><I>modulename</I><CODE> [-slot </CODE><I>slotname</I><CODE>] 
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043258">
+モジュール内の特定のスロット、または全てのスロットを利用不能にします：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043259">
+<CODE>-disable </CODE><I>modulename</I><CODE> [-slot </CODE><I>slotname</I><CODE>] 
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043260">
+ Netscape Communicator のインターナル モジュール内の FIPS-140-1 準拠を開始／停止します：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043261">
+<CODE>-fips [true | false] 
+</CODE></BLOCKQUOTE></A>
+
+<P><LI><A NAME="1043262">
+スクリプト操作をサポートするため、
+セキュリティ モジュール データベース ツールに対してインターアクティブ 
+プロンプトを停止します：
+</A></LI>
+<BLOCKQUOTE><A NAME="1043263">
+<CODE>-force 
+</CODE></BLOCKQUOTE></A>
+
+</ul>
+
+<H2><A NAME="JAR Installation File"></A>
+<A NAME="1043224">
+ JAR インストレーション ファイル
+</A></H2>
+
+<P><A NAME="1040623">
+ JAR ファイルがサーバによって、セキュリティ モジュール データベース ツールによって、
+または JavaScript スクリプトを理解しないプログラムによって動かされた場合、
+特別な情報ファイル （special information file）
+ が次に示された形式の中に含まれなければなりません。
+</A></P>
+
+<P><A NAME="1040326">
+この情報ファイルは、特別なスクリプトを含んでおり、
+ JAR アーカイブの目録ファイル （manifest file） で宣言されなければなりません。
+スクリプトにはどのような名前を付けても構いません。
+これに対するメタインフォ タグ （metainfo tag） は、
+<CODE>Pkcs11_install_script</CODE> です。目録ファイルのメタ情報を宣言するには、
+ <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/signedobj/signtool/index.htm"
+ TARGET="_blank">Netscape Signing Tool</A> に通じたファイル内に目録ファイルをおきます。
+
+<!--This information file contains special scripting and must be declared in the JAR archive's manifest file. The script can have any name. The metainfo tag for this is <CODE>Pkcs11_install_script</CODE>. To declare meta-information in the manifest file, put it in a file that is passed to the <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/signedobj/signtool/index.htm" TARGET="_blank">Netscape Signing Tool</A>. -->
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1040669">
+サンプル スクリプト
+</A></H3>
+
+<P><A NAME="1041893">
+例えば、 PKCS #11 インストール スクリプトは、 <CODE>pk11install</CODE> 
+内にあるとします。この場合、 <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/signedobj/signtool/index.htm" 
+TARGET="_blank">Netscape Signing Tool</A> のメタインフォ ファイルは、
+次のようなラインを含んでいるでしょう：
+</A></P>
+
+<PRE><A NAME="1040334"><CODE>+ Pkcs11_install_script: pk11install</CODE></A></PRE>
+
+<P><A NAME="1040336">
+サンプル スクリプト ファイルには次のものを含むことができます：
+</A></P>
+
+<PRE><A NAME="1040338">
+ForwardCompatible { IRIX:6.2:mips SUNOS:5.5.1:sparc }<br>Platforms {<br>&nbsp;&nbsp;&nbsp;WINNT::x86 {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModuleName { "Fortezza Module" }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModuleFile { win32/fort32.dll }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultMechanismFlags{0x0001}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultCipherFlags{0x0001}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Files {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;win32/setup.exe {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Executable<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelativePath { %temp%/setup.exe }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;win32/setup.hlp {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelativePath { %temp%/setup.hlp }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;win32/setup.cab {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelativePath { %temp%/setup.cab }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;WIN95::x86 {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EquivalentPlatform {WINNT::x86}<br>&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;SUNOS:5.5.1:sparc {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModuleName { "Fortezza UNIX Module" }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModuleFile { unix/fort.so }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultMechanismFlags{0x0001}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CipherEnableFlags{0x0001}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Files {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unix/fort.so {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelativePath{%root%/lib/fort.so}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AbsolutePath{/usr/local/netscape/lib/fort.so}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FilePermissions{555}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xplat/instr.html {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelativePath{%root%/docs/inst.html}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AbsolutePath{/usr/local/netscape/docs/inst.html}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FilePermissions{555}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;IRIX:6.2:mips {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EquivalentPlatform { SUNOS:5.5.1:sparc }<br>&nbsp;&nbsp;&nbsp;}<br>}
+</A></PRE>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1040386">
+スクリプトの文法
+</A></H3>
+
+<P><A NAME="1041894">
+スクリプト ファイルの文法は次のようになります：
+</A></P>
+
+<PRE><A NAME="1040388"><CODE>--&gt; </CODE><I>valuelist</I></A></PRE>
+<PRE><A NAME="1040390"><I>valuelist</I><CODE> --&gt; </CODE>
+<I>value valuelist<br></I>
+<CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;</CODE><I>null&gt;</I></A></PRE>
+<PRE><A NAME="1040394"><I>value</I><CODE> ---&gt; </CODE>
+<I>key_value_pair<br></I><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</CODE><I>string</I></A></PRE><PRE><A NAME="1040397"><I>key_value_pair</I><CODE> --&gt; </CODE><I>key </I><CODE>{ </CODE><I>valuelist</I><CODE> }</CODE></A></PRE>
+<PRE><A NAME="1040399"><I>key</I><CODE> --&gt; </CODE><I>string</I></A></PRE>
+<PRE><A NAME="1040401"><I>string</I><CODE> --&gt; </CODE><I>simple_string<br></I><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</CODE><I>complex_string</I><CODE>"</CODE></A></PRE>
+<PRE><A NAME="1040404"><I>simple_string</I><CODE> --&gt; [^ \t\n\""{""}"]+ </CODE>
+（空白、引用符、中括弧は入れないでください）</A></PRE>
+<PRE><A NAME="1040406"><I>complex_string</I><CODE> --&gt; ([^\"\\\r\n]|(\\\")|(\\\\))+ </CODE>
+（引用やバックスラッシュはバックスラッシュを使ってエスケープしなければなりません。
+複合文字列では、新しい行を加えたり、改行をしてはいけません。）
+</A></PRE>
+
+<P><A NAME="1040408">
+複合文字列以外では、全ての空白スペース （例えば、スペース、タブ、および改行） は、
+同じものとしてみなされ、区切りトークン （delimit tokens） に対してのみ使用されます。
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1040412">
+キー
+</A></H3>
+
+<P><A NAME="1040414">
+キーでは、大文字小文字の区別はありません。
+このセクションでは、次のキーについて解説します：
+</A></P>
+
+<P><A NAME="1042754">
+<A HREF="modutil.html#1042778">グローバル キー （Global Keys）</A>
+<br>
+<A HREF="modutil.html#1040459">パー プラットフォーム キー （Per-Platform Keys）</A>
+<br>
+<A HREF="modutil.html#1040510">パー ファイル キー （Per-File Keys）</A>
+</A></P>
+
+<H4><A NAME="Head3;"></A>
+<A NAME="1042778">
+グローバル キー （Global Keys）
+</A></H4>
+
+<P><A NAME="1040418">
+<CODE>ForwardCompatible</CODE> 
+</A></P>
+
+<P><A NAME="1040419">
+前方互換 （forward compatible） を持つプラットフォームの一覧を提供します。
+使用中のプラットフォームがサポートされるプラットフォームの一覧の中にない場合、
+ <CODE>ForwardCompatible</CODE> の一覧の中から、同じ OS 
+やアーキテクチャの過去のバージョンを探し出そうとします。見つかった場合は、
+その属性が使用中のプラットフォームに利用されます。
+</A></P>
+
+<P><A NAME="1040424">
+<CODE>Platforms</CODE> （必須）
+</A></P>
+
+<P><A NAME="1040425">
+プラットフォームの一覧を提供します。一覧のそれぞれのエントリーは、
+それ自体がキー値ペア （key-value pair） です：
+キーはプラットフォームの名前およびプラットフォームの様々な属性を含む値一覧です。
+属性 <CODE>EquivalentPlatform</CODE> が指定されていない場合、
+ <CODE>ModuleName</CODE>、 <CODE>ModuleFile</CODE>、および <CODE>Files</CODE> 
+属性が指定されていなければなりません。プラットフォーム文字列は次の形式です：
+<I>system name</I><CODE>:</CODE><I>OS release</I><CODE>:</CODE><I>architecture</I>。
+インストーラは、これらの値を NSPR から取得します。非 UNIX 系 OS では、
+ <I>OS release</I> の欄は空白です。 NSPR では、
+次のシステム名およびプラットフォームが定義されています：
+</A></P>
+
+<ul>
+<P><LI><A NAME="1040433">AIX (rs6000) </A></LI>
+<P><LI><A NAME="1040434">BSDI (x86) </A></LI>
+<P><LI><A NAME="1041998">FREEBSD (x86) </A></LI>
+<P><LI><A NAME="1040436">HPUX (hppa1.1) </A></LI>
+<P><LI><A NAME="1040437">IRIX (mips) </A></LI>
+<P><LI><A NAME="1040438">LINUX (ppc, alpha, x86) </A></LI>
+<P><LI><A NAME="1040439">MacOS (PowerPC)</A></LI>
+<P><LI><A NAME="1040443">NCR (x86) </A></LI>
+<P><LI><A NAME="1040444">NEC (mips) </A></LI>
+<P><LI><A NAME="1040445">OS2 (x86) </A></LI>
+<P><LI><A NAME="1040446">OSF (alpha) </A></LI>
+<P><LI><A NAME="1040447">ReliantUNIX (mips) </A></LI>
+<P><LI><A NAME="1040448">SCO (x86) </A></LI>
+<P><LI><A NAME="1040449">SOLARIS (sparc) </A></LI>
+<P><LI><A NAME="1040450">SONY (mips) </A></LI>
+<P><LI><A NAME="1040451">SUNOS (sparc) </A></LI>
+<P><LI><A NAME="1040452">UnixWare (x86) </A></LI>
+<P><LI><A NAME="1040453">WIN16 (x86) </A></LI>
+<P><LI><A NAME="1040454">WIN95 (x86) </A></LI>
+<P><LI><A NAME="1040455">WINNT (x86) </A></LI>
+</ul>
+
+<P><A NAME="1040456">
+妥当なプラットフォーム文字列の例はこのようになります：
+</A></P>
+
+<PRE><A NAME="1043641">
+IRIX:6.2:mips<br>SUNOS:5.5.1:sparc<br>Linux:2.0.32:x86<br>WIN95::x86. 
+</A></PRE>
+
+<H4><A NAME="Head3;"></A>
+<A NAME="1040459">
+パー プラットフォーム キー （Per-Platform Keys）
+</A></H4>
+
+<P><A NAME="1040461">
+これらのキーは、 <CODE>Platforms</CODE> 
+リスト内のエントリーの値一覧内でのみ意味を持ちます。
+</A></P>
+
+<P><A NAME="1040463">
+<CODE>ModuleName</CODE> （必須）
+</A></P>
+
+<P><A NAME="1040464">
+モジュールに対し共通名を与えます。この名前は、
+Netscape Communicator、 セキュリティ モジュール データベース ツール 
+（<CODE>modutil</CODE>）、サーバー、または Netscape セキュリティ モジュール 
+データベースを利用するあらゆるプログラムを参照する際に利用されます。
+</A></P>
+
+<P><A NAME="1040467">
+<CODE>ModuleFile</CODE> （必須）
+</A></P>
+
+<P><A NAME="1040468">
+このプラットフォーム用に PKCS #11 モジュール ファイル 
+（DLL または <CODE>.so</CODE>） に名前を付けます。
+名前は、 JAR アーカイブ内のファイルの相対パスとして与えられます。
+</A></P>
+
+<P><A NAME="1040470">
+<CODE>Files</CODE> （必須）
+</A></P>
+
+<P><A NAME="1040471">
+このモジュールにインストールする必要のあるファイルを一覧表示します。
+ファイルリスト内のそれぞれのエントリーは、キー値ペア （key-value pair） です：
+キーは、 JAR アーカイブ内のファイルのパスで、
+値一覧にはそのファイルの属性が含まれます。それぞれのファイルに対し、
+少なくとも <CODE>RelativePath</CODE> または <CODE>AbsolutePath</CODE> 
+が指定されていなければなりません。
+</A></P>
+
+<P><A NAME="1040475">
+<CODE>DefaultMechanismFlags</CODE>
+</A></P>
+
+<P><A NAME="1040476">
+このモジュールがディフォルト プロバイダとなる機構を指定します。
+このキー値ペアは、 16 進数 （0x） 形式のビット ストリングです。
+次に挙げる定数のビット単位の OR として構築されいます。
+ <CODE>DefaultMechanismFlags</CODE> エントリーが省略されている場合の値は、
+ディフォルトで 0x0 となります。
+
+<!--Specifies mechanisms for which this module will be a default provider. This key-value pair is a bitstring specified in hexadecimal (0x) format. It is constructed as a bitwise OR of the following constants. If the <CODE>DefaultMechanismFlags</CODE> entry is omitted, the value defaults to 0x0. -->
+</A></P>
+
+<PRE><A NAME="1040481">
+<CODE>&nbsp;&nbsp;&nbsp;RSA:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000001<br>&nbsp;&nbsp;&nbsp;DSA:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000002<br>&nbsp;&nbsp;&nbsp;RC2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000004<br>&nbsp;&nbsp;&nbsp;RC4:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000008<br>&nbsp;&nbsp;&nbsp;DES:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000010<br>&nbsp;&nbsp;&nbsp;DH:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000020<br>&nbsp;&nbsp;&nbsp;FORTEZZA:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000040<br>&nbsp;&nbsp;&nbsp;RC5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000080<br>&nbsp;&nbsp;&nbsp;SHA1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000100<br>&nbsp;&nbsp;&nbsp;MD5:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000200<br>&nbsp;&nbsp;&nbsp;MD2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00000400<br>&nbsp;&nbsp;&nbsp;RANDOM:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x08000000<br>&nbsp;&nbsp;&nbsp;FRIENDLY:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x10000000<br>&nbsp;&nbsp;&nbsp;OWN_PW_DEFAULTS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x20000000<br>&nbsp;&nbsp;&nbsp;DISABLE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x40000000</CODE>
+</A></PRE>
+
+<P><A NAME="1040497">
+<CODE>CipherEnableFlags</CODE> 
+</A></P>
+
+<P><A NAME="1040498">
+このモジュールが提供し、 Netscape Communicator が提供しない暗号を
+ Communicator が利用できるように、指定します。
+このキーは、 16 進数 （0x） 形式のビットストリングです。
+次に挙げる定数のビット単位の OR として構築されいます。
+ <CODE>CipherEnableFlags</CODE> エントリーが省略されている場合の値は、
+ディフォルトで 0x0 となります。
+</A></P>
+
+<PRE><A NAME="1040503">
+&nbsp;&nbsp;&nbsp;FORTEZZA:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x0000 0001
+</A></PRE>
+
+<P><A NAME="1040505">
+<CODE>EquivalentPlatform</CODE> 
+</A></P>
+
+<P><A NAME="1040506">
+名前付きプラットフォームが現在のプラットフォームで利用されるように指定します。
+同じ設定を使用しているプラットフォームが複数ある場合は、タイピング （typing） 
+を保存します。
+</A></P>
+
+<H4><A NAME="Head3;"></A>
+<A NAME="1040510">
+パー ファイル キー （Per-File Keys）
+</A></H4>
+
+<P><A NAME="1040512">
+これらのキーは、 <CODE>Files</CODE> リスト内のエントリーの値一覧内でのみ意味を持ちます。
+少なくとも <CODE>RelativePath</CODE> および <CODE>AbsolutePath</CODE> 
+のいずれかが指定されていなければなりません。この両方が指定されている場合、
+相対パスが始めに試され、インストーラ 
+プログラムによって相対ルートパスが提供されていない場合に限り、
+絶対パスが使用されます。
+</A></P>
+
+<P><A NAME="1040517">
+<CODE>RelativePath</CODE>
+</A></P>
+
+<P><A NAME="1040518">
+インストール時に決定される、
+ディレクトリに相対的なファイルの宛先ディレクトリを指定します。
+二種類の変数が相対パスで利用できます： 「<CODE>%root%</CODE>」 および 
+「<CODE>%temp%</CODE>」 です。 「<CODE>%root%</CODE>」 は、
+ファイルがインストールされるべきディレクトリに相対的なディレクトリに、
+実行される際に、入れ替えられます。例えば、サーバーのルートディレクトリや、
+ Netscape Communicator ルートディレクトリです。 「<CODE>%temp%</CODE>」 は、
+インストールの開始時に作られるディレクトリで、インストール終了時に削除されます。
+</A></P>
+
+<P><A NAME="1040524">
+ 「<CODE>%temp%</CODE>」 は、実行ファイル （セットアップ プログラムのような）
+や、そうしたプログラムが使用するファイルを置くために作られます。
+例えば、 Windows インストレーションは、 <CODE>setup.exe</CODE> 
+インストレーション プログラム、ヘルプファイル、そして圧縮された情報を収めた
+ <CODE>.cab</CODE> ファイルが必要になるでしょう。これら全てのファイルが、
+テンポラリーディレクトリに置かれることがあります。
+テンポラリーディレクトリに置かれるファイルは、必ず、
+実行ファイルが実行される前にそこに置かれます。こうしたファイルは、
+実行ファイルが終了するまで削除されることはありません。
+</A></P>
+
+<P><A NAME="1040531">
+<CODE>AbsolutePath</CODE>
+</A></P>
+
+<P><A NAME="1040532">
+絶対パスで、ファイルの宛先ディレクトリを指定します。<CODE>RelativePath</CODE> 
+および <CODE>AbsolutePath</CODE> の両方が指定されている場合、
+インストーラは相対パスを利用しようとします。そして相対パスを決定できない場合は、
+絶対パスを利用します。
+</A></P>
+
+<P><A NAME="1040534">
+<CODE>Executable</CODE>
+</A></P>
+
+<P><A NAME="1040535">
+インストール時に実行されるファイルを指定します。
+一般的にこのストリングは、自己解凍式の <CODE>setup.exe</CODE> 
+のようなモジュールベンダーによって提供されたセットアップ 
+プログラムが使われます。複数のファイルを実行ファイルとして指定することができますが、
+この場合、スクリプトファイル内で指定された順に実行されます。
+</A></P>
+
+<P><A NAME="1040540">
+<CODE>FilePermissions</CODE>
+</A></P>
+
+<P><A NAME="1040541">
+UNIX の標準的なフォーマットに従い、 8 進数字の文字列として解釈されます。
+この文字列は、次に示した定数のビット単位 OR です：
+</A></P>
+
+<PRE><A NAME="1040544">
+&nbsp;&nbsp;&nbsp;user read:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0400<br>&nbsp;&nbsp;&nbsp;user write:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0200<br>&nbsp;&nbsp;&nbsp;user execute:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0100<br>&nbsp;&nbsp;&nbsp;group read:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0040<br>&nbsp;&nbsp;&nbsp;group write:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0020<br>&nbsp;&nbsp;&nbsp;group execute:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0010<br>&nbsp;&nbsp;&nbsp;other read:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0004<br>&nbsp;&nbsp;&nbsp;other write:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0002<br>&nbsp;&nbsp;&nbsp;other execute:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0001
+</A></PRE>
+
+<P><A NAME="1040554">
+プラットフォームの中には、こうしたパーミッションを理解しないものもあります。
+これらパーミッションは、プラットフォームに意味を持つ範囲でのみ適用されます。
+この属性が省略されている場合、 777 がディフォルトとして仮定されます。
+</A></P>
+
+<H2><A NAME="Examples"></A>
+<A NAME="1028519">
+実例
+</A></H2>
+
+<P><A NAME="1042784">
+<A HREF="modutil.html#1028724">データベースファイルを作成する</A><br>
+<A HREF="modutil.html#1034026">モジュール情報を表示する</A><br>
+<A HREF="modutil.html#1028731">ディフォルト プロバイダを設定する</A><br>
+<A HREF="modutil.html#1034020">スロットを利用可能にする</A><br>
+<A HREF="modutil.html#1034010">FIPS 準拠を可能にする</A><br>
+<A HREF="modutil.html#1042489">暗号化モジュールを追加する</A><br>
+<A HREF="modutil.html#1042502">JAR ファイルから暗号化モジュールをインストールする</A><br>
+<A HREF="modutil.html#1043961">トークンのパスワードを変更する</A>
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1028724">
+データベースファイルを作成する
+</A></H3>
+
+<P><A NAME="1039687">
+この例では、セキュリティ データベース マネージメント 
+ファイルを指定したディレクトリに作成します：
+</A></P>
+
+<PRE><A NAME="1039688">modutil -create -dbdir c:\databases</A></PRE>
+
+<P><A NAME="1039696">
+セキュリティ モジュール データベース ツールは警告を表示します：
+</A></P>
+
+<PRE><A NAME="1039706">WARNING: Performing this operation while Communicator is running could<br>cause corruption of your security databases. If Communicator is<br>currently running, you should exit Communicator before continuing this<br>operation. Type 'q &lt;enter&gt;' to abort, or &lt;enter&gt; to continue: </A></PRE>
+
+<P><A NAME="1039739">
+Enter キーを押すと、ツールは次のように表示します：
+</A></P>
+
+<PRE><A NAME="1039710">Creating "c:\databases\key3.db"...done.<br>Creating "c:\databases\cert7.db"...done.<br>Creating "c:\databases\secmod.db"...done. 
+</A></PRE>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1034026">
+モジュール情報を表示する
+</A></H3>
+
+<P><A NAME="1034749">
+この例では、指定したモジュールの詳細情報を得ます：
+</A></P>
+
+<PRE><A NAME="1039742">modutil -list "Netscape Internal PKCS #11 Module" -dbdir c:\databases 
+</A></PRE>
+
+<P><A NAME="1039750">
+セキュリティ モジュール データベース ツールは、次のような情報を表示します：
+</A></P>
+
+<PRE><A NAME="1039755">Using database directory c:\databases...<br>--------------------------------------------------------<br>Name: Netscape Internal PKCS #11 Module<br>Library file: **Internal ONLY module**<br>Manufacturer: Netscape Communications Corp <br>Description: Communicator Internal Crypto Svc<br>PKCS #11 Version 2.0<br>Library Version: 4.0<br>Cipher Enable Flags: None<br>Default Mechanism Flags: RSA:DSA:RC2:RC4:DES:SHA1:MD5:MD2</A></PRE><PRE><A NAME="1039767">Slot: Communicator Internal Cryptographic Services Version 4.0<br>Manufacturer: Netscape Communications Corp <br>Type: Software<br>Version Number: 4.1<br>Firmware Version: 0.0<br>Status: Enabled<br>Token Name: Communicator Generic Crypto Svcs<br>Token Manufacturer: Netscape Communications Corp <br>Token Model: Libsec 4.0 <br>Token Serial Number: 0000000000000000<br>Token Version: 4.0<br>Token Firmware Version: 0.0<br>Access: Write Protected<br>Login Type: Public (no login required)<br>User Pin: NOT Initialized</A></PRE><PRE><A NAME="1039783">Slot: Communicator User Private Key and Certificate Services<br>Manufacturer: Netscape Communications Corp <br>Type: Software<br>Version Number: 3.0<br>Firmware Version: 0.0<br>Status: Enabled<br>Token Name: Communicator Certificate DB <br>Token Manufacturer: Netscape Communications Corp <br>Token Model: Libsec 4.0 <br>Token Serial Number: 0000000000000000<br>Token Version: 7.0<br>Token Firmware Version: 0.0<br>Access: NOT Write Protected<br>Login Type: Login required<br>User Pin: NOT Initialized
+</A></PRE>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1028731">
+ディフォルト プロバイダを設定する
+</A></H3>
+
+<P><A NAME="1045162">
+この例では、指定したモジュールを、 RSA、 DSA、および RC2 
+セキュリティ機構のディフォルト プロバイダに設定します：
+</A></P>
+
+<PRE><A NAME="1045163">modutil -default "Cryptographic Module" -dbdir <br>c:\databases -mechanisms RSA:DSA:RC2 </A></PRE>
+
+<P><A NAME="1039981">
+セキュリティ モジュール データベース ツールは警告を表示します：
+</A></P>
+
+<PRE><A NAME="1040003">WARNING: Performing this operation while Communicator is running could<br>cause corruption of your security databases. If Communicator is<br>currently running, you should exit Communicator before continuing this<br>operation. Type 'q &lt;enter&gt;' to abort, or &lt;enter&gt; to continue: </A></PRE>
+
+<P><A NAME="1039996">
+Enter キーを押すと、ツールは次のように表示します：
+</A></P>
+
+<PRE><A NAME="1040016">Using database directory c:\databases...</A></PRE><PRE><A NAME="1040001">Successfully changed defaults.</A></PRE>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1034020">
+スロットを利用可能にする
+</A></H3>
+
+<P><A NAME="1040032">
+この例では、指定したモジュールの特定のスロットを利用可能にします＊
+</A></P>
+
+<PRE><A NAME="1040045">modutil -enable "Cryptographic Module" -slot <br>"Cryptographic Reader" -dbdir c:\databases </A></PRE>
+
+<P><A NAME="1034013">
+セキュリティ モジュール データベース ツールは警告を表示します：
+</A></P>
+
+<PRE><A NAME="1040066">WARNING: Performing this operation while Communicator is running could<br>cause corruption of your security databases. If Communicator is<br>currently running, you should exit Communicator before continuing this<br>operation. Type 'q &lt;enter&gt;' to abort, or &lt;enter&gt; to continue: </A></PRE>
+
+<P><A NAME="1040054">
+Enter キーを押すと、ツールは次のように表示します：
+</A></P>
+
+<PRE><A NAME="1040079">Using database directory c:\databases...</A></PRE><PRE><A NAME="1040081">Slot "Cryptographic Reader" enabled. </A></PRE>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1034010">
+FIPS 準拠を可能にする
+</A></H3>
+
+<P><A NAME="1035548">
+この例では、 Communicator のインターナル モジュールのFIPS 準拠を可能にします：
+</A></P>
+
+<PRE><A NAME="1037817">modutil -fips true </A></PRE>
+
+<P><A NAME="1040108">
+セキュリティ モジュール データベース ツールは警告を表示します：
+</A></P>
+
+<PRE><A NAME="1040127">WARNING: Performing this operation while Communicator is running could<br>cause corruption of your security databases. If Communicator is<br>currently running, you should exit Communicator before continuing this<br>operation. Type 'q &lt;enter&gt;' to abort, or &lt;enter&gt; to continue: </A></PRE>
+
+<P><A NAME="1040114">
+Enter キーを押すと、ツールは次のように表示します：
+</A></P>
+
+<PRE><A NAME="1040140">FIPS mode enabled. </A></PRE>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1042489">
+暗号化モジュールを追加する
+</A></H3>
+
+<P><A NAME="1043770">
+この例では、新しい暗号化モジュールをデータベースに追加します：
+</A></P>
+
+<PRE><A NAME="1042490">C:\modutil&gt; modutil -dbdir "C:\databases" -add "Cryptorific Module" -<br>libfile "C:\winnt\system32\crypto.dll" -mechanisms RSA:DSA:RC2:RANDOM </A></PRE>
+
+<P><A NAME="1043776">
+セキュリティ モジュール データベース ツールは警告を表示します：
+</A></P>
+
+<PRE><A NAME="1042493">WARNING: Performing this operation while Communicator is running could<br>cause corruption of your security databases. If Communicator is<br>currently running, you should exit Communicator before continuing this<br>operation. Type 'q &lt;enter&gt;' to abort, or &lt;enter&gt; to continue: </A></PRE>
+
+<P><A NAME="1043772">
+Enter キーを押すと、ツールは次のように表示します：
+</A></P>
+
+<PRE><A NAME="1042498">Using database directory C:\databases... <br>Module "Cryptorific Module" added to database. <br>C:\modutil&gt; </A></PRE>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1042502">
+JAR ファイルから暗号化モジュールをインストールする
+</A></H3>
+
+<P><A NAME="1043888">
+この例では、次に示したサンプルのインストレーション 
+スクリプトから暗号化モジュールをインストールします。
+</A></P>
+
+<PRE><A NAME="1042506">Platforms { <br>&nbsp;&nbsp;&nbsp;WinNT::x86 { <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModuleName { "Cryptorific Module" } <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModuleFile { crypto.dll } <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultMechanismFlags{0x0000} <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CipherEnableFlags{0x0000} <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Files { <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;crypto.dll { <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelativePath{ %root%/system32/crypto.dll } <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setup.exe { <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Executable <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RelativePath{ %temp%/setup.exe } <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>&nbsp;&nbsp;&nbsp;} <br>&nbsp;&nbsp;&nbsp;Win95::x86 { <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EquivalentPlatform { Winnt::x86 } <br>&nbsp;&nbsp;&nbsp;} <br>} </A></PRE>
+
+<P><A NAME="1042529">
+スクリプトからインストールするには、次のコマンドを利用します。
+ルートディレクトリは、 Windows ルートディレクトリにする必要があります
+（例えば、<CODE>c:\\windows</CODE>、または <CODE>c:\\winnt</CODE>）。
+</A></P>
+
+<PRE><A NAME="1043921">C:\modutil&gt; modutil -dbdir "c:\databases" -jar <br>install.jar -installdir "C:/winnt" </A></PRE>
+
+<P><A NAME="1043875">
+セキュリティ モジュール データベース ツールは警告を表示します：
+</A></P>
+
+<PRE><A NAME="1042532">WARNING: Performing this operation while Communicator is running could<br>cause corruption of your security databases. If Communicator is<br>currently running, you should exit Communicator before continuing this<br>operation. Type 'q &lt;enter&gt;' to abort, or &lt;enter&gt; to continue: </A></PRE>
+
+<P><A NAME="1043881">
+Enter キーを押すと、ツールは次のように表示します：
+</A></P>
+
+<PRE><A NAME="1042537">Using database directory c:\databases... </A></PRE><PRE><A NAME="1042539">This installation JAR file was signed by: <br>---------------------------------------------- </A></PRE><PRE><A NAME="1042541">**SUBJECT NAME** </A></PRE><PRE><A NAME="1042542">C=US, ST=California, L=Mountain View, CN=Cryptorific Inc., OU=Digital ID<br>Class 3 - Netscape Object Signing, OU="www.verisign.com/repository/CPS<br>Incorp. by Ref.,LIAB.LTD(c)9 6", OU=www.verisign.com/CPS Incorp.by Ref<br>. LIABILITY LTD.(c)97 VeriSign, OU=VeriSign Object Signing CA - Class 3<br>Organization, OU="VeriSign, Inc.", O=VeriSign Trust Network **ISSUER<br>NAME**, OU=www.verisign.com/CPS Incorp.by Ref. LIABILITY LTD.(c)97<br>VeriSign, OU=VeriSign Object Signing CA - Class 3 Organization,<br>OU="VeriSign, Inc.", O=VeriSign Trust Network <br>---------------------------------------------- </A></PRE><PRE><A NAME="1042561">Do you wish to continue this installation? (y/n) y <br>Using installer script "installer_script" <br>Successfully parsed installation script <br>Current platform is WINNT::x86 <br>Using installation parameters for platform WinNT::x86 <br>Installed file crypto.dll to C:/winnt/system32/crypto.dll <br>Installed file setup.exe to ./pk11inst.dir/setup.exe <br>Executing "./pk11inst.dir/setup.exe"... <br>"./pk11inst.dir/setup.exe" executed successfully <br>Installed module "Cryptorific Module" into module database </A></PRE><PRE><A NAME="1042926">Installation completed successfully <br>C:\modutil&gt; </A></PRE>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1043961">
+トークンのパスワードを変更する
+</A></H3>
+
+<P><A NAME="1043962">
+この例では、既存のモジュールのトークンのためのパスワードを変更します。
+</A></P>
+
+<PRE><A NAME="1043963">C:\modutil&gt; modutil -dbdir "c:\databases" -changepw <br>"Communicator Certificate DB" </A></PRE>
+
+<P><A NAME="1043964">
+セキュリティ モジュール データベース ツールは警告を表示します：
+</A></P>
+
+<PRE><A NAME="1043965">WARNING: Performing this operation while Communicator is running could<br>cause corruption of your security databases. If Communicator is<br>currently running, you should exit Communicator before continuing this<br>operation. Type 'q &lt;enter&gt;' to abort, or &lt;enter&gt; to continue: </A></PRE>
+
+<P><A NAME="1043966">
+Enter キーを押すと、ツールは次のように表示します：
+</A></P>
+
+<PRE><A NAME="1043967">Using database directory c:\databases... <br>Enter old password: <br>Incorrect password, try again... <br>Enter old password: <br>Enter new password: <br>Re-enter new password: <br>Token "Communicator Certificate DB" password changed successfully. <br>C:\modutil&gt; </A></PRE>
+
+<HR>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/tools/modutil.html">英語版</a> 2001/01/17</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/tools/modutil.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

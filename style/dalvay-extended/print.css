@@ -1,0 +1,15 @@
+/*
+Blogs Portal Print Stylesheet
+Copyright (C) 2007-2008 Mozilla Japan
+*/
+
+body { margin: 0; padding: 0; color: #000; background-color: #fff; font-size: 9pt; }
+* { font-family: "Lucida Grande", "Bitstream Vera Sans", "Segoe UI", Calibri, Verdana, Arial, "ヒラギノ角ゴ Pro W3", メイリオ, "ＭＳ Ｐゴシック", IPAPGothic, sans-serif; font-size: 100%; line-height: 1.6; }
+h1, h2, h3, h4, h5 { line-height: 1.4; }
+h1 { margin-bottom: 0; font-size: 160%; }
+h2 { border-bottom: 1px solid #000; font-size: 140%; }
+h3 { font-size: 120%; }
+h2 img, h3 img { margin-bottom: 10px; }
+img, input, textarea { border: 0; vertical-align: middle; }
+a { color: #000; text-decoration: none; }
+#globalnav, #globalfooter { display: none; }

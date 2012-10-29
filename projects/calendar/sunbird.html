@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <title>Sunbird プロジェクト - スタンドアロンカレンダー</title>
+    <link rel="alternate" hreflang="en" modified="November 5, 2005">
+    <link rel="stylesheet" type="text/css" href="calendar.css">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/calendar/sunbird.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+<div id="side" class="left">
+<ul id="nav">
+  <li><a href="./"><strong>Calendar プロジェクト</strong></a>
+    <ul>
+      <li><a href="about.html">私たちについて</a></li>
+      <li><a href="http://www.google.com/calendar/ical/u7pke58sc91ksbm4h9pf9ofe8c%40group.calendar.google.com/public/basic.ics">Project Calendar<br>(iCalendar ファイル)</a></li>
+      <li><a href="http://weblogs.mozillazine.org/calendar">開発者ブログ</a></li>
+      <li><a href="help.html">協力するには？</a></li>
+      <li><a href="bugs.html">バグ</a></li>
+      <li><a href="http://wiki.mozilla.org/Calendar:Dev_Guide">開発者向けガイド</a></li>
+    </ul>
+  </li>
+  <li><a href="./lightning/"><strong>Lightning</strong></a></li>
+  <li><a href="./sunbird/"><strong>Mozilla Sunbird&reg;</strong></a></li>
+  <li><a><strong>参考資料とおまけ</strong></a>
+    <ul>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="holidays.html">休日設定ファイル</a></li>
+      <li><a href="links.html">便利なリンク集</a></li>
+    </ul>
+  </li>
+</ul>
+
+</div>
+
+<div id="mainBody" class="bodyleft">
+
+<h1>Sunbird プロジェクト</h1>
+<p>Sunbird プロジェクトは <a href="./">Calendar</a> コンポーネントを再デザインしたものです。
+私たちの目的は、Mozilla の XUL ユーザインターフェイス言語に基づいたクロスプラットフォームなスタンドアロンカレンダーを作成することです。
+今のところ <q>Sunbird</q> という名前がプロジェクト名です。
+この名前は非公式で、将来変更するかもしれません。</p>
+
+<p>想定しているユーザは、<a href="../../products/firefox/">Mozilla Firefox</a> と
+<a href="../../products/thunderbird/">Mozilla Thunderbird</a> を使っており、
+Mozilla に基づいたカレンダーアプリケーションを欲しがっているような人です。</p>
+
+<p>さらに、Calendar 単体に的を絞って、不必要なコンポーネントや chrome を取り除けば、Calendar アプリケーションの全体的なフットプリントやパフォーマンスに、多少なりとも影響を及ぼせるのではないかと私たちは考えています。 </p>
+
+<p>最新版の Sunbird 0.3 alpha1 が<a href="sunbird_download.html">ダウンロードページ</a> から手に入れることができます。</p>
+
+<p>Sunbird は MPL/GPL/LGPL トリプルライセンスが付与されていますので、<a href="http://www.mozilla.org/MPL/MPL-1.1.html">Mozilla Public License, 
+version 1.1 (MPL)</a>、<a href="http://www.gnu.org/licenses/gpl.html">GNU 
+General Public License, version 2 以降 (GPL)</a>、<a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public 
+License, version 2.1 以降 (LGPL)</a> のいずれかの条項下でのファイルの使用を許可しています。
+</p>
+
+<h2>最新のニュース</h2>
+<dl>
+ <dt>2005 年 11 月 4 日（金）</dt>
+ <dd>Sunbird チームは、長期にわたるバックエンドコードの書き換え作業が始まって以来最初の正式リリースをここに発表します。
+Windows 版、Linux 版、Mac OS X 版の Sunbird 0.3 alpha1 をリリースしました。
+これは Sunbird 0.3 最終版のリリースに向けての主要なマイルストーンです。
+開発者、テスタ、そしてプロジェクトを支援してくださっているすべての方々に感謝します。
+  <p></p>
+詳細なリリースノート（改良点やバグについてなど）は <a href="releases/sunbird_0.3alpha1.html">Sunbird 0.3 alpha1 
+リリースノートのページ</a> を参照してください。
+  <p></p>
+Sunbird 0.3 alpha1 は製品品質のリリースをねらったものではないということに注意してください。
+これは<strong>プレリリース</strong>であり、またそのように見なされるべきです。
+つまり、このリリースにはアプリケーションをクラッシュさせたり、データを消失させたり、その他予期せぬ結果をもたらす深刻なバグがあるかもしれないということです。
+  <p></p>
+Sunbird 0.3 alpha1 は新しいバックエンドコードの公開やテストのためのリリースです。
+  <p></p>
+他のプラットフォーム向けのビルドは <a href="sunbird_download.html">ダウンロードページ</a> から入手できます。
+<a href="sunbird_l10n_download.html">ローカライズ済みビルド</a> も利用可能です。
+ </dd>
+</dl>
+</div>
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/calendar/sunbird.html">英語版</a> 2005/11/05</span> - <span>和訳版 2005/11/07</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/calendar/sunbird.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

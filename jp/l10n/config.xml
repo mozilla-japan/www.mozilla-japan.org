@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><properties>
+	<property name="ns.dcterms" value="http://purl.org/dc/terms/"></property>
+	<property name="css.dir" value="css"></property>
+	<property name="site.subname" value=""></property>
+	<property name="backup.tt.excludes" value=""></property>
+	<property name="TODAY" value="December 16 2005"></property>
+	<property name="ns.dc" value="http://purl.org/dc/elements/1.1/"></property>
+	<property name="ns.html40" value="http://www.w3.org/TR/REC-html40"></property>
+	<property name="dest.dir" value="."></property>
+	<property name="conf.loaded" value="yes"></property>
+	<property name="html.src.excludes" value="build.xml, build.*.xml, config/, xsl/, tpl/, db/, css/, images/"></property>
+	<property name="backup.excludes" value="backup/"></property>
+	<property name="ns.xhtml" value="http://www.w3.org/1999/xhtml"></property>
+	<property name="entity.copy" value="&#xA9;"></property>
+	<property name="ns.mathml" value="http://www.w3.org/1998/Math/MathML"></property>
+	<property name="tstamp.lastmonth.yyyy-MM-dd" value="2005-11-16"></property>
+	<property name="tstamp.MMddHHmm" value="12160414"></property>
+	<property name="ns.rdfs" value="http://www.w3.org/2000/01/rdf-schema#"></property>
+	<property name="ant.project.name" value="SiteBuilder"></property>
+	<property name="DSTAMP" value="20051216"></property>
+	<property name="tstamp.yyyyMMddHH" value="2005121604"></property>
+	<property name="img.dir" value="images"></property>
+	<property name="config.const.file" value="config/const.conf"></property>
+	<property name="ns.rdf" value="http://www.w3.org/1999/02/22-rdf-syntax-ns#"></property>
+	<property name="buildfile.library.loaded" value="true"></property>
+	<property name="ns.xul" value="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul "></property>
+	<property name="site.admin.mail" value=""></property>
+	<property name="ns.svg" value="http://www.w3.org/2000/svg"></property>
+	<property name="ns.tt" value="http://dynamis.jp/2003/TransTools"></property>
+	<property name="ns.xmlns" value="http://www.w3.org/2000/xmlns/"></property>
+	<property name="mainconf.loaded" value="yes"></property>
+	<property name="ant.file" value="D:\WebSite\mozilla-japan\jp\l10n\build.xml"></property>
+	<property name="temp.dir" value="--temp--"></property>
+	<property name="config.main.file" value="config/main.conf"></property>
+	<property name="ns.xbl" value="http://www.mozilla.org/xbl"></property>
+	<property name="html.ext" value=".html"></property>
+	<property name="tstamp.lastweek.yyyy-MM-dd" value="2005-12-09"></property>
+	<property name="entity.nbsp" value="&#xA0;"></property>
+	<property name="ns.xlink" value="http://www.w3.org/1999/xlink"></property>
+	<property name="db.dir" value="db"></property>
+	<property name="xsl.dir" value="xsl"></property>
+	<property name="backup.file" value="backup/mj-l10n.2005121604.zip"></property>
+	<property name="N" value="
+"></property>
+	<property name="backup.tt.filename" value="TransTools.2005121604.zip"></property>
+	<property name="backup.tt.file" value="backup/tt/mj-l10n.2005121604.zip"></property>
+	<property name="tstamp.yyyyMMdd" value="20051216"></property>
+	<property name="ns.schema" value="http://www.w3.org/2001/XMLSchema"></property>
+	<property name="ant.version" value="Apache Ant version 1.6.5 compiled on June 2 2005"></property>
+	<property name="ns.xml" value="http://www.w3.org/XML/1998/namespace"></property>
+	<property name="TSTAMP" value="0414"></property>
+	<property name="site.id" value="mj-l10n"></property>
+	<property name="srcxml.ext" value=".page.xml"></property>
+	<property name="html.force" value="no"></property>
+	<property name="conf.main.file" value="conf/main.conf"></property>
+	<property name="entity.nbsp3" value="&#xA0;&#xA0;&#xA0;"></property>
+	<property name="backup.filename" value="mj-l10n.2005121604.zip"></property>
+	<property name="entity.nbsp2" value="&#xA0;&#xA0;"></property>
+	<property name="ant.file.SiteBuilder" value="D:\WebSite\mozilla-japan\jp\l10n\build.xml"></property>
+	<property name="ns.rss10" value="http://purl.org/rss/1.0/"></property>
+	<property name="site.url.root" value="http://www.mozilla-japan.org/"></property>
+	<property name="ant.file.library" value="D:\WebSite\mozilla-japan\jp\l10n\build.library.xml"></property>
+	<property name="backup.includes" value="**"></property>
+	<property name="backup.tt.includes" value="build.xml, build.*.xml, entities.dtd, sample.page.xml, config/, xsl/, tpl/, db/"></property>
+	<property name="site.url.domain" value="www.mozilla-japan.org"></property>
+	<property name="site.admin.name" value="dynamis"></property>
+	<property name="tstamp.yyyy-MM-dd" value="2005-12-16"></property>
+	<property name="tpl.dir" value="tpl"></property>
+	<property name="html.src.includes" value="**/*.page.xml"></property>
+	<property name="basedir" value="D:\WebSite\mozilla-japan\jp\l10n"></property>
+	<property name="ns.xslfo" value="http://www.w3.org/1999/XSL/Format"></property>
+	<property name="ant.java.version" value="1.4"></property>
+	<property name="tstamp.yesterday.yyyy-MM-dd" value="2005-12-15"></property>
+	<property name="xsl.default.file" value="tpl/mozilla-japan/mozilla-japan.xsl"></property>
+	<property name="site.name" value="ローカライズセンター"></property>
+	<property name="ns.xhtml2" value="http://www.w3.org/2002/06/xhtml2"></property>
+	<property name="tstamp.yyyyMMddHHmm" value="200512160414"></property>
+	<property name="tstamp.2weekago.yyyy-MM-dd" value="2005-12-02"></property>
+	<property name="backup.dir" value="backup"></property>
+	<property name="ns.xslt" value="http://www.w3.org/1999/XSL/Transform"></property>
+	<property name="src.dir" value="."></property>
+	<property name="tpl.name" value="mozilla-japan"></property>
+	<property name="backup.tt.dir" value="backup/tt"></property>
+</properties>

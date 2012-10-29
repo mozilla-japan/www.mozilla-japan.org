@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title>Mozilla をローカライズする方法</title>
+<link rel="alternate" hreflang="en" modified="January 18, 2005">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/l10n/mlp_howto.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+&nbsp;
+<table border="0" width="100%">
+  <tr><td>
+    <center><h1>Mozilla をローカライズする方法</h1></center>
+  </td></tr>
+  <tr><td>
+      <center><a href="news://news.mozilla.org/netscape.public.mozilla.l10n">ニュースグループでの議論</a> /
+      <a href="mailto:mozilla-l10n-request@mozilla.org?subject=subscribe">メーリングリスト</a><br>
+      <a href="mailto:MLP Staff &lt;mlp-staff&#64;mozilla.org&gt;">Mozilla 地域化プロジェクトスタッフ</a></center>
+  </td></tr>
+</table>
+<br>
+<abbr title="Mozilla Localization Project"><b>MLP</b></abbr>
+ [<a href="./">地域化プロジェクトホーム</a>]
+ | [<a href="mlp_docs.html">地域化資料</a>]
+ | [貢献する方法]<br>
+<br>
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>序文</h3></td></tr>
+</table>
+<p>この文書で Mozilla をあなた自身の言語に地域化したバージョンを作り、
+mozilla.org コミュニティでそれが利用できるようにするために基本的で必要なステップを解説します。</p>
+<ol>
+<li>MLP 貢献者として<a href="registration.html">登録</a>する。</li>
+<li>ビルドを<a href="#where2get">ダウンロード</a>する。</li>
+<li>ファイル上の<a href="#what2loc">作業</a>をする。</li>
+<li>ローカライゼーション／効率化ツールを<a href="mlp_howto.html#usetool">使う</a>。</li>
+<li><a href="#mlp_packaging">パッケージング</a>する。</li>
+<li>あなたの作業物を<a href="#mlp_qa">QA（品質保証）</a>する。</li>
+<li>地域化したものを mozilla.org へ<a href="#mlp_submit">フィードバックする</a>。</li>
+</ol>
+
+<!-- rev1.24まで
+<a name="registration"></a>
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+ <tr><td><h3><abbr title="Mozilla Localization Project">MLP</abbr> 貢献者として登録する。</h3></td></tr>
+</table>
+<p>以下のプロダクトの地域化作業者として現在登録されている貢献者のリストを見て、すでに同じ言語でだれかが作業中でないかをチェックしてください。<br>
+ <a href="mlp_status.html#projects">Mozilla アプリケーションスィート</a> (ブラウザ、メール／ニュースリーダ、シンプルな Web ページエディタ、IRC チャットクライアント、そしてさまざまな開発ツールを備えた統合インターネットスィート）<br>
+ <a href="mlp_otherproj.html#firefox">Mozilla Firefox</a> (スタンドアロン Mozilla ブラウザ)<br>
+ <a href="mlp_otherproj.html#thunderbird">Mozilla Thunderbird</a> (スタンドアロン Mozilla メールクライアント)</p>
+
+<p>もし、あらたな地域化プロジェクトを始めるなら、そのまま進んで（以下を読んで）その作成方法を理解してください。</p>
+<p>どの地域かプロジェクトも固有の地域化コード識別子を選ぶ必要があります。
+このコードは <i>languagecode-NATIONCODE</i> という形の文字列である必要があります。
+<i>languagecode</i>（言語コード）も <i>NATIONCODE</i>（地域コード）も ISO 標準で規定されています。
+言語コードについて、<a href="http://lcweb.loc.gov/standards/iso639-2/englangn.html">ISO 639</a> を調べることができます。
+一方、地域コードについて、<a href="http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/index.html">ISO 3166</a> を調べることができます。</p>
+<p>そうではなく、もし、他の人がすでにあなたの言語で Mozilla を利用可能にする作業をしていたら、
+まずなにより<i>お願いですから</i>その人と連絡を取ってください。
+助けが加わることは大抵歓迎されることです。
+地域化に必要な各参加者の作業量を減らすだけでなく、一般的に品質も向上することが出来ます。<br>
+また、最新のリリースからどれくらい過ぎているかもチェックしてください。
+彼らがどれくらい困っているかわかるでしょう。
+Mozilla Foundation の製品の中で興味のあるものについて、（この章の最初のリンクを使って）地域化貢献者リストの中で、各言語のプロジェクトの情報のもっとも右の列を見れば、リリース後の期間を知ることが出来ます。<br>
+いつでも、彼らと連絡を取ってください。
+そして、あなたが何を手伝えるかを知って、
+どのように共同作業の計画を立てるか相談するようにしてください。</p>
+
+<p>ひとたび、あなたの地域化プロジェクトのための今後の計画についてハッキリとした考えがまとまったら、
+<a href="mailto: MLP Staff &lt;mlp-staff@mozilla.org&gt;?subject=Xxx Mozilla Localization project">MLP スタッフ</a>に連絡を取り、
+あなたの名前、連絡のアドレス、いずれは作業を調整し作業を可能とするための Web サイトを知らせてください。
+MLP スタッフが他の人があなたのチームにどうやって連絡を取るためにどんなことをしたのか、現在参加している人のリストがわかるようにしてください。
+貢献者テーブルはそれに従って更新されるでしょう。</p>
+<p>
+連絡に使われるメールアドレスが変更された場合は、MLP スタッフが一覧を更新できるようにしてください。そうすれば、mozilla.org が常にあなたと連絡が取れます。</p>
+-->
+
+<a NAME="where2get"></a>
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>Mozilla を手に入れる</h3></td></tr>
+</table>
+ここで環境に応じたリリースビルドをダウンロードすることが出来ます。
+<dl><dd><a href="/releases/">Mozilla Application スィート</a></dd>
+<dd><a href="/projects/firefox/">Mozilla Firefox ブラウザ</a></dd>
+<dd><a href="/projects/camino/">Mozilla Camino Mac ブラウザ</a></dd>
+<dd><a href="/projects/thunderbird/">Mozilla Thunderbird メールクライアント</a></dd>
+<dd><a href="/projects/calendar/">Mozilla Sunbird カレンダ</a></dd></dl>
+Mozilla 地域化プロジェクトの基礎となっている それぞれの<a href="mlp_status.html#contrib">地域化リリース</a>に、実行可能バイナリがあります。</p>
+
+<ol><a href="../../releases/">http://www.mozilla.org/releases/</a></ol>
+これらは、Mozilla 地域化プロジェクトが <a href="mlp_status.html#contrib">localization releases</a> で基準とするものとして作業可能なものです。</p>
+
+<p>もし、Mozilla のリリースとすばやく同期したければ、リリース後にはナイトリービルドをダウンロードすることも出来ます。
+<ol><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/nightly/">ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/nightly/</a></ol>
+次のリリースでサポートされるであろう部分の地域化を始められます。
+そうすれば、ひとたび実際にリリースされたときに必要な作業を減らせるでしょう。
+<i>|注意|</i> してください。これらのものは実験的なビルドです。
+これらは動く<i>かもしれません</i>し、ときには動きませんし、PC のデータに損害を与えることすらあります。
+あなたに警告しています。</p>
+
+<a NAME="what2loc"></a>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" >
+<tr><td><h3>ローカライズに必要なこと</h3></td></tr>
+
+<caption ALIGN=BOTTOM>&nbsp;</caption>
+</table>
+Mozilla のローカライズ可能なリソースは編集可能なファイルに外部化され、そのファイルはいくつかのグループに分けられます。
+<ul>
+<li><b><a href="mlp_what2.html#chrome_files">chrome ファイル</a>:</b>
+    アプリケーションのユーザインタフェースの実際に見える部分です。
+    これらのファイルはアプリケーションが配置とアクセス可能な順に登録される必要があります。<br>
+    リソースがひとたびアドレスのパス（<abbr title="Uniform Resource Identifier">URI</abbr>）を通して登録されると、ある Web サーバのハードディスクドライブに含まれている Web ページが <abbr title="Uniform Resource Location">URL</abbr> アドレスを通してアクセス可能なのと同様な方法で <i>"fake"</i>な（仮の）アドレスのパスを通して到達可能となります。<br>
+    一度 chrome リソースがいくつかの言語に登録されると、アプリケーションにとって <i>"fake"</i>（仮の）アドレスから実際の言語リソースの一つの配置されている場所への変換は容易です。このため、<abbr title="User Interface">UI</abbr> 言語は透過的に切り替え可能となります。<br>
+    <br>
+    Mozilla の英語の mozilla.org ディストリビューションでは、これらのファイルは　<i>chrome/</i> フォルダの中にある zip 圧縮ファイルの中に格納されています：<ul>
+    <li>"<b>en-US</b>.jar": UI 言語リソースの大部分を含む。すべてのプラットフォームで使われる。</li>
+    <li>"<b>en-win</b>.jar" ("<b>en-unix</b>.jar", "<b>en-mac</b>.jar"): ユーザインタフェースを通して利用されるすべての外部参照（URL/URI）を含む。
+	  これは地域コンテンツリンクも含むことができる。<br><br></li>
+    <li>"<b>US</b>.jar": ユーザインタフェースで使われるすべての外部参照（URL/URI）を含む。ここには、地域特有のコンテンツリンクも含まれる。</li>
+    </ul>
+<p><li><b><a href="mlp_what2.html#defaults">デフォルトのプロファイル</a> (任意)</b>:
+     新しいプロファイルが作られるときに使われるテンプレートの地域化されたユーザプロファイルです。
+     これらは
+     <i>defaults/profile/[</i><a href="#registration">country-code</a><i>]/</i>
+     バイナリフォルダの中にあります。<br><br></li>
+<li><b>追加内容物（任意追加するもの）:</b>
+     このカテゴリは定型の操作ではアプリケーションにとって厳密に言えば必要ではないすべてのファイルが入ります。
+     たとえば。
+ <ul><li>特定地域のサーチエンジン用である <a href="http://mycroft.mozdev.org/">Mycroft</a> 検索</li>
+     <li><a href="http://spellchecker.mozdev.org">スペルチェッカ</a>用辞書</li></ul>
+     などです。</li>
+</ul>
+
+<a NAME="usetool"></a>
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>地域化／効率化ツールを使う</h3></td></tr>
+</table>
+<p>生産性をあげるために、地域化／効率化<a href="mlp_tools.html">ツール</a>を使ってください。
+それぞれのビルドをゼロから地域化しなければならないとしたら、時間の無駄ですし、間違いが起こりやすくなってしまいます。
+MozillaTranslator <!--や MozExpTool -->を使えば、どの文字列が新しくなっていて、地域化が必要なのかがわかります。</p>
+<p>また、MozillaTranslator のようなプログラムを使えば、ファイルを直接あつかったり、元の地域化可能リソースを圧縮ファイルから解凍したりする負担から地域化作業者を解放し、一度地域化すると、配布可能な形式にパッケージングし戻せます。</p>
+
+
+
+<a NAME="mlp_glossary"></a>
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>翻訳 語彙リスト &amp; リファレンス</h3></td></tr>
+</table>
+<a href="mlp_glossary.html">ここ</a>にほんとに少しだけですがオープンソースコミュニティの貢献による翻訳語彙リストとその他のリファレンス資料があります。
+これらは翻訳においてよい出典資料です。
+
+<a NAME="mlp_packaging"></a>
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>パッケージングとインストール</h3></td></tr>
+</table>
+<p>作業の成果を一般に利用可能とする方法は基本的には二つあります。
+ <ol><li> <a href="mlp_what2.html">インストール可能な言語パック（*.xpi）</a>とすること。
+ 地域化されたリソースとインストーラー・スクリプトだけを含んだ一つの小さく圧縮された圧縮物です。
+ Mozilla をインストールしたユーザはクリック一つでその言語で利用可能になります。</li>
+ <li>目的のプラットフォーム/OSのためのすべての実行バイナリをも含む、地域化されたフル・ビルドとすること。</li></ol>
+<span style="color:red">詳細は<a href="mlp_packaging.html">こちら</a></span>。</p>
+<p><b>XPI</b><br>
+ もちろん、インストール可能な XPI パッケージをもつことは、最初の選択肢です。
+ どの Mozilla ユーザも都合に応じて好みの利用可能な言語を加えることができるからです。
+ 複数ユーザ環境や、すでにインストールされたプログラムのコピー、そして雑誌のCDにあったまだ地域化されていないバージョンなどに加えることができます。<br>
+ インストール作業はナビゲータでファイルを開いたり、Web のリンクを追うのと同じくらい簡単です。
+ ひとたびインストールを終えれば（ときには高速起動を無効化してアプリケーション再起動後）、
+ その言語はpreferences（設定）のLanguage/Contents（言語／コンテンツ）欄で選択可能です。
+(<font size="-1">Edit | Preferences |
+ Appearance | Language/Contents</font>)<span class="comment">（訳注：日本語パック適用後は、（編集 | 設定 | 表示 | 言語/コンテンツ)です）</span><p>
+<p><b>フル地域化ビルド</b><br>
+もし、自分の言語で Mozilla の完全なディストリビューションを作る必要があるなら、この方法となります。<br>
+Mozilla は完全なオープンソース・アプリケーションですが、&mdash; これが可能な選択であれば &mdash;<a href="../../releases/">mozilla.org によってコンパイルされたもの以外のもの</a>の再配布をやめるように勧めます。
+その理由は mozilla.org がこのソフトウェアを一般にリリースする目的にあります。
+それは機能（や機能不足）について<a href="http://bugzilla.mozilla.org/">フィードバック</a><span class="comment">（<a href="http://bugzilla.mozilla.gr.jp/">日本語ではこちら</a>）</span>を集めるためで、まったく同じな実行バイナリを再配布することはこの行為を軽減し、可能なら開発者に自分の責任のバグにだけ集中させることができるからです(-.^)<br><br>
+配布ビルドの再配布方法は主に以下のように分類されます
+<ul><li>バイナリの単なる圧縮（tar.gzやzipのように）</li>
+<li>完全なインストーラービルド。アプリケーションが収められた従来型の圧縮ファイルの中に同梱されたインストーラもしくは、（標準的な MS-Windows のインストーラファイルのような）本体にすべてのバイナリを結合した単一の実行可能ファイルのいずれかが含まれます。</li>
+<li>ネット・インストーラ・ビルド。これは完全なビルドで、モジュール化されたいくつかの XPI アーカイブファイルに小さなスタンドアロン（単独実行可能）なインストーラを加えたものです。
+このインストーラは、ひとたびダウンロードして実行すれば、設定を収集して選ばれた部品だけをダウンロード開始することができます。</li>
+<li>Unix パッケージはメンテナンスシステムに（*.rpmや*.debのように）バンドルされています。
+これらはたいていビルドしたいシステムによって管理される自己インストーラ・パッケージを基盤としてスクリプトで構成されています。</li>
+</ul>
+</p>
+
+<!-- 1.16で削除された節
+<font color="#000000">ローカリゼーションの結果をパッケージングする方法はいくつもありません。</font>
+<ol>
+<li>
+インストール可能な言語パック(*.xpi)。
+ひとたびクリックすれば、自動的に言語パックはダウンロードされインストールされます。</li>
+
+<li>
+<font color="#000000">ローカライズされたインストーラビルド。</font></li>
+</ol>
+詳細は<a href="mlp_packaging.html">こちらで</a>。
+-->
+
+<a NAME="mlp_qa"></a>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" >
+<tr><td><h3>ローカリゼーションの結果の QA（品質保証）</h3></td></tr>
+</table>
+<p>もちろん、あなたの作業にも改訂があります。
+品質保証は Mozilla のような大きなプロジェクトを整然とさせ、有用でバグのないものにするためには不可欠なものです。<p>
+<p>地域化の品質全体を改善するために繰り返し行うことのできるテストにはいくつかの段階があります:
+<ul>
+<li>ひとたび利用したい言語が Mozilla で利用可能となれば、<b>XUL</b> というブラウザのユーザ・インタフェースファイルを読み込むことによって、Mozilla インタフェースを構成する多くのダイアログウィンドウ探索することができます。<br>
+ Mozilla のインタフェースのたくさんのダイアログウィンドウを調査することが出来ます。
+<i>chrome/</i> フォルダの中の .jar 圧縮ファイルの中を（PKZip 互換のユーティリティを使って）見て、
+*.xul ファイルを見ます。
+これらはコンポーネントごとにまとめられて content/ フォルダの下に含まれています。<br>
+ナビゲータで、対応する "chrome://" URL をアドレスバーに打ち込んでこれらのファイルを開きます。<br><br>
+<b>例</b>：<tt>/content/messenger/addressbook/</tt> の下の <tt>messenger.jar</tt> の中の <tt>abSelectAddressesDialog.xul</tt> を開くとすると、
+ナビゲータのアドレス欄に <tt>chrome://messenger/content/addressbook/abSelectAddressesDialog.xul</tt> と<b>入力</b>する必要があります。<br><br>
+ときおり、DTD ファイルの中の地域化された文字列が、似たような名前の .xul ファイル上のインタフェースの結果として表示されます
+（例：<tt>abSelectAddressesDialog.xul</tt> は <tt>abSelectAddressesDialog.dtd</tt> の中に置かれた文字列を使います）。<br><br>
+
+</li>
+<li>プログラムを使う！そう、これはもちろん最善の方法です。
+日に日に使うに従って、すべての利用可能な機能を、メニュー項目というメニュー項目を、ボタンというボタンを、系統的に網羅する計画を試してください。</li><br><br>
+<li>ユーザのフィードバックを推奨してください。だれかのミスを見つけるのは第三者の方がたいてい簡単だからです</li>
+</ul>
+
+</p>
+
+<a NAME="mlp_submit"></a>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" >
+<tr><td><h3>投稿</h3b></td></tr>
+<caption ALIGN=BOTTOM>&nbsp;</caption>
+</table>
+作業を一度終えたら、
+<p>
+<a href="mailto:MLP Staff &lt;mlp-staff@mozilla.org&gt;">MLP スタッフ</a>と連絡をとってください。
+私たちがそれらを <a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/">Mozilla FTP サイト</a>からダウンロードできるようにします。
+
+<p>
+しかし、そこで止まらないでください。世界にあなたの作業を知らせましょう！
+あなたの言語のニュースサイトに連絡を取り、その言語を話すプログラムの存在を人々に知らせましょう。
+この作業は、英語の mozilla.org のリリースに同期させて、作業の成果を公表しないことよりももっと重要かもしれません。</p>
+
+<p>
+あなたのアナウンスに対して、十分な <abbr title="Carbon Copy">CC</abbr> が見つかるかもしれません。
+別途、オンラインフォームを通してアナウンスを投稿可能なサイトのアカウントを作りたくなるかもしれません。。
+</p>
+
+<p>
+このほうが、あなたの作業の成果を多くの人がダウンロードしてテストすることの効果を得る可能性が高いのです。
+テストしてくれた人が、あなたのチェックから漏れてしまった何かを見つけたら、フィードバックを受けてください。
+前述したとおり、品質はアプリケーションは使うことによって改善することができるものです。
+</p>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/l10n/mlp_howto.html">英語版</a> 2005/01/18</span> - <span>和訳版 2006/03/28</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/l10n/mlp_howto.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

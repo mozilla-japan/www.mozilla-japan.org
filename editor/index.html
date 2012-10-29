@@ -1,0 +1,614 @@
+<!DOCTYPE html PUBLIC "-//W3C//dtd html 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title>Mozilla エディター</title>
+ <link rel="alternate" hreflang="en" modified="May 20, 2003">
+<!-- 訳者： 池田 譲治 -->
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/editor/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<!-- The HTML in this file was carefully hand-crafted with BBEdit. Please don't mess it up.
+
+
+     In particular:
+
+        Don't sprinkle <br>s around
+
+        Close your <p>, <li> and other tags
+
+        Use lower case for tags and attributes
+
+        Enclose attribute values in double quotes
+
+        
+
+-->
+
+
+<center>
+<h1>Mozilla エディター</h1>
+</center>
+<hr>
+<!--index-->
+<ul>
+	<li><a href="#What_is_the_editor">エディターとは?</a></li>
+	<li><a href="#Editor_documentation">エディター 資料文書</a></li>
+	<ul>
+
+		<li><a href="#Behavior_specs">動作の仕様</a></li>
+		<li><a href="#UI_specs">ユーザーインターフェース仕様</a></li>
+		<li><a href="#Implementation_specs">移植仕様</a></li>
+		<li><a href="#Test_plans">テスト計画</a></li>
+		<li>（埋め込んで使用するための）命令<br></li>
+		<li><a href="midas-spec.html">リッチテキスト編集</a><br></li>
+	</ul>
+	<li><a href="#Developer_information">開発者のための文書</a></li>
+
+	<li><a href="#Historical_information">歴史に属する情報</a></li>
+	<li><a href="#Who_are_we">私たち、とは誰？</a></li>
+	<li><a href="#How_can_I_help">どんな援助ができますか？</a></li>
+	<li><a href="#How_to_reach_us">私たちに連絡するには</a></li>
+</ul>
+<!--/index-->
+<hr>
+
+<h2><a NAME="What_is_the_editor">エディターとは?</a></h2>
+
+<p>
+Mozilla エディターは、<a href="/newlayout/">Gecko</a>
+をベースにしたアプリケーションにおいて、HTML とプレインテキストの編集ができるようにします。プログラムの内部では、エディターのコードは、主に
+
+<a href="http://www.w3.org/DOM/">DOM</a>
+を呼び出してページの内容を操作するので、まさしく DOM に精通したエディターと言えるでしょう。また、
+
+<a href="/projects/intl/input-method-spec.html">IME</a>
+（国際的なテキスト入力）のサポートも行ない、殆どの場合 JavaScript によってアクセス可能です。
+
+</p>
+<p>現在の所、Mozilla のコードベースでは、エディターは3つの異なった方法で使用されていますが、各々のアプリケーションは同一の基礎的なコードを共有しています。
+
+</p>
+<ol>
+	<li><b>Composer </b>：基本的な性能は全て備えた HTML エディター。ウェッブページ作成用。</li>
+
+	<li><b>HTML 編集ウィジェット</b>：rich text 編集ツール。メール作成、インスタント・メッセージ、その他の領域で使用される。</li>
+	<li><b>テキスト・ウィジェット</b>：エディターは、テキスト入力とテキスト領域で、使用されます。その領域は、XUL
+
+（例えば、URL バー）と HTML 形式のコントロールの両方です。</li>
+</ol>
+<p>
+エディターがどう動作するかについて、さらに情報が知りたい場合は、下記の<a href="#Developer_information">開発者のための文書</a>をお読みください。
+
+</p>
+<p>
+エディターのコードは、 <a href="http://lxr.mozilla.org/seamonkey/source/editor/"><code>mozilla/editor/</code></a> 
+
+にあります。私たちは、同時に、他の領域のコードも信頼（時にはサポート）しています。特に、DOM
+
+の範囲と選択（<a href="http://lxr.mozilla.org/seamonkey/source/dom/public/range/">DOM
+
+のインターフェース</a>、<a href="http://lxr.mozilla.org/seamonkey/source/layout/base/src/nsRange.cpp">範囲</a>と<a href="http://lxr.mozilla.org/seamonkey/source/layout/base/src/nsSelection.cpp">選択</a>の移植）です。私たちは、出力システム、つまり
+
+DOM 文書を特定の形式のテキスト（
+
+<a href="http://lxr.mozilla.org/seamonkey/source/htmlparser/src/nsHTMLToTXTSinkStream.cpp">プレインテキスト</a>、
+
+または
+
+<a href="http://lxr.mozilla.org/seamonkey/source/htmlparser/src/nsHTMLContentSinkStream.cpp">HTML</a>）
+
+に変換するコードもメンテナンスしています。
+
+</p>
+
+<p>
+現在の所、エディターのコードは、3つの XPCOM コンポーネント DLL にパッケージされています：
+
+</p>
+<table BORDER=0 CELLPADDING=3 >
+
+   <tr BGCOLOR="#CCCCCC">
+	<th>ライブラリ</th>
+	<th COLSPAN="3">DLL の名称*</th>
+	<th>目的</th>
+   </tr>
+   <tr BGCOLOR="#CCCCCC">
+	<td>&nbsp;</td>
+
+	<td>Win32</td>
+	<td>Unix</td>
+	<td>Mac</td>
+	<td>&nbsp;</td>
+   </tr>
+   <tr BGCOLOR="#EEEEEE">
+	<td>Editor</td>
+
+	<td><code>editor.dll</code></td>
+	<td><code>libeditor.so</code></td>
+	<td><code>EditorCore.shlb</code></td>
+	<td>編集機能の中核、JavaScript へのインターフェース</td>
+   </tr>
+   <tr BGCOLOR="#EEEEEE">
+	<td>Transaction Manager</td>
+
+	<td><code>txmgr.dll</code></td>
+	<td><code>libtxmgr.so</code></td>
+	<td><code>EditorTxmgr.shlb</code></td>
+	<td>一般的な処理の取扱い（取消とやり直しのサポート）</td>
+   </tr>
+   <tr BGCOLOR="#EEEEEE">
+	<td>Text Services</td>
+
+	<td><code>txtsvc.dll</code></td>
+	<td><code>libtxtsvc.so</code></td>
+	<td><code>TextServices.shlb</code></td>
+	<td>DOM 文書からテキストを得るためのシンプルなインタフェース（検索やスペルチェック用）</td>
+   </tr>
+</table>
+*デバッグビルドでの名称は異なっているかもしれないので注意してください。
+
+<p>
+
+エディターウィンドウとダイアログのための、XUL, JS, CSS そして GIF ファイルで構成された、エディターのユーザーインターフェース・ファイルは、
+
+<a href="http://lxr.mozilla.org/seamonkey/source/editor/ui/"><code>mozilla/editor/ui/</code></a> 
+にあり、ビルドでは、<code>chrome/packages/core/editor/content/</code> および
+
+<code>chrome/skins/&lt;skin
+
+name>/editor/skin/ </code>にインストールされます。
+
+</p>
+
+<hr>
+
+<h2><a NAME="Editor_documentation">エディター 資料文書</a></h2>
+
+<p>
+これらの文書に関するコメントがあれば、エディターのニュースグループか、メーリングリストに送ってください。登録方法の詳細は、<a href="../community.html">コミュニティページ</a>を参照してください。
+
+</p>
+<p><b>注意</b>： 開発の進行とともに、これらの文書のいくつかは、必然的に時代遅れとなります。このページの情報に基づいて何か重要な作業を行なおうとしているのであれば、あらかじめ<a href="mailto:mozilla-editor@mozilla.org">エディターグループ</a>に最新の動向について問い合わせてください。
+
+</p>
+<p>Brian King による、
+
+<a href="http://www.oreillynet.com/pub/a/network/2000/06/30/magazine/mozilla_editor.html">エディターの拡張</a>
+に関するいくつかの文書が、
+
+<a href="http://www.oreillynet.com">O'Reilly
+
+DevCenter</a> で読めます。
+
+
+</p>
+
+<h3><a NAME="Behavior_specs">動作の仕様</a></h3>
+<p>
+以下の仕様文書には、現行の編集方式と可能なユーザー設定の元で、ユーザーが行なう様々な行動に対して、エディターがどのように反応するべきかについての、私たちの考えが記載されています。これらは、「カーソルが文章の中にあって、"return"
+
+とタイプした時、何が起きるか？」といった問題を扱っています。
+
+<br>
+<ul>
+  <li><a href="rules.html">HTML タイピング規則</a>。 この規則は、さまざまな文書の状況で、ユーザーがスペースキーやリターンキーを押したときに何が起きるかを規定します。</li>
+  <li><a href="list-rules.html">リストの編集規則</a>。 この規則は、ユーザーがツールバーのリストボタンやリストのプロパティダイアログを操作したときに何が起きるかを規定します。</li>
+  <li><a href="selection-spec.html">選択</a>。 選択はレイアウトの一部ですが、エディターチームはそれを移植しています。</li>
+
+  <!--    この文書は、非常に時代遅れ
+
+	<li>
+
+	<a href="dogfood.html">Known Editor Usability Issues (Dogfood)</a> What
+
+	do we need to fix in order for the editor to be usable for simple daily
+
+	editing tasks?</li>
+
+-->
+  <li><a href="adding-css-to-editor.html">基礎的な CSS 1 のサポートをエディターに追加する</a>
+は、エディターへの CSS 1 の追加に関する提案を記載しています。</li>
+</ul>
+
+<h3><a NAME="UI_specs">ユーザーインターフェース仕様</a></h3>
+<p>
+以下の仕様文書は、メインウィンドウ、ダイアログ、メニュー、コンテキスト・メニューなど、ユーザーインターフェース（UI）の各々の部分を扱っています。
+
+<ul>
+  <li>composer メインウィンドウの仕様。作成待ち。</li>
+
+  <li>メール編集の仕様。作成待ち。</li>
+
+  <li>メニュー仕様。作成待ち。</li>
+
+  <li>コンテキスト・メニュー仕様。作成待ち。</li>
+
+  <li>
+  <a href="ui_specs/Composer_5_Dialogs.html">ダイアログ仕様</a>。 composer
+
+の各種ダイアログの仕様（やや時代遅れ）。</li>
+
+  <li>
+  <a href="ui_specs/TableSpecs.html">表編集仕様</a>。 テーブル編集の仕様（やや時代遅れ）。</li>
+</ul>
+
+<h3>
+<a NAME="Implementation_specs">移植仕様</a></h3>
+<p>
+エディターの特定のエリアにおける、詳細（低レベル）に関する仕様。
+
+</p>
+<ul>
+  <li>
+
+  <a href="key-event-spec.html">キー・イベント仕様</a> エディターだけではなく、Mozilla
+
+アプリケーション全体に応用できます。</li>
+
+  <li>
+  <a href="undo.html">処理・取り消しマネージャー</a> 汎用のクラスセット。エディター以外のクライアントでも使用可能です。  </li>
+
+  <li>
+  <a href="selection-spec.html">選択仕様</a> 選択はレイアウトの一部ですが、エディターチームはそれを移植しています。
+
+  </li>
+
+</ul>
+
+<h3><a NAME="Test_plans">テスト計画</a></h3>
+<p>
+テスト計画とテスト事例（testcase） は、品質保証（Quality Assurance）チームによって、その機能が動作するかどうかを決めるのに使われます（つまり、バグ捜し）。
+
+</p>
+<ul>
+  <li>
+  <a href="../quality/browser/front-end/testplans/">browser/composer front-end
+
+テスト計画</a></li>
+
+  <li>
+  <a href="../quality/browser/front-end/testcases/composer/">Composer テスト事例</a></li>
+
+</ul>
+
+<!-- マイルストーンのデータは、非常に時代遅れ
+
+<h3><a name="Pointy-head_specs">Pointy-head specs</a></h3>
+
+<ul>
+
+	<li>
+
+	<a href="milestones.html">Milestones</a> Schedule info: which features
+
+	do we expect to add in each Mozilla milestone?</li>
+
+</ul>
+
+-->
+
+<hr>
+
+<h2><a NAME="Developer_information">開発者のための文書</a></h2>
+<p>
+以下の文書は、主として開発者のために書かれており、エディターがどのように動くかの核心を扱っています。
+
+</p>
+<ul>
+  <li><a href="editor-internals.html">How the editor works</a> -- 
+
+エディターのインスタンス化とイベントハンドリング</li>
+
+  <li><a href="editor-embedding.html">Embedding the editor in another application</a>
+  </li>
+  <li><a href="plaintext-embedding.html">Embedding a plaintext-only editor</a>
+  </li>
+  <li><a href="editor-textwidgets.html">Editor as the text widget</a>
+  </li>
+  <li><a href="editor_commands.html">Command execution and enabling in the UI</a>
+
+  </li>
+  <li><a href="txmgr/transaction-manager.html">Transaction Manager</a>, 取消とやり直しを扱う。
+
+  </li>
+  <li><a href="text_services.html">Text Services</a>, 文書のフォーマットの詳細について知らなくても、クライアントが
+
+DOM 文書のテキストに容易にアクセスできるようにする。
+
+  </li>
+</ul>
+
+<p>
+より一般的な「ハウツー」文書。
+
+</p>
+
+<ul>
+  <li> <a href="find-algorithm.html">Care and Feeding of the Find
+Algorithm</a> </li>
+  <li> <a href="serializers.html">Notes on the DOM serializers</a> ( html とプレーンテキストの出力がどのようにしてなされるか。) </li>
+
+  <li>
+  <a href="changeidl.html">How to modify an idl file in the DOM IDL world</a></li>
+
+  <li>
+  <a href="ui_specs/PropertyDialogs.html">Writing Property Dialogs for 5.0
+
+that use the Advanced Edit feature</a></li>
+
+  <li>
+  <a href="logging/api-logging.html">Editor API Logging</a> -- 
+
+ユーザーが文書に行なわれた編集を記録し、それを再現できるようにする。</li>
+
+  <li>
+  <a href="composer-runtime-table.html">Composer runtime table</a> -- 
+
+必要なライブラリとファイルのリスト、サイズも記載されている（やや時代遅れ）。</li>
+
+</ul>
+
+<hr>
+
+<h2><a NAME="Historical_information">歴史に属する情報</a></h2>
+
+<p>
+
+他のレイアウト・コードベースと同様に、現在のエディターは、完全に新しいソース、すなわち
+
+Gecko レイアウト・エンジンに基づいています。古い 4.x の Composer コードベースに由来する部分は一つもありません。
+
+</p>
+<p>
+<a href="../classic/editdesc.html">古い Comoposer</a> に関する情報は、リンクから入手できます。このコードは、もはや開発もメンテナンスもされておらず、参照したい人の為だけにまだツリーに残されている、という事に注意してください。
+
+</p>
+
+<hr>
+
+<h2><a NAME="How_can_I_help">どんな援助ができますか？</a></h2>
+<p>
+あなたは、参加して、コードをハックしたり、UI をいじったり、文書を書いたり、計画をテストしたいのですね？
+
+すばらしい！
+
+</p>
+<p>
+最初にすることは、あなたがどのように貢献したいか決めることです。私たちは、次の領域のどこでも援助を歓迎しますので、それぞれどのレベルの経験が必要かを記述した次のリストをご覧下さい。
+
+
+</p>
+<ul>
+<li><p>
+<b>主要な新機能（例えば、出版）</b>
+<br>C++ での多大な作業（恐らく、新しい <a href="/projects/xpcom/">XPCOM</a>
+<a href="/docs/modunote.htm">component</a>
+の作成）と、<a href="/xpfe/">XUL と JavaScript</a>
+による UI に関する作業が必要でしょう。
+
+</p>
+</li>
+<li>
+
+<p><b>エディターを別のアプリケーションに組み込む</b>
+<br>あなたの目標としているアプリケーションが完全に C++ で書かれていない限り、これは前項に比べれば
+
+XUL と JavaScript のコーディングによるところが大です。<a href="editor-embedding.html">組み込み</a>
+の文書を参照してください。エディターが、どのようにしてインスタンスを収得し、イベントを扱うか（<a href="editor-internals.html">ここ</a>
+に記載されています）に関しての、充分な知識も必要です。
+
+</p>
+</li>
+<li>
+<p><b>HTML のタイピング規則の改善； より良い HTML の生成</b>
+<br>現在の HTML タイピング規則は、HTML メールの作成を念頭に置いた上で書かれています。それは、ウェッブページには必ずしも最適なものではなく、私たちはこの事を承知しています。この規則は、C++
+
+に移植されています。新しい規則のセットをどのように書くかについては、<a href="writing-rules.html">ここ</a>で読めます。<a href="http://www.w3.org/DOM/">DOM</a>
+
+に関する充分な知識が必要です。
+
+</p>
+</li>
+<li>
+<p><b>メモリーリーク、パフォーマンスの問題、バグなどを修正する手伝い</b>
+<br>メモリの使用、<a href="/performance/">パフォーマンス</a>、そして単にコードを監視するだけでも、私たちは手助けを歓迎します。この作業は、ほぼ全部が
+
+C++ で、あなたのプラットフォームで動作する有料のプログラムを使用したいと思うでしょう。メモリーリークの発見方法と修正方法に関する情報は<a href="/lxr/seamonkey/source/xpcom/doc/MemoryTools.html">こちら</a>。クラッシュなどの他のバグについては、一般的なデバッグ技術が必要ですが、<a href="http://www.rational.com/products/purify_nt/index.jtmpl">Purify</a>
+のようなツールが役に立つかも知れません。
+
+</p>
+</li>
+
+<li>
+<p><b>UI をいじる、マイナーな新しい機能を追加する</b>
+<br>この作業には、XP フロントエンド (<a href="/xpfe/">XPFE</a>)
+
+、すなわち、UI の表示と動作を XML 言語、 XUL、 そして JavaScript を用いて記述する方法についての最新の知識がいります。ダウンロードしたバイナリの中にある
+
+XUL、 CSS そして JS ファイルを操作することで、UI を変更してみることができます。エディターに関連した
+
+XUL と JS については、<code>chrome/packages/core/editor/content/</code> を、また
+
+CSS と画像については、<code>chrome/skins/&lt;skin name>/editor/skin/</code> 
+の中を見てください。ソースツリーでは、これらのファイルは 
+
+<code><a href="http://lxr.mozilla.org/seamonkey/source/editor/ui/">mozilla/editor/ui/</a></code>
+の中にあります。
+
+</p>
+
+<p>メニューアイテムやコンテクストメニューから呼び出される JS を書くことでも、新しい機能を追加できます。エディターの機能にアクセスするには、エディターシェルからエディターを呼び出す必要があるでしょう。エディターシェルの
+
+<a href="/scriptable/xpidl/idl-authors-guide/index.html">IDL</a>
+ファイル、<a href="http://lxr.mozilla.org/seamonkey/source/editor/idl/nsIEditorShell.idl">nsIEditorShell.idl</a>
+を見ることで、JavaScript との関連を理解できるでしょう。
+
+</p>
+</li>
+<li>
+<p><b>QA とテストの手伝い</b>
+<br>この作業では、単に製品を使用して暇な時に Bugzilla にバグをファイルすることから、テスト計画とテスト事例の開発を手助けすることまで、いろんなレベルで手助けできます。詳細については、<a href="/quality/">QA
+
+のページ</a> を参照してください。
+
+</p>
+
+<p><a href="/quality/browser/front-end/testcases/composer/">composer
+
+テスト事例</a> の概略が入手できます。
+
+</p>
+</li>
+</ul>
+
+<hr>
+
+<h2><a NAME="Who_are_we">私たち、とは誰？</a></h2>
+
+<ul>
+   <li>Kathy Brade (<i><a href="mailto:brade@netscape.com">brade@netscape.com</a></i>)</li>
+
+   <li>Joaquin Blas (<i><a href="mailto:kin@netscape.com">kin@netscape.com</a></i>)</li>
+   <li>Ryan Cassin ("Hurricane") (<i><a href="mailto:rcassin@supernova.org">rcassin@supernova.org</a></i>)</li>
+   <li>Joe Francis (<i><a href="mailto:jfrancis@netscape.com">jfrancis@netscape.com</a></i>)</li>
+   <li>Joaquin Blas (<i><a href="mailto:kin@netscape.com">kin@netscape.com</a></i>)</li>
+
+   <li>Charles Manske (<i><a href="mailto:cmanske@netscape.com">cmanske@netscape.com</a></i>)</li>
+   <li>Michael Judge (<i><a href="mailto:mjudge@netscape.com">mjudge@netscape.com</a></i>)</li>
+   <li>Akkana Peck (<i><a href="mailto:akkana@netscape.com">akkana@netscape.com</a></i>)</li>
+   <li>Anthony Davis (<i><a href="mailto:anthonyd@netscape.com">anthonyd@netscape.com</a></i>)</li>
+
+   <li>Simon Fraser (<i><a href="mailto:sfraser@netscape.com">sfraser@netscape.com</a></i>)</li>
+   <li>Daniel Glazman (<i><a href="mailto:glazman@netscape.com">glazman@netscape.com</a></i>)</li>
+   <li>Beth Epperson (<i><a href="mailto:beppe@netscape.com">beppe@netscape.com</a></i>)</li>
+</ul>
+<p>
+
+特定の問題やコードの部分について、誰に連絡したらよいのかを知りたいのであれば、<a href="editorwho2bug.html">この表</a>を参照するのが良いでしょう。
+
+</p>
+
+<hr>
+
+<h2><a NAME="How_to_reach_us">私たちに連絡するには</a></h2>
+
+<p>
+Mozilla エディターの問題を議論するニュースグループは、
+
+<a href="news://news.mozilla.org/netscape.public.mozilla.editor">netscape.public.mozilla.editor</a>
+で、エディターチームのメンバーは定期的に投稿を読んだり投稿したりしています。mozilla-editor
+
+<a href="../community.html">メーリングリスト</a>もオープンになっています。<a href="mailto:mozilla-editor-request@mozilla.org?subject=subscribe">このリンクから登録</a>してください。（メッセージの表題に
+
+"subscribe" と記載して下さい）
+
+
+</p>
+
+
+<hr>
+<address>Last modified Tursday 15 February 2001</address>
+
+<br>Maintained by the editor team: <a href="mailto:mozilla-editor@mozilla.org">mozilla-editor@mozilla.org</a>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/editor/index.html">英語版</a> 2003/05/20</span> - <span>和訳版 2004/10/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/editor/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

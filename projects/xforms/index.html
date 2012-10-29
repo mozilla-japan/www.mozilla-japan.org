@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla XForms プロジェクト</title>
+<link rel="alternate" hreflang="en" modified="February 3, 2005">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/xforms/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla XForms プロジェクト</h1>
+<p>ニュースグループ: <a href="news://news.mozilla.org/netscape.public.mozilla.xml">netscape.public.mozilla.xml</a></p>
+
+<h2>連絡先</h2>
+<ul>
+  <li><a href="mailto:xforms&#64;beaufour.dk">Allan Beaufour</a></li>
+  <li><a href="mailto:morten_olsen&#64;myrealbox.com">Morten Olsen</a></li>
+  <li><a href="mailto:pettay+xforms&#64;mappi.helsinki.fi">Olli Pettay</a></li>
+  <li><a href="mailto:mozillaxforms&#64;yahoo.com">Aaron Reed</a></li>
+</ul>
+<p>この XForms プロジェクトの最終的な目標は、 <a href="http://www.w3.org/TR/2003/REC-xforms-20031014/">W3C による XForms 1.0 勧告</a>を Mozilla に組み込むことです。</p>
+
+<h2>目次</h2>
+<ol class="toc">
+  <li><a href="#WhatIs">XForms とは</a></li>
+  <li><a href="#Overview">概要</a></li>
+  <li><a href="#FeatureStatus">各機能の進捗状況</a></li>
+  <li><a href="#QA">品質保証とテスト</a></li>
+  <li><a href="#Documentation">ドキュメント</a></li>
+  <li><a href="#How">協力するには</a></li>
+  <li><a href="#HowBuild">ビルドの手順</a></li>
+  <li><a href="#HowDownload">ダウンロード</a></li>
+</ol>
+
+<h2 id="WhatIs">XForms とは</h2>
+<p>XForms とは、W3C により、オンラインフォームの未来をなすと想定されているものです。XML スキーマ、XPath、XML イベントなどのような、W3C の標準をもとにして、XForms は、現在の HTML フォームモデルの限界のいくつかを乗り越える試みになります。大抵の Web フォームには、クライアントサイドでの整合性チェックや、入力した要素の相互依存性を操作したり、宣言したりする機能があります。HTML では、この機能を記述するには、巨大な JavaScript ライブラリを書かねばならず、入力データが変更されるたびに、アップデートしたりメンテナンスしなければなりませんでした。XForms は、内部でこの機能を組み込んでおり、フォームの作者は、単純な XML のマークアップを使うことで、この機能を利用することができます。ほかにも、XForms の利点として、見た目とデータの分離、強力なデータ定義、name/value のペア要素に変わって XML データをサーバーに送信する機能、フォームを表示できるようにフォーム作者が操作できるような記述法といったものです。いろんな面を扱った XForms 仕組みの解説やチュートリアルは、Web 上にたくさん存在しています。まずは、<a href="http://www.w3.org/MarkUp/Forms/">W3C のページ</a> か、利用可能な <a href="#Documentation">ドキュメント</a> から始めるのが良いでしょう。</p>
+
+<h2 id="Overview">概要</h2>
+<p>このプロジェクトでは、XML スキーマのフルサポートだけでなく、データインスタンスの作成、条件分岐、トグルスイッチなどの UI の要素との結合といった膨大な作業も抱えています。まずはじめに、このプロジェクトでは、Mozilla のコードベースへの最小の割り込みと最小の作業量しか必要としないような形で、XForms のほとんどの機能の実現を試みます。最初の目標は、ブラウザに対するプラグインのような拡張で、XForms の機能が利用可能なところで、一部のスキーマをサポートして、XTF を利用することです。</p>
+
+<h2 id="FeatureStatus">進捗状況</h2>
+<p>私たちは XForms 1.0 の実装完了に向けて着実に作業を進めています。まだ作業は残っていますが、ぜひ <a href="#HowDownload">開発ビルド</a> をお試しください。</p>
+<p><a href="#HowBuild">CVS からビルドする</a> か <a href="#HowDownloadNightly">ナイトリービルド</a> からダウンロード可能な拡張機能の <a href="status.html">現在のコードの状況</a> をご覧いただけます。</p>
+
+<h2 id="QA">品質保証とテスト</h2>
+<p>まずは、W3C のほうで一連の <a href="http://www.w3.org/MarkUp/Forms/Test">テストセット</a> を用意してくれています。このテストは、仕様の様々な章で紹介されているトピックに合わせて作られています。</p>
+<p>さらに包括的なテストケースとなると、エンタープライズ環境やオンラインショッピングサイトを記述したり利用したりすることを反映して作ることになるのでしょう。もし QA を手伝ってくれるのだとしたら、下記のどれかに参加してみてください。</p>
+<ul>
+  <li>実装されたコンポーネントのどれかの QA オーナーとして参加してください。QA オーナーは、コンポーネントに関連するテストを管轄し、関連するバグの QA の窓口役になり、レグレッションテストをサポートをすることになります。</li>
+  <li>実装されたコンポーネントを使った総合テストや個別のテストに参加してみてください。テストで見付かったバグを投稿するか、および/または、ツリーにチェックインしてください。</li>
+  <li>実装されたコンポーネントに関するバグを投稿してください。バグは、Browser プロダクトの XForms コンポーネントに分類してください。</li>
+</ul>
+
+<h2 id="Documentation">ドキュメント</h2>
+<p>この技術に精通するには、サンプルに触ってみるのが一番です。仕様には、素晴らしい <a href="http://www.w3.org/TR/xforms/index-all.html#concepts-xhtml">紹介とそのサンプル</a> があります。</p>
+<p>また、W3C のワーキンググループのメンバーにより執筆された、XForms の本が 2 冊出ています。ひとつは、Micah Dubinko による <a href="http://xformsinstitute.com/essentials/">XFormsEssentials</a> で、もうひとつは、T.V. Raman による <a href="http://www.awprofessional.com/articles/article.asp?p=102606">XForms: XML Powered Web Forms</a> です。</p>
+<p>それから、XForms に関するニュース全般を扱う活発な <a href="http://lists.w3.org/Archives/Public/www-forms/">メーリングリスト</a> もあります。これは、XForms のドキュメントに関する質問や関連情報を投げるのに、最適な場所でもあります。</p>
+<p>ほかにも、XForms を組み込んだいろんなサンプルが手に入ります。作業を進めていく最中も、更にテストケースをテストディレクトリに追加していくつもりです。ツリーをセットアップしたら、このプロジェクトページからテストディレクトリへのリンクをはります。また、利用可能になった段階で、Mozilla 固有のドキュメントへもリンクしていきます。</p>
+
+<h2 id="How">協力するには</h2>
+<ul>
+  <li>モジュール内に組み込まれたコンポーネントの <a href="#QA">テスト</a> を手伝ってください。</li>
+  <li>モジュールの <a href="#Documentation">ドキュメント</a> を書いてみてください。</li>
+  <li>コード関連だと、バグ修正や機能を満たすためのパッチを書いてくれると助かります。</li>
+</ul>
+
+<h2 id="HowBuild">ビルドの手順</h2>
+<p>ソースコードは Seamonkey トランクの mozilla/extensions/xforms ディレクトリから入手できます。ビルドに必要な手順は以下の通りです。</p>
+<ul>
+  <li>.mozconfig の拡張リストに xforms と schema-validation を加えてください。もしなかったら、以下の行を追加してください。<br><code>ac_add_options --enable-extensions="default,xforms,schema-validation"</code></li>
+  <li>あとは、<code>make</code> を使って <a href="/build/">通常通り</a> ツリーを取得し、ビルドしてください。</li>
+</ul>
+
+<h2 id="HowDownload">ダウンロード</h2>
+<p class="important">警告: これはエンドユーザ向けではありません。評価用に公開されているものです。</p>
+<p>私たちの作業の進捗状況を示す早期ベータ版を公開します。いつものように、<strong>これはまだ開発中のもので、実稼働環境には適さない</strong> ことにご注意ください。しかし、実感としてはかなり安定しており、評価をフィードバックしていただけることを心待ちにしています。近いうちに独自のフィードバック窓口を設けたいと考えていますが、今のところはニュースグループ <a href="news://news.mozilla.org/netscape.public.mozilla.xml">netscape.public.mozilla.xml</a> をご利用ください。件名のどこかに XForms の文字を入れてくださると、私たちの目を引きやすくなります :-)</p>
+<p>この拡張機能は Mozilla の eXtensible Tag Framework (XTF) を利用するため、XTF サポートを含む Mozilla/Firefox ビルドが必要となります。現在公開されている Mozilla や Firefox にはまだ XTF は含まれていませんが、Mozilla 1.8 と Firefox 1.1 のリリース時には含まれる予定です。私たちは、いくつかの問題に関して、ナイトリービルドでテストを続けています。また、下で説明したナイトリービルドを必要とする Mozilla の XPath 評価ツールの現行バージョンに関する依存関係も追っています。</p>
+
+<h3>インストール</h3>
+<p class="important">標準的な Mozilla 1.7.x や Firefox 1.0.x を使ってテストすることはできませんのでご注意ください。</p>
+<ul>
+  <li>Deer Park Alpha 1 (Firefox 1.1 プレビューリリース) - まずこの Deer Park ビルドをダウンロードし、そのビルドに適切な XForms をインストールしてください。
+    <ul>
+      <li>Linux
+        <ul>
+          <li><a href="http://download.mozilla.org/?product=deerpark-alpha1&amp;os=linux">Deerpark Alpha 1 for Linux</a></li>
+          <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/deerpark/alpha1/linux-i686/xpi/xforms.xpi">XForms ダウンロード for Linux</a></li>
+        </ul>
+      </li>
+      <li>Mac OS X
+        <ul>
+          <li><a href="http://download.mozilla.org/?product=deerpark-alpha1&amp;os=osx">Deerpark Alpha 1 for Mac OS X</a></li>
+          <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/deerpark/alpha1/mac/xpi/xforms.xpi">XForms ダウンロード for Mac OS X</a></li>
+        </ul>
+      </li>
+      <li>Windows
+        <ul>
+          <li><a href="http://download.mozilla.org/?product=deerpark-alpha1&amp;os=win">Deerpark Alpha 1 for Windows</a></li>
+          <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/deerpark/alpha1/win32/xpi/xforms.xpi">XForms ダウンロード for Windows</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>ナイトリー開発ビルド
+    <ul>
+      <li>XForms 拡張機能の最新ビルドは <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/nightly/">Firefox のナイトリー XPI トランクビルド</a> にあります。最新の <code>2005-XX-XX-XX-trunk/</code> ディレクトリの中に (OS の種類に応じて) <code>linux-xpi</code>、<code>windows-xpi</code>、<code>mac-xpi</code> があります。これらは最新のナイトリービルドにインストールし、古い拡張機能はすべて削除するようにしてください。</li>
+    </ul>
+  </li>
+</ul>
+<p>Firefox ユーザへの注意: これらのダウンロードリンクをクリックすると、ブラウザのコンテンツエリアの上部に "To protect your computer, Firefox prevented this site from installing softwared on your computer." といったメッセージが表示されます。メッセージの右端にある [Edit Options...] ボタンをクリックしてください。[Allow] ボタンをクリックし、[OK] ボタンをクリックします。その後インストールが開始されます。これは、ftp.mozilla.org (またはそれに対応したミラーサイト) がホワイトリストに含まれていないために見られるものです。</p>
+<p><a href="ReleaseNotes-20050202.html">リリースノート</a> をご覧ください。このリリースノートには、仕様に対するこれまでの進捗状況や、独自に実装している動作などが載っています。その中でも特筆すべきことは:</p>
+<ul> 
+  <li>XForms ドキュメントは、HTML ではなく XHTML として送信する必要があります。</li>
+  <li>Mozilla のセキュリティポリシーに準拠するため、ドキュメントの送信元とは異なるドメインにフォームの内容を送信することはできません。</li>
+  <li>このベータ版は今のところ、XForms CSS 疑似クラス、疑似要素をサポートしていません。一時的な対応策として、invalid、irrelevant などとして CSS でスタイル付けできるコントロール上に属性を指定しています。この問題は今後のビルドで修正されます。</li>
+</ul>
+<p>ここに、自分で試せる XForms のサンプルがいくつかあります。思わず「おっ」と言わせるものではないでしょうか。しかし若干挙動が怪しい点があるかもしれません。とにかく楽しんでください!</p>
+<ul>
+  <li><a href="http://www.mozilla.org/projects/xforms/calc.xhtml">計算機 </a></li>
+  <li><a href="http://www.mozilla.org/projects/xforms/sample1.xhtml">納税申告フォーム</a></li>
+  <li><a href="http://www.mozilla.org/projects/xforms/samples.zip">この 2 つや他のサンプルをダウンロード (ZIP アーカイブ)</a></li>
+</ul>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/xforms/index.html">英語版</a> 2005/02/03</span> - <span>和訳版 2005/06/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/xforms/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

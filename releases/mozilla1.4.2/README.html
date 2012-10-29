@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla 1.4.2 新着情報</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/releases/mozilla1.4.2/README.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.4.2/README.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+<h1>Mozilla 1.4.2 新着情報</h1>
+<p>このドキュメントは、1.4.1 から 1.4.2 までの間に行われた重要な変更の一部をまとめたものです。また、Mozilla 1.4 で実装された新機能や、重要なバグの修正、その他新たな問題の一部も載っています。決して、新機能や修正、バグの総合的な一覧ではありません。</p>
+
+<h2>Mozilla 1.4.2 の変更点</h2>
+<ul>
+	<li>Mozilla の NSS ライブラリがバージョン 3.9 にアップグレードしました。<a href="/projects/security/pki/nss/nss-3.9/nss-3.9-release-notes.html">NSS 3.9</a> は、NISCC の <a href="http://www.uniras.gov.uk/vuls/2003/006489/tls.htm">SSL/TLS</a> 試験と <a href="http://www.uniras.gov.uk/vuls/2003/006489/smime.htm">S/MIME</a> 試験 (不正な入力データを使った 160 万回のテストケース) を、クラッシュやメモリリークを起こすことなくすべてクリアしています。</li>
+	<li>Mozilla 1.4.2 には、パフォーマンスや安定性、Web サイト互換性、標準サポート、ユーザビリティを向上させるための変更など、追加的なバグの修正が数多く含まれています。以下は、それらの一部を書き出したものです。
+		<ul>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=224727">224727</a> Have IBM doctypes trigger quirks mode</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=207423">207423</a> Spellchecker icon doesn't display correctly</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=220257">220257</a> Treat HTA files like EXEs on Windows</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=227417">227417</a> Cross-domain exploit on zombie document with event handlers</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=220122">220122</a> Proxy-Authentication credentials can be exposed to origin server</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=220827">220827</a> soapAction set to &quot;&quot; should still generate a soapAction header</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=213825">213825</a> better detection of HTML files</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=222467">222467</a> dynamic change to width of table doesn't work</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=219029">219029</a> Attempting to open link to file:// can open link in new tab under certain circumstances</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=196670">196670</a> JNG images crash Mozilla on Windows</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=180049">180049</a> Add support for authentication plugins</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=228176">228176</a> %00 in a URL causes incorrect display of hovered link in status bar</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=59557">59557</a> Permissions should not be world-readable for profile directory</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=231280">231280</a> Printing procedure should honour Date and Time customisation on Mac OS X</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=214721">214721</a> long xpi filename can push &quot;Cancel&quot; button off screen</li>
+			<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=229984">229984</a> HTTP download of over 64MB causes disk cache to break</li>
+		</ul>
+	</li>
+</ul>
+
+<h2><a name="new">新機能と修正 (1.4)</a></h2>
+<ul>
+	<li>Windows 版 Mozilla で NTLM 認証がサポートされました。これは、「Windows 統合セキュリティ」を使うよう設定されている Microsoft 社製 Web サーバ・プロキシサーバと Mozilla が通信できるようにするものです。</li>
+	<li>Mozilla のブックマークが見直されました。改善されたブックマークは、ルート階層フォルダをサポートし、同じ URL を指す複数のブックマークに別々の名前を付けることが可能になり、ブックマークマネージャとブックマーク Sidebar にサイトアイコンが復活しました。また、セパレータにラベルを設定できるようになりました。</li>
+	<li>Composer が、クリック &amp; ドラッグによるダイナミックな画像・テーブルのリサイズをサポートしました。画像が選択されているとき、またはテーブル内にキャレットがあるとき、8 方向のリサイズハンドルが表示され、クリック・ドラッグ・リリースだけで、簡単に画像・テーブルの大きさを変更することができます。画像の場合、リアルタイムでリサイズがおこなわれ、リサイズ中は半透明の画像の影が目的のサイズで表示されます。また、目的のサイズと相対的な変更をピクセルで示したツールチップもリアルタイムで表示されます。</li>
+	<li>Mozilla メール に、迷惑メールのためのコンテキストメニューアイテムと「迷惑メールを削除する」メニューアイテムが追加されました。他にも迷惑メール管理のためのユーザビリティ改善が多く含まれています。</li>
+	<li>ポップアップブロック機能が合理化され、ユーザビリティが向上しました。</li>
+	<li>最初のウィンドウ、新しいウィンドウ、新しいタブに、それぞれ「空白ページ」または「ホームページ」「最後に訪問したページ」を指定できるようになりました。</li>
+	<li>HTML メールの編集にデフォルトのフォント・サイズ・カラーを指定できるようになりました。</li>
+	<li>画像ブロック・非表示機能がより柔軟になり、ブロックされたり読み込まれなかった画像を見るために「画像を表示」できるようになりました。</li>
+	<li>実行 (.exe) ファイルをダウンロードしたあと、「ファイルを開く」ことが可能になりました。</li>
+	<li>GCC を利用して Windows 版 Mozilla をビルドできるようになりました。詳しくは <a href="/build/win32.html">Windows ビルド方法</a> をご覧ください。</li>
+	<li>プロキシ自動設定 (PAC) フェイルオーバーが実装されました。</li>
+	<li>Mozilla 1.4.1 には、パフォーマンス、安定性、Web サイト互換性、標準サポート、ユーザビリティなど、さらに多くのバグの修正が含まれています。</li>
+</ul>
+
+<h2><a name="new-issues">新たな問題 (1.4)</a></h2>
+<p>ここには、前回のマイルストーン以降 <a href="known-issues.html">既知の問題</a> のページに追加された事項が載っていますが、バグ自体は以前からあったものである可能性もあります。</p>
+<ul>
+	<li>mozilla.org が配布している Linux バイナリは GCC 3.2 でコンパイルされるようになりました。これらのバイナリを利用している場合、<a href="http://java.sun.com/j2se/1.4.2/download.html">Sun J2SE v1.4.2</a> (<a href="http://java.sun.com/j2se/1.4.2/ja/download.html">日本語版</a>) (または GCC 3.2 でコンパイルされている Blackdown JDK 1.4.1) から Java プラグインのバージョン 3.2 をダウンロードする必要があります。Sun の Java プラグインは、Red Hat 8 以降や SuSE 8.1 以降など、最新バージョンの Linux と互換性があります。(プラグインは libgcc_s.so のより新しいバージョンに依存しており、Red Hat 7.3 に GCC 追加機能 [GCC 3.1 Compiler Suite for Red Hat Linux 7.3] をインストールすれば、一部の古い Red Hat Linux もプラグインを実行可能になります)　これより古いバージョンの Linux をお使いの方は、<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.4.1/">Mozilla の egcs 1.1.2 ビルド</a> と JRE 1.4.1 をインストールするか、それぞれの Linux ディストリビューション向けにコンパイルされたバージョンの Mozilla が出るのを待ってください。</li>
+	<li>mozilla.org がコンパイルした Linux バイナリを使っている場合、Flash への JavaScript アクセスは機能しません。
+</ul>
+
+</td>
+</tr>
+</table>
+
+<hr class="hide" />
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.4.2/README.html">英語版</a> 2004/05/03</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.4.2/README.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>MSAA サーバーを実装する - 開発者のための実用的 Tips と、 Mozilla による MSAA サーバーの実装方法</title>
+
+<link rel="alternate" hreflang="en" modified="November 11, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/windows/msaa-server.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>MSAA サーバーを実装する</h1>
+<h2>開発者のための実用的助言と、 Mozilla による MSAA サーバーの実装方法<br>
+</h2>
+<h2>目次</h2>
+<div style="margin-left: 40px;">
+<p>この文書は、特に Mozilla のサポートに関わりたいと思っているハッカーだけでなく、サードパーティーの補助テクノロジーとアクセスを可能にするアプリケーションにおいて、MSAA をサポートする仕事をしている開発者を対象としています。
+</p>
+<p>制御やウィジェットを実装している開発者であれば、<a href="/access/toolkit-checklist">アクセシビリティ・ツールキット　チェックリスト</a>をも参照されるのがいいと思います。
+
+<br>Gecko の MSAA の実装に興味のある開発者であれば、<a href="/access/windows/at-apis">アクセシビリティ・ベンダー向け Gecko 情報</a>を読んで MSAA クライアントが、どのようにして Gecko の MSAA サポートを利用出来るかについてご理解ください。</p>
+<a href="#intro">1.
+始めに: MSAA とは何か</a><br>
+<br>
+<a href="#whentouse">2. MSAA を使うべき時と、使ってはいけない時</a><br>
+<br>
+</div>
+<div style="margin-left: 40px;"><a href="#cheatsheets">3.
+ MSAAサポート機能の決定</a><br>
+<div style="margin-left: 40px;"><a href="#methods">メソッド</a><br>
+<a href="#events">イベント</a><br>
+
+<a href="#states">状態</a><br>
+<a href="#roles">役割</a><br>
+<a href="#objid">オブジェクト識別子</a><br>
+<br>
+</div>
+<a href="#quirks">4.
+</a><a href="#quirks">MSAA の気まぐれさと回避方法</a><br>
+<div style="margin-left: 40px;"><a href="#Crash_prone">MSAA はクラッシュし易い</a><br>
+<a href="#Hacky_caret_tracking_not_working">問題を引き起こす裏技キャレットの移動</a><br>
+<a href="#Hacky_highlight_tracking_not_working">問題を引き起こす裏技ハイライトの移動</a><br>
+
+<a href="#Event_window_confusion">イベントウィンドウの処理が正しくない</a><br>
+<a href="#Confusion_with_system-generated_events">システムによって作られるイベントによる混乱</a><br>
+<a href="#No_unique_child_ID_for_object_in_window">ウィンドウ内のオブジェクトに一意の子 ID がない</a><br>
+<a href="#Missing_functionality_in_MSAA">MSAA に欠けている機能</a><br>
+<a href="#Dueling_text_equivalents">テキスト相当品の問題</a><br>
+<a href="#Dueling_text_roles">テキストの役割の問題
+</a><br>
+<a href="#Issues_with_Links">リンクに関する事柄</a><br>
+<a href="#MSAA_Implementation_is_Not_Performant">性能問題</a><br>
+<a href="#Differing_client_implementations">クライアントで異なる実装</a><br>
+
+<a href="#Undocumented_Window_Class_Usage">文書にないウィンドウクラスの用法
+</a><br>
+<a href="#WindowFromAccessibleObject">クライアントとウィンドウの関係に依存する WindowFromAccessibleObject</a><br>
+<a href="#msaa_holes">全てがサードパーティーベンダーによって実装されるわけでない MSAA オブジェクト</a><br>
+<a href="#Not_all_MSAA_features_utilized_by_3rd">すべてがサードパーティーベンダーによって利用されているわけではない MSAA の機能</a><br>
+<a href="#Vendor_quirks">ベンダーの気まぐれ</a><br>
+<br>
+</div>
+<a href="#geckoimpl">5.
+例: Gecko と Mozilla が MSAA を実装する方法</a><br>
+<div style="margin-left: 40px;"><a href="#Creation_of_IAccessible_Objects">IAccessible オブジェクトの作成</a><br>
+<a href="#The_Accessible_Tree_vs._the_DOM_Tree">アクセシビリティツリー対 DOM ツリー</a><br>
+
+<a href="#The_Implementations_Behind_IAccessible">IAccessible 用実装のいろいろ</a><br>
+<a href="#Generating_MSAA_Events">MSAA イベントを発生させる</a><br>
+<br>
+</div>
+<a href="#feedback">6.フィードバック</a><br>
+</div>
+<h2><a name="intro"></a>1. 始めに：MSAA とは何か</h2>
+<ul>
+  <p>MSAA とは Windows オペレーテイングシステムに使用される <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaastart_9w2t.asp?frame=true">Microsoft
+Active Accessibility API(MSAA)</a> のことで、身体に障害を持たれているユーザー用の補助テクノロジーをサポートします。<br>
+
+  </p>
+  <p>スクリーンリーダ、スクリーン拡大鏡、音声入力ソフトなどのサードパーティーの補助テクノロジーは、Mozilla の内部で発生している事を追跡しようとします。それには、フォーカスの変更や他のイベントの変更について知る事と、現在のドキュメントやダイアログボックスに存在するオブジェクトが何であるかを知ることが必要です。これらの情報を使って、スクリーンリーダがドキュメントや UI の重要な変更を読み上げる事と、ユーザーが変更後に向かう方向を追跡する事が可能になります。スクリーンリーダーのユーザーはスクリーンリーダコマンドやブラウザコマンドを使用してウェブページを移動可能であり、2 つのソフトウェアーは同期する必要があります。スクリーンリーダの中には、<a href="http://www.deafblind.com/display.html">点字ディスプレイ</a> の情報を伝えるものさえあります。スクリーン拡大鏡は焦点に向かって拡大し、常時焦点をスクリーン上に保持します。またテキスト一行が流れるように表示されるテロップモードなど様々な機能によって、ユーザーが特別な低視力参照モードに入ることも可能です。最後に、音声検知ソフトウエアーは「見えるものは読み上げる」式の機能を実装するために、現在のドキュメントや UI に存在するものを知る必要があります。
+<br>
+  <br>Microsoft Windows では、これらの補助テクノロジーは、MSAA と独自の DOM という裏技との組合せによって、この必要情報を取得します。MSAA はアクセシビリティ補助が情報を取得するための「正統的方法」であるべきですが、裏技の方がより効果が高い場合もあります。例えば、スクリーンリーダは、キャレットの場所を見極めるために、仮想的に点滅する行の画面描画を探します。こうしなければ、ユーザーが多くのプログラムでキャレットがどこに移動したかをスクリーンリーダによって、知ることができません。それは、システムのキャレットを使用するアプリケーションが多くないためです（少なくとも Gecko は使用しません）。これはごく普通のことなので、MSAA のキャレットをサポートするのに考え込む必要もありませんし、結局多くのアプリケーションにとってすべての裏技は一般的な解決手段となっています。</p>
+  <p>MSAA は異なる様々な方法で情報を提供します：</p>
+  <ol>
+    <li>現在相互に作用する状態になっているユーザーインターフェイスにおいて、各ウィンドウを構成するデーターノードのツリーを、アプリケーションが公開できるようにしている COM インターフェイス：および</li>
+
+    <li>QueryInterface と QueryService を使用するインターフェイスによるカスタム・インターフェイスの拡張: このことで、補助テクノロジーは、オブジェクトモデルに固有の状況を伝える情報の提供を受けることが出来ます。例えば、Gecko は アクセシビリティのオブジェクト用の DOM ノードについての情報を提供するために ISimpleDOMNode をサポートします。<br>
+    </li>
+    <li>フォーカスの変更、ドキュメントコンテンツの変更、およびチックボックスなどの UI オブジェクトの状態の変更などのアクセシビリティ関連のイベントを伝える一式のシステムメッセージ。<br>
+    </li>
+  </ol>
+  <p> MSAA を実際に修得するためには、<a href="http://msdn.microsoft.com/library/default.asp?URL=/downloads/list/accessibility.asp">MSAA
+SDK</a> 全部をダウンロードする必要があります。SDK をダウンロードしなければ、学習工程でとても有益かつ大変役に立つツールを入手できません。Accessible Event Watcher は、所定のソフトウエアーによって起動されているアクセシビリティのイベントが何であるかを示します。Accessible Explorer と Inspect Object ツールはアクセシビリティのオブジェクトが COM を通して公開しているデータノードのツリーと、各オブジェクトの画面の境界がどこあるかを示します。さらに、MSDN は自分たちの <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaastart_9w2t.asp">MSAA の資料</a>を改善しています。<br>
+
+  </p>
+</ul>
+<h2><a name="whentouse"></a>2.MSAA を使うべき時と、使ってはいけない時</h2>
+<div style="margin-left: 40px;">MSAA が使用に値しないというのは、大きな間違いである多くの理由があります。<br>
+<h3>MSAA を使わないための俗説</h3>
+<span style="text-decoration: underline;">俗説: 
+MSAA は実際動作しない<br>
+</span>事実: MSAA は、ダイアログボックスと UI については、本当はとても良く動きます。確かに、MSAA は文書化については優れていませんが、アクセシビリティを公開している現行の唯一の汎用的標準です。<br>
+<br>
+<span style="text-decoration: underline;"><span style="text-decoration: underline;">俗説:
+</span></span><span style="text-decoration: underline;">MSAA
+ は遅すぎる</span><br>
+
+事実: 補助テクノロジーのベンダーは、多くの性能上の問題を COM メソッドの呼出しの不具合のせいにしています。あなたの部門では必ず優れた性能を働かせてください。<span style="text-decoration: underline;"><span style="text-decoration: underline;"></span><br>
+</span><br>
+<span style="text-decoration: underline;"><span style="text-decoration: underline;">俗説:
+</span></span><span style="text-decoration: underline;">"MSAA は低レベルだ"<br>
+<span style="text-decoration: underline;"></span></span>事実: こんな風に言っているのは、補助テクノロジーの他部門のエンジニアか、従業員かもしれません。そういう彼らは代替手段として何を提案するのでしょうか。独自開発の解決案でしょうか。MSAA はけっして完全ではありませんが、カスタム化された UI エレメントがほとんどの補助テクノロジーと一緒に動作可能な唯一の手段です。補助テクノロジーのベンダーによって彼らの製品だけでしか動かない独自開発の解決手段に縛り付けられないように注意が必要です。<br>
+<br>
+<span style="text-decoration: underline;"><span style="text-decoration: underline;">関連する俗説: MSAA を補助テクノロジーのベンダーがサポートしない。<br>
+</span></span>事実: MSAA は標準であり、JAWS、Window-Eyes、ZoomText、Dragon と Supernova/HAL によってサポートされます。現状は MSAA より優れたものはありません。<br>
+<span style="text-decoration: underline;"></span><br>
+<span style="text-decoration: underline;"><span style="text-decoration: underline;">俗説:
+</span></span><span style="text-decoration: underline;">MSAA は文書化されていない。</span><br>
+
+事実: ここで実際有益な文書を参照されてますね。MSDN 上の文書もまた有益です。<br>
+<br>
+<span style="text-decoration: underline;">ほとんど俗説: MSAA は実装するのに高価すぎる。</span><br>
+事実: 高価過ぎるとは相対的感覚であり、プロジェクトにとってのアクセシビリティの重要さによります。当文書では、『MSAA のサポート機能の決定』の章で、あまり重要でない MSAA の実装部分を紹介する事によって、コスト削減を企てています。当文書では、<a href="#cheatsheets">『MSAA のサポートする機能を決める』</a>の章で、あまり重要でない MSAA の実装部分を紹介する事によって、コスト削減を企てています。アプリケーションの標準外の制御で、MSAA をサポートすることだけが必要です。従ってそんなに高価すぎることはありません。<br>
+<br>
+<span style="text-decoration: underline;"><span style="text-decoration: underline;">ほとんど俗説: </span></span><span style="text-decoration: underline;"> Longhorn において Microsoft は MSAA をゆくゆくは廃止する。</span><span style="font-style: italic;"><span style="font-style: italic;"><br>
+<span style="font-style: italic;"></span></span></span>事実: 
+Microsoft のアクセシビリティ戦略は長期的にLonghorn において新しい API へと変わりつつあります。MSAA は依然としてエミュレーション層を通してサポートされますが、おそらく大変時間のかかる解決方法となります。この件を問い合わせる前に、結論を急がず長期的に Longhorn における MSAA のサポートがどれほど有効かを見る必要があります。<span style="text-decoration: underline;"><span style="font-style: italic;"><span style="font-style: italic;"></span><br>
+</span></span>
+
+<h3>MSAA の採否を決定するための手引き:</h3>
+<ul>
+  <li>自分自身のコードで描画、マウス、キーボードのアクセシビリティを取り扱うようなカスタム制御を作り上げた時は必ず <span style="font-style: italic; font-weight: bold;">MSAA を使用してください。MSAA はすべての補助テクノロジーにあなたのコードがしている事を知らせる唯一の手段です。</span>　</li>
+</ul>
+<ul>
+  <li> Windows プラットフォームで動かさない場合は、<span style="font-style: italic; font-weight: bold;">
+MSAA を使わないでください</span>... プラットフォームは明白であって欲しいですね。</li>
+
+  <li>アクセシビリティのため Windows の唯一の目的が Longhorn であれば、<span style="font-style: italic; font-weight: bold;">
+MSAA を使わないでください</span> </li>
+  <li>最初から最後まで、補助テクノロジーを使って試験し、補助テクノロジーベンダーと共同作業をするのでなければ、<span style="font-style: italic; font-weight: bold;">
+MSAA を使わないでください</span> </li>
+  <li>書式設定情報へアクセスすることが重要になる場合、文書や他の専門的データーを公開するために<span style="font-style: italic; font-weight: bold;">MSAA を使わないでください。</span> MSAA が保持するよりも多くの情報を保持しているインターフェイスを公開することになります。この情報は Mozilla が <a href="/access/windows/at-apis#externaldom">ISimpleDOMNode</a> (IAccessible から ISimpleDOMNode へ QI できます。）を使って拡張したように、MSAA への拡張のフォームになる可能性があります。このことは、補助テクノロジーベンダーの協力を得ることに限っては、実力があっても険しい道のりになります。しかし解決方法としては、必要なものが、JAWS、Dragon および ZoomText のサポートであるなら、十分よい方法かもしれません。ZoomText と Dragon は MSAA のサポートがあれば、なんとか出来ますし、JAWS は、代替インターフェイスをサポートするためにスクリプト化（外部の開発者によっても）可能です。
+
+</li>
+  <li>わずかな補助テクノロジーベンダーグループと協力し、すべての人に、異なる解決方法に同意してもらうことが可能であり、後になって他の補助テクノロジーをサポートする必要がないことが確かならば、<span style="font-style: italic;"><span style="font-weight: bold;">MSAA を使わないでください</span></span></li>
+</ul>
+</div>
+<br>
+<h2><a name="cheatsheets"></a>3.MSAA サポート機能の決定<br>
+</h2>
+<h2 style="margin-left: 40px;"><a name="methods"></a>MSAA
+メソッド - 開発者のためのカンニングペーパー</h2>
+<div style="margin-left: 40px;">
+</div>
+<ul style="margin-left: 40px;">
+  <p> IAccessible インターフェイスは IAccessible のツリーの中で使われ、各インターフェイスは DOM と似たデーターノードを表しています。</p>
+
+  <p> IAccessible でサポートされるメソッドを挙げます。最小限の実装として<span style="font-weight: bold;">[重要]</span><br>と記されたメソッドが含まれます。</span>
+:<br>
+  </p>
+  <ul>
+    <li>get_accParent: IAccessible の親を得る。<span style="font-weight: bold;">[重要]</span><br> 
+    </li>
+
+    <li>get_accChildCount: IAccessible の子の数を得る。<span style="font-weight: bold;">[重要]</span><br></li>
+    <li>get_accChild: IAccessible の子を得る。<span style="font-weight: bold;">[重要]</span><br></li>
+    <li>get_accName: IAccessible の名前を得る。例えば、ボタン、チェックボックス、あるいはメニュー項目の名前。音声検知ソフトウエアーが曖昧さを余計に抱え込まないように、ダイアログボックスの各項目には一意の名前が必要。<span style="font-weight: bold;">[重要]</span></li>
+    <li>get_accValue: IAccessible の「値」を得る。例えばスライダー中の数値、リンク用の URL 、ユーザーがテキスト領域に入力するテキストなど。<span style="font-weight: bold;">[重要]</span></li>
+    <li>get_accDescription: 現在の IAccessible の詳細な説明を得る。実際それほど有用でない。</li>
+
+    <li>get_accRole: この IAccessible の使用目的を表す列挙数値を得る。例えば、<br>
+    </li>リンク、静的テキスト、編集可能テキスト、チェックボックス、テーブルセル、であるかどうかなど。<span style="font-weight: bold;">[重要]</span><span style="font-weight: bold;"></span><li>get_accState: フォーカスされているか、フォーカス可能か、選択されているか、選択可能か、見えるか、(パスワード)で保護されているか、チェックされたかなど、オン/オフの状態がどちらであるかを表す32 ビットのフィールド<span style="font-weight: bold;">[重要]</span> </li>
+    <li>get_accHelp: IAccessible 用に文脈に対応したヘルプを得る。</li>
+    <li>get_accHelpTopic: これは使用しない。Windows のヘルプシステムが使用されるときのみ使用。</li>
+    <li>get_accKeyboardShortcut: この IAccessible のキーボードショートカットは何であるか。（下線が引かれた alt+combo ニーモニック）<br>
+
+    </li>
+    <li>get_accFocus: フォーカスのある子はどれか？<span style="font-weight: bold;">[重要]</span></li>
+    <li>get_accSelection: この項目のどの子たちが選択されているか？</li>
+    <li>get_accDefaultAction: リンク用の「jump」など、この部品の初期設定された動作の説明や名前を得る。</li>
+    <li>accSelect: この IAccessible と関係している項目を選択する。<span style="font-weight: bold;">[重要]</span></li>
+    <li>accLocation: この IAccessible ノードの x、ｙ 座標、高さ、幅を得る。 <span style="font-weight: bold;">[重要]<br>
+
+      </span></li>
+    <li>accNavigate: この IAccessible からの最初/最後の子、前/次の兄弟、上、下、左、右へと移動する。<span style="font-weight: bold;">[重要、</span><span style="font-weight: bold;">ただし、上/下/左/右は実装不要</span><span style="font-weight: bold;">]</span></li>
+    <li>accHitTest: どんな IAccessible が存在するかを見出し、特定の座標を見出す。</li>
+    <li>accDoDefaultAction: get_accDefaultAction によって解説された動作を実行する。</li>
+    <li>put_accName: 名前を変更する。
+</li>
+
+    <li>put_accValue: 値を変更する。</li>
+  </ul>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+<h2 style="margin-left: 40px;"><a name="events"></a>MSAA
+イベント　カンニングペーパー<br>
+</h2>
+<div style="margin-left: 40px;">
+</div>
+<ul style="margin-left: 40px;">
+  <p>各イベントが提示する情報については、<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaaccrf_7jlf.asp">MSDN 
+イベント定数ページ</a>をご参照ください。</p>
+
+  <p>補助テクノロジーのパートナーと一緒にチェックして、サポートする必要のあるイベントを見極めてください。パートナーは<span style="font-weight: bold;">[重要]</span>と記されたイベントしかサポートを求めない可能性が高いものです:<br>
+  </p>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+<table style="text-align: left; width: 75%; margin-right: auto; margin-left: auto;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">EVENT_SYSTEM_SOUND<br>
+
+EVENT_SYSTEM_ALERT<br>
+EVENT_SYSTEM_FOREGROUND<br>
+EVENT_SYSTEM_MENUSTART<br>
+EVENT_SYSTEM_MENUEND<br>
+EVENT_SYSTEM_MENUPOPUPSTART <span style="font-weight: bold;">[重要]</span><br>
+EVENT_SYSTEM_MENUPOPUPEND <span style="font-weight: bold;"><br>[重要]</span><br>
+EVENT_SYSTEM_CAPTURESTART<br>
+EVENT_SYSTEM_CAPTUREEND<br>
+
+EVENT_SYSTEM_MOVESIZESTART<br>
+EVENT_SYSTEM_MOVESIZEEND<br>
+EVENT_SYSTEM_CONTEXTHELPSTART<br>
+EVENT_SYSTEM_CONTEXTHELPEND<br>
+EVENT_SYSTEM_DRAGDROPSTART<br>
+EVENT_SYSTEM_DRAGDROPEND<br>
+EVENT_SYSTEM_DIALOGSTART<br>
+EVENT_SYSTEM_DIALOGEND<br>
+EVENT_SYSTEM_SCROLLINGSTART<br>
+
+EVENT_SYSTEM_SCROLLINGEND <span style="font-weight: bold;"><br>[重要かもしれないので、補助テクノロジーベンダーと相談のこと]</span><br>
+EVENT_SYSTEM_SWITCHSTART<br>
+EVENT_SYSTEM_SWITCHEND<br>
+EVENT_SYSTEM_MINIMIZESTART<br>
+EVENT_SYSTEM_MINIMIZEEND<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_OBJECT_CREATE <span style="font-weight: bold;">[実装しない。監視システムが発生させたこのイベントのバージョンは補助テクノロジーのクラッシュを引き起こす。</span><span style="font-weight: bold;"> </span><span style="font-weight: bold;">]</span><br>
+
+EVENT_OBJECT_DESTROY <span style="font-weight: bold;">[実装しない。監視システムが発生させたこのイベントのバージョンは補助テクノロジーのクラッシュを引き起こす。]</span><br>
+EVENT_OBJECT_SHOW<br>
+EVENT_OBJECT_HIDE<br>
+EVENT_OBJECT_REORDER <span style="font-weight: bold;">[現在は重要でないが、将来ドキュメントのミューテーションにとって重要になる]</span><br>
+EVENT_OBJECT_FOCUS <span style="font-weight: bold;">[重要]</span><br>
+EVENT_OBJECT_SELECTION<br>
+EVENT_OBJECT_SELECTIONADD<br>
+
+EVENT_OBJECT_SELECTIONREMOVE<br>
+EVENT_OBJECT_SELECTIONWITHIN<br>
+EVENT_OBJECT_STATECHANGE <span style="font-weight: bold;">[チェクボックスとラジオボタンにとって重要]</span><br>
+EVENT_OBJECT_LOCATIONCHANGE<br>
+EVENT_OBJECT_NAMECHANGE<br>
+EVENT_OBJECT_DESCRIPTIONCHANGE<br>
+EVENT_OBJECT_VALUECHANGE<br>
+EVENT_OBJECT_PARENTCHANGE<br>
+
+EVENT_OBJECT_HELPCHANGE<br>
+EVENT_OBJECT_DEFACTIONCHANGE<br>
+EVENT_OBJECT_ACCELERATORCHANGE<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div style="margin-left: 40px;">
+</div>
+<h2 style="margin-left: 40px;"><a name="states"></a>MSAA
+ 状態カンニングペーパー<br>
+
+</h2>
+<div style="margin-left: 40px;">
+</div>
+<ul style="margin-left: 40px;">
+  <p>各状態が提示する情報については、<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaaccrf_8y2b.asp">MSDN 
+状態定数ページ</a>をご参照ください。</p>
+  <p>補助テクノロジーのパートナーと共にチェックして、サポートする必要のある状態を見極めてください。パートナーは、<span style="font-weight: bold;">[重要]</span>と記された状態しかサポートを求めない可能性が高いものです</span>:</p>
+</ul>
+<table style="text-align: left; width: 75%; margin-right: auto; margin-left: auto;" border="0" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">STATE_UNAVAILABLE <span style="font-weight: bold;">[重要]</span><br>
+STATE_SELECTED <span style="font-weight: bold;">[重要]</span><br>
+STATE_FOCUSED <span style="font-weight: bold;">[重要]</span><br>
+STATE_PRESSED           <br>
+STATE_CHECKED <span style="font-weight: bold;">[重要]</span><br>
+
+STATE_MIXED<br>
+STATE_READONLY <span style="font-weight: bold;">[重要]</span><br>
+STATE_HOTTRACKED         <br>
+STATE_DEFAULT <span style="font-weight: bold;">[重要]</span><br>
+STATE_EXPANDED <span style="font-weight: bold;">[重要]</span><br>
+STATE_COLLAPSED <span style="font-weight: bold;">[重要]</span><br>
+STATE_BUSY <span style="font-weight: bold;">[重要]</span><br>
+
+STATE_FLOATING          <br>
+STATE_MARQUEED  <br>
+STATE_ANIMATED         <br>
+STATE_INVISIBLE       <br>
+      <br>
+      </td>
+      <td style="vertical-align: top;">STATE_OFFSCREEN <span style="font-weight: bold;">[重要]</span><br>
+STATE_SIZEABLE     
+ <br>
+
+STATE_MOVEABLE     
+ <br>
+STATE_SELFVOICING    <br>
+STATE_FOCUSABLE <span style="font-weight: bold;">[重要]</span><br>
+STATE_SELECTABLE <span style="font-weight: bold;">[重要]</span><br>
+STATE_LINKED <span style="font-weight: bold;">[重要]</span><br>
+STATE_TRAVERSED <span style="font-weight: bold;">[重要]</span><br>
+STATE_MULTISELECTABLE <span style="font-weight: bold;">[重要]</span><br>
+
+STATE_EXTSELECTABLE  <br>
+STATE_ALERT_LOW      <br>
+STATE_ALERT_MEDIUM   <br>
+STATE_ALERT_HIGH     <br>
+STATE_PROTECTED <span style="font-weight: bold;">[重要]</span><br>
+STATE_HASPOPUP <br>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<h2 style="margin-left: 40px;"><a name="roles"></a>MSAA 役割カンニングペーパー<br>
+</h2>
+<div style="margin-left: 40px;">
+</div>
+<ul style="margin-left: 40px;">
+  <p>各役割が提示する情報については、<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaaccrf_4nub.asp">MSDN 
+役割定数ページ</a>をご参照ください。</p>
+  <p>補助テクノロジーのパートナーと共にチェックして、サポートする必要のある役割を見極めてください。パートナーは、<span style="font-weight: bold;">[重要]</span>と記された役割しかサポートを求めない可能性が高いものです</span>:<br>
+
+<span style="font-weight: bold;">[システムが挿入する]</span>と記されたオブジェクトをサポートする必要はありません。Windows はこれらのオブジェクトを開発者用のオブジェクト階層へ加えます。<br>
+  </p>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+<table style="text-align: left; width: 75%; margin-right: auto; margin-left: auto;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">ROLE_TITLEBAR <span style="font-weight: bold;">[システムが挿入する]</span><br>
+
+ROLE_MENUBAR <span style="font-weight: bold;">[ネイティブなメニューを使わなければ重要]</span><br>
+ROLE_SCROLLBAR<br>
+ROLE_GRIP<br>
+ROLE_SOUND<br>
+ROLE_CURSOR<br>
+ROLE_CARET<br>
+ROLE_ALERT<br>
+ROLE_WINDOW <span style="font-weight: bold;">[システムが挿入する]</span><br>
+
+ROLE_CLIENT <span style="font-weight: bold;">[重要]</span><br>
+ROLE_MENUPOPUP <span style="font-weight: bold;">[重要]</span><br>
+ROLE_MENUITEM <span style="font-weight: bold;">[重要]</span><br>
+ROLE_TOOLTIP<br>
+ROLE_APPLICATION<br>
+ROLE_DOCUMENT<br>
+ROLE_PANE <span style="font-weight: bold;">[重要]</span><br>
+
+ROLE_CHART<br>
+ROLE_DIALOG <b>[次に重要、現在全ての補助テクノロジーが使っているわけでない]</b><br>
+ROLE_BORDER<br>
+ROLE_GROUPING<br>
+ROLE_SEPARATOR <span style="font-weight: bold;">[重要]</span><br>
+ROLE_TOOLBAR<br>
+ROLE_STATUSBAR <span style="font-weight: bold;">[重要]</span><br>
+
+ROLE_TABLE <span style="font-weight: bold;">[重要]</span><br>
+ROLE_COLUMNHEADER<br>
+ROLE_ROWHEADER<br>
+ROLE_COLUMN<br>
+ROLE_ROW<br>
+ROLE_CELL <span style="font-weight: bold;">[重要]</span><br>
+ROLE_LINK <span style="font-weight: bold;">[重要]</span><br>
+
+ROLE_HELPBALLOON<br>
+ROLE_CHARACTER<br>
+      </td>
+      <td style="vertical-align: top;">ROLE_LIST <span style="font-weight: bold;">[重要]</span><br>
+ROLE_LISTITEM <span style="font-weight: bold;">[重要]</span><br>
+ROLE_OUTLINE <span style="font-weight: bold;">[重要]</span><br>
+ROLE_OUTLINEITEM <span style="font-weight: bold;">[重要]</span><br>
+
+ROLE_PAGETAB <span style="font-weight: bold;">[重要]</span><br>
+ROLE_PROPERTYPAGE <span style="font-weight: bold;">[重要]</span><br>
+ROLE_INDICATOR<br>
+ROLE_GRAPHIC <span style="font-weight: bold;">[重要]</span><br>
+ROLE_STATICTEXT <span style="font-weight: bold;">[重要]</span><br>
+ROLE_TEXT <span style="font-weight: bold;">[重要]</span><br>
+
+ROLE_PUSHBUTTON <span style="font-weight: bold;">[重要]</span><br>
+ROLE_CHECKBUTTON <span style="font-weight: bold;">[重要]</span><br>
+ROLE_RADIOBUTTON <span style="font-weight: bold;">[重要]</span><br>
+ROLE_COMBOBOX <span style="font-weight: bold;">[重要]</span><br>
+ROLE_DROPLIST <span style="font-weight: bold;">[重要]</span><br>
+ROLE_PROGRESSBAR <span style="font-weight: bold;">[重要]</span><br>
+
+ROLE_DIAL<br>
+ROLE_HOTKEYFIELD<br>
+ROLE_SLIDER<br>
+ROLE_SPINBUTTON<br>
+ROLE_DIAGRAM<br>
+ROLE_ANIMATION<br>
+ROLE_EQUATION<br>
+ROLE_BUTTONDROPDOWN<br>
+ROLE_BUTTONMENU<br>
+
+ROLE_BUTTONDROPDOWNGRID<br>
+ROLE_WHITESPACE<br>
+ROLE_PAGETABLIST <span style="font-weight: bold;">[重要]</span><br>
+ROLE_CLOCK<br>
+ROLE_SPLITBUTTON<br>
+ROLE_IPADDRESS<br>
+ROLE_NOTHING<br>
+      <br>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 style="margin-left: 40px;"><a name="objid"></a>MSAA
+オブジェクト識別子カンニングペーパー<br>
+</h2>
+<div style="margin-left: 40px;">
+</div>
+<p style="margin-left: 80px;">各オブジェクト識別子が提示する情報については、<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaaccrf_05tf.asp">MSDN 
+オブジェクト識別子定数ページ</a>を参照ください。</p>
+<div style="margin-left: 80px;">
+
+ 補助テクノロジーのパートナーと共にチェックして、サポートする必要のあるオブジェクト識別子を見極めてください。パートナーは、<span style="font-weight: bold;">[重要]</span>と記されたオブジェクト識別子しかサポートを求めない可能性が高いものです</span>:<br>
+</div>
+<dl style="margin-left: 120px;">
+  <dt>OBJID_ALERT<br>
+OBJID_CARET<br>
+OBJID_CLIENT <span style="font-weight: bold;">[重要]</span><br>
+OBJID_CURSOR<br>
+
+OBJID_HSCROLL<br>
+OBJID_NATIVEOM <span style="font-weight: bold;">[重要かな?、カスタムインターフェイスをサポートするのには重要かもしれない。調査が必要。]</span><br>
+OBJID_MENU<br>
+OBJID_QUERYCLASSNAMEIDX<br>
+OBJID_SIZEGRIP<br>
+OBJID_SOUND<br>
+OBJID_SYSMENU<br>
+OBJID_TITLEBAR<br>
+
+OBJID_VSCROLL<br>
+OBJID_WINDOW <span style="font-weight: bold;">[重要だが、Microsoft Windows によって自動的に実装される。型 ROLE_WINDOW のオブジェクトを返す。下記 <a href="#WindowFromAccessibleObject">WindowFromAccessibleObject
+早分かり</a>を参照のこと.]</span> </dt>
+</dl>
+<h2><a name="quirks"></a>4.MSAA の気まぐれさと回避方法</h2>
+<div style="margin-left: 40px;">
+</div>
+<p style="margin-left: 40px;">MSAA は気まぐれという評判に十分値します。「プラグアンドプレイ」とは言いがたく、すべての製品がうまく動作するようになる前に、多くの試験と調整が必要になります。以下に MSAA の気まぐれさとその解決方法、回避方法のいくつかを挙げます：<br>
+</p>
+<div style="margin-left: 40px;"><big><a name="Crash_prone"></a>MSAA はクラッシュし易い</big><br>
+
+</div>
+<div style="margin-left: 80px;"><br>
+<span style="text-decoration: underline;">問題</span>:
+ MSAA のクラッシュの多くは、二つ以上のプロセスが同じオブジェクトを参照カウントし、ポインターがプロセス間で共有されていることで発生します。アプリケーションが閉じるとき、ふつう異なる信号が通知されます。例えば、アプリケーションウィンドウが閉じて、ウィンドウがぼやけて見えます。サードパーティーの補助テクノロジーが、アプリケーションのオブジェクトを解放するために refcount 中のこれらの信号のひとつを使うかどうか、使うなら何時使うかを知ることは不可能です。このために、信号が何かを解放する場所でクラッシュが発生します。しかも、DLL でアンロードされるものと、されないものがある時や、アンロードされた DLL でディストラクターが呼ばれているなどの不都合な時に、クラッシュが発生します。
+<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+「シャットダウン」メソッドを内部の各アクセシビリティのオブジェクト用に作成して、dll が１つとしてアンロードされない内に他の内部オブジェクトへの参照を取り除きます。このことを効率的にするために、作られたすべてのアクセシビリティオブジェクトを追跡可能にする必要があります。ドキュメントオブジェクトやドキュメントオブジェクトが参照する UI オブジェクトが消え去る時はいつも、アクセシビリティオブジェクト用のシャットダウンメソッドが呼ばれるべきです。そうするため最も簡単な方法は、各内部 UI オブジェクト内のアクセシビリティにポインターを確保することです。そのポインターが null でなければ、アクセシビリティオブジェクトがあります。UI オブジェクトが排除されるときはいつも、そのアクセシビリティオブジェクトも同じく終了させてください。Gecko/Mozilla では、各アクセシビリティオブジェクト用にこの追加のポインターを確保できませんので、アクセシビリティが有効にされると、これらのオブジェクトをキャッシュするために、ハッシュテーブルを使います。このキャッシュは UI およびドキュメントオブジェクトのツリーと完全に同期をとって保持される必要がありますが、これは難しいことです。従って、あなたのアプリケーションで各オブジェクトに 4 バイトを追加することを必須条件としなければ、ハッシュテーブルを使わずに、追加のポインターを近くに保持だけしてください。<br>
+<br>また、EVENT_OBJECT_CREATE や EVENT_OBJECT_DESTROY を実装しないでください。ベンダーはこれらのイベントを監視することがクラッシュを引き起こすことを知っています。<br>
+<br>
+</div>
+<div style="margin-left: 40px;"><big><a name="Hacky_caret_tracking_not_working"></a>問題を引き起こす裏技キャレットの移動<br>
+</big></div>
+<div style="margin-left: 80px;"><br>
+
+<span style="text-decoration: underline;">問題</span>:
+補助テクノロジーは MSAA キャレットを使用しません。それは、一番上の点滅する行を探しながら、画面の描画を移動します。リストボックスなどのような他のオブジェクトの一番上の行によって、行が点滅しなくても、混同してエラーになる製品も残念ながらあります。この場合補助テクノロジーは、あなたのキャレットを全然見ないのかもしれません。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+各補助テクノロジーごとに、あなたのアプリケーションに固有の設定ファイルを必ず作成してください。手順書かヘルプを参照して、キャレットをティーチングするためのキー入力か、コマンドを捜してください。そして、その情報を設定ファイルへ落とし込んでください。この時所定のウィンドウクラス内で、キャレットがいつも同じ幅( lpx か 2px) を保つようにしてください。ホームページリーダーのデスクトップ読み上げアプリケーションがあなたのアプリケーション（他に MSAA キャレットを使用するアプリケーションはありません）と一緒に動作する必要がない限りは、MSAA キャレットをサポートしないでください。<br>
+<br>
+</div>
+<div style="margin-left: 40px;"><big><a name="Hacky_highlight_tracking_not_working"></a>問題を引き起こす裏技ハイライトの移動<br>
+</big></div>
+<div style="margin-left: 80px;"><br>
+<span style="text-decoration: underline;">問題</span>:
+スクリーンリーダは、ハイライト表示部が移動する時はいつも、MSAA のフォーカスを無視して、代わりに現在ハイライトのあるテキストを読み上げます。画面上の数箇所にハイライトが存在していても、ハイライト追跡自動化の実装によって、現在ハイライトのあるテキストだけが読まれます。しかし、間違ったものを読み上げる、正しいものでも 2 度読み上げる、または 2 つの異なるものを読み上げるなど、読み上げ機能について共通に発生する問題が考慮されていません。同時に表示される 2 つのリストボックスがあるだけで、問題はすぐに発生します。というのは、選択されたリストボックスの項目は、リストボックス自体がフォーカスされていない時でも、システムのハイライト色を使うからです。同じ背景色を備えた静的テキストの時、別の問題が発生します。フォーカスやハイライトが移動するたびに、テキストが繰り返し読み上げられるというものです。ある大手のスクリーンリーダで、すくなくともハイライトの移動を無効にする機能を備えたものがありますが、その機能の設定がグローバルであるために、ハイライトの移動をグローバルに無効化すると、メニュー項目の読み上げ設定もまた無効化されてしまいます。
+<br>
+<br>
+
+<span style="text-decoration: underline;">解決方法</span>:
+ハイライトやフォーカスが移動する時は、読み上げて欲しくない項目に対してシステムのハイライト色を使用してはいけません。標準のリストボックスでこの問題を解決するためには、オーナー描画リスト項目を使用すると、項目にフォーカスが無い時はハイライト色を変更出来ます。フォーカスのないリストボックスには、異なるハイライト色（より薄い色の方が、フォーカスのないリストは、リストボックスの状態が見た目に分かりやすく、だれもが使い易くなるので良い）を使って、リストボックスがもはやフォーカスされていないことを表示してください。自動補正テキスト領域でドロップダウン表示に使われるポップアップリストボックスは、リストを矢印で進めるのに対応してユーザーがテキスト領域でタイプ入力する時は、明度を 1 変更してください。リストボックスは表示上はなおも動作中に見えますが、スクリーンリーダの動作は、各キー入力に対して読み上げ情報を過度に繰り返さないことで改善されています。この解決方法の欠点は、リスト項目に対して「クライアントデーター」が使えないことです。これは、Windows がオーナー描画リスト項目にクライアントデーターの使用を許可しないためです。
+<br>
+<br>
+</div>
+<div style="margin-left: 40px;">
+<big><a name="Event_window_confusion"></a>イベントウィンドウの処理が正しくない</big><br>
+<br>
+<div style="margin-left: 40px;"><span style="text-decoration: underline;">問題</span>:
+スクリーンリーダを含む補助テクノロジーはフォーカスやその他のイベントを正確に追跡しない。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+現在のシステムとは異なるウィンドウ内のイベントがフォーカスされるとあなたが報告しているために、この件が問題になるのかもしれません。補助テクノロジーは GetGUIThreadInfo の hwndFocus を要求して、現在フォーカスのあるウィンドウ内に存在しない MSAA のイベントを例外として投げているかも知れません。正しいウィンドウ上で、ウィンドウのフォーカスが見えるように表示されているとしても、他にアクセシビリティイベントがその中で起動されないうちに、このウィンドウをフォーカスするようにオペレーテイングシステムに命令が出されなければなりません。 </div>
+<br>
+
+<big><a name="Confusion_with_system-generated_events"></a>システムによって作られるイベントによる混乱</big><br>
+<br>
+<div style="margin-left: 40px;">
+<span style="text-decoration: underline;">問題</span>:
+MSAA SDK で Accessible Event Watcher を使って試験する時、自分のアプリケーションが発生させたわけでない、数多くのイベントに気付きます。MS Windows はあなたのために幾つかのイベントを発生させます。補助テクノロジーにイベントがあなたのアプリケーションからか Windows から来ているのかを告げる方法が備わっていない以上、これらのイベントは問題です。例えば、ウィンドウフォーカスが設定される時、 Windows はこれもあなたのために発生させる ROLE_WINDOW オブジェクトとして、 EVENT_OBJECT_FOCUS イベントを発生させます。ウィンドウ内のあるオブジェクト上で、あなた自身の EVENT_OBJECT_FOCUS イベントを起動させた後でたまたまウィンドウフォーカスを設定するならば、あなたのイベントは、補助テクノロジーソフトがただ最後にフォーカスされたイベントにしか注意しないという理由で無視されます。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+他のウィンドウ内で、あるオブジェクトがフォーカスされようとしている時、ウィンドウ内のオブジェクト用に自分自身のフォーカスイベントを起動しない内に、必ずウィンドウをフォーカスするようにしてください。MSAA SDK 内の Accessible Event Watcher を使って試験しアクセシビリティイベントの下位集合を監視する設定パネルを使ってください。補助テクノロジーを信頼して、システムが引き起こした余分なイベントのがらくたの存在を承知してください。これはあなたの問題ではありません。<br>
+</div>
+<br>
+<big><a name="No_unique_child_ID_for_object_in_window"></a>ウィンドウのイベントターゲット用に一意の子 ID がない</big><br>
+<br>
+<div style="margin-left: 40px;">
+
+<span style="text-decoration: underline;">問題</span>:
+NotifyWinEvent(eventNum、hWnd、worldID、childID) を使ってMSAA はイベントに報告を受ける事を期待しますが、オブジェクト用のウィンドウのハンドルと 32 ビットの子 ID を取得する明確な方法がないかもしれません。あなたは、ウィンドウを使わない制御を使用中かもしれませんし、所定のウィンドウ内の多数のオブジェクトと一緒にドキュメント全部を備えているかも知れません。子 ID は一意でなければなりません。というのは、補助テクノロジーがそれを使って、AccessibleObjectFromEvent() を経由して、アクセシビリティに接続するからです。そしてこのインターフェイスは、所定のウィンドウ用のアクセシビリティ上で最後に get_accChild を使います。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+Gecko/Mozilla では、すべのオブジェクト上に追加で 32 ビットの一意の ID を保持する必要はありませんでした。代わりに、 UI オブジェクトのポインターが発信する 32 ビットの一意の値を返します。そして返す値を必ず負の値にしなければなりません。get_accChild の呼出しが戻って来る時、ウィンドウ用のハッシュテーブルのキャッシュをチェックして、引き続き一意の値と関連しているアクセシビリティのオブジェクトが存在するかどうか調べます。これは、クライアントが直ちに AccessibleObjectFromEvent を使用しなければならないと言うことです。なぜならば、オブジェクトが消え去り同じポインター値で別の新しいオブジェクトが作られる危険があるからです。と言ってもイベントからの情報は一般的にイベントの直後に伝えられるので、これは極まれなことです。<br>
+<br>
+一意の ID を追跡記録するためにハッシュテーブルを使用していないならば、最後の 50 程度の子 ID とイベントを円形配列で保持してください。実際、これだけあれば AccessibleObjectFromEvent() を楽に保管できます。<br>
+</div>
+<br>
+<big><a name="Missing_functionality_in_MSAA"></a>MSAA に欠けている機能</big><br>
+<br>
+<div style="margin-left: 40px;"><span style="text-decoration: underline;">問題と解決方法:</span>
+
+補助テクノロジーベンダーには、以下のように MSAA が提供しないのに必要なものがあります。:<br>
+</div>
+</div>
+<ul style="margin-left: 40px;">
+  <ul>
+    <li>ドキュメントがロードを完了した事を示す方法がない： オブジェクトが新しいドキュメントのロードを開始する時、ウィンドウ/クライアント/ペイン・オブジェクト用に EVENT_OBJECT_STATECHANGE を起動します。そしてSTATE_BUSY を使って新しいドキュメントがロード中であることを示します。ロードが完了した時、EVENT_OBJECT_STATECHANGE イベントをもう一つ起動し STATE_BUSY フラグをクリアーします。
+  </li>
+    <li>テキストオブジェクト内のテキストの境界を刈り込んだり戻したりするメソッドがない： 画面拡大鏡で必要なメソッドです。scrollTo メソッドがなく、これも画面拡大鏡で必要なメソッドです。テキストオブジェクト用にカスタムインターフェイスを実装しますが、それが、IAccessible が実装されているのとは別のオブジェクト上に実装されているならば、 QueryInterface や QueryService によってサポートします。テキストインデックス を取り込む scrollTo メソッドおよび、開始インデックスと終了インデックスを取り込む getClippedBounds と getUnclippedBounds メソッドをサポートしてください。カスタムインターフェイスは公開してください。</li>
+    <li>補助テクノロジーがスクロールの終わりを知る方法がない： スクロールが終了した時を示す EVENT_SYSTEM_SCROLLINGEND イベントを起動します（あまり多くこのイベントを起動せずに、スクロールが完全に完了するまで待ってください）。補助テクノロジーでは使用されていない EVENT_SYSTEM_SCROLLINGSTART をサポートする必要はありません。<br>
+    </li>
+
+  </ul>
+  <ul>
+    <li>ベンダーからの要請のある、ドキュメントのフォーマット化のサポートや DOM のサポートがない：ベンダーが必要とするフォーマット化情報を提供するカスタムインターフェイスをサポートしてください。<br>
+    </li>
+  </ul>
+</ul>
+<div style="margin-left: 40px;"><big><a name="Dueling_text_equivalents"></a>テキスト相当品の問題</big><br>
+<br>
+<div style="margin-left: 40px;"><span style="text-decoration: underline;">
+問題</span>: 3 種類のテキスト相当品が存在します。各々が使われるべき時を理解するのは難しいことです。この点では、異なるアプリケーションがそれぞれの方法で動きます。例えば、Acrobat はアクセシビリティの値にテキストラベルを使いますが、多くのプログラムはアクセシビリティの名前を使用します。<br>
+
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+出来る限り Internet Explorer に対して一貫性を保ちましょう。多くのテキスト相当品にアクセシビリティの名前を、URL 用にはアクセシビリティの値を使用します。公開する必要のあるオブジェクトに実際長い記述が必要で無い限りは（ほとんどの補助テクノロジーは短い記述しか使いません）、アクセシビリティの記述を使用しなで下さい。<br>
+</div>
+<big><br>
+</big><big><a name="Dueling_text_roles"></a>テキストの役割の問題</big><br>
+<br>
+<div style="margin-left: 40px;"><span style="text-decoration: underline;">
+問題</span>: テキストオブジェクトは、 ROLE_STATICTEXT と ROLE_TEXT の 2 つの異なる役割を帯びています。ROLE_TEXT は編集可能なテキストを意味することになっていますが、STATE_READONLY と一緒に使われることもあります。readonly の状態との組合せでどちらの役割をどのような時に使用すべきか理解するのは難しいことです。例えば、Internet Explorer  は通常のウェブページテキストでは、STATE_READONLY なしの ROLE_TEXT と STATE_READONLY 付きの ROLE_TEXT をともに使います。しかし、ラベル用には、ROLE_STATICTEXT を使います。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+ダイアログボックスと UI 制御用に固有のラベルは ROLE_STATICTEXT を使ってください。ドキュメントテキスト用にはテキストが編集可能でなくても（その場合 STATE_READONLY と ROLE_TEXT を一緒に使う）、必ず ROLE_TEXT を使ってください。編集可能なテキスト領域には、readonly フラグをクリアーして ROLE_TEXT を使ってください。
+</div>
+
+<big><br>
+<a name="Issues_with_Links"></a>リンクに関する事柄</big><br>
+<br>
+<div style="margin-left: 40px;">
+<span style="text-decoration: underline;">問題</span>:
+補助テクノロジーの中にはリンクを参照する件に関して、柔軟性のない経験則を抱えるものもあります。状態が正しく設定されなければ、補助テクノロジーがオブジェクトを読まないこともあります。第 2 に、リンクの参照は独自の規則に従ってホワイトスペースを解析できなければ、補助テクノロジーがオブジェクトの処理を間違えることがあります。一般的になっている事なのに、補助テクノロジーには、ダイアログボックスに埋め込まれたリンクの扱い方法を知らないものが多いのです。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+ドキュメント内のリンクでは、ROLE_LINK オブジェクトとその子 ROLE_TEXT オブジェクトにすべて、STATE_LINKED を必ず設定してください。途中で行が折れている複数行のリンクでは、すべてのアクセシビリティの名前の頭や末尾に必ずホワイトスペースが無いようにしてください。ROLE_LINK 用のアクセシビリティの名前の中に行の折り返しが発生する箇所では、\r\n を必ず入れてください。この正しい処理例については、Internet Explorer や Gecko を参照してください。繰り返しになりますが、この事が正確に実行されなければ、参照できないリンクが存在することになります。<br>
+<br>
+ダイアログボックス内のリンクでは、単一の ROLE_LINK オブジェクトを公開するだけにして、補助テクノロジーベンダーによるスクリプトやコード変更の解決方法に取り組んでください。
+<br>
+</div>
+<br>
+
+<big><a name="Issues_with_Links"></a>ツリービューに関する事柄</big><br>
+<br>
+<div style="margin-left: 40px;">
+<span style="text-decoration: underline;">問題</span>:
+ノードが常に変化し、インスタンス化がきっちりとされないために、ツリービューで MSAA をサポートするのは難しいです。スクリーンリーダのベンダーは MSAA に SysTreeView32 クラスをサポートさせずに、自分たちで直接 SysTreeView32 クラスを実際に使用します。こうしてネイティブなツリービューにとって良いサポートを提供できます。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+Microsoft のツリービューへの MSAA の実装方法を注意深く調べてください。ツリービューオブジェクトそのものが、子オブジェクト用に get_accName への全ての要求を処理します。子 ID は変数構造の情報の一部です。実際ツリービューの階層の並び毎に別のオブジェクトを作る必要がないので、このことは多くの仕事が省かれることを意味します。また、オブジェクトの入れ子構造を複数レベル作らずに、ツリービュー主要オブジェクトの直接の子たちとして、すべての階層の並びを扱ってください。単に値の領域に「1、2、3、・・」と階層を入れてください。<br>
+</div>
+<br>
+<big><a name="MSAA_Implementation_is_Not_Performant"></a>MSAA の実装は高性能でない。</big><br>
+<br>
+<div style="margin-left: 40px;"><span style="text-decoration: underline;">
+
+問題</span>: 
+補助テクノロジーは、あなたのアプリケーションとの間で高速に応答し合うことができないかもしれません。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+同じことを二度以上計算したり、同じオブジェクトを二度以上作らないようにしてください。例えば、get_accChildCount() で子を探す時、オブジェクトの子を作ってキャッシュしてください。そうすると、get_accChild() や accNavigate() を使う事が要求された時、子をただ返すだけで十分です。Support IEnumVARIANT をサポートして MSAA クライアントが一度の呼出しでたくさんの子を要求できるようにしてください。カスタムインターフェイスでは、呼出し回数を増やす事はせずに、一度の呼出しでたくさんのデーターを返すメソッドを作ってください。COM のマーシャリングが遅いので、呼出し回数が少なければ少ない程良いと言えます。<br>
+</div>
+<br>
+<big><a name="Differing_client_implementations"></a>クライアントで異なる実装</big><br>
+<br>
+<div style="margin-left: 40px;">
+<span style="text-decoration: underline;">問題</span>:
+全ての補助テクノロジーは MSAA を異なる方法で使用しています。<br>
+<br>
+
+<span style="text-decoration: underline;">解決方法</span>:
+MSAA を異なる方法で使用して大きな争いがあったかどうか（まだ）知りませんが、用心するに越したことはありません。ベンダーに仕様と異なる事を求められたなら、実行する前に他のベンダーをチェックした方がよいでしょう。似た状況で Microsoft のアプリケーションの方法を調査するのも良いでしょう。<br>
+</div>
+<br>
+<big><a name="Undocumented_Window_Class_Usage"></a>文書にないウィンドウクラスの用法</big><br>
+<br>
+<div style="margin-left: 40px;">
+<span style="text-decoration: underline;">問題</span>:
+普通の制御では、MSAA は実際ウィンドウ用に単にウィンドウクラスやスタイルビットを得るほど直接的ではないので、補助テクノロジー製品は必要な時だけ MSAA を探します。事実、制御が自分自身のウィンドウを備える時は、サードパーティーのアプリケーションが、オブジェクトが機能しない、フォーカスされている、隠されている、チェックされたなどその状態を知るのは簡単です。
+<br>
+<br>
+補助テクノロジーの中には、所定のウィンドウクラスが共用物のために使われている事をまだ知らない内は、MSAA を探すものがあります。共通物の例とは、ボタン、リストボックス、コンボボックス、msctls_statusbar32、msctls_trackbar32、#32770 (ダイアログ クラス)、SysTreeView32、Static、Edit 、RichEdit です。他の補助テクノロジーの中には、白表（whitelist）を使い実装時どこかにウィンドウクラスのリストを作成し、そのクラスのウィンドウがフォーカスを受け取る時に MSAA のサポートを有効にする必要のあるものもあります。そのウィンドウクラスはまた、ハードコード化された多くの働きを決めるためにも使われます。たとえば、ユーザーがスクリーンリーダのコマンドを使って画面を移動するのに、スクリーンリーダが MSAA ツリー全部を特別なバッファへロードするかしないかなどについてです。アプリケーションのキーボードコマンドが専ら移動に使われる UI/ ダイアログボックスのためではなく、ドキュメント上の移動のためにこの事が発生するのです。　　
+<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+あなたの MSAA を使用していない製品のベンダーに連絡をとって、あなたが MSAA を使うことになるウィンドウクラスを知らせてあげてください。可能であれば、UI/ ダイアログボックス用とは異なるドキュメント/コンテンツ用のウィンドウクラス名を使用してください。あるいは、 Mozilla がしているように、コンテンツ用に 1 、 UI 用に 2 として制御 ID (GWL_ID) を公開してください。補助テクノロジーベンダーにとっては、所定のウィンドウで機能しているコードを見極めるのに一貫性のあるウィンドウクラスの名前を付けることが重要です。製品の出荷後にウィンドウクラス名を変更しないようにお願いします。<br>
+
+</div>
+<br>
+<big><a name="WindowFromAccessibleObject"></a>クライアントとウィンドウの関係に依存する WindowFromAccessibleObject<br>
+<br>
+</big>
+<div style="margin-left: 40px;"><span style="text-decoration: underline;"><span style="text-decoration: underline;">問題</span></span>:
+ある種の規則に従わなければ、WindowFromAccessibleObject は壊れ、機能しているアプリケーション固有の設定を知るためにウィンドウクラスの情報を必要としている accexplore.exe のようなアクセシビリティ試験ツールや、補助テクノロジーはエラーになります。WindowFromAccessibleObject は ROLE_WINDOW を見つけるまで親の連鎖を上ることで機能します。見つからないとエラーとなります。<br>
+<span style="text-decoration: underline;"><br>
+解決方法</span>: 
+Microsoft Windows に OBJID_WINDOW 用の WM_GETOBJECT のメッセージを処理させてください。OBJID_CLIENT に、アクセシビリティの親は ROLE_WINDOW オブジェクトを指し示すか、ROLE_WINDOW オブジェクトが、すくなくとも、親の連鎖に必ず存在するようにする必要があります。OBJID_CLIENT オブジェクトにアクセシビリティの親のウィンドウハンドルをキャッシュし、その get_accParent() メソッドを実装して AccessibleObjectFromWindow(mParentHwndOBJID_WINDOW, IID_IAccessible, &ptr) の結果を返すことによって、この事はごく簡単に実施できます;<br>
+</div>
+<br>
+<big><a name="msaa_holes"></a>全てがサードパーティーベンダーによって実装されるわけでない MSAA オブジェクト</big><br>
+
+<br>
+<div style="margin-left: 40px;">
+<span style="text-decoration: underline;">問題</span>:
+上述しましたように、ボタン、リストボックス、コンボボックス、msctls_statusbar32、 msctls_trackbar32、#32770 (ダイアログクラス)、SysTreeView32、Static、Edit 、RichEdit など、スクリーンリーダは、最初に自分が知っているウィンドウクラスを探す傾向があります。補助テクノロジーベンダーではこれらのクラスの働きによってウィンドウを作ることに時間のほとんどを費やすので、ウィンドウは完全にバクとりされます。さらに、ユーザーは、多くのアプリケーションが標準的な制御を使うという事実に基づいて、ステータスバー、ダイアログボックス、ツリービューが正しく動作することを期待するようになります。残念ながら、 MSAA の実装は遅れ勝ちです。例えば、ツリービューは、完全な MSAA の実装が存在してるにのにおそらくほとんどの補助テクノロジーでアクセシビリティとして使えないでしょう。ダイアログボックスとステータスバーの自動スクリーン読み上げは、MSAA の実装が完ぺきで、オブジェクトに関して他の全てが完全に正常であるにもかかわらず、間違ったクラス名が使われているという理由のためだけに、ほとんど動作しません。 
+<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>: 3 つの対応が可能です：１）標準のクラス名を使うようにする。２）スクリーンリーダのベンダーにプレッシャーをかけて、 MSAA の実装を修正したりよりよい経験則を使うようにさせる。３）サードパーティーのスクリプトを使用することで、補助テクノロジーのスクリプトの問題を解決する。
+<br>
+</div>
+<br>
+<big><a name="Not_all_MSAA_features_utilized_by_3rd"></a>すべてがサードパーティーベンダーによって利用されているわけではない MSAA の機能</big><br>
+<br>
+<div style="margin-left: 40px;">
+<span style="text-decoration: underline;">問題</span>:
+ MSAA で使える機能の 50% を、補助テクノロジーは使用していません。例えば、 MSAA キャレットや、イベント、役割、状態とメソッドの多くが使われていません。従ってどれをサポートすべきかを理解するのは簡単ではありません。<br>
+
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+この文書を使って何が補助テクノロジー製造者によって一般的に重要と見なされているかを理解してください。自分のアーキテクチャーを立案し実装する時は、早めに足しげく大手ベンダーと接触して、彼らにとって重要な事柄を理解してください。必要なものだけを実装してください。すべてをサポートすると時間がかかり成果が無いこともあります。<br>
+</div>
+<br>
+<big><a name="Vendor_quirks"></a>ベンダーの気まぐれ</big><br>
+<br>
+<div style="margin-left: 40px;">
+<span style="text-decoration: underline;">問題</span>:
+アプリケーションを扱う完全に明確で独立した方法としてではなく、古い裏技的テクニックに乗っかった補助的解決手段として補助テクノロジーは MSAA を使いがちであり、 MSAA の気まぐれな性質とスクリーンリーダに使われる柔軟性のない経験則のために、「プラグアンドプレイ」を備えていません。その上、補助テクノロジーのベンダーは小さな会社で、彼らがすでにサポートするアプリケーションの変更や、これからサポートする必要のあるあなたのもの以外の新商品に対してあたふたとどうにか追随して行こうとしているのがごく普通です。 ベンダーに MSAA 実装の試験に時間を割いたり、うまく動作しない内容のフィードバックや原因究明の支援をしてもらうのは、とても大変なことです。納期やバージョンアップの約束は頻繁に破られます。常に遅れているバージョンアップ製品を抱えており、あなたの製品の優先度はその後に来ます。<br>
+<br>
+<span style="text-decoration: underline;">解決方法</span>:
+補助テクノロジーの会社に気さくにコンタクトしましょう。できるだけ気安く協力しましょう。すなわち、新しいテキストビルドに対する彼らのバク報告に対してきちんと返事を返し、変更点や変更時期について情報が緊密に共有できているようにします。彼らの支援に頼らずに出来るだけの事をしましょう。あなたの組織が彼らにはできない事をしてやれるかどうか考えましょう。辛抱強く、期待レベルを高く持ちすぎないようにしましょう。あなたの期待によって、彼らのプライドと収入の両方が影響を受け、アプリケーションをサポートした仕事を埋め合わせるために、彼らはソフトウエアーのコピーを多く売る必要がある事を考慮してください。あなたのアプリケーションのアクセシビリティがエンドユーザーに要求されているのでなければ、彼らがあなたを必要であるより、どんなに小さくともあなたが彼らを必要としている事を忘れないでください。</div>
+
+</div>
+<h2><a name="geckoimpl"></a>5. 例: Gecko と Mozilla が MSAA を実装する方法<br>
+</h2>
+<p style="margin-left: 40px;">
+<a href="http://lxr.mozilla.org/seamonkey/source/accessible/">アクセシビリティ・モジュール</a> は Mozilla MSAA の実装が存在する場所です。
+何がどのように実装されているかを参照したい時は、ご自由に
+<a href="http://lxr.mozilla.org/seamonkey/source/accessible/"> アクセシビリティ・モジュールのソースコードを精読</a>してください。<br>
+</p>
+<p style="margin-left: 40px;">アクセシビリティ・モジュールはまた Linux と UNIX 用に Sun の<a href="http://wwws.sun.com/software/star/gnome/accessibility/architecture.html">ATK</a> アクセシビリティ API 用サポートが実装されている場所です。Sun Microsystems によってサポートされる Mozilla ATK の試みに固有の文書化については、<a href="/projects/ui/accessibility/unix">Unix 上の Mozilla アクセシビリティ</a>ページを参照してください。
+
+<h3 style="margin-left: 40px;"><a name="Creation_of_IAccessible_Objects"></a>IAccessible オブジェクトの作成<br>
+</h3>
+<ul style="margin-left: 40px;">
+  <p> 補助テクノロジーが、私たちのアプリケーションを調べようとする時最初に起こることは、AccessibleObjectFromWindow() という Windows API 機能を呼び出すことです。これは通常、ウィンドウがフォーカスされた直後に発生します。<br>
+  </p>
+  <p>AccessibleObjectFromWindow() という WIN32 API 関数が呼ばれる時 Windows は、ウィンドウ内のルートオブジェクト用の IAccessible を要求している <a href="http://lxr.mozilla.org/seamonkey/search?string=WM_GETOBJECT">WM_GETOBJECT</a> メッセージを該当するウィンドウへ送ります。私たちは、このイベントを <a href="http://lxr.mozilla.org/seamonkey/source/widget/src/windows/nsWindow.cpp#4370">mozilla/widget/src/windows/nsWindow.cpp</a> で受け取ります。そして、このルートオブジェクトについての情報を得るクライアントによって使われる IAccessible ポインターを送り返します。補助テクノロジーはこのルート IAccessible を使用してオブジェクトツリーの残りを、子へ次に兄弟へ移動することで探索します。accNavigate()、get_accChild() および get_accParent() などのすべてのナビゲーション機能は IAccessible ポインターを返します。 <br>
+
+  </p>
+  <p>最初に nsWindow.cpp が <a href="http://lxr.mozilla.org/seamonkey/search?string=WM_GETOBJECT">WM_GETOBJECT</a> メッセージを取り込んだ時ウィンドウ用のルート IAccessible を作成するために、nsWindow.cpp は <a href="http://lxr.mozilla.org/seamonkey/search?string=NS_GETACCESSIBLE">NS_GETACCESSIBLE</a> と呼ばれる内部イベントを発生させます。そして、内部ウィンドウ用の <a href="http://lxr.mozilla.org/seamonkey/find?string=msaa/nsDocAccessibleWrap">nsDocAccessibleWrap</a>  クラスか、トップレベルウィンドウ用の <a href="http://lxr.mozilla.org/seamonkey/find?string=msaa/nsRootAccessibleWrap">nsRootAccessibleWrap</a> クラスかが作られる事によって、この内部イベントは<a href="http://lxr.mozilla.org/seamonkey/source/layout/html/base/src/nsPresShell.cpp#6345">PresShell::HandleEventInternal()</a> で渡されます。これらのクラスは、私たちのクロスプラットフォーム API の nsIAccessible と Windows/MSAA/COM に固有の IAccessible の 2 つを実装します。これらのクラスが継承するクロスプラットフォームな nsDocAccessible と nsRootAccessible クラスはその時 DOM のページロードイベントとスクロールイベントの監視を開始するように命じられます。これらのイベントは EVENT_OBJECT_FOCUS や EVENT_OBJECT_STATECHANGE など MSAA 固有のイベントを、適用可能なウィンドウ内の UI オブジェクトおよびドキュメントオブジェクト上で起動させます。イベントについては、後ほどこの章で、さらに詳しく解説します。</p>
+
+  <p>WM_GETOBJECT メッセージが処理されるまで、Gecko アクセシビリティ・サービスは使われず、こうして accessibility.dll はロードされないので、通常は Mozilla や Gecko におけるアクセシビリティ API サポートはほとんどオーバーヘッドがありません。しかし、一度アクセシビリティ・サービスが作られると、IAccessible をサポートするべきすべての UI やドキュメントオブジェクトのために Gecko は、要求があればオブジェクトを作るコードをロードします。作られたオブジェクトはハッシュテーブルにキャッシュされ、不要になる時に終了されます。補助テクノロジーによって完全に解放されるまで、オブジェクトはメモリー中に引き続き機能しない状態で存在するかもしれません。どの種類のオブジェクトに対して Gecko が IAccessible をサポートするかを参照するのにはアクセシビリティの役割の章を見てください。<br>
+  </p>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+<h3 style="margin-left: 40px;"><a name="The_Accessible_Tree_vs._the_DOM_Tree"></a>アクセシビリティツリー対 DOM ツリー<br>
+</h3>
+<div style="margin-left: 40px;">
+</div>
+<ul style="margin-left: 40px;">
+  <p>ウィンドウ用のルート accessible やドキュメントaccessible が作成され MSAA のクライアントに戻された後で、それらは、accNavigation、get_accChild および get_accParent を使って、IAccessible ツリーの残りの部分の探索に使用されます。すべの IAccessible がこれらのメソッドをサポートします。また COM を使ってオブジェクト子からクライアントへとすべてを高速マーシャリング可能な IEnumVARIANT::Next() もサポートされます。言い換えれば、補助テクノロジーは「20 の子たちをすべてこの配列へ入れて私にください」と言っています。それは、各子を一人ずづ 20 回に分けて呼び出すよりずっと速いことになります。<br>
+
+  </p>
+  <p> Mozilla ではクライアントはツリー移動にもう一つ選択肢があります。 Mozilla のカスタム <a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/msaa/ISimpleDOMNode.idl">ISimpleDOMNode</a> COM インターフェイスによってクライアントは、 DOM に保持されているデーターを使えます。すべての IAccessible は ISimpleDOMNode へ QueryInterface する事ができますし、逆方向に回ることも可能です。しかし、IAccessible への ISimpleDOMNode を QI しても、null しか見出せないかもしれません。これは、該当の特定ノードは IAccessible ツリーでは表示されない事を意味します。IAccessible をサポートしないノードのサンプルは下図を参照してください。
+<br>
+  </p>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+<h3 style="margin-left: 40px;">MSAA ツリー対 DOM ツリー：その関係は？
+</h3>
+<div style="margin-left: 40px;">
+
+</div>
+<ul style="margin-left: 40px;">
+  <p> <img src="msaa-server_files/tree-relativity.gif" alt="Diagram showing MSAA tree is a subset of the DOM tree" title="図は MSAA ツリーが DOM ツリーの下位集合であることを示します。"> </p>MSAA ツリーと DOM ツリーは、MSAA ツリーが DOM ツリーの下位集合であるにもかかわらず、平行的な構造です。<code>QueryInterface()</code> は 2 つのツリーの間で使用されるインターフェイス (IAccessible and ISimpleDOMNode) を切り替えるのに使われます。DOM ノードに匹敵する MSAA のノードが存在しないならば  pAccessible-><code>QueryInterface(IID_IAccessible)</code> が null を返します。
+</ul>
+<h3 style="margin-left: 40px;"><a name="The_Implementations_Behind_IAccessible"></a>IAccessible 用実装のいろいろ</h3>
+<div style="margin-left: 40px;">
+<div style="margin-left: 40px;">
+
+<p> Mozilla のアクセシビリティクラスの階層には、プラットフォームに固有なものとクロスプラットフォームであるという 2 つの主要な種類のクラスがあります。プラットフォームに固有なクラスのすべてはクラス名に「Wrap」が追加されています。Wrap クラスは MSAA や ATK に固有な実装やインターフェイスを含んでいます。これらのプラットフォームに固有なクラスは、クロスプラットフォームなクラスを継承し、後者では、ほとんどの実装が完了しています。例えば、nsAccessibleWrap は nsAccessible を継承しています。 MSAA ツリーのすべてのアクセシビリティオブジェクトは nsAccessible に起源のある実装を備えており、一般的なクロスプラットフォームがするように、nsAccessible を通じてアクセシビリティ情報を公開します。<br>
+</p>
+<p>nsIAccessible の初期設定実装によって、nsAccessibleTreeWalker に Mozilla のコンテンツ DOM とフレームツリーを歩かせて、アクセシビリティ用に必要なオブジェクトのみを表示させることができます。nsAccessibleTreeWalker クラスは、 nsIFrame::GetAccessible() メソッドを使って、各 DOM ノードの主要フレーム（Gecko のフォーマットマット化オブジェクト）に nsIAccessible を要求することで、何を表示する必要があるかを知っています。もし nsAccessibleTreeWalker が nsIAccessible を取り戻すと、DOM ノードはアクセシビリティのオブジェクトと見なされます。返される nsIAccessible は新しいものかアクセシビリティのキャッシュから再利用されるものかのいずれかで、正しい型のアクセシビリティオブジェクトが、クロスプラットフォームな nsIAccessible インターフェイスと MSAA に固有の IAccessible インターフェイスによって、正確に該当するドームノードを明らかにします。<br>
+</p>
+<p>nsIAccessible と IAccessible のベースとなる実装をサポートするために、作られるすべてのアクセシビリティオブジェクトはキャッシュされ、 nsAccessibleWrap を継承する必要あります。それに加えて、nsIAccessible や IAccessible のメソッドをオーバーライドするのは任意です。こんな風にして、各クラスは自分が適用される HTML や XUL/UI オブジェクトの固有な機能や属性へ合うように仕立てられ、 MSAA と ATK の両者をサポートできます。そして、望ましくは将来サポートする必要のあるすべてのアクセシビリティ API をサポートできればいいと思います。例えば、nsHTMLButtonAccessible は nsIAccessible::GetAccRole をオーバーライドし、ROLE_BUTTON を使う IAccessible::get_accRole に ROLE_BUTTON を開示します。<br>
+</p>
+</div>
+</div>
+<ul style="margin-left: 40px;">
+  <p>オーバライドされる事が可能なもっと複雑な nsIAccessible のメソッドの組合せとして GetAccFirstChild/GetAccLastChild/GetAccChildCount があり、これらによって、オブジェクトは自分自身の下位ツリーを定義できます。nsIAccessible::getAccFirstChild の初期設定の動作は nsDOMTreeWalker のインスタンスを作り最初の子を要求します。しかし、nsImageAccessible が getAccFirstChild をオーバライドして、領域があれば画像マップの最初の領域を返します。なければ nsnull を返します。この事は、画像マップ領域が適用される画像とは完全に別の DOM エリアに存在するために必要になります。　　
+<br>
+  </p>
+
+</ul>
+<div style="margin-left: 40px;">
+</div>
+<h3 style="margin-left: 40px;"><a name="Generating_MSAA_Events"></a>MSAA イベントを発生させる</h3>
+<div style="margin-left: 40px;">
+</div>
+<ul style="margin-left: 40px;">
+  <p>ほとんどの MSAA イベントがアクセシビリティの補助機器によって使用されないことを最初に留意してください。従って私たちは重要な一握りのみを実装することになります。実装されるイベントのリストとして上記のイベントカンニングペーパーを参照してください。これまでで一番重要なイベントは、EVENT_OBJECT_FOCUS です。<br>
+  </p>
+  <p> Mozilla 内でアクセシビリティ関連のイベントが発生する可能性があれば、ふつう nsDocAccessible か nsRootAccessible によって監視されます。これらのクラスのイベントリスナーは、全てのアクセシビリティに実装されている FireToolkitEvent() を呼び出します。最後にイベントは、 Win32 API から NotifyWinEvent を呼び出す nsDocAccessibleWrap::FireToolkitEvent() で終わります。NotifyWinEvent はイベントが発生するウィンドウのための引数とそのウィンドウ内の子の ID とを渡されます。アクセシビリティ補助機器は、 Win32 の呼出しである SetWinEventHook() を使いこれらのイベント用にリスナーとして登録します。ウィンドウ内のすべのオブジェクトに対して一意の子 ID を作成する事は困難です。<a href="#No_unique_child_ID_for_object_in_window">ウィンドウ内のオブジェクトに一意の子 ID がない</a>問題と解決方法を参照ください。　　
+ <br>
+
+  </p>
+  <p>補助テクノロジーは、NotifyWinEvent() から指示された子番号に対応しているノードへ IAccessible を返す Win32 メソッドの AccessibleObjectFromEvent を呼び出すことで、もっとよく知る必要のあるイベントを選択します。これは、nsDocAccessibleWrap::get_accChild() に、NotifyWinEvent() によって指示された子 ID に合う子 IAccessible を要求することで完了します。
+</p>
+  <p> Mozilla ではアクセシビリティ・オブジェクトでその子 ID のベースとして DOM ノードポインターを使用します。そしてまた、キャッシュ内へのハッシュキーとしても使われます。また 32 ビット値をネゲートして、 必ず「<0」であり、子番号 x ではなく、イベント用の IAccessible を探している事を示します。呼び戻しの間、nsDocAccessible のキャッシュで最初のアクセシビリティノードを調べて、戻します。<br>
+  </p>
+</ul>
+<div style="margin-left: 40px;">
+</div>
+<div style="margin-left: 40px;">
+</div>
+
+<h2><a name="feedback"></a>6.
+フィードバック</h2>
+<div style="margin-left: 40px;">この文書の改善すべき点にお気づきですか。役に立ちましたか。質問はありますか。何かあれば Aaron Leventhal に連絡してください。- aaronleventhal<span style="letter-spacing: -0.1em;">@
+m o o n s e t  . </span>net<br>
+</div>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/windows/msaa-server.html">英語版</a> 2004/11/11</span> - <span>和訳版 2006/03/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/windows/msaa-server.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title>Mozilla 地域化 FAQ</title>
+<link rel="alternate" hreflang="en" modified="March  2, 2003">
+<script language="javascript" type="text/javascript">
+ function MozVersion()
+ {
+ if (navigator.userAgent.indexOf("Gecko") == -1)
+  message = "Can't determine the Mozilla version string"
+ else
+  {
+   message = "Mozilla version '";
+   message += navigator.userAgent.match(/rv:([^;)]+)/)[1];
+   message += "'"
+   if (message.indexOf("''") != -1)
+     message = "Can't determine the Mozilla version string";
+  }
+ alert (message);
+ }
+//-->
+</script>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/l10n/mlp_faq.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<p>&nbsp;</p>
+<table border="0" width="100%">
+  <tr><td>
+    <center><h1>Mozilla 地域化プロジェクト FAQ</h1></center>
+  </td></tr>
+  <tr><td>
+    <center><a href="news://news.mozilla.org/netscape.public.mozilla.l10n">ニュースグループでの議論</a> /
+    <a href="mailto:mozilla-l10n-request@mozilla.org?subject=subscribe">メーリングリスト</a><br>
+    <a href="mailto:MLP Staff &lt;mlp-staff&#64;mozilla.org&gt;">Mozilla 地域化プロジェクトスタッフ</a></center>
+  </td></tr>
+</table>
+<br>
+<abbr title="Mozilla Localization Project"><b>MLP</b></abbr>
+ [<a href="./">地域化プロジェクトホーム</a>]
+ | [<a href="mlp_docs.html">地域化資料</a>]
+ | [よくある質問（FAQ）]<br>
+<br>
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>はじめに</h3></td></tr>
+</table>
+<p>この文書では他の MLP（Mozilla 地域化プロジェクト）ページにふ含まれていないすべての情報を、質問と回答の形で説明しています。</p>
+<p>理想的にはこれらは地域化作業者がもっともよく遭遇する問題で、<a href="news:netscape.public.mozilla.l10n">地域化</a>ニュースグループでも新人からの質問が幾度となくポストされてきました。
+  ここに並んだ回答で説明しておくことで、作業者たちの苦痛と時間を軽減するでしょう。</p>
+<p>この文書の内容について意見・批判などありましたら、他の MLP 関連ページと同様に mozilla.org 地域化ニュースグループなどを通じて私たちにお知らせください。</p>
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>目次</h3></td></tr>
+</table>
+
+<h4><a href="#Localization">地域化</a></h4>
+<table border="0">
+<tr><td valign="top">&nbsp;<tt>L.01</tt></td>
+    <td><a href="#L.01">dtd / properties ファイルの一部のコメントに、コマンド キーとインターフェースのいくつかの項目は翻訳すべきではないと書かれていますが、それらを変更するとどのような不具合が起きるのですか？</a></td></tr>
+<tr><td valign="top">&nbsp;<tt>L.02</tt></td>
+    <td><a href="#L.02">地域化文字列のどの部分が、プログラムを正しく動かすために手を付けずに残しておく必要がありますか？</a></td></tr>
+</table>
+
+<h4><a href="#Troubleshooting">トラブルシューティング</a></h4>
+<table border="0">
+<tr><td valign="top">&nbsp;<tt>T.01</tt></td>
+    <td><a href="#T.01">なぜ地域化されたダイアログの中（例：Preferences）にウィンドウの中でテキストがぴったりあうようにリサイズされないものがあるのですか？</a></td></tr>
+<tr><td valign="top">&nbsp;<tt>T.02</tt></td>
+    <td><a href="#T.02">私の .XPI 言語パックをインストールした後、インストールウィンドウは謎の数字が表示されます。何が起こったのですか？</a></td></tr>
+<tr><td valign="top">&nbsp;<tt>T.03</tt></td>
+    <td><a href="#T.03">作成した .XPI 言語パックのインストール中の動作を把握する方法がありますか？</a></td></tr>
+<tr><td valign="top">&nbsp;<tt>T.04</tt></td>
+    <td><a href="#T.04">ある特定のウィンドウを開くと、黄色地に赤文字で XML パーサのエラーについてメッセージが表示されます。どうすれば直せますか？</a></td></tr>
+<tr><td valign="top">&nbsp;<tt>T.05</tt></td>
+    <td><a href="#T.05">dtd / properties ファイルを編集しましたが、インストールしてみると、Latin 文字 （A-Z, a-z) が壊れてしまうようです。</a></td></tr>
+</table>
+
+<h4><a href="#Tools">ツール</a></h4>
+<table border="0">
+<tr><td valign="top">&nbsp;<tt>O.01</tt></td>
+    <td><a href="#O.01"><i>Mozilla Translator 5.x</i>: Chrome View ウィンドウを開いた時、ファイルのリストが左側に見えますが、読み込まれた / 翻訳された文字列がどこにも見あたりません。表示させるためにはどうすればいいですか？</a></td></tr>
+<tr><td valign="top">&nbsp;<tt>O.02</tt></td>
+    <td><a href="#O.02"><i>JAR や XPI パッケージへの出力でエラーが返ります。どうやってこの状況から抜け出せばよいのでしょうか？</a></td></tr>
+</table>
+
+
+<h4><a href="#General">一般的な問題</a></h4>
+<table border="0">
+<tr><td valign="top">&nbsp;<tt>G.01</tt></td>
+    <td><a href="#G.01">ユーザ・インタフェースで使われる .XUL, .JS, .CSS, .DTD, .properties, .RDF, .CSS, .XBL 等のファイルはどこにありますか？</a></td></tr>
+<tr><td valign="top">&nbsp;<tt>G.02</tt></td>
+    <td><a href="#G.02">.JAR ファイルとはどういうもので、またそれを編集するにはどうすればいいですか？</a></td></tr>
+</table>
+
+<p><br/></p>
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="Localization"></a>地域化</h3></td></tr>
+</table>
+
+<p><a name="L.01"></a><b><tt>L.01</tt>: dtd / properties ファイルの一部のコメントに、コマンド キーとインターフェースのいくつかの項目は翻訳すべきではないと書かれていますが、それらを変更するとどのような不具合が起きるのですか？</b><br/>
+自分の文化（とユーザ！）にとって意味をなすものは何であれ変更するのは自由です。内部での使い方のために気づくためにプログラムが見つける<i>必要</i>があるものを認識することができる限り。
+すべての単語を翻訳することは、平均的なユーザによってよいサービスにならないこともありますが、
+英語のすべてのコンピュータ関連用語をそのままにすることも初心者の助けにならないでしょう。
+バランス感覚が重要です。<br/>
+So the question become..<br/></p>
+
+<p><a name="L.02"></a><b><tt>L.02</tt>: 地域化文字列のどの部分が、プログラムを正しく動かすために手を付けずに残しておく必要がありますか？</b><br/>
+開発者が dtd ファイルと properties ファイルに残したコメントを残さず読むことを学んでください。
+この FAQ では触れられないことについての記述もあるかも知れません。
+FAQ に載せようと試みてもおおざっぱな分類になるでしょう。<br/>
+どの言語でも異なった文脈配列をしているため、実行時の情報によって補完されなくてはならない文字列は代替記号を含んでいます。
+地域化作業者は、実行時にプログラムがそれを見つけて適切な情報に置き換えできる限り、文字列の中のどの場所にでも代替記号を置くことができます。
+明確に求められることとして、地域化文字列の中で、代替記号は、元の文字列の中で現れるのと正確に同じ記述となる必要があります。
+これら代替記号の表現に共通して用いられるものとしては:
+<b>&amp;</b><i>エンティティ名</i><b>;</b>（「エンティティ名」の名称を持つ XML エンティティで、ときどき他のエンティティの中で呼ばれるものです）、%S, $1%S, %lu ..（C スタイルの代替記号です）。<br/>
+いつでも地域化コメントに目を配って、地域化作業者にとって陥りやすい失敗に<i>パラメータ</i>によって陥らないでください。
+これらの特別な文字列は見た目と機能性を変更するためのユーザ・インタフェースの値を含んでいます。
+プログラムがいくつかの機能性を失うことを望まなければ、テキストを翻訳するかわりに、もちろん適切な値を入れることが必要でしょう（数値、<tt>true</tt>、<tt>false</tt>）。</p>
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="Troubleshooting"></a>トラブルシューティング</h3></td></tr>
+</table>
+
+<p><a name="T.01"></a><b><tt>T.01</tt>: なぜ地域化されたダイアログの中（例：Preferences）にウィンドウの中でテキストがぴったりあうようにリサイズされないものがあるのですか？</b><br/>
+多くのダイアログウィンドウは地域化可能文字列から高さと幅を持っています。
+ダイアログが地域化されたテキストを格納できる範囲に、それらの文字列の字数を変更する必要があります。<br/>
+注意：小さなモニタを使っている人や、視覚面が弱い人が使う場合も考えて、サイズはいつでも低解像度ディスプレイ（せめて640x480 ピクセル）に収まるべきです。<br/>
+しばしばこれらの文字数は <tt>em</tt>、<tt>px</tt> といった単位に従います。
+前者は一文字の幅を意味し、後者はディスプレイのピクセル単位です。<br/>
+<!-- そして、ここにはサイズ最適化可能なダイアログのリストがあります.. ? -->
+</p>
+
+
+<p><a name="T.02"></a><b><tt>T.02</tt>: 私の .XPI 言語パックをインストールした後、インストールウィンドウは謎の数字が表示されます。何が起こったのですか？</b><br/>
+<a href="../../projects/xpinstall/">XPI インストール</a>エラーコードは、
+ヘッダファイル <a href="http://lxr.mozilla.org/seamonkey/source/xpinstall/src/nsInstall.h">nsInstall.h</a> で定義されています。</p>
+
+
+<p><a name="T.03"></a><b><tt>T.03</tt>: 作成した .XPI 言語パックのインストール中の動作を把握する方法がありますか？</b><br/>
+Mozilla は <tt>install.log</tt> ログファイルの中にそれぞれの XPI インストールについてログを取っています。
+Mozilla バイナリフォルダかユーザ・プロファイルフォルダのいずれかで見つけることができるでしょう
+（あなたの使っている Mozilla のバージョンで、それぞれの OS でのデフォルトのフォルダ位置を知るためには<a href="/releases/">リリースノート</a>を参照してください）。<br/>
+ このファイルには、具体的には新しくインストールされたコンポーネントのリストやインストール中の動作、インストール・スクリプト中の <i>logComment()</i> 呼び出しによって追記された様々な情報が含まれています。</p>
+
+
+<p><a name="T.04"></a><b><tt>T.04</tt>: ある特定のウィンドウを開くと、黄色地に赤文字で XML パーサのエラーについてメッセージが表示されます。どうすれば直せますか？</b><br/>
+この問題のありがちな可能性として、「XML パーサが探している実体定義を提供していない」、「不正な文字のためXML パーサが解析に失敗した」などが考えられます。<br/>
+悪者の DTD ファイルの解析をし始めると、XML パーサはたいていエラーが起こった XML（もしくは XUL） ファイルとそのファイルの中（行と列）の位置のシグナルを出します。
+その XUL ファイル（<tt>chrome/</tt> フォルダの中の圧縮された .jar の中を探してください）を開くと、どの DTD ファイルが読み込まれたのか見ることができます。<br/>
+ときどき、XML パーサはエンティティ名も示します。そうすることで、地域化ファイルすべてからそれを探すことによって問題のある文字列をすばやく追跡することができます。
+関連する名称からエンティティを探すことができなければ、問題はたぶん地域化ファイルにそのような文字列を入れていないことにあるでしょう。
+新しいリリースで導入された新しい文字列をすべて取り込む必要があります。<br/>
+また、<a href="mlp_chrome.html#text">XML 文字列</a>としてすべての文字が許されるわけではないことも覚えておいてください。</p>
+
+
+<p><a name="T.05"></a><b><tt>T.05</tt>: dtd / properties ファイルを編集しましたが、インストールしてみると、Latin 文字 （A-Z, a-z) が壊れてしまうようです。何が問題なのでしょうか？</b><br/>
+多分、それらを通常のテキストエディタで修正するなどして、<a href="mlp_chrome.html#text">DTD や properties</a> ファイルに正しいエンコーディングを使っていなかったのでしょう。
+.DTD ファイルは UTF-8 で、 .properties ファイルは Escaped Unicode（エスケープされた Unicode）で提供しなくてはなりません。</p>
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="Tools"></a>ツール</h3></td></tr>
+</table>
+
+
+<p><a name="O.01"></a><b><tt>O.01</tt>: <i>Mozilla Translator 5.x</i>:
+   Chrome View ウィンドウを開いた時、ファイルのリストが左側に見えますが、読み込まれた / 翻訳された文字列がどこにも見あたりません。表示させるためにはどうすればいいですか？</b><br/>
+Mozilla Translator では通常の操作をするのに、アプリケーションが開始されたフォルダの中にある <tt>cache/</tt> フォルダが存在しなくてはなりません。<br/>
+そのため、次のチェックをすべきでしょう。そのフォルダが存在すればOK、存在しなければ"cache"という名前のフォルダを作ってください。その後、Mozilla Translator を再起動してください。<tt>cache/</tt> を含んだフォルダから Mozilla Translator を起動すると、同じフォルダから <tt>Glossary.zip</tt> ファイルが読み込まれたか／保存されたかをチェックするのが簡単です。実行ユーザ &mdash;と、それに従って Mozilla Translator アプリケーション&mdash; に、この <tt>cache/</tt> フォルダに対する読みとりと書き込みの十分な権限を与えてください（例：その中のファイルの削除を試してください）。</p>
+
+
+<p><a name="O.02"></a><b><tt>O.02</tt>: <i>Mozilla Translator 5.x</i>:
+   JAR や XPI パッケージへの出力でエラーが返ります。どうやってこの状況から抜け出せばよいのでしょうか？</b><br/>
+Mozilla Translator が実行されている場所の <tt>cache/</tt> フォルダの中のすべてのファイルを削除してみて下さい。
+稼働しているシステムのデフォルトの一時ファイルの場所（例：Microsoft Windows では <tt>%WINDIR%\Temp</tt> フォルダ）の <tt>*.tmp</tt> を削除してみてください。それから、Mozilla Translator を再度起動して試してください。</p>
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="General"></a>一般的な問題</h3></td></tr>
+</table>
+
+
+<p><a name="G.01"></a><a name="G.02"></a><b><tt>G.01:</tt> ユーザ・インタフェースで使われる .XUL, .JS, .CSS, .DTD, .properties, .RDF, .CSS, .XBL 等のファイルはどこにありますか？</b><br/>
+   <b><tt>G.02:</tt> .JAR ファイルとはどういうもので、またそれを編集するにはどうすればいいですか？</b><br/>
+JAR ファイルは登録されたユーザ・インタフェースのリソースファイルが含まれている圧縮集約ファイルです。
+それらはアプリケーション実行ファイルが含まれるフォルダの中の <tt>chrome/</tt> という名前のフォルダに集められています。
+マルチユーザ環境では JAR はユーザプロファイルディレクトリの中の <tt>chrome/</tt> フォルダの中にインストールされます（それぞれの OS におけるデフォルトのフォルダの位置は<a href="/releases/">リリースノート</a>の該当する Mozilla のバージョンのページを参照してください）。<br/>
+一般的な <a href="mlp_tools.html#others">PKzip 互換ツール</a>で、その中身を見たり解凍したりできます。</p>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/l10n/mlp_faq.html">英語版</a> 2003/03/02</span> - <span>和訳版 2004/10/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/l10n/mlp_faq.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

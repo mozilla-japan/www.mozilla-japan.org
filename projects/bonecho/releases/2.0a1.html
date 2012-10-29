@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Bon Echo Alpha 1 リリースノート</title>
+<link rel="alternate" hreflang="en" modified="March 21, 2006">
+<style type="text/css" media="screen,tv">
+  .deerpark-releasenotes1 { background: url("releasenotes-bonecho-alpha1.png") no-repeat; padding-top: 70px !important; width: 100% !important; }
+  #mainContent h1 { border: 0; height: 0 !important; overflow: hidden; font-size: 0 !important; line-height: 0 !important; }
+</style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/bonecho/releases/2.0a1.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+<div id="mainContent" class="right">
+  <div class="key-point">
+    <div id="product-desc" class="deerpark-releasenotes1">
+      <h1>Bon Echo Alpha 1 リリースノート</h1>
+      <p>Bon Echo Alpha 1 は次世代ブラウザ Firefox の開発者向けプレビュー版であり、<strong>テスト目的に限って</strong> 公開されています。Bon Echo Alpha 1 は Web アプリケーション開発者やテストコミュニティ向けです。現在 Firefox 1.x をお使いの方は Bon Echo Alpha 1 を使うべきではありません。</p>
+      <p>このリリースノートには、Bon Echo Alpha 1 に関する <a href="#new">新機能</a>、<a href="#download">ダウンロード</a>、<a href="#install">インストール方法</a>、<a href="#issues">既知の問題</a>、<a href="#FAQ">よくある質問</a> などが載っています。<a href="https://bugzilla.mozilla.org/">Bugzilla</a> にバグを報告する前に、このリリースノートと <a href="/support/firefox/bugs">バグの登録方法</a> をよくお読みください。</p>
+      <p><a href="http://feedback.mozilla.org/">フィードバックフォーム</a> を通じて、あなたのフィードバックをお寄せください。</p>
+    </div>
+  </div>
+  <p class="comment">【訳注: このページは、英語版のページを参考のために和訳したものです。】</p>
+  <h2><a name="new">今回の開発マイルストーンでの変更点</a></h2>
+  <p>フィードバックを必要としている Bon Echo Alpha 1 の新機能は次の通りです。</p>
+  <ul class="compact">
+    <li>タブブラウズ機能の動作変更</li>
+    <li>ブックマークと履歴の新しいデータ保存レイヤー (SQLlite ベース)</li>
+    <li>拡張された検索プラグインの書式</li>
+    <li>拡張機能システムのアップデート - より強固なセキュリティを提供し、ローカライズがさらに容易に</li>
+    <li>svg:textPath を使った SVG のサポート</li>
+    <li><a href="http://www.squarefree.com/burningedge/releases/2.0a1.html">注目すべきバグの一覧</a></li>
+  </ul>
+  <h2><a name="downloadandinstall">ダウンロードとインストール</a></h2>
+  <h3><a name="requirements">必要システム構成</a></h3>
+  <p>インストールの前に、お使いのコンピュータが <a href="/products/firefox/system-requirements.html">必要システム構成</a> を満たしているか確認してください。</p>
+  <h3><a name="download">ダウンロード</a></h3>
+  <p>mozilla.org は、Windows、Linux、Mac OS X 版の Bon Echo を様々な言語で提供しています。Bon Echo の最新版を入手するには <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/bonecho/alpha1/">FTP サイト</a> を参照してください。mozilla.org が提供していない、他のシステム・言語向けのビルドについては、このページの最後にある「提供されたビルド」の項目をご覧ください。</p>
+  <h3><a name="install">インストール</a></h3>
+  <p>Bon Echo をダウンロードしたら、以下の手順に従ってインストールしてください。</p>
+  <h4>Windows</h4>
+  <p>インストーラ (<tt class="filename">Bon Echo Setup Alpha 1.exe</tt>) をダブルクリックするとインストールが開始されます。</p>
+  <h4>Mac OS X</h4>
+  <p>圧縮ディスクイメージ (<tt class="filename">Bon Echo Alpha 1.dmg</tt>) をダブルクリックして展開・マウントします。お使いのブラウザによっては、イメージが自動的に展開・マウントされる場合もあります。マウントされたディスクイメージをダブルクリックして Finder で開き、アプリケーションをハードディスクにドラッグしてください。<strong>ディスクイメージ内のアイコンをダブルクリックしてはいけません</strong>。アプリケーションは、起動する前に必ず、ディスクイメージからハードディスクにドラッグしてください。Dock に追加したい場合は、アイコンを Dock にドラッグしてください。</p>
+  <h4>Linux/GTK2</h4>
+  <p>tarball を展開して ./firefox を実行してください。</p>
+  <p><code>tar -xzvf bonecho-alpha1.tar.gz<br>cd firefox<br>./firefox</code></p>
+  <h4>その他のプラットフォーム</h4>
+  <p>圧縮アーカイブを展開して <tt>firefox</tt> を実行してください。</p>
+  <h3><a name="uninstall">アンインストール</a></h3>
+  <p>Bon Echo Alpha 1 をアンインストールするには、以下の手順に従ってください。</p>
+  <h4>Windows</h4>
+  <p>[スタート] メニューから [コントロール パネル] を選択してください。パネルが開いたら [プログラムの追加と削除] をダブルクリックしてください。リストの中から &quot;Bon Echo (2.0a1)&quot; を見つけて [削除] ボタンをクリックするとアンインストールが開始されます。</p>
+  <h4>Mac OS X</h4>
+  <p><tt class="filename">BonEcho</tt> アプリケーションをゴミ箱にドラッグしてください。</p>
+  <h4>その他のプラットフォーム</h4>
+  <p><tt class="filename">firefox</tt> フォルダを削除してください。</p>
+  <p>これらの手順でアンインストールを完了しても、また次に Firefox をインストールする場合を考えて、あなたのプロファイルは削除されず、そのまま保存されます。プロファイルを削除したい場合は、以下の「プロファイルフォルダ」の項目に書かれているフォルダを削除してください。なお、一度プロファイルを削除してしまうと、ブックマークや保存されたパスワード、個人設定、その他のデータがすべで消去されてしまいますので、次に Firefox を使う場合は新しいプロファイルで起動することになります。</p>
+  <h2>その他の情報</h2>
+  <h3><a name="profilefolder">プロファイルフォルダ</a></h3>
+  <p>Bon Echo は、以下の場所にユーザデータを保存します。</p>
+  <table border="1" cellspacing="0" style="font-size: smaller;">
+    <tr><td><img src="../../../images/ico-win.png" alt="" align="middle"> Windows 2000/XP</td><td>Documents and Settings&yen;&lt;ユーザ名&gt;&yen;Application Data&yen;Mozilla&yen;Firefox</td></tr>
+    <tr><td><img src="../../../images/ico-win.png" alt="" align="middle"> Windows NT</td><td>WINNT&yen;Profiles&yen;&lt;ユーザ名&gt;&yen;Application Data&yen;Mozilla&yen;Firefox</td></tr>
+    <tr><td><img src="../../../images/ico-win.png" alt="" align="middle"> Windows 98/ME</td><td>Windows&yen;Application Data&yen;Mozilla&yen;Firefox</td></tr>
+    <tr><td><img src="../../../images/ico-osx.png" alt="" align="middle"> Mac OS X</td><td>~/Library/Application Support/Firefox</td></tr>
+    <tr><td><img src="../../../images/ico-tux.png" alt="" align="middle"> Linux/Unix</td><td>~/.mozilla/firefox</td></tr>
+  </table>
+  <h3><a name="extensions">拡張機能とテーマ</a></h3>
+  <p>Firefox 1.5 にインストールされている拡張機能は Bon Echo と互換性がなく、アップデートが必要な場合があります。何か問題があった場合は、その拡張機能の作者に報告してください。Bon Echo をインストールする際、お使いの拡張機能やテーマは、Bon Echo と互換性があること、または、互換性のある新しい拡張機能やテーマが提供されていることが確認されるまで、すべて無効化されます。</p>
+  <h3>ブックマークと履歴</h3>
+  <p>今回のリリースは、バックエンド構造とインポートのテストを目的としています。ユーザインターフェイスに加えられている変更の大半は流動的であり、現時点ではテストを必要としていません。今回のリリースに搭載された新しいブックマークと履歴の保存システムは、過去のバージョンとはまったく別になっており、データが失われた場合は Firefox 1.5 に戻れば古いデータをそのまま利用できます。</p>
+  <p>私たちは以下の項目のテストとフィードバック提供を期待しています。</p>
+  <ul>
+    <li>ブックマークと履歴のインポートと移行</li>
+    <li>ブックマークと履歴データの完全性</li>
+    <li>パフォーマンス</li>
+  </ul>
+  <h2><a name="issues">既知の問題</a></h2>
+  <p>ここには、Bon Echo Alpha 1 に関する既知の問題の一部が載っています。新たにバグを報告する前にこのリストをご覧になり、今後も定期的にチェックするようにしてください (リリースに新しいバグが見つかった場合は更新されます)。</p>
+  <h3>すべての OS</h3>
+  <p>ブックマークと履歴:</p>
+  <ul>
+    <li>ブックマーク・履歴マネージャ、パーソナルツールバー、ブックマークメニュー、ブックマークの追加・プロパティダイアログ、ライブブックマークなど、ユーザインターフェイスには多くの問題があります。操作の多くは、アセットその他の警告を表示します。中には更新されない項目があったり、一部の操作は機能しない、または無効にされています。</li>
+    <li>ブックマークのエクスポート (bookmarks.html) ができません。</li>
+    <li>ライブブックマークを読み込むとブラウザがフリーズします。</li>
+    <li>サイドバーのような機能はまだ実装されていません。</li>
+    <li>多数の履歴がある場合、すべて表示するには時間がかかります。</li>
+    <li>同じ URI のブックマークはすべて同じタイトル・プロパティになります。</li>
+    <li>初回起動時に、Firefox 1.0/1.5 のデータをインポートするため、多少時間がかかります。進捗状況を知らせる UI はありません。</li>
+  </ul>
+  <p>拡張機能:</p>
+  <ul>
+    <li>Firefox の過去のバージョンから Bon Echo にアップグレードする際、拡張機能やテーマはすべて無効化されます。これは問題ではありませんが、見た目にはそのように受け取られる場合もあります (そのため、ここに書かれているのですが)。詳しくは上の「拡張機能とテーマ」をご覧ください。</li>
+  </ul>
+  <h3>Windows</h3>
+  <h3>Mac OS X</h3>
+  <h3>Linux/Unix システム</h3>
+  <h3>Web ページの表示</h3>
+  <h2><a name="troubleshooting">トラブルシューティング</a></h2>
+  <ul>
+    <li><p>設計が悪い、あるいは互換性のない拡張機能を使うと、頻繁にクラッシュしたり、ページの読み込みが遅くなるなど、ブラウザに問題を引き起こす可能性があります。ブラウザの一部機能が使えない、ブラウザが起動しない、ウィンドウの表示がおかしい、パフォーマンスが低下した、などの問題に遭遇した場合、拡張機能やテーマが原因となっている可能性があります。そのようなときは、ブラウザをセーフモードで再起動してください。Windows では、スタートメニュー内に作成された "Safe Mode" ショートカットを使うか、<code>firefox.exe -safe-mode</code> で起動してください。Linux では <code>./firefox -safe-mode</code> で起動してください。Mac OS X では、ターミナルを開いて以下のコマンドを実行してください。</p><p><code>cd /Applications/BonEcho.app/Contents/MacOS/<br>./firefox-bin -safe-mode</code></p><p>セーフモードで起動すると、拡張機能はすべて無効化され、デフォルトテーマが使われます。問題の原因となった拡張機能やテーマを無効化してから、通常通り起動してください。</p></li>
+    <li><p>ユーザプロファイルにインストールした拡張機能をアンインストールし (Web ページからインストールしたものなど)、コマンドラインオプション -install-global-extension を使ってすべてのユーザプロファイルにインストールしたい場合は、コマンドラインオプションを付けてインストールする前に、一度ブラウザを再起動し、その拡張機能の痕跡が残るプロファイルの拡張機能データソースを一掃する必要があります。そうしないと、拡張機能リスト内のエントリーがおかしくなり、目的の拡張機能をグローバルにインストールできなくなる場合があります。</p></li>
+    <li><p>ブックマーク、ダウンロード、ウィンドウの配置、ツールバー、履歴、その他の設定に関して不可解な問題に遭遇した場合は、バグを報告する前に新しいプロファイルを作成して、問題が再現するかどうか確かめてください。プロファイルを新規作成するには、コマンドラインオプション -p を付けて Bon Echo を起動し、[Create Profile...] ボタンをクリックしてください。設定ファイル (ブックマーク、保存したパスワードなど) をひとつずつ手作業で移行し、そのたびに問題が再現するかどうか確認してください。特定のプロファイルデータが問題を起こすことが分かった場合は、バグを登録してそのファイルを添付してください。</p></li>
+  </ul>
+  <h2><a name="FAQ">よくある質問</a></h2>
+  <dl class="faq">
+    <dt>どのような協力ができますか?</dt>
+    <dd>私たちは、Firefox をより良くするため、開発者やテストコミュニティに対しできる限り多くのフィードバックを求めています。詳しくは <a href="../">Bon Echo スタートページ</a> をご覧ください。</dd>
+    <dt>なぜ私が送ったメールに返事をくれないのですか?</dt>
+    <dd><a href="http://forums.mozillazine.org/?c=4">フォーラム</a> をご利用ください。Bon Echo チームは常時このフォーラムをチェックしています。私たちは毎日多くのメールを受け取っているので、あなたが送ったメールは見過ごされる可能性もあります。</dd>
+    <dt>テーマとアドオン (拡張機能) はどこで手に入りますか?</dt>
+    <dd>テーマと拡張機能は <a href="https://addons.mozilla.org/?application=firefox">Mozilla Update</a> からダウンロードできます。</dd>
+    <dt>誰が Bon Echo の作業をしているのですか?</dt>
+    <dd>非常に多くの人が関わっています。Bon Echo に貢献している人たちの一覧を見るには、[Help] メニューの [About Bon Echo] に書かれているクレジットをご覧ください。</dd>
+    <dt>Bon Echo のソースコードはどこにありますか?</dt>
+    <dd>Bon Echo のソースコードは <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/bonecho/alpha1/source/">ダウンロード</a> できます。最新の開発コードは <a href="/cvs.html">CVS</a> を通じて入手可能です。Firefox 固有のソースは &quot;mozilla/browser&quot; と &quot;mozilla/toolkit&quot; と &quot;mozilla/chrome&quot; にあります。詳しくは <a href="/projects/firefox/build.html">ビルド方法</a> に従ってください。</dd>
+    <dt>メールクライアントはどこにあるのですか?</dt>
+    <dd>Bon Echo は、お使いのシステムでどのアプリケーションがデフォルトのメールクライアントになっていても、それと併せて使うことができますが、Firefox ブラウザにぴったりな、Mozilla の次世代メールクライアント <a href="/products/thunderbird/">Mozilla Thunderbird</a> を使ってみることをお勧めします。</dd>
+  </dl>
+  <h2><a name="links">その他の関連資料とリンク</a></h2>
+  <p>以下のリソースには、Bon Echo Alpha 1 に関する役に立つ情報が載っています。</p>
+  <ul>
+    <li><a href="http://kb.mozillazine.org/">MozillaZine ナレッジベース</a></li>
+    <li><a href="/projects/firefox/">開発者向け情報</a></li>
+  </ul>
+  <h2>提供されたビルド</h2>
+  <p>これらは非公式なビルドで、mozilla.org のビルドとは設定が異なる場合があります。また、特定のプラットフォーム向けに最適化、テストされている場合もあります。それぞれの説明をご覧ください。</p>
+  <h3><a name="othersystems">その他のシステム</a></h3>
+  <p>mozilla.org によって公式に提供されている 3 種類以外のプラットフォーム向けビルドは <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/bonecho/alpha1/contrib/">FTP サイト</a> にあります。</p>
+  <h3><a name="otherlanguages">ローカライズビルド</a></h3>
+  <p>多くのローカライズビルドが、<a href="/projects/l10n/mlp_otherproj.html#firefox" title="Mozilla Localization Project">協力者</a> を代表して、mozilla.org によって作成、配布されています。</p>
+  <p>Bon Echo Alpha 1 の公式ローカライズとして認定されていないビルドは、<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/bonecho/alpha1/contrib-localized/">FTP サイト</a> を参照してください。</p>
+</div>
+
+<div id="side" class="right">
+  <ul id="nav">
+    <li><a href="../">Bon Echo スタートページへ戻る</a></li>
+  </ul>
+  <ul id="nav">
+    <li><a href="#downloadandinstall">ダウンロードとインストール</a></li>
+    <li><a href="#requirements">必要システム構成</a></li>
+    <li><a href="#download">ダウンロード</a></li>
+    <li><a href="#install">インストール</a></li>
+    <li><a href="#uninstall">アンインストール</a></li>
+    <li><a href="#profilefolder">プロファイルフォルダ</a></li>
+    <li><a href="#extensions">拡張機能とテーマ</a></li>
+    <li><a href="#otherchanges">その他の変更</a></li>
+    <li><a href="#issues">既知の問題</a></li>
+    <li><a href="#troubleshooting">トラブルシューティング</a></li>
+    <li><a href="#FAQ">よくある質問</a></li>
+    <li><a href="#othersystems">その他のシステム</a></li>
+    <li><a href="#otherlanguages">その他の言語</a></li>
+    <li><a href="#links">その他の関連資料とリンク</a></li>
+  </ul>
+</div>
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/bonecho/releases/2.0a1.html">英語版</a> 2006/03/21</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/bonecho/releases/2.0a1.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Mozilla 1.0 ガイド : 一般</title>
+<link rel="stylesheet" title="Orange" href="../defaultstyle.css" type="text/css" />
+<link rel="alternate stylesheet" title="Very Simple" href="../basicstyle.css" type="text/css" />
+<link rel="alternate stylesheet" title="Light Blue" href="../bluestyle.css" type="text/css" />
+<link rel="icon" href="../images/mozilla-16.png" type="image/png" />
+<script src="../detect-problems.js" type="text/javascript"></script>
+<script src="../stylesheets.js" type="text/javascript"></script>
+<style type="text/css" media="screen,tv">
+	p, li, dt, dd, pre, blockquote { line-height: 1.75em; }
+	ul { list-style-type: circle; }
+	.addcomment { margin-top: 10px; margin-bottom: 5px; text-align: right; font-size: small; line-height: 1.5em; }
+</style>
+</head>
+<body onload="loadStyle();silentlyFixErrors('../')">
+<div id="mainHeaderContainer" class="sectionHeaderContainer">
+<img src="../images/dino.png" alt="" id="dinoHead" />
+<div id="mainHeader" class="sectionHeader"><a href="../"><img src="../images/mozillaLogo.png" id="mozillaLogo" alt="Mozilla 1.0" /></a></div>
+</div>
+<div class="section" id="mainSection">
+<div style="padding: 1em">
+<h1><a id="section">一般</a></h1>
+<p><br /></p>
+<ul>
+	<li><a href="#what-is-moz-product">Mozilla アプリケーション スイートとは何ですか？</a></li>
+	<li><a href="#who-can-use">誰が Mozilla アプリケーション スイートを利用できるのですか？</a></li>
+	<li><a href="#toolkit">Mozilla ツールキットとは何ですか？</a></li>
+	<li><a href="#what-else-can-be-built">Mozilla コードベースから他にどんな製品を制作することができますか？</a></li>
+	<li><a href="#what-is-1.0">Mozilla 1.0 とは何ですか？</a></li>
+	<li><a href="#what-advantages">オープンソースソフトの利益とは何ですか？</a></li>
+</ul>
+<ul>
+	<li><a href="index.html#index">メイン インデックス</a></li>
+</ul>
+<p><br /></p>
+<h3><a id="what-is-moz-product">Mozilla アプリケーション スイートとは何ですか？</a></h3>
+<p>Mozilla アプリケーション スイートは、インターネット クライアント ソフトウェアの洗練されたセットで、次のものを統合しています。</p>
+<ul>
+	<li>Web ブラウザ</li>
+	<li>E-mail プログラムとニュースリーダー</li>
+	<li>チャット クライアント</li>
+</ul>
+<p>このスイートは<strong>多くのオペレーティングシステムを越えて矛盾なく動く</strong>ように設計されていて、これは異種混合のソフトウェア・ハードウェア環境と対話しているだれとっても重大な利益です。サポートしているプラットフォームには次のものがあります : Win32 （Windows 9<i>x</i>、ME、NT、2000、XP）、MacOS （8.5、8.6、9.<i>x</i>、OS X）、Linux、BSD/OS、FreeBSD、HPUX、Caldera OpenUNIX8 and Unixware 7.1.1、OpenVMS、OS/2、Solaris、Tru64 Unix</p>
+<p>そしてコードベースは<strong>オープンソース</strong>であり、私有ソフトウェアを利用するときには入手できない莫大な権利と選択をユーザに与えます。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="who-can-use">誰が Mozilla アプリケーション スイートを利用できるのですか？</a></h3>
+<p>このスイートは<strong>ディストリビューターに使われることを意図しています</strong>が、<a href="../../../MPL/" title="Mozilla のライセンスに関する情報のためのメインページ">MPL / NPL</a> （Mozilla and Netscape Public Licenses） のもとで、だれでも自分たちの製品に Mozilla アプリケーション スイートを利用することができます。</p>
+<p>Mozilla 製品はそのままでも、また変更を加えた形でも、<strong>再配布は自由</strong>で、サードパーティーは自分たちが適当と考えるようにこれを再パッケージ・再商標化することが期待されます。これらのサードパーティーは、自分たちの観客のニーズに合うように、追加文書と（あるいは）サポートの提供を選択するかもしれません。</p>
+<p>さらに、インターネットブラウジングやメール／ニュースクライアント、チャットがほしいと思っているエンドユーザは <a href="/" title="mozilla.org のホームページ">mozilla.org</a> から直接アプリケーション スイートを <a href="../../../releases/" title="Mozilla のマイルストーン ダウンロード">ダウンロード</a> するかもしれません。私たちの最近のマイルストーン リリースは毎回 30 〜 40 万回ダウンロードされています。それだけの数の人々が mozilla.org からリリースされている Mozilla ソフトウェアの利用を選択<b>している</b>のです。</p>
+<p>しかし、mozilla.org からのリリースはディストリビューターや開発者をターゲットにしています。mozilla.org は一般大衆向けに販売を行うつもりはありませんし、<strong>一般大衆にエンドユーザ サポートの提供もできません</strong>。サポートはいくつかのエンドユーザ セルフサポート <a href="../faq/enduser.html#11.2" title="To get to the end-user self-support newsgroups">ニュースグループ</a> に限られています。</p>
+<p>私たちに希望は、多くのユーザーが、<a href="http://channels.netscape.com/ns/browsers/7/download.jsp?x=96&amp;y=9" title="Netscape 7 のダウンロードページ">Netscape</a>、<a href="http://www.redhat.com/" title="Red Hat Linux のホームページ">Red Hat</a>、<a href="http://www-3.ibm.com/software/os/warp/browser/m601.html" title="Mozilla 用 OS/2 ポート">IBM</a>、<a href="http://www.beonex.com/" title="Beonex ホームページ">Beonex</a> といった、有料・無料のサードパーティーの再配布製品の一部として Mozilla を手に入れることです。Mozilla テクノロジーの他のアプリケーションもまた、開発中です。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="toolkit">Mozilla ツールキットとは何ですか？</a></h3>
+<p>Mozilla ツールキットは、（Gecko レイアウトエンジン、JavaScript エンジン、ネットワーク・ライブラリ、ポータビリティ・レイヤーといった）コンポーネントのセットと、XML、CSS、ECMAScript （JavaScript） のような技術を使ってプログラムすることを考えている、便利な <a href="../web-developers.html" title="Mozilla のプログラミングツールに関する詳しい情報">プログラミングツール</a> （JavaScript デバッガ、DOM Inspector など）です。</p>
+<p>この<strong>単一のフレームワーク</strong>の中で、（Web ページのような）取るに足らないものから、Mozilla ブラウジング・メール・チャット アプリケーションそのもののような洗練されたものまで及ぶ<strong>アプリケーション制作</strong>が可能です。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="what-else-can-be-built">Mozilla コードベースから他にどんな製品を制作することができますか？</a></h3>
+<p>Mozilla 製品は別として、OEM （original equipment manufacturers） は、幅広い製品の制作に、<strong>モジュラー式の Mozilla コードベース</strong>から一部を組み合わせたり調和させたりしています。それらの製品のいくつかは、<a href="http://galeon.sourceforge.net/">Galeon</a> や <a href="http://chimera.mozdev.org/">Chimera</a> （Mac OS X 向けの Gecko ベースブラウザ）といった <a href="../support.html" title="いくつかの Mozilla や Gecko ベースのブラウザ">その他のブラウザ</a> です。</p>
+<p>他のアプリケーションに Mozilla のレンダリングエンジン （「Gecko」として知られています） を内蔵した一部の製品は、それらのアプリケーションに HTML を理解・表示させています。Intel の <a href="http://www.intel.com/internetappliances/webappliance/dotstation.htm">Dot.Station</a> や、<a href="http://www.wgate.com/home.html">Worldgate</a> からまもなく発売されるセットトップ型の製品といった例もあります。</p>
+<p>その他の製品は ECMAScript （JavaScript） や Mozilla の暗号化能力のようなコンポーネントを、ブラウザと少し関係のある製品に使っています。たとえば、ActiveState は <a href="http://www.activestate.com/Products/Komodo/">Komodo</a> IDE 開発者ツールの制作に Mozilla のテクノロジーを利用していますし、一方 OEone は、家庭をベースにしたコンピュータ ユーザーのための <a href="http://www.oeone.com/products/3.html">オペレーティング環境</a> 「hometop」の制作に Mozilla のテクノロジーを利用しています。</p>
+<p>Mozilla テクノロジーを利用した <b>70 以上のプロジェクト</b> が <tt><a href="http://www.mozdev.org/" title="MozDev : Mozilla の主要な機能性のアドオンと拡張プログラム">www.mozdev.org</a></tt> でご覧いただけます。</p>
+<p>Mozilla コードベースはオープンソースソフトで、これは無償で利用、修正、再配布ができると言うことを意味しています。他の方々が、私有コードと Mozilla のコードを結合したり、有償の商用製品を制作することができるように、<b>このコードのライセンス条件は注意深く開発されました。</b>もちろん、これはその他の無私有ソフトウェアの制作に利用することもできます。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="what-is-1.0">Mozilla 1.0 とは何ですか？</a></h3>
+<p>Mozilla 1.0 は、以下の製品の、最初のメジャーバージョン リリースです :</p>
+<ul>
+	<li>Mozilla <strong>アプリケーション スイート</strong></li>
+	<li>クロスプラットフォーム、インターネットベースの GUI アプリケーション 用 Mozilla <strong>ツールキット</strong></li>
+</ul>
+<p>Mozilla 1.0 はまた、<strong>API 安定・完成</strong>のレベルをマークしています。Mozilla 1.0 到達までの主要な努力は、Mozilla を付加的なアプリケーションと機能性を制作するために利用する人にとって、安定したベースを提供する API （アプリケーション・プログラミング・インターフェース）のセットの一体化と決着でした。</p>
+<p>API のより抜きのグループが「＠フローズン」をマークしました。mozilla.org は Mozilla 2.0 まで、このセットの API 互換性を維持するつもりです。Mozilla 1.0 現在でフリーズされた API のリストも <a href="../../../projects/embedding/EmbedInterfaceFreeze.html" title="Mozilla 1.0 現在の API フリーズ">入手可能</a> です。</p>
+<p>Mozilla 1.0 また、mozilla.org が<strong>安定用と開発用のコードベースのブランチのどちらも維持する</strong>という、最初のポイントをマークしました。</p>
+<p>かなりの新しい成果が主要部にみられ、ブランチがその安定性とパフォーマンス特性を維持しておくようにします。これによって、Mozilla のコードを使った製品を制作したいと望んでいる企業やプロジェクトは、長持ちする安定したブランチにアクセスすることができ、最新の開発サイクルにおける毎日・毎週の変更に頭を悩ませる必要はありません。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="what-advantages">オープンソースソフトの利益とは何ですか？</a></h3>
+<p><a href="http://www.opensource.org/docs/definition.html" title="オープンソースの定義">オープンソースソフト</a> のソースコードは、<strong>無償</strong>で、<strong>用途を問わず</strong>、利用することができます。これは多くの利益を提供します :</p>
+<ul>
+	<li>ソースコードは常に利用可能です</li>
+	<li>ソフトウェアを利用したり、修正したり、配布したりするコストがかかりません</li>
+	<li>受け取り側 -  利用者や OEM - が、自分たちのニーズに適合させたいと思うように、ソフトウェアを修正できます</li>
+	<li>受け取り側が、彼らにとって重大なバグを修正することができます</li>
+	<li>「使用期限終了」の決定が、受け取り側に強制させられることはありません</li>
+	<li>開発者の技術的、あるいは商業的な決定が、受け取り側に強制させられることはありません</li>
+	<li>専門的技術やリーダーシップの広範囲にわたる蓄積が開発できます</li>
+</ul>
+<p>オープンソースソフトの技術と開発の利益は <i><a href="http://tuxedo.org/~esr/writings/cathedral-bazaar/" title="The Cathedral and the Bazaar が見られるところ">The Cathedral and the Bazaar</a></i> の中で詳しく論じられています。オープンソースソフトは受け取り側にも多くの利益を提供するのです。</p>
+<p>たとえば、売り主が特に重要だと受け止めていないけれどもユーザーや OEM にとっては致命的なバグが、ソフトウェアにはしばしばあります。オープンソースソフトなら、バグを修正するために、受け取り側は売り主に圧力をかけたり、料金を払うことを制約されません。受け取り側は自分自身で <a href="http://www.opensource.org/advocacy/case_for_customers.html" title="なぜオープンソースは顧客にとって有益なのか">自由にバグを修正できる</a> のです。</p>
+<p>もし受け取り側が専門的技術を持っていなかったり、特殊なオープンソースソフトで仕事をすることを選ばないのなら、バグを修正するために、他のところ - <b>最初の売り主とは全く違ったところ</b> - とのサポートや契約に加入することができます。</p>
+<p>売り主が製品のエンドユーザー・サポートをしたいと思うとき、ユーザーや OEM はしばしば否定的に受け取ることから、使用期限のことも重要で、それは彼らの意志に反して、製品をアップグレードや切り替えを受け取り側に強制することがあります。</p>
+<p>オープンソースソフトなら、<b>だれも製品の使用期限を<i>強制される</i> ことはありません</b>。人々はプロジェクトの作業をやめるかもしれませんが、他の人がコードの維持・開発を決めることができます。このように、ユーザーや OEM には私有ソフトウェアでは入手できない選択の自由があり、彼らは最高のソリューションだと思われる他の製品に乗り換えることを選べるのです。しかし彼らは<b>また</b>、問題のソフトを使い続けるよう選択することもできますし、そうではなく他の製品への加入を選択することもできるのです。</p>
+<p>製品の開発がユーザーや OEM のニーズと相容れない方向に進んだようなときにも、同じことが当てはまります。受け取り側は他の製品に乗り換えることを選択できますが、そうではなくそのソフトを使い続ける（または他の製品に加入する）ことも選択できます。</p>
+<p>このようなソフトウェアの維持・開発の方法の 1 つの結果は、広範囲にわたる<b>専門的技術やリーダーシップの蓄積</b>の開発です。私有ソフトでは、専門的技術は通常、売り主の従業員に集中、限定されていますが、オープンソースのプロジェクトでは、技術と興味がある人なら<b>だれでも</b>プロジェクトに参加し、専門的技術を開発することができます。</p>
+<p>自分たちの製品に Mozilla のコードを利用する企業は、多くのレベルで組織内の専門的技術を開発することができます。彼らは、自分たちの製品にとって重要な、独自の機能性の特殊化に専念したい、あるいは Mozilla の主要なコンポーネントについての専門的技術を開発したいと思うでしょう。専門的技術と責任がリーダーシップとなり、リーダーシップは将来のソフト開発にさらに大きな刺激となります。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+<!-- 和訳ドキュメント コメント -->
+<div class="addcomment"><a href="http://www.mozilla.org/start/1.0/guide/general.html">このドキュメントのオリジナルは mozilla.org において英語で公開されています。</a><br>
+この和訳は、利用者の利便のために <a href="../../../jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。</div>
+
+</div>
+<div id="footer"><img src="../images/dino_tail.png" id="dinoTail" alt="" /></div>
+</div>
+<div class="doubleSpacer"></div>
+</body>
+</html>

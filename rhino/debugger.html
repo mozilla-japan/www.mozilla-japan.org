@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+   <meta name="Author" content="Norris Boyd">
+
+   <meta name="KeyWords" content="Rhino, JavaScript, Java, Debugger">
+   <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>Rhino Debugger</title>
+<link rel="alternate" hreflang="en" modified="November 13, 2006">
+<!--
+
+オリジナル
+題名: Rhino Debugger/Rhino JavaScript Debugger
+URL: http://www.mozilla.org/rhino/debugger.html
+
+和訳
+2005-10-17  作成: RxOrca Rev.:1.10
+2007-02-25  更新: RxOrca Rev.:1.13
+
+残項目:
+
+-->
+
+<link rel="up" href="./" title="Rhino プロジェクト・ページ">
+<link rel="section" href="#console" title="Console Window">
+<link rel="section" href="#opening" title="Opening Scripts">
+<link rel="section" href="#running" title="Running Scripts">
+<link rel="section" href="#stepinto" title="Step Into">
+<link rel="section" href="#stepover" title="Step Over">
+<link rel="section" href="#stepout" title="Step Out">
+<link rel="section" href="#go" title="Go">
+<link rel="section" href="#break" title="Break">
+<link rel="section" href="#setclearbkpts" title="ブレークポイントのセット＆クリア">
+<link rel="section" href="#this" title="This">
+<link rel="section" href="#locals" title="Locals">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/rhino/debugger.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<!-- script type="text/javascript" src="owner.js"></script -->
+
+<p class="crumbs"><em>現在位置:</em> <a href="./">Rhino プロジェクト・ページ</a> &gt; <strong>Rhino Debugger</strong></p>
+
+<h1 style="text-align: center;">Rhino JavaScript デバッガー</h1>
+
+<address class="author">Christopher Oliver <br>
+<!-- script type="text/javascript">document.write(owner());</script --></address>
+
+<p>Rhino JavaScript デバッガーは GUI でデバッグでき、Rhino
+で動く JavaScript のスクリプトを解釈することができます。
+このデバッガーは、mozilla ブラウザーでの JavaScript のスクリプトを
+動作させるもの<strong>ではありません</strong>。Rhino は、そのような環境で使われる
+エンジンではないことに注意してください。</p>
+
+<p><img src="jsdebug.jpg" height="460" width="600" alt=""></p>
+
+<p>現在の制限について …</p>
+
+<ul>
+  <li>JDK 1.2 以上が必要です</li>
+  <li>rhinoTip.zip にある js.jar が必要です<span class="comment">【訳注: 普通に js.jar でよいはず】</span></li>
+  <li>ブレークポイント・メニューはありません</li>
+</ul>
+
+<h2>Rhino JavaScript デバッガーの使い方</h2>
+
+<p>Mozilla の Rhino JavaScript エンジンは、JavaScript スクリプトのデバッグ用にソースレベルデバッガーを含んでいます。
+デバッガーは、それ自体 Java プログラムになっていて、以下のように実行できます</p>
+
+<pre class="code" style="white-space: -moz-pre-wrap; white-space: pre-wrap;">
+
+java org.mozilla.javascript.tools.debugger.Main [オプション] [ファイル名.js] [スクリプト引数]
+
+</pre>
+
+<p>オプションはシェルと同じです。<span class="comment">【訳注: 参考 <a href="shell.html">JavaScript Shell</a>】</span></p>
+
+<p>Rhino JavaScript デバッガーは、マルチスレッドで走らせながらスクリプトをデバッグでき、
+実行中のスクリプトのカレントスコープでの、ブレークポイントのセット＆クリア、実行の制御、変数の表示、任意の JavaScript コードの評価 (evaluate)、の機能を提供します。</p>
+
+<dl>
+
+<dt><a name="console" id="console">Console Window</a></dt>
+<dd>デバッガーは System.out や System.in や System.err のストリームを、内部の JavaScript console window へリダイレクトします。
+そしてあなたに、JavaScript コードを入力したりシステム出力を見たりできる、編集可能なコマンドラインを提供します。
+この console window は、あなたが入力したコマンドの履歴を保持します。
+キーボードの<kbd>上下矢印</kbd>キーを押下することで、履歴リストを通じて戻したり進めたりできます。</dd>
+
+<dt><a name="opening" id="opening">Opening Scripts</a></dt>
+<dd>メニューバーの <b><i>File-&gt;Open</i></b> メニュー項目を選び、ファイルから JavaScript のスクリプトを読み込むことができます。
+この操作で、読み込むスクリプトの位置のために、ファイル選択ダイアログボックスが表示されるはずです。
+選択されたファイルは、新しいウィンドウ内にコンパイル<!-- ← あるいは "ひとつにまとめられ"？ -->され表示されるでしょう。</dd>
+
+<dt><a name="running" id="running">Running Scripts</a></dt>
+<dd>メニューバーの <b><i>File-&gt;Run</i></b> メニュー項目を選び、ファイルから JavaScript のスクリプトを実行することができます。
+この操作で、実行するスクリプトの位置のために、ファイル選択ダイアログボックスが表示されるはずです。
+読み込んだスクリプトは、新しいスレッドで実行され、デバッガーの最初の命令に制御が渡されるでしょう。</dd>
+
+</dl>
+
+<h2>実行の制御</h2>
+
+<p>デバッガーは、あなたがデバッグしているスクリプトの実行を制御するために、
+<!--あなたへ-->次のような機能を提供します。</p>
+
+<dl>
+
+<dt><a name="stepinto" id="stepinto">Step Into</a></dt>
+<dd>任意の関数呼び出しで、その中へシングルステップします。
+下記のいずれかを行うことができます …
+<ul>
+  <li>メニューバーの <b><i>Debug-&gt;Step Into</i></b> のメニュー項目を選ぶ</li>
+  <li>ツールバーの <b><i>Step Into</i></b> ボタンを押す</li>
+  <li>キーボードの <kbd>F11</kbd> キーを押す</li>
+</ul>
+
+<p>(制御はデバッガーを離れて) 実行は再開するでしょう。
+スクリプトの現在行が関数呼び出しを含んでいると、制御は関数の入り口でデバッガーに戻るはずです。
+さもなければ、制御は、カレント関数の次の行でデバッガーに戻るでしょう。</p></dd>
+
+<dt><a name="stepover" id="stepover">Step Over</a></dt>
+<dd>カレント関数内の次の行へシングル・ステップします。
+下記のいずれかを行うことができます …
+<ul>
+  <li>メニューバーの <b><i>Debug-&gt;Step Over</i></b> のメニュー項目を選ぶ</li>
+  <li>ツールバーの <b><i>Step Over</i></b> ボタンを押す</li>
+  <li>キーボードの <kbd>F7</kbd> キーを押す</li>
+</ul>
+
+<p>実行は再開しますが、制御は、カレント関数かトップレベル (最上位) の次の行で、デバッガーに戻るはずです。</p></dd>
+
+<dt><a name="stepout" id="stepout">Step Out</a></dt>
+<dd>カレント関数から戻るまで実行を継続します。
+下記のいずれかを行うことができます …
+<ul>
+  <li>メニューバーの <b><i>Debug-&gt;Step Out</i></b> のメニュー項目を選ぶ</li>
+  <li>ツールバーの <b><i>Step Out</i></b> ボタンを押す</li>
+  <li>キーボードの <kbd>F8</kbd> キーを押す</li>
+</ul>
+
+<p>実行は再開し、カレント関数から戻るか、あるいはブレークポイントにヒットするまで続きます。</p></dd>
+
+<dt><a name="go" id="go">Go</a></dt>
+<dd>スクリプトの実行をレジューム(再開) します。
+下記のいずれかを行うことができます …
+<ul>
+  <li>メニューバーの <b><i>Debug-&gt;Go</i></b> のメニュー項目を選ぶ</li>
+  <li>ツールバーの <b><i>Go</i></b> ボタンを押す</li>
+  <li>キーボードの <kbd>F5</kbd> キーを押す</li>
+</ul>
+
+<p>実行は再開し、ブレークポイントにヒットするか、あるいはスクリプトを完了するまで続きます。</p></dd>
+
+<dt><a name="break" id="break">Break</a></dt>
+<dd>実行中のすべてのスクリプトを停止して、制御をデバッガーへ渡します。
+下記のいずれかを行うことができます …
+<ul>
+  <li>メニューバーの <b><i>Debug-&gt;Break</i></b> のメニュー項目を選ぶ</li>
+  <li>ツールバーの <b><i>Break</i></b> ボタンを押す</li>
+  <li>キーボードの <kbd>Pause/Break</kbd> キーを押す</li>
+</ul></dd>
+
+<dt>Break on Exceptions</dt>
+<dd>JavaScript の例外がスローされるたびに制御をデバッガーへ渡すには、メニューバーの <b><i>Debug->Break on Exceptions</i></b> チェックボックスを ON<!-- select --> にしてください。
+スクリプトによって JavaScript の例外がスローされるたびに、メッセージ・ダイアログが表示され、例外発生の場所が表に現われ (raise) て、制御をデバッガーへ渡すはずです。</dd>
+
+<dt>Break on Function Enter</dt>
+<dd><b><i>Debug-&gt;Break on Function Enter</i></b> をチェックすると、
+関数またはスクリプト内に実行が入るたびに、制御をデバッガーへ渡すはずです。</dd>
+
+<dt>Break on Function Exit</dt>
+<dd><b><i>Debug-&gt;Break on Function Return</i></b> をチェックすると、
+関数またはスクリプトから戻ろうとするたびに、制御をデバッガーへ渡すはずです。</dd>
+
+<dt>スタックを上下に移動</dt>
+<dd>デバッガーのメインウィンドウ左下の (ドック可能な) ペイン (pane) は、"Context:"
+のラベルのコンボ・ボックスを含み、そしてそれは実行中のスクリプトの現在のスタックを表示します。
+あなたは、コンボ・ボックスの項目を選択することで、スタックを上下に移動させることができます。
+あなたがスタックフレームを選択するとき、そのスコープで可視的 (visible) な変数の、名前と値を反映して、変数と watch window を更新します。</dd>
+
+<dt><a name="setclearbkpts" id="setclearbkpts">ブレークポイントのセット＆クリア</a></dt>
+<dd>デバッガーのメイン・デスクトップは file window を含み、
+そこへあなたがデバッグしているそれぞれのスクリプトの内容を表示します。
+下記のひとつを行うことで、スクリプトにブレークポイントを
+セットすることができます …
+<ul>
+  <li>ブレークポイントをセットしたい行の上にマウスカーソルを置き、右クリック。
+この操作でポップアップメニューが表示されるはずです。<b><i>Set Breakpoint</i></b> メニュー項目を選択します。</li>
+  <li>ブレークポイントをセットしたい行の行番号で、単にシングルクリック。</li>
+</ul>
+
+<p>選択された行に実行可能なコードを含んでいると、赤い点が行番号の隣に出現し、
+その位置へブレークポイントがセットされるはずです。</p>
+
+<p>下記のひとつを行うことで、スクリプトのブレークポイントをクリアする(取り除く) ことができます …</p>
+
+<ul>
+  <li>ブレークポイントをクリアしたい行の上にマウスカーソルを置き、右クリック。
+この操作でポップアップメニューが表示されるはずです。<b><i>Clear Breakpoint</i></b> メニュー項目を選択します。</li>
+  <li>赤い点、またはブレークポイントをクリアしたい行の行番号で、
+単にシングルクリック。</li>
+</ul>
+
+<p>赤い点は見えなくなり、その位置のブレークポイントは取り除かれるはずです。</p></dd>
+
+</dl>
+
+<h2>変数を表示</h2>
+
+<p>デバッガーのメインウィンドウ左下の (ドック可能な) ペインはタブペインで、
+"this" と "Locals" のラベルの 2 つのタブを持っています。
+各ペインはツリー・テーブルを持ち、それぞれにカレント(現行) オブジェクトと
+現在現われているローカル変数のプロパティーを表示します。</p>
+
+<dl>
+
+<dt><a name="this" id="this">This</a></dt>
+<dd>カレント・オブジェクトのプロパティーは、<b><i>this</i></b>
+テーブルに表示されます。プロパティーが JavaScript のオブジェクトであれば、
+プロパティーは そのサブプロパティーを表すために拡張されるはずです。
+<b><i>this</i></b> テーブルは、デバッガーに制御が戻るか、
+もしくはあなたが <b><i>Context:</i></b> window でスタック位置を変更したとき、
+そのたびごとに更新されます。</dd>
+
+<dt><a name="locals" id="locals">Locals</a></dt>
+<dd>カレント関数のローカル変数は、<b><i>Locals</i></b> テーブルに表示されます。
+変数が JavaScript のオブジェクトであれば、変数は そのサブプロパティーを
+表すために拡張されるはずです。<b><i>Locals</i></b> テーブルは、
+デバッガーに制御が戻るか、もしくはあなたが <b><i>Context:</i></b> window
+でスタック位置を変更したとき、そのたびごとに更新されます。</dd>
+
+<dt>Watch Window</dt>
+<dd>あなたは、任意の JavaScript 式を <b><i>Watch:</i></b> テーブルに入力できます。
+デバッガーのメインウィンドウ右下に位置する (ドック可能な) ペインです。
+あなたが入力した式はカレント・スコープで再評価され、そしてその現在値は、
+デバッガーに制御が戻るか、もしくはあなたが <b><i>Context:</i></b> window
+でスタック位置を変更したとき、そのたびごとに表示されます。</dd>
+
+<dt>Evaluation Window</dt>
+<dd><b><i>Evaluate</i></b> ペインは、デバッガーのメインウィンドウ右下に位置する
+(ドック可能な) ペインで、あなたが任意の JavaScript コードを入力できる、
+編集可能なコマンドラインを含んでいます。
+そのコードは、カレント・スタックフレームのコンテキストで評価されます。
+その窓 (window) は、あなたが入力したコマンドの履歴を保持します。
+キーボードの<kbd>上下矢印</kbd>キーを押下することで、履歴を通じて戻したり進めたりできます。</dd>
+
+</dl>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/rhino/debugger.html">英語版</a> 2006/11/13</span> - <span>和訳版 2007/03/02</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/rhino/debugger.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

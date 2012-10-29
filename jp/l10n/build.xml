@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SiteBuilder" default="update+clean" basedir=".">
+<description>サイトビルドスクリプト</description>
+
+<defaultexcludes add="**/*~/**"/>
+<tstamp><format property="tstamp.yyyyMMdd" pattern="yyyyMMdd"/></tstamp>
+<tstamp><format property="tstamp.yyyyMMddHH" pattern="yyyyMMddHH"/></tstamp>
+<property name="temp.dir" value="--temp--"/>
+
+<property name="conf.main.file" value="conf/main.conf"/>
+
+<import file="build.library.xml"	optional="false"/>
+
+
+
+		<!-- *** INTERFACE TARGETS *** -->
+
+<target name="auto" description="exec following targets without any confirming">
+	<property name="noconfirm" value="YES"/>
+</target>
+
+<target name="update" depends="prepare, build" description="サイトを更新します"/>
+<target name="update+clean" depends="update">
+	<antcall target="clean">
+		<param name="clean.answer" value="YES"/>
+	</antcall>
+</target>
+
+<target name="rebuild" depends="delete, update" description="サイトを再構築します"/>
+<target name="rebuild+clean" depends="rebuild">
+	<antcall target="clean">
+		<param name="clean.answer" value="YES"/>
+	</antcall>
+</target>
+
+<target name="backup" depends="load-mainconf" unless="nobackup" description="サイトをバックアップします">
+	<mkdir dir="${backup.dir}"/>
+	<zip destfile="${backup.file}">
+		<zipfileset dir="${src.dir}" defaultexcludes="no"
+			includes="${backup.includes}" excludes="${backup.excludes}"/>
+	</zip>
+</target>
+
+<target name="backuptt" depends="load-mainconf" unless="nobackup" description="TransTools をバックアップします">
+	<mkdir dir="${backup.tt.dir}"/>
+	<zip destfile="${backup.tt.file}">
+		<zipfileset dir="." defaultexcludes="no"
+			includes="${backup.tt.includes}" excludes="${backup.tt.excludes}"/>
+	</zip>
+</target>
+
+
+
+		<!-- *** Prepare Phase: cleaning and preparation *** -->
+
+<!-- * cleaning * -->
+<target name="-clean-check-">
+	<available property="temp.dir.exists" file="${temp.root}" type="dir" value="true"/>
+</target>
+<target name="-clean-confirm-" depends="-clean-check-" if="temp.dir.exists" unless="noconfirm">
+	<loadmessage/>
+	<input addproperty="clean.answer" message="${cmsg.clean.confirm}"/>
+	<isfalse property="clean.aborted" arg="${clean.answer}"/>
+	<fail if="clean.aborted" message="${cmsg.clean.aborted}"/>
+</target>
+<target name="clean" depends="-clean-check-, -clean-confirm-" if="temp.dir.exists" unless="clean.aborted"
+	description="delete temporary files under ${temp.root} directory">
+	<delete dir="${temp.root}" failonerror="${clean.failonerror}"/>
+</target>
+
+
+<!-- * delete * -->
+<target name="delete" depends="load-conf">
+	<delete><!-- 対応する *.page.xml の存在する *.html だけを選択して削除 -->
+		<fileset dir="${dest.dir}"
+			includes="**/*${html.ext}" excludes="${html.src.excludes}">
+			<present targetdir="${src.dir}">
+				<mapper type="glob" from="*${html.ext}" to="*${srcxml.ext}"/>
+			</present>
+		</fileset>
+	</delete>
+</target>
+
+
+<!-- * loading configuration files * -->
+<target name="load-mainconf" unless="mainconf.loaded">
+	<property name="config.const.file" value="config/const.conf"/><!-- default const definition file -->
+	<loadconf file="${config.const.file}"/>
+	
+	<property name="config.main.file" value="config/main.conf"/><!-- default main config file -->
+	<loadconf file="${config.main.file}"/>
+	
+	<property name="mainconf.loaded" value="yes"/>
+</target>
+
+<!-- load optional config file if specified -->
+<target name="-load-optconf-" if="config.opt.filename" unless="optconf.loaded">
+	<property name="config.opt.file" value="${config.root}/${config.opt.filename}"/>
+	<loadconf file="${config.opt.file}"/>
+	
+	<property name="optconf.loaded" value="yes"/>
+</target>
+
+<target name="load-conf" unless="conf.loaded" depends="load-mainconf, -load-optconf-">
+	<property name="conf.loaded" value="yes"/>
+</target>
+
+<!-- generate config.xml to be used by xsl -->
+<target name="config.xml" unless="config.xml.generated" depends="load-conf">
+	<echoproperties destfile="config.xml" format="xml">
+		<propertyset negate="true">
+			<propertyref builtin="system"/>
+		</propertyset>
+	</echoproperties>
+</target>
+
+<!-- * prepare phase interface * -->
+<target name="prepare" unless="prepare.done" depends="load-conf, config.xml">
+	<property name="prepare.done" value="yes"/>
+</target>
+
+
+
+		<!-- *** Build Phase: generation, translation and modification *** -->
+
+<target name="html" depends="prepare" description="出力 HTML を必要に応じて更新します">
+	<dependset><!-- 共通ファイルのいずれかが更新されているときはすべての生成済 HTML を削除する -->
+		<srcfileset dir="config"		includes="main.conf"	excludes=""/>
+		<srcfileset dir="${xsl.dir}"	includes="*.xsl"		excludes=""/>
+		<srcfileset dir="${tpl.dir}"	includes="${tpl.name}/*.xml, ${tpl.name}/*.xsl" excludes=""/>
+		<srcfileset dir="${db.dir}"		includes="*.xml"		excludes=""/>
+		<targetfileset dir="${dest.dir}" includes="**/*${html.ext}" excludes="${html.src.excludes}">
+			<present targetdir="${src.dir}">
+				<mapper type="glob" from="*${html.ext}" to="*${srcxml.ext}"/>
+			</present>
+		</targetfileset>
+	</dependset>
+	
+	<!-- 共通ファイルが更新されていない場合でも、修正済みのページは上書き処理される -->
+	<xslt basedir="${src.dir}" destdir="${dest.dir}" style="${xsl.default.file}"
+		includes="${html.src.includes}" excludes="${html.src.excludes}" force="${html.force}">
+		<mapper type="glob" from="*${srcxml.ext}" to="*${html.ext}"/>
+	</xslt>
+</target>
+
+<target name="sitemap">
+	<!-- db/sitedb を元に、サイトマップを生成する -->
+	
+	<echo message="サイトマップの作成機能はまだ実装できていません"/>
+	
+</target>
+
+<!-- * build phase interface * -->
+<target name="build" unless="build.done" depends="prepare, html, sitemap">
+	<property name="build.done" value="yes"/>
+</target>
+
+
+
+
+
+
+
+</project>

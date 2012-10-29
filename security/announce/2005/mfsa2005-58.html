@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2005-58: Firefox 1.0.7 および Mozilla Suite 1.7.12 で修正された複数の脆弱性</title>
+<link rel="alternate" hreflang="en" modified="December 14, 2005">
+<style type="text/css" media="screen,tv">
+  dl.table dt { margin: 0; width: 11em; font-weight: bold; float: left; }
+  dl.table dd { margin: 0 0 0 12em; }
+  #mainContent ul { padding-left: 0; list-style-type: none; }
+  .critical { background-color: #ffa0a0 }
+  .high { background-color: #ffd8a0 }
+  .moderate { background-color: #ffffa0 }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<h1>Mozilla Foundation セキュリティアドバイザリ 2005-58</h1>
+<dl class="table">
+  <dt>タイトル</dt><dd>Firefox 1.0.7 および Mozilla Suite 1.7.12 で修正された複数の脆弱性</dd>
+  <dt>重要度</dt><dd>最高</dd>
+  <dt>影響を受ける製品</dt><dd>Firefox</dd><dd>Mozilla Suite</dd>
+  <dt>修正済みのバージョン</dt><dd>Firefox 1.0.7</dd><dd>Mozilla Suite 1.7.12</dd>
+</dl>
+<h2>概要</h2>
+<p>Firefox 1.0.7 および Mozilla Suite 1.7.12 では、総合的な重要度が「最高」とされる複数の脆弱性が修正されました。</p>
+<ul>
+  <li><a href="#xbm">XBM 画像の処理過程におけるヒープオーバーラン</a> <span class="critical">[最高]</span></li>
+  <li><a href="#zero-width">「zero-width non-joiner」配列によるクラッシュ</a> <span class="critical">[最高]</span></li>
+  <li><a href="#xmlhttp">XMLHttpRequest ヘッダの偽装</a> <span class="moderate">[中]</span></li>
+  <li><a href="#xblspoof">XBL &lt;implements&gt; を利用したオブジェクトの偽装</a> <span class="moderate">[中]</span></li>
+  <li><a href="#js-int">JavaScript の整数オーバーフロー</a> <span class="high">[高]</span></li>
+  <li><a href="#about">「about:」スキームを利用した特権の昇格</a> <span class="high">[高]</span></li>
+  <li><a href="#closedwin">クロームウィンドウの偽装</a> <span class="high">[高]</span></li>
+  <li><a href="#regressions">リグレッションの修正</a></li>
+</ul>
+<h3 id="xbm">XBM 画像の処理過程におけるヒープオーバーラン</h3>
+<p>予期される終了タグの代わりに空白文字を用いることで不正に終端に達する XBM 画像を読み込むことにより、ヒープバッファオーバーランにつながる可能性のあることが jackerror 氏によって報告されました。これは、ユーザのコンピュータ上で悪質なコードを実行したりインストールするのに悪用される可能性があります。</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=300936">https://bugzilla.mozilla.org/show_bug.cgi?id=300936</a></p>
+<p>Thunderbird は XBM フォーマットをサポートしていないため、この脆弱性の影響を受けません。</p>
+<h3 id="zero-width">「zero-width non-joiner」配列によるクラッシュ</h3>
+<p>「zero-width non-joiner」文字の Unicode 配列に関して報告されていたクラッシュが、スタックの不正によるもので、任意のコード実行に悪用される可能性のあることが Mats Palmgren 氏によって報告されました。</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=296134">https://bugzilla.mozilla.org/show_bug.cgi?id=296134</a></p>
+<p>デフォルト設定 (JavaScript 無効) の Thunderbird はクラッシュしますが、これは攻撃者のコード実行に利用可能であるとはかんがえられていません。Thunderbird でも JavaScript が有効になっていれば影響を受けます。</p>
+<h3 id="xmlhttp">XMLHttpRequest ヘッダの偽装</h3>
+<p>XMLHttpRequest に不正なヘッダを追加することが可能でした。これは、ユーザのマシンからサーバやプロキシの脆弱性を悪用したり、サーバやプロキシに対して、単一のリクエストをあたかも個別のリクエストのストリームであるかのように見せかけることに利用される可能性がありました。この脆弱性の重要度は、HTTP リクエストの密輸や同様の攻撃に悪用されかねないサーバの設定値や、どの IP アドレス (バーチャルホスティング) を攻撃者のページと共有しているかによります。</p>
+<p>ユーザがプロキシを介して Web に接続している場合、この脆弱性は、任意のホストに向けた単一のリクエストを複数のパイプラインリクエストであるかのようにプロキシに処理させることで、XMLHttpRequest の同一生成元制限を回避するのに利用される可能性があります。これは例えば、ファイアウォール越しにイントラネットサーバ上のファイルを読み取るのに利用される可能性があります。</p>
+<p>この問題は Tim Altman 氏と Yutaka Oiwa 氏によって個別に報告されました。</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=297078">https://bugzilla.mozilla.org/show_bug.cgi?id=297078</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=302263">https://bugzilla.mozilla.org/show_bug.cgi?id=302263</a></p>
+<h3 id="xblspoof">XBL &lt;implements&gt; を利用したオブジェクトの偽装</h3>
+<p>内部インターフェイスを実装した XBL コントロールを利用して、<a href="mfsa2005-55.html">MFSA 2005-55</a> と同様に DOM オブジェクトを偽装できることが、moz_bug_r_a4 氏によって実証されました。重要度は Firefox のバージョンによります。これまでの調査では、Firefox 1.0.x において、この方法で偽装される可能性のある脆弱なインターフェイス機能は明らかになっていませんが、初期の Deer Park Alpha 1 は影響を受けます。</p>
+<p>Web コンテンツから、特権のないコントロールによって XPCOM インターフェイスが実装されないよう、XBL に変更が加えられました。</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=299518">https://bugzilla.mozilla.org/show_bug.cgi?id=299518</a></p>
+<h3 id="js-int">JavaScript の整数オーバーフロー</h3>
+<p>JavaScript エンジンの整数オーバーフローが Georgi Guninski によって報告されました。これは、条件の揃った環境では任意のコード実行に利用される可能性があると考えられます。</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=303213">https://bugzilla.mozilla.org/show_bug.cgi?id=303213</a></p>
+<h3 id="about">「about:」スキームを利用した特権の昇格</h3>
+<p>特権のない「about:」ページから高特権の「クローム」ページが読み込まれないようにする制限を回避する 2 つの方法が heatsync 氏と shutdown 氏によって報告されました。「about:」ページの特権が上がると元のページはアクセスできないため、それ自体では無害ですが、同一生成元違反と組み合わせることで任意のコード実行につながる可能性があります。</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=304754">https://bugzilla.mozilla.org/show_bug.cgi?id=304754</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=306261">https://bugzilla.mozilla.org/show_bug.cgi?id=306261</a></p>
+<h3 id="closedwin">クロームウィンドウの偽装</h3>
+<p>閉じられたウィンドウへの参照元からウィンドウを開くことで、空白の「クローム」キャンバスを得られる方法が moz_bug_r_a4 氏によって実証されました。結果として開かれるウィンドウには特権はありませんが、アドレスバーやステータスバーなど、通常のブラウザ UI がなく、フィッシングサイトを警告するために設計されたブラウザクロームの安全な機能が働かないため、偽装ページの作成に利用される可能性があります。</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=306804">https://bugzilla.mozilla.org/show_bug.cgi?id=306804</a></p>
+<h3 id="regressions">リグレッションの修正</h3>
+<p>今回のリリースには、過去のセキュリティアップデートによって発生した以下のバグの修正が行われています。これらは安定性向上のために修正されたもので、セキュリティ上のリスクをもたらすものではありません。</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=291178">291178</a> InstallTrigger.getVersion gone in Firefox 1.0.3<br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=300853">300853</a> Caps crash on cleanup [&#64; DomainPolicy::Drop]<br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=301180">301180</a> crash if you stop search and hit the search button again (Mozilla 1.7 only)<br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=302100">302100</a> Firefox 1.0.6 crashes when loading any page if PAC script uses eval</p>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2005/mfsa2005-58.html">英語版</a> 2005/12/14 &mdash; 和訳版 2011/01/06 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2005/mfsa2005-58.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

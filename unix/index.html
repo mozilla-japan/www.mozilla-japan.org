@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Unix</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { margin: .75em; text-align: center; }
+	p, li { line-height: 1.6; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 1.6; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="September 7, 2001">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/unix/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+
+
+
+<h1>Unix</h1>
+<p>Unix の歴史の多くはオープンソースソフトウェアに根付いています。Mozilla の Unix バージョンは、ビルドをよりよりブラウザにする手助けをしているすべての開発者を元気づける、エキサイティングなオープンソースプロジェクトです。Mozilla は <a href="/newlayout/">Gecko</a> レイアウトエンジンや <a href="/xpfe/">XPToolkit</a> を使ったクロスプラットフォーム (XP) アーキテクチャを持っており、主要なユーザインターフェイスは <a href="http://www.gtk.org/">GTK+</a> で実装されています。</p>
+
+<table border="0" cellspacing="5" cellpadding="0">
+<tr>
+	<td valign="top" width="50%">
+		<h3>はじめよう</h3>
+		<ol>
+			<li><a href="ftp://ftp.mozilla.org/pub/mozilla/nightly/latest/">ナイトリービルド</a> をダウンロードしよう</li>
+			<li><a href="http://bugzilla.mozilla.org/">バグ</a> の登録をはじめよう (訳注: <a href="http://bugzilla.mozilla.gr.jp/">日本語によるバグの報告もできます</a>)</li>
+			<li>自分の <a href="/build/unix.html">ビルド</a> を作ろう</li>
+			<li>Slamm の <a href="http://webtools.mozilla.org/build/config.cgi">ビルド構成ツール</a> で自分のビルドをカスタマイズしてみよう</li>
+			<li>パッチの提出をはじめよう! (<a href="/build/unix-cheatsheet.html">ごまかしシート</a> を見てください)</li>
+		</ol>
+		<h3>Mozilla をハックする？</h3>
+		<ul>
+			<li><a href="debugging-faq.html">デバッグに関する FAQ</a></li>
+			<li><a href="linux-help.html">Mozilla は Linux の協力を必要としています</a></li>
+			<li><a href="faster.html">自分のデバッグビルドを高速化する</a></li>
+			<li><a href="purify.html">Solaris で Mozilla を精製する</a></li>
+			<li><a href="quantify.html">Solaris で Mozilla を数量化する</a></li>
+			<li><a href="gprof.html">gprof</a></li>
+			<li><a href="leaky.html">Leaky (メモリツール)</a></li>
+			<li><a href="xlib.html">Xlib Toolkit ポート</a></li>
+		</ul>
+		<h3>アプリケーションノート</h3>
+		<ul>
+			<li><a href="customizing.html">Mozilla のカスタマイズ</a></li>
+			<li><a href="gtk-embedding.html">GTK 組み込み部品</a></li>
+			<li><a href="installer.html">複数の .netscape ディレクトリを 1 つの .mozilla ディレクトリ (とユーザプロファイル) に移す方法</a></li>
+			<li><a href="/mailnews/movemail/">movemail</a></li>
+			<li><a href="remote.html">リモートコントロール (-remote)</a></li>
+		</ul>
+		<h3>テクニカルノート</h3>
+		<ul>
+			<li><a href="dpi.html">DPI/フォントサイズの問題</a> - 近頃 Unix フォントに何が起きているのか</li>
+			<li><a href="JavaHack.html">JavaHack</a> - IME による Java の使用を取り囲む問題</li>
+			<li><a href="threading-on-unix.html">Unix におけるスレッディング</a> - Mozilla と NSPR がどのようにスレッドを使うのか、どんな種類を使っているのかに関する簡潔な説明</li>
+		</ul>
+	</td>
+	<td valign="top">
+		<h3>ポート</h3>
+		<ul>
+			<li><a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/status.html">xptcall</a> - どんな新しいアーキテクチャへ移植するときにも必要となります</li>
+			<li><a href="irix.html">Irix</a></li>
+			<li><a href="tru64.html">Tru64</a></li>
+			<li><a href="solaris.html">Solaris</a></li>
+			<li><a href="aix.html">AIX</a></li>
+			<li><a href="hpux.html">HP-UX</a></li>
+			<li><a href="http://www.netbsd.org/">NetBSD</a> には <a href="ftp://ftp.netbsd.org/pub/NetBSD/packages/pkgsrc/www/mozilla/README.html">ダウンロード</a> があります</li>
+		</ul>
+		<h3>関連のあるニュースグループ</h3>
+		<table border="0" cellspacing="5" cellpadding="0">
+			<tr><th>ニュースグループ</th><th>ドキュメント</th></tr>
+			<tr><td><a href="news://news.mozilla.org/netscape.public.mozilla.unix">mozilla.unix</a></td><td>このページ</td></tr>
+			<tr><td><a href="news://news.mozilla.org/netscape.public.mozilla.builds">mozilla.builds</a></td><td><a href="/build/unix.html">Unix でビルドする</a></td></tr>
+			<tr><td><a href="news://news.mozilla.org/netscape.public.mozilla.xpfe">mozilla.xpfe</a></td><td><a href="/xpfe/">XPToolkit</a> と <a href="/xpapps/">XPApps</a></td></tr>
+			<tr><td><a href="news://news.mozilla.org/netscape.public.mozilla.gtk">mozilla.gtk</a></td><td><a href="http://www.gtk.org/">gtk.org</a></td></tr>
+			<tr><td><a href="news://news.mozilla.org/netscape.public.mozilla.nspr">mozilla.nspr</a></td><td><a href="/docs/refList/refNSPR/">Netscape ポータブル ランタイム</a></td></tr>
+		</table>
+	</tr>
+</table>
+
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/unix/index.html">英語版</a> 2001/09/07</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/unix/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

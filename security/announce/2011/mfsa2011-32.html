@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2011-32: Thunderbird 3.1.12 で修正されたセキュリティ問題</title>
+<link rel="alternate" hreflang="en" modified="August 16, 2011">
+<style type="text/css">
+  h2        { font-size: 120%; color: #b91e27; }
+  hgroup h2 { font-size: 150%; color: inherit; }
+  .label    { width: 12em; font-weight: bold; float: left; }
+  .critical { background-color: #ff8080; padding: 0 .25em; border-radius: .25em }
+  .high     { background-color: #ffc080; padding: 0 .25em; border-radius: .25em }
+  .moderate { background-color: #ffff80; padding: 0 .25em; border-radius: .25em }
+  .low      { border: 1px solid #ccc; padding: 0 .25em; border-radius: .25em }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em><a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2011-32</strong></p>
+
+<hgroup>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2011-32</h1>
+<h2>Thunderbird 3.1.12 で修正されたセキュリティ問題</h2>
+</hgroup>
+
+<p>
+<span class="label">公開日:</span>  2011/08/16<br>
+<span class="label">製品:</span>    Thunderbird 3.1.12<br>
+</p>
+
+<p class="note">Thunderbird では JavaScript が初期設定で無効になっているため、ここに載っている問題の多くはメールを通じた悪用が不可能です。これらの特定の問題は、RSS フィードを購読して、フィードの要約ではなく完全なリモートコンテンツを表示させたときに引き起こされる可能性があります。ブラウザ機能を備えたアドオンによっても、そうした問題の影響を受ける可能性があります。</p>
+
+<h3 id="cve-2011-2982">様々なメモリ安全性の問題 (rv:1.9.2.20)</h3>
+<p>重要度: <span class="critical">最高</span></p>
+<p>Thunderbird 3.1 やその他の Mozilla ベースの製品に搭載されているブラウザエンジンに含まれていたメモリ安全性に関するいくつかのバグを、Mozilla の開発者とコミュニティメンバーが特定、修正しました。これらの問題の一部は、特定状況下でメモリ破壊の形跡が見られ、条件が整えば任意のコード実行に悪用可能と思われるものでした。</p>
+<h3>参考資料</h3>
+<p>Thunderbird 3.1 に影響するメモリ安全性の問題が、Gary Kwong、Igor Bukanov、Nils、Bob Clary によって報告されました。</p>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=541255,615970,632206,643062,674545">メモリ安全性に関するバグ - Firefox 3.6</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2982">CVE-2011-2982</a></li>
+</ul>
+
+<h2 id="cve-2011-0084">最高: SVGTextElement.getCharNumAtPosition() におけるクラッシュ</h2>
+<p>重要度: <span class="critical">最高</span></p>
+<h3>概要</h3>
+<p>SVG テキスト操作ルーチンのひとつにダングリングポインタ脆弱性が含まれていることが、TippingPoint の Zero Day Initiative を通じ、セキュリティ研究者の <strong>regenrecht</strong> 氏によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=648094">Bug 648094</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-0084">CVE-2011-0084</a></li>
+</ul>
+
+<h2 id="cve-2011-2981">最高: イベントハンドラを用いた特権昇格</h2>
+<p>重要度: <span class="critical">最高</span></p>
+<h3>概要</h3>
+<p>JavaScript が誤ったコンテキストで実行されるのを許してしまう可能性のある、イベント管理コードにおける脆弱性が、Mozilla セキュリティ研究者の <strong>moz_bug_r_a_4</strong> によって報告されました。これには、別のサイトのコンテキストや、潜在的にはクローム特権を持ったコンテキストが含まれます。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=650252,614151,643450">イベントハンドラを用いた特権昇格に関するバグ</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2981">CVE-2011-2981</a></li>
+</ul>
+
+<h2 id="cve-2011-2378">最高: appendChild におけるダングリングポインタ脆弱性</h2>
+<p>重要度: <span class="critical">最高</span></p>
+<h3>概要</h3>
+<p><code>appendChild</code> が、その対象なる DOM オブジェクトを正しく特定できておらず、不正なポインタの参照に悪用されかねないことが、TippingPoint の Zero Day Initiative を通じ、セキュリティ研究者の <strong>regenrecht</strong> 氏によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=648065">Bug 648065</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2378">CVE-2011-2378</a></li>
+</ul>
+
+<h2 id="cve-2011-2984">最高: タブ要素をコンテンツエリアにドロップすることによる特権昇格</h2>
+<p>重要度: <span class="critical">最高</span></p>
+<h3>概要</h3>
+<p>Web コンテンツが drop イベントに登録しており、ブラウザのタブ要素がコンテンツエリア内にドロップされると、そのコンテンツがクローム特権を得てしまうことが、Mozilla セキュリティ研究者の <strong>moz_bug_r_a_4</strong> によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=572129">Bug 572129</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2984">CVE-2011-2984</a></li>
+</ul>
+
+<h2 id="cve-2011-2980">高: Binary planting vulnerability in ThinkPadSensor::Startup におけるバイナリ植え付け脆弱性</h2>
+<p>重要度: <span class="high">高</span></p>
+<h3>概要</h3>
+<p>
+<code>ThinkPadSensor::Startup</code> が、悪質な DLL を起動プロセスへ読み込むのに悪用される潜在的可能性が、Acros Security 社のセキュリティ研究者 <strong>Mitja Kolsek</strong> 氏によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=642469">Bug 642469</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2980">CVE-2011-2980</a></li>
+</ul>
+
+<h2 id="cve-2011-2983">高: RegExp.input を用いた機密データの漏えい</h2>
+<p>重要度: <span class="high">高</span></p>
+<h3>概要</h3>
+<p><code>RegExp.input</code> が設定されたときに、他のドメインからデータを読み取れてしまうことが、セキュリティ研究者の <strong>shutdown</strong> 氏によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=626297">Bug 626297</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2983">CVE-2011-2983</a></li>
+</ul>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2011/mfsa2011-32.html">英語版</a> 2011/06/21 &mdash; 和訳版 2011/06/22 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2011/mfsa2011-32.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

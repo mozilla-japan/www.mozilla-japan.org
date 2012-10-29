@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 解析手順</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/formal/stages.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="notation.html">
+<link rel="Next" href="lexer-grammar.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">正式な記述</div>
+    <div class="title1">解析手順</div></td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="notation.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="lexer-grammar.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">10/15/2002 (Tue)</p>
+
+<p>ソースコードは以下の手順で処理される:</p>
+
+<ol>
+  <li>必要に応じてソースコードを UTF-16 <a href="http://www.unicode.org/unicode/reports/tr15">正規形 C</a> に変換する。</li>
+  <li>ソースコードから Unicode 制御文字 (分類 <tt>Cf</tt>) を全て取り除く。</li>
+  <li>同時に<a href="lexer-grammar.html">字句文法</a>と<a href="lexer-semantics.html">セマンティクス</a>によりソースコードを入力要素に分割し、<a href="parser-grammar.html">構文文法</a>を使って解析して解析木
+    <var>P</var> を得る。</li>
+  <li><a href="parser-semantics.html">構文セマンティクス</a>でアクション <span class=action-name>Eval</span> により <var>P</var> を評価する。</li>
+</ol>
+
+<h2>字句解析と構文解析</h2>
+
+<p>第3段階の処理は以下のように行われる:</p>
+
+<ol>
+  <li><var>inputElements</var> を入力要素 (構文文法の<a href="parser-grammar.html#terminals">終端記号</a>と改行) の空の配列とする。</li>
+  <li><var>input</var> を Unicode 文字の入力シーケンスとし、特別なプレースホルダ <span class="terminal">End</span> を
+    <var>input</var> の末尾に追加する。</li>
+  <li><var>state</var> を、定数 <span class="tag-name">re</span> 、<span class="tag-name">div</span>
+    、<span class="tag-name">num</span> のいずれかを格納する変数とする。初期値は <span class="tag-name">re</span> とする。</li>
+  <li><var>input</var> の可能な限り最も長い接頭辞を解析するために<a href="lexer-grammar.html">字句文法</a>を適用する。<var>state</var>
+    が <span class="tag-name">re</span> 、<span class="tag-name">div</span> 、<span class="tag-name">num</span> のいずれであるかにより、開始シンボルはそれぞれ
+    <a href="lexer-grammar.html#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">re</sup>
+    、<a href="lexer-grammar.html#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">div</sup>
+    、<a href="lexer-grammar.html#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">num</sup>
+    を使用する。解析の結果は字句文法解析木 <var>T</var> となっているべきである。解析に失敗した場合は構文エラーを返す。</li>
+  <li><var>T</var> 上でアクション <span class="action-name">InputElement</span> を処理し、<a href="lexer-semantics.html#D-InputElement" class="domain-name">InputElement</a>
+    <var>e</var> を得る。</li>
+  <li><var>e</var> が入力要素 <a href="lexer-semantics.html#T-endOfInput" class="tag-name">endOfInput</a> であれば手順15に移動する。</li>
+  <li><var>input</var> の字句解析の終わっていない接尾辞だけが残っていれば、<var>T</var> にマッチした文字を <var>input</var> から取り除く。</li>
+  <li>以下のようにして <var>e</var> を構文文法の<a href="parser-grammar.html#terminals">終端記号</a>か改行
+    <var><script type="text/javascript">document.write(U_tau)</script></var> として解釈する:
+    <ul>
+      <li><a href="lexer-semantics.html#T-lineBreak" class="tag-name">lineBreak</a> は1つの改行として解釈され、それ自身は終端記号ではないが、2終端記号の間の1つ以上の改行を示す。これにより
+        <a href="lexer-semantics.html#T-lineBreak" class="tag-name">lineBreak</a> が現れた位置に [no&nbsp;line&nbsp;break]
+        注釈を持つ生成規則に<a href="parser-grammar.html">構文文法</a>がマッチしなくなる。</li>
+      <li><a href="lexer-semantics.html#D-Identifier" class="domain-name">Identifier</a> <var>s</var> は終端記号
+        <span class="terminal">Identifier</span> として解釈される。アクション <span class="action-name">Name</span> を
+        <span class="terminal">Identifier</span> に適用すると <a href="notation.html#D-String" class="domain-name">String</a>
+        値 <var>s</var>.<a href="lexer-semantics.html#D-Identifier" class="field-name">name</a> が得られる。</li>
+      <li><a href="lexer-semantics.html#D-Keyword" class="domain-name">Keyword</a> <var>s</var> は予約語、将来の予約語、或いは
+        <a href="lexer-semantics.html#D-Keyword" class="domain-name">Keyword</a> の
+        <a href="notation.html#D-String" class="domain-name">String</a> <var>s</var>
+        に対応する非予約語の<a href="parser-grammar.html#terminals">終端記号</a>として解釈される。</li>
+      <li><a href="lexer-semantics.html#D-Punctuator" class="domain-name">Punctuator</a> <var>s</var>
+        は区切りトークンか、<a href="lexer-semantics.html#D-Punctuator" class="domain-name">Punctuator</a> の
+        <a href="notation.html#D-String" class="domain-name">String</a> <var>s</var>
+        に対応する将来の区切りトークン<a href="parser-grammar.html#terminals">終端記号</a>として解釈される。</li>
+      <li><a href="lexer-semantics.html#D-NumberToken" class="domain-name">NumberToken</a> <var>x</var> は終端記号
+        <span class="terminal">Number</span> として解釈される。アクション <span class="action-name">Value</span> を
+        <span class="terminal">Number</span> に適用すると <a href="notation.html#D-GeneralNumber" class="domain-name">GeneralNumber</a>
+        値 <var>x</var>.<a href="lexer-semantics.html#D-NumberToken" class="field-name">value</a> が得られる。</li>
+      <li>値が 2<sup>63</sup> である <code>long</code> 数値トークンの結果である <a href="lexer-semantics.html#T-negatedMinLong" class="tag-name">negatedMinLong</a>
+        は終端記号 <span class="terminal">NegatedMinLong</span> として解釈される。</li>
+      <li><a href="lexer-semantics.html#D-StringToken" class="domain-name">StringToken</a> <var>s</var> は終端記号
+        <span class="terminal">String</span> として解釈される。アクション <span class="action-name">Value</span> を
+        <span class="terminal">String</span> に適用すると <a href="notation.html#D-String" class="domain-name">String</a>
+        値 <var>s</var>.<a href="lexer-semantics.html#D-StringToken" class="field-name">value</a> が得られる。</li>
+      <li><a href="lexer-semantics.html#D-RegularExpression" class="domain-name">RegularExpression</a> <var>z</var> は終端記号
+        <span class="terminal">RegularExpression</span> として解釈される。</li>
+    </ul>
+  </li>
+  <li>得られた終端記号か改行 <var><script type="text/javascript">document.write(U_tau)</script></var> を配列 <var>inputElements</var>
+    の末尾に追加する。</li>
+  <li>配列 <var>inputElements</var> が<a href="parser-grammar.html">構文文法</a>で定義される文脈自由言語の正しい接頭辞を形成する場合は手順13に移動する。</li>
+  <li><var><script type="text/javascript">document.write(U_tau)</script></var> が <a href="lexer-semantics.html#T-lineBreak" class="tag-name">lineBreak</a>
+    でなく、<var>inputElements</var> 配列の1つ前の要素が <a href="lexer-semantics.html#T-lineBreak" class="tag-name">lineBreak</a>
+    であれば、<var>inputElements</var> 配列中の <a href="lexer-semantics.html#T-lineBreak" class="tag-name">lineBreak</a> と
+    <var><script type="text/javascript">document.write(U_tau)</script></var> の間に終端記号 <span class="terminal">VirtualSemicolon</span>
+    を挿入する。</li>
+  <li>この時点で配列 <var>inputElements</var> が<a href="parser-grammar.html">構文文法</a>で定義される文脈自由言語の正しい接頭辞を形成していない場合は構文エラーを出し、停止する。</li>
+  <li><var><script type="text/javascript">document.write(U_tau)</script></var> が <span class="terminal">Number</span> か
+    <span class="terminal">NegatedMinLong</span> であれば <var>state</var> を <span class="tag-name">num</span> に設定する。それ以外の場合で
+    <var>inputElements</var> 配列のすぐ後ろに <code class="terminal-keyword">/</code>
+    が続き、その配列が<a href="parser-grammar.html">構文文法</a>で定義される文脈自由言語の正しい接頭辞を形成する場合は
+    <var>state</var> を <span class="tag-name">div</span> に設定する。いずれにも該当しない場合は <var>state</var> を
+    <span class="tag-name">re</span> に設定する。</li>
+  <li>手順4に戻る。</li>
+  <li>配列 <var>inputElements</var> が<a href="parser-grammar.html">構文文法</a>で定義される文脈自由言語の正しい文を形成していない場合は構文エラーを出し、停止する。</li>
+  <li>配列 <var>inputElements</var> により形成される文を<a href="parser-grammar.html">構文文法</a>で展開することにより得られた構文木を返す。</li>
+</ol>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:bottom;white-space:nowrap;"><address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+    Last modified Tuesday, October 15, 2002</address></td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="notation.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="lexer-grammar.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal@student.interq.or.jp">exeal@student.interq.or.jp</a>&gt;<br />
+	<a href="http://www.mozilla.org/js/language/js20/formal/stages.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br />
+この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br />
+翻訳文書についてのコメントは <a href="http://moz.skillup.jp/jtp/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。
+</div>
+
+</body>
+</html>

@@ -1,0 +1,718 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+  <meta http-equiv="Content-Language" content="en">
+  <meta http-equiv="Content-Style-Type" content="text/css"><title>エディタはどのように動作するか</title>
+
+  <link rel="alternate" hreflang="en" modified="November 8, 2006">
+
+  <link rel="up" href="./" title="Editor project page">
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/editor/editor-internals.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<p class="crumbs"><em>You are here:</em> <a href="./">Editor project
+page</a> &gt; <strong>How the Editor Works</strong></p>
+
+
+
+
+
+
+<h1><a name="How_the_Editor_Works">エディタはどのように動作するか</a></h1>
+
+
+
+
+
+
+<h2>このドキュメントの内容</h2>
+
+
+
+
+
+
+<ul class="toc">
+
+
+
+
+
+	
+  <li><a href="#The_high-level_picture">高位レベルの関係図</a></li>
+
+	<li><a href="#Editor_instantiation_in_a_XUL_window"> XUL ウィンドウにおけるエディタのインスタンス化</a></li>
+	<li><a href="#Editor_teardown">エディタの片付け</a></li>
+	<li><a href="#Editor_event_handling">エディタのイベント・ハンドリング</a>
+	<ul>
+	    <li><a href="#The_path_of_a_key_press">キーを押したときの経路</a></li>
+	</ul>
+        </li>
+</ul>
+
+
+
+
+
+
+<h2><a name="Introduction">はじめに</a></h2>
+
+
+
+
+
+
+<p>このドキュメントでは、Composer
+ウィンドウにおいて、エディタがどのようにインスタンス化されイベント処理をするかについて扱います。エディタは、メール作成ウィンドウにおいても非常に
+よく似た使い方をされており、また多くの組み込みアプリケーションでも参考になるでしょう。
+テキスト・ウィジェットのためにエディタがどのように作成されるかについては、詳しくは<a href="editor-textwidgets.html">テキスト・ウィジェットのドキュメント</a>を参照してください。<span style="font-weight: bold;"></span></p>
+
+
+
+
+
+
+<h2><a name="The_high-level_picture"></a>高位レベルの関係図</h2>
+
+
+
+
+
+
+<p>
+エディタ・システム<span class="postbody">の中でいくつかの主要な部分を</span>、図 1
+に示します。この図では、 ユーザー・インターフェース （ 記述言語は XUL と JavaScript です ） 、
+nsEditorShell （ ユーザー・インターフェースとエディタ・コア間のインターフェースとなります ） 、そしてエディタ・コア
+（文書の型によって動作が異なります）
+との間の相互作用を示しています。エディタが、編集されようとしているドキュメント上で動作するのは、この相互作用の後になります。
+（
+図が、例えばエディタによる全ての操作が元に戻すことのできないトランザクションを通じて生じている事実などのように、いくつかの重要な細かい点を省
+いていることに注意してください。 ）&nbsp;<br>
+
+</p>
+
+
+
+
+
+
+
+<p style="text-align: center;">
+<img src="images/editor_arch.gif" alt="" height="118" width="380"><br>
+<i>図 1 :  composer ウィンドウにおけるエディタ・コンポーネント間の、高位レベルの関係。塗りつぶした矢印は共通した相互作用の経路を示し、 塗りつぶしていない矢印はそれほど重要ではない流れを示します。</i>
+</p>
+
+
+
+
+
+
+<p>
+この図解のいくつかの点は説明したほうが良いと思われます。
+</p>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+    <li> 第一に、 XUL または JavaScript 間の相互作用は全て nsEditorShell
+を経由することに注意してください。より低いレベルのエディタ・インターフェースは JavaScript からインターフェース定義言語を通じて操作できるようには （ 未だ ） なっていません。 </li>
+    
+  <li>
+    第二に、エディタ・コア （ <code>nsEditor</code> または <code>nsHTMLEditor</code> ） は <code>nsEditorShell</code> について何も知らないことに注意してください。 エディタは誰が nsEditorShell を動かしているのかについては知ることができませんし、ある特定のフロントエンドまたは環境に結び付けられているわけではないのです。
+    </li>
+
+    <li>
+    第三に、編集されているドキュメントはそのドキュメントが編集されているのを知らないことに注意してください。 エディタはドキュメントの上で動作しますが、ドキュメントはエディタについて何も知る必要はありません。
+    </li>
+</ul>
+
+
+
+
+
+
+<h2><a name="Editor_instantiation_in_a_XUL_window">XUL ウィンドウ内におけるエディタのインスタンス化</a></h2>
+
+
+
+
+
+
+<p>
+ エディタが仕事をするのは XUL 最上部の <code>&lt;iframe&gt;</code> 要素です。
+この <code>&lt;iframe&gt;</code> に読み込まれたドキュメントを監視していて、 ドキュメントの読み込みが完了すると、 読み込まれたドキュメントの上にひとつのエディタをインスタンス化します。これによって
+ <code>&lt;iframe&gt; </code>コンテントは編集可能になるのです。
+</p>
+
+
+
+
+
+
+<p>&nbsp;
+ <code>&lt;iframe&gt;</code> 内部のドキュメント読み込みを監視するジョブは <code>nsEditorShell</code> という、 JavaScript とエディタ・コアとの間の通信を全て実装しているクラスによって実行されます。 <code>nsEditorShell</code> は <code></code>
+ <code><a href="/lxr/seamonkey/source/editor/idl/nsIEditorShell.idl">nsIEditorShell</a></code> という、インターフェース定義言語を通じて JavaScript に公開されるインターフェースを実装しています。 エディタ・シェルは、エディタを適切なタイミングで作成し、エディタ・オブジェクトへの所有参照を保持し、
+ XUL ウィンドウが閉じられたときに解放します。
+</p>
+
+
+
+
+
+
+<p class="note">
+<i>注意：</i>私たちは目下のところ、エディタのための特別なタグ、ありきたりですが <code>&lt;editor&gt;</code> という名前のタグへと遷移していくところです。これは実のところ、 JavaScript からエディタを作成するタスクを幾つか引き継いでいる <code>&lt;iframe&gt;</code> そのものです。結果として、
+ここのコードの断片のいくつかはコードベースで見られるものとは少々異なっているかもしれません。
+</p>
+
+
+
+
+
+
+<p>それでは、 composer ウィンドウを立ち上げるときにエディタが作成される過程を通してトレースしてみましょう。 関連する XUL の部品は
+<a href="/lxr/seamonkey/source/editor/ui/composer/content/editor.xul">editor.xul</a> に、そして JavaScript の部品は
+<a href="/lxr/seamonkey/source/editor/ui/composer/content/editor.js"><code>editor.js</code></a> に見つけることができます。
+</p>
+
+
+
+
+
+
+<ol><li><p>どこかの誰かが、Mozilla に composer ウィンドウを開くように指示を出します。 <code>editor.xul</code>
+    が読み込まれます。 <code>editor.xul</code> の中では、 <code>&lt;window&gt;</code> タグが読み込み時のハンドラ、
+     <code>onload="EditorOnLoad()"</code> を保持しています。それによって <code>EditorOnLoad()</code> という JavaScript 関数が、 XUL が読み込まれた時に実行されます。
+    </p>
+
+  </li>
+
+    <p>
+     XUL には、 <code>&lt;editor&gt;</code> 、または <code>&lt;iframe&gt;</code> タグが含まれています。例えば、
+    </p>
+<pre class="code">    &lt;editor type="content-primary" id="content-frame" src="about:blank" flex="1"/&gt;<br></pre>
+    
+  <p>属性<code> type="content-primary"</code> はこれをウィンドウのコンテント要素であると識別します。つまり、 <code>window._content</code> から取得したものです。 <code>id</code> 属性、 <code>id="content-frame"</code> があるので、この要素を見つけるのに <code>document.getElementById("content-frame")</code> を用いることができ、 CSS を使ってスタイルを決められます。
+    </p>
+
+
+
+    <li>
+    <p><code>EditorOnLoad()</code> が呼び出されます。<code> EditorOnLoad()</code> は window.arguments
+    ( 呼び出し側が変数を新規ウィンドウに渡す方法です−読み出したい URL を取得するときにはこれを使います ） を 取得しようとする一方で、<code></code> <code>EditorStartup()</code> 
+    を呼び出し、そこで実際の動作が発生します。
+    <code>EditorOnLoad()</code> は変数を 2 つ渡します。最初の変数はテキスト・エディタを望んでいるのかそれとも
+     HTML エディタなのかを示します （ ここでは <code>'text'</code> か <code>'html'</code> を渡します ） 。 そして二つ目の変数は、その上にエディタを作成したいと望んでいる<code> &lt;iframe&gt;</code> 要素です。
+    ここでは <code>document.getElementById("content-frame")</code> または <code>window._content</code> のどちらに渡すこともできるでしょう。
+    </p>
+    </li>
+
+    <li>
+    <p> <code>EditorStartup()</code> における重要なことが、 editorShell を取得または作成するところから始まります。
+     <code>&lt;editor&gt;</code> タグへの遷移の途中ですから、ここでは 2 つのパターンが見られるでしょう：
+    </p>
+
+    <ol>
+        <li><code>&lt;editor&gt;</code> バージョン：<br>
+        <p>&nbsp;
+         <code>&lt;editor&gt;</code> タグは、
+        <a href="/lxr/seamonkey/source/layout/xul/base/src/nsEditorBoxObject.cpp">nsEditorBoxObject</a>
+        を舞台裏で実際に一つ作成します。 nsEditorBoxObject は nsEditorShell を作成し、 nsEditorShell への所有参照を保持します。
+         <a href="/xpfe/xptoolkit/xbl.html">XBL</a> 、
+        <a href="/lxr/seamonkey/source/xpfe/global/resources/content/xulBindings.xml">XUL バインディング</a> 、そして <a href="http://lxr.mozilla.org/seamonkey/source/layout/xul/base/public/nsIEditorBoxObject.idl">nsIEditorBoxObject</a>
+         インターフェースの手品を使って、<code></code>エディタ要素から editorShell への JavaScript 参照 を <code>element.editorShell を用いて</code>取得します。そのようにして、どのようにも使える editorShell が手に入ります。
+        </p>
+        </li>
+
+        <li><code>&lt;iframe&gt;</code> バージョン：<br>
+        <p>&nbsp;
+         <code>&lt;editor&gt;</code> タグがない場合には、
+        JavaScript を組んで editorShell を作成しなければなりません：
+        </p>
+<pre class="code">var editorShell = Components.classes["component://netscape/editor/editorshell"].createInstance();<br>editorShell = editorShell.QueryInterface(Components.interfaces.nsIEditorShell);<br></pre>
+        <p>こちらでも、今やどのようにも使える editorShell が手に入りました。
+        </p>
+        </li>
+    </ol>
+    </li>
+
+    <li>
+    <p>
+さて、 editorShell の Init() メソッドを呼び出してセットアップし、 editorShell
+にどの種類のエディタが望ましいか （ テキストまたは HTML ） を伝え、 webShellWindow
+でポインタで示して使用できるようにして、 editorShell が存続しているコンテント・ノードを伝えます： </p>
+<pre class="code">    editorShell.Init();<br>    editorShell.SetEditorType(editorType);<br>    editorShell.webShellWindow = window;<br>    editorShell.contentWindow = window._content;<br></pre>
+    <p>&nbsp;
+     <code>webShellWindow</code> （ nsIEditorShell にセットできる属性 ） はトップレベルのウィンドウ属性をポインタで示していて、そこからその中に editorShell が存続している XUL ドキュメントを editorShell が取得できます。
+     これはユーザー・インターフェースをつつくこと（例えばコマンド状態のメンテナンスや、スロッバーの開始や中止など）ができるようにするためには必要なことです。
+    </p>
+    <p>&nbsp;
+    <code>contentWindow</code> （ nsIEditorShell にセットできる別の属性）は編集可能となる
+     XUL 要素を指します。 [ 注記： <code>&lt;editor&gt;</code> タグがある時点でこのことは既に分かっているので、これを呼び出す必要は取り除けるでしょう。 ] 
+    </p>
+    </li>
+
+    <li>
+    <p>
+    EditorStartup() はより重要でない細々とした設定を行ってから、最終的な URL の読み込みに取りかかります。 ここでは最も重要な部分となります。
+    </p>
+    <p>
+     XUL が構文解析された時、コンテント・フレームにある <code>src</code> 属性は
+     <code>about:blank</code> （ 標準の ' 空白ページの ' URL ） に設定されていました。
+     XUL を構文解析する前にそれを設定することはできないのです。そのため、今ここで編集したいページをあらためて読み込む必要があります。読み込む URL を <code>args</code> 要素から取得して、それから読み込みに取りかかります：
+    </p>
+<pre class="code">    var url = document.getElementById("args").getAttribute("value");<br>    editorShell.LoadUrl(url);<br></pre>
+    <p>
+     <code>&lt;iframe&gt;</code> 内のドキュメント読み込みは、もちろん非同期的に発生するので、 いつドキュメントの読み込みが終了して編集を開始できるようになったかを知る必要があります。
+    </p>
+    <p>    
+    nsEditorShell は <code>&lt;iframe&gt;</code> の上に読み込まれたドキュメントを監視することができます。それは <code>nsIDocumentLoaderObserver</code> を実装しているからであり、 コンテント・ウィンドウに割り当てられたときにドキュメント・ローダとして    
+    nsEditorShell そのものを登録したからです。
+    そのようにして、 nsEditorShell は 開始、進行、そしてドキュメント読み込みの終了のためにコールバックを取得します。
+    </p>
+    <p class="note">注意：これらのコールバックはまた、例えばフレーム・セットのドキュメント、または独自に組み込まれた <code>&lt;iframe&gt;</code> をもつ HTML ドキュメントなど、親ドキュメント読み込みの結果として読み込まれるサブドキュメントに波及します。この場合には、
+    注意深く、正しいドキュメントにエディタをインスタンス化する必要があります。
+    現在では、 composer ウィンドウ一つにつきエディタを一つ持てるだけですが、
+    将来的には、この制限を緩めることによってフレーム・セット内の全てのサブドキュメントを
+    同時に編集することが可能になるでしょう。
+    </p>
+    <p>
+    編集したいドキュメントが <code>nsEditorShell::OnEndDocumentLoad()</code> への読み込みに成功したことを検出します。このドキュメントを実際に編集できるかチェックした後、先へ進んでその上
+    （ <code>nsEditorShell::PrepareDocumentForEditing()</code> の中 ） にあるエディタのインスタンス化に取りかかります。 エディタを作成するのみならず
+    ( これは <code>nsEditorShell::DoEditorMode()</code> を通して生じます ） 、ユーザー・インターフェースのアップデートとユーザー間のやり取りのために様々なリスナーとオブザーバーを接続して、開いたドキュメントのファイル拡張子を格納します。
+    </p>
+    <p>
+    さて、エディタをセットアップして、準備ができました。
+    </p>
+    <p>
+    エディタの初期化についてひとつ注意しておきたいことは、エディタの <code>Init()</code> メソッドの中に、 エディタが連動することができるコンテント・ツリーのルートに対応する <code>nsIContent*</code> を渡しておくことです。エディタを nsEditorShell から初期化するときに、
+    ここで
+     <code>NULL</code> を （ エディタに、ドキュメントの <code>&lt;body&gt;</code> の下にあるもの全てを編集可能であることを伝える ） 渡します。
+    この変数は <a href="editor-textwidgets.html">エディタがテキスト・ウィジェットの中にある</a>ときにはもっと
+    重要です。そこでは、変数はウィジェット・コンテントと連動する、親ドキュメントのサブツリーへのポインタを指します。
+    </p>
+</li>
+</ol>
+
+
+
+
+
+
+<h2><a name="Editor_teardown">エディタの片付け</a></h2>
+
+
+
+
+
+<p>
+ウィンドウのデストラクト、それに引き続くエディタの片付けは、以下に挙げた二つの方法で初期化されます。
+どちらの場合にも、 JavaScript である <code>EditorCanClose()</code> メソッドが呼び出されて
+ nsEditorShell にダイアログを表示させてユーザーにドキュメントを保存したいか、変更を破棄したいのか、またはキャンセル したいのかを問い合わせます。キャンセルすると閉じる動作が中断することに注意してください。
+</p>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+        <li>
+        ユーザーはそれぞれの OS あるいはウィンドウ・マネージャから「閉じる」ウィジェットをクリックします。
+        この場合、 <code>&lt;window&gt;</code> タグ上の <code>onclose</code> メソッドが
+        呼び出されます。
+        </li>
+        
+  <li>
+        ユーザーはファイルメニューから「閉じる」を選択するか、キーのショートカットを利用するか、またはアプリケーションを終了して、全てのウィンドウが閉じるようにします。
+        それぞれのウィンドウが閉じられる前に、
+        <a href="/lxr/seamonkey/source/xpfe/global/resources/content/globalOverlay.js">globalOverlay.js</a>
+         にある JavaScript コードが <code>tryToClose</code> メソッドを各ウィンドウに呼び出そうとします。 <code>editor.js</code> の中では、 <code>EditorCanClose()</code> を呼び出すためにこれをセットします。
+        </li>
+
+</ul>
+
+
+
+
+
+<p>
+もしユーザーがドキュメントを保存することを選択するか、あるいは変更を破棄することを選択するなら、
+そのときにウィンドウは閉じられます。<code> nsEditorShell</code> への最後の参照が消えれば （<code> &lt;iframe&gt;</code> の場合におけるように JavaScript のガーベージ・コレクションの結果として
+、または <code>&lt;editor&gt;</code> の場合におけるように nsEditorBoxObject がその参照を解放した結果としても ）&nbsp;
+、エディタ上の所有参照を解放します。
+</p>
+
+
+
+
+
+
+
+<h2><a name="Editor_event_handling">エディタのイベント・ハンドリング</a></h2>
+
+
+
+
+
+
+<p>
+エディタの操作はユーザー・イベントへのレスポンスとして発生します：マウス、キー、ドラッグ・アンド・ドロップ、
+そして  IME （ 国際的なテキスト入力 ） イベント。 これらのイベントを受け取るために、エディタは現在
+編集されているドキュメント上にある、幾つかのイベント・リスナーを登録します。さらに、
+ユーザー・インターフェースにおけるエディタの動作は XUL と JavaScript を経由して伝達され、
+ nsEditorShell 上のメソッドを呼び出します。このようなエディタのコマンド・ディスパッチは<a href="editor_commands.html">別々に記述されます</a>。
+</p>
+
+
+
+
+
+<p>
+イベント・リスナーは次のように登録されています：
+</p>
+
+
+
+
+
+<ul>
+
+
+
+
+
+	<li>
+	<p> <code>nsHTMLEditor::InstallEventListeners()</code> では、次のようにインストールします。
+	これらは全種類のエディタ （ すなわち、テキスト・ウィジェット
+	と  composer ） についてインストールされます。：</p>
+	<ul>
+	    <li><code>nsTextEditorKeyListener</code> ( <code><a href="/lxr/seamonkey/ident?i=nsIDOMKeyListener">nsIDOMKeyListener</a></code> として )</li>
+	    <li><code>nsTextEditorMouseListener</code> ( <code><a href="/lxr/seamonkey/ident?i=nsIDOMMouseListener">nsIDOMMouseListener</a></code> として )</li>
+	    <li><code>nsTextEditorFocusListener</code> ( <code><a href="/lxr/seamonkey/ident?i=nsIDOMFocusListener">nsIDOMFocusListener</a></code> として )</li>
+	    <li><code>nsTextEditorTextListener</code> ( <code><a href="/lxr/seamonkey/ident?i=nsIDOMTextListener">nsIDOMTextListener</a></code> として )</li>
+	    <li><code>nsTextEditorCompositionListener</code> ( <code><a href="/lxr/seamonkey/ident?i=nsIDOMCompositionListener">nsIDOMCompositionListener</a></code> として )</li>
+	    <li><code>nsTextEditorDragListener</code> ( <code><a href="/lxr/seamonkey/ident?i=nsIDOMDragListener">nsIDOMDragListener</a></code>　として )</li>
+	</ul>
+	</li>
+	<li>
+	<p> <code>nsEditorShell::PrepareDocumentForEditing()</code> では、マウス・リスナーをインストールします。
+	このインストールは nsEditorShell が使用されている状況 （ つまり、テキスト・ウィジェット以外 ） においてのみ発生します：
+	</p>
+	<ul>
+	    <li><code>nsEditorShellMouseListener</code> ( <code><a href="/lxr/seamonkey/ident?i=nsIDOMMouseListener">nsIDOMMouseListener</a></code> として )</li>
+	</ul>
+    </li>
+</ul>
+
+
+
+
+
+
+<h4>nsTextEditorKeyListener</h4>
+
+
+
+
+
+<p>
+このイベント・リスナーはタイピングするときのキー押下と、他の
+編集操作 （ バックスペース、削除、エンターまたはリターン ） を扱います。
+扱わないと明示してある場合には、どこで通常のタイピング・キーを終了するかを扱う <code>nsHTMLEditor::EditorKeyPress()</code> に渡します。
+ <code>KeyPress</code> イベントのみに応答することに注意してください：
+<code>KeyDown</code> および <code>KeyUp</code> イベントは無視されます。
+</p>
+
+
+
+
+
+
+<h4>nsTextEditorMouseListener</h4>
+
+
+
+
+
+<p>
+マウス・リスナーは真ん中のマウス・ボタン・ペースト （ Unix のコピー／ペースト機能です ） を行うのに使用されます。
+これはボタン 2 の <code>MouseClick</code> に対応して生じます。また、 IME の コミットを強制するものです。
+</p>
+
+
+
+
+
+
+<h4>nsTextEditorFocusListener</h4>
+
+
+
+
+
+<p>
+エディタは<code></code><span style="font-family: monospace;">フォーカス</span>およびブラー・イベントに応じて、
+キャレットまたは選択範囲を、適切に表示するか隠すかします。
+</p>
+
+
+
+
+
+
+<h4>nsTextEditorTextListener</h4>
+
+
+
+
+
+<p>&nbsp; <code>nsIDOMTextListener</code> インターフェースのこの実装は IME コードによって用いられています。&nbsp; <code>HandleText</code> イベントに応じて、エディタはインライン入力の 文字列の構成をセットします。
+</p>
+
+
+
+
+
+
+<h4>nsTextEditorCompositionListener</h4>
+
+
+
+
+
+<p>
+<code>nsTextEditorCompositionListener</code> は IME に関連している別のインターフェース、
+ <code>nsIDOMCompositionListener</code> を実装します。
+これは起動時、終了時、そして現在の構成を問い合わせる
+ために IME から呼び出されます。
+</p>
+
+
+
+
+
+
+<h4>nsTextEditorDragListener</h4>
+
+
+
+
+
+<p>
+ドラッグ・リスナーはエディタにおけるドラッグ・アンド・ドロップ・イベントを扱います。
+<code>DragGesture</code> のドラッグ開始に応じてドラッグにデータを追加して、
+ドロップが <code>DragOver</code> 中に生じる可能性があるかをドラッグに通知し、
+ <code>DragDrop</code> にデータを挿入することでドロップを扱います。
+</p>
+
+
+
+
+
+
+<h4>nsEditorShellMouseListener</h4>
+
+
+
+
+
+<p>
+これは一風変わったイベント・リスナーです。エディタ内部からというよりは editorShell から
+登録されているからです。 [ 注意： これは見栄えが良くないので、エディタからのコールバック上で動作するために
+デザインを改めるか、 完全に JavaScript へ移行しなければなりません。 ] 
+ <code>nsEditorShellMouseListener</code> は本質的には
+  <code>nsEditorShell::HandleMouseClickOnElement</code> を呼び出すようになっており、
+ダブルクリックした項目のプロパティ・ダイアログを表示します。
+</p>
+
+
+
+
+
+
+<h3><a name="The_path_of_a_key_press">キーを押したときの経路</a></h3>
+
+
+
+
+
+<p>
+キー押下がひとたび <code>nsTextEditorKeyListener</code> に達したら何が起こるでしょうか？ ドキュメント内部では結局どのようなことになるのでしょうか？ トレースしてみましょう。
+</p>
+
+
+
+
+
+<ul>
+
+
+
+
+
+    <li>
+    <p><code>nsTextEditorKeyListener::KeyPress()</code> はキー押下イベントを取得します。
+    通常の文字キーでは、そのイベントは <code>nsHTMLEditor::EditorKeyPress()</code> に降ります。
+    </p>
+    </li>
+    <li>
+    <p><code>nsHTMLEditor::EditorKeyPress()</code> はキー・イベントから文字コードを取得し、
+    文字列に入れて、 <code>nsHTMLEditor::TypedText()</code> を呼び出します。
+    このメソッドは単純に <code>nsHTMLEditor::InsertText() </code>を呼び出します。 
+    </p>
+    </li>
+    <li>
+    <p>
+    <code>nsHTMLEditor::InsertText()</code> は、スタック・ベースのクラスにあるちょっとした複雑さを隠蔽します。
+    </p>
+    <p>
+    <code>nsAutoPlaceHolderBatch</code> はユーティリティ・クラスで、関数呼び出しでテキスト挿入をラップすることで、選択解除、レイアウト更新 （ ちらつきを防ぐため ） 、そして代替トランザクションのメンテナンスを行います。この代替トランザクションを用いることによって、タイピング・イベントを<a href="txmgr/transaction-manager.html#Batching">まとめる</a>ことが可能になるため、「元に戻す」 動作は
+    キー・ストロークの一連の動作全てをそっくり元に戻します。
+    </p>
+    <p>
+    別のスタック・ベースのクラス、 <code>nsAutoRules</code> では、テキスト挿入が
+     <code>nsHTMLEditor::StartOperation()</code> /  <code>EndOperation()</code> への関数呼び出しによってラップされます。これらの関数は現在の型付けルール上にある
+     <code>BeforeEdit()</code> と <code>AfterEdit()</code> を呼び出します。
+    </p>
+    <p>
+    さて、 <code>nsTextRulesInfo</code> を挿入された文字列についての情報で初期化して、
+    現在の <a href="writing-rules.html">編集ルール</a> の上にある <code>WillDoAction()</code> を呼び出します。
+    テキスト挿入の実装は異なるルール （ プレーンテキスト対 HTML 等 ） の間で異なっているため、 ルール・コード、 <code>WillDoAction()</code> 内の呼び出しによってもっぱら扱われます。
+    </p>
+    <p>
+     Composer では、 <code>nsHTMLEditRules</code> を利用しているので、
+    結局 <code>nsHTMLEditRules::WillDoAction()</code> で終了することになります。
+    テキスト挿入では、これは <code>nsHTMLEditRules::WillInsertText()</code> に降ります。
+    このコードは最初に選択範囲があれば （ 例えば、テキストを選択してタイプしている場合 ） それを削除します。
+    それから一般的な挿入前の関数呼び出し、 <code>WillInsert()</code> を呼び出します。 <code>WillInsert()</code> は
+    挿入したテキストへのインライン・スタイルをセットアップして、選択範囲をテキストが挿入されるのにもっとふさわしい場所へ移動します。
+    </p>
+    
+    <p>
+    さて、実際にテキストを挿入する準備ができました。一般的な <code>InsertText()</code> を通り過ぎていることを思い出してください。このコードは、単独の文字を挿入するのと同じように、
+    長い文字列の貼り付けを取り扱っているのです。
+    コードはこのようにしてラインブレークにおいて正しいことを行わなければならないため、 <code>&lt;pre&gt;</code> セクションに挿入する特別な場合があります。通常の挿入コードにちょっと呼び出しをすると、そのコードはラインブレークを探して入力文字列の間をループして、各テキスト・ランごとに挿入を行い、必要に応じて <code>&lt;br&gt;</code> タグを付けます。<code></code> キー押下を扱う際に、このコードは単独の文字を挿入するのです。
+    </p><p>&nbsp;<code>WillDoAction()</code> 呼び出しから落ちて出ると、 <code>WillDoAction() </code>に立ち寄りますが、これは、テキスト挿入に関しては何も行いません。
+    </p>
+    <p>キー押下時に最後に起こるのは <code>nsTextEditorKeyListener::KeyPress()</code> が <code>ScrollSelectionIntoView() を</code>呼び出すことであり、この関数は、名前から推測されるように、入力されたばかりのテキストが可視となるようにするものです。
+    </p>    
+    </li>
+</ul>
+
+<address class="author">エディタ・チームによって保守されています： <a href="mailto:mozilla-editor@mozilla.org">mozilla-editor@mozilla.org</a></address>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/editor/editor-internals.html">英語版</a> 2006/11/08</span> - <span>和訳版 2008/02/18</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/editor/editor-internals.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>ChatZilla ユーザーズガイド</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/rt-messaging/chatzilla/user-guide.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/rt-messaging/chatzilla/user-guide.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+    <h1>ChatZilla ユーザーズガイド</h1>
+
+    <h3>はじめる前に</h3>
+    このページは ChatZilla IRC クライアントの詳しい使い方について書いて
+    あります。
+    <b>どうぞ</b> ChatZilla は完成していないということを覚えておいて下さ
+    い。もしあなたが、より一般的な IRC クライアントで使用されるコマンド
+    のサブセットを喜んで受け入れるなら、このソフトは使用できます。実際は、
+    ChatZilla 自身、まだ完成していないソフトウェア ( もちろん Mozilla の
+    ことです ) のほんの一部分としてビルドされています。多くの ChatZilla
+    ユーザはクラッシュ、妙な振る舞い、無分別な動作や動きの息切れを経験し、
+    そしてバグを直したい衝動に駆られます。もし貢献したいと思ったら、
+    netscape.public.mozilla.rt-messaging のニュースグループでその旨伝え
+    るか、
+    <a href="mailto:rginda@netscape.com">rginda@netscape.com</a>
+    までメールを送って下さい。
+    <p>
+      もし、あなたがあまり IRC に慣れていないなら、
+      <a href="http://www.irchelp.org/">www.irchelp.org</a>
+      に公開されている FAQ をよく見て下さい。
+    </p>
+    
+    <h3>外観</h3>
+    <p>
+      ChatZilla 出力ウィンドウ ( <a href="#fig1">図 1</a> の 5) は、一度
+      に 1 つの <b>ビュー</b> だけを表示します。このビューは、あなたが話
+      しているチャンネルから、あなたがプライベートメッセージを送っている
+      相手から、あなたが接続しているネットワークから、または直接
+      ChatZilla から来るメッセージを表示します。これらビューのタイプは
+      <i>Channel</i>, <i>User</i>, <i>Network</i>, <i>Client</i> として
+      参照されます。
+    <p>
+      現在のビューとは入力ボックス ( <a>図 1</a> の 6) を通して対話しま
+      す。基本的に、 1 行の文か 1 つのコマンドを入力ボックスの中でタイプ
+      し、 <tt>ENTER</tt> キーを押します。コマンドは 1 行の文とは異なり
+      ます。なぜなら、全てのコマンドは<b>コマンド文字</b>から始まるから
+      です。デフォルトでコマンド文字は "/" です。コマンドは ChatZilla に
+      ある特定の動きをさせます。コマンド<b>でない</b> 1 行の文をタイプし
+      たときに起こることは、どのタイプのビューがアクティブかによります。
+    <ul>
+      <li><b>client</b> ビューのコマンドでない文に対する反応は、それを
+      JavaScript コードとして実行し、出力ウィンドウに結果を表示すること
+      です。
+      (もしあなたが、あなた自身何をしているか分かっているか、あなたがそ
+      うしようと<i>思え</i>ば、これは楽しめるでしょう。もしそうでなくて
+      も心配することはないです。後でこの機能の使い方についての情報をより
+      多くの情報を掲載するつもりです[誰かがそれを先にしなければ]。
+      <li><b>Network</b> ビューは、デフォルトではコマンドでない文を解釈
+      しません。 network ビューがアクティブな時に、コマンドでない文はど
+      んなものをタイプしても、エラーとなります。
+      <li><b>Channel</b> ビューは、コマンドでないテキストならどんなもの
+      でもチャンネルに送信します。他のチャンネルメンバーはあなたのニック
+      ネームと一緒に、あなたが何をタイプしたかを見るでしょう。
+      <li><b>User</b> ビューは、コマンドでないテキストならどんなものでも
+      あなたが話しかけているユーザー<b>だけ</b>に送信します。対象のユー
+      ザーは、あなたのニックネームと一緒に(他にいないですが)、あなたが何
+      をタイプしたかを見るでしょう。
+    </ul>
+
+    <h3>UI の要素</h3>
+    <a name="図 1">
+      <img src="cz-fig1.gif" alt="番号付き ChatZilla UI のイメージ">
+      <center>
+        図 1<br>
+        <a href="cz-minimal.gif">小さくした ChatZilla のスクリーンショッ
+        ト</a> も公開しています
+      </center>
+
+    </a>
+    <br>
+    <ol>
+      <li><b>タイトルバー</b>
+        <br>
+	  タイトルバーは現在のビューに関する情報を表示します。
+        <p>
+          <ul>
+	    <li>もしあなたがチャンネルの動作状況を見ているなら、タイトル
+		バーはチャンネル名、チャンネルモード、会話のトピックを表
+		示します。もしツールバービュー (<a href="#fig1"> 図
+		1</a> の 3) が隠されたら、動作状況リストを表示する場所を
+		確保するために、トピック情報は省略されます。
+
+            <li>もしあなたが一対一のチャットを見ているなら、タイトルバー
+		はあなたが話しているユーザーのニックネームを表示します。
+
+            <li>もしあなたがネットワークからのメッセージを見ているなら、
+		タイトルバーはあなたが接続しているサーバ(あなたが接続し
+		ているなら)、あなたのニックネーム(あなたがログインに成功
+		しているなら)、サーバがあるネットワークの名前を表示しま
+		す。
+
+            <li>最後に、もしあなたが *client* ビューを見ているなら、タイ
+		トルバーは ``ChatZilla!'' と表示するでしょう。
+	  </ul>
+        <p>
+          もし、ビューのツールバーが隠されると、動作しているビューのリス
+          トは、既にタイトルバーに現われている情報で全てとなります。例え
+          ば、<a href="#fig1">図 1</a> でビューのツールバーが隠された場
+          合、タイトルバーは ``ChatZilla: #mozilla (+n) -- Activity
+          [3!,5]'' をかわりに表示するでしょう。 3 の後ろに有るエクスクラ
+          メーションは、何かの動作があなたに向けられたことを意味します
+          (ビューのボタンに有るライトが赤く光っている状態と同じです)。そ
+          こで、 ただ <tt>F3</tt> を押すことによって、 #chatzilla ビュー
+          へ切替えることができます。
+        <p>
+      <li><b>メニューバー</b>
+        <br>
+	  メニューバーは以下のメニューを持ちます。
+        <p>
+        <ul>
+          <li><b>Options</b>
+            <br>
+            <ul>
+              <li><b>トグル</b>
+                <br>
+                  オンとオフを切替えることができるオプション
+                <p>
+                <ul>
+                  <li><i>Debug messages</i>
+                    <br>
+		      ChatZilla が使用する IRC ライブラリは、自身のイベ
+		      ントモデルを定義しています。 Debug messages をオン
+		      にすることで、このモデルによって処理されたイベント
+		      の情報を表示します。 Windows では、 -console オプ
+		      ションを付けて mozilla を起動しないとならないでしょ
+		      う。
+                    <p>
+                  <li><i>Munger</i>
+                    <br>
+		      munger は平文のテキストを HTML のようなテキストに
+		      <i>munging</i> する役割を持つ ChatZilla のコンポー
+		      ネントです。例えば、デフォルトで munger は *this
+		      text* を <b>*this text*</b> に、 /this text/ を
+                      <i>/this text/</i> に、 _this text_ を <u>_this
+                      text_</u> に変換します。これは、似たような変換を手
+		      書きするのと同様です。 munger はまた、テキストをリ
+		      ンクに変換する役割や、誰かがあなたに話しかけて来た
+		      ことを認識する役割も持っています。 munger は、他に
+		      影響を与えないよう、いくつもの munging 規則をオフ
+		      にしています。そのためこの機能はまだ UI では使えま
+		      せん。今、あなたが得るものは全てか何もないかのどち
+		      らかです。<br>
+                      <a href="#hack_1">ハック 1</a>
+                    <p>
+                </ul>
+              <li><i>Logging ...</i>
+                <br>
+                  このオプションはまだ実装されていません。
+                <p>
+            </ul>
+        </ul>
+        
+        <ul>
+          <li><b>View</b>
+            <br>
+              外見を調節します。
+            <p>
+            <ul>
+              <li><i>Toolbar</i>
+                <br>
+		ツールバービューの表示/非表示を切替えます。
+		<tt>/toolbar</tt> コマンドと同等です。
+                <p>
+
+              <li><i>Info Tree</i>
+                <br>
+		  情報ツリーを表示/非表示を切替えます。
+		  <tt>/names</tt> コマンドと同等です。
+                <p>
+              <li><i>Statisbar</i>
+                <br>
+		  ステータスバーの表示/非表示を切替えます。
+		  <tt>/statusbar</tt> コマンドと同等です。
+                <p>
+              <li><i>Icons in View Buttons</i>
+                <br>
+		ツールバービューの LED アイコンの表示/非表示を切替えます。
+		もし、アイコン表示がオフならば、動作状況はボタン内のテキ
+		ストの色で伝えられます。
+                <p>
+              <li><b>CurrentView</b>
+                <ul>
+                  <li><i>Hide</i>
+                    <br>
+		      現在のビューのアイコンをツールバーから消します。た
+		      だし、その内容は保存されます。アイコンは、次にその
+		      ビューで動作が有ったときに再び現われます。
+		      <tt>/hide</tt> コマンドと同等です。
+                    <p>
+                  <li><i>Clear</i>
+                    <br>
+		      現在のビューをクリアします。 * 全ての * 内容を破棄
+		      します。
+		      <tt>/clear</tt> コマンドと同等です。
+                    <p>
+                  <li><i>Delete</i>
+                    <br>
+		      現在のビューをクリアし、 * 全ての * 内容を破棄し、
+		      ツールバーからアイコンを消します。
+		      <tt>/delete</tt> コマンドと同等です。
+                    <p>
+                </ul>
+            </ul>
+        </ul>
+
+        <li><b>ツールバービュー</b>
+        <br>
+	ツールバービューは、開いているビューを表現するボタンの集合を含ん
+	でいます。これは、 <i>View->Toolbar</i> のメニューオプションか、
+	<tt>/toolbar</tt> コマンドで隠すことができます。ツールバーボタン
+	内の LED は、対応するビューの動作状況によって外観を変えます。
+        <p>
+        <ul>
+	  <li><b>明るい黄色</b>の LED は出力ウィンドウに現在表示されてい
+	      るビューであることを表します。
+	      もし、 "Icons in View Buttons" オプションがオフになると、
+	      シアンの文字で動作状況をあなたに伝えます。
+	  <li><b>明るい緑</b>の LED はビューが動作していることを表します。
+	      さらに、何か動作が起こるたびに、 LED は光ります。
+	      もし、 "Icons in View Buttons" オプションがオフになると、
+	      緑の文字で動作状況表します。
+	  <li><b>赤く光る</b> LED はそのビューがあなたに向けた動作をして
+	      いることを表します。
+	      もし、 "Icons in View Buttons" オプションがオフになってい
+	      ると、赤の文字で動作状況を表します。
+	  <li><b>暗い緑</b>の LED はそのビューが動作していないことを表し
+	      ます。もし、 "Icons in View Buttons" オプションがオフにな
+	      ると、黒の文字で動作していないことを表します。
+        </ul>
+        <p>
+      <li><b>情報ツリー</b>
+        <br>
+	これは、いつか沢山の異なった種類の情報を表示することが期待されて
+	いるため、情報ツリーと呼ばれていますが、今のところ、ユーザー情報
+	を表示するだけです。
+	ユーザー情報を表示しているとき、 3 つの列になります。最初の列は
+	ユーザーが<b>オペレータ</b>権限を持っているかどうかを表します。
+	光っているなら、ユーザーはオペレータです。 2 列目は、ユーザーが
+	<b>ボイス</b>権限を持っているかどうかを表します。同様に光ってい
+	るならば、ユーザーは"ボイス権限を持って"いて、そうでなければ持っ
+	ていません。 3 列目はユーザーのニックネームを表示します。ユーザー
+	情報は、 3 列のうちどの列でも列のヘッダーをクリックすることで、
+	昇順/降順に整列することができます。
+        <p>
+      <li><b>出力ウィンドウ</b>
+        <br>
+	出力ウィンドウは現在のビューからのメッセージを表示します。メッセー
+	ジは 2 つの列に表示されます。最初の列はそれに続くメッセージのタ
+	イプを、 2 列目はメッセージの文を表します。チャンネルとユーザー
+	ビューでは、他のユーザーからのメッセージが来たときに、メッセージ
+	のタイプの代わりに送信したユーザーのニックネームを表示します。
+        <p>
+      <li><b>入力ボックス</b>
+        <br>
+	入力ボックスは、 ChatZillaのコマンドとユーザーやチャンネルに送る
+	文を入力する場所です。デフォルトでコマンド文字は "/" です(<a
+	href="#hack_2">ハック 2</a>) 。タイプし始めたコマンドを完了する
+	ために<b>タブ補間</b>を使うことができます。例えば、 <tt>/d</tt>
+	とタイプして <tt>TAB</tt> を押すと、 ChatZilla は <tt>e</tt> を
+	あなたのコマンドに付け加え、 <tt>/de</tt> とします。これは "d"
+	という文字から始まるコマンドが複数有るけれど、それらは全て 2 文
+	字目が "e" であることを教えてくれます。 <tt>/de</tt> に対して可
+	能な補間のリストを見るためには、 <tt>TAB</tt> を 2 度(素早く)押
+	してください。 ChatZilla は <tt>``Commands matching ``de'' are 
+        [delete, deop, desc, devoice]''</tt> と表示するでしょう。あなた
+	が自分の説明を変更したいとすると、あなたは以下のように続ければよ
+	いでしょう:
+        <p>
+        <ul>
+          <li> ``sc'' とタイプし <tt>ENTER</tt> を押す
+          <li> ``s'' とタイプし <tt>TAB</tt> を押す
+          <li> ``s'' とタイプし <tt>ENTER</tt> を押す
+        </ul>
+        <p>
+	  ChatZilla のコマンドを実行するためには、完全に入力する必要はな
+	  く、一意であればよいことに注目してください。 <tt>/des</tt> か
+	  ら始まるコマンドは他に無いので、自動的に <i>description</i> と
+	  解釈されます。
+        <p>
+	  チャンネルビューがアクティブのとき、タブ補間は同様にニックネー
+	  ムに対して動作します。もし、あなたがタイプしている単語が、入力
+	  ボックスの最初の単語で、それがコマンド文字 (``/'' がデフォルト)
+	  でないならば、 <tt>TAB</tt> はそのチャンネルのニックネームのリ
+	  ストに対応します。もし対応するものがみつかったら、そのニックネー
+	  ムとそれに続く "," (<a href="#hack_3">ハック 3</a>) が入力ウィ
+	  ンドウに現われるでしょう。もしあなたがタイプした単語が最初の単
+	  語でないならば、 1 つのスペースが後ろに付くでしょう。
+	  (ChatZilla は、ニックネームが入力ボックスの最初の単語の場合に、
+	  あなたが直接その人に話しかけているものとして、その助けになるよ
+	  う ", " を挿入します。
+        <p>
+      <li><b>ステータスバー</b>
+        <br>
+	チャンネルビューでは、ステータスバーはあなたがいるチャンネルの詳
+	細を表示します。
+        <p>
+        <ul>
+          <li><b>Network</b> はあなたが接続しているネットワークです。
+          <li><b>Server</b> はあなたが接続している(ネットワークの)サーバー
+	      です。
+          <li><b>Nickname</b> はあなたのニックネームです。
+          <li><b>Lag</b> は最後に ChatZilla が送信した ping に対してサー
+	      バーが応答するのにかかった秒数です(<a href="#hack_4">ハッ
+	      ク 4</a>) 。
+          <li><b>Last Ping</b> IRC サーバーからの最後の ping 要求を受け
+	      取った時刻 (24 時間形式)です。
+          <li><b>Channel</b> はあなたがしゃべっているチャンネルです。
+          <li><b>Mode</b> は現在のチャンネルのモードです。
+          <li><b>Users</b> はチャンネル内のユーザーの数です。
+          <li><b>Limit</b> はチャンネルの最大許容ユーザー数です。
+          <li><b>Key</b> はチャンネルに参加するために必要となるキーです。
+          <li><b>Topic by</b> はトピックをセットしたユーザーのニックネー
+	      ムです。
+          <li><b>Topic</b> はチャンネルで話している現在のトピックです。
+        </ul>
+        <p>
+	  ステータスバーは、 <tt>Views->Status Bar</tt> のメニューオプショ
+          ンか、 <tt>/statusbar</tt> コマンドで隠すことができます。
+    </ol>
+
+    <hr>
+    <h3>ハック</h3>
+    <p>
+      多くの ChatZilla ユーザーはこんなことは聞きたくないでしょうが、も
+      しあなたが、これから起こるだろうことに興味を持ち、 ChatZilla に機
+      能を付け加えたいと思うか、単にする必要も無いことをするのが好きなら、
+      これらの糸口は助けになるかもしれません。
+    <ol>
+
+      <li>
+        <a name="hack_1"></a>
+        <p>
+          もし munger についてもっと知りたいのならば、
+          <a href="/lxr/mozilla/source/extensions/irc/xul/content/static.js#188">static.js</a>
+          と
+          <a href="/lxr/mozilla/source/extensions/irc/xul/lib/munger.js">munger.js</a>
+	  を見てください。
+
+      <li>
+        <a name="hack_2"></a>
+        コマンド文字は <tt>client.COMMAND_CHAR</tt> 変数に保存されていま
+        す(いつか設定になるでしょう)。それを(例えば) ``bang'' に変えるに
+        は、入力ボックスで <tt>/eval client.COMMAND_CHAR = "!"</tt> とタ
+        イプしてください。 1 文字よりも長くすることは予期せぬ結果を招く
+        ことがあります。
+
+      <li>
+        <a name="hack_3"></a>
+        タブ補間された先頭単語のニックネームに添えられる文字は
+        <tt>client.ADDRESSED_NICK_SEP</tt> 変数に保存されています。それ
+        を(例えば) ``: '' に変えるには、入力ボックスで
+        <tt>/eval client.ADDRESSED_NICK_SEP = ": "</tt> とタイプしてくだ
+        さい。これはあなたが望む量の文字を使えます。(これも設定にする必
+        要があります)
+        
+      <li>
+        <a name="hack_4"></a>
+        ほとんどの IRC サーバーは、ただあなたのクライアントが応答するか
+        どうかを確認するために、数分おきに ping 要求を送信します。
+        ChatZilla が使っている IRC ライブラリがそれらを聞いたとき、期待
+        通りに ping に応答し、さらに自身の ping 要求も送出します。この
+        ping 要求がサーバーに行ってから応答が返って来る間の時間は Lag と
+        して報告されます。
+    </ol>
+    <hr>
+    <address><a href="mailto:rginda@netscape.com">Robert Ginda</a></address>
+<!-- Created: Wed May 17 11:28:58 PDT 2000 -->
+  
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/rt-messaging/chatzilla/user-guide.html">英語版</a> 2001/03/16</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/rt-messaging/chatzilla/user-guide.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

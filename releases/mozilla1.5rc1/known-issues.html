@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>既知の問題</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { text-align: center; }
+	p, li, dt, dd { line-height: 160%; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 160%; }
+	table.diff { width: 100%; table-layout: fixed; }
+	table.diff td { width: 50%; vertical-align: top; }
+	.modified { background-color: lightblue; }
+	.added, .removed { background-color: lightgreen; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="November 3, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.5rc1/known-issues.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+
+
+
+<h1>Mozilla 1.5 Release Candidate 1 に関する既知の問題</h1>
+<p>バグを報告する場合には <a href="http://bugzilla.mozilla.org/enter_bug.cgi?product=Browser">Bugzilla</a> (<a href="http://bugzilla.mozilla.gr.jp/enter_bug.cgi?product=Mozilla">日本語版</a>) をご利用ください。バグレポートの重複を避けるために、あなたの見つけた問題がすでにこのページに載っていないか、また <a href="http://bugzilla.mozilla.org/duplicates.cgi?sortby=delta&amp;maxrows=100&amp;changedsince=7">最もよく報告されるバグ</a> を確認してください。<a href="/quality/bug-writing-guidelines.html">バグ報告ガイドライン</a> では、問題の修正につながる、役に立つバグレポートの書き方を解説しています。</p>
+
+<dl>
+	<dt><a href="#general">一般</a></dt>
+	<dd><a href="#focus">ダイアログボックスとウィンドウ</a></dd>
+	<dd><a href="#java">Java</a></dd>
+	<dd><a href="#scrollwheel">マウスホイールによるスクロール</a></dd>
+	<dd><a href="#plugins">プラグイン</a></dd>
+	<dd><a href="#prefs">設定</a></dd>
+	<dd><a href="#printing">印刷</a></dd>
+	<dd><a href="#profiles">プロファイル</a></dd>
+	<dd><a href="#proxies">プロキシ</a></dd>
+	<dd><a href="#psm">セキュリティ</a></dd>
+	<dt><a href="#browser">Navigator (Web ブラウザ)</a></dt>
+	<dd><a href="#browser-general">ブラウザ全般の問題</a></dd>
+	<dd><a href="#pages">Web ページへのアクセスと表示</a></dd>
+	<dd><a href="#download">ファイルのダウンロード</a></dd>
+	<dd><a href="#view-source">ソースの表示</a></dd>
+	<dd><a href="#owa">Outlook Web Access (OWA)</a></dd>
+	<dt><a href="#mail">Messenger (メール &amp; ニュースクライアント)</a></dt>
+	<dd><a href="#mail-general">メール &amp; ニュース全般の問題</a></dd>
+	<dd><a href="#aolmail">AOL メールと Netscape Web メールのアカウント</a></dd>
+	<dd><a href="#address">アドレス帳</a></dd>
+	<dd><a href="#PostOfficeProtocol">POP と IMAP</a></dd>
+	<dd><a href="#news">ニュース</a></dd>
+	<dd><a href="#ldap">LDAP</a></dd>
+	<dd><a href="#offline-mail">オフラインメール</a></dd>
+	<dt><a href="#composer">Composer (HTML 編集ツール)</a></dt>
+	<dt><a href="#venkman">JavaScript デバッガ</a></dt>
+	<dt><a href="known-issues-int.html">国際化に関する問題</a></dt>
+</dl>
+
+<h2><a name="general">一般 (アプリケーション全般にかかわる問題)</a></h2>
+
+<h3><a name="focus">ダイアログボックスとウィンドウ</a></h3>
+<p>もし Mozilla の動作が止まってしまっているけれどもクラッシュした様子がない場合は、開いているダイアログボックスがないかどうか確認して下さい。まず、デスクトップ上で開いているウインドウを 1 つずつ閉じます。もしダイアログボックスが見つかれば閉じて下さい。デスクトップが複数開いている場合は、デスクトップごとにこの操作を繰り返して下さい。</p>
+<p>このような問題は、Linux でプラグインをダウンロードする場合に起こることがあります。次の手順で解決して下さい。 </p>
+<ol>
+	<li>プラグインのダウンロードウィンドウを最小化します。 </li>
+	<li>「キャンセル」をクリックして、ダイアログボックスを閉じます。</li>
+	<li>ダウンロードウィンドウを再度開き、プラグインのダウンロードを続行します。</li>
+</ol>
+
+<h3><a name="java">Java</a></h3>
+<p>mozilla.org が配布している Linux バイナリは GCC 3.2 でコンパイルされるようになりました。これらのバイナリを利用している場合、Java アプレットを実行するには <a href="http://java.sun.com/j2se/1.4.2/download.html">Sun J2SE v1.4.2</a> (<a href="http://java.sun.com/j2se/1.4.2/ja/download.html">日本語版</a>) (または GCC 3.2 でコンパイルされている Blackdown JDK 1.4.1) から Java プラグインのバージョン 3.2 をダウンロードする必要があります。Sun の Java プラグインは、Red Hat 8 以降や SuSE 8.1 以降など、最新バージョンの Linux と互換性があります。(プラグインは libgcc_s.so のより新しいバージョンに依存しており、Red Hat 7.3 に GCC 追加機能 [GCC 3.1 Compiler Suite for Red Hat Linux 7.3] をインストールすれば、一部の古い Red Hat Linux もプラグインを実行可能になります) これより古いバージョンの Linux をお使いの方は、Mozilla の egcs 1.1.2 ビルドと JRE 1.4.1 をインストールするか、それぞれの Linux ディストリビューション向けにコンパイルされたバージョンの Mozilla が出るのを待ってください。</p>
+<p>1.3.0_01 以前の Java J2SE リリースは Mozilla で動作しません。また、JRE 1.3.1 での問題が報告されています。最良の結果を得るには、JRE 1.4.1 を使うことをお勧めします。Mozilla は JRE 1.3.0_* 全バージョン、JRE 1.3.1、JDK 1.4 のベータ版でテストされています。</p>
+<p>256 色モードで J2SE を実行すると、画面がちらつくという問題が起こる可能性があります。</p>
+<p>Sun の JRE は ユーザエージェント識別文字列が Mozilla/5 ではじまっていないと起動時にクラッシュします。Expected a version &gt; 5! Version = 4 と出るかもしれません。解決策は、プラグインディレクトリに Sun の JRE プラグインがある場合、バージョンが 5 より小さいユーザエージェントを詐称しないことです。この設定は prefs.js の中にこんな感じで出現することがあります: user_pref(&quot;general.useragent.override&quot;, &quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows 98;)&quot;); (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=83376" title="Bug 83376 - Crash when loading Java Plugin if UserAgent string as MSIE">83376</a>)</p>
+
+<h3><a name="scrollwheel">マウスホイールによるスクロール</a></h3>
+<p>Linux では、マウスホイールによるスクロールを使うには X サーバが正しく設定されている必要があります。XFree86 では XF86Config ファイルのポインタセクションに &quot;ZAxisMapping 4 5&quot; のように行を追加します。またプロトコル行が使っているマウス用に正しく設定されていることを確認して下さい。</p>
+<p>Windows では、マウスホイールのスクロールはすべてのドライバで動作するわけではありません。問題が生じた場合使っているドライバをアップデートするか、マウスで使用する「ヘルパー」プログラムを使用不可にしてみて下さい。ロジテックのマウスをお使いの場合、ドライバを (v9.60 以降のものに) アップグレードするか、マウス/ボタン コントロールパネル で &quot;Microsoft Office compatible scrolling&quot; オプションを有効にしてください。</p>
+<p>Windows では、Synaptics タッチパッドの古いドライバだと Mozilla でスクロールが有効になりません。<a href="http://www.synaptics.com/support/downloads.cfm">www.synaptics.com/support/downloads.cfm</a> から新しいドライバを入手してください。</p>
+<p>Macintosh では、マウスホイールのスクロールはすべてのドライバで動作するわけではありません。問題が生じた場合使っているドライバをアップデートするか、マウスで使用する「ヘルパー」プログラムを使用不可にしてみて下さい。</p>
+
+<h3><a name="plugins">プラグイン</a></h3>
+<p>Communicator 4.x 用にインストールしたプラグインは Mozilla では使えない可能性があります。解決策: それらのプラグインを Mozilla の plugins フォルダにインストールしてください。</p>
+<p>Windows では、Adobe の SVG プラグインを使おうとすると Mozilla はクラッシュします。解決策: Adobe の SVG プラグイン (NPSVG3.dll NPSVG3.zip) を Mozilla の plugins フォルダにコピーしないでください。SVG を表示したければ Mozilla には プラグインなしで SVG をサポートしているビルドがありますからそれを使ってください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=133567" title="Bug 133567 - M1RC1; Crash because Adobe SVG plugin used an unfrozen interface [@ nsLoadGroup::GetName] which changed its prototype">133567</a>)</p>
+<p>Windows NT/95 だけの問題として、Web ページに埋め込まれた Microsoft Media Player ファイルは動かないかもしれません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=66015" title="Bug 66015 - Windows Media Player broken on NT and 95 only">66015</a>)</p>
+<p>mozilla.org がコンパイルした Linux GCC 3.2 バイナリを利用している場合、Flash への JavaScript アクセスは機能しません。</p>
+<p>Linux では、ESD Audio と Flash に関する問題があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=85772" title="Bug 85772 - [WORKAROUND] linux flash plugin can't find ESD socked (no so">85772</a>)</p>
+<p>Linux で見られる Flash に関する問題の多くは、Flash 6 にアップグレードすることで解決できます。</p>
+<p>Linux では、<abbr title="X Input Method">XIM</abbr> サーバを使っている場合に、Flash アニメーションを含むページで Mozilla がクラッシュします。この問題を避ける方法は <a href="known-issues-int.html#flash">国際化に関する問題</a> をご覧ください。</p>
+<p>Mac OS X では、Web ページに埋め込まれた Microsoft Media Player ファイルは動きません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=119045" title="Bug 119045 - OSX: Windows Media Plug-in fails on initialize">119045</a>)</p>
+
+<h3><a name="prefs">設定</a></h3>
+<p>Netscape ビルドと Mozilla のナイトリービルドとの間でプロファイルを共有しないでください。共有すると予測不能な結果を招く可能性があります。検索設定や設定情報の喪失、とどまることを知らないブックマークの肥大 (あなたのシステムをフリーズさせるのに十分なほど) といったことが起こり得ます。それぞれに対して新しいプロファイルをつくることがベストですが、そうでなければ既存のプロファイルをマニュアルでコピーして (名前を変えて) ください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=137164" title="Bug 137164 - Sharing the same profile with NS +Moz seems to cause RDF horkage">137164</a>)</p>
+
+<h3><a name="printing">印刷</a></h3>
+<p>Windows では、Windows98/ME の一部のユーザは、デフォルトのスプール設定では印刷できないかもしれません。解決策は、プリンタのプロパティから [詳細] タブを選び、[スプールの設定] を開いて [プリンタに直接印刷データを送る] を選ぶことです。 (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=130083" title="Bug 130083 - unable to print on Win 98/ME with default spool setting">130083</a>)</p>
+<p>Linux では、印刷プレビューのフル機能 (ツールバー、印刷プレビューからの印刷、ページ設定など) は、非標準の Xprint モジュールでのみ利用できます。(<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=119491,126802,127810,129507">バグ一覧</a>)</p>
+<p>印刷プレビューでは、プラグインは表示されません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=134002" title="Bug 134002 - Plugins/applets don't render in print preview">134002</a>)</p>
+<p>デフォルトの Unix/Linux バイナリには、Xprint と呼ばれる代替印刷モジュールが付属しています。Xprint モジュールは、<a title="Common Unix Printing System" href="http://www.cups.org/">CUPS</a>、<a href="http://www.lprng.com/">LPRng</a>、<a title="Mathematical Markup Language" href="/projects/mathml/">MathML</a>、TrueType フォント、PostScript/<acronym title="Adobe Portable Document Format">PDF</acronym>/<acronym title="Printer Control Language">PCL</acronym> 出力サポートを含みます。詳しい情報は、詳細なガイドを用意している <a href="http://xprint.mozdev.org">xprint.mozdev.org</a> や、mozilla.org の <a href="/projects/xprint/">Xprint プロジェクトのページ</a> をご覧ください。</p>
+
+<h3><a name="profiles">プロファイル</a></h3>
+<p>プロファイルマネージャでプロファイル名を変更する場合、既存のプロファイル名を使うと設定情報がすべて失われる可能性があります。解決策: プロファイル名を変更する場合は重複しない名前をつけてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=113203" title="Bug 113203 - Data loss with renaming profiles">113203</a>)</p>
+<p>インストール中になんらかの問題が発生して、Communicator プロファイルのコピー、変換が完了しなかった場合でも、プロファイルを使用することができます。コマンドラインから &quot;-installer&quot; オプションを追加 (つまり &quot;mozilla.exe -installer&quot; をコマンドラインに入力) して Mozilla を立ち上げます。または Mozilla を再インストールするとプロファイルマネージャのダイアログが再度表示されます。</p>
+
+<h3><a name="proxies">プロキシ</a></h3>
+<p>Mozilla は、マニュアル定義したプロキシのみ、ホストネームを受け入れます。Communicator 4 のプロファイルを移植している場合には、マニュアルで設定を変更する必要があります。Communicator 4 はマニュアル定義による URL を受け入れていましたが Mozilla は受け入れません。このように定義したプロファイルを移植した場合、URL をホストネームとポート番号に変更する必要があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=30387"title="Bug 30387 - Proxy: manual config does not support URLs (http://)">30387</a>)</p>
+
+<h3><a name="psm">セキュリティ</a></h3>
+<p>スマートカードへの証明書のリストアには時間が掛かることがあります。比較的低速なデバイスであるスマートカードへの証明書のリストアには時間が掛かることがあり、その間何の反応もありません。結果として、リストアが行われていないように見えるかもしれません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=52321" title="Bug 52321 - need watch cursor when restoring certs">52321</a>)</p>
+<p>セキュリティの都合上、Mozilla はいくつかのポートへの接続を許可していません。これを ポートごとに無効に (接続可能に) するには、コンマ (,) で区切ったポート番号のリストを (Mozilla をインストールしたディレクトリにある) defaults/all.js に追加してください。この設定は Mozilla をインストールしたディレクトリの all.js でのみ機能し、このインストレーションのすべてのユーザに適用されることに注意してください。個人用の <a href="installation.html#files_profiles">プロファイルディレクトリ</a> にある prefs.js ファイルや user.js ファイルにこの設定を加えても機能しません。例えば ポート 1、3、7 をブロックしないようにするには、次の行を使ってください: pref(&quot;network.security.ports.banned.override&quot;, &quot;1,3,7&quot;);</p>
+<p>セキュリティ上の理由により、Mozilla は Web コンテンツからローカルファイルへのリンクを許可していません。<strong>Security Error: Content at <em>url</em> may not load or link to <em>file:///something</em></strong> といったエラーが JavaScript コンソールに現れることがあります。ローカルパスへのリンクをたどる必要がある場合は、リンク (アドレス) をロケーションバーにドラッグし、それを Web ページにドロップするようお勧めします。もしあなたが、セキュリティチェックが大嫌いで、システム上にあるすべてのファイルを危険にさらすことを望むなら、あなたの個人 <a href="installation.html#files_profiles">プロファイルディレクトリ</a> にある user.js ファイルに次の行を追加すれば、システムへのアクセスが可能になります。user_pref(&quot;security.checkloaduri&quot;, false); (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=84128" title="Bug 84128 - Need user-visible message when CheckLoadURI fails (eg, for links to file: urls)">84128</a>)</p>
+<p>Windows では、一部のファイアウォールソフトによって、Mozilla が正常なインターネットへのアクセスを妨げられる可能性があります。Mozilla が正しく機能しない場合、Mozilla がインターネットへの接続を許可されているか、ファイアウォールの設定を確認してください。ZoneAlarm が、Mozilla が自身をローカルサーバとして設定しようとしているという警告を出した場合、安全な Web サーバ、メールサーバにアクセスする際に必要なパーソナルセキュリティマネージャ (PSM) と Mozilla が通信していることが原因ですので、Mozilla のアクセスを許可してください。</p>
+
+<h2><a name="browser">Navigator (ブラウザ)</a></h2>
+
+<h3><a name="browser-general">ブラウザ全般の問題</a></h3>
+<p>ユーザネームやパスワードが http://username:password@sitename.com の形式で URI に組み込まれていても Mozilla は そういったリンクをたどったユーザに対してなんら警告を出しません。http://www.mozilla.org%2084230482304982304329048230948@fraudsite.com の形式の 長いユーザネームのはいった URI は ユーザに mozilla.org に行くと思わせておいて実は fraudsite.com へ行きます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=122445" title="Bug 122445 - Warn user if username/password encoded in link">122445</a>)</p>
+
+<h3><a name="pages">Web ページへのアクセスと表示</a></h3>
+<p>正しく表示されないページがあるのは、標準準拠の問題かもしれません。詳細は <a href="http://devedge-temp.mozilla.org/">Netscape DevEdge</a> や <a href="/projects/tech-evangelism/">Mozilla Evangelism</a> のサイトをご覧ください。</p>
+<p>(訳注: 期待されるのと - あるいは他のブラウザで見たときと - 違って表示される Web ページがあったとき、それは Mozilla のバグではなく、その Web ページが最近の Web 標準に準拠していないせいかもしれない... ということです。<a href="http://www.mozilla.gr.jp/">もじら組</a> - <a href="http://www.mozilla.gr.jp/standards/">Web 標準普及プロジェクト</a> のページもご覧ください)</p>
+<p>Windows 98 で、ある種の ATI グラフィックアダプタを使っていると、Web ページ上の画像がうまく表示されないことがあります。これは ATI グラフィックドライバのバグです。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=104992" title="Bug 104992 - Rendering problems on win98 with older ATI vidcards">104992</a>)</p>
+<p>HTTP パイプラインを有効にすると、ページ読み込み時間が目に見えて向上する一方で、一部の Web サイトでは正常な読み込みが阻害されることがあります。Web サイトの読み込みで問題に遭遇したら、([設定] &gt; [詳細] &gt; [HTTP ネットワーク] を見て) HTTP パイプラインが無効になっていることを確認し、もう一度トライしてください。HTTP パイプラインは デフォルトでは無効になっています。</p>
+
+<h3><a name="download">ファイルのダウンロード</a></h3>
+<p>ユーザがバックグラウンドでファイルをダウンロード中に [ファイル] メニューから Mozilla を終了すると、実行中のダウンロードは警告なしに中止されます。解決策: ダウンロードが完了してから Mozilla を終了するようにしてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=28385" title="Bug 28385 - Alert user before Mozilla exit if files are still downloading">28385</a>)</p>
+
+<h3><a name="view-source">ソースの表示</a></h3>
+<p>Macintosh では、ソース表示ウィンドウに水平スクロールバーが表示されないことがあります。ウィンドウをリサイズして、スクロールバーを表示させて下さい。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=56488" title="Bug 56488 - Resize widget (growbox) hides bottom arrow in scrollbar">56488</a>)</p>
+
+<table border="0" cellpadding="5" cellspacing="5" class="diff">
+<tr>
+<td></td>
+<td class="added">
+
+<h3><a name="owa">Outlook Web Access (OWA)</a></h3>
+<p>「転送」「返信」「全員に返信」「フォルダに返信」ボタンが機能しません。これは、一部の形式のポップアップブロック機能が有効になっていると再現します。ステータスバーに小さな破裂マークのアイコンが出るので分かります。Tools メニューから Popup Manager &gt; Allow Popups From This Site を選択すれば、簡単に修正できます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=102476" title="Bug 102476 - dom.disable_open_during_load pref is incompatible with Outlook Web Access (OWA)">102476</a>)</p>
+
+</td>
+</tr>
+</table>
+
+<h2><a name="mail">Messenger (メール &amp; ニュース)</a></h2>
+
+<h3><a name="mail-general">メール &amp; ニュース全般の問題</a></h3>
+<p>ラベルをつけたメッセージをアカウント越しに移動/コピーすると、ラベルは移動/コピー先へは反映されません:</p>
+<ol>
+	<li>IMAP からそれ以外のアカウント (ローカルフォルダを含む): メッセージのラベルは失われます。</li>
+	<li>POP から POP (ローカルフォルダを含む) は OK です。</li>
+	<li>POP から IMAP: メッセージのラベルは失われます。</li>
+	<li>ニュースグループのメッセージを任意のアカウントにコピー: メッセージのラベルは失われます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=127141" title="Bug 127141 - Labels lost on cross-account move/copy (except local to local)">127141</a>)</li>
+</ol>
+<p>Mail/News のアカウント設定で: Server Settings ダイアログボックスで local directory に対する変更は、Mozilla をいったん終了して再起動するまで反映されません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=2654" title="Bug 2654 - localPath does not take effect until restart">2654</a>)</p>
+<p>Linux では、root ユーザの環境で Mozilla インストールした後、別のユーザとして Mozilla を利用すると問題が起こる可能性があります。可能性としては、送信済みフォルダ、下書き、テンプレートの各保存、そして一般認証に関する問題が含まれます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49397" title="Bug 49397 - Linux ONLY: Users run application from other directory encounter Mail & News problems">49397</a>)</p>
+<p>メールとニュースグループのアカウント設定ダイアログボックスは 800x600 や 640x480 といった低解像度のモニタでは正しく表示されません。可能であれば、あなたのモニタの解像度を 800x600 以上にあげてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82122" title="Bug 82122 - Fix Account Manager window size">82122</a>)</p>
+
+<h3><a name="aolmail">AOL Mail と Netscape WebMail のアカウント</a></h3>
+<p>Mozilla は Netscape 6/7 とは異なり、AOL Mail や Netscape WebMail を内蔵していません。Netscape 6/7 のプロファイルを Mozilla と共有していて、以前に Netscape 6/7 を使ってアカウントを利用したことがあるのであれば、アカウントの Inbox に表示されるヘッダーを確認することはできるかもしれません。しかしこの場合でもメッセージを操作することはできません。AOL Mail、WebMail、Netscape Instant Messenger のアカウントにアクセスするには、Netscape 6/7 を使って下さい。</p>
+
+<h3><a name="address">アドレス帳</a></h3>
+<p>Mozilla は Communicator 4.x のアドレス帳をインポートしません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=35509" title="Bug 35509 - Hooking up automatic 4.x address book import in the mozilla code base">35509</a>)</p>
+<p>Outlook のアドレス帳をインポートするには、Microsoft Internet Explorer でデフォルトの メールクライアントを &quot;Microsoft Outlook&quot; に設定しておく必要があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=90206" title="Bug 90206 - Outlook Import sometimes unable to find">90206</a>)</p>
+
+<h3><a name="PostOfficeProtocol">POP</a> と IMAP</h3>
+<p>「すべての IMAP メールフォルダを表示する」または「購読している IMAP メールフォルダのみ表示する」という設定を変更した場合、その変更を有効にするには、Mozilla を終了し、再起動してください。このオプションを変更するには、「アカウントの設定」ダイアログボックスのサーバのセクションにある「詳細設定」ボタンをクリックしてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=38943" title="Bug 38943 - Need to restart to see result of check/uncheck &quot;show only subscribe folders&quot; functionality from IMAP Server Advance Preference">38943</a>)</p>
+
+<h3><a name="news">ニュース</a></h3>
+<p>認証が必要なニュースサーバでは、[購読] ダイアログボックスが作動しない場合があります。パスワードで保護されたニュースグループを開くと、ユーザ名とパスワードを入力するよう求めるメッセージが何度も表示されることがあります。</p>
+
+<h3><a name="ldap">LDAP</a></h3>
+<p>Communicator 4.x から移行後、LDAP ディレクトリが <a title="LDAP Data Interchange Format"  href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/directory/admin30/ldif.htm">ldif</a> エクステンションつきで表示されるかもしれません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=94645" title="Bug 94645 - LDAP directory with ldif extention appeared after migration">94645</a>)</p>
+<p>Mozilla は LDAP オートコンプリートの際にネットワーク接続が損なわれると一時的にハングするかもしれません。具体的には 問い合わせ中の LDAP サーバが通信できない (ネットワーク接続上の問題、ファイアウォール越しを含む) と、ブラウザとコンタクトしようとしてアプリケ−ション全体がハングします。アプリケーションは約 10 秒後 (TCP タイムアウトの長さ) から再び応答し始めます。(Bug  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=79509" title="Bug 79509 - avoid stalling out if ldap C SDK hangs during connect() (LDAP server/service not available/unresponsive causes hang/freeze or causes mozilla to stop responding)">79509</a>)</p>
+
+<h3><a name="offline-mail">オフラインメール</a></h3>
+<p>(オフラインの状態で) ダウンロード済みのメッセージを移動/コピーするとオフラインの間は 新しいフォルダにあるメッセージを読むことができなくなります。解決策: メッセージを読むにはオンラインにしてください。それからオフラインでもアクセスできるようにしておきたければ、再びダウンロードしてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=78809" title="Bug 78809 - Offline:Offline copy of an imap message moved offline is lost when going back online">78809</a>)</p>
+<p>Mozilla 起動時、プロファイルがひとつしかないと起動時のオフライン設定 (「オフラインとオンラインのどちらにするか尋ねる」または「前回のオフライン／オンライン状態と同じにする」) は効きません。Mozilla は常にオンラインモードで起動します。オフラインにするには [ファイル] メニューから [オフライン作業] を選んでください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82487" title="Bug 82487 - offline: Startup mode doesn't work-&quot;remember my prev mode&quot; or &quot;Ask me at startup&quot;">82487</a>)</p>
+
+<h2><a name="composer">Composer</a></h2>
+<p>Composer を使って作成したページを出版 (サーバにアップロード) する際、出版する URL、ファイル名、ユ−ザ名、パスワードにエスケープすべき特殊文字 (たとえば &quot;@&quot; など) が含まれていると、Composer はドキュメントを出版するたびにダブったサイトエントリを作成します。このバグを回避するには、ドキュメントを再出版する前に出版ダイアログボックスのサイト名リストからオリジナルのサイト名を選択してください。たとえば、ある ISP ユーザにはユ−ザ名が E-mail アドレス (&quot;janedoe%40ispname.net&quot; のような) と同じひとがいます。このようなサイトにいったん出版すると、次に出版ダイアログを使うと ドキュメント URL のユーザ名は &quot;janedoe%40ispname.net&quot; となって現れます (&quot;@&quot; は出版の際にエスケープされています)。Composer はこのエントリーを認識できず、ダブったサイト名を作成してしまいます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=141819" title="Bug 141819 - Publish URL, filename, username, and password need to be unescaped to avoid creating duplicate site entries">141819</a>)</p>
+<p>Composer と他のエディタの両方を同時に使用しての編集は、できない可能性があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=27820" title="Bug 27820 - When the editor gets focus check for changes">27820</a>)</p>
+<p>ページよって (例えばフレーム設定されたページ) は、編集できないものがあります。[ファイル] メニューから [ページを編集] オプションを選択することで、エディタウィンドウを開くことはできますが、実際にページを編集することまではできません。</p>
+<p>[編集] &gt; [指定して貼り付け] は機能しません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=73286" title="Bug 73286 - Paste Special feature have clipboard 'flavors'">73286</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=41547" title="Bug 41547 - Paste Special submenu needed - paste cells as Rows or Columns">41547</a>)</p>
+<p>HTML ソースを印刷できません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82239" title="Bug 82239 - can't print HTML source">82239</a>)</p>
+<p>一部のショートカットキーが期待通りに働きません。(<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=48375,67142,57700,26264,48951,76925,57805,70630,70630,26269,53505">バグ一覧</a>)</p>
+<p>アプリケーションがビジーのとき、砂時計がでません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=83300" title="Bug 83300 - show busy cursor when pasting and other slow actions">83300</a>)</p>
+<p>[すべてのタグを表示] モードで、いくつかのエレメントアイコンが描画されません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=88036" title="Bug 88036 - Make AllTags mode in Composer use generated content instead of background icons">88036</a>)</p>
+<p>リストの編集がネストされたリストを次のレベルのリストまでアウトデントすることがあります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=98547" title="Bug 98547 - sublists can get pulled up into parent list when changing list type">98547</a>)</p>
+
+<h2><a name="venkman">JavaScript デバッガ</a></h2>
+<p>メインウィンドウからすべてのビューをフロートにしてしまうと、メインウィンドウに戻すためのドロップターゲットがなくなってしまいます。&quot;Save Default Layout On Exit&quot; をチェックした状態で終了してしまうと、このような状況のまま 身動きがとれなくなります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=151785" title="Once all the views are floated, no way to put them back">151785</a>)</p>
+<p>解決策は: [Show] &gt; [View/Hide] メニューからインタラクティブセッション を表示して、&quot;restore-layout factory&quot; とタイプしてください。</p>
+
+
+
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.5rc1/known-issues.html">英語版</a> 2003/11/03</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.5rc1/known-issues.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

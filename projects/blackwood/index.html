@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+   <title>Blackwood プロジェクト: Java-to-Mozilla Bridge</title>
+   <link rel="alternate" hreflang="en" modified="2003-03-05">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/blackwood/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<a name="top"></a><!-- Abstract and title begin here -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#666699">
+<h2>
+<font face="helvetica, lucida sans"><font color="#FFFFFF">Blackwood
+プロジェクト</font></font></h2>
+
+<h4>
+<font color="#FFFFFF">JavaプラットフォームとMozillaの間のブリッジの作成</font></h4>
+<b><font color="#FFFFFF">このサイトについて:</font></b>
+<br><font color="#FFFFFF">Mozilla Webサイトのこの部分は、Java プラットフォームとMozilla Webブラウザを統合するために Sun Microsystemsのエンジニアによってはじめられた Blackwood プロジェクトに専念します。Blackwood はMozilla用の一連のJavaベース拡張機能です。
+</font>
+<p><b><font color="#FFFFFF">Blackwood の使命:</font></b>
+<br><font color="#FFFFFF">MozillaブラウザにJavaプラットフォームをよりよく統合すること。Blackwood の使命は、Mozillaに JavaScriptサポートと同じようにJava のサポートを入れることです。
+</font></td>
+</tr>
+</table>
+<!-- Abstract and title end here -->
+<br><!-- START PAGE CONTENT -->
+<table BORDER=0 CELLPADDING=4 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<caption><!-- General Information title bar -->
+<br><!-- General Information content and links -->
+<br><!-- Current Projects title bar -->
+<br><!-- Current Projects content --><!-- BlackConnect links -->
+<br><!-- Webclient links -->
+<br><!-- JavaDOM links --></caption>
+
+<tr>
+<td BGCOLOR="#666699">
+<center><a NAME="general"></a><b><font color="#FFFFFF"><font size=+1>General
+情報</font></font></b></center>
+</td>
+</tr>
+
+<tr>
+<td ALIGN=LEFT VALIGN=TOP HEIGHT="22" BGCOLOR="#FFFFFF"><b>ダウンロード</b>
+<br>私たちはNetscape 6.1で動く新しいXPIバンドルを作成しているところです。バイナリリリースはここをチェックしてください。netscape.public.mozilla.java ニュースグループでもリリースを公表します。</td>
+</tr>
+
+<tr>
+<td ALIGN=LEFT VALIGN=TOP HEIGHT="22" BGCOLOR="#FFFFFF"><b>概観 (最初に読んでください)</b>
+<br><a href="overview.html">Java プラットフォームとMozillaの統合</a></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#FFFFFF"><b>プレゼンテーション (2001年3月のSun内の技術カンファレンスより</b>
+<br><a href="papers/suntech01/paper.sdw">技術情報</a> | <a href="papers/suntech01/slides.sdd">Slide
+Presentation (StarOffice 文書)</a> | <a href="papers/suntech01/htmlslides/StartHere.htm">Slide
+Presentation (HTML ページ)</a></td>
+</tr>
+
+<tr>
+<td BGCOLOR="#666699">
+<center><a NAME="other"></a><b><font color="#FFFFFF"><font size=+1>Blackwood
+コンポーネント</font></font></b></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#FFFFFF"><b>BlackConnect: Javaプログラミング言語で XPCOMコンポーネントを記述する</b>
+<br><a href="connect/#status">状態</a> | <a href="connect">概観</a>
+| <a href="connect/RequirementsSpec.html">仕様書 </a>| <a href="connect/design.html">Design
+</a>| Notes | <a href="connect/RequirementsSpec.html#Problem">API&nbsp;</a></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#FFFFFF"><a NAME="Webclient"></a><b>Webclient: Javaアプリケーションに Gecko を組み込む</b>
+<br><a href="webclient/index.html#Status">状態</a>
+<!-- | <a href="blackwrap/one-pager.html">Overview</a> -->| <a href="webclient/RequirementsAnalysis.html">分析</a>
+| <a href="webclient/RequirementsSpec.html">デザイン</a> <!-- | <a href="blackwrap/notes.html">Notes
+(fix this link!)</a> -->| <a href="webclient/spec_compliant_api/index.html">API</a></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP HEIGHT="41" BGCOLOR="#FFFFF0"><b>Pluglets: Javaプログラミング言語へのMozilla プラグイン実装</b>
+<br>状態 | <a href="java-plugins/">概観</a> | 分析 | デザイン |
+Notes | <a href="java-plugins/api/">API</a> | <a href="java-plugins/binaries/pluglets.jpg">Screenshots</a></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP BGCOLOR="#FFFFFF"><b>JavaDOM: Javaプログラミング言語から Mozilla DOMへのアクセス</b>
+<br><a href="dom/index.html">Main page</a></td>
+</tr>
+</table>
+<!-- END PAGE CONTENT --><!-- START PAGE FOOTER -->
+<center>
+<address>
+ページ管理 by: <font color="#FF0000"><a href="mailto:edburns@acm.org">Ed
+Burns</a></font></address></center>
+<!-- END PAGE FOOTER -->
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/blackwood/index.html">英語版</a> 2003-03-05</span> - <span>和訳版 2004/11/28</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/blackwood/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

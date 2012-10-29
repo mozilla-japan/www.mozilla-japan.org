@@ -1,0 +1,2694 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 セマンティクス表記法</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/formal/notation.html">
+<link rel="styleSheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="index.html">
+<link rel="Next" href="stages.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.9em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">正式な記述</div>
+    <div class="title1">セマンティクス表記法</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;"><a href="index.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="stages.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">06/13/2003 (Fri)</p>
+
+<p>JavaScript 2.0 のセマンティクス (意味) は Algol
+ライクな擬似コードで記述する。以下の節ではセマンティクスの概念、式、<a href="#proc">プロシジャ</a> (手続き)、及び<a href="#action">アクション</a>で使用する表記を定義する。</p>
+
+<h2>演算子</h2>
+
+<p>以下の表にこのドキュメントの式で使用される演算子を要約する。演算子はグループ内で優先順位の最も高いもの (最も束縛の強いもの)
+から優先順位の最も低いもの (最も束縛の弱いもの) の順に並べてある。関係演算子以外の同じグループに属する演算子は同じ優先順位を持ち、結合則は全て左から右である。つまり、例えば
+7&#8211;3+2&#8211;1 は 7&#8211;(3+(2&#8211;1)) や (7&#8211;(3+2))&#8211;1 とはならず ((7&#8211;3)+2)&#8211;1 となる。関係演算子は数学の慣習通りカスケードし、</p>
+
+<p class="indent"><var>a</var>&nbsp;=&nbsp;<var>b</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>c</var>&nbsp;&lt;&nbsp;<var>d</var></p>
+
+<p>は以下のような意味になる。</p>
+
+<p class="indent"><var>a</var>&nbsp;=&nbsp;<var>b</var>&nbsp;<span class="semantic-keyword">and</span>&nbsp;<var>b</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>c</var>&nbsp;<span class="semantic-keyword">and</span>&nbsp;<var>c</var>&nbsp;&lt;&nbsp;<var>d</var></p>
+
+<p>(丸) 括弧は優先順位を上書きしたり、式を明瞭にするのに使用する。</p>
+
+<p>アルゴリズムの記述に使用する式は副作用を示すことができる。<span class="semantic-keyword">and</span>
+、<span class="semantic-keyword">or</span> 、?: 以外の演算子はその全てのオペランドを左から右に計算し、いずれかのオペランドの計算が例外
+<var>e</var> を投げると、その演算子は残りのオペランドを計算することなくすぐに <var>e</var> を伝播する。</p>
+
+<table border="2" cellspacing="1" cellpadding="1">
+<colgroup>
+  <col style="vertical-align:top;white-space:nowrap;">
+  <col style="vertical-align:top;">
+  <col style="vertical-align:top;">
+</colgroup>
+<tr align="left">
+  <th>グループ</th>
+  <th>演算子</th>
+  <th>説明</th>
+</tr>
+<tr>
+  <td rowspan="11">結合無し</td>
+  <td>(<var>x</var>)</td>
+  <td><var>x</var> を返す。括弧は演算子の優先順位を上書きするのに使用する。</td>
+</tr>
+<tr>
+  <td>{<var>x</var><sub class="var-sub">1</sub>,&nbsp;<var>x</var><sub class="var-sub">2</sub>,&nbsp;...&nbsp;,&nbsp;<var>x<sub>n</sub></var>}</td>
+  <td>要素 <var>x</var><sub class="var-sub">1</sub>,&nbsp;<var>x</var><sub class="var-sub">2</sub>,&nbsp;...&nbsp;,&nbsp;<var>x<sub>n</sub></var>
+    から成る<a href="#set">集合或いは意味領域</a></td>
+</tr>
+<tr>
+  <td>{<var>f</var>(<var>x</var>)&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var>}<br>
+    {<var>f</var>(<var>x</var>)&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A
+    </var><span class="semantic-keyword">such</span>&nbsp;<span class="semantic-keyword">that</span>&nbsp;<var>predicate</var>(<var>x</var>)}</td>
+  <td><a href="#set-comprehension">集合の内包表記</a></td>
+</tr>
+<tr>
+  <td><b>[</b><var>x</var><sub class="var-sub">0</sub>,&nbsp;<var>x</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>x</var><sub class="var-sub"><var>n</var>&#8211;1</sub><b>]</b></td>
+  <td>要素 <var>x</var><sub class="var-sub">0</sub>,&nbsp;<var>x</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>x</var><sub class="var-sub"><var>n</var>&#8211;1</sub>
+    から成る<a href="#list">リスト</a></td>
+</tr>
+<tr>
+  <td><b>[</b><var>f</var>(<var>x</var>)&nbsp;<b>|</b>&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>u</var><b>]</b><br>
+    <b>[</b><var>f</var>(<var>x</var>)&nbsp;<b>|</b>&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>u</var>
+    <span class="semantic-keyword">such</span>&nbsp;<span class="semantic-keyword">that</span>&nbsp;<var>predicate</var>(<var>x</var>)<b>]</b></td>
+  <td><a href="#list-comprehension">リストの内包表記</a></td>
+</tr>
+<tr>
+  <td><var class="domain-name">Name</var><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var>x</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var>x<sub>n</sub></var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b><br>
+    <var class="domain-name">Name</var></td>
+  <td><a href="#tuple-constructor">タプルコンストラクタ</a></td>
+</tr>
+<tr>
+  <td>|<var>x</var>|</td>
+  <td>数値 <var>x</var> の<a href="#abs">絶対値</a>、集合 <var>x</var> の<a href="#set-cardinality">基数</a>、或いはリスト
+    <var>x</var> の<a href="#list-length">長さ</a></td>
+</tr>
+<tr>
+  <td><script type="text/javascript">document.write(U_lfloor)</script><var>x</var><script type="text/javascript">document.write(U_rfloor)</script></td>
+  <td><var>x</var> の<a href="#floor">切捨て値</a></td>
+</tr>
+<tr>
+  <td><script type="text/javascript">document.write(U_lceil)</script><var>x</var><script type="text/javascript">document.write(U_rceil)</script></td>
+  <td><var>x</var> の<a href="#ceiling">切上げ値</a></td>
+</tr>
+<tr>
+  <td><a name="action-reference"></a><span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span><sub><var>i</var></sub>]</td>
+  <td>この表記は<a href="#action">アクション</a>内で左側か右側に非終端記号 <span class="nonterminal">nonterminal</span> を持つ文法生成規則
+    <script type="text/javascript">document.write(U_rho)</script> に使用し、その <var>i</var> 番目のインスタンスについてアクション
+    <span class="action-name">Action</span> を実行したときの値を返す。<script type="text/javascript">document.write(U_rho)</script>
+    の右側に <span class="nonterminal">nonterminal</span> のインスタンスが1つしか存在せず、<var>i</var> が1のときは下付き文字
+    <var>i</var> は省略可能である。</td>
+</tr>
+<tr>
+  <td><a name="nonterminal-reference"></a><span class="nonterminal">nonterminal</span><sub><var>i</var></sub></td>
+  <td>この表記は<a href="#action">アクション</a>内で左側か右側に非終端記号 <span class="nonterminal">nonterminal</span> を持つ文法生成規則
+    <script type="text/javascript">document.write(U_rho)</script> に使用し、(更に、あらゆる文法非終端記号
+    <span class="nonterminal">nonterminal</span> の完全な展開は単一の文字に展開され)、<script type="text/javascript">document.write(U_rho)</script>
+    の右側の <var>i</var> 番目のインスタンスを展開して得られた文字を返す。<script type="text/javascript">document.write(U_rho)</script>
+    に非終端記号 <span class="nonterminal">nonterminal</span> のインスタンスが1つしか存在しない場合は添字 <var>i</var>
+    は省略可能である。添字が省略されて非終端記号 <span class="nonterminal">nonterminal</span> が
+    <script type="text/javascript">document.write(U_rho)</script> の右側に現れた場合、この式は生成規則
+    <script type="text/javascript">document.write(U_rho)</script> 全体を展開して得られる単一の文字を返す。</td>
+</tr>
+<tr>
+  <td rowspan="12">添字</td>
+  <td><var>i</var><sub class="tag-name">long</sub></td>
+  <td>整数 <var>i</var> の <a href="#D-Long" class="domain-name">Long</a> への<a href="#long-shorthand">変換</a></td>
+</tr>
+<tr>
+  <td><var>i</var><sub class="tag-name">ulong</sub></td>
+  <td>整数 <var>i</var> の <a href="#D-ULong" class="domain-name">ULong</a> への<a href="#ulong-shorthand">変換</a></TD>
+</tr>
+<tr>
+  <td><var>x</var><sub class="tag-name">f32</sub></td>
+  <td><a href="#V-realToFloat32" class="global-variable">realToFloat32</a>(<var>x</var>) 呼び出しによる実数 <var>x</var>
+    から &#8220;最も近い&#8221; <a href="#D-Float32" class="domain-name">Float32</a> 値への<a href="#f32-shorthand">変換</a></td>
+</tr>
+<tr>
+  <td><var>x</var><sub class="tag-name">f64</sub></td>
+  <td><a href="#V-realToFloat64" class="global-variable">realToFloat64</a>(<var>x</var>) 呼び出しによる実数 <var>x</var>
+    から &#8220;最も近い&#8221; <a href="#D-Float64" class="domain-name">Float64</a> 値への<a href="#f64-shorthand">変換</a></td>
+</tr>
+<tr>
+  <td><var>x<sup>y</sup></var></td>
+  <td><var>x</var> の <var>y</var> <a href="#real-exponentiation">乗</a></td>
+</tr>
+<tr>
+  <td><var>u</var>[<var>i</var>]</td>
+  <td>リスト <var>u</var> の <var>i</var> 番目の<a href="#list-nth">要素</a></td>
+</tr>
+<tr>
+  <td><var>u</var>[<var>i</var>&nbsp;...&nbsp;<var>j</var>]<br>
+    <var>u</var>[<var>i</var>&nbsp;...]</td>
+  <td>リスト <var>u</var> の<a href="#list-slice">切り出し</a></td>
+</tr>
+<tr>
+  <td><var>u</var>[<var>i</var>&nbsp;\&nbsp;<var>x</var>]&nbsp;&nbsp;</td>
+  <td><a href="#list-set-nth">リスト要素の置換</a></td>
+</tr>
+<tr>
+  <td><var>a</var>.<var class="field-name">label</var></td>
+  <td><a href="#tuple-get">タプル</a>、<a href="#record-get">レコード</a> <var>a</var> の名前 <var class="field-name">label</var>
+    のフィールド</td>
+</tr>
+<tr>
+  <td><var class="domain-name">T</var>{}</td>
+  <td><a href="#set-domain">要素が意味領域 <var class="domain-name">T</var> のメンバである全集合の意味領域</a></td>
+</tr>
+<tr>
+  <td><var class="domain-name">T</var>[]</td>
+  <td><a href="#list-domain">要素が意味領域 <var class="domain-name">T</var> のメンバである全リストの意味領域</a></td>
+</tr>
+<tr>
+  <td><var>f</var>(<var>x</var><sub class="var-sub">1</sub>,&nbsp;...,&nbsp;<var>x<sub>n</sub></var>)</td>
+  <td><a href="#proc-call">プロシジャ呼び出し</a></td>
+</tr>
+<tr>
+  <td rowspan="4">接頭辞</td>
+  <td><span class="semantic-keyword">new</span>&nbsp;<var class="domain-name">Name</var><b><script type="text/javascript">document.write(U_lang)</script></b><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var>x</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var>x<sub>n</sub></var><b><script type="text/javascript">document.write(U_rang)</script></b></td>
+  <td><a href="#record-new">レコードコンストラクタ</a></td>
+</tr>
+<tr>
+  <td>&#8211;<var>x</var></td>
+  <td><a href="#real-negation">実数の符号反転</a></td>
+</tr>
+<tr>
+  <td><span class="semantic-keyword">min</span>&nbsp;<var>A</var></td>
+  <td>集合の<a href="#set-min">最小要素</a></td>
+</tr>
+<tr>
+  <td><span class="semantic-keyword">max</span>&nbsp;<var>A</var></td>
+  <td>集合の<a href="#set-max">最大要素</a></td>
+</tr>
+<tr>
+  <td rowspan="5">因数、因子</td>
+  <td><var>x</var>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var>y</var></td>
+  <td><a href="#real-product">実数の積</a></td>
+</tr>
+<tr>
+  <td><var>x</var>&nbsp;/&nbsp;<var>y</var></td>
+  <td><a href="#real-quotient">実数の商</a> (<var>y</var> は0以外でなければならない)</td>
+</tr>
+<tr>
+  <td><var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;<var>y</var></td>
+  <td><a href="#modulo">実数の剰余</a> (<var>y</var> は0以外でなければならない)</td>
+</tr>
+<tr>
+  <td><var>A</var>&nbsp;<script type="text/javascript">document.write(U_cap)</script>&nbsp;<var>B</var></td>
+  <td><a href="#set-intersection">積集合</a></td>
+</tr>
+<tr>
+  <td><var class="domain-name">T</var><sub class="domain-sub">1</sub>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var class="domain-name">T</var><sub class="domain-sub">2</sub>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;...&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>&nbsp;<script type="text/javascript">document.write(U_rarr)</script>&nbsp;<var class="domain-name">T</var><br>
+    ()&nbsp;<script type="text/javascript">document.write(U_rarr)</script>&nbsp;<var class="domain-name">T</var><br>
+    <var class="domain-name">T</var><sub class="domain-sub">1</sub>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var class="domain-name">T</var><sub class="domain-sub">2</sub>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;...&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>&nbsp;<script type="text/javascript">document.write(U_rarr)</script>&nbsp;()<br>
+    ()&nbsp;<script type="text/javascript">document.write(U_rarr)</script>&nbsp;()</td>
+  <td><a href="#function-domain">プロシジャの意味領域</a></td>
+</tr>
+<tr>
+  <td rowspan="4">項</td>
+  <td><var>x</var>&nbsp;+&nbsp;<var>y</var></td>
+  <td><a href="#real-sum">実数の和</a></td>
+</tr>
+<tr>
+  <td><var>x</var>&nbsp;&#8211;&nbsp;<var>y</var></td>
+  <td><a href="#real-difference">実数の差</a>、<a href="#set-difference">差集合</a></td>
+</tr>
+<tr>
+  <td><var>u</var>&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<var>v</var></td>
+  <td><a href="#list-append">リストの結合</a></td>
+</tr>
+<tr>
+  <td><var>A</var>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<var>B</var></td>
+  <td><a href="#set-union">和集合</a></td>
+</tr>
+<tr>
+  <td rowspan="5">関係</td>
+  <td><var>x</var>&nbsp;=&nbsp;<var>y</var><br>
+    <var>x</var>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;<var>y</var></td>
+  <td><a href="#tag">タグ</a>、<a href="#real-comparison">実数</a>、<a href="#set-equality">集合</a>、<a href="#boolean-comparison">論理値</a>、<a href="#character-comparison">文字</a>、<a href="#list-equality">リスト</a>、<a href="#string-comparison">文字列</a>、<a href="#tuple-comparison">タプル</a>、及び<a href="#record-comparison">レコード</a>において等価性、不等価性を表す述語。種類の異なる値
+    (論理値 <span class="tag-name">true</span> と文字 &#8216;<code>A</code>&#8217; など) は常に不等価とみなされる。</td>
+</tr>
+<tr>
+  <td><var>x</var>&nbsp;&lt;&nbsp;<var>y</var><br>
+    <var>x</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>y</var><br>
+    <var>x</var>&nbsp;&gt;&nbsp;<var>y</var><br>
+    <var>x</var>&nbsp;<script type="text/javascript">document.write(U_ge)</script>&nbsp;<var>y</var></td>
+  <td><a href="#real-comparison">実数</a>、<a href="#character-comparison">文字</a>、<a href="#string-comparison">文字列</a>で順序を表す述語</td>
+</tr>
+<tr>
+  <td><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var><br>
+    <var>x</var>&nbsp;<script type="text/javascript">document.write(U_notin)</script>&nbsp;<var>A</var></td>
+  <td><a href="#member-predicate">集合のメンバであることを表す述語</a></td>
+</tr>
+<tr>
+  <td><var>A</var>&nbsp;<script type="text/javascript">document.write(U_sube)</script>&nbsp;<var>B</var></td>
+  <td><a href="#set-le">部分集合を表す述語</a></td>
+</tr>
+<tr>
+  <td><var>A</var>&nbsp;<script type="text/javascript">document.write(U_sub)</script>&nbsp;<var>B</var></td>
+  <td><a href="#set-lt">真部分集合を表す述語</a></td>
+</tr>
+<tr>
+  <td>否定</td>
+  <td><span class="semantic-keyword">not</span>&nbsp;<var>a</var></td>
+  <td><a href="#logical-not">論理否定</a></td>
+</tr>
+<tr>
+  <td>結合</td>
+  <td><var>a</var>&nbsp;<span class="semantic-keyword">and</span>&nbsp;<var>b</var></td>
+  <td><a href="#logical-and">短絡論理結合</a></td>
+</tr>
+<tr>
+  <td rowspan="2">分離</td>
+  <td><var>a</var>&nbsp;<span class="semantic-keyword">or</span>&nbsp;<var>b</var></td>
+  <td><a href="#logical-or">短絡論理分離</a></td>
+</tr>
+<tr>
+  <td><var>a</var>&nbsp;<span class="semantic-keyword">xor</span>&nbsp;<var>b</var></td>
+  <td><a href="#logical-xor">排他的論理 <span class="small-caps">or</span></a></td>
+</tr>
+<tr>
+  <td rowspan="2">条件</td>
+  <td><var>a</var>&nbsp;?&nbsp;<var>x</var>&nbsp;:&nbsp;<var>y</var></td>
+  <td><a href="#conditional">条件</a></td>
+</tr>
+<tr>
+  <td><span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var>&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>predicate</var>(<var>x</var>)<br>
+    <span class="semantic-keyword">every</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var>&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>predicate</var>(<var>x</var>)
+  </td>
+  <td><a href="#set-quantifier">集合</a>、<a href="#list-quantifier">リスト</a>の数量詞</td>
+</tr>
+</table>
+
+<h2><a name="semantic-domain"></a>意味領域</h2>
+
+<p><strong>意味領域</strong>とは変数があるアルゴリズムで保持できる値を表す。正しいプログラマ、正しくないプログラマ、或いはユーザの入力やアクションに関わらずこれらの制限を常に課すことでアルゴリズムは構築される。</p>
+
+<p>意味領域は直感的にはとり得る値の集合として捉えることができ、実際、このドキュメントで明示的に述べられている値の集合も意味領域である。とはいえ、領域理論において、意味領域はより正確な数学的定義を持つ
+(<a href="http://www.mozilla.org/js/language/bibliography.html#Schmidt86">[Schmidt86]</a> の例を参照)。領域理論では、集合
+<var>A</var> から <a href="#D-Integer" class="domain-name">Integer</a> への値マッピングを行う全関数をメンバとする集合 <var>A</var>
+を定義しようとするような矛盾に直面することなく、意味領域を再帰的に定義することが認められている。このような集合 <var>A</var>
+の通常の定義における問題は、<var>A</var> から <a href="#D-Integer" class="domain-name">Integer</a>
+へのマッピングを行う全関数の集合の基数が <var>A</var> の基数より厳密には常に大となるという矛盾が生じるということである。領域理論は最小限の固定点構築
+(least fixed point construction) を使って、意味領域 <var>A</var> を問題なく定義できるようにしている。</p>
+
+<p>意味領域の名前には赤のキャピタライズした小さい大文字 (<span class="domain-name">Capitalized Red Small Caps</span>)
+を使用する。この名前は同じ名前の<a href="#tag">タグ</a>や通常の変数とは区別して扱われる。よって
+<span class="domain-name">Undefined</span> 、<span class="tag-name">undefined</span> 、及び <var>undefined</var>
+は3つの異なる無関係の実体である。</p>
+
+<p>変数 <var>v</var> は以下の表記を使って制限される。</p>
+
+<p class="indent"><var>v</var>:&nbsp;<var class="domain-name">T</var></p>
+
+<p>ここに <var class="domain-name">T</var> は意味領域である。この制限は <var>v</var> の値は常に意味領域
+<var class="domain-name">T</var> のメンバであるということを示している。これらの宣言は情報を提供するだけのものだが
+(削除してもセマンティクスの正当性に影響は無い)、セマンティクスを理解するには有用なものである。例えばセマンティクスが
+<var>x</var>:&nbsp;<span class="domain-name">Integer</span> となっていれば、<var>x</var> が <span class="tag-name">true</span> とか
+<span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span>
+という値になるとき何が起こるか考えずにすむ。</p>
+
+<p>制限は静的に立証できる。JavaScript のセマンティクスは全ての制限を破らないために機械的なチェックを行っている。</p>
+
+<h2><a name="tag"></a>タグ</h2>
+
+<p>タグは内部構造を持たない処理トークンである。タグは暗い赤の (<span class="tag-name">dark red</span>)
+フォントで記す。2つのタグが等しいのはそれらが同じ名前を持つときだけである。</p>
+
+<p><a href="#tuple">タプル</a>や<a href="#record">レコード</a>の名前付けを行うものでないタグは次の表記で定義する:</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">tag</span>&nbsp;<var class="tag-name">name</var>;</div>
+</div>
+
+<p>HTML 版では各タグの <var class="tag-name">name</var> はその定義へのリンクになっている。</p>
+
+<h2><a name="boolean"></a><a name="T-false"></a><a name="T-true"></a><a name="D-Boolean"></a>論理値</h2>
+
+<p><a href="#tag">タグ</a> <span class="tag-name">true</span> と <span class="tag-name">false</span>
+は<strong>論理値</strong>を表す。<span class="domain-name">Boolean</span> は2つの要素を持つ<a href="#semantic-domain">意味領域</a>
+{<span class="tag-name">true</span>,&nbsp;<span class="tag-name">false</span>} である。</p>
+
+<p><a name="boolean-comparison"></a><var>a</var> と <var>b</var> を論理値、<var>x</var> と <var>y</var> を何らかの値であるとすると、=
+と <script type="text/javascript">document.write(U_ne)</script> の他に以下の操作がこれらに対して可能である:</p>
+
+<div class="indent">
+  <table border="1" cellspacing="1" cellpadding="1">
+  <colgroup>
+    <col style="vertical-align:top;white-space:nowrap;">
+	<col style="vertical-align:top;">
+  </colgroup>
+  <tr style="text-align:left;">
+    <th>表記</th>
+    <th>説明</th>
+  </tr>
+  <tr>
+    <td><a name="logical-not"></a><span class="semantic-keyword">not</span>&nbsp;<var>a</var></td>
+    <td><var>a</var> が <span class="tag-name">false</span> であれば <span class="tag-name">true</span>。<var>a</var> が
+	  <span class="tag-name">true</span> であれば <span class="tag-name">false</span></td>
+  </tr>
+  <tr>
+    <td><a name="logical-and"></a><var>a</var>&nbsp;<span class="semantic-keyword">and</span>&nbsp;<var>b</var></td>
+    <td><var>a</var> が <span class="tag-name">false</span> であれば <var>b</var> を処理することなく
+      <span class="tag-name">false</span> を返す。<var>a</var> が <span class="tag-name">true</span> であれば <var>b</var> を返す</td>
+  </tr>
+  <tr>
+    <td><a name="logical-or"></a><var>a</VAR>&nbsp;<span class="semantic-keyword">or</span>&nbsp;<var>b</var></td>
+    <td><var>a</var> が <span class="tag-name">false</span> であれば <var>b</var> の値を返す。<var>a</var> が
+      <span class="tag-name">true</span> であれば <var>b</var> を処理することなく <span class="tag-name">true</span> を返す</td>
+  </tr>
+  <tr>
+    <td><a name="logical-xor"></a><var>a</var>&nbsp;<span class="semantic-keyword">xor</span>&nbsp;<var>b</var></td>
+    <td><var>a</var> が <span class="tag-name">true</span> 且つ <var>b</var> が <span class="tag-name">false</span> 、或いは
+      <var>a</var> が <span class="tag-name">false</span> 且つ <var>b</var> が <span class="tag-name">true</span> であれば
+      <span class="tag-name">true</span>。それ以外の場合は <span class="tag-name">false</span>。<var>a</var>&nbsp;<span class="semantic-keyword">xor</span>&nbsp;<var>b</var>
+      は <var>a</var>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;<var>b</var> と等価である</td>
+  </tr>
+  <tr>
+    <td><a name="conditional"></a><var>a</var>&nbsp;?&nbsp;<var>x</var>&nbsp;:&nbsp;<var>y</var></td>
+    <td><var>a</var> が <span class="tag-name">true</span> であれば <var>x</var> を処理し、その値を返す。<var>a</var> が
+      <span class="tag-name">false</span> であれば <var>y</var> を処理し、その値を返す</td>
+  </tr>
+  </table>
+</div>
+
+<p><span class="semantic-keyword">and</span> 、<span class="semantic-keyword">or</span> 、及び ?:
+演算子が短絡を起こすことに注意していただきたい。一部のオペランドを処理しない可能性のある演算子はこれらだけである。</p>
+
+<h2><a name="set"></a>集合</h2>
+
+<p><strong>集合</strong>は可能な限り無限で順序に関係無い要素の集まりである。各要素は集合内に最高でも1つ存在できる。集合内の要素の全ての組み合わせについて等価関係
+= が定義されていなければならない。集合の要素はそれ自身が集合であっても良い。</p>
+
+<p>集合は中括弧で囲まれたカンマ区切りの値リストで記す:</p>
+
+<p class="indent">{<var>element</var><sub class="var-sub">1</sub>,&nbsp;<var>element</var><sub class="var-sub">2</sub>,&nbsp;...&nbsp;,&nbsp;<var>element<sub>n</sub></var>}</p>
+
+<p>空集合は {} のように書く。重複した要素は1つだけが集合に含められる。</p>
+<p>例えば集合 {3,&nbsp;0,&nbsp;10,&nbsp;11,&nbsp;12,&nbsp;13,&nbsp;&#8211;5} は7つの要素を持つ。</p>
+
+<p>整数か文字の集合は ... 範囲演算子を使って略記することができ、整数か文字<a href="#code-point">コードポイント</a>の範囲
+(各境界値を含む) となる。たとえば先の集合は
+{0,&nbsp;&#8211;5,&nbsp;3&nbsp;...&nbsp;3,&nbsp;10&nbsp;...&nbsp;13} と書くこともできる。</p>
+
+<p>範囲の始点が終点と同じであれば、その範囲はただ1つの要素を示すようになる。つまり {7&nbsp;...&nbsp;7} は {7} と同じである。範囲の終点が始点よりも1小さい場合は、その範囲は何も含んでいないことになる。つまり
+{7&nbsp;...&nbsp;6} は {} と同じである。範囲の終点が始点より2つ以上小さいことはない。</p>
+
+<p><a name="set-comprehension"></a>集合は次の内包表記を使って記述することもでき、</p>
+
+<p class="indent">{<var>f</var>(<var>x</var>)&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var>}</p>
+
+<p>は集合 <var>A</var> の全要素 <var>x</var> について式 <var>f</var> を処理した結果の集合を表す。また、述語を加えることもでき、</p>
+
+<p class="indent">{<var>f</var>(<var>x</var>)&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var>&nbsp;<span class="semantic-keyword">such</span>&nbsp;<span class="semantic-keyword">that</span>&nbsp;<var>predicate</var>(<var>x</var>)}</p>
+
+<p>は集合 <var>A</var> の内、式 <var>predicate</var> を満たす全ての要素 <var>x</var> について式 <var>f</var> を処理した結果の集合を表す。自由変数
+<var>x</var> と集合 <var>A</var> は1つでないこともあり、その場合は自由変数の値の全ての組み合わせが考えられる。例えば、</p>
+
+<p class="indent">{<var>x</var>&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>&nbsp;<span class="semantic-keyword">such</span>&nbsp;<span class="semantic-keyword">that</span>&nbsp;<var>x</var><sup>2</sup>&nbsp;&lt;&nbsp;10}&nbsp;=&nbsp;{&#8211;3,&nbsp;&#8211;2,&nbsp;&#8211;1,&nbsp;0,&nbsp;1,&nbsp;2,&nbsp;3} 、<br>
+{<var>x</var><sup>2</sup>&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{&#8211;5,&nbsp;&#8211;1,&nbsp;1,&nbsp;2,&nbsp;4}}&nbsp;=&nbsp;{1,&nbsp;4,&nbsp;16,&nbsp;25} 、<br>
+{<var>x</var><script type="text/javascript">document.write(U_times)</script>10&nbsp;+&nbsp;<var>y</var>&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{1,&nbsp;2,&nbsp;4},&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>y</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{3,&nbsp;5}}&nbsp;=&nbsp;{13,&nbsp;15,&nbsp;23,&nbsp;25,&nbsp;43,&nbsp;45} である。</p>
+
+<p>集合と<a href="#semantic-domain">意味領域</a>の演算には同じ表記を使用する。<var>A</var> と <var>B</var> を集合
+(或いは意味領域) とし、<var>x</var> 、<var>y</var> を値とすると、以下の操作がこれらに対して可能である:</p>
+
+<div class="indent">
+  <table border="1" cellspacing="1" cellpadding="1">
+  <colgroup>
+    <col style="vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;">
+  </colgroup>
+  <tr style="text-align:left;">
+    <th>表記</th>
+    <th>説明</th>
+  </tr>
+  <tr>
+    <td><a name="member-predicate"></a><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var></td>
+    <td><var>x</var> が <var>A</var> の要素であれば <span class="tag-name">true</span>。要素でなければ <span class="tag-name">false</span></td>
+  </tr>
+  <tr>
+    <td><var>x</var>&nbsp;<script type="text/javascript">document.write(U_notin)</script>&nbsp;<var>A</var></td>
+    <td><var>x</var> が <var>A</var> の要素であれば <span class="tag-name">false</span>。要素でなければ <span class="tag-name">true</span></td>
+  </tr>
+  <tr>
+    <td><a name="set-cardinality"></a>|<var>A</var>|</td>
+    <td><var>A</var> の要素数 (有限の集合にのみ使用)</td>
+  </tr>
+  <tr>
+    <td><a name="set-min"></a><span class="semantic-keyword">min</span>&nbsp;<var>A</var></td>
+    <td><var>m</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var> と、全ての要素
+      <var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var> について
+      <var>x</var>&nbsp;<script type="text/javascript">document.write(U_ge)</script>&nbsp;<var>m</var> の両方を満たす値 <var>x</var>
+      (要素に大小関係が定義されている空でない有限の集合にのみ使用)</td>
+  </tr>
+  <tr>
+    <td><a name="set-max"></a><span class="semantic-keyword">max</span>&nbsp;<var>A</var></td>
+    <td><var>m</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var> と、全ての要素
+      <var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var> について
+      <var>x</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>m</var> の両方を満たす値 <var>x</var>
+      (要素に大小関係が定義されている空でない有限の集合にのみ使用)</td>
+  </tr>
+  <tr>
+    <td><a name="set-intersection"></a><var>A</var>&nbsp;<script type="text/javascript">document.write(U_cap)</script>&nbsp;<var>B</var></td>
+    <td><var>A</var> と <var>B</var> の積集合 (<var>A</var> と <var>B</var> の両方に現れる全ての値の集合、意味領域)</td>
+  </tr>
+  <tr>
+    <td><a name="set-union"></a><var>A</var>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<var>B</var></td>
+    <td><var>A</var> と <var>B</var> の和集合 (<var>A</var> と <var>B</var> の少なくとも一方に現れる全ての値の集合、意味領域)</td>
+  </tr>
+  <tr>
+    <td><a name="set-difference"></a><var>A</var>&nbsp;&#8211;&nbsp;<var>B</var></td>
+    <td><var>A</var> と <var>B</var> の差集合 (<var>A</var> には現れるが <var>B</var> には現れない全ての値の集合、意味領域)</td>
+  </tr>
+  <tr>
+    <td><a name="set-equality"></a><var>A</var>&nbsp;=&nbsp;<var>B</var></td>
+    <td><var>A</var> と <var>B</var> が等しければ <span class="tag-name">true</span>。それ以外の場合は
+      <span class="tag-name">false</span>。<var>A</var> と <var>B</var> が等しいとは <var>A</var> の全ての要素が <var>B</var>
+	  にも存在し、<var>B</var> の全ての要素が <var>A</var> にも存在する場合である</td>
+  </tr>
+  <tr>
+    <td><var>A</var>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;<var>B</var></td>
+    <td><var>A</var> と <var>B</var> が等しければ <span class="tag-name">false</span>。それ以外の場合は
+      <span class="tag-name">true</span></td>
+  </tr>
+  <tr>
+    <td><a name="set-le"></a><var>A</var>&nbsp;<script type="text/javascript">document.write(U_sube)</script>&nbsp;<var>B</var></td>
+    <td><var>A</var> が <var>B</var> の部分集合であれば <span class="tag-name">true</span>。それ以外の場合は
+      <span class="tag-name">false</span>。<var>A</var> が <var>B</var> の部分集合であるとは <var>A</var> の全ての要素が <var>B</var>
+      にも存在する場合である。あらゆる集合はそれ自身の部分集合であり、空集合 {} はあらゆる集合の部分集合である。</td>
+  </tr>
+  <tr>
+    <td><a name="set-lt"></a><var>A</var>&nbsp;<script type="text/javascript">document.write(U_sub)</script>&nbsp;<var>B</var></td>
+    <td><var>A</var> が <var>B</var> の真部分集合であれば <span class="tag-name">true</span>。それ以外の場合は
+      <span class="tag-name">false</span>。<var>A</var>&nbsp;<script type="text/javascript">document.write(U_sub)</script>&nbsp;<var>B</var>
+      は <var>A</var>&nbsp;<script type="text/javascript">document.write(U_sube)</script>&nbsp;<var>B</var>&nbsp;<span class="semantic-keyword">and</span>&nbsp;<var>A</var>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;<var>B</var>
+      と等価である。</td>
+  </tr>
+  </table>
+</div>
+
+<p><a name="set-domain"></a><var class="domain-name">T</var> が<a href="#semantic-domain">意味領域</a>であれば
+<var class="domain-name">T</var>{} は要素が <var class="domain-name">T</var> のメンバである全集合の<a href="#semantic-domain">意味領域</a>である。例えば
+<var class="domain-name">T</var>&nbsp;=&nbsp;{1,2,3} であれば <var class="domain-name">T</var>{}&nbsp;=&nbsp;{{},&nbsp;{1},&nbsp;{2},&nbsp;{3},&nbsp;{1,2},&nbsp;{1,3},&nbsp;{2,3},&nbsp;{1,2,3}}
+となる。空集合 {} はあらゆる意味領域 <var class="domain-name">T</var> について <var class="domain-name">T</var>{} のメンバである。</p>
+
+<p><a name="set-quantifier"></a>以上に加えて、集合では数量詞 <span class="semantic-keyword">some</span> 、
+<span class="semantic-keyword">every</span> が使用可能である (「<a href="#list-quantifier">リスト</a>」も見よ)。次の数量詞は</p>
+
+<p class="indent"><span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var>&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>predicate</var>(<var>x</var>)</p>
+
+<p>集合 <var>A</var> に、<var>predicate</var>(<var>x</var>) が <span class="tag-name">true</span> を返す要素 <var>x</var>
+が1つでも存在すれば <span class="tag-name">true</span> を返す。そのような要素 <var>x</var> が存在しなければ
+<span class="semantic-keyword">some</span> 数量詞の結果は <span class="tag-name">false</span> となる。
+<span class="semantic-keyword">some</span> 数量詞が <span class="tag-name">true</span> を返すとき、変数 <var>x</var> は
+<var>predicate</var>(<var>x</var>) が <span class="tag-name">true</span> を返す集合 <var>A</var> の要素に束縛されたままとなる。そのような要素
+<var>x</var> が複数ある場合はその内任意のもの1つが選択される。例えば、</p>
+
+<p class="indent"><span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{3,&nbsp;16,&nbsp;19,&nbsp;26}&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;10&nbsp;=&nbsp;6</p>
+
+<p>は <span class="tag-name">true</span> と評価され、<var>x</var> は 16 か 26 のいずれかになる。他の例も考えると:</p>
+
+<p class="indent">(<span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{3,&nbsp;16,&nbsp;19,&nbsp;26}&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;10&nbsp;=&nbsp;7)&nbsp;=&nbsp;<span class="tag-name">false</span> 、<br>
+(<span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{}&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;10&nbsp;=&nbsp;7)&nbsp;=&nbsp;<span class="tag-name">false</span> 、<br>
+(<span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{&#8220;<code>Hello</code>&#8221;}&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<span class="tag-name">true</span>)&nbsp;=&nbsp;<span class="tag-name">true</span>
+(<var>x</var> には文字列 &#8220;<code>Hello</code>&#8221; が設定される)、<br>
+(<span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{}&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<span class="tag-name">true</span>)&nbsp;=&nbsp;<span class="tag-name">false</span> である。
+</p>
+
+<p>次の数量詞は</p>
+
+<p class="indent"><span class="semantic-keyword">every</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>A</var>&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>predicate</var>(<var>x</var>)</p>
+
+<p>集合 <var>A</var> に、<var>predicate</var>(<var>x</var>) が <span class="tag-name">false</span> を返す要素 <var>x</var>
+が1つも存在しなければ <span class="tag-name">true</span> を返す。そのような要素 <var>x</var> が1つでも存在すれば
+<span class="semantic-keyword">every</span> 数量詞の結果は <span class="tag-name">false</span> となる。特殊な場合として集合
+<var>A</var> が空集合の場合は <span class="semantic-keyword">every</span> 数量詞は常に <span class="tag-name">true</span> である。例えば、</p>
+
+<p class="indent">(<span class="semantic-keyword">every</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{3,&nbsp;16,&nbsp;19,&nbsp;26}&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;10&nbsp;=&nbsp;6)&nbsp;=&nbsp;<span class="tag-name">false</span> 、<br>
+(<span class="semantic-keyword">every</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{6,&nbsp;26,&nbsp;96,&nbsp;106}&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;10&nbsp;=&nbsp;6)&nbsp;=&nbsp;<span class="tag-name">true</span> 、<br>
+(<span class="semantic-keyword">every</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{}&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;10&nbsp;=&nbsp;6)&nbsp;=&nbsp;<span class="tag-name">true</span> である。</p>
+
+<h2><a name="real"></a><a name="rational"></a><a name="integer"></a><a name="D-Integer"></a><a name="D-Rational"></a><a name="D-Real"></a>実数</h2>
+
+<p>普通のフォントで書かれた数値はそのまま数学的実数を表す。数値は小数点あり無しのいずれの表記も可能である。先頭に &#8220;0x&#8221;
+の付いた整数は16進数である (基数が16である)。4294967296、4294967296.000、0x100000000、及び2<sup>32</sup>は全て同じ数値である。0.1は
+(誤差などの無い) 1/10の正確な値である。</p>
+
+<p><span class="domain-name">Integer</span> は全整数 {...&nbsp;&#8211;3,&nbsp;&#8211;2,&nbsp;&#8211;1,&nbsp;0,&nbsp;1,&nbsp;2,&nbsp;3&nbsp;...}
+の<a href="#semantic-domain">意味領域</a>である。3.0、3、0xFF、及び&#8211;10<sup>100</sup>は全て整数である。</p>
+
+<p><span class="domain-name">Rational</span> は全有理数の<a href="#semantic-domain">意味領域</a>である。あらゆる整数は有理数でもある
+(<span class="domain-name">Integer</span>&nbsp;<script type="text/javascript">document.write(U_sub)</script>&nbsp;<span class="domain-name">Rational</span>)。3、1/3、7.5、&#8211;12/7、及び2<sup>&#8211;5</sup>は有理数の例である。</p>
+
+<p><span class="domain-name">Real</span> は全実数の<a href="#semantic-domain">意味領域</a>である。あらゆる有理数は実数でもある
+(<span class="domain-name">Rational</span>&nbsp;<script type="text/javascript">document.write(U_sub)</script>&nbsp;<span class="domain-name">Real</span>)。円周率は実数の例であり、3.14よりも僅かに大きな値である。</p>
+
+<p><var>x</var> 、<var>y</var> を実数とすると、以下の操作がこれらに対して可能であり、その結果は常に正確なものである:</p>
+
+<div class="indent">
+  <table border="1" cellspacing="1" cellpadding="1">
+  <colgroup>
+    <col style="vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;">
+  </colgroup>
+  <tr style="text-align:left;">
+    <th>表記</th>
+    <th>説明</th>
+  </tr>
+  <tr>
+    <td><a name="real-negation"></a>&#8211;<var>x</var></td>
+    <td>符号の反転</td>
+  </tr>
+  <tr>
+    <td><a name="abs"></a>|<var>x</var>|</td>
+    <td>絶対値</td>
+  </tr>
+  <tr>
+    <td><a name="real-sum"></a><var>x</var>&nbsp;+&nbsp;<var>y</var></td>
+    <td>和</td>
+  </tr>
+  <tr>
+    <td><a name="real-difference"></a><var>x</var>&nbsp;&#8211;&nbsp;<var>y</var></td>
+    <td>差</td>
+  </tr>
+  <tr>
+    <td><a name="real-product"></a><var>x</var>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var>y</var></td>
+    <td>積</td>
+  </tr>
+  <tr>
+    <td><a name="real-quotient"></a><var>x</var>&nbsp;/&nbsp;<var>y</var></td>
+    <td>商 (<var>y</var> は0以外でなければならない)</td>
+  </tr>
+  <tr>
+    <td><a name="real-exponentiation"></a><var>x<sup>y</sup></var></td>
+    <td><var>x</var> の <var>y</var> 乗 (<var>x</var><script type="text/javascript">document.write(U_ne)</script>0 且つ <var>y</var>
+      が整数、或いは <var>x</var> が何らかの値で <var>y</var>&gt;0 の場合のみ使用)</td>
+  </tr>
+  <tr>
+    <td><a name="floor"></a><script type="text/javascript">document.write(U_lfloor)</script><var>x</var><script type="text/javascript">document.write(U_rfloor)</script></td>
+    <td><var>x</var> の<strong>切捨て値</strong>。<var>i</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>x</var>&nbsp;&lt;&nbsp;<var>i</var>+1
+      を満たす唯一の整数 <var>i</var>。<script type="text/javascript">document.write(U_lfloor)</script><script type="text/javascript">document.write(U_pi)</script><script type="text/javascript">document.write(U_rfloor)</script>&nbsp;=&nbsp;3
+      、<script type="text/javascript">document.write(U_lfloor)</script>&#8211;3.5<script type="text/javascript">document.write(U_rfloor)</SCRIPT>&nbsp;=&nbsp;&#8211;4
+      、<script type="text/javascript">document.write(U_lfloor)</script>7<script type="text/javascript">document.write(U_rfloor)</script>&nbsp;=&nbsp;7</td>
+  </tr>
+  <tr>
+    <td><a name="ceiling"></a><script type="text/javascript">document.write(U_lceil)</script><var>x</var><script type="text/javascript">document.write(U_rceil)</script></td>
+    <td><var>x</var> の<strong>切り上げ値</strong>。<var>i</var>&#8211;1&nbsp;&lt;&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>i</var>
+      を満たす唯一の整数 <var>i</var>。<script type="text/javascript">document.write(U_lceil)</script><script type="text/javascript">document.write(U_pi)</script><script type="text/javascript">document.write(U_rceil)</script>&nbsp;=&nbsp;4
+      、<script type="text/javascript">document.write(U_lceil)</script>&#8211;3.5<script type="text/javascript">document.write(U_rceil)</script>&nbsp;=&nbsp;&#8211;3
+      、<script type="text/javascript">document.write(U_lceil)</script>7<script type="text/javascript">document.write(U_rceil)</script>&nbsp;=&nbsp;7</td>
+  </tr>
+  <tr>
+    <td><a name="modulo"></a><var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;<var>y</var></td>
+    <td><var>x</var> を <var>y</var> で割ったときの<strong>剰余</strong>で、<var>x</var>&nbsp;&#8211;&nbsp;<var>y</var><script type="text/javascript">document.write(U_times+U_lfloor)</script><var>x</var>/<var>y</var><script type="text/javascript">document.write(U_rfloor)</script>
+      で定義される。<var>y</var> は0以外でなければならない。10&nbsp;<span class="semantic-keyword">mod</span>&nbsp;7&nbsp;=&nbsp;3
+      、&#8211;1&nbsp;<span class="semantic-keyword">mod</span>&nbsp;7&nbsp;=&nbsp;6</td>
+  </tr>
+  <tr>
+    <td>log<sub>10</sub>(<var>x</var>)</td>
+    <td>10を底値とする <var>x</var> の正確な対数 (<var>x</var> は必ず0より大)</td>
+  </tr>
+  </table>
+</div>
+
+<p><a name="real-comparison"></a>実数は = 、<script type="text/javascript">document.write(U_ne)</script> 、&lt;
+、<script type="text/javascript">document.write(U_le)</script> 、&gt; 、及び
+<script type="text/javascript">document.write(U_ge)</script> で比較することができる。結果は <span class="tag-name">true</span> か
+<span class="tag-name">false</span> のいずれかである。</p>
+
+<h3><a name="integer-manipulation"></a>ビット演算子</h3>
+
+<p>以下に示す4つのプロシジャは整数のビット演算を行う。整数は2種類のビットで無限精度の2進数表記されているものとして扱われ、ビット1が
+<span class="tag-name">true</span> 、ビット0が <span class="tag-name">false</span> を表す。</p>
+
+<p>より正確には、あらゆる整数 <var>x</var> は、添字 <var>i</var> の範囲が負でない全整数で常に
+<var>a<sub>i</sub></var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{0,&nbsp;1} であるビット
+<var>a<sub>i</sub></var> の無限の並びで表現できる。この並びは慣習に従い逆順に記述する:</p>
+
+<p class="indent">..., <var>a</var><sub class="var-sub">4</sub>, <var>a</var><sub class="var-sub">3</sub>, <var>a</var><sub class="var-sub">2</sub>,
+<var>a</var><sub class="var-sub">1</sub>, <var>a</var><sub class="var-sub">0</sub></P>
+
+<p>整数 <var>x</var> に対する一意なビット並びは次の公式で与えられる:</p>
+
+<p class="indent"><var>a<sub>i</sub></var>&nbsp;=&nbsp;<script type="text/javascript">document.write(U_lfloor)</script><var>x</var>&nbsp;/&nbsp;2<sup><var>i</var></sup><script type="text/javascript">document.write(U_rfloor)</script>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;2</p>
+
+<p><var>x</var> が0か正であればそのビット並びは先頭から0が無限に続き、負の場合は1が無限に続く。例えば6のビット並びは ...0...0000110
+であり、&#8211;6のビット並びは ...1...1111010 である。</p>
+
+<p>以下に示すビット <span class="small-caps">and</span> 、<span class="small-caps">or</span> 、及び
+<span class="small-caps">xor</span> 演算は2つの引数 <var>x</var> 、<var>y</var> より得られるビット並び <var>a<sub>i</sub></var>
+、<var>b<sub>i</sub></var> の対応する要素について行われる。結果はビット <var>c<sub>i</sub></var> の無限の並びで、演算結果はビット並び
+<var>c<sub>i</sub></var> を生成する一意な整数 <var>z</var> である。例えば6と&#8211;6から得られるビット並びの対応する要素の
+<span class="small-caps">and</span> は ...0...0000010 となる。これは整数2から得られるビット並びであるので、<span class="global-variable">bitwiseAnd</span>(6,&nbsp;&#8211;6)&nbsp;=&nbsp;2
+となる。</p>
+
+<table border="1" cellspacing="1" cellpadding="1">
+<colgroup>
+  <col style="vertical-align:top;white-space:nowrap;">
+  <col style="vertical-align:top;">
+</colgroup>
+<tr style="text-align:left;">
+  <th>プロシジャ</th>
+  <th>説明</th>
+</tr>
+<tr>
+  <td><a name="V-bitwiseAnd"></a><span class="global-variable">bitwiseAnd</span>(<var>x</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>,&nbsp;<var>y</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>):&nbsp;<a href="#D-Integer" class="domain-name">Integer</a></td>
+  <td><var>x</var> と <var>y</var> のビット <span class="small-caps">and</span></td>
+</tr>
+<tr>
+  <td><a name="V-bitwiseOr"></A><span class="global-variable">bitwiseOr</span>(<var>x</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>,&nbsp;<var>y</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>):&nbsp;<a href="#D-Integer" class="domain-name">Integer</a></td>
+  <td><var>x</var> と <var>y</var> のビット <span class="small-caps">or</span></td>
+</tr>
+<tr>
+  <td><a name="V-bitwiseXor"></a><span class="global-variable">bitwiseXor</span>(<var>x</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>,&nbsp;<var>y</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>):&nbsp;<a href="#D-Integer" class="domain-name">Integer</a></td>
+  <td><var>x</var> と <var>y</var> のビット <span class="small-caps">xor</span></td>
+</tr>
+<tr>
+  <td><a name="V-bitwiseShift"></a><span class="global-variable">bitwiseShift</span>(<var>x</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>,&nbsp;<var>count</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>):&nbsp;<a href="#D-Integer" class="domain-name">Integer</a></td>
+  <td><var>x</var> を左に <var>count</var> ビットシフト。<var>count</var> が負であれば <var>x</var> を右に &#8211;<var>count</var>
+    ビットシフト。右側に溢れたビットは棄てられ、右端からシフトしてきたビットは0である。<span class="global-variable">bitwiseShift</span>(<var>x</var>,&nbsp;<var>count</var>)
+    は <script type="text/javascript">document.write(U_lfloor)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;2<sup><var>count</var></sup><script type="text/javascript">document.write(U_rfloor)</script>
+    と厳密に等価である。</td>
+</tr>
+</table>
+
+<h2><a name="character"></a>文字</h2>
+
+<p>&#8216; と &#8217; で囲まれた<strong>文字</strong>はコードポイントが16進数で 0000 から 10FFFF の範囲の Unicode 文字を表す。Unicode
+はこれらのコードポイントの全てについて文字を定義しているわけではないが、本仕様ではこれら1114112個のあらゆるコードポイントを正しい文字として扱う。文字の例としては
+&#8216;<code>A</code>&#8217; 、&#8216;<code>b</code>&#8217; 、&#8216;<code><span class="control">&#171;LF&#187;</span></code>&#8217;
+、&#8216;<code><span class="control">&#171;uFFFF&#187;</span></code>&#8217; 、&#8216;<code><span class="control">&#171;U00010000&#187;</span></code>&#8217;
+、&#8216;<code><span class="control">&#171;U0010FFFF&#187;</span></code>&#8217; がある (「<a href="../introduction/notation.html#character">非
+ASCII 文字の表記法</a>」も見よ)。</p>
+
+<p><a name="code-point"></a><a name="code-unit"></a>Unicode には<strong>コードポイント</strong>の表記法がある。コードポイントは Unicode
+文字テーブル内の文字の番号である。同様に Unicode には<strong>コード単位</strong>の表記法もあり、これは特定の形式に文字を格納するのに使用する数値である。JavaScript
+は文字列を UTF-16 形式で表現するように設計されており、この表現の下ではコード単位は16ビットということになる (実装は文字列を UTF-8
+などの他の形式で格納してもよいが、インデクシングと文字の抽出については文字列が16ビットコード単位の並びであるかのように見えるようにしなければならない)。利便性のために、本仕様では16進数で
+0000 から FFFF 間での範囲についてはコードポイントとコード単位を区別しない。</p>
+
+<p><a name="D-Char16"></a><span class="domain-name">Char16</span> は集合
+{&#8216;<code><span class="control">&#171;u0000&#187;</span></code>&#8217;&nbsp;...&nbsp;&#8216;<code><span class="control">&#171;uFFFF&#187;</span></code>&#8217;}
+内の65536個の Unicode 文字の<a href="#semantic-domain">意味領域</a>である。この文字群は Unicode 基本多言語面を形成し、16進数で
+0000 から FFFF までの範囲のコードポイントを持つ。コード単位も <span class="domain-name">Char16</span> 意味領域内の値で表現される。</p>
+
+<p><a name="supplementary-character"></a><a name="surrogate"></a><a name="D-SupplementaryChar"></a><span class="domain-name">SupplementaryChar</span>
+は集合 {&#8216;<code><span class="control">&#171;U00010000&#187;</span></code>&#8217;&nbsp;...&nbsp;&#8216;<code><span class="control">&#171;U0010FFFF&#187;</span></code>&#8217;}
+内の1048576個の Unicode 文字の<a href="#semantic-domain">意味領域</a>であり、これらは16進数で 10000 から 10FFFF
+までの範囲のコードポイントを持つ Unicode 補助文字である。これらの文字は <span class="domain-name">Char16</span> 領域のメンバではないため、<span class="domain-name">Char16</span>
+コード単位の文字列に直接格納することはできない。その代わり、セマンティックアルゴリズムは必要があれば何処でも補助文字を文字列に格納する前に<strong>サロゲート</strong>ペアコード単位に変換することができる。第1サロゲートコード単位 <var>h</var> は集合
+{&#8216;<code><span class="control">&#171;uD800&#187;</span></code>&#8217;&nbsp;...&nbsp;&#8216;<code><span class="control">&#171;uDBFF&#187;</span></code>&#8217;}
+、第2サロゲートコード単位 <var>l</var> は集合 {&#8216;<code><span class="control">&#171;uDC00&#187;</span></code>&#8217;&nbsp;...&nbsp;&#8216;<code><span class="control">&#171;uDFFF&#187;</span></code>&#8217;}
+にある。補助文字はコードポイント値
+0x10000&nbsp;+&nbsp;(<a href="#V-char16ToInteger" class="global-variable">char16ToInteger</a>(<var>h</var>)&nbsp;&#8211;&nbsp;0xD800)<script type="text/javascript">document.write(U_times)</script>0x400&nbsp;+&nbsp;<a href="#V-char16ToInteger" class="global-variable">char16ToInteger</a>(<var>l</var>)&nbsp;&#8211;&nbsp;0xDC00
+でエンコードされる。</p>
+
+<p><a name="D-Char21"></a><span class="domain-name">Char21</span> は1114112個の全ての Unicode 文字
+{&#8216;<code><span class="control">&#171;u0000&#187;</span></code>&#8217;&nbsp;...&nbsp;&#8216;<code><span class="control">&#171;U0010FFFF&#187;</span></code>&#8217;}
+の<a href="#semantic-domain">意味領域</a>である。</p>
+
+<div class="algorithm-stmt"><span class="domain-name">Char21</span>&nbsp;=&nbsp;<span class="domain-name">Char16</span>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<span class="domain-name">SupplementaryChar</span></div>
+
+<p><a name="character-comparison"></a>文字は = 、<script type="text/javascript">document.write(U_ne)</script> 、&lt;
+、<script type="text/javascript">document.write(U_le)</script> 、&gt; 、及び <script type="text/javascript">document.write(U_ge)</script>
+を使って比較することができる。これらの演算子はコードポイントを比較するため、&#8216;<code>A</code>&#8217;&nbsp;=&nbsp;&#8216;<code>A</code>&#8217;
+、&#8216;<code>A</code>&#8217;&nbsp;&lt;&nbsp;&#8216;<code>B</code>&#8217;
+、&#8216;<code>A</code>&#8217;&nbsp;&lt;&nbsp;&#8216;<code>a</code>&#8217; 、及び
+&#8216;<code><span class="control">&#171;uFFFF&#187;</span></code>&#8217;&nbsp;&lt;&nbsp;&#8216;<code><span class="control">&#171;U00010000&#187;</span></code>&#8217;
+は全て <span class="tag-name">true</span> である。</p>
+
+<h3>文字の変換</h3>
+
+<p>以下のプロシジャは文字と<a href="#integer">整数</a>の相互変換を行う:</p>
+
+<table border="1" cellspacing="1" cellpadding="1">
+<colgroup>
+  <col style="vertical-align:top;white-space:nowrap;">
+  <col style="vertical-align:top;">
+</colgroup>
+<tr style="text-align:left;">
+  <th>プロシジャ</th>
+  <th>説明</th>
+</tr>
+<tr>
+  <td><a name="V-char16ToInteger"></a><span class="global-variable">char16ToInteger</span>(<var>c</var>:&nbsp;<a href="#D-Char16" class="domain-name">Char16</a>):&nbsp;{0&nbsp;...&nbsp;0xFFFF}</td>
+  <td>文字 <var>c</var> の Unicode コードポイントかコード単位の数値</td>
+</tr>
+<tr>
+  <td><a name="V-char21ToInteger"></a><span class="global-variable">char21ToInteger</span>(<var>c</var>:&nbsp;<a href="#D-Char21" class="domain-name">Char21</a>):&nbsp;{0&nbsp;...&nbsp;0x10FFFF}</td>
+  <td>文字 <var>c</var> の Unicode コードポイントの数値</td>
+</tr>
+<tr>
+  <td><a name="V-integerToChar16"></a><span class="global-variable">integerToChar16</span>(<var>i</var>:&nbsp;{0&nbsp;...&nbsp;0xFFFF}):&nbsp;<a href="#D-Char16" class="domain-name">Char16</a></td>
+  <td>Unicode コードポイント或いは Unicode コード単位が <var>i</var> である文字</td>
+</tr>
+<tr>
+  <td><a name="V-integerToSupplementaryChar"></a><span class="global-variable">integerToSupplementaryChar</span>(<var>i</var>:&nbsp;{0x10000&nbsp;...&nbsp;0x10FFFF}):
+    <a href="#D-SupplementaryChar" class="domain-name">SupplementaryChar</a></td>
+  <td>Unicode コードポイントが <var>i</var> である文字</td>
+</tr>
+<tr>
+  <td><a name="V-integerToChar21"></a><span class="global-variable">integerToChar21</span>(<var>i</var>:&nbsp;{0&nbsp;...&nbsp;0x10FFFF}):&nbsp;<a href="#D-Char21" class="domain-name">Char21</a></td>
+  <td>Unicode コードポイントが <var>i</var> である文字</td>
+</tr>
+</table>
+
+<p><a name="V-digitValue"></a>プロシジャ <span class="global-variable">digitValue</span> は以下のように定義されている:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="global-variable">digitValue</span>(<var>c</var>:&nbsp;{&#8216;<code>0</code>&#8217;&nbsp;...&nbsp;&#8216;<code>9</code>&#8217;,&nbsp;&#8216;<code>A</code>&#8217;&nbsp;...&nbsp;&#8216;<code>Z</code>&#8217;,&nbsp;&#8216;<code>a</code>&#8217;&nbsp;...&nbsp;&#8216;<code>z</code>&#8217;}):&nbsp;{0&nbsp;...&nbsp;35}</div>
+  <div class="lvl">
+    <div class="stmt"><span class="semantic-keyword">case</span>&nbsp;<var>c</var>&nbsp;<span class="semantic-keyword">of</span></div>
+    <div class="lvl">
+	  <div class="stmt">{&#8216;<code>0</code>&#8217;&nbsp;...&nbsp;&#8216;<code>9</code>&#8217;}&nbsp;<span class="semantic-keyword">do</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#V-char16ToInteger" class="global-variable">char16ToInteger</a>(<var>c</var>)&nbsp;&#8211;&nbsp;<a href="#V-char16ToInteger" class="global-variable">char16ToInteger</a>(&#8216;<code>0</code>&#8217;);</div>
+	  <div class="stmt">{&#8216;<code>A</code>&#8217;&nbsp;...&nbsp;&#8216;<code>Z</code>&#8217;}&nbsp;<span class="semantic-keyword">do</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#V-char16ToInteger" class="global-variable">char16ToInteger</a>(<var>c</var>)&nbsp;&#8211;&nbsp;<a href="#V-char16ToInteger" class="global-variable">char16ToInteger</a>(&#8216;<code>A</code>&#8217;)&nbsp;+&nbsp;10;</div>
+	  <div class="stmt">{&#8216;<code>a</code>&#8217;&nbsp;...&nbsp;&#8216;<code>z</code>&#8217;}&nbsp;<span class="semantic-keyword">do</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#V-char16ToInteger" class="global-variable">char16ToInteger</a>(<var>c</var>)&nbsp;&#8211;&nbsp;<a href="#V-char16ToInteger" class="global-variable">char16ToInteger</a>(&#8216;<code>a</code>&#8217;)&nbsp;+&nbsp;10</div>
+    </div>
+    <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">case</span></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<h2><a name="list"></a>リスト</h2>
+
+<p>0以上の要素を持つ有限の順序付きリストは太字の角括弧内に要素を並べて書く:</p>
+
+<p class="indent"><b>[</b><var>element</var><sub class="var-sub">0</sub>,&nbsp;<var>element</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>element</var><sub class="var-sub"><var>n</var>&#8211;1</sub><b>]</b></p>
+
+<p>例えば次のリストは4つの文字列を持つ:</p>
+
+<p class="indent"><b>[</b>&#8220;<code>parsley</code>&#8221;,&nbsp;&#8220;<code>sage</code>&#8221;,&nbsp;&#8220;<code>rosemary</code>&#8221;,&nbsp;&#8220;<code>thyme</code>&#8221;<b>]</b></p>
+
+<p>空のリストは <b>[]</b> のように書く。</p>
+
+<p><a href="#set">集合</a>とは異なり、リストの要素は0から始まる整数でインデックスをとることができる。リストには重複した要素があってもよい。</p>
+
+<p><a name="list-comprehension"></a>リストは内包表記を使って書くこともでき、</p>
+
+<p class="indent"><b>[</b><var>f</var>(<var>x</var>)&nbsp;<b>|</b>&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>u</var><b>]</b></p>
+
+<p>はリスト <var>u</var> の各要素に式 <var>f</var> を適用して得られる結果を要素とするリスト
+<b>[</b><var>f</var>(<var>u</var>[0]),&nbsp;<var>f</var>(<var>u</var>[1]),&nbsp;...&nbsp;,&nbsp;<var>f</var>(<var>u</var>[|<var>u</var>|&#8211;1])<b>]</b>
+を表す。<var>x</var> は式 <var>f</var> の仮引数名である。また、述語を加えることもでき、</p>
+
+<p class="indent"><b>[</b><var>f</var>(<var>x</var>)&nbsp;<b>|</b>&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>u</var>&nbsp;<span class="semantic-keyword">such</span>&nbsp;<span class="semantic-keyword">that</span>&nbsp;<var>predicate</var>(<var>x</var>)<b>]</b></p>
+
+<p>はリスト <var>u</var> の要素の内、式 <var>predicate</var> を満たす全ての要素 <var>x</var> について式 <var>f</var>
+を処理した結果のリストを表す。この結果はリスト <var>u</var> の要素 <var>x</var> と同じ順序で並べられる。例えば、</p>
+
+<p class="indent"><b>[</b><Vvar>x</var><sup>2</sup>&nbsp;<b>|</b>&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<b>[</b>&#8211;1,&nbsp;1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;2,&nbsp;5<b>]]</b>&nbsp;=&nbsp;<b>[</b>1,&nbsp;1,&nbsp;4,&nbsp;9,&nbsp;16,&nbsp;4,&nbsp;25<b>]</b><br>
+<b>[</b><var>x</var>+1&nbsp;<b>|</b>&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<b>[</b>&#8211;1,&nbsp;1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5,&nbsp;3,&nbsp;10<b>]</b>&nbsp;<span class="semantic-keyword">such</span>&nbsp;<span class="semantic-keyword">that</span>&nbsp;<var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;2&nbsp;=&nbsp;1<b>]</b>&nbsp;=&nbsp;<b>[</b>0,&nbsp;2,&nbsp;4,&nbsp;6,&nbsp;4<b>]</b></p>
+
+<p>リスト <var>u</var> = <b>[</b><var>e</var><sub class="var-sub">0</sub>,&nbsp;<var>e</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>e</var><sub class="var-sub"><var>n</var>&#8211;1</sub><b>]</b>
+、<var>v</var> = <b>[</b><var>f</var><sub class="var-sub">0</sub>,&nbsp;<var>f</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>f</var><sub class="var-sub"><var>m</var>&#8211;1</sub><b>]</b>
+を考え、<var>e</var> を要素、<var>i</var> と <var>j</var> を<a href="#integer">整数</a> 、<var>x</var>
+を値とすると以下の操作がリストに対して可能である。操作に意味があるのはその前提条件を満足する場合だけである (セマンティクスは前提条件を満足しない限りは以下の操作を使用しない)。</p>
+
+<div class="indent">
+  <table border="1" cellspacing="1 cellpadding="1">
+  <colgroup>
+    <col valign="top" style="white-space:nowrap;">
+    <col valign="top">
+    <col valign="top">
+  </colgroup>
+  <tr align="left">
+    <th>表記</th>
+    <th>前提条件</th>
+    <th>説明</th>
+  </tr>
+  <tr>
+    <td><a name="list-length"></a>|<var>u</var>|</td>
+    <td>&nbsp;</td>
+    <td>リストの長さ <var>n</var></td>
+  </tr>
+  <tr>
+    <td><a name="list-nth"></a><var>u</var>[<var>i</var>]</td>
+    <td>0&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>i</var>&nbsp;&lt;&nbsp;|<var>u</var>|</td>
+    <td><var>i</var> 番目の要素 <var>e<sub>i</sub></var></td>
+  </tr>
+  <tr>
+    <td><a name="list-slice"></a><var>u</var>[<var>i</var>&nbsp;...&nbsp;<var>j</var>]</td>
+    <td>0&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>i</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>j</var>+1&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;|<var>u</var>|</td>
+    <td><var>u</var> の <var>i</var> 番目から <var>j</var> 番目の要素を切り出したリスト
+      <b>[</b><var>e<sub>i</sub></var>,&nbsp;<var>e</var><sub class="var-sub"><var>i</var>+1</sub>,&nbsp;...&nbsp;,&nbsp;<var>e<sub>j</sub></var><b>]</b>。<var>j</var>=<var>i</var>&#8211;1
+      のときは結果は空リスト <b>[]</b></td>
+  </tr>
+  <tr>
+    <td><var>u</var>[<var>i</var>&nbsp;...]</td>
+    <td>0&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>i</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;|<var>u</var>|</td>
+    <td><var>u</var> の <var>i</var> 番目から最後の要素を切り出したリスト
+      <b>[</b><var>e<sub>i</sub></var>,&nbsp;<var>e</var><sub class="var-sub"><var>i</var>+1</sub>,&nbsp;...&nbsp;,&nbsp;<var>e</var><sub class="var-sub"><var>n</var>&#8211;1</sub><b>]</b>。<var>i</var>=<var>n</var>
+      のときは結果は空リスト <b>[]</b></td>
+  </tr>
+  <tr>
+    <td><a name="list-set-nth"></a><var>u</var>[<var>i</var>&nbsp;\&nbsp;<var>x</var>]&nbsp;&nbsp;</td>
+    <td>0&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>i</var>&nbsp;&lt;&nbsp;|<var>u</var>|</td>
+    <td><var>i</var> 番目の要素を値 <var>x</var> で置換した (その他の要素は変更しない) リスト
+      <b>[</b><var>e</var><sub class="var-sub">0</sub>,&nbsp;...&nbsp;,&nbsp;<var>e</var><sub class="var-sub"><var>i</var>&#8211;1</sub>,&nbsp;<var>x</var>,&nbsp;<var>e</var><sub class="var-sub"><var>i</var>+1</sub>,&nbsp;...&nbsp;,&nbsp;<var>e</var><sub class="var-sub"><var>n</var>&#8211;1</sub><b>]</b></td>
+  </tr>
+  <tr>
+    <td><a name="list-append"></a><var>u</var>&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<var>v</var></td>
+    <td>&nbsp;</td>
+    <td>結合されたリスト <b>[</b><var>e</var><sub class="var-sub">0</sub>,&nbsp;<var>e</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>e</var><sub class="var-sub"><var>n</var>&#8211;1</sub>,&nbsp;<var>f</var><sub class="var-sub">0</sub>,&nbsp;<var>f</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>f</var><sub class="var-sub"><var>m</var>&#8211;1</sub><b>]</b></td>
+  </tr>
+  <tr>
+    <td><a name="v-repeat"></a><span class=global-variable>repeat</span>(<var>e</var>,&nbsp;<var>i</var>)</td>
+    <td>i&nbsp;<script type="text/javascript">document.write(U_ge)</script>&nbsp;0</td>
+    <td>同じ要素 <var>e</var> を <var>i</var> 個含む長さ <var>i</var> のリスト
+      <b>[</b><var>e</var>,&nbsp;<var>e</var>,&nbsp;...&nbsp;,&nbsp;<var>e</var><b>]</b></td>
+  </tr>
+  <tr>
+    <td><a name="list-equality"></a><var>u</var>&nbsp;=&nbsp;<var>v</var></td>
+    <td>&nbsp;</td>
+    <td>リスト <var>u</var> と <var>v</var> が等しければ <span class="tag-name">true</span>。それ以外の場合は
+      <span class="tag-name">false</span>。リスト <var>u</var> と <var>v</var> が等しいとは長さが等しく、対応する各要素が全て等しい場合である</td>
+  </tr>
+  <tr>
+    <td><var>u</var>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;<var>v</var></td>
+    <td>&nbsp;</td>
+    <td>リスト <var>u</var> と <var>v</var> が等しければ <span class="tag-name">false</span>。それ以外の場合は <span class="tag-name">true</span></td>
+  </tr>
+  </table>
+</div>
+
+<p>リストは機能的なものである &#8212; リスト自身を変更するための表記は存在しない。</p>
+
+<p><a name="list-domain"></a><var class="domain-name">T</var> が<a href="#semantic-domain">意味領域</a>であれば
+<var class="domain-name">T</var>[] は要素が <var class="domain-name">T</var> のメンバである全てのリストの<a href="#semantic-domain">意味領域</a>である。空リスト
+<b>[]</b> はあらゆる <var class="domain-name">T</var> について <var class="domain-name">T</var>[] のメンバである。</p>
+
+<p><a name="list-quantifier"></a>上記に加えて、リストでは<a href="#set-quantifier">集合</a>と同じく数量詞
+<span class="semantic-keyword">some</span> 、<span class="semantic-keyword">every</span> が使用可能である:</p>
+
+<p class="indent"><span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>u</var>&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>predicate</var>(<var>x</var>)<br>
+<span class="semantic-keyword">every</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>u</var>&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>predicate</var>(<var>x</var>)
+</p>
+
+<p>リストにおけるこれらの数量詞の振る舞いは集合におけるものに似ている。異なるのは数量詞 <span class="semantic-keyword">some</span>
+が <span class="tag-name">true</span> を返したら変数 <var>x</var> にはリスト <var>u</var> の要素の内、条件
+<var>predicate</var>(<var>x</var>) を満たす<strong>最初の</strong>ものが設定されるという点である。例えば、</p>
+
+<p class="indent"><span class="semantic-keyword">some</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<b>[</b>3,&nbsp;36,&nbsp;19,&nbsp;26<b>]</b>&nbsp;<span class="semantic-keyword">satisfies</span>&nbsp;<var>x</var>&nbsp;<span class="semantic-keyword">mod</span>&nbsp;10&nbsp;=&nbsp;6</p>
+
+<p>は <span class="tag-name">true</span> と評価され、<var>x</var> には36が設定される。</p>
+
+<h2><a name="string"></a><a name="D-String"></a>文字列</h2>
+
+<p><a href="#D-Char16" class="domain-name">Char16</a> <a href="#code-unit">コード単位</a>の<a href="#list">リスト</a>は<strong>文字列</strong>と呼ばれる。通常のリストの表記に加え、文字列には0以上の文字を二重引用符で囲った簡便記法が使用できる
+(「<a href="../introduction/notation.html#character">非 ASCII 文字の表記法</a>」も見よ)。例えば、</p>
+
+<p class="indent">&#8220;<code>Wonder<span class="control">&#171;LF&#187;</span></code>&#8221;</p>
+
+<p>は以下と等価である:</p>
+
+<p class="indent"><b>[</b>&#8216;<code>W</code>&#8217;,&nbsp;&#8216;<code>o</code>&#8217;,&nbsp;&#8216;<code>n</code>&#8217;,&nbsp;&#8216;<code>d</code>&#8217;,&nbsp;&#8216;<code>e</code>&#8217;,&nbsp;&#8216;<code>r</code>&#8217;,&nbsp;&#8216;<code><span class="control">&#171;LF&#187;</span></code>&#8217;<b>]</b></p>
+
+<p>空文字列は &#8220;&#8221; のように書く。</p>
+
+<p>文字列が保持するのは<a href="#code-unit">コード単位</a>であって<a href="#code-point">コードポイント</a>ではない。<a href="#supplementary-character">Unicode
+補助文字</a>を文字列に格納するときは<a href="#surrogate">サロゲート</a>ペアを使って表現する。</p>
+
+<p><a name="string-comparison"></a>他の全てのリスト演算に加えて、文字列では &lt; 、<script type="text/javascript">document.write(U_le)</script>
+、&gt; 、<script type="text/javascript">document.write(U_ge)</script> が定義されている。文字列 <var>x</var> が文字列 <var>y</var>
+より小さいのは <var>y</var> が空文字列でなく <var>x</var> が空文字列の場合、<var>x</var> の最初のコード単位が <var>y</var>
+の最初のコード単位より小さい場合、或いは <var>x</var> と <var>y</var> の最初のコード単位が等しく <var>x</var> の残りの文字列が
+<var>y</var> の残りの文字列よりも小さい場合のいずれかである。</p>
+
+<p>これらの関係演算では<a href="#code-point">コードポイント</a>ではなく<a href="#code-unit">コード単位</a>を比較するため、<a href="#surrogate">サロゲート</a>ペアに展開された<a href="#supplementary-character">補助文字</a>を含む文字列では予期せぬ効果がある可能性があるということに注意していただきたい。例えば
+&#8216;<code><span class="control">&#171;uFFFF&#187;</span></code>&#8217;&nbsp;&lt;&nbsp;&#8216;<code><span class="control">&#171;U00010000&#187;</span></code>&#8217;
+であるが、補助文字 &#8216;<code><span class="control">&#171;U00010000&#187;</span></code>&#8217; の文字列内での表現は
+&#8220;<code><span class="control">&#171;uD800&#187;&#171;uDC00&#187;</span></code>&#8221; であり、上記の規則に従えば
+&#8220;<code><span class="control">&#171;uFFFF&#187;</span></code>&#8221;&nbsp;&gt;&nbsp;&#8220;<code><span class="control">&#171;uD800&#187;&#171;uDC00&#187;</span></code>&#8221;
+となる。</p>
+
+<p><span class="domain-name">String</span> は全文字列の<a href="#semantic-domain">意味領域</a>であり、<span class="domain-name">String</span>
+= <a href="#D-Char16" class="domain-name">Char16</a>[] である。</p>
+
+<h2><a name="tuple"></a>タプル</h2>
+
+<p><ins class="clsByTranslator">[訳注: タプルやレコードなどの表記に使う2つの括弧
+(U+2329: Left-Pointing Angle Bracket と U+232A: Right-Pointing Angle Bracket)
+は対応しているフォントが少なく、太字にすると正しく表示できないブラウザがあるようだ。気休めだが和訳版ではマウスカーソルを重ねると文字をポップアップするようにしたが、本文自体は変えていない]</ins></p>
+
+<p><strong>タプル</strong>は1つの名前と0以上のラベル付けされたフィールドからなる値の変更不能な集合体である。</p>
+
+<p>擬似コードは各タプルを定義し、そのフィールドを記述する。タプルの定義は次のような形式で、</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">tuple</span>&nbsp;<var class="domain-name">Name</var></div>
+  <div class="lvl">
+    <div class="stmt"><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,</div>
+    <div class="stmt">... ,</div>
+    <div class="stmt"><var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+
+<p>各<a href="#semantic-domain">意味領域</a>が <var class="domain-name">T</var><sub class="domain-sub">1</sub> から
+<var class="domain-name">T</var><sub><var>n</var></sub> である <var>n</var> 個のフィールドを持つ名前
+<var class="domain-name">Name</var> のタプルを定義する。HTML 版では <var class="domain-name">Name</var>
+はその定義へのリンクになっている。</p>
+
+<p><a name="tuple-constructor"></a><var class="domain-name">Name</var> の定義の後、次の表記は</p>
+
+<p class="indent"><var class="domain-name">Name</var><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var>v</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var>v<sub>n</sub></var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b></p>
+
+<p><var class="field-name">label</var><sub class="field-sub">1</sub> から <var class="field-name">label</var><sub><var>n</var></sub>
+でラベル付けされた各フィールドの値がそれぞれ <var>v</var><sub class="var-sub">1</sub> から <var>v<sub>n</sub></var>
+である名前 <var class="domain-name">Name</var> のタプルを表す。各値 <var>v<sub>i</sub></var> は対応する<a href="#semantic-domain">意味領域</a>
+<var class="domain-name">T</var><sub><var>i</var></sub> のメンバである。大半のフィールドを既存のタプル <var>a</var>
+からコピーする場合、この表記は次のように短縮でき、</p>
+
+<p class="indent"><var class="domain-name">Name</var><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><var class="field-name">label</var><sub><var>i1</var></sub>:&nbsp;<var>v<sub>i1</sub></var>,&nbsp;...&nbsp;,&nbsp;<var class="field-name">label</var><sub><var>ik</var></sub>:&nbsp;<var>v<sub>ik</sub></var>,&nbsp;other&nbsp;fields&nbsp;from&nbsp;<var>a</var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b></p>
+
+<p>名前が <var class="domain-name">Name</var> で、ラベル <var class="field-name">label</var><sub><var>i1</var></sub> から
+<var class="field-name">label</var><sub><var>ik</var></sub> のフィールド値がそれぞれ <var>v<sub>i1</sub></var> から
+<var>v<sub>ik</sub></var> 、その他のフィールドを対応するラベルの <var>a</var> の要素からコピーしたタプルを表す。</p>
+
+<p><a name="tuple-get"></a><var>a</var> がタプル
+<var class="domain-name">Name</var><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var>v</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var>v<sub>n</sub></var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b>
+であるとき、</p>
+
+<p class="indent"><var>a</var>.<var class="field-name">label</var><sub><var>i</var></sub></p>
+
+<p><var>i</var> 番目のフィールドの値 <var>v<sub>i</sub></var> を返す。タプルは機能的なものである &#8212;
+タプル自身を変更するための表記は存在しない。HTML 版では <var class="field-name">label</var><sub><var>i</var></sub>
+は <var>a</var> の型へのリンクになっている。</p>
+
+<p><a name="tuple-comparison"></a>等価演算子 = 、<script type="text/javascript">document.write(U_ne)</script>
+はタプルを比較するのに使用できる。タプルが等しいのは名前が同じで、対応するフィールドの値が等しい場合である。</p>
+
+<p>次の表記は</p>
+
+<p class="indent"><var class="domain-name">Name</var></p>
+
+<p>名前が <var class="domain-name">Name</var> である全てのタプルの<a href="#semantic-domain">意味領域</a>を表す。</p>
+
+<h2><a name="record"></a>レコード</h2>
+
+<p><strong>レコード</strong>はタプルに似た値の変更可能な集合体だが、等価性の振る舞いが異なる。</p>
+
+<p>レコードは名前と<strong>アドレス</strong>で構成される。アドレスは0以上のラベル付けされたフィールドで構成される変更可能なデータ構造体を指し、レコードの通し番号として機能する
+&#8212; <span class="semantic-keyword">new</span> (後述) によって確保されたレコードは、同じ式で作成されたものや1つの式を2度使って作成されたものも含めて全て異なるアドレスを持つ。</p>
+
+<p>擬似コードは各レコードを定義し、そのフィールドを記述する。レコードの定義は次のような形式で、</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">record</span>&nbsp;<var class="domain-name">Name</var></div>
+  <div class="lvl">
+    <div class="stmt"><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,</div>
+    <div class="stmt">... ,</div>
+    <div class="stmt"><var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">record</span>;</div>
+</div>
+
+<p><a href="#semantic-domain">意味領域</a>が <var class="domain-name">T</var><sub class="domain-sub">1</sub> から
+<var class="domain-name">T</var><sub><var>n</var></sub> までの <var>n</var> 個のフィールドを持つ名前
+<var class="domain-name">Name</var> のレコードを定義する。HTML 版では <var class="domain-name">Name</var>
+はその定義へのリンクになっている。</p>
+
+<p><a name="record-new"></a><var class="domain-name">Name</var> を定義の後、次の式は</p>
+
+<p class="indent"><span class="semantic-keyword">new</span>&nbsp;<var class="domain-name">Name</var><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var>v</var><sub class="var-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var>v<sub>n</sub></var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b></p>
+
+<p>名前 <var class="domain-name">Name</var> と新アドレス <script type="text/javascript">document.write(U_alpha)</script>
+からなるレコードを作成する。アドレス <script type="text/javascript">document.write(U_alpha)</script> における
+<var class="field-name">label</var><sub class="field-sub">1</sub> から <var class="field-name">label</var><sub><var>n</var></sub>
+でラベル付けされたフィールドは、それぞれ <var>v</var><sub class="var-sub">1</sub> から <var>v<sub>n</sub></var> の値で初期化される。各値
+<var>v<sub>i</sub></var> は対応する<a href="#semantic-domain">意味領域</a> <var class="domain-name">T</var><sub><var>i</var></sub>
+のメンバである。フィールド <var class="field-name">label</var><sub><var>k</var></sub>
+の初期値は重要ではないことを示すために、<span class="semantic-keyword">new</span> 式の
+<var class="field-name">label</var><sub><var>k</var></sub>:&nbsp;<var>v<sub>k</sub></var>
+対は省略してもよい。これはセマンティクスがある値を読む前に必ず明示的にその値に書き込むからである。</p>
+
+<p>大半のフィールドを既存のレコード <var>a</var> からコピーする場合、<span class="semantic-keyword">new</span>
+式は次のように短縮でき、</p>
+
+<p class="indent"><span class="semantic-keyword">new</span>&nbsp;<var class="domain-name">Name</var><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><var class="field-name">label</var><sub><var>i1</var></sub>:&nbsp;<var>v<sub>i1</sub></var>,&nbsp;...&nbsp;,&nbsp;<var class="field-name">label</var><sub><var>ik</var></sub>:&nbsp;<var>v<sub>ik</sub></var>,&nbsp;other&nbsp;fields&nbsp;from&nbsp;<var>a</var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b></p>
+
+<p>名前 <var class="domain-name">Name</var> と新アドレス <script type="text/javascript">document.write(U_beta)</script>
+からなるレコードを表現する。アドレス <script type="text/javascript">document.write(U_beta)</script> における
+<var class="field-name">label</var><sub class="field-sub">i1</sub> から <var class="field-name">label</var><sub><var>ik</var></sub>
+でラベル付けされたフィールドは、それぞれ <var>v</var><sub class="var-sub">i1</sub> から <var>v<sub>ik</sub></var>
+の値で初期化される。アドレス <script type="text/javascript">document.write(U_beta)</script> における他のフィールドは <var>a</var>
+のアドレスで対応するラベルのフィールド値で初期化される。</p>
+
+<p><a name="record-get"></a><var>a</var> を名前 <var class="domain-name">Name</var> 、アドレス
+<script type="text/javascript">document.write(U_alpha)</script> のレコードとすると、</p>
+
+<p class="indent"><var>a</var>.<var class="field-name">label</var><sub><var>i</var></sub></p>
+
+<p>はアドレス <script type="text/javascript">document.write(U_alpha)</script> における <var>i</var>
+番目のフィールドの現在値を返す。このフィールドには<a href="#assignment">代入</a></p>
+
+<p class="indent"><var>a</var>.<var class="field-name">label</var><sub><var>i</var></sub>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<var>w</var></p>
+
+<p>により、新しい値 <var>w</var> (意味領域 <var class="domain-name">T</var><sub><var>i</var></sub> のメンバでなければならない)
+を設定することができ、以降 <var>a</var>.<var class="field-name">label</var><sub><var>i</var></sub> は <var>w</var>
+と評価される。異なるアドレス <script type="text/javascript">document.write(U_beta)</script> を持つレコードには影響は無い。HTML
+版では各 <var class="field-name">label</var><sub><var>i</var></sub> は <var>a</var> の型へのリンクになっている。</p>
+
+<p><a name="record-comparison"></a>レコードの比較には等価演算子 = 、<script type="text/javascript">document.write(U_ne)</script>
+が使用できる。レコードが等しいのは同じアドレスを持つ場合だけである。</p>
+
+<p>次の表記は</p>
+
+<p class="indent"><var class="domain-name">name</var></p>
+
+<p>名前 <var class="domain-name">Name</var> と全てのアドレスを持つ全レコードの無限の<a href="#semantic-domain">意味領域</a>を表す。</p>
+
+<h2>JavaScript 数値型</h2>
+
+<p><a name="D-GeneralNumber"></a>JavaScript は (誤差などの無い) 本当の<a href="#real">実数</a>を、プログラマが使用できるデータ型としてサポートしない。代わりに
+JavaScript の数値は有限の範囲と精度を持つ。JavaScript で表現可能なプログラマが使用する全ての数値の<a href="#semantic-domain">意味領域</a>は
+<span class="domain-name">GeneralNumber</span> で、4つの基本的な数値の<a href="#semantic-domain">意味領域</a>
+<a href="#D-Long" class="domain-name">Long</a> 、<a href="#D-ULong" class="domain-name">ULong</a>
+、<a href="#D-Float32" class="domain-name">Float32</a> 、及び <a href="#D-Float64" class="domain-name">Float64</a>
+の和集合として定義される。</p>
+
+<div class="algorithm-stmt"><span class="domain-name">GeneralNumber</span>&nbsp;=&nbsp;<a href="#D-Long" class="domain-name">Long</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-ULong" class="domain-name">ULong</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-Float32" class="domain-name">Float32</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+
+<p>4つの基本数値意味領域は互いに、そして意味領域 <a href="#D-Integer" class="domain-name">Integer</a>
+、<a href="#D-Rational" class="domain-name">Rational</a> 、及び <a href="#D-Real" class="domain-name">Real</a>
+と共通要素を持たない。<ins class="clsByTranslator">[訳注: 後述されてように4つの基本数値意味領域はタプルであり、同じ数値を保持しても共通元を持つことにはならない]</ins></p>
+
+<p><a name="D-FiniteGeneralNumber"></a>意味領域 <span class="domain-name">FiniteGeneralNumber</span>
+は <span class="domain-name">GeneralNumber</span> の全有限数の派生型である:</p>
+
+<div class="algorithm-stmt"><span class="domain-name">FiniteGeneralNumber</span>&nbsp;=&nbsp;<a href="#D-Long" class="domain-name">Long</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-ULong" class="domain-name">ULong</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-FiniteFloat32" class="domain-name">FiniteFloat32</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-FiniteFloat64" class="domain-name">FiniteFloat64</a></div>
+
+<h3><a name="D-Long"></a>符号付き長整数</h3>
+
+<p>プログラマが使用する符号付き64ビット長整数は意味領域 <span class="domain-name">Long</span> により表現される。これらは意味領域
+<a href="#D-ULong" class="domain-name">ULong</a> 、<a href="#D-Float32" class="domain-name">Float32</a> 、及び
+<a href="#D-Float64" class="domain-name">Float64</a> のメンバとの共通要素を持たないように1つの<a href="#tuple">タプル</a>でラップされる。</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">Long</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">value</span>:&nbsp;{&#8211;2<sup>63</sup>&nbsp;...&nbsp;2<sup>63</sup>&nbsp;&#8211;&nbsp;1}</div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span></div>
+</div>
+
+<h4><a name="long-shorthand"></a>略記</h4>
+
+<p>本仕様では、<var>i</var> が &#8211;2<sup>63</sup> 以上 2<sup>63</sup>&nbsp;&#8211;&nbsp;1
+以下の<a href="#integer">整数</a>であれば、<var>i</var><sub class="tag-name">long</sub> という表記は
+<a href="#D-Long" class="domain-name">Long</a><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<var>i</var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b>
+の結果を示し、<a href="#D-Long" class="domain-name">Long</a> タプルにラップされた整数 <var>i</var> を表す。</p>
+
+<h3><a name="D-ULong"></a>符号無し長整数</h3>
+
+<p>プログラマが使用する符号無し64ビット長整数は意味領域 <span class="domain-name">ULong</span> で表現される。これらは意味領域
+<a href="#D-Long" class="domain-name">Long</a> 、<a href="#D-Float32" class="domain-name">Float32</a> 、及び
+<a href="#D-Float64" class="domain-name">Float64</a> のメンバとの共通要素を持たないように1つの<a href="#tuple">タプル</a>でラップされる。</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">ULong</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">value</span>:&nbsp;{0&nbsp;...&nbsp;2<sup>64</sup>&nbsp;&#8211;&nbsp;1}</div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span></div>
+</div>
+
+<h4><a name="ulong-shorthand"></a>略記</h4>
+
+<p>本仕様では、<var>i</var> が 0 以上 2<sup>64</sup>&nbsp;&#8211;&nbsp;1
+以下の<a href="#integer">整数</a>であれば、<var>i</var><sub class="tag-name">ulong</sub> という表記は
+<a href="#D-ULong" class="domain-name">ULong</a><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<var>i</var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b>
+の結果を示し、<a href="#D-ULong" class="domain-name">ULong</a> タプルにラップされた整数 <var>i</var> を表す。</p>
+
+<h3><a name="D-Float32"></a><a name="D-FiniteFloat32"></a>単精度浮動小数点数</h3>
+
+<p><span class="domain-name">Float32</span> は表現可能な全ての IEEE 754
+単精度浮動小数点値の<a href="#semantic-domain">意味領域</a>で、互いに区別できる全ての非数値も含まれる。<span class="domain-name">Float32</span>
+は以下の<a href="#semantic-domain">意味領域</a>の和集合である:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="domain-name">Float32</span>&nbsp;=&nbsp;<span class="domain-name">FiniteFloat32</span>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;{<span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span>,&nbsp;<span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span>,&nbsp;<span class="tag-name">nan<sub>f32</sub></span>};</div>
+  <div class="stmt"><span class="domain-name">FiniteFloat32</span>&nbsp;=&nbsp;<a href="#D-NonzeroFiniteFloat32" class="domain-name">NonzeroFiniteFloat32</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;{<span class="tag-name">+zero<sub>f32</sub></span>,&nbsp;<span class="tag-name">&#8211;zero<sub>f32</sub></span>}</div>
+</div>
+
+<p>0でない有限値は意味領域 <a href="#D-Long" class="domain-name">Long</a> 、<a href="#D-ULong" class="domain-name">ULong</a> 、及び
+<a href="#D-Float64" class="domain-name">Float64</a> のメンバとの共通要素を持たないように1つの<a href="#tuple">タプル</a>でラップされる。残りの値は
+<span class="tag-name">+zero<sub>f32</sub></span> (正0)、<span class="tag-name">&#8211;zero<sub>f32</sub></span>
+(負0)、<span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span>
+(正の無限大)、<span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span>
+(負の無限大)、及び <span class="tag-name">NaN<sub>f32</sub></span> (非数) の各<a href="#tag">タグ</a>である。</p>
+
+<div class="algorithm">
+  <div class="stmt"><a name="D-NonzeroFiniteFloat32"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">NonzeroFiniteFloat32</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">value</span>:&nbsp;<a href="#D-NormalizedFloat32Values" class="domain-name">NormalizedFloat32Values</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-DenormalizedFloat32Values" class="domain-name">DenormalizedFloat32Values</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span></div>
+</div>
+
+<p><a name="D-NormalizedFloat32Values"></a><strong>正規化された</strong>値は4261412864 (2<sup>32</sup>&#8211;2<sup>25</sup>) ある:</p>
+
+<div class="algorithm-stmt"><span class="domain-name">NormalizedFloat32Values</span>&nbsp;=&nbsp;{<var>s</var><script type="text/javascript">document.write(U_times)</script><var>m</var><script type="text/javascript">document.write(U_times)</script>2<sup><var>e</var></sup>&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>s</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{&#8211;1,&nbsp;1},&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>m</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{2<sup>23</sup>&nbsp;...&nbsp;2<sup>24</sup>&#8211;1},&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>e</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{&#8211;149&nbsp;...&nbsp;104}}</div>
+
+<p><var>m</var> を有効数字という</p>
+
+<p><a name="D-DenormalizedFloat32Values"></a>また、<strong>正規化されていない</strong>値は16777214 (2<sup>24</sup>&#8211;2) ある:</p>
+
+<div class="algorithm-stmt"><span class="domain-name">DenormalizedFloat32Values</span>&nbsp;=&nbsp;{<var>s</var><script type="text/javascript">document.write(U_times)</script><var>m</var><script type="text/javascript">document.write(U_times)</script>2<sup>&#8211;149</sup>&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>s</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{&#8211;1,&nbsp;1},&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>m</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{1&nbsp;...&nbsp;2<sup>23</sup>&#8211;1}}</div>
+
+<p><var>m</var> を有効数字という</p>
+
+<p><span class="field-name">value</span> が0より大きい意味領域 <a href="#D-NonzeroFiniteFloat32" class="domain-name">NonzeroFiniteFloat32</a>
+のメンバを<strong>正の有限値</strong>といい、<a href="#D-NonzeroFiniteFloat32" class="domain-name">NonzeroFiniteFloat32</a>
+の残りのメンバを<strong>負の有限値</strong>という。</p>
+
+<p>浮動小数点数は<a href="#tag">タグ</a>、或いは<a href="#rational">有理数</a>をラップする<a href="#tuple">タプル</a>のいずれかであるので、表記
+= 、<script type="text/javascript">document.write(U_ne)</script> をそれらの比較に使用できる。異なるタグに対して = は
+<span class="tag-name">false</span> になるので <span class="tag-name">+zero<sub>f32</sub></span>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;<span class="tag-name">&#8211;zero<sub>f32</sub></span>
+だが <span class="tag-name">NaN<sub>f32</sub></span>&nbsp;=&nbsp;<span class="tag-name">NaN<sub>f32</sub></span>
+となる点に注意していただきたい。<a href="parser-semantics.html#V-isEqual" class="global-variable">isEqual</a> と
+<a href="parser-semantics.html#V-isStrictlyEqual" class="global-variable">isStrictlyEqual</a> で定義されるとおり、JavaScript の
+<var>x</var>&nbsp;<code>==</code>&nbsp;<var>y</var> 及び <var>x</var>&nbsp;<code>===</code>&nbsp;<var>y</var> 演算子は
+<a href="#D-Float32" class="domain-name">Float32</a> の値に対して異なる振る舞いをする。</p>
+
+
+
+<h4><a name="f32-shorthand"></a>略記</h4>
+
+<p>本仕様では、<var>x</var> が<a href="#real">実数</a>であれば、<var>x</var><sub class="tag-name">f32</sub>
+という表記は <a href="#V-realToFloat32" class="global-variable">realToFloat32</a>(<var>x</var>) の結果を示し、以下に定義する
+&#8220;最も近い&#8221; <a href="#D-Float32" class="domain-name">Float32</a> 値を表す。例えば3.4は<a href="#D-Real" class="domain-name">Real</a>
+であるが、3.4<sub class="tag-name">f32</sub> は <a href="#D-Float32" class="domain-name">Float32</a> 値である
+(その正確な <span class="field-name">value</span> は実際には3.400000095367431640625である)。正の有限な
+<a href="#D-Float32" class="domain-name">Float32</a> 値の範囲は10<sup>&#8211;45</sup><sub class="tag-name">f32</sub> から
+(3.4028235&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;10<sup>38</sup>)<sub class="tag-name">f32</sub>
+である。</p>
+
+<h4>変換</h4
+
+<p><a name="V-realToFloat32"></a><span class="global-variable">realToFloat32</span> プロシジャは以下のように<a href="#real">実数</a>
+<var>x</var> を <a href="#D-Float32" class="domain-name">Float32</a> の適切な要素に変換する:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="global-variable">realToFloat32</span>(<var>x</var>:&nbsp;<a href="#D-Real" class="domain-name">Real</a>):&nbsp;<a href="#D-Float32" class="domain-name">Float32</a></div>
+  <div class="lvl">
+    <div class="stmt"><var>s</var>:&nbsp;<a href="#D-Rational" class="domain-name">Rational</a>{}&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<a href="#D-NormalizedFloat32Values" class="domain-name">NormalizedFloat32Values</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-DenormalizedFloat32Values" class="domain-name">DenormalizedFloat32Values</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;{&#8211;2<sup>128</sup>,&nbsp;0,&nbsp;2<sup>128</sup>};</div>
+    <div class="stmt">Let <var>a</var>:&nbsp;<a href="#D-Rational" class="domain-name">Rational</a> be the element of <var>s</var>
+      closest to <var>x</var> (i.e. such that |<var>a</var>&#8211;<var>x</var>| is as small as possible). If two elements
+      of <var>s</var> are equally close, let <var>a</var> be the one with an even significand; for this purpose &#8211;2<sup>128</sup>,
+      0, and 2<sup>128</sup> are considered to have even significands.</div>
+    <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>a</var>&nbsp;=&nbsp;2<sup>128</sup>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span></div>
+    <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>a</var>&nbsp;=&nbsp;&#8211;2<sup>128</sup>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span></div>
+    <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>a</var>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;0&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#D-NonzeroFiniteFloat32" class="domain-name">NonzeroFiniteFloat32</a><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<var>a</var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b></div>
+    <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>x</var>&nbsp;&lt;&nbsp;0&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="tag-name">&#8211;zero<sub>f32</sub></span></div>
+    <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="tag-name">+zero<sub>f32</sub></span></div>
+    <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span></div>
+</div>
+
+<p>このプロシジャは IEEE 754 の &#8220;四捨五入&#8221; モードの振る舞いに厳密に対応するものである。</p>
+
+<p><a name="V-truncateFiniteFloat32"></a><span class="global-variable">truncateFiniteFloat32</span> プロシジャは
+<a href="#D-FiniteFloat32" class="domain-name">FiniteFloat32</a> 値を0方向への丸めにより整数に切り詰める:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="global-variable">truncateFiniteFloat32</span>(<var>x</var>:&nbsp;<a href="#D-FiniteFloat32" class="domain-name">FiniteFloat32</a>):&nbsp;<a href="#D-Integer" class="domain-name">Integer</a></div>
+  <div class="lvl">
+    <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="tag-name">+zero<sub>f32</sub></span>,&nbsp;<span class="tag-name">&#8211;zero<sub>f32</sub></span>}&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;0&nbsp;<span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span>;</div>
+    <div class="stmt"><var>r</var>:&nbsp;<a href="#D-Rational" class="domain-name">Rational</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<var>x</var>.<a href="#D-NonzeroFiniteFloat32" class="field-name">value</a>;</div>
+    <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>r</var>&nbsp;&gt;&nbsp;0&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<script type="text/javascript">document.write(U_lfloor)</script><var>r</var><script type="text/javascript">document.write(U_rfloor)</script>&nbsp;<span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<script type="text/javascript">document.write(U_lceil)</script><var>r</var><script type="text/javascript">document.write(U_rceil)</script>&nbsp;<span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span></div>
+</div>
+
+<h4>計算</h4>
+
+<p>以下の表では IEEE 754 の規則に従った <a href="#D-Float32" class="domain-name">Float32</a>
+値の符号反転を定義する。<var>expr</var><sub class="tag-name">f32</sub> が
+<a href="#V-realToFloat32" class="global-variable">realToFloat32</a>(<var>expr</var>) の結果を表していることに注意していただきたい。</p>
+
+<div class="algorithm-stmt"><a name="V-float32Negate"></a><span class="global-variable">float32Negate</span>(<var>x</var>:&nbsp;<a href="#D-Float32" class="domain-name">Float32</a>):&nbsp;<a href="#D-Float32" class="domain-name">Float32</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+	<col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td valign="middle"><var>x</var></td>
+    <td><strong>結果</strong></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span></td>
+  </tr>
+  <tr>
+    <td>負の有限値</td>
+    <td>(&#8211;<var>x</var>.<a href="#D-NonzeroFiniteFloat32" class="field-name">value</a>)<sub class="tag-name">f32</sub></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f32</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f32</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f32</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f32</sub></span></td>
+  </tr>
+  <tr>
+    <td>正の有限値</td>
+    <td>(&#8211;<var>x</var>.<a href="#D-NonzeroFiniteFloat32" class="field-name">value</a>)<sub class="tag-name">f32</sub></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">NaN<sub>f32</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f32</sub></span></td>
+  </tr>
+  </table>
+</div>
+<h3><a name="D-Float64"></a><a name="D-FiniteFloat64"></a>倍精度浮動小数点数</h3>
+
+<p><span class="domain-name">Float64</span> は表現可能な全ての IEEE 754
+倍精度浮動小数点値の<a href="#semantic-domain">意味領域</a>で、互いに区別できる全ての非数値も含まれる。<span class="domain-name">Float64</span>
+は以下の<a href="#semantic-domain">意味領域</a>の和集合である:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="domain-name">Float64</span>&nbsp;=&nbsp;<span class="domain-name">FiniteFloat64</span>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;{<span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span>,&nbsp;<span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span>,&nbsp;<span class=tag-name>nan<sub>f64</sub></span>};</div>
+  <div class="stmt"><span class="domain-name">FiniteFloat64</span>&nbsp;=&nbsp;<a href="#D-NonzeroFiniteFloat64" class="domain-name">NonzeroFiniteFloat64</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;{<span class="tag-name">+zero<sub>f64</sub></span>,&nbsp;<span class="tag-name">&#8211;zero<sub>f64</sub></span>}</div>
+</div>
+
+<p>0でない有限値は意味領域 <a href="#D-Long" class="domain-name">Long</a> 、<a href="#D-ULong" class="domain-name">ULong</a> 、及び
+<a href="#D-Float32" class="domain-name">Float32</a> のメンバとの共通要素を持たないように1つの<a href="#tuple">タプル</a>でラップされる。残りの値は
+<span class="tag-name">+zero<sub>f64</sub></span> (正0)、<span class="tag-name">&#8211;zero<sub>f64</sub></span>
+(負0)、<span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span>
+(正の無限大)、<span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span>
+(負の無限大)、及び <span class="tag-name">NaN<sub>f64</sub></span> (非数) の各<a href="#tag">タグ</a>である。</p>
+
+<div class="algorithm">
+  <div class="stmt"><a name="D-NonzeroFiniteFloat64"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">NonzeroFiniteFloat64</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">value</span>:&nbsp;<a href="#D-NormalizedFloat64Values" class="domain-name">NormalizedFloat64Values</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-DenormalizedFloat64Values" class="domain-name">DenormalizedFloat64Values</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span></div>
+</div>
+
+<p><a name="D-NormalizedFloat64Values"></a><strong>正規化された</strong>値は18428729675200069632 (2<sup>64</sup>&#8211;2<sup>54</sup>) ある:</p>
+
+<div class="algorithm-stmt"><span class="domain-name">NormalizedFloat64Values</span>&nbsp;=&nbsp;{<var>s</var><script type="text/javascript">document.write(U_times)</script><var>m</var><script type="text/javascript">document.write(U_times)</script>2<sup><var>e</var></sup>&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>s</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{&#8211;1,&nbsp;1},&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>m</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{2<sup>52</sup>&nbsp;...&nbsp;2<sup>53</sup>&#8211;1},&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>e</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{&#8211;1074&nbsp;...&nbsp;971}}</div>
+
+<p><var>m</var> を有効数字という</p>
+
+<p><a name="D-DenormalizedFloat64Values"></a>また、<strong>正規化されていない</strong>値は9007199254740990 (2<sup>53</sup>&#8211;2) ある:</p>
+
+<div class="algorithm-stmt"><span class="domain-name">DenormalizedFloat64Values</span>&nbsp;=&nbsp;{<var>s</var><script type="text/javascript">document.write(U_times)</script><var>m</var><script type="text/javascript">document.write(U_times)</script>2<sup>&#8211;1074</sup>&nbsp;|&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>s</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{&#8211;1,&nbsp;1},&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>m</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{1&nbsp;...&nbsp;2<sup>52</sup>&#8211;1}}</div>
+
+<p><var>m</var> を有効数字という</p>
+
+<p><span class="field-name">value</span> が0より大きい意味領域 <a href="#D-NonzeroFiniteFloat64" class="domain-name">NonzeroFiniteFloat64</a>
+のメンバを<strong>正の有限値</strong>といい、<a href="#D-NonzeroFiniteFloat64" class="domain-name">NonzeroFiniteFloat64</a>
+の残りのメンバを<strong>負の有限値</strong>という。</p>
+
+<p>浮動小数点数は<a href="#tag">タグ</a>、或いは<a href="#rational">有理数</a>をラップする<a href="#tuple">タプル</a>のいずれかであるので、表記
+= 、<script type="text/javascript">document.write(U_ne)</script> をそれらの比較に使用できる。異なるタグに対して = は
+<span class="tag-name">false</span> になるので <span class="tag-name">+zero<sub>f64</sub></span>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;<span class="tag-name">&#8211;zero<sub>f64</sub></span>
+だが <span class="tag-name">NaN<sub>f64</sub></span>&nbsp;=&nbsp;<span class="tag-name">NaN<sub>f64</sub></span>
+となる点に注意していただきたい。<a href="parser-semantics.html#V-isEqual" class="global-variable">isEqual</a> と
+<a href="parser-semantics.html#V-isStrictlyEqual" class="global-variable">isStrictlyEqual</a> で定義されるとおり、JavaScript の
+<var>x</var>&nbsp;<code>==</code>&nbsp;<var>y</var> 及び <var>x</var>&nbsp;<code>===</code>&nbsp;<var>y</var> 演算子は
+<a href="#D-Float32" class="domain-name">Float64</a> の値に対して異なる振る舞いをする。</p>
+
+<h4><a name="f32-shorthand"></a>略記</h4>
+
+<p>本仕様では、<var>x</var> が<a href="#real">実数</a>であれば、<var>x</var><sub class="tag-name">f64</sub>
+という表記は <a href="#V-realToFloat64" class="global-variable">realToFloat64</a>(<var>x</var>) の結果を示し、以下に定義する
+&#8220;最も近い&#8221; <a href="#D-Float32" class="domain-name">Float64</a> 値を表す。例えば3.4は<a href="#D-Real" class="domain-name">Real</a>
+であるが、3.4<sub class="tag-name">f64</sub> は <a href="#D-Float64" class="domain-name">Float64</a> 値である
+(その正確な <span class="field-name">value</span> は実際には3.399999999999999911182158029987476766109466552734375である)。正の有限な
+<a href="#D-Float32" class="domain-name">Float64</a> 値の範囲は
+(5&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;10<sup>&#8211;324</sup>)<sub class="tag-name">f64</sub> から
+(1.7976931348623157&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;10<sup>308</sup>)<sub class="tag-name">f64</sub>
+である。</p>
+
+<h4>変換</h4>
+
+<p><a name="V-realToFloat64"></a><span class="global-variable">realToFloat64</span> プロシジャは以下のように<a href="#real">実数</a>
+<var>x</var> を <a href="#D-Float32" class="domain-name">Float64</a> の適切な要素に変換する:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class=global-variable>realToFloat64</span>(<var>x</var>:&nbsp;<a href="#D-Real" class="domain-name">Real</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+  <div class="lvl">
+    <div class"=stmt"><var>s</var>:&nbsp;<a href="#D-Rational" class="domain-name">Rational</a>{}&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<a href="#D-NormalizedFloat64Values" class="domain-name">NormalizedFloat64Values</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-DenormalizedFloat64Values" class="domain-name">DenormalizedFloat64Values</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;{&#8211;2<sup>1024</sup>,&nbsp;0,&nbsp;2<sup>1024</sup>};</div>
+    <div class="stmt">Let <var>a</var>:&nbsp;<a href="#D-Rational" class="domain-name">Rational</a> be the element of <var>s</var>
+      closest to <var>x</var> (i.e. such that |<var>a</var>&#8211;<var>x</var>| is as small as possible). If two elements
+      of <var>s</var> are equally close, let <var>a</var> be the one with an even significand; for this purpose &#8211;2<sup>1024</sup>,
+      0, and 2<sup>1024</sup> are considered to have even significands.</div>
+    <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>a</var>&nbsp;=&nbsp;2<sup>1024</sup>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></div>
+    <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>a</var>&nbsp;=&nbsp;&#8211;2<sup>1024</sup>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></div>
+    <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>a</var>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;0&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#D-NonzeroFiniteFloat64" class="domain-name">NonzeroFiniteFloat64</a><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<var>a</var><b title="&#x232A;"><script type="text/javascript">document.write(U_rang)</script></b></div>
+    <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>x</var>&nbsp;&lt;&nbsp;0&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="tag-name">&#8211;zero<sub>f64</sub></span></div>
+    <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="tag-name">+zero<sub>f64</sub></span></div>
+    <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span></div>
+</div>
+
+<p>このプロシジャは IEEE 754 の &#8220;四捨五入&#8221; モードの振る舞いに厳密に対応するものである。</p>
+<p><a name="V-float32ToFloat64"></a><span class="global-variable">float32ToFloat64</span> プロシジャは以下の表に示すとおり
+<a href="#D-Float32" class="domain-name">Float32</a> 数値 <var>x</var> を相当する <a href="#D-Float64" class="domain-name">Float64</a>
+数値に変換する:</p>
+
+<div class="algorithm-stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="global-variable">float32ToFloat64</span>(<var>x</var>:&nbsp;<a href="#D-Float32" class="domain-name">Float32</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td valign="middle"><var>x</var></td>
+    <td><strong>結果</strong></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f32</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f32</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f32</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">nan<sub>f32</sub></span></td>
+    <td><span class="tag-name">nan<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>あらゆる <a href="#D-NonzeroFiniteFloat32" class=domain-name>NonzeroFiniteFloat32</a> 値</td>
+    <td><a href="#D-NonzeroFiniteFloat64" class="domain-name">NonzeroFiniteFloat64</a><b title="&#x2329;"><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<b title="&#x232A;"><var>x</var>.<a href="#D-NonzeroFiniteFloat32" class="field-name">value</a><script type="text/javascript">document.write(U_rang)</script></b></td>
+  </tr>
+  </table>
+</div>
+
+
+<p><a name="V-truncateFiniteFloat64"></a><span class="global-variable">truncateFiniteFloat64</span> プロシジャは
+<a href="#D-FiniteFloat64" class="domain-name">FiniteFloat64</a> 値を0方向への丸めにより整数に切り詰める:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="global-variable">truncateFiniteFloat64</span>(<var>x</var>:&nbsp;<a href="#D-FiniteFloat64" class="domain-name">FiniteFloat64</a>):&nbsp;<a href="#D-Integer" class="domain-name">Integer</a></div>
+  <div class="lvl">
+    <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="tag-name">+zero<sub>f64</sub></span>,&nbsp;<span class="tag-name">&#8211;zero<sub>f64</sub></span>}&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;0&nbsp;<span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span>;</div>
+    <div class="stmt"><var>r</var>:&nbsp;<a href="#D-Rational" class="domain-name">Rational</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>;</div>
+    <div class="stmt"><span class=semantic-keyword>if</span>&nbsp;<var>r</var>&nbsp;&gt;&nbsp;0&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<script type="text/javascript">document.write(U_lfloor)</script><var>r</var><script type="text/javascript">document.write(U_rfloor)</script>&nbsp;<span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<script type="text/javascript">document.write(U_lceil)</script><var>r</var><script type="text/javascript">document.write(U_rceil)</script>&nbsp;<span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span></div>
+</div>
+
+<h4>計算</h4>
+
+<p>以下の表では IEEE 754 の規則に従った <a href="#D-Float64" class="domain-name">Float64</a>
+値の主要な計算を定義する。<var>expr</var><sub class="tag-name">f64</sub> が
+<a href="#V-realToFloat64" class="global-variable">realToFloat64</a>(<var>expr</var>) の結果を表していることに注意していただきたい。</p>
+
+<div class="algorithm-stmt"><a name="V-float64Abs"></a><span class="global-variable">float64Abs</span>(<var>x</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td><var>x</var></td>
+    <td><strong>結果</strong></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>負の有限値</td>
+    <td>(&#8211;<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>正の有限値</td>
+    <td><var>x</var></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  </table>
+</div>
+<div class="algorithm-stmt"><a name="V-float64Negate"></a><span class="global-variable">float64negate</span>(<var>x</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td><var>x</var></td>
+    <td><strong>結果</strong></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>負の有限値</td>
+    <td>(&#8211;<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>正の有限値</td>
+    <td>(&#8211;<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  </table>
+</div>
+<div class="algorithm-stmt"><a name="V-float64Add"></a><span class="global-variable">float64add</span>(<var>x</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>,&nbsp;<var>y</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td rowspan="2"><var>x</var></td>
+    <td colspan="7"><var>y</var></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>負の有限値</td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td>正の有限値</td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>負の有限値</td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;+&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><var>x</var></td>
+    <td><var>x</var></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;+&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><var>y</var></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><var>y</var></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><var>y</var></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><var>y</var></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>正の有限値</td>
+    <td><span class=tag-name>&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;+&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><var>x</var></td>
+    <td><var>x</var></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;+&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  </table>
+</div>
+<div class="algorithm-stmt"><a name="V-float64Subtract"></a><span class="global-variable">float64subtract</span>(<var>x</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>,&nbsp;<var>y</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td rowspan="2"><var>x</var></td>
+    <td colspan="7"><var>y</var></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>負の有限値</td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td>正の有限値</td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>負の有限値</td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;&#8211;&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><var>x</var></td>
+    <td><var>x</var></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;&#8211;&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(&#8211;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td>(&#8211;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(&#8211;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td>(&#8211;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>正の有限値</td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;&#8211;&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><var>x</var></td>
+    <td><var>x</var></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;&#8211;&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  </table>
+</div>
+<div class="algorithm-stmt"><a name="V-float64Multiply"></a><span class="global-variable">float64multiply</span>(<var>x</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>,&nbsp;<var>y</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td rowspan="2"><var>x</var></td>
+    <td colspan="7"><var>y</var></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>負の有限値</td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td>正の有限値</td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>負の有限値</td>
+    <td><span class=tag-name>+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></tD>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>正の有限値</td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class=field-name>value</a>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  </table>
+</div>
+<div class="algorithm-stmt"><a name="V-float64Divide"></a><span class="global-variable">float64divide</span>(<var>x</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>,&nbsp;<var>y</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td rowspan="2"><var>x</var></td>
+    <td colspan="7"><var>y</var></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>負の有限値</td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td>正の有限値</td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>負の有限値</td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class=field-name>value</a>&nbsp;/&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;/&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>正の有限値</td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;/&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;/&nbsp;<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  </table>
+</div>
+<div class="algorithm-stmt"><a name="V-float64Remainder"></a><span class="global-variable">float64remainder</span>(<var>x</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>,&nbsp;<var>y</var>:&nbsp;<a href="#D-Float64" class="domain-name">Float64</a>):&nbsp;<a href="#D-Float64" class="domain-name">Float64</a></div>
+<div class="indent">
+  <table border="2" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col style="text-align:right;vertical-align:top;white-space:nowrap;">
+    <col style="vertical-align:top;white-space:nowrap;">
+  </colgroup>
+  <tr align="center">
+    <td rowspan="2"><var>x</var></td>
+    <td colspan="4"><var>y</var></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span>,
+      <span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td>正、或いは負の有限値</td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span>, <span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>負の有限値</td>
+    <td><var>x</var></td>
+    <td><a href="#V-float64Negate" class="global-variable">float64Negate</a>(<span class="global-variable">float64remainder</span>(<a href="#V-float64Negate" class="global-variable">float64Negate</a>(<var>x</var>),&nbsp;<var>y</var>))</td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">&#8211;zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">+zero<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td>正の有限値</td>
+    <td><var>x</var></td>
+    <td>(<var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>&nbsp;&#8211;&nbsp;|<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>|<script type="text/javascript">document.write(U_times+U_lfloor)</script><var>x</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>/|<var>y</var>.<a href="#D-NonzeroFiniteFloat64" class="field-name">value</a>|<script type="text/javascript">document.write(U_rfloor)</script>)<sub class="tag-name">f64</sub></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script><sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  <tr>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+    <td><span class="tag-name">NaN<sub>f64</sub></span></td>
+  </tr>
+  </table>
+</div>
+
+<p><span class="global-variable">float64remainder</span>(<a href="#V-float64Negate" class="global-variable">float64Negate</a>(<var>x</var>),&nbsp;<var>y</var>)
+が <a href="#V-float64Negate" class="global-variable">float64Negate</a>(<span class="global-variable">float64remainder</span>(<var>x</var>,&nbsp;<var>y</var>))
+と常に同じ結果を生成することに注意していただきたい。また
+<span class="global-variable">float64remainder</span>(<var>x</var>,&nbsp;<a href="#V-float64Negate" class="global-variable">float64Negate</A>(<VAR>y</VAR>))
+は <span class="global-variable">float64remainder</span>(<var>x</var>,&nbsp;<var>y</var>) と常に同じ結果を生成する。</p>
+
+<h2><a name="proc"></a>プロシジャ</h2>
+
+<p>プロシジャ (手続き) は0以上の (実) 引数を受け取り、処理を行い、必要があれば結果を返す関数である。プロシジャは副作用を生じてもよい。このドキュメント中の<strong>プロシジャ</strong>という語は内部アルゴリズムを指すのに使用する。<strong>関数</strong>という語は
+JavaScript でプログラマが使用する <code>function</code> 構成物を指す。</p>
+
+<p>プロシジャは以下のように表記する:</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<var>f</var>(<var>param</var><sub class="var-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>param<sub>n</sub></var>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>):&nbsp;<var class="domain-name">T</var></div>
+  <div class="lvl">
+    <div class="stmt"><var>step</var><sub class="var-sub">1</sub>;</div>
+    <div class="stmt"><var>step</var><sub class="var-sub">2</sub>;</div>
+    <div class="stmt">...&nbsp;;</div>
+    <div class="stmt"><var>step<sub>m</sub></var></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<p>プロシジャが値を返さない場合は最初の行の :&nbsp;<var class="domain-name">T</var> は省く。</p>
+
+<p><var>f</var> はプロシジャ名、<var>param</var><sub class="var-sub">1</sub> から <var>param<sub>n</sub></var>
+はプロシジャの仮引数、<var class="domain-name">T</var><sub class="domain-sub">1</sub> から
+<var class="domain-name">T</var><sub><var>n</var></sub> は各引数の<a href="#semantic-domain">意味領域</a>、<var class="domain-name">T</var>
+は戻り値の<a href="#semantic-domain">意味領域</a>、そして <var>step</var><sub class="var-sub">1</sub> から <var>step<sub>m</sub></var>
+はプロシジャの<a href="#step">処理手順</a>を示すもので、副作用を生じたり結果を返したりする。<var class="domain-name">T</var>
+が省略されていればそのプロシジャは結果を返さない。プロシジャが実引数 <var>v</var><sub class="var-sub">1</sub>, ...,
+<var>v<sub>n</sub></var> を伴って呼び出されると、プロシジャの本体が処理され、必要に応じて結果が呼び出し側に返される。</p>
+
+<p>プロシジャの本体は <var>param</var><sub class="var-sub">1</sub> から <var>param<sub>n</sub></var> の仮引数を参照することができ、引数
+<var>param<sub>i</sub></var> の各参照は相当する実引数 <var>v<sub>i</sub></var> の値として評価される。プロシジャの仮引数は静的なスコープを持ち、実引数は値渡しで渡される。</p>
+
+
+
+<h3>操作</h3>
+
+<p><a name="proc-call"></a>プロシジャ <var>f</var> に対する唯一の操作は、構文
+<var>f</var>(<var>arg</var><sub class="var-sub">1</sub>,&nbsp;...,&nbsp;<var>arg<sub>n</sub></var>) による呼び出しである。まず最初に
+<var>f</var> が処理され、次に引数式 <var>arg</var><sub class="var-sub">1</sub> から <var>arg<sub>n</sub></var>
+が左から右の順で処理される。<var>f</var> かいずれかの引数式の処理が例外 <var>e</var> をスローした場合、呼び出しは後続の引数式を処理することなく直ちに
+<var>e</var> を伝播する。そうでなければ与えられた引数を使って <var>f</var> が呼び出され、結果の値があれば呼び出し側に返される。</p>
+
+<p>プロシジャは = 、<script type="text/javascript">document.write(U_ne)</script> 、その他比較演算子で比較することはできない。</p>
+
+<h3><a name="function-domain"></a>プロシジャの意味領域</h3>
+
+<p>各引数の<a href="#semantic-domain">意味領域</a>が <var class="domain-name">T</var><sub class="domain-sub">1</sub> から
+<var class="domain-name">T</var><sub><var>n</var></sub> の <var>n</var> 個の仮引数を持ち、結果の<a href="#semantic-domain">意味領域</a>が
+<var class="domain-name">T</var> であるプロシジャの意味領域は
+<var class="domain-name">T</var><sub class="domain-sub">1</sub>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var class="domain-name">T</var><sub class="domain-sub">2</sub>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;...&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>&nbsp;<script type="text/javascript">document.write(U_rarr)</script>&nbsp;<var class="domain-name">T</var>
+と書く。<var>n</var>&nbsp;=&nbsp;0 であればこの意味領域は ()&nbsp;<script type="text/javascript">document.write(U_rarr)</script>&nbsp;<var class="domain-name">T</var>
+と書き、プロシジャが結果を返さない場合は <var class="domain-name">T</var><sub class="domain-sub">1</sub>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var class="domain-name">T</var><sub class="domain-sub">2</sub>&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;...&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>&nbsp;<script type="text/javascript">document.write(U_rarr)</script>&nbsp;()
+や ()&nbsp;<script type="text/javascript">document.write(U_rarr)</script>&nbsp;() と書く。</p>
+
+<h2><a name="step"></a>処理手順</h2>
+
+<p>プロシジャの処理手順は英語と形式的な表記の両方で記述する。形式的な手順の幾つかは本節で説明する。複数の手順はセミコロンで区切り、それ以前の手順が
+<span class="semantic-keyword">return</span> や例外の伝播により終了しない限りそのままの順序で処理される。</p>
+
+<p>形式的でない手順は不変でありコメントの提示に使用される。</p>
+<P>Informal steps state invariants and provide comments.</P>
+
+<div class="algorithm-indent">
+  <div class="stmt"><a name="nothing"></a><span class="semantic-keyword">nothing</span></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">nothing</span> は何もしない。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><a name="note"></a><span class="semantic-keyword">note</span> <i>Comment</i></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">note</span> は何もせず、アルゴリズムについて (有益な) コメントを示すのに使用する。<i>Comment</i>
+が式であれば、手順 <span class="semantic-keyword">note</span> はその時点でその式を評価すると <span class="tag-name">true</span>
+になるという表明を行うコメントになる。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><var>expression</var></div>
+</div>
+
+<p>処理手順は1つの式で構成することもできる。式は評価され、その値があれば無視される。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><a name="assignment"></a><var>v</var>:&nbsp;<var class="domain-name">T</var>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<var>expression</var></div>
+</div>
+<div class="algorithm-indent">
+  <div class="stmt"><var>v</var>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<var>expression</var></div>
+</div>
+
+<p>代入手順は代入演算子 <script type="text/javascript">document.write(U_larr)</script> を使って表す。この手順は <var>expression</var>
+の値を計算し、その結果を一時変数か<a href="#mutable-global">変更可能でグローバルな</a> <var>v</var>
+に代入する。これがプロシジャ内でのその一時変数への最初の参照であれば、その変数の<a href="#semantic-domain">意味領域</a>
+<var class="domain-name">T</var> をリストに追加する。<var>v</var> に格納されるあらゆる値は意味領域
+<var class="domain-name">T</var> のメンバであることが保証される。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><var>v</var>:&nbsp;<var class="domain-name">T</var></div>
+</div>
+
+
+<p>この手順は <var>v</var> を<a href="#semantic-domain">意味領域</a> <var class="domain-name">T</var>
+の一時変数として代入無しで宣言する。他の手順が最初に値を代入するまで <var>v</var> が読み取られることは無い。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><a name="action-assignment"></a><span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span><sub><var>i</var></sub>]&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<var>expression</var></div>
+</div>
+
+
+<p><a href="#action">アクション</a>内では、代入演算子 <script type="text/javascript">document.write(U_larr)</script>
+は他のアクション <span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span><sub><var>i</var></sub>]
+を <span class="nonterminal">nonterminal</span><sub><var>i</var></sub> の現在の展開に適用した結果の定義にも使用できる。非終端記号は現在の生成規則の左側か右側に現れなければならず、このような代入は
+<span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span><sub><var>i</var></sub>]
+の値が<a href="#action">アクション</a>により明示的に定義されない場合にのみ行われる。<span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span><sub><var>i</var></sub>]
+の値が設定されるのは最高でも1回で、それ以降変更されることはない。同じ非終端記号が1つソースプログラム解析中に複数回展開される場合は、それらの展開は全て別々に扱われる。</p>
+
+<p>一時変数はそれらを定義するプロシジャ (入れ子になっているものも含む) 内でローカルである。プロシジャは呼び出される毎に新しい一時変数の集合を取得する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><var>a</var>.<var class=field-name>label</var>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<var>expression</var></div>
+</div>
+
+<p>この形式の代入は<a href="#record">レコード</a> <var>a</var> のフィールド <var class="field-name">label</var>
+の値を <var>expression</var> の値に設定する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>expression</var><sub class="var-sub">1</sub>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<var>step</var>;&nbsp;<var>step</var>;&nbsp;...;&nbsp;<var>step</var></div>
+  <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>expression</var><sub class="var-sub">2</sub>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<var>step</var>;&nbsp;<var>step</var>;&nbsp;...;&nbsp;<var>step</var></div>
+  <div class="stmt">...</div>
+  <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>expression<sub>n</sub></var>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<var>step</var>;&nbsp;<var>step</var>;&nbsp;...;&nbsp;<var>step</var></div>
+  <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<var>step</var>;&nbsp;<var>step</var>;&nbsp;...;&nbsp;<var>step</var></div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">if</span> は <var>expression</var><sub class="var-sub">1</sub> を評価する。この式は
+<span class="tag-name">true</span> か <span class="tag-name">false</span> のいずれかに評価され、<span class="tag-name">true</span>
+であれば <var>step</var> の最初のリストが処理される。そうでなければ <var>expression</var><sub class="var-sub">2</sub>
+が評価、試験され、そうでなければその次へと続く。<span class="tag-name">true</span> と評価された <var>expression</var>
+が1つも無ければ <span class="semantic-keyword">else</span> の後ろの <var>step</var> リストが処理される。<span class="semantic-keyword">else</span>
+節は省略可能で、その場合 <span class="tag-name">true</span> と評価された <var>expression</var> が1つも無ければいずれのアクションも行われない。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">case</span>&nbsp;<var>expression</var>&nbsp;<span class="semantic-keyword">of</span></div>
+  <div class="lvl">
+    <div class="stmt"><var class="domain-name">T</var><sub class="domain-sub">1</sub>&nbsp;<span class="semantic-keyword">do</span>&nbsp;<var>step</var>;&nbsp;<var>step</var>;&nbsp;...;&nbsp;<var>step</var>;</div>
+    <div class="stmt"><var class="domain-name">T</var><sub class="domain-sub">2</sub>&nbsp;<span class="semantic-keyword">do</span>&nbsp;<var>step</var>;&nbsp;<var>step</var>;&nbsp;...;&nbsp;<var>step</var>;</div>
+    <div class="stmt">...;</div>
+    <div class="stmt"><var class="domain-name">T</var><sub><var>n</var></sub>&nbsp;<span class="semantic-keyword">do</span>&nbsp;<var>step</var>;&nbsp;<var>step</var>;&nbsp;...;&nbsp;<var>step</var></div>
+    <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<var>step</var>;&nbsp;<var>step</var>;&nbsp;...;&nbsp;<var>step</var></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">case</span></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">case</SPAN> は <var>expression</var> を処理し、この式は値 <var>v</var>
+と評価される。<var>v</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>
+であれば <var>step</var> の最初のリストが処理される。それ以外で <var>v</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var class="domain-name">T</var><sub class="domain-sub">2</sub>
+であれば <var>step</var> の2番目のリストが処理される。以下同じである。<var>v</var> がいずれの <var class="domain-name">T</var><sub><var>i</var></sub>
+のメンバでもなければ <span class="semantic-keyword">else</span> の後ろの <var>step</var> リストが処理される。<span class="semantic-keyword">else</span>
+節は省略可能で、その場合 <var>v</var> は必ずいずれかの <var class="domain-name">T</var><sub><var>i</var></sub> のメンバになる。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">while</span>&nbsp;<var>expression</var>&nbsp;<span class="semantic-keyword">do</span></div>
+  <div class="lvl">
+    <div class="stmt"><var>step</var>;</div>
+    <div class="stmt"><var>step</var>;</div>
+    <div class="stmt">...;</div>
+    <div class="stmt"><var>step</var></div>
+  </div>
+  <div class=stmt><span class=semantic-keyword>end</span>&nbsp;<span class=semantic-keyword>while</span></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">while</span> は <var>expression</var> を処理する。この式は <span class="tag-name">true</span> か
+<span class="tag-name">false</span> のいずれかに評価され、<span class="tag-name">false</span>
+であれば何のアクションも行われない。<span class="tag-name">true</span> であれば <var>step</var> のリストが処理され、再び
+<var>expression</var> が評価、試験される。この繰り返しは <var>expression</var> が <span class="tag-name">true</span> を返す限り
+(或いはプロシジャが <span class="semantic-keyword">return</span> か例外の送出により終了しない限り) 続く。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">for</span>&nbsp;<span class="semantic-keyword">each</span>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>expression</var>&nbsp;<span class="semantic-keyword">do</span></div>
+  <div class="lvl">
+    <div class="stmt"><var>step</var>;</div>
+    <div class="stmt"><var>step</var>;</div>
+    <div class="stmt">...;</div>
+    <div class="stmt"><var>step</var></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">for</span>&nbsp;<span class="semantic-keyword">each</span></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">for&nbsp;each</span> は <var>expression</var>
+を処理する。この式は<a href="#set">セット</a>か<a href="#list">リスト</a> <var>A</var> として評価され、変数 <var>x</var>
+を <var>A</var> の各要素に束縛しながら <var>step</var> のリストを繰り返し処理する。<var>A</var> がリストであれば <var>x</var>
+はリストの順序どおりに各要素に束縛され、<var>A</var> が集合であれば <var>x</var> が各要素に束縛される順序は任意である。この繰り返しは
+<var>x</var> が <var>A</var> の全ての要素に束縛された後 (或いはプロシジャが <span class="semantic-keyword">return</span>
+か例外の送出により終了したとき) 終了する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">return</span>&nbsp;<var>expression</var></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">return</span> は <var>expression</var> を処理して値 <var>v</var> を取得し、値 <var>v</var>
+を伴って囲っているプロシジャから返る。囲っているプロシジャ内の以降の手順は処理されない。<var>expression</var>
+は省略可能であり、その場合囲っているプロシジャは結果を何も返さない。</p>
+
+<h3>例外</h3>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">throw</span>&nbsp;<var>expression</var></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">throw</span> は <var>expression</var> を処理して <var>v</var> を得、外部に例外
+<var>v</var> の送出を開始し、この例外が手順 <span class="semantic-keyword">catch</span>
+により捕捉されるまで部分的に処理されていた手順とプロシジャ呼び出しの中止が繰り返される。囲っているプロシジャがこの例外を補足しない限りそのプロシジャ内の手順がそれ以上処理されることはない。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">try</span></div>
+  <div class="lvl">
+    <div class="stmt"><var>step</var>;</div>
+    <div class="stmt"><var>step</var>;</div>
+    <div class="stmt">...;</div>
+    <div class="stmt"><var>step</var></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">catch</span>&nbsp;<var>v</var>:&nbsp;<var class="domain-name">T</var>&nbsp;<span class="semantic-keyword">do</span></div>
+  <div class="lvl">
+    <div class="stmt"><var>step</var>;</div>
+    <div class="stmt"><var>step</var>;</div>
+    <div class="stmt">...;</div>
+    <div class="stmt"><var>step</var></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">try</span></div>
+</div>
+
+<p>手順 <span class="semantic-keyword">try</span> は1つ目の <var>step</var> リストを処理し、それが通常通り終了すれば
+(或いは何処かで <span class="semantic-keyword">return</span> すれば) 手順 <span class="semantic-keyword">try</span>
+は終了である。<var>step</var> のどれかが例外 <var>e</var> を送出した場合、<var>e</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var class="domain-name">T</var>
+であれば例外 <var>e</var> の伝播は停止し、変数 <var>v</var> が値 <var>e</var> に束縛され、2つ目の <var>step</var>
+リストが処理される。<var>e</var>&nbsp;<script type="text/javascript">document.write(U_notin)</script>&nbsp;<var class="domain-name">T</var>
+であれば例外 <var>e</var> の伝播は止まらない。</p>
+
+<p>2つ目の <var>step</var> リストから送出された例外を手順 <span class="semantic-keyword">try</span> が受け取ることはない。</p>
+
+<h3>プロシジャの入れ子</h3>
+
+<p>外側の <span class="semantic-keyword">proc</span> の内側に <span class="semantic-keyword">proc</span>
+を1つの手順として入れ子にすることができる。この場合、内側のプロシジャはクロージャであり、外側のプロシジャの引数と一時変数にアクセスすることができる。</p>
+
+<h2><a name="action"></a>セマンティックアクション</h2>
+
+<p>セマンティックアクションは文法とセマンティクス (意味) を結びつけるものである。セマンティックアクションはセマンティクスの意味を文法生成規則によるものと捉える。</p>
+
+<p>セマンティックアクションの使用を示すために、例を見てその後セマンティックアクションの表記について解説することにする。</p>
+
+<h3>例</h3>
+
+<p>以下の文法と開始非終端記号 <a href="#N-Numeral" class="nonterminal">Numeral</a> について考える:</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Digit"></a><span class="nonterminal">Digit</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;|&nbsp;<code>1</code>&nbsp;|&nbsp;<code>2</code>&nbsp;|&nbsp;<code>3</code>&nbsp;|&nbsp;<code>4</code>&nbsp;|&nbsp;<code>5</code>&nbsp;|&nbsp;<code>6</code>&nbsp;|&nbsp;<code>7</code>&nbsp;|&nbsp;<code>8</code>&nbsp;|&nbsp;<code>9</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Digits"></a><span class="nonterminal">Digits</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-Digit" class="nonterminal">Digit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a>&nbsp;<a href="#N-Digit" class="nonterminal">Digit</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Numeral"></a><span class="nonterminal">Numeral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a>&nbsp;<code>#</code>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a></div>
+</div>
+
+<p>この文法は許容できる入力の構文を定義しており、&#8220;<code>37</code>&#8221; 、&#8220;<code>33#4</code>&#8221; 、及び
+&#8220;<code>30#2</code>&#8221; は構文的に許容できるが &#8220;<code>1a</code>&#8221;
+はそうではない。しかしながらこの文法はこれらの入力が何を意味しているかを示していない。それはセマンティクスの仕事であり、文法規則の展開による解析木上のアクションにおいて定義される。この文法上で定義されるアクションの例と
+(この例において) <span class="action-name">Value</span> という開始 <a href="#N-Numeral" class="nonterminal">Numeral</a> アクションを考える:</p>
+
+<div class="algorithm-stmt"><a name="T-syntaxError"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">syntaxError</span>;</div>
+<div class="algorithm-stmt"><a name="D-SemanticException"></a><span class="domain-name">SemanticException</span>&nbsp;=&nbsp;{<a href="#T-syntaxError" class="tag-name">syntaxError</a>};</div>
+<div class="algorithm-stmt"><span class="action-name">Value</span>[<a href="#N-Digit" class="nonterminal">Digit</a>]:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>&nbsp;=&nbsp;<a href="#V-digitValue" class="global-variable">digitValue</a>(<a href="#N-Digit" class="nonterminal">Digit</a>);</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">DecimalValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a>]:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">DecimalValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digit" class="nonterminal">Digit</a>]&nbsp;=&nbsp;<span class="action-name">Value</span>[<a href="#N-Digit" class="nonterminal">Digit</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">DecimalValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-Digit" class="nonterminal">Digit</a>]&nbsp;=&nbsp;10<script type="text/javascript">document.write(U_times)</script><span class="action-name">DecimalValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>]&nbsp;+&nbsp;<span class="action-name">Value</span>[<a href="#N-Digit" class="nonterminal">Digit</a>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="action-name">BaseValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a>]&nbsp;(<var>base</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>):&nbsp;<a href="#D-Integer" class="domain-name">Integer</a></div>
+  <div class="lvl-wide">
+    <div class="stmt">[<a href="#N-Digits" class="nonterminal">Digits</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digit" class="nonterminal">Digit</a>]&nbsp;<span class="semantic-keyword">do</span></div>
+    <div class="lvl">
+      <div class="stmt"><var>d</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Value</span>[<a href="#N-Digit" class="nonterminal">Digit</a>];</div>
+      <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>d</var>&nbsp;&lt;&nbsp;<var>base</var>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<var>d</var>&nbsp;<span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-syntaxError" class="tag-name">syntaxError</a>&nbsp;<span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span>;</div>
+    </div>
+  </div>
+  <div class="lvl">
+    <div class="stmt">[<a href="#N-Digits" class=nonterminal>Digits</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-Digit" class="nonterminal">Digit</a>]&nbsp;<span class="semantic-keyword">do</span></div>
+    <div class="lvl">
+      <div class="stmt"><var>d</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Value</span>[<a href="#N-Digit" class="nonterminal">Digit</a>];</div>
+      <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>d</var>&nbsp;&lt;&nbsp;<var>base</var>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<var>base</var><script type="text/javascript">document.write(U_times)</script><span class="action-name">BaseValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>](<var>base</var>)&nbsp;+&nbsp;<var>d</var></div>
+      <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-syntaxError" class="tag-name">syntaxError</a></div>
+      <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+    </div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Value</span>[<a href="#N-Numeral" class="nonterminal">Numeral</a>]:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-Numeral" class="nonterminal">Numeral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a>]&nbsp;=&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a>];</div>
+  </div>
+  <div class="lvl>
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-Numeral" class="nonterminal">Numeral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>&nbsp;<code>#</code>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">2</sub>]</div>
+    <div class="lvl">
+      <div class="stmt"><span class="semantic-keyword">begin</span></div>
+      <div class="lvl">
+        <div class="stmt"><var>base</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">2</sub>];</div>
+        <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>base</var>&nbsp;<script type="text/javascript">document.write(U_ge)</script>&nbsp;2&nbsp;<span class="semantic-keyword">and</span>&nbsp;<var>base</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;10&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="action-name">BaseValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>](<var>base</var>)</div>
+        <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-syntaxError" class="tag-name">syntaxError</a></div>
+        <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+      </div>
+      <div class="stmt"><span class="semantic-keyword">end</span>;</div>
+    </div>
+  </div>
+</div>
+
+<p>アクションの名前にはすみれ色の草書体フォント (<span class="action-name">violet cursive type</span>) を使う。次の定義は、</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Value</span>[<a href="#N-Numeral" class="nonterminal">Numeral</a>]:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>;</div>
+</div>
+
+<p>アクション <span class="action-name">Value</span> が非終端記号 <a href="#N-Numeral" class="nonterminal">Numeral</a>
+のあらゆる展開に適用可能で、その結果は <a href="#D-Integer" class="domain-name">Integer</a>
+であることを示す。このアクションは入力を整数にマップ、或いは例外を投げる。上記のコードは入力が &#8220;<code>30#2</code>&#8221;
+のとき例外 <a href="#T-syntaxError" class="tag-name">syntaxError</a> を投げる。</p>
+
+<p><a href="#N-Numeral" class="nonterminal">Numeral</a> を展開するそれぞれの文法生成規則のために
+<a href="#N-Numeral" class="nonterminal">Numeral</a> におけるアクション <span class="action-name">Value</span> の定義は2つある:</p>
+
+<div class="algorithm">
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-Numeral" class="nonterminal">Numeral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a>]&nbsp;=&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-Numeral" class="nonterminal">Numeral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>&nbsp;<code>#</code>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">2</sub>]</div>
+    <div class="lvl">
+      <div class="stmt"><span class="semantic-keyword">begin</span></div>
+      <div class="lvl">
+        <div class="stmt"><var>base</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">2</sub>];</div>
+        <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>base</var>&nbsp;<script type="text/javascript">document.write(U_ge)</script>&nbsp;2&nbsp;<span class="semantic-keyword">and</span>&nbsp;<var>base</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;10&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="action-name">BaseValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>](<var>base</var>)</div>
+        <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-syntaxError" class="tag-name">syntaxError</a></div>
+        <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+      </div>
+      <div class="stmt"><span class="semantic-keyword">end</span>;</div>
+    </div>
+  </div>
+</div>
+
+<p>1つのアクションのそれぞれの定義は展開の右側の終端、非終端記号においてアクションをとることが認められている。例えば、1番目の
+<a href="#N-Numeral" class="nonterminal">Numeral</a> 生成規則 (<a href="#N-Numeral" class="nonterminal">Numeral</a> が
+<a href="#N-Digits" class="nonterminal">Digits</a> に展開される) に適用された <span class="action-name">Value</span>
+は単純に非終端記号 <a href="#N-Digits" class="nonterminal">Digits</a> の展開にアクション <span class="action-name">DecimalValue</span>
+を適用し、結果を返す。一方、2番目の <a href="#N-Numeral" class="nonterminal">Numeral</a> 生成規則
+(<a href="#N-Numeral" class="nonterminal">Numeral</a> が <a href="#N-Digits" class="nonterminal">Digits</a> <code>#</code>
+<a href="#N-Digits" class="nonterminal">Digits</a> に展開される) に適用された <span class="action-name">Value</span> は非終端記号
+<a href="#N-Digits" class="nonterminal">Digits</a> の2つの展開に <span class="action-name">DecimalValue</span> と
+<span class="action-name">BaseValue</span> を適用した結果を使って処理を行う。この場合展開の右側に同一の
+<a href="#N-Digits" class="nonterminal">Digits</a> が2つ存在するため、<span class="action-name">DecimalValue</span> と
+<span class="action-name">BaseValue</span> のどちらのアクションが処理するかを示すのに下付き文字を使う。</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="action-name">BaseValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a>]&nbsp;(<var>base</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>):&nbsp;<a href="#D-Integer" class="domain-name">Integer</a></div>
+  <div class="lvl-wide">
+    <div class="stmt">[<a href="#N-Digits" class="nonterminal">Digits</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digit" class="nonterminal">Digit</a>]&nbsp;<span class="semantic-keyword">do</span></div>
+    <div class="lvl">
+      <div class="stmt"><var>d</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Value</span>[<a href="#N-Digit" class="nonterminal">Digit</a>];</div>
+      <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>d</var>&nbsp;&lt;&nbsp;<var>base</var>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<var>d</var>&nbsp;<span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-syntaxError" class="tag-name">syntaxError</a>&nbsp;<span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span>;</div>
+    </div>
+  </div>
+  <div class="lvl">
+    <div class="stmt">[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-Digit" class="nonterminal">Digit</a>]&nbsp;<span class="semantic-keyword">do</span></div>
+    <div class="lvl">
+      <div class="stmt"><var>d</var>:&nbsp;<a href="#D-Integer" class="domain-name">Integer</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Value</span>[<a href="#N-Digit" class="nonterminal">Digit</a>];</div>
+      <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>d</var>&nbsp;&lt;&nbsp;<var>base</var>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<var>base</var><script type="text/javascript">document.write(U_times)</script><span class="action-name">BaseValue</span>[<a href="#N-Digits" class="nonterminal">Digits</a><sub class="nonterminal-sub">1</sub>](<var>base</var>)&nbsp;+&nbsp;<var>d</var></div>
+      <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-syntaxError" class="tag-name">syntaxError</a></div>
+      <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+    </div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<p>この定義はアクション <span class="action-name">BaseValue</span> が非終端記号 <a href="#N-Digits" class="nonterminal">Digits</a>
+のあらゆる展開に適用可能で、その結果は1つの <a href="#D-Integer" class="domain-name">Integer</a> 引数 <var>base</var>
+をとり、<a href="#D-Integer" class="domain-name">Integer</a> を返す<a href="#proc">プロシジャ</a>であることを示す。このプロシジャの本体は
+<a href="#N-Digits" class="nonterminal">Digits</a> が何に展開されるかの場合分けになっており、プロシジャが呼び出されると非終端記号
+<a href="#N-Digits" class="nonterminal">Digits</a> の展開に対応する場合が評価される。</p>
+
+<p><a href="#N-Digit" class="nonterminal">Digit</a> における <span class="action-name">Value</span> アクションは意味式
+(<a href="#V-digitValue" class="global-variable">digitValue</a>(<a href="#N-Digit" class="nonterminal">Digit</a>))
+で非終端記号を直接使うことを示している。非終端記号 <a href="#N-Digit" class="nonterminal">Digit</a> のこのような使用は
+<a href="#N-Digit" class="nonterminal">Digit</a> 文法規則を展開して得られる文字への参照になる。</p>
+
+<p>以下は幾つかの入力例でセマンティクスを完全に評価した結果である:</p>
+
+<div class="indent">
+  <table border="1" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col valign="top" width="4em">
+    <col valign="top">
+  </colgroup>
+  <tr align="left">
+    <th style="white-space:nowrap;">入力</th>
+    <th>結果</th>
+  </tr>
+  <tr>
+    <td><code>37</code></td>
+    <td>37</td>
+  </tr>
+  <tr>
+    <td><code>33#4</code></td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td><code>30#2</code></td>
+    <td><span class="semantic-keyword">throw</span>&nbsp;<a href="#T-syntaxError" class="tag-name">syntaxError</a></td>
+  </tr>
+  </table>
+</div>
+
+<h3><a name="abbreviated-action"></a>アクションの短縮</h3>
+
+<p>非終端記号 <span class="nonterminal">N</span> の規則についての名前 <span class="action-name">A</span>
+の全てのアクションが繰り返しになっており、文法中の <span class="nonterminal">N</span> の展開の右側にある非終端記号について
+<span class="action-name">A</span> を呼ぶだけになることがある。このような場合はアクション <span class="action-name">A</span>
+のセマンティクスは以下の例で示すように短縮される。</p>
+
+<p>以下の文法規則が与えられているとき、</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">Expression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<span class="nonterminal">Subexpression</span></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<span class="nonterminal">Expression</span>&nbsp;<code class="terminal-keyword">*</code>&nbsp;<span class="nonterminal">Subexpression</span></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<span class="nonterminal">Subexpression</span>&nbsp;<code class="terminal-keyword">+</code>&nbsp;<span class="nonterminal">Subexpression</span></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">this</code></div>
+</div>
+
+<p>次の表記は</p>
+
+<div class="algorithm-stmt"><span class="action-name">Validate</span>[<span class="nonterminal">Expression</span>] (<var>cxt</var>:&nbsp;<span class="domain-name">Context</span>,&nbsp;<var>env</var>:&nbsp;<span class="domain-name">Environment</span>)
+  propagates the call to <span class="action-name">Validate</span> to nonterminals in the expansion of <span class="nonterminal">Expression</span>.</div>
+
+<p>以下の短縮形である:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="action-name">Validate</span>[<span class="nonterminal">Expression</span>]&nbsp;(<var>cxt</var>:&nbsp;<span class="domain-name">Context</span>,&nbsp;<var>env</var>:&nbsp;<span class="domain-name">Environment</span>)</div>
+  <div class="lvl-wide">
+    <div class="stmt">[<span class="nonterminal">Expression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<span class="nonterminal">Subexpression</span>]&nbsp;<span class="semantic-keyword">do</span>&nbsp;<span class="action-name">Validate</span>[<span class="nonterminal">Subexpression</span>](<var>cxt</var>,&nbsp;<var>env</var>);</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt">[<span class="nonterminal">Expression</span><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<span class="nonterminal">Expression</span><sub class="nonterminal-sub">1</sub>&nbsp;<code class="terminal-keyword">*</code>&nbsp;<span class="nonterminal">Subexpression</span>]&nbsp;<span class="semantic-keyword">do</span></div>
+    <div class="lvl">
+      <div class="stmt"><span class="action-name">Validate</span>[<span class="nonterminal">Expression</span><sub class="nonterminal-sub">1</sub>](<var>cxt</var>,&nbsp;<var>env</var>);</div>
+      <div class="stmt"><span class="action-name">Validate</span>[<span class="nonterminal">Subexpression</span>](<var>cxt</var>,&nbsp;<var>env</var>);</div>
+    </div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt">[<span class="nonterminal">Expression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<span class="nonterminal">Subexpression</span><sub class="nonterminal-sub">1</sub>&nbsp;<code class="terminal-keyword">+</code>&nbsp;<span class="nonterminal">Subexpression</span><sub class="nonterminal-sub">2</sub>]&nbsp;<span class="semantic-keyword">do</span></div>
+    <div class="lvl">
+      <div class="stmt"><span class="action-name">Validate</span>[<span class="nonterminal">Subexpression</span><sub class="nonterminal-sub">1</sub>](<var>cxt</var>,&nbsp;<var>env</var>);</div>
+      <div class="stmt"><span class="action-name">Validate</span>[<span class="nonterminal">Subexpression</span><sub class="nonterminal-sub">2</sub>](<var>cxt</var>,&nbsp;<var>env</var>);</div>
+    </div>
+  </div>
+  <div class="lvl">
+    <div class="stmt">[<span class="nonterminal">Expression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code class="terminal-keyword">this</code>]&nbsp;<span class="semantic-keyword">do</span>&nbsp;<span class="semantic-keyword">nothing</span></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<p>以下のことに注意していただきたい:</p>
+
+<ul>
+  <li>展開後の <span class="action-name">Validate</span> 呼び出しは <span class="action-name">Validate</span> を
+    <span class="nonterminal">Expression</span> について呼び出したときに渡されるものと同じ引数 <var>cxt</var> 、<var>env</var>
+    を受け取る。</li>
+  <li><span class="nonterminal">Expression</span> の展開が右側に非終端記号を2つ以上持つ場合、<span class="action-name">Validate</span>
+    はその全ての非終端記号について左から右の順に呼び出される。</li>
+  <li><span class="nonterminal">Expression</span> の展開が右側に非終端記号を1つ持たない場合、<span class="action-name">Validate</span>
+    は何もしない。</li>
+</ul>
+
+<p>propagates... 表記はアクションが値を返すときにも使用される。この場合、各展開はただ1つの非終端記号を持っていなければならない。例えば以下の文法規則が与えられているとき、</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">Id</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<span class="nonterminal">SimpleId</span></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<span class="nonterminal">ComplexId</span></div>
+</div>
+
+<p>次の表記は</p>
+
+<div class="algorithm-stmt"><span class="action-name">Eval</span>[<span class="nonterminal">Id</span>] (<var>env</var>:&nbsp;<span class="domain-name">Environment</span>,&nbsp;<var>phase</var>:&nbsp;<span class="domain-name">Phase</span>):&nbsp;<span class="domain-name">Multiname</span>
+  propagates the call to <span class="action-name">Eval</span> to nonterminals in the expansion of <span class="nonterminal">Id</span>.</div>
+
+<p>以下の短縮形である:</p>
+
+<div class="algorithm">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="action-name">Eval</span>[<span class="nonterminal">Id</span>]&nbsp;(<var>env</var>:&nbsp;<span class="domain-name">Environment</span>,&nbsp;<var>phase</var>:&nbsp;<span class="domain-name">Phase</span>):&nbsp;<span class="domain-name">Multiname</span></div>
+  <div class="lvl-wide">
+    <div class="stmt">[<span class="nonterminal">Id</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<span class="nonterminal">SimpleId</span>]&nbsp;<span class="semantic-keyword">do</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="action-name">Eval</span>[<span class="nonterminal">SimpleId</span>](<var>env</var>,&nbsp;<var>phase</var>);</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt">[<span class="nonterminal">Id</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<span class="nonterminal">ComplexId</span>]&nbsp;<span class="semantic-keyword">do</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<span class="action-name">Eval</span>[<span class="nonterminal">ComplexId</span>](<var>env</var>,&nbsp;<var>phase</var>)</div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<h2>意味定義要約</h2>
+
+<p>以下の表記は最上位意味実体を定義するのに使用する:</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><var class="domain-name">Name</var>&nbsp;=&nbsp;<var class="domain-name">expression</var>;</div>
+</div>
+
+<p>この表記は <var class="domain-name">Name</var> を<a href="#semantic-domain">意味領域</a> <var class="domain-name">expression</var>
+の略記として定義する。HTML 版では <var class="domain-name">Name</var> はその定義へのリンクになっている。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><var class="global-variable">name</var>:&nbsp;<var class="domain-name">T</var>&nbsp;=&nbsp;<var>expression</var>;</div>
+</div>
+
+<p>この表記は <var class="global-variable">name</var> を、<var>expression</var> の処理結果で与えられる値の定数として定義し、値は<a href="#semantic-domain">意味領域</a>
+<var class="domain-name">T</var> のメンバであることが保証される。HTML 版では <var class="global-variable">name</var>
+はその定義へのリンクになっている。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><a name="mutable-global"></a><var class="global-variable">name</var>:&nbsp;<var class="domain-name">T</var>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<var>expression</var>;</div>
+</div>
+
+<p>この表記は <var class="global-variable">name</var> を変更可能なグローバル値として定義する。その初期値は <var>expression</var>
+の処理結果であるが、後で<a href="#assignment">代入</a>により変更可能である。値は<a href="#semantic-domain">意味領域</a>
+<var class="domain-name">T</var> のメンバであることが保証される。HTML 版では <var class="global-variable">name</var>
+はその定義へのリンクになっている。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<var>f</var>(<var>param</var><sub class="var-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>param<sub>n</sub></var>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>):&nbsp;<var class="domain-name">T</var></div>
+  <div class="lvl">
+    <div class="stmt"><var>step</var><sub class="var-sub">1</sub>;</div>
+    <div class="stmt"><var>step</var><sub class="var-sub">2</sub>;</div>
+    <div class="stmt">...&nbsp;;</div>
+    <div class="stmt"><var>step<sub>m</sub></var></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<p>この表記は <var class="global-variable">f</var> を<a href="#proc">プロシジャ</a>として定義する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">tag</span>&nbsp;<var class="tag-name">name</var>;</div>
+</div>
+
+<p>この表記は<a href="#tag">タグ</a>を定義する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">tuple</span>&nbsp;<var class="domain-name">Name</var></div>
+  <div class="lvl">
+    <div class="stmt"><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,</div>
+    <div class="stmt">... ,</div>
+    <div class="stmt"><var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+
+<p>この表記は<a href="#tuple">タプル</a>を定義する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">record</span>&nbsp;<var class="domain-name">Name</var></div>
+  <div class="lvl">
+    <div class="stmt"><var class="field-name">label</var><sub class="field-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,</div>
+    <div class="stmt">... ,</div>
+    <div class="stmt"><var class="field-name">label</var><sub><var>n</var></sub>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">record</span>;</div>
+</div>
+
+<p>この表記は<a href="#record">レコード</a>を定義する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span>]:&nbsp;<var class="domain-name">T</var>;</div>
+</div>
+
+<p>この表記はアクション <span class="action-name">Action</span> が非終端記号 <span class="nonterminal">nonterminal</span>
+について処理可能で、<a href="#semantic-domain">意味領域</a> <var class="domain-name">T</var> のメンバである値を返すということを示す。アクションの値は以下で述べる表記
+<span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<var>expansion</var>]&nbsp;=&nbsp;<var>expression</var>
+で定義されるか、或いは<a href="#action-assignment">アクションの代入</a>による他のアクション処理の副作用として設定される。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<var>expansion</var>]&nbsp;=&nbsp;<var>expression</var>;</div>
+</div>
+
+<p>この表記は非終端記号 <span class="nonterminal">nonterminal</span> が与えられた <var>expansion</var> に展開される場合にアクション
+<span class="action-name">Action</span> を非終端記号 <span class="nonterminal">nonterminal</span> について適用した値を規定する。<var>expansion</var>
+には0以上の終端、或いは非終端記号を含めることができる (他の表記が文法生成規則の右辺で認めているのと同じである)。更に <var>expansion</var>
+の終端、非終端記号は <var>expression</var> 内で明確に<a href="#action-reference">アクション参照</a>、<a href="#nonterminal-reference">非終端参照</a>されるように下付き文字を使うことができる。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<var>expansion</var>]:&nbsp;<var class="domain-name">T</var>&nbsp;=&nbsp;<var>expression</var>;</div>
+</div>
+
+<p>この表記は上の2つの結合形である &#8212; 値だけではなくアクションの<a href="#semantic-domain">意味領域</a>も規定する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<var>expansion</var>]</div>
+  <div class="lvl">
+    <div class="stmt"><span class="semantic-keyword">begin</span></div>
+    <div class="lvl">
+      <div class="stmt"><var>step</var><sub class="var-sub">1</sub>;</div>
+      <div class="stmt"><var>step</var><sub class="var-sub">2</sub>;</div>
+      <div class="stmt">...&nbsp;;</div>
+      <div class="stmt"><var>step<sub>m</sub></var></div>
+    </div>
+    <div class="stmt"><span class="semantic-keyword">end</span>;</div>
+  </div>
+</div>
+
+<p>この表記はアクションの処理が1つの式で表すには複雑である場合に使用する。アクションを処理する手順は
+<var>step</var><sub class="var-sub">1</sub> から <var>step<sub>m</sub></var> のリストになっており、手順
+<span class="semantic-keyword">return</span> はアクションの値を生成する。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<var>expansion</var>]&nbsp;(<var>param</var><sub class="var-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>param<sub>n</sub></var>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>):&nbsp;<var class="domain-name">T</var></div>
+  <div class="lvl">
+    <div class="stmt"><var>step</var><sub class="var-sub">1</sub>;</div>
+    <div class="stmt"><var>step</var><sub class="var-sub">2</sub>;</div>
+    <div class="stmt">...&nbsp;;</div>
+    <div class="stmt"><var>step<sub>m</sub></var></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<p>この表記は単一の展開 <var>expansion</var> が非終端記号 <span class="nonterminal">nonterminal</span> に適用されて
+<span class="action-name">Action</span> がプロシジャを返すときにのみ使用する。プロシジャの手順は
+<var>step</var><sub class="var-sub">1</sub> から <var>step<sub>m</sub></var> のリストになっている。</p>
+
+<div class="algorithm-indent">
+  <div class="stmt"><span class="semantic-keyword">proc</span>&nbsp;<span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span>]&nbsp;(<var>param</var><sub class="var-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>param<sub>n</sub></var>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>):&nbsp;<var class="domain-name">T</var></div>
+  <div class="lvl-wide">
+    <div class="stmt">[<span class="nonterminal">nonterminal</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<var>expansion</var><sub class="var-sub">1</sub>]&nbsp;<span class="semantic-keyword">do</span></div>
+	<div class="lvl">
+	  <div class="stmt"><var>step</var>;</div>
+	  <div class="stmt">...&nbsp;;</div>
+      <div class="stmt"><var>step</var>;</div>
+	</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt">[<span class="nonterminal">nonterminal</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<var>expansion</var><sub class="var-sub">2</sub>]&nbsp;<span class="semantic-keyword">do</span></div>
+	<div class="lvl">
+	  <div class="stmt"><var>step</var>;</div>
+	  <div class="stmt">...&nbsp;;</div>
+      <div class="stmt"><var>step</var>;</div>
+	</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt">...;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt">[<span class="nonterminal">nonterminal</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<var>expansion<sub>n</sub></var>]&nbsp;<span class="semantic-keyword">do</span></div>
+	<div class="lvl">
+	  <div class="stmt"><var>step</var>;</div>
+	  <div class="stmt">...&nbsp;;</div>
+	  <div class="stmt"><var>step</var></div>
+	</div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<p>この表記は複数の展開 <var>expansion</var><sub class="var-sub">1</sub> から <var>expansion<sub>n</sub></var> が非終端記号
+<span class="nonterminal">nonterminal</span> に適用されて <span class="action-name">Action</span>
+がプロシジャを返すときにのみ使用する。このプロシジャの本体は各展開についての場合分けになっており、文法解析器を使用して発見された展開に対応する手順のみが評価される。</p>
+
+<div class="algorithm-stmt"><span class="action-name">Action</span>[<span class="nonterminal">nonterminal</span>]&nbsp;(<var>param</var><sub class="var-sub">1</sub>:&nbsp;<var class="domain-name">T</var><sub class="domain-sub">1</sub>,&nbsp;...&nbsp;,&nbsp;<var>param<sub>n</sub></var>:&nbsp;<var class="domain-name">T</var><sub><var>n</var></sub>)
+  propagates the call to <span class="action-name">Action</SPAN> to every nonterminal in the expansion of <span class="nonterminal">nonterminal</span>.</div>
+
+<p>この表記は <span class="nonterminal">nonterminal</span> についての <span class="action-name">Action</span> の呼び出しが、<span class="nonterminal">nonterminal</span>
+の適切な展開の右側の各非終端記号について同じ引数での呼び出しを表すということの<a href="#abbreviated-action">短縮形</a>である。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:bottom;white-space:nowrap;">
+    <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+    最終更新: 2003年6月13日 (金)</address>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="index.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="stages.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal@student.interq.or.jp">exeal@student.interq.or.jp</a>&gt;<br />
+	<a href="http://www.mozilla.org/js/language/js20/formal/notation.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br />
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

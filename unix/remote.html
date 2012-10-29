@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title> unix で mozilla を遠隔操作するには</title>
+   <link rel="alternate" hreflang="en" modified="July 7, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/unix/remote.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<center><b><font size="+2">
+ unix で mozilla を遠隔操作するには
+</font></b></center>
+[ <a href="http://home.netscape.com/newsref/std/x-remote.html">4.x x-remote doc</a> から借用]<br>
+ Netscape Navigator が -remote 引数を伴って呼び出されるとき、
+ウィンドウを開くのではなく、その代わりにすでに存在しているプロセスに接続して制御します。
+ -remote スイッチへの引数は Xtaction をオプション的な引数として呼び出します。
+<p>
+遠隔操作は X プロパティを使って実装されていますから、同じマシンで
+二つのプロセスを走らせる必要はなく、ファイルシステムを共有する必要もありません。
+<p>
+私たちは古い4.xの遠隔コマンドを mozilla でサポートし始めています。 <a
+href="http://lxr.mozilla.org/seamonkey/source/widget/src/gtk/nsGtkMozRemoteHelper.cpp">nsGtkMozRemoteHelper.cpp</a> と、
+ <a href="http://lxr.mozilla.org/seamonkey/source/widget/src/xremoteclient/mozilla-xremote-client.cpp">mozilla-xremote-client.cpp</a> および
+ <a
+href="http://lxr.mozilla.org/seamonkey/source/xpfe/components/xremote/src/XRemoteService.cpp">XRemoteService.cpp</a>
+が一番新しい状態を示しているものですので、参照してください。たとえばこのように利用します：<br>
+<pre>
+  <b>mozilla -remote "openurl(http://www.mozilla.org)"</b>
+</pre>
+<p>
+ mozilla-xremote-client の構文：<br>
+ mozilla-xremote-client
+ [-a firefox|thunderbird|mozilla|any]
+ [-u <username>]
+ [-p <profile>]
+ COMMAND
+<p>
+ コマンドの構文は大文字・小文字を区別しませんが、以下のリストでは 4.x の時代と同じ表記で記述しています。
+<p>
+コマンドの中にスペース記号を含め<i>ないでください。</i>
+<p>
+動作可能と思われるコマンド一覧：
+<ul><p><dl>
+<dt><b>openURL() と openFile()</b>
+<dd>ダイアログボックスを表示し、 URL の入力を促します。
+<dt><b>openURL(<i>URL</i>) と openFile(<i>URL</i>)</b>
+<dd>指定した文書を、URL の入力を促すダイアログボックスを使わずに開きます。
+<dt><b>openURL(<i>URL</i>,new-window)</b>
+<dd>新しいウィンドウを作成して、指定された文書を表示します。
+<dt><b>openURL(<i>URL</i>,new-tab)</b>
+<dd>新しいタブを作成して、指定された文書を表示します。
+<i>( 1.0.1, 1.1 以降で使用できます)</i>
+<dt><b>mailto()</b>
+<dd> <b>To:</b> 欄が空のメールダイアログをポップアップで表示します。
+<dt><b>mailto(<i>a</i>,<i>b</i>,<i>c</i>)</b>
+<dd>デフォルトの <b>To:</b> 欄に<b><tt> "a, b, c" </tt></b>のアドレスを挿入します。
+<dt><b>xfeDoCommand(openBrowser)</b>
+<dd>新しいブラウザウィンドウを開きます。
+<dt><b>xfeDoCommand(openInbox)</b>
+<dd>新しいメール＆ニュースグループウィンドウを開きます。
+<dt><b>xfeDoCommand(composeMessage)</b>
+<dd>新しいメッセージ作成ウィンドウを開きます。
+<dt><b>ping()</b>
+<dd> Mozilla が現在、動作しているかを調べます。スクリプトで使うことができます。
+</dl>
+</p>
+</ul>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/unix/remote.html">英語版</a> 2004/07/07</span> - <span>和訳版 2005/06/28</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/unix/remote.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

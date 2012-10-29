@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <meta name="Author" content="Alec Flett">
+    <meta name="GENERATOR" content="Mozilla/4.6 [en] (X11; I; Linux 2.2.10 i686) [Netscape]">
+  
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/mailnews/arch/accountmanager.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+    &nbsp;
+    <center>
+      <h1>複数Account APIの利用</h1>
+      By Alec Flett <a href="mailto:alecf@netscape.com">alecf@netscape.com</a>
+    </center>
+
+    <ul>
+      <li> <a href="#Structure">構造</a>
+        <ul>
+          <li> <a href="#Server">Server</a>
+          <li> <a href="#Identity">Identity (送信者)</a>
+        </ul>
+      <li> <a href="#Storage">Storage</a>
+      <li> <a href="#Creating">新しい account の作成</a>
+      <li> <a href="#SMTP">SMTP Servers</a>
+      <li> <a href="#AppendixA">Appendix A</a>: 全ての preference と propertie の一覧
+    </ul>
+    <hr>
+    <h2><a name="Structure">Structure</h2>
+    <p>account system は以下からなります。:
+    <ul>
+      <li>
+        Account Manager (<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/public/nsIMsgAccountManager.idl">nsIMsgAccountManager</a>): client の中には、account、server などの一覧を扱う1つの account manager があります。
+        acount に関係した新しい object の生成の責任がたいていあります。
+        account managerは、accountのmain の list を扱います。</li>
+      <li>
+        Account (<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/public/nsIMsgAccount.idl">nsIMsgAccount</a>): 1つの account は1つの single incoming server と1つ以上の identity からなります。
+        1つの account は、1つの imcoming server と identity を共に結びつける1つの container にすぎません。</li>
+
+      <li>
+        Incoming Server (<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/public/nsIMsgIncomingServer.idl">nsIMsgIncomingServer</a>): 1つの incoming server は、POP,IMAP,NNTP server のような1つのremote message の保存を表現します。
+	それは hostname, user login name と通知の設定のような remote server から mail を集めるために必要な全ての情報を保持します。</li>
+
+      <li>
+        Identity (<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/public/nsIMsgIdentity.idl">nsIMsgIdentity</a>):
+ 1つの identity は、<i>outgoing</i> mail message を構成するのに必要な全ての情報を含みます。
+        それは、user の full name と e-mail address を含みます。</li>
+
+      <li>
+        SMTP Server(<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/compose/public/nsISmtpServer.idl">nsISmtpServer</a>):
+ 1つの SMTP server は、特定のものには結びつけられず、
+SMTP Service (<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/compose/public/nsISmtpService.idl">nsISmtpService</a>)から得ることができます。
+    </ul>
+    次は、共通の設定の1つの例です。<BR>
+
+    (ありのままなのは御了承ください)
+    <center>Account Manager</center>
+    <div style="border:groove; align: center">
+      <pre>
++- Account 1
+|    +- Incoming Server 1 (imap.mywork.com IMAP Server, my work account)
+|    +- Identity 1 (Alec Flett &lt;alecf@mywork.com&gt;)
++- Account 2
+|    +- Incoming Server 2 (pop.myisp.com POP Server, my ISP account)
+|    +- Identity 2 (Alec Flett &lt;alecf@myisp.com&gt;)
++- Account 3
+|    +- Incoming Server 3 (news.myisp.com NNTP server, my ISP's server)
+|    +- Identity 3 (Alec Flett &lt;alecfNOSPAM@myisp.com&gt;)
++- Account 4
+     +- Incoming Server 4 (news.mozilla.org NNTP server, mozilla devel)
+     +- Identity 2 (Alec Flett &lt;alecf@myisp.com&gt;)
+     +- Identity 3 (Alec Flett &lt;alecfNOSPAM@myisp.com&gt;)
+      </pre>
+    </div>
+    <p>
+      これは、mail client が接続する実際の構造ですが、
+      しかし、いくつか異なった方法でユーザーが登録されています。
+    </p>
+    <p>
+      (identity の2, 3はいくつかの account の間で共有されることに気がつくでしょう...詳しくは後で)
+    </p>
+
+    <h3><a name="Server">Server</h3>
+    Server は、新しい dialog、serarch、filter などの
+    folder の panel や、user が一覧を見たり folder を選択する必要のある場所で、表示されます。
+    この view は、全ての server の同一で統一された1つの view を表示します。
+    上の例は、次のようです。:
+    <div style="border: groove; align:center">
+    <pre>
+alecf on imap.mywork.com
+  +- INBOX
+  +- Trash
+  +- (etc)
+alecf on pop.myisp.com
+  +- INBOX
+  +- Trash
+  +- (etc)
+news.myisp.com
+  +- comp.os.linux.announce
+  +- etc..
+news.mozilla.org
+  +- netscape.public.mozilla.announce
+  +- netscape.public.mozilla.mail-news
+    </pre>
+</div>
+    関連した API call:
+    <ul>
+      <li><cite>nsIMsgAccount.incomingServer</cite>
+      <li><cite>nsIMsgAccountManager.allServers</cite>: 全ての account によって保持されている全ての server の一覧。</li>
+    </ul>
+    <h3><a name="Identity">Identity(送信者)</h3>
+    <p>Identity はcompose window (mail 作成 window)で使われます。 もし、identity が、account の間で共有されるならば、一覧の中では一度だけその identity を見ることができるでしょう。</p>
+    <p>上の例では、identity の一覧は次のようです。:</p>
+    <div style="border: groove; align:center">
+      <pre>
+Alec Flett &lt;alecf@mywork.com&gt;)
+Alec Flett &lt;alecf@myisp.com&gt;)
+Alec Flett &lt;alecfNOSPAM@myisp.com&gt;)
+      </pre>
+    </div>
+    関連した API calls:
+    <ul>
+      <li><cite>nsIMsgAccount.identities</cite></li>
+      <li><cite>nsIMsgAccountManager.allServers</cite>: 全ての account がアクセスする全ての server のリスト。</li>
+    </ul>
+    </cite>
+    <hr>
+    <h2><a name="Storage">Storage</h2>
+    <p>account は preference に保存されます。account, identity, server は<i>key</i>に全て link されます。Key は、それぞれの account, identity, server を一意に識別する内部的な簡単な string です。 
+    key は object の data を保持している preference のそれぞれの名前の決定するために主に使われます。</p>
+    <p>1つの例として、上の構造は、次のようにあなたの preference で表現されるでしょう。:</p>
+    <pre>
+user_pref("mail.accountmanager.accounts", "account1,account2,account3");
+user_pref("mail.account.account1.server", "server1");
+user_pref("mail.account.account1.identities", "id1");
+user_pref("mail.account.account2.server", "server2");
+user_pref("mail.account.account2.identities", "id3");
+user_pref("mail.account.account3.server", "server3");
+user_pref("mail.account.account3.identities", "id3");
+user_pref("mail.account.account4.server", "server4");
+user_pref("mail.account.account4.identities", "id2,id3");
+user_pref("mail.server.server1.hostname", "imap.mywork.com");
+user_pref("mail.server.server2.hostname", "pop.myisp.com");
+user_pref("mail.server.server3.hostname", "news.myisp.com");
+user_pref("mail.server.server4.hostname", "news.mozilla.org");
+user_pref("mail.identity.id1.useremail", "alecf@mywork.com");
+user_pref("mail.identity.id2.useremail", "alecf@myisp.com");
+user_pref("mail.identity.id3.useremail", "alecfNOSPAM@myisp.com");
+    </pre>
+    <p>もちろん、ここでは多くの情報を省略しています。</p>
+    <p>ここで使われている<i>key</i>は、account1、server1、id1等です。それらの key は、
+    "mail.accountmanager.accounts"のようなそれらの preference のいくつかの値の中でリストされ、"mail.account.account1.server"のような prefecence name を構成するために使われます。
+    この方法で、account は、server はどれか、それを含む identity はどれかを知ります。</p>
+    <hr>
+    <h2><a name="Creating">new account の作成</h2>
+    <P>account manager API を通して acount を生成、変更することが可能です。account manager は、全ての account、内部的な server、identity の生成の責務があります。
+    関連した何かの object を生成する CreateInstance() を使う必要はありません。
+    なぜなら、account manager は、それら object が生成されるのと同じく、その全ての過程を管理する必要があります。</p>
+
+
+    <p>その API を使って account を作るために、次のようにしなければなりません。:</p>
+    <ol>
+      <li> createIdentity() で1つ新しい identity を作りなさい。
+      <li> 必要なだけ様々な identity の property のために値を割り当てなさい。
+      <li>  createIncomingServer() で新しい incoming server を作りなさい。
+一覧の上から、server typeをstring で、それに渡す必要があるでしょう。
+      <li> 必要なだけ様々な server property のために値を割り当てなさい。
+ここで最も重要な property は userName と hostname です。
+      <li> createAccount() で1つ新しい account を作りなさい。
+      <li> incomingServer 属性を持つ account のための server を割り当てなさい。
+      <li> AddIdentity() method を持つ account のために identity を割り当てなさい。
+    </ol>
+    <p> いくつかの sample code: (accountManager が account manager です。<p>
+    <code>
+var identity = accountManager.createIdentity();<br>
+identity.email="fred@myisp.com";<br>
+<br>
+var server = accountManager.createIncomingServer("pop3");<b>
+<HR><H3>z|y6qｨyи舍ｱq鑷ﾚqｳqｻ!</H3>
+er.hostname = "pop.myisp.com";<br>
+<br>
+var account = accountManager.createAccount();<br>
+account.incomingServer = server;<br>
+account.AddIdentity(identity);<br>
+    </code>
+    <p> そうです。今、あなたは1つの有効な account, identity, server を得たのです。</p>
+    <p>server と identity の key を伴ったいくつかの仕掛けを通して、
+account の間で server と identity を共有することは可能です。
+preference の中の同じ identity あるいは server key を参照すること、あるいは、よりうまくは、account manager を呼ぶことで、これを行うことができます。
+ (読者のために1つ課題として残します。)
+これは動作するでしょうが、しかし、support されません。
+account の間で情報を共有する時、  UI は、わずかに不思議な振舞をするでしょう。
+現在の計画は、UI を使っている account の間で情報の共有をさせません。</p>
+    <p>
+    関連する API call:
+    </p>
+    <ul>
+      <li><cite>nsIMsgAccount nsIMsgAccountManager.createAccount()</cite>
+      <li><cite>nsIMsgAccount nsIMsgAccountManager.getAccount(in string key)</cite>
+      <li><cite>nsIMsgIncomingServer nsIMsgAccountManager.createIncomingServer(in string type)</cite>
+      <li><cite>nsIMsgIncomingServer nsIMsgAccountManager.getIncomingServer(in string key)</cite>
+    </ul>
+
+    <h2><a name="SMTP">SMTP Servers</a></h2>
+    <p>SMTP Server は、ほかの全ての account management の要素から、分けて保持されます。
+user の SMTP server は、今のところ、その account の設定の何にも依存していません。
+user がどの SMTP server を使う必要があるか決定するのは、その internet への物理的な接続だけです。
+例えば、user が MyISP Inc. を通して internet へ接続する場合、
+彼、あるいは、彼女は、MyISP の SMTP server を使わなければなりません。たとえ彼らがどんな identity で mail を送っていてもです。</p>
+    <p>SMTP server list は、SMTP Service を通してアクセス可能です。server を加え(または、実際に削除し)、1つの default server を持つことができます。</p>
+    <p>SMTP server は、account のようにf、1つのルールの中であなたの preference へ保存されます。:</p>
+    <pre>
+user_pref("mail.smtpservers", "server1,server2");
+user_pref("mail.smtpserver.server1.hostname", "smtp.myisp.com");
+user_pref("mail.smtpserver.server2.hostname", "smtp.mywork.com");
+    </pre>
+
+    <p>SMTP service を使って新しい SMTP server を加えることができます。</p>
+    <pre>
+var server = smtpService.createSmtpServer();
+server.hostname = "smtp.myisp.com";
+    </pre>
+    <p>default SMTP server は、あなたの preference の list の中の始めの server です。
+現在、smtpService の defaultServer property を設定することで何か他のものに default SMTP server を設定できますが、 それは disk へ保存さえないでしょう。
+session default server と permenant default server の概念があります。</p>
+
+    関連する API call:
+    <ul>
+      <li><cite>nsISmtpService.smtpServers</cite>: SMTP server の list
+      <li><cite>nsISmtpService.createSmtpServer()</cite>: 1つ新しい SMTP server を生成します。
+      <li><cite>nsISmtpServer.hostname</cite>, <cite>nsISmtpServer.username</cite>: SMTP server の有効な property
+    </ul>
+    
+    <hr>
+    <h2><a name="AppendixA">付録 A: 全ての property の list</h2>
+    <p>(brendan の idldoc がこちらに来たら, それに link するでしょう。)</p>
+    <p>全ての preference は string で、別の方法で記載されません。</p>
+    <h3>Account Manager</h3>
+    <dt>Pref: <font face="monospace">mail.accountmanager.accounts</font></dt>
+
+    <h3>Account</h3>
+    <dt>Preference: <font face="monospace">mail.account.<i>account</i>.server</font></dt>
+    <dt>IDL: <font face="monospace">nsIMsgAccount.incomingServer</font></dt>
+    <dd>この account に結びつけられた incoming server。 preference は、"server1"のような preference "key"が使われます。</dd>
+
+    <br><br>    
+
+    <dt>Preference: <font face="monospace">mail.account.<i>account</i>.identities</font>
+      <dt>IDL: <font face="monospace">nsIMsgAccount.identities</font></dt>
+      <dd>この account に結びつけられた identity の list。preference は、"identity1,identity2"のような preference "keys"のコンマで区切られた list です。 </dd>
+    <h3>Incoming Servers</h3>
+    <dl>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.type</font></dt>: server type の string id: pop3, nntp, imap, or local
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.hostname</font> - server の hostname</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.username</font> - user login name</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.password</font> - user login password</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.check_new_mail</font> - boolean, 定期的に新しい mail を check する必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.check_time</font> - integer, 新しい mail を check する間隔(分)</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.remember_password</font> - boolean, password を保存する必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.download_on_biff.</font> - boolean, 新着確認で新しい message を download するなら true、user に新しい mail があることを通知するなら false。</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.directory</font> - message と folder の index を保存する local な platform に特化した path</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.name</font> - server の user への表示名</dt>
+
+    </dl>
+    次は IMAP に特化しています:
+    <dl>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.admin_url</font> - server のための URL の管理</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.using_subscription</font> - boolean, 申し込みを使う必要がありますか? (LIST の代わりとして LSUB を使いなさい)</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.cleanup_inbox_on_exit</font> - boolean, 終了するとき、inbox を clean up しますか?</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.dual_use_folders</font> - boolean - 1つの folder は folder や message の両方を含みますか?</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.empty_trash_on_exit</font></dt> boolean, (imap に特化する必要はありません) - 終了するとき、この server の trash を空にする必要がありますか??
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.offline_download</font> - boolean, この server は offline で download されるように mark されていますか?</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.override_namespaces</font> - boolean, この server で namespace を override する必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.max_cached_connections</font> - integer, server へ open した connect の最大の数</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.empty_trash_threshhold</font></dt> integer, (imap に特化する必要はありません) 1つの folder を clean up する前のゴミ箱の disk space の最大 kB。
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.delete_model</font> - integer, 削除model (ゴミ箱、へ移す、IMAP 削除する、直ちに clean up する、値は未定)</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.timeout</font> - integer, 切断までの接続が idle 状態の間隔(分)</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.capability</font> - この server の能力の list</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.namespace.public</font> - public folder のこの server の namespace</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.namespace.personal</font> - personal folders のための server の namespace</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.namespace.other_users</font> - 別の user の folder の server の namespace</dt>
+    </dl>
+    <p>次は POP に特化しています:</p>
+    <dl>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.leave_on_server</font> - boolean, message を download し終った後に、server に message を残す必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.delete_mail_left_on_server</font> - boolean, local にある1つの message を削除するとき、server にあるその message を削除する必要がありますか?</dt>
+    <p>次は news に特化しています:</p>
+    <dt>Preference: <font face="monospace">mail.server.<i>server</i>.newsrc.file</font> - newsrc file の platform に特化した file path</dt>
+    </dl>
+    
+    <h3>Identities</h3>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.fullName</font> - user の full name, 例えば、John Smith</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.useremail</font> -  user の e-mail address, 例えば、jsmith@isp.com</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.reply_to</font> - useremail 以外の場合のみ使われる必要がある message の作成の中の reply to address。 (mail message の ReplyTo: header)</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.organization</font> - User の organization (mail message の Organization: header)</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.compose_html</font> - boolean, message を、HTML で(true)、plain text で(false)で、作成する必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.attach_vcard</font> - boolean, vCard を添付する必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.attach_signature</font> - boolean, signature を添付する必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.fcc</font> - boolean, sent folderにmessageのcopyを作る必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.fcc_folder</font> - sent message がおかれる folder の URI</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.bcc_self</font> - boolean, このidentity と送られるそれぞれの e-mail の identity を blind carbon copy(BCC)扱いする必要がありますか?</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.bcc_other</font> - boolean, この identity と送られるそれぞれの mail とその他の e-mail address を BCC 扱いしますか?</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.bcc_other_list</font> - BCC のためのその他の addresse のコンマで区切られた list</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.draft_folder</font> - drafts のために使う folder の URI</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.stationary_folder</font> - stationary のために使う folder の URI (4.xではTemplatesと呼ばれていたもの)</dt>
+    <dt>Preference: <font face="monospace">mail.identity.<i>identity</i>.spam_folder</font> - SPAM のために使う folder の URI (これは削除されると思います。)</dt>
+
+<div align="right"><font size="-1">
+<a href="http://www.mozilla.org/mailnews/arch/accountmanager.html">
+このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。</a><br>
+またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>
+利用者の利便のためにmozilla.org 和訳プロジェクトによって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.org/jp/td/index.html">
+http://www.mozilla-japan.org/jp/td/index.html</a>
+</font></div>
+
+  
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/mailnews/arch/accountmanager.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/mailnews/arch/accountmanager.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

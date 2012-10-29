@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xml"?>
+
+<database xml:lang="ja" lang="ja" type="termdb"
+	xmlns="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+
+<!-- 
+<set class="" os="" software="">
+	<term id="" abbr="" acronym="" pronounce=""
+		class="" os="" software="">
+		<en>English</en>
+		<ja scope="" class="" os="" software="" status="">日本語</ja>
+		<relate refid=""/>
+		<description>html_fragment</description>
+		<note></note>
+	</term>
+</set>
+
+
+	用語に関する属性
+
+   class: general gui mozilla network programming security standard unique
+一般的な分類をするための属性であり、用語集的な用途を想定しているが現在は使用していない。
+      os: win unix mac
+主に OS 別に訳が異なるものを表すため ja の属性として使用している。
+software: chatzilla firefox inspector mozilla thunderbird venkman
+特定ソフトウェアの特殊な専門用語であることを表すための属性。Venkman などで主に使用。
+
+いずれも set -> term -> ja へと継承される(子要素では親要素の指定を上書きではなく追加)。
+
+
+	訳語に関する属性
+
+  status: (example) jlp obsolete wrong
+その訳語の扱い。これらは順に、訳例、JLP 採用、変更前、誤訳を意味する。
+固定訳ではなく参考訳例であることを意味する値 example を既定値とする
+
+これについては set や term に一括指定して継承させることはできない。
+
+ -->
+
+
+<!-- * general * -->
+<set class="general">
+	<term id="comma">
+		<en>comma</en>
+		<ja status="jlp">カンマ</ja>
+		<ja status="obsolete">コンマ</ja>
+		<note>MS Officeなどでの慣例に合わせる</note>
+	</term>
+	<term id="Tool">
+		<en>tool</en>
+		<ja status="jlp">ツール</ja>
+		<relate refid="_Toolbar"/>
+	</term>
+	<term id="Walpaper">
+		<en>walpaper</en>
+		<ja status="jlp">壁紙</ja>
+		<ja os="win">背景</ja>
+	</term>
+	<term id="LocalFile">
+		<en>local file</en>
+		<ja status="jlp">ローカルファイル</ja>
+	</term>
+	<term id="Import">
+		<en>import</en>
+		<ja status="jlp">インポート</ja>
+		<ja>取り込み</ja>
+		<ja>読み込み</ja>
+	</term>
+	<term id="Encoging">
+		<en>encoging</en>
+		<ja status="jlp">文字エンコーディング</ja>
+		<ja status="jlp obsolete">文字エンコード</ja>
+		<relate refid="CharcterEncoding"/>
+	</term>
+	<term id="CharcterEncoding">
+		<en>charcter encoding</en>
+		<ja status="jlp">文字エンコーディング</ja>
+		<ja status="jlp obsolete">文字エンコード</ja>
+		<relate refid="Encoging"/>
+	</term>
+	<term id="Option">
+		<en>option</en>
+		<ja status="jlp">オプション</ja>
+		<ja status="jlp">設定</ja>
+		<relate refid="Preference"/>
+	</term>
+	<term id="Preference">
+		<en>preference</en>
+		<ja status="jlp">設定</ja>
+		<relate refid="Option"/>
+	</term>
+	<term id="Frag">
+		<en>frag</en>
+		<ja status="jlp">フラグ</ja>
+		<ja status="jlp obsolete">旗</ja>
+		<note>旗のアイコンが使われている</note>
+	</term>
+	<term id="Update">
+		<en>update</en>
+		<ja status="jlp">更新</ja>
+		<ja>アップデート</ja>
+	</term>
+	<term id="CriticalUpdate">
+		<en>critical update</en>
+		<ja status="jlp">重要な更新</ja>
+	</term>
+	<term id="Check">
+		<en>check</en>
+		<ja status="jlp">確認</ja>
+		<ja>チェック</ja>
+		<ja>調べる</ja>
+		<relate refid="CheckSpelling"/>
+	</term>
+	<term id="CheckSpelling">
+		<en>check spelling</en>
+		<ja status="jlp">スペルチェック</ja>
+		<relate refid="Check"/>
+	</term>
+	<term id="Default">
+		<en>default</en>
+		<ja status="jlp" os="win linux">既定(の)</ja>
+		<ja status="jlp" os="mac">デフォルト</ja>
+	</term>
+	<term id="Install">
+		<en>install</en>
+		<ja status="jlp">インストール</ja>
+	</term>
+	<term id="Uninstall">
+		<en>uninstall</en>
+		<ja status="jlp">削除</ja>
+		<ja>アンインストール</ja>
+	</term>
+	<term id="Dock" os="mac">
+		<en>dock</en>
+		<ja status="jlp">dock</ja>
+	</term>
+	<term id="Drafts" software="mozilla thunderbird">
+		<en>drafts</en>
+		<ja status="jlp">下書き</ja>
+		<ja>草稿</ja>
+	</term>
+	<term id="Identify">
+		<en>identify</en>
+		<ja status="jlp" class="security">同定する</ja>
+		<ja status="jlp" class="general">識別する</ja>
+		<relate refid="Identity"/>
+	</term>
+	<term id="Property">
+		<en>property</en>
+		<ja status="jlp" os="win unix">プロパティ</ja>
+		<ja status="jlp" os="mac">情報</ja>
+	</term>
+	<term id="SimpleLink">
+		<en>simple link</en>
+		<ja status="jlp">単純リンク</ja>
+	</term>
+	<term id="Component">
+		<en>component</en>
+		<ja status="jlp">コンポーネント</ja>
+		<ja status="jlp">拡張機能やテーマ</ja>
+	</term>
+	<term id="Caret">
+		<en>caret</en>
+		<ja status="jlp">キャレット</ja>
+		<ja status="jlp wrong">カーソル</ja>
+		<note>当然だがカーソルのことではない。エディタなどで文字入力部に表示される縦棒のこと。</note>
+	</term>
+	<term id="Email">
+		<en>email</en>
+		<ja status="jlp">メール</ja>
+		<ja status="obsolete">電子メール</ja>
+	</term>
+	<term id="AdditionalEmail">
+		<en>additional email</en>
+		<ja status="jlp">別のメールアドレス</ja>
+	</term>
+	<term id="Pager">
+		<en>pager</en>
+		<ja status="jlp">ポケットベル</ja>
+	</term>
+	<term id="ScreenName">
+		<en>screen name</en>
+		<ja status="jlp">スクリーンネーム</ja>
+		<note>AIM の用語</note>
+	</term>
+	<term id="DisplayName" software="mozilla thunderbird">
+		<en>display name</en>
+		<ja status="jlp">表示名</ja>
+	</term>
+	<term id="Spam">
+		<en>spam</en>
+		<ja status="jlp">迷惑メール</ja>
+		<relate refid="Junk"/>
+	</term>
+	<term id="SpamMail">
+		<en>spam mail</en>
+		<ja status="jlp">迷惑メール</ja>
+		<relate refid="Junk"/>
+	</term>
+	<term id="Junk">
+		<en>junk</en>
+		<ja status="jlp">迷惑メール</ja>
+		<relate refid="NotJunk"/>
+		<relate refid="JunkStatus"/>
+	</term>
+	<term id="JunkMail">
+		<en>junk mail</en>
+		<ja status="jlp">迷惑メール</ja>
+		<relate refid="Junk"/>
+	</term>
+	<term id="JunkStatus" software="mozilla thunderbird">
+		<en>junk status</en>
+		<ja status="jlp">迷惑マーク</ja>
+		<relate refid="Junk"/>
+	</term>
+	<term id="NotJunk">
+		<en>not junk</en>
+		<ja status="jlp">非迷惑メール</ja>
+		<ja status="jlp obsolete">正規メール</ja>
+		<ja status="jlp obsolete">通常メール</ja>
+		<relate refid="Junk"/>
+	</term>
+	<term id="PlainText">
+		<en>plain text</en>
+		<ja status="jlp">プレーンテキスト</ja>
+		<ja>テキスト</ja>
+		<ja status="jlp obsolete">テキストのみ</ja>
+	</term>
+	<term id="Browse">
+		<en>browse</en>
+		<ja status="jlp" os="win unix">参照</ja>
+		<ja status="jlp" os="mac">選択</ja>
+	</term>
+	<term id="Trash">
+		<en>trash</en>
+		<ja status="jlp" os="win unix">ごみ箱</ja>
+		<ja status="jlp" os="mac">ゴミ箱</ja>
+	</term>
+	<term id="User">
+		<en>user</en>
+		<ja status="jlp">ユーザ</ja>
+	</term>
+	<term id="UI" abbr="User Interface">
+		<en>UI</en>
+		<ja status="jlp">UI</ja>
+		<ja status="jlp">ユーザインターフェイス</ja>
+		<relate refid="UserInterface"/>
+	</term>
+	<term id="UserInterface">
+		<en>user interface</en>
+		<ja status="jlp">ユーザインターフェイス</ja>
+		<relate refid="Interface"/>
+	</term>
+	<term id="Interface">
+		<en>interface</en>
+		<ja status="jlp">インターフェイス</ja>
+		<ja status="wrong">インタフェイス</ja>
+		<ja status="wrong">インターフェース</ja>
+		<relate refid="UserInterface"/>
+	</term>
+	<term id="Memory">
+		<en>memory</en>
+		<ja status="jlp">メモリ</ja>
+	</term>
+	<term id="Binary">
+		<en>binary</en>
+		<ja status="jlp">バイナリ</ja>
+	</term>
+	<term id="Workaround">
+		<en>workaround</en>
+		<ja>次善策</ja>
+		<ja>妥協案</ja>
+		<ja>回避策</ja>
+		<ja>応急処置</ja>
+	</term>
+	<term id="Browser">
+		<en>browser</en>
+		<ja status="jlp">ブラウザ</ja>
+	</term>
+	<term id="Skin">
+		<en>skin</en>
+		<ja>スキン</ja>
+	</term>
+</set>
+
+
+
+<!-- * network * -->
+<set class="network">
+	<term id="Feed">
+		<en>feed</en>
+		<ja status="jlp">RSS フィード</ja>
+		<ja>フィード</ja>
+	</term>
+	<term id="To">
+		<en>to</en>
+		<ja status="jlp">宛先</ja>
+		<relate refid="From"/>
+		<relate refid="Recipient"/>
+	</term>
+	<term id="From">
+		<en>from</en>
+		<ja status="jlp">差出人</ja>
+		<relate refid="To"/>
+		<relate refid="Sender"/>
+	</term>
+	<term id="Sender">
+		<en>sender</en>
+		<ja status="jlp">送信者</ja>
+		<relate refid="From"/>
+		<relate refid="Recipient"/>
+	</term>
+	<term id="Recipient">
+		<en>recipient</en>
+		<ja status="jlp">受信者</ja>
+		<relate refid="To"/>
+		<relate refid="Sender"/>
+	</term>
+	<term id="ReturnReceipt">
+		<en>return receipt</en>
+		<ja status="jlp">受信確認</ja>
+		<relate refid="Receipt"/>
+	</term>
+	<term id="Receipt">
+		<en>receipt</en>
+		<ja status="jlp">受信確認</ja>
+		<relate refid="Recipient"/>
+		<relate refid="ReturnReceipt"/>
+	</term>
+	<term id="Proxy">
+		<en>proxy</en>
+		<ja status="jlp">プロキシ</ja>
+		<ja>プロクシ</ja>
+	</term>
+	<term id="Inbox" software="mozilla thunderbird">
+		<en>inbox</en>
+		<ja status="jlp">受信トレイ</ja>
+		<relate refid="GlobalInbox"/>
+	</term>
+	<term id="PersonalNamespace">
+		<en>personal namespace</en>
+		<ja status="jlp">個人名前空間</ja>
+		<relate refid="SharedNamespace"/>
+		<relate refid="OtherUsersNamespace"/>
+	</term>
+	<term id="SharedNamespace">
+		<en>shared namespace</en>
+		<ja status="jlp">共有名前空間</ja>
+		<relate refid="PersonalNamespace"/>
+		<relate refid="OtherUsersNamespace"/>
+		<relate refid="PublicNamespace"/>
+	</term>
+	<term id="PublicNamespace">
+		<en>public namespace</en>
+		<ja status="jlp">公開名前空間</ja>
+		<relate refid="SharedNamespace"/>
+	</term>
+	<term id="OtherUsersNamespace">
+		<en>other users namespace</en>
+		<ja status="jlp">他のユーザの名前空間</ja>
+		<relate refid="PersonalNamespace"/>
+		<relate refid="SharedNamespace"/>
+	</term>
+	<term id="Host">
+		<en>host</en>
+		<ja status="jlp">ホスト</ja>
+		<relate refid="Server"/>
+	</term>
+	<term id="Server">
+		<en>server</en>
+		<ja status="jlp">サーバ</ja>
+		<relate refid="Host"/>
+	</term>
+	<term id="Client">
+		<en>client</en>
+		<ja status="jlp">クライアント</ja>
+		<relate refid="Server"/>
+	</term>
+	<term id="SingleSignon">
+		<en>single signon</en>
+		<ja status="jlp">シングルサインオン</ja>
+		<relate refid="Signon"/>
+	</term>
+	<term id="Signon">
+		<en>signon</en>
+		<ja status="jlp">サインオン</ja>
+		<relate refid="SingleSignon"/>
+	</term>
+	<term id="Cookie" software="mozilla firefox">
+		<en>cookie</en>
+		<ja status="jlp">Cookie</ja>
+		<ja>クッキー</ja>
+	</term>
+	<term id="WebLocation">
+		<en>web location</en>
+		<ja status="jlp">URL</ja>
+	</term>
+	<term id="Location">
+		<en>location</en>
+		<ja status="jlp">URL</ja>
+		<ja>場所</ja>
+	</term>
+</set>
+
+
+<!-- * programming * -->
+<set class="programming">
+	<term id="OO" abbr="Object Oriented">
+		<en>OO</en>
+		<ja>OO</ja>
+		<ja>オブジェクト指向</ja>
+		<relate refid="OOP"/>
+	</term>
+	<term id="OOP" abbr="Object Oriented Programming">
+		<en>OOP</en>
+		<ja>OOP</ja>
+		<ja>オブジェクト指向プログラミング</ja>
+		<relate refid="ObjectOrientedProgramming"/>
+	</term>
+	<term id="ObjectOriented">
+		<en>object oriented</en>
+		<ja>オブジェクト指向</ja>
+		<relate refid="OOP"/>
+	</term>
+	<term id="ObjectOrientedProgramming">
+		<en>object oriented programming</en>
+		<ja>オブジェクト指向プログラミング</ja>
+		<relate refid="OOP"/>
+	</term>
+	<term id="Event">
+		<en>event</en>
+		<ja>イベント</ja>
+	</term>
+	<term id="Footprint">
+		<en>footprint</en>
+		<ja>フットプリント</ja>
+	</term>
+	<term id="Runtime">
+		<en>runtime</en>
+		<ja>実行時の</ja>
+		<ja>ランタイム</ja>
+	</term>
+	<term id="Build">
+		<en>build</en>
+		<ja>ビルド</ja>
+	</term>
+	<term id="Make">
+		<en>make</en>
+		<ja>make</ja>
+		<ja>作る</ja>
+		<ja>作成する</ja>
+	</term>
+	<term id="CoreFile">
+		<en>core file</en>
+		<ja>core ファイル</ja>
+		<ja>コアファイル</ja>
+	</term>
+	<term id="Inherit">
+		<en>inherit</en>
+		<ja>継承</ja>
+	</term>
+	<term id="Null">
+		<en>null</en>
+		<ja>null</ja>
+	</term>
+	<term id="XBL" abbr="eXtensible Binding Language">
+		<en>XBL</en>
+		<ja>XBL</ja>
+		<ja>拡張可能従属言語？</ja>
+		<note>今のところ定訳が決まっていない…</note>
+	</term>
+	<term id="Wrapper">
+		<en>wrapper</en>
+		<ja status="jlp">ラッパー</ja>
+	</term>
+	<term id="PC" abbr="Program Counter">
+		<en>pc</en>
+		<ja status="jlp">pc</ja>
+		<ja status="jlp">プログラムカウンタ</ja>
+		<relate refid="ProgramCounter"/>
+	</term>
+</set>
+
+
+<!-- * security * -->
+<set class="security">
+	<term id="Fingerprint">
+		<en>fingerprint</en>
+		<ja status="jlp">フィンガープリント</ja>
+		<ja>指紋</ja>
+	</term>
+	<term id="CertificateRevocationList">
+		<en>certificate revocation list</en>
+		<ja status="jlp">証明書失効リスト</ja>
+		<ja status="jlp obsolete">証明書破棄リスト</ja>
+		<relate refid="Certificate"/>
+		<relate refid="CertificateAutority"/>
+		<note>"証明書破棄リスト" と訳されることも少なくないが、意味的には失効のほうが適切と思われる。</note>
+	</term>
+	<term id="Certificate">
+		<en>certificate</en>
+		<ja status="jlp">証明書</ja>
+	</term>
+	<term id="Validate">
+		<en>validate</en>
+		<ja status="jlp">検証</ja>
+		<relate refid="Certificate"/>
+		<relate refid="CertificateAutority"/>
+	</term>
+	<term id="IssuedFor">
+		<en>issued for</en>
+		<ja status="jlp">認証対象</ja>
+		<relate refid="CertificateAutority"/>
+	</term>
+	<term id="IssuedBy">
+		<en>issued by</en>
+		<ja status="jlp">認証元</ja>
+		<relate refid="CertificateAutority"/>
+	</term>
+	<term id="DigitalSignature">
+		<en>digital signature</en>
+		<ja status="jlp">電子署名</ja>
+	</term>
+	<term id="Certificate">
+		<en>certificate</en>
+		<ja status="jlp">証明書</ja>
+		<relate refid="EncryptionCertificate"/>
+		<relate refid="SigningCertificate"/>
+	</term>
+	<term id="EncryptionCertificate">
+		<en>encryption certificate</en>
+		<ja status="jlp">暗号化証明書</ja>
+		<relate refid="SignatureCertificate"/>
+	</term>
+	<term id="SignatureCertificate">
+		<en>signature certificate</en>
+		<ja status="jlp">署名証明書</ja>
+		<relate refid="SigningCertificate"/>
+		<relate refid="EncryptionCertificate"/>
+	</term>
+	<term id="SigningCertificate">
+		<en>signing certificate</en>
+		<ja status="jlp">署名証明書</ja>
+		<relate refid="SignatureCertificate"/>
+	</term>
+	<term id="Revoked">
+		<en>revoked</en>
+		<ja status="jlp">失効している</ja>
+		<relate refid="Validate"/>
+		<relate refid="CertificateRevocationList"/>
+		<note>証明書関係では失効で固定だが他は指定なし。</note>
+	</term>
+	<term id="CertificateAutority">
+		<en>certificate autority</en>
+		<ja status="jlp">認証局</ja>
+		<relate refid="Certificate"/>
+	</term>
+	<term id="CA" abbr="Certificate Autority">
+		<en>CA</en>
+		<ja status="jlp">認証局</ja>
+		<relate refid="CertificateAutority"/>
+	</term>
+	<term id="TrustCertificate">
+		<en>trust certificate</en>
+		<ja status="jlp">証明書を信頼する</ja>
+		<relate refid="Certificate"/>
+	</term>
+	<term id="TrustCertificateAutority">
+		<en>trust certificate autority</en>
+		<ja status="jlp">認証局を信頼する</ja>
+		<relate refid="CertificateAutority"/>
+	</term>
+	<term id="Firewall" class="network">
+		<en>firewall</en>
+		<ja status="jlp">ファイアウォール</ja>
+		<ja status="wrong">ファイヤウォール</ja>
+	</term>
+</set>
+
+
+
+<!-- * standard * -->
+<group class="standard">
+	<term id="Entity">
+		<en>entity</en>
+		<ja>実体</ja>
+		<ja status="wrong">エンティティ</ja>
+		<relate refid="EntityReference"/>
+	</term>
+	<term id="EntityReference">
+		<en>entity reference</en>
+		<ja>実体参照</ja>
+		<relate refid="Entity"/>
+	</term>
+	<term id="PCDATA" abbr="Parsed Character Data">
+		<en>PCDATA</en>
+		<ja>PCDATA</ja>
+		<ja>解析対象文字データ</ja>
+		<ja status="wrong">解析済み文字データ</ja>
+		<relate refid="CDATA"/>
+		<relate refid="Entity"/>
+		<relate refid="EntityReference"/>
+		<note>一部書籍で 解析済み などと表記しているのは理解していない訳者による誤訳に過ぎない。</note>
+	</term>
+	<term id="CDATA" abbr="Character Data">
+		<en>CDATA</en>
+		<ja>CDATA</ja>
+		<ja>文字データ</ja>
+		<relate refid="PCDATA"/>
+	</term>
+	<term id="Attribute">
+		<en>attribute</en>
+		<ja>属性</ja>
+		<ja status="wrong">アトリビュート</ja>
+	</term>
+	<term id="Well-Formed">
+		<en>well-formed</en>
+		<ja>整形式</ja>
+	</term>
+	<term id="Root">
+		<en>root</en>
+		<ja>ルート</ja>
+		<note>根</note>
+	</term>
+</group>
+
+
+
+<!-- * unique * -->
+<set class="unique">
+	<term id="Netscape">
+		<en>Netscape</en>
+		<ja status="jlp">Netscape</ja>
+	</term>
+	<term id="MozillaORG">
+		<en>mozilla.org</en>
+		<ja>mozilla.org</ja>
+	</term>
+	<term id="MozillaFoundation">
+		<en>Mozilla Foundation</en>
+		<ja>Mozilla Foundation</ja>
+	</term>
+	<term id="MF" abbr="Mozilla Foundation">
+		<en>MF</en>
+		<ja>Mozilla Foundation</ja>
+	</term>
+	<term id="MJ" abbr="Mozilla Foundation">
+		<en>MJ</en>
+		<ja>Mozilla Japan</ja>
+	</term>
+	<term id="PostScript">
+		<en>PostScript</en>
+		<ja>PostScript</ja>
+	</term>
+	<term id="TheUnitedStatesFederalRehabilitationAct">
+		<en>The United States Federal Rehabilitation Act</en>
+		<ja>合衆国連邦リハビリテーション法</ja>
+	</term>
+</set>
+
+
+
+
+<!-- * mozilla * -->
+<set software="mozilla">
+	<!-- * firefox * -->
+	<set software="firefox">
+		<term id="Bookmark">
+			<en>bookmark</en>
+			<ja status="jlp">ブックマーク</ja>
+			<relate refid="LiveBookmark"/>
+		</term>
+		<term id="LiveBookmark">
+			<en>live bookmark</en>
+			<ja status="jlp">ライブブックマーク</ja>
+			<relate refid="Bookmark"/>
+		</term>
+		<term id="PopupBlock">
+			<en>popup block</en>
+			<ja status="jlp">ポップアップブロック</ja>
+		</term>
+		<term id="FindAsYouType">
+			<en>Find As You Type</en>
+			<ja status="jlp">Find As You Type</ja>
+			<note>言語リソース中では既に使われていないようだが…</note>
+		</term>
+		<term id="MyDownloads">
+			<en>my downloads</en>
+			<ja status="jlp">マイダウンロード</ja>
+		</term>
+	</set>
+	<!-- * thunderbird * -->
+	<set software="thunderbird">
+		<term id="MessageArea">
+			<en>message area</en>
+			<ja status="jlp">メッセージ領域</ja>
+		</term>
+		<term id="ContactsSidebar">
+			<en>contacts sidebar</en>
+			<ja status="jlp">アドレスサイドバー</ja>
+			<ja status="jlp obsolete">連絡先サイドバー</ja>
+		</term>
+		<term id="MailingList">
+			<en>mailing list</en>
+			<ja status="jlp">アドレスリスト</ja>
+			<note>いわゆるメーリングリストとは異なり複数人数への配信をするのではなく単にフォルダのようにメールアドレスのリスト化をするだけ</note>
+		</term>
+		<term id="SavedSearchFolder">
+			<en>saved search folder</en>
+			<ja status="jlp">検索フォルダ</ja>
+		</term>
+		<term id="PersonalAddressBook">
+			<en>personal address book</en>
+			<ja status="jlp">個人用アドレス帳</ja>
+			<relate refid="CollectedAddressBook"/>
+		</term>
+		<term id="CollectedAddressBook">
+			<en>collected address book</en>
+			<ja status="jlp">記録用アドレス帳</ja>
+			<ja status="jlp obsolete">収集アドレス帳</ja>
+			<relate refid="PersonalAddressBook"/>
+		</term>
+		<term id="AdaptiveFilter">
+			<en>adaptive filter</en>
+			<ja status="jlp">学習フィルタ</ja>
+			<relate refid="Junk"/>
+			<relate refid="NotJunk"/>
+			<relate refid="TrainingData"/>
+		</term>
+		<term id="TrainingData">
+			<en>training data</en>
+			<ja status="jlp">判別基準データ</ja>
+			<relate refid="Junk"/>
+			<relate refid="NotJunk"/>
+			<relate refid="AdaptiveFilter"/>
+		</term>
+		<term id="Identity">
+			<en>identity</en>
+			<ja status="jlp">差出人情報</ja>
+			<ja status="jlp obsolete">識別情報</ja>
+			<ja status="jlp obsolete">個人情報</ja>
+			<ja status="jlp obsolete">ID</ja>
+			<relate refid="Identify"/>
+		</term>
+		<term id="GlobalInbox">
+			<en>global inbox</en>
+			<ja status="jlp">共通受信トレイ</ja>
+			<relate refid="GlobalProfile"/>
+		</term>
+		<term id="SpecialFolder">
+			<en>special folder</en>
+			<ja status="jlp">特別なフォルダ</ja>
+			<relate refid="Drafts"/>
+			<relate refid="Inbox"/>
+			<relate refid="Trash"/>
+		</term>
+	</set>
+	<set software="chatzilla">
+		
+		
+	</set>
+	<set software="inspector">
+		
+		
+	</set>
+	<set software="venkman" class="programming">
+		<term id="EvaluationObject">
+			<en>evaluation object</en>
+			<ja status="jlp">評価オブジェクト</ja>
+			<note>eval コマンドに於いて自身は this、親は実行スコープとされるオブジェクト。</note>
+		</term>
+		<term id="FloatingWindow">
+			<en>floating window</en>
+			<ja status="jlp">分離ウィンドウ</ja>
+			<note>普通にフローティングウィンドウとしておくべきかも…</note>
+		</term>
+		<term id="Breakpoint">
+			<en>breakpoint</en>
+			<ja status="jlp">ブレークポイント</ja>
+			<relate refid="HardBreakpoint"/>
+			<relate refid="FutureBreakpoint"/>
+		</term>
+		<term id="FutureBreakpoint">
+			<en>future breakpoint</en>
+			<ja status="jlp">予定ブレークポイント</ja>
+			<relate refid="Breakpoint"/>
+			<relate refid="HardBreakpoint"/>
+			<note>読み込み前(解放後)のファイルや実行コードのない行に設定されたもの。</note>
+		</term>
+		<term id="HardBreakpoint">
+			<en>hard breakpoint</en>
+			<ja status="jlp">実ブレークポイント</ja>
+			<relate refid="Breakpoint"/>
+			<relate refid="FutureBreakpoint"/>
+			<note>所謂ブレークポイント。狭義のブレークポイントはこちらのみを指す。</note>
+		</term>
+		<term id="Hook">
+			<en>hook</en>
+			<ja status="jlp">フック</ja>
+			<note>各コマンドの前後に実行される内部コマンドのようなもの。コマンド実行はdispatch()関数を介して行われるが、その中でコマンドに応じたフックが呼び出されるようになっている。</note>
+		</term>
+		<term id="InteractiveSession">
+			<en>interactive session</en>
+			<ja status="jlp">対話セッション</ja>
+			<note>現在対話デバッグ中のセッションとやり取りをするコンソール。</note>
+		</term>
+		<term id="MetaComment">
+			<en>meta comment</en>
+			<ja status="jlp">命令コメント</ja>
+			<note>//@JSD_DIRECTIVE の特殊なコメント。コード中で予めブレークポイントを指定したり出来る。</note>
+		</term>
+		<term id="ProgramCounter">
+			<en>program counter</en>
+			<ja status="jlp">プログラムカウンタ</ja>
+			<note>コンパイル後のバイトコードの位置を示すポインタ。<br/>
+				http://wombat.doc.ic.ac.uk/foldoc/foldoc.cgi?query=program+counter&amp;action=Search も参照のこと。</note>
+			<relate refid="PC"/>
+		</term>
+		<term id="Watch">
+			<en>watch</en>
+			<ja status="jlp">監視点</ja>
+			<note>FooObject.watch()メソッド的役割をもち、その用語のwatch pointから訳語を決定した。</note>
+		</term>
+	</set>
+	<term id="_Manager">
+		<en>～manager</en>
+		<ja status="jlp">～マネージャ</ja>
+	</term>
+	<term id="_Toolbar">
+		<en>～toolbar</en>
+		<ja status="jlp">～ツールバー</ja>
+	</term>
+	<term id="Chrome">
+		<en>chrome</en>
+		<ja status="jlp">chrome</ja>
+		<ja status="jlp">クロム</ja>
+		<note>クロームのほうが正しいという説もあるが不明。</note>
+	</term>
+	<term id="ActivityIndicator">
+		<en>activity indicator</en>
+		<ja status="jlp">読み込み中アイコン</ja>
+		<ja status="jlp obsolete">アクティビティインジケータ</ja>
+	</term>
+	<term id="ThemePark">
+		<en>theme park</en>
+		<ja status="jlp">テーマパーク</ja>
+		<relate refid="Theme"/>
+		<relate refid="Component"/>
+	</term>
+	<term id="Theme">
+		<en>theme</en>
+		<ja status="jlp">テーマ</ja>
+		<relate refid="ThemePark"/>
+		<relate refid="Extension"/>
+		<relate refid="Component"/>
+	</term>
+	<term id="Extension">
+		<en>extension</en>
+		<ja status="jlp">拡張機能</ja>
+		<ja status="jlp obsolete">拡張機能</ja>
+		<relate refid="Theme"/>
+	</term>
+	<term id="AutoScrolling">
+		<en>auto scrolling</en>
+		<ja status="jlp">オートスクロール</ja>
+		<relate refid="SmoothScrolling"/>
+	</term>
+	<term id="SmoothScrolling">
+		<en>smooth scrolling</en>
+		<ja status="jlp">スムーズスクロール</ja>
+		<relate refid="AutoScrolling"/>
+	</term>
+	<term id="MasterPassword">
+		<en>master password</en>
+		<ja status="jlp">マスターパスワード</ja>
+	</term>
+	<term id="FlexibleSpace">
+		<en>flexible space</en>
+		<ja status="jlp">伸縮自在のスペース</ja>
+		<ja status="jlp obsolete">フレキシブルスペース</ja>
+	</term>
+	<term id="Profile">
+		<en>profile</en>
+		<ja status="jlp">プロファイル</ja>
+		<relate refid="GlobalProfile"/>
+		<relate refid="PersonalProfile"/>
+	</term>
+	<term id="PersonalProfile">
+		<en>personal profile</en>
+		<ja status="jlp">ユーザプロファイル</ja>
+		<relate refid="GlobalProfile"/>
+	</term>
+	<term id="GlobalProfile">
+		<en>global profile</en>
+		<ja status="jlp">共通プロファイル</ja>
+		<relate refid="PersonalProfile"/>
+		<relate refid="GlobalInbox"/>
+	</term>
+</set>
+
+
+
+<!-- * 以下、kmine さんのものをベース(大半は既に上部に統合) * -->
+<group class="xul">
+	<term id="Deck">
+		<en>deck</en>
+		<ja>デック</ja>
+	</term>
+	<term id="XUL">
+		<en>XUL</en>
+		<ja status="jlp">XUL</ja>
+		<ja>ズール</ja>
+	</term>
+	<term id="ChildElement">
+		<en>child element</en>
+		<ja>子要素</ja>
+	</term>
+	<term id="FindFileDialog">
+		<en>find file dialog</en>
+		<ja>ファイル検索ダイアログ</ja>
+		<note>XUL Tutorial の例題</note>
+	</term>
+	<term id="DataSource">
+		<en>datasource</en>
+		<ja>データソース</ja>
+	</term>
+	<term id="PersistentData">
+		<en>persistent data</en>
+		<ja>永続性のあるデータ</ja>
+	</term>
+	<term id="ContentPanel">
+		<en>content panel</en>
+		<ja>内容パネル</ja>
+	</term>
+</group>
+
+<group class="gui">
+	<term id="ScrollBar">
+		<en>scroll bar</en>
+		<ja>スクロールバー</ja>
+		<note>scrollbar なら、XUL の要素</note>
+	</term>
+	<term id="Textbox">
+		<en>textbox</en>
+		<ja>テキストボックス</ja>
+	</term>
+	<term id="Checkbox">
+		<en>checkbox</en>
+		<ja>チェックボックス</ja>
+	</term>
+	<term id="Button">
+		<en>button</en>
+		<ja>ボタン</ja>
+	</term>
+	<term id="PopUpMenu">
+		<en>pop up menu</en>
+		<ja>ポップアップメニュー</ja>
+	</term>
+	<term id="TabbedDialog">
+		<en>tabbed dialog</en>
+		<ja>ラベル付きのダイアログ</ja>
+	</term>
+	<term id="Spacer">
+		<en>spacer</en>
+		<ja>スペーサー</ja>
+	</term>
+	<term id="FilePicker">
+		<en>file picker</en>
+		<ja>ファイルピッカー</ja>
+	</term>
+	<term id="MenuItem">
+		<en>menu item</en>
+		<ja>メニュー項目</ja>
+	</term>
+	<term id="Widget">
+		<en>widget</en>
+		<ja>ウィジェット</ja>
+		<ja status="obsolete">ウィジット</ja>
+		<note>語源は "window gadget" ？</note>
+	</term>
+	<term id="Toolbar">
+		<en>toolbar</en>
+		<ja status="jlp">ツールバー</ja>
+	</term>
+	<term id="View" software="venkman">
+		<en>view</en>
+		<ja status="jlp">ビュー</ja>
+		<note>ビューはビュー。(^^; ウィンドウと区別して用いられていることに注意。</note>
+	</term>
+</group>
+
+
+<term id="CrossPlatform">
+	<en>cross platform</en>
+	<ja>クロスプラットフォーム</ja>
+</term>
+<term id="Solution">
+	<en>solution</en>
+	<ja>ソリューション</ja>
+	<ja>解決策</ja>
+	<ja>解</ja>
+</term>
+<term id="SellingPoint">
+	<en>selling point</en>
+	<ja>セールスポイント</ja>
+</term>
+<term id="Portability">
+	<en>portability</en>
+	<ja>ポータビリティ</ja>
+</term>
+<term id="Portable">
+	<en>portable</en>
+	<ja>可搬性のある</ja>
+</term>
+
+
+
+<!-- * 以下、未整理項目 * -->
+
+<term id="Global">
+	<en>global</en>
+	<ja status="jlp">global</ja>
+	<ja status="jlp">グローバル</ja>
+	<ja status="jlp">通常の</ja>
+	<relate refid="GlobalInbox"/>
+	<relate refid="GlobalProfile"/>
+</term>
+
+
+<!-- 和訳部門フォーラムでの提案より http://moz.skillup.jp/jtp/viewtopic.php?t=1886 -->
+<term id="QA" scope="" abbr="Quality Assurance">
+	<en>QA</en>
+	<ja>品質保証</ja>
+	<ja>QA</ja>
+	<relate refid="QualityAssurance"/>
+</term>
+<term id="QualityAssurance">
+	<en>quality assurance</en>
+	<ja>品質保証</ja>
+	<relate refid="QA"/>
+</term>
+<term id="Distribution">
+	<en>distribution</en>
+	<ja>ディストリビューション</ja>
+	<relate refid="Distributor"/>
+</term>
+<term id="Distributor">
+	<en>distributor</en>
+	<ja>ディストリビュータ</ja>
+	<relate refid="Distribution"/>
+</term>
+<term id="PRD" abbr="Product Requirements Document">
+	<en>PRD</en>
+	<ja>PRD</ja>
+	<ja>製品に必要なドキュメント</ja>
+</term>
+<term id="Fix">
+	<en>fix</en>
+	<ja>修正</ja>
+</term>
+<term id="Configure ">
+	<en>configure</en>
+	<ja>configure</ja>
+	<ja>設定</ja>
+</term>
+<term id="TabbedBrowsing">
+	<en>tabbed browsing</en>
+	<ja>タブブラウズ</ja>
+	<ja>タブブラウジング</ja>
+</term>
+<term id="Milestone">
+	<en>milestone</en>
+	<ja>マイルストーン</ja>
+</term>
+<term id="CryptographicCipher">
+	<en>cryptographic cipher</en>
+	<ja>暗号化方式</ja>
+	<ja>暗号化方法</ja>
+</term>
+<term id="Bonsai">
+	<en>bonsai</en>
+	<ja>Boisai</ja>
+</term>
+<term id="ClientAuthentication">
+	<en>client authentication</en>
+	<ja>クライアント認証</ja>
+</term>
+<term id="StandardUnits">
+	<en>Standard Units</en>
+	<ja>国際単位系</ja>
+	<relate refid="TheInternationalSystemOfUnits"/>
+</term>
+<term id="TheInternationalSystemOfUnits">
+	<en>the international system of units</en>
+	<ja>国際単位系</ja>
+	<relate refid="StandardUnits"/>
+</term>
+<term id="Tree">
+	<en>tree</en>
+	<ja>ツリー</ja>
+	<ja>木</ja>
+	<relate refid="Branch"/>
+	<relate refid="Trank"/>
+</term>
+<term id="Trank">
+	<en>trunk</en>
+	<ja>トランク</ja>
+	<ja>幹</ja>
+	<relate refid="Tree"/>
+	<relate refid="Branch"/>
+</term>
+<term id="Branch">
+	<en>branch</en>
+	<ja>ブランチ</ja>
+	<ja>枝</ja>
+	<relate refid="Tree"/>
+	<relate refid="Trank"/>
+</term>
+<term id="FreeSoftware">
+	<en>free software</en>
+	<ja>フリーソフトウェア</ja>
+</term>
+<term id="Commandline">
+	<en>commandline</en>
+	<ja>コマンドライン</ja>
+</term>
+<term id="Object-signingCertificate">
+	<en>object-signing certificate</en>
+	<ja>オブジェクト署名用証明書</ja>
+</term>
+<term id="LanguagePackage">
+	<en>language package</en>
+	<ja>言語パック</ja>
+	<relate refid="LP"/>
+</term>
+<term id="LP">
+	<en>LP</en>
+	<ja>LP</ja>
+	<ja>言語パック</ja>
+	<relate refid="LanguagePackage"/>
+</term>
+<term id="Path">
+	<en>path</en>
+	<ja>パス</ja>
+</term>
+<term id="WindowManager">
+	<en>window manager</en>
+	<ja>ウィンドウマネージャ</ja>
+</term>
+<term id="Affiliate">
+	<en>affiliate</en>
+	<ja>アフィリエイト</ja>
+</term>
+<term id="Device">
+	<en>device</en>
+	<ja>デバイス</ja>
+</term>
+<term id="Tutorial">
+	<en>tutorial</en>
+	<ja>チュートリアル</ja>
+	<ja>手順書</ja>
+	<ja>手引き</ja>
+	<ja>入門</ja>
+	<relate refid="Introduction"/>
+</term>
+<term id="Introduction">
+	<en>introduction</en>
+	<ja>導入</ja>
+	<ja>入門</ja>
+	<ja>はじめに</ja>
+	<ja>イントロダクション</ja>
+	<ja>さあはじめよう</ja>
+	<relate refid="Tutorial"/>
+</term>
+<term id="RegressionTest">
+	<en>regression test</en>
+	<ja>退行テスト</ja>
+	<ja>回帰テスト</ja>
+	<ja>リグレッションテスト</ja>
+</term>
+<term id="XMLSchema">
+	<en>XML Schema</en>
+	<ja>XML スキーマ</ja>
+</term>
+<term id="Treadmark">
+	<en>treadmark</en>
+	<ja>商標</ja>
+	<relate refid="TreadmarkPolicy"/>
+</term>
+<term id="Policy">
+	<en>policy</en>
+	<ja>ポリシー</ja>
+	<ja>方針</ja>
+	<relate refid="TreadmarkPolicy"/>
+</term>
+<term id="TreadmarkPolicy">
+	<en>treadmark policy</en>
+	<ja>商標ポリシー</ja>
+</term>
+<term id="OutOfMemory">
+	<en>out of memory</en>
+	<ja>メモリ不足</ja>
+</term>
+<term id="TechnicalNote">
+	<en>technical note</en>
+	<ja>技術ノート</ja>
+	<ja>テクニカルノート</ja>
+	<ja>技術資料</ja>
+</term>
+<term id="">
+	<en></en>
+	<ja></ja>
+</term>
+<term id="">
+	<en></en>
+	<ja></ja>
+</term>
+<term id="">
+	<en></en>
+	<ja></ja>
+</term>
+
+
+
+
+
+<term id="">
+	<en></en>
+	<ja></ja>
+	<relate refid=""/>
+</term>
+</database>

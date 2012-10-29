@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 概念</title>
+<link rev="alternate" hreflang="en" modified="September 4, 2002" href="http://www.mozilla.org/js/language/js20/core/concepts.html">
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="index.html">
+<link rel="Next" href="lexer.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	div.translation-footer {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	span.comment {
+		color:#090;
+		font-size:90%;
+	}
+	span.comment code {
+		color:#090;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td class="vertical-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">コア言語</div>
+    <div class="title1">概念</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="index.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="lexer.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">2002/09/04 (Wed)</p>
+
+<h2><a name="value"></a>値</h2>
+
+<p><strong>値</strong>は変数に格納したり関数に渡したり関数から返すことのできる実体である。例えば以下のようなものがそうである:</p>
+
+<ul>
+  <li><code>undefined</code></li>
+  <li><code>null</code></li>
+  <li><code>5</code> (数値)</li>
+  <li><code>true</code> (論理値)</li>
+  <li><code>"Kilopi"</code> (文字列)</li>
+  <li><code>[1,&nbsp;5,&nbsp;false]</code> (要素数3の配列)</li>
+  <li><code>{a:3,&nbsp;b:7}</code> (2つのプロパティをもつオブジェクト)</li>
+  <li><code>function&nbsp;(x)&nbsp;{return&nbsp;x*x}</code> (関数)</li>
+  <li><code>String</code> (クラス、関数、型)</li>
+</ul>
+
+<h2><a name="type"></a>型</h2>
+
+<p><i>型</i> <var>t</var> は3つのものを表す:</p>
+
+<ul>
+  <li>値集合 <var>S</var> (無限集合でもよい)</li>
+  <li>全ての値から成る集合から集合 <var>S</var> への部分写像 <var>I</var></li>
+  <li>全ての値から成る集合から集合 <var>S</var> への部分写像 <var>E</var></li>
+</ul>
+
+
+<p>集合 <var>S</var> はどの値が型 <var>t</var> の <i>メンバ</i> とみなされるかを示す。値 <var>v</var> が型 <var>t</var>
+のメンバであるとき <var>v</var> <script type="text/javascript">document.write(U_isin)</script> <var>t</var>
+のように書くことにする。写像 <var>I</var> は値がどのように型 <var>t</var>
+へ<a href="../libraries/types.html#implicit-coercion">暗黙の型強制</a>可能かを示す。既に <var>S</var> に含まれている各値
+<var>v</var> について、写像 <var>I</var> は <var>v</var> を自身に写像しなければならない。写像 <var>E</var>
+は値がどのように型 <var>t</var> へ<a href="../libraries/types.html#explicit-coercion">明示的型強制</a>可能かを示す。<var>I</var>
+のドメイン (領域) にある <var>v</var> について、<var>E</var> は  <var>I</var> が写像するのと同じように <var>v</var>
+を写像する。言い換えると、あらゆる<a href="../libraries/types.html#implicit-coercion">暗黙の型強制</a>は<a href="../libraries/types.html#explicit-coercion">明示的型強制</a>でもあるが、<strong>その逆は成り立たない</strong>。</p>
+
+<p>値は複数の集合のメンバであることもあり、普通、1つ以上の型に属する。従ってある値<strong>の</strong>型について問い合わせることは通常有用ではない
+(代わりに値がある型に属するかどうか問い合わせることはあり得る)。値集合が同じで型変換の対応が異なる、2つの異なる型が存在することもある。</p>
+
+<p>一方、変数は特定の型を持つものである。型 <var>t</var> の変数 <var>x</var> を宣言した場合、<var>x</var> に格納される値は全て型 <var>t</var>
+のメンバであることが保証され、型 <var>t</var> の値は何でも <var>x</var> に代入することができる。また型 <var>t</var> の写像が値
+<var>v</var> の<a href="../libraries/types.html#implicit-coercion">暗黙の型強制</a>を規定していれば、<var>v</var>
+<script type="text/javascript">document.write(U_notin)</script> <var>t</var> である <var>v</var> も <var>x</var>
+に代入することができる。この場合、型強制した値が <var>x</var> に格納される。</p>
+
+<p>あらゆる型が何らかの値集合を表すが、値集合の全てが何らかの型で表されるわけではない
+(これは論理的な一貫性に求められることである &#8212; 値の無限集合は非可算だが、型の無限集合は数は可算である)。</p>
+
+<p>あらゆる型はそれ自体もまた値であり、変数に格納したり、関数に渡したり、関数から返すことができる。</p>
+
+<h3>型階層</h3>
+
+<p>型 <var>a</var> の値集合が型 <var>b</var> の値集合の部分集合であるとき、型 <var>a</var> を型 <var>b</var>
+の派生型 (部分型) といい、<var>a</var> <script type="text/javascript">document.write(U_sube)</script> <var>b</var> のように書く。</p>
+
+<p>派生型は推移的であり、<var>a</var> <script type="text/javascript">document.write(U_sube)</script> <var>b</var>
+且つ <var>b</var> <script type="text/javascript">document.write(U_sube)</script> <var>c</var> であれば <var>a</var>
+<script type="text/javascript">document.write(U_sube)</script> <var>c</var> である。派生型は反射的でもあり <var>a</var>
+<script type="text/javascript">document.write(U_sube)</script> <var>a</var> も成り立つ。また、<var>v</var>
+<script type="text/javascript">document.write(U_isin)</script> <var>t</var> 且つ <var>t</var>
+<script type="text/javascript">document.write(U_sube)</script> <var>s</var> であれば <var>v</var>
+<script type="text/javascript">document.write(U_isin)</script> <var>s</var> である。</p>
+
+<p>全ての値集合を表しているのが <a href="../libraries/types.html#Object"><code>Object</code></a>
+型で、全ての型の基底型である。<code>Object</code> 型の変数にはあらゆる値を格納できる。</p>
+
+<p>いかなる値も含まない集合を表しているのが <a href="../libraries/types.html#Never"><code>Never</code></a>
+型で、全ての型の派生型である。戻り値が <code>Never</code> 型の関数は値を返すことができない。<span class="comment">[訳注:
+戻り値が <code>Void</code> 型の関数とは意味が全く異なる。「関数」を参照]</span></p>
+
+<h2><a name="class"></a>クラス</h2>
+
+<p><strong>クラス</strong>は、オブジェクトとか<a href="#instance">インスタンス</a>と呼ばれる同類の値を作成するためのテンプレートである。これらインスタンスは普通、共通のメソッドやプロパティのような特色を共有する。</p>
+
+<p>あらゆるクラスは型でもあり値でもある。型として使用される場合、クラスはそのクラスのインスタンスの全集合を表す。</p>
+
+<p>クラス <var>C</var> は基底クラス <var>S</var> から派生 (導出) することができる。これによりクラス <var>C</var> はクラス
+<var>S</var> の特色を継承できる。<var>C</var> のあらゆるインスタンスは <var>S</var>
+のインスタンスでもあるがその逆は成り立たない。上記のような派生型が定義された場合、<var>C</var> と <var>S</var>
+を型と考えるなら暗黙の内に <var>C</var> <script type="text/javascript">document.write(U_sube)</script> <var>S</var> となる。</p>
+
+<p>派生という関係は全てのクラスの集合に対して階層的な関係を課す。将来的の方向性としてあり得る事かもしれないが
+JavaScript 2.0 は現時点で多重継承をサポートしない。仮に多重継承を許容すると、継承関係は全てのクラスの集合に (全順序関係ではなく) 部分的順序関係が発生する。</p>
+
+<h2><a name="member"></a>メンバ</h2>
+
+<p>クラスは主として<strong>メンバ</strong>の集合を含んでおり、変数、関数などがメンバとなり得る。メンバは<a name="instance-member"></a><strong>インスタンス</strong>メンバと<a name="global-member"></a><strong>グローバル</strong>メンバに分けられる。インスタンスメンバはそのクラスのインスタンスの<a href="#property">プロパティ</a>となり、グローバルメンバはクラスオブジェクトそのものの<a href="#property">プロパティ</a>
+(<a name="class-property"></a><strong>クラスプロパティ</strong>) となる。1つのクラスは同名のグローバルメンバをただ1つしか持つことができない。</p>
+
+<p>メンバはその動作を修飾する<a href="definitions.html#attribute">属性</a>を持つことができる。</p>
+
+<h2><a name="instance"></a>インスタンス</h2>
+
+<p><strong>インスタンス</strong> (<strong>オブジェクト</strong>) は<a href="#property">プロパティ</a>の集合を持つ。インスタンスは特定の<a href="#class">クラス</a>に属し、そのクラスと祖先クラスで定義された<a href="#instance-member">インスタンスメンバ</a>をプロパティとして持たなければならない。これらの束縛はインスタンス作成時に行われる。また、この他にインスタンスは<a href="#dynamic-property">動的プロパティ</a>を持つこともできる。これはインスタンス作成後、いつでも追加、削除が可能なプロパティである。</p>
+
+<p>明確に指定しない限り、個別に作成されたインスタンスはそれぞれ異なる識別情報を持つ。デフォルトの <code>===</code> 演算子は
+2つのインスタンスが異なるものであれば <code>false</code> を返し、同じであれば <code>true</code> を返す
+(ただし <code>NaN</code> は例外で、自分自身と比較しても常に等しくない)。</p>
+
+<p>もはや到達不能になったときにガベージコレクトが行われることが実装には求められることだが、インスタンスはその状態を恒久的に保持する。</p>
+
+<h2><a name="property"></a>プロパティ</h2>
+
+<p><strong>プロパティ</strong>は値に対する<a href="#property-name">プロパティ名</a>の実行時束縛である。プロパティの値は変更できるものもある。プロパティには<a name="fixed-property"></a><strong>固定</strong>プロパティと<a name="dynamic-property"></a><strong>動的</strong>プロパティがある。固定プロパティはクラス定義の<a href="#member">メンバ</a>として宣言され、オブジェクト構築時に作成される。動的プロパティはオブジェクト作成後であればいつでもオブジェクトに追加することができる。JavaScript
+1.5 のプロパティは全て動的プロパティである。</p>
+
+<p>プロパティは<a href="definitions.html#attribute">属性</a>を持つことができる。固定プロパティはその属性を相当するメンバから継承する。</p>
+
+<h2><a name="property-name"></a>プロパティ名</h2>
+
+<p><strong>プロパティ名</strong>は<a href="#namespace">名前空間</a> <var>N</var> 、識別子 <var>id</var> 、<a href="#class">クラス</a>
+<var>C</var> から構成され、<a href="#instance">インスタンス</a>の<a href="#property">プロパティ</a>を特定する。プロパティ名を完全な形で記述する言語構文は無い。この草案ではプロパティ名は
+<var>N</var><code>::</code><var>id<sub>C</sub></var> という表記で表される。<a href="#fixed-property">固定</a>プロパティの場合は <var>C</var>
+は相当する<a href="#member">メンバ</a>が定義されているクラスであり、<a href="#dynamic-property">動的</a>プロパティの場合は
+<var>C</var> はインスタンスの最終派生クラスである。</p>
+
+<p><a href="#instance">インスタンス</a>は1つのプロパティ名に対して1つしかプロパティを持つことはできない。インスタンスは名前空間
+<var>N</var> 、名前 <var>id</var> で同じでクラス <var>C</var> が異なる複数のプロパティを持つことができる。このとき最終派生クラス
+<var>C</var> のプロパティが他のプロパティを<strong>オーバーライドする</strong>という。オーバーライドされたプロパティはなおもインスタンス内に存在し、<a href="expressions.html#super"><code>super</code>
+演算子</a>を使ってアクセスすることができる。</p>
+
+<h2><a name="scope"></a><a name="regional-scope"></a>スコープ</h2>
+
+<p><strong>スコープ</strong>は以下のような JavaScript
+ソースコードの区分された各部分の1つを表す。以下の表に示すようにスコープの中には<strong>リージョナルスコープ</strong>として区別されるものもある。</p>
+
+<div class="indent">
+  <table border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <th style="text-align:left;white-space:nowrap">非終端生成規則&nbsp;</th>
+    <th style="text-align:left">リージョナルスコープか</th>
+    <th style="text-align:left">説明</th>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="statements.html#N-Program" class=nonterminal>Program</a></td>
+    <td>yes</td>
+    <td>プログラムのトップレベル</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="packages.html#N-PackageDefinition" class=nonterminal>PackageDefinition</a></td>
+    <td>yes</td>
+    <td><code>package</code> 定義</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="classes.html#N-ClassDefinition" class=nonterminal>ClassDefinition</a></td>
+    <td>yes</td>
+    <td><code>class</code> 定義</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="functions.html#N-FunctionDefinition" class=nonterminal>FunctionDefinition</a></td>
+    <td>yes</td>
+    <td><code>function</code> 定義</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="expressions.html#N-FunctionExpression" class=nonterminal>FunctionExpression</a>&nbsp;&nbsp;</td>
+    <td>yes</td>
+    <td><code>function</code> 式</td>
+  </TR>
+  <tr>
+    <td style="white-space:nowrap"><a href="statements.html#N-Block" class=nonterminal>Block</a></td>
+    <td>no*</td>
+    <td>ブロック (属性付きディレクティブの<a href="statements.html#directive-group">グループ</a>を除く)</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="statements.html#N-ForStatement" class=nonterminal>ForStatement</a></td>
+    <td>no*</td>
+    <td><code>for</code> 文</TD>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="statements.html#N-CatchClause" class=nonterminal>CatchClause</a></td>
+    <td>no*</td>
+    <td><code>try</code> 文の <code>catch</code> 節</td>
+  </tr>
+  </table>
+
+</div>
+
+
+<p>*これら3つのスコープは次の外側のスコープがクラススコープであるときリージョナルスコープとなる。</p>
+
+<p>スコープは JavaScript のプログラム実行中には変更できない静的なものである (ただし、プログラムが <code>eval</code>
+を呼んだ場合は新しい JavaScript ソースコードは既存のスコープを共有するか自身のスコープを作成する)。トップレベルのスコープ
+(グローバルスコープ) 以外は必ず他のスコープの内側に含まれている。2つのスコープが重複している場合、一方が他方を完全に内包していなければならない。つまりスコープは階層的である。</p>
+
+<p>スコープ情報は実行時に変数とプロパティの探索と可視性チェックに使用される。</p>
+
+<p>スコープを<a href="#activation-frame">実行フレーム</a>や<a href="#namespace">名前空間</a>と混同してはならない。</p>
+
+<h2><a name="activation-frame"></a>実行フレーム</h2>
+
+<p>実行フレームは、<a href="#scope">スコープ</a>中で定義されている全ての<a href="#qualified-name">限定名</a>と値を対応付ける実行時束縛の集合を持つ。実行フレームはスコープに入る度に新しく作成され、関数クロージャは自身を作成した実行フレームへの参照を持つ。スコープから抜け出し、実行フレームを参照している全てのクロージャがガベージコレクトされた後に、その実行フレームを破棄することが実装に求められることだが、実行フレームはその状態を恒久的に保持する。</p>
+
+<p>実行フレームの束縛には値を変更できるものもある。束縛の値は最初、未初期化状態であり、この状態で束縛を読み取ろうとするとエラーになる。</p>
+
+<p>実行フレームの束縛は動作を修飾するための<a href="definitions.html#attribute">属性</a>を持つことができる。</p>
+
+<h2><a name="qualified-name"></a>限定名</h2>
+
+<p><strong>限定名</strong>は<a href="#namespace">名前空間</a> <var>N</var> と識別子 <var>id</var> から構成される。この草案では、限定名は
+<var>N</var><code>::</code><var>id</var> という表記で表される。<a href="#activation-frame">実行フレーム</a>は1つの限定名に対して多くとも1つしか束縛を持つことができない。</p>
+
+<h2><a name="namespace"></a>名前空間</h2>
+
+<p><strong>名前空間</strong>は名前をパラメータ化する。名前空間属性 <var>N</var> はあらゆる名前やプロパティ <var>p</var>
+の宣言に結びつけることができ、<var>p</var> へのアクセスを制限する。コード内の他の箇所で <var>p</var> にアクセスするには名前空間で限定した
+<var>N</var><code>::</code><var>p</var> を使うか、<var>p</var> へのアクセスが置かれるスコープで
+<a href="namespaces.html#use-directive"><code>use&nbsp;namespace(</code><var>N</var><code>)</code> ディレクティブ</a>を実行するしかない。C++
+とは異なり、名前空間はスコープではなくそれ自身は名前やプロパティを持たない。名前空間は実行フレーム、クラス、オブジェクトに結び付けられたプロパティや名前のアクセス性と可視性を変更するだけである。</p>
+
+<p>名前空間は <code>::</code> 演算子の第1オペランドとして渡すことのできる値である。</p>
+
+<p><code>public</code> は宣言時に使われる既定の名前空間である (グローバルスコープには暗黙の <code>use&nbsp;namespace(public)</code>
+ディレクティブが置かれている)。パッケージは定義済み無名名前空間 <code>internal</code> を持ち、クラスは定義済み無名名前空間
+<code>private</code> を持つ。これらはアクセス制御を可能にする。ユーザ定義名前空間もまた、より柔軟なアクセス制御に使用できる。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:bottom;white-space:nowrap">
+    <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+    最終更新: 2002年9月4日(水)</address>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="index.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="lexer.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<div class="translation-footer">
+	訳者: exeal &lt;<a href="mailto:exeal@student.interq.or.jp">exeal@student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/core/concepts.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+	この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br />
+	翻訳文書についてのコメントは <a href="http://moz.skillup.jp/jtp/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。
+</div>
+
+</body>
+</html>

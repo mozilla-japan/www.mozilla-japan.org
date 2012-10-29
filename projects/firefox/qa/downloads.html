@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla Firefox 品質保証 - ダウンロードマネージャ テストマトリックス</title>
+<link rel="alternate" hreflang="en" modified="September 24, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/qa/downloads.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>ダウンロードマネージャ 機能テスト</h1>
+<p><em><a href="mailto:ben&#64;mozilla.org">Ben Goodger</a> - 2003/11/26</em></p>
+<h2>主要機能</h2>
+<p><strong>ファイルのダウンロード</strong> - <br>1. ブラウザ内のリンクをクリックし、ファイルをダウンロードする<br>2. リンクを右クリックし、&quot;Save Target As...&quot; (対象に名前を付けて保存) を選択する<br>3. リンクを Download Manager (ダウンロードマネージャ) ウィンドウにドラッグする</p>
+<p>これでファイルはダウンロードされるはずです。オプションの状態 (以下の項目を参照) によってはダウンロードマネージャが表示されます。ダウンロードが 2 秒以内に完了した場合 (例: ドキュメントがディスク上にキャッシュされていた場合) は、オプションにかかわらずダウンロードマネージャは表示されません。これによって &quot;Save Image As...&quot; (画像に名前を付けて保存) のように作業が効率化されるはずです。ダウンロードが完了すると、Windows ではスクリーンの右下に通知ダイアログが表示されます。</p>
+<h2>オプション</h2>
+<p><strong>&quot;Show Download Manager when a download begins&quot;</strong> (ダウンロード開始時にダウンロードマネージャを表示する) - ダウンロード開始時にダウンロードマネージャを表示するかしないかをコントロールします。</p>
+<p><strong>&quot;Close the Download Manager when downloads complete&quot;</strong> (ダウンロード完了時にダウンロードマネージャを閉じる) - すべてのダウンロードが完了したときに (以前の経過ダイアログのように) ダウンロードマネージャウィンドウを閉じます。</p>
+<p><strong>&quot;Clear the Download List When&quot;</strong> (以下の場合にダウンロードリストをクリアする) - ダウンロードが正常に完了したとき、Mozilla Firefox 終了時、手動 - 最初のケースでは、ダウンロードが正常に完了したときに、ダウンロードエントリーがリストから削除されます。ただし、ダウンロードがキャンセルされた場合や失敗した場合は削除されません。2 番目のシナリオでは、ブラウザ終了時にリストがクリアされます。最後のシナリオでは、ユーザが自分で削除しない限り、リストはクリアされません。</p>
+<h2>管理</h2>
+<p><strong>Manager Window</strong> (マネージャウィンドウ) - ダウンロードリストを表示し、アクティブまたは非アクティブにします。新規ダウンロードは転送開始時にフェードインするはずです。</p>
+<p><strong>Pause/Resume</strong> (中止・再開) - 現在のセッションでアクティブなダウンロードを中止・再開します。(ダウンロードアイテムのリンク、コンテキストメニュー、Space バー)</p>
+<p><strong>Cancel</strong> (キャンセル) - アクティブなダウンロードをキャンセルします。(ダウンロードアイテムのリンク、コンテキストメニュー)</p>
+<p><strong>Retry</strong> (再試行) - 失敗したダウンロードを再度ダウンロードします。(ダブルクリック、コンテキストメニュー)</p>
+<p><strong>Remove</strong> (削除) - 失敗した、あるいは完了したダウンロードをリストから削除します。(Delete キー、コンテキストメニュー)</p>
+<p><strong>Show</strong> (表示) - 完了したダウンロードをネイティブなファイルシステムシェルで開きます。(ダウンロードアイテムのリンク、コンテキストメニュー)</p>
+<p><strong>Open</strong> (開く) - 完了したダウンロードをネイティブな環境で開きます。(ダブルクリック、コンテキストメニュー)</p>
+<p><strong>Clean Up</strong> (全削除) (Alt+N) - 完了、キャンセル、失敗したダウンロードをすべてリストから削除します。Clean Up コマンドとこれに関連したボタンは、非アクティブなダウンロードがある場合のみ有効になります。</p>
+<p><strong>Error Checking</strong> (エラーチェック) - ダウンロードリストには、間違いがあったり、不良なエントリーが含まれていてはいけません。エラーチェックは、ダウンロードデータソースがディスクに書き込まれる前にリスト上で実行されます。</p>
+<p><strong>Options</strong> (オプション) - オプションウィンドウの Download Options (ダウンロードオプション) パネルを表示します。ここで設定をしても、メイン設定パネルの「パネル記憶」はダウンロードパネルの「パネル記憶」に移行されません。</p>
+<h2>経過</h2>
+<p><strong>Progress Bar</strong> (経過バー) - アクティブなダウンロードアイテムには、それぞれ現在の進行状況を示す経過バーが付いています。</p>
+<p><strong>Progress Text</strong> (経過テキスト) - アクティブなダウンロードアイテムには、経過バーの下に、それぞれダウンロードしたファイルの分量やダウンロードの総量を示すテキストエリアが付いています。サイズが 1MB 以下の場合は KB 単位で表示され、1MB を超す場合は MB で表示されます。ダウンロードが中止されなかった場合は転送速度も表示されます。</p>
+<p><strong>Title Bar</strong> (タイトルバー) - ダウンロードマネージャのタイトルバーには、アクティブなダウンロードの数とともに、平均の完了率が表示されます。この割合は、新たにダウンロードが追加されたり、アクティブなダウンロードが完了すると修正されます。</p>
+<p><strong>Completion Notification</strong> (完了通知ダイアログ) - すべてのダウンロードが完了すると、(Windows では) 新着メールお知らせ機能のようなダイアログがスクリーンの右下に表示されます。完了したダウンロードがダウンロードマネージャのリストに残っている場合、つまり、保存オプションが &quot;Remove upon successful download&quot; (ダウンロード完了時に削除する) に設定されていない場合、ダイアログの中のリンクはクリック可能になります。</p>
+<h2>その他の機能</h2>
+<p><strong>Exiting</strong> (終了) - File (ファイル) &gt; Exit (終了) メニューから、あるいはユーザがすべてのウィンドウを閉じてアプリケーションを終了した時点で、アクティブなダウンロードが残っている場合は、(ダウンロードマネージャが開いている場合はそこから、開いていない場合は他のウィンドウを元に) キャンセルされるダウンロードの数を示したダイアログを出して、ユーザに警告します。ユーザが終了のキャンセルを選んだ場合、終了コマンドは中断し、ダウンロードが完了するまでアプリケーションは開いたままになります。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/qa/downloads.html">英語版</a> 2004/09/24</span> - <span>和訳版 2005/05/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/qa/downloads.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

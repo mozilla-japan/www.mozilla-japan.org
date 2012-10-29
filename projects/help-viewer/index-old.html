@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>新ヘルプ仕様</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/help-viewer/index-old.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/help-viewer/index-old.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+<h1>新しいヘルプシステムの仕様</h1>
+
+<p>このドキュメントでは、Mozilla 1.0 でのヘルプシステムの挙動に関するいくつかの変更点について解説します。特に二つの大きな更新により、次のような面で影響を与えることになりました。一つは画面に応じたコンテキスト依存ヘルプを提供する際に新しい内容を追加する方法、もう一つは他のアプリケーションがそれぞれ独自のヘルプコンテントを表示するためにヘルプシステムを使用できるようにする方法です。こうした変更は非常に大きなもので、ヘルプビューアのための既存の仕様（このドキュメントの参考資料セクションにあります）がほとんど役に立たなくなってしまいました。</p>
+
+<p>このドキュメントで解説される変更点：</p>
+<ul>
+  <li><a href="#key">コンテキストキー・ルックアップ</a>
+  <li><a href="#rdf">RDF メタファイル：異なるヘルプセットのための枠組み</a>
+</ul>
+
+<p>これら二つのシステム上の変更に加えて、ヘルプウィンドウの見た目がいくらか変更されました。中でも、肥大したナビゲーションツールをまとめるためにヘルプウィンドウの左側にサイドバーに似たパネルを用いています。これらのツール（下の<a href="#sidebar">サイドバー</a>のセクションで解説されています）には、クライアントサイドの検索機構、独立した用語集、および動的に生成される索引が含まれます。</p>
+
+<a name="key"></a>
+<h2>コンテキストキー・ルックアップ</h2>
+
+<p>コンテキスト依存ヘルプの作動効率は、現時点では非常に悪いものです。設定ダイアログのような UI は、その時点でのサブフレームを ID 番号のルックアップのためのキーとして利用し（参考：配列を含んでいる pref-help.js）、それからウィンドウが表示されるときにヘルプシステムから適切なコンテントを読み込むためにその ID を利用して二度目のルックアップを行います。この二段階に分かれたルックアップ方法は余分な時間がかかり、エラーの可能性が大きくなりますし、キー自体も何百とありビルドの中に非常に多くの領域を必要とします。</p>
+
+<p>さらにこのシステムでは、ヘルプビューアの左側にある目次から適切な項目を選択するための簡単な方法がないのです。RDF テンプレートを通じたコンテントの表示方法では、目次内でネストされた項目といった特定のサブノードを見つけることが困難です。ヘルプビューアにコンテキスト依存のコンテントを表示するより良い方法は、ヘルプビューアが RDF データ内であなたの必要とするノードを照会し、その照会によりそのコンテント枠内に適切な HTML コンテントを表示するよう促します。これはまさに、ユーザーが目次内のノードを選択したときに起こることです。それは次のような順になります：</p>
+
+<blockquote>
+<pre> 
+ヘルプボタン・ルックアップ -&gt; RDF セレクト -&gt; TOC オンセレクト -&gt; HTML コンテント
+</pre>
+</blockquote>
+
+<h3>RDF ID をコンテキストキーとして利用する</h3>
+
+<p>目次を構成する RDF/XML 内の ID 属性という形で、ヘルプ内のそれぞれのトピックに対して固有の ID 番号のセットがすでにあるため、help.js および pref-help.js 内に余計な ID セットは必要ありません。ヘルプシステムの &quot;コンテキスト&quot; 部分がウィンドウロードとして選択されている RDF データソース内の特定ノードの場合、TOC から選択して正しい HTML を表示するため必要なのは対象のウィンドウロードのノード ID だけです。現時点では、コンテキストルックを持つヘルプウィンドウを開くための関数は次のようなものです：</p>
+
+<blockquote>
+<pre>
+openHelp("chrome://help/content/help.xul?imagemap_properties");
+</pre>
+</blockquote>
+
+<p>括弧内の文字列があるところはヘルプウィンドウのための URL で、疑問符の後の部分は HTML コンテント内のアンカーに対応する特殊な ID です。
+
+<p>上記に替わる方法として、URL は次のようになります。URL の部分には RDF URI、そして疑問符の後の ID は選択される読み込まれたデータソース内のノードの ID となります。
+
+<table border="0" align="center" width="60%" cellpadding="5" cols="2">
+<tbody>
+<tr>
+  <td><b>書式</b></td><td><pre>openHelp(rdfuri?rdfid);</pre></td></tr>
+<tr>
+  <td><b>例</b></td><td><pre>openHelp("chrome://help/locale/mozillahelp.rdf?nav");</pre></td></tr>
+<tr>
+<td><b>ショートカット例</b></td><td><pre>openHelp("?nav");</pre></td></tr>
+</tbody>
+</table>
+</p>
+
+<p><tt>openHelp()</tt> 関数は、ファイル <tt>help/content/contextHelp.js</tt> で定義されています。このファイルは、特定のコンテキストの中でヘルプウィンドウを呼び出すための UI 定義ファイルのどこかにあります。この関数は、メタファイル（このメタファイルの挙動についての解説は下にある <a href="#rdf">RDF メタファイル</a>セクションを参照してください）に対して完全な RDF URI か、ヘルプウィンドウが開かれた際に読み込まれるコンテントに対応した RDF/XML による目次内（<tt>help/locale/help-toc.rdf</tt>）にある項目の ID で示されます。つまり、コンテキストヘルプとして開かれる全てのコンテントの内容は目次に示されている、ということです。</p>
+
+<p>これによりルックアップの必要が全くなくなり、ヘルプ内に組み込むことができる RDF データを追加することで、UI 開発者が新たなコンテキスト依存型ヘルプを作成することが可能になります。この RDF データの追加は、HTML コンテントをターゲットにしており、現在 &quot;キー&quot; が定義されている Javascript ファイルを編集することなく行うことができます。ヘルプウィンドウのこの新しいより直接的なヘルプ表示方法は、コンテキストヘルプを含むヘルプウィンドウの全般的なレイアウトおよび検索範囲がメインの RDF ファイルで定義されているという、より広範な更新の一部で、これについては次のセクションで解説します。</p>
+
+<a name="rdf"></a> 
+<h2>RDF メタファイル</h2>
+
+<p>ヘルプシステムは、ビューアにコンテントを表示するために RDF を限定的に使用しています。目次は、データソースから読み込まれ UI の一部としてビルドされるデータの例です。ただし、ヘルプビューア内の動的なテータの可能性はこの例に比べて遥かに大きなものです。中でもヘルプシステムは高いモジュール性を備えている必要があります。なぜなら、その他のアプリケーションでも利用でき、HTML コンテントやその他の新たなデータを追加でき、その他の部分との関連がより明瞭かつ効果的になるようにするためです。これらのことを念頭に Peter Wilson はRDF/XML を利用して、より全体的なアプリケーションとしてヘルプシステムを構築するプロトタイプを提案しました。つまり、help.xul ファイルが読み込まれたとき、help.xul ファイルは、索引、検索可能なデータそしてセットの一部として読み込まれるべきその他のモジュールと同じように TOC のコンテントが指定されているメタファイルを探すのです。</p>
+
+<p>メタファイルは次のような形で書かれています：</p>
+
+<pre>
+&lt;?xml version="1.0"?&gt;
+&lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:nc="http://home.netscape.com/NC-rdf#"&gt;
+
+&lt;!-- MOZILLA MASTER HELP DOCUMENT --&gt;
+  &lt;rdf:Description about="urn:root"
+    nc:title="Mozilla Help."
+    nc:defaulttopic="welcome"
+    nc:base="chrome://help/locale/"&gt;
+    &lt;nc:panellist&gt;
+      &lt;rdf:Seq&gt;
+        &lt;rdf:li&gt; 
+          &lt;rdf:Description nc:panelid="search" nc:title="Search" nc:datasources="rdf:null"/&gt; 
+        &lt;/rdf:li&gt;
+        &lt;rdf:li&gt; 
+          &lt;rdf:Description nc:panelid="toc" nc:title="Contents" 
+             nc:datasources="navigator-toc.rdf mail-toc.rdf composer-toc.rdf  help-toc.rdf"/&gt; 
+        &lt;/rdf:li&gt;
+        &lt;rdf:li&gt; 
+          &lt;rdf:Description nc:panelid="index" nc:title="Index" 
+             nc:datasources="help-index0 help-index1"/&gt; 
+        &lt;/rdf:li&gt;
+        &lt;rdf:li&gt; 
+          &lt;rdf:Description nc:panelid="glossary" nc:title="Glossary" 
+             nc:datasources="help-glossary.rdf"/&gt; 
+        &lt;/rdf:li&gt;
+      &lt;/rdf:Seq&gt;
+    &lt;/nc:panellist&gt;
+  &lt;/rdf:Description&gt;
+&lt;/rdf:RDF&gt;
+</pre>
+
+<p><tt>defaulttopic</tt> 属性は、選択されるべき（そして HTML コンテントを読み込みます）RDF ノードの ID を指定します。<tt>base</tt> 属性は、HTML コンテントでの chrome へポイントする URL のベースを識別し、<tt>panellist</tt> 構造はヘルプコンテントのこの特定のセットの一部としての UI へとビルドされる RDF ファイルを一覧表示します。このセットは、４つのパネル、コンテント、索引、検索、用語集を一覧表示します。このセットは mozillahelp.rdf という名前を持ち、ヘルプのための基礎的なメタファイルとして識別されます。ただし替わりに minhelp.rdf あるいは sansmail.rdf というメタファイルを読み込むこともできます。このようにして、新しいデータやインストール時の設定に応じたデータを提供することができるのです。</p>
+
+<a name="sidebar"></a>
+<h2>サイドバーパネルとナビゲーションツール</h2>
+
+<p>ヘルプシステムのユーザーインターフェースへの重要な変更は、ウィンドウの左側にあるサイドバーのようなパネルの利用です。オリジナルのヘルプビューアでは、目次、索引という二つに分かれたパネルをもつタブボックスを利用していたところに、新しいシステムでは、サイドバーパネルの変更可能な一覧を提供しています。あなたのメタファイル内の <tt>&lt;nc:panellist&gt;</tt> に全ての利用可能なパネルを入れた場合、これらのパネルには次のものが含まれます：</p>
+
+<ul>
+  <li>検索</li>
+  <li>目次</li>
+  <li>索引</li>
+  <li>用語集</li>
+</ul>
+
+<p>上で述べたように、アプリケーション特有なレベルでヘルプシステムを定義しているメタファイルの柔軟性により、これらのパネルやあらゆるサブセットを全て含めることが可能となります。</p>
+
+<h3>検索機構</h3>
+
+<p>新しいヘルプシステムは、軽量なクライアントサイドの検索機構を提供します。この検索機構は、ヘルプシステムの構造化されたコンテントの多くを定義するための RDF/XML の利用に基づいています。</p>
+
+<p>検索パネルには簡単なテキストフィールドがあり、検索機構のためのボタンインターフェースが備えられています。テキストフィールドに用語を入力し、検索ボタンをクリックすると、検索機構が、目次、用語集、そして索引を含む、ヘルプシステム内の全ての RDF/XML データを検索します。そして、入力された語に一致する語の一覧を、下の部分に表示します。一覧の中のそれぞれの項目は、一致した RDF/XML に対応するコンテントへのリンクになっています。</p>
+
+<h3>目次</h3>
+
+<p>目次は前のバージョンのヘルプシステムと非常に良く似た方法で実装されていますが、ナビゲーションの他のモード、非公式的な利便性テストを反映するように再編成されて、拡張されています。目次は、コンテキスト依存型のヘルプリクエストが処理されるメインデータベースとなっています（上の<a href="#key">コンテキストセクション</a>を参照してください）。またそのため、コンテントパネル内（i.e., HTML ファイル内の全ての HTML アンカー）で参照される全てのコンテントは、目次に表示されなければならず、固有の ID と共に RDF/XML 要素として実装されなければなりません。なぜなら、かつてのコンテキスト依存ヘルプリクエストでは HTML コンテントを要求し、その HTML コンテントが次に目次内の適切なノードを読み込むように要求していたのですが、現在では目次内のノードに対してリクエストをし、そのノードが適切なコンテントをコンテントウィンドウに読み込むようになっているからです。このアップデートでは、目次がヘルプシステムとユーザーインターフェースの残りの部分との間の主な架け橋となっています。</p>
+
+<h3>索引</h3>
+
+<p>以前のバージョンのヘルプシステムでは、索引は HTML コンテント内の特別なアンカーから生成される単純な HTML ファイルでした。その HTML 索引を生成していたスクリプト（下の資料セクションにあります）は、ヘルプシステムの最新のバージョンに対して動かされていました。そしてその結果生成された HTML ページは、help-index.html としてチェックインされていました。</p>
+
+<p>このような索引を生成するためのプロセスは以前と変わりませんが、索引は RDF/XML で書かれています。これにより索引パネルに構造化された索引データ（RDF テンプレートという形の outliner として実装されます）を提供することができ、検索機構が一致語を探せるような大規模なデータベースを提供することができるのです。索引のために RDF/XML を利用することによって、以前のバージョンのヘルプシウィンドウのフォントや表示の問題について解決することもでき、パネル間の表示差をなくすことができます。</p>
+
+<h3>用語集</h3>
+
+<p>新しい用語集パネルでは、古い目次内に既に表示されていた用語集データを切り離して、独立したパネルに納めています。用語集データは、目次とは異なる方法で構造化されています。そしてこのように分離することで、目次と用語集が切り離されていることが分かり、検索や探索がより簡単になるのです。</p>
+
+<h2>資料</h2>
+
+<ul>
+<li><a href="old_index.html">過去のヘルププロジェクトのスタートページ</a></li>
+<li><a href="proposal.html">オリジナルのヘルプシステム計画</a></li>
+<li><a href="cshelp_specification.html">コンテキストヘルプ仕様</a></li>
+<li><A HREF="help_build_spec.html">ヘルプビルド・ミニ仕様</a></li>
+<p>
+<li><a href="idx.py.txt">過去の索引作成用スクリプト</a></li>
+<li><a href="ridx.py.txt">更新された RDF/XML 索引作成</a></li>
+</ul>
+
+<hr>
+<div align="right"><a href="mailto:oeschger@netscape.com">Ian Oeschger</a>  Last updated:
+Thu, 27 Feb 2003 18:18:46 GMT</div>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/help-viewer/index-old.html">英語版</a> 2003/10/08</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/help-viewer/index-old.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

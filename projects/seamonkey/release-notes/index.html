@@ -1,0 +1,1424 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>古いマイルストーンリリース</title>
+<link rel="alternate" hreflang="en" modified="January 12,  2001">
+<!--
+正確な内容は、原文を参照してください。
+原文タイトル：Old Milestone Releases
+原文： http://www.mozilla.org/projects/seamonkey/release-notes/index.html
+ (Rev 1.120 : Last modified January 12, 2001.)
+2000.8.11(~M17) : a-mutsu@ra2.so-net.ne.jp の和訳をもとにしています。
+和訳 (Rev 1.112) 2000.10.14  ちゃど（chado@mail.wbs.ne.jp）
+                 2000.10.16  ちゃど（chado@mail.wbs.ne.jp）M15 以前の部分を訳
+和訳 (Rev 1.114) 2000.10.17  ちゃど（chado@mail.wbs.ne.jp）
+     Linux 記述修正（i386/x86）
+     FreeBSD、Solaris、Tru64 Unix 向け追加
+和訳 (Rev 1.115) 2000.10.18  ちゃど（chado@mail.wbs.ne.jp）
+     Linux sparc 向け追加
+     FreeBSD、Tru64 Unix サイズ修正
+和訳 (Rev 1.116) 2000.10.21  ちゃど（chado@mail.wbs.ne.jp）
+     os2、tru64 向けビルド追加
+和訳 (Rev 1.117) 2000.10.24  ちゃど（chado@mail.wbs.ne.jp）
+     alpha linux 向け m18 ビルド追加
+和訳 (Rev 1.118) 2000.11.02  ちゃど（chado@mail.wbs.ne.jp）
+     m18 ビルド追加（ppc linux、OS/2 インストーラ、HPUX）
+     Rev 1.119 対処済
+和訳 (Rev 1.120) 2001.01.17 06:27 ちゃど（chado@mail.wbs.ne.jp）
+     /projects/seamonkey/release-notes/ は /release-notes/ に移ったので、
+     このドキュメントは Old Milestone Releases に変更されました。
+     タイトルの変更と新しいリリースノートへのリンク追加
+-->
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/release-notes/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<H1>古いマイルストーンリリース</H1>
+
+<FONT COLOR="red" SIZE="+1">
+最新の Mozilla 0.x バイナリについては、新しい
+<A HREF="../../../releases/">リリース</A> のページを見てください。
+</FONT>
+
+<P>
+これらは Seamonkey プロジェクトのマイルストーンリリース(Milestone Releases)のためのダウンロードパッケージ
+およびリリースノートへのリンクです。
+すべてのマイルストーンビルドが同時にリリースされるとは限りません。
+したがってあなたが捜しているビルドがここにまだ無くても <B>パニックにならないでください。</b>
+また後でチェックしてください。
+ソースコードがまだリリースされていない場合、現在のマイルストーン・ディレクトリーの
+README ファイルの中から CVSから得る方法を得て下さい。
+<P>
+Full Circle が有効なビルドでは Netscape へクラッシュを分析するためにクラッシュデータの送信を可能とします。
+また netscape.public.mozilla.crash-data ニュースグループへクラッシュ情報をポストします。
+<p>
+もしもあなたがビルドが提供されていないプラットフォームのためにビルドを提供したいならば、私たちの
+<A HREF="../../../build/distribution.html">配布</a>文書を読んで下さい。
+<P>
+<!-- 原文コメント ---
+<A HREF="http://www.deja.com/[LB=http://www.mozilla.org/]/msgid.xp?MID=<37B04C1C.C319CD92@mozilla.org>">This article</A>
+explains why mozilla doesn't work on Linux with older un-threadsafe 
+versions of glibc.  Help us work around this problem if you can.
+---- 原文コメント -->
+
+<p><b><a href="../milestones/index.html">
+Milestone 18</a></b> - 2000.10.12 完了
+<ul>
+<li><a href="m18.html">リリースノート</a> - リリースノートにはインストール方法、システムの必要条件、新たな情報と既知のバグのリストが記載されています。
+<li>全プラットフォームに対応した
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/src/mozilla-source-M18.tar.gz">ソースコード</a>
+Tarball。 (26.8 MB)
+<li>
+<a href="/projects/l10n/mlp_status.html#contrib">ローカライズされたビルドと言語パック</a> - 別の言語で Mozilla を使ってください。
+(<a href="/projects/l10n/">Mozilla ローカリゼーションプロジェクト</a>)
+<BR>（訳者注：mozilla.gr.jp 発 日本語パックは<A HREF="http://www.mozilla-japan.org/jp/l10n/">こちら</A>）
+<li>Mozilla に SSL サポートを追加するためには
+<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">PSM</A>
+をインストールしてください。
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-win32-installer-M18.exe">
+インストーラ実行形式</a> (7.2 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-win32-M18.zip">
+Zip ファイル形式</a> (10.8 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-win32-M18-mathml-svg-xslt.exe">
+MathML、SVG、XSLT を備えた Zip ファイル形式</A> (10.6 MB)
+</dl>
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+<dd>
+全ての MacBinary ファイル -- Stuffit expander 4.5 以降が必要です。
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m18/MacMozillaInstaller-M18.sea.bin">インストーラ形式 </a> (10.5 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-mac-M18.sea.bin">.bin 形式</a> (10.9 MB)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i686-pc-linux-gnu-sea-M18.tar.gz">
+x86 向けフルインストーラ</a> (8.2 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i686-pc-linux-gnu-M18.tar.gz">
+x86 向け tar.gz 形式</a> (10.1 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i686-pc-linux-gnu-m18-mathml-svg.tar.gz">
+x86 向け MathML と SVG を備えた tar.gz 形式</a> (9.8 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-sparc-unknown-linux-gnu-M18.tar.gz">
+sparc 向け tar.gz 形式</a> (9.9 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-powerpc-unknown-linux-gnu-M18.tar.gz">
+ppc 向け tar.gz 形式</a> (11.3 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-alpha-linux-gnu-M18.tar.gz">
+alpha 向け tar.gz 形式</a> (13.5 MB) 
+
+
+</dl>
+
+<dl>
+<dt><b>OpenVMS</b>
+<dd>Compaq の OpenVMS エンジニアリンググループ によって寄与されました。
+OpenVMS に関しては、そちらの<A HREF="http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a>を参照してください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-openvms-alpha-m18.sfx_axpexe">自己展開 PCSI</a> (22.5 MB)
+</dl>
+
+<dl>
+<dt><b>OS/2</b>
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-os2-installer-M18.zip">i386 インスト−ラ形式</a> (15.7 MB)
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-os2-M18.zip">i386 zip ファイル</a> (14.7 MB)
+</dl>
+
+<dl>
+<dt><b>HPUX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-hppa2.0w-hp-hpux11.00-M18.tar.gz"> HP11.00 向け tar.gz 形式</a> (GNU libs は別途) (18.7 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-hppa2.0-hp-hpux10.20-M18.tar.gz"> HP10.20 向け tar.gz 形式</a> (GNU libs は別途) (20.4 MB)
+</dl>
+
+<dl>
+<dt><b>FreeBSD</b>
+<!-- 原文コメント ---
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i386-unknown-freebsdelf3.3-M18.tar.gz"> 3.x 向け tar.gz 形式</a> (10.5 MB)
+---- 原文コメント -->
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i386-unknown-freebsdelf4.0-M18.tar.gz"> 4.x 向け MathML を備えた tar.gz 形式</a> (8.9 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i386-unknown-freebsdelf4.1.1-M18.tar.gz"> 4.x 向け tar.gz 形式</a> (10.9 MB)
+</dl>
+
+<!-- 原文コメント ---
+<dl>
+<dt><b>NetBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i386-unknown-netbsdelf1.5D-M18.tar.gz"> NetBSD 1.5 i386 向け tar.gz 形式</a> (9.4 MB)
+</dl>
+
+<dl>
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i386-pc-bsdi4.0.1-M18.tar.gz"> 4.0.1 向け tar.gz 形式</a> (7.1 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/README-bsdi">README</a>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i386-pc-bsdi4.1-M18.tar.gz"> 4.1 向け tar.gz 形式</a> (6.6 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/README-bsdi">README</a>
+</dl>
+
+<dl>
+<dt><b>AIX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-powerpc-ibm-aix4.3.2.0-M18.tar.gz"> AIX 4.3.2 向け tar.gz 形式</a> (20.8 MB) - ブラウザのみ
+</dl>
+---- 原文コメント -->
+
+<dl>
+<dt><b>Solaris</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-sparc-solaris8-M18-installer.tar.gz"> sparc 版 Solaris 2.8 向けインストーラ tar.gz 形式</a> (10.2 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-sparc-sun-solaris2.8-M18.tar.gz"> sparc 版 Solaris 2.8 向け tar.gz 形式</a> (11.9 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-i386-pc-solaris2.8-M18.tar.gz"> x86 版 Solaris 2.7 向け tar.gz 形式</a> (10.3 MB)
+</dl>
+
+<dl>
+<dt><b>Tru64 Unix</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-alphaev5-dec-osf4.0d-M18.tar.gz"> OSF 4.0d 向け tar.gz 形式</a> (23.7 MB) 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-alphaev6-dec-osf5.0-M18.tar.gz"> OSF 5.0 向け tar.gz 形式</a> (20.5 MB) 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m18/mozilla-alphaev6-dec-osf5.1-M18.tar.gz"> OSF 5.1 向け tar.gz 形式</a> (16 MB) 
+</dl>
+
+</ul>
+
+<P><HR><P>
+
+<p><b><a href="../milestones/index.html">
+Milestone 17</a></b> - 2000.8.7 完了
+<ul>
+<li><a href="m17.html">リリースノート</a> - リリースノートはインストール方法、システムの必要条件、新たな情報と既知のバグのリストが記載されています。
+<li>全プラットフォームに対応した
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/src/mozilla-source-M17.tar.gz">ソースコード</a>
+Tarball。(26.8 MB)
+<li>
+<a href="/projects/l10n/mlp_status.html#contrib">ローカライズされたビルドと言語パック</a> - 別の言語で Mozilla を使ってください。
+(<a href="/projects/l10n/">Mozilla ローカリゼーションプロジェクト</a>)
+<li>
+<b>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-mac-M17-TB.sea.bin">Macintosh</a>、
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-win32-M17-talkback.zip">Windows</A> 
+と
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i686-pc-linux-gnu-M17-talkback.tar.gz">i386 Linux</A> 
+のユーザは Talkback ビルドを用いて下さい。</b>
+これらのビルドはエンジニアがクラッシュバグをデバッグする事を助けます。
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-win32-M17-talkback.zip">Fullcircle を備えた Zipファイル形式</A> (6.9 MB)
+(<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">暗号</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-win32-installer-M17.exe">
+インストーラ実行形式</a> (6.2 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-win32-M17.zip">
+Zipファイル</a> (6.7 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-win32-M17-MathML-SVG.zip">
+MathML と SVG を備えた Zipファイル形式</A> (7.8 MB)
+</dl>
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+<dd>
+全ての MacBinary ファイル -- Stuffit expander 4.5 以降が必要です。
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m17/MacMozillaInstaller-M17.sea.bin">インストーラ形式 </a> (8.5 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-mac-M17-TB.sea.bin">Fullcircle を備えた .bin 形式</a> (9.9 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-mac-M17.sea.bin">.bin 形式</a> (9.7 MB)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i686-pc-linux-gnu-M17-talkback.tar.gz">Fullcircle を備えた i386 プロセッサ向け tar.gz 形式 </A>(8.6 MB)
+(<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">暗号</A>)
+
+<!-- 原文コメント ---
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i686-pc-linux-gnu-installer-M17.tar.gz">
+i386 プロセッサ向けインストーラ形式</a> (7.5 MB) 
+---- 原文コメント -->
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i686-pc-linux-gnu-M17.tar.gz">
+i386 プロセッサ向け tar.gz 形式</a> (7.7 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-powerpc-unknown-linux-gnu-m17.tar.gz">
+ppc プロセッサ向け tar.gz 形式</a> (9.6 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-alpha-linux-gnu-M17.tar.gz">
+alpha プロセッサ向け tar.gz 形式</a> (10.7 MB) 
+コンパック(Compaq)のアルファテクノロジーソリューションズグループ(Alpha Technology Solutions Group)によって寄与されました。
+
+<!-- 原文コメント
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i686-pc-linux-gnu-M17-mathml-svg.tar.gz">
+i386 プロセッサ向けの MathML と SVG を備えた tar.gz 形式</a> (7.3 MB) 
+---- 原文コメント --> 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-sparc-unknown-linux-gnu-M17.tar.gz">
+sparc プロセッサ向け tar.gz 形式</a> (7.2 MB)
+</dl>
+
+<dl>
+<dt><b>OpenVMS</b>
+<dd>コンパック(Compaq)の OpenVMS エンジニアリンググループ(OpenVMS Engineering Group)によって寄与されました。
+OpenVMS に関しては、それらの<A HREF="http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a>を参照してください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-openvms-alpha-m17.sfx_axpexe">自己展開 PCSI</a> (20.1 MB)
+</dl>
+
+<dl>
+<dt><b>OS/2</b>
+<dd>
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i386-pcos2-M17.exe">i386 自己展開アーカイブ</a> (15.6 MB)
+</dl>
+
+<dl>
+<dt><b>HPUX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-hppa2.0w-hp-hpux11.00-M17.tar.gz"> HP11.00 向け tar.gz 形式</a> (GNU libs は別途) (17.0 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-hppa2.0-hp-hpux10.20-M17.tar.gz"> HP10.20 向け tar.gz 形式</a> (GNU libs は別途) (17.0 MB)
+</dl>
+
+<dl>
+<dt><b>FreeBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i386-unknown-freebsdelf3.3-M17.tar.gz"> 3.x 向け tar.gz 形式</a> (10.5 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i386-unknown-freebsdelf4.0-M17.tar.gz"> 4.x 向け tar.gz 形式</a> (7.4 MB)
+</dl>
+
+<dl>
+<dt><b>NetBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i386-unknown-netbsdelf1.5D-M17.tar.gz"> NetBSD 1.5 i386 プロセッサ向け tar.gz 形式</a> (9.4 MB)
+</dl>
+
+<!-- 原文コメント ---
+<dl>
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i386-pc-bsdi4.0.1-M17.tar.gz"> 4.0.1 tar.gz format</a> (7.1 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/README-bsdi">README</a>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-i386-pc-bsdi4.1-M17.tar.gz"> 4.1 tar.gz format</a> (6.6 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/README-bsdi">README</a>
+</dl>
+---- 原文コメント -->
+
+<dl>
+<dt><b>AIX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-powerpc-ibm-aix4.3.2.0-M17.tar.gz"> AIX 4.3.2 向け tar.gz 形式</a> (20.8 MB) - ブラウザのみ
+</dl>
+
+<dl>
+<dt><b>Solaris</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-sparc-sun-solaris2.7-M17.tar.gz"> sparc 版 Solaris 2.7 向け tar.gz 形式</a> (8.1 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-x86-solaris2.7-M17.tar.gz"> x86 版 Solaris 2.7 向け tar.gz 形式</a> (10.3 MB)
+</dl>
+
+<dl>
+<dt><b>Tru64 Unix</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m17/mozilla-alphaev56-dec-osf4.0d-M17.tar.gz"> tar.gz 形式</a> (15.2 MB) 
+</dl>
+
+</ul>
+
+<P><HR><P>
+
+<p><b><a href="../milestones/index.html">
+Milestone 16</a></b> - 2000.6.13 完了
+<ul>
+<li><a href="m16.html">リリースノート</a></li>
+<li>全プラットフォームに対応した<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/src/mozilla-source-M16.tar.gz">ソースコード</a> Tarball。(22.3 MB)
+<li>
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/m16/">言語パック</a> - Mozilla を別の言語にコンバートします -
+<a href="/projects/intl/xul-how2l10n.html#mlp">Mozilla ローカリゼーションプロジェクト</a>。
+<li>
+<b>
+<!--
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-mac-M16-TB.sea.bin">Macintosh</a>,
+-->
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-win32-M16-talkback.zip">Windows</A> 
+<!--
+and
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i686-pc-linux-gnu-M16-talkback.tar.gz">i386 Linux</A> 
+-->
+のユーザは Talkback ビルドを用いてください。</b>
+これらのビルドはエンジニアがクラッシュバグをデバッグする事を助けます。
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-win32-M16-talkback.zip">Fullcircle を備えた Zip ファイル形式</A> (5.7 MB)
+(<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">暗号</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-win32-installer-M16.exe">
+インストーラ実行形式</a> (5.1 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-win32-M16.zip">
+Zip ファイル形式</a> (5.4 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-MathML-SVG-M16.cab">
+MathML と SVG が有効な CAB ファイル</A> は WinZip または 
+<a href="http://www.microsoft.com/windows95/downloads/contents/WUToys/W95PwrToysSet/Default.asp">CabView</a>
+が必要です。(4.0 MB)
+
+</dl>
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+<dd>
+全ての MacBinary ファイル -- Stuffit expander 4.5 以降が必要です。
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m16/MozillaInstaller-M16.sea.bin">インストーラ形式 </a> (7.3 MB)
+<!--
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-mac-M16-TB.sea.bin">.bin with Fullcircle </a> (8.3 MB)
+-->
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-mac-M16.sea.bin">.bin 形式</a> (7.8 MB)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<!--
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i686-pc-linux-gnu-M16-talkback.tar.gz">i386 tar.gz format with Fullcircle </A>(7.1 MB)
+-->
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i686-pc-linux-gnu-installer-M16.tar.gz">
+i386 プロセッサ向けインストーラ形式 </a> (7.5 MB) 
+(<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">暗号</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i686-pc-linux-gnu-M16.tar.gz">
+i386 プロセッサ向け tar.gz 形式</a> (7.5 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-ppc-unknown-linux-gnu-M16-mathml.tar.gz">
+ppc プロセッサ向け MathML を備えた tar.gz 形式</a> (7.6 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i686-pc-linux-gnu-M16-mathml-svg.tar.gz">
+i386 プロセッサ向け MathML と SVG を備えた tar.gz 形式</a> (7.3 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-alphaev56-unknown-linux-gnu-M16.tar.gz">
+alpha プロセッサ向け tar.gz 形式</a> (10.6 MB) 
+
+<!-- 原文コメント ---
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-sparc-unknown-linux-gnu-M16.tar.gz">
+sparc tar.gz format</a> (8.0 MB) 
+---- 原文コメント -->
+</dl>
+
+<dl>
+<dt><b>OpenVMS</b>
+<dd>コンパック(Compaq)の OpenVMS エンジニアリンググループ(OpenVMS Engineering Group)によって寄与されました。
+OpenVMS に関しては、彼らの
+<A HREF="http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+リリースノート</A> を見てください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-openvms-alpha-m16.sfx_axpexe">自己展開 PCSI</a> (19.6 MB)
+</dl>
+
+
+<dl>
+<dt><b>HPUX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-hppa1.1-hp-hpux11.00-M16.tar.gz"> HP11.0 向け tar.gz 形式</a> (GNU libs は別途) (16.0 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-hppa1.1-hp-hpux10.20.tar.gz"> HP10.20 向け tar.gz 形式</a> (GNU libs は別途) (16.0 MB)
+</dl>
+
+<dl>
+<dt><b>FreeBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i386-unknown-freebsdelf3.3-M16.tar.gz"> 3.x 向け tar.gz 形式</a> (10.0 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i386-unknown-freebsdelf4.0-M16.tar.gz"> 4.x 向け tar.gz 形式</a> (9.5 MB)
+</dl>
+
+<!-- 原文コメント ---
+<dl>
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i386-pc-bsdi4.0.1-M16.tar.gz"> 4.0.1 tar.gz format</a> (7.1 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/README-bsdi">README</a>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i386-pc-bsdi4.1-M16.tar.gz"> 4.1 tar.gz format</a> (6.6 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/README-bsdi">README</a>
+</dl>
+
+<dl>
+<dt><b>AIX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-powerpc-ibm-aix4.3.2_M16.tar.gz"> tar.gz format for AIX 4.3.2</a> (10 MB) - Browser Only
+</dl>
+---- 原文コメント -->
+
+<dt><b>Solaris</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-sparc-sun-solaris2.6-M16.tar.gz"> sparc 版 Solaris 2.6 向け tar.gz フォーマット</a> (7.7 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-sparc-sun-solaris2.7-M16.tar.gz"> sparc 版 Solaris 2.7 向け tar.gz フォーマット</a> (7.7 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-i386-pc-solaris2.8.tar.gz"> x86 版 Solaris 2.8 向け tar.gz 形式</a> (9.2 MB)
+
+<dl>
+<dt><b>Tru64 Unix</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m16/mozilla-alphaev56-dec-osf4.0d-M16.tar.gz"> tar.gz 形式</a> (14.8 MB) 
+</dl>
+
+</ul>
+
+<P><HR><P>
+<p><b><a href="../milestones/index.html">
+Milestone 15</a></b> - 2000.4.18 完了
+<ul>
+<li><a href="M15.html">リリースノート</a></li>
+<li>全プラットフォームに対応した <a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/src/mozilla-source-M15.tar.gz">ソースコード</a> Tarball。(22.3 MB)
+<li>
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/m15/">言語パック</a> - Mozilla を別の言語にコンバートします -
+<a href="/projects/intl/xul-how2l10n.html#mlp">Mozilla ローカリゼーションプロジェクト</a>。
+<li>
+<b>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-mac-M15-TB.sea.bin">Macintosh</a>、
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-win32-M15-talkback.zip">Windows</A>、
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-i686-pc-linux-gnu-M15-talkback.tar.gz">i386 Linux</A> のユーザは Talkback ビルドを用いてください。</b> これらのビルドはエンジニアがクラッシュバグをデバッグする事を助けます。
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-win32-M15-talkback.zip">Fullcircle を備えた Zip ファイル形式</A> (5.7 MB)
+(<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">暗号</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-win32-installer-M15.exe">
+インストーラ実行形式</a> (5.1 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-win32-M15.zip">
+Zip ファイル形式</a> (5.4 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-win32-M15-mathml.exe">
+MathML が有効な自己展開アーカイブ</a> (6.6 MB)
+
+</dl>
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+<dd>
+全ての MacBinary ファイル -- Stuffit expander 4.5 以降が必要です。
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m15/MozillaInstaller-M15.sea.bin">インストーラ形式 </a> (7.3 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-mac-M15-TB.sea.bin">Fullcircle を備えた .bin 形式</a> (8.3 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-mac-M15.sea.bin">.bin 形式</a> (7.8 MB)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-i686-pc-linux-gnu-M15-talkback.tar.gz">i386 プロセッサ向けの Fullcircle を備えた tar.gz 形式</A>(7.1 MB)
+(<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">暗号</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-i686-pc-linux-gnu-M15.tar.gz">
+i386 プロセッサ向け tar.gz 形式</a> (6.3 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-i686-pc-linux-gnu-M15-mathml.tar.gz">
+i386 プロセッサ向けの MathML を備えた tar.gz 形式</a> (5.6 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-sparc-unknown-linux-gnu-M15.tar.gz">
+sparc プロセッサ向け tar.gz 形式</a> (8.0 MB) 
+</dl>
+
+<dl>
+<dt><b>OpenVMS</b>
+<dd>コンパック(Compaq)の OpenVMS エンジニアリンググループ(OpenVMS Engineering Group)によって寄与されました。
+OpenVMS に関しては、彼らの
+<A HREF="http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+リリースノート</A> を見てください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla_openvms_alpha_m15.sfx_axpexe">自己展開 PCSI</a> (17.6 MB)
+</dl>
+
+<dl>
+<dt><b>HPUX</b>
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-hppa1.1-hp-hpux11.00-M15.tar.gz"> HP11.00 向け tar.gz 形式 </a> (GNU libs は別途) (13.0 MB)
+</dl>
+
+<dl>
+<dt><b>FreeBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-i386-unknown-freebsdelf3.2-M15.tar.gz"> 3.x 向け tar.gz 形式</a> (8.7 MB)
+</dl>
+
+<dl>
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-i386-pc-bsdi4.0.1-M15.tar.gz"> 4.0.1 向け tar.gz 形式</a> (7.1 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/README-bsdi">README</a>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-i386-pc-bsdi4.1-M15.tar.gz"> 4.1 向け tar.gz 形式</a> (6.6 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/README-bsdi">README</a>
+</dl>
+
+<dl>
+<dt><b>AIX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-powerpc-ibm-aix4.3.2_M15.tar.gz"> AIX 4.3.2 向け tar.gz 形式</a> (10 MB) - ブラウザのみ
+</dl>
+
+<dt><b>Solaris</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-sparc-sun-solaris2.7-M15.tar.gz"> sparc 版 Solaris 2.7 向け tar.gz 形式</a> (7.5 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-x86-solaris2.7-M15.tar.gz"> x86 版 Solaris 2.7 向け tar.gz 形式</a> (6.9 MB)
+
+<dl>
+<dt><b>Tru64 Unix</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m15/mozilla-alphaev56-dec-osf4.0d.tar.gz"> tar.gz 形式</a> (13.8 MB) 
+</dl>
+
+<dl>
+</dl>
+</ul>
+
+<P><HR><P>
+
+<p><b><a href="../milestones/index.html">
+Milestone 14</a></b> - 2000.3.1 完了
+<ul>
+<li><a href="m14.html">リリースノート</a></li>
+<li>全プラットフォームに対応した <a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/src/mozilla-source-M14-no-crypto.tar.gz">ソースコード</a> Tarball。 (20.9 MB)
+<li>
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/m14/">言語パック</a> - Mozilla を別の言語にコンバートします -
+<a href="/projects/intl/xul-how2l10n.html#mlp">Mozilla ローカリゼーションプロジェクト</a>。
+<li>
+<b>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-mac-M14-TB.sea.bin">Macintosh</a>、
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-win32-M14-talkback.zip">Windows</A>、
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-i686-pc-linux-gnu-M14-talkback.tar.gz">i386 Linux</A> のユーザは Talkback ビルドを用いてください。</b>
+これらのビルドはエンジニアがクラッシュバグをデバッグする事を助けます。
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-win32-M14-talkback.zip">Fullcircle を備えた Zip ファイル形式</A> (6.3 MB)
+(<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/m14/mozilla-win32-talkback-fr-FR.zip">フランス語版</A>)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-win32-M14-talkback-de-AT.zip">ドイツ語版</A>)
+(<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">暗号</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-win32-installer-M14.exe">
+インストーラ実行形式</a> (4.9 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-win32-M14.zip">
+Zip ファイル形式</a> (6.2 MB)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-win32-M14-de-AT.zip">ドイツ語版</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-w2k-M14.zip">
+Windows 2000 向け Zip ファイル形式</a> (4.9 MB)
+</dl>
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+<dd>
+全ての MacBinary ファイル -- Stuffit expander 4.5 以降が必要です。
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m14/MozMacInstaller-M14.sea.bin">インストーラ形式 </a> (8.3 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-mac-M14-TB.sea.bin">Fullcircle を備えた .bin 形式</a> (8.3 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-mac-M14.sea.bin">.bin 形式</a> (7.9 MB)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-i686-pc-linux-gnu-M14-talkback.tar.gz">i386 向け Fullcircle を備えた tar.gz 形式</A>(6.6 MB)
+(<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/m14/mozilla-i686-pc-linux-gnu-talkback-fr-FR.tar.gz">フランス語版</A>)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-i686-pc-linux-gnu-M14-talkback-de-AT.tar.gz">ドイツ語版</A>)
+(<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">暗号</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-i686-pc-linux-gnu-M14.tar.gz">
+i386 プロセッサ向け tar.gz 形式</a> (5.8 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-ppc-unknown-linux-gnu-M14.tar.gz">
+PPC プロセッサ版 Debian 向け tar.gz 形式</a> (6.9 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-powerpc-unknown-linux-gnu-M14.tar.gz">
+PPC プロセッサ版 YellowDog 向け tar.gz 形式</a> (6.6 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-sparc-unknown-linux-gnu-M14.tar.gz">
+sparc プロセッサ向け tar.gz 形式</a> (8.0 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-alphaev56-linux-gnu-M14.tar.gz">
+alpha プロセッサ向け tar.gz 形式</a> (8.0 MB) 
+
+<dd> <a href="http://www.debian.org/Packages/unstable/web/mozilla.html">i386 プロセッサ版 Debian 向けパッケージ</a> (5.6 MB)
+</dl>
+
+<!--　**********
+<dl>
+<dt><b>OpenVMS</b>
+<dd>コンパック(Compaq)の OpenVMS エンジニアリンググループ(OpenVMS Engineering Group)によって寄与されました。
+OpenVMS に関しては、彼らの
+<A HREF="http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</A>
+を見てください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla_openvms_alpha_m14.dcx_axpexe">自己展開 PCSI</a> (26.8 MB)
+</dl>
+-->
+<!--
+<dl>
+<dt><b>OpenVMS</b>
+<dd>Contributed by the OpenVMS Engineering Group at Compaq.
+See their <A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+release notes</A> for OpenVMS.
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla_openvms_alpha_m14.dcx_axpexe">Self Extracting PCSI</a> (26.8 MB)
+</dl>
+-->
+<dl>
+<dt><b>OpenVMS</b>
+<dd>Compaq の OpenVMS エンジニアリンググループによって寄与されました。
+OpenVMS に関しては、そちらの <A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+リリースノート</A> を見てください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla_openvms_alpha_m14.dcx_axpexe">自己展開 PCSI</a> (26.8 MB)
+</dl>
+
+<dl>
+<dt><b>HPUX</b>
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-hppa1.1-hp-hpux11.00-M14.tar.gz">HP11.00 向け tar.gz 形式</a> (GNU libs は別途) (13.4 MB)
+</dl>
+
+<dl>
+<dt><b>FreeBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-FreBSD3x.M14.tar.gz"> 3.x 向け tar.gz 形式</a> (7.6 MB)
+</dl>
+
+<dl>
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-i386-pc-bsdi4.0.1-M14.tar.gz"> 4.0.1 向け tar.gz 形式</a> (6.2 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m14/README-bsdi">README</a>
+</dl>
+
+<dl>
+<dt><b>Solaris</b>
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-sparc-sun-solaris2.7-M14.tar.gz">sparc 版 Solaris 2.7 向け tar.gz 形式</a> (6.8 MB)
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-sparc-sun-solaris2.6-M14.tar.gz">sparc 版 Solaris 2.6 向け tar.gz 形式</a> (9.1 MB)
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m14/mozilla-x86-solaris2.7-M14.tar.gz">x86 版 Solaris 2.7 向け tar.gz 形式</a> (7.8 MB)
+</dl>
+</ul>
+
+<P><HR><P>
+<p><b><a href="../milestones/index.html">
+Milestone 13</a></b> - 2000.1.26 完了
+<ul>
+<li><a href="m13.html">リリースノート</a></li>
+
+<li>全プラットロームに対応した <a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/src/mozilla-source-M13.tar.gz">ソースコード</a> Tarball。 (20.9 MB)
+
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-win32-M13-fullcircle.zip">Full circle を備えた Zip ファイル形式</A> (6.2 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-win32-installer-M13.exe">
+インストーラ実行形式</a> (5.0 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-win32-M13.zip">
+Zip ファイル形式</a> (5.8 MB)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-win32-M13-ja-JP.zip">日本語版</A>)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-win32-M13-de.zip">ドイツ語版</A>)
+</dl>
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-win32-M13-MathML.exe">
+MathML を備えた自己展開アーカイブ</a> (5.6 MB)
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+(StuffIT expander 4.5 以降が必要)
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/MozMacInstaller-M13.sea.bin">インストーラ形式</a> (7.6 MB)
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-mac-M13.sea.hqx">自己展開アーカイブ</a> (10.7 MB)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-mac-M13-ja-JP.sea.hqx">日本語版</A>)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-i686-pc-linux-gnu-M13-fullcircle.tar.gz">i386 向け Fullcircle を備えた tar.gz 形式</A>(6.4 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-i686-pc-linux-gnu-M13.tar.gz">
+i386 向け tar.gz 形式</a> (5.6 MB) 
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-i686-pc-linux-gnu-M13-ja-JP.tar.gz">日本語版</A>)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-i386-pc-linux-M13-MathML.tar.gz">
+i386 向け MathML を備えた tar.gz 形式</a> (5.6 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-ppc-unknown-linux-gnu-M13.tar.gz">
+PPC 向け tar.gz 形式</a> (7.6 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-sparc-linux-M13.tar.gz">
+sparc 向け tar.gz 形式</a> (8.0 MB) 
+
+<dd> <a href="http://www.debian.org/Packages/unstable/web/mozilla.html">i386 向け Debian パッケージ</a> (5.5 MB)
+</dl>
+
+<dl>
+<dt><b>OpenVMS</b> 
+<dd>コンパック(Compaq)の OpenVMS エンジニアリンググループ(OpenVMS Engineering Group)によって寄与されました。
+OpenVMS に関しては、彼らの
+<A HREF="http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+リリースノート</A> を見てください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla_openvms_alpha_m13.dcx_axpexe">自己展開 PCSI</a> (26.8 MB)
+</dl>
+
+<dl>
+<dt><b>HPUX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-hppa1.1-hp-hpux10.20-M13.tar.gz">HP10.20 向け tar.gz 形式</a> (18.4 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-hppa1.1-hp-hpux11.00-M13.tar.gz">HP11.00 向け tar.gz 形式</a> (18.1 MB)
+</dl>
+
+<dl>
+<dt><b>FreeBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-FreBSD3x.M13.tar.gz"> 3.x 向け tar.gz 形式</a> (7.6 MB)
+</dl>
+
+<dl>
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-i386-pc-bsdi4.0.1-M13.tar.gz"> 4.0.1 向け tar.gz 形式</a> (6.2 MB) -
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/README-bsdi">README</a>
+</dl>
+
+<dl>
+<dt><b>AIX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-ppc-aix4.3.2-M13.tar.gz"> AIX 4.3.2 向け tar.gz 形式</a> (6.7 MB) - ブラウザのみ
+</dl>
+
+<dl>
+<dt><b>Solaris</b>
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-sparc-sun-solaris2.5.1-M13.tar.gz"> Solaris 2.5.1 (sparc) 向け tar.gz 形式 </a> (6.8 MB)
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-sparc-sun-solaris2.6-M13.tar.gz"> Solaris 2.6 (sparc) 向け tar.gz 形式</a> (6.9 MB)
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m13/mozilla-x86-solaris2.7-M13.tar.gz"> Solaris 2.7 (x86) 向け tar.gz 形式</a> (6.9 MB)
+</dl>
+</ul>
+
+<P><HR><P>
+<p><b><a href="../milestones/index.html">
+Milestone 12</a></b> - 1999.12.21 完了
+<ul>
+<li><a href="m12.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース
+-<b>Full Circle が有効なビルドでは クラッシュを分析するために Netscape へクラッシュデータの送信を可能とします。
+また netscape.public.mozilla.crash-data ニュースグループへクラッシュ情報をポストします。</b></li>
+
+
+<ul>
+<li>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-win32-M12-fullcircle.zip">Win32 向け Fullcircle を備えたインストール Zip ファイル形式</A> (6.1 MB)
+
+<li>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-win32-M12.zip">
+Win32 向けインストール Zip ファイル形式</a> (5.6 MB)
+
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-mac-M12.sea.hqx">Mac 8.5 向けインストーラ形式</a> (7.5 MB)
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/MozMacInstaller-M12.sea.bin">Mac 8.5 向けインストール .bin 形式</a> (7.3 MB)
+
+<li>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/RPMS/">i386、Alpha、Sparc 向け Red Hat 6.1 Linux RPM 形式</a> mozilla-browser ( mozilla-install が必要 ) mozilla-mail ( mozilla-browser と mozilla-install が必要 )
+
+<li>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-i686-pc-linux-gnu-M12-fullcircle.tar.gz">Linux i386 向け Fullcircld を備えた tar.gz 形式</A>(5.4 MB)
+
+<li>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-i686-pc-linux-gnu-M12.tar.gz">
+Linux i386 向け tar.gz 形式</a> (5.3 MB) 
+
+<li> <a href="http://www.debian.org/Packages/unstable/web/mozilla.html">Linux i386 向け Debian パッケージ </a> (5.1 MB)
+
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-M12-FreBSD3x.tar.gz">FreeBSD 3.x 向け tar.gz 形式</a> (7.6 MB)
+
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla_openvms_alpha_m12.dcx_axpexe">OpenVMS 自己展開 PCSI</a> (26.2 MB) (コンパック(Compaq)の OpenVMS エンジニアリンググループ(OpenVMS Engineering Group)によって寄与されました。<A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+OpenVMS 特有の リリースノート</A>)
+
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-sparc-sun-solaris2.7-M12.tar.gz">Sparc Solaris 7 tar.gz 形式</a> (10 MB)
+
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-hppa1.1-hp-hpux10.20-M12.tar.gz"> HPUX 向け tar.gz 形式</a> (15M MB) (HP10.20 が必要)
+
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/mozilla-hppa1.1-hp-hpux11.00-M12.tar.gz"> HPUX 向け tar.gz 形式</a> (15M MB) (HP11.00 が必要)
+
+
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/m12/src/mozilla-source-M12.tar.gz">XP ソースコード Tarball</a> (20.9 MB)
+</ul>
+</ul>
+<P><HR><P>
+
+<p><b><a href="../milestones/index.html">
+Milestone 11</a></b> - 1999.11.16 完了
+<ul>
+<li><a href="m11.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース
+-<b>Full Circle が有効なビルドでは クラッシュを分析するために Netscape へクラッシュデータの送信を可能とします。
+また netscape.public.mozilla.crash-data ニュースグループへクラッシュ情報をポストします。</b></li>
+
+
+<ul>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-win32-M11-fullcircle.zip">Win32 向け Fullcircle を備えたインスト−ル Zip ファイル形式</A> (5.7 MB)
+</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-win32-M11.zip">
+Win32 向けインストール Zip ファイル形式</a> (5.2 MB)
+
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-mac-M11.sea.hqx">Mac 8.5 向けインストール .bin 形式</a> (9.6 MB)
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-i686-pc-linux-gnu-M11-fullcircle.tar.gz">Linux i386 向け Fullcircle を備えた tar.gz 形式</A>(6.8 MB)
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-i686-pc-linux-gnu-M11.tar.gz">
+Linux i386 向け tar.gz 形式</a> (5.3 MB) (Red Hat 6.0 などの glibc 2.1 以降があるシステム向け)
+<A HREF="http://www.deja.com/[LB=http://www.mozilla.org/]/msgid.xp?MID=<37B04C1C.C319CD92@mozilla.org>">この記事</A>
+は mozilla が、古い スレッドセーフでない(un-threadsafe) バージョンの glibc で動かない理由を説明しています。
+できれば この問題に関して私たちに手を貸してください。
+</li>
+
+または <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-sparc-unknown-linux-gnu-M11.tar.gz">テストつき</a> (7.9 MB) 
+
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-alphaev6-unknown-linux-gnu-M11.tar.gz">Alpha プロセッサ向け Linux tar.gz 形式</a> (6.1 MB)
+
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla_openvms_alpha_M11.dcx_axpexe">OpenVMS 自己展開 PCSI</a> (24.4 MB) (コンパック(Compaq)の OpenVMS エンジニアリンググループ(OpenVMS Engineering Group)によって寄与されました。<A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+OpenVMS 特有のリリースノート</A>)
+
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-sparc-linux-M11.tar.gz">Sparc プロセッサ向け Linux tar.gz 形式</a> (5.1 MB) 
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-sparc-sun-solaris2.7-M11.tar.gz">Sparc プロセッサ向け Solaris 7 tar.gz 形式</a> (10 MB)
+
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-x86-sun-solaris2.7-M11.tar.gz">x86 プロセッサ向け Solaris 7 tar.gz 形式</a> (15.5 MB)
+
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/mozilla-hppa1.1-hp-hpux11.00-M11.tar.gz"> HPUX 向け tar.gz 形式</a> (27.7 MB) (HP11.00 が必要)
+
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m11/src/mozilla-source-M11.tar.gz">XP ソースコード Tarball</a> (20.9 MB)
+</ul>
+</ul>
+<P><HR><P>
+
+<p><b><a href="../milestones/index.html">
+Milestone 10</a></b> - 1999.10.8 完了
+<ul>
+<li><a href="m10.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース
+
+<ul>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m10/mozilla-win32-M10.zip">
+Win32 向けインストール Zip ファイル形式</a> (5MB)
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m10/mozilla-i686-pc-linux-gnu-M10.tar.gz">
+Linux i386 向け tar.gz 形式</a> (7MB) (Red Hat 6.0 などの glibc 2.1 以降があるシステム向け)
+<A HREF="http://www.deja.com/[LB=http://www.mozilla.org/]/msgid.xp?MID=<37B04C1C.C319CD92@mozilla.org>">この記事</A>
+は mozilla が、古い スレッドセーフでない(un-threadsafe) バージョンの glibc で動かない理由を説明しています。
+できれば この問題に関して私たちに手を貸してください。
+</li>
+
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m10/mozilla-mac-M10.sea.hqx">Mac 8.5 向けインストール .bin 形式</a> (9.1MB)
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m10/mozilla_openvms_alpha_M10.zip">OpenVMS 向け .zip 形式</a> (15MB)
+(コンパック(Compaq)の OpenVMS エンジニアリンググループ(OpenVMS Engineering Group)によって寄与されました。<A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+OpenVMS 特有のリリースノート</A>)
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m10/mozilla-sparc-linux-M10.tar.gz">Sparc プロセッサ向け Linux tar.gz 形式</a> (7.7MB)
+<li> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m10/mozilla-sparc-sun-solaris2.7-M10.tar.gz">Sparc プロセッサ向け Solaris 7 tar.gz 形式</a> (10MB)
+<li> 
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m10/src">XP ソースコード Tarballs</a> (19.8mb)
+</ul>
+</ul>
+<P><HR><P>
+
+<p><b><a href="/projects/seamonkey/milestones/index.html">
+Milestone 9</a></b> - 1999.8.26 完了
+<ul>
+<li>
+<a href="m9.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース
+-<b>Full Circle が有効なビルドでは クラッシュを分析するために Netscape へクラッシュデータの送信を可能とします。
+また netscape.public.mozilla.crash-data ニュースグループへクラッシュ情報をポストします。</b></li>
+
+<ul>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m9/mozilla-win32-M9-fullcircle.zip">Win32
+向け Fullcircle を備えたインストール Zip ファイル形式</a></li>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m9/mozilla-win32-M9.zip">Win32
+向けインストール Zip ファイル形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m9/mozilla-i686-pc-linux-gnu-M9.tar.gz">Linux
+i386 向け tar 形式</a> (Red Hat 6.0 などの glibc 2.1 以降があるシステム向け)
+<A HREF="http://www.deja.com/[LB=http://www.mozilla.org/]/msgid.xp?MID=<37B04C1C.C319CD92@mozilla.org>">この記事</A>
+は mozilla が、古い スレッドセーフでない(un-threadsafe) バージョンの glibc で動かない理由を説明しています。
+できれば この問題に関して私たちに手を貸してください。
+</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m9/mozilla-mac-M9.sea.bin">Mac
+8.5 向けインストール .bin 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m9/src">XP ソースコード Tarballs</a></li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<!--
+<p><b>Last Pre-Necko build (aka 8.5) -</b>These builds are a stability
+check point for testing feature additions and bug fixes that were integrated
+prior to the landing of the new network library, and are based on nightly
+releases that have undergone an increased amount of testing over the regular
+nightly testing cycle.&nbsp; To pull the corresponding source for these
+binaries do a CVS checkout on the "PRE_NECKO_LANDING_M9_MidLifeCrisis_19990728_BASE"
+tag.
+-->
+<p><b>前の Pre-Necko ビルド (つまり 8.5) -</b>このビルドは
+機能追加と
+新しいネットワークライブラリのランディング前に組み込まれたバグ修正
+をテストする安定性のチェックポイントです。
+また これらのビルドは ナイトリーリリースにもとづくもので、通常のナイトリー テストサイクルより多くのテストにたえました。
+このバイナリに相当するソースを引くには "PRE_NECKO_LANDING_M9_MidLifeCrisis_19990728_BASE" タグで CVS をチェックアウトしてください。
+<ul>
+<li>
+<a href="m8-5.html">リリースノート</a></li>
+</ul>
+
+<hr WIDTH="100%">
+<p><b><a href="/projects/seamonkey/milestones/index.html">Milestone
+8</a></b> - 1999.7.16 完了
+<ul>
+<li>
+<a href="m8.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース
+-<b>Full Circle が有効なビルドでは クラッシュを分析するために Netscape へクラッシュデータの送信を可能とします。
+また netscape.public.mozilla.crash-data ニュースグループへクラッシュ情報をポストします。</b></li>
+
+<ul>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/mozilla-win32-M8-fullcircle.zip">Win32
+向け Fullcircle を備えたインストール Zip ファイル形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/mozilla-win32-M8.zip">Win32
+向けインストール Zip ファイル形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/mozilla-i686-pc-linux-gnu-M8-fullcircle.tar.gz">Linux
+i386 向け Full Circle を備えた tar 形式</a> (RH 5.0 と 5.2 でテスト済 - このビルドは
+RH 6.0 ではコアダンプします。下の linux ビルドを使ってください。)</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/mozilla-i686-pc-linux-gnu-M8.tar.gz">Linux
+i386 向け tar 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/mozilla-mac-M8-fcircle.sea.bin">Mac
+8.5 向け Full Circle を備えたインストール</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/mozilla-mac-M8.sea.bin">Mac
+8.5 向けインストール .bin 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/mozilla-x86-beos-M8.zip">BeOS
+向け Zip ファイル形式</a> (Duncan Wilcox &lt;<a href="mailto:duncan@be.com">duncan@be.com</a>> によって提供されたパッケージ)</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/mozilla-x86-FreeBSD-M8.tar.gz">FreeBSD
+x86 向け tar 形式</a> (Pete Collins &lt;<a href="mailto:pete@postpagan.com">pete@postpagan.com</a>> によって提供されたパッケージ)</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m8/src">XP ソース Tarballs</a></li>
+
+<br>&nbsp;</ul>
+</ul>
+
+<hr WIDTH="100%">
+<p><b><a href="/projects/seamonkey/milestones/index.html">Milestone
+7</a></b> - 1999.6.22 完了
+<ul>
+<li>
+<a href="m7.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース
+-<b>Full Circle が有効なビルドでは クラッシュを分析するために Netscape へクラッシュデータの送信を可能とします。
+また netscape.public.mozilla.crash-data ニュースグループへクラッシュ情報をポストします。</b></li>
+
+<ul>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m7/mozilla-win32-M7-fullcircle.zip">Win32
+向け Fullcircle を備えたインストール Zip ファイル形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m7/mozilla-win32-M7.zip">Win32
+向けインストール Zip ファイル形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m7/mozilla-i686-pc-linux-gnu-M7-fullcircle.tar.gz">Linux
+i386 向け Full Circle を備えた tar 形式</a> (RH 5.0 と 5.2 でテスト済 - このビルドは
+RH 6.0 ではコアダンプします。下の linux ビルドを使ってください。)</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m7/mozilla-i686-pc-linux-gnu-M7.tar.gz">Linux
+i386 向け tar 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m7/mozilla-mac-M7-fcircle.sea.bin">Mac
+8.5 向け Full Circle を備えたインストール</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m7/mozilla-mac-M7.sea.bin">Mac
+8.5 向けインストール .bin 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m7/src/">XP ソース
+Tarball</a></li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<p><b><a href="/projects/seamonkey/milestones/50m6plan.html">Milestone
+6</a></b> - 1999.5.29 完了
+<ul>
+<li>
+<a href="m6.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース</li>
+
+<ul>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m6/mozilla-win32-M6-fullcircle.zip">Win32
+向け Fullcircle を備えたインストール Zip ファイル形式 </a>(クラッシュを分析するために
+Netscape へのクラッシュデータを送信と、netscape.public.mozilla.crash-data
+ニュースグループへポストすることを可能とします)</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m6/mozilla-win32-M6.zip">Win32
+向け Fullcircle を備えないインストール Zip ファイル形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m6/mozilla-i686-pc-linux-gnu-M6.tar.gz">Linux
+i386 向け tar 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m6/mozilla-mac-M6.sea.bin">Mac
+8.5 向けインストール .bin 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m6/TGZ">XP ソース Tarball</a></li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<p><b><a href="/projects/seamonkey/milestones/50m5plan.html">Milestone
+5</a></b> - 1999.5.5 完了
+<ul>
+<li>
+<a href="m5.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース</li>
+
+<ul>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m5/mozilla-win32-M5-fullcircle.zip">Win32
+向け Fullcircle を備えたインストール Zip ファイル形式 </a>(クラッシュを分析するために
+Netscape へのクラッシュデータ送信と、netscape.public.mozilla.crash-data
+ニュースグループへポストすることを可能とします)</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m5/mozilla-win32-M5.zip">Win32
+向け Fullcircle を備えないインストール Zip ファイル形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m5/mozilla-i686-pc-linux-gnu-M5.tar.gz">Linux
+i386 向け tar 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m5/mozilla-mac-M5.sea.bin">Mac
+8.5 向けインストール .bin</a></li>
+
+<br><a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m5/TGZ">XP ソース
+Tarball</a></ul>
+</ul>
+
+<hr WIDTH="100%">
+<p><b><a href="/projects/seamonkey/milestones/50m4plan.html">Milestone
+4</a></b> - 1999.4.15 完了
+<ul>
+<li>
+<a href="m4.html">リリースノート</a></li>
+
+<li>
+実行可能なプログラムとソース</li>
+
+<ul>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m4/mozilla-win32-M4-fullcircle.zip">Win32
+向け Fullcircle を備えたインストール Zip ファイル形式 </a>(クラッシュを分析するために
+Netscape へのクラッシュデータ送信と、netscape.public.mozilla.crash-data
+ニュースグループへポストすることを可能とします)</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m4/mozilla-win32-M4.zip">Win32
+向け Fullcircle を備えないインストール Zip ファイル形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m4/mozilla-i686-pc-linux-gnu-M4.tar.gz">Linux
+i386 向け tar 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m4/mozilla-mac-M4.sea.bin">Mac
+8.5 向けインストール .bin 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m4/TGZ">XP ソース Tarball</a></li>
+</ul>
+</ul>
+
+<hr>
+<br><b><a href="/projects/seamonkey/milestones/m3.html">Milestone
+3</a></b> - 1999.3.19 完了
+<ul>
+<li>
+実行可能なプログラムとソース</li>
+
+<ul>
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/mozilla-win32-SeaMonkey_M3_BRANCH-fullcircle.zip">Win32
+向け Fullcircle を備えたインストール Zip ファイル形式 </a>(クラッシュを分析するために
+Netscape へのクラッシュデータ送信と、mozilla.org へポストすることを可能とします)</li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/mozilla-win32-SeaMonkey_M3_BRANCH.zip">Win32
+向け Fullcircle を備えないインストール Zip ファイル形式</a></li>
+
+<li>
+Linux <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/RPMS/debug/">RPM 形式</a>
+(デバッグ)
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/RPMS/debug/nspr-pthreads-3.1-SeaMonkey_M3_BRANCH_19990323.i386.rpm">nspr</a>,
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/RPMS/debug/mozilla-5.0-SeaMonkey_M3_BRANCH_19990323.i386.rpm">ブラウザ</a></li>
+
+<li>
+Linux <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/RPMS/opt/">RPM 形式</a>
+(最適化)
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/RPMS/opt/nspr-pthreads-3.1-SeaMonkey_M3_BRANCH_19990323.i386.rpm">nspr</a>,
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/RPMS/opt/mozilla-5.0-SeaMonkey_M3_BRANCH_19990323.i386.rpm">ブラウザ</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/SRPMS/">RPM ソース</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/mozilla-mac-SeaMonkey_M3_BRANCH.sea.bin">Mac
+8.5 向けインストール .bin 形式</a></li>
+
+<li>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m3/mozilla-5.0-SeaMonkey_M3_BRANCH_19990323.tar.gz">XP
+ソース Tarball</a></li>
+</ul>
+
+<li>
+<a href="m3.html">リリースノート</a></li>
+
+<li>
+<a href="m3portnotes.html">移植ノート</a></li>
+</ul>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/release-notes/index.html">英語版</a> 2001/01/12</span> - <span>和訳版 2004/10/04</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/release-notes/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

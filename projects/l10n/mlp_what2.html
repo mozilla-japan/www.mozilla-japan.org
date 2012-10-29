@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title>ローカライズに必要なこと</title>
+   <link rel="alternate" hreflang="en" modified="August 19, 2005" />
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/l10n/mlp_what2.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<p>&nbsp;</p>
+<table border="0" width="100%">
+  <tr><td>
+    <center><h1>Mozilla 地域化クイックガイド</h1></center>
+  </td></tr>
+  <tr><td>
+    <center><a href="news://news.mozilla.org/netscape.public.mozilla.l10n">ニュースグループでの議論</a> /
+    <a href="mailto:mozilla-l10n-request@mozilla.org?subject=subscribe">メーリングリスト</a><br>
+    <a href="mailto:MLP Staff &lt;mlp-staff&#64;mozilla.org&gt;">Mozilla 地域化プロジェクトスタッフ</a></center>
+  </td></tr>
+</table>
+<br>
+<abbr title="Mozilla Localization Project"><b>MLP</b></abbr>
+ [<a href="./">地域化プロジェクトホーム</a>]
+ | [<a href="mlp_docs.html">地域化関連資料</a>]
+ | [クイックガイド]<br>
+<br>
+<br>
+&nbsp;
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>導入</h3></td></tr>
+</table>
+<p>この文書は Mozilla の地域化、そのリソースファイルの<i>直接の操作</i>についての段階的な手引きです。
+この文書は Mozilla の地域化可能なリソースの典型的な構造についての一般的な知識を提供することに主眼をおいています。</p>
+<p>これらのリソースの簡単な（自動的な）管理のために作成された特別の<a href="mlp_tools.html">ツール</a>も利用可能です。
+これらのツールは地域化作業者から多くの技術的で退屈な細部を覆い隠してくれます。
+この文章はいずれにしろリソースに直接アクセスし、遭遇しうる問題を解決する方法についての見識を得る手助けとなるでしょう。</p>
+
+<p>Mozilla の地域化可能なリソースのほとんどは以下のディレクトリの中のファイルに外部化されています。</p>
+<ul>
+  
+  <li><b><a href="#chrome_files">chrome ファイル</a></b>
+       [install-dir]/chrome/<i>{"en-US.jar", "en-mac.jar", "en-unix.jar", "en-win.jar"}</i><br>
+        にある切替可能な UI（ユーザインタフェース）リソース</li>
+  <li><b>地域コンテンツ</b> [install-dir]/chrome/US.jar :<br>
+       にある切替可能な地域特定の外部参照<br>
+       これらのファイルに対する地域化作業は <a href="#chrome_files">chrome ファイル</a>に対するそれと似通っています。
+       <font color="red">詳細は "<a href="mlp_regional.html">地域コンテンツのビルド</a>"を参照してください。</font></li>
+  <li><b><a href="#defaults">デフォルトのプロファイル</a> (任意)</b> 
+    ([install-dir]/defaults/profile/[country-code]/*): 
+    新しいユーザプロファイルディレクトリにコピーするためのファイル</li>
+       [install-dir]/defaults/profile/[<a href="mlp_chrome.html#regionlocalecode">region-locale-code</a>]/* :<br>
+       にある新しいユーザプロファイル・ディレクトリにコピーするためのファイル<br>
+       現在選択されている地域コンテンツに従って選択されます。</li>
+</ul>
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="chrome_files"></a>Chrome ファイル</h3></td></tr>
+</table>
+<p>Mozilla では、ほとんどの UI（ユーザインタフェース）リソースはインストールディレクトリの <tt>chrome/</tt> ディレクトリ／フォルダの中に位置します。
+オリジナルのローカライズ可能なファイルは以下のものにパッケージされます。
+<ul>
+ <li><tt><b>en-US</b>.jar</tt>: ほとんどすべての UI 言語リソースを含む。</li>
+ <li><tt><b>en-win</b>.jar</tt> (Windows 用): Windows 特有のすべての UI リソースを含む。
+    Unix と MacOS では、それぞれ <tt><b>en-unix</b>.jar</tt> 、 <tt><b>en-mac</b>.jar</tt> である。</li>
+ <li><tt><b>US</b>.jar</tt>: すべての地域コンテンツ（URL） リソースを含む。</li>
+</ul>
+<p>これらの材料から始めるのに、望みの地域の言語に地域化された同じリソースのコピーを手に入れましょう。</p>
+
+そうすると、[install-dir]/chrome/{en-US,US}/locale/{en-US,US}/[package-name]/ 中に３種類のファイルが配置されます：</p>
+<ol>
+<li value="1">地域化対象物を含むリソースで作業するためには、
+一般的な <a href="mlp_tools.html#others">zip アーカイブ・ユーティリティ</a> を使って空のディレクトリに、ディレクトリ構造を保持したまま解凍してください。<br><br></li>
+<li><tt>en-US/</tt> フォルダ名をあなたの<a href="mlp_howto.html#registration">ロケール・コード</a>の名称にリネームしてください。
+ それから、<tt>US/</tt> フォルダ名をあなたの<a href="mlp_chrome.html#regionlocalecode">地域コード</a>の名称にしてください。<br><br></li>
+<li><tt>contents.rdf</tt> という名称のファイルすべての内部の "en-US" という文字をあなたの<a href="mlp_howto.html#registration">ロケール・コード</a>に置換してください。
+ それから、"US" という文字<em>（<tt>US.jar</tt> ファイルの中にしかありません）</em>についてもあなたの<a href="mlp_chrome.html#regionlocalecode">地域コード</a>に置換してください。<br>
+ そして、以下の属性欄を相当する内容で書き換えてください。
+ <table border="1" align="center">
+ <thead><tr><th>属性名称</th><th>意味</th></tr></thead>
+ <tbody>
+ <tr><td>displayName</td><td>選択可能な言語、コンテント／地域パックにて、ユーザ・インタフェースでユーザが見ることになる文字列。
+       （例：UI 言語："Italian"、コンテントパック："Italy Region"）</td></tr>
+ <tr><td>author</td><td>地域化作業者の名前。</td></tr>
+ <tr><td>name</td><td>ロケール／地域コード。</td></tr>
+ <tr><td>localeVersion</td><td>地域化対象となる Mozilla のリリースバージョンを示す文字列。
+       （例："1.3b"、"1.0.2"はそれぞれ Mozilla の 1.3ベータと 1.0.2 を示す）</td></tr>
+ <tr><td>previewURL</td><td>（任意項目）355x85 ピクセルの地域化された Mozilla のプレビュー画像への URL。</td></tr>
+ </tbody>
+ </table>
+ </li>
+</ol>
+
+<p>いくつかの異なったファイル・タイプに対して作業が必要なことに気づくでしょう。
+ さあ、タイプごとに作業法を見てみましょう。</p>
+
+
+
+<ol type="a">
+<li value="a"><p><a name="dtdFile"></a>DTD ファイル<b>(*.dtd)</b>
+   &mdash; <b>UTF-8</b> エンコードされたテキストファイル。</p>
+
+  それぞれの要素は以下のように宣言されています：
+ <p>DTD ファイルは地域化が必要な項目（ENTITY）のリストを含んでいます。
+ ここで定義されている項目は<a href="xul-l10n.html#pro1">ユーザ・インタフェースの XUL ファイル</a> の内部で使われています。
+ 項目宣言は以下のようになっています：<p>
+
+ <dl><dd>&lt;!ENTITY openCmd.label "<font color="green">Open Web Location...</font>"&gt;</dd></dl>
+
+<p>上記の例では、"openCmd.label" という名前／キーをもつエンティティについて、"Open Web Location..." という値が代入されています。
+ 項目（ENTITY）の値は地域化されるべきものです。
+ 通常、項目名（例："openCmd.label"）は自己説明的なもので、例えばこれは Open メニューコマンドのラベルです。
+ もし、これで不十分であれば、ファイルの作者は地域化作業者のためにコメントを加えます。
+ 特定の項目に対して言及したコメントはその項目宣言のすぐ上に、次のように置かれます：
+
+ <dl><dd>&lt;!-- LOCALIZATION NOTE (entity_name): comments --&gt;</dd></dl>
+
+  <p>例：</p>
+
+ <dl><dd><a href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/locale/en-US/navigator.dtd">
+8</a>&lt;!-- LOCALIZATION NOTE&nbsp; throbber.url: DONT_TRANSLATE --&gt;<br>
+9&lt;!ENTITY throbber.url "http://www.mozilla.org"&gt;</dd></dl>
+
+  
+<!-- 削除されたくだり
+  <p><font color="#ff0000">UTF-8</font> が Mozilla の XUL/RDF/XML ファイルのデフォルトのドキュメントのエンコーディングであることに注意してください。
+  テキスト宣言部で特別に指示されない限り、翻訳された文字列は UTF-8 エンコーディングであるべきです。
+  EUC、SJIS といったネイティブエンコーディングはユーティリティプログラムによって UTF-8 に変換される必要があります。
+  このプログラム nsconv(.exe)  は apprunner(.exe) と同じディレクトリにあるクライアントと共に提供されています。
+  その使い方は：</p>
+  
+  <ol>nsconv.exe -f source_encoding -t target_necoding source_file target_file
+  </ol>
+
+<p>また、"Karl Ove Hufthammer" より、UTF8 とエスケープ Unicode 文字の両方を操作するために、
+あなたはフリーウェア <a href="http://www.sharmahd.com/unipad/">Unipad</a> を入手することもできます。<br>  
+-->
+
+<p>これらのファイルは UTF-8 でエンコードされているドキュメントであることに注意してください。
+ そのため、<a href="mlp_tools.html#texteditors">テキスト・エディタ</a>が UTF-8 でファイル保存可能であるか、
+ あとで UTF-8 に<a href="mlp_tools#other">変換</a>し戻す必要があります。
+ この工程を飛ばすと、昔ながらの ASCII 文字（<tt>a-z</tt> ,
+ <tt>A-Z</tt> , <tt>0-9</tt> , <tt>!"#$%&amp;'()*+,-./</tt>
+ <tt>:;&lt;=&gt;?@</tt> <tt>_`</tt> <tt>{|}~</tt> ) 以外の文字、つまり特殊記号や東洋文字などは、正しく表示できないでしょう。</p>
+
+<p>また、文字列の中に <tt>&amp; &lt; &quot; %</tt> の文字を直接は使うことができないことも覚えておいてください。
+ かわりに、文字列の中では<a href="mlp_chrome.html#text">所定の実体参照</a>の中から該当するもので代用してください。</p></li>
+
+<li><p><a name="proFiles"></a>Property ファイル<b>(*.properties)</b>
+    &mdash; テキストファイルで<b>エスケープされた Unicode</b> でエンコードされている。</p>
+
+<p>名前が示すとおり、これらのファイルの中にはたくさんの<a href="../../projects/intl/string-resources.html">JavaScript プロパティ</a>が文字列値に代入されています。
+ プロパティファイルの中の文字列リソースは以下の形で現れます：</li>
+<!--
+   Property ファイルは <a href="http://www.mozilla.org/projects/intl/string-resources.html">StringResources</a> バンドル機構のために、
+   データ蓄積用に使われます。
+-->
+
+ <dl><dd>property_name = <font color="green">Text Text Text</font></dd></dl>
+
+<p>等号の右側の文字列は地域化の必要があります。
+ 繰り返しますが、地域化のメモやコメントは、どの文字列が UI で使われるか、どのような振る舞いをするかを説明することは、地域化作業者がそれに従って作業する上でしばしば役に立ちます：</p>
+  
+<dl><dd><font size="-1"><a href="http://lxr.mozilla.org/mozilla/source/xpinstall/res/locale/en-US/xpinstall.properties">25</a>
+  #-----------------------------------------------------------<br>
+ 26 # LOCALIZATION NOTE InstallFile:...<br>
+ 27 #-----------------------------------------------------------<br>
+ 28 InstallFile=Installing: %s<br>
+ 29 ReplaceFile=Replacing: %s</font></dd></dl>
+
+<p>DTD ファイルについて上述したのと同様に、同じ考慮事項はファイルエンコーディングにも当てはまります。
+ Mozilla はこれらのファイルがエスケープされた Unicode でエンコードされていると想定します。<br>
+ バックスラッシュ、シングルクォート、ダブルクォートを文字列の中で直接使わないでください。
+ それらの<a href="mlp_chrome.html#text">代用表現</a>を選んで代わりに使ってください。
+ 文字列を複数行に分けないでください。
+</p>
+<p>多くの文字列が <tt>%s</tt> や <tt>$1%s</tt> といった変わった目印を含んでいます。
+ これらは実行時に適切な単語に置き換えられます。
+ 文全体で意味をなすようにそれらを文字列に入れてください。原文にあるのと正確に同じようにです。</p>
+
+<!--
+  <p><font color="#000000">"エスケープ Unicode" は property ファイルでは唯一許されているエンコーディングであることにどうか注意してください。
+  翻訳中には好みのエンコーディングを使うことができ、多くの Unix システムで利用可能な "native2ascii" ユーティリティプログラムを通してそれをエスケープ Unicode に変換します。
+  Java SDK も "native2ascii" を含んでいます。
+  それに加え、先ほど触れた nsconv(.exe) をネイティブなエンコーディングからエスケープ Unicode に変換するのに使うことができます。
+  エスケープされたユニコードのために、"x-u-escaped" という名前を使います。</font> 
+-->
+
+<li><p>RDF データ・ソース・ファイル<b>(*.rdf)</b>
+ &mdash; 特に指定されない限り、<b>UTF-8</b> エンコードされたテキストファイル。</p>
+
+<p>これら rdf ファイルはロケール依存の UI メニュー階層定義を制御します：
+<ul>
+<li><tt>communicator/taskbar.rdf</tt> &mdash; タスクバーメニューについて記述します（mozilla.org の最近のビルドでは長らく見かけません）。</li>
+<li><tt>global/builtinURLs.rdf</tt> &mdash; "Help"<span class="comment">（訳注：ヘルプ）</span>, "View|Set Language/Region&gt;"<span class="comment">（訳注：表示｜言語と地域の設定　Mozilla 1.0 以降では既にメニュー項目ではありません）</span> といった最上位メニューを通して散在しているさまざまなメニュー項目に対応する URL を記述します。</li>
+</ul></li>
+
+</ol>
+
+
+
+<p>さて、どのように作業を進めるのか見てみましょう：</p>
+
+<ol>
+<li value="4"><p>次のステップはもちろん、数え切れないほどの dtd と property ファイルの至る所の文字列を地域化することです。
+ <tt>global/</tt> フォルダと、<tt>communicator/</tt> フォルダの真下のファイルはいろいろなアプリケーションで再利用されている文字列を含んでいることに注意してください。</p>
+<p>たくさんのコマンド文字列（特にメニュー項目文字列）には同名の「アクセス・キー」や「コマンド・キー」と関連があります。
+ その値には一文字が当てはまります。<br>
+ アクセス・キーは UI で下線の入っている、文字列のメインとなる文字で、Alt+[該当文字]押下でその関連づけられた機能が起動されるでしょう。
+ アクセス・キーは大文字／小文字を区別して関連するメニュー項目文字を強調します。<br>
+ コマンド・キーは、同じメニューの反応に対して、Ctrl/Cmd+[該当文字]キー操作をアプリケーションの広さで可能にします。<br>
+ アクセス・キーもコマンド・キーも Latin（西洋）文字でのみ動作します。
+</li>
+
+<li><p><a name="platform"></a>en-mac.jar、en-unix.jar、en-win.jar の中身は、動作しているシステム特有です。
+ これらは共通の（File、Undo、Redoなどといった）メニュー項目、キーボード・ショートカットなどを含んでいます。
+ それらでそれぞれのシステムで慣習的なものをサポートしなくてはなりません。</p></li>
+
+<li><p>作業結果のすべてを新しい jar ファイルの中に圧縮し戻します。
+ 慣習的な <a href="mlp_tools.html#others">zip</a> ファイルで <tt>.jar</tt> 拡張子付きのものとして作ることもできます。
+ jar ファイルは<a href="mlp_howto.html#registration">登録された</a>ロケールコードから<a href="mlp_chrome.html#XPI_jars">名付け</a>ます。</p></li>
+
+<li><p><a href="http://ftp.mozilla.org/pub/mozilla/releases/">Mozilla リリース・フォルダ</a>から、インストール可能なパッケージ <tt><b>langenus.xpi</b></tt> をダウンロードしてください。<tt>WINDOWS-XPI/</tt> の中にあります（名称を右クリックし、Save target as<span class="comment">（訳注：JLPでは「リンク先を名前を付けて保存」）</span>を使って・・・）。</p>
+<p><a href="mlp_tools.html#others">zip 圧縮・解凍ユーティリティ</a>を使って解凍して、<a href="mlp_chrome.html#XPI_script"><tt>install.js</tt></a> の地域化可能なフィールドを修正し、自分用の<a href="mlp_chrome.html#XPI">インストール可能な言語パック</a>のテンプレートとして使ってください。</p></li>
+</ol>
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="defaults"></a>デフォルトのプロファイル（Profile）</h3></td></tr>
+</table>
+
+<p>場所: <tt>defaults/profile/</tt>[<a
+   href="mlp_chrome.html#regionlocalecode">region-locale-code</a>]</p>
+
+<p>ユーザ・プロファイルのテンプレートのファイルが含まれていて、プロファイル作成時に新しいプロファイル・フォルダへデフォルトとしてコピーされるものです：</p>
+<ul>
+  <li><tt>bookmarks.html</tt> -- デフォルトのブックマーク。</li>
+  <li><tt>localstore.rdf</tt> -- デフォルトのウィンドウの設定を定義します。</li>
+  <li><tt>mimeTypes.rdf</tt> -- ヘルパーアプリケーションのために認識できるファイルの MIME タイプを定義します。</li>
+  <li><tt>search.rdf</tt> -- デフォルトの検索エンジンを定義します。</li>
+  <li><tt>panels.rdf</tt> -- サイドバーのデフォルトのパネルを定義します。</li>
+  <li><tt>chrome/userContent.css</tt> -- HTML 文書のためのデフォルトのユーザ定義スタイルの例です。</li>
+  <li><tt>chrome/userChrome.css</tt> -- ユーザ・インタフェースのためのユーザ定義のデフォルトのスタイルの例です。</li>
+</ul>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/l10n/mlp_what2.html">英語版</a> 2005/08/19</span> - <span>和訳版 2006/03/28</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/l10n/mlp_what2.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

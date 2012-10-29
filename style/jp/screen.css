@@ -1,0 +1,99 @@
+@charset "EUC-JP"; 
+
+body, td, th, input { font-family: "Lucida Grande", "Bitstream Vera Sans", "Segoe UI", Calibri, Verdana, Arial, "¥Ò¥é¥®¥Î³Ñ¥´ Pro W3", ¥á¥¤¥ê¥ª, "£Í£Ó £Ð¥´¥·¥Ã¥¯", IPAPGothic, sans-serif; }
+.product-intro, .corner-box *, #content * { line-height: 170% !important; }
+h1, h2, h3, h4, h5, h6 { font-weight: bold !important; line-height: 130% !important; }
+img { vertical-align: top; }
+#side .menu-box *, #footer { line-height: 130% !important; }
+#header, #main-feature .feature-contents, #content, #footer { padding-right: 0; padding-left: 0; }
+#main-feature .feature-contents { padding: 15px 10px 20px 10px !important; width: 900px; max-width: none; }
+#firefox #main-feature .feature-contents, #thunderbird #main-feature .feature-contents { padding-bottom: 40px !important; }
+* html #home #main-feature .feature-contents { height: 300px; } /* IE6 hack */
+#main-feature .feature-contents h2 { margin: 0 !important; padding-top: 20px !important; }
+#main-feature .feature-contents p { line-height: 170% !important; }
+#header div, #content, #breadcrumbs div, #footer-contents { width: 940px; max-width: none; }
+.menu-box { margin-bottom: 1em; }
+#main-feature a.download-link strong { font-family: inherit !important; line-height: 130% !important; letter-spacing: 0 !important; }
+#main-feature .download-other { margin-top: 4px !important; }
+#main-feature .download-other a { padding: 0 .2em !important; }
+#breadcrumbs { padding: 4px 0 30px 0; }
+
+/* Main Content ************************************************************* */
+
+#mainContent.right { margin: 0 0 3em 0 !important; width: 630px !important; float: left !important; }
+#side.right { margin: 0 0 3em 0 !important; width: 300px !important; float: right !important; }
+
+/* Translators' comments **************************************************** */
+
+.comment { color: #20A040; background-color: transparent; font-size: 90%; }
+
+/* Knowledge Base *********************************************************** */
+
+#kb-footer { margin-bottom: -1em; border-top: 1px solid #999; clear: both; }
+
+/* Download Link ************************************************************ */
+
+.download-link strong { font-weight: bold !important; }
+
+/* Add-ons ****************************************************************** */
+
+body.addons h1 { margin: 0 0 .7em 0; }
+
+/* Global Header ************************************************************ */
+
+#globalheader { height: 38px; overflow: hidden; background: transparent url(/img/jp/template/globalheader-bg.png) repeat-x; text-indent: -99999px; }
+#globalheader-inner { margin: 0 auto; width: 940px; height: 38px; }
+#globalheader a { display: block; width: 100%; height: 100%; overflow: hidden; }
+#globallogo { width: 89px; height: 36px; float: left; background: transparent url(/img/jp/template/globallogo.png) no-repeat scroll 0 8px; }
+
+/* Global Navigation ******************************************************** */
+
+#globalnav { margin: 0; padding: 0 1px; width: 540px; float: right; background: transparent url(/img/jp/template/globalnav.png) no-repeat; }
+#globalnav li { margin: 0; padding: 0; width: 90px; height: 36px; float: left; list-style-type: none; }
+body.products #gn-products a, #gn-products a:hover { background: transparent url(/img/jp/template/globalnav.png) repeat scroll -1px -38px; }
+body.addons #gn-addons a, #gn-addons a:hover { background: transparent url(/img/jp/template/globalnav.png) repeat scroll -91px -38px; }
+body.support #gn-support a, #gn-support a:hover { background: transparent url(/img/jp/template/globalnav.png) repeat scroll -181px -38px; }
+body.developer #gn-developer a, #gn-developer a:hover { background: transparent url(/img/jp/template/globalnav.png) repeat scroll -271px -38px; }
+body.blogs #gn-blogs a, #gn-blogs a:hover { background: transparent url(/img/jp/template/globalnav.png) repeat scroll -361px -38px; }
+body.about #gn-about a, #gn-about a:hover { background: transparent url(/img/jp/template/globalnav.png) repeat scroll -451px -38px; }
+
+/* Front Page *************************************************************** */
+
+.front-feature { margin: -20px 0 15px 0; }
+.front-feature h2 { border: 0; height: 0; overflow: hidden; }
+.front-feature ul { margin: 0; padding: 0; width: 940px; height: 150px; list-style-type: none; }
+.front-feature li { display: block; _display: inline; margin: 0 8px 0 0; padding: 0; width: 229px; height: 150px; float: left; }
+.front-feature li.last { margin-right: 0; }
+.front-feature a { display: block; width: 100%; height: 100%; overflow: hidden; text-indent: -99999px; }
+.front-feature-addons a { background: url(/img/jp/home/front-feature-addons-bg.png); }
+.front-feature-thunderbird a { background: url(/img/jp/home/front-feature-thunderbird-bg.png); }
+.front-feature-cnet a { background: url(/img/jp/home/front-feature-cnet-bg.png); }
+.front-feature-mozilla24 a { background: url(/img/jp/home/front-feature-mozilla24-bg.png); }
+.front-feature-extensions a { background: url(/img/jp/home/front-feature-extensions-bg.png); }
+.front-feature-themes a { background: url(/img/jp/home/front-feature-themes-bg.png); }
+.front-feature-gda a { background: url(/img/jp/home/front-feature-gda-bg.png); }
+.front-feature-foxkeh a { background: url(/img/jp/home/front-feature-foxkeh-bg.png); }
+.front-feature-videoawards a { background: url(/img/jp/home/front-feature-videoawards-bg.png); }
+.front-feature-netscape a { background: url(/img/jp/home/front-feature-netscape-bg.png); }
+.front-feature-plushie a { background: url(/img/jp/home/front-feature-plushie-bg.png); }
+.front-feature-fx3beta a { background: url(/img/jp/home/front-feature-fx3beta-bg.png); }
+.front-feature-fx3rc a { background: url(/img/jp/home/front-feature-fx3rc-bg.png); }
+.front-feature-downloadday a { background: url(/img/jp/home/front-feature-downloadday-bg.png); }
+.front-news { margin: 10px 0; background: url(/img/jp/home/front-news-bg-top.png) no-repeat; }
+.front-news div { width: 940px; _height: 1%; overflow: hidden; background: url(/img/jp/home/front-news-bg-bottom.png) no-repeat bottom left; }
+.front-news ul { margin: 0; padding: 0; width: 800px; float: left; }
+.front-news h2, .front-news li { margin: 0; border: 0; padding: 3px 0; float: left; font-size: 100%; text-align: center; list-style-type: none; }
+.front-news h2 { width: 140px; }
+.front-news li { width: 200px; }
+.front-news a { display: block; width: 100%; height: 100%; text-decoration: none; }
+.front-news h2 a { color: #5f6775 !important; }
+.front-message, .front-alert { margin: 10px 0; background: url(/img/jp/home/front-message-bg-top.png) no-repeat; }
+.front-message div, .front-alert div { width: 940px; position: relative; background: url(/img/jp/home/front-message-bg-bottom.png) no-repeat bottom left; }
+.front-message h2, .front-alert h2 { margin: 0; border: 0; padding: 0; width: 0; height: 0; overflow: hidden; text-indent: -9999px; }
+.front-message p, .front-alert p { margin: 0; border: 0; padding: 10px 15px 10px 50px; background: transparent url(/img/jp/home/front-message-icon.png) no-repeat scroll 15px 50%; }
+.front-alert p { background-image: url(/img/jp/home/front-alert-icon.png); }
+.front-links p { margin: 0; }
+
+/* About Pages *************************************************************** */
+
+body.about #main-feature-background, body.press #main-feature-background { background-image: url("/img/about/main-feature.jpg"); background-position: 60% 0; }

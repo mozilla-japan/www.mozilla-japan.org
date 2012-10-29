@@ -1,0 +1,33 @@
+# Mozilla/Google plug-in by amitp+mozilla@google.com
+# Localized by dynamis
+
+<search 
+   name="Google"
+   description="Google Search"
+   method="GET"
+   action="http://www.google.co.jp/search"
+   update="http://www.mozilla-japan.org/jp/l10n/search/google.src"
+   updateCheckDays=7
+   queryEncoding="utf-8"
+   queryCharset="utf-8"
+>
+
+<input name="q" user>
+<inputnext name="start" factor="10">
+<inputprev name="start" factor="10">
+<input name="hl" value="ja">
+<input name="lr" value="lang_ja">
+#<input name="num" value="100">
+<input name="ie" value="utf-8">
+<input name="oe" value="utf-8">
+
+<interpret 
+    browserResultType="result" 
+    charset = "UTF-8"
+#    resultEncoding = "UTF-8"
+    resultListStart="<!--a-->" 
+    resultListEnd="<!--z-->" 
+    resultItemStart="<!--m-->" 
+    resultItemEnd="<!--n-->"
+>
+</search>

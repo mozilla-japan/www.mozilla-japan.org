@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>ソフトウエアーアクセシビリティの歴史</title>
+
+<link rel="alternate" hreflang="en" modified="September 9, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/today.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>アクセシビリティソフトウェア ： 現在どこまで来ているか？</h1>
+<h2>Contents</h2>
+<ul>
+  <li> <a href="#intro">現在どこまで来ているか？</a></li>
+  <li> <a href="#altoutput">画面上のコンテンツにアクセスする代替方法</a></li>
+
+  <li> <a href="#altinput">コンピュータにコマンドを与え、データーを入力する代替方法</a></li>
+  <li> <a href="#contextprob">嗚呼！　問題は状況理解の欠如</a>
+  </li>
+  <li> <a href="#entermsaa">主役の登場：状況理解を提供する API</a></li>
+  <li> <a href="#solutions">何をするべきだろう？</a></li>
+
+</ul>
+<a name="intro"></a>
+<h2>現在どこまで来ているか？</h2>
+<ul>
+  <p>過去 20 年間に渡ってコンピュータソフトウェアのアクセシビリティは大変な改善を見ました。この記事では、その発展の経緯と、これまで開発されてきた技術を振り返ります。</p>
+  <p>現時点に到るまで、デスクトップコンピュータ環境の背景にある最大の推進力は Microsoft であり、最初は MS DOS によって、そして Microsoft Windows のシリーズがその後に続きました。これらのオペレーテイングシステムは身体に障害のある人たちの要求に配慮して設計されたわけでありませんでした。視覚障害や運動機能障害のある人たちの多くは Microsoft オペレーテイングシステム用に書かれたアプリケーションを使用できませんでした。これらのアプリケーションはコンピュータのユーザは次のことができる事を前提としています: </p>
+  <ul>
+    <li> 画面上に表示されるテキストや画像を読み反応できる。</li>
+
+    <li> 標準のキーボードをタイプできる。</li>
+    <li> テキスト、写真、その他の情報をマウスを使って選択できる。</li>
+    <li> 音の再生に対応できる（ほとんどのソフトウェアでは、処理結果が音声のみで伝えられるということはありません。そのため、この点は他と比べれば幾分か制約の程度が低いと言えます）。</li>
+  </ul>
+  <p>もし上に挙げられた動作を満足できない人がいれば、広く使われているコンピュータアプリケーションの多くを使用出来ないことが分かります。これらの動作を満足することの出来ない人たちのグループは以下のとおりです。:</p>
+
+  <ul>
+    <li> 文字読書き不可能: 視力障害、聾盲、弱視、視野障害、難読症、認識機能障害、非識字者などの人々。</li>
+    <li>運動障害:　切断患者、麻痺、反復性ストレス、脳性まひ、筋ジストロフィー、パーキンソン病、その他運動を制限する障害。</li>
+    <li>難聴</li>
+  </ul>
+  <p>視野、視覚、運動能力に問題を感じ始めている、増加中のべービーブーマー世代の老人たちについても考慮しなければなりません。これらのグループの人々を合算すると潜在的なユーザがとても多いことになります!</p>
+
+  <p>これらの問題に応えるために、アクセシビリティのハードやソフトの、多くの小規模なベンダーが、通常のコンピュータアプリケーションを使用する基本的動作のどれかひとつを満足できない人を支援する製品とソフトウェアを作りました。これらの補助的機器やソフトウェアの例として:</p>
+  <ul>
+    <li>画面読み上げソフトは、テキストを発声するハードやソフトを使用して画面上に表示されたテキストを読み上げ、視力障害者が、マウスで行う操作をキーボードで代替できるようにします。</li>
+    <li>代替入力装置は、運動障害のある人たち向けの、キーボードやマウスの代替物です。</li>
+    <li> 音声認識ソフトウェアは、コンピュータへ向かって話すことで、キーボードをタイプしたり、マウスで選択することを代行可能にします。</li>
+    <li> 画面拡大鏡ソフトウェアは、弱視者が画面の各部を楽に読めるようにします。 </li>
+
+    <li> 理解力ソフトウェアは、難読症や学習障害のユーザが、コンピュータの画面で操作されているように見たり聞いたりできるようにします。</li>
+  </ul>
+  <p>事実、適応技術を提供するすべての産業は、これらの問題をめぐって成長してきています。この業界を訪ねて知る事ができるすばらしい場として、ロサンゼルスの <a href="http://www.csun.edu/cod/">CSUN コンファランス</a> があり、毎年 3 月中旬に開催されます。</p>
+</ul>
+<h2><a name="altoutput">画面上のコンテンツにアクセスする代替方法</a></h2>
+<ul>
+  <p>視覚的手段を使用しているコンピュータプログラムが多いので、視覚障害のある人たちがそれを利用するのは難しかったり不可能であったりします。しかし訴訟にする必要はありません。文字を読めない人がどのようにしてデスクトップソフトウェアを使用しているかを以下に説明します:</p>
+
+  <ul>
+    <li> <i><u>テキスト読み上げ(TTS)</u> </i> は、コンピュータがユーザに話しかけるようにします: 文字を全く読めない人たちは普通読み上げプログラムを使います (text-to-speech) 。読み上げプログラムはまた難読症などの視力障害以外の読解能力のない人たちに役立ちます。さらにテキスト読み上げは、声の代わりとして話せない人たちによっても使用されます。最終的にこの機能は、携帯情報機器や、人がどこか他所を見ていなければならない時など、大多数のユーザにとっても役立つ可能性があります。</li>
+    <li> <i><u>拡大</u></i>は画面のコンテンツを大きく見せます: 視力の低い人にとっては、より大きいフォントを使ったり、組み込みのコントラストの強いテーマを使ったり、特大のスクリーンを使ったりするだけで十分かもしれません。そうでない場合は画面拡大プログラムを使用し、マウスや現在のフォーカスに合わせて、画面の各部を拡大します。画面拡大鏡にはまた、組み込みのテキスト読み上げ機能や、黄色と黒の強対照や青と緑の弱対照などの様々な色の組み合せでテキストや画像を表示するフィルター機能を備えるものもあります。</li>
+    <li> <u><i><a href="http://acceso.uv.es/accesibilidad/estudio/Image19.gif">オプタコン</a></i></u>は人差し指ほどの大きさに並べられた振動するピンを使って印刷された言葉、写真、画面上の情報へのアクセスを提供します。ユーザは片手で振動するピンを読み、もう一方の手で読み取るべき素材上で小型カメラを移動させます。この役に立つ装置の復活について時々話題になる事はあっても、残念なことに現在装置は製造されていません。</li>
+
+    <li> <i><u>点字</u> </i>は黙読用、念密な仕事用でありかつ聴覚視覚障害ユーザに使われる解決手段です。これは、点字プリンタで印刷されたハードコピーや、点字ディスプレイといった形で利用されます(下図参照)。これらの技術には、特別なドライバ、点字割り付けルーチン、ソフトウェアによるテキストから点字への翻訳が必要になります。点字自体の重要性は強調されるべきです。点字は高水準の仕事と生活の充足を、点字を読む人たちに提供できます。</li>
+  </ul>
+  <table>
+    <tbody>
+      <tr>
+        <td><img src="powerbraille.jpg" alt="点字ディスプレイ"
+ align="left" width="344" height="255" border="0"></td>
+        <td><i>左図: 様々なサイズの点字ディスプレイ</i> </td>
+
+      </tr>
+      <tr>
+        <td><i>右図: 点字プリンタ</i></td>
+        <td><img src="vpduo2.jpg" alt="点字プリンタ"
+ align="left" width="254" height="177" border="0"></td>
+      </tr>
+    </tbody>
+  </table>
+  <br clear="all">
+
+  <p>音声と点字をベースとするユーザインターフェイスは過去の経過からみてソフトウェアの設計者が慣れていない概念です。基本的概念は簡単です。目の見えない人が情報を処理する事は、郵便ポストの差出口を通して、順を追って、規則正しく物を見るようなものです。テキスト読み上げや点字ディスプレイによって、順を追って伝えられるプレーンテキストのみの小さな単位の情報だけが知らされます。ユーザが何をするにしても、ソフトウェアは出来るだけ小さな、バイトサイズの情報で的確に応答することが求められます。理想を言えば、ソフトウエアの賢い決定によって、ユーザは極力関係ないデータを読まなくてもすむようになるのが望まれます。</p>
+</ul>
+<h2><a name="altinput">
+コンピュータにコマンドを与え、データーを入力する代替方法</a></h2>
+<ul>
+  <p>もうひとつの問題は、障害のある人たちがどのように情報をコンピュータに入力するかという事です。運動障害のある人ならば、普通のキーボードをタイプしたり、マウスを使ったりできないかもしれません。以下に運動障害のある人たちが情報を入力する代替手段のいくつかを挙げます:</p>
+  <ul>
+    <li> <i><u>スティッキー・キー</u></i>: はキーの組合せ入力を楽にします。大文字を入力する例で言うと、最初にシフトキーを押し、次にそれを放し、最後に大文字にしたい文字を押します。この技術は使える手が片方しかない人や、手を使えない人や、口に棒をくわえてタイプする人によって使われます。</li>
+
+    <li> <u><i>単一スイッチ</i></u>: の技術は重度の運動障害を持つ人を援けます。ステファン・ホーキング博士のように、項目のリストの中から情報を選択することで入力を行う人もいます。 彼らは、リスト中を移動するハイライトバーを、スイッチを押して移動を開始させ、選択したい項目がハイライトされたときにスイッチを放します。</li>
+    <li> <u><i>特殊キーボード</i></u>: はデーター入力を楽にするためのものです。しかし特別な機能は一般にキーボードそれ自体の中で扱われますので、特別なプログラムは必要になりません。</li>
+    <li> <u><i>音声認識</i></u>: の技術は、ユーザがコンピュータに話しかけられるようにします。この技術は大いに進歩しました。しかしなお、主要なソフトウェアにもっと組み込まれる必要があります。</li>
+    <li> <u><i>一貫したキーボードのサポートとホットキー</i></u>: マウスを使えない人はたくさんいます。行き過ぎと言えるくらいまでに一貫したキーストロークのサポートは非常に重要な検討項目です。 盲目のテスターは、ほとんど全てのソフトウェアについてキーストロークのサポートを改善する方法を見つけだす、という才能を持っています。障害を持つ人々を使ってテストをする事は一般的に全ての人に役に立ちます。<a href="/access/toolkit-checklist.html"> アクセシビリティ・ツールキット・チェックリスト</a>で、あなたの UI 制御が標準に従っているか確かめてください。</li>
+
+  </ul>
+</ul>
+<a name="contextprob"></a>
+<h2>大きな限界 - 状況の欠如 </h2>
+<ul>
+  <p>これらのアクセシビリティ・ベンダーによって開発された解決策のお陰で、数十万の障害のある人たちの雇用と自己充足の機会が大いに改善され、その仕事の重要性は衰えることはありません。しかし、これらの解決策のすべてをもっても障害を持つ人々に完全にアクセシビリティが可能で使いやすい仕事の環境を提供するまでに到りません。これは、単に状況の問題のためです。すなわち、ユーザとコンピュータの相互作用はその相互作用が発生する状況によって支配されるという考えのためです。ユーザがキーボードに何かをタイプする時、またはアプリケーションが画面上にテキストや画像を表示する時、これらのアクションの正確な意味はそれが発生する状況によって決まります。例えば、タスクを実行中である事を示すために電球の画像を表示するアプリケーションがあるかもしれませんが、一方で別のアプリケーションはタスクが完了した事を示すために電球を表示するかもしれません。盲目の人になんとかして電球の画像の意味を知らせるアプリケーションがなければ、盲目の人はアプリケーションが何を伝えようとしているのか理解できません。 同様に、ユーザが話している事を理解するために、音声認識ソフトウェアはしばしばユーザの反応の状況についての情報が必要です。
+</p>
+</ul>
+<div style="margin-left: 40px;">この問題を解決する最近の注目すべき試みに、 Microsoft によって 1997 年に提案された Microsoft Active Accessibility があります。画面読み上げソフトウェアや音声認識ソフトウェアなどのアプリケーションとアクセシビリティ補助機能間の協力がなければ完全なアクセシビリティは達成できないとして、Microsoft Active Accessibility は Windows ベースの基準を定義しました。これによってアプリケーションはアクセシビリティ補助機器へ状況やその他の関連する情報を伝える事ができます。主に、アプリケーションにアクセシビリティを持たせるには大きな変更が必要であるという事実のために、この解決策は部分的な成功しか収めませんでした。最も人気のあるデスクトップアプリケーションと生産性アプリケーションがオープンソースでないので、障害のある人々がそれらのソフトウェアにアクセシビリティを持たせるには製造元に頼るしかありせんでした。これらの会社はアクセシビリティ対応にかかる膨大な時間など様々な理由のためしばしば尻込みしていました。肯定的な面としては、セクション 508 などの最近の連邦購買規則のお陰で、多くの会社が MSAA サポートに注意を払い実装するようになりました。<a
+ name="entermsaa"></a></div>
+<h2>オープンソースのソフトウェアを使う</h2>
+<ul>
+  <p>Microsoft は Microsoft Active Accessibility について正しい方向に進んでいましたが、大企業で広く使われるほとんどのデスクトップアプリケーションのソースコードは公表されていないので、それらのアプリケーションが完全なアクセシビリティを持つことはありませんでした。しかしオープンソースでは、アクセシビリティが可能にするために必要な変更をする事はごく普通にできます。　</p>
+
+  <p>オープンソースソフトウェアでは、アクセシビリティは、後から考え直して追加されるのではなく、中核の設計に完全に統合させることができます。そのため、障害をもつユーザの要求を満たすには、オープンソースソフトウェアは理想的です。また同様に障害を持つプログラマーは、アクセシビリティが可能でないソフトウェアを自分自身で直接修正する機会と権利を与えられるので、自分の宿命をコントロールできるチャンスをも与えられます。</p>
+  <p>その上、公平性を実現するあらゆるソフトウェア・ソリューションは、社会的インフラに不可欠なものとして、あらゆる権利の下に無償であるべきです。もし特別なハードウエアが必要でないならば、他の人たちと同じソフトウェアを使用するために障害のある人たちが余分なお金を支払うべきでしょうか。ですから、適応支援技術のベンダーには、特別なサービスやソフトウェア、あるいは独自のソフトウェアをそれに合ったプラットフォームに合わせて作る上で、これから先も重要な役割があります。現在十分に報われているわけでありませんが、理想的状態とは、補助テクノロジーの専門家がリハビリテーションホーム、訓練、サポートによって利益を得ることです。エンドユーザそれぞれが異なる問題を抱えていますから、オープンソースの世界では、高度にカスタマイズされたソリューションはそれ自体ビジネスとなり得ます。</p>
+  <p>現在、Linux 上の GUI のほとんどにはアクセシビリティがなく、この点は Microsoft Windows の方がずっと優れています。<i>Gnome、KDE、StarOffice、KOffice、Mozilla および Linux 中の他のすべての GUI ソフトウェアパッケージは障害者の多くが使用できません。</i>これらのパッケージの多くでの Gnome の ATK API のサポート、および GOK (Gnome Onscreen Keyboard) と Gnopernicus (スクリーンリーダと拡大鏡) の開発については多少の進展がありました。しかし本当の障害のあるエンドユーザにとってこれらの解決策は、まだ真の意味で使い勝手の良さを実現していません。<br>
+  </p>
+</ul>
+<h2><a name="solutions">何をするべきだろう？</a></h2>
+<h3>Mozilla 開発者<br>
+
+</h3>
+<ul>
+  <li> <u>一般的フロントエンドのアクセシビリティ要件に従う</u>:
+    <br>XUL UI を開発する時、数多くの潜在的「裏技」があります。<a
+ href="xul-guidelines">アクセシビリティの XUL 記述ガイドライン</a> に一覧で提案されている実用的技術に従って下さい。このガイドラインは起こりうるたくさんのシナリオをカバーします。それらの修得に少しの時間でも費やすれば、あなたの設計技術、エンジニアリング技術は知らず知らすの内に向上するでしょう。<br>
+    <br>
+  </li>
+  <li><u>新しい部品を開発する時正しいキーボードのアクセシビリティを確保する:</u><br>Mozilla の XUL と HTML ウィジェットはすでに適当なキーボードのアクセシビリティをサポートしていますので、その点で後退しないようにしましょう。開発されるすべての新しい UI 部品は正しいキーボードサポートを必ず提供するようにして下さい。XBL を使って新ウィジェットを作る時はいつでも <a href="/access/toolkit-checklist.html">アクセシビリティのツールキット　チェックリスト</a> に従って下さい。<br>
+
+    <br>
+  </li>
+  <li><u>新制御を開発する時は nsIAccessible によって MSAA と ATK をサポートする</u>: <br> Mozilla はカスタム制御がアクセシビリティが可能になるように状況を提供する最適な位置にあります。各カスタム制御用にただ nsIAccessible を作ることによってエンジニアは状況を提供できます。これを達成するインフラは簡単です。</li>
+</ul>
+<h3>他の開発者への機会</h3>
+<div style="margin-left: 40px;">参加出来る、価値のある興味深いたくさんのプロジェクトがあり、オープンソースのアクセシビリティの普及向上へ貢献が期待されます:<br>
+<ul>
+  <li><a href="http://www.baum.ro/gnopernicus.html">Gnopernicus (Gnome 
+スクリーンリーダ)</a><br>
+
+  </li>
+  <li><a href="http://www.gok.ca/">GOK (Gnome Onscreen Keyboard)</a></li>
+  <li><a href="http://developer.gnome.org/projects/gap/">Gnome アクセシビリティ・プロジェクト</a><br>
+  </li>
+  <li><a href="http://accessibility.kde.org/">KDE アクセシビリティ</a></li>
+  <li><a href="http://www.a11y.org/">自由な標準化グループ -
+アクセシビリティ・ワーキンググループ</a></li>
+</ul>
+
+一覧表への掲載をご希望されるならば、お知らせ下さい。 - 
+aaronleventhal<span style="letter-spacing: -0.1em;">@ m o o n s e
+t&nbsp; . </span>net へご連絡お願いします。
+</div>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/today.html">英語版</a> 2004/09/09</span> - <span>和訳版 2005/05/08</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/today.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

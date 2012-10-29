@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 メンバ探索</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/rationale/member-lookup.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="execution-model.html">
+<link rel="Next" href="versioning.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		border:1px dashed #996;
+		padding:3px;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		background:transparent none;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap;">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">根拠</div>
+    <div class="title1">メンバ探索</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="execution-model.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="versioning.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">09/20/2002 (Fri)</p>
+
+<h2 class="issue">このページはやや古いものである。</h2>
+
+<h2>はじめに</h2>
+
+<p>メンバ探索の意味については TC39 サブグループにおいて多くの議論がなされている。ここではその内容を数多く紹介しよう。</p>
+
+<p>一般的な非限定メンバ探索を <var>a</var><code>.</code><var>b</var> のように表す。ここに <var>a</var> は式、<var>b</var>
+は識別子である。限定メンバ探索も考慮し、これを <var>a</var><code>.</code><var>n</var><code>::</code><var>b</var> と書く。ここに
+<var>n</var> は名前空間として評価される式である。ほとんど全ての場合我々の興味は <var>a</var> の動的型 <var>Td</var>
+にある。ある案においては式 <var>a</var> の 静的型 <var>Ts</var> も考慮する。言語が確実なものであれば常に
+<var>Td</var>&nbsp;<script type="text/javascript">document.write(U_sube)</script>&nbsp;<var>Ts</var> が成り立つ。</p>
+
+<p>最も単純なアプローチはオブジェクトをメンバの名前と値を格納したただの連想配列とみなすことである。このように解釈すると、オブジェクト
+<var>a</var> の内部に b という名前のメンバがあるかどうかをチェックするだけでよい。存在すればそのメンバの値を返し、見つからなければ
+<code>undefined</code> を返すかエラーを出すのである。</p>
+
+<p>この単純なアプローチには数多くの困難が伴い、ほとんどのオブジェクト指向言語はこれを採用していない:</p>
+
+<ul>
+  <li>メンバを <code>private</code> や <code>internal</code> にできない。</li>
+  <li>大規模プログラミングにおいて<a href="../rationale/versioning.html#collision">予期しないクラッシュ</a>が発生する可能性がある。</li>
+</ul>
+<p><code>private</code> や <code>internal</code> メンバを認めてしまうと、オブジェクト <var>a</var> が名前 <var>b</var>
+のメンバを複数持つ可能性を許容しなければならなくなる &#8212; 抽象理論においてクラス <var>C</var> のユーザは <var>C</var> の非公開
+(private) メンバの詳細について関知すべきでなく、特にユーザは <var>C</var> の派生クラス <var>D</var> を作成可能で、<var>C</var>
+の非公開メンバの名前を知らなくても <var>D</var> にメンバを追加できなければならない。C++ と Java
+は両方ともこれを許容しており、我々もオブジェクト <var>a</var> が名前 <var>b</var>
+のメンバを持つことを許容する。しかしこのメンバへのアクセスは認めない。我々は近代的な言語の慣例に従って、アクセス制御はレキシカルスコープにより規定されるものとする。</p>
+
+<h2>メンバ探索モデルの選定基準</h2>
+
+<p>メンバ探索モデルが満たすべき基準は以下のようなものである:</p>
+
+<ol>
+  <li><strong><a name="safety"></a>安全</strong>。探索はメンバを定義しているクラス外部からの <code>private</code>
+    メンバへのアクセスを許可しない。また、メンバを定義しているパッケージ外部からの <code>internal</code>
+    メンバへのアクセスも許可しない。更にクラス <var>C</var> がその非公開メンバ <var>m</var> にアクセスする場合、<var>C</var>
+    の悪意のある派生クラス <var>D</var> は <var>C</var> のコード中で <var>m</var> の振りをするメンバ <var>m&#39;</var> を代用することはできない。</li>
+  <li><strong><a name="abstraction"></a>抽象</strong>。<code>private</code> メンバや <code>internal</code>
+    メンバはそれらのクラスやパッケージの外部からは不可視である。大規模プログラミングにおいてクラスはインポート側に <code>public</code>
+    なバージョンを複数提供でき、より新しいバージョンの <code>public</code> メンバは古いバージョンをインポートしている側からは不可視である。これは<a href="../rationale/versioning.html#collision">堅牢なライブラリ</a>を提供するのに必要なことである。</li>
+  <li><strong><a name="robustness"></a>堅牢さ</strong>。以下のようなプログラムの変更はいずれもプログラムを構成し直さなくても可能である:
+    <ol>
+      <li>変数や関数に正当な型を付ける。</li>
+      <li>メンバの可視性を <code>private</code> 、<code>internal</code> 、或いは <code>public</code> に変更し、新しく設定された可視性以外で使用できないようにする。</li>
+      <li>複雑な式文 <var>e</var> を <var>e</var> の部分式を処理する複数の文に分け、それらをローカル変数に格納した後、<var>e</var>
+        を処理するためにそれらを結合させる。これは <var>e</var> が何をするか、何を呼び出すか詳しく知らなくても可能であるべきである。</li>
+      <li>メンバの名前が衝突しない、またそのメンバへの参照を全て参照することを前提に、メンバに異なる名前を付ける。</li>
+    </ol>
+  </li>
+  <li><strong><a name="namespace-independence"></a>独立した名前空間</strong>。クラス <var>C</var> が名前 <var>m</var>
+    のメンバを持つとしても、このことが無関係のクラス <var>D</var> が無関係だが同じ名前 <var>m</var> のメンバを持つことの障害になるべきではない。</li>
+  <li><strong><a name="compatibility"></a>互換性</strong>。JavaScript 2.0 クラスは JavaScript 1.5
+    コードからも使用可能であるべきであり、JavaScript 1.5 コードは現存するコードの再構成を必要としない最小限の処理で
+    JavaScript 2.0 にアップグレードされるべきである。互換性の達成のために JavaScript 2.0
+    クラスそのものを再構成したり、他の満足すべき基準を放棄するべきではない。型無しコードは期待通りに動く。</li>
+</ol>
+
+<h2>探索モデル</h2>
+
+<p><var>a</var><code>.</code><var>b</var> のような通常の非限定メンバ探索のための有力なモデルは3つある。<var>S</var> を式
+<var>a</var> (以下、単に &quot;オブジェクト <var>a</var>&quot; という) を評価したときに得られるオブジェクトメンバの内、名前
+<var>b</var> のものの集合としよう。このメンバは <var>a</var><code>.</code><var>b</var>
+が評価されるレキシカルスコープで<a href="../core/concepts.html#namespace">名前空間規則</a>を適用することによりアクセス可能である。3つのモデルは全てこのメンバ
+<var>s</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>S</var>
+のどれかを正しいメンバとして選ぶ。集合 <var>S</var> が空であればメンバ探索の失敗は明らかだが、「Spice」モデルと純粋な「静的」モデルは集合
+<var>S</var> が空でなくても何らかの理由で失敗することがある。このような何らかの理由による失敗を除き、集合 <var>S</var>
+がメンバとして <var>s</var> しか含まない場合は3つのモデルは全て同じ要素 <var>s</var> を返す。集合 <var>S</var>
+ がメンバを複数持つ場合は3つのモデルはおそらく異なるメンバを選ぶ。</p>
+
+<p>もう1つの興味深い (そして有用な) 話は静的モデルと「動的」モデルが <code>this.</code><var>b</var>
+形式のメンバ探索において常に同じ解釈をするということである。<code>this.</code><var>b</var> 形式のメンバ探索において3つのモデルが全て同じ解釈をするのは、<var>b</var>
+が現在のクラスで定義されているメンバである場合である。</p>
+
+<p>オーバーライドについて: クラス <var>D</var> がその基底クラス <var>C</var> のメンバ <var>m</var> をオーバーライドするとき、<var>m</var>
+は概念的には <var>D</var> の全てのインスタンスにおいて置換される。しかし3つのモデルはメンバ <var>m</var>
+が宣言された最上位のクラスしか見ようとしない。<strong>3つのモデルはいずれもオブジェクト指向言語として自然な方法でオーバーライドを処理する</strong>のである。3つのモデルが異なる解釈をするのは、クラス
+<var>C</var> が名前 <var>m</var> のメンバを持ち、<var>C</var> の派生クラス <var>D</var> が同名のメンバ <var>m</var> を持ちながら、<var>C</var>
+の <var>m</var> が <var>D</var> の内側から不可視であるためにオーバーライドにならない場合である (あまり知られていないが、このようなオーバーライドにならないケースは
+C++ や Java でも同様にある <ins class="clsByTranslator">[隠しルールと呼ばれるものである。「あまり知られていない」こともないだろう]</ins>)。</p>
+
+<h3>静的モデル</h3>
+
+<p>静的モデルにおいては式 <var>a</var> の静的な型 <var>Ts</var> に注目することになる。クラス <var>Ts</var> か <var>Ts</var>
+の祖先クラスを含む集合 <var>S</var> の部分集合を <var>S1</var> とすると、<var>S1</var> 内の最派生クラスのメンバが選択される。</p>
+
+<p>このような純粋な静的モデルは Java と C++ で実装されている。JavaScript ではほとんど全てでないものの多くの式が <code>Any</code>
+型なのでこれはうまくいかない。<code>Any</code> 型はメンバを持たないため、ユーザは目的の型 <var>T</var> のメンバにアクセスする前に式
+<var>a</var> を型 <var>T</var> にキャストしなければならない。このことから、部分集合 <var>S1</var>
+が空の場合、すなわち静的探索が失敗するような場合を扱えるように静的モデルを拡張しなければならない。(このようなことをしなくても静的型
+<var>Ts</var> が特別な型であるときに静的モデルを拡張することもできる。しかしそうするとどの型が特別でどの型が特別でないのか決めなければならない。<code>Any</code>
+が特別であるのは明白だが <code>Object</code> はどうか? <code>Array</code> は? そのような境界線を引くのは難しい。)</p>
+
+<p>静的モデルをどのように拡張してもメンバ選択の余地はそのままである。動的モデルを使うことにするか、<var>S</var>
+中の最派生メンバを選択するか、或いはおそらく他のアプローチを使うことになるだろう。</p>
+
+<p>制限:</p>
+
+<div class="indent">
+  <table border="1" cellspacing="1" cellpadding="0">
+  <colgroup>
+  	<col valign="top" style="white-space:nowrap;">
+	<col valign="top">
+  </colgroup>
+  <tr>
+    <td style="white-space:nowrap;"><a href="#safety">安全</a></td>
+    <td>純粋な静的モデルは良好。拡張静的モデルの問題 (派生クラスが暗黙の内にメンバを隠蔽する)
+      はおそらく警告が出されるだろう。</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap;"><a href="#abstraction">抽象</a></td>
+    <td>良好。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap;"><a href="#robustness">堅牢さ</a>&nbsp;&nbsp;</td>
+    <td>完全に不適。関数の戻り値やグローバル変数の型を変更すると、その関数やグローバル変数を使う全てのコードの意味も暗黙の内に変更されてしまう。大規模プロジェクトにおいてそのような変更は非常に困難であり、式を正しく部分式に分割することも困難である。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap;"><a href="#namespace-independence">独立した名前空間</a>&nbsp;&nbsp;</td>
+    <td>良好。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap;"><a href="#compatibility">互換性</a></td>
+    <td>純粋な静的モデルは不適 (あらゆる箇所に型キャストが必要になる)。拡張静的モデルはその拡張の仕方によっては良好。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap;">その他</td>
+    <td>
+      <p>複合式における中間的な型をコンパイラが決定するのは困難であるため、このモデルにおけるコンパイルは難しいものになる。静的モデルに基づく言語は従来オフラインでコンパイルされ、プログラマがデータ構造を前以って宣言していなければオンラインでのコンパイルは難しいのが普通である
+      (コンパイラが前方参照されているデータ構造を見つけても、それが型を持つべきかどうか分からない)。より動的な実行モデルはより多くの情報が明らかになるまでコンパイルを遅延するので、この困難を解決する助けになる。</p>
+
+      </td>
+  </tr>
+  </table>
+
+</div>
+
+<h3>Spice モデル</h3>
+
+<p>Spice モデルではクラス <var>C</var> で定義された各メンバ <var>m</var> を、第1引数の型が <var>C</var> である
+(オーバーロード可能な) 関数の関数定義として考える。内側のレキシカルスコープの定義は外側のスコープの定義を隠蔽する。Spice
+モデルでは式 <var>a</var> の静的型 <var>Ts</var> は考慮しない。</p>
+
+<p>メンバ探索式 <var>a</var><code>.</code><var>b</var> を囲っている最も内側のレキシカルスコープを <var>L</var> としよう
+(名前 <var>b</var> のメンバがレキシカルスコープ <var>L</var> で定義されている)。そしてレキシカルスコープ <var>L</var>
+で定義されている名前 <var>b</var> の全てのメンバの集合を <var>Lb</var> とし、<var>S1</var> =
+<var>S</var>&nbsp;<script type="text/javascript">document.write(U_cap)</script>&nbsp;<var>Lb</var> (<var>S</var> と
+<var>Lb</var> の共通部分) としよう。<var>S1</var> が空であれば探索は失敗である。<var>S1</var> に含まれるのが
+<var>s</var> 1つだけであれば <var>s</var> を選択する。<var>S1</var> が複数のメンバを含む場合は失敗である (これは衝突がある場合にのみ起こる)。</p>
+
+<p>制限:</p>
+
+<div class="indent">
+  <table border="1" cellspacing="1" cellpadding="0">
+  <colgroup>
+  	<col valign="top" style="white-space:nowrap;">
+	<col valign="top">
+  </colgroup>
+  <tr>
+    <td style="white-space:nowrap"><a href="#safety">安全</a></td>
+    <td>良好。</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="#abstraction">抽象</a></td>
+    <td>良好。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><a href="#robustness">堅牢さ</a>&nbsp;&nbsp;</td>
+    <td>乏しい。<code>internal</code>
+      メンバの名前を変更すると、メンバを定義するクラス外部のコードがそのメンバにアクセスしているどうかに関係無く、そのコードは破壊される可能性がある。<code>private</code>
+      メンバを他の2つの可視性に変更した場合も他 (同名だが無関係のメンバを偶然持っていた同じパッケージ内に存在する無関係のクラス)
+      との衝突を引き起こす。幸いこれらの衝突は大抵の場合 (いつもではないが)
+      暗黙の内にプログラムの意味を変更される前にエラーになるため、変更を加えた後にプログラムを徹底的にテストすれば発見できる。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><a href="#namespace-independence">独立した名前空間</a>&nbsp;&nbsp;</td>
+    <td>不適。無関係のクラスに同名のメンバがあれば衝突する。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><a href="#compatibility">互換性</a></td>
+    <td>乏しいと思われる。既存のプログラムの多くは名前空間の独立性に依存しており、再構成が必要になる。</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;vertical-align:top;white-space:nowrap">その他</td>
+    <td>
+      <p>独立した名前空間が得られないことで大半のオブジェクト指向プログラマは困惑するだろう。この想定無しにプログラミングを行うには大半のプログラマが持っているものとは別の観点で望まなければならない
+      (Lisp や Self のプログラマのことを言っているのではない。連中はこのような考え方には慣れている)。</p>
+    </td>
+  </tr>
+  </table>
+
+</div>
+
+<p>[Spice モデルはこの他に多くの変種が存在する。]</p>
+
+
+
+<h3>動的モデル</h3>
+
+<p>動的モデルにおいてメンバ <var>s</var> は、メンバ探索式 <var>a</var><code>.</code><var>b</var> を囲っている最も内側のレキシカルスコープ <var>L</var>
+で定義されている <var>S</var> から選択される。このレキシカルスコープ <var>L</var> が <var>S</var> 内に複数のメンバを含む場合探索は失敗する
+(これは衝突がある場合にのみ起こる)。</p>
+
+<p>制限:</p>
+
+<div class="indent">
+  <table border="1" cellspacing="1" cellpadding="0">
+  <colgroup>
+  	<col valign="top" style="white-space:nowrap;">
+	<col valign="top">
+  </colgroup>
+  <tr>
+    <td style="white-space:nowrap"><a href="#safety">安全</a></td>
+    <td>言語レベルでは良好だが「その他」も見よ。</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap"><a href="#abstraction">抽象</a></td>
+    <td>良好。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><a href="#robustness">堅牢さ</a>&nbsp;&nbsp;</td>
+    <td>良好。Spice モデルの項で述べた変更は全て簡単にできる。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><a href="#namespace-independence">独立した名前空間</a>&nbsp;&nbsp;</td>
+    <td>良好。</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><a href="#compatibility">互換性</a></td>
+    <td>良好。</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;vertical-align:top;white-space:nowrap">その他</td>
+    <td style="vertical-align:top">
+      <p>動的モデルを使ったパッケージは特定の侵入コードによる乗っ取り (作者が意図することとは別の行為を強制されること)
+      に遇い易いかもしれない。コンパイラがこれを検出し、警告することは可能である。</p>
+    </td>
+  </tr>
+  </table>
+
+</div>
+<h2><a name="namespaces"></a>名前空間</h2>
+
+<p>幾つかのモデルでは、オブジェクトの可視メンバにアクセスする方法が無かったり、アクセスが安全でない場合
+(「<a href="#hijacking">メンバの乗っ取り</a>」を見よ) でも問題が起こらないようになっている。このような場合、可能性のある同じ名前の複数のメンバの中から的確に選択できるべきである。<code>::</code>
+名前空間構文がこれを可能にする。<code>::</code> の左オペランドはパッケージかクラスとして評価される式である。また、この式の代わりに
+<code>public</code> 、<code>internal</code> 、<code>private</code> といった特別なキーワードを使うこともできる。或いは完全に省略してもよい。<code>::</code>
+の右オペランドは名前であり、結果は名前空間で限定された名前になる。</p>
+
+<p>これまで見てきたように、メンバアクセス式 <var>a</var><code>.</code><var>b</var> の名前 <var>b</var> は必ずしもオブジェクト
+<var>a</var> の一意なアクセス可能メンバを参照している必要はない。限定メンバアクセス式 <var>a</var><code>.</code><var>n</var><code>::</code><var>b</var>
+では、考えるメンバの集合が結果的に2つ以上のメンバを含む可能性があるにも関わらず、名前空間 <var>n</var>
+はその集合を縮小する。その場合探索モデルは再度メンバを確定する。<var>S</var> をオブジェクト <var>a</var> の名前 <var>b</var>
+のアクセス可能メンバの集合として、<var>a</var><code>.</code><var>n</var><code>::</code><var>b</var> が
+<var>n</var> によってどのように <var>S</var> の部分集合を形成するかを以下の表に示す:</p>
+
+<div class="indent">
+  <table border="0" cellspacing="2" cellpadding="0">
+  <colgroup>
+  	<col valign="top" style="white-space:nowrap;">
+	<col valign="top">
+  </colgroup>
+  <tr>
+    <th align="left" style="white-space:nowrap"><span class="nonterminal">n</span>&nbsp;&nbsp;</th>
+    <th align="left">部分集合</th>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap">無し</td>
+    <td>名前 <var>b</var> の動的メンバのみ (あれば)</td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap">クラス <var>C</var></td>
+    <td><var>C</var> の名前 <var>b</var> の固定メンバ。存在しなければ <var>C</var> の基底クラス...とチェインを上がる</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap">パッケージ <var>P</var>&nbsp;&nbsp;</td>
+    <td><var>P</var> の全てのアクセス可能メンバを含む <var>S</var> の部分集合</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><code>private</code></td>
+    <td style="vertical-align:top">現在のクラスの名前が <var>b</var> である固定メンバ</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><code>internal</code></td>
+    <td>パッケージの可視性 (<code>internal</code>) を持つ全てのアクセス可能メンバを含む <var>S</var> の部分集合</td>
+  </tr>
+  <tr>
+    <td align="left" style="white-space:nowrap"><code>public</code></td>
+    <td>可視性 <code>public</code> を持つ全てのアクセス可能メンバを含む <var>S</var> の部分集合</td>
+  </tr>
+  </table>
+
+</div>
+<p><code>::</code> 演算子の役目は <code>.</code> 演算子と同じではない。<code>.</code>
+演算子が<strong>値</strong>を生成するのに対し、<code>::</code> 演算子は<strong>限定名</strong>を生成する。<strong>限定名</strong>は
+<code>.</code> の右オペランドに使用できるが値は使用できない。値を置くべき箇所に限定名を用いた場合、限定名はレキシカルスコープ規則に従って値
+(大抵はグローバル変数) を得るために探索される。</p>
+
+<h2>動的メンバ</h2>
+
+<p>上に挙げた3つのモデルは全てクラスの<a href="../core/concepts.html#fixed-property">固定プロパティ</a>にのみアクセスする。JavaScript
+では個々のインスタンスに動的にプロパティを追加できる。簡潔さのためにこのような<a href="../core/concepts.html#dynamic-property">動的プロパティ</a>にはアクセス制御とバージョン管理は提供されない
+&#8212; これらは全て公開演算であり、どこからでもアクセスできる。<a href="#safety">安全</a>基準のために、<code>private</code>
+や <code>internal</code> メンバの探索では同じ名前の動的プロパティがある場合でも <code>private</code> 、<code>internal</code>
+メンバを選択しなければならない。<a href="#robustness">堅牢さ</a>の基準を満たすために、<code>public</code> メンバを可能な限り
+<code>private</code> や <code>internal</code> メンバと同じように扱うべきである。このため同名の動的プロパティが存在する場合に、常に固定プロパティを優先させるのである。</p>
+
+<p>固定プロパティにより隠蔽された動的プロパティにアクセスするには、メンバ名の前に <code>::</code> を付けるか、間接プロパティアクセスを使う。</p>
+
+<h2>間接メンバアクセス</h2>
+
+<p><var>a</var><code>[</code><var>b</var><code>]</code> のような式の振る舞いはどのように定義すべきだろうか? (<var>a</var>
+のクラスは配列や、<code>[]</code> 演算子の既定の意味をオーバーライドするクラスに型付けされていないとする) これには2、3の考えがある:</p>
+
+<ol>
+  <li>式 <var>b</var> を何らかの文字列 <var><code>&quot;</code>s<code>&quot;</code></var>
+    として評価し、<var>a</var><code>[</code><var>b</var><code>]</code> を <var>a</var><code>.</code><var>s</var>
+    のように扱う。これは本来 JavaScript 1.5 の動作である。残念ながら JavaScript 1.5 プログラムの期待
+    (同名のメンバが2つ以上存在しない、など) を裏切らずにこの振る舞いを保つのは困難である。更にこの種の間接操作はメンバの<a href="#hijacking">乗っ取り</a>にも遇い易い。メンバ乗っ取りの問題は
+    <var>a</var><code>.</code><var>n</var><code>::[</code><var>b</var><code>]</code>
+    のように<a href="#namespaces">名前空間の節</a>で示した規則に従った <code>[]</code> 演算子の制限付き異性体を考案することで解決できるかもしれない。</li>
+  <li>式 <var>b</var> を何らかの文字列 <var><code>&quot;</code>s<code>&quot;</code></var>
+    として評価し、<var>a</var><code>[</code><var>b</var><code>]</code> を <var>a</var><code>.::</code><var>s</var>
+    のように扱う。故にこの振る舞いは動的メンバを選択しようとするときに限られる。動的メンバの振る舞いは十分なものだが、JavaScript 1.5
+    のスクリプトが <code>[]</code> で JavaScript 2.0 のオブジェクトを使おうとしたとき<a href="#compatibility">互換性</a>の基準に違反することになる。</li>
+</ol>
+
+<p>普通に考えると文字列 <var><code>&quot;</code>s<code>&quot;</code></var> の構文を文字列中に <code>::</code>
+を含められるように拡張する考えはまずいものである。そのような文字列の生成は非常に早い段階で行われ、メンバを指すことができないのである。</p>
+
+<h2><a name="hijacking"></a>メンバの乗っ取り</h2>
+
+<p class="issue">[セキュリティアタックの説明]</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td style="vertical-align:bottom;white-space:nowrap">
+      <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+      最終更新: 2002年9月20日(金)</address>
+    </td>
+    <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="execution-model.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="versioning.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+  </tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal&#64;student.interq.or.jp">exeal&#64;student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/rationale/member-lookup.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

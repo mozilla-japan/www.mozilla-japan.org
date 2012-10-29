@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n" basename="index" pathtoroot="../../">
+
+<meta>
+	<dc:title>ローカライズセンター</dc:title>
+	<!-- <dc:creator>dynamis</dc:creator> -->
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+	<title>ローカライズセンター</title>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 title="世界の標準オープンソースブラウザ Mozilla を日本語で"><tt:meta mode="title"/></h1>
+	<p>Mozilla Japan ローカライズセンターでは Mozilla 製品を初心者でも違和感なく日本語で使って頂けるようにするため、<a href="${l10n-thanks}">多数の皆さんのご協力</a>に支えられながら、Mozilla 製品のローカライズ(日本語化)および関連ソフトの日本語化支援を行っております。<br/>
+		現在ローカライズセンターの活動は <a href="${l10n-forum}"><span title="L10N とは Localization の慣例的な略記法です">L10N</span> フォーラム</a>と、Mozilla Japan スタッフと QA 協力者の参加する <a href="http://forums.firehacks.org/l10n/viewtopic.php?t=268">L10N ML</a> を中心として行っております。 Mozilla 製品をご利用の際に日本語に違和感を感じたり間違いを発見した場合は、お手数ですが <a href="${l10n-forum}">L10N フォーラム</a>までお知らせください。</p>
+	<p>ローカライズセンターで作成した日本語版は<a href="${mj-products}">製品情報ページ</a>から入手できます。動作確認やテスト用に作成している最新の開発リリース版については <a href="${l10n-forum-info-release}">L10N フォーラム</a>でアナウンスしております。</p>
+	<!-- <p>これまで <a href="${mogumi}">もじら組</a> のプロジェクトとして活動してきた「JLP プロジェクト」が、Mozilla Japan の設立を機に、その一部門ローカライズセンターとして Mozilla 製品のローカライズ作業を担当することになりました。<br/>
+		今後ともご支援ご協力を宜しくお願いします。</p>
+	<p>ローカライズセンター では Mozilla 製品の日本語化および関連ソフトの日本語化の支援を行っております。 Mozilla 製品やその関連ソフトの日本語化などに関心のある方は <a href="${l10n-forum}"><span title="L10N とは Localization の慣例的な略記法です">L10N</span> フォーラム</a> へお越し下さい。ローカライズセンターで作成した日本語版は<a href="${mj-products}">製品情報ページ</a>から入手できます。動作確認やテスト用に配布している最新の開発リリース版や以前のリリースについてはローカライズセンターの各製品ページをご覧下さい。</p>
+	<p><a href="http://forums.firehacks.org/l10n/viewtopic.php?t=259">Mozilla Japan での今後の開発体制</a> や <a href="http://forums.firehacks.org/l10n/viewtopic.php?t=268">QA 協力者登録と L10N ML の新設</a> についてのアナウンスを出しました。ご参照ください。</p>
+	<p>現在サイトコンテンツの拡充中であり、一部のページが未完成あるいは欠落しておりますがご了承ください。</p> -->
+	
+	
+	<tt:section id="firefox" class="product">
+		<h2>Firefox Localization</h2>
+		<p>Mozilla プロジェクトが贈る、次世代の Web ブラウザの日本語版作成に取り組んでいます。まだベータ版の段階であるにもかかわらず、リリースから 10 日間で 100 万回以上ダウンロードされ、各方面から絶賛を浴びています。パワフルでありながら使いやすい、世界標準ブラウザ Firefox の動作確認にご協力をお願いします。</p>
+
+		<p><a href="${mj-firefox}">製品情報</a> : <a href="${l10n-firefox}">開発リリース</a> : <!-- <a href="${l10n-firefox-archives}">以前のリリース</a> : --> <a href="${mj-ftp-firefox}">FTP サーバ</a></p>
+	</tt:section>
+	
+	<tt:section id="thunderbird" class="product">
+		<h2>Thunderbird Localization</h2>
+		<p>新しい強力な迷惑メールフィルタを装備した、メールソフト・ニュースグループリーダーを鋭意日本語化中です。毎日の生産性を高める様々な機能に加えて、カスタマイズも自由自在。法人ユーザのニーズにも応える高度なセキュリティ機能を提供する Thunderbird の品質向上のため、開発リリースをテストして問題をお知らせください。</p>
+
+		<p><a href="${mj-thunderbird}">製品情報</a> : <a href="${l10n-thunderbird}">開発リリース</a> : <!-- <a href="${l10n-thunderbird-archives}">以前のリリース</a> : --> <a href="${mj-ftp-thunderbird}">FTP サーバ</a></p>
+	</tt:section>
+	
+	<tt:section id="mozilla" class="product">
+		<h2>Mozilla Localization</h2>
+		<p>Netscape Communicator の伝統を受け継ぐ、成熟したインターネットスイートを日本語で使えるようにしています。ブラウザ、メーラ、HTML エディタを統合し、プライバシー保護とセキュリティを第一に考えて設計されている Mozilla の品質保証にあなたも参加してください。</p>
+
+		<p><a href="${mj-suite}">製品情報</a> : <a href="${l10n-suite}">開発リリース</a> : <!-- <a href="${l10n-suite-archives}">以前のリリース</a> : --> <a href="${mj-ftp-mozilla}">FTP サーバ</a></p>
+	</tt:section>
+</tt:htmlbody>
+
+</page>
+</contents>

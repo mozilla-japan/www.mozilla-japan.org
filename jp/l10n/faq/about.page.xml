@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-faq-about" basename="about" pathtoroot="../../../">
+
+<meta>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+</meta>
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+	<title><tt:faqtitle section="about"/></title>
+</tt:htmlheader>
+
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1><tt:faqtitle section="about"/></h1>
+	<tt:faqindex section="about"/>
+	<tt:faq section="about"/>
+</tt:htmlbody>
+
+</page>
+</contents>

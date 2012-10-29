@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="stylesheet" type="text/css" href="/style/base/template.css" media="screen,tv" />
+<link rel="stylesheet" type="text/css" href="/style/rustico/template.css" title="Rustico" media="screen,tv" />
+<link rel="stylesheet" type="text/css" href="/style/rustico/content.css" title="Rustico" media="screen,tv" />
+<link rel="stylesheet" type="text/css" href="/style/dalvay/core.css" media="screen,tv" />
+<link rel="stylesheet" type="text/css" href="/style/jp/screen.css" media="screen,tv" />
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+
+<meta http-equiv="Cache-Control" content="max-age=0">
+<meta http-equiv="Cache-Control" content="must-revalidate">
+<title>Mozilla 1.7</title>
+
+<style type="text/css" media="screen,tv">
+	.toc ul { margin: 0; padding: 0; list-style: none; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="July 10, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="about">
+<div id="globalheader">
+  <div id="globalheader-inner">
+    <div id="globallogo"><a href="http://mozilla.jp/"><img src="/img/jp/template/globallogo-print.png" alt="Mozilla Japan ホーム" title="" /></a></div>
+    <ul id="globalnav">
+      <li id="gn-products"><a href="http://mozilla.jp/products/">製品情報</a></li>
+      <li id="gn-addons"><a href="https://addons.mozilla.jp/">アドオン</a></li>
+      <li id="gn-support"><a href="http://mozilla.jp/support/">サポート</a></li>
+      <li id="gn-developer"><a href="http://developer.mozilla.org/ja/">デベロッパー</a></li>
+      <li id="gn-blogs"><a href="http://mozilla.jp/blog/">ブログ</a></li>
+      <li id="gn-about"><a href="http://mozilla.jp/about/">組織概要</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="breadcrumbs">
+</div>
+<hr class="hide" />
+<div id="content">
+<div id="side">
+<div class="menu-box">
+<ul>
+  <li><a href="http://mozilla.jp/about/"><strong>Mozilla Japan について</strong></a>
+    <ul>
+      <!-- <li><a href="/about/partners.html">パートナー</a></li> -->
+      <li><a href="http://mozilla.jp/about/licensing">ライセンスと商標</a></li>
+      <!-- <li><a href="http://mozilla.jp/business/distribution/">再配布プログラム</a></li> -->
+      <li><a href="http://mozilla.jp/blog/category/events/">イベント情報</a></li>
+      <!-- <li><a href="/about/japan-faq.html">よくある質問</a></li> -->
+      <li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+    </ul>
+  </li>
+</ul>
+</div>
+<div class="menu-box">
+<ul>
+  <li><a href="http://mozilla.jp/press/">プレスルーム</a>
+    <ul>
+      <li><a href="http://mozilla.jp/press/releases/">プレスリリース</a></li>
+      <li><a href="http://mozilla.jp/press/images/">イメージライブラリ</a></li>
+      <li><a href="http://mozilla.jp/press/awards/">受賞歴</a></li>
+      <li><a href="http://mozilla.jp/press/coverage/">メディア掲載情報</a></li>
+    </ul>
+  </li>
+</ul>
+</div>
+<div class="menu-box">
+<ul>
+  <li><a href="/jp/td/">翻訳部門</a></li>
+  <li><a href="/jp/l10n/">ローカライズセンター</a></li>
+  <li><a href="/jp/yakugo/">Mozilla 訳語決定会</a></li>
+</ul>
+</div>
+</div>
+
+<div id="mainContent">
+
+
+
+
+
+<script type="text/javascript">
+	if (navigator.platform == "Win32") {
+		var gecko = navigator.userAgent.match(/rv:([0-9.]+).*Gecko\//)[1];
+		if (gecko >= "1.8") {
+			/* do nothing */
+		} else if (gecko < "1.7") {
+			/* user of pre-1.7 */
+			document.write('<p class="important">');
+			document.write('<strong style="color:red">警告!</strong> ');
+			document.write('セキュリティ問題を防ぐために <a href="/download.html">今すぐアップグレード</a> してください。');
+			document.write('これらの問題の 1 つについては <a href="/security/shell.html">詳しい情報</a> をご覧ください。');
+			document.write('一度アップグレードすれば、このメッセージは表示されません。');
+			document.write('</p>');
+		} else if (!gecko.match(/1\.7\./)) {
+			/* user of 1.7 (not 1.7.1) */
+			var hasPatch = InstallTrigger.getVersion("mozilla.org/bug250180");
+			if (!hasPatch)
+			{
+				document.write('<p class="important">');
+				document.write('<strong style="color:red">警告!</strong> ');
+				document.write('お使いのビルドにはセキュリティ脆弱性が存在します。');
+				if (!InstallTrigger.enabled())
+					document.write('ソフトウェアインストールを有効にして、');
+				document.write('この <a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/shellblock.xpi">修正パッチ</a> (572 バイト) をインストールし、ブラウザを再起動してください。');
+				document.write('この問題については <a href="/security/shell.html">詳しい情報</a> をご覧ください。');
+				document.write('一度パッチを適用すれば、このメッセージは表示されません。');
+				document.write('</p>');
+			}
+		}
+	}
+</script>
+<noscript>
+	<p class="important">
+	あなたがもし Mozilla 1.7 の Windows 版をお使いの場合は、
+	この <a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/shellblock.xpi">セキュリティパッチ</a> (572 bytes) をインストールしてください。
+	それ以前のバージョンの mozilla をお使いの場合は、<a href="/download.html">Mozilla 1.7.1 にアップグレード</a> してください。
+	1.7.1 で修正されたセキュリティ問題については <a href="/security/shell.html">詳しい情報</a> をご覧ください。
+	</p>
+</noscript>
+
+<h1>Mozilla 1.7 へようこそ!</h1>
+<p>このページは、最もパワフルなオープンソースの Web + Mail スイートを最大限利用できるよう用意されています。<strong>もしホームページを変更するつもりなら、今のうちにこのページをブックマークしておいてください</strong>。そうすれば、後で簡単に見直すことができます。</p>
+
+<div class="toc">
+<h3>はじめよう</h3>
+<ul>
+	<li><a href="/docs/end-user/guide/get-started.html#oh-yeah">他のブラウザやメールクライアントからの移行</a></li>
+	<li><a href="/releases/mozilla1.7/">Mozilla 1.7 リリースノート</a> - 既知の問題も載っています</li>
+	<li><a href="/releases/mozilla1.7/README.html">今回のリリースの新着情報</a></li>
+</ul>
+<h3>Mozilla を拡張しよう</h3>
+<ul>
+	<li><a href="../1.6/plugins.html">プラグイン</a> - Java や Flash Player などのインストールに関するヘルプ</li>
+	<li><a href="http://update.mozilla.org/extensions/?application=mozilla">アドオン</a> - Mozilla のための拡張ソフトや言語パック</li>
+	<li><a href="http://themes.mozdev.org/">テーマ</a> - Mozilla の外観をカスタマイズしましょう</li>
+</ul>
+<h3>ヘルプが必要ですか?</h3>
+<ul>
+	<li><a href="../1.5/faq/">よくある質問</a> (Mozilla 1.5)</li>
+	<li><a href="../1.5/troubleshooting/">トラブルシューティングガイド</a> (Mozilla 1.5)</li>
+	<li><a href="http://mozilla.infospaninc.com/mozilla%20-%20Mozilla%20Support.htm">手ごろな価格の電話サポート</a> (英語のみ)</li>
+	<li><a href="/support/#community">ユーザ同士のコミュニティサポート</a></li>
+</ul>
+<h3>参加するには</h3>
+<p>Mozilla プロジェクトはオープンソースの組織であり、一般のユーザが貢献する機会はたくさんあります。</p>
+<ul>
+	<li><a href="/about/get-involved.html"><strong>誰でも</strong>参加できる簡単な方法</a></li>
+	<li><a href="/get-involved.html">あなたが技術に詳しいなら、他にも参加する方法があります</a></li>
+</ul>
+</div>
+
+
+
+
+
+</div>
+</div>
+<hr class="hide" />
+<div id="footer">
+<div id="footer-contents">
+<hr />
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+<p>&copy; 2004-2008 Mozilla Japan and Mozilla Corporation. All rights reserved.</p>
+<p><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a> <a href="/sitemap.html">サイトマップ</a></p>
+<!-- 最終更新 2008/01/31 -->
+</div>
+</div>
+
+</body>
+</html>

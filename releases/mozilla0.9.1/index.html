@@ -1,0 +1,1907 @@
+
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla 0.9.1 リリースノート</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/releases/mozilla0.9.1/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla0.9.1/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<h1 align="Center">Mozilla 0.9.1 リリースノート</h1>
+
+
+<p>このリリースノートは Mozilla 0.9.1 リリースのためのシステムの必要条件、
+インストール手順、わかっている問題 を記述しています。
+このノートは フィードバックを受けて更新されるため、
+新しい情報を得るためにはときおりチェックしてください。
+（訳注：最新の情報は
+<a href="http://www.mozilla.org/releases/mozilla0.9.1/index.html">
+原文</a>をご覧下さい。）
+ソースや あなたが使っているプラットフォーム向けの最新版の Mozilla をダウンロードするには 
+<a href="../index.html">リリース</a> ページを調べてください。
+</p>
+
+<p>
+（訳者注：0.9 から 0.9.1 へ どこがどう変わったのかを手っ取り早くお知りになりたい方のために 
+<A HREF="./diff_0.9_0.9.1.html" TITLE="Mozilla 0.9.1 リリースノート 対 0.9 差分">差分ドキュメント</A> 
+もございます。）
+</p>
+
+<p>
+バグを報告する場合には 
+<a href="http://www.mozilla.org/quality/help/bug-form.html">Bugzilla Helper</a>
+（<a href="../../quality/help/bug-form.html">和訳版</a>・<a href="/quality/help/bugzilla-helper.jp.html">日本語版</a>）
+をご利用ください。 重複を避けるために 
+<a href="#problems">わかっている問題</a> や 
+<a href="../../quality/most-frequent-bugs/index.html" title="なんちゃって日本語版">よく報告されるバグ</a>
+（<a href="http://bugzilla.mozilla.org/duplicates.cgi" title="オリジナル">most frequently reported bugs</a>）
+を確認して下さい。
+<a href="../../quality/bug-writing-guidelines.html">バグ報告ガイドライン</a>
+（<a href="http://www.mozilla.org/quality/bug-writing-guidelines.html">bug reporting guidelines</a>）
+では 問題の解決につながる わかりやすいバグ報告の書き方を解説しています。
+</p>
+
+<h2>コンテンツ</h2>
+
+<dl>
+<dd><a href="#new">このリリースの新機能</a></dd>
+<dd><a href="#require">システム必要条件</a></dd>
+<dd><a href="#compatible">互換性情報</a></dd>
+<dd><a href="#install">インストレーションノート</a></dd>
+<dd><a href="#uninstall">アンインストール</a>
+<dl>
+<dt><a href="#problems">わかっている問題</a></dt>
+<dd><a href="#general">全般</a></dd>
+<dd><a href="#profiles">プロファイルの設定</a></dd>
+<dd><a href="#browser">Navigator</a></dd>
+<dd><a href="#mail">メール／ニュース</a></dd>
+<dd><a href="#chatzilla">IRC クライアント ChatZilla</a></dd>
+<dd><a href="#composer">Composer</a></dd>
+<dd><a href="#psm">セキュリティー</a></dd>
+<dd><a href="#prefs">初期設定</a></dd>
+<dd><a href="#plugins">プラグイン</a></dd>
+<dd><a href="#java">Java</a></dd>
+</dl>
+</dd>
+<dd><a href="#international">インターナショナル リリースノート</a></dd>
+<dd><a href="#qfa">Quality Feedback Agent</a></dd>
+<dd><a href="#devel">Web デベロッパーのみなさんへ</a></dd>
+<dd><a href="#webdev">Mozilla に関わるには</a></dd>
+<dd><a href="#otherbuilds">その他のビルドを見つけるには</a></dd>
+</dl>
+
+<h2><a name="new">このリリースの新機能</a></h2>
+
+<ul>
+
+
+<li>
+34 の最も頻繁に報告された
+<a href="http://bugzilla.mozilla.org/buglist.cgi?bugidtype=include&bug_id=46454%2C+49115%2C+51603%2C+53123%2C+53670%2C+56417%2C+59877%2C+61412%2C+62711%2C+65838%2C+70543%2C+70977%2C+71498%2C+71507%2C+71740%2C+73813%2C+74057%2C+74066%2C+74423%2C+75296%2C+75626%2C+76048%2C+76125%2C+76372%2C+76407%2C+76577%2C+76694%2C+76936%2C+77125%2C+77328%2C+77362%2C+77442%2C+77539%2C+77701">クラッシュ-バグ</a> が修正され、Mozilla 0.9 にくらべて 安定性が大幅に向上しました。
+</li>
+
+<li>
+モダン-スキンがオーバーホールされました。新しいバージョンのモダン-テーマは
+軽く滑らかな装いで、アイコンやウィジェットもみんな新しくなっています。
+</li>
+
+<li>
+古いタスクバーとステータスバーが 新しいひとつのツールバーになって 画面の領域を節約します（両スキンに適用）。
+</li>
+
+<li>
+Mozilla メールに LDAP サーバに対するタイプダウン-アドレッシングが実装されました。
+<!-- (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=84503">84503</a>) -- Rev 1.5 で削除 -->
+</li>
+
+<li>
+レイアウトとネットワーキングに多くのパフォーマンス改善。
+</li>
+
+<li>
+<a href="http://www-5.ibm.com/il/">ヘブライ語</a> と 
+<a href="http://www.wadada.net/alwarda/">アラビア語</a> で 双方向テキストが有効になりました。IBM
+の協力に感謝します。（アラビア語については 今の時点では Win32 でだけ機能します。）
+</li>
+
+<li>
+まだ実装が不完全でバグがありますが、XSLT サポートがオンになりました。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=73936">73936</a>)
+</li>
+
+
+
+
+
+</ul>
+
+<h2><a name="require">システム必要条件</a></h2>
+
+<h3>Mac</h3>
+
+<ul>
+<li>Mac OS 8.6 以降 </li>
+<li>266 MHz 以上の PowerPC 604e プロセッサ、または G3/G4 プロセッサ</li>
+<li>64 MB の RAM </li>
+<li>36 MB のハードディスク空きスペース</li>
+</ul>
+
+<h3>Windows</h3>
+
+<ul>
+<li>Windows 9x/ME、 Windows NT 4 または Windows 2000</li>
+<li>Intel Pentium クラス 233 MHz 以上のプロセッサ</li>
+<li>64 MB の RAM</li>
+<li>26 MB のハードディスク空きスペース</li>
+</ul>
+
+<h3>Linux</h3>
+
+<ul>
+<li>X11 R6 を備えた Red Hat Linux 6.x ないし 7 <BR>
+［注：Mozilla は Red Hat Linux 上で動作確認、フル機能サポートされていますが、
+Debian 2.1 以降や SuSE 6.2 以降のような 他の Linux 
+ディストリビューション上でも動作するでしょう。glibc 2.1（以降）のライブラリが必要です。］
+</li>
+<li>Intel Pentium　クラス 233 MHz 以上のプロセッサ</li>
+<li>64 MB の RAM</li>
+<li>26 MB のハードディスク空きスペース</li>
+</ul>
+
+<h2><a name="compatible">互換性情報</a></h2>
+
+<p>Crescendo 5.01 プラグインを利用している場合、
+最新バージョンにアップデートする必要があります。
+そうしないと、Mozilla がスタートアップ時にクラッシュする可能性があります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=48110">48110</a>)
+</p>
+
+<p>ATI Rage ビデオカードを使っている場合、画像が最初は適切に表示されますが、
+ウィンドウを最小化、最大化、リサイズすると、正しく再描画されない場合があります。
+</p>
+
+<p>Mozilla で True Type フォントを使う場合、
+ □ と表示されてしまうキャラクターがあります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=51920">51920</a>)
+</p>
+
+<h3>Mac OS</h3>
+
+<p>Stuffit Expander の 5.5 以前のバージョンがあると、アーカイブが不正である、
+というエラーメッセージが表示されるかもしれません。
+ただ、メッセージを無視してインストレーションを続けることはできます。
+Stuffit Expander の新しいバージョンを手に入れるには、
+<a href="http://www.aladdinsys.com/expander/expander_mac_login.html">
+http://www.aladdinsys.com/expander/expander_mac_login.html</a>
+へ行ってください。
+</p>
+
+<p>ランゲージパック （Japanese Language Pack など） や 
+Language Kit を導入した Mac OS 上で Mozilla を動かそうとすると、
+すべてのメニューバー項目が正しく表示されません。
+この問題を解決するには Lanuage Register を使って Mozilla を登録してください。
+たとえば、Japanese Language Pack や Japanese Language Kit を使っている場合、
+Mozilla を JA アプリケーションとして登録してください。
+</p>
+
+<p>Apple の アピアランスコントロールパネルの [なめらかな文字で表示する] 
+オプションの代わりに、 SmoothType コントロールパネルを使う場合、
+Mozilla には SmoothType バージョン 2.1.1 が必要です。
+Mozilla は SmoothType の古いバージョンとは互換性がないため、
+適切に描画されないページがあります。アップデートを入手するためには、
+<a href="http://www.kaleidoscope.net/greg/smoothtype.html">
+http://www.kaleidoscope.net/greg/smoothtype.html.</a>
+へ行ってください。
+</p>
+
+<p>Mozilla Mail でのインポートユーティリティーは、
+ Eudora とテキストファイルのみをサポートします。
+</p>
+
+<h3>Linux</h3>
+
+<p>Mozilla には glibc 2.1 かそれ以降が必要です。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=44787">44787</a>)
+</p>
+
+<p>Red Hat Linux 6.0 では、Java 2 がインストールされていると
+ Mozilla を起動することができません。
+この問題は、Red Hat 6.1 以降では発生しません。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=58259"> 58259</a>)
+</p>
+
+<p>Red Hat Linux 7 では、Red Hat 6.<em>x</em> 互換のために Standard C++ 
+ライブラリをインストールする必要があります。
+パッケージは Red Hat 7 インストレーション CD から手に入れるか、
+<a href="http://www.redhat.com/swr/i386/compat-libstdc++-6.2-2.9.0.9.i386.html">
+Red Hat</a> からダウンロードして下さい。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=59012"> 59012</a>) 
+</p>
+
+<p>SuSe Linux 6.2 で Mozilla を動かすには、
+<a href="ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz">libjpeg.so.62</a>
+が必要です。ファイルは、
+<a href="ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz">こちら</a>
+から入手できます。
+</p>
+
+<h3>Solaris</h3>
+<p>Solaris8 (64 bit) に Mozilla をインストールするには、まず libstdc++ 
+をインストールしなければいけません。Mozilla をインストールしたり 
+動かしたりする前に、<a href="http://www.sun.com/solaris/netscape">Sun Netscape 6 
+インストールパッケージ</a> をダウンロードし、このパッケージから libstdc++ 
+をインストールしてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=68604">
+68604</a>)
+</p>
+
+<h3>IRIX</h3>
+<p>
+VTMW 5.4.5 を使う場合、&quot;検索&quot;、&quot;保存&quot;、&quot;設定...&quot; 
+などのポップアップメニューが働くように 
+トランジェント-ウィンドウを有効に（標準設定ではありません）しておかなければいけません。(Bug 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=71920">71920)</a>
+</p>
+
+<h2><a name="install">インストレーションノート</a></h2>
+
+<p>クリーンな（新しい）ディレクトリにインストールしてください。
+以前にリリースされたビルドに上書きインストールすると、
+問題が起こる可能性があります。
+</p>
+
+<p>Windows ユーザー:
+&quot;uninstall.exe file is linked to missing export shell32.dll&quot; 
+というメッセージが表示されたら、[TEMP]\ns_temp 
+を削除してください。
+</p>
+
+<p>Linux、Unix、Windows 2000 のようなマルチユーザー OS に Mozilla 
+をインストールする場合は、
+Mozilla を使う各ユーザーのユーザーディレクトリに別々にインストールしなければなりません。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=42184">42184</a>) 
+書き込みが禁止された共有ディレクトリに Mozilla をインストールすると、
+正常に作動しない可能性があります。
+(Bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=42184">42184</a>)
+</p>
+
+<p>言語パックや ほかの .xpi ファイル をインストールする際、
+ブラウザの <i>Stop</i> ボタンをクリックするまでダウンロード中（表示）のままになります。
+</p>
+
+<p><strong>Windows と Mac OS: </strong>セットアッププログラムを動かす前に、
+すべてのプログラムを終了することを強くお勧めします。
+また、ウィルス検出ソフトを一時的に無効にしてください。
+</p>
+
+
+<h3><strong>Java</strong></h3>
+
+<strong>Windows と Linux:</strong>
+Java アプレットを動かすには
+<a href="http://home.netscape.com/plugins/jvm.html">
+Java Run Time Environment (JRE) v1.3</a>
+プラグインをインストールする必要があります。
+インストーラービルドを使う場合は、なにも手を加えなくてもすべて動くはずです。
+</p>
+
+<p>
+<strong>Windows</strong>: インスト−ラ−ビルドを使う場合、あなたのシステムに
+既に JRE 1.3.0_01 があれば、Mozilla はそれを認識します。認識しない場合は
+zip ビルド向けの以下のコピー手順にしたがってください。
+</p>
+
+<p>
+JRE がインストールされたマシンで win32.zip や talkback.zip ビルドを使う場合、
+インストールディレクトリ（たとえば C:\Program Files\JavaSoft\JRE\1.3.0_01\bin など）から
+NPJava130_01.dll, NPJava130_01a.dll, NPJava130_01b.dll, NPJava130_01c.dll, そして NPOJI600.dll を 
+Mozilla のプラグインディレクトリ（たとえば C:\Program Files\Mozilla 0.9.1\bin\plugins など）にコピーしてください。
+</p>
+
+<p>
+<strong>Linux</strong>
+Linux の tar.gz ビルドでは JRE インストール後、mozilla0.9.1/plugins ディレクトリに
+java2/plugin/i386/ns600/libjava.oji.so ディレクトリへの symlink を置いてください。
+</p>
+
+<p>
+Linux RPM ビルドでは root 権限で Java をインストールしなければいけません。
+</p>
+
+<p>
+インストール作業を完了させるために Stop ボタンを押す必要があるかもしれません。
+</p>
+
+
+
+<p><strong>Mac OS:</strong> Mozilla で Java アプレットを動かすには、
+Mac OS Runtime for Java (MRJ) バージョン 2.2 が必要です。
+Mac OS 8.5 ないし 8.6 では、 MRJ のアップグレードが必要かもしれません。
+アップグレードするには
+<a href="http://asu.info.apple.com/swupdates.nsf/artnum/n11927">
+Apple MRJ update download page</a> へ行ってください。
+</p>
+
+<h3><strong>セキュリティー</strong></h3>
+
+<p><strong>Windows、Mac、Linux: </strong>Personal Security Manager (PSM) 
+は、 Mozilla に セキュリティー（暗号）機能を付加します。
+</p>
+
+<h3>Windows へのインストール</h3>
+
+<p>ディスクスペースが少ないところへ Java をインストールすると、
+インストーラがハングすることがあります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=45067">45067</a>)
+ Mozilla を Java とともにインストールする前には、
+必ずディスクスペースをチェックしてください。
+（<a href="#require">システム必要条件</a> を参照してください。）
+</p>
+
+<p>Mozilla インストーラをダウンロードして Mozilla をインストールするには、
+次の手順にしたがってください。
+</p>
+
+<ol>
+
+<li>mozilla-win32-installer.exe のリンクをクリックして、
+ファイルをあなたのコンピュータにダウンロードしてください。
+</li>
+
+<li>ダウンロードしたファイルのある場所まで移動し、Mozilla 
+のプログラムアイコンをダブルクリックしてセットアッププログラムを起動してください。
+</li>
+
+<li>セットアッププログラムが画面に表示する手順にしたがってください。
+プログラムは 1回目は自動的にスタートします。
+</li>
+
+</ol>
+
+<p>.zip ファイルをダウンロードして Mozilla をマニュアル操作でインストールするには、
+次の手順にしたがってください。
+</p>
+
+<ol>
+
+<li>mozilla-win32-talkback.zip か mozilla-win32.zip のリンクをクリックして、
+    .zip ファイルをあなたのコンピュータにダウンロードしてください。
+</li>
+
+<li>ダウンロードしたファイルのある場所まで移動し、
+	圧縮されたファイルをダブルクリックしてください。
+	注:この手順は あなたが最近のバージョンの WinZip をインストールしていて
+    その使い方を知っていることを前提としています。そうでなければ
+    WinZip と そのプログラムについての情報を
+	<A HREF="http://www.winzip.com">www.winzip.com</a> で得ることができます。
+</li>
+
+<li>C:&yen;Program Files&yen;Mozilla 0.9.1 などのディレクトリに
+	 .zip ファイルを展開してください。
+</li>
+
+<li>Mozilla をスタートするには、Mozilla を展開したディレクトリまで移動し、
+	Mozilla.exe のアイコンをダブルクリックしてください。
+</li>
+
+</ol>
+
+<h3><a name="macinstall">Mac OS へのインストール</a></h3>
+
+<p><strong>注：</strong> ダウンロードしたファイルが自動的に展開しない場合には、 
+Stufit Expander のようなプログラムを使ってファイルを展開しなければなりません。
+Expander は新しい Mac すべてに添付されていて、標準インストールに含まれています。
+インストールされているかどうかを確かめるためには Sherlock で
+「StuffIt」 を検索すればいいでしょう。
+</p>
+
+<p><a href="http://www.aladdinsys.com/">Aladdin Systems</a> から
+<a href="http://www.aladdinsys.com/expander/expander_mac_login.html">
+StuffIt Expander</a> を入手できます。
+</p>
+
+<p>Expander がすでにある場合、デフォルトで起動するように設定する必要があります。
+Expander の使い方については、前述の URL を参照してください。
+</p>
+
+<p>Mozilla インストーラをダウンロードして Mozilla をインストールするには（推奨）、
+次の手順にしたがってください。
+</p>
+
+<ol>
+
+<li>MacMozillaInstaller.sea.bin のリンクをクリックして、
+あなたのマシンにダウンロードしてください。標準設定では、 
+.bin フォーマットに圧縮されたファイルがデスクトップにダウンロードされます。
+Mozilla Installer フォルダが作られます。</li>
+
+<li>Finder で Mozilla Installer フォルダをダブルクリックしてください。</li>
+
+<li>Mozilla Installer のアイコンをダブルクリックしてください。</li>
+
+<li>画面に表示される手順にしたがって、インストレーション作業を完了させてください。</li>
+
+<li>Mozilla を起動するには、Mozilla をインストールしたフォルダを開き、Mozilla 
+    アイコンをダブルクリックしてください。</li>
+
+</ol>
+
+<p>アーカイブ-ファイルをダウンロードして Mozilla をマニュアル作業でインストールするには
+次の手順にしたがってください。
+</p>
+
+<ol>
+
+<li>mozilla-mac-*.sea.bin のリンクをクリックして、
+Mozilla バイナリをあなたのマシンにダウンロードしてください。標準設定では 
+.sit.bin フォーマットに圧縮されたファイルがデスクトップにダウンロードされます。
+</li>
+
+<li>デスクトップで <tt>mozilla-mac-*.sea.sit.bin</tt> 
+アイコンをダブルクリックしてください。
+</li>
+
+<li>Mozilla をインストールしたいディレクトリを選んでください。</li>
+
+<li>Mozilla を起動するには、Mozilla をインストールしたフォルダを開き、
+Mozilla アイコンをダブルクリックしてください。
+</li>
+
+</ol>
+
+<h3><a name="linuxinstall">Linux へのインストール</a></h3>
+
+<p>（Mozilla をインストールした人が）少なくとも Mozilla 
+を１度は起動して オートレジストレーションを完了させ、
+インストール先のディレクトリに component.reg 
+ファイルを書き込ませなければいけません。
+別のユーザー （Mozilla をインストールした以外の人） が最初にプログラムを起動すると、
+コアダンプが起こります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49345">49345</a>) 
+</p>
+
+<p><strong>注:</strong> Java アプレットを走らせるには、
+<a href="http://home.netscape.com/plugins/jvm.html">
+Java Run Time Environment (JRE) v1.3</a> プラグインをインストールする必要があります。
+</p>
+
+<p><strong>注: </strong>この手順は bash シェルを使っています。
+bash 以外を使っている場合にはそれに応じてコマンドを合わせてください。
+</p>
+
+<p>Mozilla インストーラをダウンロードして Mozilla をインストールするには、
+次の手順にしたがってください。
+</p>
+
+<ol>
+
+<li>mozilla0.9.1 という名前のディレクトリを作って (<tt>mkdir mozilla0.9.1</tt>) 、
+    そのディレクトリに移ってください (<tt>cd mozilla0.9.1</tt>) 。
+</li>
+
+<li>（mozilla-i686-pc-linux-gnu-installer.tar.gz などの名前がついた）
+リンクをクリックしてインストーラファイルをダウンロードしてください。
+</li>
+
+<li><!--mozilla ディレクトリに移動して (<tt>cd mozilla0.9.1</tt>)、 --- この手順、カブってる -->
+ 次のコマンドでアーカイブを展開してください。
+<BR>
+<code>
+ gunzip -dc moz*.tar.gz | tar -xvf -<br>
+</code> 
+
+（このコマンドは インストーラを 
+    mozilla-installer という名前の Mozilla のサブディレクトリに置きます。）<br>
+</li>
+
+<li>mozilla-installer ディレクトリに移動して (<tt>cd mozilla-installer</tt>) 
+    <tt>./mozilla-installer</tt> コマンドでインストーラを実行してください。
+</li>
+
+<li>インストールウィザードの手順にしたがって Mozilla をインストールしてください。<br>
+<br>
+
+<strong>注: </strong>遅いマシンでは、
+インストレーションにある程度時間がかかることを念頭においてください。
+そのような場合、
+インストレーションが進んでいてもハングしているように見えることがあります。
+</li><br>
+
+<li>Mozilla を起動するには、Mozilla をインストールしたディレクトリに移って、
+ ./mozilla コマンドを作動させてください。
+</li>
+
+</ol>
+
+<p>.tar.gz アーカイブ-ファイルをダウンロードして Mozilla をインストールするには:
+</p>
+
+<ol>
+
+<li>&quot;mozilla0.9.1&quot; という名前のディレクトリを作って (<tt>mkdir mozilla0.9.1</tt>)、
+    そのディレクトリに移動してください (<tt>cd mozilla0.9.1</tt>) 。</li>
+
+<li>リンクをクリックして インストーラでない mozilla*.tar.gz ファイルを
+    mozilla0.9.1 ディレクトリにダウンロードしてください。</li>
+
+<li><!-- Change to the mozilla directory (<tt>cd mozilla0.9</tt>) and この手順カブってる -->次のコマンドで ファイルを展開してください:<br>
+<CODE>
+gunzip -dc moz*.tar.gz | tar -xvf -
+</CODE>
+（このコマンドは mozilla0.9.1 ディレクトリの下に &quot;mozilla&quot; サブディレクトリを作ります。）<br>
+</li>
+
+<li>mozilla ディレクトリに移動してください (<tt>cd mozilla</tt>)。</li>
+<li>./mozilla 起動スクリプトで Mozilla を起動してください。</li>
+</ol>
+
+<p>Mozilla をアイコンつきで GNOME パネルに登録するには、次の手順にしたがってください:   </p>
+
+<ol>
+<li>GNOME のメインメニューボタンをクリックしてパネルメニューを開き、
+Add to Panel サブメニューから Launcher を選んでください。
+</li>
+
+<li>パネルの Mozilla アイコンを右クリックして 次のコマンドを入力してください。
+<br>
+<br>
+<em>directory_name</em>./mozilla
+<br>
+<br>
+<em>directory_name</em> の部分は Mozilla をダウンロードしたディレクトリの名前です。
+たとえば Mozilla がデフォルトで指定するディレクトリは /usr/local/mozilla です。
+</li>
+
+<li>アイコンに名前をつけ、必要に応じてコメントをつけてください。</li>
+
+<li>アイコンボタンをクリックして、
+アイコンのロケーションとして次のようにタイプしてください。<br>
+<br>
+&nbsp;&nbsp;&nbsp; <em>directory_name</em>/icons/mozicon50.xpm<br>
+<br>
+<em>directory_name</em> の部分は Mozilla をインストールしたディレクトリの名前です。
+たとえばデフォルトディレクトリは /usr/local/mozilla/icons/mozicon50.xpm となります。
+</li>
+</ol>
+
+<p>
+<b>RPM ビルドのインストール</b>:
+Red Hat RPM ビルドは 標準的な Red Hat 6.x／7.x 
+のインストレーションで動くように作られています。これらの RPM を Suse で使うには
+<A HREF="http://rpmfind.net/linux/rpm2html/search.php?query=gdk-pixbuf">
+gdk-pixbuf</A> パッケージのインストールが必要です。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=85218">85218</a>)
+試験的な Red Hat Rawhide を使う場合、XFree86 RPM では XIE.so が無いために
+Mozilla が動かないかもしれません。このようなケースでは 代わりに
+Linux インストーラ-ビルド か tar.gz を試してください。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=84354">84354</a>)
+</p>
+
+<h2><a name="uninstall">Mozilla をアンインストールする</a></h2>
+
+<h3> Linux</h3>
+
+<ul>
+<li> Mozilla をインストールした <tt>mozilla0.9.1</tt> ディレクトリを削除します。</li> <br>
+<li> プロファイル情報を保存してある ~/.mozilla ディレクトリを削除します。</li>
+</ul>
+
+<h3> Windows</h3>
+
+<ul>
+
+<li> 設定／コントロールパネル／プログラムの追加と削除 へと進み、
+Mozilla 0.9.1 を選択してください。</li>
+
+</ul>
+
+<h3> Mac OS</h3>
+
+<ul>
+
+<li> Documents（書類）フォルダから Mozilla フォルダを削除してください。</li>
+<li> システムフォルダの初期設定フォルダから
+&quot;Mozilla Registry&quot; ファイルを削除してください。</li>
+<li> システムフォルダの初期設定フォルダから
+&quot;Mozilla Versions&quot; ファイルを削除してください。</li>
+<li> Mozilla をインストールしたフォルダを削除してください。</li>
+</ul>
+
+<h2> Mozilla によって作成／使用されるファイル</h2>
+<br>
+
+<table cellspacing="5" cellpadding="5" bgcolor="#ffffcc">
+<caption><br>
+</caption><tbody>
+<tr>
+<th align="Center">Windows</th>
+</tr>
+<tr>
+<td><b>user/</b><br>
+prefs.js <font color="#7f7f7f">（設定ファイル）</font><br>
+cache/ <font color="#7f7f7f">（キャッシュディレクトリ）</font><br>
+newcache/ <font color="#7f7f7f">（追加キャッシュファイル）</font><br>
+cookies.txt <font color="#7f7f7f">（クッキーファイル）</font><br>
+*cookperm.txt <font color="#7f7f7f">（クッキーの受け入れ／拒否の選択に使用）</font><br>
+FieldSchema.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+SchemaConcat.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+SchemaValue.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+URLFieldSchema.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font>
+<br>
+signons.tbl と signonsx.tbl <font color="#7f7f7f">（ログインとパスワードの保存に使用）</font>
+
+<p><b>$windir/</b><br>
+mozregistry.dat <font color="#7f7f7f">（Mozilla レジストリ）</font></p>
+mozver.dat <font color="#7f7f7f">（Mozilla コンポーネントのバージョンを格納）</font><br>
+MozillaUninstall.exe<font color="#7f7f7f">（Mozilla アンインストーラ）</font><br>
+Application Data\Mozilla<font color="#7f7f7f">（Win98 の Mozilla データディレクトリ）</font><br>
+Mozilla<font color="#7f7f7f">（Win95 の Mozilla データディレクトリ）</font>
+
+</td>
+</tr>
+<tr>
+<th align="Center">Unix</th>
+</tr>
+<tr>
+<td><b>user/</b><br>
+prefs.js <font color="#7f7f7f">~/.mozilla/[profile] 内（設定ファイル）</font><br>
+Cache <font color="#7f7f7f">~/.mozilla/[profile] 内（キャッシュディレクトリ）</font><br>
+newcache <font color="#7f7f7f">~/.mozilla/[profile] 内（追加キャッシュディレクトリ）</font><br>
+cookies <font color="#7f7f7f">（クッキーファイル）</font><br>
+*cookperm <font color="#7f7f7f">（クッキーの受け入れ／拒否の選択に使用）</font><br>
+FieldSchema.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+SchemaConcat.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+SchemaValue.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+URLFieldSchema.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+signons and signonsx <font color="#7f7f7f">（ログインとパスワードの保存に使用）</font>
+<p><b>~/.mozilla/</b><br>
+registry <font color="#7f7f7f">（Mozilla レジストリ）</font></p>
+</td>
+</tr>
+<tr>
+<th align="Center">Mac</th>
+</tr>
+<tr>
+<td><b>Documents（書類）:Mozilla:Users50:mozProfile:</b><br>
+prefs.js <font color="#7f7f7f">（設定ファイル（使用））</font><br>
+Cache <font color="#7f7f7f">（キャッシュディレクトリ）</font><br>
+newcache <font color="#7f7f7f">（追加キャッシュディレクトリ）</font><br>
+cookies.txt <font color="#7f7f7f">（クッキーファイル）</font><br>
+*cookperm <font color="#7f7f7f">（クッキーの受け入れ／拒否の選択に使用）</font> 
+<p><b>res:</b><br>
+FieldSchema.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+SchemaConcat.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+SchemaValue.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font><br>
+URLFieldSchema.tbl <font color="#7f7f7f">（自動フォーム入力用ファイル）</font></p>
+<p><b>System:Preferences:（システムフォルダ:初期設定:）</b><br>
+Mozilla Registry <font color="#7f7f7f">（Mozilla レジストリ）</font></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>*<b>備考</b>: &quot;cookperm.txt&quot;（Unix では &quot;cookperm&quot;） は 
+あるサイトからのクッキーを受け入れるか否かを選択するために使用されるファイルです。
+このファイルは設定で指定した場合にのみ使用され、その際 
+クッキーを受け取る前に警告メッセージが表示されます。
+これを行うためには、prefs.js ファイルに次の一節を追加してください: </p>
+
+<ul>
+<li>
+<tt>user.pref (&quot;network.cookie.rememberAboutCookies&quot;, true);</tt>
+</ul>
+<br>
+
+<h2><a name="problems">わかっている問題</a></h2>
+
+<h3><a name="general">全般</a></h3>
+
+<p>
+<b>Win32</b>: パーソナルセキュリティマネージャのウィンドウは空で出てきて
+証明書ダイアログを表示するウェブペ−ジでは 空のダイアログが出ます。
+https:// サイトはうまく機能します。
+</p>
+
+<p>モニタのカラー設定で色数を変えても、 
+Mozilla 上ではその新しい設定が反映されない可能性があります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=6061">6061</a>)
+</p>
+
+<h4>キーボードとマウス</h4>
+
+
+<p>右ボタンをダブルクリックすると キーボードが効かなくなる可能性があります。(Bugs 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=30841">30841</a> 
+と <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=70812">70812</a>) 
+</p>
+
+<p>キーボード ショートカットは完全には実装されていません。
+編集用のショートカットの一部（テキストの切り取りやコピーなど）は、
+いくつかのダイアログボックスで使用できません。また、
+メニュー 項目のキーボード ショートカットの一部も使用できません。 
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49909">49909</a>)</p>
+
+<p><strong>Linux：</strong> Linux でのキーボード ショートカットは、
+機能キーとして Alt キーの代わりに Ctrl キーを使用するようになっています。
+これは、Alt キーがメニュー用のショートカットに使用されているためです。
+これらのショートカット キーを変更するには、
+prefs.js ファイルを次のように編集して下さい:</p>
+
+<p><code>user_pref("ui.key.accelKey", 18);</code><br>
+これでアクセラレータキーが Ctrl（17）から Alt キー（18）
+に変更されます。<br>
+
+<br>
+<code>user_pref("ui.key.menuAccessKey", 0);</code><br>
+これでメニューアクセスキーが Alt キー（18）
+から何も使用しない設定になります。
+</p> 
+
+<h4>イベント処理</h4>
+
+FILE エレメントにおいて、誤ったイベントが発生します。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=4033"> 4033</a>) 
+
+<h4>マウスホイールによるスクロール</h4>
+
+<p>
+<strong>Linux：</strong>マウスホイールによるスクロールを使うには
+X サーバが正しく設定されている必要があります。XFree86 では XF86Config 
+ファイルのポインタセクションに &quot;ZAxisMapping 4 5&quot; 
+のように行を追加します。またプロトコル行が
+使用しているマウス用に正しく設定されていることを確認して下さい。 
+</p>
+
+<p>
+<strong>Windows: </strong>マウスホイールのスクロールは
+すべてのドライバで動作するわけではありません。問題が生じた場合 
+ご使用のドライバをアップデートするか、マウスで使用する &quot;ヘルパー&quot;
+プログラムを使用不可にして下さい。また、コントロールパネルでスクロールを 
+&quot;１ページ単位に上下にスクロールする&quot; に設定している場合 
+マウスホイールによるスクロールは作動しません。
+</p>
+
+<p>
+<strong>Mac OS:</strong>
+マウスホイールのスクロールは すべてのドライバで動作するわけではありません。問題が生じた場合 
+ご使用のドライバをアップデートするか、マウスで使用する &quot;ヘルパー&quot;
+プログラムを使用不可にしてみて下さい。
+</p>
+
+<h4>ダイアログボックスとウィンドウ</h4>
+
+<p>もし Mozilla の動作が止まってしまっているけれども
+クラッシュした様子がない場合は、開いているダイアログボックスがないかどうか確認して下さい。
+まず、デスクトップ上で開いているウインドウをひとつずつ閉じます。
+もしダイアログボックスが見つかれば 閉じて下さい 。
+デスクトップが複数開いている場合は デスクトップごとにこの操作を繰り返して下さい。
+</p>
+
+<p>このような問題は Linux でプラグインをダウンロードする場合に
+起こることがあります。次の手順で解決して下さい。 </p>
+
+<ol>
+<li>プラグインのダウンロードウィンドウを最小化します。 </li>
+<li>&quot;キャンセル&quot; をクリックして、ダイアログボックスを閉じます。</li>
+<li>ダウンロードウィンドウを再度開き、プラグインのダウンロードを続行します。</li>
+</ol>
+
+<h4>フォームマネージャ</h4>
+
+<p>フォームマネージャは、日本語版 Mozilla では完全には実装されていません。</p>
+
+<h4>フォント</h4>
+
+<p>Linux システムの多く（特に RedHat Linux）には、Arial フォントに不具合があります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=46415">46415</a>)
+多くのウェブページ、特に Arial フォントを使用しているページが 
+明確に表示されない、小さい、読みにくいなどの問題がある場合は 
+次のページでフォントサーバを変える二つの方法を紹介しています: </p>
+
+<p><a href="http://home.c2i.net/dark/linux.html#ttf">
+http://home.c2i.net/dark/linux.html#ttf</a><br>
+<a href="http://home.c2i.net/dark/linux.html#fuzzy">
+http://home.c2i.net/dark/linux.html#fuzzy</a></p>
+
+<p>もしこの方法がうまく行かない場合は、/usr/share/fonts/ISO8859-2 
+をリネームしたり、移動することで問題が解決されるかもしれません。例えば、
+次のようなコマンドを入力してください: </p>
+
+<CODE>mv /usr/share/fonts/ISO8859-2 /usr/share/fonts.ISO8859-2 </CODE>
+
+<p>その後ログアウトして、再度ログインします。
+この変更を元に戻す必要のある場合は、次のようにします: </p>
+
+<CODE>mv /usr/share/fonts.ISO8859-2 /usr/share/fonts/ISO8859-2</CODE></P>
+
+<h4>プロキシ</h4><!-- Rev 1.5 で復活 -->
+
+<p>Junkbuster や Webfree のような 最新の HTTP 仕様をサポートしないプロキシを使用するには 
+Mozilla に設定が必要です。Mozilla は 標準設定では HTTP 1.1 
+を使おうとします。Mozilla で HTTP 1.0 しかサポートしないプロキシを使用するには 
+Edit | Preferences | Debug | Networking（［編集］-［設定］の［debug］-［ネットワーク］）で
+HTTP のバージョンを 1.1 から 1.0 に変更してください。
+
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=38488">38488</a>)
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=13982">13982</a>)
+
+</p>
+
+
+<h3><a name="profiles">プロファイルの設定</a></h3>
+
+<!-- 0.9.1 で追加されたけど Rev 1.5 で削除 ---
+<p>
+<b>Linux</b>: 最初のプロファイル以外にプロファイルを作ると mozilla 
+がハングします。mozilla を終了して再起動すると プロファイルを選択でき、新しいプロファイルで起動できます。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=79179">79179</a>)
+</p>
+-->
+
+<p>Communicator 4.5 以降のプロファイルがひとつだけある場合、
+そのプロファイルは自動的に変換されて、Mozilla で使用できるように変換されます。
+それ以前のバージョンのプロファイルからは変換されません。</p>
+
+<p>複数のコピー／変換可能なプロファイルがある場合は、
+プロファイルマネージャのダイアログボックスが表示されます。
+使用したいプロファイルをクリックして、&quot;Start&quot; をクリックします。</p>
+
+<p>インストール中になんらかの問題が発生して Communicator 
+プロファイルのコピー／変換が完了しなかった場合でも、プロファイルを使用することができます。
+コマンドラインから &quot;<code>-installer</code>&quot; オプションを追加
+（つまり &quot;mozilla.exe-installer&quot; をコマンドラインに入力）して、
+Mozilla を立ち上げます。または Mozilla を再インストールすると、
+プロファイルマネージャのダイアログが再度表示されます。</p>
+
+<!-- Rev 1.5 で削除 --
+<p>
+<b>Linux</b>: 新規にプロファイル作成時、新しいプロファイルを使うには
+Mozilla を一度終了し、再起動する必要があります。そうしないと アプリケーションがハングします。
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=79179">79179</a>)
+</p>
+-->
+
+<h3><a name="browser">Navigator</a></h3>
+
+<p>
+インターネットサーチエンジンを追加するなら
+<a href="http://sherlock.mozdev.org">http://sherlock.mozdev.org</a>
+から手に入れることができます。<BR>（訳者注：日本語サイトに対応したものは 
+<A HREF="http://www.mozilla.gr.jp/tools/search/">mozilla.gr.jp</A>
+にもあります）
+</p>
+
+<p>&quot;View Frame Source&quot; 機能は View メニューからは使えませんが、
+コンテキストメニューでは利用できます。コンテキストメニューを使用するには 
+マウスポインタをフレーム内に置いて左クリックしてから
+右クリック（Mac OS では Control キーを押しながらクリック）します。 
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=47139">47139</a>)
+</p>
+
+<p>ファイルの MIME タイプ、ソース、ローカルキャッシュファイル、
+コンテンツの長さ、有効期限、文字セット、およびセキュリティなど、Page 
+Information にあるいくつかの機能はまだ利用できません。
+また、フレーム、XML ページ、FTP ページの情報を表示することもできません。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=52730">52730</a>)</p>
+
+<p>不正確に描画されるページがあるのは スタンダード準拠に対する主義の問題かもしれません。詳細は 
+<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/evangelism/">the Netscape Evangelism site</a> を見てください。
+<BR>（訳注：期待されるのと 〜あるいは他のブラウザで見たときと〜 
+違って表示されるウェブページがあったとき、それは Mozilla ブラウザのバグではなく、ウェブページが
+最近のウェブ-スタンダードに準拠していないせいかもしれない・・・といいたいようです。
+<A HREF="http://www.mozilla.gr.jp/">もじら組</A> の
+<A HREF="http://www.mozilla.gr.jp/standards/">Web標準普及プロジェクト</A> のページもご覧ください。）</p>
+
+
+<h4>ページへのアクセス</h4>
+
+<!-- 0.9.1 でいったん削除されたけど Rev 1.5 で復活 -- ここから -->
+<p>保護付き（https）ウェブサイトの中には TLS 互換でないものがあります (Bug 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=54031">54031</a>)。
+<a title="Transport Layer Security" href="http://www.ietf.org/ids.by.wg/tls.html">
+TLS</a> は SSL の新しいバージョンです。特定の保護付きウェブサイトへアクセスしようとして
+問題が起きる場合は、そのサイトに対して TLS をオフにしてみて下さい: </p>
+
+<ol>
+<li>Tasks メニューを開いて、Privacy and Security｜Security Manager を選んでください。 </li>
+<li>Advanced タブをクリックしてください。 </li>
+<li>Options をクリックしてください。 </li>
+<li>TLS をオフにしてください。 </li>
+</ol>
+（訳者注: このやり方は Mozilla 0.9 のときのもののようです。Mozilla 0.9.1 では
+［編集］-［設定］の［プライバシーとセキュリティ］-［SSL］に &quot;TLS を有効にする&quot; 
+というチェックボックスがあって 標準設定でオフになってるようです）
+
+
+<p>Mozilla は、一部の保護付きの https IBM 
+ウェブサーバに接続できない場合があります。これは Mozilla 
+側の問題ではなく、サーバのソフトウェアの問題です。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=54031">54031</a>)
+</p>
+<!-- 0.9.1 でいったん削除されたけど Rev 1.5 で復活 -- ここまで -->
+
+<p>&quot;Last page visited&quot; をホーム（スタート）ページに設定していて
+最後に訪問したページがフレームを使っていた場合、次に Mozilla を立ち上げたときに
+そのページが正常に表示されないかもしれません。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=58613"> 58613</a>)
+</p>
+
+<p>新しいブラウザウィンドウが出たとき、URL 
+バーにフォーカスがあるように見えても 矢印キーや編集コマンドが使えません。（訳者注: 
+URL バーの中をマウス-クリックすると使えるようになります。）
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=83919">83919</a>) 
+</p>
+
+<p>初めて &quot;検索&quot; ボタンをクリックすると、あなたが設定していた Mozilla 
+の検索エンジンがプリセットに戻ってしまいます。改めてデフォルト検索エンジンを設定し直した後は
+この現象は起こりません。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82401">82401</a>) 
+</p>
+
+<p><strong>Windows のみ:</strong>
+Windows 環境から html ドキュメントや イメージドキュメントを開くと
+ブラウザのウィンドウがダブって現れます。(Bug 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=59078"> 59078</a>)
+</p>
+
+<p><strong>Linux:</strong> Mozilla を使って 
+不可視ファイルや不可視ディレクトリ（.mozilla など）を表示することはできません。</p>
+
+<p><strong>Linux:</strong> 
+Mozilla を使っていて tar や gzip でアーカイブされたファイルがディスクに保存されると 
+自動的に gunzip されるケースがあります。このとき ファイルの拡張子が書き換えられないため、ユーザが
+<tt>tar -zxvf</tt> でファイルを展開しようとして 問題に遭遇するかもしれません。解決策は 単に
+<tt>tar -xvf</tt> でファイルを展開することです。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=35956">35956</a>)
+</p>
+
+<h4>ファイルのダウンロード</h4>
+
+<p>
+砂時計カーソル、プログレスメーター、スロバー（進行中であることを示すアニメーション）が
+ダウンロードが完了しても止まりません。 ページの読み込みが終わっても
+ステータスバーには &quot;Transferring data from ...&quot; と表示されています。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=39310">39310</a>)
+</p>
+
+
+<h4>ブックマーク</h4>
+
+<p>
+サイドバーのブックマーク項目が機能しないときは、サイドバーからいったん bookmarks タブを削除し
+再び追加してください。サイドバーの &quot;Tabs&quot; ボタンをクリックして
+メニュー項目から <i>Customize My sidebar</i> を選択します。出てくるダイアログで
+bookmarksタブを削除し、OK を押してから Mozilla をリスタートします。もう一度 
+カスタマイズ-ウィンドウを開いて bookmarksタブを追加してください。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=71685">71685</a>)
+</p>
+
+<p>IE Favorites ブックマークフォルダを完全に削除することはできません。 (Bug 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=22642"> 22642</a>)
+</p><!-- Rev 1.5 で復活 -->
+
+
+<h4>ソースの表示</h4>
+
+<p>フレームのソースを表示するには、フレームをマウスでポイントして右クリック
+（Mac OS では Control キーを押しながらクリック）し、
+開いたコンテキストメニューから View Frame Source を選択します。(Bug 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=47319"> 47319</a>)</p>
+
+<p>オンラインフォームで生成されたページのコンテンツは、
+ソ−ス表示ウィンドウに正しく反映されません。</p>
+
+<p><strong>Mac OS: </strong>ソ−ス表示ウィンドウに
+水平スクロールバーが表示されないことがあります。
+ウィンドウをリサイズして、スクロールバーを表示させて下さい。(Bug 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=56488"> 56488</a>)</p>
+
+<h3><a name="mail">メール／ニュース</a></h3>
+
+<p>Mail/News Account Settings で: 
+Server Settings ダイアログボックスで local directory
+に対する変更は、Mozilla をいったん終了して再起動するまで反映されません。 
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=2654">
+2654</a>)
+</p>
+
+<p>Undo、Redo、Stop が、必ずしも期待通りに働かないかもしれません。 (Bugs 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=32178"> 32178</a>, 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=22095"> 22095</a>, 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=27468"> 27468</a>, 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=28129"> 28129</a>, 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=32035"> 32035</a>, 
+ほか)</p>
+
+<p>Next Unread Message を使用していると、Delete Message が機能しない場合があります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=44572"> 44572</a>)
+Delete を機能させるために、メッセージをもう一度クリックして下さい。</p>
+
+<p>Mozilla は、ディスクの空き容量が少なくなっていても、ユーザに対して警告を表示しません。(Bugs 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=57902">57902</a>, 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=32443">32443</a>, 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=56565">56565</a>) 
+ディスクの空き容量が低くなった場合の兆候には、次のようなものがあります: </p>
+
+<ul>
+
+<li>Send Page が 添付しようとしたページの送信に失敗する。</li>
+
+<li>Sent フォルダへのメッセージのコピーに失敗する。</li>
+
+<li>IMAP: 新しく取得するメッセージがあると表示されるが、
+Inbox に新しいメッセージが表示されない。この場合は、いったん Mozilla 
+を終了してディスクの空き容量を増やし、Mozilla を再起動してからやり直してください。</li>
+
+<li>POP: ダウンロードできないメッセージを選択しようとすると、
+&quot;unknown error&quot; が表示される。この場合は、いったん Mozilla 
+を終了してディスクの空き容量を増やし、Mozilla を再起動してからやり直してください。
+この方法は、Mail/News Account Settings: Server Settings ダイアログボックスの
+&quot;Leave messages on Server&quot; が有効になっているときだけうまくいきます。
+（実際にダウンロードに失敗してしまう前に これを有効にしておく必要があります。）
+このオプションが有効になっていなかった場合、メッセージは失われてしまいます。</li>
+</ul>
+
+<p>未送信のメッセージにメールアカウントID が保存されません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=59548">59548</a>)
+  </p>
+
+<p><strong>Linux:</strong> root ユーザーの環境で Mozilla 
+をインストールした後、別のユーザーとして Mozilla 
+を利用すると問題が起こる可能性があります。
+可能性としては、送信済みフォルダ、下書き、テンプレートの各保存、そして
+一般認証に関する問題が含まれます。(Bug 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49397"> 49397</a>)</p>
+
+<h4>AOL メールと Netscape WebMail のアカウント</h4>
+
+<p>Mozilla は Netscape 6 とは違い、AOL メールや Netscape WebMail 
+をサポートしていません。もし Netscape 6 のプロファイルを Mozilla と共有しており、以前に 
+Netscape 6 を使ってアカウントを利用したことがあるのであれば、アカウントの Inbox 
+に表示されるヘッダーを確認することはできるかもしれません。しかし 
+この場合でもメッセージを操作することはできません。AOL メール、WebMail、Netscape Instant Messenger 
+のアカウントにアクセスするためには、Netscape 6 をお使い下さい。
+</p>
+
+<h4>メッセージの振り分け</h4>
+
+<p>振り分け条件によっては、実際に使用できないものがあります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=40380"> 40380</a>) 
+新規振り分けの作成中や既存の振り分けを編集中に、
+実装されていない振り分け条件を選択すると、
+ダイアログ ボックスが通常とは異なる動作をし、
+振り分けが正常に動作しないことがあります。
+また、実装されていない条件を指定している Netscape Communicator 
+のメッセージ振り分け設定を移動した場合にも、
+これに似た問題を引き起こす場合があります。
+</p>
+
+<p>メッセージの振り分け先として指定されているフォルダの名前を変更したり、
+削除しても警告は表示されません。 
+（Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=41720">41720</a>）
+新たに振り分け先のフォルダを指定しなおす必要があります。
+これを行わないと、メッセージの振り分けが正常に行われない可能性があります。
+</p>
+
+<h4>メッセージの受信と読み込み</h4>
+
+<p>［メッセージを検索］ウィンドウに表示される全ての選択肢が実装されておらず、
+またメールフォルダや選択したニュースグループによっては機能しない場合があります。
+ (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=40380"> 40380</a>)</p>
+
+<p>メッセージの表示中にメッセージヘッダー（ From、Subject、Date、To、Cc など）
+が表示されない場合があります。この問題は、
+メールフォルダやニュースグループを切り替えた場合に発生しやすくなります。
+ヘッダーを表示するには、
+ウィンドウかメッセージ本文のあるウィンドウをサイズ変更して下さい。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=39655"> 39655</a>)</p>
+
+<h4>添付ファイル</h4>
+
+<p>複数の添付ファイルを同時にダウンロードしようとせずに、
+1 つづつダウンロードするようにして下さい。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49180">49180</a>)
+</p>
+
+<p>メールウィンドウで複数の添付ファイルがあっても、
+そのうちの 1 つの HTML／Web ページしか表示されないことがあります。
+全ての添付ファイルが表示されなかったり、
+表示しようとするとクラッシュする場合があります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=38398">38398</a>)
+</p>
+
+<p>不明なコンテンツタイプの添付メッセージを開いたり保存しようとすると、
+Mozilla がクラッシュすることがあります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=44762">44762</a>)
+</p>
+
+<h4>メッセージの作成</h4>
+
+<p>HTML タグ &lt;div class=&quot;signature&quot;&gt;
+を含む署名ファイルのついたメッセージは、転送できません。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49484">49484</a>)</p>
+
+<h4>アドレス帳</h4>
+
+<p>Netscape Communicator からインポートされたアドレス帳は、
+Mozilla では別のアドレス帳として表示されます。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=41590">41590</a>)
+個人アドレス帳に加えられたり、
+個人用アドレス帳として表示されることはありません。
+インポートしたアドレス帳を個人用アドレス帳にするには、
+次の操作を行って下さい。
+</p>
+
+<ol>
+<li>［タスク］メニューを開いて、［アドレス帳］を選択します。</li>
+<li>［アドレス帳］ウィンドウでインポートされたアドレス帳をクリックし、
+エントリをすべて選択します。そして、
+そのまま個人アドレス帳にドラッグしてください。
+（メーリングリストについては、この方法はではうまくいきません。）</li>
+</ol>
+
+<h4><a title="Post Office Protocol">Pop</a> と IMAP</h4>
+
+<p>
+<i>mail.allow_at_sign_in_user_name</i> の設定は メール使用時のログインに際して
+ユ−ザ名の入力をうながします。この一節をあなたのプロファイルの prefs.js ファイル に追加してください。
+<br>
+<code>user_pref ("mail.allow_at_sign_in_user_name", true);</code>
+</p>
+
+<p><strong>注：</strong> prefs.js ファイルは、Windows と Mac OS の場合は 
+Users50 ディレクトリに、
+Linux の場合は .mozilla ディレクトリにあります。</p>
+
+<p>「全ての IMAP メールフォルダを表示する」 または
+「購読している IMAP メールフォルダのみ表示する」 という設定を変更した場合、
+その変更を有効にするために Mozilla を終了し、再度立ち上げてください。
+このオプションを変更するためには、「アカウントの設定」 
+ダイアログボックスのサーバのセクションにある詳細設定のボタンをクリックしてください。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=38943"> 38943</a>)
+</p>
+
+<h4>ニュース</h4>
+
+<p>認証が必要なニュースサーバでは、
+［購読］ダイアログボックスが作動しない場合があります。
+パスワードで保護されたニュースグループを開くと、
+ユーザ名とパスワードを入力するよう求めるメッセージが
+何度も表示されることがあります。
+<!--(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=39862">39862</a>)-->
+</p>
+
+<p><b>オフライン-メール</b></p>
+<p>オフライン-メールは Mozilla 0.9.1 では完全には実装されていません。機能は現在のところ限定されていて
+将来のリリースで改善される予定です。以下は現状の問題点の一部です:</p>
+<p>オフライン、ディスクスペース、ダウンロード、同期 の設定は 保存されません。
+    (Bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=81690">81690</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=79555">79555</a>, <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=76388">76388</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=79554">79554</a>, <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82984">82984</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82751">82751</a>, <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=79554">79554</a>)
+    <br>
+</p>
+<p> オフラインモードでは ダウンロードしたファイルの保存（text、html、eml、template）は機能しません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=81690">81690</a>)
+    <br>
+</p>
+<p>編集中のメッセージの保存（コピーとフォルダの設定）は正常に機能しません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=64417">64417</a>)
+    <br>
+</p>
+<p>いくつかのメール項目（オフラインとディスク設定、オフライン-項目選択、検索／履歴／購読の オンライン／オフライン状態表示）は正常に表示しません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=79801">79801</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=80970">80970</a>, <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=83555">83555</a>)
+  </p>
+<p>ダウンロードしたメッセージヘッダはイタリックで表示されます。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=73808">73808</a>)
+</p>
+<p>新しいニュースグループは 先に開いてヘッダを読み込んでないと ダウンロードできません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=84061">84061</a>)
+  </p>
+<p><b>Linux:</b> オフラインにして それからオンラインにすると ハングするかもしれません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82468">82468</a>)
+</p>
+
+<h3><a name="chatzilla">IRC クライアント ChatZilla</a></h3>
+
+<h4>概要</h4>
+
+<p>ChatZilla はまだ完成はしていませんが、
+より完成された IRC クライアントで使用できるコマンド群を厭わないのなら、
+利用することができます。多くの ChatZilla ユーザーが、
+クラッシュ、不自然な動作、性急さ、息切れを感じ、バグを直そうと必死です。
+もし皆さんが何か役に立ってみたいとお考えでしたら、どうぞ
+ netscape.public.mozilla.rt-messaging ニュースグループでそう言ってくださるか、
+<a href="mailto:rginda@netscape.com">rginda@netscape.com</a>
+まで電子メールを送ってください。
+</p>
+
+<p>もし IRC に詳しくない、というのであれば、
+<a href="http://www.irchelp.org">www.irchelp.org</a>
+にある FAQ を参考にして下さい。</p>
+
+<h4>ChatZilla を利用するには</h4>
+
+<p>ChatZilla を立ち上げるためには、 Mozilla を「 -chat」 
+オプションを追加して立ち上げるか、
+[タスク] メニューから ChatZilla を選択してください。
+</p>
+
+<h4>ChatZilla についての詳細情報</h4>
+
+<p> ChatZilla の利用方法については、
+<a href="../../projects/rt-messaging/chatzilla/user-guide.html">
+ChatZilla User's Guide</a> をご覧下さい。
+
+ChatZilla のビルド方法についての情報は、
+<a href="../../projects/rt-messaging/chatzilla/">
+こちら</a>をクリックして下さい。
+（注： Windows や Mac OS 上では、 ChatZilla は自動的にビルドされます。）
+</p>
+
+<h3><a name="composer">Composer</a></h3>
+
+<p>Composer と他のエディタの両方を同時に使用しての編集は、
+できない可能性があります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=37089">37089</a>)
+</p>
+
+<p>複数の段落や画像を含めて一括したフォントスタイルを指定することはできません。
+各段落ごとにフォントを設定する必要があります。</p>
+
+<p>複数の単語に 1 つのフォントスタイルを同時に適用すると、
+HTML コードに複数のフォントタグが生成されます。
+</p>
+
+<p>ページの背景色が設定されていると、
+選択したテキストの後ろにあるフレームしか色が適用されません。
+ウィンドウのサイズ変更すると、正しく背景色が表示されます。
+</p>
+
+<p>テキストに色を適用すると、
+テキストが部分的にハイライト表示されているように見える場合があります。
+</p>
+
+<p>ページよって（例えばフレーム設定されたページ）は、
+編集できないものがあります。
+［ファイル］メニューから［ページを編集］オプションを選択することで、
+エディタウィンドウを開くことはできますが、
+実際にページを編集することまではできません。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=14156/">14156</a>)
+</p>
+
+<p>［編集］-［指定して貼り付け］は機能しません。
+    (Bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=73286">73286</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=41547">41547</a>)
+</p>
+<p>［ファイル］-［Web ページを開く...］、選択して Composer で描画 は Composer でドキュメントを開きません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=71426">71426</a>)
+</p>
+<p>画像ダイアログボックスのイメージマップのオプションは将来のリリースで実装されます。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82802">82802</a>)
+</p>
+<p>リモートファイル保存の際、組込まれた画像は保存されません。
+    (Bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=36419">36419</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=51746">51746</a>)
+</p>
+<p>通常の編集モードと HTML ソースモードを切り替えると 改行（br）が挿入されます。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=46227">46227</a>)
+</p>
+<p>HTML ソースを印刷できません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82239">82239</a>)
+</p>
+<p>多くのショートカット-キーが期待通りに働きません。
+    (Bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=26264">26264</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=43433">43433</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=48951">48951</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=57805">57805</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=61355">61355</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=70630">70630</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=57967">57967</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=58332">58332</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=58712">58712</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=26269">26269</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=53505">53505</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=76925">76925</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=80384">80384</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=60459">60459</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=57700">57700</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=67142">67142</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=4302">4302</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=69740">69740</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=48375">48375</a>)
+</p>
+<p>アプリケーションがビジーのとき、砂時計がでません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=48375">83300</a>)
+</p>
+<p>アプリケーションに壊れ画像アイコンが表示されません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=58646">58646</a>)
+</p>
+<p>&quot;すべてのタグを表示&quot; モードで いくつかのエレメントアイコンが描画されません。
+    (Bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82465">82465</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82459">82459</a>)
+</p>
+<p>リストの編集がネストされたリストを次のレベルのリストまでアウトデントすることがあります。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=52675">52675</a>)
+</p>
+<p>リスト項目のコピー／ペーストが不正なネストを起こすことがあります。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=57477">57477</a>)
+</p>
+<p>ある種のリスト編集の後、右端に大きなキャレットが表示されることがあります。
+    (Bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=66579">66579</a>,
+  <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=82421">82421</a>)
+</p>
+<p>パーソナルスペルチェックディクショナリからのオプション削除は機能しません。
+    (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=43348">43348</a>)
+</p>
+
+<h3><a name="psm">セキュリティー</a></h3>
+
+<p>パスワードマネージャの［機密情報を暗号化］ が正常に作動せず、
+フリーズを引き起こす可能性があります。この問題を防ぐためには、
+［機密情報を暗号化］ を実行する <strong>前に</strong>
+パーソナルセキュリティパスワードを変更してください。
+［機密情報を暗号化］ のメニュー項目を表示するには、次の手順で行います。
+</p>
+
+<ol>
+
+<li>［タスク］メニューを開いて［Privacy and Security］を選択し、
+［パスワード マネージャ］の［パーソナル セキュリティ パスワードを変更］
+を選択します。</li>
+
+<li>必要な情報を入力してから［OK］をクリックします。
+<p>
+注：暗号化のコマンドがグレー表示されて使用できない場合は、
+まず［機密情報を隠蔽化］を選択してください。
+</li>
+
+</ol>
+
+<p>[プロキシ] 設定で手動でプロキシを設定している場合は、
+プロキシのURLの冒頭部分、&quot;http://&quot;  を消してください。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=30387">30387</a>)
+</p>
+
+<p>PSM についての詳細情報は 
+<a href="http://www.mozilla.org/projects/security/pki/psm/">パーソナルセキュリティマネージャ 
+プロジェクトのページ</a>（<A HREF="../../projects/security/pki/psm/">和訳</A>）をご覧下さい。</p>
+
+<p>
+Mozilla は SSL 3.0 と TLS をサポートしていますから、SSL 3.0 の仕様を誤って実装している
+一部のサーバ上のウェブサイトを訪れることはできません。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=59321">59321</a>)
+</p>
+
+<p><strong>Mac OS：</strong>保存されているデータを暗号化すると
+ Mozilla がフリーズする原因となります。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=58417">58417</a>)
+</p>
+
+<p><strong>Linux：</strong>保護された （閉じた） 鍵アイコンが表示されても、
+その鍵アイコンをクリックすると、
+保護されない （開いた） 鍵アイコンになってしまいます。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=57729">57729</a>)
+</p>
+
+<h3><a name="prefs">初期設定</a></h3>
+
+<p>「クラシック」 テーマを使用していると、
+一部の設定パネルが正しく表示されなかったり、項目が表示されないことがあります。
+別の設定パネルを表示してから戻ると、正しく表示されます。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=51241">51241</a>)<br>
+</p>
+
+<p>
+Preferences（設定）ウィンドウは 初期サイズでは利用可能な全部のオプションを表示できるとは
+限りません。右下のコーナーからウィンドウをリサイズして 隠れているオプションを表示してください。(Bug 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=53375">53375</a>)
+</p>
+
+<h3><a name="plugins">プラグイン</a></h3>
+
+<p>Communicator 4.<em>x</em> 用にインストールされたプラグインは Mozilla 
+では使えない可能性があります。解決法: そのようなプラグインを Mozilla の
+ Plugins フォルダにインストールしてください。
+</p>
+
+<p>Flash や QuickTime ムービーを見ている際に Preferences ダイアログを開いたり、
+他のダイアログボックスが開くような操作をすると、
+ダイアログボックスが空白表示されます。
+この問題を直すには （Flash やムービーなどを） 見ているページを閉じてから、
+（ダイアログボックスが開くような） 操作をしてください。
+</p>
+
+<h3><a name="java">Java</a></h3>
+
+<p>Mozilla は J2SE v1.3.0_01 でのみテストされています。
+他の J2SE リリースや Sun の以前の JDK は Mozilla では機能しません。
+</p>
+
+<p>LiveConnect はこのリリースではまだ有効ではありません。
+LiveConnect と LiveConnect セキュリティーは 後のリリースで有効になる予定です。
+</p>
+
+<p>256 色モードで J2SE を利用すると、
+画面がちらつくという問題が起こる可能性があります。
+</p>
+
+<p><strong>Linux:</strong> Linux と Solaris の Mozilla は J2SE v1.3.0_01 を含んでいます。
+Linux と Solaris での Java サポートは完全ではありません
+（たとえば、LiveConnect はまだ有効ではありません）が、
+後のリリースでは機能するようになります。
+</p>
+
+<h3><a name="international">インターナショナル リリースノート</a></h3>
+
+<h4>全般</h4>
+
+<p>Mozilla は追加手順を踏むことなく 多言語を表示できるように設計されています。
+必要なフォントがシステムで利用可能な状態にあれば、
+ユーザーは めんどうな設定や努力をすることなくブラウズしたり e-mail 
+を使ったりできるはずです。
+</p>
+
+<p>Mozilla は複数の言語パックで使うことができ、
+ユーザーはメニューの言語や関連 URL を切り替えることができます。
+</p>
+
+<p>Java (JRE 1.3) は インストーラの &quot;Complete&quot; または &quot;Custom&quot; 
+のインルトールオプションでインストールされます。
+Windows と Linux 用 Mozilla のすべての言語バージョンで、
+JRE 1.3.0_01 のインターナショナルバージョンをインストールし、
+欧州とアジアのキャラクターの両方を表示できるようにします。
+ベータバージョンの Mozilla と共にリリースされた初期のバージョンの JRE は、
+出荷バージョンの Mozilla 上で正常に動作しない可能性があります。
+Java の機能が欲しいと考えている方には、 &quot;Complete&quot; または &quot;Custom&quot; 
+インストール・オプションをお勧めします。
+</p>
+
+<p>中国語、韓国語、日本語の Windows 9<em>x</em>/ME を使っていて、
+Mozilla を起動しようとすると、起動しない または クラッシュすることがある場合、
+後述の 「わかっている問題」 の Java のセクションを読んでください。
+</p>
+
+
+<h4>全般とプロファイルマネージャ</h4>
+
+<p><b>Windows NT／2000:</b> 非 ASCII 文字の （日本語などの） ユーザー名を作って、
+その所有者がパワーユーザーや管理者でない場合、
+新しいプロファイルの生成に失敗するかもしれません。このような場合、
+プロファイルの保存先にディフォルトディレクトリを指定する代わりに、
+非 ASCII 文字の含まれていないパスを持つディレクトリを指定してください。
+</p>
+
+<p>Latin 1 以外の文字を含むパス名は正しく保存されません。
+最初は問題ないように見えますが、保存すると読めない文字に化けます。
+そのような文字を使って定義されたファイル （例：メールの署名ファイル） は、
+ （mozilla からは） 見つからない可能性があります。
+解決策として、ファイルやパスの名前に ASCII 文字だけを使うようにして下さい。
+</p>
+
+<p>Communicator 4.x のプロファイル名に、 0x5C バイト Shift_JIS 
+文字をはじめとする （日本語などの） ２バイト文字を含む場合、
+プロファイルの移行は正常にできません。
+</p>
+
+<p>Shift_JIS の全角チルダ (0x8160) やその他一部の日本語のシンボルキャラクターには、
+プラットフォームに依存する Unicode のマッピングテーブルに一致しないものがあります。
+このため、状況によっては Macintosh 上で、
+このようなキャラクターが正しく表示されない場合があります。
+</p>
+
+<p><strong>Linux:</strong> 日本語 EUC のロケール下で作られた
+ Comunicator 4.x のプロファイルを移動した場合、
+アドレス帳の見出しが正常に移行されないかもしれません。解決策：
+preferences.js ファイルを編集して、<BR>
+user_pref(&quot;ldap_2.servers.pab.csid&quot;, &quot;euc-jp&quot;);
+<BR>
+のようなエントリーを含む行で文字コードセットを
+「euc-jp」（小文字）から 「EUC-JP」（大文字）に書き換えてください。
+</p>
+
+<p><strong>Linux：</strong>日本語ロケール下で、日本語のウィンドウタイトル
+（Web ページの title を反映しています）は、Web ページが日本語ロケールの 
+文字コードセットに一致していないと正しく見えないかもしれません。
+EUC ロケールで Shift_JIS の title の場合などです。
+</p>
+
+<p><strong>Linux:</strong> Red Hat Linux 6.0 日本語版では、 
+日本語インストーラのライセンスアグリーメントが空表示されるかもしれません。
+解決策： [OK] をクリックして次の手順に進んでください。
+この問題は RH 6.1 以降では発生しません。
+</p>
+
+<h4>Navigator と Composer</h4>
+
+<p>Mozilla はダイナミックフォントをサポートしません。
+（注: Communicator 4.x. ではサポートされていました。）
+</p>
+
+<p>ローカルディスク上のファイルやディレクトリのうち、
+Latin 1 でない名前をもつものは、
+ Navigator のロケーションフィールドにその名前を入力しても、
+アクセスできないかもしれません。
+</p>
+
+<p>JavaScript などの SCRIPT タグ中の文字コードセットアトリビュートは働きません。
+代わりに JavaScript は ドキュメントの文字コードセットを使用します。
+</p>
+
+<p>Windows 2000 IME では、ほとんどの新しい IME 機能 （たとえば再変換）
+はサポートされていますが、一部の機能は正常に動作しないかもしれません。
+</p>
+
+<p><strong>Mac OS：</strong> Internet Config に格納された
+ ASCII でも Latin 1 でもない情報は、メールアカウント設定ダイアログの
+ [Your name] のような自動挿入フィールドに正確に表示されません。
+このような場合は、自動挿入されたエントリーを自分で修正してください。
+</p>
+
+<p><strong>Mac OS： </strong>Mac OS に Japanese Language Kit 
+がインストールされていれば、
+英語版 Mac OS でも日本語パックや日本語版リリースを使うことができます。
+（Mac OS 8.5 以降では、
+オプションインストール項目として日本語サポートがただでついてきます。）
+ただし、メニューやダイアログは、 Mozilla プログラムが
+ Japanese language program として登録されていなければ日本語では表示されません。
+この登録を行うには Apple Extras ディレクトリにある 
+（Japanese） Language register program を使ってください。
+</p>
+
+<p><strong>Mac OS：</strong> [Character Coding （文字コードセット）]
+メニューのチェックマークは即応性がなく、
+現在のページエンコーディングと食い違って表示されます。
+</p>
+
+<h4>メール</h4>
+
+<p>POP メッセージとローカルメッセージの本文検索は、
+ Latin 1 でないキーワードでは働きません。</p>
+
+<p>本文中のキーワードによるフィルタリングは 実装されていません。</p>
+
+<p>[Edit as New （新たなメッセージを編集）] メニューは、
+オリジナルのメッセージが MIME 文字コードセット情報を含んでいないと、
+オリジナルの非 ASCII のテキスト本文を正しく引用しません。</p>
+
+<p>返信にオリジナルメッセージを引用する際、
+こわれて読めないテキストになってしまうことがあります。この問題が発生したら、
+複数のメールフォルダウィンドウを開いていないか確認してください。
+複数のメールフォルダ／ウィンドウが開いていると 返信用文字コードセットは、
+返信メッセージが作成された元のメッセージではなく、
+最後に開いたウィンドウで選択されているメッセージの文字コードセットを反映してしまいます。
+解決策: 現在のウィンドウを残して 他のメールフォルダウィンドウを全部閉じるか、
+最後に開いたウィンドウで 返信に引用するのと同じ 文字コードセット 
+をもつメッセージを選択するかしてください。
+</p>
+
+<p>文字コードセットメニューは、独立したメッセージ表示ウィンドウでは無効です。
+独立ウィンドウはオリジナルメッセージが MIME 
+文字コードセットを含んでいなかったり、
+不正な文字コードセット情報をもっていたりすると、
+メール表示ウィンドウのエンコーディングを引き継ぎません。
+オリジナルメッセージが MIME 文字コードセットを含んでいなかったり、
+不正な文字コードセット情報をもっていたりすることは無視できますが、
+その効果は独立ウィンドウには引き継げません。
+</p>
+
+<p>日本語の自動判別は、 MIME 文字コードセット情報のない
+ EUC-xx や UTF-8 の添付ファイルでは失敗することがあります。
+</p>
+
+<p>文字コードセットメニューは、 MIME 
+エンコードされていないヘッダのスレッドペイン表示を訂正することができません。
+表示されたメッセージに MIME 文字コードセット情報がない場合、
+スレッドペインの表示は、 [Mail &amp; Newsgroups | Message Display | Languages]
+（メールとニュースグループ｜メッセージの表示｜言語） 
+の設定ダイアログボックスで設定された、
+デフォルトのメッセージ表示文字コードセットにしたがいます。
+ユーザーがこのオプションでメールを読むのに最もよく使う文字コードセットに正しく設定することで、
+この種の問題を回避することが出来ます。
+</p>
+
+<p><strong>Mac OS と Linux：</strong> [Auto-Detect (All)] がオンになっていると、
+[View Page Source（メッセージのソース）] がメッセージのソースを見る際に使えません。
+メールでこの機能を使うには、
+[View（表示）] メニューの文字コードセットサブメニューから [Auto-Detect (All)]
+ をオフにしてください。
+</p>
+
+<h4><a title="Internet Message Access Protocol">IMAP</a></h4>
+
+<p>ヘッダーサブジェクトの行のウィンドウタイトル表示に 
+奇妙な縦棒やクエスチョンマークが表示される場合があります。
+これは、改行シーケンスの一部として IMAP 
+サーバから送られたものが誤って解釈されたタブ文字です。
+この問題は POP メールアカウントでは発生しません。
+</p>
+
+<p>[Empty Trash（ごみ箱を空に）] しようとすると、
+メールボックスが無いというエラーメッセージが出るかもしれません。
+この問題はごみ箱フォルダに非 ASCII 文字の名前のフォルダがあるときに起こります。
+Mozilla ではこのようなフォルダは見えないかもしれませんが、Communicator 4.<em>x</em> 
+を使って削除することができます。こうすれば警告ダイアログは出なくなります。
+</p>
+
+<h4>Java</h4>
+
+<p>Windows 9x/ME 日本語版のユーザーが OS に古い JDK や JRE 
+を先にインストールして使っていると、 
+Mozilla の起動に問題が起こるケースが報告されています。
+Mozilla といっしょにリリースされている JRE 130_01 は、
+JRE 1.3 の正式リリース以降の多数の修正が含まれています。
+日本語版の Windows で JRE 1.3 の古いバージョンや US バージョンを使っていると、
+この Mozilla が起動しないという問題に遭遇するかもしれません。
+</p>
+
+<p>この問題が Java のインストレーションによるものかどうかを見極めるためには、
+次の手順にしたがってください
+</p>
+
+<ol>
+
+<li>Plugins ディレクトリを見つけてください
+（Mozilla を実行できるのと同じディレクトリにあります）。</li>
+
+<li>Plugins ディレクトリから、名前が 「npjava...」 ではじまる Java 
+プラグインファイルをすべて取り除いてください。
+NPOJI600.dll があれば、それも取り除いてください。
+あとで元に戻すことができるように、
+これらのファイルを別のディレクトリにバックアップしてください。
+</li>
+
+<li>Mozilla を再起動してください。もし Mozilla がスタートするなら、
+Java が原因となって起動しない問題があります。</li>
+
+</ol>
+
+<p>前述の Java の問題があって、
+ Mozilla といっしょにリリースされているアップデートされた 
+JRE 130_01 をインストールするには、次の手順にしたがってください
+（注：この種の問題は Windows NT4/2000 では報告されていませんが、
+Windows NT4/2000 でもこの問題に遭遇したらやはりこの手順にしたがってください）。
+</p>
+
+<ol>
+
+<li>[スタート] ボタンをクリックして [設定メニュー]
+を開き、 [コントロールパネル]  を選んでください。
+</li>
+
+<li>[アプリケーションの追加と削除] のアイコンをダブルクリックして、
+[インストールと削除] のタブを選んでください。
+</li>
+
+<li>古い JRE のインストレーション (Java Runtime Environment) 
+を見つけて削除してください。
+</li>
+
+<li>Mozilla インストーラを起動して、 「Complete」 か 「Custom」 
+のどちらかのインストレーションを選び、後のオプションで 確実に Java 
+がインストールされるようにしてください。（「Typical」 インストールは JRE 
+パッケージをインストールしませんが、OS に既存の JDK や JRE があると、
+インストーラは Java プラグインファイルをコピーして、 Mozilla の Plugins 
+ディレクトリに置くことに注意してください。）
+これで Mozilla といっしょに動く最新バージョンの JRE 130_01 がインストールされます。
+</li>
+
+</ol>
+
+<p><strong>Mac OS と Linux：</strong> アプレットでの 非 ASCII 文字
+（特に中国語／韓国語／日本語） の表示は、
+font.properties ファイルに正しいフォントの設定がないと働かないかもしれません。
+</p>
+
+<h3><a name="qfa">自動プロクシ設定で Quality Feedback Agent を利用する</a></h3>
+
+<p>Windows：もし自動プロクシ設定 を使っていて、mozilla.org へ 
+インシデントレポートを送るために Full Circle Talkback Quality Feedback Agent 
+を使いたい場合、talkback.ini 
+ファイルを適切なプロキシ設定情報を含むものに置き換える必要があります。
+その場合、次の手順にしたがってください。
+</p>
+
+<ol>
+
+<li>HTTP プロキシ、または HTTP プロキシと SOCKS プロキシの両方を使っている場合、
+あなたが使っているプロキシのホスト名、ドメイン、ポート番号を使って、
+次の 3 行からなる talkback.ini という名前のファイルを作成してください。
+<br>
+
+</li>
+
+<p><code>UseUserHTTPProxyInfo=1<br>
+UserHTTPProxyHost="yourproxy.yourdomain.com"<br>
+UserHTTPProxyPort=<em>xxxx</em></code></p>
+
+<p><em>xxxx</em> となっているところは、お使いのプロキシポート番号です。</p>
+
+<p>SOCKS プロキシを使っている場合、次の 3 行からなるファイルを作成してください。</p>
+
+<p><code>UseUserSOCKSInfo=1<br>
+UserSOCKSHost="yourproxy.yourdomain.com"<br>
+UserSOCKSPort=<em>xxxx</em></code></p>
+
+<p><em>xxxx</em> となっているところは、お使いの SOCKS ポート番号です。</p>
+
+<li>既存の talkback.ini ファイルをあなたが作成したバージョンに置き換えてください。</li>
+
+</ol>
+
+<p>Windows 95 と Windows NT システムでは、talkback.ini ファイルを Mozilla.exe 
+ファイルを含むディレクトリの中の次のディレクトリにコピーしてください。
+<br>
+&yen;Fullsoft&yen;data&yen;talkback.ini
+
+</p>
+
+<h2><a name="devel">Web デベロッパーのみなさんへ</a></h2>
+
+<p>Web スタンダード （<a title="HyperText Markup Language">HTML</a> 4.01、
+<a title="Cascading Style Sheets">CSS</a>
+<a title="CSS1 Technical Report" href="http://www.w3.org/TR/REC-CSS1">1</a>/
+<a title="CSS2 Technical Report" href="http://www.w3.org/TR/REC-CSS2/">2</a>、
+<a title="Document Object Model">DOM</a>
+<a title="DOM1 Technical Report" href="http://www.w3.org/TR/REC-DOM-Level-1/">1</a>/
+<a title="DOM2 Technical Report" href="http://www.w3.org/TR/1999/CR-DOM-Level-2-19991210/">2</a>、
+<a title="Extensible Markup Language" href="http://www.w3.org/XML/">XML</a>、
+<a title="Resource Description Framework" href="../../rdf/doc/">RDF</a>）、JavaScript、
+<a title="Java Language Specification" href="http://java.sun.com/docs/books/jls/index.html">Java</a>、
+そして Mozilla のプラグインによるサポートに関してわかっている事項のリストは、
+次のドキュメントを参照してください。これらの文書は随時更新されます。
+<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/technote/gecko/n6release.html">
+http://web.archive.org/web/20041111155627/developer.netscape.com/docs/technote/gecko/n6release.html</a>
+</p>
+
+<h2><a name="webdev">Mozilla に関わるには</a></h2>
+
+<ul>
+
+<li><a href="http://www.mozillazine.org/talkback.html?article=1074">
+Bug Day</a> に参加しましょう。 Mozilla のテストを支援したいけれど、
+どうすれば良いのか分からないのであれば、毎週<!--火曜日--和訳独自修正-->水曜日の午後3時 （太平洋標準時） 
+に irc.mozilla.org の
+<a href="http://www.mozillazine.org/chat/">#mozillazine</a> という
+<a href="http://www.irchelp.org">IRC</a> チャンネルに参加してみてください。
+参加プロセスを教えてくれ、また参加を支援してくれる、
+親切な Mozillan 達に出会うことが出来ます。
+</li>
+
+<li><a href="../../newlayout/bugathon.html">BugAThon</a> に参加してください。
+もしスクリプトが書けるのなら、テストケースを簡単にする手伝いをして下さい。
+</li>
+
+<li>もっと深く関わりたい場合は、
+<a href="../../get-involved.html">お勧めのスタートポイント</a>
+をチェックしてみてください。
+</p>
+</ul>
+<p>
+
+<h2><a name="otherbuilds">その他のビルド見つけるには</a></h2>
+
+<ul>
+<li> 最新 Mozilla の主要なリリースは、 <a href="..">mozilla.org</a>
+からダウンロードして下さい。
+</li>
+
+<li>日々更新される Mozilla のビルドは、
+mozilla.org の
+<a href="http://ftp.mozilla.org/pub/mozilla/nightly/">FTP サイト</a>
+からダウンロードして下さい。
+</li>
+
+<li>どうやって
+ <a href="../../source.html">Mozilla をビルドする</a> 
+か調べてみましょう。
+</li>
+</ul>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla0.9.1/index.html">英語版</a> 2001/06/14</span> - <span>和訳版 2004/09/21</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla0.9.1/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

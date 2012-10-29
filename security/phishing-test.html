@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>Firefox 2 フィッシング詐欺サイト警告機能の性能テスト</title>
+  <link rel="alternate" hreflang="en" modified="November 15, 2006">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/security/phishing-test.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h2>Firefox 2 フィッシング詐欺サイト警告機能の性能テスト</h2>
+<p>
+  <i>2006 年 11 月 14 日</i>
+</p>
+
+<h3 id="overview">概要</h3>
+<p>私たちは、Mozilla によるセキュリティ向上運動の一環として、Firefox 2 のフィッシング詐欺サイト警告機能の性能検証に積極的に取り組んでいます。私たちは、Mozilla コミュニティによる開発とテストプロセスに加えて、本機能の性能をオープンで透明性を保ち、偏見のない方法で検証するプログラムを開始しました。こうした検証作業を行うことで、フィッシング攻撃の可能性を検知するにあたって本警告機能がどの程度効果的に機能するのか、そして Microsoft の Internet Explorer 7 に組み込まれているフィッシング詐欺検出機能と比較して、どの程度効果的なのかを理解したいと考えています。情報が多ければ多いほど、私たちはコミュニティとしてより良い製品開発の方針決定ができます。このドキュメントでは、私たちが採用した基本的な検証方法とその最終的な検証結果について説明します。</p>
+
+<dl>
+  <dt>要約</dt>
+</dl>
+<ul>
+  <li>Firefox 2 のフィッシング詐欺サイト警告機能は Microsoft のフィッシング詐欺検出機能よりも効果的です。</li>
+  <li>Firefox 2 では、ローカルとリモートの保護モードをユーザの皆さんに提供しています。</li>
+  <li>Firefox 2 のフィッシング詐欺サイト警告機能は、ユーザのプライバシを守るローカルモードを標準で使用します。</li>
+  <li>Firefox 2 のフィッシング詐欺サイト警告機能は、ローカルモードでさえも、Microsoft Internet Explorer 7 のフィッシング詐欺検出機能のいずれのモードに対してよりも有意に効果的です。</li>
+</ul>
+
+<h3 id="methodology">検証方法</h3>
+
+<dl>
+  <dt>目的</dt>
+</dl>
+<p>本検証作業の目的は、既知のフィッシング詐欺サイトに対して、Firefox 2 および Internet Explorer 7 のフィッシング対策機能がどの程度の効果を発揮するのかを計測することでした。私たちは False Positive のための検証をおこなってきたので、今回の検証作業のために False Positive テストは採用しませんでした。そのため、本検証作業で用いられたデータソースには、既知のフィッシング URL のみを含めました。</p>
+
+
+<dl>
+  <dt>フィッシング URL のソース</dt>
+</dl>
+<p>検証用のフィッシング URL は、<a href="http://www.phishtank.com">PhishTank</a> が公に提供している、フィッシングであると確認された URL を配信する <a href="http://www.phishtank.com/blog/2006/10/17/xml-data-file-of-online-valid-phishes-from-phishtank/">XML フィード</a> から取得しました。PhishTank は、コミュニティによって運営される Web サービスで、何千人もの参加者がフィッシング URL の通報や検証をおこい、PhishTank コミュニティがフィッシング URL であると確認した URL を XML フィードで配信しています。このフィードは一時間毎にダウンロードされ、新しく発見されたフィッシング URL はすべて検証用データベースに追加しました。</p>
+
+<dl>
+  <dt>ブラウザおよび検証対象となったモード</dt>
+</dl>
+<p>今回の検証では、Firefox 2 （RC3 および正式版） および IE 7 （正式版） を用い、すべて Windows XP マシーンを使用しました。加えて、ブラウザにつき 2 つのモードを検証しました：</p>
+<ul>
+  <li>Firefox 2 でのローカルリスト条件</li>
+  <li>Firefox 2 での Google 照会条件</li>
+  <li>Internet Explorer 7 での自動 Web サイトチェック機能無効条件</li>
+  <li>Internet Explorer 7 での自動 Web サイトチェック機能有効条件</li>
+</ul>
+
+<dl>
+  <dt>検証の実行</dt>
+</dl>
+<p>検証の実行にあたっては、公正で偏向のない方法で検証を確実に実行できるように、独立のサードパーティソフトウェアサービス会社 <a href="http://www.smartware.com/">SmartWare</a> を選択しました。SmartWare による検証は、2006 年 10 月 19 日から 2006 年 11 月 6 日という 2 週間にわたりました。</p>
+
+<dl>
+  <dt>検証用アプリケーション</dt>
+</dl>
+<p>SmartWare のテスタが検証用データベースとやり取りできるように、簡単な Web アプリケーションを作成しました。このデータベースは、フィッシング URL と検証結果のためのリポジトリとして用いられました。この検証用アプリケーションは、検証用レコードを一度に 7 件まで表示します。リスト内の各レコードは、検証のためのフィッシング URL を含む報告用ページにリンクされ、各ブラウザモードでの結果を報告するための編集欄を備えています。各検証用レコードにつき一件のフィッシング URL を表示しました。</p>
+
+<dl>
+  <dt>検証方法</dt>
+</dl>
+<p>テスタは 2 人一組のチームを組んで作業し、あるブラウザから別のブラウザへとローテーションしながら検証をおこないました。テスタがブラウザ全 4 モードに対する結果を報告すると、ひとつの検証用レコードが完了したとみなされました。レコードが完了すると、その検証用レコードはリストから外され、新しいレコードが追加されました。検証用レコードを一度に 7 件までに制限することで、できるだけ短時間に URL 一件を全 4 モードで検証できるようにしました。</p>
+<p>2 番目のブラウザが有利になる （フィッシング対策機能のリストをアップデートする時間を確保できる） ので、Firefox 2 と IE 7 の検証順を入れ替えるようにし、一方のブラウザが他方に対して検証上有利にならないようにしました。ただし、Firefox が不当に有利にならないように、Firefox は IE 7 よりも多く一番目に検証されたことを付記しておきます。</p>
+<p>報告欄には次のような項目がありました：</p>
+<ul>
+  <li>Not Blocked - ページは、ユーザへの通知なく、通常通り読み込まれます。</li>
+  <li>Blocked - ページは、開こうとしているページに Web 偽装の疑いがあるとする警告を表示してブロックされます。</li>
+  <li>Warned （IE 7 のみ） - ユーザには疑わしいページである旨の警告が表示されますが、ページの読み込みはブロックされたり妨げられたりはしません。</li>
+</ul>
+<p>各レポートにはタイムスタンプが押され、時間制限を超えた結果はいずれも無効とされました。</p>
+
+<dl>
+  <dt>既知のフィッシング URL</dt>
+</dl>
+<p>テスタらは、実際に正当なサイトになりすましている URL に対する結果のみを報告するように指示されました。404 メッセージやサーバがメッセージを表示しない場合、ISP によってサイトが削除されたとのメッセージが表示された場合は、「オフラインサイト」 というタグが付けられ、最終結果から除外されました。</p>
+
+<dl>
+  <dt>結果のフィルタリング</dt>
+</dl>
+<p>検証作業が完了した後、検証結果をフィルタリングして、一部結果を最終結果から除外しました。フィルタを施したのは次のようなケースでした：</p>
+<ul>
+  <li>重複する URL。レコードで同一の検証結果を表示された場合、全 4 モードにわたってタイムスタンプの差異が最小のレコードを採用しました。検証結果が異なる重複レコードが発生した場合は、両レコードとも除外しました。</li>
+  <li>最初の結果と最後の結果の間で 15 分間の時間制限枠を超えたタイムスタンプのついたレコードは、すべてフィルタリングされました。これは、できるだけ近接して全 4 モードを検証した状態を保つためです。</li>
+</ul>
+
+<dl>
+  <dt>監査</dt>
+</dl>
+<p>私たちの見解の信頼性を確保するため、私たちの検証方法および結果は <a href="http://www.isecpartners.com/">iSEC Partners</a> による監査を受けました。iSEC Partners による監査結果は <a href="iSECPartners_Phishing.pdf">こちら</a> をご覧ください。</p>
+
+<h2 id="results">結果</h2>
+<dl>
+  <dt>レポート合計件数</dt>
+</dl>
+<ul>
+  <li>全 1040 件</li>
+</ul>
+
+<table>
+  <tr><td><b>モード</b></td><td align="center">&nbsp;&nbsp;&nbsp;<b>ブロックされたサイト</b>&nbsp;&nbsp;&nbsp;</td><td align="center"><b>ブロック率 （%）</b></td></tr>
+  <tr><td>Firefox 2 でのローカルリスト条件</td><td align="center">820</td><td align="center">78.85%</td></tr>
+  <tr><td>Firefox 2 での Google 照会条件</td><td align="center">848</td><td align="center">81.54%</td></tr>
+  <tr><td>IE7 での自動チェック無効条件</td><td align="center">16</td><td align="center">1.54%</td></tr>
+  <tr><td>IE7 での自動チェック有効条件</td><td align="center">690</td><td align="center">66.35%</td></tr>
+</table>
+
+<dl>
+  <dt>統計 （すべての比較はリモートチェックモードでのブラウザに関するものです）</dt>
+</dl>
+<ul>
+  <li>Firefox はブロックしたものの、IE はブロックしなかったケースが 243 件ありました。</li>
+  <li>IE はブロックしたものの、Firefox はブロックしなかったケースが 117 件ありました。</li>
+  <li>1040 件の URL のうち、Firefox および IE 共にブロックしたケースが 573 件ありました。</li>
+  <li>1040 件の URL のうち、Firefox および IE のいずれもブロックしなかったケースが 66 件ありました。</li>
+
+</ul>
+
+<dl>
+  <dt>データ</dt>
+</dl>
+<ul>
+  <li>フィッシング URL を含めた検証結果の raw データは <a href="phishing-test-results.html">こちら</a>（644 KB のページ） をご覧ください。</li>
+</ul>
+
+<h2 id="acknowledgements">謝辞</h2>
+<p>Mozilla は、フィッシング詐欺サイト警告機能を素晴らしいものにすべく懸命に努力してくださった皆さんに感謝します：フィッシング詐欺サイト警告機能のフレームワークに自社のアンチフィッシングサービスを組み込み、提供してくれた <a href="http://www.google.com" class='external text' title="http://www.google.com" rel="nofollow">Google</a>。確認されたフィッシングデータを提供するにあたって迅速な対応と援助をしてくれた <a href="http://www.phishtank.com" class='external text' title="http://www.phishtank.com" rel="nofollow">PhishTank</a> と PhishTank コミュニティ。このような大規模な検証を粘り強く実行してくれた <a href="http://www.smartware.com/" class='external text' title="http://www.smartware.com/" rel="nofollow">SmartWare</a>。私たちの検証方法と結果を監査報告してくれた <a href="http://www.isecpartners.com/" class='external text' title="http://www.isecpartners.com/" rel="nofollow">iSEC Partners</a>。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/security/phishing-test.html">英語版</a> 2006/11/15</span> - <span>和訳版 2006/11/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/security/phishing-test.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

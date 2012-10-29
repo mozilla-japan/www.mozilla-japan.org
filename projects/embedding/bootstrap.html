@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>bootstrap.pl: 組み込み / 要求をベースとするビルドメカニズム</title>
+
+<link rel="alternate" hreflang="en" modified="June 10, 2002">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/embedding/bootstrap.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+    <h1>
+
+<center>
+
+        bootstrap.pl: 組み込み / 要求をベースとするビルドメカニズム
+
+</center>
+
+</h1>
+
+
+
+<ol>
+
+<li><a href="#what">bootstrap.pl とは何?</a></li>
+
+<li><a href="#how">どのように働くか</a></li>
+
+<li><a href="#started">やってみよう</a></li>
+
+<li><a href="#options">bootstrap.pl 用オプション</a></li>
+
+<li><a href="#bugs">連絡先、バグ登録</a></li>
+
+</ol>
+
+
+
+<hr>
+
+
+
+<ol>
+
+
+
+<li>
+
+<a name="what">
+
+<b>bootstrap.pl とは何?</b><br>
+
+<br>組み込みモジュールの作成者は、全 Mozilla ツリーを取り出してビルドせずに、 Mozilla のモジュールを作りたいと思っています。このメカニズムのお陰で作成者は以下のことが出来ます:<br>
+
+<br>
+
+</a><ul>
+
+<li><a name="what">所定のモジュールに必要なファイルを正確に取り出す</a></li>
+
+<li><a name="what">取り出された必要なファイルだけを作成する</a></li>
+
+<li><a name="what">変更や作り直しが容易である</a></li>
+
+</ul>
+
+<a name="what"><br>
+
+</a></li>
+
+
+
+<li>
+
+<a name="how">
+
+<b>どのように働くか</b><br>
+
+<br>モジュールの依存関係を表すマップは <code>mozilla/tools/module-deps/module-graph.pl</code> を使用して作成され、定期的に <code>mozilla/tools/module-deps/all.dot</code> に保存されます。このマップと作りたいモジュールを基に、bootstrap.pl は必要なモジュールを突き止め、それらのモジュールの一覧をディレクトリ一覧へ変換し、最後にこれらのディレクトリを抜き出し作り上げます。<br>
+
+<br>これを達成するために、現行のビルドスキームで実行しようとして、作られるファイルがいくつかあります (<code>mozilla/allmakefiles.sh</code>, <code>mozilla/build/unix/modules.mk</code>)。<br>
+
+<br>
+
+</a></li>
+
+
+
+<li>
+
+<a name="started">
+
+<b>やってみよう</b><br>
+
+<br>
+
+
+
+</a><ul>
+
+<li><a name="started">
+
+CVSROOT を設定し、例えば以下のような mozilla cvs レポジトリーを指定します。</a><pre><a name="started">  :pserver:&lt;user&gt;%netscape.com@cvs.mozilla.org:/cvsroot
+
+  :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot
+
+</a></pre>
+
+</li>
+
+
+
+<li><a name="started">スクリプトを獲得し、小さな / 仮の cvs ツリーへ取り出して置きます:
+
+</a><pre><a name="started">  cvs checkout mozilla/tools/module-deps/bootstrap.pl
+
+</a></pre>
+
+
+
+</li><li><a name="started">自分のツリー用に新しいディレクトリを作成し、bootstrap.pl をそこへ収容します。:
+
+</a><pre><a name="started">  mkdir &lt;既存 cvsツリー以外へのパス&gt;/newdir
+
+  cd newdir
+
+  ln -s &lt;の (ディレクトリ)パス&gt;/bootstrap.pl .
+
+</a></pre>
+
+</li>
+
+
+
+<li><a name="started">自分のモジュールを取り出し、設定し、ビルドします。下記のサンプルは、 gtkembedmoz 用のラッパーです。これは、必要でないが有った方がいい画像デコーダーを、使用可能な TestGtkEmbed バイナリファイルに対して追加します:
+
+</a><pre><a name="started">  perl ./bootstrap.pl --module=gtkembedmoz-wrapper
+
+</a></pre>
+
+<a name="started">今までテストされたことのあるその他のモジュールは xpcom、necko です。現時点では、テストされたのは単一モジュールのみであることに留意してください。モジュールを混在させているなら、それはまだテストされていない事を頭に入れておいてください。その他のモジュールについては <code>mozilla/tools/module-deps/all.dot</code> を見てください。<br>
+
+<br>その後のビルド（編集とコンパイルを繰り返している間は）は bootstrap.pl へ対して--skip-cvs オプションを使うかトップレベルでの make command を使うことができます。
+
+</a></li>
+
+<a name="started"><br>
+
+
+
+</a></ul>
+
+
+
+<a name="options">
+
+</a></li><li><a name="options"><b>bootstrap.pl 用オプション</b><br>
+
+<br>
+
+</a><ul>
+
+
+
+<li><a name="options"><b>--help</b><br>
+
+<br>使用説明や、オプションを示す　
+
+</a></li>
+
+<a name="options"><br>
+
+
+
+<li><b>--module=&lt;mod&gt;</b><br>
+
+<br>どのモジュールが作られるべきか指示します。
+
+</li>
+
+<br>
+
+
+
+<li><b>--skip-cvs</b><br>
+
+<br>top-level でビルドし設定します。しかし、cvs の操作はすべてスキップします。モジュールの依存関係の変更時の繰り返し処理や、設定ファイルの再生に対して有効です。
+
+</li>
+
+<br>
+
+
+
+<li><b>--skip-core-cvs</b><br>--skip-cvs と同じですが、主要設定ファイル用の cvs だけをスキップします。それ以外のツリーは取り出されます。cvs のコンフリクトを発生させずに、重要な設定ファイルをデバックするのに有効です。
+
+</li>
+
+</a></ul>
+
+</li>
+
+<a name="options"><br>
+
+
+
+
+
+</a><a name="bugs">
+
+<li><b>連絡先、バグ登録</b><br>
+
+<br>
+
+</li></a><a href="http://bugzilla.mozilla.org/enter_bug.cgi?product=Browser&amp;component=Build%20Config">Build Config component にバグを登録してください</a>、そして / または <a href="mailto:mcafee@netscape.com">mcafee</a> へメールをください。
+
+</ol>
+
+
+<hr>
+
+<address><a href="mailto:mcafee@netscape.com">Chris McAfee</a></address>
+
+</div>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/embedding/bootstrap.html">英語版</a> 2002/06/10</span> - <span>和訳版 2006/04/24</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/embedding/bootstrap.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

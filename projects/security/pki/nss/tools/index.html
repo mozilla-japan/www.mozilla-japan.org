@@ -1,0 +1,317 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>NSS セキュリティツール</title>
+<!--
+***************************************** 覚え書き **************************************
+
+オリジナル文書
+題名：NSS Security Tools
+URL ：http://www.mozilla.org/projects/security/pki/nss/tools/
+
+和訳
+１版：2001/03/14 山口（syamagu@mozilla.gr.jp）（Rev:1.8 Feb 7 2001 12:20）
+okome Rev:1.11
+
+***************************************** 覚え書き **************************************
+-->
+<link rel="alternate" hreflang="en" modified="2003/11/13">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/tools/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<center>
+   <h2>NSS セキュリティツール</h2>
+
+<FONT SIZE="-1">
+
+ニュースグループ： 
+ <A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">
+netscape.public.mozilla.crypto</A><BR>
+
+テクニカル コンタクト：
+<A HREF="mailto:mcgreer@netscape.com?subject=Open Source NSS Tools Feedback">
+Ian McGreer</A><BR>
+
+管理人：
+<A HREF="mailto:wtc@netscape.com?subject=Open Source NSS Tools Feedback">
+Wan-Teh Chang</A></FONT>
+</center></FONT>
+
+<H3>概観</H3>
+
+<p>NSS セキュリティツールは、開発者が NSS を利用するアプリケーションをテスト、
+デバッグおよび管理できるようにします。下に掲載した <A HREF="#Tools">ツール情報</A>
+の表は、現在利用されているツールと今も開発中のツールとの両方を解説しています。
+それぞれのツールに張られたリンクをたどって、ソースコード、参考文献、プラン、
+および関連のリンクを参照することができます。情報が完成し次第、リンクをアクティブにします。
+
+<p>現在のところ、NSS ツールのためのバイナリ−ファイルを作成するためには、
+ NSS 3.1 ソースをダウンロードし、そのソースをビルドしなければなりません。
+NSS 3.1 ソースをダウンロードするための CVS の使い方については、
+<a href="http://www.mozilla-japan.org/projects/security/pki/nss/#mozillacvs">
+http://www.mozilla.org/projects/security/pki/nss/#mozillacvs</a>
+をご覧下さい。
+NSS 3.1 ソースの tar バージョンについては、
+<a href="ftp://ftp.mozilla.org/pub/mozilla.org/security/">ftp://ftp.mozilla.org/pub/mozilla.org/security/</a>
+をご覧下さい。
+
+<p>フィードバックや質問のある方は、お気軽に
+<A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">
+netscape.public.mozilla.crypto</A> までどうぞ。
+このニュースグループは、 NSS や NSS ツールに関する全ての質問を受け付けます。
+
+<H3>全体目標</H3>
+<OL>
+    <LI>
+        証明書データベースの分析や修復のためのツールの提供
+       （<TT><A HREF="#dbck">dbck</A></TT>）。
+    </LI>
+    <LI>
+         <TT>secutil.h</TT> インターフェースから PKCS #11 インタフェースへの移行ツール。
+    </LI>
+    <LI>
+        ツール内の過剰な機能を排除する。多くのツールが <TT>PKCS11Init()</TT>、
+        <TT>OpenCertDB()</TT> などの独自のバージョンを実装しています。
+    </LI>
+    <LI>
+         <TT>getopt()</TT> の使用を排除し、 NSPR 
+        コールで置き換えてコマンドオプションを取り込む
+        （<TT>getopt()</TT> とのプラットフォーム依存性 （platform dependencies）
+         を取り除くため）。
+    </LI>
+</OL>
+
+<H3><A NAME="Tools">ツール情報</A></H3>
+
+    <TABLE COLS=3 BORDER=1 WIDTH="90%" CELLPADDING=1>
+        <TR>
+            <TH WIDTH="15%"><B>ツール</B></TH>
+            <TH WIDTH="50%"><B>説明</B></TH>
+            <TH WIDTH="25%"><B>リンク</B></TH>
+        </TR>
+        <TR>
+            <TD><TT><A NAME="certutil">certutil 2.0</A></TT></TD>
+            <TD>証明書および暗号鍵データベース （<TT>cert7.db</TT> および
+                <TT>key3.db</TT>）を管理する。
+            </TD>
+            <TD>
+                <FONT SIZE=-1>
+                <A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/certutil/">ソース</A>、
+                <A HREF="certutil.html">参考文献</A>、
+                <A HREF="certutil-tasks.html">タスク/プラン</A> 
+                </FONT>
+            </TD>
+        </TR>
+         <TR>
+            <TD><TT><A NAME="cmsutil">cmsutil 1.0</A></TT></TD>
+            <TD>暗号化、暗号解除、およびメッセージ署名といった基本的な CMS 操作を行う。
+            </TD>
+            <TD>
+                <FONT SIZE=-1>
+                <A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/smimetools/">ソース</A>、
+                <A HREF="cmsutil.html">参考文献</A>
+                </FONT>
+            </TD>
+        </TR>
+       <TR>
+            <TD><TT><A NAME="dbck">dbck 1.0</A></TT></TD>
+            <TD>証明書データベースの分析と修復を行う （NSS 3.2 では作動しません）。
+            <TD>
+                <FONT SIZE=-1>
+                <A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/dbck/">ソース</A>、
+                <A HREF="dbck-tasks.html">タスク/プラン</A>
+                </FONT>
+            </TD>
+        </TR>
+        <TR>
+            <TD><TT><A NAME="modutil">modutil 1.1</A></TT></TD>
+            <TD>PKCS11 モジュールのデータベース （<TT>secmod.db</TT>） を管理する。
+                モジュールを追加したり、
+                （モジュールがある暗号化サービスのディフォルトプロバイダかどうか、というような）
+                既存モジュールのプロパティを変更する。
+            </TD>
+            <TD>
+                <FONT SIZE=-1>
+                <A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/modutil/">ソース</A>、
+                <A HREF="modutil.html">参考文献</A>、
+                <A HREF="modutil-tasks.html">タスク/プラン</A>
+                </FONT>
+            </TD>
+        </TR>
+        <TR>
+            <TD><TT><A NAME="pk12util">pk12util 1.0</A></TT></TD>
+            <TD>PKCS12 フォーマットの cert/key データベースやファイルの間で、
+                暗号鍵や証明書をインポートしたりエクスポートしたりする。
+            </TD>
+            <TD>
+                <FONT SIZE=-1>
+                <A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/pk12util/">ソース</A>、
+                <A HREF="pk12util.html">参考文献</A>、
+                <A HREF="pk12util-tasks.html">タスク/プラン</A>
+                </FONT>
+            </TD>
+        </TR>
+        <TR>
+            <TD><TT><A NAME="signtool">signtool 1.3</A></TT></TD>
+            <TD>ファイルと/またはコードを含んだデジタル署名された jar アーカイブを作成する。
+            </TD>
+            <TD>
+                <FONT SIZE=-1>
+                <A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/signtool/">ソース</A>、
+                <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/cms/41/adm_gide/app_sign.htm">
+                    参考文献</A> （<A HREF="#note1">ノート 1</A> を参照）、
+                <A HREF="signtool-tasks.html">タスク/プラン</A>
+                </FONT>
+            </TD>
+        </TR>
+        <TR>
+            <TD><TT><A NAME="signver">signver 1.1</A></TT></TD>
+            <TD>デジタル署名されたオブジェクトの署名の妥当性検査をする。
+            </TD>
+            <TD>
+                <FONT SIZE=-1>
+                <A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/signver/">ソース</A>、
+                <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/security/signver/">
+                   参考文献</A> （<A HREF="#note2">ノート 2</A> を参照）、
+                <A HREF="signver-tasks.html">タスク/プラン</A>
+                </FONT>
+            </TD>
+        </TR>
+        
+        <TR>
+            <TD><TT><A NAME="ssltap">ssltap 3.2</A></TT></TD>
+            <TD>プロキシは SSL サーバーへのリクエストを行い、
+                クライアントとサーバー間でやり取りされるメッセージの内容を表示する。
+                 <TT>ssltap</TT> ツールはデータの暗号解除は行わないが、SSL メッセージのタイプ 
+                （clientHello、serverHello、など） や接続データ
+                （プロトコルバージョン、暗号スイート、など） といったものは表示する。
+                このツールはデバックに非常に役立つ。
+            </TD>
+            <TD>
+                <FONT SIZE=-1>
+                <A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/ssltap/">ソース</A>、
+                <A HREF="ssltap.html">参考文献</A>
+                </FONT>
+            </TD>
+        </TR>
+        
+    </TABLE>
+    <FONT SIZE=-1>
+    <p>
+    <OL>
+        <LI><A NAME="note1"></A>
+            現在は developer.netscape.com の Netscape Certificate Management System
+            Administration Guide へとリンクされています。このツールについてのさらに詳しい説明は、
+            <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/security.html#OBJ">Object Signing</A>
+            をご覧下さい。
+        </LI>
+        <LI><A NAME="note2"></A>
+            現在は developer.netscape.com 上の signver documentation 
+            （訳注：Security Documentation のこと？） へとリンクされています。
+            このツールについてのさらに詳しい説明は、
+            <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/security.html#FORM">Form Signing</A>
+            をご覧下さい。
+        </LI>
+    </OL>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/tools/index.html">英語版</a> 2003/11/13</span> - <span>和訳版 2004/11/18</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/tools/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

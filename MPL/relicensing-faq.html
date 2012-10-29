@@ -1,0 +1,592 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <meta name="author" content="Frank Hecker">
+  <title>Mozilla Relicensing FAQ</title>
+  <style type="text/css" media="screen,tv">
+    h1 { text-align: center }
+    div.version { text-align: center; font-weight: bolder;
+      font-size: larger; margin-bottom: 1.5em }
+    ul.faq-list {}
+    pre.faq-code { margin-left: 4em }
+    div.faq-item { margin-bottom: 2em }
+    div.faq-question { font-weight: bolder; font-size: larger }
+    div.faq-answer {}
+  </style>
+<!--
+***************************************** 覚え書き **************************************
+
+原文
+原題：Mozilla Relicensing FAQ
+URL ：http://www.mozilla.org/MPL/mozilla-relicense-faq.html
+
+和訳：
+１版：2001/04/16 山口（Rev.:1.1 Aug 16 2000）草稿
+２版：2001/05/20 山口（Rev.:1.1 Aug 16 2000）完成
+
+Rev: 1.7 山口
+Rev: 1.8 山口
+
+***************************************** 覚え書き **************************************
+-->
+
+<link rel="alternate" hreflang="en" modified="April 20, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/MPL/relicensing-faq.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla Relicensing FAQ</h1>
+
+<div class=version>
+Version 1.1<br>
+</div>
+
+
+<p>先に mozilla.org は、<a href="../MPL/MPL-1.1.html">Mozilla Public License</a>（MPL）<span class="comment">【英文：<a href="../MPL/NPL-1.1J.html">参考和訳</a>】</span> と <a href="../licenses/gpl.html">GNU General Public License</a>（GPL）<span class="comment">【英文】</span> ならびに <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License</a>（LGPL）<span class="comment">【英文】</span> との間の齟齬を解消するため、新しいライセンス・スキームの許で、Mozilla コードにライセンスを再付与するという方針を表明しました。<br>
+ <span class="comment">【訳注：オープンソースソフトウェアライセンスについての情報は多数ありますが、<a href="http://www.opensource.org/docs/osd-japanese.php" target="blank">OpenSource.Org</a> や <a href="http://www.opensource.jp/" target="blank">Open Source Group Japan</a> の文書などをご参考にどうぞ。】</span> </p>
+
+<p>現在私たちは、MPL/GPL/LGPL トリプルライセンスを用いて Mozilla の再ライセンス作業を進めている途中です。この FAQ は、この再ライセンス作業に特に関連して出てくると考えられるさまざまな質問を取り上げます。新しい Mozilla ライセンス・スキームについてのより詳しい情報は、<a href="license-policy.html">mozilla.org ライセンス方針</a> をご覧ください。</p>
+
+<p><em>重要：このドキュメントはあくまで参考で、法的な効力をもつアドバイスではありません。Mozilla コードを基にソフトウェア、特に、商業的な販売や頒布を目的としたソフトウェアを開発・頒布したい場合で、Mozilla コードを利用する上での権利や義務について法的なアドバイスが必要な場合は、ソフトウェアライセンスについて専門的知識をもつ弁護士にご相談ください。</em></p>
+
+<hr>
+
+<h2>Mozilla 再ライセンスについてよくされる質問（FAQ）</h2>
+
+<h3>再ライセンスの詳細</h3>
+
+<ul class=faq-list>
+<li><a href="#why-relicensing">なぜ Mozilla コードは再ライセンスされるのですか？</a></li>
+<li><a href="#new-license">Mozilla 再ライセンスの新しい基本方針は何ですか？</a></li>
+<li><a href="#to-be-relicensed">どの Mozilla コードが再ライセンスされるのですか？</a></li>
+<li><a href="#already-relicensed">すでに再ライセンスされている Mozilla コードには何がありますか？</a></li>
+<li><a href="#not-yet-relicensed">まだ再ライセンスされていない Mozilla コードには何がありますか？</a></li>
+<li><a href="#not-to-be-relicensed">オリジナルのライセンスは、あらゆる Mozilla コードに対して効力を持ったままなのですか？</a></li>
+<li><a href="#no-license-notice">特にライセンスの注意書きがない Mozilla ソースは、どういう扱いになるのですか？</a></li>
+</ul>
+
+<h3>再ライセンスの許可を得るには</h3>
+
+<ul class=faq-list>
+<li><a href="#why-use-special-rights">なぜ非 Netscape 提供者から、NPL の &quot;特記&quot; 事項の替わりに、もともと NPL のライセンス下にあるコードを再ライセンスする許可を得なかったのですか？</a></li>
+<li><a href="#why-grant-permission">私が MPL （または MPL/GPL）下で Mozilla にコードを提供した場合、どうしてこのライセンスの変更に許可を与えなければならないのですか？</a></li>
+<li><a href="#granting-permission">私が提供した全ての Mozilla コードを、MPL/GPL/LGPL のトリプルライセンスで再ライセンスしたい場合、どうすればいいのですか？</a></li>
+<li><a href="#permission-not-granted">コード提供者が、自分の提供したコードに再ライセンスする許可を与えない場合はどうなるのですか？</a></li>
+</ul>
+
+<h3>再ライセンスに対する私たちの姿勢</h3>
+
+<ul class=faq-list>
+<li><a href="#why-not-mpl-gpl">はじめに宣言したとおり、MPL/GPL デュアルライセンスを使用しないのはなぜですか？</a></li>
+<li><a href="#why-lgpl">Free Software Foundation は LGPL の使用を避けるように勧告していますが、なぜ mozilla.org はこのライセンスの使用を奨励しているのですか？</a></li>
+<li><a href="#why-not-mpl-lgpl-gpl">MPL/LGPL デュアルライセンスを適用しないのはなぜですか？　LGPL は GPL 条項の許でも使用が許可されているのではありませんか？</a></li>
+<li><a href="#why-not-modify-mpl">トリプルライセンス・スキームを適用するのではなく、MPL 自体を改定して GPL および LGPL との非互換性を明確にしないのはなぜですか？</a></li>
+<li><a href="#why-not-mit">他のあらゆるライセンスと互換性のある、非 copyleft ライセンス（例えば MIT や BSD ライセンス）の許で Mozilla コードを再ライセンスしないのはなぜですか？</a></li>
+</ul>
+
+<h3>開発者への影響</h3>
+
+<ul class=faq-list>
+<li><a href="#mozilla-with-proprietary">この新しい Mozilla ライセンス・スキームは、Mozilla コードを利用してプロプライエタリアプリケーションを作成し、頒布したいと考えている開発者にどのような影響を与えるのでしょう？</a></li>
+<li><a href="#mozilla-with-lgpl">この新しい Mozilla ライセンス・スキームは、Mozilla コードを利用してソフトウェアを作成し、LGPL の許で頒布したいと考えている開発者にはどのような影響を与えるのでしょう？</a></li>
+<li><a href="#mozilla-with-gpl">この新しい Mozilla ライセンス・スキームは、Mozilla コードを利用してソフトウェアを作成し、GPL の許で頒布したいと考えている開発者にはどのような影響を与えるのでしょう？</a></li>
+</ul>
+
+<hr>
+
+<h2>再ライセンスの詳細</h2>
+
+<div class=faq-item>
+<div class=faq-question><a name="why-relicensing">
+なぜ Mozilla コードは再ライセンスされるのですか？</a></div>
+
+<div class=faq-answer>
+<p>以前問題とされていたのは、Mozilla ライセンスの方針が GPL および LGPL と &quot;互換性&quot; があるかどうかでした。</p>
+
+<p>NPL および MPL が作成されてから、<a href="http://www.gnu.org/fsf/fsf.html">Free Software Foundation</a> <span class="comment">【英文】</span> は、NPL および MPL は GPL とは &quot;互換性がない&quot; と判断しました。ここでいう &quot;互換性がない&quot; とは、（FSF によると）開発者が NPL または MPL 下のコードを GPL 下のコードと組み合わせてその成果を頒布する場合、GPL で定められた条件に抵触してしまう、ということです。LGPL が GPL と同様の条件を課していることから、実際に MPL が GPL と互換性がない場合、LGPL とも互換性がないことになります。</p>
+
+<p>（LGPL は、LGPL の許でリリースされたソースと非 LGPL 下のコードを、ある特定の方法で組み合わせることを可能にしています。それは例えば、LGPL 下でリリースされたコードのライブラリを使用したアプリケーションをリリースする場合です。ただし、関連する LGPL の条項は、MPL 下のコードと LGPL 下のコードを組み合わせて、より規模の大きな成果を作成する際の、全ての可能性に言及しているわけではありません。特に、Mozilla ソースファイルを、直接 LGPL 下のライブラリと組み合わせる（例：ライブラリ機能の拡張）場合、LGPL 条項の効力、および潜在的なライセンス間の非互換性は、GPL に関連する条項と同様のもののようです。）</p>
+
+<p>開発者が、このようなライセンスの非互換性に基づいて、著作権の侵害を訴えることができるかは不明です。しかし、この問題に関して不明瞭な点を解消するため、そして、代替のライセンスがない場合、コードが GPL または LGPL 下でライセンスされるアプリケーション内で Mozilla コードを利用したいと考える開発者の懸念に応えて、Mozilla コードを再ライセンスして、GPL および LGPL との非互換性の問題を解決したいと考えたのです。</p>
+
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="new-license">
+Mozilla 再ライセンスの新しい基本方針は何ですか？</a></div>
+
+<div class=faq-answer>
+<p>新しい標準的なライセンス・スキームは、MPL/GPL/LGPL トリプルライセンスです。このライセンスは、mozilla.org を通じて配布される全ての新しい Mozilla ソースファイルに使用され、既存のファイルは必要な許可を受け次第、トリプルライセンスに変換される予定です。
+
+<p>MPL/GPL/LGPL トリプルライセンスは、NSPR、NSS、PSM、そして JavaScript エンジンを含めて、過去に Mozilla コードに適用されていたデュアルライセンス・スキームの拡張および改訂版です。主な相違点は、私たちがトリプルライセンス・スキームの中で、GPL に加えて LGPL を代替ライセンスとして利用している点です。
+
+<p>コードの一部分がデュアルまたはトリプルライセンスになっている場合、それは、そのコードを変更または配布する者（実施権者  <span class="comment">【訳注：licensee】</span>）が効力をもつ複数のライセンスから組み合わせを選択できるということを意味します。</p>
+
+<p>mozilla.org は、新しいソースファイルへの挿入用に <a href="boilerplate-1.1/">前もって準備されたライセンス定型文</a> と、<a href="boilerplate-1.1/fields.html">空欄をどのように埋めるのかの記入例</a> を作成しました。
+
+<p>（これに関連して、新しい Mozilla ソースファイルを作成している多くの開発者が、馴染みのある他のファイルからライセンスヘッダを単にカット・アンド・ペーストしていることに、私たちは気づきました。こういうことをすると、開発者みずからが、新しいファイルに対して間違ったライセンスを用いて、不適切なかたちでライセンス付与をすることになり得ます。mozilla.org がホストするリポジトリに新しい Mozilla ソースファイルを追加する場合は、適切なライセンス告知が付与されているかを必ず確認してください。）</p>
+
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="to-be-relicensed">
+どの Mozilla コードが再ライセンスされるのですか？</a></div>
+
+<div class=faq-answer>
+<p>私たちは、mozilla.org を通じて頒布される Mozilla ソースコードディストリビューションに含まれ、また、mozilla.org を通じて頒布される Mozilla バイナリーディストリビューションを作成するのに使用される、全てのソースコードに再ライセンスを付与することを目指しています。私たちは、必ずしも、mozilla.org の CVS リポジトリーから利用できる全てのソースコードを再ライセンスしようとしているのではありません。</p>
+
+<p>私たちの第一の目標は、Mozilla バイナリーディストリビューションをビルドするのに必要なソースコードが、適切な（単体または複数の）ライセンス下に置くことです。そのため、私たちは、mozilla.org を通じてリリースされる、<a href="../source.html">Mozilla ソースコードディストリビューション</a>に含まれるソースコードの再ライセンスに焦点を合わせています。（このようなディストリビューションの例は、<a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.5/src/mozilla-source-1.5.tar.bz2">1.5 マイルストーンからのソース tarball</a>）</p>
+
+<p>特に、次の（<code>mozilla</code> のトップレベルディレクトリの下にある）全ての Mozilla ソースディレクトリには、必要な時に再ライセンスしようと我々が考えている、ソースファイルが含まれています：</p>
+
+<pre class=faq-code>
+accessible
+build
+calendar                                                                        
+caps
+config
+content
+db
+dbm
+directory
+docshell
+dom
+editor
+embedding
+expat
+extensions
+gc
+gfx
+gfx2
+htmPLarser
+include
+intl
+ipc
+jpeg
+js
+l10n
+layout
+lib
+mailnews
+modules
+netwerk
+nsprpub
+plugin
+profile
+rdf
+security
+sun-java
+themes
+tools
+uriloader
+view
+webshell
+widget
+xpcom
+xpfe
+xpinstall
+</pre>
+
+<p>（これらのディレクトリにある全てのファイルが、必ずしも再ライセンスされるとは限らないことに注意して下さい。<a href="#not-to-be-relicensed">下の質問</a>をご覧下さい。）</p>
+
+<p>現在のところ、mozilla.org を通じて頒布され、しかし、Mozilla 自体の現在のバージョン内には含まれていない、その他のソースコードを再ライセンスすることは目指して <em>いません</em>。これには、
+<a href="../projects/bugzilla/">Bugzilla</a>、
+<a href="../bonsai.html">Bonsai</a>、
+<a href="../projects/tinderbox">Tinderbox</a>、
+<a href="../projects/grendel/">Grendel</a>、
+<a href="../projects/ef/">ElectricalFire</a>、
+<a href="../rhino/">Rhino</a>
+そして &quot;Mozilla Classic&quot;（1998年にリリースされた、オリジナルの Netscape Communicator ソースコード）のソースコードが含まれます。このソースコードは、現在のところ、既存のライセンス下に置かれます。</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="already-relicensed">
+すでに再ライセンスされている Mozilla コードには何がありますか？</a></div>
+
+<div class=faq-answer>
+<p>Mozilla ソースファイルの多くは、過去に NPL 下でリリースされています（中には NPL/GPL デュアルライセンス下でリリースされているソースファイルもあります）。Mozilla Foundation の創設以来、mozilla.org は NPL のセクション V.3 下で定められている Netscape の権利（「代替ライセンス」<span class="commens">【訳注：Alternative Licensing】</span>）を受け継ぎ、NPL が付与されたコードをそのコードが指定するライセンスへと再ライセンスしてきました。mozilla.org はこうしたコードを、コードベース全体が移行を目指している MPL/LGPL/GPL トリプルライセンスへと再ライセンスする権利を選択的に行使しています。そのため、NPL が付与されたコードを除去してもいます。さらに、'SpiderMonkey' C JavaScript エンジン全体（<tt>mozilla/js/src</tt>）、ならびに Netscape Directory SDK for C（<tt>mozilla/directory/c-sdk</tt>）が既に再ライセンスされています。</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="not-yet-relicensed">
+まだ再ライセンスされていない Mozilla コードには何がありますか？</a></div>
+
+<div class=faq-answer>
+<p><a href="#not-to-be-relicensed">除外</a> されておらず、MPL トリプルライセンスヘッダを持たないすべての Mozilla コードベース内のソースファイル。:-)</p>
+
+<p>私たちは、2001年 9月 19日の新しいライセンスポリシー発表に至るまでの間に Mozilla にコードを貢献したほぼすべての人からから再ライセンスする許可を求め取得してきました。（2001年 9月 19日以降のコードの貢献は、その時点でコードがトリプルライセンスのファイルとしてチェックインされない場合、再ライセンスの許可を与えることが条件となっていました。）関係するすべての個人、企業そして組織から許可を得られ次第、すべての著作権保有者から許可を受けたこれらのファイルを再ライセンスする予定です。</p>
+
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="not-to-be-relicensed">
+オリジナルのライセンスは、あらゆる Mozilla コードに対して効力を持ったままなのですか？</a></div>
+
+<div class=faq-answer>
+<p>はい。GPL や LGPL と既に互換性をもつその他のライセンス（つまり、NPL、MPL でもなく、また MPL、NPL ベースのデュアルあるいはトリプルライセンスでもないライセンス）下にある、ある特定の提供されたソースファイルは、そうです。</p>
+
+<p>既存の Mozilla ソースファイルの中には、（改変された）<a href="http://www.opensource.org/licenses/bsd-license.html">BSD License</a> <span class="comment">【英文】</span>、<a href="http://www.opensource.org/licenses/mit-license.html">MIT License</a> <span class="comment">【英文】</span>、あるいは同様のライセンス下にあるものがあります。そのようなソースファイルの例としては、JPEG ライブラリコードがあります。私たちには、そのようなライセンス下にあるコードの再ライセンスを目指す理由がありません。なぜなら、問題のライセンス条項は、既に MPL、GPL、LGPL の全てと互換性がありますし、プロプライエタリソフトウェアへのコードの組み込みも、（Mozilla ライセンス協定に基づいて）許可しているからです。</p>
+
+<p>そのような他のライセンス下にあるコードを含む Mozilla ソースディレクトリ（<code>mozilla</code> トップレベルディレクトリの下）には、次のものがあります（ただし、必ずしもこれだけに限りません）：</p>
+
+<pre class=faq-code>
+dbm
+expat
+gc/boehm
+jpeg
+modules/libimg/png
+modules/zlib
+xpcom/typelib/xpidl/
+other-licenses/
+</pre>
+
+<p>Mozilla ビルド手続きの一部として追加された makefile を除いて（これらは新しいライセンス・スキームを使用してライセンスされます）、これらディレクトリ内の全てのファイルは、オリジナルのライセンス下におかれたままにしておかなければなりません。</p>
+
+<p>「other-licenses」ディレクトリの目的は、次のようなものです。Mozilla 開発者は、既に存在するプロジェクトからの外部ライブラリを利用して、Mozilla（例：SVG のための libart）を拡張するように求めることができます。当該開発者は、ビルドに必要な条件を満たすために、そうした既存のコードを mozilla.org にホストするように求めることができます。この措置は、開発者やユーザに対して各システム上で必要な条件を求めることを避ける目的です。</p>
+
+<p>この場合、mozilla.org は、例えば LGPL 下のみでそのようなコードを受け入れます。ここでの当該コードは、LGPL で定められるようにその他の非 LGPL コードと共にライブラリを形成しますが、当該コードは「other-licenses」ディレクトリに保存されなければなりません。そのようなチェックインは、事前に mozilla.org からの承認を得なければなりません。</p>
+
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="no-license-notice">
+特にライセンスの注意書きがない Mozilla ソースは、どういう扱いになるのですか？</a></div>
+
+<div class=faq-answer>
+<p>Netscape の社員によって作成されたそのようなファイルは、どれも NPL 下に置かれるものとされ、自動的に再ライセンスされます。一方、その他のファイルに関しては、そのファイルの提供者に連絡を取り、再ライセンスの許可を要請します。</p>
+
+<p>Mozilla ソースファイルの多くは、明示的なライセンス告知（または、この話題に関していえば、明示的な著作権告知）がされていません。そのようなファイルの再ライセンスは、次のように行われます：</p>
+
+<p>問題となるファイルが Netscape の開発者によって作成されたものである場合、私たちは、適用されるライセンスは NPL（ファイルの置かれているソースディレクトリによっては、NPL/GPL デュアルライセンス）だと考え、自動的に MPL/GPL/LGPL トリプルライセンスに再ライセンスされます。</p>
+
+<p>問題となるファイルが Netscape の社員によって作成されたのではない場合、適用されるライセンスは NPL（または NPL/GPL デュアルライセンス）ではないと考え、コードの提供者に連絡を取り、そのファイルの再ライセンスの許可を取ります。</p>
+
+<p>ごく些細な、中身のない、非常に小さい、あるいは自動生成されたファイルは、ライセンスが付与されないままになります。</p>
+
+</div>
+</div>
+
+<h2>再ライセンスの許可を得るには</h2>
+
+<div class=faq-item>
+<div class=faq-question><a name="why-use-special-rights">なぜ非 Netscape 提供者から、NPL の &quot;特記&quot; 事項の替わりに、もともと NPL のライセンス下にあるコードを再ライセンスする許可を得なかったのですか？</a></div>
+
+<div class=faq-answer>
+<p>なぜなら、提供者のコードを NPL 下でライセンスする許可を得ることで、非 Netscape 提供者は、すでに間接的に再ライセンスする許可を与えているからです。</p>
+
+<p>提供者がもともと NPL 下でコードを提供した場合（例えば、既存の NPL 下でライセンスされているソースファイルへのパッチとして提供した場合）、NPL が、Netscape（現在の Mozilla Foundation）に、他のライセンス下で提供されたコードを再ライセンスするという特別な権利を与えていることを、提供者は知っている（または様々な情報源から容易に理解できる）と考えられるからです。いずれにしろ、コードを提供することを選択することで、提供者は、彼らのコードがこのような方法で再ライセンスされることを、間接的に許可しているのです。なぜなら、NPL 下でコードを提供する許可をすることで、MPL/GPL/LGPL トリプルライセンス下で再ライセンスする許可を得るための時間や労力の浪費を防ぐという観点から、既に（間接的に）任意の再ライセンスを認めているからです。</p>
+
+<p>こうすることで、提供者に対して公平でいられると、私たちは信じています。なぜなら、新しいライセンス・スキームは、以前のライセンス下で認められてきたものと同等の権利を保証しているからです。</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="why-grant-permission">私が MPL （または MPL/GPL）下で Mozilla にコードを提供した場合、どうしてこのライセンスの変更に許可を与えなければならないのですか？</a>
+</div>
+
+<div class=faq-answer>
+<p>なぜなら、そのような許可を与えるということは、あなたが MPL（または MPL/GPL）下でコードをライセンスする許可を与えた趣旨と一致するものだからです。またそうすることで、Mozilla コードをより多くの人々に利用してもらうことができ、結果的に Mozilla を他の人が改良することで、あなたにとっても利用しやすいものとなるからです。</p>
+
+<p>再ライセンスはまた、Mozilla コードをより幅広く配布する際の助けとなります。Mozilla コードが幅広く行き渡ることで、ウェブにおけるウェブ標準の採用に良い影響を及ぼし、プロジェクトの長期的な健全性に繋がるのです。</p>
+
+<p>Mozilla コードに使用されているライセンス・スキームは、常に二つの特徴からなっています：ソースコードを Mozilla コードへの変更をしやすくするよう求めていること、そして Mozilla コードを他のプロプライエタリコードと組み合わせて、プロプライエタリ製品を作成し、頒布することを認めていることです。&quot;標準&quot; のライセンス（NPL や MPL を何らかのかたちで使用しているライセンス）下で Mozilla プロジェクトにコードを提供している人は誰でも、結果的に、こうした一般的な条項の許に彼らのコードを頒布することを認めているのです。</p>
+
+<p>新しい Mozilla のライセンス・スキーム（MPL/GPL/LGPL トリプルライセンス）は、それまでの体系との互換性を保っています：新しい Mozilla ライセンス・スキームも、誰もが Mozilla コードへの変更をできるよう、ソースコードを利用可能にするよう求めていますし（これは、MPL、GPL、または LGPL 条項下のコードでライセンスを使用するように求められています）、Mozilla コードをプロプライエタリプログラムに使用することも認めています（これは MPL によって認められており、場合によっては LGPL によっても認められています）。そのため、こうした観点から、新しいライセンス・スキームは、あなたが提供したコードを使用する許可を既に与えているため、先のライセンス・スキームと互換性があるのです。また、あなたのコードに MPL/GPL/LGPL トリプルライセンスを使用する許可を与えることで、先のあなたの許可との互換性を保てるのです。</p>
+
+<p>あなたのコードを再ライセンスする許可をすることで、あなたは、より幅広いユーザーや開発者のコミュニティに、Mozilla コードを利用可能にする手助けをすることにもなるのです。その結果、Mozilla により多くの改善がなされるかもしれませんし、より多くの Mozilla ベースのアプリケーションが作成されるかもしれません。こうした改善や新しいアプリケーションの出現は、将来的には、あなたにも利益をもたらすかもしれません。</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="granting-permission">私が提供した全ての Mozilla コードを、MPL/GPL/LGPL のトリプルライセンスで再ライセンスしたい場合、どうすればいいのですか？</a></div>
+
+<div class=faq-answer>
+<p><a href="mailto:relicensing@mozilla.org?subject=yes&amp;body=I%20grant%20permission%20to%20distribute%20my%20contributions%20to%20mozilla.org-hosted%20code%20under%20the%20MPL/GPL/LGPL%20tri-license">relicensing@mozilla.org</a> にメールを送って下さい。</p>
+
+<p>私たちは、MPL または MPL/GPL デュアルライセンス下で Mozilla ファイルにコードを提供した（非 Netscape）提供者のリストを作成しており、彼らのコードを MPL/GPL/LGPL トリプルライセンス下に再ライセンスする許可を要請しています。もしあなたがそのようなコードを提供したことがあり、このような方法で、あなたの全てのコードを再ライセンスしても良いという全面的な許可を与えて下さる場合には、どうぞ <a href="mailto:relicensing@mozilla.org?subject=yes&amp;body=I%20grant%20permission%20to%20distribute%20my%20contributions%20to%20mozilla.org-hosted%20code%20under%20the%20MPL/GPL/LGPL%20tri-license">relicensing@mozilla.org</a> にメールを送って、あなたが提供したコード全てを MPL/GPL/LGPL トリプルライセンス下で再ライセンスするという許可を宣言して下さい。</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="permission-not-granted">コード提供者が、自分の提供したコードに再ライセンスする許可を与えない場合はどうなるのですか？</a></div>
+
+<div class=faq-answer>
+<p>私たちは、他の提供者が代わりのコードを MPL/GPL/LGPL トリプルライセンスで提供してくれるまで、そして提供してくれない限り、そのようなコードも Mozilla ソースコードの中に含めます。</p>
+
+<p>前で論じたように、Mozilla ソースファイルが現時点で MPL（または MPL に基づいたデュアルライセンス）で頒布されている場合で、もしそのようなファイルに Netscape によって著作権が保護されていない提供コードが含まれていたとしたら、そのコードの著作権保持者に、ライセンスを変更するための許可を求めなければなりません。その間も、そのようなファイルは mozilla.org を通じて頒布され、既存のライセンス下で使用し続けることができます。</p>
+
+<p>私たちの最終的な目標は、mozilla.org を通じて頒布される全ての Mozilla ソースファイルを、MPL/GPL/LGPL トリプルライセンス下（または、<a href="#not-to-be-relicensed">前述</a> のような、その他の適切なライセンス）に再ライセンスすることです。Mozilla ソースコードには、コードの著作権保持者が MPL/GPL/LGPL トリプルライセンス下に再ライセンスすることを拒否するようなコードが含まれることがあるかもしれません。そのような場合には、私たちは、誰かが新しいコードを書いて、再ライセンスできないコードと置き換えることができるかを、調査します。（この作業によって、全く新しいソースファイルを書かなければならなくなるかもしれませんし、既存のファイルの一部を変更するだけで済むかもしれません。）</p>
+
+<p>そのようなファイルが現在のライセンス下に残っている場合は、二つの結果が考えられます：一つは、問題となるファイルが、現時点で MPL（のみ）下でライセンスされている場合。このような場合、そうしたファイル中のコードは、開発者によって、MPL またはプロプライエタリライセンス下で Mozilla ベースの製品で作成され、頒布されることで使用される可能性があります。ただし、開発者が LGPL または GPL 下でソフトウェアを作成し、頒布することで使用されることはありません。もう一つは、もし問題のファイルが、現時点で MPL/GPL デュアルライセンス下にライセンスされている場合。この場合、そのファイルの中のコードは、MPL、GPL、またはプロプライエタリライセンスの下で、開発者によって Mozilla ベースの製品が作成され頒布される可能性があります。ただし、開発者によって LGPL 下でソフトウェアを作成し頒布するのには使用されることはありません。</p>
+</div>
+</div>
+
+
+
+<h2>再ライセンスに対する私たちの姿勢</h2>
+
+<div class=faq-item>
+<div class=faq-question><a name="why-not-mpl-gpl">
+はじめに宣言したとおり、 MPL/GPL デュアルライセンスを使用しないのはなぜですか？</a></div>
+
+<div class=faq-answer>
+<p>なぜなら、MPL/GPL デュアルライセンスでは、開発者が LGPL 下で頒布された Mozilla コードの中のライブラリを使用することができないからです。</p>
+
+<p>ある人たちは、GPL 下でライセンスされた他のコードがあるプログラムの中で、Mozilla コードを含めることができるようにしたいと思い、その派生した成果を GPL 条項および条件下で（GPL で定められたように）頒布したいと考えるかもしれません。また別の人たちは、Mozilla コードをライブラリに組み込みたいと考えたり、別のコードが LGPL 下にある別の成果に組み込みたいと考え、派生した成果を LGPL 条項および条件下で頒布したいと考えるかもしれません。</p>
+
+<p>そこから私たちの問題が発生しました：どちらの可能性をも可能にするためには、どのような Mozilla ライセンスがあるのだろう？　各方面からの意見を参考にして、私達は、以前に提唱した MPL/GPL デュアルライセンス・スキームが、十分ではないという結論に達したのです。もし誰かが、そのようなデュアルライセンスされた Mozilla コードをプロプライエタリコードと組み合わせた場合（そのコードが LGPL 下でライセンスされていた場合）で、Mozilla コードのために MPL ライセンスオプションを使用した場合、MPL 下のコードと GPL 下のコードを組み合わせたときと同様の問題が発生してしまいます。その一方、そのような Mozilla コードをプロプライエタリコードと組み合わせて、MPL/GPL デュアルライセンス下の Mozilla コードのために提供された GPL ライセンスオプションを使用した場合、派生した成果を LGPL 条項の許ではなく、GPL 条項の許で頒布しなければならなくなります。</p>
+
+<p>対象となる人たちが、何らかの理由によって（GPL ではなく）LGPL を使用することにした場合、Mozilla ライセンス・スキームを変更したほうが良いだろうと考えられます。そうすれば、Mozilla コードを組み込むことができ、しかも派生した成果に対しては LGPL を適用することができるからです。こうしたことができる方法は他にもあるとはいえ、MPL/GPL/LGPL トリプルライセンスを使用することが、最も分かりやすいアプローチだと考えたのです。なぜなら、これならば、Mozilla コードを（トリプルライセンスの一部としての LGPL の定めるところとして）LGPL 条項および条件下で頒布することができますし、同時に、Mozilla コードを使用したソフトウェアを（トリプルライセンスの一部としての GPL の定めるところとして）GPL 条項および条件下でも頒布することができるからです。</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="why-lgpl">
+Free Software Foundation は LGPL の使用を避けるように勧告していますが、なぜ mozilla.org はこのライセンスの使用を奨励しているのですか？</a></div>
+
+<div class=faq-answer>
+<p>Mozilla プロジェクトの目標は、FSF の目標とは異なります。私たちは、新しいトリプルライセンスで LGPL を使用することで、LGPL を使用に従う（または固執する）開発者の利益になると信じています。また一方では、ソフトウェアユーザと、自分たちのソフトウェアに GPL を使用する開発者たちにとって重要な、自由を保障することにもなるのです。</p>
+
+<p>Free Software Foundation の目標は、フリーのソフトウェアの作成を奨励することと、（フリーではない）プロプライエタリソフトウェアの作成を阻止することです。そのため、FSF は、（フリーソフトウェアのライブラリをプロプライエタリソフトウェアに組み込むことを可能にしている）LGPL の使用を避けるように勧告していますし、全てのソフトウェアを GPL 下でライセンスするように奨励しています。それによって、あらゆるソフトウェアの派生成果もまた、同じ GPL の条項下にライセンスされるようになるからです。しかし、Mozilla ライセンス・スキームの目指すところは、（もし望めば）Mozilla コードをその他の（非 Mozilla コード）と組み合わせて、Mozilla コードそのものに適用されるライセンス条項とは異なるライセンス条項下で頒布できるような、&quot;より大きな成果&quot; を創り出すことを、可能にすることなのです。</p>
+
+<p>そのため例えば、mozilla.org を通じて頒布される Mozilla コードは、他のコードと組み合わせて、プロプライエタリライセンス条項下で頒布できる、より大きな成果を作成することが現在できますし、将来もできます。Mozilla ライセンス・スキームを変更した際のもともとの意図は、Mozilla コードをその他のコードと組み合わせて、GPL 条項下でも頒布できる、より大きな成果を作成できるようにすることでした。私たちは、あらゆる新しい Mozilla ライセンス・スキームもまた、Mozilla コードと他のコードを組み合わせて、LGPL 条項下で頒布できる、より大きな成果を作成できるようにすることにあります。私たちは、そうして出来上がったより大きな成果が、プロプライエタリライセンス、または GPL 条項下のどちらかで頒布されることを正当化できませんし、同時に、そうしたより大きな成果が LGPL 条項下で頒布されることを阻止することも正当化できません。</p>
+
+<p>実際に MPL または NPL 下にある Mozilla コードが、既に LGPL 下のコードと組み合わされて、その結果できるより大きな成果が LGPL 条項下で頒布される場合は、全く問題ありません。もしそのような事例があれば、私たちは新しい Mozilla 方式の中で LGPL のための特別条項を作る必要はありません。しかし、私たちが LGPL を理解するところでは、もし MPL が（FSF が主張するように）GPL と互換性がないならば、MPL は LGPL とも互換性がないことになってしまいます。そのため私たちは、新しい Mozilla ライセンス・スキームが、GPL と共に LGPL に対応しなければならないという結論に達したのです。</p>
+
+<p>ユーザーに対して認められている自由という点では、MPL/GPL/LGPL トリプルライセンス・スキームは、当初考慮されて後に破棄された、MPL/GPL デュアルライセンス・スキームと互換性があります。もともとの MPL/GPL の案のように、提案された MPL/GPL/LGPL トリプルライセンス・スキームでは、ライセンス取得者が望めば、非プロプライエタリな派生成果を、GPL のみのライセンス下で作成することができます（例えば、そのような成果をプロプライエタリな成果や、またはフリーではないソフトウェアとの組み合わせで使用することを阻止することです）。MPL/GPL/LGPL ライセンスではまた、もしライセンス取得者が望めば、非プロプライエタリな派生成果を、LGPL のみのライセンスで作成することができます。</p>
+
+<p>ライセンス取得者が、 GPL のみ（または LGPL のみ）の Mozilla コードベースのバージョンを作成する自由があるとはいえ、mozilla.org は、LGPL または GPL 下にある他のコードと mozilla コードと共に使用するライセンス取得者が、 MPL/GPL/LGPL トリプルライセンス条文に従うこと、そして GPL または LGPL 条項下と共に、MPL 条項下でライセンス取得者が作成した Mozilla コードの使用を認めることを求めています。同様に mozilla.org は、ライセンス取得者が、Mozilla コードを MPL（または、GPL または LGPL 以外の他のライセンス）下のコードと使用する際、元の MPL/GPL/LGPL トリプルライセンスの条文を保持すること、そして MPL 下と共に GPL または LGPL 条項下でライセンス取得者が作成した Mozilla コードを使用できるようにすることを求めています。</p>
+
+<p>私たちがこうしたことを求めるのは、Mozilla のコードベースが、誰もが利用できる、共有の資源としてあるべきだと信じるからです。そして、人々が全ての人の利益のために、この共有されたコードベースを後押しして欲しいのです。この目標を達成するために、私たちは、新しいソースファイルが MPL/GPL/LGPL トリプルライセンス条項下にない限り、そのファイルを mozilla.org がホストする Mozilla ソースコードリポジトリに受け入れることは基本的にありません。</p>
+
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="why-not-mpl-lgpl-gpl">
+MPL/LGPL デュアルライセンスを適用しないのはなぜですか？　LGPL は GPL 条項の許でも使用が許可されているのではありませんか？</a></div>
+
+<div class=faq-answer>
+<p>MPL/LGPL デュアルライセンスを使用することで、GPL 条項の許で Mozilla コードを頒布したいと考えている人々に不必要な不便をかけてしまいます。事例によっては、人々に Mozilla ソースファイル上のライセンス告知の変更を要求することになるからです。MPL/GPL/LGPL トリプルライセンスでは、こうした潜在的な不便さを減らすことができます。</p>
+
+<p>ライセンス・スキームの一つの可能性としては、MPL または LGPL のどちら下の条項と条件のもとに Mozilla コードを認めるという、デュアルライセンスでした。言い換えると、GPL を明示的に代替ライセンスとしては含まず、LGPL によって可能となる GPL 条項の許で使用するというものです。しかし、問題を検討した結果、私たちは、このアプローチが、Mozilla コードを GPL 条項の許で頒布しようとする人々に、不必要な不便を引き起こすことになるという結論に達しました。</p>
+
+<p>例えば、MPL/LGPL デュアルライセンス下にある Mozilla ソースファイルを考えてみましょう。このデュアルライセンスでは、MPL 条項かまたは LGPL 条項の許でコードを使用できるよう許可しています。そして、ある開発者がアプリケーションを開発したいと考えました。そのアプリケーションでは、Mozilla ソースファイル内のルーチンが、GPL 条項下にある別のソースファイル内のルーチンを呼び出します。そのようなアプリケーションは、全体として GPL 条項の許で頒布されなければなりません。そのため、その開発者は、そのアプリケーション全体の一部分としての Mozilla コードを、GPL 条項の許で頒布する許可を得なければなりません。</p>
+
+<p>MPL/LGPL デュアルライセンスの許であれば、その開発者は、そのコードを GPL 条項の許で頒布するための明示的な許可を必要とはしません。明示的な許可が必要な場合は、LGPL 条項の許でコードを頒布する際のみのこととなります。そのため、その開発者は、デュアルライセンスの LGPL 部分を利用しようと考えるでしょうし、GPL 条項の許での（再）頒布を許可している LGPL 内の条項を有効利用することができます。</p>
+
+<p>LGPL が GPL 条項の許で頒布を認めるのは、二つの場合があります。一つは、LGPL の第 6 節を利用するものです。この節は、LGPL 条項下で頒布された &quot;ライブラリ&quot; を、非 LGPL 条項の許で、ライセンス条項が成果全体への変更を認め、必要な条件を満たしている場合には、&quot;ライブラリ&quot; を &quot;ライブラリを使用する成果&quot; の全てまたは一部分として、（再）頒布することを認めています。GPL が問題の条件を満たしていることから、この条項によって、仮定的な MPL/LGPL デュアルライセンスの許、Mozilla コードで構成されるライブラリを、GPL 条項下のコードからなるアプリケーションと共に頒布することができることになります。そのデュアルライセンスによって、Mozilla コードが LGPL 条項の許で頒布できるようになり、LGPL の第 6 節は、GPL 条項の許で成果全体を頒布することを可能にしているのです。</p>
+
+<p>しかしこれは、私たちの例には当てはまりません。なぜなら、Mozilla コードは、LGPL が定義するような &quot;ライブラリ&quot; として利用されているのではないからです。そうではなく、Mozilla ソースファイルの中のルーチンは、GPL 下でライセンスされた、（それらルーチンによって呼び出される側とは反対の）ソースファイル内で呼び出す側のルーチンなのです。そのため、私たちの例の中の開発者は、LGPL の第 6 節を利用できないため、GPL 下で頒布を認めた LGPL の他の条項を使用しなければなりません。それは、第 3 節です。LGPL の第 3 節は、明示的に LGPL 条項下で頒布されたコードを、替わりに GPL の条項下で（再）頒布することを認めています。しかし、これを行うためには、開発者は、Mozilla ソースファイル内のライセンス告知を実際に変更して、GPL ライセンス告知に置き換えなければなりません。</p>
+
+<p>仮定的な MPL/LGPL デュアルライセンスの条項は、この切り替えを認めていますが、私たちの例の中の開発者が切り替えを行うのは不便です。特に問題の Mozilla コードが、単一のソースファイルから成っておらず、何十も、何百も、時には何千ものソースファイルから成り立っている場合には。そしてこの不便さは、不必要なものでもあります。つまり、Mozilla ソースファイルが、GPL 条項下のコードの使用を明示的に認めている場合、ライセンス告知を変える必要は全くなくなるのです。</p>
+
+<p>そのため私たちは、（NPL 下の既存のコードのための NPL/GPL/LGPL トリプルライセンスと組み合わせるかたちで）MPL/GPL/LGPL トリプルライセンスを利用するというアプローチを取ることにしたのです。このライセンス・スキームは、（MPL および LGPL 条項と共に）GPL 条項下で利用するために、明示的に提供されたもので、前述のようにライセンス告知を変更する必要はありません。</p>
+
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="why-not-modify-mpl">
+トリプルライセンス・スキームを適用するのではなく、 MPL 自体を改定して GPL および LGPL との非互換性を明確にしないのはなぜですか？</a></div>
+
+<div class=faq-answer>
+<p>MPL そのものを変更するというのは、時間と労力を必要とします。それに Mozilla プロジェクトは（他のプロジェクトと同様）、複合ライセンス・スキームを、深刻な問題もなく既に使用しています。</p>
+
+<p>トリプルライセンスを使用するのではなく、別のアプローチがあるとすれば、明示的に GPL（そして LGPL）との互換性問題を取り扱う条文を含む、MPL の新しい版を作成することでしょう。（FSF は以前、そのようなアプローチを、NPL と GPL との非互換性問題に言及する一つの方法として提案していました。）しかし、この問題を検討した結果、私たちは、MPL を変更することは、時間を浪費し、潜在的に問題を引き起こしやすくなるだろう、という結論に達しました。</p>
+
+<p>MPL を変更することで、Mozilla プロジェクトとは独立した立場から、自分たちのコードを使用するために MPL を採用している開発者にも影響を与える可能性もあります。そのような開発者たちが新しい MPL の変更に納得できない場合、明示的に MPL の古いバージョンを使用せざるを得なくなりますし、彼ら独自の MPL ベースのライセンスを作成せざるを得なくなります。（または、開発者がそうした作業をしなくても良いように、開発者が条文を取り入れるかどうかを指定できるように、MPL 内の条文をオプショナルにしなければなりません。）最後に、MPL を変更することは、<a href="http://www.opensource.org/docs/definition.html">Open Source Definition</a> <span class="comment">【英文、<a href="http://www.opensource.org/docs/osd-japanese.php">日本語版</a>】</span> との関連から、証明のために <a href="http://www.opensource.org/">Open Source Initiative</a> <span class="comment">【英文】</span> に変更したライセンスを再提出しなければなりません。これはまた時間の浪費につながります。</p>
+
+<p>そのため私たちは、より良い方法とは、単純にトリプルライセンスを使用することだ、という結論に達しました。このアプローチは、以前 Mozilla コードに使用していたデュアルライセンスアプローチからの自然な形での拡張で、特に深刻な問題もなく他のプロジェクトでも使用されています。既にオープンソースおよびフリーソフトウェア開発者にとって馴染み深いライセンス（MPL version 1.1、GPL version 2、および LGPL version 2.1）を使用することにつながり、他の新しく異なるライセンスの導入が必要なくなります。</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="why-not-mit">
+他のあらゆるライセンスと互換性のある、非 copyleft ライセンス （例えば MIT や BSD ライセンス）の許で Mozilla コードを再ライセンスしないのはなぜですか？</a></div>
+
+<div class=faq-answer>
+<p>歴史的に見て、Mozilla コードは常に何らかのかたちの copyleft ライセンスの許でリリースされてきました。そして私たちは、Mozilla コードへの変更を共有するように働きかける copyleft 条項を使用し続けたいと考えています。</p>
+
+<p>NPL や MPL を作成した背景にある動機の一つは、Mozilla コードを使用する全ての当事者間で、変更の共有を奨励することでした。<a href="http://www.opensource.org/licenses/bsd-license.html">BSD license</a> <span class="comment">【英文】</span>  や <a href="http://www.opensource.org/licenses/mit-license.html">MIT license</a> <span class="comment">【英文】</span>、または同様の非 copyleft ライセンスを使用することを検討したこともありましたが、最終的に NPL/MPL copyleft 機構を採用することにしたのです。オリジナルの <a href="../MPL/FAQ.html#12">Netscape Public License FAQ</a> から引用すると：</p>
+
+<blockquote cite="http://www.mozilla.org/MPL/FAQ.html#12">
+<p>Netscape の見解によると、BSD ライセンスでは、開発者が Communicator ソースコードへの彼らの変更を、コミュニティに還元することを、確実なものにはできません。我が社は、ソース開発努力の長期的な有効性を確実にすることが重要だと考えているのです。</p>
+</blockquote>
+
+<p>私たちは、この目標は推進する価値があると信じます。そのため、私たちは、copyleft 条項の使用をそのまま保持することにしたのです。つまり、新しい MPL/GPL/LGPL トリプルライセンスの許で、Mozilla コードのために三つのライセンスオプションが利用可能となり、全てのライセンスオプションには copyleft の特徴が（異なる長所をもって）備わっており、Mozilla コードを使用した製品を頒布する再に、Mozilla コードが頒布できるように変更することが求められています。</p>
+
+</div>
+</div>
+
+
+<h2>開発者への影響</h2>
+
+<div class=faq-item>
+<div class=faq-question><a name="mozilla-with-proprietary">
+この新しい Mozilla ライセンス・スキームは、 Mozilla コードを利用してプロプライエタリアプリケーションを作成し、頒布したいと考えている開発者にどのような影響を与えるのでしょう？</a></div>
+
+<div class=faq-answer>
+<p>全く影響はありません。Mozilla コードを取り入れてプロプライエタリソフトウェアを作成し頒布している開発者は、MPL 条項および条件の許で、そのまま活動ができます。彼らが今までずっと行ってきた通りのままです。</p>
+
+<p>MPL はもともと、MPL 条項下で頒布されているソースファイルをその他のライセンス下のソースファイルと組み合わせて頒布できるようにし、その結果できる成果を非 MPL ライセンス下で頒布できるように、デザインされています。（この権利は、MPL が満たされるという要求を満たすことが条件となっています。例えば、作成された成果をユーザー向けに頒布する場合、頒布者はまた、MPL または NPL 下で頒布されたソースコードから作成されたコード部分をも、ユーザに対して利用可能にしなければならないのです。）</p>
+
+<p>MPL のこの特徴で、開発者は、Mozilla コードを組み込んだプロプライエタリ製品を頒布できるのです。（Netscape 7 はそのような製品の一例です。）MPL/GPL/LGPL トリプルライセンス・スキームの許では、開発者は、MPL 条項下の Mozilla コードを使用するオプションを行使し、Mozilla コードを基礎にしたプロプライエタリ製品のそうした部分に対しての MPL の様々な要求を満たすことで、Mozilla ベースのプロプライエタリ製品を作成し、頒布し続けることができるのです。</p>
+
+<p>（理論的には、開発者はまた、もしその Mozilla コードがライブラリ形式であり、その開発者が LGPL の関係する要求に準じていれば、Mozilla ベースのプロプライエタリ製品を LGPL 条項の許で頒布することができます。）</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="mozilla-with-lgpl">
+この新しい Mozilla ライセンス・スキームは、 Mozilla コードを利用してソフトウェアを作成し、LGPL の許で頒布したいと考えている開発者にはどのような影響を与えるのでしょう？</a></div>
+
+<div class=faq-answer>
+<p>新しいライセンス・スキームが完全に実施された場合、LGPL 下で頒布されるライブラリや関連ソフトウェアを作成している開発者は、LGPL 条項および条件で、そのソフトウェアの中であらゆる Mozilla コードを使用することができるようになります。</p>
+
+<p>全ての Mozilla ソースファイルが MPL/GPL/LGPL トリプルライセンス（またはその他の互換性のあるライセンス）下で再ライセンスされた場合、開発者は、Mozilla ソースファイルを LGPL 条項下で使用するオプションを利用することで、また Mozilla ソースファイルからのコードを基礎にしたソフトウェアのそうした部分に対しての LGPL の様々な要求に準じることで、Mozilla ベースのライブラリーや関連するソフトウェアを LGPL 下で頒布することが可能となります。</p>
+
+<p>MPL/GPL/LGPL トリプルライセンスの許では、開発者はまた、既存のソースファイルにある LGPL ライセンス告知を変更することなく、Mozilla コードの一部分を取り出して、既に LGPL 下にある既存のソースファイルの中で使用することもできます。（これが可能なのは、トリプルライセンスの鋳型条文が、告知の MPL 部分を削除し、LGPL 告知の部分のみを使用することを認めているからです。）</p>
+
+<p>全ての Mozilla ソースファイルが MPL/GPL/LGPL トリプルライセンス下に再ライセンスされなくても、LGPL の許でライブラリを頒布している開発者は、MPL/GPL/LGPL トリプルライセンスの許で既に再ライセンスされている、あらゆる Mozilla ソースファイルを使用することができることを覚えておいて下さい。</p>
+</div>
+</div>
+
+
+<div class=faq-item>
+<div class=faq-question><a name="mozilla-with-gpl">
+この新しい Mozilla ライセンス・スキームは、 Mozilla コードを利用してソフトウェアを作成し GPL
+の許で頒布したいと考えている開発者にはどのような影響を与えるのでしょう？</a></div>
+
+<div class=faq-answer>
+<p>新しいライセンス体系が完全に実施された場合、GPL の許で頒布されるソフトウェアを作成している開発者は、そのソフトウェアの中で GPL 条項および条件下で、あらゆる Mozilla コードを使用することができます。</p>
+
+<p>全ての Mozilla ソースファイルが MPL/GPL/LGPL トリプルライセンス（またはその他の互換性のあるライセンス）の許で再ライセンスされた場合、開発者は、GPL 条項の許で Mozilla ソースファイルを使用するオプションを利用することで、GPL 下で Mozilla ベースのソフトウェアを作成し、頒布することができます。これにより、開発者は、成果全体を GPL 条項の許で頒布することができるようになり、同時に、Mozilla ソースファイルからのコードに基づいたソフトウェアのそうした部分のための GPL が定める要求に応えることができるのです。</p>
+
+<p>MPL/GPL/LGPL トリプルライセンスの許では、開発者はまた、ソースファイル内の既存の GPL ライセンス告知を変更することなく、Mozilla コードの部分を抜き出し、それらを既存の GPL 下のソースファイルに使用することができます。（これは、トリプルライセンスの鋳型条文が、告知の MPL 部分を削除し、GPL に関連する告知で代用することを認めているために、可能となることです。）</p>
+
+<p>あなたが Mozilla コードの一部を GPL 条項下で頒布したい場合、全体の再ライセンスプロジェクトが完了していなくても、頒布できることを覚えておいて下さい。再ライセンスは段階的に行われるため、あなたが使用したいと思う特定のファイルを確認することを忘れないで下さい。なぜなら、そうしたファイルは、既に MPL/GPL/LGPL トリプルライセンス下にあるかもしれませんし、かつて使われていた MPL/GPL または NPL/GPL デュアルライセンスの許に置かれているかもしれないからです。</p>
+</div>
+</div>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/MPL/relicensing-faq.html">英語版</a> 2005/04/20</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/MPL/relicensing-faq.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,4849 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>M13 Release Notes</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/seamonkey/release-notes/m13-detail.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/release-notes/m13-detail.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+
+
+
+<p>M13 リリースノート</p>
+
+<p><a NAME="read_this"></a></p>
+
+<hr WIDTH="100%">
+
+<h2>インストールする前に読んでください</h2>
+
+<p><b>AOL 4.0 かそれ以前のバージョン</b> と Mozilla のビルドを同時に走らせることは
+
+問題の原因になるかも知れない。AOL 5.0 と Mozilla を走らす事による問題は報告されていない。</p>
+
+<p><b>もし起動時にクラッシュしたなら</b> あなたのMozilla レジストリを削除しなさい。
+
+Mozillaのレジストリーは全てのプラットフォームでM9より変わっています。</p>
+
+<ul>
+<li>Mac OS: システムフォルダー内のPreferencesフォルダーを開いて、
+"Mozilla Registry" ファイルを消去してください。</li>
+
+<li>Windows:Windowsディレクトリーを開いて、"mozregistry.dat"を消去してください。</li>
+
+<li>Linux:~/.mozillaディレクトリー内の"registry"ファイルを消去してください。 file.</li>
+</ul>
+
+<p>さらに詳しく知りたい方は、
+
+<a href="news://news.mozilla.org/37E8A320.D3420962%40netscape.com">
+
+news://news.mozilla.org/37E8A320.D3420962%40netscape.com</a>をご覧ください。 
+
+Win32にインストールしている場合には、<a href="WIN32_INSTALL">インストール
+
+手順</a>の
+
+起動時のクラッシュに関する追加情報を読んでください。</p>
+
+<p><b>パスワードを記憶する機能には不具合があります。</b> (Mac OS
+
+のみ)。最初にこの機能をonにするように求められた場合には、
+
+キャンセルボタンを押すことをお勧めします。また、Edit:Preferences:Advanced で、
+
+ユーザー名とパスワードの自動補完機能のチェックボックスをオフにすることでも、
+
+この機能を使えなく出来ます。(バグ # 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21596">21596</a>をご覧ください。)</p>
+
+
+<p><b>空のディレクトリーにインストールするか</b>、インストール前に、
+
+前のビルドを消去してください。以前のマイルストーンやプロダクトに上書きで
+
+インストールすると、問題が生じるかもしれません。ソフトウェア開発中には、
+
+マイルストーン間での不整合が生じる可能性があります。
+</p>
+
+<p><b>（RedHat5.2のように）glibc 2.0を使うLinuxでは</b> 、
+
+dl関数 (dlopen(), dlsym())がthread safeでは無いという問題があります。
+
+この問題はM13の起動時にランダムにクラッシュを引き起こす可能性があります。もしこの問題が
+
+起こったら、何度かアプリケーションを立ち上げ直してみてください。ftp.mozilla.orgにある
+
+ソフトはglibc2.1を使う RedHat 6.0上で構築され、このような問題は生じていません。
+
+詳しくは、バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=8849">8849</a>をご覧ください。</p>
+
+<p><b>Java Plugin 1.3は使用しないでください。</b>これは最近の
+
+ほとんどのMozillaのビルドで動作せず、クラッシュします。
+
+*npjava*.* というファイルが、bin/pluginsディレクトリーにも、
+
+NS4.x のプラグインディレクトリーにも無いことを確認してください。
+
+この問題は現在処理中です。このバグに関して詳しくは、
+
+バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=5369">5369</a>をご覧ください。</p>
+
+<p><b>Proxiesは、このリリースで動作します。</b> 設定の詳細に関しては、バグ<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=8559">8559</a> 
+
+をご覧ください。</p>
+
+<br><a NAME="install"></a>
+
+<hr WIDTH="100%">
+
+<h2>M13 リリース・ビルドのインストールする</h2>
+
+
+
+<h3><a NAME="UNIX_INSTALL"></a></h3>
+
+<h3>インストール手順 -- Unix</h3>
+
+
+
+<ol>
+
+<li>
+
+"mozilla"というディレクトリーを作り、そのディレクトリーにtar.gzファイルを
+
+移してください。</li>
+
+<p><tt>mkdir mozilla ;</tt>
+
+<br><tt>mv mozilla*.tar.gz mozilla</tt></p>
+
+<li>
+
+mozillaディレクトリーに移り、アーカイブファイルをuntarしてください。これにより
+
+"package"というディレクトリーが作成されます。
+
+</li>
+
+<p><tt>cd mozilla ;</tt>
+
+<br><tt>gzip -dc mozilla-i686-pc-linux-gnu-M13.tar.gz | tar -xvf -</tt></p>
+
+<li>
+
+"package"ディレクトリーに移ってください。</li>
+
+<p><tt>mv mozilla*.tar.gz ../ ;</tt>
+
+<br><tt>cd package</tt></p>
+
+<li>
+
+mozillaを実行スクリプトから起動してください:</li>
+
+<p><tt>./mozilla</tt>
+
+</ol>
+
+<p>重要: もしシーモンキー(Seamonkey)をSolaris上で実行するには、次の
+
+<A HREF="http://www.mozilla.org/unix/solaris.html">Mozilla on Solaris FAQ</A>, 
+
+も読んでください。ここにはビルドと実行に必要なSolaris 2.6パッチに関する記述があります。</p>
+
+
+<h4>Unixでのメールの使用手順</h4>
+
+<p>すでに使用している4.xのプロファイルデータから移行することもできますし、あたらしいプロファイルを作り、
+
+アカウントの設定（Account Setup）を使ってサーバー情報を設定することも出来ます。</p>
+
+
+
+<a NAME="WIN32_INSTALL"></a>
+
+<h3>インストール手順 -- Win32</h3>
+
+<p>WinZipが必要になるかもしれない。これはシェアウェアで、 http://www.winzip.com
+
+(あるいは http://www.download.com) から入手することが出来ます。</p>
+
+<p><b>重要:</b> Seamonkey インストーラー (mozilla-win32-installer-M13.exe; 
+
+これは <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/m13/"> で
+
+入手できる</a>) をインストールする際には、必ず1度は実行しなければならない。このインストーラーは、
+
+２つのマイクロソフト社製のCランタイムライブラリーを更新します。これはWinZipでは更新することができません。
+
+このライブラリーはMSVCRT.DLLとMSVCIRT.DLLで、両方ともversion 6.0.8168.0かそれより新しいヴァージョンでなければなりません。
+
+これらの更新されたDLLファイルは、シーモンキー(Seamonkey)の起動時のクラッシュを防ぐために必要です。注意：このインストーラーは
+
+更新した際にリブートすることを要求してきます。</p>
+
+<ol>
+
+<li>
+
+mozilla-win32.zipへのリンクを一回クリックしてください。ファイルは
+
+デフォルトのフォルダーにダウンロードされます。</li>
+
+
+<br>
+
+<li>
+
+mozilla-win32.zipファイルをクリックするとWinZipが起動します。</li>
+
+
+
+<br>
+
+
+<li>
+
+WinZipのシェアウェアの条件に"I Agree （了解）"をクリックした後、
+
+WinZipのツールバーにあるExtract（解凍）ボタンを押してください。
+
+x86フォルダーにアプリケーションと関連ファイルが解凍されます。</li>
+
+
+
+<br>
+
+<li>
+
+プログラムを起動するためにx86フォルダーよりMozillaを選択してください。</li>
+
+
+
+<br>
+
+<ul>
+
+<li>
+
+ブラウザーとメールを使用するには"mozilla.exe" を起動してください。</li>
+
+
+
+<br>
+
+<li>
+
+geckoレイアウト・エンジンのみを使用するには、"viewer.exe"を起動してください。</li>
+
+</ul>
+
+</ol>
+
+<p>注意: もし移行されていない4.xと同様に5.0の既存のプロファイルがあり、そして
+
+mozillaコマンドを実行してもシーモンキー(seamonkey)が起動しない場合には、mozilla -installerコマンドを
+
+実行してプロファイル・マネージャーを立ち上げ、プロファイルを選択します。</p>
+
+<h4>Win32でのメール使用手順</h4>
+
+<p>
+すでに使用している4.xのプロファイルデータから移行することもできますし、新しいプロファイルを作り、
+
+アカウントの設定（Account Setup）を使ってサーバー情報を設定することも出来ます。</p>
+
+
+
+
+<a NAME="MAC_INSTALL"></a>
+
+<h3>インストール手順 -- Mac OS</h3>
+
+<p><b>もしStuffIt Expander<sup>TM</sup> がインストールされており、お使いのブラウザーが
+
+それを使うように設定されている場合:</b></p>
+
+<ol>
+
+<li>
+
+mozilla-mac.sea.binへのリンクを一回クリックしてください。ファイルが
+
+デフォルトのフォルダー（通常はデスクトップ）にダウンロードされ、StuffIt<sup>TM</sup>が起動されて
+
+mozilla-mac.seaに変換されます。それからStuffItはmozilla-mac.seaを開けて、
+
+mozilla-macフォルダーに変換してくれます。</li>
+
+<br>
+
+<li>
+
+mozilla-macフォルダーを開き、"mozilla."ファイルを2回クリックしてください。 (注意:
+
+この段階で.binと.seaファイルは不要になります。）</li>
+
+</ol>
+
+<p><b>注意</b>: もしステップ１の際にブラウザーが何をするかを質問してきた場合には、
+
+StuffIt<sup>TM</sup>の設定がされていないのが原因です。
+
+このような場合には、保存(Save)をクリックして下記の#3に進んでください。</p>
+
+<p><b>もしStuffIt Expander<sup>TM</sup>がインストールされていないか
+
+ブラウザーが適切に設定されていない場合:</b></p>
+
+<ol>
+
+<li>
+
+StuffIt<sup>TM</sup>がハードディスクのどこかにあることを確認してください。</li>
+
+<br>
+
+<li>
+
+mozilla-mac.sea.binへのリンクをクリックしてください。</li>
+
+<br>
+
+<li>
+
+"Save this link as..."（リンクを名前をつけて保存）を選択しなさい。</li>
+
+<p>ファイルダイアログが現われ、どこにファイルを保存するか
+
+を選択することができます(例えばデスクトップ)</p>
+
+<p>注意: Macのインストーラーのアクセス・パスのどこにもスラッシュを(/)使わないでください。
+
+スペースは使用してかまいませんがその他の特別な文字は避けてください</p>
+
+<li>
+
+Save（保存）ボタンをクリックしてください。</li>
+
+<br>
+
+<li>
+
+新しく作られた"mozilla-mac.sea.bin"アイコンを2度クリックしてください。</li>
+
+<br>
+
+<li>
+
+StuffIt<sup>TM</sup>が起動し、同時に"mozilla-mac.sea"ファイルと
+
+"mozilla-mac."という名前のフォルダが作成されます。</li>
+
+<br>
+
+<li>
+
+mozilla-macフォルダーを開き、"mozilla."を2回クリックしてください。(注意:
+
+この段階で.binと.seaファイルは不要になります。)</li>
+
+</ol>
+
+
+
+<h4>Macintoshでのメールの使用手順</h4>
+
+<p>すでに使用している4.xのプロファイルデータから移行することもできますし、新しいプロファイルを作り、
+
+アカウントの設定（Account Setup）を使ってサーバー情報を設定することも出来ます。</p>
+
+
+
+
+
+<hr WIDTH="100%">
+
+<h2><a NAME="uninstall"></a>M13リリース・ビルドのアンインストール</h2>
+
+
+
+<h4>Linux</h4>
+
+
+
+<ul>
+
+<li>
+
+シーモンキー（Seamonkey）をインストールした/packageディレクトリーを削除しなさい。</li>
+
+<br>
+
+<li>
+
+プロファイルデータを格納している ~/.mozillaディレクトリーを消去しなさい。</li>
+
+</ul>
+
+
+
+<h4>Windows</h4>
+
+
+
+<ul>
+
+<li>
+
+シーモンキー（Seamonkey）をインストールしたディレクトリーを消去しなさい。</li>
+
+<br>
+
+<li>
+
+c:\windows\mozregistry.datを消去しなさい。</li>
+
+<br>
+
+<li>
+
+ユーザー・プロファイル・ディレクトリー\users50を消去しなさい。</li>
+
+</ul>
+
+
+
+<h4>Mac OS</h4>
+
+
+
+<ul>
+
+<li>
+
+ドキュメント・フォルダー中のMozillaフォルダーを消去なさい。</li>
+
+<br>
+
+<li>
+
+システム・フォルダーまたは環境設定(Preferences)フォルダー内の"Mozilla Registry"ファイルを消去しなさい。</li>
+
+<br>
+
+<li>
+
+シーモンキー（Seamonkey）をインストールしたディレクトリー(おそらくmozilla-mac-M13)を消去してください。</li>
+
+</ul>
+
+
+
+<hr WIDTH="100%">
+
+<h2><a NAME="FILES_USED"></a></h2>
+
+
+
+<h2>作られた、または使用されたファイル</h2>
+
+
+
+<table CELLSPACING=5 CELLPADDING=5 WIDTH="100%" BGCOLOR="#FFFFCC" >
+
+<tr>
+
+<th ALIGN=CENTER COLSPAN="3">Windows</th>
+
+</tr>
+
+
+
+<tr>
+
+<td><b>user/</b></td>
+
+
+
+<td><b>$windir/</b></td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+<td>prefs.js <font color="#7F7F7F">(環境設定(Preferences)ファイル(使用))</font>
+
+<br>cache/ <font color="#7F7F7F">(キャッシュ・ディレクトリー)</font>
+
+<br>cookies.txt <font color="#7F7F7F">クッキー(cookie) ファイル)</font>
+
+<br>*cookperm.txt <font color="#7F7F7F">(クッキー使用の許可・不許可の選択に
+
+使用する。)</font>
+
+<br>FieldSchema.tbl <font color="#7F7F7F">フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>SchemaConcat.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>SchemaValue.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>URLFieldSchema.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>signons.tbl and signonsx.tbl <font color="#7F7F7F">(ログイン、
+
+パスワードファイルの保存)</font></td>
+
+
+
+<td VALIGN=TOP>mozregistry.dat <font color="#7F7F7F">( Mozilla レジストリ)</font></td>
+
+
+</tr>
+
+
+
+<tr>
+
+<th ALIGN=CENTER COLSPAN="3">Unix</th>
+
+</tr>
+
+
+
+<tr>
+
+<td><b>user/</b></td>
+
+
+
+<td><b>~/.mozilla/</b></td>
+
+
+</tr>
+
+
+
+<tr>
+
+<td>prefs.js <font color="#7F7F7F">in ~/.mozilla/[profile] (環境設定ファイル
+
+(使用))</font>
+
+<br>Cache <font color="#7F7F7F">in ~/.mozilla/[profile](キャッシュ・ディレクトリー)</font>
+
+<br>cookies <font color="#7F7F7F">(クッキー・ファイル)</font>
+
+<br>*cookperm <font color="#7F7F7F">(クッキー使用の許可・不許可の選択に
+
+使用する。)</font>
+
+<br>FieldSchema.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>SchemaConcat.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>SchemaValue.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>URLFieldSchema.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>signons and signonsx <font color="#7F7F7F">(ログイン、パスワードファイルの
+
+保存)</font></td>
+
+
+
+<td VALIGN=TOP>registry <font color="#7F7F7F">( Mozilla レジストリ)</font></td>
+
+
+</tr>
+
+
+
+<tr>
+
+<th ALIGN=CENTER COLSPAN="3">Mac</th>
+
+</tr>
+
+
+
+<tr>
+
+<td>prefs.js <font color="#7F7F7F">in ~/.mozilla/[profile] (環境設定ファイル
+
+(使用))</font>
+
+<br>Cache <font color="#7F7F7F">in ~/.mozilla/[profile](キャッシュ・ディレクトリー)</font>
+
+<br>cookies <font color="#7F7F7F">(クッキー・ファイル)</font>
+
+<br>*cookperm <font color="#7F7F7F">(クッキー使用の許可・不許可の選択に
+
+使用する。)</font>
+
+<br>FieldSchema.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>SchemaConcat.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>SchemaValue.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>URLFieldSchema.tbl <font color="#7F7F7F">(フォーム(form)を自動的にうめるのためのファイル)</font>
+
+<br>signons and signonsx <font color="#7F7F7F">((ログイン、パスワードファイルの
+
+保存)</font></td>
+
+
+
+<td>System Folder/Preferences ( Mozilla レジストリ)</td>
+
+
+</tr>
+
+</table>
+
+
+
+<p>*<b>注意</b>:"cookperm.txt" (Unixでは"cookperm")は、どのサイトからのクッキーを受け入れ、
+
+それ以外のサイトからの受け入れを拒否するかを選択するために使用されます。このファイルは
+
+環境設定で指定した際のみに使用され、クッキーを受け入れる前に警告のメッセージを表示します。
+
+これを行うためには、手でprefs.jsファイルに追加する必要があります:</p>
+<ul>
+
+<br><tt>user.pref ("network.cookie.rememberAboutCookies", true);</tt></ul>
+
+
+
+<hr WIDTH="100%">
+
+<h2><a NAME="LIMITED"></a></h2>
+
+
+
+<h2>限定されている機能</h2>
+
+
+
+<h3><a NAME="avail_cache"></a></h3>
+
+
+
+<h3>Preferences(設定)においてキャッシュの設定を有効にすること出来る：</h3>
+
+<p>Preferences(設定)においてキャッシュの設定を有効にすること出来る:
+
+<ol>
+
+<li>Preferences(設定)を開く。
+
+<li>デバッグ：メモリーキャッシュを有効にする（Debug:Enable Memory Cache）をクリックしなさい。
+
+</ol>
+
+<p>キャッシュを利用すると、ダイアルアップ接続の場合には、パフォーマンスが向上する。（しかしながらLANを使っている人には、さほど速度の改善は
+
+みられないだろう。）</p>
+
+<p>メモリー・キャッシュのみが使用でき、ディスク・キャッシュは使用できない。それゆえキャッシュされたデータは、セッションごとに
+
+保存されることはない。このことをバグとして報告しないでください。</p>
+
+<p>いくつかのキャッシュのバグが報告されています:</p>
+
+<ul>
+
+<li>時々、throbber(読み込み中のアニメーション)が止まらない. 
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21162">21162</a>)</li>
+
+<li>キャッシュを消去(clear)したり、サイズを変更したり、どのくらいの頻度でサイトのデータとキャッシュが検証されるかを
+
+変更することが出来ない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=20893">20893</a>)</li>
+
+<li>再読み込み、およびShift-Reloadがキャッシュの動作を変更できない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21137">21137</a>)</li>
+
+</ul>
+
+
+
+<h3><a NAME="avail_nav"></a></h3>
+
+
+
+<h3>利用できるナビゲーターの機能</h3>
+
+
+
+<table CELLSPACING=5 CELLPADDING=5 WIDTH="100%" BGCOLOR="#FFFFCC" >
+
+<tr ALIGN=CENTER>
+
+<td><b>機能</b></td>
+
+
+
+<td><b>説明</b></td>
+
+
+
+<td><b>コメント</b></td>
+
+</tr>
+
+
+
+<tr>
+
+<td>戻る(Back), 次(Forward), 再読み込み(Reload), 停止(Stop)</td>
+
+
+
+<td></td>
+
+
+
+<td>時々、「戻る」と「次」が訪れたサイトのURLを記憶していないときがある。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>場所(Location)フィールド</td>
+
+
+
+<td>URLを入力することでブラウズすることが出来る。</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr>
+
+<td>多くのメニュー・コマンド</td>
+
+
+
+<td>メニューは動作しているが、まだ多くのコマンドが割りつけられていない。以下のメニューと
+
+オプションは機能する：ファイル(File)メニュー：新規ウィンドウ、新規作成＞空白ページ/
+
+テンプレートからページを作成 ... / 下書きからページを作成　...、 終了；移動(Go)メニュー; ブックマークメニュー/td>
+
+<td>割り当てられていないコマンドに関しては、順次進められている。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ツールバー</td>
+
+
+
+<td>ツールバーにはコンテンツ・ウィンドウの上下にありほとんどのボタンが動作する
+
+ものの、2つのボタンがまだコマンドの実行に割り当てられていない。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ダウンロード可能なクロム（chrome）</td>
+
+
+
+<td>M13では次の手順で、動的にクロムを変更する(新しいスキンとコンテンツを適用する）
+
+ことが出来ます。:
+
+
+<br>(1) ナビゲーターのみが新しいクロムのURLを利用できます。メッセンジャーは、
+
+まだ変更することができません。
+
+<br>(2) まだ、変更を維持しておくことが出来ません。つまりスキンを変更しても、
+
+変更したクロンは記憶されていません。
+
+<br>(3) ウィンドウは動的に更新されません。 (一度ウィンドウ・マネージャーが
+
+further alongされると、更新されます。)変更を確認するには、新しいスキンを
+
+設定するスクリプトを起動した後、新しいウィンドウを開く必要があります。</td>
+
+
+
+<td><a href="http://www.mozilla.org/xpfe/ConfigChromeSpec.html">ダウンロード可能クロムの仕様
+
+(thedownloadable chrome spec)</a>9章にあるサンプルコードを見なさい</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>リンクボタン</td>
+
+
+
+<td>それぞれのボタンは単にウェブのアドレスにリンクしているだけである。
+
+N ブランドボタン、ホーム、My Netscape のようなボタンである。</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr>
+
+<td>パーソナル・ツールバーへのアクセス</td>
+
+
+
+<td>パーソナル・ツールバーは表示され、利用することが出来る。</td>
+
+
+
+<td>追加、編集をすることができない。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ブックマークへのアクセス</td>
+
+
+
+<td>ブックマーク・メニューより各ブックマークを利用する</td>
+
+
+
+<td>現在使用しているブックマーク・ファイルを
+
+<br>読みこめる。やり方は各プラットフォーム別のインストール手順を参照のこと</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ブックマーク編集画面
+
+<br>からのアクセス</td>
+
+
+
+<td>開く(open)、閉じる(close)、およびフォルダーの並べ替え(sort folders)が可能。</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ステータス表示</td>
+
+
+
+<td>ンテンツ領域の下のツールバーで、URLで指定したファイルを読みこんでいる間のステータスを表示する。</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+<tr>
+
+<td>プラグイン</td>
+
+
+
+<td>M13では、ショックウェーブ・フラッシュ（Shockwave Flash）<sup>TM</sup> リアルオーディオ（RealAudio）<sup>TM</sup> および MIDIファイルの演奏が可能</td>
+
+
+</td>
+
+
+<td>いくつかのファイルの形式 (.mov, .au) は、mozillaから識別できない。自分で
+
+補助プログラムを起動するための新しいmime形式を追加することは出来ない。</td>
+
+</tr>
+
+</table>
+
+
+
+<h3><a NAME="avail_mail"></a></h3>
+
+
+
+<h3>利用できるメール／ニュースの機能</h3>
+
+
+
+<table CELLSPACING=5 CELLPADDING=5 WIDTH="100%" BGCOLOR="#FFFFCC" >
+
+<tr>
+
+<td><b>機能</b></td>
+
+
+
+<td><b>機能</b></td>
+
+</tr>
+
+
+
+<tr>
+
+<td>メールの起動</td>
+
+
+
+<td>Mozillaを起動すると、３つのペインを持つメール・ウィンドウを立ち上がる</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>新着メールを受信受信する</td>
+
+
+
+<td>メールをダウンロードし、ローカルのメールフォルダーの内容を表示する。; POP</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>SMTPの扱い</td>
+
+
+
+<td>SMTPプロトコルは稼動する。;メッセージを送る (注意: 送る場合、
+
+メールを書いているウィンドウは閉じない。)</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>メッセージの表示 -- メール</td>
+
+
+
+<td>"demos"メニューに行き、幾つかのメッセージをInboxから選びます。
+
+メッセージはメッセージペイン（右下）に表示されます。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>フォルダーリストの表示</td>
+
+
+
+<td>ローカルのメールフォルダーは、フォルダーペイン（左側）に表示される。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>メッセージの消去</td>
+
+
+
+<td>ツールバーの消去ボタンを用いて、メッセージを消去する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>テキストメッセージの編集/送信</td>
+
+
+
+<td>新規作成ボタンを押すと、編集画面が立ち上がり、メッセージを
+
+入力し、送信します。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>並べ替え -- スレッドペイン</td>
+
+
+
+<td>表題(Subject)、差出人(Sender)、状態(Status)、日付(Date)で並べ替えが出来る。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>メッセージの移動/複写</td>
+
+
+
+<td>一回につきに1つのメッセージを移動できる。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>添付されたメッセージを読む</td>
+
+
+
+<td>添付ファイルはメッセージペインに表示される。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ニュースグループにメッセージをポストする。</td>
+
+
+
+<td>編集ウィンドウを使用して、ニュースグループにメッセージをポストします。
+
+news.mozilla.org以外のホストに投稿するためには、"network.hosts.nntp_server"
+
+の設定(デフォルトの NNTPサーバーの設定)を変更してください。
+
+現在のところ、この設定のデフォルトは"news.mozilla.org"になっています。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>同時に複数のニュースグループに投稿する。</td>
+
+
+
+<td>編集画面の"Newsgroup:"の場所に、一度に複数のニュースグループに投稿することが
+
+出来ます。ニュースグループを区切るにはカンマを使ってください。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ニュース・ホストと購読中のニュースグループの表示</td>
+
+
+
+<td>prefsとnewsrcファイル(また、もし必要なら、fatかNewsFAT
+
+ファイル）で、ニュース・ホストと購読中のニュースグループをフォルダーペインに表示できます。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ニュースの記事をスレッドペインに表示する。</td>
+
+
+
+<td>ニュースグループをクリックすると、メッセージのタイトル、日付などが
+
+スレッドペインに表示されます。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>メッセージの表示 -- ニュース</td>
+
+
+
+<td>スレッドペインのメッセージをクリックすると、メッセージの内容がメッセージペインに
+
+表示される。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ニュースの受信</td>
+
+
+
+<td>フォルダーペイン中のニュースグループを選択し、"Get Msg"をクリックすると
+
+新しい記事がダウンロードされます。.</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ニュースのメッセージを読んだことにする。</td>
+
+
+
+<td>メニューの"Message | Mark | As Read" を選択することで、ニュースのメッセージを読んだことにします。
+
+<br>現在のところ、読んだかどうかの状態が記録されますが、newsrcファイルにではありません。
+
+これはバグです。(#8075)</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ニュースのメッセージを読んだことにする。</td>
+
+
+
+<td>ニュース・メッセージを表示すると、それを読んだとマークします。
+
+<br>現在のところ、読んだかどうかの状態が記録されますが、newsrcファイルにではありません。
+
+これはバグです。(#8075)</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ニュース・メッセージのキャンセル</td>
+
+
+
+<td>もし記事の筆者であるなら、消去(delete)ボタンを押すと（または
+
+Edit|Delete Messageをメニューから選ぶと）記事をキャンセルします。4.xのように、
+
+1度に1つの記事のみをキャンセルできます。
+
+<p>幾つかのダイアログや警告表示のバグのため、確認のダイアログ
+
+("本当にそれを行いますか？")やキャンセルの警告（"メッセージは
+
+キャンセルされました。"）というダイアログは表示されないと思います。これによりWindowsやUNIXでは、
+
+とりあえずは、これらのメッセージはコンソール画面を探してください。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>アドレス帳</td>
+
+
+
+<td>個人のアドレス町は、左のペインに表示されます。LDAPや追加のアドレス帳は
+
+まだ動作していません。</td>
+
+</tr>
+
+</table>
+
+
+
+<h4>メールの追加機能</h4>
+
+
+
+<ul>
+
+<li>
+
+
+複数のPOPアカウント機能が試行のために実装されています。複数のPOPアカウントを
+
+設定するには、メールアプリケーションを立ち上げ、アカウント・ウィザードを使用してください。
+
+認証情報とサーバー情報が2つ目のアカウントのために必要となります。
+
+<br>
+
+<li>
+
+POP3では、"メッセージをサーバに残したままにする" オプションがデフォルトではOff になっている。これは
+
+メッセージがサーバからローカルフォルダにダウンロードされるときに削除されると言うことを意味し、
+
+もしあなたがメッセージをサーバに残したいと思うのなら、 Edit:Accounts 
+
+Setup:POP3 Server で "Leave Messages On Server を選ぶか、IMAPに切り替えなさい。
+
+<br>
+
+<li>
+
+アドレス帳ウィンドウとアドレス選択ダイアログを使用することが出来ます。
+
+個人のアドレス帳は、カードの追加、カードの編集、カードの削除の機能が
+
+使用できます。LDAPや追加のアドレス帳の機能はまだ動作していません。
+
+データは"abook.mab"というファイルに保存されます。あなたのアドレスの情報は
+
+メール編集ウィンドウの入力アドレスの自動補完機能のために使用されます。</li>
+
+</ul>
+
+
+
+<h3><a NAME="avail_editor"></a></h3>
+
+
+
+<h3>利用できるエディターの機能</h3>
+
+
+
+<table CELLSPACING=5 CELLPADDING=5 WIDTH="100%" BGCOLOR="#FFFFCC" >
+
+<tr>
+
+<td><b>機能</b></td>
+
+
+
+<td><b>説明</b></td>
+
+</tr>
+
+
+
+<tr>
+
+<td>Boxの最大化／最小化
+
+<br>Boxの折り畳み(Collapse)/拡大(Expand)/ズーム(Zoom) (Mac)</td>
+
+
+
+<td>全て機能する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>強調、イタリック、アンダーラインの適用、解除</td>
+
+
+
+<td>スタイルを適用できるが、解除は出来ない。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>リストの適用、解除</td>
+
+
+
+<td>動作する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>インデント／アウトデント</td>
+
+
+
+<td>動作する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>フォント、フォント・サイズ、フォントの色の適用</td>
+
+
+
+<td>全て機能する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>リンクの挿入</td>
+
+
+
+<td>リンク挿入ダイアログを開く</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>画像の挿入</td>
+
+
+
+<td>画像挿入ダイアログを開く。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>アンカーの挿入</td>
+
+
+
+<td>動作する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>水平罫線の挿入</td>
+
+
+
+<td>動作する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>スペルチェック</td>
+
+
+
+<td>Windowsでは、スペルチェックのダイアログを開く。これはMac OSとLinuxでは
+
+動作しない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=6864">6864)</a></td>
+
+</tr>
+
+
+
+<tr>
+
+<td>上/下の矢印</td>
+
+
+
+<td>動作する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>左／右の矢印</td>
+
+
+
+<td>正確に動作する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ファイル(File)・メニュー</td>
+
+
+
+<td>新規作成(New), 開く(Open）, 保存(Save), 名前をつけて保存(Save As), and 終了(Quit)は正確に動作する。 ページの設定、および印刷
+
+プレビューは動作しない。(bugs 
+
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=11767">11767</a> と
+
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21432">21432</a>) Mac OSでの
+
+印刷は現在バグで動作しない。
+
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21759">21759</a>.</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>編集(Edit)メニュー</td>
+
+
+
+<td>元に戻す(Undo)、やり直し(Redo), 切り取り(Cut), コピー(Copy), 貼り付け(Paste), 全て選択(Select All)および 検索(Find) ブラウザー中では動作しない。 
+
+しかしながら、切り取り、コピー、貼り付けについてはテキスト・フィールドではキーボードショートカットを使って行うことが出来る。
+
+消去と再検索は動作しない。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>表示(View)メニュー</td>
+
+
+
+<td>Hide Composition Toolbar and Hide Format Toolbar are not functional.
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=11770">11770</a>)</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>挿入(Insert)メニュー</td>
+
+
+
+<td>リンク(Link), 画像(Image), 横罫線(Horizontal Line), 表(Table), HTMLタグ
+
+改行(Line Break), ラインの下に改行(Break Below Images)は正しく動作する。
+
+ターゲット(Target)は動作しない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=11771">11771</a>)</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>書式(Format)メニュー</td>
+
+
+
+<td>フォントのオプション, サイズ(size), スタイル(style),および色(color) は正常に動作する。段落オプションも
+
+正常に動作する。</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ツール(Tools)・メニュー</td>
+
+
+
+<td>スペル・チェックのオプションはWindowsではスペルチェックダイアログで行えるが、
+
+Mac OSとLinuxでは動作しない。(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=6864">6864)</a></td>
+
+</tr>
+
+
+</table>
+
+
+
+<h3><a NAME="avail_gecko"></a></h3>
+
+
+
+<h3>利用できる Gecko（レイアウト・エンジン）の機能</h3>
+
+
+
+<center><table CELLSPACING=5 CELLPADDING=5 WIDTH="100%" BGCOLOR="#FFFFCC" >
+
+<tr ALIGN=CENTER VALIGN=BOTTOM>
+
+<td><b>機能</b></td>
+
+
+
+<td><b>説明<</b></td>
+
+
+
+<td><b>コメント</b></td>
+
+</tr>
+
+
+
+<tr ALIGN=LEFT VALIGN=TOP>
+
+<td>HTML 4.0</td>
+
+
+
+<td>以下の機能以外は作業が完了した:<br>
+メタデータのUI (バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=1995">1995</a>)<br>
+コンパクト DL, UL, OL (バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=2055">2055</a>)<br>
+表中の文字の位置設定(バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=2212">2212</a>)<br>
+HTMLリンクのUI(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=2800">2800</a>)<br>
+ユーザーのスタイルシートまたは代替のスタイルシートのUI(バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=6782">6782</a>)
+</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr ALIGN=LEFT VALIGN=TOP>
+
+<td>カスケーディング・スタイル・シート, レベル 1 (CSS1)</td>
+
+
+
+<td>機能実装 98% 終了; バグ修正が残っている。</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr ALIGN=LEFT VALIGN=TOP>
+
+<td>カスケーディング・スタイル・シート, レベル  2 (CSS2)</td>
+
+
+
+<td>位置決定、テーブル、セレクターは終了</td>
+
+
+
+<td>最終リリースで実装することにはなっていないが、幾つかの機能は既に
+
+動作しており、利用できるようになるだろう。</td>
+
+</tr>
+
+
+
+<tr ALIGN=LEFT VALIGN=TOP>
+
+<td>ドキュメント・オブジェクト・モデル(DOM)レベル0</td>
+
+
+
+<td>完了。</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr ALIGN=LEFT VALIGN=TOP>
+
+<td>ドキュメント・オブジェクト・モデル (DOM) レベル1 HTML</td>
+
+
+
+<td>90% 完了</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr>
+
+<td>ドキュメント・オブジェクト・モデル (DOM) レベル 2</td>
+
+
+
+<td>JavaScript イベント・モデルは80%完了</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr ALIGN=LEFT VALIGN=TOP>
+
+<td>拡張可能マークアップ言語 (XML)</td>
+
+
+
+<td>James Clarkのexpat parserを導入; 文章の解析を行う。
+
+<br>単純なSimple XLinkと HTMLの名前空間は完了</td>
+
+
+
+<td></td>
+
+</tr>
+
+
+
+<tr ALIGN=LEFT VALIGN=TOP>
+
+<td>XML + CSS1</td>
+
+
+
+<td>稼動する</td>
+
+
+
+<td></td>
+
+</tr>
+
+</table></center>
+
+
+
+<a NAME="KNOWN_ISSUES"></a>
+
+<hr WIDTH="100%">
+
+<h2>既知の問題(Known Issues)</h2>
+
+
+
+<a NAME="general_browser"></a>
+
+<h3>ブラウザと一般の問題</h3>
+
+
+
+<ul>
+
+
+<li>
+
+もしあなたがブラウザのナビゲーションツールバーを隠したとき、もしあなたが再び
+
+ナビゲーションツールバーのサブメニュー(View menu)を選んだときにクラッシュするかも知れない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=22301">22301</a>)</li>
+
+<br>
+
+
+<li>
+
+検索メニューダイアログ(例えば、Search:Search the Internet) は断続的に不安定になり、
+
+それはクラッシュの原因にも成りうる。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=23493">23493</a>)</li>
+
+<br>
+
+<li>
+
+Mac OS 限定: Appearances:Themes preferences ウインドウで、"Selected Theme" ボックスの中の
+
+サイトのリンクをクリックすると、クラッシュする。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=22970">22970</a>)</li>
+
+<br>
+
+<li>
+
+バックかフォワードボタンをページをロードしている間に押すと、ブラウザが終了する原因となる。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17932">17932</a>)</li>
+
+<br>
+
+<li>
+
+(Linux 限定) 256色モードで、test10.html ドキュメントをMozillaでロードするとクラッシュの原因となる。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=11090">11090</a>)</li>
+
+<br>
+
+<li>
+
+ロードの問題(クラッシュかフリーズの可能性) がアプレットを含むページと時々起こる
+
+</li>
+
+<br>
+
+<li>
+
+Linux 限定: Wallet コンテンツのダイアログののOKとCancelボタンが働かない。ダイアログを
+
+閉じるにはクローズボックスをクリックしなさい。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=25039">25039</a>)</li>
+
+</li>
+
+<br>
+
+<li>
+
+ブラウザからのテキストのコピーがしばしばできない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21832">21832</a>)</li>
+
+</li>
+
+<br>
+
+
+<li>
+
+マウスホイールのスクロール</li>
+
+<br>
+
+<ul>
+
+<li>Unix: あなたは良く設定されたXサーバを使わなければならない。XFree86では、自分のXFree86の
+
+Pointer セクションで "ZAxisMapping 4 5" のような行を加えなさい。また自分のマウスのための正しい
+
+プロトコルの行も必ず存在するようにしなさい。</li>
+
+<br>
+
+<li>Windows: もしあなたが  Logitech のホイールマウスを使っているのなら、Mozilla でのホイールを使った
+
+スクロールは働かないかも知れない。それは、Logiteck の em_exec プログラムが動いている間だ。この問題の
+
+ための代替手段(ドライバのアップグレードも含むかも知れない)はバグの中のドキュメントに書かれている。
+
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=20618">20618</a>.</li>
+
+<br>
+
+<li>Mac OS: マウスホイールでのスクロール (例えば USB のマウス) はまだMac OS 用に実装されていない</li>
+
+</ul>
+
+<br>
+
+
+<li>
+
+バックボタンのメニューは過去に訪れたURLを常にリストしない。(bug 
+
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17430">17430</a>)</li>
+
+<br>
+
+
+<li>
+
+M13リリースではすべてのセキュアサイトに接続できない。(URL が "https://" ではじまるような) 
+
+</li>
+
+<br>
+
+
+<li>
+ストップボタンが断続的に使えなくなる</li>
+
+
+
+<br>
+
+
+<li>
+
+キーボードショートカット/コマンドキーは多くのメニューアイテムで使えない。次の
+
+メールコンポーズとエディタウインドウでの例外を除いて:
+
+Ctrl-C (コピー), Ctrl-V (ペースト), Ctrl-Z (アンドゥ). そして Ctrl-Y(やり直し) 
+
+そしてMac OS の同等のキー。そして古いUNIXでの同等のキー(Ctrl- の代わりに Alt- を使う)
+
+は動かない: Ctrl-を使いなさい。</li>
+
+
+
+<br>
+
+<li>
+
+Viewer 内の、Debug &amp; Tools メニューアイテムの多くのオプションが
+
+現在動かないか、あるいは予想もしない結果を生み出す。</li>
+
+</ul>
+
+
+
+<a NAME="printing"></a>
+
+<h3>印刷</h3>
+
+<ul>
+
+<li>印刷のプルダウンメニューがブラウザをクラッシュさせる。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=22012">22012</a>)</li>
+
+<br>
+
+<li>フレームが違うページに印刷される。 
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=7201">7201</a>)</li>
+
+<br>
+
+<li>Mac OS と Linux: ページが大きなフォントで印刷される; テキストが切り離される.
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24405">24405</a>)</li>
+
+<br>
+
+<li>パスワードフィールドが空白に印刷される。.
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24406">24406</a>)</li>
+
+<br>
+
+<li>コンボボックスのボタンが正しく印刷されない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24367">24367</a>)</li>
+
+</ul>
+
+
+
+<a NAME="plugins"></a>
+
+<h3>プラグイン</h3>
+
+<ul>
+
+<li>
+
+インストールの後、mozillaは空の"plugins" フォルダを作る。手動でこの空のフォルダを削除すると、
+
+mozillaはあなたのマシンのどんな4.xの下にインストールされている、存在するプラグインを検索し、
+
+実行する。もしそのようにしないのであれば、空のウインドウが現れる。他の代替手段は.dllファイル
+
+(windowsの場合)をコピーするか、plugin エイリアスを作る(Mac OS)の場合か、あるいは.so ファイル
+
+(Linuxの場合) をコピーし手動でそれらをmozillaのインストール時に作成された空のフォルダに設置する。
+
+</li>
+
+<br>
+
+<li>
+
+いくつかのファイルタイプ(.mov, .au)は mozilla で理解不能である。あなたは
+
+ヘルパーアプリケーションを起動するための新しい mime タイプを追加できない。
+
+(bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=20407">20407</a> と
+
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18656">18656</a>.)</li>
+
+<br>
+
+<li>Linux: Flash プラグインが働かない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18897">18897</a>)</li>
+
+<br>
+
+<li>Mac OS: Quicktime が動かない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24718">24718</a>)</li>
+
+</ul>
+
+
+<a NAME="bookmarks"></a>
+
+<h3>ブックマークと履歴</h3>
+
+<ul>
+
+<li>
+
+不適切なブックマークの取り扱いはプロフィールマネージャの問題に関係づけられる。
+
+<a href="#profiles">プロフィールの問題</a>を見なさい。
+
+</li>
+
+<br>
+
+<li>
+
+ドラッグアンドドロップはまだ実装されていない。
+
+しかし手動でのカットとコピー、そしてペーストを自分のブックマークに行うことが出来る。
+
+</li>
+
+</ul>
+
+<a NAME="sidebar"></a>
+
+<h3>Sidebar</h3>
+
+<ul>
+
+<li>
+
+Sidebarを隠すときには、Viewメニューからサイドバーを選びなさい。サイドバーは現在ある
+
+ウインドウでのみ働く -- 新しいウインドウでは Sidebar が現れる。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=16516">16516</a>)</li>
+
+<br>
+
+<li>
+
+Mac Os 限定: Sidebar にパネルを追加・削除できない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=22248">22248</a>)</li>
+
+</ul>
+
+
+
+<a NAME="profiles"></a>
+
+<h3>プロフィール</h3>
+
+
+
+<ul>
+
+<li>
+
+重要: プロフィールに関するすべての情報はレジストリファイルに蓄えられる。
+
+レジストリファイルはMozillaの初期のバージョンを使っていたとしても作られる。
+
+新しいビルドをチェックする際には、かならず次の項目をインストール、ビルド、新しい
+
+実行形式のファイルを走らせる際には、削除するか名前を変更しなさい:</li>
+
+
+
+<br>
+
+<ul>
+
+<li>
+
+<b>Windows</b> mozregistry.dat ( c:\winnt か c:\windows かそれと同様のディレクトリ),</li>
+
+
+
+<li>
+
+<b>Mac OS</b> Mozilla Registry (System Folder:Preferences),</li>
+
+
+
+<li>
+
+<b>Linux</b> registry (~/.mozilla/)</li>
+
+</ul>
+
+<br>
+
+<li>
+
+スペースを伴った新しいプロフィールネームを作る際には、
+
+名前をクオーテーションマークで閉じなさい(例えば、"My Profile" というように)。</li>
+
+<br>
+
+<li>
+
+あなたはプロフィールマネージャを次のように開始出来る:
+
+コマンドライン引数 : -ProfileManager。プロファイルマネージャーユーザーインターフェースが
+
+現れ、新しいプロファイルの作成をサポートし、そして既にあるプロファイルを削除しリネームする。
+
+もしなにかしらのタスクを終えたのであれば、Exitをクリックしてプロファイルマネージャを終了
+
+出来る。あなやはコミュニケーターボタンを使ってMozillaを選択されたプロフィーるで起動できる。
+
+ユーザは 4.5 コミュニケーターからプロファイルを移行することが出来る(現在は、Windowsのみである)
+
+</li>
+
+<br>
+
+<li>
+
+プロフィールを生成しマネージメントする様々なコマンドラインオプションがある:
+Various command line options to create and manage profiles are:</li>
+
+<blockquote># <b>mozilla -P &lt;Profilename></b></blockquote>
+
+<blockquote>Mozilla を &lt;Profilename> で起動する。</blockquote>
+
+<blockquote># <b>mozilla -CreateProfile "&lt;Profilename> &lt;ProfileDir>"</b></blockquote>
+
+<blockquote> profile を生成し(i.e., &lt;Profilename>) 特定の場所にディレクトリを作る。
+
+すなわち., &lt;Profiledir> そして Mozilla を起動する</blockquote>
+
+<blockquote># <b>mozilla -CreateProfile &lt;Profilename></b></blockquote>
+
+<blockquote>プロフィールを作成し、デフォルトの場所の下にプロフィールディレクトリを
+
+作成する。</blockquote>
+
+<blockquote># <b>mozilla -ProfileWizard</b></blockquote>
+
+<blockquote>新しいプロファイルを作成するためにプロファイル作成ウィザードを起動する。
+
+プロファイル作成ウィザードはユーザに新しいプロファイルをデフォルトの場所か選択した場所に作る。
+
+この過程の最後で、プロフィールが作られデフォルトのプロフィールとしてマークされる。そして
+
+Mozillaはそのプロフィールで起動される。そのウィザードは現在2つの画面を持っている。Mail とニュース
+
+関連の設定/情報は違うアプリケーションで収集される。</blockquote>
+
+<blockquote># <b>mozilla -ProfileManager</b></blockquote>
+
+<blockquote>プロファイルを操作するためにプロファイルマネージャを起動する。ユーザーは
+
+プロフィールを選んで Start Communication ボタンを押すと、Mozilla が選ばれたプロファイルで
+
+起動される。現在のプロフィール( 常に最後に使われたプロフィール ) があらかじめ選択されて
+
+現れる。</blockquote>
+
+<blockquote>#<b> mozilla</b></blockquote>
+
+<blockquote>複数のシナリオがある:
+
+<br>プロフィールの数が = 0 --> 新しいプロフィール作成ウィザードを起動。
+
+<br>プロフィールの数が = 1 --> Mozilla がそのプロファイルで直接起動される
+
+<br>プロフィールの数が > 1 --> プロファイルマネージャが起動
+
+<p>デフォルトのプロファイルファイルのためのディレクトリの場所は、<b><i>&lt; exe のある
+
+3階層上の場所>\Users50</i></b>である。 Windows と Mac OS では <b><i>:Documents:Mozilla:Users50:</i></b>
+
+、Linux では <b><i>~/.mozilla</i></b> である。</blockquote>
+
+
+<li>
+
+プロファイルマネージャ(Windows と Linux のみ): Rename と Delete ボタンが
+正しく働かない。</li>
+
+<br>
+
+
+
+<li>
+
+プロフィールの移行(Windows 限定): 4.5 のプロフィールが 5.0 に移行可能である。
+
+4.5 移行の過程で、4.5 の情報は乱されない。5.0 の移行プロフィールのための新しい
+
+場所は上のパラグラフで述べたデフォルトの場所である。移行はWindows版限定の機能であるが、
+
+すぐにMac OS にも拡張される。(Linux で利用可能になる日は現在わからない）</li>
+
+<p>4.5 のプロフィールを移行するためには、Mozillaをコマンドラインオプションで起動しなさい。
+
+<b>-installer</b>.
+
+移行されるプロフィールは、<b>&lt;profilename> - migrate</b>とプロファイルマネージャの
+
+リストボックスにリストされる。ユーザは移動するプロフィールを選択し、Migrateボタンを押すことが
+
+できる。もし移行が成功すれば、ディスプレイの中の' - migrate 'という接尾辞が消え、プロフィールが
+
+5.0 のプロフィールになる。現在、prefs.jsファイルとメール、ニュースフォルダが移行の過程でコピー
+
+される。ユーザは移行が終わるまではリネームしたりCommunicatorを開始することは出来ない。
+
+M7の終盤で変更が行われたので、過去の移行サービスを使ったものは5.0-プロフィールを作る必要がある。
+
+これはM8で修正されるだろう( 5.0 のプロフィールを持つことは何の従属性もない。</p>
+
+<li>
+
+もしブックマークメニューが現在のページを加える、とブックマークの編集のメニューアイテムしか
+
+持っていなかったら、それらはブックマークのリストに従っておらず、ブックマーキングは
+
+あなたが次のうちの一つの方法を取らない限り動かない:
+
+<br>
+
+<ul>
+
+<li>
+
+古い4.xのプロフィールをSeamonkeyの上に移行する、または</li>
+
+
+
+<br>
+
+<li>
+
+次のステップで新しいプロフィールを作成する:</li>
+
+
+
+<br>
+
+<ol>
+
+<li>
+
+今のプロフィールとmozregistoryを削除する。</li>
+
+
+
+<br>
+
+<li>
+
+Windowsでは、 "mozregistory.dat" ファイルをWindows ( あるいは winnt
+
+
+ディレクトリ ) から取り除く;User50ディレクトリ全体も削除する。</li>
+
+
+
+<br>
+
+<li>
+
+Mac OS では、"Mozilla Registry" ファイルを設定フォルダから削除する
+
+(System Folder|Preferences|Mozilla Registry)。そしてドキュメントフォルダから
+
+"Users50" フォルダから取り除く、それはあなたがSeamonkeyをインストールしたときに
+
+設置されたものだ (documents|mozilla|Users50)。</li>
+
+
+
+<br>
+
+<li>
+
+Linux では、.mozilla/ ディレクトリを削除しなさい。</li>
+
+
+
+<br>
+
+<li>
+
+Seamonkey を立ち上げ、新しいプロフィールを作りなさい。メニューが現れ普通に
+
+動作するだろう。</li>
+
+</ol>
+
+</ul>
+
+<br>
+
+(このバグも参照しなさい。 <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9505">9505</a>)</ul>
+
+
+
+<a NAME="editor" </a></a>
+
+<h3>エディタ</h3>
+
+
+
+<ul>
+
+<li>カラーピッカーが動作しない。  
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=23739">23739</a>) </li>
+
+<br>
+
+<li>メニューとツールバーアイテムがそうなるべきときに薄くならない。  
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=5563">5563</a>) </li>
+
+<br>
+
+<li>リモートのスタイルシートのロードが失敗すると、エディタクラッシュの原因となる。
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=11859">11859</a>) </li>
+
+<br>
+
+<li>フォントの拡大と縮小ボタンが働かない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18774">18774</a>) </li>
+
+<br>
+
+<li>キーボードアクセラレータのなかで働かないかも知れないものがある。特にそれはファイルメニューに含まれる   (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=13378">13378</a>) </li>
+
+<br>
+
+<li>エディタがブラウザにフォーカスされていないと起動しない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9701">9701</a>) </li>
+
+<br>
+
+<li>起動時に Mozilla がクラッシュする。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=8849">8849</a>) </li>
+
+<br>
+
+<li>プレビューが動作しない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9200">9200</a>) </li>
+
+<br>
+
+<li>
+イメージダイアログがすべて実装されていない。 (bugs 
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9751">9751</a>,
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9753">9753</a>,
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9754">9754</a>, and
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9755">9755</a>)</li>
+
+<br>
+
+<li>メニューとツールバーのアイテムが使用不可能にならない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=5563">5563</a>) </li>
+
+<br>
+
+<li>いくつかのメニューアイテムが失われている。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=14342">14342</a>) </li>
+
+
+<br>
+
+<li>
+
+キャレットを再表示するためにはドキュメントをクリックしなければならない</li>
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9701">9701</a>) </li>
+
+<br>
+
+<li>Mac OS と Linux:  スペルチェックダイアログがまだない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=6864">6864</a>) </li>
+
+<br>
+
+
+<li>
+
+Mac OS 限定: エディタが起動しない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9701">9701</a>)</li>
+
+<br>
+
+<li>
+
+Mac OS 限定: ツールバーボタンがマウスが上に乗るまで動作しない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=13438">13438</a>) </li>
+
+
+<br>
+
+<li>Linux (Solaris) 限定: ハイライトが動作しない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=10699">10699</a>) </li>
+
+
+<br>
+
+<li>
+
+Linux 限定: Mozillaが起動時にクラッシュするかも知れない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=8849">8849</a>)</li>
+
+
+<br>
+
+<li>
+
+Linux (Solaris) 限定: ハイライトが動作しない（重複?). (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=10699">10699</a>)</li>
+
+</ul>
+
+
+
+<a NAME="java"></a>
+
+<h3>Java</h3>
+
+
+
+<ul>
+
+<li>
+
+もし諸君が最新の JRE1.2 を Sun Microsystems からダウンロードしているなら、
+
+あなたは存在する Java plugin の起動時にクラッシュするかも知れない。これを
+
+修正するためには、次のdllをプラグインフォルダから取り除かなくてはならない。
+
+それは4.5(かそれ以降)のディレクトリに設置されている: npjava32.dll, npjava12.dll 
+
+そして npjava11.dll のファイルである。</li>
+
+
+
+<br>
+
+<li>
+
+Linux では、Java はまだ実装されていない。</li>
+
+</ul>
+
+
+
+<a NAME="javascript"></a>
+
+<h3>Javascript</h3>
+
+
+
+<ul>
+
+<li>
+
+document.write がHTMLタグを書くのを失敗し、どんなテキストもタグの前に書かれてしまう。
+
+ (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=11141">11141</a>)</li>
+
+
+
+<br>
+
+<li>
+
+JavaScript 警告ダイアルログが表示されない。 (bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=4279">4279</a>)</li>
+
+
+
+<br>
+
+<li>
+
+どんな JavScript window.xxx() 関数も Mozillaのwindowでは動作しない。
+
+Windows では ToolkitCore を使うと開けるが、それらのウインドウは多くの
+
+JavaScript プロパティとメソッドが動作しない。</li>
+
+
+</ul>
+
+
+
+<h3><a NAME="linux_fonts"></a></h3>
+
+<h3>Linux での小さいフォント</h3>
+
+
+
+<ul>
+
+<li>
+
+もしフォントがあなたの環境で小さすぎるのなら、それは軽減できるかも知れない。
+
+それはMozillaの設定ファイルにセットする方法である。preferances ファイル
+
+ (~/.mozilla/Personal/prefs.js)に、次のように付け加えなさい:</li>
+
+<br><tt>user_pref("browser.screen_resolution", 120);</tt>
+
+<p>これは dpi を 120 にセットする。もし諸君がこれを(0)に設定すると、 Mozilla は
+
+X server の dpi値を使う。もし設定が行われなかった場合には、デフォルトの値
+
+96が使われる。</p>
+
+<p>X server のDPIの値の設置にはいくつか情報がここにある <a href="http://www.mozilla.org/unix/dpi.html">http://www.mozilla.org/unix/dpi.html</a>.</p>
+
+<p>もし設定を正しく設定した後もフォントがまだ小さい(あるいは大きすぎる)のであれば、
+
+次のようにしてフォントサイズを設定することが出来る:</p>
+
+<tt>setenv GECKO_FONT_SIZE_FACTOR 1.5</tt>
+
+<p>文字がフォントだけに影響するわけではないことに注意しなさい。スクリーンの解像度の設定が
+
+絶対サイズの指定のすべてに影響を与える(例えば CSS の "pt" points)。</p>
+
+</ul>
+
+
+
+<h3><a NAME="KNOWN_ISSUES_MAIL"></a></h3>
+
+<h3>メールとニュース</h3>
+
+
+
+<ul>
+
+<li>
+
+メールを送るか、Cyrus IMAP を使ってテンプレートをドラフトをセーブした後に
+
+エラーメッセージが現れる。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24715">24715</a>)</li>
+
+<br>
+
+<li>
+
+POP: 複数メッセージの指定(shift-click)での削除がクラッシュの原因になる。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24747">24747</a>)</li>
+
+<br>
+
+<li>
+
+メールウインドウで mailto リンクを使う (あるいはアドレスヘッダーをクリックする) 
+
+とメッセージリストの中の複製の原因になり、そしてそれはメールとニュースとフォルダの
+
+並びが逆順になる。表示の修正から抜ける(Exiting corrects the display)。クラッシュが起こる可能性がある。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=23782">23782</a>)</li>
+
+<br>
+
+<li>
+
+集められたアドレスがアドレスブックに追加されない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=23362">23362</a>)</li>
+
+<br>
+
+<li>
+
+もしあなたが新しいプロフィール、新しいアカウントを作った場合、メールに行くと、
+
+そこには何の "Collected Addresses" アドレスブックも表示されない。あなたのメール
+
+アカウントのinboxをセレクトしても、アドレスブックを作ることもできない。代替手段
+
+としては、終了して Collected Addresses book を見るために再び開きなさい。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18476">18476</a>)</li>
+
+<br>
+
+<li>
+
+ねじれたカーソルはフォルダが追加されるか移動した時に適切にアップデートされない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=10208">10208</a>)</li>
+
+<br>
+
+<li>
+
+biff (新着メッセージ) アイコンが、新しいメールを読んだ後にも元に戻らない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=23058">23058</a>)</li>
+
+<br>
+
+<li>
+
+「Send later」オプションを使ったメッセージがREADとマークされる(POP アカウントにおいて)。 
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17943">17943</a>)</li>
+
+<br>
+
+<li>
+
+HTMLメッセージをコンポーズするためのツールバーの色のセレクタが働かない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=23739">23739</a>)</li>
+
+<br>
+
+<li>
+
+スレッドペインでもしコンテキストメニューを見るために右クリックすると、ファイルメニューが
+
+flsah パネルの下に表示される。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21223">21223</a>)</li>
+
+<br>
+
+<li>
+
+IMAP メールフィルタはメッセージをローカルフォルダか他のIMAPサーバ上のフォルダに
+
+移動できない。もしあなたが4.xからのフィルタを移行したなら、フィルタはこのアクションが
+
+5.0で動作しないと言う問題を持っている。このフィーチャーは今後のリリースで動くようになる、
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17174">17174</a>)</li>
+
+<br>
+
+<li>
+
+ローカルの空のフォルダをセレクトしてもスレッドペーンが更新されない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21772">21772</a>)</li>
+
+<br>
+
+<li>
+
+スレッドペーンで、選択がメッセージを含むように拡張するための shift-click をすぐに
+
+使えない。それは現在選択されたメッセージの上でである。現在選択されているメッセージから
+
+2つかそれ以上のメッセージをクリックすると、選択を拡張する事が出来る。
+
+代替手段:: use CTRL-Click を使う。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21972">21972</a>)</li>
+
+<br>
+
+<li>
+
+アカウントセットアップの問題: 
+
+<br>
+
+<ul>
+
+<li>
+
+アカウントセットアップダイアログを使っていると、時々クラッシュが起きる。特に
+
+複数アカウントを同じセッションで追加している時。
+
+(bugs <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=25036">25036</a> and 
+
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=25095">25095</a>)</li>
+
+<br>
+
+<li>
+
+必ず incoming サーバのフィールドをセットアップを新しく行うときに行いなさい。
+
+さもなければ、アカウントセットアップダイアログが終わるときにクラッシュしてしまうかも
+
+知れない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18075">18075</a>)</li>
+
+<br>
+
+
+<li>
+
+Linux と Mac OS 限定: アカウントセットアップダイアログを使ってアカウントを設定する場合、
+
+もしあなたがマウスをサーバのセレクトに使えないのであれば、代わりに Up か Down キーを使いなさい。
+
+<br>
+
+
+</ul>
+
+
+<li>
+
+メールの印刷でメッセージのボディしか印刷されず、ヘッダーが印刷されない。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=12505">12505</a>)</li>
+
+<br>
+
+
+<li>
+
+ニュースメッセージをキャンセルしても、スレッドペーンから削除されない、
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=8216">8216</a>)</li>
+
+<br>
+ 
+<li>
+
+"Send Later" は、ローカルメールフォルダに階層が無い場合には失敗する。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18260">18260</a>)</li>
+
+<br>
+
+<li>
+
+検索とフィルタのダイアログが起動した際に、これらのフィーチャのバックエンドのコードが
+
+実装されていないために、これらのダイアログのどの機能も使うことが出来ない。</li>
+
+
+<br>
+
+<li>
+
+もしローカルフォルダを1000メッセージ以上持っていると、実際のローカルフォルダの
+
+階層構造のメールアプリケーションをポイントできない。より大きなフォルダは
+
+ロードする時間が長すぎるかも知れないし、莫大な量のメモリを消費するかも知れない。
+
+<br>
+
+<li>
+
+Mac OS 限定:</li>
+
+<br>
+
+<ul>
+
+<li>
+
+サブフォルダを作る際の問題: ２つの層より多い階層のサブフォルダを作ることが出来ない。
+
+代替手段: 親のフォルダを先手区する代わりに、ファイルメニューから New:Folder を選択し、
+
+ダイアログで親のフォルダを選択しなさい。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24942">24942</a>)</li>
+
+<br>
+
+<li>
+
+もしあなたがカードをアドレスブックに追加し、メッセージを編集する際に、新しいカードは
+
+自動保管を受信者フィールドで行えない。代替手段: 閉じて再度アプリケーションを開きなさい。
+
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18629">18629</a>)</li>
+
+<br>
+
+<li>
+
+起動した後、どんなメニューを使うよりも先に、ブラウザの内部をクリックして
+
+前面に出さなければならない。
+
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9701">9701</a>)</li>
+
+<br>
+
+</ul>
+
+<li>
+
+Linux 限定:</li>
+
+<br>
+
+<ul>
+
+<li>
+
+ツールバーボタン下のテキストが読めない。代替手段としては、
+
+これを見なさい。 <a href="http://www.mozilla.org/unix/dpi.html">http://www.mozilla.org/unix/dpi.html</a>.</li>
+
+</ul>
+
+<br>
+
+<li>
+
+メール編集ウインドウでの問題:</li>
+
+<br>
+
+<ul>
+
+<li>もしあなたがキーボードショートカットを使う場合、正しく機能するが、選ばれた
+
+ショートカットと同じテキストの文字がメッセージにも挿入される(例えば "Show 
+
+Message" のための "m")
+ 
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24072">24072</a>) </li>
+
+<br>
+
+<li>プレーンテキストでの返信を選んだ際に、多すぎるスペースが引用された
+テキストの上に挿入される。
+ 
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24375">24375</a>) </li>
+
+<br>
+
+<li>
+
+タイプをはじめるまで、カーソルがメッセージ中に現れない。
+
+
+<br>
+
+<li>
+
+メッセージ中に強制改行を埋め込みたいと思っても、受け取ったメッセージが
+
+折り返されない。</li>
+
+
+<br>
+
+<li>
+
+メッセージが多すぎる垂直のホワイトスペースを含むか、足りない。</li>
+
+
+<br>
+
+<li>
+
+もしプレーンテキストを(HTMLの代わりに) 使ったときに、エンターキーを次の
+
+行に移動する際に押さなければならない。</li>
+
+
+<br>
+
+<li>
+
+プレーンテキストを編集ウインドウで使う際には、この行をあなたの設定ファイルに
+
+追加しなさい:</li>
+
+
+<br>
+
+<p><tt>user_pref("mail.identity.id1.send_html", false);</tt></ul>
+
+</ul>
+
+
+
+<hr WIDTH="100%">
+
+<h2><a NAME="INTL_ISSUES"></a></h2>
+<h2>
+M13における国際化について</h2>
+<font color="#000000"><font size=+1>機能、フォント、国際化のテストに関する最新の情報については
+<a href="http://www.mozilla.org/quality/intl/intlstatus.html">このページ</a>
+にアクセスしてください.</font></font>
+<p><b><font size=+1>一般的な情報:</font></b>
+<blockquote><b>I18n化の作業とマイルストーン</b> についてのドキュメントは
+<a href="http://www.mozilla.org/projects/intl/i18n-milestones.html">ここ</a>にあります.
+<br><b>I18n Beta 1 の今後の計画 </b>は <a href="http://www.mozilla.org/projects/intl/beta1.html">ここ</a>にあります.
+<br><b>I18n Beta 1 メール/ニュース 機能の仕様について</b> は
+<a href="http://www.mozilla.org/projects/intl/mail-news-i18n-spec.html">ここ</a>にある.
+<br><b>ローカライズ版モジラ</b> <a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">関連ドキュメント</a>.
+<br><b>/非英語版モジラに関するメーリングリストと関連ニュースグループのリスト</b>
+は <a href="http://www.mozilla.org/projects/intl/nonenglish.html">ここ</a>です.
+<br><b>ウィンドウズ用ビットストリームサイバービットユニコードフォント (バージョン 2.0)</b>
+は <a href="ftp://ftp.netscape.com/pub/communicator/extras/fonts/windows/">ここ</a>にあります.
+このフォントをダウンロードする前に詳細について
+<a href="ftp://ftp.netscape.com/pub/communicator/extras/fonts/windows/READMEfirst.txt">READMEFirst
+のファイル</a> を読むこと.
+<br><b>国際化に関するバグレポート: </b>は <font color="#000000"><a href="http://bugzilla.mozilla.org/">Bugzilla</a>を使ってください</font>.
+<br><b>質問とそれに対するコメントあれこれ:</b>
+<ul>
+<li>
+<b>I18n --> </b><font color="#000000"><a href="news://news.mozilla.org/netscape.public.mozilla.i18n">netscape.public.mozilla.i18n</a></font></li>
+
+<li>
+<b>L10n --> </b><a href="news://news.mozilla.org/netscape.public.mozilla.l10n">netscape.public.mozilla.l10n</a></li>
+
+<li>
+<b>Testing--> </b><a href="news://news.mozilla.org/netscape.public.mozilla.qa.i18n">netscape.public.mozilla.qa.i18n</a></li>
+</ul>
+</blockquote>
+ <b>注意: 実行ファイルの名前は<font color="#FF0000">mozilla</font><font color="#000000">です.
+(開発中に一時期、apprunner.exeになったことがあります.)</font></b>
+<br>
+<p><a NAME="genprefs"></a><b>プリファレンス(設定)/インストーラ:</b>
+<ul>
+<li>
+<font color="#000000">M13バイナリのマック用インストーラはWindows版とかUNIX版に比べてむちゃくちゃ遅いです. -- お願いだから我慢してください.</font></li>
+
+<li>
+<font color="#FF0000">設定ファイル, </font><b><font color="#000000">prefs.js.</font></b><font color="#FF0000">
+をエディタで直接編集したいという要望はほとんどありません</font>
+プロファイルマネージャの改良のおかげで <b>プロファイルの流用</b> と <b>プロファイルの新規作成</b> の両方がとても簡単になりました. 以前にメールサーバの設定に失敗したことがある方は、メッセンジャーウィンドウの
+メニューから <b>Edit | Account Setup</b>を実行してみてください.</li>
+
+<li>
+モジラでは すでにインストールされているCommunicator 4.x のプロファイルが流用可能です.
+4.xで作ったものを流用するか、モジラで新規に作成するのかを選んでください.</li>
+
+<ul>
+<li>
+プロファイル取り込み画面はモジラをインストールして最初に起動したときのみ表示されます.</li>
+
+<li>
+表示されない場合はこのようにしてプロファイルマネージャを起動してください: <b>mozilla -installer
+(Unix &amp; Win). </b>マック版では <b>Mozilla Profile Manager</b> ファイルを使って
+起動してください.</li>
+</ul>
+
+<li>
+もしモジラの古いバージョンを使ったことがある場合, M13を動かす前に
+<b>mozregistry.dat (Win)/Mozilla registry (Mac)/registry (Unix) </b>
+という名前のファイルを削除することをお勧めします. (マック版で 
+<b>Netscape Registry</b>ファイルを削除しないでください.
+これは Communicator 4.x.用です). 
+この作業をお勧めするのは、かつてのマイルストーン、
+つまりM10の時にレジストリの動作方法が変わり、
+M9以前のそれまでのレジストリではM9以降がうまく動かなくなったからです.
+これらのファイルの在処については、リリースノートの
+<b>Files Used or Created</b> というセクションにありますので読んでください.</li>
+
+<li>
+<b>mozregistry.dat or registry,</b>ファイルを削除してM13を起動したら 
+新しいプロファイルを作るかどうか訊かれます.
+既存プロファイルの名前にすればそれが使われます。なければ
+"mozProfile"という名前で"デフォルト"プロファイルが生成されます.
+後者の場合、デフォルトフォルダの<b>prefs.js</b>というファイルを
+既存のプロファイルディレクトリの同じファイルで上書きできます.
+(<b>デフォルトのプロファイル名</b> はM9から(M8,あるいはそれ以前の) <b>prefs50.js</b>
+から <b>prefs.js </b>に変わっていますのでご注意を.)</li>
+
+<li>
+<b><font color="#FF0000">非アスキーのパス名に関する注意: </font></b><font color="#000000">For
+プロファイルマネージャとメール/ニュースアカウントの設定マネージャでは
+非アスキー文字のフォルダ名、あるいはパス名は避けるのが無難です.
+これらのマネージャの国際化はまだ十分ではありません. (でも、メール/ニュース
+のアカウント名については非アスキーでもちゃんと表示できます)</font></li>
+
+<li>
+詳細はこのリリースノートに書いてある、あなたのプラットフォームにおけるインストール方法のところをよく読んでください.</li>
+</ul>
+<b><font size=+1>ブラウザ:</font></b>
+<ul>
+<li>
+<b>パフォーマンス</b>: 一般に, M13 は非英語圏のユーザが常用のブラウザとして
+十分使えると言われてます. でも、このセクションに書いてあるようなバグがいくつか残っています.</li>
+
+<li>
+<b>コピー/ペースト: </b>モジラM13では非アスキーデータのコピー/ペースト 操作はマック版を除いて
+そこそこ動いています。マック版では、ブラウザウィンドウからのコピーに現在問題があります.
+詳細は、次のエディタの章を参照してください.</li>
+
+<li>
+<b>非アスキー文字のウィンドウタイトル表示:</b> 各プラットフォームのウィジェットの仕様に依存するので
+OSがサポートしていない非アスキー文字を含んでいると現時点のモジラではウィンドウタイトルは表示できません 
+(ブラウザ,エディタ, メッセンジャ, 等々.) . 例えば, 韓国語版のOSでは韓国語のタイトルは表示できますが
+日本語版WIndowsでは表示できません, など.</li>
+
+<li>
+<b>サイドバー: </b>非アスキー文字の名前はちゃんとここ、つまり関連サイトに表示されるはずです.
+時々、非アスキー文字の表示が崩れることがあります. これはこのバグがまだ残ってるようです
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24557">24557</a>,
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24933">24933</a>.</li>
+
+<li>
+<b>ブックマーク: </b>ブックマークタイトルは非アスキー文字が表示可能です. (注意:
+インターネットエクスプローラのお気に入りはまだ正しく取り込めませんし、
+非アスキー文字をちゃんと表示できません. 
+バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=6770">6770</a>を見てください.)</li>
+
+<LI><B>Accept-Language: </B>Accept-Language のためのバックエンドに関する作業は
+M13で完了しました. ユーザインタフェース設定についてはまだですが
+モジラは現在<B>prefs.js</B>に以下のような記述があるとHTTPヘッダに
+Accept-Languageの値を送出します:
+e.g.<B> user_pref("intl.accept_languages", "ja,en"); </B>. 
+ランゲージの値(書式の中の<B>ja</B> と <B>en</B> ) の記述については
+<A href="http://www.egt.ie/standards/iso639/iso639-1-en.html">ISO-639-1</A>
+に従ってください. 
+<li>
+<a NAME="fontprefs"></a><b>フォント設定:</b> フォント設定のためのバックエンドは
+前のM12で既に完成しています. フォント設定のためのユーザインタフェースも
+M13で実装されました. でも設定用ユーザインタフェースからのフォントの変更はまだちゃんと動きません
+-- M14でちゃんと動くようにするつもりです. それまでは,
+全てのプラットフォームで、フォント名とフォントサイズは <b>prefs.js </b>
+を編集して設定してください -- M12では, Windows環境でしか動きませんでした. 
+M13におけるフォント設定に関する新たな注目点を挙げておきます。
+フォントに関する作業はまだ終了していませんし、ここで挙げた仕様については今後
+変更される可能性があります.:</li>
+
+<ul>
+<li>
+フォントは5つの一般的なフォントファミリー: <b>serif,
+sans-serif, monospace, cursive </b>and<b> fantasy</b>に設定されています</li>
+
+<ul>
+<li>
+モジラでは "Times", "Courier",and "Arial" のようなあまり一般的でないフォントファミリー名を
+対応するCJK フォントにマッピングするようなことはしません. 
+ウェブページデザイナは、自分の思い通りの表示を求めるならば一般的なフォントを使うべきです.</li>
+</ul>
+
+<li>
+フォント設定はCommunicator 4.xで行われていた文字コードセットによるものよりも、言語/文字 グループ
+(ユニコードは除きます)によるものの方が原則的です.</li>
+
+<LI>フォントサイズは: <B>variable</B> あるいは <B>fixed</B>に設定可能です. 
+<UL>
+<LI><B>variable</B> 設定は<B>デフォルトのHTML表示</B> に対してのみ有効であり、以下のように指定します: 
+<UL>
+<LI><B>user_pref("font.default", "sans-serif");</B> -- 
+デフォルトは<B>serif</B>体になっていますからHTMLのデフォルト表示を
+<B>sans-serif</B>にしたいのでない限りこの設定をしない方がいいです. 
+このHTML表示のデフォルトには<B>serif</B>もしくは<B>sans-serif</B>が
+利用されているほとんどでしょう.
+</LI></UL>
+<LI><B>fixed</B> 設定は <B>monospace</B> フォント設定にしか影響しません.
+e.g. メールのメッセージ表示. 
+<LI><B>フォントのサイズ</B>は<B>ポイント</B>ではなく<B>ピクセル</B>
+で表されます. </LI></UL>
+
+<LI>ここで挙げている設定については、アクセスしたページで利用されている特定のフォントがない場合にフォントを選択する際の参考になるでしょう.
+
+<LI>非アスキーのフォント名はサポートされています. フォント設定のためのユーザ
+インタフェースはまだ動きませんが、<B>prefs.js</B>を直接編集して非アスキーの
+フォント名、およびそのフォントサイズを設定すれば利用可能です.
+prefs.jsにもし非アスキー文字が含む場合、UTF-8でエンコーディングされている必要があるので
+くれぐれも注意してください. UTF-8 を扱えるエディタを見つけるのは大変かも知れません. 日本語フォント名
+は日本語版Windows95/98/NT4やMacintoshの環境で動くことが確認されています. <font color="#000000">
+利用するフォント名は、Windows環境であればコントロールパネルのフォント、マックであれば、
+Capsキーユーティリティ、UNIXでは<b>font family name</b>で表示される例の赤ボールド体の部分と同じものを
+指定してください. フォント名にはスペースが入ってても構いません.:</font></li>
+
+
+<p><br><font color="#000000">-adobe-</font><b><font color="#FF0000">courier</font></b><font color="#000000">-medium-o-normal-0-0-75-m-0-iso8859-1</font>
+<br>
+<li>
+<font color="#FF0000">韓国語や中国語のフォント名がその言語環境のOSで使えるか試してみて我々にお手伝い
+ください. </font>以下は日本語版のWindowsでprefs.jsを直接編集してフォント設定を行う方法を
+示したものです. キーポイントは <b>prefs.js</b> が非アスキー文字を含む場合、UTF-8でエンコードされている
+必要がある、という点です.:</li>
+
+<ul>
+<li>
+現在利用している <b>prefs.js</b> を見つけ, コピーしてバックアップをとります, そして
+オリジナルの <b>prefs.js</b> を例えば <b>jpprefs.txt</b>.のように名前を変更します.</li>
+
+<li>
+メモ帳のようなテキストエディタを使って, <b>jpprefs.txt</b> を以下のテンプレートを利用して
+フォント名とフォントサイズを直接編集します:</li>
+
+<ul>
+<li>
+<b>user_pref("font.name.serif.ja", "Font_name_in_JPN");</b>
+-- 以下に示す５書体が設定可能です.</li>
+
+<LI><B>user_pref("font.size.variable.ja", 12);</B> -- サイズは
+<B>ピクセル</B>で表されます. これはHTMLのデフォルト表示を制御します. 
+<LI><B>user_pref("font.size.fixed.ja", 12); </B>-- サイズは
+<B>ピクセル</B>で表されます. これは &lt;pre&gt;.. &lt;/pre&gt; 
+で括られたテキストや プレーンテキストのメール表示のような
+<B>monospace</B>表示を制御します.
+
+<ul>
+<li>
+選択可能なフォントタイプ: <b>serif, sans-serif, monospace, cursive </b>and<b>
+fantasy</b>.</li>
+
+<li>
+選択可能な言語グループは: <b>ja, zh-TW, ko, zh-CN, x-western, x-central-euro,
+x-cyrillic, el, tr, x-unicode, zh-TW</b>です.
+<LI>選択可能なフォントサイズカテゴリ: <B>variable, fixed.</B> 
+<LI>選択可能なフォントサイズ:<B>ピクセル</B>の整数. </LI></UL>
+<LI>メールのメッセージ表示についてFor mail message viewing, due to Bug <A 
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=26182">26182</A>, 
+フォントの型とサイズは現在、表示するメールで利用されている言語を
+ベースにするのではなく、<B>x-unicode</B>の設定のみに制御されるように
+なっている.例えば, 
+<UL>
+<LI><B>user_pref("font.name.serif.x-unicode", 
+"Font_name_in_JPN");</B> --&gt; HTMLメールの表示用
+<LI><B>user_pref("font.name.monospace.x-unicode", 
+"Font_name_in_JPN"); --&gt; </B>プレーンテキストメールの表示用
+</LI></UL>
+
+<li>
+日本語でフォント名を入れた場合、フォント名がどういうスペルになっているか
+特に注意を払ってください -- アルファベットの部分が全角ローマン体になってるか?
+スペースは半角か全角か? どういうフォント名になってるかはコントロールパネルの
+フォントユーティリティプログラムを使って確認できます.
+<LI>他にも、以下のような行を<B>prefs.js</B>に記述することにより
+スクリーンの解像度を設定できます.
+<UL>
+<LI><B>user_pref("browser.screen_resolution", 120);</B> 
+</LI></UL></LI></UL>
+
+<li>
+日本語フォント名を使って <b>jpprefs.txt </b>の編集ができたら、
+モジラに同梱されている以下に示すコマンドラインユーティリティ(Windows版、UNIX版だけです)
+を使ってUTF-8エンコーディングに変換する必要があります.このコマンドは<b>モジラのバイナリファイル</b>
+と同じディレクトリにあります. 変換ユーティリティの使い方に関する詳細については
+ <a href="#utf8convert">下記</a>を参照してください.</li>
+
+<ul>
+<li>
+<font color="#000000">nsconv -f Shift_JIS -t UTF-8 jpprefs.txt prefs.js</font></li>
+
+<ul>
+<li>
+<font color="#000000">注意: <b>nsconv</b> は既存の同じ名前のファイルを置き換えません
+ -- だから何をするよりもまず、オリジナルのprefs.jsを別に名前に変更しないといけないのです.</font></li>
+</ul>
+
+<li>
+<font color="#000000">これで、モジラは日本語フォント名を読み込むことができるようになり、
+設定が反映できるようになりました.</font></li>
+</ul>
+
+<li>
+<font color="#000000">付加的な日本語の編集は</font><b>jpprefs.txt
+</b>にしか利用できません.
+これは、変換ユーティリティがこのファイルのUTF-8版を生成するためだけのものだからです
+-- UTF-8エンコーディングデータを直接扱えるエディタを持ってなくてもいいように.
+<b>注意:</b>
+Windows 2000 (現在ベータ版です)では, UTF-8エンコーディングで保存できるエディタが付きます. 
+他にこのようなエディタを知ってたら, <a href="mailto:momoi@netscape.com">私</a>にメールか
+なにかで教えてください.</li>
+
+<li>
+フォント設定ユーザインタフェースが使えるようになればこんな手で直接編集する必要はなくなります
+これはM14で使えるようになる予定です.
+
+<LI><B>Unixでのフォント表示に関する問題と今後の方向性:</B> 
+<UL>
+<LI>現在、"1行の高さ"はいつもLatin 1フォントの高さを基準にコーディング
+している.このため、Unixでは、他の言語のフォント(例えば日本語とか)だと
+Latin 1フォントよりも高いので行間が狭く、時には重なって表示されてしまう
+ことがある.これは、ユーザインタフェースでもHTML表示にも影響を与えている
+近い将来, この行の高さを表示している言語を基準にするように変更をするつもり
+である. これは、例えば日本語のテキストを表示する時には1行の高さが高くなる
+必要があるってことだ.これで状況はかなり改善されると思う.
+<BR></LI></UL></LI></UL></LI></UL>
+
+<li>
+<b>UNIX環境でのBig 5 フォント:</b></li>
+
+<ul>
+<li>
+<b>big5.et-0</b>接頭辞のついたBig5フォントが使用可能になりました.</li>
+
+<li>
+<b>修正済!: UNIX環境でのBig 5 フォントと日本語かなの表示: </b>M12では, UNIXマシン上に
+TaipeiのようなBig5フォントがあると, Big5変換テーブルのエラーのために,
+日本語かな文字が表示できませんでした. このバグ
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21209">21209</a>
+はM13で改修されました.</li>
+</ul>
+
+<li>
+<b>フォーム: </b>非アスキーデータのフォーム入力は普通に動きます.</li>
+
+<ul>
+<li>
+<b>修正済!: </b>マルチパートファイルのアップロードがM13で動くようになりました --> バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=8209">8209</a>.</li>
+
+<li>
+<b>修正済!: </b>あるウェブページのフォームがジャバスクリプト を使ってて
+フォームからの入力データに対しescape()関数を使ってると, 
+M12では JS がwebページで使われているのと同じキャラクタセットではなく
+ユニコードデータを返しました. このため、本来入力されたのとは異なるデータがformから渡され、
+検索が失敗しました.バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=22594">22594</a>.</li>
+
+<li>
+フォームからのデータを入力してその結果のページが表示されているときに「戻る」ボタンが押されると
+非アスキーデータの入力のために空白しか表示されない、というバグがあります.
+参考. バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=22580">22580</a>.</li>
+</ul>
+
+<li>
+<b>GFX ウィジェット/エンダー </b>は デフォルトで<b>有効</b> になってます. これは、M13で全ての
+入力欄がCJK IMEの利用も含めて非アスキー文字の入力をサポートしているからです.
+詳細については次のエディタのセクションを読んでください.</li>
+</ul>
+
+<ul>
+<li>
+<b>M13 コンバータ</b>: M13では特に新規のコンバータはありません. ここ、
+<a href="#charlist">M13の全てのコンバータのリスト</a>を見てください.</li>
+
+<ul>
+<li>
+<b>UNIX環境での文字集合のテスト: </b>M7のリリースノートでも述べたように,
+サポートする文字集合のうちアルメニア語,タイ語,ベトナム語を除いてはちゃんと表示できています. 
+引続き、UNIX上のいろんな文字集合を表示してみて, もし問題を発見したら<a href="http://bugzilla.mozilla.org/">バグ報告 </a>してください. M13でサポートしてる文字集合のリストは<a href="#charlist">下記</a>にあります.
+<font color="#FF0000">是非UNIX版のバイナリをダウンロードしてサポートしてる文字集合を確かめてください
+</font>(注意: これらの言語を表示するにはそれぞれに適切なフォントを用意する必要があります.
+-- Linuxではpcf.gz フォーマットで. ISOやサイクリックBDFフォントについては,
+<a href="http://czyborra.com/charsets/iso8859.html">このサイト</a> にアクセスしてください,
+また多バイト言語用フォントについては <a href="ftp://ftp.etl.go.jp/pub/mule/intlfonts-1.2-split/">この
+サイト</a> にアクセスしてください. もし、完全な国際フォント集が欲しければ, 
+<a href="ftp://ftp.etl.go.jp/pub/mule/">その1つ上のディレクトリ</a>にある<b>intlfonts-1.2.tar.gz</b>のファイルを見てください. BDFフォントからPCFフォントへのフォーマット変換には, 
+<b>bdftopcf</b> ユーティリティを利用してください. 必要なフォントをインストールしたりして
+フォントディレクトリ、つまり<b>mkfontdir</b>が更新されたら、<b> xset +fp `pwd`</b>などのようにフォントパスをrehashしてください .)</li>
+</ul>
+
+<li>
+<b>View | Character Set メニュー:</b></li>
+
+<ul>
+<li>
+<b>注意: </b>現在の文字集合のメニュー (メニューそのものの名前も含みます) は暫定的なもので
+M14で新規の単一動的メニューに置き換えられます. ブラウザの新しいメニューの仕様については
+<a href="http://www.mozilla.org/projects/intl/uidocs/browsercharmenu.html">ここ</a>に公開されています.
+"文字集合" という名前は"文字符号化方式"に置き換えられます. 
+M13で,かなりの作業が完了しています -- 上記の仕様にしたがって --
+文字符号化方式メニューを、動的に、カスタマイズできるように、また最終的に,プラグインから
+新しい文字集合を直接指定できるようにするためです. 動的文字符号化方式メニュー
+は <a href="http://www.mozilla.org/projects/intl/extensibility-model.html">このドキュメント</a>
+で議論されている拡張性モデルを利用します.</li>
+
+<li>
+<b>ブラウザウィンドウでは7つの文字集合メニューが</b>、コンポーザ/エディタ,メッセンジャでは
+6つの文字集合メニューが用意されているのがわかると思います.</li>
+
+<li>
+"ISO"とかのサブタイトルがついている最初の6つの固定的なメニューは
+長い間暫定的なメニューで構成され,カスタマイズもスクロールもできません.</li>
+
+<li>
+7つめの文字集合メニュー -- ブラウザウィンドウにしかありません -- は
+現在開発中ですがM14で置き換えられる予定の動的メニューです.
+これは最初最初の6つ併せたものと同じメニューです. 
+LinuxやWIndows環境下ではスクロールしませんし,マック版を除いて一覧全てが表示されないと思います.
+でも、動的メニューはスクリプトから生成され、カスタマイズ可能になります.</li>
+
+<li>
+M13で実装されている2種類のメニュー、あるいはその一方は実際には冗長です.
+でも害はありません.他のコンポーネントの文字集合メニューはまだ現時点では
+固定で、動的メニューになっていません.</li>
+</ul>
+
+<li>
+<b>View | Character Set メニュー用例:</b></li>
+
+<ul>
+<li>
+meta charsetタグがなく、正しく表示できないページにでくわした際に
+異なる文字集合に変更できます.
+文字集合の自動判別をONにしてるのに正しく表示できなかったら,
+まず自動判別をOFFにしてから文字集合メニューを操作してみてください.
+そうしないと文字集合の自動判別による選択の方が手動によるメニューの選択よりも
+優先される. 次のメニューアイテムのチェックマークが表示されません.</li>
+</ul>
+
+<li>
+<a NAME="chardet"></a><b>ブラウザメニュー</b>中の<b>文字集合自動判別モジュール </b></li>
+
+<ul>
+<li>
+<b>中国語</b>,<b>日本語</b>,<b>韓国語</b><b>東アジア(CJK)</b>,<b>中国語(略式 &amp; 旧式)</b>,
+<b>ウクライナ語</b>,<b>ロシア語</b>の文字集合自動判別モジュールは文字集合メニューの中にメニュー
+があります.</li>
+
+<ul>
+<li>
+ロシア語、ウクライナ語の自動判別について報告されてるバグによる<font color="#000000"><b>ロシア語 &amp; ウクライナ語の: 表示崩れ</b> はM13で修正されています.
+参考. バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17094">17094</a>
+&amp; <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17103">17103</a>
+-- 両方ともM13では修正されています. )</font></li>
+</ul>
+
+<li>
+文字集合自動判別モジュールは同時には1つしか選択できません.
+一度、選択すると、OFFにしない限り,ONのままです.</li>
+
+<li>
+文字集合自動判別は文字集合メニューからある文字集合を明示的に選択した時に有効になります.
+自動判別を実際に反映させたいときは,一旦OFFにし、新たに文字集合をメニューから選択してください.
+文字コード自動判別の機能をあなたの選んだ言語で書かれたたくさんのwebページで動かしてみて
+どうすればいいか我々に教えてください. バグを 
+<font color="#000000"><a href="http://bugzilla.mozilla.org/">Bugzilla</a></font>に登録するか,
+あなたのコメントを <a href="news://news.mozilla.org/netscape.public.mozilla.i18n">netscape.public.mozilla.i18n</a> <font color="#000000"><a href="news://news.mozilla.org/netscape.public.mozilla.qa.i18n">netscape.public.mozilla.qa.i18n</a></font>に送るかしてください.</li>
+
+<li>
+M10までは, この文字集合自動判別は <b>prefs.js</b>で設定しないと動作しませんでした.
+
+文字集合自動判別メニューがこれと全く同じ機能を果たすようになったので
+この設定はもう必要ありません. 
+このメニューは下の<b>cahrset_name</b>の部分に入るものを制御します
+
+</li>
+</ul>
+</ul>
+
+<ul>
+<ul>user_pref("intl.charset.detector", "<b>chardet_name</b>");</ul>
+
+<ul>
+<br>
+文字集合自動認識がOFFだと, <b>chardet_name</b> の値は空になります. 
+前に報告されてるように,単体テストは"mozilla.exe"ファイルと同じディレクトリにある
+"Detectch.exe"ユーティリティから可能です.
+もし、文字集合自動認識モジュールに関連してprefs,jsを修正したい,あるいは
+このコマンドを使いたい場合は<a href="http://www.mozilla.org/quality/intl/chardetect.html">ここ</a>
+の使用方法を読んでください.</ul>
+
+<ul></ul>
+
+<li>
+<b>HTTP 文字集合</b>: モジラはサーバによる自動生成のHTTP文字集合を正しくサポートします.
+(優先順位は: HTTPの文字集合 > ドキュメント内のメタ文字集合 > ブラウザのメニューでの選択 です.)</li>
+
+<li>
+<b>View | Page Source:</b> 異なる文字集合に対しては一部しか動きません.</li>
+
+<ul>
+<li>
+正しく動作するもの:</li>
+
+<ul>
+<li>
+サーバで生成された正しいHTTP文字集合、あるいはメタ文字集合がドキュメントに
+指定されてる場合</li>
+</ul>
+
+<li>
+他には,正しく表示できない場合がある.これは2つのケースがある:</li>
+
+<ul>
+<li>
+自動判別を使って正しく読み込まれたページ -->
+ソースの表示は行われるが、文字が正しく表示されない.</li>
+
+<li>
+上記の条件に当てはまらない、かつ文字集合メニューを手動で選択して
+ページが正しく読み込まれた場合 --> ソース表示は行われるが
+正しく表示できない.</li>
+</ul>
+</ul>
+
+<li>
+<b>中日韓文字の禁則処理:</b> モジラにおける禁則処理はJIS X 4501を修正したものを仕様として実装されている
+詳細はニュースグループ <b>netscape.public.mozilla.i18n</b>に投稿されたFrank Tangによる 
+<a href="news://news.mozilla.org/3802D551.D4335C9D%40netscape.com">このニュースの記事</a> 
+を読んでください..</li>
+
+<li>
+<b>中日韓文字の簡単な印刷</b>: M13のWIndows版、Mac版で動作しています.
+Linux版で動くかどうかは検証されていません -- たぶん動かないんじゃないかな.</li>
+
+<li>
+<b>マック: Baltic文字の表示:</b></li>
+
+<ul>
+<li>
+<b>ISO-8859-13</b>: Baltic ISO-8859-13文字を表示しようとして
+いくつかの大文字でdiacritical記号が欠落し、[base character]しか表示されないという問題に
+遭遇した経験があるかもしれない. <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9165">バグ
+9165</a>を見てください.</li>
+<ul>
+<li>
+<b>一例(One Workaround):</b></li>
+
+<ul>
+<li>
+1) 中央ヨーロッパ文字集(CE)を
+<a href="ftp://ftp.apple.com/Apple_Support_Area/Apple_Software_Updates/Czech/Macintosh/System/System_7.0.1/CZ-7.0.1-Install_1.image.sea.bin">このアップルのファイル</a>からインストールします.
+(このイメージをマウントするのにディスクコピーユーティリティが必要になります)
+このディスクイメージをマウントしたら,インストーラを使うのではなく,これをダブルクリックして
+システムファイルのディレクトリを開きます.
+この中に, CE (文字), Slovak (キーボードレイアウト), slovensk (キーボードレイアウト)が
+みつかると思います.これらのファイルをシステムフォルダにドラッグします. 
+あとはマックOSが正しい場所に移動してくれます.</li>
+
+<li>
+2) 次に, 中央ヨーロッパ文字のフォントを <a href="ftp://ftp.apple.com/Apple_Support_Area/Apple_Software_Updates/Czech/Macintosh/System/System_7.0.1/CZ-7.0.1-Fonts.image.sea.bin">このアップルファイル
+</a>から入手します. このイメージファイルをディスクコピーでマウントしたら, たくさんのCE用フォント
+がみつかると思います. これらをシステムフォルダにドラッグドロップします.
+あとはマックOSが正しい場所に移動してくれます.</li>
+
+<li>
+3) ステップ1 と 2 が完了したら, マックを再起動します. すると
+ISO-8859-13 (他に ISO-8859-4) 文字が正しく表示されてると思います.</li>
+</ul>
+</ul>
+
+<li>
+<b>中央ヨーロッパ文字 ISO-8859-2 の表示: </b>マックのバグのようです.
+-- 正しいフォントがシステムにあるのに"?"と表示される8ビット幅の文字があります.
+バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18095">18095</a>を見てください.</li>
+</ul>
+
+<li>
+<b>Java: <font color="#FF0000">Windows用のJava プラグイン.</font></b> Java
+プラグインはM13ではおそらく動きません. 最大の原因は,モジラのAPIが時々リリースされてる
+JRE/JDKプラグインと同期してないからです. 例えば,
+JDK/JRE1.3 プラグインはM13では動かないでしょう. M14でモジラとJavaプラグインの歩調を合わせる
+ためのバグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24487">24487</a>を見てください.
+以下に示すのはJavaプラグインをセットアップするための汎用的な方法です.
+モジラのAPIがJDK/JRE プラグインと歩調を合わすようになればJavaを有効にする手順として利用できます.</li>
+
+<ul>
+<li>
+モジラの上でJavaを動かすためには,もしインストーラでJREパッケージを
+インストールするオプションを選択すれば以下の手順は自動的に行われます.
+もし、インストーラの利用を選択しなかった場合,あるいはあなたが選んだパッケージ
+のインストーラがこのようなオプションを選択できない場合(例えば,JREパッケージ
+は現在モジラの配布版には含まれていません),あるいは自分でJavaプラグイン
+をアップグレードしたい場合は,以下に述べるいくつかの特別な手順が必要になります.
+<UL>
+<LI>まず初めに国際化版のJRE 1.2.2 あるいはそれ以降を<A 
+href="http://java.sun.com/jdk/">Javasoft</A>から入手します. 
+改良されたJavaをサポートするためにJRE1.3 (現時点ではベータ版です) 
+を利用することを推奨します.
+JRE パッケージはJDKリリースとして
+配布されており,ベータ版をダウンロードするには最初に登録する必要があります.
+Windows上にこれらのパッケージをインストールします. JRE 1.3 ベータだと
+JRE 1.2.2プラグインファイルよりも多くのアプレットが動くことがわかると
+思います.だから推奨するのです.
+将来のバージョンではプラグインのファイルはもっとサイズが小さくなるでしょう.
+
+<ul>
+<li>
+<b><font color="#FF0000">中日韓版 Windows 95/8 ユーザへの注意:</font></b> 
+これらのアジア版Windows 95/98上でJavaを使いたければ<b>i18n.jar</b> ファイルが含まれている
+<b><font color="#FF0000">国際化バージョン</font></b> の JRE がネイティブの文字コードからユニコード
+へ変換するのに必要になる -- これがないと, モジラを起動しようとしたところでクラッシュしてしまいます.
+NT4 だとこのようなクラッシュは起こりません. 中日韓版のWin95/98を使っていて
+JRE国際化版を持っておらず,起動直後のクラッシュに見舞われたことがあるなら,
+３つの <b>.dll ファイル</b>を <b>プラグイン</b>ディレクトリから削除して
+国際化版JREをインストールするまでJavaを無効にしておいてください.
+詳細は バグ <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21305">21305</a>
+の議論を見てください.</li>
+</ul>
+
+<li>
+<b>plugins</b>という名前のディレクトリをmozilla.exeと同じディレクトリに作ります.</li>
+
+<li>
+3つのファイル, <b>npjava11.dll</b>, <b>npjava12.dll</b>, and <b>npjava13.dll</b>を,
+<b>JREのbin</b> ディレクトリから step2で作成した<b>plugins</b> ディレクトリにコピーします.</li>
+
+<li>
+(この手順は,モジラが自動的にプラグインを探しますのでやってもやらなくても構いません.)
+<b>Java プラグイン コントロールパネル</b>があれば, Windowsのスタートボタン | プログラムメニューから
+見つけることができます. 以下の設定をチェックしてください.</li>
+
+<ul>
+<li>
+<b>基本:</b> Java プラグイン, Java コンソール (オプション), Jar をメモリ上にキャッシュ</li>
+
+<li>
+<b>詳細/高度</b>: Java プラグインをデフォルトで使用する, ジャストインタイムコンパイラが有効</li>
+
+<li>
+<b>プロキシ</b>: ブラウザの設定を利用する</li>
+
+<li>
+<b>認証</b>: (なし)</li>
+</ul>
+</ul>
+
+<li>
+いくつかのバグのために,動かないアプレットがあります.
+いくつかの文字列を表示するアプレットがあり,これまでに非アスキー文字を
+表示できないことがわかってます. 
+バグ<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=17169">17169</a>を見てください.
+文字列の表示を行うようなアプレットがあれば、あなたが気づいたことを
+<a href="news://news.mozilla.org/netscape.public.mozilla.qa.i18n">netscape.public.mozilla.qa.i18n</a>に書いてください.</li>
+</ul>
+</ul>
+<b><font size=+1>エディタ: </font></b>
+IMEの仕様に関しては、Tague Griffith による<a
+href="http://www.mozilla.org/projects/intl/input-method-spec.html">こちらの文書</a>
+を参照してください。(現在の、i18n(国際化)に関する技術担当者は<a
+href="mailto:ftang@netscape.com">Frank Tang</a>と<a
+href="mailto:erik@netscape.com">Erik van der Poel</a>です。)
+
+<ul>
+<li>
+<b>全般: </b>M13では、エディタは、HTMLコンポーザ(Composer)とプレインテキストエディ
+タ(メールを含む)の双方において、多くの言語に対して使いやすくなっています。</li>
+
+<li>
+<font color="#FF0000"><b>Windows における</b> <b>グローバルIME:</b></font> は、
+M13からサポートされるようになりました。これは、Makoto Kato &lt;<a
+href="mailto:m_kato@ga2.so-net.ne.jp">m_kato@ga2.so-net.ne.jp</a> &gt; の寄与によ
+るものであり、調整作業は Frank Tang &lt;<a
+href="mailto:ftang@netscape.com">ftang@netscape.com</a> &gt; によって行われまし
+た。グローバルIMEに関連するバグの報告先には、彼等2名を加えてください。</li>
+
+<ul>
+<li>
+グローバルIMEモジュールは、Windows 95/98/NT4 の各国語版へのアドオンとなっていま
+す。IMEモジュールには4種類あります(簡体字中国語、繁体字中国語、韓国/朝鮮語、日本
+語)。それらは、マイクロソフトのダウンロードサイトからダウンロードすることができ
+ます。それらをインストールすることによって、非CJK(中日韓)言語版のWindowsにおいて
+も、それらの言語を入力することができるようになります。また、CJK(中日韓)いずれか
+の版の Windowsを利用している場合でも、それらのモジュールを使うことによって、その
+オペレーティングシステムでサポートされていない言語を入力できるようになります。例
+えばWindows日本語版に、中国語と韓国語のモジュールをインストールすることができま
+す。ただし、オペレーティングシステムで既にサポートされている言語のグローバルIME
+をインストール<b><font color="#FF0000">してはいけません。</font></b>例えば、
+Windows日本語版に、日本語グローバルIMEをインストールしてはいけません。Windows
+2000では、より進歩したCJK(中日韓)言語のIMEが選択できるようになります。従って、
+Windows 2000 では、上記のアドオンを使用しません。</li>
+
+<li>
+グローバルIMEは、単体でインストールすることも、対応する言語用のWindowsフォントと
+一緒にインストールすることも可能です。後者は、<b>Global IME with Language
+Pack</b>と呼ばれています。私達は、Global IME with Language Pack の利用を推奨しま
+す。<a href="http://www.microsoft.com/windows/ie/features/ime.asp?">こちらのサイ
+ト</a>を参照し、説明を読んで必要なモジュールをダウンロードしてください。それらの
+グローバルIMEパッケージによって、 Start | Program | Microsoft Global IME 以下に
+取り扱い説明の文書も同時にインストールされます。
+</li>
+
+</ul>
+
+<li>
+<b><font color="#FF0000">コピー/貼り付けは、より国際的(i18n)に使いやすくなりまし
+た:</font></b> アプリケーション内での、非ASCII文字の基本的なコピー/貼り付けは、
+Mozillaの<font color="#FF0000">全ての領域で</font>動作するようになりました。ブラ
+ウザやメッセンジャー(Messenger)の表示ウィンドウからコピーして、そのアプリケーショ
+ン内の任意の編集フィールドに貼り付けできます。この機能は現在使用できる全ての言語
+で動作します。(Macintosh では、ブラウザウィンドウからのコピーはできません。また、
+他の場所でのアプリケーション内のコピー/貼り付けにも問題が残っているようです。)
+
+<b>注意:
+</b>
+アプリケーション間でのコピー/貼り付けはM13では完全ではありません。状況はプラット
+フォームによって異なります。下記を参照してください。</li>
+
+<ul>
+<li>
+一つのアプリケーション内でのコピー/切り取りと貼り付けは可能です。</li>
+
+<ul>
+<li>
+一つのテキストエリア内</li>
+
+<li>
+あるテキストエリアから他のテキストエリアへ(例:HTMLからプレインテキストエディタの
+テキストエリアへ)</li>
+
+<li>
+あるテキストフィールドから、HTML メールコンポーザ(Mail Composer)のテキストエリア
+へ(例:メール作成の題名のフィールドから、本文のテキストエリアへ)</li>
+
+<li>
+表示ウィンドウ(例:ブラウザ)からテキスト編集フィールド(例:フォーム、エディタ、メー
+ルコンポーザ(Mail Composer)など)へ</li>
+</ul>
+
+<li>
+<b>既知のバグ:</b> 以下に示す、<b>アプリケーション間</b>でのコピー/切り取りと貼
+り付けは、非ASCII文字に対しては動作しません。それらは現在作業中であり、M14では多
+くが解決されるでしょう。詳しくは、<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=8427">8427</a>を参照してくださ
+い。以下では、現状でコピー/貼り付けが動作しないであろう状況に関する一般的な認識を
+示します。一般的に、以下のうちのいくつかに関しては、Windowsでは動作するが、Macや
+Unixでは動作しないものです。現時点ではMacはUnicodeのクリップボードをサポートして
+おらず、それが一因となっています。バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=10816">10816</a>を参照してくだ
+さい。</li>
+
+<ul>
+<li>
+>Mozillaから他のアプリケーションへ -- 他のアプリケーションが、貼り付けの対象とな
+るフィールドにおいてUnicodeのクリップボードをサポートしていない場合。(注:
+Win95/98のように、プラットフォームがUnicodeのクリップボードをサポートしない場合
+には、対処できません。) MacやUnixではこの機能は動かないでしょう。</li>
+
+<li>
+>他のアプリケーションからMozillaへ -- プラットフォームがUnicodeのクリップボード
+をサポートしていない場合。WinNT4/2000では動作するでしょう。しかし、Win95/98では
+いくつかの場合に問題があると考えられます。MacやUnixでは、非ASCII文字に対しては、
+おそらく全く動作しないでしょう。全てのプラットフォームにおける、この問題に関する
+総合的なバグについては、バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=24010">24010</a>を参照してくだ
+さい。</li>
+</ul>
+</ul>
+
+<li>
+<b>エディタの Character Set メニューと保存: </b>新しい文書に対しては、
+その文書の保存に使いたい文字集合にエンコーディングを変更してから、<b>File | Save
+as</b>メニューを使って、その文字集合で文書を保存してください。バグ報告や意見は、
+<font color="#000000"><a href="http://bugzilla.mozilla.org/">Bugzilla</a></font>
+または、<font color="#000000"><a
+href="news://news.mozilla.org/netscape.public.mozilla.qa.i18n">netscape.public.mozilla.qa.i18n</a></font>
+へ送ってください。この機能には既知のバグがいくつか存在しています。</li>
+
+<ul>
+<li>
+文書は Character Set メニューで指定された文字集合で保存されます。(注:この挙動は、
+国際化エディタのユーザインタフェイス(International Editor UI)の仕様が実装された
+時点で変更されます。)</li>
+
+<li>
+現時点では、このメニューは文書の再読み込みを行いません。このメニューは文書の保存
+の際に他の文字集合で保存するためにのみ使用されます。このメニューは将来広範に作り
+なおされます。</li>
+</ul>
+
+<li>
+<b>Unix上での基本的IMEのサポート: </b>私達は<b>Red Hat 6.0 + kinput2 + wnn4 +
+glibc-2.1.1-6</b>で日本語入力のテストを行なっています。<b><font color="#FF0000">
+他のUnixプラットフォームや他の言語のIME上でのテストをしてくださる方を必要として
+います！</font></b></li>
+
+<li>
+<b>Unix上での(日本語)IMEのテストを手伝ってください！: </b>Unix上での日本語IMEや
+その他に関して、以下の種類のテストを必要としています。あなたの意見を<a
+href="news://news.mozilla.org/netscape.public.mozilla.i18n">netscape.public.mozilla.i18n</a>
+に送ってください。もしくは、Mozillaのバグ管理システム <font color="#000000"><a
+href="http://bugzilla.mozilla.org/">Bugzilla</a></font>を使ってバグを報告してく
+ださい。</li>
+
+<ul>
+<li>
+他のプラットフォームにおけるテスト -- 私達の参照用プラットフォームは Red Hat
+6.0です。</li>
+
+<li>
+XIMに基づく、他の日本語IME(フリーのものと、Wnn6+xwnmoなど商用のもの双方について)
+でのテスト。私達は kinput2 + wnn4 をテスト環境として使っています。他のIMEや変換
+サーバを使っている方の情報を必要としています。他のIMEが動作するのを確認できたら、
+私達に教えてください。何か特別な状態になった場合には、その情報も含めてください。
+</li>
+
+</ul>
+
+<li>
+<b>Unix上での中国語、韓国/朝鮮語IME</b>中国語IMEや韓国/朝鮮語IMEを使っている方の
+意見もお聞かせください。あなたが見付けた事についての情報を<a
+href="news://news.mozilla.org/netscape.public.mozilla.i18n">netscape.public.mozilla.i18n</a>に
+送ってください。</li>
+
+<ul>
+<ul>
+<li>
+私達はこれまでに、 <b>XCIN</b>を使って繁体字中国語を Mozilla上で使うことについて
+報告を得ています。XCINについては<a href="http://xcin.linux.org.tw/">こちらにある
+英語のページ</a>を参照してください。</li>
+
+<li>
+また、韓国/朝鮮語IMEを動作させることにも成功しています。韓国/朝鮮語のXIMEについ
+ての総合的な情報は、Jungshik Shinによる<a href="http://pantheon.cis.yale.edu/~jshin/faq/qa6.html">
+こちらの英語のページ</a>を参照してください。<b>hanIM</b>に特有の情報については、
+<a href="http://www.mizi.co.kr/">こちらの韓国語のページ</a>を参照してください。
+</li>
+
+</ul>
+</ul>
+
+<li>
+<a NAME="imebugs"></a><b>中日韓 IMEのバグ情報:</b></li>
+
+<ul>
+<li>
+<b>全てのプラットフォーム:</b></li>
+
+<ul>
+<li>
+M13においては、クラッシュを起すような重大なバグは発見されていません。</li>
+
+<li>
+中日韓 IME の基本的操作における最も重大なバグは既に修正されましたが、いくつ
+かの小さなバグが存在します。中日韓 IMEは現在ではかなりの酷使に耐えるように
+なっています。いくつかの
+<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&email1=ftang%40netscape.com&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&bugidtype=include&bug_id=&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&short_desc=IME&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&status_whiteboard=&status_whiteboard_type=substring&keywords=&keywords_type=anywords&field0-0-0=noop&type0-0-0=noop&value0-0-0=&newqueryname=&order=bugs.bug_id">
+現在のIMEのバグ</a>を参照できます。</li>
+
+</ul>
+
+<li>
+<font color="#000000"><b>Unix上: </b>
+UnixのIMEはバグは残っているが、かなり良い状態にあり、M13では極めて使いやすくなっ
+ています。</li>
+
+<ul>
+<li>
+<font color="#000000">
+IMEのステータスウィンドウの位置についてのバグは修正されました。バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=22326">22326</a>を参照してくだ
+さい。</font></li>
+
+</ul>
+</ul>
+
+<li>
+<b>フォームのパスワードフィールドへの入力に関するバグ:</b></li>
+
+<ul>
+<li>
+中日韓 IMEを使用している場合には、バグのために、フォームで入力されるパスワー
+ドを完全には隠すことができません。変換の候補を表示するウィンドウを開くと、打ち込
+んだキー入力が見えてしまいます。このバグを回避するために、パスワードを入力する際
+はIMEを切っておいてください。パスワードフィールドでは、このモードのみが使用でき
+ます。日本語IMEなどでは、通常は半角英数モードは直接入力モードと同じように動作し
+ますが、このバグのために、候補ウィンドウを開くと入力した内容が見られてしまうので、
+半角英数モードは使えません。従ってASCII(直接)入力モードのみを使うべきです。詳し
+くは、バグ<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=16940">16940</a>
+を参照してください。</li>
+
+</ul>
+
+<li>
+<b>ALT + テンキーで Latin 1 を入力する際のバグ:</b></li>
+
+<ul>
+<li>
+<a NAME="altnuminput"></a>
+M13では、エディタやメールコンポーザ(Mail Composer)において、ALT + テンキーで
+Latin 1 のアクセント付き文字を入力する際に、バグのために面倒な状態になります。入
+力された文字は文字列の最後ではなく、その一文字分左に追加されます。また、Latin 1
+文字を ALT + テンキーで連続的に入力することも困難です。バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=22206">22206</a>と<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=25280">25280</a>を参照してくだ
+さい。</li>
+
+</ul>
+
+<li>
+<b>重要なバグの修正:</b></li>
+
+<ul>
+<li>
+<b>中日韓 IME の強制的な確定</b> の機能はいくつかの領域で使用可能になってい
+ます。例えば、書式のメニュー項目を選択した場合や、編集フィールドの他の場所にカーソ
+ルを移動した場合、フォームで送信(Submit)ボタンを押した場合に、強制的に確定を行い
+ます。</li>
+
+<li>
+<b>AltGr の組み合わせ</b>は、国際化されたキーボードに対しても動作するようになり
+ました。ただし、現在でも一つだけ欠陥が残っています。AltGr キーとして押したキーの
+組み合わせが、メニューのショートカットキーとなっている場合には、メニューが開いて
+しまいます。バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=9333">9333</a>を参照してくださ
+い。</li>
+
+<li>
+<b>XIME のステータスウィンドウ</b> は、新しい入力があると位置を更新するようにな
+りました。</li>
+</ul>
+
+<li>
+<b>エディタのバグ報告</b> エディタのバグについて<a
+href="http://bugzilla.mozilla.org/">報告</a>を行う際には、
+報告するバグの種類に応じて、以下に示す人々にメールの写し(Cc)を送ってください。
+</li>
+
+<ul>
+<li>
+<b>Windowsでのキーボード入力、IMEに関するバグについては、</b></li>
+
+<ul>
+<li>
+buster@netscape.com,ftang@netscape.com,beppe@netscape.com を CC に追加して下さ
+い。</li>
+</ul>
+
+<li>
+<b>Macでのキーボード入力、IMEに関するバグについては、</b></li>
+
+<ul>
+<li>
+brade@netscape.com,ftang@netscape.com,beppe@netscape.com を CC に追加して下さい。</li>
+</ul>
+
+<li>
+<b>Linuxでのキーボード入力、IMEに関するバグについては、</b></li>
+
+<ul>
+<li>
+akkana@netscape.com,erik@netscpe.com,ftang@netscape.com,beppe@netscape.com を CC
+に追加してください。</li>
+</ul>
+
+<li>
+<b>複数のプラットフォームに共通するキーボード入力、IMEに関するバグについては、</b></li>
+
+<ul>
+<li>
+buster@netscape.com,brade@netscape.com,akkana@netscape.com,ftang@netscape.com,beppe@netscape.com
+を CC に追加してください。</li>
+</ul>
+</ul>
+
+<li>
+<b>M13 で可能になったことのまとめ</b></li>
+
+<ul>
+<li>
+<b>Windows, Mac, Unix </b>での<b>中日韓 IME</b></li>
+
+<li>
+<b>中日韓文字の強制的な確定</b>がいくつかの領域で実用になりました。 -- ただし、
+まだやり残している事もあります。</li>
+
+<li>
+<b>Windows上での、多くの1バイト文字言語のキーボード入力: </b>あなたの使っている
+言語とキーボードで問題を発見したら、<a href="http://bugzilla.mozilla.org/">バグ
+報告</a>をお願いします。</li>
+
+<li>
+<b>Mac上での多くの1バイト文字言語のキーボード入力: </b>
+Roman Australian,
+Brazilian, British, Canadian-CSA, Canadian-ISO, Canadian-French, Dutch,
+dv-Dvorak, dq-Dvorak-Qwerty, Finnish, Flemish, French, French-numerical,
+German, Italian, Norwegian, Spanish, Spanish-ISO, Swedish, Swiss French,
+Swiss German, Cyrillic Bulgarian, Cyrillic-Qwerty, Russian, Ukrainian.</li>
+</ul>
+</ul>
+<b><font size=+1>地域化(Localizability):</font></b>
+<ul>
+<li>
+<b>概要:</b> 
+Mozillaのキーとなる特徴の1つは、メニューやダイアログのUIを、任意の言語へ
+比較的容易に地域化します。
+ガイドラインの簡単な議論のために、フレームワークの節から下を見て下さい。
+商用向けのブラウザは、利用者の少ない言語へ、しばしば地域化されません。
+もし、あなたの母国語の速い次世代のブラウザを見たいなら、
+Mozillaは、それを現実にする
+<a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">素晴らしいチャンス</a>
+を提供します。</li>
+
+<li>
+<b>ボランティアの地域化プロジェクト:</b>
+現在、17のボランティアの言語プロジェクトが活動しており、更に参加するらしいです。
+もし、あなたのお気に入りの言語へMozillaを地域化することに興味があるのなら、
+<a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">このページ</a>
+が、その全てを解説しています。
+現在のプロジェクトは:
+<b>Bosnia, Brazilian, Catalan,
+Czech, Danish, French, Georgian, German, Greek, Hawaiian, Indonesian, Japanese,
+Norwegian (nynorsk), Polish, Spanish (es-CO), Spanish (es-ES), Thai</b>
+です。
+<font color="#FF0000">それらのいくつかは、M13キットを既に発表しています</font>。
+<a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">MozillaのL10n(地域化)のHow-toのページ</a>
+をチェックして下さい。</li>
+
+<li>
+<b>地域化のフレームワーク:</b></li>
+
+<ul>
+<li>
+<b>私達は、地域化のガイドラインを公表しました。</b>
+その他の言語へMozillaを地域化することに興味を持った人は、
+<a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">このドキュメント</a>
+を注意深く読まなければなりません。
+</li>
+
+<li>
+Mozillaを地域化する時、心に留める基本的な考え方がここにあります。
+Mozilla全体を翻訳するために、
+<a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">このドキュメント</a>
+を読み、
+そして、より早いバージョンから、翻訳同期化ツール(leveraging tool to synch up)
+を使って、管理された方法でそうしなければなりません。
+ちょっと2、3の句を翻訳する時、次のステップに従って下さい。
+</li>
+
+<ul>
+<li>
+<b>.xul</b>ファイルを直接地域化しないで下さい。
+全ての地域化は、対応した<b>.dtd</b>ファイルや、<b>.property</b>を
+置き換える必要があります。</li>
+
+<li>
+地域化した文字列は、<b>.xul</b>ファイルから抜かれ、
+<b>.dtd</b>、<b>.property</b>ファイルの中へ、現在、移されました。
+それらのファイルは、
+<b>../chrome/component_name/locale/en-US</b>
+ディレクトリの下に見付かります。
+それらは、
+../chrome/component_name/content/defaultdirectory
+の下に置かれた対応する<b>.xul</b>ファイルの名前に一致します。</li>
+
+<li>
+翻訳者はこれについて気にする必要はありませんが、もし、<b>.xul</b>ファイルを作成するなら、
+地域化された文字列を、対応する<b>.dtd</b>や<b>.property </b>ファイルへ抜き出す必要があります。
+(固定的な<b>.xul</b>ファイルによってよりも、scriptによってMozilla UIを作っているならば、
+それをプロパティファイルへ抜き出す必要があります。)
+地域化のために.XULのentityをDTDファイルへ抜き出すためには、
+<a href="http://www.mozilla.org/projects/intl/xul-styleguide.html">このドキュメント</a>
+を読んで下さい。</li>
+
+<li>
+Mozillaは、デフォルトの文字セットが、全ての<b>.dtd</b>ファイルは<b>UTF-8</b>であり、
+全ての<b>.property </b>ファイルは<b>escaped Unicode</b>であると仮定しています。
+もし、UIの文字列をnon-ASCIIのdataを使ったあなたの言語に変えるのならば、
+それらを適切なUnicode encoding formatを使って。
+(メニューを日本語へ変更できます。例えば、
+上で提案された方法を使っている<b>..chrome/navigator/locale/en-US/navigator.dtd</b>
+ファイルで、DTDファイルをUTF-8へ変換して下さい。)
+メニューの項目を一般に様々な言語にすることは、あなたのシステムではサポートしていません。
+例えば、ちょうど今は、US Windowsの日本語のメニューは可能ではありません。
+</li>
+
+<li>
+全てのnon-ASCII <b>.dtd</b>ファイルは、<b>UTF-8</b> encodingで、
+<b>.property</b>ファイルは、<b>escaped Unicode</b>でなければなりません
+-- それらはリソースファイルのためMozillaのdefault encodingです。
+それらのencodingのリソースファイルは、明示的にマークを付ける必要はありませんし、
+charsetが無ければ、Mozillaは、それらは<b>UTF-8</b>または
+<b>escaped Unicode</b>であると仮定するでしょう。</li>
+
+<li>
+<b><font color="#FF0000">要約:</font></b></li>
+
+<ul>
+<li>
+地域化のツールと、<a href="http://www.mozilla.org/projects/intl/xul-how2l10n.html">このページ</a>で言及されている方法を使うことが一番です。
+デモのために2、3の文字列をちょっとやった汚い翻訳を行いたいなら、
+心に上のステップを留めておかなければなりません。</li>
+</ul>
+
+<li>
+<a NAME="utf8convert"></a><b>UTF-8/escaped Unicodeの変換ユーティリティ:</b></li>
+
+<ul>
+<li>
+"<a href="http://rosette.basistech.com/demo.html">uniconv</a>"(WindowsやUnix用)、または、
+<a href="http://java.sun.com/products/jdk/1.2/">最新JDK</a>
+に含まれる"native2ascii"ユーティリティのような便利な変換ツールを使って下さい。
+</li>
+
+<li>
+<b>Mozillaのnsconv変換ユーティリティ</b>
+は、"jonas.utterstrom@vittran.norrnod.se"によって機能が向上しました。
+-- それはcharsetの別名を現在サポートしています。<b>: </b>
+オリジナルのnsconvは、
+<a href="mailto:ftang@netscape.com">Frank Tang</a>
+のサービスによるものです。
+<b>nsconv</b>は、あなたのmozillaを実行するdirectoryと同じところへインストールします。
+Mozillaの認識できるencodingのどれか、または、使われているこのユーティリティの
+ソースの中でチェックされているそれの別名を使うことができます。
+このユーティリティを使うための基本的なコマンドラインはここです。:
+</li>
+
+<ul>
+<li>
+<font color="#000000">schemaの使い方 --次の1つ:</font></li>
+
+<ul>
+<li>
+<b><font color="#000000">nsconv -f source_charsetname -t target_charsetname
+source_filename new_filename</font></b></li>
+
+<li>
+<b><font color="#000000">nsconv -f source_charsetname -t target_charsetname
+source_filename > new_filename</font></b></li>
+
+<li>
+<b><font color="#000000">nsconv -f source_charsetname -t target_charsetname
+&lt; source_filename > new_filename</font></b></li>
+</ul>
+
+<li>
+<font color="#000000">
+<b>source_charsetname </b>と
+<b>target_charsetname</b>のために、
+文字セットのメニューの括弧の中に見られる
+文字セットの名前を使えます。
+例えば、iso-8859-1, Shift_JIS, Big5, EUC-KRなど。
+target encodingには<b>UTF-8</b>と<b>x-u-escaped</b>を使って下さい。
+</font>
+</li>
+
+<li>
+<font color="#000000">
+このユーティリティは、既存のファイルを新しいアウトプットファイルへ置き換えないようです。
+故意に出力のファイルと同じ名前の既存のファイルがあったら、
+始めに、既存のファイルが消去されます。
+または、異なった名前で新しいファイルで出力されます。
+</font></li>
+</ul>
+</ul>
+</ul>
+</ul>
+
+<li>
+サポートされた<b>DTD/XML encoding定義</b> -- 
+<b>.dtd</b>ファイルの文字セットとしてUTF-8以外の文字セットを使えます。
+しかし、UTF-8以外の文字セットの使用は、Mozillaの地域化では勧告されていません。
+我々は、UTF-8をデフォルトと仮定します。
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=4431">Bug
+4431</a>に補足。</li>
+
+<li>
+<b>著しいbugs:</b></li>
+
+<ul>
+<li>
+<b>chrome.rdf file:</b> 
+locale directoryの下の<b>chrome.rdf</b>ファイルの中の定義は、
+特定の言語のバージョンに適当な異なったchromeへ切替えるために、
+または、別のchromeへ切替えるために使用されます。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=21647">21647</a>)
+のbugのために、この機能は、うまく動いていません。
+</li>
+
+<li>
+アクセスキーとコマンドキーのショートカットは、
+日本語のような言葉の中の省略した文字"..."の前に追加されると仮定されます。
+しかし、現在、アクセスキーは、
+<b>Save as ... (S)</b>のように、省略した文字"..."の後の最後に追加されます。
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=14110">14110</a>のbugを見て下さい。</li>
+</ul>
+</ul>
+<b><font size=+1>メール/ニュース (Windows および Linux 上でのみテスト済み):</font></b>
+<ul>
+<li>
+<b>パフォーマンス: </b>M13では大きな進歩が2つあり、メッセンジャー(Messenger)は非
+常に使いやすくなっています。私達は、ユーザがそれを試してみることを推奨します。
+</li>
+
+<ul>
+<li>
+メッセンジャー(Messenger)は数千ものメッセージを含むメールボックスを扱うことが可
+能になりました。標準的なユーザにとって、Mozillaは日常用いるメールクライアントと
+して適したものとなるでしょう。M13はあなたがMozillaメールについての経験を積んだり、
+その改良に参加し始めるための、よい機会となるでしょう。(注:サーバとの通信における
+パフォーマンスの改良に加え、preference(設定)によるメールの<b>アカウントの設定
+(Account Setup)</b> も、M12で可能になりました。) </li>
+
+
+<li>
+M13ではメッセージ表示のためのプログラムコードは書き換えられ、メッセージ表示の速
+度は測定可能な程向上しました。M12のユーザはこの速度の向上にすぐに気づくでしょ
+う。 </li>
+</ul>
+
+<li>
+<a NAME="mailprefs"></a><b>設定ファイル(Preferences file): prefs.js </b>(注: M8の時点では、こ
+の設定(preference)ファイルは<b>prefs50.js</b>と呼ばれていました。以降のマイルストーン
+では、このファイルは<b>prefs.js</b>と呼ばれています。)</li>
+<ul>
+
+<li>
+<b><font color="#000000">M13に関する一般的な情報:</font></b></li>
+
+<ul>
+<li>
+あなたが一度でも<b>プロファイルマネージャ(Profile Manager)</b>でプロファイルを作
+成したら、後は、メッセンジャーウィンドウ中の<b>Edit | Account Setup ...</b>メニュ
+ーを使うことで簡単にセットアップできます。メールに固有の設定(preference)を見る他に、
+<a href="#genprefs">こちらの章</a>にある、設定に関する一般的な問題を参照し
+てください。 </li>
+</ul>
+</ul>
+
+<li>
+<b>メールアカウントセットアップマネージャ:</b>もしあなたが、様々なメールサーバ、
+ニュースサーバや、複数のメールアカウントを利用するためのセットアップについてもっ
+と知りたいのであれば、<a
+href="http://www.mozilla.org/mailnews/arch/accountmanager.html">こちらの文書
+</a>を参照してください。また、メールアカウントの設定に関する将来的な仕様は
+<a href="http://www.mozilla.org/mailnews/specs/accounts/index.html">こちら</a>に
+記述されています。</li>
+
+
+<ul>
+<li>
+<b>SMTP サーバの設定:</b></li>
+
+<ul>
+<li>
+もし、あなたがSMTPサーバの設定をまだ行なっていなければ、メッセンジャー
+(Messenger)の起動後に、 <b>Edit | Account Setup ..</b>を選択して、差出し側(SMTP)
+サーバとユーザ名を指定しなくてはなりません。この作業は一回行えば結構ですが、設定
+されていない状態ではメールを送ることはできません。</li>
+
+</ul>
+
+<li>
+<b><font color="#000000">パスワード:</font></b></li>
+
+<ul>
+<li>
+メールサーバにアクセスしてメッセージをダウンロードする際に、ダイアログ上でパスワー
+ドの入力を求められます。もし、あなたがMozillaにパスワードを覚えておいて欲しいの
+ならば、<b>Edit | Account Setup ...</b>メニューから、各アカウントの下に付いてい
+る "server" の欄を選択し、 "Save password:" のボックスに印を付けてください。
+</li>
+
+</ul>
+
+<li>
+<b>IMAP サーバの設定:</b></li>
+
+<ul>
+<li>
+IMAPサーバに関係する様々なオプションを設定するには、 <b>Edit | Account Setup
+...</b>メニューを使います。</li>
+</ul>
+
+<li>
+<b>NNTP (News) サーバの設定:</b></li>
+
+<ul>
+<li>
+ニュースサーバを追加するには、<b>Edit | Account Setup ...</b>メニューを使います。
+ニュースサーバを追加した後、<b>File | Subscribe ...</b>メニューを使って、あなた
+の講読したいニュースグループを追加します。現時点ではサーバ上の全てのニュースグルー
+プを一覧する方法はありません。<b>Subscribe...</b>メニューから手作業でニュースグ
+ループを追加してください。</li>
+
+<li>
+ニュースの記事のヘッダにcharset(文字集合)のパラメータが指定されている場合には、異なる言語
+で読むことが可能になりました。charset(文字集合)パラメータが無い場合にも、自動的に識別、表
+示するためにブラウザのメニュー上で<a href="#chardet">自動識別モジュール</a>を有
+効にすることも可能です。現時点では、中国語のニュースグループ上のメッセージの多く
+においてはcharset(文字集合)パラメータが指定されていないので、中国語で読むのは一般的に難し
+くなっています。</li>
+
+</ul>
+
+<li>
+<b>POP メールの設定:</b></li>
+
+<ul>
+<li>
+各アカウントについていくつかの異なるオプションを設定するには、<b>Edit |
+Account Setup ...</b>メニューから、アカウントの下のサーバ設定を選択します。</li>
+
+
+<li>
+メッセージをPOPサーバからダウンロードした後にも、それらをサーバ上に残しておく設
+定も可能です。</li>
+</ul>
+
+<li>
+<b>HTMLメール、プレインテキストメール選択オプション:</b></li>
+
+<ul>
+<li>
+HTMLで送信するか、プレインテキストで送信するかを、アカウントに対する<b>各々のサー
+バ</b>に対して設定可能です。メッセンジャー(Messenger)の左の枠でサーバが選択され
+ていない場合には、アカウントマネージャ(Account Manager)の一覧で<b>最初(一番上)のサーバ</b>の設定
+が既定値として使われます。将来的には、デフォルトのメール送信のオプションがユーザイ
+ンタフェイス上から利用できるようになるでしょう。</li>
+</ul>
+
+<li>
+<b>非ASCII文字のアカウント名:</b>メールやニュースのアカウント名として、非ASCII文
+字が利用できるようになりました。それらは<b>prefs.js</b>ファイルに保存されます。
+prefs.js中で非ASCII文字を扱う場合には、UTF-8エンコーディングであるということに注
+意してください。もしあなたがprefs.jsをエディタで見たとしたら、そのエディタが
+UTF-8を表示できるものでない場合には、その内容を正しく見ることはできないでしょう。
+また、prefs.jsファイルを編集し保存するには、UTF-8形式で保存できるエディタが必要
+です。そうでなければ、prefs.jsは破壊され、利用できなくなります。もしあなたが非
+ASCII文字を含むprefs.jsファイルを編集するならば、prefs.jsファイルのバックアップ
+を作成し、prefs.jsファイルではなく、バックアップファイルの方を編集してください。
+</li>
+
+<li>
+<b>非ASCII文字のディレクトリパス名?:</b>メールのメッセージや要約のファイルを格納
+する場所を変更することも可能です。現時点では、非ASCII文字はパス名に含んではいけ
+ません。</li>
+</ul>
+
+<li>
+<b>POP メッセージと IMAP ヘッダのダウンロード :</b></li>
+
+<ul>
+<li>
+この領域では、M13においてパフォーマンスがさらに向上しました。</li>
+
+<li>
+<b>注:</b>いくつかのPOPサーバは、一つのアカウントに同時に複数のアクセスがあった
+場合に上手く扱えません。そのような場合には、安全のために常に一つしか接続しないよ
+うにしてください。</li>
+</ul>
+
+<li>
+<b>ブラウザでメール中のリンクを表示する:</b>メッセージ中のURLリンクをクリックし
+た時に、もし、ブラウザウィンドウではなくメッセンジャー(Messenger)のウィンドウに
+表示されるようならば、ブラウザのメニューから<b>Debug | URI Dispatching | Enable
+Dispatching</b>を選択してください。これによって、メールメッセージ中のURLリンクの
+内容はメッセンジャー(Messenger)ウィンドウ上には表示されず、ブラウザのウィンドウ
+上に表示されるようになります。近い将来には、これはデフォルトの動作となり、メッセ
+ンジャー(Messenger)のウィンドウ上にはリンクの内容は表示されなくなるでしょう。
+</li>
+
+<li>
+<b>メールに関連する様々な国際化機能はM13においてどのように動作するか:</b></li>
+
+<ul>
+<li>
+<b>アドレス帳: </b>(中日韓文字を含む)非ASCII文字の入力、編集、表示をサポートして
+います。以下の機能を利用可能です。</li>
+
+<ul>
+<li>
+<b>カードの欄への非ASCII文字の入力</b></li>
+
+<li>
+<b>一覧の表示枠 -- </b> 国際化された、適切な並び順で一覧できます。 (Windows
+と Macintosh のみ。)</li>
+
+<li>
+<b>各カードの表示枠 -- </b>非ASCII文字を表示できます。</li>
+
+<li>
+<b>既にあるカードの再編集 </b>非ASCII文字の項目を含むカードも再編集可能です。</li>
+
+<li>
+<b>アドレス帳での新規メッセージボタン: </b>新規メールの "To:"ヘッダに対して、任
+意の言語による名前を持ち込み、動作させることが可能です。</li>
+
+<li>
+<b>メール作成ウィンドウにおけるアドレスの抽出: </b>全ての非ASCII文字の名前につい
+て、正常に動作し、表示可能です。</li>
+
+<li>
+<b>アドレスの自動補完: </b>一部動作します。アドレス帳の項目が非ASCII文字を含んで
+いる場合には、それらは正常に表示されます。しかしながら、非ASCII文字による照合は、
+M13では動作しません。</li>
+
+
+<li>
+<b>バージョン4.5、もしくはそれ以降のアドレス帳の取り込み: </b>バージョン4.5もし
+くは、それ以降のコミュニケーター(Communicator)のアドレス帳の取り込みが可能になり
+ました。(注:コミュニケーター(Communicator) 4.0xによって作成された<b>.ldif</b>ファ
+イルは、UTF-8ではなく、オペレーティングシステムの標準の文字コードで保存されてい
+るため、取り込みはできません。)</li>
+
+<li>
+<b>バグ:</b></li>
+
+<ul>
+<li>
+Unixにおいてはアドレス帳の並べ変えは正常に動作しません。</li>
+</ul>
+</ul>
+
+<li>
+<b>多言語メールの閲覧: </b><font color="#FF0000">全てのプラットフォームで動作し
+ます。</font></li>
+
+<ul>
+<li>
+適切にMIMEエンコードされたヘッダと正しいcharset(文字集合)パラメータの付いた本文
+からなるメッセージは、IMAP、POP3、NNTPのいずれのサーバ上でも閲覧することができま
+す。</li>
+
+<li>
+現時点では、View | Character Set メニューは、間違ったMIME charsetラベルの上書き
+や、MIME charsetの指定されていない(Latin 1以外の) メッセージの閲覧には利用できま
+せん。 </li>
+
+<li>
+もしあなたが多言語フォントやUnicodeの領域をカバーするようないくつかのフォント (
+中国語、日本語、韓国語のフォント + ヨーロッパ言語のフォント) を持っているならば、
+サポートされている全ての言語について、メッセージやヘッダを表示するために利用でき
+ます。私達はContent-Typeヘッダのcharset(文字集合)パラメータに注目して、適切なフォ
+ントを選んでいます。あなたの閲覧しているメッセージに不適切なパラメータが付いてい
+るのでなければ、言語を切り替えるためにCharacter Set メニューは必要ありません。
+Windows用のbasic mono-weightの多言語フォントが必要ならば、 <a
+href="ftp://ftp.netscape.com/pub/communicator/extras/fonts/windows/">ここ</a>か
+ら Bitstream Cyberbit font 2.0を入手可能です。メールのフォント設定は <a
+href="#fontprefs">上記</a>のブラウザの項目に示された通り、prefs.js の設定にも影
+響されます。</li>
+
+<li>
+初期には、いくつかのバグのために、タイ語(Windows-874, TIS-620)で書かれたメールメッ
+セージがMozillaでは表示できませんでした。それらは既に修正されており、現在はそれ
+らのエンコーディングで送付されたメッセージを閲覧することができます。</li>
+
+<li>
+<b>ニュースの閲覧: </b>は動作します。ニュース記事に適切なMIME charsetが示されて
+いる場合には、多言語のニュース記事の閲覧が可能です。しかしながら、ニュースグルー
+プへの投稿は常にMIMEを許すというわけではないので、charsetを付けるという機構がう
+まく働かない事もあるという事に注意してください。</li>
+
+<li>
+<b>バグ:</b></li>
+
+<ul>
+<li>
+送り主の名前は、メッセージ表示ウィンドウにおいては正常に表示されますが、スレッド
+表示枠においては、Latin 1以外の場合は正常に表示されません。 (中日韓文字の名前は点々で
+表示されます。)バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=8405">8405</a></li>
+
+</ul>
+</ul>
+
+<li>
+<b>非ASCII文字の添付の表示: </b>通常は動作しますが、いくつかバグがあります。</li>
+
+<ul>
+<li>
+添付は、それが添付されているメールの本文の文字集合と同じ文字集合であるか、添付の
+ヘッダで明示的にcharset(文字集合)が示されているか、添付がHTMLファイルであって、
+Meta タグに文字集合が適切に指定されている場合に見ることができます。添付に
+charset(文字集合) パラメータが指定されておらず、その文字集合がメール本文の文字集
+合とも異なっている場合は、 Characterメニューで文字集合を添付に合わせても、その添
+付を見ることはできません。上記の添付に関する文字集合の識別は、ブラウザのメニュー
+で有効になっている場合には、明示的な文字集合の指定がなくても動作します。</li>
+
+<li>
+<b>異なる言語による複数の添付:</b>は、各添付のヘッダが正しいcharset(文字集合)パ
+ラメータを持っているか、添付ファイルのMetaタグに文字集合が適切に指定されている場
+合には、charsetメニューで変更することなく表示可能です。もし、あなたがMozillaを使っ
+て複数の添付を作り、それらの各添付のMetaタグに文字集合が指定されていれば、
+MozillaはMetaタグの情報を使って、各添付毎にContent-Typeヘッダのcharset(文字集合)
+パラメータを生成します。</li>
+
+<li>
+<b>ASCIIメッセージへのLatin 1の添付:</b> M12においては、生の8ビットLatin 1文字を
+含む添付を charset(文字集合)パラメータに us-asciiが指定されているメール本文に添付した
+場合には、 Mozillaは添付を正常に表示できませんでした。M13では、そのような場合に
+メッセージの文字集合をASCIIではなくISO-8859-1と見倣すことで、この問題を解決し
+ました。詳しくは、バグ <a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=20997">20997</a> と <a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=22209">22209</a> を参照してく
+ださい。</li>
+
+<li>
+<a NAME="mailchardet"></a><b>日本語の添付と自動識別:</b></li>
+
+<ul>
+<li>
+Auto-Detectメニューによってブラウザに対して文字集合の自動識別モジュールを設定した
+場合には、メールの添付の文字集合も自動識別します。文字集合の識別モジュールの設定方
+法は、<a href="#chardet">上記</a>を参照してください。
+
+<li>
+現時点では、日本語 EUC-JP の添付を表示する際に異常になるバグがあります。この問
+題に対処するために、Windoes上のメッセンジャー(Messenger)でのみ動作する、メール専用の
+文字集合の識別機能を用意してあります。(注:この識別機能はEUCのバグが修正され次第、削
+除されます。)それが設定されると、メッセンジャー(Messenger)中ではブラウザの識別機能ではなく、
+専用の機能が使用されるようになります。この識別機能はブラウザの識別機能がoffになっ
+ている場合であっても動作します。メールメッセージに添付された日本語EUCファイルを
+見るためには、この対処法を利用することを推奨します。ユーザインターフェイスからは、
+この機能を設定することはできませんが、以下のようにしてこの機能を利用できます。
+</li>
+
+<ul>
+<li>
+In the <b>pres.js file, </b>insert the following line:</li>
+<b>pres.js ファイル</b>に、以下の一行を追加してください:</li>
+
+<ul>
+<li>
+user_pref("mail.charset.detector", "jaclassic"); &lt;-- コミュニケーター(Communicator) 4.x で使
+われている識別モジュール</li>
+</ul>
+</ul>
+</ul>
+
+<li>
+<b>印刷: </b>基本的な印刷は可能です。現時点では、幾分原始的です。本文を印刷する
+ことはできますが、ヘッダは印刷できません。</li>
+</ul>
+
+<li>
+<b>View | Character Set メニューとスレッド表示枠の再読み込み:</b></li>
+
+<ul>
+<li>
+メニューを変更することで、スレッド表示枠の再読み込みを適切に行ないます。これによっ
+て、現在のCharacter Setメニューの設定と一致していない、MIMEエンコードされていな
+いヘッダを表示できるようになりました。しかしながら、MIME charset情報を含まないヘッ
+ダや本文、添付については、Character Setメニューを変更した場合でも適切に表示する
+ことはできません。</li>
+
+</ul>
+
+<li>
+<b>IMAPとローカルの非ASCIIフォルダ名:</b> Latin 1の名前は表示可能です。(中日韓の
+ような)多バイト文字からなるフォルダ名の表示はまだ完全ではありません。バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=7130">7130</a>(IMAP)と、<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=7844">7844</a>(ローカルフォル
+ダ)を参照してください。</li>
+
+<li>
+<b>スレッド表示枠のヘッダに関する国際化された並べ替え: </b> については、一部の
+Unixのロケールにおいていくつかの問題が残っているものの、全てのプラットホームで
+<b>題名(Subject)</b>ヘッダに対して良好に動作します。<b>送り主(Sender)</b>の項目に関しては、中
+日韓文字を適切に表示できないため、テストを行うことができません。並べ替えは、使用
+するオペレーティングシステムにおける、その言語に関するデフォルトの方法に従って行
+われます。日時による並べ替えも、同様に動作します。</li>
+
+<ul>
+<li>
+<b>Linux における並べ替え:</b></li>
+
+<ul>
+<li>
+Latin 1 に対する並べ替えで問題があるようです。現在調査中です。</li>
+
+<li>
+いくつかの日本語ロケール名に関しては、並べ替えは動作しますが、その他の日本語ロケー
+ル名に関しては動作しません。ロケール名の読み換え(alias)が必要と考えられます。こ
+の問題は現在調査中です。バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=18338">18338</a>を参照してくだ
+さい。</li>
+
+</ul>
+</ul>
+
+<li>
+<b>国際化された日時の書式:</b>はNT4、Win9x、Macにおいては、全てのロケールで動作
+します。書式は使用しているオペレーティンの日時の書式の設定に従って用いられます。
+</li>
+</ul>
+
+<li>
+<b><font color="#000000">Latin 1 および日本語の添付やページの送信:</font></b></li>
+
+<ul>
+<li>
+<b>File | Send Page</b>は、
+メッセージにローカルのファイルを添付する以外の働きもします。</li>
+
+<li>
+添付するページが Meta タグの HTTP-Equiv にcharset(文字集合)の情報を含んでいる場
+合には、Mozillaは添付のヘッダにcharset(文字集合)パラメータを加えることに注意して
+ください。</li>
+
+</ul>
+
+<li>
+<b>送信に関連するM13のバグ: </b>M13には、送信に関するいくつかのバグがあります。</li>
+
+<ul>
+<li>
+インライン表示されるような添付を含んでいるようなメッセージに対して、インライン形
+式で返信(reply)や転送(forward)をしようとする場合には、添付は引用されません。ただ
+し、添付形式での転送は正常に動作します。バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=23931">23931</a>を参照してくだ
+さい。</li>
+
+<li>
+Meta タグに文字集合が指定されているページを送信する際には、適切なcharset(文字集
+合)が添付に付けられますが、HTTP で文字集合が指定されているページを送信する際には、
+charset(文字集合)は添付には付けられません。このバグはM14では修正されています。バ
+グ<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24940">24940</a>を参照し
+てください。</li>
+
+<li>
+M13では、返信や転送において、元のメールと同じcharset(文字集合)が最初から設定され
+ません。これは、M14では元のメールの本文の文字集合を反映するように修正されていま
+す。バグ<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=3979">3979</a>を参
+照してください。
+
+</ul>
+
+<li>
+<b>他の言語によるメッセージの送信: </b>新規メール作成ウィンドウから<b>View |
+Character Set メニュー</b>を用いることによって、多くの言語によってメールを送るこ
+とができます。あなたがメッセージを作成したい文字集合を選択してから、メッセージを
+作成してください。<font color="#FF0000">ただし、現時点ではチェックマークは表示さ
+れません。 </font>他の言語によるメッセージの送信をどのように行なっているか、私達
+に情報を送ってください。情報は、<a
+href="news://news.mozilla.org/netscape.public.mozilla.qa.i18n">netscape.public.mozilla.qa.i18n</a>
+まで送ってください。</li>
+
+<li>
+<b><font color="#000000">Latin 1 メールメッセージの作成:</font></b></li>
+
+<ul>
+<li>
+M11以降では、 Latin エンコーディングで8ビット文字になる文字をHTMLメールとして送
+信する際には、 HTMLの実体参照ではなく8ビット文字そのものを使い、選択されたエンコー
+ディングに含まれない、いくつかの特別な文字についてのみ、CER(いわゆるHTMLの実体参
+照)やNCR(数値による参照)に変換していました。M13では、Latin 1に含まれる、非ASCII部分
+の全ての文字をHTMLの実体参照で扱うという、以前の方法に戻されました。</li>
+
+<li>
+プレインテキストのメールで8ビット文字になる文字を送信する際には、通常はQPエンコー
+ディングを用います。ISO-8859-1におけるユーロ通貨記号のように、選択されたエンコード
+に含まれない文字は、"?"に変換されます。私達は、現時点ではこの方法がより親切な方法
+であると考えています。
+</ul>
+
+<li>
+<b>選択されたエンコーディングに含まれない文字を送信する際の、一般的な代替手法:
+</b></li>
+
+<ul>
+<li>
+HTML メールでは、CER または NCR が用いられます。</li>
+
+<li>
+プレインテキストでの送信を選択した場合には、存在しない文字は "?" で置き換えられ
+ます。私達は将来的には、その文字をサポートするような、UTF-8やその他のエンコードを
+選択肢として提案するでしょう。</li>
+</ul>
+
+<li>
+<b>ドメイン名の補完</b>:は動作するようになりました。ユーザ識別子のみが入力された場合
+には、Enterキーが押された時に、自動的にデフォルトのドメイン名が補完されます。</li>
+
+<li>
+<b><font color="#000000">Latin 1 や日本語におけるメッセージ送信状態の要約:
+できません。</font></b>この機能は正常に動作しません。</li>
+
+<br>
+<table BORDER COLS=3 WIDTH="100%" >
+<tr>
+<td>
+<center><b>メッセージ送信の特徴</b></center>
+</td>
+
+<td>
+<center><b>Latin 1 (ISO-8859-1)</b></center>
+</td>
+
+<td>
+<center><b>日本語 (iso-2022-jp)</b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b>ヘッダ (題名(Subject), アドレス)</b></center>
+</td>
+
+<td>
+<center><b>Yes</b></center>
+</td>
+
+<td>
+<center><b>Yes</b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b>本文 - HTML</b></center>
+</td>
+
+<td>
+<center><b>Yes </b>(8ビット文字はHTMLの実体参照に変換されます。)</center>
+</td>
+
+<td>
+<center><b>Yes</b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b>本文 - プレインテキスト</b></center>
+</td>
+
+<td>
+<center><b>Yes </b>(8ビット文字はQPエンコーディングによって送信されます。
+選択された文字集合がその文字を含まない場合は、 "?" によって代替されます。)
+</center>
+</td>
+
+<td>
+<center><b>Yes</b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b>返信/転送 ヘッダ</b></center>
+</td>
+
+<td>
+<center><b>Yes</b></center>
+</td>
+
+<td>
+<center><b>Yes</b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><b>返信/転送 HTML本文</b></center>
+</td>
+
+<td><b>Yes</b> - <b>POP メール</b>, <b>IMAP</b>, <b>ニュース</b>(いくつかのバグがあります)</td>
+
+<td><b>Yes</b> - <b>POP メール</b>, <b>IMAP</b>, <b>ニュース</b>(いくつかのバグがあります)</td>
+</tr>
+
+<tr>
+<td>
+<center><b>返信/転送 プレインテキスト本文</b></center>
+</td>
+
+<td><b>Yes</b> - <b>IMAP</b>, <b>POP</b>, <b>ニュース</b>(いくつかのバグがあります)</td>
+
+<td><b>Yes</b> - <b>IMAP</b>, <b>POP</b>, <b>ニュース</b>(いくつかのバグがあります)</td>
+</tr>
+
+<tr>
+<td>
+<center><b>返信/転送 インライン添付</b></center>
+</td>
+
+<td>添付は<b>引用されません。</b>バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=23931">23931</a>を参照。</td>
+
+<td>添付は<b>引用されません。</b>バグ<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=23931">23931</a>を参照。</td>
+
+
+<tr>
+<td>
+<center><b>添付による返信</b></center>
+</td>
+
+<td><b>Yes.</b></td>
+
+<td><b>Yes.</b></td>
+</tr>
+
+<tr ALIGN=LEFT VALIGN=TOP>
+<td>
+<center><b>添付の送信</b></center>
+</td>
+
+<td ALIGN=LEFT VALIGN=TOP><b>Yes</b> (送信 - ローカルのファイルとウェブページ)</td>
+
+<td ALIGN=LEFT><b>Yes </b>(送信 - ローカルのファイルとウェブページ)</td>
+</tr>
+
+<tr>
+<td>
+<center><b>ヘッダと本文におけるコピーと貼り付け</b></center>
+</td>
+
+<td><b>Yes </b>(アクセント文字もコピー可能)</td>
+
+<td><b>Yes </b>(Mozillaの内部では可能)</td>
+</tr>
+</table>
+</ul>
+<b>Latin 1 と日本語のメッセージ作成の際の注意:</b>
+<ul>
+<ul>
+<li>
+<b>Latin 1 メールの作成:</b></li>
+
+<ul>
+<li>
+アクセント付き文字については、<b>コピー</b>を実行できるアプリケーションであれば、
+どこからでも(例:メッセンジャー(Messenger)のメールウィンドウ、ブラウザウィンドウ)、
+ヘッダや本文へコピー/貼り付けを行うことが可能です。また、非ASCII文字をコミュニケー
+ター(Communicator) 4.xからMozillaへコピーすることもできます。</li>
+
+<li>
+キーボードを使って、題名(Subject)などのヘッダ項目にアクセント付き文字を入力する
+ことも可能です。英語キーボードを使って Latin 1 の上位ビット文字を入力するには、
+ALTGr + 0 + テンキー を使う方法が利用できます。(例:右ALTキー + 0232)。ただし、バ
+グのため、 ALT+テンキーを使うのは面倒です。詳しくは、エディタの項目を参照してく
+ださい。 </li>
+
+<li>
+メッセージを送信する前に、<b>View | Character Set</b>を使って文字集合の名前を忘
+れずに選択してください。</li>
+
+<li>
+基本的なMIMEへの準拠: ヘッダのQエンコーディング、本文のアクセント付き文字に対する
+QPエンコーディングによって行なっています。</li>
+</ul>
+
+<li>
+<b>日本語メールの作成:</b></li>
+
+<ul>
+<li>
+本文では基本的な日本語入力が可能です。また、ヘッダや本文への日本語の入力/コピー
+も、Mozilla内部からであれば可能です。さらに、コミュニケーター(Communicator)4.xか
+らMozillaへ日本語データをコピーすることもできます。</li>
+
+<li>
+メールはISO-2022-JPで送信されます。ヘッダはBエンコーディングされます。(文字集合
+切り替えには、 JISX0208-1990/83 のエスケープシーケンスを用います。)</li>
+
+<li>
+メッセージを送信する前に、<b>View | Character Set</b>を使って日本語
+(ISO-2022-JP)を忘れずに選択してください。</li>
+
+</ul>
+
+<li>
+<b>他の文字集合によるメールの送信</b>は<font color="#FF0000">可能です。</font>
+それらの新しい文字集合(例:<b>中央ヨーロッパ文字、キリル文字、ギリシャ文字、UTF-8、タ
+イ文字、その他</b>)について、試してください！</li>
+
+<ul>
+<li>
+メール本文の入力においては、キーボードの種類を判別してフォントを適宜変更すること
+が可能ですが、いくつかの国際化されたキーボードに関しては、対応付けにバグがあるか
+もしれません。もし、あなたが使っている文字集合/言語でそのようなバグを発見したら、
+<a href="http://bugzilla.mozilla.org/">こちら</a>に送ってください。</li>
+
+</ul>
+</ul>
+</ul>
+<b><font size=+1>メール/ニュース (Macへの対応)</font></b>
+<ul>
+<li>
+Mac上では国際化機能のテストはまだ行なっていません。確実には保証できませんが、
+WindowsやLinuxで利用できる機能の多くは、Macでも動作するでしょう。</li>
+
+</ul>
+<a NAME="charlist"></a><b><font size=+1>M13で利用可能な文字集合変換機能の一覧:</font></b>
+
+<p><b>1バイト文字系:</b>
+<ul>
+<li>
+<b>Western</b> (ISO-8859-1, Windows-1252, MacRoman), 
+<b>Central European</b> (ISO-8859-2, Windows-1250, MacCE),
+<b>South European/Esperanto/Maltese</b> (ISO-8859-3),
+<b>Baltic/North European</b>(ISO-8859-4, Windows-1257),
+<font color="#000000"><b>Baltic/North European</b> </font>(ISO-8859-13),
+<b>Cyrillic</b> (ISO-8859-5, Windows-1251, KOI8-R, ISO-IR-111 aka ECMA-Cyrillic, MacCyrillic, CP-866),
+<b>Arabic</b> (ISO-8859-6, Windows-1256) - (仕様には含まれない。商用ビルトでは削除の可能性あり。)
+<b>Greek</b> (ISO-8859-7, Windows-1253, MacGreek),
+<b>Hebrew</b> (ISO-8859-8 aka Windows-1255) - (仕様には含まれない。商用ビルトでは削除の可能性あり。),
+<b>Turkish</b> (ISO-8859-9 aka Latin5, Windows-1254, MacTurkish),
+<b><font color="#000000">Nordic/North European</font> </b>(ISO-8859-10 aka Latin6),
+<b>Celtic</b> (ISO-8859-14),
+<b>Western</b> (ISO-8859-15),
+<b>Armenian</b> (ARMISCII-8),
+<b>Thai</b> (TIS-620 aka Windows-874),
+<b>Ukrainian</b> (KOI8-U, MacUkrainian),
+<b>Vietnamese</b> (VISCII, Windows-1258, VIET-VPS, VIET-TCVN5712),
+<b>その他の Mac 用エンコーディング</b> (MacCroatian, MacIcelandic, MacRomanian).</li>
+</ul>
+<b>多バイト文字系:</b>
+<ul>
+<li>
+><b>Japanese</b> (Shift_JIS, EUC-JP),Unicode (UTF-7, IMAP4-modified-UTF7- IMAP のフォルダ名のために必要) 
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/release-notes/m13-detail.html">英語版</a> 2000/01/28</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/release-notes/m13-detail.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

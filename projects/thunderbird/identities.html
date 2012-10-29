@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>複数 ID のサポート</title>
+<link rel="alternate" hreflang="en" modified="February 6, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/thunderbird/identities.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>複数 ID のサポート</h1>
+<p>Mozilla Thunderbird 0.5 には新しい機能として、一つのアカウントで複数の ID をサポートする機能が備えられています。これは、同じメールアカウントに集約されるような複数の電子メールアドレスを使っているユーザーにとってパワフルな機能です。次のようなシナリオを考えてみましょう：</p>
+<blockquote>
+  <p>あたなは、仕事用アドレスと個人用アドレス（例：thelizard@mozilla.org と partylizard@foo.com）の両方のメールを受け取るメールアカウントを一つ持っています。現在は、この二つの ID のうちの一つがあなたのアカウントに関連づけられています。新しいメールを送信する際や、あるメッセージを返信／転送する場合、Thunderbird はアカウントに関連づけられた方の ID を常に使用します。しかし、これは混乱を招きます。特に、もう一方のアドレス宛に送られてきたメッセージに返信する場合です。なぜなら、受信者があなた宛に送った時に使ったアドレスとは違うアドレスからのメッセージを受け取るためです。さらに、ある特定の送信メッセージに対して、この二つのアドレスのうちどちらを使ったら良いのか簡単には判断できません。Thunderbird は、アカウントを作成した時に使用された ID を表示するだけです。この問題を解決するのが複数 ID のサポート機能なのです！</p>
+</blockquote>
+<p>この機能には幾つかのコンポーネントがあります：</p>
+<ul>
+  <li>新しいメール作成ウィンドウを開くと、Thunderbird はドロップダウンボックスに全アカウントの全 ID を表示します。このドロップダウンリストには、各アカウントの全ての ID が含まれています。これで、リストから正しい ID を選択して、アカウントのどの ID を使ってもメッセージを簡単に送ることができます。</li>
+  <li>メッセージを返信／転送する場合の高度な ID 検出機能。Thunderbird は、そのメッセージの受信者を検索し、送り主があなたに対してメッセージを送る際に使用した ID を選択します。この ID がメール作成ウィンドウでの標準の ID となります。</li>
+  <li>異なる ID には異なる設定。仕事用の ID では vCard を添付して、個人用の ID では署名を添付したいかもしれません。同じアカウントに関連づけられた複数の ID を使えるようにすることで、ユーザーは、そのアカウントの各 ID のプロパティを変更することができるようになります。</li>
+</ul>
+<h2>複数 ID を設定する</h2>
+<p>素晴らしいですね。でも、落とし穴がありそうですね？はい、実はあります。Thunderbird では複数 ID を設定するための UI がまだ開発されていないのです。この機能を利用するにはユーザの prefs.js を躊躇なく編集できなればなりません。作業を始める前に、<a href="http://texturizer.net/thunderbird/edit.html">設定ファイルの編集</a><span class="comment">【訳注：<a href="http://texturizer.net/mozilla/jp/thunderbird/edit.html">和訳</a>】</span>方法について詳しく知っておく必要があります。さらに、<a href="http://texturizer.net/thunderbird/edit.html">プロファイルディレクトリ</a><span class="comment">【訳注：<a href="http://texturizer.net/mozilla/jp/thunderbird/edit.html">和訳</a>】</span>のどこに prefs.js があるかも分かっていなければなりません。</p>
+<p>既にアカウントが設定された Thunderbird プロファイルがあることを前提にします。<b>ミスをしてデータを復旧する必要が出てきた場合に備えて、prefs.js のバックアップを取ってください。</b></p>
+<h3>新しい ID を作成する</h3>
+<p>prefs.js をお好みのテキストエディタで開きます。次の行を含む ID 設定のセットを探してください。
+<blockquote>
+  <i>"mail.identity.idX."</i>
+</blockquote>
+<q>X</q> となっているところは 1、2、3 などといった数字です。新しい ID を追加したいアカウントに関連づけられた ID の設定を選びます。そして選んだ ID（例：<q>mail.identity.id1</q>）が付いている全ての設定をコピーします。それから、数字を使われていない整数に変更してください。既に他の ID 設定で使われている整数以外の整数を必ず使用してください。</p>
+<p>お好みに合わせて、新しい ID の設定を変更してください。コピー元の設定からそれほど多く変更する必要はないかもしれません。ただし、 設定中の ID に関連づけられた電子メールアドレスの <i>.useremail</i> 属性は必ず変更するようにしてください。また、設定中の ID を vCard や署名といったものに関連づけたいと思うかもしれません。私が作業したところによると、アカウントマネージャに戻って、この ID のための vCard／署名を作成してから、再度 prefs.js を開いて出来上がった vCard／署名設定文字列を新しい ID 設定にコピーするという方法が最も簡単でした。これで、新しい ID が出来上がっているはずです。この ID はアカウントには関連づけられていないものの、以下のようになっているでしょう（id# は選択した未使用の整数が付いている本当の id であることに注意してください）</p>
+<pre>
+    user_pref("mail.identity.id#.doBcc", false);
+    user_pref("mail.identity.id#.doBccList", "");
+    user_pref("mail.identity.id#.draft_folder", "変更する必要のない URL");
+    user_pref("mail.identity.id#.drafts_folder_picker_mode", "0");
+    user_pref("mail.identity.id#.encryption_cert_name", "");
+    user_pref("mail.identity.id#.encryptionpolicy", 0);
+    user_pref("mail.identity.id#.fcc_folder", "変更する必要のない URL");
+    user_pref("mail.identity.id#.fcc_folder_picker_mode", "0");
+    user_pref("mail.identity.id#.fullName", "あなたの名前");
+    user_pref("mail.identity.id#.organization", "所属する組織");
+    user_pref("mail.identity.id#.overrideGlobal_Pref", true);
+    user_pref("mail.identity.id#.reply_to", "");
+    user_pref("mail.identity.id#.sign_mail", false);
+    user_pref("mail.identity.id#.signing_cert_name", "");
+    user_pref("mail.identity.id#.smtpServer", "smtp1");
+    user_pref("mail.identity.id#.stationery_folder", "変更する必要のない URL");
+    user_pref("mail.identity.id#.tmpl_folder_picker_mode", "0");
+    user_pref("mail.identity.id#.useremail", "メールアドレス");
+    user_pref("mail.identity.id#.valid", true);
+</pre>
+<h3>ID をアカウントにリンクする</h3>
+<p>これで ID が出来上がりました。この ID をアカウントに結びつけて、そのアカウントで利用できる複数 ID の一つとして表示されるようにしなければなりません。ID を追加したいアカウントを決めてください。そのアカウントは、以下のような形式を備えていなければなりません：
+<blockquote>
+  <i>mail.account.account#</i>
+</blockquote>
+<q>#</q> となっているところは整数です。正しいアカウントを選んでいるか確認してください。そのアカウントの .identities 設定を変更して、アカウント標準の ID に続いて、先ほど作成した新しい ID を追加します。追加したい ID だけ作成／追加することができます。
+<blockquote>
+  user_pref("mail.account.account##.identities", "id1<i>,id#</i>"); 「#」は新しい ID の番号です
+</blockquote>
+<p>prefs.js を保存して、Thunderbird を立ち上げてください。そしてメール作成ウィンドウを開いてください。全てがうまく設定されていれば、新しいアカウントの電子メールアドレスが From: のドロップダウンボックスに表示されているはずです。新しい ID で使われている電子メールアドレス宛に送られたメッセージに返信をしてください。新しい ID が送信者欄で既に選択されているのが確認できるはずです。</p>
+<p>この設定に関してヘルプが必要な場合は、<a href="http://forums.mozillazine.org/viewforum.php?f=39">Mozillazine フォーラム</a> で質問してください。<span class="comment">【訳注：日本語での質問は <a href="http://mozillazine.jp/forums/viewforum.php?forum=3">こちら</a> でどうぞ。開発者の回答は得られませんが、情報交換はできます。】</span></p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/thunderbird/identities.html">英語版</a> 2004/02/06</span> - <span>和訳版 2005/06/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/thunderbird/identities.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

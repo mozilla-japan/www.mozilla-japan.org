@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 正式な記述</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/formal/index.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="../libraries/machine-types.html">
+<link rel="Next" href="notation.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title1">正式な記述</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="../libraries/machine-types.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="notation.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">08/13/2002 (Tue)</p>
+
+<ul>
+  <li><a href="notation.html">セマンティクス表記法</a></li>
+  <li><a href="stages.html">解析手順</a></li>
+  <li><a href="lexer-grammar.html">Lexical Grammar Summary</a> (also available as <a href="lexer-grammar.rtf">Word RTF</a>) <ins class="clsByTranslator">[いずれも英語]</ins></li>
+  <li><a href="lexer-semantics.html">Lexical Grammar and Semantics</a> (<a href="lexer-semantics.rtf">Word RTF</a>) <ins class="clsByTranslator">[いずれも英語]</ins></li>
+  <li><a href="regexp-grammar.html">Regular Expression Grammar Summary</a> (<a href="regexp-grammar.rtf">Word RTF</a>) <ins class="clsByTranslator">[いずれも英語]</ins></li>
+  <li><a href="regexp-semantics.html">Regular Expression Grammar and Semantics</a> (<a href="regexp-semantics.rtf">Word
+    RTF</a>) <ins class="clsByTranslator">[いずれも英語]</ins></li>
+  <li><a href="parser-grammar.html">Syntactic Grammar Summary</a> (<a href="parser-grammar.rtf">Word RTF</a>) <ins class="clsByTranslator">[いずれも英語]</ins></li>
+  <li><a href="parser-semantics.html">Syntactic Grammar and Semantics</a> (<a href="parser-semantics.rtf">Word RTF</a>) <ins class="clsByTranslator">[いずれも英語]</ins></li>
+</ul>
+
+<hr>
+
+<p>本章では JavaScript 2.0 の正式な構文とセマンティクス (意味) を示す。記述に用いる表記法は「<a href="../introduction/notation.html#grammar">構文表記法</a>」と「<a href="notation.html">セマンティクス表記法</a>」の各節で説明している。セマンティクスを表すのには型付けされたラムダ計算に基づく簡単な説明言語を使用した。</p>
+
+<p>構文とセマンティクスの節は HTML 4.0 と Microsoft Word RTF 形式の両方を用意した。HTML
+形式では文法の非終端記号、説明言語の値、型、フィールドについてはそれらの定義へのハイパーリンクを設け、ブラウズできるようにした。一方
+RTF 形式は印刷向けである。文法とセマンティクスの種々の要素のフォント、文字色、その他の書式には全て CSS (HTML 形式) 、Word スタイル
+(RTF 形式) を使い、必要に応じて選択できるようにした。</p>
+
+<p>構文とセマンティクスの節は、セマンティクスの型チェックと実行が直接可能な小型エンジンにコードを与えて機械的に生成したものである。このエンジンは
+<a href="http://lxr.mozilla.org/mozilla/source/js2/semantics"><tt>mozilla/js2/semantics</tt></a> の CVS ツリーにある (入力ファイルは
+<a href="http://lxr.mozilla.org/mozilla/source/js2/semantics/JS20"><tt>mozilla/js2/semantics/JS20</tt></a>)。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td style="vertical-align:bottom;white-space:nowrap;">
+      <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+      最終更新: 2002年8月13日 (火)</address>
+    </td>
+    <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="../libraries/machine-types.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="notation.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+  </tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal@student.interq.or.jp">exeal@student.interq.or.jp</a>&gt;<br />
+	<a href="http://www.mozilla.org/js/language/js20/formal/index.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br />
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

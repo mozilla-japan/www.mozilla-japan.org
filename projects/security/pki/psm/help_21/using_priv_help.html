@@ -1,0 +1,786 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>プライバシー保護機能を利用するには</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/security/pki/psm/help_21/using_priv_help.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/psm/help_21/using_priv_help.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<a NAME="using_Cookies"></a>
+<a NAME="Cookies:aboutIDX"></a>
+<a NAME="Cookie_ManagerIDX"></a>
+<hr>
+<h1>Cookie マネージャを使う</h1>
+
+<p> Cookie とはいくつかの Web サイトによって利用される小さな情報の塊です。あなたが Cookie を利用したサイトを訪れた時、そのサイトはあなたのブラウザに Cookie をあなたのコンピュータのハードディスクに保存するように要請することがあります。その後、あなたがそのサイトに戻ったとき、あなたのブラウザはその Cookie をサイトに送り返します。</p>
+
+<p>Cookie を利用する Web ページをロードする前に、あなたのブラウザはページの Cookie を次の二つのことを処理します：</p>
+
+<ul>
+    <li>Web サイトからの Cookie を<b>保存</b> （設置） したいという要請を受け入れる、または拒否する。</li>
+    <li>前回 Web サイトがあなたのコンピュータ上に保存した Cookie を、そのサイトが <b>読み込みたい</b> という要請を受け入れる、または拒否する。 Web サイト自体はあなたのコンピュータ上の Cookie やその他のデータを読み込むことはできません。その替わりブラウザが Cookie を受け入れ、 Web サイト側に送り返します。</li>
+</ul>
+
+<table cellpadding=4 cellspacing=2 bgcolor="#cccccc" Width=324>
+<tr>
+<td class="inthissections">
+<p>このセクションでは：</p>
+<p><a href="#Cookies_manage">ブラウザがどのように Cookie を扱うか指定する</a></p>
+<p><a href="#Cookies_site">サイトごとに Cookie を管理する</a></p>
+<p><a href="#Cookies_view"> Cookie を表示する</a></p>
+<p><a href="#Cookies_remove"> Cookie を削除する</a></p>
+</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<a NAME="Cookies_manage"></a>
+<h2>ブラウザがどのように Cookie を扱うか指定する</h2>
+
+<p>Cookie 設定項目を設定することによって、そして Cookie マネージャを利用することによって、ブラウザがどのように Cookie を扱うかを指定することができます。</p>
+
+<p>Cookie 設定項目を変更するには：</p>
+
+<ol>
+    <li>［表示］ メニューを開いて ［設定］ を選択します。</li>
+    <li>［プライバシーとセキュリティ］ カテゴリーの下の ［Cookie］ を選択します。（もしこのサブカテゴリーが何も表示されない場合は、カテゴリーをダブルクリックしてリストを開いて下さい。）</li>
+    <li>次のラジオボタンの一つをクリックして下さい：</li>
+
+    <ul>
+        <li><b>全ての Cookie を拒否する：</b>全ての Cookie を拒否する場合はこれを選択します。</li>
+        <li><b>文書がある Web サイトから送信されてくる Cookie のみ受信する：</b><a href="privacy_help.html#privacy_foreign">外部 Cookie</a> を受け入れたり送り返したくない場合は、これを選択します。</li>
+        <li><b>すべての Cookie を受け入れる：</b>これを選択すると、全ての Web サイトはあなたのコンピュータに Cookie を保存し、後にあなたがそのサイトを訪れた際に、設置した Cookie を受け取ることができます。<b>注：</b> このオプションを選択して、後に全ての Cookie を拒否する設定をした場合でも、過去にあなたのコンピュータに保存された Cookie の中にはそのまま残ってしまうものがあります （新しい Cookie は設置されません）。</li>
+    </ul>
+
+    <li>Web サイトが Cookie を保存しようとしているときに通知を受け取りたい場合は、 &quot;Cookie を受け入れる前に警告を表示する&quot; を選択して下さい。</li>
+</ol>
+
+<p>&nbsp;</p>
+<a NAME="Cookies_site"></a>
+<a NAME="Cookies:managing_per_siteIDX"></a>
+<h2>サイトごとに Cookie を管理する</h2>
+
+<p>サイトごとに Cookie を管理するには：</p>
+
+<p> Cookie 設定 （上記ステップ 4 をご覧下さい） で、 &quot;Cookie を受け付ける前に警告を表示する&quot; を選択した場合、 Cookie マネージャでサイトごとの Cookie 管理をすることが出来るようになります。</p>
+
+<ol>
+    <li>［タスク］ メニューを開き ［Privacy &amp; Security］ を選択します。そして ［Cookie マネージャ］ を選択します。</li>
+    <li>&quot;このサイトからの Cookie を受け入れる&quot; または &quot;このサイトからの Cookie を拒否する&quot; を選択します。</li>
+</ol> 
+
+<p>Web をブラウジング中、サイトが Cookie を設置したいと要請しているという警告を受け取った場合、 &quot;Yes&quot; をクリックして許可するか、 &quot;No&quot; をクリックして拒否することができます。またブラウザのオプション設定で &quot;この決定を保存します&quot; というオプションを選択しますこともできます。</p>
+
+<p>&quot;この決定を保存します&quot; を選択した場合、サイトが次の機会に Cookie を設置または変更しようとする場合に警告を受け取ることはありません。またあなたが選択した &quot;yes&quot; または &quot;no&quot; はそのまま継続されます。</p>
+
+<p>後に、保存した決定を変更したくなった場合は、 Cookie マネージャを使用して、自動的に保存された Cookie のリストを編集します。</p>
+
+<p>サイトから自動的に Cookie を受け入れるのを停止するには：</p>
+
+<ol>
+    <li>［タスク］ メニューを開き ［Privacy &amp; Security］ を選択します。そして ［Cookie マネージャ］ を選択します。</li>
+    <li>［保存した Cookie を表示する］ をサブメニューを選択します。Cookie マネージャウィンドウが、あなたのコンピュータに保存した全ての Cookie の一覧を表示します。</li>
+    <li>［Cookie サイトの設定］ タブをクリックします。 Cookie を受け入れた、または拒否した Web サイトの一覧が表示されます。</li>
+    <li>リストから Cookie を受け入れたくないサイトを選択して、［Cookie を削除する］ をクリックします。次回あなたがそのサイトを訪れたとき、 サイトから削除することで、そのサイトの状態がリセットされます。次回、そのサイトを訪れた際、サイトが Cookie を設置しようとした場合、警告を受け取ることができます。</li>
+</ol>
+
+
+<p>&nbsp;</p>
+<a NAME="Cookies_view"></a>
+<a NAME="Cookies:viewingIDX"></a>
+<h2> Cookie を表示する</h2>
+
+<p>Cookie の詳細情報を表示したい場合は：</p>
+
+
+<ol>
+    <li>［タスク］ メニューを開いて ［Privacy &amp; Security］ を選択して下さい。そして ［Cookie マネージャ］ を選びます。</li>
+    <li>サブメニューから ［保存した Cookie を表示］ を選択します。 Cookie マネージャのウィンドウが開き、あなたのコンピュータに保存された全ての Cookie の一覧が表示されます。</li>
+    <li>特定の Cookie の詳細情報を見たい場合は、その Cookie をクリックします。一覧の下にある欄で情報が見られます。</li>
+</ol>
+
+<table cellpadding="3" cellspacing="3" border="1">
+
+<tr>
+<td valign="top"><b>アイテム</b></td>
+<td valign="top"><b>説明</b></td>
+</tr>
+
+<tr>
+    <td valign="top">Cookie</td>
+    <td valign="top">Cookie の製作者によって割り振られた名前です。</td>
+</tr>
+
+<tr>
+    <td valign="top">情報</td>
+    <td valign="top">この文字列は、Web サイトがあなたを追跡する際の情報です。この情報には、あなたが Web サイトに送ったユーザキーやユーザネーム、あなたが持っている関心などが含まれていることがあります。</td>
+</tr>
+
+<tr>
+    <td valign="top">ホストまたはドメイン</td>
+    <td valign="top">ここで Cookie が、ホスト Cookie か、ドメイン Cookie かが判ります。<br>
+    ホスト Cookie とは、その後サイトを訪れた際も含めて、その Cookie を設定したサーバに送り返される Cookie のことです。サーバとはインターネット上のコンピュータのことで、 Web サイトはサーバ上に置かれています。<br>
+    ドメイン Cookie とは、その Cookie を設置したドメイン内のあらゆるサイトに送り返される Cookie のことです。サイトのドメインとは、そのサイトの URL の一部で netscape.com や washington.org などのように、団体、企業、または学校の名前を含んでいます。</td>
+</tr>
+
+<tr>
+    <td valign="top">パス</td>
+    <td valign="top">これはファイルのパスです。 Cookie が Web サイトのメインページからではなく、特定のページから送られてきた場合、パスが示されます。</td>
+</tr>
+
+<tr>
+    <td valign="top">サーバの安全性</td>
+    <td valign="top">ここでは、 Cookie がセキュリティを強化したサーバから送られてきたのかどうかを示します。 Cookie がセキュリティ強化されている場合、その Cookie はセキュリティを強化した接続 （https） を通してのみサーバに送り返されます。セキュリティを強化した Cookie を送る前に、ブラウザは接続を確認し、安全な接続が確立されない限り送信しません。</td>
+</tr>
+
+<tr>
+    <td valign="top">期限切れ</td>
+    <td valign="top">
+    これは Cookie の機能が停止した日付と時間を表します。ブラウザは使われなくなった Cookie をあなたのコンピュータから定期的に削除します。</td>
+</tr>
+</table>
+
+
+<p>&nbsp;</p>
+<a NAME="Cookies_remove"></a>
+<a NAME="Cookies:removingIDX"></a>
+<h2> Cookie を削除する</h2>
+
+<p>重要： Cookie を削除する場合、このセクションに書いてあるステップに従って下さい。コンピュータ上の Cookie ファイルを直接編集しようとしないで下さい。</p>
+
+<p>あなたのコンピュータから Cookie を削除するには：</p>
+
+<ol>
+    <li>［タスク］ メニューを開き ［Privacy &amp; Security］ を選択します。そして ［Cookie マネージャ］ を選択します。</li>
+    <li>サブメニューから ［保存した Cookie を表示］ を選択します。 Cookie マネージャのウィンドウが開き、あなたのコンピュータに保存された全ての Cookie の一覧が表示されます。</li>
+    <li>削除 Cookie を選択して、 ［Cookie を削除］ をクリックするか、 ［全ての Cookie を削除］ をクリックします。</li>
+</ol>
+
+<p>いったん削除した Cookie が再び受け入れられるのを防ぐこともできます。</p>
+
+<p>
+［&nbsp;<A HREF="#using_Cookies">このセクションのはじめに戻る</A>&nbsp;］
+</p>
+
+
+<p>&nbsp;</p>
+<a NAME="using_password"></a>
+<a NAME="Password_Manager:usingIDX"></a>
+<a NAME="passwords:remembering_automaticallyIDX"></a>
+<hr>
+<h1>パスワードマネージャを使う</h1>
+
+<p>多くの Web サイトでは、サイトに入る際にユーザ名やパスワードを入力するように求められます。例えば、あなた個人の経済情報を含んでいるような個人的にカスタマイズされたページや Web サイトでは、ログインするように求められます。</p>
+
+<p>あるサイトであなたが設定したユーザ名やパスワードは、そのサイトの管理者には読むことができます。これが気になる場合、登録したサイトごとに別々のパスワードを設定したいとお考えになるかもしれません。残念なことに、自分がこれまでに使ったパスワードを一つ一つ思い出すというのはとても難しいことです。</p>
+
+<p>パスワードマネージャは、あなたのユーザ名やパスワードをあなたのコンピュータ上に保存して、あなたが登録したサイトへ行くと自動的に入力してくれます。</p>
+
+<table cellpadding=4 cellspacing=2 bgcolor="#cccccc" Width=324>
+<tr>
+<td class="inthissections">
+    <p>このセクションでは：</p>
+    <p><a href="#passwords_manage">パスワードマネージャにユーザ名とパスワードを記憶させる</a></p>
+    <p><a href="#passwords_auto">自動的にユーザ名とパスワードを入力する</a></p>
+    <p><a href="#passwords_onoff">パスワードマネージャを有効／無効にする</a></p>
+    <p><a href="#passwords_view">保存されているパスワードを表示し、管理する</a></p>
+</td>
+</tr>
+</table>
+
+ 
+<p>&nbsp;</p>
+<a NAME="passwords_manage"></a>
+<h2>パスワードマネージャにユーザ名とパスワードを記憶させる</h2>
+
+<p>ある Web サイトであなたのユーザ名とパスワードを入力した際、ダイアログボックスが表示され、 &quot;パスワードマネージャにこのログオンを記憶させますか？&quot; と尋ねます。次のオプションが選択できます：</p>
+
+<ul>
+    <li><b>はい：</b>次回その Web サイトに戻ったとき、ユーザ名とパスワードが自動的に入力されます。</li>
+    <li><b>決してしない：</b>パスワードマネージャは、そのサイトへのユーザ名とパスワードを記憶させたい場合でも、一切質問を表示しません。</li>
+    <li><b>いいえ：</b>パスワードマネージャはあなたのユーザ名とパスワードを記憶しませんが、次回その Web サイトに戻ったとき、同じ質問を表示します。</li>
+</ul>
+
+<p>パスワードマネージャは、あなたのユーザ名やパスワードをあなたのコンピュータ上にファイルとして保存します。そのファイルは、侵入者によって読まれる可能性がないわけではありません。暗号化技術であなたのユーザ名やパスワードを保護するための情報は、 <a href="#using_encrypt">保存された機密情報を暗号化する</a> をご覧下さい。</p>
+
+<p>&nbsp;</p>
+<a NAME="passwords_auto"></a>
+<h2>自動的にユーザ名とパスワードを入力する</h2>
+
+<p>パスワードマネージャを使って Web ページのあなたのユーザー名やパスワードを保存した場合、パスワードマネージャは、その Web ページを訪れたときにページのログオンスクリーンで自動的にあなたのユーザー名やパスワードを入力します。</p>
+
+<p>&nbsp;</p>
+<a NAME="passwords_onoff"></a>
+<h2>パスワードマネージャを有効／無効にする</h2>
+
+<p>パスワードマネージャは標準で利用可能になっています。機能を停止する場合には：</p>
+
+<ol>
+    <li>［編集］ メニューを開き ［設定］ を開きます。</li>
+    <li>［プライバシーとセキュリティ］ カテゴリーから ［Web パスワード］ を選択します。 （サブカテゴリーが表示されてない場合は、カテゴリーをダブルクリックしてリストを開いて下さい。）</li>
+    <li>［パスワードマネージャ］ セクションで、 &quot;ログインに必要なサイトのパスワードを記録する&quot; の選択をはずしてパスワードマネージャの機能を停止します。</li>
+</ol>
+
+<p>&nbsp;</p>
+<a NAME="passwords_view"></a>
+<h2>保存されているパスワードを管理する</h2>
+
+<p>保存しているユーザ名とパスワードの一覧を見るには：</p>
+
+<ol>
+    <li>［タスク］ メニューを開き ［Privacy &amp; Security］ を開きます。そして ［パスワードマネージャ］ を選択します。</li>
+    <li>サブメニューから ［保存されているパスワードを表示］ を選択しますと、パスワードマネージャが表示されます。</li>
+    <li>［保存されたパスワード］ タブをクリックすると、保存されている全てのユーザ名の一覧が表示されます。（パスワードの一覧は表示されません。） </li>
+    <ul>
+        <li>ユーザ名を削除するためには、削除したいユーザ名をクリックし、 ［削除］ をクリックします。次回あなたがその Web サイトを訪れたとき、ブラウザはパスワードを入力するように要請します。</li>
+        <li>［保存されないパスワード］ タブをクリックすると、あなたがパスワードマネージャにユーザ名を一切保存しないように設定した Web サイトの一覧が表示されます。このリストから Web サイトを削除するためには、削除したいサイトをクリックし、［削除］ をクリックします。パスワードマネージャにユーザ名とパスワードを保存するかどうか尋ねられます。</li>
+    </ul>
+</ol>
+
+<p>
+［&nbsp;<A HREF="#using_password">このセクションのはじめに戻る</A>&nbsp;］
+</p>
+
+
+<p>&nbsp;</p>
+<a NAME="using_forms"></a>
+<a NAME="Form_Manager:usingIDX"></a>
+<a NAME="forms:filling_out_automaticallyIDX"></a>
+<hr>
+<h1>フォームマネージャを使う</h1>
+
+<p>多くの Web ページには入力しなければならない欄があります （例えば、オンラインショッピングの注文欄、情報データベース、などなど）。</p>
+
+<p>フォームマネージャは、あなたの名前、住所、電話番号、クレジットカード番号など、記入欄を埋める際に必要な個人情報を保存します。そして Web サイトがそのような記入欄を表示したときには、フォームマネージャが自動的に入力してくれるのです。</p>
+
+<table cellpadding=4 cellspacing=2 bgcolor="#cccccc" Width=324>
+<tr>
+<td class="inthissections">
+<p>このセクションでは：</p>
+    <p><a href="#form_saveinfo">フォームから情報を保存する</a></p>
+    <p><a href="#form_auto">自動的にフォームに入力する</a></p>
+    <p><a href="#form_notify">フォームマネージャの自動通知機能</a></p>
+    <p><a href="#form_forms">Web サイトに個人情報を提供した場合、どうなるのでしょう？</a></p>
+</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<a NAME="form_saveinfo"></a>
+<h2>フォームから情報を保存する</h2>
+
+<p>あなたがオンラインの記入欄を埋めたとき、通常フォームマネージャは記入欄を検出し、あなたが入力した個人データを保存するできるようにします。すぐにフォームマネージャは自動的に入力できるだけのデータを蓄積します。</p>
+
+<p>個人データを保存する方法には二種類あります：</p>
+
+<ul>
+    <li>入力したオンライン記入欄を提出する度に、フォームマネージャはその情報を保存したいかどうかを尋ねます。 ［はい］ をクリックして下さい。 （注：フォームマネージャが自動通知をするように設定されている場合にのみ表示されます。）</li>
+    <li>記入欄に入力した後 （ただし情報を提出する前）、 ［編集］ メニューを開き ［フォーム データを保存］ を選択します。</li>
+</ul>
+
+<p>フォームマネージャはあなたの個人データをあなたのコンピュータ上にファイルとして保存しますが、そのファイルは侵入者に読み取られる可能性がないわけではありません。暗号化技術であなたの個人情報を保護するための情報は、 <a href="#using_encrypt">保存された機密情報を暗号化する</a> をご覧下さい。</p>
+
+<p>フォームマネージャが保存した個人データを表示したり、編集するには：</p>
+
+<ol>
+	<li>［編集］メニューを開き［設定］を選択します。</li>
+    <li>［プライバシーとセキュリティ］カテゴリーから［フォーム］を選択します。（もしこのサブカテゴリーが何も表示されない場合は、カテゴリーをダブルクリックしてリストを開いて下さい。）</li>
+	<li>［保存されているフォームデータを表示］をクリックします。</li>
+</ol>
+
+<p>フォームマネージャのダイアログボックスが表示されます。対応するデータを表示したり編集するには、左側のサブカテゴリーをクリックします。表示されていないサブカテゴリーを表示するには、カテゴリーをダブルクリックしてリストを開いて下さい。</p>
+
+<p>&nbsp;</p>
+<a NAME="form_auto"></a>
+<h2>自動的にフォームに入力する</h2>
+
+<p>自動的にオンラインフォームを入力するには：</p>
+
+<ol>
+    <li>入力したいオンラインフォームのある場所に行きます。</li>
+    <li>［編集］メニューを開き［フォームを前もって記入］を選択します。</li>
+</ol>
+
+<p>（注：フォームマネージャが関係する個人情報を保存していない場合、［フォームを前もって記入］メニュー項目にはアクセスできません。）</p>
+
+<p>［フォームを前もって記入］を選択しますと、［フォームを前もって記入］ウィンドウが表示され、フォームマネージャが入力しようとしている情報と全く同じ情報を表示します。自動的に記入欄へ入力したくない場合は、項目の横のチェックボックスをはずして下さい。どの情報も自動的に入力したくない場合は、［キャンセル］をクリックして下さい。</p>
+
+<p>フォームを前もって記入するたびに情報を確認する必要がない場合は、［フォームを前もって記入］ウィンドウの中の &quot;今後このフォームを前もって記入する際に、この画面を省略する&quot; というオプションの選択を解除します。</p>
+<!--If you don't want to verify information every time you prefill a particular form, deselect the Prefill Form window option labeled &quot;Bypass this screen when prefilling this form in the future&quot;.-->
+
+<p>［OK］をクリックし、あなたの選択を確認して指定したフォームを記入します。</p>
+
+<p>&nbsp;</p>
+<a NAME="form_notify"></a>
+<h2>フォームマネージャの自動通知機能</h2>
+
+<p>フォームマネージャは、あなたがオンラインフォームに記入したことを検知して、その情報を保存するかどうかを尋ねるように設定されています。このメッセージが表示されないようにするには：</p>
+
+<ol>
+   <li>［編集］ メニューを開き ［設定］ を選択します。</li>
+   <li>［プライバシーとセキュリティ］カテゴリーにある［フォーム］を選択します。（もしサブカテゴリーが表示されていない場合は、ダブルクリックしてリストを開いて下さい。）</li>
+   <li>［フォームマネージャ］ セクションで、 &quot;フォームを完成させたとき Web ページからのデータを保存する&quot; での選択を解除します。</li>
+</ol>
+
+<p>&nbsp;</p>
+<a NAME="form_forms"></a>
+<h2>Web サイトに個人情報を提供した場合、どうなるのでしょう？</h2>
+
+<p>あなたの名前、電話番号、電子メールアドレス、 Web サイト向けの電子メールアドレスなどの個人情報を提供した場合、 Web サイトは自由にその情報をデータベースに保存し利用することができます。サイトはこうした情報をあなた向けのサービスの向上に役立てたり、あなたが関心を持っている分野に的を絞った広告を出せるようになります。 またサイトは集めた情報を他の会社に売ることもできます。</p>
+
+<p>Web サイトの <a href="#privacy_unauth">プライバシーポリシー</a> を確認することで、そのサイトが集めた情報がどのように扱われるのかを知ることができます。
+
+<p>オンラインフォームで個人情報を提供する前に、その会社を信頼できるかどうかを判断しなければなりません。ちょうど通信販売の申込書にクレジットカードの番号を書き込む前に、その会社が信頼できるかどうか判断するのと同じです。</p>
+
+<p>
+［&nbsp;<A HREF="#using_forms">このセクションのはじめに戻る</A>&nbsp;］
+</p>
+
+
+<p>&nbsp;</p>
+<a NAME="using_encrypt"></a>
+<a NAME="encrypting_stored_sensitive_informationIDX"></a>
+<a NAME="Password_Manager:encrypting_stored_passwordsIDX"></a>
+<a NAME="Form_Manager:encrypting_stored_informationIDX"></a>
+<a NAME="forms:encrypting_stored_informationIDX"></a>
+<hr>
+<h1>保存された機密情報を暗号化する</h1>
+
+<p>あなたがパスワードマネージャかフォームマネージャを使ってパスワードや個人情報を保存している場合は、個人情報のような機密情報はあなたのコンピュータ上のファイルに保存されます。そのファイルは読み取ることが困難ですが、不可能なわけではありません。</p>
+
+<p>誰かがあなたのコンピュータを使っても気にならない場合は、これ以上のセキュリティは必要ないでしょう。しかし、もし他の人が許可なくあなたのコンピュータを使う可能性がある場合、悪意を持った人があなたの機密情報が保存されているファイルを解読してしまう可能性があります。</p>
+
+<p>より強固なセキュリティのために、機密情報が保存されているファイルを暗号化して保護したいと思うかもしれません。暗号化することで許可のない人が保存されたあなたの機密情報を読み取ることはほぼ不可能になります。</p>
+
+<table cellpadding=4 cellspacing=2 bgcolor="#cccccc" Width=324>
+<tr>
+<td class="inthissections">
+<p>このセクションでは：</p>
+    <p><a href="#encrypt_on">保存された機密情報を暗号化する</a></p>
+    <p><a href="#encrypt_master">マスターパスワードを設定する</a></p>
+    <p><a href="#encrypt_change">マスターパスワードを変更する</a></p>
+    <p><a href="#encrypt_logout">マスターパスワードからログアウトする</a></p>
+    <p><a href="#encrypt_forget">マスターパスワードを忘れた場合はどうするか</a></p>
+</td>
+</tr>
+</table>
+
+
+<p>&nbsp;</p>
+<a NAME="encrypt_on"></a>
+<h2>暗号化機能を利用可能にする</h2>
+
+<p>保存されたあなたの機密情報を保護するために暗号化機能を利用可能にするには：</p>
+
+<ol>
+    <li>［編集］ メニューを開き ［設定］ を選択します。</li>
+    <li>［プライバシーとセキュリティ］カテゴリーのもとで、［Web パスワード］を選択します。（サブカテゴリーが表示されていない場合は、クリックしてリストを開いて下さい。）</li>
+    <li>［暗号化と隠蔽化］セクションで、 &quot;機密データを保存する際に暗号を用いる&quot; を選択します。</li>
+    <li>［OK］をクリックします。前もってマスターパスワードを設定していない場合は、新しいダイアログボックスが表示され、マスターパスワードを設定するプロセスをガイドします。</li>
+</ol>
+
+
+<p>&nbsp;</p>
+<a NAME="encrypt_master"></a>
+<a NAME="Password_Manager:master_password_andIDX"></a>
+<h2>マスターパスワードを設定する</h2>
+
+<p>保存されたあなたの機密情報を暗号化するという選択をした場合、マスターパスワードを設定しなければなりません。暗号化が選択された状態で保存された機密情報が必要なサイトにアクセスした場合、ブラウザを使用している間に最低一回はマスターパスワードを入力するように求められます。</p>
+
+<p>暗号化を選択してマスターパスワードを設定していない場合、初めて機密情報を保存しようとしたり利用しようとする際に、マスターパスワードを設定するようにプロンプトが表示されます。</p>
+
+<p>前もってマスターパスワードが設定されていない場合、ご自分で設定することができます。</p>
+
+<ol>
+    <li>［タスク］メニューを開いて［Privacy &amp; Security］を選択し、そして［パスワードマネージャ］を選択します。</li>
+    <li>サブメニューから［パーソナルセキュリティパスワードを変更］を選択します。［マスターパスワードの設定］ダイアログボックスが表示されます。</li>
+    <li>新しいマスターパスワードを入力し、スペル確認のために再度入力します。</li>
+    <li>［OK］をクリックします。
+</ol>
+
+<p>あなたの新しいパスワードは、簡単には推測できないものにして下さい。ガイドラインとして、オンラインドキュメントの <a href="http://home.netscape.com/security/basics/passwords.html" TARGET="_blank">質の良いパスワードを設定するには</a> をご覧下さい。</p>
+
+<p>&nbsp;</p>
+<a NAME="encrypt_change"></a>
+<h2>マスターパスワードを変更する</h2>
+
+<p>マスターパスワードを変更するには：</p>
+
+<ol>
+    <li>［タスク］メニューを開き［Privacy &amp; Security］を選択します。そして［パスワードマネージャ］を選択します。</li>
+    <li>［パーソナルセキュリティパスワードを変更］をサブメニューから選択しますと、［マスターパスワードの設定］ダイアログが表示されます。</li>
+    <li>あなたが現在使っているマスターパスワードを入力します（以前に設定したことがある場合）。</li>
+    <li>新しいマスターパスワードを入力し、スペルを確認するため再入力します。</li>
+    <li>［OK］ をクリックします。</li>
+</ol>
+
+<p>あなたの新しいパスワードは、簡単には推測できないものにして下さい。ガイドラインとして、オンラインドキュメントの <a href="http://home.netscape.com/security/basics/passwords.html" TARGET="_blank">質の良いパスワードを設定するには</a> をご覧下さい。</p>
+
+<p>&nbsp;</p>
+<a NAME="encrypt_logout"></a>
+<h2>マスターパスワードからログアウトする</h2>
+
+<p>普段は、ブラウザを立ち上げ保存してある機密情報を使う際に、一度はマスターパスワードを入力しなければなりません。しかし、マスターパスワードからログアウトして、機密情報を保存したり利用したりするときに、必ずマスターパスワードを入力しなければならないようにすることもできます。この機能は、一時的にあなたがコンピュータから離れて誰も使わない状態になることがある場合に便利です。</p>
+
+<p>マスターパスワードからログアウトするには：</p>
+
+<ol>
+    <li>［タスク］メニューを開き［Privacy &amp; Security］を選択します。そして［パスワードマネージャ］を選択します。</li>
+    <li>サブメニューから［ログアウト］を選択します。</li>
+</ol>
+
+
+<p>&nbsp;</p>
+<a NAME="encrypt_forget"></a>
+<a NAME="master_password:forgettingIDX"></a>
+<h2>マスターパスワードを忘れた場合はどうするか</h2>
+
+<p>もしマスターパスワードを忘れてしまった場合、保存され保護されているパスワードやフォームにアクセスすることができなくなります。マスターパスワードは最も大切なパスワードなのです。絶対に忘れないようにするか、安全な場所に控えておきましょう。</p>
+
+<p>最後の手段として、どうしてもマスターパスワードを思い出せない場合、マスターパスワードをリセットすることができます。しかし、マスターパスワードをリセットすると、パスワードマネージャやフォームマネージャによって保存された全ての Web パスワード、電子メールパスワード、フォームデータが完全に消去されてしまいます。また <a href="glossary.html#software_security_device">ソフトウェアセキュリティデバイス</a> に関連した全ての個人証明書も消去されます。</p>
+
+<p>この最終的な手段を取る前に、 <a href="passwords_help.html#Reset_Master_Password">マスターパスワードをリセットするには</a> をお読み下さい。</p>
+
+<p>どうしてもマスターパスワードを思い出せない場合、次の指示に従ってマスターパスワードをリセットします：</p>
+
+<ol>
+    <li>［編集］ メニューを開き ［設定］ を選択します。</li>
+    <li>［プライバシーとセキュリティ］カテゴリーのもとで、［マスターパスワード］を選択します。（もしこのサブカテゴリーが何も表示されない場合は、カテゴリーをダブルクリックしてリストを開いて下さい。）</li>
+    <li>［マスターパスワードのリセット］をクリックします。</li>
+    <li>［マスターパスワードのリセット］ダイアログボックスで、［リセット］をクリックします。</li>
+</ol>
+
+<p>
+［&nbsp;<A HREF="#using_encrypt">このセクションのはじめに戻る</A>&nbsp;］
+</p>
+<p>&nbsp;
+<p>&nbsp;
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<a NAME="managing_profiles"></a>
+<a NAME="profiles:managingIDX"></a>
+<hr>
+<h1>プロファイルを管理する</h1>
+
+<p>家や仕事でインターネットを使っている場合、それぞれ異なったブックマーク、設定、アドレス帳、電子メールアカウント、My Sidebar 設定などを使用したいかもしれません。同じく、家族が同じブラウザソフトを使いながらも、別々のインターネット設定を使いたいことがあるかもしれません。</p>
+
+<p>プロファイルマネージャを使うと、異なったプロファイルでそれぞれのブックマーク、設定、電子メール設定などを利用することができます。ブラウザソフトウェアをインストールすると自動的に標準プロファイルが作成されます。追加のプロファイルを作成した場合、ブラウザを立ち上げたときにどのプロファイルを使用するか尋ねられます。</p>
+
+<table cellpadding=4 cellspacing=2 bgcolor="#cccccc" Width=324>
+<tr>
+<td class="inthissections">
+<p>このセクションでは：</p>
+<p><a href="#creating_profiles">新しいプロファイルを作成する</a></p>
+<p><a href="#deleting_profiles">プロファイルを削除または名前を変更する</a></p>
+</td>
+</tr>
+</table>
+
+
+<p>&nbsp;</p>
+<a NAME="creating_profiles"></a>
+<a NAME="profiles:creatingIDX"></a>
+<h2>新しいプロファイルを作成する</h2>
+
+<p>新しいプロファイルを作成するには：</p>
+
+<ol>
+    <li>ブラウザを終了します。ブラウザソフトウェアの Navigator、 Mail やその他のコンポーネントが立ち上がったままでは新しいプロファイルを作成することはできません。</li>
+    <li>プロファイルマネージャを開きます。</li>
+    <ul>
+        <li>Windows では、［スタートメニュー］を開き［プログラム］を選択して、［Mozilla］から［Profile Manager］を選択します。</li>
+        <li>Mac OS では、［Mozilla Folder］を開き［Profile Manager］をダブルクリックします。</li>
+        <li>Linux では、次のコマンドラインを入力します：<tt> ./mozilla -profilemanager</tt></li>
+    </ul>
+    <li>［Create Profile］をクリックし、プロファイル説明を読み、［Next］をクリックします。</li>
+    <li>プロファイル名を入力します。ここはあなたが分るものならどういうものでも、例えばあなたの本名、または &quot;School&quot; といったようなプロファイルを使用する際に分かる名前ならどのようなものでも構いません。</li>
+    <!--Enter a profile name. This can be anything you like, such as your real name or a name that's related to what you use the profile for, such as &quot;School.&quot;-->
+    <li>ブックマークやその他の情報の保存先として標準のディレクトリを利用するか、別のディレクトリを選択します。</li>
+    <li>言語パックや地域コンテンツパックをイントールしてある場合は、使用したい地域をクリックして言語/コンテンツを選択します。</li>
+    <li>［Finish］をクリックします。</li>
+</ol>
+
+<p>プロファイルマネージャの最初の画面が、作製された新しいプロファイルをハイライト表示して再度表示されます。</p>
+
+<p>新しいプロファイル用にブラウザを設定するには、［Start Mozilla］をクリックします。<!--You'll be asked to activate the new profile for use with Netscape Webmail, Netscape Instant Messenger, and custom My Netscape page. If you don't want to activate the new profile for these purposes at this time, click Cancel, and the program will open.--></p>
+
+<p>新しいプロファイルを使用すると、様々なタスク（例えば、電子メールのチェック）を実行するための追加情報が求められます。</p>
+
+
+<p>&nbsp;</p>
+<a NAME="deleting_profiles"></a>
+<a NAME="profiles:deletingIDX">
+<a NAME="profiles:renamingIDX"></a>
+<h2>プロファイルを削除または名前を変更する</h2>
+
+<p>通常使わないプロファイルを削除したい場合があるかもしれません。例えば、複数のプロファイルが利用できる場合、<a href="nav_help.html#nav_quicklaunch">Quick Launch</a> 機能の利点を生かせません。</p>
+
+<p>既存のプロファイルを削除したり、名前を変更したりするには：</p>
+
+<ol>
+    <li>ブラウザを終了します。ブラウザソフトウェアの Navigator、 Mail やその他のコンポーネントが立ち上がったままではプロファイルを作成、削除、名前を変更することはできません。<li>
+    <li>プロファイルマネージャを開きます。Open the Profile Manager.
+    <ul>
+        <li>Windows では、［スタートメニュー］を開き［プログラム］を選択して、［Mozilla］から［Profile Manager］を選択します。</li>
+        <li>Mac OS では、［Mozilla Folder］を開き［Profile Manager］をダブルクリックします。</li>
+        <li>Linux では、次のコマンドラインを入力します：<tt> ./mozilla -profilemanager</tt></li>
+    </ul>
+    <li>プロファイルを削除するには、プロファイルを選択して［Delete Profile］をクリックします。</li>
+    <li>プロファイル名を変更するには、プロファイルを選択して［Rename Profile］をクリックし、指示に従います。</li>
+</ol>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<a NAME="Cookie_prefs"></a>
+<a NAME="Cookies:preferencesIDX"></a>
+<h2>プライバシーとセキュリティ設定 - Cookie</h2>
+
+<p>このセクションでは、どのように Cookie の設定をするのか説明します。Cookie マネージャの設定画面を表示するためには：</p>
+
+<ol>
+    <li>［表示］ メニューを開いて ［設定］ を選択します。</li>
+    <li>［プライバシーとセキュリティ］ カテゴリーの下の ［Cookie］ をクリックします。</li>
+</ol>
+ 
+<p>&nbsp;</p>
+<h3>Cookie 受け入れポリシー</h3>
+
+<p>Cookie 受け入れ設定は、 Navigator が Cookie をどのように処理するかを設定できます：</p>
+
+<ul>
+    <li><p><b>全ての Cookie を拒否する：</b>全ての Cookie を拒否するにはこれを選択します。</li>
+    <li><b>文書がある Web サイトから送信されてくる Cookie のみ受信する：</b><a href="privacy_help.html#privacy_foreign">外部 Cookie</a> を受け入れたり送り返したくない場合は、これを選択します。電子メールを通して受け取る Cookie は外部クッキーとして処理されます。</li>
+    <li><b>すべての Cookie を受け入れる：</b>これを選択すると、全ての Web サイトはあなたのコンピュータに Cookie を保存し、後にあなたがそのサイトを訪れた際に設置した Cookie を受け取ることができます。注： このオプションを選択して、後に全ての Cookie を拒否する設定をした場合でも、過去にあなたのコンピュータに保存された Cookie の中にはそのまま残ってしまうものがあります （新しい Cookie は設置されません）。</li>
+</ul>
+
+<p>Web サイトが Cookie を保存しようとしているときに通知を受け取りたい場合は、&quot;Cookie を受け入れる前に警告を表示する&quot; を選択して下さい。［OK］をクリックして Cookie 設定を決定して下さい。</p>
+
+<p>&nbsp;</p>
+<h3>保存された Cookie を表示する</h3>
+
+<p>Cookie 設定画面で &quot;Cookie を受け入れる前に警告を表示する&quot; オプションを選択した場合、（ブラウズ中に）Web サイトが Cookie を設置したいという要請があったときに警告を表示します。この警告を受け取ると、Cookie を受け入れるか拒否するかを選ぶことができます。また警告を受け取る際に、 &quot;この決定を記憶する&quot; オプションを選択できるようになります。</p>
+
+<p>&quot;この決定を記憶する&quot; オプションを選択した場合、次にそのサイトが Cookie を更新しようとした際に警告を受け取ることはありません。ただしあなたが選択した &quot;はい&quot; または &quot;いいえ&quot; という決定はそのまま有効です。</p>
+
+<p>記憶した決定を後に変更したくなった場合、Cookie マネージャを利用して自動的に設置された Cookie のリストや、Cookie の設置を許可したり拒否したりした Web サイトのリストを編集することができます。そのためには、Cookie 設定パネルで［保存した Cookie を表示］をクリックします。</p>
+
+<p>Cookie の表示や編集についての詳細情報は、 <a href="#using_Cookies">Cookie マネージャを利用する</a> をご覧下さい。</p>
+
+<p>&nbsp;</p>
+<a NAME="using_images"></a>
+<a NAME="imagesIDX"></a>
+<h2>プライバシーとセキュリティ設定 - 画像</h2>
+
+<p>このセクションでは、画像の設定方法について説明します。画像設定を表示するには、以下の手順に従います：</p>
+
+<ol>
+    <li>［編集］メニューを開き［設定］を選択します。</li>
+    <li>［プライバシーとセキュリティ］カテゴリーで、［画像］をクリックします。（もしこのサブカテゴリーが何も表示されない場合は、カテゴリーをダブルクリックしてリストを開いて下さい。）</li>
+</ol>
+
+
+<p>&nbsp;</p>
+<h3>画像受け入れポリシー</h3>
+
+<p>画像受け入れポリシー設定では、Navigator が画像を表示するかどうかをコントロールできます：</p>
+
+<ul>
+    <li><b>画像を読み込まない：</b>画像を表示したくない場合は、この設定を選択します。</li>
+    <li><b>すべての画像を受け入れる：</b>すべての画像を表示したい場合は、この設定を選択します。</li>
+</ul>
+
+<p>&nbsp;</p>
+<h3>アニメーション画像を繰返す：</h3>
+
+<p>この設定では、アニメーション画像が何回アニメーションを繰返すかを指定できます：</p>
+
+<ul>
+    <li><b>指定した回数だけ繰返す：</b>指定された回数だけアニメーションが繰返されるようにするには、この設定を選択します。</li>
+    <li><b>1 回：</b>1 回だけアニメーションが表示されるようにするには、この設定を選択します。指定した回数は無効になります。</li>
+    <li><b>なし：</b>アニメーションを表示したくない場合は、この設定を選択します。</li>
+</ul>
+
+
+<p>&nbsp;</p>
+<a NAME="forms_prefs"></a>
+<a NAME="Form_Manager:preferencesIDX"></a>
+<a NAME="forms:preferencesIDX"></a>
+<h2>プライバシーとセキュリティ設定 - フォーム</h2>
+
+<p>このセクションでは、フォーム設定について説明します。フォームマネージャを表示するには：</p>
+
+<ol>
+    <li>［編集］メニューを開き［設定］を選択します。</li>
+    <li>［プライバシーとセキュリティ］カテゴリーで、［フォーム］をクリックします。（もしこのサブカテゴリーが何も表示されない場合は、カテゴリーをダブルクリックしてリストを開いて下さい。）
+</ol>
+
+<p>&nbsp;
+<table cellpadding=4 cellspacing=2 bgcolor="#cccccc" Width=324>
+<tr>
+<td class="inthissection">
+<p>このセクションでは：</p>
+    <p><a href="#forms_mgr">フォームマネージャ</a></p>
+    <p><a href="#forms_data">保存されているフォームデータを表示する</a></p>
+    <p><a href="#forms_sites">サイトを表示する</a></p>
+</td>
+</tr>
+</table>
+ 
+<p>&nbsp;</p>
+<a NAME="forms_mgr"></a>
+<h3>フォームマネージャ</h3>
+
+<p>オンラインフォームに記入して［送信］をクリックした場合、フォームマネージャは通常、ダイアログボックスを表示して、あなたが提出したフォームデータを保存するかどうかを尋ねます。何回か［はい］をクリックすると、フォームマネージャは自動的にフォームを記入できるだけのデータを蓄積します。</p>
+
+<p>オプション &quot;フォームを補完するときに Web ページからのデータを保存する&quot; を選択すると、この通知機能をコントロールできるようになります。つまり、フォームマネージャが記入したデータを保存するかどうかを尋ねる機能をコントロールできるのです。このオプションを選択すると、フォームマネージャは［送信］ボタンをクリックする度にダイアログボックスを表示します。データを保存する場合には、フォームマネージャはダイアログボックスを表示しません。</p>
+
+<p>このオプションの選択を解除すると、通知機能が停止されます。ただし、フォームマネージャは機能します。フォームマネージャが蓄積したフォームデータはそのまま利用できます。また、［編集］メニューを開いて［フォームデータを保存］選択して記入したデータを保存したり、［フォームを前もって記入］を選択して自動的にフォームを記入することができます。</p>
+
+<p>詳細情報は、 <a href="#using_forms">フォームマネージャを利用する</a> をご覧下さい。</p>
+
+<p>&nbsp;</p>
+<a NAME="forms_data"></a>
+<h3>保存されているフォームデータを表示する</h3>
+
+<p>フォームマネージャが保存した個人データを確認したり編集したい場合には、［保存されているデータを表示］をクリックします。フォームマネージャウィンドウが表示されると、ダブルクリックをしてサブカテゴリーを表示できます。サブカテゴリーをクリックすると保存されているデータを表示できます。このウィンドウでフォームデータを追加したり、変更したりすることができます。</p>
+
+<p>&nbsp;</p>
+<a NAME="forms_sites"></a>
+<h3>サイトを表示する</h3>
+
+<p>上記のフォームマネージャ通知機能が利用可能な場合、フォームマネージャは特定のサイトで入力されたフォームデータを保存するかどうかを選択することができるようになります。ただし、後に考えが変わったらどうするのでしょう？例えば、 &quot;このサイトでは決してしない<!--Never for this site-->&quot; を選択しておいて、後にフォームマネージャでそのサイトでのフォームデータを保存したくなった場合です。</p>
+
+<p>フォームマネージャではいつでも方針を変更できます。あなたがフォームデータとして保存したサイトごとの情報を表示するには、［サイトを表示］をクリックします。</p>
+
+<p>表示されるフォームマネージャウィンドウの中の［未確認フォーム］タブでは、［編集］メニューで［フォームを前もって記入］を選択した後に &quot;今後このフォームを前もって記入する際に、この画面を省略する<!--Bypass this screen when prefilling this form in the future-->&quot; オプションを選択したサイトを表示します。［保存されないフォーム］タブでは、フォームマネージャがフォームデータを保存するかどうかを尋ねた際に［このサイトでは決してしない<!--Never for this site-->］を選択したサイトが表示されます。</p>
+
+<p>いずれかのリストからサイトを削除するには、表示名を選択して［削除］をクリックします。［未確認フォーム］タブから表示名を削除した場合、次にフォームを前もって記入しようとする際にフォームマネージャはそのデータを確認します。［保存されないフォーム］タブから表示名を削除した場合、そのサイトで記入したフォームデータを保存するかどうかを再度尋ねます。</p>
+
+<p>詳細情報は、 <a href="#using_forms">フォームマネージャを利用する</a> をご覧下さい。</p>
+
+
+<hr>
+
+<p><i>9/07/2001</i></p>
+
+<hr>
+<p>Copyright &copy; 1994-2001 Netscape Communications Corporation.</p>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/psm/help_21/using_priv_help.html">英語版</a> 2001/09/09</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/psm/help_21/using_priv_help.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

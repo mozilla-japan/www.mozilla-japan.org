@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Blackwood Project Overview</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/blackwood/blackwoodProjectOverview.htm">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/blackwood/blackwoodProjectOverview.htm">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+ 
+      <P align=center><B><FONT size=+2>Project Blackwood：<BR>MozillaとJAVAの融合</FONT><BR>by George Drapeau &lt;<A
+      href="mailto:drapeau@eng.sun.com">drapeau@eng.sun.com</A>&gt;</B> </P> 
+      <P>blackwoodのコードのチェック方法についてはここをクリックしてください。</P> 
+      <H3>序章</H3> 
+      <BLOCKQUOTE> 
+        <P>blackwoodプロジェクトは主に二つの目標を目指している：</P> 
+        <UL> 
+          <LI>MozillaとJavaプラットフォームのより良い融合、これは開発者がMozillaをJava言語で製作したコンポーネントやプラグインで拡張できるようになる。</LI> 
+          <LI>JavaVM(JVM)上で動作するアプリケーションにMozillaのレイアウトエンジンを組み込めるかどうか確かめる。 
+          </LI></UL> 
+        <P>このプロジェクトの主要目的は：</P> 
+        <UL> 
+          <LI>コンテントであるHTMLとXML、そしてそれらに派生するものは携帯性のあるデータを提供する。 
+        駆動装置のようなJavaScript、Javaが携帯性のあるコードを提供する。 
+        拡張されたブラウザではコンテントと駆動装置によってプレゼンテーションやインターリアクション、アグリゲーションなどのダイナミックドキュメントが可能になる。 
+        これを現実にすることである。</LI></UL> 
+        <P>以下のセクションではMozillaとJavaプラットフォームのより良い融合のための機能セットを述べる。 
+        まず初めのセクションでは基盤を説明し、残りは下に並べられたblackwoodプロジェクトの二つのカテゴリの内のいずれかに分けられる。 
+        初めのカテゴリではネイティブアプリケーションモデル(NAM)をサポートする機能を列挙する。 
+        NAMとはJVMをNetscape6のようなネイティブブラウザアプリケーションの補助的な拡張機能としてとらえることである。 
+        二つ目のカテゴリは埋め込み型アプリケーションモデル(EAM)をサポートする機能について述べる。 
+        EAMとはMozillaのレイアウトエンジンであるGeckoをコンポーネントとしてJAVAアプリケーションに組み込んだり、JVM上にhostさせることである。 
+        三つ目のセクションには各機能を実装するときに言及されることが必要な、状況によりけりの基本概念に関する概要が盛り込まれている。 
+        </P> 
+        <UL> 
+          <LI><A
+          href="http://www.mozilla.org/projects/blackwood/index.html#Connect">BlackConnect: 
+          XPCOMへのJavaブリッジ</A></LI> 
+          <LI><A
+          href="http://www.mozilla.org/projects/blackwood/index.html#FacNAM"> 
+          ネイティブアプリケーションモデルをサポートする機能(NAM)</A></LI> 
+          <UL> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#OJI">Open 
+            JVMの融合(OJI)</A></LI> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#PluginsJava">プラグレット: 
+            Javaプラットフォームのためのプラグイン</A> 
+          </LI></UL> 
+          <LI><A
+          href="http://www.mozilla.org/projects/blackwood/index.html#FacEAM"> 
+          埋め込み型アプリケーションモデルをサポートする機能(EAM)</A></LI> 
+          <UL> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#JavaDOM">Java
+            DOM API</A></LI> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#BlackWrap">ウェブクライアント: 
+            GeckoウェブシェルのJavaラッパーAPI (BlackWrap)</A></LI> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#Util">Java
+            Util Classes</A> </LI></UL> 
+          <LI><A
+          href="http://www.mozilla.org/projects/blackwood/index.html#Concerns"> 
+          実装の懸念</A></LI> 
+          <UL> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#Security">安全性</A></LI> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#MemManage">メモリ 
+            管理</A></LI> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#Concurrency">並列</A> 
+            </LI></UL> 
+          <LI><A
+          href="http://www.mozilla.org/projects/blackwood/index.html#Appendix">付録</A></LI> 
+          <UL> 
+            <LI><A
+            href="http://www.mozilla.org/projects/blackwood/index.html#Templates">テンプレート</A> 
+            </LI></UL></BLOCKQUOTE> 
+      <H3><A name=Connect></A>BlackConnect: XPCOMへのJavaブリッジ</H3> 
+      <BLOCKQUOTE> 
+        <P>新たなレイアウトエンジンの設計は<A href="http://www.mozilla.org/projects/xpcom/">XPCOM</A>と呼ばれるクロスプラットフォームかつ、COM互換のコンポ−ネントオブジェクトモデルに基づいている。 
+        Mozillaコンポーネントは、それらのパブリックAPIが<A href="http://www.mozilla.org/scriptable/xpidl/index.html">XPIDL</A>というクロスプラットフォーム定義言語の中で定義されているからコンポーネントを書き起こすことができるようになっている。 
+        コンポーネントメソッドは、XPCOMと合致するインターフェイスへの接続を実装している言語から呼びだされることになるだろう。 
+        Mozillaに主にサポートされている言語はJavaScriptであり、XPCOMコンポーネントへの接続は<A href="http://www.mozilla.org/scriptable/">XPConnect</A>と呼ばれる機能によって提供される。</P> 
+        <P>XPConnectによってJavaScriptは実行時にXPCOMコンポーネントへのダイナミック接続を可能としている。<A href="http://www.mozilla.org/projects/blackwood/connect/">XPCOMへのJavaブリッジ</A>はJAVA言語への等しい接続を提供するから、他の機能や拡張はJAVAで実装されるだろう。 
+        内的実装は、Geckoのコンテントへのアクセスを要求されたり、JAVAでのプラグイン開発を可能にするメカニズムを注目されるだろう。 
+        色々な接続メカニズムの細かな分析は洗練された実装をもたらすはずである。</P></BLOCKQUOTE> 
+      <H3><A name=FacNAM></A>ネイティブアプリケーションモデルをサポートする機能 
+      </H3> 
+      <BLOCKQUOTE> 
+        <P>ネイティブアプリケーションモデルは下にダイアグラムが描かれているようにJAVAバーチャルマシンを外部の、オプション的役割と仮定する。 
+        もし互換性のあるJVMがあると、ダウンロードしたコンテントの中でブラウザがJAVAのバイトコードに遭遇してもそのJAVAプログラムを実行できる。</P> 
+        <P><IMG src="images/nam.gif" width="421" height="138"> </P> 
+        <H4><A name=OJI></A>Open JVMの融合</H4> 
+        <BLOCKQUOTE> 
+          <P>Open JVMの融合機能(OJI)のおかげでMozillaは様々なJAVAバーチャルマシンと共に動作できる。 
+          JVMのベンダーやバージョンとは無関係に、もしバーチャルマシンが要求されたOpen JVM プラグイン APIを実装していたらMozillaブラウザと通信できる。 
+          ブラウザがアプレットのようなJAVAバイトコードに出くわした時には、ブラウザは実行するためにOpen JVM プラグイン APIを介してバイトコードをJVMの中へ読みこむ。 
+          Open JVMプラグインAPIはネットスケープラグイン APIから引き出され、JVMを走らせるためのJavaネイティブインターフェイス (JNI)の実行を重くする。</P> 
+          <P>JavaScriptをJAVAへ繋げるLiveConnectはOJIによってサポートされるもう一つの特色である。 
+          LiveConnectを使うことによってJavaScriptのスクリプトはアプレットのメソッドを呼び出せる。 
+          そしてアプレットコードはJavaScriptオブジェクトを呼び出せる。
+          このメカニズムはアプレットを作成する時にブラウザの設定データとpreferencesの発見を容易にしてくれる。 
+          たとえば、アプレットはJavaScriptのウインドウオブジェクトのプロパティにアクセス出来る。</P> 
+          <P>BlackwoodにとってOJIは大きな優先事項である。 
+          JAVAのあるプラットフォームで動作するプラグインの開発を可能にするように、WindowsやMacOS、Linux、そしてSolarisがサポートがされるだろう。 
+          その機能については次の下位項目で述べられる。</P></BLOCKQUOTE> 
+        <H4><A name=PluginsJava></A>プラグレット: Javaプラットフォームのためのプラグイン 
+        </H4> 
+        <BLOCKQUOTE> 
+          <P>プラグインはMozillaブラウザ機能を拡張するための一般的なメカニズムである。 
+          大半のプラグインは単独のプラットフォームの特定のコンテントタイプを取り扱うために書かれている。 
+          たとえば、音声や映像ストリームを再生するRealPlayerのWindows版である。 
+          多くのプラグインはWindows版のみが存在している。 
+          <A href="http://www.mozilla.org/projects/blackwood/java-plugins/">プラグレット</A>はJAVAで書かれたプラグインであり、 
+          この不均衡を緩和してくれる。というのもクロスプラットフォーム拡張の開発を容易にするからだ。
+          MozillaがOJIを通してJVMにアクセスしている限り、それは動作出来てプラグレットを起動できる。 
+          プラグレットはプラットフォーム非依存なだけではなく、可搬的でもある。 
+          したがって、軽量なプラグレットはこれを含むコンテンツとともにダウンロードされるだろう。 
+  	</P></BLOCKQUOTE></BLOCKQUOTE> 
+      <H3><A name=FacEAM></A>埋め込み型アプリケーションモデルをサポートする機能 
+      </H3> 
+      <BLOCKQUOTE> 
+        <P>ネイティブアプリケーションモデルとは違い、埋め込み型アプリケーションモデルはJava仮想マシンを要求する。 
+        Java言語で書かれたアプリケーションはプレゼンテーションとインターリアクション、ダイナミックドキュメントのためにコンポーネントとしてMozillaのコンポーネントエンジンを組み込める。 
+        重要なのはプラグレットとアプレットがこのモデルでも動作するということだ。 
+        </P> 
+        <P></P> 
+        <P><IMG src="images/eam.gif" width="331" height="201"> </P> 
+        <H4><A name=JavaDOM></A>Java DOM API</H4> 
+        <BLOCKQUOTE> 
+          <P>Javaプログラムからレイアウトエンジンのコンテントモデルへアクセスするために、<A href="http://www.mozilla.org/projects/blackwood/dom/">Java DOM API</A>の実装が要求される。 
+          この実装はJava DOM APIにこれらのMozillaの提供するものを施すJINIの中間媒体から成る。 
+          このJava DOM translation layerの実装はネイティブDOM APIがXPIDLを使うときはXPCOMへのJavaブリッジに頼るかもしれない。 
+          </P> 
+          <P>Java DOM APIを介するMozillaのコンテントモデルへのアクセスはJava言語でプログラムされたコンポーネントの可能性の新たな世界を切り開く。 
+          しかし、それはまたセキュリティに関する精密な検査とチェックを必要とする導線を生み出す。 
+          同時に起こるコンテントモデルへのアクセスは、レイアウトエンジンをコントロールの一つのスレッドだと仮定するように、ポリシーが要求されるもう一つの懸念である。 
+        </P></BLOCKQUOTE> 
+        <H4><A name=BlackWrap></A>ウェブクライアント: GeckoウェブシェルのJavaラッパーAPI 
+        (BlackWrap)</H4> 
+        <BLOCKQUOTE> 
+          <P>Java仮想マシン上のアプリケーションに埋め込まれたGeckoレイアウトエンジンはGeckoのJavaラッパーAPIを必要とする。 
+          このラッパーは、ウェブ閲覧の機能をカプセル化してそれをコンポーネントとして開発者に提供する高位レベルなインターフェイスから成る。 
+          ウェブクライアントコンポーネントとして参照されるこのコンポーネントは似たようなブラウザの、今日カスタムアプリケーションの中に融合されているコンポーネントにとって代わるかもしれない。 
+          </P> 
+          <P>ウェブクライアントAPIはHTML/XMLプレゼンテーションエンジンによって実装されるであろうインターフェイスセットを定義する。 
+          二つのインターフェイスセットはその実装能力に依存して存在する。 
+          一つ目は全ての実装に要求される最小のファンクションを定義するインターフェイスのコアセットからなる。 
+          二つ目は付属的かつ、メモリ使用量のような制限のために利用できない拡張のためのインターフェイスを含む。 
+          この二つの段状な層の方法は多くの異なるブラウザBeansに使われる単一のコアAPIを許可し、開発者にはそのBeanの交換やアプリケーションのコアAPIに依存する特別なコードの再利用を簡単にする。 
+          ウェブクライアントAPIは動作時にクライアントによって発見されるどのような付属的な能力に関する詳述を含むから、他のコンポーネントはサービスが利用可能かどうかを質問出来るかもしれない。 
+          </P></BLOCKQUOTE> 
+        <BLOCKQUOTE>Java Wrapper APIのさらなる文章は<A href="http://www.mozilla.org/projects/blackwood/webclient/">http://www.mozilla.org/projects/blackwood/webclient/</A>で入手できる。 
+        </BLOCKQUOTE> 
+        <H4><A name=Util>Javaユーティリティクラス</A></H4>これらはJavaによるアプリケーション開発の簡易クラスのコレクションである。 
+        クラスは評価、ログ、パラメータチェックなどを含む。 
+        ユーティリティクラスに関する更なる情報は<A href="http://www.mozilla.org/projects/blackwood/java-util/">http://www.mozilla.org/projects/blackwood/java-util/</A>で入手できる。
+      </BLOCKQUOTE><P> 
+      <H3><A name=Concerns></A>実装の懸念</H3> 
+      <BLOCKQUOTE> 
+        <H4><A name=Security></A>安全性</H4> 
+        <BLOCKQUOTE> 
+          <P>安全性の懸念については、ネットワークからダウンロードされてコードが直接実行されるようなどんなアプリケーションにも生じる。 
+          この能力は、実行可能なアプリケーションがどこから発生したのか、ソースが信頼に値するかどうか、そしてクライアント上でユーザーは未知のコードが何らかのリソースにアクセスすることを許可するかどうかを検査するメカニズムを要求する。 
+          Javaプラットフォームはこれらのメカニズムを得る安全性のモデル実装する。 
+          埋め込み型アプリケーションのモデルは、悪意のあるアプレットやプラグレットからクライアントを保護する安全性のモデルを直接使用できる。 
+          </P> 
+          <P>ネイティブアプリケーションのモデルでは、JavaバイトコードはさもJavaScriptsスクリプトのように扱われることになる。 
+          したがって、Mozillaがアクセス許可を施行したり、スクリプトの信頼性を検査するために使う同様のメカニズムは、それらがネイティブメソッドを呼び出すときにアプレットやプラグレットに対して適用される。 
+          要求されたインターフェイスはOJI機能の一部として実装されるだろう。 
+          </P></BLOCKQUOTE> 
+        <H4><A name=MemManage></A>メモリ管理</H4> 
+        <BLOCKQUOTE> 
+          <P>Mozillaブラウザにおけるネイティブオブジェクトの寿命は参照回数プロトコルを通して管理される。 
+          一方、JVM内において生成されたオブジェクトは参照できなくなった時にガーベジコレクションによって回収される。 
+          JNIを利用する大半の機能は言語境界を横断してメモリマネジメントと協調することが必要である。 
+          ひとたびオブジェクトのオーナーシップが明らかに理解され、特定されたら実装は弱い参照とJavaプラットフォームの提供する終了の機能を率直に与えられるべきである。 
+          </P></BLOCKQUOTE> 
+        <H4><A name=Concurrency></A>並列</H4> 
+        <BLOCKQUOTE> 
+          <P>並列はGeckoの為のJava DOM APIのユーザーに対する特別な懸念である。 
+          Geckoに利用されるシングルスレッドアプリケーションモデルは安全ではないコンテントモデルにアクセスする。 
+          これは、いつもレイアウトエンジンのメインスレッドに呼び出されるリスナーインターフェイスを実装しているコンポーネントにとって問題ではない。 
+          しかし、ドキュメントにアクセスしたいアプレットやプラグレットのような他のスレッドからのコンポーネント、すなわち、それらが埋め込まれたコンテナにとっては問題かもしれない。 
+          アクセス方法(読み専用、または読み書き可)によってはドキュメント内にaddresedの要素、もう一つのスレッドに影響する危険性があるかもしれないし、ないかもしれない。 
+          もし後者のケースがまれだとしても、開発者はそれに気がつくことが必要である。 
+          Java DOM APIの実装はGeckoのコンテントモデルを同時アクセスから保護しない。 
+          一方、OJIはというとアプレットやプラグインと、レイアウトエンジン間のスレッド同調を提供する。 
+          </P> 
+          <P>その他のMozillaにおけるNecko(ネットワークとプロトコルのハンドリング)のようなモジュールは複数のスレッドを使用する。 
+          これらのモジュールにとって、同時性と互換性は埋め込み型アプリケーションモデルの文脈において更なる試験が必要である。 
+          </P></BLOCKQUOTE> 
+        <P>&nbsp;</P></BLOCKQUOTE> 
+      <H3><A name=Appendix></A>付録</H3> 
+      <BLOCKQUOTE> 
+        <H4><A name=Templates></A>テンプレート</H4> 
+        <BLOCKQUOTE>私達は<A
+          href="http://www.mozilla.org/projects/blackwood/templates/">ここに</A>
+          blackwoodプロジェクトの開発に使われているテンプレートを提供する。 
+          <P></P></BLOCKQUOTE></BLOCKQUOTE></TD></TR> 
+  <TR> 
+    <TD align=right colSpan=2 vAlign=top><FONT size=-1>Copyright &copy; 1998-2000
+      The Mozilla Organization. <BR><A
+      href="http://www.mozilla.org/webtools/bonsai/cvslog.cgi?file=mozilla-org/html/projects/blackwood/index.html&amp;rev=&amp;root=/cvsroot/">Last
+      modified June 5, 2000</A>. </FONT>
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/blackwood/blackwoodProjectOverview.htm">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/blackwood/blackwoodProjectOverview.htm">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1/GPL 2.0
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Rhino code, released May 6, 1999.
+   -
+   - The Initial Developer of the Original Code is
+   - Netscape Communications Corporation.
+   - Portions created by the Initial Developer are Copyright (C) 1997-1999
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   -
+   - Alternatively, the contents of this file may be used under the terms of
+   - the GNU General Public License Version 2 or later (the "GPL"), in which
+   - case the provisions of the GPL are applicable instead of those above. If
+   - you wish to allow use of your version of this file only under the terms of
+   - the GPL and not to allow others to use your version of this file under the
+   - MPL, indicate your decision by deleting the provisions above and replacing
+   - them with the notice and other provisions required by the GPL. If you do
+   - not delete the provisions above, a recipient may use your version of this
+   - file under either the MPL or the GPL.
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+   <meta name="Author" content="Norris Boyd">
+   <meta name="KeyWords" content="Rhino, JavaScript, Java">
+   <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>Java でスクリプトする</title>
+<link rel="alternate" hreflang="en" modified="November 13, 2006">
+<!--
+
+オリジナル
+題名: Scripting Java
+URL: http://www.mozilla.org/rhino/scriptjava.html
+
+和訳
+2004-11-05  作成: RxOrca Rev.:1.11
+2005-08-27  更新: RxOrca Rev.:1.12
+                shell.htmlへのリンクが変わったけど, 生成結果は同じ
+2005-09-21  更新: RxOrca Rev.:1.13
+                shell.htmlへのリンクが元に戻ったけど, 生成結果は同じ
+2007-02-25  更新: RxOrca Rev.:1.16
+
+-->
+
+<link rel="up" href="./" title="Rhino プロジェクト・ページ">
+<link rel="section" href="#rhinoshell" title="Rhino Shell">
+<link rel="section" href="#liveconnect" title="LiveConnect">
+<link rel="section" href="#accessing" title="JavaBean アクセス">
+<link rel="section" href="#importingclasses" title="クラスやパッケージのインポート">
+<link rel="section" href="#extending" title="Java クラスの拡張">
+<link rel="section" href="#javaadapter" title="JavaAdapter コンストラクター">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/rhino/scriptjava.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<p class="crumbs"><em>現在位置:</em> <a href="./">Rhino プロジェクト・ページ</a> &gt; <strong>Java でスクリプト</strong></p>
+
+<h1 style="text-align: center;">Java でスクリプトする</h1>
+<address class="author">Norris Boyd</address>
+
+<p>Rhino を使って、気軽に<!-- ちょっと--> Java でスクリプト記述することができます。
+どんな Java コードも書き加える必要はありません、
+ただ、既存の Rhino shell を使って Java を呼び出すだけです。</p>
+
+<h2><a name="rhinoshell" id="rhinoshell">Rhino Shell</a></h2>
+<p>Rhino shell は、あなたのスクリプトを、ファイルあるいはコマンドラインから、
+インタラクティブ (対話式)に走らせることができます。</p>
+<p>rhino の zip ファイルをダウンロードすると、一つの JAR ファイル <code class="filename">js.jar</code> を含んでいるはずです。
+あなたの環境のクラスパスに JAR ファイルを追加すると、次のコマンドで Rhino shell をスタートできます。</p>
+
+<pre class="code">  java org.mozilla.javascript.tools.shell.Main
+</pre>
+
+<p>あるいは、Java 2 (JDK 1.2 かそれ以上) があるのなら、あなたの環境の classpath は変更しなくて済み、しかも簡単に利用できます。</p>
+
+<pre class="code">  java -jar js.jar</pre>
+
+<p>あいにく、<code class="command">java</code> の <code>-jar</code> オプションは、あなたの環境の classpath を上書きするはずです。
+<span class="comment">【訳注: 環境変数の CLASSPATH 指定が無視されるということ】</span>
+<!-- 訳注: ← 文につながりがないため改行してみた -->
+シェルのインタラクティブ (対話式)モードは、Rhino を体験してみるのに よい方法です。</p>
+<p class="note">以前のバージョンの Rhino では、2 つの JAR ファイル js.jar と jstools.jar を持っているため、-jar オプションをサポートしていません。
+シェルをスタートするには、両方の JAR ファイルをクラスパスに追加しなければなりません。</p>
+<p>シェル・クラスの引数に、JavaScript ファイル名を与えることで、それを実行できます …</p>
+<pre>  java org.mozilla.javascript.tools.shell.Main myScript.js</pre>
+<p>シェルを使ってスクリプトを評価する (実行する)ための、いくつかのオプションがあります。
+より詳しくは、<a href="shell.html">コマンド解説</a> を参照してください。</p>
+
+<h2><a name="liveconnect" id="liveconnect">LiveConnect: JavaScript で Java と通信</a></h2>
+<p>Rhino で Java をスクリプトするつもりなら、LiveConnect を使用したいはずです。
+それは、Java クラスを生成し Java のメソッドを JavaScript から呼び出すことを可能にするものです。
+例えばここに、対話式セッションのログがあります。
+そのように入力すれば、ウィンドウと はち切れんばかりのボタンを見ることができるでしょう。</p>
+
+<div class="figure" style="text-align: center;"><img src="scriptjavaframe.jpg" height="100" width="200" alt=""><br>
+Java frame は Rhino shell から作成しました</div>
+
+<pre class="code">
+$ java org.mozilla.javascript.tools.shell.Main
+js> importPackage(java.awt);
+js> frame = new Frame("JavaScript")
+java.awt.Frame[frame0,0,0,0x0,invalid,hidden,layout=java.awt.BorderLayout,resizable,title=JavaScript]
+js> frame.show()
+js> frame.setSize(new Dimension(200,100))
+js> button = new Button("OK")
+java.awt.Button[button0,0,0,0x0,invalid,label=OK]
+js> frame.add(button)
+java.awt.Button[button0,0,0,0x0,invalid,label=OK]
+js> frame.show()
+js> quit()
+$
+</pre>
+
+<p><code>java</code> パッケージ中にない<span class="comment">【先頭が <q>java.</q> ではない】</span>クラスを JavaScript に読み込みたいのなら、
+パッケージ名の前に "<code>Packages.</code>" を付ける必要があります。
+例えば …</p>
+
+<pre class="code">
+$ java org.mozilla.javascript.tools.shell.Main
+js&gt; cx = Packages.org.mozilla.javascript.Context.currentContext
+org.mozilla.javascript.Context@25980b44
+js&gt; cx.evaluateString(this, "3+2", null, 0, null)
+5.0
+js&gt; quit()
+$
+</pre>
+
+<h2><a name="accessing" id="accessing">JavaBean プロパティー アクセス</a></h2>
+<p>Java のクラスで getter と setter メソッドを使って JavaBean プロパティーを定義できます。
+例えば、次のクラスは 2 つのプロパティーを定義します …</p>
+
+<pre class="code">
+public class Me {
+    public int getAge() { return age; }
+    public void setAge(int anAge) { age = anAge;
+}
+    public String getSex() { return "male"; }
+    private int age;
+};
+</pre>
+
+<p>定義された 2 つのプロパティーは <var>age</var> (年齢)と <var>sex</var> (性別)です。
+<var>sex</var> プロパティーは読み出し専用です (setter メソッドがないから)。</p>
+
+<p>Rhino を使うことで、あたかも JavaScript のプロパティーのように、bean プロパティーにアクセスすることができます。
+定義されたプロパティーであるメソッドも、また、呼び出すことができます。</p>
+
+<pre class="code">
+js&gt; me = new Packages.Me();
+Me@93
+js&gt; me.getSex()
+male
+js&gt; me.sex
+male
+js&gt; me.age = 33;
+33
+js&gt; me.age
+33
+js&gt; me.getAge()
+33
+js&gt;
+</pre>
+
+<p><var>sex</var> プロパティーは読み出し専用なので、それに書き込むことは許されません。</p>
+<p class="note">JavaBean リフレクションは、Rhino 1.5 より前のバージョンでは利用できません。</p>
+
+<h2><a name="importingclasses" id="importingclasses">Java のクラスやパッケージのインポート</a></h2>
+<p>上記までで、特定の Java パッケージのすべてのクラスをインポートする、<code>importPackage</code> 関数の使い方が分かりました。
+今度は、一つのクラスをインポートするところの <code>importClass</code> です …</p>
+
+<pre class="code">
+$ java org.mozilla.javascript.tools.shell.Main
+js&gt; importClass(Packages.org.mozilla.javascript.Context)
+js&gt; cx = Context.enter()
+org.mozilla.javascript.Context@25980d62
+js&gt; cx.evaluateString(this, "3+2", null, 0, null)
+5.0
+js&gt; quit()
+$
+</pre>
+
+<h2><a name="extending" id="extending">Java クラスの拡張と Java インターフェースの実装を JavaScript に</a></h2>
+
+<p>上記の例、JavaScript を使って Java frame を作成することから始めて、(今度は)ボタンのためのリスナーを追加することができます。
+一度 <code>addActionListener</code> を呼び出せば、ボタンをクリックすることで、現在の時刻を得て表示できるようになります …</p>
+
+<pre class="code">
+$ java org.mozilla.javascript.tools.shell.Main
+js&gt; importPackage(java.awt);
+js&gt; frame = new Frame("JavaScript")
+java.awt.Frame[frame0,0,0,0x0,invalid,hidden,layout=java.awt.BorderLayout,resizable,title=JavaScript]
+js&gt; button = new Button("OK")
+java.awt.Button[button0,0,0,0x0,invalid,label=OK]
+js&gt; frame.setSize(new Dimension(200,100))
+js&gt; frame.add(button)
+java.awt.Button[button0,0,0,0x0,invalid,label=OK]
+js&gt; frame.show()
+js&gt; function printDate() { print(new Date()) }
+js&gt; printDate()
+Wed Mar 15 15:42:20 GMT-0800 (PST) 2000
+js&gt; o = { actionPerformed: printDate }
+[object Object]
+js&gt; o.actionPerformed()
+Wed Mar 15 15:42:39 GMT-0800 (PST) 2000
+js&gt; buttonListener = java.awt.event.ActionListener(o)
+adapter0@6acc0f66
+js&gt;  button.addActionListener(buttonListener)
+js&gt; Wed Mar 15 15:43:05 GMT-0800 (PST) 2000
+Wed Mar 15 15:43:05 GMT-0800 (PST) 2000
+Wed Mar 15 15:43:08 GMT-0800 (PST) 2000
+quit()
+$
+</pre>
+
+<p>(上記の部分で) <code class="command">buttonListener = java.awt.event.ActionListener(o)</code> のようにタイプすると、
+Rhino は、実際には <code>ActionListener</code> (のインターフェース)を実装した新しい Java クラスを生成して、そのクラスから JavaScript オブジェクトへ呼び出しを転送します。
+したがって、ボタンをクリックすると、<code>printDate</code> メソッドが呼び出されます。</p>
+
+<p>JavaScript 関数を Java メソッドへ直接指定することが、リリース 1.5R5 の Rhino から可能になります。引数が Java インターフェースと一致して、
+それがただ一つのメソッドであるか、あるいは、そのメソッドの引数の数が同じで対応する引数が同じ型である場合の、どちらかであれば。
+それは、<code>printDate</code> を直接 <code>addActionListener</code> へ渡すことを可能にし、(先の) 例を簡略化できます …</p>
+
+<pre class="code">
+$ java org.mozilla.javascript.tools.shell.Main
+js&gt; importPackage(java.awt);
+js&gt; frame = new Frame("JavaScript")
+java.awt.Frame[frame0,0,0,0x0,invalid,hidden,layout=java.awt.BorderLayout,title=JavaScript,resizable,normal]
+js&gt; button = new Button("OK")
+java.awt.Button[button0,0,0,0x0,invalid,label=OK]
+js&gt; frame.setSize(new Dimension(200,100))
+js&gt; frame.add(button)
+java.awt.Button[button0,0,0,0x0,invalid,label=OK]
+js> frame.show()
+js&gt; function printDate() { print(new Date()) }
+js&gt; printDate()
+Mon Oct 27 2003 10:35:44 GMT+0100 (CET)
+js&gt; button.addActionListener(printDate)
+js&gt; Mon Oct 27 2003 10:36:09 GMT+0100 (CET)
+Mon Oct 27 2003 10:36:10 GMT+0100 (CET)
+quit()
+$
+</pre>
+
+<h2><a name="javaadapter" id="javaadapter">JavaAdapter コンストラクター</a></h2>
+
+<p>JavaAdapter を作成する別の方法は、明示的に JavaAdapter コンストラクターを呼び出すことです。
+JavaAdapter コンストラクターの使用は、上記での Java インターフェースの「(暗示的な)コンストラクト」ではできないような、追加の機能を提供します。</p>
+
+<p>このように記述する代わりに …</p>
+
+<pre class="code">buttonListener = java.awt.event.ActionListener(o)
+</pre>
+
+<p>このような記述にもできます</p>
+
+<pre class="code">
+    buttonListener = new JavaAdapter(java.awt.event.ActionListener, o)
+</pre>
+
+<p>どちらも同じです。そしてその上、<code>Foo</code> クラスの拡張と、
+さらに <code>java.lang.Runnable</code> の実装をするのなら、次のように記述するはずです。</p>
+
+<pre class="code">
+    buttonListener = new JavaAdapter(Packages.Foo,
+                                     java.awt.event.ActionListener,
+                                     java.lang.Runnable, o)
+</pre>
+
+<p>その構文の概要は …</p>
+
+<pre class="code">
+  new JavaAdapter(<var>java-class</var>, [<var>java-class</var>,...] <var>javascript-object</var>)
+</pre>
+
+<p>最大でも一つの <code>java-class</code> が Java クラスで、残りの (複数の) <code>java-class</code> はインターフェースです。
+結果として Java アダプターを返すはずで、それは、指定された Java クラスを拡張し、Java インターフェースを実装し、
+そして <i>javascript-object</i> のメソッドへ呼び出しを転送します。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/rhino/scriptjava.html">英語版</a> 2006/11/13</span> - <span>和訳版 2007/03/05</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/rhino/scriptjava.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

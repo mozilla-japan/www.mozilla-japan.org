@@ -1,0 +1,425 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>OJI Plugin Requirements</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/oji/oji-intro.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/oji/oji-intro.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<!-- saved from url=(0043)http://javaweb.eng.sun.com/~edburns/oji.htm -->
+
+
+
+<H1>OJI Pluginの必要条件<!--OJI Plugin Requirements--></H1>
+
+<H3>著者<!--Author-->: Ed Burns</H3>
+
+<P><B><FONT size=4>注釈<!--Note-->:</FONT> これはこのドキュメントの最初のドラフトです。<!--This is a first draft of this document.--></B></P>
+
+<P>このドキュメントは次のトピックをカバーします:<!--This document covers the following topics:--></P>
+
+<BLOCKQUOTE>
+  <P><A href="#Purpose">ドキュメントの目的<!--Document Purpose--></A><BR>
+  <A href="#Requirements">実装に必要な条件<!--Implementation Requirements--></A></P>
+  <BLOCKQUOTE>
+    <P><A href="#Functions"><FONT size=3><I>共有ライブラリ関数<!--Shared-Library Functions--></I></FONT></A><I><FONT size=3><BR>
+    <A href="#Interfaces">OJI と Plugin Interfaces<!--OJI and Plugin Interfaces--></A></FONT></I></P>
+  </BLOCKQUOTE>
+  <P><A href="#Sample">Sample Implementation Framework<!--Sample Implementation Framework--></A></P>
+</BLOCKQUOTE>
+
+<H2><A name=Purpose></A>ドキュメントの目的<!--Document Purpose--></H2>
+<P>このドキュメントは、Mozilla OJI pluginのための必要条件を指定します。 このように仮定しましょう (1)あなたは OJIがいかなるものか知っている; (2)あなたは OJI Pluginを書き始めたい。<!--This document specifies the requirements for a Mozilla OJI plugin. It is assumed (1) you know what OJI is; (2) you want to start writing an OJI plugin.--></P>
+<BLOCKQUOTE>
+  <P> </P></BLOCKQUOTE>
+<H2><A name=Requirements></A>実装に必要な条件<!--Implementation Requirements--></H2>
+<P>OJI pluginを書くためにはあなたは以下のことをしなければなりません:<!--To write an OJI plugin, you must:--></P>
+<UL>
+  <LI>
+
+あなたは<A href="#Functions">共有ライブラリー関数(Shared Library Functions)</A>の中で、以下に指定されるような OJI plugin dllの4つの共有ライブラリー関数を実装します; <!--implement four shared-library functions in your OJI plugin dll as specified below in <A href="#Functions">Shared Library Functions</A>; -->
+  <LI><A href="#Interfaces">OJI と Plugin Interfaces</A>で指定されるような OJI と Plugin Interfacesをすべて実装します。<!--implement all OJI and plugin interfaces as specified below in <A href="#Interfaces">OJI and Plugin Interfaces</A>. --></LI></UL>
+<BLOCKQUOTE>
+
+  <H4><A name=Functions>共有ライブラリ関数<!--Shared Library Functions--></A></H4>
+  <P>OJI pluginは必要な OJIインターフェースをさらに実装する Mozilla pluginです。すべての Mozilla plugins のように、Mozillaからあなたの pluginまでのエントリー・ポイントは <CODE>npoji.dll</CODE> のように <CODE>np</CODE> で始まるファイル名をが付けられた共有ライブラリでなくてはなりません。 この共有ライブラリは、現在 mozilla/dist/[WIN32*/]bin/plugins という pluginsディレクトリの中になくてはなりません。 あなたの OJI 共有ライブラリは下記機能(それらは実際にmozillaのコンポーネントの auto registration functionsである)を実装し export するべきです:
+<!-- An OJI plugin is a Mozilla plugin that also implements the required OJI 
+  interfaces. Like all Mozilla plugins, the entry points from Mozilla to your 
+  plugin must be in a shared library with a filename starting with 
+  <CODE>np</CODE>, as in <CODE>npoji.dll</CODE>. This shared library must be in 
+  the plugins directory, which is currently 
+  <CODE>mozilla/dist/[WIN32*/]bin/plugins</CODE>. Your OJI shared library should 
+  implement and export the following four functions (which are Mozilla's 
+  component auto-registration functions): --></P>
+</BLOCKQUOTE>
+<P>&nbsp;</P>
+<DIV align=center>
+<TABLE border=1 cellPadding=3 width="90%">
+  <TBODY>
+  <TR bgColor=#cccccc>
+    <TD colSpan=2 width="25%"><PRE>extern "C" nsresult NSGetFactory(nsISupports *pProvider, 
+                                 const nsCID &amp;clsid, 
+                                 const char *aClassName, 
+                                 const char *aProgID, 
+                                 nsIFactory **ppFactory);</PRE></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%">
+      <P><CODE>nsISupports *pProvider</CODE> </P>
+      <P>これは現在の nsIServiceManagerを指します。<BR>(This points to the current nsIServiceManager.)</P></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>const nsCID %clsid</CODE> 
+      <P>これは <CODE>static NS_DEFINE_CID(kPluginCID, NS_PLUGIN_CID);</CODE> からの <CODE>kPluginCID</CODE>です。(This is <CODE>kPluginCID</CODE> from <CODE>static NS_DEFINE_CID(kPluginCID, NS_PLUGIN_CID);</CODE> )</P></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>const char *aClass</CODE> 
+      <P>mozillaがあなたの OJI pluginのための NSGetFactoryを呼ぶ場合、この値は null です。<BR>(This value ends up being null when Mozilla calls NSGetFactory for your OJI plugin.) </P></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>const char *progID</CODE> 
+      <P>mozillaがあなたの OJI pluginのための NSGetFactoryを呼ぶ場合、この値は null です。<BR>(This value ends up being null when Mozilla calls NSGetFactory for your OJI plugin.) </P></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>nsIFactory **ppFactory</CODE> 
+      <P>あなたが返り値(nsIPluginのインスタンス)を格納するところです。<BR>(This is where you store the return value, which must be an instance of nsIPlugin.) </P></TD></TR>
+  <TR>
+    <TD colSpan=2 width="100%">
+      <P><B><FONT size=4>注釈<!--Note-->: </FONT></B>この関数は LiveConnect が始められる時、呼び出されます。 それはあなたが nsIPluginのインスタンスを返す時です。あなたはこの nsIJVMPlugin の実装のインスタンスを持つことを便利に感じるかもしれません。<BR>
+      (The above function gets called when 
+      LiveConnect is started. It is your opportunity to return an instance of 
+      nsIPlugin. You may find it convenient to have this instance also 
+      implement nsIJVMPlugin.) </P>
+      </TD></TR>
+  <TR bgColor=#cccccc>
+    <TD colSpan=2 width="100%"><PRE>extern "C" nsresult NSRegisterSelf(nsISupports* serviceMgr, 
+                                   const char *path);</PRE></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>nsISupports *serviceMgr</CODE> 
+      <P>これは現在の nsIServiceManager を示します。<BR>(This points to the current nsIServiceManager.)</P></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>const char *path</CODE> 
+      <P>ロードされている dll への絶対パス<BR>(This is the absolute qualified path to the dll being loaded) </P></TD></TR>
+  <TR>
+    <TD colSpan=2 width="100%">
+      <P><B><FONT size=4>注釈<!--Note-->:</FONT></B>この関数は mozilla plugin システムによって呼び出されません。<BR>(The above function is not called by 
+      the Mozilla plugin system.)</P>
+      <P> </P></TD></TR>
+  <TR bgColor=#cccccc>
+    <TD colSpan=2 width="100%"><PRE>extern "C" NS_EXPORT nsresult NSUnregisterSelf(nsISupports* serviceMgr, 
+                                               const char *path);</PRE></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>nsISupports *serviceMgr</CODE> 
+      <P>これは現在の nsIServiceManager を示します。<BR>(This points to the current nsIServiceManager.) </P></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>const char *path</CODE> 
+      <P>ロードされている dll への絶対パス<BR>(This is the absolute qualified path to the dll being loaded.) </P></TD></TR>
+  <TR>
+    <TD colSpan=2 width="100%"><B><FONT size=4>注釈<!--Note-->: </FONT></B>
+上記の関数は mozilla pluginシステムによって呼ばれません。 もしこれが autoregisteringしていた XPCOMコンポーネントならば、この関数はコンポーネントが serviceManagerでそれ自体を登録することを可能にするために呼ばれるでしょう。<BR>
+     (The above 
+      function is not called by the Mozilla plugin system. If this were an XPCOM 
+      component that was auto-registering, this function would be called to 
+      allow the component to register itself with the serviceManager. 
+      <P>&nbsp;</P></TD></TR>
+  <TR bgColor=#cccccc>
+    <TD colSpan=2 width="100%"><CODE>extern "C" PRBool 
+      NSCanUnload(nsISupports* serviceMgr);</CODE></TD></TR>
+  <TR>
+    <TD width="25%">&nbsp;</TD>
+    <TD width="75%"><CODE>nsISupports *serviceMgr</CODE> 
+      <P>これは現在の nsIServiceManager を示します。<BR>(This points to the current nsIServiceManager.) </P></TD></TR>
+  <TR>
+    <TD colSpan=2 width="100%"><B><FONT size=4>注釈<!--Note-->:</FONT></B>この関数は mozilla pluginシステムによって呼ばれません。しかし、そうだった場合、pluginを unloadすることが安全かどうか決めることが目的です。<BR>
+     (The above 
+      function is not called by the Mozilla plugin system, but if it were, its 
+      purpose would be to determine if it were safe to unload the 
+  plugin.</TD></TR></TBODY></TABLE></DIV>
+<P>&nbsp;</P>
+<BLOCKQUOTE>
+  <H4><A name=Interfaces></A>OJI and Plugin Interfaces</H4>
+  <P>This section lists all interfaces that an OJI plugin must implement, and it 
+  provides links to the header files via LXR. Listed for each interface are the 
+  interfaces to which it must respond when called by QueryInterface or 
+  AggregatedQueryInterface (this is in addition to the mandatory nsISupports). 
+  </P></BLOCKQUOTE>
+<P>&nbsp;</P>
+<TABLE align=center border=1 cellPadding=3 width="90%">
+  <TBODY>
+  <TR bgColor=#cccccc>
+    <TD>
+      <DIV align=center><B>OJI Interfaces</B></DIV></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/oji/public/nsIJVMConsole.h"><CODE>mozilla\modules\oji\public\nsIJVMConsole.h</CODE></A><CODE>: 
+      nsIJVMConsole <BR>AggregatedQueryInterface: 
+NS_IJVMCONSOLE_IID</CODE></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/oji/public/nsIJVMPlugin.h"><CODE>mozilla\modules\oji\public\nsIJVMPlugin.h</CODE></A><CODE>: 
+      nsIJVMPlugin <BR>QueryInterface: NS_IJVMPLUGIN_IID, NS_IJVMCONSOLE_IID 
+      </CODE></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/oji/public/nsIJVMPluginInstance.h"><CODE>mozilla\modules\oji\public\nsIJVMPluginInstance.h</CODE></A><CODE>: 
+      nsIJVMPluginInstance<BR>QueryInterface: NS_IPLUGININSTANCE_IID, 
+      NS_IJVMPLUGININSTANCE_IID </CODE></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/oji/public/nsIJVMPrefsWindow.h"><CODE>mozilla\modules\oji\public\nsIJVMPrefsWindow.h</CODE></A><CODE>: 
+      nsIJVMPrefsWindow<BR>AggregatedQueryInterface: NS_IJVMPREFSWINDOW_IID 
+      </CODE></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/oji/public/nsISecureEnv.h"><CODE>mozilla\modules\oji\public\nsISecureEnv.h</CODE></A><CODE>: 
+      nsISecureEnv<BR>AggregatedQueryInterface: NS_ISECUREENV_IID </CODE></TD></TR>
+  <TR bgColor=#cccccc>
+    <TD>
+      <DIV align=center><B>Plugin Interfaces</B></DIV></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/plugin/public/nsIPlugin.h"><CODE>mozilla\modules\plugin\public\nsIPlugin.h</CODE></A><CODE>: 
+      nsIPlugin<BR>AggregatedQueryInterface: NS_IPLUGIN_IID </CODE></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/plugin/public/nsIPluginInstance.h"><CODE>mozilla\modules\plugin\public\nsIPluginInstance.h</CODE></A><CODE>: 
+      nsIPluginInstance<BR>QueryInterface: NS_IPLUGININSTANCE_IID </CODE></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/plugin/public/nsIPluginInstancePeer.h"><CODE>mozilla\modules\plugin\public\nsIPluginInstancePeer.h</CODE></A><CODE>: 
+      nsIPluginInstancePeer<BR>QueryInterface: NS_IPLUGININSTANCEPEER_IID 
+      </CODE><BR><FONT color=red>PENDING (Ed Burns): Unsure why the plugin needs 
+      to implement this.</FONT> </TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/plugin/public/nsIPluginManager.h"><CODE>mozilla\modules\plugin\public\nsIPluginManager.h</CODE></A><CODE>: 
+      nsIPluginManager<BR>QueryInterface: NS_IPLUGINMANAGER_IID </CODE><BR><FONT 
+      color=red>PENDING (Ed Burns): Unsure why the plugin needs to implement 
+      this.</FONT> </TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/plugin/public/nsIPluginStreamInfo.h"><CODE>mozilla\modules\plugin\public\nsIPluginStreamInfo.h</CODE></A><CODE>: 
+      nsIPluginStreamInfo<BR>QueryInterface: NS_IPLUGINSTREAMINFO_IID 
+  </CODE></TD></TR>
+  <TR>
+    <TD><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/plugin/public/nsIPluginStreamListener.h"><CODE>mozilla\modules\plugin\public\nsIPluginStreamListener.h</CODE></A><CODE>: 
+      nsIPluginStreamListener<BR>QueryInterface: NS_IPLUGINSTREAMLISTENER_IID 
+      </CODE></TD></TR>
+  <TR>
+    <TD>
+      <P><A 
+      href="http://lxr.mozilla.org/mozilla/source/modules/plugin/public/nsIPluginTagInfo.h"><CODE>mozilla\modules\plugin\public\nsIPluginTagInfo.h</CODE></A><CODE>: 
+      nsIPluginTagInfo<BR></CODE><CODE>QueryInterface: NS_IPLUGINTAGINFO_IID 
+      </CODE><BR><FONT color=red>PENDING (Ed Burns): Unsure why the plugin needs 
+      to implement this.</FONT> </P></TD></TR></TBODY></TABLE>
+<P align=center>&nbsp;</P>
+<P> </P>
+<H2><A name=Sample>Sample</A> Implementation Framework</H2>
+<P>This section lists sample class definitions and the appropriate Mozilla 
+inheritences for each class. You must implement these interfaces, in addition to 
+the above-mentioned NS* functions, in order to implement a Java Plugin. </P>
+<P>&nbsp;</P>
+<TABLE align=center border=0 cellPadding=5 width="90%">
+  <TBODY>
+  <TR bgColor=#cccccc>
+    <TD><CODE><PRE>/**
+
+ * Responsible for creating an instance of the Java Plugin.
+
+ */
+
+class JavaPluginFactory : public nsIJVMPlugin, public nsIPlugin
+{
+};
+	</PRE></CODE>
+      <P> </P><CODE><PRE>/**
+
+ * The actual java plugin instance.  
+
+ */
+
+class JavaPlugin : public nsIJVMPluginInstance, public nsIPluginInstance 
+{
+};
+	</PRE></CODE>
+      <P> </P><CODE><PRE>/**
+
+ * Instances of this class come from the nsIJVMPlugin instance.  
+ * This class provides a secure version of the JNIEnv class from 
+ * Sun's JNI.  There is a 1:1 mapping of methods in this class to
+ * methods in JNI.
+
+ */
+
+class SecureJNIEnv : public nsISecureEnv
+{
+};
+	</PRE></CODE>
+      <P> </P><CODE><PRE>/**
+
+ * Allows Mozilla to pop up or hide a console that displays the console
+ * output from the java plugin.
+
+ */
+
+class JavaConsole : public nsIJVMConsole
+{
+};
+	</PRE></CODE>
+      <P> </P><CODE><PRE>/**
+
+ * Allows Mozilla to pop up or hide a window that allows the user to
+ * control settings of the Java plugin.
+
+ */
+
+class JavaPrefsWindow : public nsIJVMPrefsWindow
+{
+};
+	</PRE></CODE>
+      <P> </P><CODE><PRE>/**
+
+ * <BR><FONT color=red>PENDING (Ed Burns): Unsure why the plugin needs to implement this.</FONT>
+
+ */
+
+class PluginInstancePeer : public nsIPluginInstancePeer, public nsIPluginTagInfo 
+{
+};
+	</PRE></CODE>
+      <P> </P><CODE><PRE>/**
+
+ * <BR><FONT color=red>PENDING (Ed Burns): Unsure why the plugin needs to implement this.</FONT>
+
+ */
+class PluginManager : public nsIPluginManager 
+{
+};
+	</PRE></CODE>
+      <P> </P><CODE><PRE>/**
+
+ * Allows Mozilla to gain information about streams for this plugin.
+ * <BR><FONT color=red>PENDING (Ed Burns): Unsure why the plugin needs to implement this.</FONT>
+
+ */
+class PluginStreamInfo : public nsIPluginStreamInfo 
+{
+};
+	</PRE></CODE>
+      <P> </P><CODE><PRE>/**
+
+ * Methods that get called by Mozilla for various stream events.
+
+ */
+class PluginStreamListener : public nsIPluginStreamListener 
+{
+};
+	</PRE></CODE></TD></TR></TBODY></TABLE>
+<P> </P>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/oji/oji-intro.html">英語版</a> 2000/03/22</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/oji/oji-intro.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Mozilla の XSL Transformations (XSLT)</title>
+
+<style type="text/css" media="screen,tv">
+	p, li, dt, dd, pre, blockquote { line-height: 1.75em; }
+	h1 { margin: 0.5em; text-align: center; }
+	.addcomment { margin-top: 10px; margin-bottom: 5px; text-align: right; font-size: small; line-height: 1.5em; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="January 13, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/xslt/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h1>Mozilla の XSL Transformations (XSLT)</h1>
+<p style="text-align: center;">by <a href="mailto:axel@pike.org">Axel Hecht</a></p>
+<p>
+	XSLT （XSL Transformations） は、XML ドキュメントを他の XML ドキュメントへ変換するために使われる言語です。
+	参考情報については、W3C 勧告 <a href="http://www.w3.org/TR/xslt.html">http://www.w3.org/TR/xslt.html</a> をご覧ください。
+	Netscape <a href="http://devedge-temp.mozilla.org/library/manuals/2001/xslt/1.0/">DevEdge</a> は、Netscape のサイトにある、一般的な XSLT に関する情報です。
+	XSLT への近道は、Norman Walsh の <a href="http://www.nwalsh.com/docs/tutorials/xsl/xsl/">チュートリアル</a> をご覧ください。<br>
+	<a href="test.xml">簡単なサンプル</a> や <a href="test.html">これと同じように見える</a> と思われるものもご覧ください。
+</p>
+<p>
+	<a href="#devvers">開発者</a><br>
+	<a href="#faq">よくある質問</a><br>
+	<a href="qa/">品質保証</a><br>
+	<a href="#bugs">XSLT のバグ報告ガイド</a><br>
+	<a href="js-interface.html">JavaScript の中で XSLT を使う</a>
+</p>
+<p>
+	Mozilla の XSLT の実装は TransforMiiX モジュールで行われています。
+	あなたは、トカゲ （訳注 : Mozilla のことです） の一部として、あるいはスタンドアローンのプロセッサとして、これを使うことができます。
+</p>
+<dl>
+	<dt style="font-weight: bold"><a name="devvers">開発者／連絡先</a></dt>
+	<dd>
+		<p>
+			TransforMiiX の原作者は <a href="mailto:kvisco@ziplink.net">Keith Visco</a> です。
+			主な開発者は <a href="mailto:peterv@netscape.com">Peter Van der Beken</a> （モジュールオーナー）、<a href="mailto:axel@pike.org">Axel Hecht</a> と <a href="mailto:sicking@bigfoot.com">Jonas Sicking</a> です。
+			連絡は <a href="news://news.mozilla.org/netscape.public.mozilla.layout.xslt">netscape.public.mozilla.layout.xslt</a> か Bugzilla へどうぞ。<br>
+			TransforMiiX ソースの <a href="http://lxr.mozilla.org/seamonkey/source/extensions/transformiix/docs/contributors.html">contributors.html</a> も忘れずにチェックしてくださいね。
+		</p>
+	</dd>
+	<dt style="font-weight: bold"><a name="faq">よくある質問</a></dt>
+	<dd>
+		<ol>
+			<li><p style="font-weight: bold">なぜ私のスタイルシートは適用されないのですか？</p></li>
+			<p>
+				ソースとスタイルシートのどちらも、MIME タイプが XML MIME タイプ、つまり <code>text/xml</code> か <code>application/xml</code> にセットされていることを確かめてください。
+				XSLT ネームスペースは <code>http://www.w3.org/1999/XSL/Transform</code> です。
+				Mozilla で扱える MIME タイプは、IE とは対照的に厳密です。いくらか CGI を書いてみてください。きっと好きになるでしょう。
+			</p>
+			<li><p style="font-weight: bold">なぜ Internet Explorer は Mozilla と違う XSLT ネームスペースを要求するのですか？</p></li>
+			<p>
+				バージョン 6 以下の IE は XSLT ワーキングドラフトを軽視したネームスペースを要求しますので、ぜひ Mozilla にアップデートしてください（笑）
+				ただし IE6 以上や MSXML3 以上では、この問題は修正されています。
+				XSLT1.0 と IE におけるワーキングドラフトの実装はかなり違うので、私たちは「遺物」のサポートを提供しません。
+			</p>
+			<li><p style="font-weight: bold">IE で動くのに、Mozilla では動かないのですが？</p></li>
+			<p>
+				そこにはより一層の違いがあります。その大部分は、IE が変換の後にしているのではないかと私たちが考えていることから生じています。
+				それは（私の推測では）、実際にレンダリングするものを生成するために、出力をシリアライズして分析します。一方 Mozilla はあなたの変換の結果を正確にレンダリングします。
+				私たちが HTML 出力を XHTML の生成によってサポートしているということに注意してください（ <a href="#issues">問題点</a> をご覧ください）。
+			</p>
+			<li><p style="font-weight: bold">transformNode するにはどうしたらいいですか？</p></li>
+			<p>
+				Mozilla 1.2 ファイナル 以降、<code>transformToDocument</code> と <code>transformToFragment</code> があります。<a href="js-interface.html">JavaScript インターフェイス</a> をご覧ください。
+			</p>
+			<li><p style="font-weight: bold">TransformMiiX のスタンドアローン版をビルドするにはどうしたらいいですか？</p></li>
+			<p>
+				<a href="standalone.html">スタンドアローン</a> のページをご覧ください。
+			</p>
+		</ol>
+	</dd>
+	<dt style="font-weight: bold"><a name="issues">TransforMiiX の問題点</a></dt>
+	<dd>
+		<p>
+			Mozilla の XSLT モジュールは XML ドキュメントを表示することしかできません。そのため、HTML 出力メソッドは代替手段として実装されています。
+			TransforMiiX は代わりに XHTML ドキュメントを生成します。それは、XSLT スタイルシートを CSS スタイリングについてより厳密にさせます。<br>
+			分かっている問題 : <br> - XHTML には HTML のような body 修正規則がありません。ですから body は完全なページへの拡張ができません。
+			ページ全般の結果を得るためには、body の代わりに html をデザインしてください。
+		</p>
+		<p>XSLT スタンドアローンはトカゲ （訳注 : Mozilla のことです） に入っているものと同じように、テストと、いいテストケースが必要です。</p>
+		<p>Mozilla における XSLT の <a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&component=XSLT&order=Reuse+same+sort+as+last+time">未解決バグ</a> をご覧ください。</p>
+	<dd>
+</dl>
+<p>
+	このページに間違いを見つけた場合は <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=51601">51601</a> に追加してください。
+</p>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/xslt/index.html">英語版</a> 2003/01/13</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/xslt/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

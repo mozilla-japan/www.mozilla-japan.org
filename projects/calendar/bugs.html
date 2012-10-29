@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+ <title>Calendar - Bugs</title>
+ <link rel="stylesheet" type="text/css" href="calendar.css">
+
+<link rel="alternate" hreflang="en" modified="September 23, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/calendar/bugs.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+<div id="side" class="left">
+<ul id="nav">
+  <li><a href="./"><strong>Calendar プロジェクト</strong></a>
+    <ul>
+      <li><a href="about.html">私たちについて</a></li>
+      <li><a href="http://www.google.com/calendar/ical/u7pke58sc91ksbm4h9pf9ofe8c%40group.calendar.google.com/public/basic.ics">Project Calendar<br>(iCalendar ファイル)</a></li>
+      <li><a href="http://weblogs.mozillazine.org/calendar">開発者ブログ</a></li>
+      <li><a href="help.html">協力するには？</a></li>
+      <li><a href="bugs.html">バグ</a></li>
+      <li><a href="http://wiki.mozilla.org/Calendar:Dev_Guide">開発者向けガイド</a></li>
+    </ul>
+  </li>
+  <li><a href="./lightning/"><strong>Lightning</strong></a></li>
+  <li><a href="./sunbird/"><strong>Mozilla Sunbird&reg;</strong></a></li>
+  <li><a><strong>参考資料とおまけ</strong></a>
+    <ul>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="holidays.html">休日設定ファイル</a></li>
+      <li><a href="links.html">便利なリンク集</a></li>
+    </ul>
+  </li>
+</ul>
+
+</div>
+
+<div id="mainContent" class="bodyleft">
+
+<h1>バグ</h1>
+<p>
+バグは <a href="http://bugzilla.mozilla.org">bugzilla.mozilla.org</a> にある Mozilla バグ追跡システムによって管理されています。このサイトでは、<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=UNCONFIRMED&amp;product=Calendar">未確認</a>および<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW,ASSIGNED,REOPENED&amp;product=Calendar">確認済み</a>のバグの一覧を得ることができます。<a href="#fixing-calendar-bugs">バグの修復</a>（お手伝いでも、率先してしていただいても）、あるいは<a href="#triaging-bugs">バグの重要度の格付け</a>・品質保証、あるいは単にCalendar のバグや機能向上のための<a href="#reporting-calendar-bugs">報告</a>や解決、提案でも結構ですので、皆様の協力をお願いします。
+
+</p>
+
+<h2 id="fixing-calendar-bugs">Calendar のバグを直す</h2>
+
+<p>バグを直すためには、まず <a href="http://www.mozilla.org/projects/calendar/faq.html#DEVELOP">Calendar 開発者向け FAQ</a> に通じてもらわねばなりません。</p>
+
+<p>さらに、 Calendar に関わるどんな<a href="http://bugzilla.mozilla.org/buglist.cgi?product=Calendar&amp;bug_status=NEW">新たなバグ</a>（と、 <a href="http://bugzilla.mozilla.org/buglist.cgi?product=Calendar&amp;bug_status=UNCONFIRMED,NEW,ASSIGNED,REOPENED&amp;emailassigned_to1=1&amp;emailtype1=exact&amp;email1=nobody%40mozilla.org">nobody@mozilla.org に来たバグ</a>）でも喜んで引き受ける、くらいの気概が必要です。また、未確認のバグについての報告もお願いします。（<a href="#reporting-calendar-bugs">これについては下を見てください</a>）
+
+</p><p class="note">新たに発見されたバグは <code>Status: New</code> とされます。 Calendar に関するバグは基本的にリーダーである Mostafa Hosseini にとりあえず割当て（ <code>Assigned-To</code> ）られます。
+しかし、このことはそのバグの担当者が決まったということではありません。
+誰かが自分から手を挙げてバグの担当を引き受けない限り、バグには <code>Status: Assigned</code> のフラグは付きません。
+もし、自分が引き受けたバグについての仕事をもうこれ以上できない、というような場合は、そのバグの状態を <code>Status: New</code> （初期状態）に戻すため、とりあえず nobody@mozilla.org に送信してください。
+</p>
+
+<p>直せそうなバグを見つけたら：
+</p><ol>
+
+ <li>Bugzilla 上で： そのバグの担当をあなた自身に指定してください（もしできればでかまいません）。</li>
+ <li>あなたのコンピュータ上で：
+  <ol style="list-style-type: lower-alpha;">
+   <li>バグを直す。</li>
+   <li>修理した部分をテストする（テストは Mozilla Application Suite 1.7 / Fire Fox / Thunderbird 及び Mozilla 1.8 / Sunbird 全てで行ってください）。</li>
+   <li>コメントを更新する。</li>
+   <li>パッチを作る（ [cvs] diff を使い、コードの整合性をとり、タブをスペースに書き換えておいてください）。</li>
+
+  </ol>
+ </li>
+ <li>Bugzilla 上で： 説明文と一緒にパッチを適用する。
+  <ul>
+   <li>あなたの施した変更により、どのようにバグを修復したのか（動作の仕組み、およびもしコメント部分に書いていなければ、パッチの設計概要についても記入してください）。</li>
+   <li>Mozilla / Firefox / Thunderbird / Sunbird のどのバージョンで、またもし OS やプラットフォームに関わる問題であるのなら、どの OS やプラットフォーム上でどのようなテストをしたのか。</li>
+  </ul>
+ </li>
+
+ <li>Bugzilla 上で： mostafah@oeone.com に提出してください。<br>（添付ファイルの "edit" をクリックし、 "First-Review" フラグを "?" にしてください。さらに、 "requestee" の項目を mostafah@oeone.com にすれば OK です。）
+ </li>
+</ol>
+
+<p>
+すべてのパッチは開発チームリーダーである Mostafa Hosseini によるコードのチェックが必要です。
+あなたが担当しているバグプロジェクトに添付したパッチに検証（ review ）フラグをたてることで彼にチェックを依頼することができます。
+もし彼が検討の末 OK を出せば、晴れてあなたのパッチは Mozilla Calendar CVS リポジトリに登録されることとなります。
+</p>
+
+<p>
+<em>テストすべき Mozilla のバージョン</em>： 私たちは現在のところ、 Mozilla 1.7 / Firefox /
+Thunderbird および Mozilla 1.8 / Sunbird
+で動くカレンダーの、ただ一つだけのバージョンのみ維持管理しています。それゆえ、あなたのつくったパッチは是非とも複数のバージョンの元でテストしてく
+ださい。
+</p>
+
+<p>
+<em>ロケールテキスト</em>： もし、あなたがとあるロケール（例えば、 /locale/en-US であるとか）に新たに項目や文字列を加えたなら、未翻訳のままで結構ですので、最終パッチでは全てのロケールにそれらの項目を加えてください。
+新たな項目やプロパティの名称は必ず提示するようにしてください。そうすることで、新たなビルドが他のロケールでクラッシュするのを防ぐことができます。
+後日、ローカライザー達が翻訳したうえでアップデートしてくれます。
+
+</p>
+
+<h2 id="triaging-bugs">バグの格付けと品質保証</h2>
+
+<p>私たちは、すでに存在を確認しているバグや、新たに報告されてくるバグの重要性を格付けしてくれる人を求めています。この「格付け」というのは、バ
+グレポートが事実かつ再現可能であるものかどうかを確認し、また虚偽の報告や再現不可能なバグレポートを始末し、さらにバグに解決の優先順位をつけ、重複
+したバグレポートの発見と解決を行うというものです。
+<br>
+これらの<a href="http://www.mozilla.org/quality/help/">品質保証</a>に関わるより詳細な情報を見ていただくことができます。
+</p>
+
+<h2 id="reporting-calendar-bugs">Calendar のバグを報告する</h2>
+<p>Calendar のバグや機能強化のための提案をする場合は、以下の手順に沿ってください：
+</p><ol>
+<li>
+
+同じバグがすでに報告されていないか、<a href="http://bugzilla.mozilla.org/query.cgi?product=Calendar&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED">未解決のバグ</a>の一覧を探してみてください。
+また、あなたが使っているビルドもしくは XPI パッケージの発行日以降の情報を、<a href="http://bugzilla.mozilla.org/query.cgi?product=Calendar&amp;bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;chfieldfrom=2m">最近解決されたバグ</a>の一覧でも探してみてください。
+どちらのページにもあなたが抱えている問題に合致するものがなければ、<a href="http://bugzilla.mozilla.org/enter_bug.cgi?product=Calendar&amp;format=guided">バグの報告を行います</a>。
+
+</li><li>バージョンと言語を報告する： Mozilla Calendar の <a href="http://www.mozilla.org/projects/calendar/faq.html#version_info">ビルドの日付</a> (例えば 20040622-cal のようなもの)を見てください。
+また、あなたがインストールしたロケールと言語パックのバージョンも報告してください。
+
+</li><li>どのようにすれば問題が再現するのかを、正確に記してください。必要であれば、 ics ファイル（ content type は text/calendar としてください)や URL を添付していただいてかまいません。
+</li><li>JavaScript のエラーを報告する： JavaScript
+コンソールのエラーを一旦全て消去してください。その後、問題の操作を行います。もし JavaScript
+コンソールにエラーが記録されていれば、それも一緒に報告してください（ JavaScript
+コンソールはブラウザのツールメニューから使うことができます）。
+</li></ol>
+
+<p>
+もし、バグが修復されなければ、問題調査の手助けのために新たな情報の提供や提案をしてくださったり、あるいはその問題を解消するためのパッチをつくってくだされば幸いです。
+
+</p>
+
+<p>
+また、 Mozilla 製品一般の<a href="http://www.mozilla.org/quality/bug-writing-guidelines.html">バグリポートのガイドライン</a>もご覧ください。こちらは特に Talkback を用いたクラッシュ案件の報告に必要です。
+</p>
+</div>
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/calendar/bugs.html">英語版</a> 2004/09/23</span> - <span>和訳版 2005/03/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/calendar/bugs.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

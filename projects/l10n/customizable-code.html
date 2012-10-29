@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+  <title>国際的なカスタマイズをし易いコードのスタイル</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="DC.subject" content="Writing Global Customization Friendly Code">
+<meta name="DC.title" content="Global Customization Friendly Coding Style">
+
+<link rel="alternate" hreflang="en" modified="October 9, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/l10n/customizable-code.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<div align="Center">        
+<h2>国際的なカスタマイズをし易いコードを書く</h2>
+
+        <a href="mailto:%20Tao%20Cheng%20%3Ctao@netscape.com%3E">Tao Cheng</a>
+        <br>
+        </div>
+               
+<h4><br>
+        </h4>
+               
+<h4><a name="goals"></a>
+目標</h4>
+ローカライゼーション(l10n)、カスタマイズ、国際化(i18n)をし易いコードを書くことが重要である理由：<br>
+<ul>
+	<li><u>使用可能性</u>。XUL や CSS、C++コードでさえ変更不要。ローカライゼーションと地域化は、
+	"langenus.xpi"といった言語パックや、"regus.xpi"といった地域パックで可能。&nbsp;</li>
+	<li><u>費用対効果</u>。翻訳者は*.dtd や *.properties ファイル中のキーと値の組み合わせを扱うだけでよく。
+	マークアップ言語やプログラミング言語を習熟する必要がない。</li>
+	<li><u>地域と言語の切替</u>、インストール、アップグレード。言語パックと地域パックは
+	追加可能で、ローカライズビルドもしくはカスタマイズビルドを作成するのに、言語パックと
+	地域パックだけあればよい。
+	<li><u>QA 懸念の低減</u>。リソース修正時にプログラムのロジックやバイナリが重複とは無縁になるため、
+	不具合は減少し、GUI関連のものや見つかり易いものが中心となる。</li>
+	<li><u>エラーの減少傾向</u>。 形式の固定されたファイル（キーと値）とすることで、
+	人為ミスが発生しにくくなる。</li>
+                          
+</ul>
+                   
+<h4>目標でないもの</h4>
+	XUL 技術の紹介ではありません。対象読者はC++、JavaScript、それからマークアップ言語のコーディング経験があり、基本的理解をしている人です。<br>
+                   
+<h4><a name="l10n_c11n"></a>
+ローカライゼーションとカスタマイズ</h4>
+	ローカライゼーションとカスタマイズ、それから Mozilla でそれをどうやって実現する？
+ <br>
+                   
+<ul>
+	<li>ローカライゼーション: 翻訳や地域や地域文化に合わせるための UI リソースのカスタマイズ<br clear="All">
+            <br>
+          </li>
+                                       
+  <ul>
+	<li>Mozilla UI は、XML アプリケーションである XUL 技術をベースに築かれています。
+	ローカライゼーションを円滑にするため、すべての言語リソースを、文書型定義（DTD）の外部サブセットとして
+	外部化しています。翻訳者やローカライズ作業者は、DTD（例: "navigator.dtd"）内の値を翻訳することで、
+	XUL 構文の理解は不要のままブラウザをローカライズします。</li>
+	<li>C++やJavaScript のコードでは、文字列やリソースはキーと値の組で 
+	Java のプロパティファイルの形式（例："navigator.properties"）で保存されます。
+	XPCOM オブジェクト、nsIStringBundleService、nsIStringBundle がそれらを読み込みます。</li>
+	<li>メニュー、フォーム、ダイアログのレイアウトはローカライズ可能です。
+	例としては、検索メニュー、アドレス帳の新しいカードダイアログ等が挙げられます。
+	そのような UI のために、しばしば実装のための XUL オーバーレイを使用します。</li>
+	<li>ローカライゼーションにおいて、DTD と property、そして 
+	RDF ファイルだけを翻訳者へ渡しておき、翻訳者はキーと値の組み合わせを相手にすれば
+	よいのです。<br clear="All">
+              <br>
+              </li>
+                                       
+  </ul>
+	<li>カスタマイズ: ローカライゼーションと似ていますが、UI の修正に主眼がおかれます。
+	カスタマイズの例:<br clear="All">
+            <br>
+         </li>
+                                       
+  <ul>
+	<li>メニュー項目に「Help」メニューを追加する。</li>
+	<li>サイドバータブを追加する。</li>
+	<li>throbber アイコンや throbber の URL を修正する。</li>
+	<li>パーソナルツールバーからNet2phoneやタスクメニュー、設定ダイアログを削除する。</li>
+                                       
+  </ul>
+                   
+</ul>
+                 
+<h4><a name="style_guide"></a>
+ローカライズ／カスタマイズ可能なコードを書く</h4>
+                 
+<ol>
+	<li><i><a name="what_l12y"></a>
+	</i>ローカライズ／カスタマイズ可能なリソースって<b>何？</b><br clear="All">
+            <br>
+          </li>
+                                       
+  <ul>
+	<li>テキスト、エンドユーザが目にする文字列。
+	これらのリソースは langenus.xpi 中にある jarファイルの一つの中に含まれます。</li>
+                                                           
+    <ul>
+	<li>良い例: en-US.jar や、
+	<a href="#platform-specific">en-{mac, unix, win}.jar</a>
+   .&nbsp;</li>
+	<li>悪い例: 言語パックに関係なくローカライズできるように、
+	XUL、JavaScript、C++ のコードの中に文字列をハードコーディングする。<br clear="All">
+                <br>
+                </li>
+                                                           
+    </ul>
+	<li>外部 Web サイトを指し示す Web リンク（URL)（例"<a class="moz-txt-link-freetext" href="http://www.foo.com">
+	http://www.foo.com</a>）
+	例えば、 URL は「ホーム」ボタンや、
+	「N」ロゴボタン<span class="comment">（訳注：Netscape を意識した記述で、Throbber のことと思われる）</span>や、
+	広告バナーなどに関連づけられます。</li>
+                                                           
+    <ul>
+	<li>良い例: US.jar に含める。</li>
+	<li>悪い例: XUL や langenus.xpi の中に埋め込む。<br clear="All">
+                <br>
+                </li>
+                                                           
+    </ul>
+	<li>形状要素（幅、高さ、サイズ変更の可・不可等）、
+	UI 設定（プルダウンメニュー、ダイアログ等）。
+	翻訳（アジア、ドイツ等）は文字数の変化による幅や高さの増減が起こりがちです。
+	翻訳の結果として文字欠け等を発生させないため、これらもローカライズしてください。</li>
+                                                           
+    <ul>
+	<li>良い例: *.dtd （もしくは *.properties）に外部化する。</li>
+	<li>悪い例: .xul、.css、C++、JavaScript 等にハードコードする。<br clear="All">
+                <br>
+                </li>
+                                                           
+    </ul>
+	<li>言語、文化に依存する画像。
+	&nbsp;（英語等の）文字を含む画像とアイコンはローカライズが困難です。
+       <font color="#ff0000">悪い</font>例:</li>
+           
+    <ul>
+	<li>「MyNetscape」と表示するための "My" と書かれた画像。</li>
+	<li>ツールバーを整形するためのComposer（や Editor）の<b>ボールド</b>や<i>イタリック</i>のボタンアイコン<br>
+                </li>
+	<li>Composer（や Editor）のツールバーにある <b>abc</b> という文字を含むスペルチェッカーボタン。<br clear="All">
+                <br>
+                </li>
+    </ul>
+                                                           
+	<li>温度機能（華氏 V.S. 摂氏）</li>
+                                               
+    <ul>
+	<li>悪い例: 単位として華氏のみを想定する。</li>
+	<li>良い例: 単位を明記し、さらにローカライズ可能とする。<br clear="All">
+                <br>
+              </li>
+                                               
+    </ul>
+	<li>郵便アドレスのフォーマット。メールアドレスのフォーマットは国によって異なります。
+	世界統一のアドレス形式は存在しません。
+	ユーザインタフェースデザインは、地域性に配慮し、ローカライズによる調整の余地を残しておく必要があります。
+	例えば、
+     </li>
+                                                           
+    <ul>
+
+	<li>合衆国においては、郵便アドレスの各項目は次のような順序になります
+	町内住所、市、州、Zip コード、国。</li>
+	<li>しかし、アジアでは、郵送アドレスは国、州、郡、市等の順になります。<br clear="All">
+                <br>
+                </li>
+                                                           
+    </ul>
+	<li>計測単位: メートル法 V.S. 英語式測量法。<br clear="All">
+              <br>
+              </li>
+                                       
+  </ul>
+	<li><i><b>どのように</b></i>ローカライズ／カスタマイズ可能にするのか。
+	推奨される方法は、以下のように、ソースファイルの種類ごとに決まっています。
+	（詳細は、"<a href="/projects/l10n/xul-styleguide.html">
+     XUL    Coding Style Guidelines</a>
+   "を参照のこと)<br clear="All">
+            <br>
+            </li>
+                                       
+  <ol type="a">
+                                       <li><b>XUL</b>: XML DTD (*.dtd) を使用する<br clear="All">
+              <br>
+            </li>
+                                                           
+    <ul>
+	<li>Mozilla にて chrome ファイルへの参照が必要な場合、必ず chrome URL
+	（<a class="moz-txt-link-freetext" href="chrome://navigator/content/foo.xul">
+              chrome://navigator/content/foo.xul</a>といった形式）を使用する。</li>
+	 <li> <b>*.dtd</b> に格納した外部化したローカライズ可能なリソースをexternalize localizable
+  resources into <b>*.dtd</b>: <a class="moz-txt-link-freetext" href="chrome://navigator/">
+              chrome://navigator/</a><b> locale</b>/foo.dtdに設置する。<br clear="All">
+  例: <a href="http://lxr.mozilla.org/mozilla/source/editor/ui/dialogs/content/EdColorPicker.xul">
+  EdColorPicker.xul</a>にて、テキストの実体や定義は外部 DTD のアドレスを宣言できます。
+  それらは、次のようにして参照できます。<br clear="All">
+          <br clear="All">
+   &lt;!DOCTYPE window SYSTEM <a class="moz-txt-link-rfc2396E" href="chrome://editor/locale/EdColorPicker.dtd">
+              "chrome://editor/locale/EdColorPicker.dtd"</a>
+          <br clear="All">
+          <br clear="All">
+                   
+        <pre> <a name="69" href="http://lxr.mozilla.org/mozilla/source/editor/ui/dialogs/content/EdColorPicker.xul#69">69</a>     &lt;button id="LastPickedButton" crop="right" oncommand="SelectLastPickedColor();"&gt;<br> <a name="70" href="http://lxr.mozilla.org/mozilla/source/editor/ui/dialogs/content/EdColorPicker.xul#70">70</a>       &lt;spacer id="LastPickedColor"<br> <a name="71" href="http://lxr.mozilla.org/mozilla/source/editor/ui/dialogs/content/EdColorPicker.xul#71">71</a>                   LastTextColor="" LastBackgroundColor=""<br> <a name="72" href="http://lxr.mozilla.org/mozilla/source/editor/ui/dialogs/content/EdColorPicker.xul#72">72</a>                   persist="LastTextColor LastBackgroundColor"/&gt;<br> <a name="73" href="http://lxr.mozilla.org/mozilla/source/editor/ui/dialogs/content/EdColorPicker.xul#73">73</a>       &lt;label value="<b>&amp;lastPickedColor.label;</b>" flex="1" style="text-align: center;"/&gt;<br> <a name="74" href="http://lxr.mozilla.org/mozilla/source/editor/ui/dialogs/content/EdColorPicker.xul#74">74</a>     &lt;/button&gt;</pre>
+  DTD ファイル <a href="http://lxr.mozilla.org/mozilla/source/editor/ui/dialogs/locale/en-US/EdColorPicker.dtd">
+  EdColorPicker.dtd</a> にて、実体が以下のように定義されています。<br clear="All">
+          <br clear="All">
+  &lt;!ENTITY lastPickedColor.label "Last-picked color"&gt;<br clear="All">
+                  <br>
+                </li>
+	<li>キー V.S. 値: (命名階層の慣習）</li>
+                                                                         
+     
+      <ul>
+                                                               <li>&lt;!ENTITY
+  openFileCmd<b>.label</b> "Open File..."&gt;<br>
+                &lt;!ENTITY openFileCmd<b>.accesskey</b> "o"&gt;<br>
+                &lt;!ENTITY openFileCmd<b>.commandkey</b> "o"&gt;<br clear="All">
+                  <br>
+                  </li>
+                                                                         
+     
+      </ul>
+                                                     
+    </ul>
+	<li><b>C++/JavaScript</b>: 以下のようなランタイムリソースを外部化するために、
+	String Resource Manager (nsIStringBundleService や nsIStringBundle)を使う。<br clear="All">
+             <br>
+           </li>
+                                                     
+    <ul>
+	<li>エラーメッセージ: </li>
+                                                                         
+     
+      <ul>
+                                                               <li>alert.txt
+  =Connection to server, "home.foo.com", failed.</li>
+                                                                         
+     
+      </ul>
+               
+      <ul>
+                                                               <li>alert.url
+  = http://support.foo.com/<br>
+                  </li>
+                                                                         
+     
+      </ul>
+	<li>進捗を示す文字列:
+downloading   %1 out of %2</li>
+	<li>設定文字列／設定値:
+  browser.startup.homepage=<a class="moz-txt-link-freetext" href="http://home.netscape.com">
+              http://home.netscape.com</a>
+  &nbsp;</li>
+        <li>XUL や JavaScript の例:<br clear="All">
+          <br clear="All">
+  <a href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul">
+  navigator.xul</a>では、必要な文字列リソースを宣言します。:<br clear="All">
+                   
+        <pre> <a name="85" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul#85">85</a>   &lt;!-- hook for stringbundle overlays --&gt;<br> <a name="86" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul#86">86</a>   &lt;stringbundleset id="stringbundleset"&gt;<br> <a name="87" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul#87">87</a>     &lt;stringbundle <b>id="bundle_navigator" src="chrome://navigator/locale/navigator.properties"</b>/&gt;<br> <a name="88" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul#88">88</a>     &lt;stringbundle id="bundle_brand" src="chrome://global/locale/brand.properties"/&gt;<br> <a name="89" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul#89">89</a>     &lt;stringbundle id="bundle_navigator_region" src="chrome://navigator-region/locale/region.properties"/&gt;<br> <a name="90" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul#90">90</a>     &lt;stringbundle id="bundle_brand_region" src="chrome://global-region/locale/region.properties"/&gt;<br> <a name="91" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul#91">91</a>     &lt;stringbundle id="findBundle" src="chrome://global/locale/finddialog.properties"/&gt;<br> <a name="92" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.xul#92">92</a>   &lt;/stringbundleset&gt;<br>
+	 <br clear="All">これに加え、<a href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js">navigator.js</a>では、getString{Name,ID}() を使って対になったリソース（キーと値）へアクセスし、取得します。<br clear="All">
+	 <br clear="All"><a name="257" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#257">257</a> function Startup()<br><a name="258" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#258">258</a> {<br><a name="259" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#259">259</a>   // init globals<br><a name="260" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#260">260</a>   gNavigatorBundle = <b>document.getElementById("bundle_navigator");</b><br><a name="261" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#261">261</a>   gBrandBundle = document.getElementById("bundle_brand");<br clear="All">...    }<br clear="All"><br clear="All"><a name="783" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#783">783</a> function BrowserOpenFileWindow()<br><a name="784" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#784">784</a> {<br><a name="785" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#785">785</a>   // Get filepicker component.<br><a name="786" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#786">786</a>   try {<br><a name="787" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#787">787</a>     const nsIFilePicker = Components.interfaces.nsIFilePicker;<br><a name="788" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#788">788</a>     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);<br><a name="789" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#789">789</a>     fp.init(window, <b>gNavigatorBundle.getString("openFile")</b>, nsIFilePicker.modeOpen);<br><a name="790" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#790">790</a>&nbsp;...<br clear="All">...<br clear="All">...<br clear="All">
+<a name="796" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#796">796</a>   }<br><a name="797" href="http://lxr.mozilla.org/mozilla/source/xpfe/browser/resources/content/navigator.js#797">797</a> }<br></pre>
+   <br>
+                </li>
+    </ul>
+                                   
+  </ol>
+	<li><b>地域コンテンツ</b>(US.jar) の UI 言語(en-US.jar)からの分離:
+	English (US)、 English (Canada)、English (GB) というように、地域に毎に
+	多様にローカライズされたビルドの<b>開発速度向上</b>のため、
+	地域コンテンツファイルは en-US.jar とは別のファイルに格納されます。
+	ベンダーは、UI 言語をローカライズするのと比較して、時間も資源配分も節約してローカライズすることができます。
+	以下の2つのサブセクションでは、UI 言語と地域コンテンツを比較して、それぞれ
+	ローカライズ可能なリソースのうちどんな種類のものが UI言語に入り、
+	どんなものが地域コンテンツに入るのかを並べます。
+	<br clear="All">
+            <br>
+	</li>
+                                       
+  <ol type="a">
+	<li><b>UI</b> 言語: すべての、地域依存でないローカライズ可能なリソースは、
+	"lang<b>enus</b>.xpi"の中に含まれます。これには以下のものを含みます。
+	<br clear="All">
+              <br>
+              </li>
+                                                           
+    <ul>
+	<li>エンドユーザに見えるリソース（文字列等）のうちプラットフォーム依存ではないものは、
+	"<b>en-US.jar</b>"に含まれるべきです。
+	Crome の URL の例は<a class="moz-txt-link-rfc2396E" href="chrome://navigator/locale/foo.dtd">
+   "chrome://navigator/locale/foo.dtd"</a>です。
+<!-- リンク先が間違っているようなので修正。ってリンクをたどることのできないリンクなのでどうでもよいのだけれども -->
+                </li>
+	<li><b><a name="platform-specific"></a></b>
+	<b>プラットフォーム</b>に依存するすべてのファイルや動的なオーバーレイは
+	"en-{<b>mac, unix, win</b>}.jar" に含まれるべきです。
+	Crome の URL の例は <a class="moz-txt-link-rfc2396E" href="chrome://foo-platform/locale/foo.dtd">
+        "chrome://foo<b>-platform</b>/locale/foo.dtd"</a>です。
+	（langenus.xpi に含まれる）インストーラスクリプトは、プラットフォームに対応する jar ファイルを選択して
+	インストールする判定を備えています。
+	プラットフォーム特有のリソースを en-US.jar から分離する最終目的は、
+	langenus.xpi を<b>プラットフォーム間の再利用を容易にする</b>ことにあります。
+	プラットフォーム特有のリソースの例としては、</li>
+                                                                         
+     
+      <ul>
+	<li>デフォルト文字コード設定。日本用 Web ブラウザでは、 UNIX ブラウザ向けデフォルト文字コードセットは、
+	"EUC-JP" ですが、Windows ブラウザでは "Shift-JIS" とすべきです。
+	<span class="comment">（訳注：実際には必ずしもそうとは言い切れない。あくまで例として解釈すべき）</span>
+	<br>
+          </li>
+	<li>キーバインド:
+  "Ctrl + N" と "Cmd + N"</li>
+	<li>マウスホイール:Windows と Linux のみです</li>
+	<li>印刷ダイアログ: Unix のみです。<br clear="All">
+                  <br>
+                </li>
+                                                                        
+     
+      </ul>
+           
+    </ul>
+	<li>地域<b>コンテンツ</b>: 地域／国特有のリソースで、
+	regus.xpi に含まれるべきです。
+	地域リソースには以下の2種類があります。<br clear="All">
+              <br>
+              </li>
+                                                           
+    <ul>
+	<li><b>chrome</b> の Locale プロバイダ:
+	地域コンテンツは (URL)。chrome URL で参照されるすべての地域依存リソース
+	（例："chrome://navigator<b>-region</b>/locale/region.dtd"）は、
+	"<b>US.jar</b>" に含まれるべきです。これらリソースは同じプロファイルでも
+	切り替え可能です。
+                </li>
+                                                                         
+     
+      <ul>
+	<li>メニュー項目に関連した URL</li>
+                                                                        
+                          
+        <ul>
+                                                                        
+            <li><b>  region</b>.dtd </li>
+                                                                        
+            <li><b>  region</b>.properties: <br>
+                    </li>
+                                                                        
+            <li>  builtinURLs.rdf - N ロゴやヘルプメニュー等に対する実行時 URL。</li>
+                                                                        
+                          
+        </ul>
+	<li>カスタマイズ／ローカライズ可能な UI<br>
+                 </li>
+                                                                        
+                
+        <ul>
+                                                                        
+            <li>  メニュー項目の4番目から始まる"検索"メニュー: searchMenu.rdf</li>
+                                                                        
+            <li>  "Print Plus" メニュー: communicatorOverlay.rdf</li><! -- Print PlusはHP社のサービスの名前 -->
+                                                                        
+            <li>  パーソナルツールバーボタン: "ホーム", "My Netscape", "検索",
+ "Shop", and "Net2Phone".<br>
+                    </li>
+                                                                        
+                          
+        </ul>
+	<li>他のものは?<br clear="All">
+                  <br>
+                  </li>
+                                                                         
+     
+      </ul>
+           
+    </ul>
+                                                     
+    <ul>
+	<li>デフォルトの <b>プロファイル</b>は(bin/{defaults,searchplugins})です。
+	これらはプロファイルが新規作成されたとき、コピーされ、
+	コピーされたプロファイルはその後のユーザのセッションの間、修正されます。
+	デフォルトのプロファイルデータは一度プロファイルにコピーされて使用されると、
+	コピー先のものと入れ替えることは<b>できません</b>。
+	例えば、クライアントのインストール先フォルダ（サブフォルダ）"defaults"
+	は、以下のディレクトリとサブディレクトリを含みます:<br clear="All">
+                <br>
+              </li>
+                                                           
+    </ul>
+           
+    <ol>
+                                                                       
+      <ul>
+	<li>"isp/<b>
+  US/</b>{aol.rdf,nswebmail.rdf}" - これらは新規メール／ニュースアカウントセットアップウィザード
+  で参照されます。</li>
+	<li>"messenger/<b>
+  US/</b>Template" - これは、デフォルトのメッセージのテンプレートです。<br>
+                  </li>
+                  </li>
+                                                               <li>"profile/<b>
+  US</b>" </li>
+                                                                        
+                          
+        <ul>
+                                                                        
+            <li>  bookmarks.html</li>
+                                                                        
+            <li>  default-invite.rdf - AIM(AOL Instant Messanger) で使用されます。</li>
+                                                                        
+            <li>  default-messages.rdf - AIM(AOL Instant Messanger) で使用されます。</li>
+                                                                        
+            <li>  localstore.rdf - UI 設定に関係する chrome の制御に使用します。s</li>
+                                                                        
+            <li>  mimeTypes.rdf - ヘルパーアプリケーションによって参照されます。</li>
+                                                                        
+            <li>  panels.rdf - デフォルトの sidebar パネル</li>
+                                                                        
+            <li>  search.rdf - どの検索エンジンを使用するかを制御します。<br clear="All">
+                    <br>
+                    </li>
+                                                                        
+                          
+        </ul>
+               
+      </ul>
+           
+    </ol>
+       
+  </ol>
+	<li><b>CSS </b>- CSS には UI 文字列はありません、ええ。
+	UI 文字列には、この代わりに、DTD や property ファイルが使用します。<br clear="All">
+            <br>
+          </li>
+                                       
+  <ol type="a">
+	<li>フォント設定:グローバルな UI 文字列に影響を与えるフォント設定は、
+	 "chrome://global/locale/intl.css" で行われるべきです。</li>
+	<li>CSS には UI 文字列はありません、ええ。
+	UI 文字列には、この代わりに、DTD や property ファイルが使用します。例えば、<br>
+            </li>
+                                               
+    <ul>
+	<li>HTML フォームボタンラベル:送信、 OK等。
+ etc.</li>
+	<li>CSS はダイアログのボタン文字列を装飾します。</li>
+                                                       
+    </ul>
+       
+  </ol>
+   
+</ol>
+         
+<h4><font color="#ff6666"><font size="+1"><a name="l10n_freeze"></a>
+ローカリゼーション凍結ガイドライン</font></font></h4>
+    <font color="#000000">Michele Carlson 9/12/01</font>    
+<p><b><font color="#000000">目的:</font></b><br>
+    <font color="#000000">
+ ローカリゼーション UI 凍結日は、我々が US 製品とともにローカライズされた製品を
+ 同時に提供可能とするために整えられます。
+ つまり、Netscape ブラウザの新バージョンが市場に出回ったことを一般の人々が目にした日に、
+ 他の言語のものも目にすることができるだろうということです。
+ もし、ローカリゼーション UI 凍結日が尊重されなければ、
+ US 製品とともにローカライズされた製品を同時には提供できないかもしれないという
+ リスクを抱えることになります。
+ これは、世界中の多くのユーザにとっての損失です。
+ フリーズ以後の UI 変更があれば、ローカライズされた製品の再翻訳・再ビルドをすることに
+ なります。
+ ローカリゼーションチームは翻訳のために新しい文字列を送り出し、戻ってくるのを
+ 待たなければなりません。
+ これがローカライズされた製品にとってどれほどの影響があるでしょうか？</font></p>
+       
+<ul>
+      <li><font color="#000000">翻訳のコストを増し、翻訳予算の制御能力を危険にさらします。</font></li>
+      <li><font color="#000000">ローカライズ技術者の作業負荷を増し、
+      再翻訳結果により、統合とビルドという工程を繰り返すことになります。</font></li>
+      <li><font color="#000000">QA の作業負荷を増します。
+      どの再翻訳結果に対しても、必ず QA サイクルテストを繰り返すことになります。</font></li>
+      <li><font color="#000000">同時に市場に出荷するためにかかる時間をしばしば延ばします。</font></li>
+       
+</ul>
+    <b>目標:</b><br>
+    <font color="#000000">
+ 我々の製品について、US 製品と同様に US 以外の多くの市場についても同時にリリース
+ することを可能とすることは重要です。
+ これは、世界的に認識されるブランドを作ることにつながります。
+ 真の国際的企業となるべき日々努力しています。
+ 世界中のユーザから世界的企業として認められるようにつとめることは、多くのポイントの
+ うちの一つにすぎません。
+</font>    
+<p><b><font color="#000000">定義:</font></b><br>
+    <font color="#000000">ローカリゼーション UI 凍結日を尊重することは、
+    すなわち技術者が以下に従うことです:</font></p>
+       
+<ul>
+      <li> ユーザが目にするいかなる文字列も変更しません。
+      ファイル中の文字列の追加・削除・修正いずれもです。</li>
+      <li> 文字列を含むいかなる画像も変更してはなりません。</li>
+      <li> いかなる文字列も別の場所に移動してはいけません。
+      ファイルからファイルへの移動、jar/xpi ファイル間の移動いずれもです。</li>
+      <li> URL、メニュー、検索エンジン、プラグインを含むいかなる
+      コンテンツも変更してはいけません。</li>
+      <li> 単語、空白、カンマ、コロン等いかなる文字列も修正してはいけません。
+      文字列内でユーザインタフェースに現れるいかなる変更もしてはいけません。</li>
+       
+</ul>
+    <font color="#000000">ローカリゼーション UI 凍結日以後に、ローカリゼーションに影響させる
+    ことなく技術者が可能な変更は？</font><br>
+    <font color="#000000">技術者は、UI に関わらないどの部分の重要なコードでも修正を継続することができます。
+    UI に影響を及ぼす修正をする場合、技術者は、ローカリゼーションには影響させてはいけません。</font>
+<p><b><font color="#000000">タイミング:</font></b> <br>
+ ベータ版と RTM リリースの両方でローカリゼーション UI 凍結日の設定は重要です。
+ 具体的なローカリゼーション UI 凍結日はマスタースケジュールに定められなければ
+ なりません。
+ スケジュール管理者は、mcarlson とともに、ローカリゼーション UI 凍結日がこのガイドラインに記述された内容を満足することのできる日と
+ なることを保証するよう、ローカリゼーション UI 凍結日の調整に責任を持ちます。
+ スケジュール管理者が、リリースの大きさを知らない場合、mcarlson チームは、
+ 単語の合計数を基準に推定サイズの情報を提供しなくてはなりません。</p>
+   
+<p>Mozilla 開発者がローカリゼーション凍結を遵守する必要がある時、
+mozilla.org のスタッフは Mozilla 開発者にその時期を連絡します。   </p>
+       
+<p><b><font color="#000000">例外:</font></b><br>
+    ローカリゼーション UI 凍結日の例外は、ケースバイケースで行われるレビューです。
+    いかなる例外のリクエストも、Netscape ローカライズ技術者チームのマネージャー
+    mcarlson@netscape.com へ承認を得るために送られます。
+  <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp; </p>
+    <br>
+         
+<ol>
+     
+</ol>
+    
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/l10n/customizable-code.html">英語版</a> 2004/10/09</span> - <span>和訳版 2006/03/18</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/l10n/customizable-code.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

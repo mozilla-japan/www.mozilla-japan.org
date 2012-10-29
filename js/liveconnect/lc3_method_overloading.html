@@ -1,0 +1,1249 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <META NAME="Author" CONTENT="Scott Furman">
+   <TITLE>LiveConnect 3.0 におけるメソッドオーバーローディング</TITLE>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/js/liveconnect/lc3_method_overloading.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<H1>Java のメソッドオーバーローディング<BR>
+と LiveConnect 3</H1>
+
+<CENTER>
+Author: <A HREF="mailto:Scott Furman <fur@geocast.com>">Scott Furman &lt;fur@geocast.com></A>
+
+<P><FONT SIZE=-1>Last modified: <SCRIPT>document.write(document.lastModified)</SCRIPT></FONT>
+</CENTER>
+
+<H1>1 動機</H1>
+
+LiveConnect の初期のバージョンが、オーバーロードされた Java のメソッドを
+JavaScript から呼び出す方法は、ひどく単純だった - Java VM によって列挙されるメソッドのうちで
+条件を満たす一番目が選ばれた。&nbsp; (「条件を満たす」 ("applicable")
+は、メソッドの名前と引数の数が一致し、JavaScript の引数が、
+それぞれメソッドシグネチャに載せられた対応する Java の型に変換できること
+を差す。)
+
+<P>Netscape の JVM は、常にメソッドをそのクラスファイル内で出てくる順番を使って
+列挙するので、Java のソースファイル内でのメソッドの再配置が、
+要求するメソッドを呼び出すのにしばしば必要となる。
+この振る舞いはときに開発者にとって苦痛である。いつもソースが手に入るとは限らないのと、
+このメソッド解決アルゴリズムの静的な性質のせいで、
+各呼び出し場所での異なるメソッドの解決を選ぶのが困難になる、という二つの理由から。
+最も重要なことに、LiveConnect が JavaScript の型からひどく異なる Java の型に
+メソッドの引数を変換する用意があるので、ときに予期せぬメソッドの解決を引き起こす。
+もっと深刻な問題が、最近 Netscape のサードパーティー製 JVM への移行で持ちあがった。
+メソッドの列挙順序は Java の仕様によって定義されていないので、
+オーバーロードされたメソッドの解決は、
+どのベンダー製の JVM が LiveConnect との結合に使用されているかに
+それぞれ依存する。
+これが、この LiveConnect バージョン 3 (LC3) の提案で取り組む
+これら最近の二つの問題である。
+<H1>2 序論</H1>
+
+理想的には、JavaScript から Java のメソッドを呼び出すのに、
+オーバーロードされたメソッドの解決に対する Java 独自のルールを使用するだろうが、
+Java のコンパイル時の型ではなく JS の実行時の型を使っている。
+だが、これはいくつかの理由から不適切である:
+
+<P>第一に、Java のメソッドシグネチャは、いろいろな数値型を区別する。
+すはわち、byte, char, short, int, long, float, double。
+JavaScript は、すべての数値型を、整数であろうが浮動小数点数であろうが、
+つぶして一つの数値型にしてしまう。次の Java クラス宣言が与えられたとする。
+<BLOCKQUOTE><TT>class Ambiguous {</TT>
+<BR><TT>&nbsp;&nbsp; static public int numericArg(int x)&nbsp;&nbsp; {
+return 1; }</TT>
+<BR><TT>&nbsp;&nbsp; static public int numericArg(byte x)&nbsp; { return
+2; }</TT>
+<BR><TT>&nbsp;&nbsp; static public int numericArg(float x) { return 3;
+}</TT>
+<BR><TT>}</TT></BLOCKQUOTE>
+integralArg が JavaScript から呼び出された時、
+どのメソッドが呼び出されるべきだろうか?
+<BLOCKQUOTE><TT>Packages.Ambiguous.numericArg(3);</TT></BLOCKQUOTE>
+最後に、JavaScript の引数を無関係な Java の型に変換し過ぎていた
+LiveConnect の以前のバージョンによる以前のセットが存在する。
+例えば、JavaScript の boolean 型は、文字列
+あるいは java.lang.Boolean のインスタンスに変換していた。
+<H1>3 JavaScript からの Java のメソッドの解決</H1>
+
+あいにく、後方互換性を完全に守るのと、LiveConnet のメソッド呼び出しの誤りを治すことの
+両方を行う方法はない。新しいやり方は、
+実行時 JavaScript の引数の型と候補となる Java のメソッドの
+型シグネチャを与えられた、意図したメソッドを推測するのに、経験則を適用する事になっている。
+規定によらずに、JavaScript の型に最も近く一致した、
+Java のパラメータの型を持ったメソッドが選ばれる。例えば、JavaScript の 数の型から変換するとき、
+<I>java.lang.String</I> を求めるメソッドより、
+double の引数を指定したメソッドの方が優先される。
+
+<P>どのメソッドを呼び出すか選択するか、LiveConnect の以前のバージョンと比べて
+LC3 では異なっているだろうが、JavaScript の引数の
+Java の型への許される変換は変っていない。従って
+オーバーロードされていないメソッドの呼び出しや、
+使用されている引数の型と互換性があるメソッドが一つしかない場合に関しては、
+後方互換性が守られている。
+<H2><A NAME="Applicability"></A>3.1 メソッドのアクセス性と適用</H2>
+
+メソッド呼び出しを解決する第1歩は、あるクラスのどのメソッドがアクセス可能で条件を満たすか
+決定することだ。次のすべてが真ならば、
+Java のメソッドはアクセス可能で条件を満たす、
+<UL>
+<P><LI>
+メソッドは public。
+
+<P><LI>
+呼び出しが static な呼び出しなら、メソッドは static メソッドでなければならない。
+呼び出しがインスタンス呼び出しなら、メソッドは static であってはならない。
+
+<P><LI>
+メソッド宣言のパラメータの数が、
+メソッド呼び出しの引数表現の数と等しい。
+
+<P><LI>
+各実際の引数の型が、LiveConnect のメソッド呼び出し変換によって変換できる
+(<A HREF="#InvocationConversion">3.3 節</A> 参照)。
+</UL>
+呼び出しに条件を満たすメソッドがなければ、エラーが発生する。
+条件を満たすメソッドが一つしか無ければ、その一つが呼び出される。
+<H2>3.2 優先メソッドの選択</H2>
+
+二つ以上の<A HREF="#Applicability">条件を満たす</A>メソッドの中から選択するとき、
+Java と C++ で使われているものと、考え方では似ているアルゴリズムが
+使用されている:
+<BLOCKQUOTE><B>U</B> と <B>S</B> が両方とも呼び出しの条件を満たすメソッドで、
+それぞれが <B>n</B> 個のパラメータを持っているとする。その上に、
+メソッド <B>U</B> のパラメータの Java の型が <B>u<SUB>1</SUB></B>,...,<B>u<SUB>n</SUB></B> で、
+メソッド <B>S</B> のパラメータの Java の型が <B>s<SUB>1</SUB></B>,...,<B>s<SUB>n</SUB></B> とする。
+最後に、実際の引数の実行時の JavaScript の型は <B>t<SUB>1</SUB></B>,...,<B>t<SUB>n</SUB></B> である。
+その結果、メソッド U は次の場合に限りメソッド S より優先される。
+<UL>
+<P><LI>
+<B>u<SUB>j</SUB></B> と <B>s<SUB>j</SUB></B> が同じ型、あるいは
+
+<P><LI>
+<B>t<SUB>j</SUB></B> から変換するときに、型 <B>u<SUB>j</SUB></B> への変換が、
+型 <B>s<SUB>j</SUB></B> への変換より<A HREF="#ConversionPreferences">優先される</A>
+</UL>
+</BLOCKQUOTE>
+
+<UL>但し、1 から <B>n</B> のすべての <B>j</B> に対して。</UL>
+もしメソッドが条件を満たし、ほかにより好まれる条件を満たすメソッドが無い場合、
+メソッドはメソッド呼び出しで、<I>最も優先される</I> と言われる。
+もし最大限優先されるメソッドが一つだけなら、そのメソッドは必然的に
+他全ての条件を満たすメソッドより優先され、これだけが呼ばれる。
+もし最大限優先されるメソッドが一つよりも多ければ、エラーが発生する。
+<H2><A NAME="InvocationConversion"></A>3.3 許可されるメソッド引数の変換</H2>
+
+次の数節で、メソッド呼び出しのために変換を行う時、
+JavaScript の値から Java の値への許可される変換を詳述する。
+以下の規則は、以前の LiveConnect の実装から原則的に変っていない。
+もしある変換がはっきりと下に載せられていなければ、その変換は許可されていない。
+<H3><A NAME="undefined_conversion"></A>3.3.1 undefined</H3>
+
+
+<TABLE BORDER WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Object
+<BR>java.lang.String</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>"undefined"<SUP>1</SUP></BLOCKQUOTE>
+  </TD>
+ </TR>
+</TABLE>
+注: 動作に変更あり。LC2 と以前の実装では、undefined から Java の boolean 型への
+変換は、false という値になった。
+<BLOCKQUOTE><SUP>1</SUP>その結果にはいくつか曖昧さがある。
+何故なら、JS の文字列リテラル "undefined" と undefined な JS の値は両方とも
+同じ Java の文字列に変換されるからだが、この欠点は、LC1 との後方互換性のために
+維持する必要がある。実際には、JS の undefined から全ての Java の型への変換が
+エラーを発生させるのが一番良いだろう。</BLOCKQUOTE>
+
+<H3>3.3.2 Boolean</H3>
+
+
+<TABLE BORDER CELLPADDING=3 COLS=2 WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>boolean</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>true/false を直接 Java の同等物へマップする</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Boolean
+<BR>java.lang.Object</CENTER>
+  </TD>
+  <TD VALIGN=CENTER>
+
+<BLOCKQUOTE><I>java.lang.Boolean</I> の新しいインスタンスを作る。<SUP>2</SUP></BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE><TT>true&nbsp; </TT>==> "true"
+<BR><TT>false </TT>==> "false"</BLOCKQUOTE>
+  </TD>
+ </TR>
+</TABLE>
+
+<BLOCKQUOTE><SUP>2</SUP>各引数の変換は、新しい <I>java.lang.Boolean</I> のインスタンスという結果に
+ならねばならない。例えば、常に <TT>java.lang.Boolean.TRUE</TT> と <TT>java.lang.Boolean.FALSE</TT> を
+使用するのは、許されていない。</BLOCKQUOTE>
+
+<H3><A NAME="Number"></A>3.3.3 Number</H3>
+
+
+<TABLE BORDER CELLPADDING=3 COLS=2 WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>double&nbsp;</CENTER>
+  </TD>
+  <TD>
+         
+<BLOCKQUOTE>丸め誤差や大きさ/符号の欠落なしに、
+<BR>正確な値を Java に移す。</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Double
+<BR>java.lang.Object</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE><I>java.lang.Double</I> の新しいインスタンスを作り、
+丸め誤差や大きさ/符号の欠落なしに、正確な値を Java に移す。</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>float</CENTER>
+  </TD>
+  <TD>
+
+<UL>
+<P><LI>
+JS の数を float の精度に丸める。
+
+<P><LI>
+表現できない程大きな値は、正/負の無限に変換される。
+</UL>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>long
+<BR>int
+<BR>short
+<BR>byte
+<BR>char</CENTER>
+  </TD>
+  <TD>
+
+<UL>
+<P><LI>
+分数部分を消去して、JS の数を整数値に切り捨てる。
+
+<P><LI>
+NaN あるいは大きすぎて目的の整数型で表現できない大きさの数の変換は、
+実行時エラーという結果になる。<SUP>3</SUP>
+</UL>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>ECMA 9.8.1, <I>Number 型に適用された ToString()</I> によって
+数を文字列に変換する。</BLOCKQUOTE>
+  </TD>
+ </TR>
+</TABLE>
+
+<P><SUP>3</SUP>LC3 以前のバージョンの LiveConnect では、NaN または
+大きすぎて目的の整数型で表現できない大きさの数の変換は、
+間違って定義され、プラットフォーム依存の振る舞いをしていた。
+<H3><A NAME="conversion_from_String"></A>3.3.4 Strings</H3>
+
+
+<TABLE BORDER CELLPADDING=3 COLS=2 WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String
+<BR>java.lang.Object</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>Unicode の JS の文字列から
+<BR>Unicode の<I>java.lang.String</I> へ変換する</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>double<SUP>5</SUP>
+<BR>float<SUP>5</SUP>
+<BR>long<SUP>5</SUP>
+<BR>int<SUP>5</SUP>
+<BR>short<SUP>5</SUP>
+<BR>byte<SUP>5</SUP></CENTER>
+  </TD>
+  <TD>
+
+<OL>
+<P><LI>
+<FONT COLOR="#000000">ECMA 9.3.1 によって文字列を数に変換する</FONT>
+
+<P><LI>
+<FONT COLOR="#000000">Result(1) を <A HREF="#Number">3.3.3 節</A> の規則を使って
+Java の数値型へ変換する</FONT>
+</OL>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>char<SUP>5</SUP></CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>
+<P><LI>
+一文字の文字列では、結果は Unicode の文字。
+
+<P><LI>
+そうでなければ、すぐ上の規則を使って数値に変換する。
+</BLOCKQUOTE>
+  </TD>
+ </TR>
+</TABLE>
+
+<BLOCKQUOTE><SUP>5</SUP>LiveConnect バージョン 2 で追加された変換。</BLOCKQUOTE>
+
+<H3>3.3.5 Null</H3>
+
+
+<TABLE BORDER CELLPADDING=3 COLS=2 WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>全 class あるいは interface 型</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>null</BLOCKQUOTE>
+  </TD>
+ </TR>
+</TABLE>
+
+<H3>3.3.6 Object</H3>
+
+
+<H4>3.3.6.1 JavaObject (JS のオブジェクト内でラップされた Java のオブジェクト)</H4>
+
+
+<TABLE BORDER COLS=2 WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>JS のオブジェクトのラップを外す事によって得る Java のオブジェクトと
+値の割り当てに互換性がある、あらゆるインターフェースもしくはクラス。すなはち、ラップをはがされた JavaObject は
+Java の引数の型のインスタンス (<TT>instanceof()</TT>) だ。</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>Java のオブジェクトを得るために、JS のオブジェクトのラップを外す</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>ラップが外されたオブジェクトの toString() メソッドを呼び、
+新しい java.lang.String という結果を返す。</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>float, double, byte, char, short, int, long<SUP>5</SUP></CENTER>
+  </TD>
+  <TD>
+
+<OL>
+<P><LI>
+そのオブジェクトが doubleValue() メソッドを持っていないのなら、オブジェクトの toString()
+メソッドを呼び、<A HREF="#conversion_from_String">3.3.4 節</A> の規則を用いて
+変換する。
+
+<P><LI>
+オブジェクトの doubleValue() メソッドを呼ぶ。
+
+<P><LI>
+<FONT COLOR="#000000">Result(2) を <A HREF="#Number">3.3.3 節</A> の規則を用いて
+Java の数値型に変換する。</FONT>
+</OL>
+  </TD>
+ </TR>
+</TABLE>
+
+<H4>3.3.6.2 JavaArray (JS のオブジェクト内でラップされた Java の配列)</H4>
+
+
+<TABLE BORDER COLS=2 WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>JS のオブジェクトのラップを外す事によって得る Java のオブジェクトと
+値の割り当てに互換性がある、あらゆるインターフェースもしくはクラス。すなはち、ラップをはがされた JavaObject は
+Java の引数の型のインスタンス (<TT>instanceof()</TT>) だ。</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>Java のオブジェクトを得るために、JS のオブジェクトのラップを外す</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>ラップが外された配列の toString() メソッドを呼び、
+新しい java.lang.String という結果を返す。</BLOCKQUOTE>
+  </TD>
+ </TR>
+</TABLE>
+
+<H4>3.3.6.3 JavaClass</H4>
+
+
+<TABLE BORDER COLS=2 WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Class<SUP>5</SUP></CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>対応する Java のクラスオブジェクトに復元する</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.JSObject
+<BR>java.lang.Object</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>java.lang.JSObject の新しいインスタンスに JS のオブジェクトをラップする</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>JavaClass の toString() メソッドを呼び、
+java.lang.String という結果を返す。</BLOCKQUOTE>
+  </TD>
+ </TR>
+</TABLE>
+
+<H4>3.3.6.4 JavaScript Array</H4>
+<TABLE BORDER COLS=2 WIDTH="100%" >
+  <TR BGCOLOR="#BCC0D3"> 
+    <TD> 
+      <CENTER>
+        <B>Java の引数の型</B>
+      </CENTER>
+    </TD>
+    <TD> 
+      <CENTER>
+        <B>変換方法</B>
+      </CENTER>
+    </TD>
+  </TR>
+  <TR> 
+    <TD> 
+      <CENTER>
+        java.lang.JSObject <BR>
+        java.lang.Object
+      </CENTER>
+    </TD>
+    <TD> 
+      <BLOCKQUOTE>java.lang.JSObject の新しいインスタンスに JS のオブジェクトをラップする</BLOCKQUOTE>
+    </TD>
+  </TR>
+  <TR> 
+    <TD> 
+      <CENTER>
+        java.lang.String
+      </CENTER>
+    </TD>
+    <TD> 
+      <BLOCKQUOTE>JS のオブジェクトの toString() メソッドを呼び、
+        java.lang.String という結果を返す。</BLOCKQUOTE>
+    </TD>
+  </TR>
+  <TR> 
+    <TD> 
+      <CENTER>
+        あらゆる Java の配列型
+      </CENTER>
+    </TD>
+    <TD>
+      <BLOCKQUOTE>
+        <P>JS の Array オブジェクトと同じ長さの適切な型の新しい Java の配列を作る。
+          JS の配列の各要素を、undefined の要素も含め、
+          <A HREF="#InvocationConversion">メソッド呼び出しの変換</A>
+          の規則を用いて等しい Java の値へ
+          変換して、Java の配列の各要素を埋める。どの一つの配列要素も変換できないときは、
+          そのメソッド呼び出しは、エラーという結果になる。
+          注: JS の配列の中身がコピーされるので、
+          呼び出された Java のメソッドからJava の配列への副作用は、
+          JS の配列引数に反映されない。
+      </BLOCKQUOTE>
+    </TD>
+  </TR>
+</TABLE>
+<H4>3.3.6.5 その他の JavaScript のオブジェクト</H4>
+
+
+<TABLE BORDER COLS=2 WIDTH="100%" >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型</B></CENTER>
+  </TD>
+  <TD>
+
+<CENTER><B>変換方法</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.JSObject
+<BR>java.lang.Object</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>java.lang.JSObject の新しいインスタンスに JS のオブジェクトをラップする</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+  <TD>
+
+<BLOCKQUOTE>JS のオブジェクトの toString() メソッドを呼び、java.lang.String という
+結果を返す。</BLOCKQUOTE>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>float, double, byte, char, short, int, long<SUP>5</SUP></CENTER>
+  </TD>
+  <TD>
+
+<OL>
+<P><LI>
+ヒントに Number を使い ToPrimitive 演算子 (ECMA 9.3) を JavaScript のオブジェクトに
+適用する。
+
+<P><LI>
+<FONT COLOR="#000000">Result(1) を <A HREF="#Number">3.3.3 節</A> の規則を用いて
+Java の数値型に変換する。</FONT>
+</OL>
+  </TD>
+ </TR>
+</TABLE>
+
+<H2><A NAME="ConversionPreferences"></A>3.4 優先される引数変換</H2>
+
+JavaScript から Java の型に変換するとき、ある変換が
+より "自然" で、従って優先される。下の表で、
+Java の型が優先される順番の降順で記載されている。
+同じだけ優先される型は表の同じセルに入っている。
+<H3>3.4.1 undefined</H3>
+
+Java の型を JavaScript の undefined の値から変換するのには、
+選択肢がない。
+<H3>3.4.2 Boolean</H3>
+
+
+<TABLE BORDER CELLPADDING=3 >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型,</B>
+<BR><B>優先される順番の降順</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>boolean</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Boolean</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Object&nbsp;</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+ </TR>
+</TABLE>
+
+<H3>3.4.3 Number</H3>
+
+
+<TABLE BORDER CELLPADDING=3 >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型,</B>
+<BR><B>優先される順番の降順</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>double&nbsp;</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Double</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>float</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>long</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>int</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>short</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>char</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>byte</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Object</CENTER>
+  </TD>
+ </TR>
+</TABLE>
+
+<P><FONT COLOR="#660000">理論的説明: 浮動小数点型が整数型の上に来る優先は、
+以前のバージョンの LiveConnect との非互換性が現れる最大の原因になる可能性が高い。
+だが、double だけが、JS の数から変換するとき溢れたり、
+精度を失わない事が保障されている Java のプリミティブ型なので、
+Java の他の数値型より優先されるべきだ。</FONT>
+<H3>3.4.4 Strings</H3>
+
+
+<TABLE BORDER CELLPADDING=3 >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型,</B>
+<BR><B>優先される順番の降順</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Object</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>char</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>double, float, long, int, short, byte</CENTER>
+  </TD>
+ </TR>
+</TABLE>
+
+<H3>3.4.5 Null</H3>
+
+Java の型を JavaScript の null 値から変換するのには、
+選択肢がない。
+<H3>3.4.6 Object</H3>
+
+
+<H4>3.4.6.1 JavaObject (JS のオブジェクト内でラップされた Java のオブジェクト)</H4>
+
+
+<TABLE BORDER CELLPADDING=3 >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型,</B>
+<BR><B>優先される順番の降順</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>あらゆるインターフェースもしくはクラス<SUP>6</SUP></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>double</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>float</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>long</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>int</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>short</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>char</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>byte</CENTER>
+  </TD>
+ </TR>
+</TABLE>
+
+<BLOCKQUOTE><SUP>6</SUP>Java の参照型の間では、さらなる処理手続きが必要だ。
+直感的に、JS のオブジェクトにラップされた Java のオブジェクトから変換するときの
+Java の型の間の優先規則は、最も明確なクラスあるいはインターフェースが優先される
+というものだ。より正式に言うと、
+<B>T</B> をラップが外された JavaClass の Java のクラスとする。
+<B>S</B> をクラスあるいはインターフェース型とする。
+次の場合に限り、<B>S</B> は <B>U</B> より優先される</BLOCKQUOTE>
+
+<UL>
+<UL>
+<P><LI>
+<B>T</B> のインスタンスが、型 <B>S</B> の変数に代入可能である。すなはち、
+<B>T</B>
+instanceof <B>S</B> が真である
+
+<P><LI>
+<B>S</B> のインスタンスが、型 <B>U</B> の変数に代入可能である。すなはち、
+<B>S</B>
+instanceof <B>U</B> が真である
+
+<P><LI>
+<B>S</B> と <B>U</B> が同じ型でない
+</UL>
+</UL>
+
+<H4>3.4.6.2 JavaArray (JS のオブジェクト内でラップされた Java の配列)</H4>
+
+
+<TABLE BORDER CELLPADDING=3 >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型,</B>
+<BR><B>優先される順番の降順</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>あらゆるインターフェースしくはクラス<SUP>6</SUP></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+ </TR>
+</TABLE>
+
+<H4>3.4.6.2 JavaClass</H4>
+
+
+<TABLE BORDER >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型,</B>
+<BR><B>優先される順番の降順</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Class</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.JSObject</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Object</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+ </TR>
+</TABLE>
+
+<H4>3.4.6.3 JavaScript Array</H4>
+<TABLE BORDER >
+  <TR BGCOLOR="#BCC0D3"> 
+    <TD> 
+      <CENTER>
+        <B>Java の引数の型,</B> <BR>
+        <B>優先される順番の降順</B> 
+      </CENTER>
+    </TD>
+  </TR>
+  <TR> 
+    <TD ALIGN="CENTER">Any Java array type</TD>
+  </TR>
+  <TR> 
+    <TD> 
+      <CENTER>
+        java.lang.JSObject 
+      </CENTER>
+    </TD>
+  </TR>
+  <TR> 
+    <TD> 
+      <CENTER>
+        java.lang.Object 
+      </CENTER>
+    </TD>
+  </TR>
+  <TR> 
+    <TD> 
+      <CENTER>
+        java.lang.String 
+      </CENTER>
+    </TD>
+  </TR>
+</TABLE>
+<H4>3.4.6.4 その他の JavaScript のオブジェクト</H4>
+
+
+<TABLE BORDER >
+ <TR BGCOLOR="#BCC0D3">
+  <TD>
+
+<CENTER><B>Java の引数の型,</B>
+<BR><B>優先される順番の降順</B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.JSObject</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.Object</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>java.lang.String</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>double</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>float</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>long</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>int</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>short</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>char</CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>byte</CENTER>
+  </TD>
+ </TR>
+</TABLE>
+
+<H1><A NAME="ExplicitMethod"></A>4 明示的なメソッドの指定</H1>
+
+LC3 では、オーバーロードされたメソッドのセットの中で特定のメソッドを明示的に指定することができる。
+従って、3 節で説明した解決方法を回避することができる。
+明示的なメソッドの指定は、引数としてJava の数値型を用いた Java のメソッドが
+オーバーロードされているとき、最も頻繁に使われる:
+<BLOCKQUOTE><TT>class Ambiguous {</TT>
+<BR><TT>&nbsp;&nbsp; static public int numericArg(int x, byte y)
+{ return 1; }</TT>
+<BR><TT>&nbsp;&nbsp; static public int numericArg(byte x, char y)
+{ return 2; }</TT>
+<BR><TT>&nbsp;&nbsp; static public int numericArg(float x, int y) { return
+3; }</TT>
+<BR><TT>}</TT></BLOCKQUOTE>
+この場合、次のような構文を用いて、numericArg(int,byte) が呼ばれるべきだと
+指定できる:
+<BLOCKQUOTE><TT>intNumericArg = Packages.Ambiguous["numericArg(int,byte)"];</TT>
+<BR><TT>intNumericArg(5); // returns 1</TT></BLOCKQUOTE>
+名前付きプロパティアクセスを用い、型シグネチャ情報とともにメソッドの名前を渡す事により、
+要求したメソッドを呼ぶのに使うことができるオブジェクトが返される。
+明示的なメソッド指定はインスタンスメソッドとスタティックメソッドの両方に
+使える。
+
+<P>メソッドを持つために一時的な値を使うことなしに、
+同じ効果を得られる:
+<BLOCKQUOTE><TT>Packages.Ambiguous["numericArg(int,byte)"](5); // returns
+1</TT></BLOCKQUOTE>
+似た構文を、オーバーロードされたコンストラクタの選択を明示的に指定するのに使える。
+例えば、次のコードは、一つの引数、文字の一次配列一つを受け入れる
+<I>java.lang.String</I> コンストラクタを呼び出す:
+<BLOCKQUOTE><TT>new java.lang.String["(char[])"](c);</TT></BLOCKQUOTE>
+
+<div align="right"><font size="-1">
+<a href="http://www.mozilla.org/js/liveconnect/lc3_method_overloading.html">
+このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。</a><br>
+またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>
+利用者の利便のためにmozilla.org 和訳プロジェクトによって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.org/jp/td/index.html">
+http://www.mozilla-japan.org/jp/td/index.html</a>
+</font></div>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/js/liveconnect/lc3_method_overloading.html">英語版</a></span> - <span>和訳版 2004/09/23</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/js/liveconnect/lc3_method_overloading.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

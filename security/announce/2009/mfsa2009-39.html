@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2009-39: setTimeout の XPCNativeWrapper 消失</title>
+<link rel="alternate" hreflang="en" modified="July 21, 2009">
+<style type="text/css">
+  .label { width: 12em; font-weight: bold; float: left; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<h1>Mozilla Foundation セキュリティアドバイザリ 2009-39</h1>
+
+<p>
+<span class="label">タイトル:</span>      setTimeout の XPCNativeWrapper 消失<br>
+<span class="label">重要度:</span>     最高<br>
+<span class="label">公開日:</span>  2009/07/21<br>
+<span class="label">報告者:</span>   Blake Kaplan<br>
+<span class="label">影響を受ける製品:</span>   Firefox<br>
+<br>
+<span class="label">修正済みのバージョン:</span>   Firefox 3.5<br>
+<span class="label">&nbsp;</span>      Firefox 3.0.12<br>
+</p>
+
+<h3>概要</h3>
+<p><code>setTimeout</code> が、<code>XPCNativeWrapper</code> で保護されるべき特定のオブジェクトパラメータ付きで呼び出されると、新しい関数のコンパイルが実行される際にオブジェクトのラッパーが失われてしまうことが、Mozilla 開発者の <strong>Blake Kaplan</strong> によって報告されました。クローム特権を与えられたコードが <code>this</code> を引数に用いて <code>setTimeout</code> を呼び出すと、<code>this</code> オブジェクトがそのラッパーを失って、クロームコードから危険な状態でアクセスされるおそれがありました。攻撃者はそうした脆弱なコードを利用して、クローム特権で任意の JavaScript を実行することが可能でした。</p>
+
+<h3>回避策</h3>
+<p>修正版へ更新するまで JavaScript を無効にしてください。</p>
+
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=460882">https://bugzilla.mozilla.org/show_bug.cgi?id=460882</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-2471">CVE-2009-2471</a></li>
+</ul>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2009/mfsa2009-39.html">英語版</a> 2009/07/21 &mdash; 和訳版 2011/01/06 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2009/mfsa2009-39.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

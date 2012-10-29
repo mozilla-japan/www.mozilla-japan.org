@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>shell: プロトコルのセキュリティ問題について Mozilla ユーザが知っておくべきこと</title>
+<link rel="alternate" hreflang="en" modified="September 17, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/security/shell.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>shell: プロトコルのセキュリティ問題について Mozilla ユーザが知っておくべきこと</h1>
+<p>7 月 7 日、Microsoft Windows 向けのブラウザに影響を及ぼすセキュリティ脆弱性が、Keith McCanless によって <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=250180" title="Bug 250180 - Shell: protocol allows access to local files and can lead to a DOS">mozilla.org に報告され</a>、続いて公開のセキュリティメーリングリスト「Full Disclosure」に投稿されました。同日、Mozilla のセキュリティチームは、このセキュリティ問題について報告された内容が、Mozilla Application Suite、Firefox、Thunderbird に影響することを確認し、Bugzilla の Bug 250180 にて修正案の議論と開発を行いました。なお、このバグは Microsoft Windows のユーザのみに影響するものであることが確認済みです。この問題は Linux や Mac OS のユーザには影響を及ぼしません。</p>
+<p>翌 7 月 8 日、Mozilla チームは、外部プロトコルハンドラ「shell:」の使用を明示的に無効化することでこの問題を解決する、設定の変更を公開しました。次の 2 通りの修正方法があります。まず最初の方法は、この設定に修正を加える小さなセキュリティパッチをインストールすることです。2 番目の方法は、これら各製品の最新フルリリース版をインストールし直すことです。これらの変更を実施する方法は以下をご覧ください。</p>
+<h2>アップデートの手順</h2>
+<p>Microsoft Windows で Mozilla、Firefox、Thunderbird を利用されている方は、以下のいずれかの方法でアップデートを実施してください。</p>
+<ul>
+  <li>Mozilla と Firefox に修正パッチをインストールするには、以下の手順に従ってください。
+    <ol>
+      <li>この <a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/shellblock.xpi">修正パッチ</a> のリンクをクリックしてください。</li>
+      <li>Software Installation (ソフトウェアインストール) ウィンドウが表示されますので、[Install Now (今すぐインストール)] ボタンをクリックしてください。</li>
+      <li>Mozilla あるいは Firefox ブラウザをいったん終了し、再起動してください。</li>
+    </ol>
+  </li>
+</ul>
+<ul>
+  <li>Firefox や Mozilla で問題が修正されたことを確認するには、必ずブラウザを再起動してから、以下の手順に従ってください。
+    <ol>
+      <li>アドレスバーに about:config と入力して Enter キーを押します。</li>
+      <li>Filter ツールバーに shell と入力します。</li>
+      <li>network.protocol-handler.external.shell という名前の行を探します。</li>
+      <li>この設定の Value が false になっていたら、アプリケーションにはパッチが適用済みです。</li>
+    </ol>
+  </li>
+</ul>
+<ul>
+  <li>Thunderbird に修正パッチをインストールするには、以下の手順に従ってください。
+    <ol>
+      <li><a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/shellblock.xpi">修正パッチ</a> のリンクを右クリックして、[Save Link As (名前をつけてリンクを保存)] を選択してください。</li>
+      <li>ファイル (shellblock.xpi) をデスクトップに保存してください。</li>
+      <li>Thunderbird の [Tools (ツール)] メニューを開き、[Extensions (拡張機能)] を選択してください。</li>
+      <li>Extensions (拡張機能) ウィンドウが表示されますので、[Install (インストール)] ボタンをクリックしてください。</li>
+      <li>ファイル選択パネルを使って、デスクトップにある shellblock.xpi を選択し、[OK] をクリックしてパネルを閉じます。</li>
+      <li>Software Installation (ソフトウェアインストール) ウィンドウが表示されますので、[OK] をクリックしてください。</li>
+      <li>Thunderbird をいったん終了し、再起動してください。</li>
+    </ol>
+  </li>
+</ul>
+<ul>
+  <li>最新の Mozilla リリースをダウンロード、インストールし直すには、以下の手順に従ってください。
+    <ol>
+      <li><a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/mozilla-win32-1.7.1-installer.exe">Mozilla 1.7.1 </a> をデスクトップにダウンロードし、mozilla-win32-1.7.1-installer.exe のアイコンをダブルクリックしてください。</li>
+      <li>Mozilla のインストールウィザードに従ってください。</li>
+    </ol>
+    <ol>
+      <li><a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9.2/FirefoxSetup-0.9.2.exe">Firefox 0.9.2</a> をデスクトップにダウンロードし、FirefoxSetup-0.9.2.exe のアイコンをダブルクリックしてください。</li>
+      <li>Firefox のインストールウィザードに従ってください。</li>
+    </ol>
+    <ol>
+      <li><a href="http://www.mozilla.org/products/thunderbird/download.html?http%3A//ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7.2/ThunderbirdSetup-0.7.2.exe">Thunderbird 0.7.2</a> をデスクトップにダウンロードし、ThunderbirdSetup-0.7.2.exe のアイコンをダブルクリックしてください。</li>
+      <li>Thunderbird のインストールウィザードに従ってください。</li>
+    </ol>
+  </li>
+</ul>
+<p>私たちは、ユーザの安全性とセキュリティを重視しており、常に安心して利用できる製品をリリースし、ソフトウェアにセキュリティ脆弱性が発見されたときには迅速に対応する最大限の努力を続けて参ります。Mozilla Firefox の次期バージョンには自動アップデート通知機能が搭載され、ユーザは、より簡単にセキュリティ問題が修正されたことを知らせる警告を受け取ることが可能になります。</p>
+<p>Mozilla セキュリティチームは、最初にバグの報告とテストケースを寄せてくれた Keith McCanless に感謝し、このドキュメントの初版で彼の報告についての言及が誤って抜け落ちていたことに対して、この場を借りてお詫び申し上げます。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/security/shell.html">英語版</a> 2004/09/17</span> - <span>和訳版 2005/02/28</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/security/shell.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

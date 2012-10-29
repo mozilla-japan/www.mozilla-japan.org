@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla サイト・エバンジェリズムの手順</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/tech-evangelism/site/procedures.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/tech-evangelism/site/procedures.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+<div class="skiplink"><a href="#endtabbar">テクノロジー・エバンジェリズム タブバーをスキップ</a></div>
+<div id="mozte-banner">
+<div id="mozte-header"><a href="../">テクノロジー・エバンジェリズム</a> &gt; <a href="./">サイト・エバンジェリズム</a></div>
+<div id="mozte-top-nav"><a href="about.html" title="サイト・エバンジェリズムとは">サイト・エバンジェリズムについて</a> | <a href="get-started.html" title="サイト・エバンジェリズムに参加するには">参加する</a> | <a href="procedures.html" title="サイト・エバンジェリズムに関する役に立つヒント集">手順</a> | <a href="components.html" title="Bugzilla のテクノロジー・エバンジェリズムに関するコンポーネント">コンポーネント</a> | <a href="resources.html" title="サイト・エバンジェリズムに使える便利なツール">資料</a></div>
+</div>
+<div class="skiplink"><a name="endtabbar" accesskey="2">コンテンツここから</a></div>
+
+<h1>Mozilla サイト・エバンジェリズムの手順</h1>
+<ul>
+	<li><a href="#bug-fields">テクノロジー・エバンジェリズム・バグのフィールド定義</a></li>
+	<li><a href="#file-new">テクノロジー・エバンジェリズム・バグの新規登録</a></li>
+	<li><a href="#contacting">サイトに連絡を取る</a></li>
+	<li><a href="#qa">品質保証</a></li>
+</ul>
+<h2 id="bug-fields">テクノロジー・エバンジェリズム・バグのフィールド定義</h2>
+<p>Mozilla サイト・エバンジェリズムにおける Bugzilla フィールドの意味を明示します。</p>
+<table border="1" cellpadding="5" cellspacing="0" summary="Bugzilla のテクノロジー・エバンジェリズム・バグで用いられるコード定義">
+	<tr>
+		<th style="width: 12em;">使われる場所</th>
+		<th style="width: 12em;">コード</th>
+		<th>定義</th>
+	</tr>
+	<tr>
+		<td><p>Product (プロダクト)</p></td>
+		<td><p>Tech Evangelism</p></td>
+		<td><p>テクノロジー・エバンジェリズム・バグは、すべて Bugzilla の「テクノロジー・エバンジェリズム」プロダクトに登録されます。</p></td>
+	</tr>
+	<tr>
+		<td><p>Component (コンポーネント)</p></td>
+		<td><p>言語別</p></td>
+		<td><p>テクノロジー・エバンジェリズムは言語別に <a href="components.html">コンポーネント</a> に整理されています。サイトの言語によって、最も適当なコンポーネントを選んでください。</p></td>
+	</tr>
+	<tr>
+		<td><p>Priority (優先順位)</p></td>
+		<td><p>P1</p></td>
+		<td><p>有名サイト、重要な問題 - 最優先に処理します。各コンポーネントオーナーには、有名サイトの一覧を管理し、それらの有名サイトに関するバグに evang500 キーワードを付ける責任があります。</td>
+	</tr>
+	<tr>
+		<td><p>Priority</p></td>
+		<td><p>P2</p></td>
+		<td><p>有名サイト、ささいな問題 - 特に、簡単に問題を解決できる場合は、できるだけ P1 のバグと同列に扱います。</p></td>
+	</tr>
+	<tr>
+		<td><p>Priority</p></td>
+		<td><p>P3</p></td>
+		<td><p>中小サイト、重大な問題 - これらのサイトは時間があるときに扱います。私たちは、自分たちの時間の投資という観点から、これらのバグがどれだけ努力に見合うだけの価値があるかを確かめる必要があります。そのサイトに対するエバンジェリズムの実施が、他のサイトでも活用できるような役に立つドキュメントを開発する上で有用なら、他の優先順位が高い問題より先に解決される場合もあります。</p></td>
+	</tr>
+	<tr>
+		<td><p>Priority</p></td>
+		<td><p>P4</p></td>
+		<td><p>中小サイト、ささいな問題 - 残念ながら、私たちは現在これらのバグに時間を割く余裕はありません。また後日解決したいと思います。</p></td>
+	</tr>
+	<tr>
+		<td><p>Keywords (キーワード)</p></td>
+		<td><p>evang500</p></td>
+		<td><p>この evang500 キーワードを用いて、注意深く最優先に扱うべき重要なサイトを区別します。各コンポーネントの有名サイト一覧を利用して、各言語でトップのエバンジェリズム・サイトを見つけます。</p></td>
+	</tr>
+	<tr>
+		<td><p>Severity (優先度)</p></td>
+		<td><p>Major</p></td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td><p>Severity</p></td>
+		<td><p>Normal</p></td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td><p>Severity</p></td>
+		<td><p>Minor</p></td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td><p>Status (ステータス)</p></td>
+		<td><p>UNCONFIRMED</p></td>
+		<td><p>UNCONFIRMED ステータスは、まだ実績のある開発をしたことがないコミュニティの新メンバーによって登録されたバグに割り当てられます。</p><p>バグが登録されたら、このドキュメントに書かれている考えに従って、品質保証を実施します。</p></td>
+	</tr>
+	<tr>
+		<td><p>Status</p></td>
+		<td><p>NEW</p></td>
+		<td><p>確認済み、あるいは誰かが Bugzilla の自動確認権で登録した新しいバグです。</p></td>
+	</tr>
+	<tr>
+		<td><p>Status</p></td>
+		<td><p>ASSIGNED</p></td>
+		<td><p>エバンジェリズム・バグのステータスは、サイトの分析が完了し、そのサイトにエバンジェリズム・レターを送った場合のみ ASSIGNED に変更します。初めてサイトを分析する場合は、最初に報告されたページを確認するだけではいけません。いくつかのページを見て、そのサイトにおける問題の全体的な本質を突き止め、最初に報告された URL に加えて、たいていの場合は自分でテストした他のページの一覧と具体的に修正すべき箇所の説明をまとめた <a href="letters.html">エバンジェリズム・レター</a> を送ってください。</p><p>このドキュメントで後ほど説明するステータス・ホワイトボードの修飾語句を付けてバグをアップデートし、そのサイトの問題についての具体的な説明を要約に加えてください。例えば、LAYER タグ、LAYER API、IE4 限定 API、間違ったネストタグ、などです。</p><p>自分たちが相手に余計な作業をお願いしているということを忘れてはいけません。丁寧に、礼儀正しく、相手に敬意を表しましょう。私たちは誰かを怒らせたりしたくはありません。</p></td>
+	</tr>
+	<tr>
+		<td><a name="milestones" id="milestones">Target Milestones (ターゲットマイルストーン)</a></td>
+		<td><p>再調査を実施する月 / Future</p></td>
+		<td><p>ターゲットマイルストーンは、そのエバンジェリズム・バグをいつ再調査すべきかを決めるために用います。テクノロジー・エバンジェリズムのマイルストーンは月ごとに設定するようになっています。エバンジェリズムを実施した (ステータスが ASSIGNED となっている) バグは再確認してください。そのバグを担当してサイトにエバンジェリズムを実施した人以外は、ターゲットマイルストーンを設定してはいけません。</p><p>エバンジェリズム・レターを 2 回出してもサイトから返事がなく、問題が修正されない場合は、ターゲットマイルストーンを Future に設定してください。</p></td>
+	</tr>
+	<tr>
+		<td><p>Resolution (処理方法)</p></td>
+		<td><p>WORKSFORME</p></td>
+		<td><p>問題を再現できませんでした。</p></td>
+	</tr>
+	<tr>
+		<td><p>Resolution</p></td>
+		<td><p>DUPLICATE</p></td>
+		<td><p>このサイトは既に同様の問題で報告されています。</p></td>
+	</tr>
+	<tr>
+		<td><p>Resolution</p></td>
+		<td><p>FIXED</p></td>
+		<td><p>問題は修正されました。</p></td>
+	</tr>
+	<tr>
+		<td><p>Resolution</p></td>
+		<td><p>WONTFIX</p></td>
+		<td><p>テクノロジー・エバンジェリズム・バグの処理方法に WONTFIX は使わないでください。その代わり、コンテンツをアップデートするつもりはないという返事をしてきたサイトには、ステータス・ホワイトボードに not-responsive と書き込んでください。</p></td>
+	</tr>
+	<tr>
+		<td><p>Resolution</p></td>
+		<td><p>INVALID</p></td>
+		<td><p>通常、テクノロジー・エバンジェリズム・バグの処理方法に INVALID は使わないでください。ただし、コンポーネントオーナーの判断で INVALID とされる場合もあります。</p></td>
+	</tr>
+	<tr>
+		<td><p>Summary (要約)</p></td>
+		<td><p>サイトのドメイン - ユーザ体験の視点で見た、そのサイトの問題に関する簡潔で具体的な説明</p></td>
+		<td><p>要約を入力する場合は以下の形式を用いてください。例えば、http://mail.netscape.com/ に LAYER ベースの JavaScript に関する問題があった場合、要約は次のようになります。</p><p>netscape.com - mail uses document.layers</p></td>
+	</tr>
+	<tr>
+		<td><p>Status Whiteboard (ステータス・ホワイトボード)</p></td>
+		<td><p>not-responsive</p></td>
+		<td><p>反応がないサイトについては、ステータス・ホワイトボードに not-responsive と書き込んでください。</p></td>
+	</tr>
+	<tr>
+		<td><p>Status Whiteboard</p></td>
+		<td><p>technote-needed</p></td>
+		<td><p>ドキュメント化することで大きなメリットを得られるような、よくある問題の場合、そのバグのステータス・ホワイトボードに technote-needed と書き込んでください。テクニカルノートが完成したら technote-needed の注釈を削除してください。</p></td>
+	</tr>
+	<tr>
+		<td><p>Status Whiteboard</p></td>
+		<td><p>plugin</p></td>
+		<td><p>プラグインメーカーと連絡・協力が必要な問題に印を付けるには、ステータス・ホワイトボードに plugin と書き込んでください。</p></td>
+	</tr>
+	<tr>
+		<td><p>Status Whiteboard</p></td>
+		<td><p>author</p></td>
+		<td><p>ツール、エディタなどの作者やベンダーと連絡・協力が必要な問題に印を付けるには、ステータス・ホワイトボードに author と書き込んでください。</p></td>
+	</tr>
+</table>
+<h2 id="file-new">テクノロジー・エバンジェリズム・バグの新規登録</h2>
+<p>バグを新規登録する前に、必ず <a href="get-started.html">参加するには</a> のページをご覧ください。</p>
+<ol>
+	<li>
+		<p>Mozilla テクノロジー・エバンジェリズムは、あなたの苦情受付サービスとして存在しているわけではありません。あるサイトについてテクノロジー・エバンジェリズム・バグを登録する前に、<strong>まずそのサイトに苦情を訴えて</strong>、Mozilla に対するサポートが欠如していることを伝えてください。</p>
+	</li>
+	<li>
+		<p>自分が報告しようとしている問題がテクノロジー・エバンジェリズムの問題によるものなのかどうかを <strong>確信</strong> してください。その問題がテクノロジー・エバンジェリズム・バグだと確信できない場合は、<a href="http://bugzilla.mozilla.org/enter_bug.cgi?format=guided">最も適切だと思われるプロダクトに対してバグを登録してください</a>。</p>
+	</li>
+	<li>
+		<p>Bugzilla の Tech Evangelism プロダクトに <a href="http://bugzilla.mozilla.org/enter_bug.cgi?product=Tech+Evangelism&amp;format=guided">エバンジェリズム・バグを新規登録してください</a>。</p>
+	</li>
+	<li>
+		<p>そのバグがどの言語に属するか、<a href="http://bugzilla.mozilla.org/describecomponents.cgi?product=Tech+Evangelism">コンポーネント</a> を選択してください。</p>
+	</li>
+	<li>
+		<p>プラットフォームとオペレーティングシステム (OS) を選択</p>
+		<p>そのサイトの問題が、プラットフォームや OS 特有のものではないと確信できる場合は、プラットフォームと OS を All に設定してください。</p>
+	</li>
+	<li>
+		<p>初期状態を選択</p>
+		<p>初期状態 UNCONFIRMED は、Mozilla とサイトの互換性を調査するよう Mozilla エバンジェリズム・コミュニティに依頼するときに使ってください。初期状態 NEW は、Mozilla のサポートに問題があると分かっているサイトを記録する場合に使ってください。</p>
+	</li>
+	<li>
+		<p>優先度を選択</p>
+		<p>エバンジェリズム・バグを報告するときは、優先度を Major あるいは Normal、Minor に設定してください。その他の優先度は、私たちのバグの場合に関しては、まったく本来の意味を持ちません。その問題がどれほど深刻か、最良の判断を下してください。</p>
+	</li>
+	<li>
+		<p>担当者を指定</p>
+		<p>サイトへの連絡を自分で担当したい場合は、Assigned To (担当者) フィールドに自分のメールアドレスを入力してください。特に担当者を指定せず空白のままにした場合、そのバグはあなたが選んだコンポーネントのオーナーに割り当てられます。</p>
+	</li>
+	<li>
+		<p>URL を入力</p>
+		<p>Mozilla のサポートについて問題が見られるページまたはサイトの URL を入力してください。サイト上の特定のページで問題が見られる場合は、そのサイトの他のページでも同じような問題が再現するはずです。サイトのトップページを見て、そこでも問題が見られないか、またそれがどのようなものかを判断してください。もしサイトの大半のコンテンツに問題がある場合は、サイトのトップページの URL を入力してください。</p>
+	</li>
+	<li>
+		<p>要約を入力</p>
+		<p>サイトの URL の「主要部分」に続けて、あなたがそのサイトでどのような問題を経験したのかについて、問題の簡潔な説明を分かりやすく入力してください。説明の中に技術的なことを書く必要はありません。</p>
+		<p>例えば、Web ページ <code>http://www.foo.bar.com/help/support/</code> について報告する場合、URL の「主要部分」は <code>bar.com</code> になります。これによって、エバンジェリズム・バグの検索結果を要約で分類したり、同じ企業に対するバグをひとまとめにすることが可能になります。</p>
+		<ul><li>bar.com - Displays differently than IE5 (IE5 と表示が異なる)</li><li>netscape.com - Does not allow Mozilla (Mozilla でのアクセスが拒否される)</li><li>fubar.co.uk - Does not support secure connections in Mozilla (Mozilla のセキュアな接続をサポートしていない)</li></ul>
+		<p>この要約は、エンドユーザが書けて、なおかつ理解できるものでなければなりません。問題のより技術的な説明は、バグが選別され、割り当てられたあとで、ステータス・ホワイトボードに追加してください。</p>
+	</li>
+	<li>
+		<p>問題の概要を入力</p>
+		<p>サイトで見られた問題を、適度に詳しく説明してください。私たちが Bugzilla でバグの追跡に利用するフィールドの多くは、バグが登録されてから初めて使えるようになります。そのため、適度に簡潔な説明をここに書き込んでおいて、バグの登録後により詳しい情報を追加してください。</p>
+		<p>初めてサイトと連絡を取ったことに関して、何か情報があればそれを入力してください。<strong>匿名の Mozilla テクノロジー・エバンジェリストが送るメールよりも、顧客からの苦情の方がより効果的です。そのサイトに Mozilla をサポートして欲しいなら、まず顧客として苦情を申し立てるべきです!</strong></p>
+	</li>
+	<li>
+		<p>バグを送信</p>
+		<p>バグは送信しないと保存されません!</p>
+	</li>
+	<li>
+		<p>登録したばかりのバグを編集</p>
+		<p>ページが正しく表示されない場合、そのページのスクリーンショットをバグに添付してください。画像を添付する際、適切な MIME タイプが設定されているかどうか確認してください。画像のサイズはなるべく小さくしてください。JPEG で 1MB もするスクリーンショットは必要ありません。スクリーンショットに含まれる色数や範囲を小さくして、サイズを削減してください。このとき必ずすべきことは、添付した画像で自分が報告した問題が分かるかどうかを確かめることです。</p>
+		<p>ページが不正な HTML や JavaScript で記述されている場合は、その HTML や JavaScript をコンピュータのローカルファイルに保存し、それを text/plain としてバグに添付してください。これで、そのページがもともとどう記述されていたのかを記録しておけば、その後のバージョンと問題が報告されたときのバージョンを比較することができます。</p>
+	</li>
+</ol>
+<h2 id="contacting">サイトに連絡を取る</h2>
+<ol>
+	<li>
+		<p>バグをレビューして、必要なら <a href="#qa">品質保証の手順</a> に従います。</p>
+	</li>
+	<li>
+		<p>サイト管理者の特定</p>
+		<p>サイト内の情報を利用して、そのサイトに連絡を取るための正確な人物を特定します。適当な連絡先が見つからなかった場合、Internic の <a href="http://www.internic.com/whois.html">Whois</a> を利用して、必要な情報を割り出します。</p>
+	</li>
+	<li>
+		<p>エバンジェリズム・レターを送る</p>
+		<p><a href="letters.html">Mozilla エバンジェリズム・レター</a> を利用して、サイト管理者にメールを送ります。ここには、そのサイトで見られる問題と、どうすれば Mozilla や標準をサポートするためにコンテンツをアップデートできるかを記述します。</p>
+		<p>サイトに連絡を取るときは、<strong>常に</strong> 礼儀正しい態度を取るよう心掛けてください。メールメッセージは個人のメールアカウントで送信し、自分の書いたことにはすべて責任を負うべきです。</p>
+	</li>
+	<li>
+		<p>連絡の内容を記録する</p>
+		<p>エバンジェリズム・レターの基本テンプレートに追加したコメントの概要や連絡情報を含めて、エバンジェリズム・レターを送信したことをバグに記録してください。ただし、サイト管理者に送ったメールをそのまま添付してはいけません。</p>
+		<p>バグのマイルストーンを、少なくともサイトに連絡を取った 1 か月後に設定します。こうすれば、月ごとにマイルストーンを検索して、再テストの必要があるサイトをフォローすることができます。</p>
+		<p>そのバグを自分に割り当て、ステータスを ASSIGNED に変更します。</p>
+	</li>
+	<li>
+		<p>エバンジェリズム・レターが宛先不明で戻ってきた場合...</p>
+		<p>連絡が取れなかったことをバグに記録します。</p>
+		<p>もしサイト上で他に連絡先を特定できれば、エバンジェリズム・レターを再送信します。他に連絡先が見つからなければ、そのことをバグに記録して、マイルストーンを Future に変更してください。</p>
+	</li>
+	<li>
+		<p>サイトの反応が消極的だった場合...</p>
+		<p>バグのステータス・ホワイトボードに <code>not-responsive</code> と書き込み、他のバグに取り掛かってください。連絡を取るべきサイトは他にもたくさんあり、最初に Mozilla のサポートを拒んだサイトはいつでも再度取り上げることができます。</p>
+	</li>
+</ol>
+<h2 id="qa">品質保証</h2>
+<p>バグの品質保証を実施するには、Bugzilla でバグを承認するための権限が必要です。また、手続きを進める前に、エバンジェリズムのプロセスに精通し、エバンジェリズム・コミュニティの Zach Lipton (irc: zach)、Asa Dotzler (irc: asa) あるいは他のアクティブなメンバーの誰かと、一連の手続きについて話し合うべきです。irc.mozilla.org の <a href="irc://irc.mozilla.org/evangelism/">#evangelism</a> または <a href="irc://irc.mozilla.org/mozillazine/">#mozillazine</a> チャンネルを訪れて、コミュニティの他のメンバーを探してください。</p>
+<h3>UNCONFIRMED / NEW</h3>
+<ol>
+	<li>
+		<p>Bugzilla を検索して、重複がないか確認する</p>
+		<p>同じサイトに関するエバンジェリズム・バグが既に登録されていて、そのバグがまだ VERIFIED になっていない場合は、この (新規登録された) バグに対する重複としたいバグのナンバーを入力して、処理方法を DUPLICATE に変更してください。</p>
+		<p>そのサイトの問題について何か新しい情報があれば、その問題が再現するかどうか確認し、元のバグのコメントに情報を記録してください。</p>
+	</li>
+	<li>
+		<p>サイトを訪れる</p>
+		<p>サイトを訪れて、Mozilla のサポートにどのような問題があるのか突き止めてください。特に問題なく Mozilla をサポートしている場合は、バグの処理方法を WORKSFORME としてください。</p>
+		<p>実際に問題が見つかり、そのバグが UNCONFIRMED となっている場合は、バグを承認してステータスを NEW に変更してください。</p>
+	</li>
+	<li>
+		<p>サイトを分析する</p>
+		<p>元のバグレポートに間違いがないか判断します。必要に応じて追加コメントを入力してください。</p>
+	</li>
+</ol>
+<h3>ASSIGNED</h3>
+<p><a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=ASSIGNED&amp;product=Tech+Evangelism">当月より前にマイルストーンが設定してある割り当て済みバグのレビュー</a></p>
+<p>サイトを訪れて、まだ問題が再現するかどうか判断してください。いくつかのページを見て、サイト全体がアップデートされたか確認してください。まだ問題が見られる場合は、ステータスを REOPENED とします。Mozilla で正しく表示される (動作する) 場合は、ステータスを FIXED に変更します。</p>
+<h3>RESOLVED</h3>
+<p><a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=RESOLVED&amp;product=Tech+Evangelism">解決済みバグのレビュー</a></p>
+<p>処理方法が FIXED または WORKSFORME の場合</p>
+<p>サイトを訪れて、まだ問題が再現するかどうか判断してください。いくつかのページを見て、サイト全体がアップデートされたか確認してください。まだ問題が見られる場合は、ステータスを REOPENED とします。Mozilla で正しく表示される (動作する) 場合は、ステータスを VERIFIED に変更します。</p>
+<p>処理方法が DUPLICATE の場合</p>
+<p>サイトを訪れて、重複とされたバグが本当に元のバグの重複かどうかを判断してください。元のバグに、重複とされたバグで報告された情報がすべて含まれているか確認してください。</p>
+
+<hr class="hide" />
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/tech-evangelism/site/procedures.html">英語版</a> 2004/02/25</span> - <span>和訳版 2006/02/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/tech-evangelism/site/procedures.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

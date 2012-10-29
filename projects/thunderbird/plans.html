@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla Thunderbird Plans for 2004</title>
+<link rel="alternate" hreflang="en" modified="January 21, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/thunderbird/plans.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla Thunderbird の将来</h1>
+<p>Thunderbird ユーザのみんな、あけましておめでとう! 新年の抱負として、2004年の Thunderbird に関して考えている計画とアイデアについて述べたい。この文書は新しい <a href="roadmap.html">Thunderbird ロードマップ</a>だろうか? そうかもしれない。しかし、ロードマップは特定のマイルストンとスケジュールについて述べるものだ。今回はそこから離れて、今年フォーカスすべき領域とトレンドに注目したい。これは詳細なリスだろうか？ いやまったく違う。このリストはみんなのお気に入りの機能とウィッシュリストを含んでいるだろうか？ いや、この小さなドキュメントでそれらすべての要求に適合させることができるとは思わない。そしてもちろん、私たちが反映したいと思っている電子メール空間にどんな面白い開発が起こるか誰が知っているだろうか。</p>
+<p>混乱を避けるために、特別な順番を持たないリストを掲載する。</p>
+<h2>Thunderbird インストーラ</h2>
+<p>私たちは、Mozilla Thunderbird のインストーラを開発するために、Ben Goodger の Mozilla Firebird のインストーラ作業に長い間投資してきた。インストーラを持つことは新規ユーザが Thunderbird を導入したりちょっと使ってみたりするのを容易にするのに大きく影響する。加えて、基本となるインストーラを持つことにより、共通の拡張（とくにオフラインサポート）のオプションをインストーラーの UI に組み込みたいと思っている。これによりこれらの拡張と一緒のアップグレードがより堅牢になる。</p> 
+<h2>Seamonkey プロファイルの取り込み</h2>
+<p>現在、ユーザは Mozilla Application Suite からプロファイルを手動で取り込むことができる。これは、Mozilla の pref.js で相対パスを使うという最近の修正によりより簡単になった。しかし、私たちは自動取り込みの手段を必要としている。優れた取り込みのためのソリューションは二つの動作を持つだろう: (1) 既存の seamonkey のプロファイルをそのまま再利用する機能と、 (2) すべてのメールフォルダとデータを Thunderbird のプロファイルにコピーする完全取り込み機能だ。前者は、ユーザが Seamonkey と Thunderbird の両方で重複したメールデータをローカルディスクに作ることなくメールを読むのを容易にする。後者はユーザが suite から Thunderbird に移行しやすくする。</p>
+<h2>ジャンクメール改善</h2>
+<p>私たちは Mozilla Mail プロダクトのベイジアンベースのジャンクメール検出の開発に大きな実績を残した。しかし、スパマーはこれらのコントロールを回避するために異なる手段を使って送り続けている。私たちもこの世界で前進し続けていく必要がある。取り組もうとしているアイデアがいくつかある:</p>
+<ul>
+  <li>メッセージがジャンクであるかを決定する分類アルゴリズムの改善</li>
+  <li>サーバーサイドジャンクコントロールのサポート。多くのサーバはジャンクと思える受信メールにヘッダを追加する。これらのヘッダを検出し、メッセージをジャンクとマークし、ジャンクと認識されたメッセージを処理するためにユーザが定義した動作に従う機能が必要だ。</li>
+  <li>ベイジアン分類に送られる前に、メッセージを単語分割するためのルールの改善。これはよい結果が得られるはずだ。</li>
+  <li>トレーニング集合に保存するトークン数の制限。これはジャンクコントロールのメモリフットプリントを削減し、さらに性能を少し改善させるだろう。</li>
+</ul>
+<h2>スペルチェッカ</h2>
+<p>我々のスペルチェッカは、Open Office で使用される myspell エンジンの2年前の分岐をベースにしている。分岐してから、多くの改善が Open Office バージョンになされ、ウェブ上で最も優れたスペルチェッカの一つになった。もし元に戻って、それらを我々の分岐に取り込むことにより最新の Open Office に見られるのと同じ水準にもって行くことができればすばらしいことだ。</p>
+<h2>アカウントごとに複数の ID のサポート</h2>
+<p>われわれの多くは同じドメイン名の複数の電子メールアカウントをもっている。つい最近までは、一つの電子メールアカウントについて一つの ID しか持つことが出来なかった。ずるいユーザは今では <a href="http://forums.mozillazine.org/viewtopic.php?p=300933#300933">prefs.js を手で編集して</a> 一つのアカウントに複数の ID を関連付けすることができる。メッセージに返信するときに、元の送信者があなた宛に送信するときに使用した ID を compose ウィンドウでデフォルトの ID として選択するとスマートだろう。しかしながら、我々はアカウントごとに複数の ID を作成したり管理したりするきれいな UI をまだ持っていない。これの難しい点は、きれいな UI をデザインすることだろう。</p>
+<h2>プロファイルのポータビリティ / USB デバイス</h2>
+<p>これは Thunderbird が便利になるだけでなく、Mozilla のプロファイル全般にかかわる問題だ。アプリケーションのプロファイルを USB キーチェインドライブで運ぶことにより、マシン間でプロファイルのポータビリティを実現したいと考えているユーザが増えてきている。それには解決すべき二つのクラスの問題がある: (1) ドライブレターが変化するリモードドライブの上のプロファイルで動作するようなインストール、(2) アプリケーションとプロファイルが両方ともリモードデバイスにあるようなケース。</p>
+<h2>Talkback 統合</h2>
+<p>クラッシュレポートデータを生成するために、Talkback テクノロジーを Mozilla Thunderbird に統合する。もちろん、クラッシュしないことに越したことはない！</p>
+<h2>複数の SMTP サーバーのオーバーホール</h2>
+<p>現在複数の SMPT サーバーをサポートしている。しかし、SMPT サーバーをアカウントに関連付ける方法と、ユーザがどのようにして利用する送信 SMTP サーバーを選択するかの方法はごちゃごちゃだ。複数の SMPT サーバをユーザにどう見せてそれをどう管理するか問題を見極める必要がある。</p>
+<h2>RSS フィード統合</h2>
+<p>RSS フィードをメールウィンドウに統合させる。メールは RSS フィードを実現する自然なアプリケーションだ。ぜひそれを利用しよう。</p>
+<h2>メッセージリストペインにグルーピングを追加</h2>
+<p>メッセージの"履歴のような"ビューを実現するのはどうだろうか。例えば、日付でソートすると、"今日のメッセージ"、"昨日のメッセージ" などが得られる。送信者でソートすると、"Scott からのメール" だ。</p>
+<h2>添付ファイル</h2>
+<p>メッセージから添付ファイルを削除する機能。コンテンツタイプやファイル名をベースに添付ファイルを検索する機能。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/thunderbird/plans.html">英語版</a> 2004/01/21</span> - <span>和訳版 2005/05/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/thunderbird/plans.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

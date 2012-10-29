@@ -1,0 +1,486 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE>SSL デバッグツールを使う</TITLE>
+<!---
+オリジナル文書：Using the SSL Debugging Tool
+オリジナルURL ：http://www.mozilla.org/projects/security/pki/nss/tools/ssltap.html
+
+和訳１版：2001/01/27  山口（syamagu@mozilla.gr.jp）（Rev: 1.4 Jan 17 2001 10:21）
+和訳２版：2001/02/18  山口（syamagu@mozilla.gr.jp）（Rev: 1.6 Feb 16 2001 18:04）
+
+--->
+
+<link rel="alternate" hreflang="en" modified="February 16, 2001">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/tools/ssltap.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<CENTER><H2><A NAME="1013897">
+SSL デバッグツールを使う （<tt>ssltap</tt>）
+</A></H2>
+
+<P><A NAME="1042961"><FONT SIZE="-1">
+ニュースグループ： 
+<A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">
+netscape.public.mozilla.crypto</A><BR>
+
+テクニカル コンタクト：
+<A HREF="mailto:mcgreer@netscape.com?subject=modutil doc feedback">
+Ian McGreer</A><BR>
+
+管理者： 
+<A HREF="mailto:wtc@netscape.com?subject=modutil doc feedback">
+Wan-Teh Chang</A>
+</A></FONT></P></CENTER>
+
+<P>
+SSL デバッグツールとは、 SSL 指向のコマンドライン プロキシです。
+SSL は TCP 接続を監視し、やり取りされるデータを表示します。
+接続が SSL を通している場合、データ表示には処理された SSL 
+レコードおよびハンドシェークが含まれます。
+</P>
+
+<H2><A NAME="Availability"></A>
+<A NAME="1031698">
+利用環境
+</A></H2>
+
+<P><A NAME="1037781">
+このツールは、 Solaris 2.5.1 （SunOS 5.5.1） および Windows NT 4.0 上でビルドされています。
+</A></P>
+
+<H2><A NAME="Description"></A>
+<A NAME="1039196">
+概要
+</A></H2>
+
+<P><A NAME="1039197">
+<CODE>ssltap</CODE> は、 rendezvous port 上のソケットを開き、
+クライアント側からの接続要求 （incoming connection） を待ちます。
+この接続信号を受け取ると、ツールはサーバ側の特定されたホストネームおよびポートに、
+もう一つの接続を開始します。クライアントからサーバに対して送られたあらゆるデータを通し、
+また同様に、サーバからクライアントに対して送られたあらゆるデータも通します。
+ツールはまた、そのツールを呼び出しているシェルウィンドウにデータを表示します。
+ここで述べられているように、SSL ストリームと共に、プレイン HTTP 接続でも、
+あらゆる TCP プロトコルでも機能します。
+ </A></P>
+
+<P><A NAME="1039603">
+ツールには、どのような暗号化されたメッセージデータも解読することは出来ません。
+ツールは、保護された接続が確立する前の、
+ハンドシェークの一段階であるプレインテキストやバイナリーデータを読むためのものです。
+</A></P>
+
+<H2><A NAME="Syntax"></A>
+<A NAME="1028268">
+構文
+</A></H2>
+
+<P><A NAME="1038163">
+SSL デバッグツールを使用するには、次のコマンドをコマンドシェルに打ち込んでください：
+</A></P>
+
+<P><A NAME="1038190">
+<CODE>ssltap</CODE> [<CODE>-vhfsxl</CODE>] [<CODE>-p</CODE> <I>port</I>] <I>hostname</I>:<I>port</I>
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1038316">
+オプション
+</A></H3>
+
+<P><A NAME="1039262">
+コマンドには、 <I>hostname:port</I> 以外のオプションは必要ありませんが、
+接続干渉や出力 （output） の管理にオプションを利用します。
+コマンドに対するオプションは次の通りです：
+<P><B></B>
+
+<TABLE BORDER="2" CELLPADDING=5>
+<TR><TD VALIGN=baseline ALIGN=left><P><A NAME="1038945">
+<CODE>-v</CODE></A></P><TD VALIGN=baseline ALIGN=left><P><A NAME="1038947">
+ツールに対してバージョンを示す文字列を表示します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left><P><A NAME="1039471">
+<CODE>-h</CODE></A></P><TD VALIGN=baseline ALIGN=left><P><A NAME="1039473">
+ hex/ASCII プリントに切り替えます。生データをそのまま出力するのではなく、
+それぞれの記録を 16 進数 （hex values） に変換したものを、それに続いて同じデータを ASCII 
+文字で表したものを表示します。この二つは、垂直線で分離表示されます。
+プリントされない文字は、ドットに入れ替えられます。<CODE></CODE>
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left><P><A NAME="1039546">
+<CODE>-f</CODE></A></P><TD VALIGN=baseline ALIGN=left><P><A NAME="1039548">
+楽しいプリントをします。出力は、カラーの HTML で表示されます。
+クライアントからサーバ側へ送られたデータは青で、サーバの応答は赤で示されます。
+ループモード （looping mode） にした場合、接続別に水平線で仕切られます。
+このオプションは、ブラウザーへの出力をアップロードする際に使えます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left><P><A NAME="1039542">
+<CODE>-s</CODE></A></P><TD VALIGN=baseline ALIGN=left><P><A NAME="1039544">
+SSL 構文解析とデコードを立ち上げます。
+ツールは、自動的には SSL セッションを検知しません。SSL 接続に干渉する場合、
+ツールが SSL 構造を検出しデコードできるように、このオプションを使います。
+</A></P>
+
+<P><A NAME="1039704">
+</A></P><P><A NAME="1039696">
+ツールが証明書チェーンを検出した場合、DER エンコードされた （DER-encoded） 
+証明書をカレント・ディレクトリ内のファイルに保存します。ファイルは、
+ <CODE>cert.0</CODE><I>x</I> と名前を付けられます。ここで、 <I>x</I> は、
+その証明書のシーケンス番号を示します。
+</A></P><P><A NAME="1039720">
+
+</A></P><P><A NAME="1039713">
+<CODE>-h</CODE> と共に <CODE>-s</CODE> オプションが使用された場合、
+それそれのレコードについて二つの別個に表示されます：
+プレイン hex/ASCII 出力と解析済み SSL 出力の二つです。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left><P><A NAME="1039538">
+<CODE>-x</CODE></A></P><TD VALIGN=baseline ALIGN=left><P><A NAME="1039540">
+解析済み SSL レコード内部のデコードされていないデータを hex/ASCII 表示に切り替えます。
+ <CODE>-s</CODE> オプションとのみ利用されます。このオプションは、
+ <CODE>-h</CODE> オプションの場合と同じ出力フォーマットを使います。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left><P><A NAME="1039513">
+<CODE>-l</CODE></A></P><TD VALIGN=baseline ALIGN=left><P><A NAME="1039515">
+ループに切り替えます。つまり、最初の接続が完了した後にも、
+接続を停止するのではなく、接続を受け入れつづけます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left><P><A NAME="1039519">
+<CODE>-p </CODE><I>ポート</I></A></P><TD VALIGN=baseline ALIGN=left><P><A NAME="1039521">
+ディフォルトの rendezvous port (1924) を別のポートに切り替えます。
+よく知られたポート番号は次のとおりです：
+</A></P>
+
+<P><A NAME="1039522">
+HTTP &nbsp;&nbsp;80</A></P><P><A NAME="1042673">HTTPS&nbsp;&nbsp;&nbsp;443</A></P>
+
+<P><A NAME="1042674"></A></P>
+
+<P><A NAME="1039523">SMTP&nbsp;&nbsp;&nbsp;25</A></P>
+
+<P><A NAME="1039525">FTP&nbsp;&nbsp;&nbsp;21</A></P>
+
+<P><A NAME="1042678"></A></P>
+
+<P><A NAME="1039526">IMAP&nbsp;&nbsp;&nbsp;143</A></P>
+
+<P><A NAME="1042679">IMAPS&nbsp;&nbsp;&nbsp;993 (IMAP over SSL)</A></P>
+
+<P><A NAME="1042680"></A></P>
+
+<P><A NAME="1039527">NNTP&nbsp;&nbsp;&nbsp;119</A></P>
+
+<P><A NAME="1039528">NNTPS&nbsp;&nbsp;&nbsp;563 (NNTP over SSL)</A></P>
+
+</TABLE>
+<TABLE>
+<TR><TD>
+</TABLE>
+</A></P>
+
+<H2><A NAME="Examples"></A>
+<A NAME="1039388">
+実例
+</A></H2>
+
+<P><A NAME="1039390">
+SSL デバッグツールをどのような接続情報に干渉する場合にも利用できます。
+ <I>hostname:port</I> 以外のオプションを全く付けずに <CODE>ssltap</CODE> 
+コマンドを出すという最も基本的な方法でもツールを利用することも出来ますが、
+この方法で得られる情報はそれほど有用なものではありません。
+</A></P>
+
+<P><A NAME="1039406">
+例えば、あなたの開発用コンピュータを <CODE>intercept</CODE> と呼ぶとしましょう。
+デバッグツールを使用する最も簡単な方法は、コマンドシェルから次のコマンドを実行することです：
+</A></P>
+
+<PRE><A NAME="1039391">ssltap www.netscape.com:80</A></PRE>
+
+<P><A NAME="1039392">
+プログラムは、ディフォルトの 1924 ポートで接続要求を待ちます。
+ブラウザウィンドウに、URL の <CODE>http://intercept:1924</CODE> を入れてください。
+ブラウザは要求されたページを、 <CODE>www.netscape.com</CODE> にあるサーバから読み込みますが、
+そのページは、 <CODE>intercept</CODE> にあるデバッグツールによって途中で干渉され、
+ブラウザに渡されます。
+</A></P>
+
+<P><A NAME="1039393">
+ページがブラウザに渡される途中、あなたがコマンドを発したコマンドシェルにデータが表示されます。
+クライアントからサーバに送られたデータは、次の記号 （symbols） によって囲まれます：
+</A></P>
+
+<P><A NAME="1039394">
+<CODE>--&gt; [ </CODE><I>データ</I><CODE> ]</CODE>
+</A></P>
+
+<P><A NAME="1039395">
+サーバからクライアントに送られたデータは、次の記号 （symbols） によって囲まれます：
+</A></P>
+
+<P><A NAME="1039396">
+<CODE>&lt;-- [ </CODE><I>データ</I><CODE> ]</CODE>
+</A></P>
+
+<P><A NAME="1039397">
+生データのストリームは、標準出力に送られ、どのような形にも変換されることはありません。
+この結果として、音、画面のフラッシュやコマンドシェルウィンドウのクラッシュという、
+奇妙なことが起こります。データを基本的な、出力可能な変換 （printable interpretation） 
+を出力するには、 <CODE>-h</CODE> オプションか、もし SSL 接続を見ている場合は、
+ <CODE>-s</CODE> オプションを利用してください。
+</A></P>
+
+<!--The raw data stream is sent to standard output and is not interpreted in any way. This can result in peculiar effects, such as sounds, flashes, and even crashes of the command shell window. To output a basic, printable interpretation of the data, use the <CODE>-h</CODE> option, or, if you are looking at an SSL connection, the <CODE>-s</CODE> option.-->
+
+<P><A NAME="1039413">
+要求したページがブラウザ上では不完全に見えることに気が付くでしょう。
+これは、ディフォルトで、ツールが最初の接続が完了すると閉じてしまい、
+ブラウザが画像を表示できないからです。ツールが接続を続行するようにするには、
+ <CODE>-l</CODE> オプションを使ってループモードに切り替えます。
+</A></P>
+
+<!--You will notice that the page you retrieved looks incomplete in the browser. This is because, by default, the tool closes down after the first connection is complete, so the browser is not able to load images. To make the tool continue to accept connections, switch on looping mode with the <CODE>-l</CODE> option. -->
+
+<P><A NAME="1039780">
+次の例では、一般的に使われるオプションの組み合わせを示します。
+</A></P>
+
+<H4><A NAME="Head3;"></A>
+<A NAME="1039790">
+例 1
+</A></H4>
+
+<P><A NAME="1039998">
+この例の中の <CODE>s</CODE> および <CODE>x</CODE> オプションは、
+SSL 構文解析とデコードされていない値を hex/ASCII 形式に切り替えるものです。
+出力は、テキストファイルに経路指定されます。
+</A></P>
+
+<H5><A NAME="Head4;"></A>
+<A NAME="1039797">
+コマンド
+</A></H5>
+
+<PRE><A NAME="1039750">ssltap.exe -sx -p 444 interzone.mcom.com:443 &gt; sx.txt</A></PRE><H5><A NAME="Head4;"></A>
+<A NAME="1039769">
+出力
+</A></H5>
+<!--
+Output
+</A></H5>
+-->
+
+<PRE><A NAME="1039803">Connected to interzone.mcom.com:443<br>--&gt; [<br>alloclen = 66 bytes<br>&nbsp;&nbsp;&nbsp;[ssl2]  ClientHelloV2 {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version = {0x03, 0x00}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cipher-specs-length = 39 (0x27)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sid-length = 0 (0x00)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;challenge-length = 16 (0x10)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cipher-suites = {</A></PRE><PRE><A NAME="1039812">                (0x010080) SSL2/RSA/RC4-128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x020080) SSL2/RSA/RC4-40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x030080) SSL2/RSA/RC2CBC128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x040080) SSL2/RSA/RC2CBC40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x060040) SSL2/RSA/DES64CBC/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x0700c0) SSL2/RSA/3DES192EDE-CBC/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000004) SSL3/RSA/RC4-128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00ffe0) SSL3/RSA-FIPS/3DES192EDE-CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00000a) SSL3/RSA/3DES192EDE-CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00ffe1) SSL3/RSA-FIPS/DES64CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000009) SSL3/RSA/DES64CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000003) SSL3/RSA/RC4-40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000006) SSL3/RSA/RC2CBC40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session-id = { }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;challenge = { 0xec5d 0x8edb 0x37c9 0xb5c9 0x7b70 0x8fe9 0xd1d3</A></PRE><PRE><A NAME="1040950">0x2592 }<br>}<br>]<br>&lt;-- [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 16 03 00 03  e5                                   |.....<br>&nbsp;&nbsp;&nbsp;type    = 22 (handshake)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 997 (0x3e5)<br>&nbsp;&nbsp;&nbsp;handshake {<br>&nbsp;&nbsp;&nbsp;0: 02 00 00 46                                      |...F<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 2 (server_hello)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 70 (0x000046)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ServerHello {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_version = {3, 0}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;random = {...}<br>&nbsp;&nbsp;&nbsp;0: 77 8c 6e 26  6c 0c ec c0  d9 58 4f 47  d3 2d 01 45  |<br>wn&amp;amp;l.&igrave;..XOG.-.E<br>&nbsp;&nbsp;&nbsp;10: 5c 17 75 43  a7 4c 88 c7  88 64 3c 50  41 48 4f 7f  |</A></PRE><PRE><A NAME="1039847">\.uC&#167;L.&Ccedil;.d&amp;lt;PAHO.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session ID = {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 32</A></PRE><PRE><A NAME="1041296">                contents = {..}<br>&nbsp;&nbsp;&nbsp;0: 14 11 07 a8  2a 31 91 29  11 94 40 37  57 10 a7 32  | ...&#168;*1.)..@7W.&#167;2<br>&nbsp;&nbsp;&nbsp;10: 56 6f 52 62  fe 3d b3 65  b1 e4 13 0f  52 a3 c8 f6  | VoRb&thorn;=&#179;e&#177;...R&#163;&Egrave;.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cipher_suite = (0x0003) SSL3/RSA/RC4-40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;0: 0b 00 02 c5                                      |...&Aring;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 11 (certificate)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 709 (0x0002c5)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CertificateChain {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chainlength = 706 (0x02c2)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Certificate {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size = 703 (0x02bf)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data = { saved in file 'cert.001' }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;0: 0c 00 00 ca                                      |....<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 12 (server_key_exchange)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 202 (0x0000ca)<br>&nbsp;&nbsp;&nbsp;0: 0e 00 00 00                                      |....<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 14 (server_hello_done)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 0 (0x000000)<br>&nbsp;&nbsp;&nbsp;}<br>}<br>]<br>--&gt; [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 16 03 00 00  44                                   |....D<br>&nbsp;&nbsp;&nbsp;type    = 22 (handshake)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 68 (0x44)<br>&nbsp;&nbsp;&nbsp;handshake {<br>&nbsp;&nbsp;&nbsp;0: 10 00 00 40                                      |...@<br>&nbsp;&nbsp;&nbsp;type = 16 (client_key_exchange)<br>&nbsp;&nbsp;&nbsp;length = 64 (0x000040)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ClientKeyExchange {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message = {...}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;}<br>}<br>]<br>--&gt; [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 14 03 00 00  01                                   |.....<br>&nbsp;&nbsp;&nbsp;type    = 20 (change_cipher_spec)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 1 (0x1)<br>&nbsp;&nbsp;&nbsp;0: 01                                               |.<br>}<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 16 03 00 00  38                                   |....8<br>&nbsp;&nbsp;&nbsp;type    = 22 (handshake)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 56 (0x38)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;</A></PRE><PRE><A NAME="1039906">}<br>]<br>&lt;-- [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 14 03 00 00  01                                   |.....<br>&nbsp;&nbsp;&nbsp;type    = 20 (change_cipher_spec)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 1 (0x1)<br>&nbsp;&nbsp;&nbsp;0: 01                                               |.<br>}<br>]<br>&lt;-- [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 16 03 00 00  38                                   |....8<br>&nbsp;&nbsp;&nbsp;type    = 22 (handshake)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 56 (0x38)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;</A></PRE><PRE><A NAME="1039924">}<br>]<br>--&gt; [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 17 03 00 01  1f                                   |.....<br>&nbsp;&nbsp;&nbsp;type    = 23 (application_data)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 287 (0x11f)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;<br>}<br>]<br>&lt;-- [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 17 03 00 00  a0                                   |....<br>&nbsp;&nbsp;&nbsp;type    = 23 (application_data)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 160 (0xa0)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;</A></PRE><PRE><A NAME="1039942">}<br>]<br>&lt;-- [<br>SSLRecord {<br>0: 17 03 00 00  df                                   |....&#223;<br>&nbsp;&nbsp;&nbsp;type    = 23 (application_data)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 223 (0xdf)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;</A></PRE><PRE><A NAME="1039951">}<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;0: 15 03 00 00  12                                   |.....<br>&nbsp;&nbsp;&nbsp;type    = 21 (alert)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 18 (0x12)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;<br>}<br>]<br>Server socket closed.</A></PRE>
+
+<H4><A NAME="Head3;"></A>
+<A NAME="1040009">
+例 ２
+</A></H4>
+
+<P><A NAME="1040010">
+オプション <CODE>-s</CODE> は SSL 構文解析を起動します。
+この例ではオプション <CODE>-x</CODE> が利用されないため、
+デコードされていない値が生データとして出力されます。
+その出力はテキスト ファイルに経路指定されます。
+</A></P>
+
+<H5><A NAME="Head4;"></A>
+<A NAME="1040011">
+コマンド
+</A></H5>
+
+<PRE><A NAME="1039751">ssltap.exe -s  -p 444 interzone.mcom.com:443 &gt; s.txt</A></PRE>
+
+<H4><A NAME="Head3;"></A>
+<A NAME="1040052">
+出力
+</A></H4>
+
+<PRE><A NAME="1042261">Connected to interzone.mcom.com:443<br>--&gt; [<br>alloclen = 63 bytes<br>&nbsp;&nbsp;&nbsp;[ssl2]  ClientHelloV2 {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version = {0x03, 0x00}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cipher-specs-length = 36 (0x24)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sid-length = 0 (0x00)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;challenge-length = 16 (0x10)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cipher-suites = {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x010080) SSL2/RSA/RC4-128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x020080) SSL2/RSA/RC4-40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x030080) SSL2/RSA/RC2CBC128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x060040) SSL2/RSA/DES64CBC/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x0700c0) SSL2/RSA/3DES192EDE-CBC/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000004) SSL3/RSA/RC4-128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00ffe0) SSL3/RSA-FIPS/3DES192EDE-CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00000a) SSL3/RSA/3DES192EDE-CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00ffe1) SSL3/RSA-FIPS/DES64CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000009) SSL3/RSA/DES64CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000003) SSL3/RSA/RC4-40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session-id = { }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;challenge = { 0x713c 0x9338 0x30e1 0xf8d6 0xb934 0x7351 0x200c<br>0x3fd0 }<br>]<br>&lt;-- [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 22 (handshake)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 997 (0x3e5)<br>&nbsp;&nbsp;&nbsp;handshake {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 2 (server_hello)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 70 (0x000046)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ServerHello {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_version = {3, 0}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;random = {...}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session ID = {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 32<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contents = {..}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cipher_suite = (0x0003) SSL3/RSA/RC4-40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 11 (certificate)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 709 (0x0002c5)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CertificateChain {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chainlength = 706 (0x02c2)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Certificate {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size = 703 (0x02bf)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data = { saved in file 'cert.001' }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 12 (server_key_exchange)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 202 (0x0000ca)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 14 (server_hello_done)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 0 (0x000000)<br>&nbsp;&nbsp;&nbsp;}<br>}<br>]<br>--&gt; [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 22 (handshake)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 68 (0x44)<br>&nbsp;&nbsp;&nbsp;handshake {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type = 16 (client_key_exchange)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length = 64 (0x000040)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ClientKeyExchange {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message = {...}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;}<br>}<br>]<br>--&gt; [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 20 (change_cipher_spec)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 1 (0x1)<br>}<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 22 (handshake)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 56 (0x38)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;<br>}<br>]<br>&lt;-- [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 20 (change_cipher_spec)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 1 (0x1)<br>}<br>]<br>&lt;-- [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 22 (handshake)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 56 (0x38)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;<br>}<br>]<br>--&gt; [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 23 (application_data)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 287 (0x11f)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;<br>}<br>]<br>[<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 23 (application_data)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 160 (0xa0)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;<br>}<br>]<br>&lt;-- [<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 23 (application_data)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 223 (0xdf)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;<br>}<br>SSLRecord {<br>&nbsp;&nbsp;&nbsp;type    = 21 (alert)<br>&nbsp;&nbsp;&nbsp;version = { 3,0 }<br>&nbsp;&nbsp;&nbsp;length  = 18 (0x12)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; encrypted &gt;<br>}<br>]<br>Server socket closed.</A></PRE>
+
+<H4><A NAME="Head3;"></A>
+<A NAME="1040058">
+例 ３
+</A></H4>
+
+<P><A NAME="1040016">
+この例でのオプション <CODE>-h</CODE> は、 hex/ASCII 形式に切り替えます。
+ SSL 構文解析やデコードはしません。出力は、テキストファイルに経路指定されます。
+</A></P>
+
+<H5><A NAME="Head4;"></A>
+<A NAME="1040017">
+コマンド
+</A></H5>
+
+<PRE><A NAME="1039752">ssltap.exe -h  -p 444 interzone.mcom.com:443 &gt; h.txt</A></PRE>
+
+<H5><A NAME="Head4;"></A>
+<A NAME="1040266">
+出力
+</A></H5>
+
+<PRE><A NAME="1040272">Connected to interzone.mcom.com:443<br>--&gt; [<br>&nbsp;&nbsp;&nbsp;&nbsp;0: 80 40 01 03  00 00 27 00  00 00 10 01  00 80 02 00  | .@....'.........<br>&nbsp;&nbsp;&nbsp;10: 80 03 00 80  04 00 80 06  00 40 07 00  c0 00 00 04  | .........@......<br>&nbsp;&nbsp;&nbsp;20: 00 ff e0 00  00 0a 00 ff  e1 00 00 09  00 00 03 00  | ........&aacute;.......<br>&nbsp;&nbsp;&nbsp;30: 00 06 9b fe  5b 56 96 49  1f 9f ca dd  d5 ba b9 52  | ..&thorn;[V.I.\xd9 ...&#186;&#185;R<br>&nbsp;&nbsp;&nbsp;40: 6f 2d                                            |o-<br>]<br>&lt;-- [<br>&nbsp;&nbsp;&nbsp;&nbsp;0: 16 03 00 03  e5 02 00 00  46 03 00 7f  e5 0d 1b 1d  | ........F.......<br>&nbsp;&nbsp;&nbsp;10: 68 7f 3a 79  60 d5 17 3c  1d 9c 96 b3  88 d2 69 3b  | h.:y`..&amp;lt;..&#179;.&Ograve;i;<br>&nbsp;&nbsp;&nbsp;20: 78 e2 4b 8b  a6 52 12 4b  46 e8 c2 20  14 11 89 05  | x.K.&#166;R.KF&egrave;. ...<br>&nbsp;&nbsp;&nbsp;30: 4d 52 91 fd  93 e0 51 48  91 90 08 96  c1 b6 76 77  | MR.&yacute;..QH.....&#182;vw<br>&nbsp;&nbsp;&nbsp;40: 2a f4 00 08  a1 06 61 a2  64 1f 2e 9b  00 03 00 0b  | *&ocirc;..&#161;.a&#162;d......<br>&nbsp;&nbsp;&nbsp;50: 00 02 c5 00  02 c2 00 02  bf 30 82 02  bb 30 82 02  | ..&Aring;......0...0..<br>&nbsp;&nbsp;&nbsp;60: 24 a0 03 02  01 02 02 02  01 36 30 0d  06 09 2a 86  | $ .......60...*.<br>&nbsp;&nbsp;&nbsp;70: 48 86 f7 0d  01 01 04 05  00 30 77 31  0b 30 09 06  | H.&#247;......0w1.0..<br>&nbsp;&nbsp;&nbsp;80: 03 55 04 06  13 02 55 53  31 2c 30 2a  06 03 55 04  | .U....US1,0*..U.<br>&nbsp;&nbsp;&nbsp;90: 0a 13 23 4e  65 74 73 63  61 70 65 20  43 6f 6d 6d  | ..#Netscape Comm<br>&nbsp;&nbsp;&nbsp;a0: 75 6e 69 63  61 74 69 6f  6e 73 20 43  6f 72 70 6f  | unications Corpo<br>&nbsp;&nbsp;&nbsp;b0: 72 61 74 69  6f 6e 31 11  30 0f 06 03  55 04 0b 13  | ration1.0...U...<br>&nbsp;&nbsp;&nbsp;c0: 08 48 61 72  64 63 6f 72  65 31 27 30  25 06 03 55  | .Hardcore1'0%..U<br>&nbsp;&nbsp;&nbsp;d0: 04 03 13 1e  48 61 72 64  63 6f 72 65  20 43 65 72  | ....Hardcore Cer<br>&nbsp;&nbsp;&nbsp;e0: 74 69 66 69  63 61 74 65  20 53 65 72  76 65 72 20  | tificate Server<br>&nbsp;&nbsp;&nbsp;f0: 49 49 30 1e  17 0d 39 38  30 35 31 36  30 31 30 33  | II0...9805160103<br>&lt;additional data lines&gt;<br>]<br>&lt;additional records in same format&gt;<br>Server socket closed.</A></PRE>
+
+<H4><A NAME="Head3;"></A>
+<A NAME="1040032">
+例 ４
+</A></H4>
+
+<P><A NAME="1040033">
+この例でのオプション <CODE>-s</CODE> は SSL 構文解析を起動し、
+オプション <CODE>-h</CODE> は hex/ASCII 形式に切り替えます。
+両方の形式がそれぞれの記録にたいし示されます。
+出力は、テキストファイルに経路指定されます。
+</A></P>
+
+<H5><A NAME="Head4;"></A>
+<A NAME="1040034">
+コマンド
+</A></H5>
+
+<PRE><A NAME="1039753">ssltap.exe -hs -p 444 interzone.mcom.com:443 &gt; hs.txt</A></PRE>
+
+<H5><A NAME="Head4;"></A>
+<A NAME="1039772">
+出力
+</A></H5>
+
+<PRE><A NAME="1042646">Connected to interzone.mcom.com:443<br>--&gt; [<br>&nbsp;&nbsp;&nbsp;&nbsp;0: 80 3d 01 03  00 00 24 00  00 00 10 01  00 80 02 00  | .=....$.........<br>&nbsp;&nbsp;&nbsp;10: 80 03 00 80  04 00 80 06  00 40 07 00  c0 00 00 04  | .........@......<br>&nbsp;&nbsp;&nbsp;20: 00 ff e0 00  00 0a 00 ff  e1 00 00 09  00 00 03 03  | ........&aacute;.......<br>&nbsp;&nbsp;&nbsp;30: 55 e6 e4 99  79 c7 d7 2c  86 78 96 5d  b5 cf e9     |U..y&Ccedil;\xb0 ,.x.]&#181;&Iuml;&eacute;<br>alloclen = 63 bytes<br>&nbsp;&nbsp;&nbsp;[ssl2]  ClientHelloV2 {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version = {0x03, 0x00}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cipher-specs-length = 36 (0x24)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sid-length = 0 (0x00)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;challenge-length = 16 (0x10)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cipher-suites = {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x010080) SSL2/RSA/RC4-128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x020080) SSL2/RSA/RC4-40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x030080) SSL2/RSA/RC2CBC128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x040080) SSL2/RSA/RC2CBC40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x060040) SSL2/RSA/DES64CBC/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x0700c0) SSL2/RSA/3DES192EDE-CBC/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000004) SSL3/RSA/RC4-128/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00ffe0) SSL3/RSA-FIPS/3DES192EDE-CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00000a) SSL3/RSA/3DES192EDE-CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x00ffe1) SSL3/RSA-FIPS/DES64CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000009) SSL3/RSA/DES64CBC/SHA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0x000003) SSL3/RSA/RC4-40/MD5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session-id = { }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;challenge = { 0x0355 0xe6e4 0x9979 0xc7d7 0x2c86 0x7896 0x5db<br><br>0xcfe9 }<br>}<br>]<br>&lt;additional records in same formats&gt;<br>Server socket closed.</A></PRE>
+
+<H2><A NAME="Usage Tips"></A>
+<A NAME="1040652">
+利用のヒント
+</A></H2>
+
+<ul><LI><A NAME="1040653">
+SSL が前回のセッションを再開したとき、 SSL 
+は部分ハンドシェーク （partial handshake） をするためにキャッシュされた情報を利用します。
+もし SSL フル ハンドシェークを取り込みたい場合は、
+ブラウザをリスタートしてセッション ID キャッシュを消してください。
+</A></LI>
+
+<P><LI><A NAME="1040654">
+もし、接続しようとしている SSL サーバ以外のコンピュータでツールを利用しようとすると、
+ブラウザが接続しようとしているホスト名が証明書とは違うと表示します。
+もしディフォルトの BadCert コールバックを利用している場合は、
+ダイアログを通じて接続することができます。もしディフォルトの BadCert 
+コールバックを利用していない場合は、
+ the one you supply must allow for this possibility.
+</A></LI>
+</ul>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/tools/ssltap.html">英語版</a> 2001/02/16</span> - <span>和訳版 2004/10/07</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/tools/ssltap.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Installation Instructions</title>
+
+<link rel="alternate" hreflang="en" modified="December 19, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/releases/seamonkey1.0b/installation.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<div class="trinfo">
+  <p class="em">この文書は鋭意翻訳中です。</p>
+  <!--p class="text">現在、<a href="">草稿</a> を公開しています。</p>
+
+  <p class="text">コメントは Mozilla Japan 翻訳部門 <a href="http://moz.skillup.jp/jtp/"> フォーラム </a> の <a href="http://moz.skillup.jp/jtp/viewtopic.php?t=3544">該当スレッド</a> にお願いします。</p-->
+  <p class="text">原文 &quot;<a href="http://www.mozilla.org/projects/seamonkey/releases/seamonkey1.0b/installation.html">Installation Instructions for SeaMonkey 1.0 Beta</a>&quot; は <a href="http://www.mozilla.org/">mozilla.org</a> をご覧ください。</p>
+
+  <p class="td"><a href="http://www.mozilla-japan.org/">Mozilla Japan</a> - <a href="http://www.mozilla-japan.org/jp/td">翻訳部門</a></p>
+</div>
+
+<h1>Installation Instructions for SeaMonkey 1.0 Beta</h1>
+
+<div class="important">
+<strong>
+<p>To avoid incompatibility problem with previous versions, the SeaMonkey installer
+will prompt you to delete the install directory if it is not empty. Answer NO if
+you put your profile or other personal files in the install directory, otherwise
+the files will be deleted. Users who put profiles in the default location are not
+affected.</p>
+<p>See the <a href="/start/1.5/faq/profile.html">profile FAQ</a> for help on backing up your profiles.</p>
+</strong>
+</div>
+
+<p>This document outlines the system requirements, compatibility information and
+  installation instructions for SeaMonkey 1.0 Beta.</p>
+<ul>
+  <li><strong><a href="#linux">Linux</a></strong><a href="#linux"> </a>
+    <ul>
+      <li><a href="#linux_require">Requirements</a></li>
+      <li><a href="#linux_install">Installation Instructions</a>
+        <ul>
+         <li><a href="#linux_install_installer">Using the SeaMonkey Installer</a></li>
+          <li><a href="#linux_install_manual">Using the .tar.gz archive</a></li>
+          <li><a href="#linux_install_multiuser">Multi-User Installation</a></li>
+          <li><a href="#linux_install_gnome">Adding SeaMonkey to the GNOME Panel</a></li>
+          <li><a href="#linux_install_rpm">Installing RPM Binaries</a></li>
+        </ul>
+      </li>
+      <li><a href="#linux_uninstall">Uninstallation</a></li>
+    </ul>
+  </li>
+  <li><strong><a href="#mac">Macintosh</a></strong> (Mac OS X)
+    <ul>
+      <li><a href="#mac_requirements">Requirements</a></li>
+      <li><a href="#mac_install">Installation Instructions</a></li>
+      <li><a href="#mac_uninstall">Uninstallation</a></li>
+    </ul>
+  </li>
+  <li><strong><a href="#win">Windows</a></strong>
+    <ul>
+      <li><a href="#win_requirements">Requirements</a></li>
+      <li><a href="#win_install">Installation Instructions</a>
+        <ul>
+          <li><a href="#win_install_installer">Using the SeaMonkey Installer</a></li>
+          <li><a href="#win_install_manually">Manually with the .zip file</a></li>
+        </ul>
+      </li>
+      <li><a href="#win_uninstall">Uninstallation</a></li>
+    </ul>
+  </li>
+  <li><strong>Ports (Other Operating Systems)</strong>
+    <ul>
+      <li>No ports are available at this time.</li>
+    </ul>
+  </li>
+  <li><a href="#files">Files Created or Used</a>
+    <ul>
+      <li><a href="#files_profiles">Profile Locations</a></li>
+    </ul>
+  </li>
+  <li><a href="installation-extras.html">Installation of Java, Plug-ins, and Extras</a></li>
+</ul>
+<h1><a name="linux"></a><span class="very-strong">Linux</span> </h1>
+<h2><a name="linux_require" id="linux_require">System Requirements</a></h2>
+<ul>
+  <li> The following library versions (or compatible) are required for the GTK1
+    build: glibc 2.<b>2.5</b>, XFree86 3.3.x, GTK 1.2.x, Glib 1.2.x. 
+    Red Hat Linux <b>7</b>.0, Debian 3.0, and SuSE 7.3 (or later)
+    installations should work.  The recommended build (GTK2) requires glibc 2.3.2,
+    XFree86 4.3.x, GTK 2.x, glib 2.x, libstdc++-3.3.
+  </li>
+  <li>Intel pentium class processor (233 MHz or faster recommended)</li>
+  <li>64 MB of RAM</li>
+  <li>26 MB of free hard disk space</li>
+</ul>
+<h2><a name="linux_install"></a>Installation Instructions</h2>
+<p class="important"><strong>Note:</strong> It is recommended that
+  you uninstall previous versions of Mozilla before installing SeaMonkey 1.0
+  Beta. This will not delete your bookmarks, history, cookies and other
+  information which is stored in your profile directory. </p>
+<p class="important"><strong>Note:</strong> You must run SeaMonkey at least
+  once to complete autoregistration and for the <tt>compreg.dat</tt> file to
+  be written to the installation directory. If a different user (other than the
+  person who installed the product) runs the program first, a core dump will
+  occur. (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49345" title="Bug 49345 - Document that admins must run product once after installation">49345</a>)
+</p>
+<p><strong>Note:</strong> These instructions use the bash shell. If you're not
+  using bash, either use the bash shell or adjust the commands accordingly.</p>
+<h3><a name="linux_install_installer"></a>Installation with the Mozilla Installer</h3>
+<p>To install SeaMonkey by downloading the SeaMonkey installer, follow these steps:</p>
+<ol>
+  <li>Create a directory named seamonkey1.0b (<kbd>mkdir seamonkey1.0b</kbd>) and
+    change to that directory (<kbd>cd seamonkey1.0b</kbd>).</li>
+  <li>Click the link to download the installer file (called <tt>seamonkey-i686-pc-linux-gnu-installer.tar.gz</tt>).</li>
+  <li>Change to the SeaMonkey directory (<kbd>cd seamonkey1.0b</kbd>) and decompress
+    the archive with the following command:<br>
+    <kbd>gunzip -dc sea*.tar.gz | tar -xvf -</kbd><br>
+    (This places the installer in a subdirectory of SeaMonkey named <tt>seamonkey-installer</tt>.)
+  </li>
+  <li>Change to the <tt>seamonkey-installer</tt> directory (<kbd>cd seamonkey-installer</kbd>) and run
+    the installer with the <kbd>./seamonkey-installer</kbd> command.</li>
+  <li>Follow the instructions in the install wizard for installing SeaMonkey.</li>
+  <li>To start SeaMonkey, change to the directory where you installed it and run
+    the <kbd>./seamonkey</kbd> command.</li>
+</ol>
+
+<h3><a name="linux_install_manual"></a>Manual Installation With the tar.gz Archive</h3>
+<p>To install Mozilla by downloading the .tar.gz archive file:</p>
+<ol>
+  <li>Create a directory named "seamonkey1.0b" (<kbd>mkdir seamonkey1.0b</kbd>) and
+    change to that directory (<kbd>cd seamonkey1.0b</kbd>).</li>
+  <li>Click the link to download the non-installer seamonkey*.tar.gz file into the
+    <tt>seamonkey1.0b</tt> directory.</li>
+  <li>Change to the seamonkey directory (<kbd>cd seamonkey1.0b</kbd>) and decompress
+    the file with the following command:<br>
+    <kbd> gunzip -dc sea*.tar.gz | tar -xvf - </kbd> (This creates a "seamonkey"
+    subdirectory under your seamonkey1.0b directory.)</li>
+  <li>Change to the seamonkey directory (<kbd>cd seamonkey</kbd>).</li>
+  <li>Run SeaMonkey with the ./seamonkey run script.</li>
+</ol>
+<h3> <strong><a name="linux_install_multiuser"></a>Multi-User Linux Installations</strong></h3>
+<p>To install SeaMonkey for multiple users on Unix, install as normal, then create
+  the following script in your SeaMonkey directory, make it executable
+  (<tt>chmod u+x &lt;scriptname&gt;</tt>), and run it as a user with write
+  privileges to the mozilla directory (e.g. root). <b>Do not run this program
+  as su[do] root.</b> (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=52653" title="Bug 52653 - regxpcom creates .mozilla in Real User's home">52653</a>)
+
+</p>
+<pre>
+#!/bin/sh
+dist_bin=`dirname $0`
+MOZILLA_FIVE_HOME=$dist_bin
+LD_LIBRARY_PATH=$dist_bin
+export MOZILLA_FIVE_HOME LD_LIBRARY_PATH
+$dist_bin/regxpcom
+$dist_bin/regchrome
+touch $dist_bin/chrome/user-skins.rdf $dist_bin/chrome/user-locales.rdf
+</pre>
+
+<p>You should then be able to run that installation of SeaMonkey as any user who has
+permissions to access it. </p>
+
+<h3><a name="linux_install_gnome"></a>Adding SeaMonkey to the GNOME Panel</h3>
+<ol>
+  <li>Click the GNOME Main Menu button, open the Panel menu, and then open the
+    Add to Panel sub-menu and choose Launcher.</li>
+  <li>Right click the icon for Mozilla on the Panel and enter the following command:<br>
+    <br>
+    <tt><em>directory_name</em>/seamonkey</tt><br>
+    <br>
+    where <em>directory_name</em> is the name of the directory you downloaded
+    SeaMonkey to.For example, the default directory that SeaMonkey suggests is <tt>/usr/local/seamonkey</tt>.<br>
+  </li>
+  <li>Type in a name for the icon, and type in a comment if you wish.</li>
+  <li>Click the icon button and type in the following as the icon's location:<br>
+    <br>
+    <!-- mozicon50.xpm was shipped in n7pr1.
+     So this note appears to apply to netscape too,
+     at least for the time being. -->
+    <tt><em>directory_name</em>/icons/mozicon50.xpm</tt><br>
+    <br>
+    where <em>directory_name</em> is the directory where you installed SeaMonkey.  For
+    example, the default directory is <tt>/usr/local/seamonkey/icons/mozicon50.xpm</tt>.</li>
+</ol>
+<h3><strong><a name="linux_install_rpm"></a>Installing RPM Builds</strong></h3>
+<p><em>This may not apply to SeaMonkey yet.</em></p>
+<p>The Red Hat RPM builds are created to work with the default Red Hat 7.x and
+  Red Hat 8.x installations. Using these RPMs on SuSE requires installation of
+  the <a href="http://rpmfind.net/linux/rpm2html/search.php?query=gdk-pixbuf">
+  gdk-pixbuf</a> package. (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=85218"
+  title="Bug 85218 - mozilla-0.9.1-rpm libgdk_pixbuf.so.2 missing">85218</a>)
+</p>
+<h2><a name="linux_uninstall"></a>Uninstallation</h2>
+<ul>
+  <li> Remove the <tt>seamonkey1.0b</tt> directory where you installed SeaMonkey</li>
+  <li> Remove the <tt>~/.mozilla</tt> directory, which contains <a href="#files_profiles">profile information</a></li>
+</ul>
+<h1><a name="mac" id="mac">Macintosh</a></h1>
+<h2><a name="mac_requirements"></a>System Requirements</h2>
+<ul>
+  <li>Mac OS X or later (10.2 or later recommended)</li>
+  <li>PowerPC processor (266 MHz or faster recommended)</li>
+  <li>64 MB RAM </li>
+  <li>36 MB of free hard disk space</li>
+</ul>
+<h2><a name="mac_install"></a>Installation Instructions (Mac OS X)</h2>
+<p>To install SeaMonkey by downloading the SeaMonkey disk image, follow these steps:</p>
+<ol>
+  <li>Click the <tt>seamonkey-mac-MachO.dmg.gz</tt> link to download it to your
+    machine. By default, the file is downloaded to your desktop. </li>
+  <li>Once you have downloaded the .dmg.gz file, drag it onto Stuffit Expander (
+    to decompress it (Stuffit Expander may launch and decompress the file automatically).
+    If the disk image doesn't mount automatically, double-click on the .dmg file
+    to mount it. If that fails, and the file does not look like a disk image file,
+    do a "Show Info" on the file, and, in the "Open with application" category,
+    choose Disk Copy. In Mac OS 10.2, you can use "Open with" from the context
+    menu.</li>
+  <li>Once the disk image mounts, open it, and drag the SeaMonkey icon onto your
+    hard disk.</li>
+  <li>We recommend that you copy it to the Applications folder. </li>
+  <li>Now eject the disk image. </li>
+  <li>If you like, you can drag SeaMonkey to your dock to have it easily accessible
+    at all times. You might also wish to select SeaMonkey as your default browser
+    in the Internet system preferences pane (under the Web tab).</li>
+</ol>
+<h2><a name="mac_uninstall"></a>Uninstallation Instructions</h2>
+<ol>
+  <li><p>Remove the application files in
+      <tt class="filename">/Users/<var>&lt;yourusername&gt;</var>/Library/Mozilla</tt>
+      (but leave the <tt class="filename">Profiles</tt> sub-folder).</p></li>
+  <li>Remove the file "<tt class="filename">Mozilla Registry</tt>" from
+      <tt class="filename">/Users/yourusername/Library/Preferences</tt></li>
+  <li>Remove <tt class="filename">SeaMonkey</tt> from the installed location. (i.e.
+      <tt class="filename">/Applications</tt>)</li>
+</ol>
+<h1><a name="win"></a>Windows</h1>
+<h2><a name="win_requirements" id="win_requirements">System Requirements</a></h2>
+<ul>
+  <li>Windows 95*, 98, 98SE, Windows Me, Windows NT 3.51, Windows NT 4.0,
+      Windows 2000, Windows XP or Windows 2003<br>
+      &nbsp;&nbsp;&nbsp;<em>*with <a href="http://www.microsoft.com/com/default.mspx">DCOM for Windows 95</a></em></li>
+  <li>Intel pentium class processor (233 MHz or faster recommended)</li>
+  <li>64 MB RAM</li>
+  <li>26 MB of free hard disk space</li>
+</ul>
+<p class="important">Certain ATI video drivers are not compatible with
+  SeaMonkey and may lead to crashes. If you are experiencing crashes try
+  <a href="http://mirror.ati.com/support/driver.html">upgrading</a>
+  to the latest ATI driver. (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=101055" title="Bug 101055 - Scrolling vertically crashes system - ATI Video Driver Problem">101055</a>)</p>
+<h2><a name="win_install" id="win_install">Installation Instructions</a></h2>
+<p class="important"><strong>Note:</strong> It is strongly recommended that you
+  exit all programs before running the setup program. Also, you should temporarily
+  disable virus detection software.</p>
+<h3><a name="win_install_installer"></a>Installation with the
+  Mozilla Installer</h3>
+<p>To install SeaMonkey by downloading the SeaMonkey installer, follow
+  these steps:</p>
+<ol>
+  <li>Click the <tt>seamonkey-win32-installer.exe</tt> link to download the file
+    to your machine.</li>
+  <li>Navigate to where you downloaded the file and double click the SeaMonkey program
+    icon on your machine to begin the Setup program.</li>
+  <li>Follow the on-screen instructions in the setup program. The program starts
+    automatically the first time.</li>
+</ol>
+
+<h3><a name="win_install_manually">Manual Installation With the .zip File</a></h3>
+<p>To install SeaMonkey by downloading the .zip file and installing manually, follow
+  these steps:</p>
+<ol>
+  <li>Click the seamonkey-win32-talkback.zip link or the seamonkey-win32.zip link
+    to download the .zip file to your machine.  <em>Note: The -talkback file probably doesn't exist yet.</em></li>
+  <li>Navigate to where you downloaded the file and double click the compressed
+    file. Note: This step assumes you already have a recent version of WinZip
+    installed, and that you know how to use it. If not, you can get WinZip and
+    information about the program at <a href="http://www.winzip.com">www.winzip.com.</a></li>
+  <li>Extract the .zip file to a directory such as <tt>C:\Program Files\SeaMonkey1.0b</tt> .</li>
+  <li>To start SeaMonkey, navigate to the directory you extracted SeaMonkey to and
+    double click the SeaMonkey.exe icon.</li>
+</ol>
+<h3><a name="win_uninstall"></a>Uninstallation Instructions</h3>
+<ul>
+  <li>If the SeaMonkey installer was used, simply go to Settings/Control Panel/Add
+  Remove Programs and choose SeaMonkey 1.0b.</li>
+  <li>If the zip build was used then simply remove the SeaMonkey1.0b directory
+  where you installed SeaMonkey and remove the <a href="#files_profiles">profile directory</a></li>
+</ul>
+<h1><a name="files">Files Created or Used</a></h1>
+<p> SeaMonkey stores data associated with you in a place called a <a href="#profiles">profile</a>.
+  Profiles contain your preferences, mail folders, history, cookies, address books
+  and other important data. Here is a list of these files. </p>
+<table cellspacing="3" cellpadding="3" style="width:80%;">
+  <tr>
+    <td></td>
+    <td class="deftable-head">Directories
+  <tr>
+    <td class="deftable-item"><tt>Cache</tt></td>
+    <td class="deftable-def"> Cache files (temporary internet files). Enter <tt>about:cache</tt>
+      in the URL bar for more information. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>chrome</tt></td>
+    <td class="deftable-def"> User defined styles and installed themes and applications
+    </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>ImapMail</tt></td>
+    <td class="deftable-def">IMAP mail </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>Mail</tt></td>
+    <td class="deftable-def">Local Folders and POP3 mail </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>News</tt></td>
+    <td class="deftable-def">Usenet Newsgroups </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="deftable-head">Files </tr>
+  <tr>
+    <td class="deftable-item"><tt><i>somenumber</i>.s</tt></td>
+    <td class="deftable-def"><a title="Tools -&gt; Password Manager -&gt; Manage Stored Passwords">
+      Password data</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt><i>somenumber</i>.w</tt></td>
+    <td class="deftable-def"><a title="Tools -&gt; Form Manager -&gt; Edit Form Info">Fill Form
+      data</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"> <div><tt>.autoreg</tt></div></td>
+    <td class="deftable-def">XPCOM Auto Registration clue. Tells Mozilla to check
+      for newly installed components the next time it launches. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"> <div><tt>appreg</tt></div>
+      <div><tt>registry.dat</tt></div>
+      <div><tt>registry</tt></div></td>
+    <td class="deftable-def">Application Registry. Files where Mozilla keeps track
+      of your profiles. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>abook.mab</tt></td>
+    <td class="deftable-def"><a title="Window -&gt; Address Book">
+      Personal addressbook</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>bookmarks.html</tt></td>
+    <td class="deftable-def"><a title="Bookmarks -&gt; Manage Bookmarks">Bookmarks</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>cert7.db</tt></td>
+    <td class="deftable-def"><a title="Edit -&gt; Preferences -&gt; Privacy &amp; Security -&gt; Certificates -&gt; Manage Certificates">
+      Client Certificate database</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"> <div><tt>compreg.dat</tt></div></td>
+    <td class="deftable-def">Mozilla XPCOM registry. Files where Mozilla keeps
+      track of its components. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>cookies.txt</tt></td>
+    <td class="deftable-def"><a title="Tools -&gt; Cookie Manager -&gt; Manage Stored Cookies">
+      Cookies</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>hostperm.1</tt></td>
+    <td class="deftable-def"><a title="Tools -&gt; Cookie Manager -&gt; Manage Stored Cookies -&gt; Cookie Sites">
+      Cookie</a>, <a title="Tools -&gt; Image Manager -&gt; Manage Image Permissions">
+      Image</a> and <a title="Tools -&gt; Popup Manager -&gt; Manage Popups">Popup</a>
+      permissions. Information stored in cookperm.txt in earlier versions.</td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>history.dat</tt></td>
+    <td class="deftable-def"><a title="Go -&gt; History">URL history</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>history.mab</tt></td>
+    <td class="deftable-def"><a title="Window -&gt; Address Book -&gt; Collected Addresses">Collected
+      Address book</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>key3.db</tt></td>
+    <td class="deftable-def"><a title="Edit -&gt; Preferences -&gt; Privacy &amp; Security -&gt; Certificates -&gt; Manage Certificates">
+      Key database</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>localstore.rdf</tt></td>
+    <td class="deftable-def">Defines default windows settings. Saved persistent
+      values. Info about toolbars, sizes, positions, etc </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>downloads.rdf</tt></td>
+    <td class="deftable-def">Download history</td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>training.dat</tt></td>
+    <td class="deftable-def"><a href="/mailnews/spam.html">Junk Mail filter</a> training data</td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>mimeTypes.rdf</tt></td>
+    <td class="deftable-def">Defines recognized file mime types for the <a title="Edit -&gt; Preferences -&gt; Navigator -&gt; Helper Applications">
+      Helper App</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>panacea.dat</tt></td>
+    <td class="deftable-def">Mail folder cache. Summary of certain fields in all
+      the mail/news databases, mostly used to display the folder pane </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>panels.rdf</tt></td>
+    <td class="deftable-def">Information about which panels that will be displayed
+      in the sidebar </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>prefs.js</tt></td>
+    <td class="deftable-def">All your settings. Enter <tt>about:config</tt> in
+      the URL bar for more information. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>pluginreg.dat</tt></td>
+    <td class="deftable-def">All your registered plugins. Enter <tt>about:plugins</tt>
+      in the URL bar for more information. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>search.rdf</tt></td>
+    <td class="deftable-def">Information about your search plugins in the sidebar
+    </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>secmod.db</tt></td>
+    <td class="deftable-def"><a title="Edit -&gt; Preferences -&gt; Privacy &amp; Security -&gt; Certificates -&gt; Manage Security Devices">
+      Security module database</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>URL.tbl</tt></td>
+    <td class="deftable-def"><a title="Tools -&gt; Form Manager -&gt; Manage Sites -&gt; Forms Never Saved">
+      Excluded Fill Form data sites</a> </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>user.js</tt></td>
+    <td class="deftable-def">User settings which will be written into prefs.js
+      after Mozilla is started </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>xpti.dat</tt></td>
+    <td class="deftable-def">XPCOM typelib information catalog </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"> <div><tt>XUL.mfl</tt></div>
+      <div><tt>XUL FastLoad File</tt></div>
+      <div><tt>XUL.mfasl</tt></div></td>
+    <td class="deftable-def">XUL fast load file. Contains precompiled chrome and
+      JavaScript. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"> <div><tt>Invalid.mfasl</tt></div>
+      <div><tt>Aborted.mfasl</tt></div></td>
+    <td class="deftable-def">At some time Mozilla invalidated your XUL fast load
+      file. These are the previous files. You can just delete them if you don't want to
+      debug them. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"> <div><tt>mozver.dat</tt></div></td>
+    <td class="deftable-def">(Windows) Stores component version </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"> <div><tt>MozillaUninstall.exe</tt></div></td>
+    <td class="deftable-def">(Windows) Uninstaller executable file </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="deftable-head">Other Files </tr>
+  <tr>
+    <td class="deftable-item"><tt><i>*</i>.msf</tt></td>
+    <td class="deftable-def">Mail Summary Files. Contains summary of the mail
+      folder. Located in the ImapMail and Mail directories. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>msgFilterRules.dat</tt></td>
+    <td class="deftable-def">Contains the <a title="Edit -&gt; Message Filters">Mail
+      Filters for the current server</a>. Located in the ImapMail and Mail directories.
+    </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt><i>*</i>.rc</tt></td>
+    <td class="deftable-def">Contains subscribe newsgroups for the current server.
+      Located in the News directory. </td>
+  </tr>
+  <tr>
+    <td class="deftable-item"><tt>hostinfo.dat</tt></td>
+    <td class="deftable-def">Contains all the newsgroups available for the current
+      server. Located in the News directory. </td>
+  </tr>
+</table>
+
+<h2><a name="files_profiles" id="files_profiles">Profile Locations</a></h2>
+<p>The following lists <em>typical</em> profile locations:</p>
+
+<dl>
+<dt>Windows</dt>
+<dd>
+<p>On Windows 95, Windows 98, or Windows ME (without log-in), the profile directory is typically<br>
+&nbsp; &nbsp; <tt class="filename">C:\Windows\Application Data\Mozilla\Profiles\<var>[Profile Name]</var>\<var>[random string]</var>.slt\</tt>
+</p>
+
+<p>On Windows 95, Windows 98 or Windows ME with log-in, the profile directory is typically<br>
+&nbsp; &nbsp; <tt class="filename">C:\Windows\Profiles\<var>[Log-in Name]</var>\Application Data\Mozilla\Profiles\<var>[Profile Name]</var>\<var>[random string]</var>.slt\</tt></p>
+
+<p>On Windows 2000 or Windows XP, the profile directory is typically<br>
+&nbsp; &nbsp; <tt class="filename">C:\Documents and Settings\<var>[Log-in Name]</var>\Application Data\Mozilla\Profiles\<var>[Profile Name]</var>\<var>[random string]</var>.slt\</tt></tt></p>
+
+<p>Note: on Windows 2000 or Windows XP, the <tt>Document and Settings</tt>
+directory is hidden twice. To access the directory, enable Windows Explorer
+to view System and Hidden directories and files.</p>
+</dd>
+
+<dt>Mac OS X</dt>
+<dd>
+
+<p>The profile location is typically:<br>
+&nbsp; &nbsp; <tt class="filename">~/Library/Mozilla/Profiles/<var>[Profile Name]</var>/<var>[random string]</var>.slt/</tt></p>
+</dd>
+
+<dt>Linux</dt>
+<dd>
+<p>The profile location is typically:<br>
+&nbsp; &nbsp; <tt class="filename">~/.mozilla/<var>[Profile Name]</var>/<var>[random string]</var>.slt/</tt></p>
+</dd>
+</dl>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/releases/seamonkey1.0b/installation.html">英語版</a> 2005/12/19</span> - <span>和訳版 2006/01/18</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/releases/seamonkey1.0b/installation.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

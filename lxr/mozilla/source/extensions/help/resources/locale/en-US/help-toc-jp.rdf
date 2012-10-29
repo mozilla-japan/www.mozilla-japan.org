@@ -1,0 +1,2520 @@
+<?xml version="1.0"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:nc="http://home.netscape.com/NC-rdf#">
+
+<!-- vim600: set et ts=2: -->
+<!-- for rev. 1.8 Jul 9 15:51 -->
+
+<!-- NAVIGATOR HELP SECTION -->
+  <rdf:Description about="urn:root">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc" nc:name="Web をブラウズする" nc:link="chrome://help/locale/nav_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-nav" nc:name="Web ページをナビゲートする" nc:link="chrome://help/locale/nav_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-nav">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-view" nc:name="ホームページを見る" nc:link="chrome://help/locale/nav_help.html#nav_view"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-nav">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-move" nc:name="別のページに移る" nc:link="chrome://help/locale/nav_help.html#nav_move"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-nav">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-link" nc:name="リンクをクリックする" nc:link="chrome://help/locale/nav_help.html#nav_link"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#nav-doc-nav">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc=steps" nc:name="通ってきたページをたどる" nc:link="chrome://help/locale/nav_help.html#nav_retrace"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+ 
+ <rdf:Description about="#nav-doc-nav">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-reload" nc:name="読み込み中止と再読み込み"  nc:link="chrome://help/locale/nav_help.html#nav_reload"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-nav">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-bmark" nc:name="ブックマークしてあるページへ行く"  nc:link="chrome://help/locale/nav_help.html#nav_bookmark"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-nav">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-sidebar" nc:name="Sidebar を使う"  nc:link="chrome://help/locale/nav_help.html#nav_sidebar"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#nav-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-search" nc:name="Web を検索する" nc:link="chrome://help/locale/nav_help.html#nav_search"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-search">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-searchweb" nc:name="すばやい検索" nc:link="chrome://help/locale/nav_help.html#nav_searchweb"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-search">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-smartsearch" nc:name="詳細検索モード" nc:link="chrome://help/locale/nav_help.html#nav_smartsearch"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-search">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-savesearch" nc:name="検索結果をブックマークする" nc:link="chrome://help/locale/nav_help.html#nav_savesearch"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-search">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-searchprefs" nc:name="検索エンジンを指定する" nc:link="chrome://help/locale/nav_help.html#nav_searchprefs"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-search">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-keywords" nc:name="Internet Keyword を使う" nc:link="chrome://help/locale/nav_help.html#nav_keywords"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-search">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-related" nc:name="関連するページを検索する" nc:link="chrome://help/locale/nav_help.html#nav_related"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-search">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-searchpage" nc:name="ページ内を検索する" nc:link="chrome://help/locale/nav_help.html#nav_searchpage"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-search">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-searchbookmark" nc:name="ブックマークまたは履歴を検索する" nc:link="chrome://help/locale/nav_help.html#nav_searchbookmark"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#nav-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-printsave" nc:name="ページのコピー・印刷・保存" nc:link="chrome://help/locale/nav_help.html#nav_printsave"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-printsave">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-copy" nc:name="ページの一部をコピーする" nc:link="chrome://help/locale/nav_help.html#nav_copy"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-printsave">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-save" nc:name="ページの全部または一部を保存する" nc:link="chrome://help/locale/nav_help.html#nav_save"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-printsave">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-print" nc:name="ページを印刷する" nc:link="chrome://help/locale/nav_help.html#nav_print"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-printsave">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-printplus" nc:name="Print Plus を使用する" nc:link="chrome://help/locale/nav_help.html#nav_printplus"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#nav-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-language" nc:name="言語と翻訳サービス" nc:link="chrome://help/locale/nav_help.html#nav_language"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-language">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-translate" nc:name="Web ページを翻訳する" nc:link="chrome://help/locale/nav_help.html#nav_translate"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-language">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-charcode" nc:name="文字コードとフォントを選択する" nc:link="chrome://help/locale/nav_help.html#nav_charcode"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-language">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-languagepref" nc:name="言語設定を指定する" nc:link="chrome://help/locale/nav_help.html#nav_languagepref"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-language">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-webcontent" nc:name="国際化機能について" nc:link="chrome://help/locale/nav_help.html#nav_webcontent"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#nav-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-ses" nc:name="速度と効率の改善" nc:link="chrome://help/locale/nav_help.html#nav_ses"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-ses">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-helperapps" nc:name="異なるファイルタイプを管理する" nc:link="chrome://help/locale/nav_help.html#nav_helperapps"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-ses">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-autoload" nc:name="自動読み込みの設定" nc:link="chrome://help/locale/nav_help.html#nav_autoload"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-ses">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-cache" nc:name="キャッシュ設定を変更する" nc:link="chrome://help/locale/nav_help.html#nav_cache"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-ses">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-smartup" nc:name="最新のソフトウェアを自動的に入手する" nc:link="chrome://help/locale/nav_help.html#nav_smartup"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-doc-ses">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-doc-mousewheel" nc:name="マウスホイールを使用する" nc:link="chrome://help/locale/nav_help.html#nav_mousewheel"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#nav-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-proxies" nc:name="プロキシ" nc:link="chrome://help/locale/nav_help.html#nav_proxies"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#nav-proxies">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="nav-prox" nc:name="プロキシを設定する" nc:link="chrome://help/locale/nav_help.html#nav_prox"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- MAIL HELP SECTION -->
+
+  <rdf:Description about="urn:root">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc"	nc:name="Mozilla メールを使う" nc:link="chrome://help/locale/mail_help.html" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-start"	nc:name="Mozilla メールをはじめよう" nc:link="chrome://help/locale/mail_help.html" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-setup" nc:name="メールアカウント設定ウィザードを使う"  nc:link="chrome://help/locale/mail_help.html#MAIL_NEWS_WIZARD"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add" nc:name="アカウント追加の設定方法"  nc:link="chrome://help/locale/mail_help.html#account_settings"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-id-chx" nc:name="アカウント設定を変更する"  nc:link="chrome://help/locale/mail_help.html#account_settings_change"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-id" nc:name="個人情報の設定を表示・変更する"  nc:link="chrome://help/locale/mail_help.html#PREFERENCES_MAILNEWS_IDENTITY"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-choose" nc:name="IMAP と POP3 のどちらかを選択する"  nc:link="chrome://help/locale/mail_help.html#IMAP_and_POP3"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+ 
+ <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-pop" nc:name="POP3 受信メールサーバ情報を設定する"  nc:link="chrome://help/locale/mail_help.html#POP_SERVER"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-imap" nc:name="IMAP 受信メールサーバ情報を設定する"  nc:link="chrome://help/locale/mail_help.html#IMAP_SERVER"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-news" nc:name="ニュースグループサーバ情報を設定する"  nc:link="chrome://help/locale/mail_help.html#DISCUSSION_HOST_PROPERTIES"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-prefs" nc:name="[コピーとフォルダ] 設定を選択する"  nc:link="chrome://help/locale/mail_help.html#PREFERENCES_MAILNEWS_COPIES"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-smtp" nc:name="[送信メールサーバ(SMTP)] 設定を選択する"  nc:link="chrome://help/locale/mail_help.html#PREFERENCES_MAILNEWS_SMTP"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-read"	nc:name="メッセージを読む" nc:link="chrome://help/locale/mail_help.html#READING_MESSAGES" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#mail-doc-read">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-notify" nc:name="新しいメッセージを受信する"  nc:link="chrome://help/locale/mail_help.html#notifying"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#mail-doc-read">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-view" nc:name="メールウィンドウを表示する"  nc:link="chrome://help/locale/mail_help.html#VIEW_MESSENGER_WINDOW"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#mail-doc-read">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-thread" nc:name="メッセージをソート・スレッド化する"  nc:link="chrome://help/locale/mail_help.html#thread_mail"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#mail-doc-read">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-printsave" nc:name="メッセージを保存・印刷する"  nc:link="chrome://help/locale/mail_help.html#PRINTSAVE_MAIL"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send"	nc:name="メッセージを送信する" nc:link="chrome://help/locale/mail_help.html#SENDING_MESSAGES" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-send">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send-compose" nc:name="メール・ニュースグループのメッセージを作成する" nc:link="chrome://help/locale/mail_help.html#COMPOSING_MESSAGES" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-send">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send-new" nc:name="メッセージ作成ウィンドウを使う" nc:link="chrome://help/locale/mail_help.html#NEW_MESSAGE_WINDOW" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-send">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send-address" nc:name="メッセージのアドレスを記録する" nc:link="chrome://help/locale/mail_help.html#ADDRESSING_MESSAGE" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-send">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send-options" nc:name="メッセージ送信オプションを選択する" nc:link="chrome://help/locale/mail_help.html#SENDING_OPTIONS" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-send">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send-reply" nc:name="メッセージを返信する" nc:link="chrome://help/locale/mail_help.html#mail_replyto" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-send">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send-forward" nc:name="メッセージを転送する" nc:link="chrome://help/locale/mail_help.html#FORWARD_MESSAGES" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-send">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send-edit" nc:name="メッセージの下書きを保存・編集する" nc:link="chrome://help/locale/mail_help.html#saving_message_draft" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#mail-doc-send">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-send-template" nc:name="テンプレートを作成・使用する" nc:link="chrome://help/locale/mail_help.html#mail_template" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-html"	nc:name="HTML メールメッセージを作成する" nc:link="chrome://help/locale/mail_help.html#CREATE_HTML" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-html">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-html-use" nc:name="メッセージに HTML を使う" nc:link="chrome://help/locale/mail_help.html#Using_HTML" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-html">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-html-options" nc:name="HTML メッセージ送信オプション" nc:link="chrome://help/locale/mail_help.html#About_HTML_Send" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-html">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-html-address" nc:name="HTML メッセージの受信者を指定する" nc:link="chrome://help/locale/mail_help.html#HTML_ADDRESSBOOK" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-html">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-html-source" nc:name="HTML メッセージのソースを表示する" nc:link="chrome://help/locale/mail_help.html#View_source" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-html">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-html-question" nc:name="HTML メール質問ダイアログボックスを使う" nc:link="chrome://help/locale/mail_help.html#HTML_MAIL_QUESTION" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-attach"	nc:name="添付を使う" nc:link="chrome://help/locale/mail_help.html#USING_ATTACHMENTS" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-attach">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-attach-file" nc:name="ファイルまたは Web ページを添付する" nc:link="chrome://help/locale/mail_help.html#attaching_file" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-attach">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-attach-view" nc:name="添付物を表示・開く" nc:link="chrome://help/locale/mail_help.html#viewing_attachments" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-attach">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-attach-save" nc:name="添付物を保存する" nc:link="chrome://help/locale/mail_help.html#saving_attachment" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-delete" nc:name="メッセージを削除する" nc:link="chrome://help/locale/mail_help.html#about_deleting_email" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-delete">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-delete-trash" nc:name="メッセージをごみ箱に、ごみ箱から移動する" nc:link="chrome://help/locale/mail_help.html#moving_to_trash" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-address" nc:name="アドレス帳を使う" nc:link="chrome://help/locale/mail_help.html#use_add_book" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-address">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add-about" nc:name="Mozilla メールのアドレス帳について" nc:link="chrome://help/locale/mail_help.html#about_address_books" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-address">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add-names" nc:name="項目を追加する" nc:link="chrome://help/locale/mail_help.html#adding_names" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-address">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add-book" nc:name="新しいアドレス帳を作成する" nc:link="chrome://help/locale/mail_help.html#CREATE_ADD_BOOK" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-address">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add-card" nc:name="新しいアドレス帳カードを作成する" nc:link="chrome://help/locale/mail_help.html#ADD_USER_PROPERTIES" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-address">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add-list" nc:name="メーリングリストを作成する" nc:link="chrome://help/locale/mail_help.html#ADD_LIST_MAILING_LIST" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-address">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add-listedit" nc:name="メーリングリストを編集する" nc:link="chrome://help/locale/mail_help.html#EDIT_LIST_MAILING_LIST" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-address">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add-import" nc:name="アドレス帳とメールメッセージをインポートする" nc:link="chrome://help/locale/mail_help.html#import_address_book" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc-address">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-add-sync" nc:name="Web メールまたは AOL アドレス帳の項目と同期する" nc:link="chrome://help/locale/mail_help.html#AB_Sync" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-organize" nc:name="メッセージを整理する" nc:link="chrome://help/locale/mail_help.html#ORGANIZING_MAIL" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-newsgroups" nc:name="ニュースグループをはじめよう" nc:link="chrome://help/locale/mail_help.html#STARTING_NEWSGROUPS" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-offline" nc:name="オフラインで作業する" nc:link="chrome://help/locale/mail_help.html#WORKING_OFFLINE" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#mail-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="mail-doc-all" nc:name="すべてのアカウントに適用する設定をセットする" nc:link="chrome://help/locale/mail_help.html#SETTING_MAIL_PREFS" /> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+<!-- COMPOSER HELP SECTION -->
+
+ <rdf:Description about="urn:root">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc"	nc:name="Web ページを作成する"  nc:link="chrome://help/locale/composer_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+ <rdf:Description about="#comp-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-start"	nc:name="Mozilla Composer で Web ページを作成する"  nc:link="chrome://help/locale/composer_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-create" nc:name="新しいページを作る"  nc:link="chrome://help/locale/composer_help.html#create_document"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-start">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-save" nc:name="新しいページを保存・ブラウズする"  nc:link="chrome://help/locale/composer_help.html#browse_new_page"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+ <rdf:Description about="#comp-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="page_change" nc:name="Web ページを整形する"  nc:link="chrome://help/locale/composer_help.html#page_change"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="props-para" nc:name="段落・見出し・リストを整形する"  nc:link="chrome://help/locale/composer_help.html#PROPERTIES_PARAGRAPH"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="lists" nc:name="リストでの作業"  nc:link="chrome://help/locale/composer_help.html#lists"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="char" nc:name="テキストの配色・装飾・フォントを変更する"  nc:link="chrome://help/locale/composer_help.html#PROPERTIES_CHARACTER"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="style-remove" nc:name="テキスト装飾を取り除く・続けない"  nc:link="chrome://help/locale/composer_help.html#style_remove"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="find-text" nc:name="テキストを検索・置換する"  nc:link="chrome://help/locale/composer_help.html#FIND_TEXT"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="props-hrule" nc:name="横罫線を挿入する"  nc:link="chrome://help/locale/composer_help.html#PROPERTIES_HRULE"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="special-chars" nc:name="特殊な記号を挿入する"  nc:link="chrome://help/locale/composer_help.html#SPECIAL_CHARACTERS"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="html-tag" nc:name="HTML 要素と属性を挿入する"  nc:link="chrome://help/locale/composer_help.html#HTML_TAG"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="spell-check" nc:name="スペルチェックする"  nc:link="chrome://help/locale/composer_help.html#SPELL_CHECK"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#page_change">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-choose" nc:name="正しい編集モードを選択する"  nc:link="chrome://help/locale/composer_help.html#Edit_modes"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+ <rdf:Description about="#comp-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-table" nc:name="Web ページにテーブルを追加する"  nc:link="chrome://help/locale/composer_help.html#page_table"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-table">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-table-insert" nc:name="テーブルを挿入する"  nc:link="chrome://help/locale/composer_help.html#Inserting_a_table"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-table">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-table-props" nc:name="テーブルのプロパティを変更する"  nc:link="chrome://help/locale/composer_help.html#Setting_table_properties"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-table">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-table-add" nc:name="列・行・セルを追加／削除する"  nc:link="chrome://help/locale/composer_help.html#addtable"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-table">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-table-select" nc:name="テーブルの要素を選択する"  nc:link="chrome://help/locale/composer_help.html#TABLE_SELECTION"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-table">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-table-copy" nc:name="テーブルを移動・コピー・削除する"  nc:link="chrome://help/locale/composer_help.html#select_table"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-table">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-tableize" nc:name="テキストをテーブルに変換する"  nc:link="chrome://help/locale/composer_help.html#tableize"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+ <rdf:Description about="#comp-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-image" nc:name="Web ページに画像を追加する"  nc:link="chrome://help/locale/composer_help.html#page_picture"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-image">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-image-insert" nc:name="ページに画像を挿入する"  nc:link="chrome://help/locale/composer_help.html#Insert_an_image"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-image">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-image-props" nc:name="画像プロパティを編集する"  nc:link="chrome://help/locale/composer_help.html#PROPERTIES_IMAGE"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#comp-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-page" nc:name="ページのプロパティを編集する"  nc:link="chrome://help/locale/composer_help.html#page_properties"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-page">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-page-props" nc:name="Meta タグのプロパティを設定する"  nc:link="chrome://help/locale/composer_help.html#DOCUMENT_PROPERTIES_GENERAL"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-page">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-page-appear" nc:name="配色と背景を設定する"  nc:link="chrome://help/locale/composer_help.html#DOCUMENT_PROPERTIES_APPEARANCE"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+ <rdf:Description about="#comp-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-links" nc:name="リンクを作成する"  nc:link="chrome://help/locale/composer_help.html#page_link"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-links">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-links-inpage" nc:name="同じページ内のリンクを作成する"  nc:link="chrome://help/locale/composer_help.html#PROPERTIES_TARGET"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-links">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-links-others" nc:name="ほかのページへのリンクを作成する"  nc:link="chrome://help/locale/composer_help.html#creating_links"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-links">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-links-images" nc:name="リンクとして画像を使う"  nc:link="chrome://help/locale/composer_help.html#Linking_images"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-links">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-links-remove" nc:name="リンクを取り除く・続けない"  nc:link="chrome://help/locale/composer_help.html#Linking_remove"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+ <rdf:Description about="#comp-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-prefs" nc:name="Composer の設定をセットする"  nc:link="chrome://help/locale/composer_help.html#Set_Comp_prefs"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-prefs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-prefs-gen" nc:name="全般の設定"  nc:link="chrome://help/locale/composer_help.html#PREFERENCES_EDITOR_GENERAL"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  <rdf:Description about="#comp-doc-prefs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="comp-doc-prefs-col" nc:name="配色と背景画像"  nc:link="chrome://help/locale/composer_help.html#PREFERENCES_NEWPAGE"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+<!-- CUSTOMIZATION HELP CONTENT -->
+
+ <rdf:Description about="urn:root">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-doc" nc:name="Mozilla をカスタマイズする"  nc:link="chrome://help/locale/customize_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cust-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-sidebar" nc:name="Sidebar"  nc:link="chrome://help/locale/customize_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+ <rdf:Description about="#cust-sidebar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-sidebar-define" nc:name="Sidebar とは何ですか？"  nc:link="chrome://help/locale/customize_help.html#cust_sidebar_define"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-sidebar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-sidebar-using" nc:name="Sidebar を使う"  nc:link="chrome://help/locale/customize_help.html#cust_sidebar_using"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-sidebar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-sidebar-adding" nc:name="Sidebar タブを追加する"  nc:link="chrome://help/locale/customize_help.html#cust_sidebar_adding"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-sidebar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-sidebar-indiv" nc:name="個々の Sidebar タブをカスタマイズする"  nc:link="chrome://help/locale/customize_help.html#cust_sidebar_indiv"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-sidebar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-sidebar-reorg" nc:name="Sidebar タブの順番を入れ替える"  nc:link="chrome://help/locale/customize_help.html#cust_sidebar_reorg"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-sidebar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-sidebar-removing" nc:name="Sidebar タブを取り除く"  nc:link="chrome://help/locale/customize_help.html#cust_sidebar_removing"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-sidebar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-sidebar-openclose" nc:name="Sidebar を開く・閉じる・大きさを変える"  nc:link="chrome://help/locale/customize_help.html#cust_sidebar_openclose"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cust-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-font" nc:name="フォント・配色・テーマを変更する"  nc:link="chrome://help/locale/customize_help.html#cust_font"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-font">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-fonts" nc:name="デフォルトのフォントを変更する"  nc:link="chrome://help/locale/customize_help.html#cust_fonts"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-font">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-colors" nc:name="デフォルトの配色を変更する"  nc:link="chrome://help/locale/customize_help.html#cust_colors"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-font">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-themes" nc:name="テーマを変更する"  nc:link="chrome://help/locale/customize_help.html#cust_themes"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cust-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-toolbar" nc:name="ツールバー"  nc:link="chrome://help/locale/customize_help.html#cust_toolbar"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-toolbar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-main" nc:name="ナビゲーションツールバー"  nc:link="chrome://help/locale/customize_help.html#cust_main"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-toolbar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-personal" nc:name="パーソナルツールバー"  nc:link="chrome://help/locale/customize_help.html#cust_personal"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-toolbar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-taskbar" nc:name="タスクバー"  nc:link="chrome://help/locale/customize_help.html#cust_taskbar"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-toolbar">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-hide" nc:name="ツールバーを隠す"  nc:link="chrome://help/locale/customize_help.html#cust_hide"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cust-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-bkmk" nc:name="ブックマーク"  nc:link="chrome://help/locale/customize_help.html#cust_bkmk"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-bkmk">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-bkmk-intro" nc:name="ブックマークとは何ですか？"  nc:link="chrome://help/locale/customize_help.html#cust_bkmk_intro"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-bkmk">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-bkmk-use" nc:name="ブックマークを使う"  nc:link="chrome://help/locale/customize_help.html#cust_bkmk_use"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-bkmk">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-bkmk-create" nc:name="新しいブックマークを作成する"  nc:link="chrome://help/locale/customize_help.html#cust_bkmk_create"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-bkmk">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-bkmk-organize" nc:name="ブックマークを整理する"  nc:link="chrome://help/locale/customize_help.html#cust_bkmk_organize"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-bkmk">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-bkmk-change" nc:name="個々のブックマークを変更する"  nc:link="chrome://help/locale/customize_help.html#cust_bkmk_change"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-bkmk">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-bkmk-search" nc:name="ブックマークを検索する"  nc:link="chrome://help/locale/customize_help.html#cust_bkmk_search"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-bkmk">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-bkmk-multiple" nc:name="ブックマークの一覧をエクスポート／インポートする"  nc:link="chrome://help/locale/customize_help.html#cust_bkmk_multiple"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cust-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-page" nc:name="Mozilla がどのように起動するか指定する"  nc:link="chrome://help/locale/customize_help.html#cust_page"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-page">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-startpage" nc:name="スタートページを指定する"  nc:link="chrome://help/locale/customize_help.html#cust_startpage"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cust-page">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-home" nc:name="ホームページを変更する"  nc:link="chrome://help/locale/customize_help.html#cust_home"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cust-page">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="cust-start" nc:name="起動するとき開くコンポーネントを指定する"  nc:link="chrome://help/locale/customize_help.html#cust_start"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+  
+<!-- USING PRIVACY FEATURES CONTENT -->
+
+
+<rdf:Description about="urn:root">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help" nc:name="プライバシー保護機能を使う"
+  		nc:link="chrome://help/locale/privacy_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> <rdf:Description ID="privacy-doc" nc:name="インターネット上のプライバシー" nc:link="chrome://help/locale/privacy_help.html#sec_maintain"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#privacy-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="privacy-doc-info" nc:name="Web サイトは私の個人情報をどのように集めるのですか？"  		nc:link="chrome://help/locale/privacy_help.html#privacy_gatherinfo"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#privacy-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="privacy-doc-visit" nc:name="ブラウザはどういう情報を Web サイトに渡しているのですか？"  		nc:link="chrome://help/locale/privacy_help.html#privacy_visit"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#privacy-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="privacy-doc-cookies" nc:name="cookie とは何ですか？どのように使われるのでしょう？"  		nc:link="chrome://help/locale/privacy_help.html#privacy_cookies"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#privacy-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="privacy-doc-unauth" nc:name="私の個人情報を私の許可なく使われないようにするにはどうすればいいのでしょう？"  		nc:link="chrome://help/locale/privacy_help.html#privacy_unauth"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#privacy-doc">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="privacy-doc-anon" nc:name="匿名でブラウズする"
+  		nc:link="chrome://help/locale/privacy_help.html#privacy_anon"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#using-priv-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-cookies" nc:name="Cookie マネージャを使う"
+  		nc:link="chrome://help/locale/using_priv_help.html#using_cookies"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-cookies">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-cookies-manage" nc:name="ブラウザがどのように cookie を扱うか指定する"
+  		nc:link="chrome://help/locale/using_priv_help.html#cookies_manage"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-cookies">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-cookies-site" nc:name="サイトごとに cookie を管理する"
+  		nc:link="chrome://help/locale/using_priv_help.html#cookies_site"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-cookies">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-cookies-view" nc:name="cookie を表示する"
+  		nc:link="chrome://help/locale/using_priv_help.html#cookies_view"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-cookies">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-cookies-remove" nc:name="cookie を削除する"
+  		nc:link="chrome://help/locale/using_priv_help.html#cookies_remove"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#using-priv-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-password" nc:name="パスワードマネージャを使う"
+  		nc:link="chrome://help/locale/using_priv_help.html#using_password"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-password">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-password-manage" nc:name="パスワードマネージャにユーザ名とパスワードを記憶させる"
+  		nc:link="chrome://help/locale/using_priv_help.html#passwords_manage"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-password">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-password-auto" nc:name="自動的にユーザ名とパスワードを入力する"
+  		nc:link="chrome://help/locale/using_priv_help.html#passwords_auto"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-password">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-password-onoff" nc:name="パスワードマネージャを有効／無効にする"
+  		nc:link="chrome://help/locale/using_priv_help.html#passwords_onoff"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-password">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-password-view" nc:name="保存されているパスワードを管理する"
+  		nc:link="chrome://help/locale/using_priv_help.html#passwords_view"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#using-priv-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-forms" nc:name="フォームマネージャを使う"
+  		nc:link="chrome://help/locale/using_priv_help.html#using_forms"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-forms">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-forms-saveinfo" nc:name="フォームから情報を保存する"
+  		nc:link="chrome://help/locale/using_priv_help.html#form_saveinfo"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-forms">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-forms-auto" nc:name="自動的にフォームに入力する"
+  		nc:link="chrome://help/locale/using_priv_help.html#form_auto"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-forms">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-forms-notify" nc:name="フォームマネージャの自動通知機能"
+  		nc:link="chrome://help/locale/using_priv_help.html#form_notify"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-forms">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-forms-forms" nc:name="Web サイトに個人情報を提供した場合、どうなるのか？"
+  		nc:link="chrome://help/locale/using_priv_help.html#form_forms"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#using-priv-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-encrypt" nc:name="保存された機密情報を暗号化する"
+  		nc:link="chrome://help/locale/using_priv_help.html#using_encrypt"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-encrypt">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-encrypt-on" nc:name="暗号化を切り替える"
+  		nc:link="chrome://help/locale/using_priv_help.html#encrypt_on"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-encrypt">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-encrypt-master" nc:name="マスターパスワードを設定する"
+  		nc:link="chrome://help/locale/using_priv_help.html#encrypt_master"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-encrypt">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-encrypt-change" nc:name="マスターパスワードを変更する"
+  		nc:link="chrome://help/locale/using_priv_help.html#encrypt_change"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-encrypt">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-encrypt-logout" nc:name="マスターパスワードからログアウトする"
+  		nc:link="chrome://help/locale/using_priv_help.html#encrypt_logout"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-priv-help-encrypt">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-priv-help-encrypt-forget" nc:name="マスターパスワードを忘れた場合どうするか"
+  		nc:link="chrome://help/locale/using_priv_help.html#encrypt_forget"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- USING CERTIFICATES CONTENT -->
+
+
+<rdf:Description about="urn:root">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs" nc:name="証明書を使う"
+  		nc:link="chrome://help/locale/using_certs_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-get" nc:name="自分の証明書を手に入れる"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_get"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-info" nc:name="Web ページのセキュリティをチェックする"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_info"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-manage" nc:name="証明書を管理する"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_manage"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#using-help-certs-manage">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-manage-my" nc:name="あなたを特定する証明書を管理する"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_my"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs-manage">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-manage-sites" nc:name="Web サイトを特定する証明書を管理する"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_sites"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs-manage">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-manage-cas" nc:name="認証局を特定する証明書を管理する"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_cas"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#using-help-certs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-devices" nc:name="スマートカードと他のセキュリティデバイスを管理する"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_devices"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs-devices">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-devices-about" nc:name="セキュリティデバイスとモジュールについて"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_devices_about"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs-devices">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-devices-devices" nc:name="セキュリティデバイスを使う"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_devices_devices"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs-devices">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-devices-modules" nc:name="セキュリティモジュールを使う"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_devices_modules"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs-devices">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-devices-fips" nc:name="FIPS モードを有効にする"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_devices_fips"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#using-help-certs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-ssl" nc:name="SSL の警告と設定を管理する"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_ssl"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-validation" nc:name="検証の設定を管理する"
+  		nc:link="chrome://help/locale/using_certs_help.html#using_certs_validation"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs-validation">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-validation-how" nc:name="検証の働きはどのようなものか"
+  		nc:link="chrome://help/locale/using_certs_help.html#How_Certificate_Validation_Works"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#using-help-certs-validation">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-validation-crls" nc:name="CRL を管理する"
+  		nc:link="chrome://help/locale/using_certs_help.html#Managing_CRLs"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#using-help-certs-validation">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="using-help-certs-validation-ocsp" nc:name="OCSP の設定"
+  		nc:link="chrome://help/locale/using_certs_help.html#Configuring_Certificate_Manager_for_OCSP"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+<!-- DIALOG BOX HELP CONTENT STARTS-->
+
+<rdf:Description about="urn:root">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="context-help" nc:name="ダイアログボックスのヘルプ"
+  		nc:link="chrome://help/locale/context_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<!-- PREFERENCES CONTENT -->
+
+
+<rdf:Description about="#context-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="prefs-help" nc:name="設定"
+  		nc:link="chrome://help/locale/prefs_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<!-- APPEARANCE SETTINGS CONTENT -->
+
+
+<rdf:Description about="#prefs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="prefs-help-appear" nc:name="表示"
+  		nc:link="chrome://help/locale/cs_nav_prefs_appearance.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#prefs-help-appear">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="prefs-help-appear-fonts" nc:name="フォント"
+  		nc:link="chrome://help/locale/cs_nav_prefs_appearance.html#fonts"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#prefs-help-appear">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="prefs-help-appear-colors" nc:name="配色"
+  		nc:link="chrome://help/locale/cs_nav_prefs_appearance.html#colors"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#prefs-help-appear">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="prefs-help-appear-themes" nc:name="テーマ"
+  		nc:link="chrome://help/locale/cs_nav_prefs_appearance.html#themes"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- NAVIGATOR SETTINGS CONTENT -->
+
+
+<rdf:Description about="#prefs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="nav-cs-help" nc:name="Navigator"
+  		nc:link="chrome://help/locale/cs_nav_prefs_navigator.html#appearance_pref"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#nav-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="nav-cs-help-history" nc:name="履歴"
+  		nc:link="chrome://help/locale/cs_nav_prefs_navigator.html#History"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#nav-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="nav-cs-help-languages" nc:name="言語"
+  		nc:link="chrome://help/locale/cs_nav_prefs_navigator.html#Languages"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#nav-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="nav-cs-help-helper" nc:name="ヘルパーアプリケーション"
+  		nc:link="chrome://help/locale/cs_nav_prefs_navigator.html#Helper"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#nav-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="nav-cs-help-smart" nc:name="Smart Browsing"
+  		nc:link="chrome://help/locale/cs_nav_prefs_navigator.html#Smart"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#nav-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="nav-cs-help-search" nc:name="インターネット検索"
+  		nc:link="chrome://help/locale/cs_nav_prefs_navigator.html#Internet"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- COMPOSER SETTINGS CONTENT -->
+
+<rdf:Description about="#prefs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="composer_cs-help" nc:name="Composer"
+  		nc:link="chrome://help/locale/composer_help.html#Set_Comp_prefs"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#composer_cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="composer_cs-help-new" nc:name="新しいページの設定"
+  		nc:link="chrome://help/locale/composer_help.html#PREFERENCES_NEWPAGE"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+
+<!-- MAIL & NEWSGROUPS SETTINGS CONTENT -->
+
+<rdf:Description about="#prefs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="mail-cs-help-prefs" nc:name="メールとニュースグループ"
+  		nc:link="chrome://help/locale/mail_help.html#PREFERENCES_MAILNEWS_MAIN_PANE"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+  
+<rdf:Description about="#mail-cs-help-prefs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="mail-cs-help-prefs-display" nc:name="メッセージの表示"
+  		nc:link="chrome://help/locale/mail_help.html#PREFERENCES_MAILNEWS_DISPLAY"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+  
+<rdf:Description about="#mail-cs-help-prefs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="mail-cs-help-prefs-compose" nc:name="メッセージの作成"
+  		nc:link="chrome://help/locale/mail_help.html#PREFERENCES_MAILNEWS_MESSAGES"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+  
+<rdf:Description about="#mail-cs-help-prefs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="mail-cs-help-prefs-send" nc:name="送信形式"
+  		nc:link="chrome://help/locale/mail_help.html#PREFERENCES_MAILNEWS_FORMATTING"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+  
+<rdf:Description about="#mail-cs-help-prefs">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="mail-cs-help-prefs-address" nc:name="アドレス帳"
+  		nc:link="chrome://help/locale/mail_help.html#PREFERENCES_MAILNEWS_ADDRESSING"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+  
+
+  
+<!-- PRIVACY AND SECURITY SETTINGS CONTENT -->
+
+
+<rdf:Description about="#prefs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="privsec-help" nc:name="プライバシーとセキュリティ"
+  		nc:link="chrome://help/locale/privsec_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#privsec-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="forms-help" nc:name="フォーム"
+  		nc:link="chrome://help/locale/using_priv_help.html#using_forms"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+<!-- PASSWORDS CONTENT -->
+
+
+<rdf:Description about="#privsec-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="passwords-help" nc:name="Web パスワード"
+  		nc:link="chrome://help/locale/passwords_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#privsec-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="passwords-help-timeout" nc:name="マスターパスワード"
+  		nc:link="chrome://help/locale/passwords_help.html#Master_Password_Timeout"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- COOKIES SETTINGS CONTENT -->
+
+<rdf:Description about="#privsec-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cookies-help" nc:name="Cookie"
+  		nc:link="chrome://help/locale/using_priv_help.html#using_cookies"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- IMAGES SETTINGS CONTENT -->
+<rdf:Description about="#privsec-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="images-help" nc:name="画像"
+  		nc:link="chrome://help/locale/using_priv_help.html#using_images"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+<!-- SSL SETTINGS CONTENT -->
+
+
+<rdf:Description about="#privsec-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="ssl-settings" nc:name="SSL"
+  		nc:link="chrome://help/locale/ssl_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<!-- CERTIFICATE SETTINGS CONTENT -->
+
+
+<rdf:Description about="#privsec-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-settings" nc:name="証明書"
+  		nc:link="chrome://help/locale/certs_prefs_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- VALIDATION SETTINGS CONTENT -->
+
+
+<rdf:Description about="#privsec-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="validation" nc:name="検証"
+  		nc:link="chrome://help/locale/validation_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+
+<!-- ADVANCED SETTINGS CONTENT -->
+
+<rdf:Description about="#prefs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="advanced-cs-help" nc:name="詳細"
+  		nc:link="chrome://help/locale/cs_nav_prefs_advanced.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#advanced-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="advanced-cs-help-cache" nc:name="キャッシュ"
+  		nc:link="chrome://help/locale/cs_nav_prefs_advanced.html#Cache"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#advanced-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="advanced-cs-help-proxies" nc:name="プロキシ"
+  		nc:link="chrome://help/locale/cs_nav_prefs_advanced.html#Proxies"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+<rdf:Description about="#advanced-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="advanced-cs-help-software" nc:name="ソフトウェアインストール"
+  		nc:link="chrome://help/locale/cs_nav_prefs_advanced.html#Software_Installation"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+<rdf:Description about="#advanced-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="advanced-cs-help-mouse" nc:name="マウスホイール"
+  		nc:link="chrome://help/locale/cs_nav_prefs_advanced.html#Mouse_Wheel"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+<rdf:Description about="#advanced-cs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="advanced-cs-help-system" nc:name="システム"
+  		nc:link="chrome://help/locale/cs_nav_prefs_advanced.html#system"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+
+<!-- SSL PAGE INFO CONTENT -->
+
+
+<rdf:Description about="#context-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="ssl-page-info-help" nc:name="SSL ページ情報"
+  		nc:link="chrome://help/locale/ssl_page_info_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#ssl-page-info-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="ssl-page-info-help-nover_noencrypt" nc:name="Web サイトを特定できません。検証されていません／接続は暗号化されていません"
+  		nc:link="chrome://help/locale/ssl_page_info_help.html#Not_Verified_Not Encrypted"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#ssl-page-info-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="ssl-page-info-help-ver_encrypt" nc:name="Web サイトを特定できません。検証されていません／接続は暗号化されていません"
+  		nc:link="chrome://help/locale/ssl_page_info_help.html#Verified_Encrypted"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#ssl-page-info-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="ssl-page-info-help-cver-encrypt" nc:name="Web サイトを特定しましたが、条件つきで検証されています／接続は暗号化されています"
+  		nc:link="chrome://help/locale/ssl_page_info_help.html#Conditionally_Verified_Encrypted"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#ssl-page-info-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="ssl-page-info-help-ver-noencrypt" nc:name="Web サイトを特定しました。検証されています／接続は暗号化されていません"
+  		nc:link="chrome://help/locale/ssl_page_info_help.html#Verified_Not Encrypted"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#ssl-page-info-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="ssl-page-info-help-cver-noencrypt" nc:name="Web サイトを特定しましたが、条件つきで検証されています／接続は暗号化されていません"
+  		nc:link="chrome://help/locale/ssl_page_info_help.html#Conditionally_Verified_Not_Encrypted"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+
+
+<!-- CERTIFICATE MANAGER CONTENT -->
+
+
+<rdf:Description about="#context-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help" nc:name="証明書マネージャ"
+  		nc:link="chrome://help/locale/certs_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<!-- YOUR CERTIFICATES CONTENT -->
+
+<rdf:Description about="#certs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-my" nc:name="あなたの証明書"
+  		nc:link="chrome://help/locale/certs_help.html#My_Certificates"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#certs-help-my">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-my-backup-pwd" nc:name="証明書をバックアップするパスワードを選択する"
+  		nc:link="chrome://help/locale/certs_help.html#Choose_a_Certificate_Backup_Password"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#certs-help-my">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-my-delete" nc:name="あなたの証明書を削除する"
+  		nc:link="chrome://help/locale/certs_help.html#Delete_My_Certificate"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- WEB SITE CERTIFICATES CONTENT -->
+
+
+<rdf:Description about="#certs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-websites" nc:name="Web サイトの証明書"
+  		nc:link="chrome://help/locale/certs_help.html#Web_Site_Certificates"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#certs-help-websites">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-websites-edit" nc:name="Web サイトの証明書の設定を編集する"
+  		nc:link="chrome://help/locale/certs_help.html#Edit_Web_Site_Certificate_Settings"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#certs-help-websites">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-websites-delete" nc:name="Web サイトの証明書を削除する"
+  		nc:link="chrome://help/locale/certs_help.html#Delete_Web_Site_Certificate"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- CA CERTIFICATES CONTENT -->
+
+<rdf:Description about="#certs-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-ca" nc:name="認証局の証明書"
+  		nc:link="chrome://help/locale/certs_help.html#CA_Certificates"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#certs-help-ca">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-ca-edit" nc:name="認証局の証明書の設定を編集する"
+  		nc:link="chrome://help/locale/certs_help.html#Edit_CA_Certificate_Settings"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#certs-help-ca">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-ca-delete" nc:name="認証局の証明書を削除する"
+  		nc:link="chrome://help/locale/certs_help.html#Delete_CA_Certificate"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+
+<rdf:Description about="#context-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="certs-help-devices" nc:name="セキュリティデバイスマネージャ"
+  		nc:link="chrome://help/locale/certs_help.html#Security_Devices"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<!-- CERTIFICATE INFORMATION AND DECISIONS HELP CONTENT -->
+
+
+<rdf:Description about="#context-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help" nc:name="証明書の情報と決定"
+  		nc:link="chrome://help/locale/cert_dialog_help.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cert-dialog-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-details" nc:name="証明書の詳細"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Certificate_Details"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help-details">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-details-general" nc:name="一般タブ"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#General_Tab"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help-details">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-details-details" nc:name="詳細タブ"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Details_Tab"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cert-dialog-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-choose-device" nc:name="セキュリティデバイスを選択する"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Choose_Security_Device"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+<rdf:Description about="#cert-dialog-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-enroll" nc:name="登録情報"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Enrollment_Information"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help-enroll">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-key-copy" nc:name="暗号鍵をコピーする"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Encryption_Key_Copy"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help-enroll">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-cert-backup" nc:name="証明書をバックアップする"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Certificate_Backup"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+<rdf:Description about="#cert-dialog-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-renewal" nc:name="証明書を更新する"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Certificate_Renewal"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-userID" nc:name="身元確認の要求"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#User_Identification_Request"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-noID" nc:name="アクセスできない身元証明"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#No_Acceptable_Identification"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-newCA" nc:name="新しい認証局"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#New_Certificate_Authority"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-website" nc:name="Web サイトの証明書"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Web_Site_Certificates"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help-website">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-website-new" nc:name="新しい Web サイトの証明書"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#New_Web_Site_Certificate"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help-website">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-website-expired" nc:name="期限切れの Web サイトの証明書"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Expired_Web_Site_Certificate"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help-website">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-website-notyetvalid" nc:name="Web サイトの証明書はまだ検証されていません"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Web_Site_Certificate_Not_Yet_Valid"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+<rdf:Description about="#cert-dialog-help-website">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="cert-dialog-help-website-xname" nc:name="予期しない証明書名"
+  		nc:link="chrome://help/locale/cert_dialog_help.html#Unexpected_Certificate_Name"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+
+
+
+
+<!-- GLOSSARY CONTENT -->
+
+
+<rdf:Description about="urn:root">
+    <nc:subheadings>
+      <rdf:Seq>
+        <rdf:li> 
+	<rdf:Description ID="glossary" nc:name="用語集"
+  		nc:link="chrome://help/locale/glossary.html"/> </rdf:li>
+      </rdf:Seq>
+    </nc:subheadings>
+  </rdf:Description>
+
+
+
+</rdf:RDF>
+
+
+
+

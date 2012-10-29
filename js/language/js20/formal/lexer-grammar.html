@@ -1,0 +1,520 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 字句文法</title>
+<link rev="alternate" hreflang="en" modified="June 30, 2003" href="http://www.mozilla.org/js/language/js20/formal/lexer-grammar.html">
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link type="text/css" rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="stages.html">
+<link rel="Next" href="lexer-semantics.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	div.translation-footer {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	span.comment {
+		color:#090;
+		font-size:90%;
+	}
+	span.comment code {
+		color:#090;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">正式な記述</div>
+    <div class="title1">字句文法</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="stages.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="lexer-semantics.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">2003-06-30 (Mon)</p>
+
+<p>JavaScript 2.0 草案の字句構文は LALR(1) 文法で記述される。<a href="../introduction/notation.html#grammar">文法の表記法</a>も見よ。</p>
+
+<p>この文書には <a href="http://www.mozilla.org/js/language/js20/formal/lexer-grammar.rtf">Word RTF 版</a> <span class="comment">[英語]</span> もある。</p>
+
+<!--SEMANTICS-->
+
+<p>字句解析の開始記号は次のいずれかである。つまり、直前の入力要素が数値であれば <a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">num</sup>
+、直前の入力要素が数値でなく <code>/</code> であり、それを正規式として解釈していれば <a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">re</sup>
+、また直前の入力要素が数値でなく <code>/</code> であり、それを除算演算子か除算代入演算子として解釈していれば <a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">div</sup>
+である。</p>
+
+<p>上記に加え、文字列から数値への変換の構文セマンティクスに使う <a href="#N-StringNumericLiteral" class="nonterminal">StringNumericLiteral</a>
+、<code>parseFloat</code> 関数の実装の構文セマンティクスに使う <a href="#N-StringDecimalLiteral" class="nonterminal">StringDecimalLiteral</a>
+という開始記号がある。</p>
+
+<h3>Unicode 文字クラス</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnicodeCharacter"></a><span class="nonterminal">UnicodeCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;あらゆる Unicode 文字</div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnicodeInitialAlphabetic"></a><span class="nonterminal">UnicodeInitialAlphabetic</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;Unicode 文字データベースでの分類が
+    <tt>Lu</tt> (uppercase letter)、<tt>Ll</tt> (lowercase letter)、<tt>Lt</tt> (titlecase
+    letter)、<tt>Lm</tt> (modifier letter)、<tt>Lo</tt> (other letter)、<tt>Nl</tt> (letter number) のいずれかであるあらゆる文字</div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnicodeAlphanumeric"></a><span class="nonterminal">UnicodeAlphanumeric</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;Unicode 文字データベースでの分類が
+    <tt>Lu</tt> (uppercase letter)、<tt>Ll</tt> (lowercase letter)、<tt>Lt</tt> (titlecase
+    letter)、<tt>Lm</tt> (modifier letter)、<tt>Lo</tt> (other letter)、<tt>Nd</tt> (decimal number)、<tt>Nl</tt>
+    (letter number)、<tt>Mn</tt> (non-spacing mark)、<tt>Mc</tt> (combining spacing mark)、<tt>Pc</tt> (connector
+    punctuation) のいずれかであるあらゆる文字</div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-WhiteSpaceCharacter"></a><span class="nonterminal">WhiteSpaceCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code><span class="control">&#171;TAB&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;VT&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;FF&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;SP&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u00A0&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u2000&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2001&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2002&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2003&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2004&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2005&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2006&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2007&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u2008&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2009&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u200A&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u200B&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u3000&#187;</span></code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineTerminator"></a><span class="nonterminal">LineTerminator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code><span class="control">&#171;LF&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;CR&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u0085&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2028&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2029&#187;</span></code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ASCIIDigit"></a><span class="nonterminal">ASCIIDigit</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;|&nbsp;<code>1</code>&nbsp;|&nbsp;<code>2</code>&nbsp;|&nbsp;<code>3</code>&nbsp;|&nbsp;<code>4</code>&nbsp;|&nbsp;<code>5</code>&nbsp;|&nbsp;<code>6</code>&nbsp;|&nbsp;<code>7</code>&nbsp;|&nbsp;<code>8</code>&nbsp;|&nbsp;<code>9</code></div>
+</div>
+
+<h3>コメント</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineComment"></a><span class="nonterminal">LineComment</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;<code>/</code>&nbsp;<a href="#N-LineCommentCharacters" class="nonterminal">LineCommentCharacters</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineCommentCharacters"></a><span class="nonterminal">LineCommentCharacters</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineCommentCharacters" class="nonterminal">LineCommentCharacters</a>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonTerminator"></a><span class="nonterminal">NonTerminator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeCharacter" class="nonterminal">UnicodeCharacter</a>&nbsp;<b>except</b>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-SingleLineBlockComment"></a><span class="nonterminal">SingleLineBlockComment</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;<code>*</code>&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<code>*</code>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-BlockCommentCharacters"></a><span class="nonterminal">BlockCommentCharacters</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<a href="#N-NonTerminatorOrSlash" class="nonterminal">NonTerminatorOrSlash</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-PreSlashCharacters" class="nonterminal">PreSlashCharacters</a>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-PreSlashCharacters"></a><span class="nonterminal">PreSlashCharacters</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<a href="#N-NonTerminatorOrAsteriskOrSlash" class="nonterminal">NonTerminatorOrAsteriskOrSlash</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-PreSlashCharacters" class="nonterminal">PreSlashCharacters</a>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonTerminatorOrSlash"></a><span class="nonterminal">NonTerminatorOrSlash</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>&nbsp;<b>except</b>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonTerminatorOrAsteriskOrSlash"></a><span class="nonterminal">NonTerminatorOrAsteriskOrSlash</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>&nbsp;<b>except</b>&nbsp;<code>*</code>&nbsp;|&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-MultiLineBlockComment"></a><span class="nonterminal">MultiLineBlockComment</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;<code>*</code>&nbsp;<a href="#N-MultiLineBlockCommentCharacters" class="nonterminal">MultiLineBlockCommentCharacters</a>&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<code>*</code>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-MultiLineBlockCommentCharacters"></a><span class="nonterminal">MultiLineBlockCommentCharacters</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-MultiLineBlockCommentCharacters" class="nonterminal">MultiLineBlockCommentCharacters</a>&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+
+<h3>空白類文字</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-WhiteSpace"></a><span class="nonterminal">WhiteSpace</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-WhiteSpaceCharacter" class="nonterminal">WhiteSpaceCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-SingleLineBlockComment" class="nonterminal">SingleLineBlockComment</a></div>
+</div>
+
+<h3>改行</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineBreak"></a><span class="nonterminal">LineBreak</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineComment" class="nonterminal">LineComment</a>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-MultiLineBlockComment" class="nonterminal">MultiLineBlockComment</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineBreaks"></a><span class="nonterminal">LineBreaks</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LineBreak" class="nonterminal">LineBreak</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineBreaks" class="nonterminal">LineBreaks</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-LineBreak" class="nonterminal">LineBreak</a></div>
+</div>
+
+<h3>入力要素</h3>
+
+<div class="grammar-argument"><span class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></span>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="nonterminal-attribute">re</span>,&nbsp;<span class="nonterminal-attribute">div</span>,&nbsp;<span class="nonterminal-attribute">num</span>}</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NextInputElement"></a><span class="nonterminal">NextInputElement</span><sup class="nonterminal-attribute">re</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">re</sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">NextInputElement</span><sup class="nonterminal-attribute">div</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">NextInputElement</span><sup class="nonterminal-attribute">num</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a>,&nbsp;<code>\</code>}]&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-InputElement"></a><span class="nonterminal">InputElement</span><sup class="nonterminal-attribute">re</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LineBreaks" class="nonterminal">LineBreaks</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentifierOrKeyword" class="nonterminal">IdentifierOrKeyword</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Punctuator" class="nonterminal">Punctuator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RegExpLiteral" class="nonterminal">RegExpLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-EndOfInput" class="nonterminal">EndOfInput</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">InputElement</span><sup class="nonterminal-attribute">div</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LineBreaks" class="nonterminal">LineBreaks</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentifierOrKeyword" class="nonterminal">IdentifierOrKeyword</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Punctuator" class="nonterminal">Punctuator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DivisionPunctuator" class="nonterminal">DivisionPunctuator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-EndOfInput" class="nonterminal">EndOfInput</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-EndOfInput"></a><span class="nonterminal">EndOfInput</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<span class="terminal">End</span></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineComment" class="nonterminal">LineComment</a>&nbsp;<span class="terminal">End</span></div>
+</div>
+
+<h3>キーワード及び識別子</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IdentifierOrKeyword"></a><span class="nonterminal">IdentifierOrKeyword</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IdentifierName"></a><span class="nonterminal">IdentifierName</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NullEscapes" class="nonterminal">NullEscapes</a>&nbsp;<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NullEscapes"></a><span class="nonterminal">NullEscapes</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NullEscapes" class="nonterminal">NullEscapes</a>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NullEscape"></a><span class="nonterminal">NullEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>\</code>&nbsp;<code>_</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-InitialIdentifierCharacterOrEscape"></a><span class="nonterminal">InitialIdentifierCharacterOrEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>\</code>&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-InitialIdentifierCharacter"></a><span class="nonterminal">InitialIdentifierCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeInitialAlphabetic" class="nonterminal">UnicodeInitialAlphabetic</a>&nbsp;|&nbsp;<code>$</code>&nbsp;|&nbsp;<code>_</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ContinuingIdentifierCharacterOrEscape"></a><span class="nonterminal">ContinuingIdentifierCharacterOrEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>\</code>&nbsp;<A href="#N-HexEscape" class="nonterminal">HexEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ContinuingIdentifierCharacter"></a><span class="nonterminal">ContinuingIdentifierCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeAlphanumeric" class="nonterminal">UnicodeAlphanumeric</a>&nbsp;|&nbsp;<code>$</code>&nbsp;|&nbsp;<code>_</code></div>
+</div>
+
+<h3>区切り文字</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Punctuator"></a><span class="nonterminal">Punctuator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>!</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>!</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>!</code>&nbsp;<code>=</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>%</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>%</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&amp;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&amp;</code>&nbsp;<code>&amp;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&amp;</code>&nbsp;<code>&amp;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&amp;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>(</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>)</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>*</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>*</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code>&nbsp;<code>+</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>,</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code>&nbsp;<code>-</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>.</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>.</code>&nbsp;<code>.</code>&nbsp;<code>.</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>:</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>:</code>&nbsp;<code>:</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&lt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&lt;</code>&nbsp;<code>&lt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&lt;</code>&nbsp;<code>&lt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&lt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>=</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>=</code>&nbsp;<code>=</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>?</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>[</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>]</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>^</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>^</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>^</code>&nbsp;<code>^</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>^</code>&nbsp;<code>^</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>{</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>|</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>|</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>|</code>&nbsp;<code>|</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>|</code>&nbsp;<code>|</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>}</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>~</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DivisionPunctuator"></a><span class="nonterminal">DivisionPunctuator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>/</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<code>/</code>,&nbsp;<code>*</code>}]</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>/</code>&nbsp;<code>=</code></div>
+</div>
+
+<h3>数値リテラル</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NumericLiteral"></a><span class="nonterminal">NumericLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>&nbsp;<a href="#N-LetterF" class="nonterminal">LetterF</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>&nbsp;<a href="#N-LetterL" class="nonterminal">LetterL</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>&nbsp;<a href="#N-LetterU" class="nonterminal">LetterU</a>&nbsp;<a href="#N-LetterL" class="nonterminal">LetterL</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IntegerLiteral"></a><span class="nonterminal">IntegerLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterF"></a><span class="nonterminal">LetterF</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>F</code>&nbsp;|&nbsp;<code>f</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterL"></a><span class="nonterminal">LetterL</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>L</code>&nbsp;|&nbsp;<code>l</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterU"></a><span class="nonterminal">LetterU</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>U</code>&nbsp;|&nbsp;<code>u</code></div>
+</div>
+<div class="grammar-argument"><span class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></span>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="nonterminal-attribute">noLeadingZeros</span>,&nbsp;<span class="nonterminal-attribute">allowLeadingZeros</span>}</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DecimalLiteral"></a><span class="nonterminal">DecimalLiteral</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<a href="#N-LetterE" class="nonterminal">LetterE</a>&nbsp;<a href="#N-SignedInteger" class=nonterminal>SignedInteger</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterE"></a><span class="nonterminal">LetterE</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>E</code>&nbsp;|&nbsp;<code>e</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Mantissa"></a><span class="nonterminal">Mantissa</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<code>.</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<code>.</code>&nbsp;<A href="#N-Fraction" class="nonterminal">Fraction</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>.</code>&nbsp;<a href="#N-Fraction" class="nonterminal">Fraction</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DecimalIntegerLiteral"></a><span class="nonterminal">DecimalIntegerLiteral</span><sup class="nonterminal-attribute">noLeadingZeros</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>0</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<A href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">DecimalIntegerLiteral</span><sup class="nonterminal-attribute">allowLeadingZeros</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonZeroDecimalDigits"></a><span class="nonterminal">NonZeroDecimalDigits</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-NonZeroDigit" class="nonterminal">NonZeroDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonZeroDigit"></a><span class="nonterminal">NonZeroDigit</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>1</code>&nbsp;|&nbsp;<code>2</code>&nbsp;|&nbsp;<code>3</code>&nbsp;|&nbsp;<code>4</code>&nbsp;|&nbsp;<code>5</code>&nbsp;|&nbsp;<code>6</code>&nbsp;|&nbsp;<code>7</code>&nbsp;|&nbsp;<code>8</code>&nbsp;|&nbsp;<code>9</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Fraction"></a><span class="nonterminal">Fraction</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-SignedInteger"></a><span class="nonterminal">SignedInteger</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-OptionalSign"></a><span class="nonterminal">OptionalSign</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DecimalDigits"></a><span class="nonterminal">DecimalDigits</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-HexIntegerLiteral"></a><span class="nonterminal">HexIntegerLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>0</code>&nbsp;<a href="#N-LetterX" class="nonterminal">LetterX</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterX"></a><span class="nonterminal">LetterX</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>X</code>&nbsp;|&nbsp;<code>x</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-HexDigit"></a><span class="nonterminal">HexDigit</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;|&nbsp;<code>1</code>&nbsp;|&nbsp;<code>2</code>&nbsp;|&nbsp;<code>3</code>&nbsp;|&nbsp;<code>4</code>&nbsp;|&nbsp;<code>5</code>&nbsp;|&nbsp;<code>6</code>&nbsp;|&nbsp;<code>7</code>&nbsp;|&nbsp;<code>8</code>&nbsp;|&nbsp;<code>9</code>&nbsp;|&nbsp;<code>A</code>&nbsp;|&nbsp;<code>B</code>&nbsp;|&nbsp;<code>C</code>&nbsp;|&nbsp;<code>D</code>&nbsp;|&nbsp;<code>E</code>&nbsp;|&nbsp;<code>F</code>&nbsp;|&nbsp;<code>a</code>&nbsp;|&nbsp;<code>b</code>&nbsp;|&nbsp;<code>c</code>&nbsp;|&nbsp;<code>d</code>&nbsp;|&nbsp;<code>e</code>&nbsp;|&nbsp;<code>f</code></div>
+</div>
+
+<h3>文字列リテラル</h3>
+
+<div class="grammar-argument"><span class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></span>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="nonterminal-attribute">single</span>,&nbsp;<span class="nonterminal-attribute">double</span>}</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringLiteral"></a><span class="nonterminal">StringLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>'</code>&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-attribute">single</sup>&nbsp;<code>'</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>"</code>&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-attribute">double</sup>&nbsp;<code>"</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringChars"></a><span class="nonterminal">StringChars</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<a href="#N-StringChar" class="nonterminal">StringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringChar"></a><span class="nonterminal">StringChar</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LiteralStringChar" class="nonterminal">LiteralStringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>\</code>&nbsp;<a href="#N-StringEscape" class="nonterminal">StringEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LiteralStringChar"></a><span class="nonterminal">LiteralStringChar</span><sup class="nonterminal-attribute">single</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeCharacter" class="nonterminal">UnicodeCharacter</a>&nbsp;<b>except</b>&nbsp;<code>'</code>&nbsp;|&nbsp;<code>\</code>&nbsp;|&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">LiteralStringChar</span><sup class="nonterminal-attribute">double</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeCharacter" class="nonterminal">UnicodeCharacter</a>&nbsp;<b>except</b>&nbsp;<code>"</code>&nbsp;|&nbsp;<code>\</code>&nbsp;|&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringEscape"></a><span class="nonterminal">StringEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-ZeroEscape" class="nonterminal">ZeroEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentityEscape" class="nonterminal">IdentityEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IdentityEscape"></a><span class="nonterminal">IdentityEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>&nbsp;<B>except</B>&nbsp;<code>_</code>&nbsp;|&nbsp;<a href="#N-UnicodeAlphanumeric" class="nonterminal">UnicodeAlphanumeric</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ControlEscape"></a><span class="nonterminal">ControlEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>b</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>f</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>n</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>r</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>t</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>v</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ZeroEscape"></a><span class="nonterminal">ZeroEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>}]</div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-HexEscape"></a><span class="nonterminal">HexEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>x</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>u</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>U</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+</div>
+
+<h3>正規表現リテラル</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpLiteral"></a><span class="nonterminal">RegExpLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RegExpBody" class="nonterminal">RegExpBody</a>&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpFlags"></a><span class="nonterminal">RegExpFlags</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a>&nbsp;<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpBody"></a><span class="nonterminal">RegExpBody</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<code>*</code>}]&nbsp;<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpChars"></a><span class="nonterminal">RegExpChars</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a>&nbsp;<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpChar"></a><span class="nonterminal">RegExpChar</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-OrdinaryRegExpChar" class="nonterminal">OrdinaryRegExpChar</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>\</code>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-OrdinaryRegExpChar"></a><span class="nonterminal">OrdinaryRegExpChar</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>&nbsp;<b>except</b>&nbsp;<code>\</code>&nbsp;|&nbsp;<code>/</code></div>
+</div>
+
+<h2>文字列から数値への変換</h2>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringNumericLiteral"></a><span class="nonterminal">StringNumericLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-SignedDecimalLiteral"></a><span class="nonterminal">SignedDecimalLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">allowLeadingZeros</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<code>I</code>&nbsp;<code>n</code>&nbsp;<code>f</code>&nbsp;<code>i</code>&nbsp;<code>n</code>&nbsp;<code>i</code>&nbsp;<code>t</code>&nbsp;<code>y</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>N</code>&nbsp;<code>a</code>&nbsp;<code>N</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringWhiteSpace"></a><span class="nonterminal">StringWhiteSpace</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-WhiteSpaceOrLineTerminatorChar" class="nonterminal">WhiteSpaceOrLineTerminatorChar</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-WhiteSpaceOrLineTerminatorChar"></a><span class="nonterminal">WhiteSpaceOrLineTerminatorChar</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpaceCharacter" class="nonterminal">WhiteSpaceCharacter</a>&nbsp;|&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+
+<h3>parseFloat 変換</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringDecimalLiteral"></a><span class="nonterminal">StringDecimalLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a></div>
+</div>
+<!--/SEMANTICS-->
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td style="vertical-align:bottom;white-space:nowrap">
+      <address><a href="mailto:waldemar&#x40;netscape.com">Waldemar Horwat</a><br>
+      最終更新: 2003年6月30日 (月)</address>
+    <td>
+    <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="stages.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="lexer-semantics.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+  </tr>
+</table>
+
+<div class="translation-footer">
+	訳者: exeal &lt;<a href="mailto:exeal&#x40;student.interq.or.jp">exeal&#x40;student.interq.or.jp</a>&gt;<br />
+	この文書は翻訳で、原文は <a href="http://www.mozilla.org/js/language/js20/formal/lexer-grammar.html">mozilla.org において英語で管理・公開されています</a>。<br />
+	この翻訳文書は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br />
+	翻訳文書についてのコメントは <a href="http://moz.skillup.jp/jtp/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。
+</div>
+
+</body>
+</html>

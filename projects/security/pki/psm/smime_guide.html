@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>S/MIME 利用ガイド</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/security/pki/psm/smime_guide.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/psm/smime_guide.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<center>
+<h2>S/MIME 利用ガイド</h2>
+
+<i><FONT SIZE="-1">
+ニュースグループ：
+<A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</A><BR>
+
+テクニカルコンタクト：
+<a href="mailto:javi@netscape.com,thayes@netscape.com?subject=SMIME Feedback">
+Javier Delgadillo and Terry Hayes</a></font></i><BR>
+
+<i><FONT SIZE="-1">管理者：
+<A HREF="mailto:ssaux@netscape.com?subject=SMIME Feedback">Stephane Saux</A></FONT></i>
+</center>
+
+
+<h2><hr>目次</h2>           
+
+<p><a href="#intro">はじめに</a><br>
+<a href="#getting_started">はじめよう</a><br>
+<a href="#sign&encrypt">メールに署名し暗号化する</a><br>
+<a href="#get_recip_certs">メール受信者の暗号証明書を取得する</a><br>
+<a href="#what_to_test">何をテストするのか</a><br>
+<a href="#appendixA">参考資料 A ：証明書を表示する</a><br>
+<a href="#troubleshooting">参考資料 B ：トラブルシューティング</a><br>
+
+
+
+<h2><a name="intro"><hr>はじめに</h2>
+   
+<p>Mozilla のナイトリービルドには、基本的な S/MIME 機能が含まれています。UI 計画については、<a href="../../../../mailnews/specs/security/">暗号および署名 UI 仕様</a>を参照してください。この資料では、現在の Mozilla ビルドに含まれる S/MIME の使い方やテスト方法について解説します。</p>
+
+<!--
+<p>S/MIME をテストする前に、公開鍵暗号の基本について理解していなければなりません。
+
+<p>Before testing S/MIME, you should have a basic understanding of public-key crytopgrahy. For an overview, see XXX.
+-->
+
+<p>現在の Mozilla ビルドでは次のような操作ができます：</p>
+       
+  <ul>
+      <li>電子メールアカウント単位での S/MIME 設定</li>
+      <li>一時的で最小限の UI での S/MIME メッセージの受信および表示</li>
+      <li>最小限の UI コントロールを用いた S/MIME メッセージの送信<br>
+      </li>
+       
+  </ul>
+
+<p>完全な S/MIME UI は実装し始めたばかりですので、S/MIME に関して現在行われているテストに Mozilla コミュニティの皆さんの参加をお願いします。ここから先の資料では、以下の事項について取り上げます：</p>
+<ul>
+	<li>ブラウザが S/MIME を利用できるように設定する</li>
+	<li>メールに署名し暗号化する</li>
+	<li>現在の機能をテストする</li>
+	<li>証明書関連の UI を利用する</li>
+	<li>トラブルシューティング</li>
+</ul>
+
+                  
+<h2><a name="getting_started"><hr>はじめよう</h2>
+
+<p>Netscape は、特に Mozilla ナイトリービルドで S/MIME のテストを行う目的のために、公開の Test Certificate Authority（テスト認証局：CA）を設立しました。この CA は、十日後に期限が切れるテスト証明書を発行します。このセクションでは、CA から複合鍵テスト証明書を取得する方法、署名・暗号化した電子メールメッセージを送れるように Mail &amp; Newsgroup を設定する方法について解説します。</p>
+
+<h3>CA 証明書をダウンロードして S/MIME を設定する</h4>
+
+<p>S/MIME をテストするためにブラウザを設定し、Netscape のテスト CA から適切な証明書を取得するには、次のステップに従ってください：</p>
+                 
+<ol><li><a href="http://ftp.mozilla.org/pub/mozilla/nightly">http://ftp.mozilla.org/pub/mozilla/nightly</a> から 2001年 1月 11日以降のナイトリービルドをダウンロードしてください。S/MIME 機能は、追って通知があるまでアルファ版としてみなされます。</li>
+
+<li>新しいプロファイルを作成し、Mail &amp; News Account Manager を使って機能をテストするためのメールアカウントを作成してください。これは必ずしも必要ではありません（既存のプロファイルを使うこともできます）。ただし、遭遇する可能性のある問題を再現するのに役立ちます。さらに、S/MIME のテストには証明書のインポートが伴うため、もし証明書データベースに問題があった場合、新しく別個のプロファイルを作成しておくことで、既存のプロファイルを保護することもできます。</li>
+
+<li>次のリンクをクリックして Netscape テスト CA ルート証明書を新しいプロファイルにインストールしてください：<a href="http://testca.netscape.com/getCAChain?op=download&amp;mimeType=application/x-x509-ca-cert">
+今すぐ Netscape テスト CA ルート証明書をダウンロードする</a> 次のようなダイアログが表示されます：</li>
+
+
+        <p><img src="smime_land_files/downloadCACert.gif" alt="download ca cert dialog" width="491" height="360">
+
+<p>少なくとも最初の二つのチェックボックスは選択してください。これらのチェックボックスを有効にすることで、この CA 証明書を信頼し Web サイトやメールユーザを特定するために使用するできるようになります。これで警告を受けることなく Netscape テスト CA のための SSL サーバにアクセスすることができるようになります。より大切な点として、これらのチェックボックスを有効にすることで、Netscape テスト CA から発行された証明書を持つ他の人からの署名メールをも検証することができるようになります。</li>
+
+<li><a href="https://testca.netscape.com/">Netscape Test Certificate Authority</a> サイトに行き、指示に従って個人用複合鍵証明書を取得してください。</li>
+</ol>
+
+<p>Netscape テスト認証局は、複合鍵証明書を発行します。つまり、あなたは二つの証明書を取得するのです：一方の証明書は他の人によってあなた宛に送られるメールを暗号化するために使われます。もう一つの証明書はあなたが使用するもので、メールに署名したり、クライアント認証を必要とするサーバに対してあなたの身元を証明するために使われます。</p>
+
+<p>署名と暗号をサポートする単一の証明書取得することも可能であることを覚えておいてください。例えば、<a href="www.verisign.com">Verisign</a> が発行する無料のトライアルメール証明書は、署名と暗号化の両方をサポートしています。ただし、S/MIME を完全にテストするには、複合鍵証明書を用いなくてはなりません。</p>
+
+<p>Netscape テスト認証局から証明書が取得できない場合、<a href="testca-admin@netscape.com">testca-admin@netscape.com</a> にメールを送ってください。</p>
+
+<p><b>証明書のバックアップを取ってください</b>。さらにテスト証明書もバックアップを取ってください。バックアップを取るには、証明書マネージャを開き、両方の証明書を選択し、［Backup］をクリックします。これは非常に大切です。証明書データベースに何か問題が起こったりした場合、証明書のバックアップコピーで修復しない限り暗号化されたメールにアクセスができなくなります。</p>
+
+
+
+<h3>証明書とテストクライアント認証の検証</h3>
+
+<p>テスト証明書を取得したら、証明書マネージャを使って証明書を見てください。次のステップに従ってください：</p>
+<ol>
+	<li>［Edit］メニューを開き［Preferences］を選択します。</li>
+	<li>［Privacy &amp; Security］カテゴリ内で、［Certificates］を選択します。（サブカテゴリが開いていない場合、カテゴリをダブルクリックしてリストを展開してください。）</li>
+	<li>［Manage Certificates］セクション内で、［Manage Certificates］をクリックします。</li>
+</ol>
+
+<p>証明書の利用に際してさらに多くの情報を得るためには、［Help］メニューを開き、［Help and Support Center］を選択します。そして左パネルにある［Using Certificates］をダブルクリックしてください。現時点では S/MIME ヘルプは含まれていませんが、証明書管理についての一般的な情報を得ることができます。</p>
+
+<p>証明書マネージャの［Your Certificates］タブ内で、証明書の「Verified」コラムに「true」という値が入っていなければなりません。そうでないとその証明書を使うことができません。複合鍵証明書の値が「true」となっていない場合、この資料の<a href="#troubleshooting">トラブルシューティング</a>セクションを参照してください。</p>
+
+<p>クライアント認証のために署名用証明をテストするには、次のリンクをクリックしてテストサーバにログインしてください：<a href="https://testca.netscape.com:443/login.html" TARGET="_blank">クライアント認証テストサーバ</a></p>
+
+<p>クライアント認証のプロセスでは通常、ユーザに対して情報を開示します。証明書要求ダイアログを見るには、証明の前に次のステップに従ってください：</p>
+
+<ol>
+    <li>［Edit］メニューを開き、［Preferences］を選択します。</li>
+    <li>［Privacy &amp; Security］カテゴリ内で、［Certificates］をクリックします。（サブカテゴリが開いていない場合、カテゴリをダブルクリックしてリストを展開してください。）</li>
+    <li>［Client Certificate Selection］内で［Ask Every Time］をクリックします。</li>
+</ol>
+
+<p>同じセッション内で既にテストサーバから認証されている場合は、ブラウザを終了して再起動し、再び（上記の）ページを訪れてください。</p>
+
+<h3>S/MIME 用にメールアカウントを設定する</h3>
+
+<p>署名あるいは暗号化されたメールを送るには、まず初めにメールアカウントを S/MIME 用に設定する必要があります。次のステップに従ってください：</p>
+                               
+<ol>
+	<li>［Tasks］メニューを開き、［Mail &amp; Newsgroups］を開きます。（まだメールアカウントをテストプロファイル用に設定していない場合は、次に進む前に設定するように促されます。）</li>
+	<li>［Edit］メニューを開き、［Mail &amp; Newsgroups Account Settings］を選択します。</li>
+	<li>左パネルの中で、設定したいアカウントを選択して、そのアカウント内の［Security］をクリックします。</li>
+       <p>［Security］パネルには二つのセクションがあります：［Digital Signing］と［Encryption］です：</li>
+       <p><img src="smime_land_files/accountSettingSecuri.gif" alt="Mail Newsgroups Account Settings Security Tab.">
+
+       <ul>
+		<li>［Digital Signing］では、電子メールメッセージに署名をする際に使用する証明書を選択することができます。選択した証明書は、（暗号化されたすべてのメッセージも含め）署名するすべてのメッセージに添付され、受信者があなたのデジタル署名を検証することができるようになります。署名はこの証明書のための秘密鍵を使って作成されます。秘密鍵はあなたのハードディスクにそのまま残ります。</li>
+        <li>［Encryption］セクションでは、電子メールメッセージを暗号化する際に使用する証明書を選択することができます。この証明書は、あなたが送信するすべての署名および／または暗号化されたメッセージに添付されます。これにより、すべての受信者がその証明書を利用して、後にあなた宛に送るメールを暗号化することができるようになります。復号化は、この証明書のための秘密鍵を用いて行われます。その秘密鍵はあなたのハードディスクにあります。</li><br>
+	</ul>
+                                             
+	<li>［Digital Signing］セクションでは、［Select］をクリックします。</li>
+	<p>このダイアログボックスが表示されます：</p>
+      <p><img src="smime_land_files/CertPicker.gif" alt="Certificate Picker"></li>
+    <li>テストに使用したい署名用証明書を選択して、［OK］をクリックします。</li>
+	<li>［Digital Signing］セクションでは、［Digitally sign messages］となっているチェックボックスを選択します。</li>
+	<li>［Encryption］では、［Select］をクリックします。同じようなダイアログボックスを利用して、暗号化に使用したい証明書を選択します。（証明書が署名と暗号化の両方をサポートしている場合、署名用に選択した証明書は暗号化用に使用する証明書と同じ場合があります。）ここでは［Never］となっているラジオボタンを有効にしたままにしておきます。これでも個々のメール単位でメッセージを暗号化することができます。</li>
+	<li>［OK］をクリックします。</li>
+      </ol>
+
+<p>署名メッセージを送信する前に、署名用証明書と暗号化用証明書を選択しておかなければなりません。メッセージに署名するとき、そのメッセージには署名用証明書と暗号化用証明書の両方が添付されます。これは受信者があなたからのデジタル署名を検証し、必要に応じてあなたに対して暗号化されたメールを送ることができるようにするためです。<p>
+
+<p>これで署名および暗号化したメッセージを送ることができるようになりました。</p>
+
+                               
+<h2><a name="sign&encrypt"><hr>メールに署名し暗号化する</h2>
+                               
+<p>電子メールメッセージにデジタル署名するには、次のステップに従ってください：</p>
+      <ol>
+             <li>［Compose］（または既存のメッセージへの返信、転送）ボタンをクリックしてください。
+		 <p>メール作成用の新しいウィンドウが開きます。</li>
+		 <p><img src="smime_land_files/securityOptions.gif" alt="compose window">
+             <li>［Options］メニューを開き、［Security］サブメニューを開いてください。</li>
+		 <p>厳密にこの資料の手順に従うと、［Digitally Sign］がすでに選択されていることに気づくでしょう。これは先に選択した［Mail & Newsgroup Account］オプションによるものです。</p>
+		 <p>メッセージにデジタル署名だけを加えて暗号化はしない場合、このメニューで特にすることはありません（Digitally Sign アイテムが既に選択されていることが前提です）。署名とともにメッセージを暗号化したい場合は、［Always Encrypt］を選択してください。（現在のビルドでは、Always Encrypt はそのとき開いているメール作成ウィンドウのみに対してしか有効になりません。）</li>
+             <li>テストメッセージにアドレスや本文を加え、［Send］をクリックします。</li>
+      </ol>                                       
+
+<p>メッセージを受け取ったとき、（現在のビルドでは）ヘッダー部分の右側に、署名されているか、あるいは署名され暗号化されているかどうかが示されます。（暗号化されたメッセージは常に署名がされています。）</p>
+
+<p>上記のとおりに S/MIME が設定されている場合、あらゆるメールメッセージにデジタル署名をすることができます。ただし、メッセージを暗号化するには、各受信者の暗号証明書を既に持っていることが必要になります。次のセクションでは、受信者の証明書の取得方法について解説します。</p>
+
+
+<h2><a name="get_recip_certs"><hr>メール受信者の暗号証明書を取得する</h2>
+                                             
+<p>ある受信者に対して暗号化したメールを送る前に必要となる暗号証明書を取得するにあたって、現在の S/MIME 実装では二つの方法があります。</p>
+                                                           
+        <ul>
+               <li>受信者から署名または暗号化されたメールを送ってもらう。これは Netscape Communicator や現在の Mozilla ビルドで可能です。Mozilla コミュニティの多くは、受信者から証明書を取得するためにこの方法を使います。</li>
+            <li>組織によっては LDAP ディレクトリを提供しており、ここからリンクをクリックすることでユーザの証明書を取得することができます。</li>
+                                                                        
+        </ul>
+<p>人の証明書を取得するかどうか決めるには、先に解説された方法で証明書マネージャを開き、［Other People's］タブをクリックしてください。</p>
+
+                                                          
+<h2><a name="what_to_test"><hr>何をテストするのか</h2>
+                                                                        
+<p>テストに関していくつかの例を挙げると：
+
+<br>Some suggestions for testing:                              
+            <ol>
+                   <li>新しい機能につきものの潜在的なリグレッションを探すために非 S/MIME Mail &amp; Newsgroup 機能をテストする。対応するトランクビルドで、どのリグレッションも再現されないことを確認してください。</li><BR>
+                                                                        
+                            
+              <ul>
+                     <li>通常のメッセージ表示ができるか</li>
+                     <li>通常のメッセージを送信できるか</li>
+                     <li>メッセンジャーやメール作成ウィンドウ、返信、転送のパフォーマンスはどうか</li>
+                     <li>S/MIME と通常のメッセージの両方を格納しているフォルダーへの影響はどうか（ソート、圧縮、選択、保存など）</li>
+                     <li>フォルダの検索はどうか</li>
+                                                                        
+                            
+              </ul><br>
+                   <li>S/MIME 機能をテストするには：<br>
+       <p>読み込み・送信テストを行うために、次のようなケースを考えてください：<br>
+                                                                        
+                                          
+                <ul>
+                       <li>自分宛に送った電子メール</li>
+                       <li>他の人から送られてきたメール</li>
+                       <li>複数の受信者宛に送られたメール</li>
+                       <li>添付ファイルのあるメール</li>
+                       <li>返信や転送がされているメール</li>
+                       <li>上のケースの組み合わせ</li>
+                       <li>異なるメールクライアントからの送信や読み込み</li>
+                                                                        
+                                          
+                </ul>
+                  <br>
+  <li>S/MIME 機能をテストするには：<br>
+                   </li><BR>
+                                                                        
+             
+ <ul>
+                     <li>署名メールを送る。受信者はその署名メールを読むことができ、上の設定従った場合の署名が妥当なものになるかどうか。</li>
+                     <li>暗号化されたメールを送信する</li>
+                     <li>署名され暗号化されたメールを送る</li>
+                     <li>署名されたメールを読む</li>
+                     <li>暗号化されたメールを読む</li>
+                     <li>署名され暗号化されたメールを読む</li>
+                     <li>署名されたメールを受け取って読み、送信者の証明書を表示し、送信者への返信を暗号化することができるか。</li>
+                     <li>暗号化されたメールを受け取って読み、［Always Encrypt］オプションを選択してから、［Reply All］ですべての受信者に対して暗号化したメールを送ることができるか。</li>                                                            
+                              
+</ul>
+                                                                        
+             
+            </ol>
+                                                                        
+  
+            <h2><a name="appendixA"><hr>参考資料 A ：証明書を表示する</h2>
+                                                                        
+<p>証明書マネージャを開いて基本的な管理タスクを行うには、次のステップに従ってください：<br>
+                                                                         
+             
+              <ol>
+                    <li>［Edit］メニューを開き［Preferences］を選択し、［Privacy &amp; Security］をダブルクリックして、［Certificates］をクリックしてします。そして［Manage Certificates］をクリックします。</li><BR>
+	<ul>
+                    <li>［<i>Your Certificates</i>］タブにあなたの S/MIME 証明書が表示されるはずです。［<i>Verified</i>］コラムは証明書に対して「true」になっていなければなりません。「true」になっていない場合は、<a href="#troubleshooting">トラブルシューティング</a>セクションを参照してください。</li>
+                    <li>［<i>Other People's</i>］タブには、他の人からの証明書が表示されます（署名されたメールが送られてくると自動的にインポートします）。［<i>Verified</i>］コラムも、表示されている証明書に対して「true」になっていなければなりません。</li>
+                    <li>［<i>Authorities</i>］タブでは CA 証明書を表示し、それら証明書の信頼設定を変更することができます。</li>
+	</ul><BR>
+
+                    <li>証明書を表示するには、証明書の名前をダブルクリックします。</li>
+                    <p>証明書ビューアの［<i>Details</i>］タブには、証明書チェーンの証明書階層が表示されます。これは、ルート CA 証明書を突き止めて、その信頼属性を編集したい場合に便利です。</li>
+
+	<p><img src="smime_land_files/ssauxVerisignCertVie.gif" alt="Stephane Saux Verisign Certificate" width="479" height="496">
+                    <li>CA 証明書の信頼属性を編集するには、［Authorities］タブをクリックし、該当の証明書を選択します。そして［Edit］をクリックします。S/MIME テストのためには、S/MIME のために利用する証明書のルート CA が、少なくとも電子メール証明書のために信頼されていなければなりません。</li>
+
+</ol>                                                                         
+<p>証明書の利用に関してより詳しい視点から解説された情報を得るには、ダイアログボックス内の［Help］ボタンをクリックするか、［Help］メニューを開いて［Support Center］を選び、左側のフレームに表示される［Using Certificates］をダブルクリックしてください。現在のビルドには S/MIME ヘルプが含まれていませんが、証明書管理についての一般的な情報を得ることができます。</p>
+
+             
+<h2><a name="troubleshooting"><hr>参考資料 B ：トラブルシューティング</h2>
+                                                                         
+             
+<p>署名・暗号化されたメッセージの表示または送信がうまくいかない場合、問題となっている S/MIME 操作のために利用されている証明書が「Verified（検証）」されていないからかもしれません。つまり、証明書が信頼されたルートにつながっていないのです。これは PSM のバグが原因で、証明書をインポートする際に、ルート CA 証明書の信頼設定が失われてしまうことがあるのです（<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=101616">101616</a>, <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=100386">100386</a>）。これは S/MIME のバグではなく、現在作業が進められていますが、修正されるまで迂回操作が必要です。</p>
+
+<p>フリートライアル用の Versign 証明書が検証されていない場合、<a href="#appendixA">Certificate Manager（証明書マネージャ）</a> ウィンドウは下のように見えるはずです：<br>
+                   <p>
+                   <img src="smime_land_files/ssauxVerisignCertManagerNotVerified.gif" alt="My Verisign Cert, not Verifiied" width="508" height="234">
+                
+<p>この場合は、［Authorities］をクリックして、Verisign パーソナル電子メール証明書のためのルート CA 証明書を突き止めてください：</p>
+
+<p><img src="smime_land_files/verisignClass1CertMa.gif" alt="Verisign Root CA" width="564" height="340">
+                   
+<p>ルート証明書を選択して［Edit］をクリックすると、下のような画面が出ます：</p>
+
+<p><img src="smime_land_files/editCATrust.gif" alt="not trusted" width="285" height="233">
+                  
+
+<p>どの信頼オプションも選択されていないため、ブラウザがこの証明書を信頼しないのです。これは PSM のバグによるものです。この CA 証明書は通常、ビルトインされておりブラウザによって信頼されています。この問題を修正するには、三つすべてのチェックボックスを選択してください。下の図のようになります。そして［OK］をクリックします。</p>
+
+<p><img src="smime_land_files/editCATrustTrusted.gif" alt="trusted" width="285" height="233">
+                   
+<p>［Your Certificates］タブに戻ると、下の図のようになっているはずです：</p>
+                   <br>
+                   <img src="smime_land_files/ssauxVerisignCertMan.gif" alt="Verisign Cert, Verified." width="564" height="240">
+                   
+<p>一回この作業をすれば、あなたの証明書は信頼され、電子メールに署名することができます。他の人の Verisign 証明書も同様に信頼されるので、暗号化したメールを送ることができるようになります。</p>
+                              
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/psm/smime_guide.html">英語版</a> 2002/01/23</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/psm/smime_guide.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

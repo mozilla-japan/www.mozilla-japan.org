@@ -1,0 +1,363 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE>Netscape Public License FAQ</TITLE>
+<meta http-equiv="Content-Language" content="ja">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="DC.subject" content="Netscape Public License FAQ">
+<meta name="DC.title" content="Netscape Public License FAQ">
+<meta name="DC.date.created" content="1999-09-24T16:02:03+11:00" scheme="W3CDTF">
+<meta name="DC.date.modified" content="2005-01-31T09:54:03+11:00" scheme="W3CDTF">
+
+<!--
+***************************************** 覚え書き **************************************
+
+原文
+原題：Netscape Public License FAQ
+URL ：http://www.mozilla.org/MPL/FAQ.html
+
+和訳：
+１版：2001/03/09 山口 (Rev.:1.1 Sep 24 1999)　草稿
+２版：2001/03/15 山口 (Rev.:1.1 Sep 24 1999)　草稿
+３版：2001/03/27 山口 (Rev.:1.1 Sep 24 1999)　完成
+小沢さんの指摘を受けて（http://www.mozilla.to/cgi-bin/mozilla/docs/nbbs.cgi/trans/21）
+
+Rev: 1.3 山口
+
+***************************************** 覚え書き **************************************
+-->
+
+<link rel="alternate" hreflang="en" modified="January 31, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/MPL/FAQ.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h1>Netscape Public License FAQ</h1>
+
+<p>このドキュメントは、 Netscape Public License についてよく尋ねられる質問に答えようと書かれました。ここに書かれた回答は情報提供の目的でしかなく、どのような形でもライセンスの法的な効力を左右するものではありません。</p>
+
+<p>ライセンスそのものなど、より詳しい情報は <a href="http://www.mozilla.org/MPL/"><b>http://www.mozilla.org/MPL/</b></a> のドキュメントをご覧ください。<span class="comment">［訳注：<a href="../MPL/">日本語訳</a>］</span></p>
+
+<p><hr size=4><p>
+
+<ol>
+
+<li><b><a href="#1">Netscape Public License はどこにありますか？</a></b></li>
+
+<li><b><a href="#2">ライセンスの草案の最終版から大きな変更はありましたか？</a></b></li>
+
+<li><b><a href="#3">ソースがフリーなのに、なぜライセンスの所有者がいるのでしょう？</a></b></li> 
+
+<li><b><a href="#4">なぜ二種類のライセンスがあるのですか？</a></b></li>
+
+<li><b><a href="#5">BSD ライセンスとは何ですか？</a></b></li>
+
+<li><b><a href="#6">GPL とは何ですか？</a></b></li>
+
+<li><b><a href="#7">LGPL とは何ですか？</a></b></li>
+
+<li><b><a href="#8">Artistic License とは何ですか？</a></b></li>
+
+<li><b><a href="#9">NPL は他のライセンスと比較するとどう違うのですか？</a></b></li>
+
+<li><b><a href="#10">なぜ GPL か GPL を手直ししたものを使わなかったのですか？</a></b></li>
+
+<li><b><a href="#11">なぜ LGPL か LGPL を手直ししたものを使わなかったのですか？</a></b></li>
+
+<li><b><a href="#12">なぜ BSD か BSD を手直ししたものを使わなかったのですか？</a></b></li>
+
+<li><b><a href="#13">二種類のライセンスがあるのに、なぜ NPL を利用しなければならないのでしょう？</a></b></li>
+
+<li><b><a href="#14">新しいコードを提供する際には、どのライセンスを利用したら良いのでしょう？</a></b></li>
+
+<li><b><a href="#15">なぜ私の新しいコードに MozPL を選択しなければならないのでしょう？</a></b></li>
+
+<li><b><a href="#16">最初から NPL と GPL の許でソースを公開してはどうですか？</a></b></li>
+
+<li><b><a href="#17">開発者はコードを手に入れるために、何かにサインをしたり、mozilla.org のメンバーにならなければいけないのでしょうか？</a></b></li>
+
+<li><b><a href="#18"> GPL コードは Communicator コードベースにどう組み込むことができるのですか？</a></b></li>
+
+<li><b><a href="#19">NPL は Netscape にも適用されるのですか？</a></b></li>
+
+<li><b><a href="#20">もし私自身が書いたコードに対して Netscape が特権をもって欲しくない場合はどうなるのでしょう？　どうしても認めなければならないのでしょうか？</a></b></li>
+
+<li><b><a href="#21">NPL の改正第 III 条の目的は何ですか？　あなた方のロゴやトレードマークの使用を全て確認できるわけではないのに、どうして私にロゴやトレードマークを取り除かなければならないという責任がかかってくるのでしょう？</a></b></li>
+
+<li><b><a href="#22">NPL の改正第二版には、なぜ 2 年の期限があるのですか？</a></b></li>
+
+<li><b><a href="#23">どうしてあなた方は NPL が適用されたライセンスコードに違う条項を適用することができるのですか？
+</a></b></li>
+
+<li><b><a href="#24">なぜライセンスの第六節を変更するかもしれないのですか？</a></b></li>
+
+<li><b><a href="#25">このようなフリーライセンスの許でソースを公開して、どのような利益が Netscape にもたらされるのですか？</a></b></li>
+
+<li><b><a href="#26">ライセンスはどのようにして作成されたのですか？</a></b></li> 
+
+</ol>
+
+<hr size=4>
+<ol>
+
+<li><p><a name="1"><b>Netscape Public License はどこにありますか？</b></a></p>
+
+<p><b><a href="http://www.mozilla.org/MPL/">http://www.mozilla.org/MPL/</a>&nbsp;<span class="comment"><br>
+［訳注：<a href="../MPL/">日本語訳</a>：ただしライセンスそのものは、和訳されていません。］</span></b></p>
+
+<li><p><a name="2"><b>ライセンスの最終草案から大きな変更はありましたか？</b></a></p>
+
+<p>ありませんでした。ライセンスの最終草案と完成版との間には実質的に大きな変更はありません。いくつかの校正作業で意味を明確にし、表現を解りやすくし、タイプミスを訂正し、そして定義順を整理する （現在はアルファベット順になっています） という作業は行いました。</p>
+
+<li><p><a name="3"><b>ソースがフリーなのに、なぜライセンスの所有者がいるのでしょう？</b></a></p>
+
+<p>第一に、現在 Netscape がリリースを予定しているソースはフリーで提供されますが、著作権は Netscape Communications Corporation に属します。皆さんは著作権登録されたものを著作権保有者の許可の許でのみ修正を加えることができ、NPL は、皆さんが Netscape が所有するソースコードを使う際の条件を明示します。</p>
+
+<p>第二に、 NPL および MozPL （Mozilla Public License） の趣旨は、Netscape のコードとそれを基礎にした他の開発者のコードとの両方を利用する際の基本ルールを定めることです。これらのルールは、関係者間 （開発者に限らず、ユーザーも含めて） の利害のバランスを取り、このコードベースに対するオープンな開発を最大限にすすめる事を目的としています。ある見方をすると、コードベースとは私達が息をしている空気や湖のような資源なのです。そして、例えば開発者が共通のコードベースに対して &quot;還元する&quot; ことを奨励したり、またはある程度求めることさえして、資源を保護し開発してゆけるような基本的なルールが、私達には必要なのです。
+また別の視点をすると、コードの開発者 （オリジナルの開発者としての Netscape を含め） は、自分達の開発努力が他の開発者達にどう利用されるのかを特定する権利を持っており、こうした様々な権利が何らかのかたちで説明されていることを明確にする基本的なルールが必要なのです。</p>
+
+<li><p><a name="4"><b>なぜ二種類のライセンスがあるのですか？</b></a></p>
+
+<p>公に意見を求めるべく NPL の草案を初めて公開した際、最も多くの意見や批判のあった個所は、 Netscape に特別な権利を与えていることでした。その特別な権利とは、 Netscape が他の Netscape 製品で NPL が適用されたコードを NPL の定める条件に縛られることなく利用する権利、 NPL および MozPL の改訂版を発行する権利、そして中でも最も問題となった、 NPL が適用されたコードに NPL とは違う条件で第三者に対しライセンスを再付与することを認める権利でした。意見を寄せた多くの人は、この事実一つだけで NPL がフリーソース開発コミュニティには受け入れがたいものになっていると考えたのです。</p>
+
+<p>Netscape は多くの意見がこれらの条項に集中することは分かっていましたが、その条項がどうして必要なのかはっきりとした理由がありました。私達はクライアント側とサーバー側とであるコードを共有していますが、共有するコードに修正を加え、その修正を我々のサーバー製品に利用する一方、そうした製品を NPL の許ではリリースしなくてもいいようにしたかったのです。私達は将来ライセンスに関して問題が起こる可能性には気づいていましたし、こうした問題を将来解決できる機会を確保しておきたかったのです。最終的には、私達は多くの別の契約を結び、自分達が同意できるかたちでソースコードを提供することになりました。</p>
+
+<p>フリーソース開発コミュニティへの関与と私達の商業的な目標とのバランスを取るため、私達は二つのライセンスを発行することに決めました。それが Netscape Public License (NPL) と Mozilla Public License (MozPL) です。この二つのライセンスは、NPL が Netscape に追加の権利を認める修正条項があるという点を除いて同じものです。今年の 3 月 31 日に私達が発表する全てのコードは NPL の許でリリースされ、そのコードに対する全ての修正は NPL の許でリリースされなければなりません。何が修正にあたるのかは、次を参考にしてください。</p>
+
+<ul>
+  <li><p>どのような変更でも、&quot;ソースコード&quot; に含まれるファイルのうち、  一箇所でも変更した場合は、&quot;修正&quot; にあたり NPL が適用されます。</p></li>
+
+  <li><p>&quot;ソースコード&quot; に含まれるファイルのうち一つからでもコードを取り出し、新たなファイルとして作成した場合、あなたが新しいコードを加えたか否かに関わらず、&quot;修正&quot; とみなし NPL が適用されます。</p></li>
+
+  <li><p>&quot;ソースコード&quot; に含まれるファイル名を修正したり、複数のファイルを結合した場合、&quot;修正&quot; とみなし NPL が適用されます。</p></li>
+
+  <li><p>ただし、&quot;オリジナルコード&quot; または後の &quot;修正&quot; されたコードを全く含まない新しいファイルをあなたが加えた場合、&quot;修正&quot; とは<b><I>みなさず</I></b>、 NPL は適用されません。これはあなたが NPL ファイルに行った修正によって、新たなファイルが呼び出されたり、参照された場合においても同じです。 NPL ファイルに対して行われた修正には NPL が適用されますが、新たなファイル内のコードはその他の補完的なライセンスの適用を受ける可能性があります。</p></li>
+</ul>
+
+<p>この点ははっきりさせましたが、 Netscape は、おこなった修正を開発コミュニティにフィードバックすることが Communicator ベースコードの開発に従事する全ての人の関心事であることを理解しています。このようにして Netscape は分散開発の利点を獲得でき、そしてコミュニティはコードを加えていくことで豊かになっていくのです。Netscape が MozPL を作成したのは、まさにこうしたコードのためでした。私達は MozPL で多くのことを達成できると考えました。つまり MozPL によってソースコード作成に幅広い自由を与えると共に、ソースの再公開を求めるという両者のバランスを取ることができるのです。NPL で定められたような Netscape に対するどの特別な立場からも自由ですし、MozPL の許で発行されたコードを NPL で定められたコードと共に自由に利用できます。（「なぜ私の新しいコードに MozPL を選択しなければならないのでしょう？」もあわせてご覧ください。）</p>
+
+<li><p><a name="5"><b>BSD ライセンスとは何ですか？</b></a></p>
+
+<p><a href="http://www.debian.org/misc/bsd.license">BSD</a> ライセンスとは、カリフォルニア大学バークレー校によって開発されたフリーソフトウェアライセンスです。非常に条件が緩く、基本的にはライセンスが適用されるコードに誰が何をしても構わないのですが、<span style="white-space: nowrap;">documentation--</span> を付けて著作権保持者を明示することを求めており、クレジットを明示する場合には、これ以外のクレジットは認められません。この方法は、商業ベースの開発者には都合の良いライセンスとして受け入れられても、別の人の所有権に属する製品がそうした会社の製品に組み込まれてしまいかねない可能性を秘めています。</p>
+
+<li><p><a name="6"><b>GPL とは何ですか？</b></a></p>
+
+<p>The GNU General Public License （または
+<a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>）は、<a href="http://www.fsf.org/">Free Software Foundation</a> によって開発されました。BSD ライセンスとは違い、かなり複雑な条件によってフリーソースコードを管理します。このライセンスでは GPL が適用されたソフトウェアコードを基にしたあらゆる &quot;<STRONG>派生物</STRONG> （derivative work）&quot; にも GPL が適用され、そうしたソースコードは必ず一般に公開することが求められています。つまり、 GPL コードから派生した開発は誰がその開発を行おうと、必ずフリーで公開しなければならないのです。これは、誰かがコードを入手し、僅かな修正を加えたのみで公開せずに保持するという事が起きて、資源としてのフリーソースコードが枯渇してしまうことがないようにするのです。しかし一方では、以前からあるソフトウェア会社やその他の営利団体による GPL コードの商業ベースでの開発を遠ざけてしまうという傾向も持ち合わせています。</p>
+
+<li><p><a name="7"><b>LGPL とは何ですか？</b></a></p>
+
+<p><a href="http://www.gnu.org/copyleft/lgpl.html">GNU Library General Public License</a> もまた Free Software Foundation により開発されました。GPL に似ていますが、 LGPL が適用された機能のライブラリーを、ライブラリーから派生したプログラムではないプログラムで利用できる、というアイデアが盛り込まれています。これにより、 LGPL とは違った条項の許でプログラムを配布することができます。つまり LGPL （開発者は自分達の製品のソースコードを GPL の許でほど公開しなくて良い） は GPL に比べより緩やかなのです。 （ライブラリーそのものに対する修正に関しては、公開しなくてはなりません。）</p>
+
+<li><p><a name="8"><b>Artistic License とは何ですか？</b></a></p>
+
+<p><a href="http://language.perl.com/misc/Artistic.html">Artistic License</a> は、GPL によく似たものですが、ある意味においてはよりシンプルです。開発者が Artistic License の適用をうけたソースコードに修正を加えた場合、その開発者はその修正をソースコードのかたちで公開するか、または、修正したソースコードを再頒布せず、開発者が所属する団体の中でのみ利用しなければなりません。</p>
+
+<li><p><a name="9"><b>NPL は他のライセンスと比較するとどう違うのですか？</b></a></p>
+
+<p><a href="../MPL/">NPL</a> および MozPL はどちらも、営利団体によってフリーなソース開発を促進すると共に、フリーのソース開発者を保護するという二つの目的の中間点を狙ったものです。NPL および MozPL は、GPL のように、ライセンスが適用されたコードに対するあらゆる修正を一般に公開することを求めています。しかし一方で NPL および MozPL は、ライセンスが適用されたコードとその他のコードを組み合わせ、その他のコードにまでライセンスを適用することなく、より大きな開発作業を進めることも可能にしています。これは LGPL によく似ていますが、それよりも制約の少ないものです。NPL はまた、一定の Netscape に特有の権利を認めています。その権利とは、 Netscape 社が他の製品 （例：サーバー） の開発や以前からの契約を満たすといった、商業上の必要性に配慮する一方、クライアントソースコードをフリーにできるようにしています。</p>
+
+<li><p><a name="10"><b>なぜ GPL か GPL を手直ししたものを使わなかったのですか？</b></a></p>
+
+<p>これには多くの理由があります。始めの三つの理由から NPL が必要となり、四番目の理由のため、私達はコードを NPL および GPL の許で発表しませんでした。</p>
+
+<ol>
+    <li><p>Netscape は現在、自社が作成する Communicator のブランドバージョンで第三者のコンポーネントを利用しています。GPL ではこうしたコンポーネントをフリーソースコードの形式で公表しなければなりません。私達には第三者のコードを公表できる権利はありません。</p></li>
+
+    <li><p>Netscape は法律で定められたコード （例：<a href="../crypto-faq.html">暗号化</a> コード） を Communicator のブランドバージョンで利用しています。法律では、暗号化技術のためのソースコードは無制限なかたちで公開することを許可していません。しかし GPL は次のように定めています：&quot;当ライセンスにより定められた義務及び、その他関連する義務の双方を同時に満たした状態で頒布できない場合、プログラムの頒布を全面的に禁止する。&quot; このために Netscape はコードを全世界で配布することができなくなるのです。</p></li>
+
+    <li><p>Netscape は、ソースコードをリリースしていない他の製品 （例：サーバー） に Communicator コードの一部分を使っています。 GPL を採用すると、これらの製品のコードまでもリリースしなくてはなりません。</p></li>
+
+    <li><p>Netscape は、他の商業的な開発者による Communicator のソースコードの利用や開発を促進していきたいと考えています。Netscape は、コードを GPL のように厳しい規則のもとにおき、全ての関連するソフトウェアをフリーソースとしてリリースするよう求めると、こうした他の会社が開発に関与するのをためらうのではないかと懸念しました。少なくとも他の営利目的の開発者は、フリーソース開発に乗り出す際の法的な細部を検討しなければならないでしょう。この始めのハードルだけでも、開発者を遠のかせてしまうには十分です。そのため多少でも制限の緩いライセンスを利用することで、このハードルを取り除こうと決定されたのです。</p></li>
+</ol>
+
+
+<li><p><a name="11"><b>なぜ LGPL か LGPL を手直ししたものを使わなかったのですか？</b></a></p>
+
+<p>LGPL は商業目的の開発に対して GPL よりも柔軟であるという利点はありますが、Netscape にとっては GPL と同じくらい多くの落とし穴があるのです。私達は自分達のケースでは代替メカニズムが適切だと考えましたが、NPL には LGPL の基本コンセプトを取り入れています。</p>
+
+<li><p><a name="12"><b>なぜ BSD か BSD を手直ししたものを使わなかったのですか？</b></a></p>
+
+<p>Netscape の意見としては、 BSD ライセンスでは開発者に Communicator ソースコードに対して行った修正をきちんとコミュニティに還元してもらえないのではないかと考えます。Netscape 社はソース開発努力が長期にわたって機能するように配慮することが重要だと考えています。</p>
+
+<li><p><a name="13"><b>二種類のライセンスがあるのに、なぜ NPL を利用しなければならないのでしょう？</b></a></p>
+
+<p>&quot;修正&quot; を行う場合は、 NPL を遵守することが求められます。もしあなたが既存のコードに修正を加えるのではなく、新しいコードを提供する場合、NPL および別のライセンス、例えば MozPL、のどれを選択するかはあなた次第です。NPL が Netscape に保証しているような権利を問題とは感じないのなら、どうぞ NPL を利用してくださって結構です。</p>
+
+<li><p><a name="14"><b>新しいコードを提供する際には、どのライセンスを利用したら良いのでしょう？</b></a></p>
+
+<p>既存のコードへの修正ではなく新しいコードの場合は、多くのライセンスからどれを採用するかは、あなたが決定できます（あなたの成果を完全に非公開にして、有料にすることも含めて）。 NPL と法的に両立し得るライセンスには、 MozPL、 BSD、 LGPL、およびその他多数あります。 （ただし GPL は違います。というもの GPL はそれ以外のライセンスとは両立し得ないように作られているからです。）</p>
+
+<li><p><a name="15"><b>なぜ私の新しいコードに MozPL を選択しなければならないのでしょう？</b></a></p>
+
+<p>それはあなたの決定次第です。ただ、上でも述べたように、 MozPL は良い選択肢だと私達は考えています。というのも、ソースコード作成に幅広い自由を認めつつ、ソースの再公開を求めてその間のバランスを取っていますし、MozPL の許で公開されたコードを NPL が適用されたコードと共に自由に利用できるように定めているからです。私達はまた、 MozLP が明快で、読みやすく、理解しやすいものとなるよう努力をしました。</p>
+
+<li><p><a name="16"><b>最初から NPL と GPL の許でソースを公開してはどうですか？</b></a></p>
+
+<p>GPL が適用されたコードと NPL が適用されたコードとの利用についての質問でお答えしたように、NPL と GPL は両立し得ません。もし私達がこの選択をした場合、Mozilla コードベースの開発作業はすぐに座礁してしまうでしょう。このため Netscape がフリーソース開発から得られると考えていた利益は大幅に減ってしまうでしょう。こうした理由から、 Netscape 社は GPL の許でコードをリリースすることができないのです。</p>
+
+<li><p><a name="17"><b>開発者はコードを手に入れるために何かにサインをしたり、<a href="http://www.mozilla.org/">mozilla.org</a> のメンバーにならなければいけないのでしょうか？</b></a></p>
+
+<p>そのようなことはありません。コードは NPL により、またおそらく将来は MozPL によっても、支配されます。実際にどちらかのライセンスに署名をしなければならないようなことはありません。ただし、どのようなかたちであれソースコードを使用する場合は、
+法的にライセンスを遵守する義務が生じます。</p>
+
+<li><p><a name="18"><b>GPL コードは Communicator コードベースにどう組み込むことができるのですか？</b></a></p>
+
+<p>私達の GPL に対する理解では、 GPL が適用されたコードを Communicator ソースコードベースに<b><I>組み込む</I></b>ことはできません。さらに GPL コードと NPL コードを一緒に組み合わせてより &quot;より規模の大きな作業 （Larger Work）&quot; をすることもできません。 LGPL の場合は違います。 API を通じて NPL コードとの組み合わせで LGPL コードを使ったより大きな開発作業をすることはできます。</p>
+
+<li><p><a name="19"><b>NPL は Netscape にも適用されるのですか？</b></a></p>
+
+<p>Netscape が NPL が適用されたコードを使用する際、 NPL に従わなければなりません。ただし NPL の許では、 Netscape は &quot;初期開発者 （Initial Developer）&quot; として、他には認められないようなコードの利用法が認められるという特別な権利を保持しています。これは次の理由から必要なこととされます： (1) コードが既存の製品ラインの一部として存在するから、そして (2)  Netscape には以前からの契約事項があり、その契約に従ってソースコードを提供しなければならないから。ソースコードに対する特別な権利とは：</p>
+
+<ol>
+  <li><p>他の Netscape 製品において、その製品が NPL の適用を受けることなく、NPL コードを使用する権利。</p></li>
+
+  <li><p> Netscape に所属しない <span style="white-space: nowrap;">developers --</span> が Netscape ブランド製品を第三者向けに作成したソースを含む <span style="white-space: nowrap;">source --</span> にライセンスを付与する権利。この再ライセンスは、 NPL とは異なる条件の許で行うことができます。例えば Netscape は、ソースコードへの修正をソース形式で公開しなければならないという義務から第三者を開放できます。これにより Netscape は、契約によりソース供給義務のある団体へ Communicator ソースコードを提供することができます。</p></li>
+</ol>
+
+<p>ただし Netscape は、行った修正を開発コミュニティにフィードバックすることが Communicator ベースコードの開発に従事する全ての人の関心事であることを理解しています。この方法で、 Netscape は分散開発の利点を獲得できるのです。Netscape が Communicator ソースコードに対してライセンスを再付与する際には、そのコードの特定の日付がついた特定のスナップショットに対して行います。Netscape からのこのコードへのライセンスを受けた開発者が、その開発者自身が行った修正を開発者コミュニティのコードベースに還元しない場合、ライセンスを受けたコードは、早急にそのベースからはずされます。長期にわたり、リライセンサ （re-licensor） が自分のコードを、自由に入手できるコードにアップデートし続けるというのは、あまりに荷が重くなってしまいます。</p>
+
+<p>開発者が Netscape に対していかなる特権も認めたくない、しかし Mozilla ソースコードベースには貢献したい、という場合には、MozPL か、BSD や LGPL のような他の互換性を持つライセンスで行うことが可能です。</p>
+
+<li><p><a name="20"><b>もし私自身が書いたコードに対して Netscape が特権をもって欲しくない場合はどうなるのでしょう？　どうしても認めなければならないのでしょうか？</b></a></p>
+
+<p>Netscape によって公開されたオリジナルコードに対する全ての修正は、NPL によって支配されます。もしあなたが NPL によって支配されたくないものを書いている場合、それが NPL で定められている &quot;修正&quot; には当たらないことを確認してください。確認できた場合は、そのコードを MozPL の許でリリースすることができます。私達が代替ライセンスを用意したのは、まさにこの目的のためです。</p>
+
+<li><p><a name="21"><b>NPL の改正第 III 条の目的は何ですか？　あなた方のロゴやトレードマークの使用を全て確認できるわけではないのに、どうして私にロゴやトレードマークを取り除かなければならないという責任がかかってくるのでしょう？
+
+<!--If you couldn't find all of the instances of your logos and trademarks, how can you hold 
+me responsible for removing them?-->
+</b></a></p>
+
+<p>3 月 31 日に私達のコードを公開できるよう迅速に行動しましたが、忘れ物をしてしまったものがあるかもしれません。このセクションが述べていることは、あなたが私達の忘れてしまったものに出会った場合でも、私達のトレードマークを使用する権利をあなたに与えているわけではありません、ということです。あなたが私達のために労力を使うようには求めてるわけではありません。このセクションは、私達が自分達のミスで被害にあってしまうのを防ぐためのもので、皆さんを陥れようとして書かれたものではありません。</p>
+
+<li><p><a name="22"><b>NPL の改正第二版には、なぜ 2 年の期限があるのですか？</b></a></p>
+
+<p>このセクションは今日の Netscape のコードの状況が原因で存在します。Netscape はNPL コードを含んだ多くのサーバー製品を持っています。私達はこうした製品をできるだけ現実の状況に沿った状態で、 NPL ライセンスの条項に適合したものにしたいと考えています。</p>
+
+<li><p><a name="23"><b>どうしてあなた方は NPL が適用されたライセンスコードに違う条項を適用することができるのですか？</b></a></p>
+
+<p>まず始めに、どのような代替ライセンスも NPL が適用されているコードに対して適用されるのであり、MoPL が適用されているコードに対してではありません。 Netscape は過去において、Netscape が所有するソースコードのライセンスに合意しました。こうした合意の幾つかは現在も効力があり、私達には契約履行の義務があります。このため、私達は自分達のオリジナルソースコード、およびそれを基に修正したコードを、NPL とは違った条件のもとで利用できるようにする必要があるのです（何が修正にあたるのかについての詳しい解説は、上記「なぜ二種類のライセンスがあるのですか？」 をご覧ください。）</p>
+
+<li><p><a name="24"><b>なぜライセンスの第六節を変更するかもしれないのですか？</b></a></p>
+
+<p>私達は、将来 NPL か MozPL のどちらかを変更しなければならない状況が持ち上がると考えています。そのため Netscape はどちらかのライセンスの新しい版を発行する権利を保持しているのです。例えば、ライセンスで技術的な記述を幅広くオープンなものにしようとしてきましたが、将来ライセンスを変更しなければならないような変化が起こるかもしれません。しかし私達は、他の人たちが提供したコードを支配するライセンスが、そのコードをリリースした後になって変更されてしまうのではないか、という他の人たちの懸念にも敏感です。NPL や MozPL の許では誰でも、どちらかのライセンスが適用されたコードを、その後の新しいバージョンのライセンスの許で再リリースする権利を持っています。あるバージョンのコードに以前の版のライセンスが適用されている場合でも、その権利は認められます（この場合は、コードに二つのバージョンがあることになり、それぞれ違うバージョンのライセンスが適用されていることになります）。</p>
+
+<p>例として、ある開発者が五月に MozPL version 1.0 の許でコードをリリースした場合を考えてみましょう。その開発者のコードには MozPL 1.0 が適用されます。八月に Netscape は MozPL の version 2.0 を発行したとします。その開発者のコードには、 MozPL 1.0 が適用されたままです。九月に入って、別の開発者が始めの開発者のコードを MozPL 2.0 の許で利用できるように決めました（おそらく二番目の開発者は MozPL 2.0 だと version 1.0 での重要な問題が解決できると考えたのでしょう）。初めの開発者は、自分がリリースしたコードを MozPL 1.0 の許で公開したままにすることができます（おそらくその開発者は version 2.0 よりも MozPL 1.0 の方が、自らの状況により適していると考えたのでしょう）。その他の開発者は、その問題のコードを MozPL 1.0 か 2.0 のどちらで変更を行うか選択ができるということになります。</p>
+
+<li><p><a name="25"><b>このようなフリーライセンスの許でソースを公開して、どのような利益が Netscape にもたらされるのですか？
+</b></a></p>
+
+<p>Netscape （そして世界） はソースコードを手放すことにより様々な形で利益を得られます。最も重要なこととしては、 Communicator ソースコードベースへの、非常に創造的な働きかけが爆発的な勢いでなされるだろう、ということです。Netscape はこうした働きかけによって Communicator の優秀な通信ソフトウェアとしての地位を維持しつづけることができる、と自信を持っています。次に、ソースコードをフリーで公開することによって、インターネット接続性のみならずハードウェアプラットフォームやソフトウェア製品へと関心を広げ、Netscape がこれまでなら資源や時間がなくてできなかった分野や製品の開発に着手できるのです。</p>
+
+<li><p><a name="26"><b>ライセンスはどのようにして作成されたのですか？</b></a></p>
+
+<p>始めに Netscape は、他のフリーソフトウェアライセンス全てを慎重に分析し、それらのライセンスによってどのような問題が解決され、またどのような問題が引き起こされたかを検討しました。それから Netscape 社は、Communicator ソースを公開することについての公聴会と共に、専門家やフリーソフトウェアコミュニティの支持者の意見を聞くために多くの時間を費やしました。ここで得られた情報は全てライセンスの草案に盛り込まれ、綿密な内部審査を経て、一般の人からの意見や批判を受けるため mozilla.org に投稿されました。 Netscape は寄せられた意見や批判 （ライセンスのために設けられたニュースグループには一千件近い投稿がありました） を検討し、草案第二版を作成し、かなり短い期間を定めて批評のための公開をしました。現在の NPL および MozPL は草案第二版の結果を受けて作成されたものです。</p>
+
+</ol>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/MPL/FAQ.html">英語版</a> 2005/01/31</span> - <span>和訳版 2005/06/03</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/MPL/FAQ.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

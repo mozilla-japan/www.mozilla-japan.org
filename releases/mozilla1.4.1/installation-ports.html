@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Mozilla ポートのインストール方法</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { text-align: center; }
+	p, li, dt, dd { line-height: 160%; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 160%; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="October 8, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.4.1/installation-ports.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+
+
+
+<h1>Mozilla ポートのインストール方法</h1>
+<p>このドキュメントには、Mozilla 1.4.1 に関する、システム必要条件、互換性情報、インストール方法が書かれています。</p>
+
+<ul>
+	<li><a href="#ports_openvms">OpenVMS</a></li>
+	<li><a href="#ports_solaris">Solaris</a></li>
+	<li><a href="#ports_aix">AIX</a></li>
+	<li><a href="#ports_hpux">HP-UX</a></li>
+	<li><a href="#ports_irix">IRIX</a></li>
+	<li><a href="#ports_os2">OS/2</a></li>
+</ul>
+
+<h3><a name="ports_openvms" id="ports_openvms">OpenVMS</a></h3>
+<ul>
+	<li>OpenVMS Alpha V7.1 以降</li>
+	<li>DECwindows MOTIF V1.2-4 以降</li>
+	<li>Compaq TCP/IP Services Version 5.0 for OpenVMS 以降、MultiNet V4.3A 以降、または TCPware V5.4-3 以降</li>
+	<li>65 MB のハードディスク空きスペース</li>
+</ul>
+<p>より詳しい情報は、<a href="http://h71000.www7.hp.com/openvms/products/ips/mozilla_relnotes.html">OpenVMS Mozilla - installation guide and release notes</a> をご覧ください。</p>
+
+<h3><a name="ports_solaris" id="ports_solaris">Solaris</a></h3>
+<ul>
+	<li>Solaris では、Mozilla を実行するために、<a href="http://sunsolve.sun.com/">sunsolve.sun.com</a> から以下のパッチをインストールする必要があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=88205" title="Bug 88205 - build will not start on Solaris 8 04/01">88205</a>)</li>
+</ul>
+<blockquote>
+	<table border="1" cellspacing="0" cellpadding="3">
+		<tr>
+			<th>Solaris</th>
+			<th>Patches/SPARC</th>
+		</tr>
+		<tr>
+			<th>2.7</th>
+			<td style="font-size: small;">
+				<ul>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=106950&amp;collection=fpatches">106950-22</a> - &quot;SunOS 5.7: linker patch&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=106327&amp;collection=fpatches">106327-17</a> - &quot;32-Bit Shared library patch for C++&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=106300&amp;collection=fpatches">106300-18</a> - &quot;64-Bit Shared library patch for C++&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=108376&amp;collection=fpatches">108376-42</a> - &quot;OpenWindows 3.6.1: Xsun Patch&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=107650&amp;collection=fpatches">107650-08</a> - &quot;OpenWindows 3.6.1 X11R6.4 Xprint Extension Patch&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=107636&amp;collection=fpatches">107636-09</a> - &quot;SunOS 5.7: X Input & Output Method patch&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=112689&amp;collection=fpatches">112689-02</a> - &quot;SunOS 5.7: UTF-8 locale ICONV patch&quot;</li>
+				</ul>
+				または、これらのパッチがすべて含まれた、推奨＆セキュリティパッチ集を <a href="ftp://sunsolve.sun.com/pub/patches/7_Recommended.zip">ダウンロード</a> / <a href="ftp://sunsolve.sun.com/pub/patches/7_Recommended.README">インストール</a> してください。
+			</td>
+		</tr>
+		<tr>
+			<th>2.8</th>
+			<td style="font-size: small;">
+				<ul>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=109147&amp;collection=fpatches">109147-09</a> - &quot;SunOS 5.8: linker patch&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=108434&amp;collection=fpatches">108434-02</a> - &quot;32-Bit Shared library patch for C++&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=108435&amp;collection=fpatches">108435-02</a> - &quot;64-Bit Shared library patch for C++&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=108773&amp;collection=fpatches">108773-17</a> - &quot;SunOS 5.8: IIIM and X Input & Output Method patch&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=108652&amp;collection=fpatches">108652-65</a> - &quot;X11 6.5.1: Xsun patch&quot;</li>
+				</ul>
+				または、これらのパッチがすべて含まれた、推奨＆セキュリティパッチ集を <a href="ftp://sunsolve.sun.com/pub/patches/8_Recommended.zip">ダウンロード</a> / <a href="ftp://sunsolve.sun.com/pub/patches/8_Recommended.README">インストール</a> してください。
+			</td>
+		</tr>
+		<tr>
+			<th>2.9</th>
+			<td style="font-size: small;">
+				<ul>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=112963&amp;collection=fpatches">112963-05</a> - &quot;SunOS 5.9: linker patch&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=111711&amp;collection=fpatches">111711-03</a> - &quot;32-Bit Shared library patch for C++&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=111712&amp;collection=fpatches">111712-03</a> - &quot;64-Bit Shared library patch for C++&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=112661&amp;collection=fpatches">112661-04</a> - &quot;SunOS 5.9: IIIM and X Input &amp; Output Method patch&quot;</li>
+					<li><a href="http://sunsolve.sun.com/pub-cgi/retrieve.pl?patchid=112785&amp;collection=fpatches">112785-12</a> - &quot;X11 6.6.1: Xsun patch&quot;</li>
+				</ul>
+				または、これらのパッチがすべて含まれた、推奨＆セキュリティパッチ集を <a href="ftp://sunsolve.sun.com/pub/patches/9_Recommended.zip">ダウンロード</a> / <a href="ftp://sunsolve.sun.com/pub/patches/9_Recommended.README">インストール</a> してください。
+			</td>
+		</tr>
+	</table>
+</blockquote>
+<ul>
+	<li>65 MB のハードディスク空きスペース</li>
+	<li>128 MB の RAM</li>
+	<li>印刷をするには <a href="known-issues-int.html#xprint">Xprint</a> がインストールされている必要があります。<a href="http://xprint.mozdev.org/">xprint.mozdev.org</a> が、インストールのための便利な方法として <a href="http://xprint.mozdev.org/download.html">GISWxprintglue</a> (または <a href="http://xprint.mozdev.org/download.html">GISWxprintglue</a>) パッケージを提供しています。</li>
+	<li>GTK+ と glib ライブラリ - このライブラリは Sun Workshop/Forte でコンパイルされている必要があります。gcc でコンパイルされた GTK+/glib は、Sun Workshop/Forte でビルドされた Mozilla バイナリと <b>互換性がありません</b>。Sun Workshop/Forte でコンパイルされた GTK+/glib ライブラリは、Sun Workshop と gcc どちらでコンパイルされたバイナリとも互換性があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=136144" title="Bug 136144 - sparc-sun-solaris-7_8_9 builds crash on startup">136144</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=141415" title="Bug 141415 - sigsegv at startup under solaris 9">141415</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=186534" title="Bug 186534 - freeze on startup after Gdk-WARNING **: gdk_font is NULL or not a fontset.">186534</a> 他多数)</li>
+</ul>
+
+<h3><a name="ports_aix" id="ports_aix">AIX</a></h3>
+<ul>
+	<li>AIX 4.3.3 以降</li>
+	<li>gtk+, glib, libiconv と gettext が必要です。(互換バージョンは <a href="http://www-1.ibm.com/servers/aix/products/aixos/linux/download.html">IBM の Web サイト</a> にあります)</li>
+</ul>
+
+<h3><a name="ports_hpux" id="ports_hpux">HP-UX</a></h3>
+<ul>
+	<li>HP-UX ビルドには それぞれの適切なサイトで提供されている gtk+, glib, libiconv と gettext が必要です。
+		<ul>
+			<li>HP-UX 11.20 は <a href="http://www.hp.com/workstations/support/software/hpux/">HP の Web サイトで提供されている 11i V 1.6 用 GTK (b6848ba) depot</a> をベースにしています。</li>
+			<li>HP-UX 11.00 (と 11.11) は <a href="http://www.hp.com/workstations/support/software/hpux/">HP の Web サイトで提供されている 11.0/11i v1.0 用 GTK (b6848ba)</a> または <a href="http://hpux.connect.org.uk/hppd/hpux/Gtk/Development/gtk+-1.2.10/">HP-UX Porting Center</a> の depot  をベースにしています。</li>
+			<li>HP-UX 10.20 は <a href="http://hpux.connect.org.uk/hppd/hpux/Gtk/Development/gtk+-1.2.10/">HP-UX Porting Center</a> で提供されている depot をベースにしています。</li>
+		</ul>
+	</li>
+</ul>
+
+<h3><a name="ports_irix" id="ports_irix">IRIX</a></h3>
+<p>DecorateTransients オプションなしに twm ファミリーのウィンドウマネージャを使っていると、検索、保存、設定などのポップアップウィンドウが機能しません。ウィンドウマネージャの rc ファイルで DecorateTransients オプションをセットしてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=78928"title="Bug 78928 - twm or no wm: Cannot type into dialog text fields">78928</a>)</p>
+
+<h3><a name="ports_os2"></a>OS/2</h3>
+<h4>動作環境 (必須)</h4>
+<ul>
+	<li>Pentium 133 MHz クラスの CPU</li>
+	<li>64 MB の RAM</li>
+	<li>70 MB のハードディスク空きスペース</li>
+	<li>64 MB のスワップ空きスペース</li>
+	<li>OS/2 Warp 4 (Merlin Kernel)</li>
+	<li>Fixpack 15 以降</li>
+	<li>MPTS version 5.3 以降</li>
+	<li>TCP/IP version 4.1 以降</li>
+	<li>INETVER: SOCKETS.SYS=5.3007, AFOS2.SYS=5.3001, AFINET.SYS=5.3006 以降</li>
+</ul>
+<p>注意: これらの INETVER レベルの上に MPTS & TCP/IP バージョンを使わないでください。これより古いスタックでも Mozilla は起動、実行すると思われますが、Mozilla が必要とする一部の機能は、古いバージョンの MPTS には正しく実装されていません。このため、クラッシュやデータ消失の可能性があります。</p>
+<h4>動作環境 (推奨)</h4>
+<ul>
+	<li>Pentium II 266 MHz クラスの CPU</li>
+	<li>128 MB の RAM</li>
+	<li>150 MB のハードディスク空きスペース</li>
+	<li>128 MB のスワップ空きスペース</li>
+	<li>Fixpack 16</li>
+	<li>MPTS version 5.5 または 6.0</li>
+	<li>TCP/IP version 4.3</li>
+	<li>INETVER: SOCKETS.SYS=6.2004, AFOS2.SYS=6.2000, AFINET.SYS=6.2013</li>
+	<p>または</p>
+	<li>OS/2 Warp 4.52 Convenience Pack 2 (メンバー制)</li>
+	<p>または</p>
+	<li>eCom Station 1.0 以降</li>
+</ul>
+<p>注意 : MPTS 6 と FP 16 は Software Choice メンバーのみ入手できます。その他のアップグレードは現在無料で入手可能です。</p>
+
+
+
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.4.1/installation-ports.html">英語版</a> 2003/10/08</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.4.1/installation-ports.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

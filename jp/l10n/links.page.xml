@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-docs" basename="links" pathtoroot="../../">
+
+<meta>
+	<dc:title>ローカライズ関連資料室</dc:title>
+	<dc:creator>Makoto</dc:creator>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 title="情報は、作りだすのにどれほど費用がかかろうと、只同然で複製したり共有したりすることができる。 － Thomas Jefferson"><tt:meta mode="title"/></h1>
+	<p>Mozilla のローカライズに関係するサイトや資料のリンク集です。まだ作りかけですがご容赦ください。</p>
+	
+	
+	<h2>Firefox のローカライズ</h2>
+	<dl>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/firefox/l10n/">Localizing Firefox</a> (<a href="http://www.mozilla-japan.org/projects/firefox/l10n/">日本語訳</a>)</dt>
+		<dd>Firefox のローカライズについての公式ドキュメントです。</dd>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/mlp_howto_Firefox.html">How to localize Mozilla Firefox</a> <span class="comment">(英語)</span></dt>
+		<dd>Mozilla Translator を使ったローカライズの解説です。XPI の作成手順と、ローカライズ版 Zip アーカイブの作成方法もあります。</dd>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/mlp_package_FF_macOSX.html">Packaging Instructions: Firefox for Mac OS X</a> <span class="comment">(英語)</span></dt>
+		<dd>Mac OS X 用ローカライズビルドの作成方法です。</dd>
+		<dt><a href="http://www.geocities.co.jp/CollegeLife-Cafe/2318/osaka3make.html">MozillaTranslator の使い方講座</a></dt>
+		<dd>ろてぃれる氏による、やさしい Mozilla Translator の使い方です。他の JLP から訳を取り込む方法もあります。</dd>
+		<dt><a href="http://nyozlla.hp.infoseek.co.jp/howzlla.htm">Phoenix 日本語化計画</a></dt>
+		<dd>名前から分かるように情報は古いですが、JLP の作成方法について書かれています。</dd>
+	</dl>
+	
+	<h2>Thunderbird のローカライズ</h2>
+	<dl>
+		<dt><a href="http://thunderbird.dnsalias.net/instructions/">Packaging Instructions: Thunderbird for OS X</a> <span class="comment">(英語)</span></dt>
+		<dd>Mac OS X 用ローカライズビルドの作成手順です。</dd>
+	</dl>
+	
+	<h2>Mozilla のローカライズ</h2>
+	<dl>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/mlp_what2.html">Mozilla localization quick guide</a> (<a href="http://www.mozilla-japan.org/projects/l10n/mlp_what2.html">日本語訳</a>)</dt>
+		<dd>ツールを使用せずに、言語リソースを直接編集して Mozilla をローカライズする手順です。</dd>
+		<dt><a href="http://n.jpn.ph/mozilla/">Mozilla 日本語版 開発版情報サイト</a></dt>
+		<dd>Mozilla 日本語版のパッケージング作業を担当している、ふぉーちゅん氏のサイトです。各プラットフォーム用インストーラ、Zip アーカイブの作成に関する情報があります。</dd>
+	</dl>
+
+	<h2>ローカライズ全般、その他</h2>
+	<dl>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/">Mozilla Localization Project</a> (<a href="http://www.mozilla-japan.org/projects/l10n/">日本語訳</a>)</dt>
+		<dd>Mozilla 製品のローカライズの総本山、MLP のサイトです。</dd>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/mlp_howto.html">How to localize Mozilla</a> (<a href="http://www.mozilla-japan.org/projects/l10n/mlp_howto.html">日本語訳</a>)</dt>
+		<dd>Mozilla 製品をローカライズする際の流れについて書かれています。</dd>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/mlp_chrome.html">Mozilla Language Pack internal structure</a> (<a href="http://www.mozilla-japan.org/projects/l10n/mlp_chrome.html">日本語訳</a>)</dt>
+		<dd>言語パック内の構造や形式、XPI パッケージの作成についての解説です。</dd>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/mlp_faq.html">Mozilla Localization Project FAQ</a> (<a href="http://www.mozilla-japan.org/projects/l10n/mlp_faq.html">日本語訳</a>)</dt>
+		<dd>ローカライズについてよくある質問(FAQ)です。</dd>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/mlp_tools.html">Localization &amp; Leveraging Tools</a> <span class="comment">(英語)</span></dt>
+		<dd>ローカライズに使用するツールや、テキストエディタなどの紹介です。</dd>
+		<dt><a href="http://www013.upp.so-net.ne.jp/unha999/jlp/develop.html">Kozawa's Experiment JLP 実験室－開発の部屋</a></dt>
+	        <dd>JLP 内のファイルの形式についての "ちょっとした解説" などがあります。</dd>
+	</dl>
+	
+	<h2>ローカライズ関係用語集</h2>
+	<dl>
+		<dt><img src="http://www.mozilla-japan.org/jp/l10n/img/mozilla-16.png" alt=""/> <a href="http://www.mozilla.org/projects/l10n/mlp_glossary.html">Translation Glossary &amp; References</a> (<a href="http://www.mozilla-japan.org/projects/l10n/mlp_glossary.html">日本語訳</a>)</dt>
+		<dd>様々な言語での用語についての資料があります。</dd>
+		<dt><a href="ftp://ftp.microsoft.com/developr/msdn/newup/glossary/">Microsoft MSDN Glossary</a></dt>
+		<dd>Microsoft 社の様々な製品の各言語での用語集です。</dd>
+		<dt><a href="http://developer.apple.com/intl/localization/">Localization on Mac OS X</a> <span class="comment">(英語)</span></dt>
+		<dd>Mac OS X 用ソフトウェアのローカライズに関する、Apple 社の公式ドキュメントです。</dd>
+		<dt><a href="ftp://ftp.apple.com/developer/Tool_Chest/Localization_Tools/Mac_OS_X_Glossaries/">Mac OS X Glossaries</a></dt>
+		<dd>Apple 社の Mac OS X 公式用語集です。</dd>
+		<dt><a href="ftp://ftp.apple.com/developer/Tool_Chest/Localization_Tools/Apple_Intl_Glossaries/">Apple International Glossaries</a></dt>
+		<dd>Apple 社の MacOS 公式用語集です。(かなり古いです)</dd>
+		<dt><a href="http://www.amelia.ne.jp/user/reading/intv_05_00.jsp">【アメリア】みんなで作るインタビュー５・マイクロソフトプロダクトディベロップメントリミテッド</a></dt>
+		<dd>Microsoft 社製品のローカライズを統括している、MILS グループの担当者のインタビュー記事です。</dd>
+	</dl>
+</tt:htmlbody>
+
+</page>
+</contents>

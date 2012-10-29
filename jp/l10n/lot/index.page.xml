@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-lot" basename="index" pathtoroot="../../../">
+
+<meta>
+	<dc:title>Localization Tools</dc:title>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+</meta>
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 title="今日からあなたも JLP 開発者"><tt:meta mode="title"/></h1>
+	<p>ローカライズセンターでは JLP のメンテナンス作業のために独自の Ant ビルドスクリプトなどを作成して利用しています。ローカライズの作業に使用するスクリプトなどをひとまとめにしたものを Localization Tools (通称 lot) といい、ここで公開しています。<br/>
+		手元でカスタム JLP や拡張機能を作成したり、修正パッチを作成して送付する際にご利用ください。</p>
+	<dl>
+		<dt>Localization Tools 1.0</dt>
+		<dd><a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/l10n-tools/releases/lot-1.0.zip">lot-1.0.zip</a></dd>
+	</dl>
+	<p>Localization Tools の最新開発版は <a href="${l10n-forum}">L10N フォーラム</a>にて<a href="http://moz.skillup.jp/jlp/viewtopic.php?t=263">アナウンス</a>しています。<br/>
+		lot には JLP の言語リソースが同梱されていますが、lot リリース時点のものであり、最新 JLP のものではありません。最新の JLP に対応するリソースは別途随時 FTP に Upload していっていますので、<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/l10n-tools/resources/">別途入手</a>して同梱リソースを置き換えてください。</p>
+	
+	
+	<tt:section id="usage">
+		<h2>使い方</h2>
+		<p>lot の 3 分間クッキング (下記の<a href="requirements">システム要件</a>を満たしていれば、3 分程度で JLP を生成できます)</p>
+		<ol>
+			<li>lot の zip ファイルをダウンロードしてください。</li>
+			<li>ダウンロードした lot を適当なディレクトリに展開してください。</li>
+			<li>コマンドプロンプトやシェルを起動し、lot が展開されたディレクトリに移動してください。</li>
+			<li>build.xml ファイルのあるディレクトリ上で <code>ant</code> コマンドを実行してください。</li>
+			<li>ビルド開始の確認が表示されるので Enter(Return) キーを押してください。</li>
+			<li>がりがりガリガリ…(Pentium 3 736MHz マシンで 54秒)…ガリガリがりがり</li>
+			<li>loose ディレクトリには src ディレクトリのファイルなどをもとに ja/ja-JP-mac の言語リソースが生成されます。</li>
+			<li>dest ディレクトリには loose ディレクトリのファイルをパッケージにまとめた JLP が生成されます。</li>
+			<li>いじょう。;-)</li>
+		</ol>
+		<p>最新の JLP を作成したい場合は、<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/l10n-tools/resources/">最新の src パッケージ</a>をダウンロードして、その中に含まれるファイルで lot 同梱のファイルを上書きしてから <code>ant</code> コマンドを実行してください。</p>
+		<p>XPI パッケージ作成以外の利用法については <code>ant help</code> コマンドで出力されるヘルプや、<code>ant examples</code> コマンドで出力されるコマンド例などをご覧ください。勘のいい人なら何となく分かるかと思います。(^^;</p>
+	</tt:section>
+	
+	<tt:section id="documents">
+		<h2>ドキュメント</h2>
+		<dl>
+			<dt><a href="${l10n-lot-usage}">Localization Tools の使い方</a></dt>
+			<dd>Localization Tools の簡易チュートリアルとか。 JLP の作成以外にどんな機能があるか興味のある方や、自分で拡張機能をローカライズする際にも使ってみようかと思っている方などは、一度読んでみてください。</dd>
+			<dt><a href="${l10n-lot-reference}">Localization Tools 簡易リファレンス</a></dt>
+			<dd>Localization Tools で定義している主なターゲットやプロパティについて短く説明しています。</dd>
+			<dt><!-- <a href="${l10n-lot-config}"> -->Localization Tools の設定ファイル<!-- </a> --></dt>
+			<dd>Localization Tools の設定ファイルについての解説を書こうかな。(^^;</dd>
+			<dt><!-- <a href="${l10n-lot-extension}"> -->拡張機能のローカライズ手順<!-- </a> --></dt>
+			<dd>拡張機能をローカライズするための手順を書こうかな。<br/>
+				拡張機能 L10N をサポートするターゲットが一通り揃ってからにしようか。(^^;</dd>
+		</dl>
+	</tt:section>
+	
+	<tt:section id="requirements">
+		<h2>システム要件</h2>
+		<h3>動作環境</h3>
+		<ul>
+			<li>Windows</li>
+			<li>Linux</li>
+			<li>Mac OS</li>
+			<li><span title="下記の依存ソフトウェアが利用できる任意の OS">etc.</span></li>
+		</ul>
+		<h3>依存ソフトウェア</h3>
+		<ul>
+			<!-- Java 開発環境は 1.1 まで JDK, 1.2～1.4 は Java2 SDK, 1.5 は JDK 5.0 と呼ぶ -->
+			<li><a href="http://java.sun.com/">Java 2 SDK または JDK</a> (Java 2 SDK 1.4.1 以降を推奨)</li>
+			<li><a href="http://ant.apache.org/">Apache Ant</a> (Ant 1.6.5 以降)</li>
+			<li>cvs コマンド (cvs 関連処理を行う場合のみ)</li>
+			<li>diff コマンド (diff 関連処理を行う場合のみ)</li>
+			<li>perl コマンド (言語リソース比較検証スクリプト実行時のみ)</li>
+		</ul>
+		<p>言語パックや拡張機能の XPI パッケージ作成にだけ使用するのであれば cvs コマンドや diff コマンドは不要です。これらのコマンドは Windows を除き大半の OS に含まれています。 Windows でも cygwin を導入するか互換コマンドをインストールして、パスを通しておけば cvs や diff 関連の処理が可能になります。</p>
+		<p>バージョンが古いこともありますが、Java 2 SDK や Apache Ant は多くの Linux Distribution に標準で含まれています。 Mac OS X についても Developer Tool に含められています。</p>
+	</tt:section>
+</tt:htmlbody>
+
+</page>
+</contents>

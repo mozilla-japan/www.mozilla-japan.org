@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 バージョン管理</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/rationale/member-lookup.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="member-lookup.html">
+<link rel="Next" href="named.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		border:1px dashed #996;
+		padding:3px;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		background:transparent none;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">根拠</div>
+    <div class="title1">バージョン管理</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="member-lookup.html"><img src="../../arrows/left.gif" align="BOTTOM" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="named.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">10/09/2001 (Tue)</p>
+
+<h2>動機付け</h2>
+
+<p>パッケージのバージョンアップに伴い、大抵の場合エクスポート済みインターフェイスに変更が必要になる。このような変更には
+(トップレベルやクラスのメンバの) 定義の削除や名前の変更も含まれるが、ほとんどは新しい定義の追加である。全ての JavaScript
+ソースが同じソースから構成されるような単一の環境ではこれは問題ではないが、パッケージが複数のソースから動的にリンクされる場合はおそらくバージョン管理の問題が発生するだろう。</p>
+
+<p>最もよく知られた問題に定義の衝突がある。この問題を解決しない限り、ライブラリの作者はそのライブラリの将来のバージョンに新しい定義を1つも追加できない。これは新しい定義名が既にクライアント、或いはクライアントがリンクしている他のライブラリで使われているかもしれないからである。この問題はグローバルスコープ、クライアントが継承可能なクラススコープの両方で起こる。</p>
+
+<h3><a name="collision"></a>例</h3>
+
+<p>以下はこのような衝突がいかにして起こるかを示す例である。或るライブラリの作者がクラス <code>Data</code> をエクスポートするライブラリ
+<code>BitTracker</code> を作成したとしよう。このライブラリの出来は素晴らしいものであったので BrowsersRUs 社全てのウェブブラウザに搭載されることとなった:</p>
+
+<pre>package BitTracker;
+
+public class Data {
+  public field author;   // 訳注: field は今は使われていない古いメンバ修飾子である
+  public field contents; // 以下の method も同様
+  function save() {...}
+};
+
+function store(d) {
+  ...
+  storeOnFastDisk(d);
+}</pre>
+
+<p>今誰か他の人間が <code>BitTracker</code> を使ったウェブページ <var>W</var> を書いている。クラス <code>Picture</code>
+は <code>Data</code> から派生したもので、2つのメンバを追加している。その内 <code>size</code> というメソッドは画像の寸法を返す:</p>
+
+<pre>import BitTracker;
+
+class Picture extends Data {
+  public method size() {...}
+  field palette;
+};
+
+function orientation(d) {
+  if (d.size().h &gt;= d.size().v)
+    return "Landscape";
+  else
+    return "Portrait";
+}</pre>
+
+<p><code>BitTracker</code> ライブラリの作者は <var>W</var> を見ておらず、顧客の要求に応える形で <code>Data</code>
+オブジェクトデータのバイト長を返す <code>size</code> というメソッドの追加を決めてしまう。彼は改良した新しい <code>BitTracker</code>
+ライブラリをリリースし、BrowsersRUs は最新のブラウザ NavigatorForInternetComputing 17.0 にこのライブラリを組み込む:</p>
+
+<pre>package BitTracker;
+
+public class Data {
+  public field author;
+  public field contents;
+  public method size() {...}
+  function save() {...}
+};
+
+function store(d) {
+  ...
+  if (d.size() &gt; limit)
+    storeOnSlowDisk(d);
+  else
+    storeOnFastDisk(d);
+}</pre>
+
+<p>何も知らないユーザ <var>U</var> は手持ちの BrowsersRUs の古いブラウザを最新の NavigatorForInternetComputing 17.0
+にアップグレードするが、その1週間後 <var>W</var> が動かないのを見てがっかりする。<var>U</var> の孫娘 Alyssa はコンピュータ使いであり、<code>size</code>
+メソッドで名前の衝突が起こったことを <var>U</var> に説明するが、<var>U</var> には何のことだか分からない。<var>U</var>
+は <var>W</var> の作者に連絡しようとするが、彼女は自己発見の伝道のためにサハラ以南のアフリカに行ってしまっている。結局 <var>U</var> は BrowsersRUs に文句を言い、その怒りの矛先は <code>BitTracker</code> の作者に向けられることとなる。</p>
+
+<h3>解決策</h3>
+
+<p><code>BitTracker</code> の作者はどうすればこの問題を避けることができたのだろうか? 単純に <code>size</code>
+以外の名前を選択してもうまくいかない。他のページ <var>W2</var> がその新しい名前と衝突する可能性があるのである。考えられるアプローチとしては次のようなものがある:</p>
+
+<ul>
+  <li><strong>名前付け規約</strong>。定義名の接頭辞として、定義を行ったパーティの完全な名前を付けるようにする。しかしながらこの方法は冗長で、言語を不必要に窮屈なものにする。加えて、多態性を実現するために複数のクラス間でメソッドに同じ名前を付けた方が良いことが多いので、メソッドの名前付けとしては現実的ではない。例えば MIT
+    のオブジェクトが <code>edu_mit_length</code> メソッドを使い、Netscape のオブジェクトが全て <code>com_netscape_length</code>
+    メソッドを使うようにすると、同じ名前にするのは不可能である。</li>
+  <li><strong>明示的なインポ−ト</strong>。各クライアントパッケージが、参照する各外部名をインポートするようにする。この方法はグローバルな名前については十分なものだが、クラスのメンバ名については冗長なものになる。メンバ名は各クラスについて個別にインポ−トしなければならないのである。1つのクラスのメンバをまとめてインポートするという方法もあるが、幾分困難なものでインターフェイスや多重継承を使った場合はうまくいかない。</li>
+  <li><strong>バージョン</strong>。エクスポートする名前にパッケージの作者が明確なバージョンを付けるようにする。パッケージの作者はパッケージの新しいバージョンを新しい名前
+    (以前のバージョンで不可視になっている場合に限る) とともに提示できる。</li>
+</ul>
+
+<p>最後のアプローチは、使用するパッケージをインポートするだけかインポート文で現在のバージョンしか指定しない腰掛け気分のユーザの負荷を最小にするため最も望ましいものである。パッケージの開発者は更新したパッケージをリリースする際に、以前のバージョンでアクセス可能な定義セットを乱さないように注意すべきである。しかし動的リンクが可能なパッケージの作者には言語の上級ユーザが多く、更新されたパッケージの構成を自動的にチェックするツールを使うのかもしれないが。</p>
+
+<h2>JavaScript 2.0 におけるバージョン管理</h2>
+
+<p>JavaScript 2.0 では安全なバージョン管理のために<a href="../core/namespaces.html">名前空間</a>を使う。1つのパッケージは複数の名前空間をエクスポートでき、パッケージの内容についてそれぞれ異なるアクセス性を提供する。各名前空間はパッケージ API
+の1つのバージョンに対応する。</p>
+
+<h3>用語</h3>
+
+<p><strong>バージョン</strong>はパッケージの API を表す。<strong>リリース</strong>とはコードも含めたパッケージ全体を指す。1つのリリースはその
+API の複数のバージョンをエクスポートできる。パッケージの開発者は、バージョン <var>V</var> をエクスポートするパッケージの複数のリリースが、バージョン
+<var>V</var> において同じ定義セットを正しくエクスポートするかどうかを確認すべきである。</p>
+
+<h3>例</h3>
+
+<p>例としてソートのためのパッケージ <code>Sorter</code> を書いている開発者がいるとしよう。このパッケージの最初のバージョンには
+<code>sort</code> と <code>merge</code> という関数が含まれており、バブルソートを使っていた。次のリリースでプログラマは
+<code>stablesort</code> という関数を追加し、バージョン <code>V2</code> に含めた。次の <code>V3</code> リリースでは
+<code>sort</code> のアルゴリズムをクイックソートを使ったものに変更し <code>stablesort</code>
+をサブルーチンとして呼び出すようにした。また <code>permute</code> という関数も追加した。このパッケージの最終リリースは次のようになるだろう:</p>
+
+<pre>package Sorter {
+  explicit namespace V2;
+  explicit namespace V3;
+  internal const V2and3 = V2 V3;
+
+  public var serialNumber;
+
+  public function sort(compare:&nbsp;Function, array:&nbsp;Array):Array {...}
+  public function merge(compare:&nbsp;Function, array1:&nbsp;Array, array2:&nbsp;Array):Array {...}
+  V2and3 function stablesort(compare:&nbsp;Function, array:&nbsp;Array):Array {...}
+  V3 function permute(array:&nbsp;Array):Array {...}
+}</pre>
+
+<p>ここでいずれも <code>Sorter</code> をインポートするクライアントパッケージ <var>C</var><sub class="var-sub">1</sub>
+、<var>C</var><sub class="var-sub">2</sub> が現れたとする。実行される <code>Sorter</code> のインスタンスは<strong>1つ</strong>だけ
+&#8212; つまり最終<strong>リリース</strong>のものだけである。デフォルトでは <var>C</var><sub class="var-sub">1</sub>
+と <var>C</var><sub class="var-sub">2</sub> はいずれも <code>Sorter</code> の最初の API にしかアクセスできない。しかし
+<var>C</var><sub class="var-sub">2</sub> が <code>Sorter</code> が拡張されたことを知っており、新しい機能も使いたいという場合は
+<code>Sorter</code> をインポートした後に次のようなおまじないを使う。</p>
+
+<pre>use namespace(Sorter.V2);</pre>
+
+<p>これで <var>C</var><sub class="var-sub">2</sub> からは <code>stablesort</code> 関数にもアクセスできるようになる。この例では両方のクライアントは同じ
+<code>sort</code> 、<code>merge</code> 関数と、同じ変数 <code>serialNumber</code> にアクセスできる
+(<var>C</var><sub class="var-sub">1</sub> が <code>serialNumber</code> を書き換えると <var>C</var><sub class="var-sub">2</sub>
+からも値が変更されたことが分かる) が、<code>stablesort</code> 関数にアクセスできるのは <var>C</var><sub class="var-sub">2</sub>
+だけだということに注意していただきたい。2つのクライアントは両方ともクイックソートを使った <code>sort</code> のリリースを得る。仮に
+<var>C</var><sub class="var-sub">1</sub> が自身で <code>stablesort</code> という関数を定義しても <code>Sorter</code> の
+<code>stablesort</code> とは衝突しない。また、<code>Sorter</code> の <code>sort</code> はその内部サブルーチン呼び出しで
+<code>Sorter</code> の <code>stablesort</code> を参照し続ける。</p>
+
+<p><code>Sorter</code> の最初のリリースしか利用できなければ <code>Sorter.V2</code> は未定義となり、<var>C</var><sub class="var-sub">2</sub>
+ではエラーが発生する。<code>sort</code> はクイックソートではなくバブルソートを使うのだがそれでも
+<var>C</var><sub class="var-sub">1</sub> は正常に動く。</p>
+
+<p>この例ではパッケージのグローバルメンバに対するバージョン管理について示した。このテクニックは既存のクラスにメンバを追加するのにも使用でき、より有用なものととなる。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td style="vertical-align:bottom;white-space:nowrap">
+      <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+      最終更新: 2001年10月9日 (火)</address>
+    </td>
+    <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="member-lookup.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="named.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+  </tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal&#64;student.interq.or.jp">exeal&#64;student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/rationale/versioning.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

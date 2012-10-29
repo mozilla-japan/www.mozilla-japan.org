@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+   <title>コンポーネントセキュリティ</title>
+   <link rel="alternate" hreflang="en" modified="January 7, 2001">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/components/design.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>
+Mozilla のためのコンポーネントセキュリティ</h1>
+
+<script>document.write('<a href="mailto:mstoltz'+String.fromCharCode(64)+
+                       'netscape.com">Mitch Stoltz</a><br>');</script>
+<script>
+        function lastMod() {
+                var d = new Date(document.lastModified);
+                return (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();
+        }
+        document.write(lastMod() + '<br>');
+</script>
+
+
+
+<hr>
+<br>&nbsp;
+<blockquote>ハッカーは、自分たちで無くベーンダーが、とても多くの製品に広がる大きく開いた穴に対して
+責任がある、と指摘する。会社ができるだけ早くソフトウェアを公開するために、
+店の棚に殺到する中で適切なセキュリティーがしばしば埋没する。
+「複雑さが増すにしたがい、脆弱性の機会も増す。」、と
+戦略的ビジネスアプリケーションを分析しているハーウィッツグループの副社長 Steven Foote 氏は言う。
+-- U.S. News, <a href="http://www.usnews.com/usnews/issue/990614/14hack.htm">
+ハッカーを止められるのか?</a></blockquote>
+
+<p.<br>Mozilla はブラウザ自体を実装するために、ますます多くのインターネット技術を利用するつもりである。
+これはモジュール方式、クロスプラットフォームな開発、
+幅広い人々による心強い開発にとって多くの利点がある。
+だが、危険から守るブラウザのセキュリティーの処理をいっそう難しくもしている。
+何故なら、信頼されるブラウザと、それが表示する信頼されないコンテンツを区別する境界線が
+はっきりしなくなってきたからだ。 
+<h2>
+セキュリティモデル</h2>
+Mozilla は、ウェブコンテンツに載っている JavaScript に対する現在のセキュリティモデル
+(<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/communicator/jssec/index.htm">JavaScript
+Security in Communicator 4.x</a> 参照) を、<a href="terms.html#signedScripts">署名付きスクリプト</a>
+という例外がありうるのを除いてサポートすべきだ。
+Java や JavaScript を使ってウェブコンテンツからアクセスできる <a href="#APIs">新しい API</a> を、
+すべてセキュリティーについてよく検査するべきだ。
+<p>Communicator 4.X (あるいは Mozilla classic) と違って、Mozilla はブラウザ自体を組み立てるのに
+大量にウェブスタイルのプログラミングを使っている。これは、強力な処理を JavaScript
+が行えるようにするために成し遂げられ、そのため Mozilla に対するセキュリティーモデルが、
+二種類のコードをサポートするようにならなければならないという事である。
+すなわち信頼できないウェブコンテンツと、信頼できるブラウザ実装コードである。 
+<p>最終的には Java が Java2 で到達したような、
+完全な能力を持ったシステムが必要だ。だが、早くソフトを出す必要があるので、
+私たちはもっと単純なバイナリ信託システムを実装しなければならない。
+ブラウザ実装に使われるコードはすべて完全な権限を与えられるべきだが、
+同時にオフネットからのどんなコードの権限も、
+4.X の時と同様に制限されるべきだ。
+<p>私は、ウェブベースのコードができる事に、次のような制限を加える事を
+提案している:
+<ul>
+<li>
+ウェブベースの XUL 禁止</li>
+
+<li>
+RDF への直接アクセス禁止</li>
+
+<li>
+Chrome はローカルファイルシステムのみから実行する。(すなはち、ダウンロード可能な chrome 禁止で
+インストール可能な chrome のみ)</li>
+
+<li>
+限られた XPConnect コンポーネントへのアクセス--ほとんどのコンポーネントはウェブコンテンツから
+アクセス不可能とするつもりで、アクセス可能なものはセキュリティ検査を受けなければならない。</li>
+
+<li>
+ウェブコンテンツからまわりを囲む chrome へのアクセス禁止</li>
+</ul>
+上記の制限によって、システムがいっそう単純に、いっそう堅牢になる。
+<h2>
+実装</h2>
+
+<h3>
+コード形式の識別</h3>
+私たちのセキュリティモデルには二つの形式のコードがある: つまりウェブコンテンツと
+ブラウザ実装コードだ。この二つをどうやって識別しようか?現在の JavaScript
+コードベースは、主体 (principal) を評価される全スクリプトと関連付ける機能のサポートが入ってる。
+そして実行中、実行している JavaScript のスタックフレームと対応した主体のスタックを、
+検索できる。従って、いかなる点でも、極めてセキュリティ上危険なコードは、
+スクリプトによって呼び出されたのなら、そうならば、
+そのスクリプトが権限を持っているかに関わらず、調べられる。
+<br>&nbsp;
+<h2>
+コンポーネントセキュリティの分析</h2>
+
+<h3>
+DOM</h3>
+DOM は 4.X からのセキュリティモデルを実装すべきだ (少なくとも署名のない部分は)。
+歴史的には、DOM はほとんどの公然の悪用がある領域を抱えていた。
+だからここのセキュリティの実装には注意深く検査する必要がある。
+<p>ここにいくつか 4.X の DOM セキュリティモデルへ追加する提案がある。
+Bell 研究所からの研究者たちがいくつか新しい特徴を提案してきた。もっとも著しいのは
+ドメイン固有のポリシーだ。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=858">Bugzilla bug
+858</a> に似た提案が説明され、念入りに仕上げられている。
+<h3>
+XUL</h3>
+XUL は chrome の実装に使用されているので、高度な権限を持ったサービスへのアクセスが必要だ。
+chrome 内の全コードは信頼できるものであるべきだ。つまり、chrome へコードをインストールする事は
+権限を持った動作だ。skin はどんなコードも含んでおらず、
+いかなる強力な安全防護対策なしのインストールも安全なはずであることをに注意しなさい。
+<p>XUL のコードはウェブコンテンツとやり取りできる。だが、私たちは確実に、
+ウェブコンテンツが権限を持った XUL のコードとやり取りできないようにしなければならない。
+ウェブコンテンツは、prototype 連鎖あるいは JavaScript の "caller" プロパティによって侵害できない
+sandbox の中に収まっていなければならない。
+<h3>
+RDF</h3>
+サイドバーを経由して、RDF コンテンツを信頼できないサーバーから直接取り出し、
+他の RDF コンテンツと共に集める事ができる。JavaScript イベントハンドラや
+リンクの取り消しのような、潜在的な危険要素を取り除く事ができる
+RDF 用フィルタが必要となる。
+<p>多くの RDF データソースはセキュリティの利点を反映する。
+一番明白なのはファイルシステムだが、chrome レジストリのようなその他のものも同様にセキュリティの影響を及ぼす。
+私たちは信頼できないコードから RDF に直接アクセスするのを禁止するべきだ。
+<h3>
+XPConnect</h3>
+XPConnect は、JavaScript (間もなく Java も) が権限を持った動作を行える
+ネイティブ XPCOM コンポーネントへアクセスできるようにする。John Bandhauer は、
+どのコンポーネントが XPConnect を通して見られるのか限定する機能のサポートを実装した。
+ウェブコンテンツから実行するスクリプトは、コンポーネントの小さなセットに限定されるべきだ。
+そのそれぞれが、セキュリティを検査されるべきだ。
+<h3>
+Netlib と Necko</h3>
+現在 "chrome:" や "resource:" のようなプロトコルは、プラグ接続できるプロトコルハンドラによって
+実装されている。どんな信頼できないコードも、どのプロトコルをアクセスできるか制限を加える必要がある。
+歴史的に、これは "about:" や "javascript:" のようなプロトコルのため、
+多くの攻撃の出所となってきた。
+<br>&nbsp;
+<h2>
+<a NAME="APIs"></a>APIs for Review</h2>
+
+<h3>
+新しい DOM の API</h3>
+ここに何を載せるのかはっきりしない.... joki が助ける予定。
+<h3>
+Chrome レジストリの API</h3>
+これは、ウェブページが XUL ファイルを chrome に追加するのを要求できるようにする API だ。
+<br>&nbsp;
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/components/design.html">英語版</a> 2001/01/07</span> - <span>和訳版 2004/10/07</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/components/design.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

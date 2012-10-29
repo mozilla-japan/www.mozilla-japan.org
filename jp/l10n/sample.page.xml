@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml-stylesheet href="tpl/plain/plain.xsl" type="text/xsl"?> -->
+<?xml-stylesheet href="tpl/simple/simple.xsl" type="text/xsl"?>
+<!DOCTYPE contents [ <!ENTITY % entities SYSTEM "./entities.dtd"> %entities; ]>
+<!-- ant supports dtd but firefox doesn't... -->
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="sample" basename="sample" pathtoroot="./">
+<meta>
+	<dc:title>さんぷるぺーじ</dc:title>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+	<dcterms:audience>このツールの使用者</dcterms:audience>
+</meta>
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-default"/>
+	<meta name="keywords" content="transtools, xsl, tt, dynamis" />
+	<meta name="description" content="TransTools のサンプルページ" />
+</tt:htmlheader>
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h2>URL のパース処理と置き換え機能</h2>
+	<p>TransTools では URL を指定する属性に変数を使用できます。 href="${url.id}" や href="@@url.id@@" となっている場合、sitedb.xml から id 属性が url.id である要素を検索し、その url 属性で置き換えられます。更に、サイト内リンクについてはすべて相対リンクへと書き換えられます。</p>
+	<p>href="${url.id}" と &lt;tt:url idref="url.id"/&gt; の使用例: <a href=" ${mozilla-japan} "><tt:url idref="mozilla-japan"/></a></p>
+	<p>href="@@url.id@@" と &lt;tt:url idref="url.id"/&gt; の使用例: <a href=" @@l10n-forum@@ "><tt:url idref="l10n-forum"/></a></p>
+	<p>&lt;tt:url idref="url.id" type="link"/&gt; の使用例: <tt:url idref="mozilla-japan" type="link"/></p>
+	
+	<h2>XML 標準で未定義の実体参照代替機能</h2>
+	<p>&lt;tt:copy/&gt; の使用例: [<tt:copy/>]</p>
+	<p>&lt;tt:nbsp/&gt; の使用例: [<tt:nbsp/><tt:nbsp/><tt:nbsp/>]</p>
+	
+	
+</tt:htmlbody>
+
+</page>
+</contents>

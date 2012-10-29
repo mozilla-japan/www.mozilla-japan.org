@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+   <meta name="GENERATOR" content="Mozilla/4.71 [en] (X11; U; Linux 2.2.12-20 i686) [Netscape]">
+   <meta name="Author" content="Suresh Duddi">
+   <title>XPCOM Code FAQ</title>
+   
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/lxr/mozilla/source/xpcom/doc/xpcom-code-faq.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h2>
+XPCOM Code FAQ</h2>
+Suresh Duddi &lt;<a href="mailto:dp@netscape.com">dp@netscape.com</a>>
+<br>Last Modified: May 25 2000
+<br>
+<hr WIDTH="100%">
+<br>私は、人々の質問にランダムに答えたものをドキュメント化しました。
+そのため、よりFAQらしく見えると思います。
+<h3>
+目次</h3>
+
+<ol>
+<li>
+<a href="#What are the Global Objects that XPCOM maintains">XPCOMが保持しているグローバルオブジェクトにはどんなものがありますか。</a></li>
+
+<li>
+<a href="#What are the static classes that XPCOM maintains">XPCOMが保持している静的なクラスにはどんなものがありますか。
+</a></li>
+
+<li>
+<a href="#Is there any restriction on which static class I should call fi">最初に呼ぶべき静的クラスにおいてなにか制限がありますか。
+</a></li>
+
+<li>
+<a href="#What is the order of creation of the ServiceManager, ComponentM">サービスマネージャ、コンポーネントマネージャ、レジストリの作られる順序はどうなっていますか。
+</a></li>
+
+<li>
+<a href="#Is there a global Registry being maintained">保持されるグローバルなレジストリーはありますか。
+</a></li>
+
+<li>
+<font color="#000000"><a href="#ComponentManager Vs ServiceManager">コンポーネントマネージャ対サービスマネージャ
+</a></font></li>
+
+<li>
+<a href="#ProgID Vs CLSID">ProgID対CLSID</a></li>
+
+<li>
+<a href="#How to set break points in component code">コンポーネントのコードにブレイクポイントをセットする方法
+</a></li>
+
+<li>
+<a href="#Generating a log from xpcom:">XPCOMログの生成</a>
+<hr WIDTH="100%"></li>
+</ol>
+
+<h4>
+<a NAME="What are the Global Objects that XPCOM maintains"></a>XPCOMが保持しているグローバルなオブジェクトにはどんなものがありますか。
+</h4>
+
+<ul>mGlobalServiceManager
+<br>mGlobalComponentManager</ul>
+
+<h4>
+<a NAME="What are the static classes that XPCOM maintains"></a>XPCOMが保持している静的なクラスにはどんなものがありますか。 
+</h4>
+
+<blockquote>nsComponentManager
+<br>nsServiceManager</blockquote>
+
+<h4>
+<a NAME="Is there any restriction on which static class I should call fi"></a>最初に呼ぶべき静的なクラスで何か制限がありますか。 
+</h4>
+
+<blockquote>制限はありません。静的なクラスのnsComponentManagerとnsServiceManagerから任意の関数を呼ぶことができます。XPCOMは、どちらにおいても自分自身の初期化を行うための適切な処理を行います。
+<p>Autoregistration()は、Init_XPCOM()が呼ばれた後でのみ呼ばれます。 なぜなら、DLLのSelfRegister()関数によってレジストリが要求されますが、コンポーネントマネージャにRegistryFactory()を登録するのは、Init_XPCOM()においてだけ行われるからです。 
+</blockquote>
+
+<h4>
+<a NAME="What is the order of creation of the ServiceManager, ComponentM"></a>サービスマネージャ、コンポーネントマネージャとレジストリが作られる順序はどうなっていますか。
+</h4>
+
+<blockquote>Init_XPCOM()において以下の処理が行われます。
+<blockquote>
+<li>
+まず、グローバルなサービスマネージャを作成します。</li>
+
+<li>
+そして、グローバルなコンポーネントマネージャを作成し、それをグローバルなサービスマネージャにサービスとして登録します。
+</li>
+
+<li>
+そして、レジスターファクトリ(...レジストリファクトリ...(訳注:ここの括弧内の意味不明))が、コンポーネントマネージャにレジストリファクトリを登録します。これにより新しいレジストリオブジェクトを作成することができます。
+</li>
+</blockquote>
+難しい問題は、いつInit_XPCOM()の引金を引くかということです。nsComponentManagerとnsServiceManagerという二つの静的なオブジェクトがあります。
+それらの任意の関数を最初に呼び出すことができます。
+現在のところ、nsServiceManager::GetService()が最初に呼ばれています。
+静的なnsServiceManagerのすべてのメンバは、NS_GetGlobalServiceManager()を使って、グローバルなサービスマネージャを取得します。
+静的なnsComponentManagerのすべてのメンバは、NS_GetGlobalComponentManager()を使って、グローバルなコンポーネントマネージャを取得します。 
+そのため、もしInit_XPCOM()をNS_GetGlobalComponentManager()とNS_GetGlobalServiceManager()の両方から呼び出せば安全でしょう。
+</blockquote>
+
+<h4>
+<a NAME="Is there a global Registry being maintained"></a>保持されたグローバルなレジストリは存在しますか
+</h4>
+
+<blockquote>いいえ。nsIRegistryは、レジストリへの軽いアクセスを目的として設計されました。
+レジストリに対するアクセスを必要とするクライアントは、コンポーネントマネージャを使って、自分用のレジストリへのアクセスオブジェクトを作成する必要があります。
+これは、open()の呼び出しがnsIRegistry()によりサポートされており、もしグローバルなレジストリを保持すると、どのレジストリファイルがオープンされているかを調整するのに頭を痛めることになるからです。
+<p>レジストリのProgIDは、<font color="#990000">component://netscape/registry</font>になる予定です。
+<br>&nbsp;</blockquote>
+
+<h4>
+<a NAME="ComponentManager Vs ServiceManager"></a><font color="#000000">コンポーネントマネージャ 対 サービスマネージャ
+</font></h4>
+
+<blockquote><font color="#000000">コンポーネントマネージャは、コンポーネントを作成する唯一の方法です。
+コンポーネントマネージャは、コンポーネントのインスタンスを作成するのに、常にコンポーネントのファクトリを使います。
+クライアント(CreateInstance()を呼び出してコンポーネントを作成し、それを使用するコード)は、インスタンスを作成するためにコンポーネントマネージャを呼び出します。
+コンポーネント(NSRegisterSelf()を実装したコード)は、自分自身を登録し、クライアントがコンポーネントのインスタンスを作成したいときに呼ばれるようにするために、コンポーネントマネージャを呼び出します。
+</font>
+<p><font color="#000000">サービスマネージャは、シングルトンのコンポーネント、つまりNetlibのようにアプリケーション全体で一つのインスタンスしか存在しないコンポーネントを取得するのに役立ちます。
+サービスマネージャは、一つのコンポーネントごとに一つ(のインスタンス)しか存在できないようにします。
+そのため、サービスを取得するということが、それを作るということを意味するわけではありません。(コンポーネントマネージャでインスタンスを作成するということとは反対になります。)
+サービスマネージャは、便宜的なものです。なぜなら、ファクトリがインスタンスを作成する際に、すでにそれを作成している場合に、常に同じインスタンスを返すようにすることで、技術的にコンポーネントをシングルトンにすることができるからです。
+サービスマネージャを使う別の使い方は、(まだ未実装なのですが)サービスのシャットダウンを行うことです。
+</font>
+<p><b><i><font color="#000000">クライアント</font></i></b>
+<ul>
+<li>
+<i><font color="#000000">クライアントがサービスマネージャを使う場合とコンポーネントマネージャを使う場合
+</font></i></li>
+
+<br><font color="#000000">クライアントが、インスタンスを作成しようとしているコンポーネントがシングルトンであることを知っている場合、コンポーネントマネージャではなく、サービスマネージャを呼び出す必要があります。
+この場合クライアントは、コンポーネントマネージャを呼び出すことを全く心配する必要はありません。
+もし最初のインスタンスがまだ存在していなければ、サービスマネージャがインスタンスの作成の面倒を見ます。</font>
+<br>&nbsp;
+<li>
+<i><font color="#000000">クライアントがサービスマネージャではなくコンポーネントマネージャを使う場合
+</font></i></li>
+
+<br><font color="#000000">クライアントがコンポーネントのプライベートなインスタンスを欲しい場合、コンポーネントマネージャを呼ぶ必要があります。
+クライアントの視点からは、CreateInstance()を呼び出すたびに、新しいXPCOMオブジェクトがいつも作成されます。その他のことはクライアントが心配する必要のない実装の詳細部分です。
+</font>
+<br>&nbsp;
+<li>
+<i><font color="#000000">クライアントは、インスタンスをシングルトンにする必要があるとどうやって知ることができるか
+</font></i></li>
+
+<br><font color="#000000">今のところ、クライアントは単に知る必要があります。どのコンポーネントがサービスでどのコンポーネントがそうでないかを知る方法はありません。
+実際、現在(1999年3月時点)のところ、XPCOMはどのコンポーネントもサービスとしてアクセスできます。
+適切な方法が見付かるまで、あるいはサービスマネージャが取り除かれるまでは、あなたが判断してください。
+インスタンスからサービスを見付けるコードもありません。
+</font>
+<p><b><font color="#CC0000">このことに対する解決策が必要です。提案を<a href="mailto:warren@netscape.com,dp@netscape.com">warren@netscape.com,dp@netscape.com</a>にメールしてください。
+</font></b>
+<br>&nbsp;</ul>
+<b><i><font color="#000000">コンポーネント</font></i></b>
+<ul>
+<li><i><font color="#000000">コンポーネントをサービスとしてだけ使えるようにできまするか。</font></i></li>
+
+<br><font color="#000000">いいえ。サービスマネージャという概念はクライアントのためだけのものです。
+</font>
+<p><font color="#000000">ある意味で、コンポーネントが他のコンポーネントを必要としている場合、実際にはクライアントとして振舞うことになります。そのため、必要とされるコンポーネントに対してCreateInstance()やGetService()を実行する場合は、上記のクライアントのルールに従うことに注意してください。
+</font>
+<p><b><tt><font color="#990000">対処方法:</font></tt></b><font color="#000000">
+ただし、もしコンポーネントがそのインスタンスが一つだけ存在するようにしたい場合で、かつクライアントが十分理解していてサービスマネージャだけを使ってくれるかどうかが分からない場合、ファクトリ側でシングルトンにするように実装することができます。
+つまりファクトリは、最初のインスタンスの作成において、そのインスタンスを保持しておきます。続くインスタンスの作成において、新しいインスタンスを作成する代わりに、保持しているインスタンスのaddrefを呼び出し、それを返します。
+</font>
+<ul>&nbsp;
+<br><font color="#000000">例えば、preferenceの処理がこれを行っています。</font> <a href="http://lxr.mozilla.org/seamonkey/source/modules/libpref/src/nsPref.cpp#621">nsPref.cpp nsPrefFactory::CreateInstance()</a>と<a href="http://lxr.mozilla.org/seamonkey/source/modules/libpref/src/nsPref.cpp#227">nsPref.cpp nsPref::GetInstance()</a>がコードサンプルです。
+この実装において、クライアントがインスタンスの取得において、nsIServiceManager::GetService()かnsIComponentManager::CreateInstance()のどちらを呼び出しても同じオブジェクトが返され、シングルトンであることが保証されています。
+</ul>
+
+<li>
+<i><font color="#000000">コンポーネントがサービスになるには作成時に何かするのでしょうか。
+</font></i></li>
+
+<br><font color="#000000">いいえ。もう一度いうと、サービスマネージャという概念は、クライアントのためだけのものです。</font>
+<br>&nbsp;
+<li>
+<i><font color="#000000">コンポーネントは、サービスであることを宣伝して、クライアントがそれをサービスの一つとして使えるようにするのでしょうか。
+</font></i></li>
+
+<br>いいえ。ヘッダファイルのインタフェースの中にコメントで書く以外の方法はありません。
+</ul>
+</blockquote>
+
+<h4>
+<a NAME="ProgID Vs CLSID"></a>ProgID 対 CLSID</h4>
+
+<blockquote>ClassIDまたはCLSIDは、コンポーネントのユニークなIDです。
+これは、とても大きな数の構造体で、Windows上ではuuidgenによって作られます。
+ドキュメント上では、{108d75a0-bab5-11d2-96c4-0060b0fb9956}のように文字列で表現されます。
+<p>ProgIDは、クライアントが要求しているコンポーネントの実装に対する文字列IDです。
+その表現には、URIのシンタックスが使われます。例 <i>component://netscape/network/protocol?name=http;description=Http%20Protocol%20Handler</i>
+<br>簡単にいうと、ProgIDはCLSIDをより読みやすい文字列形式にしたものです。
+表面的には、この定義を受け入れることは可能です。ProgIDは、クライアント側のものです。コンポーネントは、コンポーネントマネージャに、あるProgIDの実装であることを登録します。
+コンポーネントは、複数のProgIDの実装として登録することができます。(まだこの機能は実装されていませんが)
+<p><b><i>クライアント</i></b>
+<ul>
+<li>
+<i>CreateInstance()の呼び出しにおいて、ProgIDとCLSIDのどちらを使うべきなのでしょうか</i></li>
+
+<br>クライアントは、CreateInstance()の呼び出しにおいてProgIDを使うべきです。クライアントは、コンポーネントの特定の実装(のインスタンス)を作成する向こう見ずでなければ、CLSIDについて知ることさえ、すべきではありません。
+</ul>
+<b><i>コンポーネント</i></b>
+<ul>
+<li>
+<i>コンポーネントはCID(CLSID)とProgIDの両方で登録すべきでしょうか</i></li>
+
+<br>そのとおりです。</ul>
+</blockquote>
+
+<h4>
+<a NAME="How to set break points in component code"></a>コンポーネントのコードにブレークポイントを設定する方法
+</h4>
+
+<blockquote>
+<blockquote>コンポーネントは、要求時に動的にロードされるため、デバッグするのは大変です。
+コンポーネントをデバッグするためのいくつかのヒントを挙げます。
+<p><b><i>Windows: VC5.0 VC6.0</i></b>
+<blockquote>Project->Settingの"Additional DLLドロップダウンコンボボックス"で、あなたのコンポーネントライブラリをインクルードしてください。(訳注:この訳で正しいのか? 日本語版VC5.0,VC6.0ではどうなるのか?)
+これでブレークポイントが有効になります。</blockquote>
+<b><i>Unix: gdb</i></b>
+<blockquote>
+<ul>
+<li>
+あなたがコンポーネントがロードされていると確信できるまで、プログラムを実行してください。そして、Control-Cをタイプしてください。
+これであなたのコンポーネントのすべてのシンボルがGDBで有効になっているはずです。ブレークポイントを設定して、アプリケーションを再起動してください。
+GDBは、ブレークポイントをセットできないと文句を言って、それを一時的に無効にしたと言ってくるかもしれませんが、*.soがロードされた時に、ブレークポイントは自動的に有効になります。
+- &lt;<a href="mailto:erik@netscape.com">Eric
+Van Der Poel</a>></li>
+</ul>
+
+<ul>
+<li>
+はじめに"dir components"とタイプしても(あなたがdist/binディレクトリにいることを仮定しています)、スタック中のシンボルが見えるようになると思います。
+- &lt;<a href="mailto:alecf@netscape.com">Alec
+Flett</a>></li>
+</ul>
+
+<ul>
+<li>
+XPCOM_BREAK_ON_LOAD環境変数を使用する:</li>
+
+<p><br><tt>gdb> set env XPCOM_BREAK_ON_LOAD "necko:rdf"</tt>
+<br><tt>gdb> r</tt>
+<p>これにより、XPCOMが<tt>necko</tt>または<tt>rdf</tt>という文字列を名前の一部に含むDLLをロードした後に、デバッガの中でブレークします。
+この時点で、デバッガにDLLシンボルをロードして、ブレークポイントをセットすることができます。
+<p><tt>gdb> sha libnecko.so</tt>
+<br><tt>gdb> b nsFunctionInNecko</tt></ul>
+</blockquote>
+<b><i>Mac: Codewarrior</i></b>
+<blockquote>適当な.xSYMファイルをデバッガで開くだけです。デバッガは、アプリケーションを実行したときに、そのライブラリをターゲットとします。
+- &lt;<a href="mailto:sfraser@netscape.com">Simon
+Fraser</a>></blockquote>
+</blockquote>
+</blockquote>
+<a NAME="Generating a log from xpcom:"></a><b>XPCOMからログを生成する:</b>
+<blockquote>XPCOMはログ出力機能を提供します。ログ出力を有効にするには:
+<blockquote><tt>[unix]</tt>
+<br><tt>setenv NSPR_LOG_MODULES nsComponentManager:5</tt>
+<br><tt>setenv NSPR_LOG_FILE xpcom.log</tt>
+<p><tt>[win]</tt>
+<br><tt>set NSPR_LOG_MODULES=nsComponentManager:5</tt>
+<br><tt>set NSPR_LOG_FILE=xpcom.log</tt></blockquote>
+上記の環境変数をセットした後、アプリケーションを実行してください。XPCOMからのデバッグログは、<tt>xpcom.log</tt>というファイルです。
+</blockquote>
+
+<p><br><a NAME="XPCOM Log analysis"></a><b>XPCOMログ解析</b>
+<blockquote><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/doc/xpcom-log-analyze.sh">xpcom/doc/xpcom-log-analyze.sh</a>
+は、XPCOMのログを解析して、役に立つ統計情報をHTML形式で出力するスクリプトです。
+使い方はこうです:
+<blockquote><tt>xpcom-log-analyze.sh &lt; xpcom.log > xpcom-log.html</tt>
+<br><tt></tt>&nbsp;</blockquote>
+</blockquote>
+
+<hr WIDTH="100%">
+<div align="right"><font size="-1">
+<a href="http://lxr.mozilla.org/mozilla/source/xpcom/doc/xpcom-code-faq.html">
+このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。</a><br>
+またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>
+利用者の利便のためにmozilla.org 和訳プロジェクトによって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.org/jp/td/index.html">
+http://www.mozilla-japan.org/jp/td/index.html</a>
+</font></div>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/lxr/mozilla/source/xpcom/doc/xpcom-code-faq.html">英語版</a></span> - <span>和訳版 2004/09/23</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/lxr/mozilla/source/xpcom/doc/xpcom-code-faq.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

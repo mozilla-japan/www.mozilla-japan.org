@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+   <TITLE>文法検査テストスイートコードサンプル：ネストした要素の取得</TITLE>
+
+
+
+
+<STYLE TYPE="text/css">
+
+#pos { position: absolute; top: 100px; left: 0px; height: 200px; width: 300px; z-index: 1 }
+#childa { position: absolute; top: 120px; left: 0px; height: 80px; width: 100px; z-index: 2 }
+#childb { position: absolute; top: 120px; left: 100px; height: 80px; width: 100px; z-index: 3 }
+.redback { background-color: red; layer-background-color: red; }
+.blueback { background-color: blue; layer-background-color: blue; }
+.greenback { background-color: green; layer-background-color: green; }
+</STYLE>
+     <!-- DO NOT DELETE: this empty style sheet element becomes the
+          style sheet to which CSS1 rules are added in IE4+. -->
+     <STYLE ID="ietssxyz" TYPE="text/css"> </STYLE>
+     <!-- This external script defines cross-browser functions for
+          accessing CSS1 and CSSP properties. -->
+     <SCRIPT LANGUAGE="JavaScript1.2" SRC=xbdhtml.js> </SCRIPT>
+     <!-- Make your function calls to define CSS1 rules in this
+          SCRIPT, now that the target style sheet has been created
+          in IE4+ and the functions have been loaded. -->
+     <SCRIPT LANGUAGE="JavaScript1.2"><!--
+
+//document.onload = checkAfterLoad;
+
+function checkAfterLoad ()
+{   var newWin = window.open ("", "newWin", "menubar=yes,outerHeight=300,outerWidth=300,resizable=yes,scrollbars=yes");
+    newWin.document.write ("<HTML><HEAD><TITLE>テスト結果</TITLE></HEAD><BODY><TABLE>");
+    var posElt = getElt ("pos");
+    newWin.document.write ("<TR><TD>getElt('pos')</TD><TD>" + (posElt != null) + "</TD><TD>" + posElt + "</TD></TR>");
+    var childaEltNested = getElt ("pos", "childa");
+    newWin.document.write ("<TR><TD>getElt('pos', 'childa')</TD><TD>" + (childaEltNested != null) + "</TD><TD>" + childaEltNested + "</TD></TR>");
+    var childbEltNested = getElt ("pos", "childb");
+    newWin.document.write ("<TR><TD>getElt('pos', 'childb')</TD><TD>" + (childbEltNested != null) + "</TD><TD>" + childbEltNested + "</TD></TR>");
+
+    newWin.document.write ("</TABLE></BODY></HTML>");
+    newWin.document.close();
+    newWin.focus();
+}
+
+//--></SCRIPT>
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP"></HEAD>
+<BODY BGCOLOR="#ffffff" onLoad="checkAfterLoad()">
+
+<CENTER>
+  <H2>クロスブラウザ DHTML 位置指定 API テスト：ネストした要素の取得</H2>
+</CENTER>
+
+<P>テストが成功すれば、true が出力されます。失敗すれば false が出力されます。</P>
+
+
+
+<DIV ID="pos" CLASS="redback"><TABLE WIDTH=300 HEIGHT=200 CLASS="redback"><TR><TD>pos</TD></TR></TABLE>
+<DIV ID="childa" CLASS="blueback"><TABLE WIDTH=100 HEIGHT=80 CLASS="blueback"><TR><TD>a</TD></TR></TABLE></DIV>
+<DIV ID="childb" CLASS="greenback"><TABLE WIDTH=100 HEIGHT=80 CLASS="greenback"><TR><TD>b
+</TD></TR></TABLE></DIV>  
+</TD></TR></TABLE></DIV>  
+
+
+
+<SCRIPT LANGUAGE="JavaScript1.2"><!--
+
+
+//--></SCRIPT>
+
+
+
+</BODY>
+</HTML>

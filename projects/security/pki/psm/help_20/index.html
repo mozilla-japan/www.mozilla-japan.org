@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>PSM 2.0 Help Status</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/security/pki/psm/help_20/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/psm/help_20/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<head>
+
+
+
+<center>
+<!-- h2>PSM 2.0 Help: Status and Work in Progress</h2 -->
+<h2>PSM 2.0 ヘルプ: 状況と進行中の作業</h2>
+
+<i><FONT SIZE="-1">
+<!-- Newsgroup: -->
+ニュースグループ: 
+<A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</A><BR>
+
+<!-- Writer: -->
+作成者: 
+<a href="mailto:cotter@netscape.com?subject=PSM 2.0 Help">
+Sean Cotter</a></font></i><BR>
+
+</center>
+
+<!--
+<p><a href="#status">Status</a><BR>
+<a href="#docs">Work in Progress</a><BR>
+<a href="#related">Related Information</a>
+-->
+<p><a href="#status">状況</a><BR>
+<a href="#docs">進行中の作業</a><BR>
+<a href="#related">関連する情報</a>
+
+
+
+<!-- a name="status"><h3><hr>Status</h3></a -->
+<a name="status"><h3><hr>状況</h3></a>
+
+<!-- p>The files linked from this page must be viewed with Netscape 6 or later versions. -->
+<p>このページからリンクされているファイルは Netscape6 かそれ以降のバージョンで表示されるようになるでしょう。
+
+<!-- a name="docs"><h3><hr>Work in Progress</h3></a -->
+<a name="docs"><h3><hr>進行中の作業</h3></a>
+
+<!-- p>The best way to review help is in context, in a current build. The content below provides a snapshot of current work in progress for reference purposes. -->
+<p>ヘルプを見直すのに一番良いのは、(訳注: ブラウザを操作している)状況の中で、現在のビルドを使って見直すことです。この内容は、論点の参照のため、現在行っている作業のスナップショットを下に提供します。
+
+<!-- p>When all the twisties are open in the navigation frame of the Mozilla help viewer, the following headings will appear. Click the links below to see the corresponding sections. Formatting in the Mozilla help viewer will differ. -->
+<p>左の三角形 (訳注: 原文 twisties ) が Mozilla ヘルプビューアのナビゲーションフレームを開くとき、以下の見出しが現れます。対応するセクションを見るには、下のリンクをクリックしてください。Mozilla ヘルプビューアでのフォーマットとは違います。
+
+<!-- p>Most of the headings in the Dialog Box Help sections correspond to a help button in the UI. Target strings are posted at <a href="../pip_ui_elements.html">Targets & Text for PSM 2.0 UI Elements</a>.-->
+<p>ダイアログボックスヘルプセクションにある、ほとんどの見出しは、UI のヘルプボタンに対応します。対象となる文字列は <a href="../pip_ui_elements.html">PSM 2.0 UI 要素の対象とテキスト</a> に一覧してあります。
+
+<ul>
+	<li><a href="privacy_help.html"><!-- Using Privacy Features -->
+        プライバシー保護機能を使う</a> 
+	<ul>
+	<li><a href="privacy_help.html#sec_maintain"><!-- Privacy on the Internet-->
+        インターネット上のプライバシー</a> (背景と一般的なガイドライン)
+	<ul>
+		<li> <a href="privacy_help.html#privacy_gatherinfo"><!-- How Does a Web Site Gather Information About Me? -->
+        Web サイトは私の個人情報をどのように集めるのですか？</a>
+		<li> <a href="privacy_help.html#privacy_visit"><!-- What Information Does My Browser Give to a Web Site? -->
+        ブラウザはどういう情報を Web サイトに渡しているのですか？</a>
+		<li> <a href="privacy_help.html#privacy_cookies"><!-- What Are Cookies, and How Do They Work? -->
+        cookie とは何ですか？どのように使われるのでしょう？</a>
+		<li> <a href="privacy_help.html#privacy_unauth"><!-- How Do I Make Sure Unauthorized People Don't Use Information About Me? -->
+        私の個人情報が許可なく使われないようにするにはどうしたらいいのでしょう？</a>
+		<li> <a href="privacy_help.html#privacy_anon"><!-- Browsing Anonymously -->
+        匿名でブラウズする</a>
+	</ul>
+	
+	<li> <a href="using_priv_help.html#using_cookies"><!-- Using the Cookie Manager</a> (procedural help) -->
+    Cookie マネージャを使う</a> (手続き型ヘルプ)
+	<li> <a href="using_priv_help.html#using_password"><!-- Using the Password Manager</a> (procedural help) -->
+    パスワードマネージャを使う</a> (手続き型ヘルプ)
+	<li> <a href="using_priv_help.html#using_forms"><!-- Using the Form Manager</a> (procedural help) -->
+    フォームマネージャを使う</a> (手続き型ヘルプ)
+	<li> <a href="using_priv_help.html#using_encrypt"><!-- Encrypting Stored Sensitive Information</a> (procedural help) -->
+    保存されている機密情報を暗号化する</a> (手続き型ヘルプ)<br><br>
+	</ul>
+
+
+	<li><a href="using_certs_help.html"><!-- Using Certificates</a> (procedural help) -->
+    証明書を使う</a> (手続き型ヘルプ)
+	<ul>
+		<li> <a href="using_certs_help.html#using_certs_get"><!-- Get Your Own Certificate -->
+        自分の証明書を手に入れる</a>
+		<li> <a href="using_certs_help.html#using_certs_info"><!-- Check Security For a Web Pag -->
+        Web ページのセキュリティをチェックする</a>
+		<li> <a href="using_certs_help.html#using_certs_manage"><!-- Manage Certificates -->
+        証明書を管理する</a>
+		<li> <a href="using_certs_help.html#using_certs_devices"><!-- Manage Smart Cards and Other Security Devices -->
+        スマートカードと他のセキュリティデバイスを管理する</a>
+		<li> <a href="using_certs_help.html#using_certs_ssl"><!-- Manage SSL Warning and Ciphers -->
+        SSL の警告と設定を管理する</a>
+		<li> <a href="using_certs_help.html#using_certs_validation"><!-- Manage Validation Settings -->
+        検証の設定を管理する</a><br><br>
+	</ul>
+
+
+
+
+	<li><a href="context_help.html"><!-- Dialog Box Help -->
+    ダイアログボックスヘルプ</a><BR><BR>
+	<ul>
+	<li><a href="prefs_help.html"><!-- Preferences</a> (context-sensitive help)
+-->
+    設定</a> (状況依存型ヘルプ)<ul>
+		<li> <a href="privsec_help.html"><!-- Privacy and Security -->
+        プライバシーとセキュリティ</a>
+		<ul>
+			<li> <a href="passwords_help.html"><!-- Web Passwords -->
+            Web パスワード</a>
+			<li> <a href="passwords_help.html#Master_Password_Timeout"><!-- Master Passwords -->
+            マスターパスワード</a>			
+			<li> <a href="ssl_help.html">SSL</a>
+			<li> <a href="certs_prefs_help.html"><!-- Certificates -->
+            証明書</a>
+			<li> <a href="validation_help.html"><!-- Validation -->
+            検証</a><br><br>
+		</ul>
+	</ul>
+	<li><a href="ssl_page_info_help.html"><!-- SSL Page Info</a> (context-sensitive help) -->
+    SSL のページ情報</a> (状況依存型ヘルプ)
+	<ul>
+		<li> <a href="ssl_page_info_help.html#Not_Verified_Not Encrypted"><!-- Identity Not Verified佑onnection Not Encrypted -->
+        Web サイトを特定できません。検証されていません／接続は暗号化されていません</a>
+		<li> <a href="ssl_page_info_help.html#Verified_Encrypted"><!-- Identity Verified佑onnection Encrypted -->
+        Web サイトを特定しました。検証されています／接続は暗号化されています</a>
+		<li> <a href="ssl_page_info_help.html#Conditionally_Verified_Encrypted"><!-- Identity Conditionally Verified佑onnection Encrypted -->
+        Web サイトを特定しましたが、条件つきで検証されています／接続は暗号化されています</a>
+		<li> <a href="ssl_page_info_help.html#Verified_Not Encrypted"><!-- Identity Verified佑onnection Not Encrypted -->
+        Web サイトを特定しました。検証されています／接続は暗号化されていません</a>
+		<li> <a href="ssl_page_info_help.html#Conditionally_Verified_Not_Encrypted"><!-- Identity Conditionally Verified佑onnection Not Encrypted -->
+        Web サイトを特定しましたが、条件つきで検証されています／接続は暗号化されていません</a><br><br>
+
+	</ul>
+
+	<li><a href="certs_help.html"><!-- Certificate Manager</a> (context-sensitive help) -->
+    証明書マネージャ</a> (状況依存型ヘルプ)
+	<ul>
+		<li> <a href="certs_help.html#My_Certificates"><!-- Your Certificates -->
+        あなたの証明書</a>
+		<ul>
+			<li> <a href="certs_help.html#Choose_a_Certificate_Backup_Password"><!-- Choose a Certificate Backup Password -->
+            証明書をバックアップするパスワードを選択する</a>
+			<li> <a href="certs_help.html#Delete_My_Certificate"><!-- Delete Your Certificate -->
+            あなたの証明書を削除する</a>
+		</ul>
+		<li> <a href="certs_help.html#Web_Site_Certificates"><!-- Web Site Certificates -->
+        Web サイトの証明書</a>
+		<ul>
+			<li> <a href="certs_help.html#Edit_Web_Site_Certificate_Settings"><!-- Edit Web Site Certificate Settings -->
+            Web サイトの証明書の設定を編集する</a>
+			<li> <a href="certs_help.html#Delete_Web_Site_Certificate"><!-- Delete Web Site Certificate -->
+            Web サイトの証明書を削除する</a>
+		</ul>
+		<li> <a href="certs_help.html#CA_Certificates"><!-- CA Certificates -->
+        認証局の証明書</a>
+		<ul>
+			<li> <a href="certs_help.html#Edit_CA_Certificate_Settings"><!-- Edit CA Certificate Settings -->
+            認証局の証明書の設定を編集する</a>
+			<li> <a href="certs_help.html#Delete_CA_Certificate"><!-- Delete CA Certificate -->
+            認証局の証明書を削除する</a>
+		</ul>
+		<li> <a href="certs_help.html#Security_Devices"><!-- Device Manager -->
+        セキュリティデバイスマネージャ</a><br><br>
+
+	</ul>
+	
+	<li><a href="cert_dialog_help.html"><!-- Certificate Information and Decisions</a> (context-sensitive help) -->
+    証明書の情報と決定</a> (状況依存型ヘルプ)
+	<ul>
+		<li> <a href="cert_dialog_help.html#Certificate_Details"><!-- Certificate Details -->
+        証明書の詳細</a>
+		<li> <a href="cert_dialog_help.html#Choose_Security_Device"><!-- Choose Security Device -->
+        セキュリティデバイスを選択する</a>
+        <li> <a href="cert_dialog_help.html#Certificate_Backup"><!-- Certificate Backup -->
+        証明書のバックアップ</a>
+		<li> <a href="cert_dialog_help.html#User_Identification_Request"><!-- User Identification Request -->
+        身元確認の要求</a>
+		<li> <a href="cert_dialog_help.html#No_Acceptable_Identification"><!-- No Acceptable Identification -->
+        アクセスできない身元証明</a>
+		<li> <a href="cert_dialog_help.html#New_Certificate_Authority"><!-- New Certificate Authority -->
+        新しい認証局</a>
+		<li> <a href="cert_dialog_help.html#Web_Site_Certificates"><!-- Web Site Certificates -->
+        Web サイトの証明書</a>
+		<ul>
+			<li> <a href="cert_dialog_help.html#New_Web_Site_Certificate"><!-- New Web Site Certificate -->
+            新しい Web サイトの証明書</a>
+			<li> <a href="cert_dialog_help.html#Expired_Web_Site_Certificate"><!-- Expired Web Site Certificate -->
+            期限切れになった Web サイトの証明書</a>
+			<li> <a href="cert_dialog_help.html#Web_Site_Certificate_Not_Yet_Valid"><!-- Web Site Certificate Not Yet Valid -->
+            Web サイトの証明書はまだ検証されていません</a>
+			<li> <a href="cert_dialog_help.html#Unexpected_Certificate_Name"><!-- Unexpected Certificate Name -->
+            予期しない証明書名</a><br><br>
+		</ul>
+	</ul>
+	</ul>
+	</ul>
+	<li> <a href="glossary.html"><!-- Glossary -->
+    用語集</a>
+	<li> <a href="index_help.html"><!-- Index -->
+    索引</a>
+</ul>
+
+
+<!-- a name="related"><h3><hr>Related Information</h3></a -->
+<a name="related"><h3><hr>関連する情報</h3></a>
+<ul>	<li><a href="http://www.mozilla.org/projects/security/pki/psm/"><!-- PSM 2.0 Project Page -->
+PSM 2.0 プロジェクトページ</a>
+
+	<li><A HREF="http://www.mozilla.org/projects/security/pki/psm/help_20.html"><!-- Documentation Plan for PSM 2.0 -->
+    PSM 2.0 のドキュメント化プラン</A>
+
+	<li><A HREF="http://www.mozilla.org/projects/security/pki/psm/pip_ui_elements.html"><!-- Text for PSM 2.0 UI Elements -->
+    PSM 2.0 UI 要素のテキスト</A>
+
+	<li><A HREF="http://surveyor.red.iplanet.com/users/lord/publish/docs/Cartman/2.0/psm20ui.html"><!-- PSM 2.0 UI Specs -->
+    PSM 2.0 UI スペック</A>
+
+	<li><A HREF="http://www.mozilla.org/projects/help-viewer/help_specification.html"><!-- Mozilla 1.0 Help Specs -->
+    Mozilla 1.0 Help スペック</A>
+	<li><A HREF="http://www.mozilla.org/projects/help-viewer/cshelp_specification.html"><!-- Mozilla 1.0 Context Sensitive Help Mini-Specification -->
+    Mozilla 1.0 状況依存ヘルプの小さな仕様書</a>
+
+</ul>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/psm/help_20/index.html">英語版</a> 2001/07/05</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/psm/help_20/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2011-31: Thunderbird 6 で修正されたセキュリティ問題</title>
+<link rel="alternate" hreflang="en" modified="August 16, 2011">
+<style type="text/css">
+  h2        { font-size: 120%; color: #b91e27; }
+  hgroup h2 { font-size: 150%; color: inherit; }
+  .label    { width: 12em; font-weight: bold; float: left; }
+  .critical { background-color: #ff8080; padding: 0 .25em; border-radius: .25em }
+  .high     { background-color: #ffc080; padding: 0 .25em; border-radius: .25em }
+  .moderate { background-color: #ffff80; padding: 0 .25em; border-radius: .25em }
+  .low      { border: 1px solid #ccc; padding: 0 .25em; border-radius: .25em }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em><a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2011-31</strong></p>
+
+<hgroup>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2011-31</h1>
+<h2>Thunderbird 6 で修正されたセキュリティ問題</h2>
+</hgroup>
+
+<p>
+<span class="label">公開日:</span>  2011/08/16<br>
+<span class="label">製品:</span>    Thunderbird 6<br>
+</p>
+
+<p class="note">Thunderbird では JavaScript が初期設定で無効になっているため、ここに載っている問題の多くはメールを通じた悪用が不可能です。これらの特定の問題は、RSS フィードを購読して、フィードの要約ではなく完全なリモートコンテンツを表示させたときに引き起こされる可能性があります。ブラウザ機能を備えたアドオンによっても、そうした問題の影響を受ける可能性があります。</p>
+
+<h3>様々なメモリ安全性の問題 (rv:4.0)</h3>
+<p>重要度: <span class="critical">最高</span></p>
+<p>Thunderbird 5 やその他の Mozilla ベースの製品に搭載されているブラウザエンジンに含まれていたメモリ安全性に関するいくつかのバグを、Mozilla が特定、修正しました。これらの問題の一部は、特定状況下でメモリ破壊の形跡が見られ、条件が整えば任意のコード実行に悪用可能と思われるものでした。</p>
+<h3>参考資料</h3>
+<p id="cve-2011-2989">Thunderbird 5 に影響する WebGL のクラッシュが、<strong>Aral Yaman</strong> 氏によって報告されました。</p>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=674042">Bug 674042</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2989">CVE-2011-2989</a></li>
+</ul>
+<p id="cve-2011-2991">Thunderbird 5 に影響する JavaScript のクラッシュが、<strong>Vivekanand Bolajwar</strong> 氏によって報告されました。</p>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=655660">Bug 655660</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2991">CVE-2011-2991</a></li>
+</ul>
+<p id="cve-2011-2992">Thunderbird 5 に影響する Ogg リーダーのクラッシュが、Fox-IT 社の <strong>Bert Hubert</strong>、<strong>Theo Snelleman</strong> 両氏によって報告されました。</p>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=672789">Bug 672789</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2992">CVE-2011-2992</a></li>
+</ul>
+<p id="cve-2011-2985">Thunderbird 5 に影響するメモリ安全性の問題が、Mozilla の開発者とコミュニティメンバーである Robert Kaiser、Jesse Ruderman、moz_bug_r_a4、Mardeg、Gary Kwong、Christoph Diehl、Martijn Wargers、Travis Emmitt、Bob Clary、Jonathan Watt によって報告されました。</p>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=646825,648206,650273,650275,651030,660517,662132,665518,667092,667512,668245,669584,650732,667315">メモリ安全性に関するバグ - Firefox 6</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2985">CVE-2011-2985</a></li>
+</ul>
+
+<h2 id="cve-2011-2988">最高: WebGL シェーダーを用いた文字列のクラッシュ</h2>
+<p>重要度: <span class="critical">最高</span></p>
+<h3>概要</h3>
+<p>非常に長大なシェーダープログラムが、シェーダーのソースコードを保存するために使用されている文字列クラスにおいてバッファオーバーランとクラッシュを引き起こすことが、Context IS 社の <strong>Michael Jordon</strong> 氏によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=665936">Bug 665936</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2988">CVE-2011-2988</a></li>
+</ul>
+
+<h2 id="cve-2011-2987">最高: ANGLE ライブラリにおけるヒープオーバーフロー</h2>
+<p>重要度: <span class="critical">最高</span></p>
+<h3>概要</h3>
+<p>Mozilla の WebGL 実装で使用されている ANGLE ライブラリにおける潜在的に悪用可能なヒープオーバーフローが、Context IS 社の <strong>Michael Jordon</strong> 氏によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=665934">Bug 665934</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2987">CVE-2011-2987</a></li>
+</ul>
+
+<h2 id="cve-2011-0084">最高: SVGTextElement.getCharNumAtPosition() におけるクラッシュ</h2>
+<p>重要度: <span class="critical">最高</span></p>
+<h3>概要</h3>
+<p>SVG テキスト操作ルーチンのひとつにダングリングポインタ脆弱性が含まれていることが、TippingPoint の Zero Day Initiative を通じ、セキュリティ研究者の <strong>regenrecht</strong> 氏によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=648094">Bug 648094</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-0084">CVE-2011-0084</a></li>
+</ul>
+
+<h2 id="cve-2011-2986">高: Canvas と Windows D2D を用いたクロスオリジンデータ盗用</h2>
+<p>重要度: <span class="high">高</span></p>
+<h3>概要</h3>
+<p>Windows D2D ハードウェアアクセラレーション使用時に、あるドメインにある画像データを Canvas へ挿入し、別のドメインから読み取れてしまうことが、<strong>nasalislarvatus3000</strong> 氏によって報告されました。</p>
+<h3>参考資料</h3>
+<ul>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=655836">Bug 655836</a></li>
+  <li><a class="ex-ref" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2986">CVE-2011-2986</a></li>
+</ul>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2011/mfsa2011-31.html">英語版</a> 2011/08/16 &mdash; 和訳版 2011/08/17 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2011/mfsa2011-31.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

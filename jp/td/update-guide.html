@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Mozilla Japan 翻訳部門 - 和訳更新ガイド</title>
+
+<link rel="stylesheet" type="text/css" href="local.css" media="screen">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+<ul id="nav">
+<li><a href="../../jp/td/"><strong>翻訳部門</strong></a></li>
+<li><a href="http://forums.firehacks.org/trans/"><strong>翻訳部門フォーラム</strong></a></li>
+<li><a href="../../jp/td/workflow.html"><strong>参加方法と和訳作業</strong></a>
+<ul>
+<li><a href="../../jp/td/guide.html">和訳作業ガイド</a></li>
+<li><a href="../../jp/td/update-guide.html">和訳更新ガイド</a></li>
+<li><a href="../../jp/td/faq.html">よくある質問</a></li>
+</ul>
+</li>
+<li><a href="http://www.mozilla-japan.org/jp/td/xul/"><strong>XUL Tutorial<br>和訳プロジェクト</strong></a></li>
+<li><a href="../../jp/td/links.html"><strong>参考資料</strong></a></li>
+<li><a href="../../jp/td/about.html"><strong>翻訳部門について</strong></a>
+<ul>
+<li><a href="../../jp/td/contributors.html">参加者・スタッフ</a></li>
+<li><a href="../../jp/td/history.html">活動履歴</a></li>
+</ul>
+</li></ul>
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<h1>和訳更新ガイド</h1>
+
+<p>この文書では、基本的な簡単なドキュメントの更新の仕方、和訳と原文をワンタッチで切り替える方法、そして新規ドキュメント公開やドキュメントの更新をいち早くキャッチする方法を解説します。</p>
+
+<ol>
+
+    <li><a href="#section-basic">基本的な簡単なドキュメントの更新の仕方</a>
+
+        <ul>
+
+            <li><a href="#section-basic1">フッタと日付</a></li>
+
+            <li><a href="#section-basic2">Bonsai で変更履歴を見る</a></li>
+
+            <li><a href="#section-basic3">各変更時の差分を見る</a></li>
+
+            <li><a href="#section-basic4">更新文書を作りたければ</a></li>
+
+            <li><a href="#section-basic5">例外もあります</a></li>
+
+        </ul></li>
+
+    <li><a href="#section-switch">和訳と原文をワンタッチで切り替える方法</a></li>
+
+    <li><a href="#section-bonsai">Bonsai をワンタッチで表示する方法</a></li>
+
+    <li><a href="#section-check">新規ドキュメント公開やドキュメントの更新をいち早くキャッチする方法</a></li>
+
+</ol>
+
+
+
+<h2 id="section-basic">基本的な簡単なドキュメントの更新の仕方</h2>
+
+<p>Mozilla Japan では mozilla.org のドキュメントの和訳を提供していますが、これらは必ずしも最新とは限りません。ドキュメントが最新かどうかをチェックする方法と、古くなったドキュメントの変更点を調べる方法 (これが分かれば和訳文書を最新版に更新するのも楽ですね) を紹介します。</p>
+
+
+
+<h3 id="section-basic1">フッタと日付</h3>
+
+<p>mozilla.org のドキュメントのほとんどには、</p>
+
+<div class="screen">Last modified November 2, 2004 &nbsp; Document History &nbsp; Edit this Page (or via CVS)</div>
+
+<p>このようなフッタがページ下に入っています。このフッタの中には、見たとおり日付が入っています。この日付はドキュメントの登録・更新時に自動生成されたものです。一方、和訳ドキュメントにも、</p>
+
+<div class="screen">英語版 2004/11/02 - 和訳版 2004/11/03 - 英語版更新履歴</div>
+
+<p>やはりフッタが入っています。この「英語版」の日付は、和訳をした時点でのオリジナルドキュメントの最終更新日で、「和訳版」の日付は和訳ドキュメントの最終更新日 (自動生成) です。オリジナルドキュメントの日付と「英語版」の日付が同じなら、その和訳は最新です。これが異なっている場合は、オリジナルドキュメントが更新され、和訳ドキュメントが古くなっているわけです (時々間違っていることもあります)。</p>
+
+<p>和訳ドキュメントが古くなっている? 新しいドキュメントが欲しい、と思うのは当然でしょう。ただ、ほんの一部しか修正されていないとき、どこが修正されたか分からなければ、和訳を更新するのは大変です。</p>
+
+
+
+<h3 id="section-basic2">Bonsai で変更履歴を見る</h3>
+
+<div class="screenshot-250px"><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/developer/index.html" title="クリックで拡大"><img src="images/bonsai-shot-1.gif" alt="Bonsai ツール スクリーンショット"></a></div>
+
+<p>そんな時は、和訳フッタの「英語版更新履歴」のリンクをクリックしましょう。オリジナルドキュメントにも「Document History」というリンクがあります。</p>
+
+<p>これは Bonsai というツールの画面です。mozilla.org の文書は CVS というツールで管理されていて、いつどこを修正したか全部履歴が残っています。CVS の履歴を横断的に見られるようにしたものが Bonsai で、mozilla.org の文書も同じように横断的に見られます。</p>
+
+<p>ここで、いつどこが更新されたかが分かります。Rev の列の数字 (バージョン番号) をクリックすると、その日・その時間に更新された場所が分かります。</p>
+
+
+
+<h3 id="section-basic3">各変更時の差分を見る</h3>
+
+<div class="screenshot-250px"><a href="http://bonsai-www.mozilla.org/cvsview2.cgi?diff_mode=context&amp;whitespace_mode=show&amp;file=index.html&amp;subdir=mozilla-org/html/developer&amp;command=DIFF_FRAMESET&amp;rev1=1.21&amp;rev2=1.22" title="クリックで拡大"><img src="images/bonsai-shot-2.gif" alt="Bonsai ツール スクリーンショット"></a></div>
+
+<p>左側が更新前、右側が更新後です。緑色の部分がまるまる追加・削除された箇所。水色の部分が差し替えられた箇所。この色づけ、時々変な結果を表示しますので、そのときは残念でした。ただし、変更されているにもかかわらず色が付かないということはありません。</p>
+
+
+
+<h3 id="section-basic4">更新文書を作りたければ</h3>
+
+<p>mozilla.org のドキュメントと和訳ドキュメントの日付を比較して、それに対応する変更履歴を調べ、変更された部分だけ直せば、あっという間に和訳ドキュメントは最新になりました。新たな和訳ドキュメントを公開する要領で報告してください。</p>
+
+
+
+<h3 id="section-basic5">例外もあります</h3>
+
+<p>ここで補足。mozilla.org の一部のドキュメントにはフッタがありません。そういう文書はどうでしょうか?</p>
+
+<div class="screen">http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/index.html</div>
+
+<p>この index.html の部分に、その文書の URL の http://www.mozilla.org/ に続く部分を入れれば、更新履歴を見ることができます。下にあるブックマークレットを使うと便利でしょう。</p>
+
+<p>時々、自動生成でない更新日付が書いてある文書もありますが、あくまでその日付は「参考」にしてください。正しくないこともたまにあります。</p>
+
+
+
+<h2 id="section-switch">和訳と原文をワンタッチで切り替える方法</h2>
+
+<p>このブックマークレットを使うと、和訳と原文を簡単に切り替えられます。リンクを右クリックして「このリンクをブックマーク」を選択し、適当な場所に追加してください。</p>
+
+<p><a href="javascript: var h = location.host; var p = location.pathname; if (h.indexOf('mozilla.org') != -1) { location = 'http://www.mozilla-japan.org' + (h == 'lxr.mozilla.org' ? '/lxr' : '') + p; } else if (h.indexOf('mozilla-japan.org') != -1) { location = 'http://' + (p.substr(1,3) == 'lxr' ? 'lxr.mozilla.org' + p.substr(4) : 'www.mozilla.org' + p); }">和訳／原文切り替え</a></p>
+
+
+
+<h2 id="section-bonsai">Bonsai をワンタッチで表示する方法</h2>
+
+<p>このブックマークレットを使うと、更新履歴をワンタッチで表示できます。リンクを右クリックして「このリンクをブックマーク」を選択し、適当な場所に追加してください。</p>
+
+<p><a href="javascript: var h = location.host; var p = location.pathname; if (h.indexOf('mozilla.org') != -1 || h.indexOf('mozilla-japan.org') != -1) { location = 'http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html' + p + ((p.substr(-1) == '/') ? 'index.html' : ''); }">更新履歴</a></p>
+
+
+
+<h2 id="section-check">新規ドキュメント公開やドキュメントの更新をいち早くキャッチする方法</h2>
+
+<p>以下のページをまめにチェックすると、ドキュメントと公開・更新をいち早くチェックできます。URL 末尾の「48」とは、過去 48 時間以内にチェックインされた文書を示します。ここを変えることで検索の時間的な範囲を変えることができます。</p>
+
+<p><a href="http://bonsai-www.mozilla.org/cvsquery.cgi?module=MozillaOrg&amp;sortby=Date&amp;date=hours&amp;hours=48">Checkins to module MozillaOrg in the last 48 hours</a></p>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span>最終更新 2007/04/24</span></p>
+</div>
+
+</div>
+</body>
+</html>

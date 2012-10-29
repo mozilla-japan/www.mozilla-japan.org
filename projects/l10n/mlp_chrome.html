@@ -1,0 +1,797 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 TRANSITIONAL//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+   <meta name="Author" content="Andrea Salmaso, Tao Chen">
+   <meta name="GENERATOR" content="Mozilla">
+   <title>Mozilla 地域化技術的詳細</title>
+    <style type="text/css" media="screen,tv">
+      pre {background-color: lightgrey;}
+.comment {
+    color: #20A040;
+	font-size: 80%;
+}
+    </style>
+<script language="JavaScript">
+<!--
+
+function SymError()
+{
+  return true;
+}
+
+window.onerror = SymError;
+
+//-->
+</script>
+
+<script language="javascript" type="text/javascript">
+ function MozVersion()
+ {
+ if (navigator.userAgent.indexOf("Gecko") == -1)
+  message = "Can't determine the Mozilla version string"
+ else
+  {
+   message = "Mozilla version '";
+   message += navigator.userAgent.match(/rv:([^;)]+)/)[1];
+   message += "'"
+   if (message.indexOf("''") != -1)
+     message = "Can't determine the Mozilla version string";
+  }
+ alert (message);
+ }
+//-->
+</script>
+
+<link rel="alternate" hreflang="en" modified="March 24, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/l10n/mlp_chrome.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+<p>&nbsp;</p>
+<table border="0" width="100%">
+  <tr><td>
+    <center><h1>Mozilla 言語パック内部構造</h1></center>
+  </td></tr>
+  <tr><td>
+    <center><a href="news://news.mozilla.org/netscape.public.mozilla.l10n">ニュースグループでの議論</a> /
+    <a href="mailto:mozilla-l10n-request@mozilla.org?subject=subscribe">メーリングリスト</a><br>
+    <a href="mailto:MLP Staff &lt;mlp-staff&#64;mozilla.org&gt;">Mozilla 地域化プロジェクトスタッフ</a></center>
+  </td></tr>
+</table>
+<br>
+<abbr title="Mozilla Localization Project"><b>MLP</b></abbr>
+ [<a href="./">地域化プロジェクトホーム</a>]
+ | [<a href="mlp_docs.html">地域化資料</a>]
+ | [言語パック技術]<br>
+<br>
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>はじめに</h3></td></tr>
+</table>
+<p>Mozilla は <a href="../../projects/xpinstall/" title="クロスプラットフォームインストーラ">XPI</a> パッケージを使って自動的に追加コンポーネントをインストールすることができます。</p>
+<p>典型的な例では、Mozilla の言語パックは一つの XPI アーカイブで構成されています。
+ これは、PKZip 互換のアーカイブで、新しい言語のためのリソースを含み、Mozilla の特定の<a href="javascript:MozVersion()">リリース</a>のユーザインタフェースを対象としていて、インストール・スクリプトを含んでいます。
+ このようにして、ユーザはクリック一つで言語を追加することができます。<p>
+<p>それぞれのユーザおよびユーザ・プロファイルごとに、Mozilla のアプリケーションのユーザ・インタフェースの言語は、インストールされている中から好きな物を動的に選択することができます。</p>
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>目次</h3></td></tr>
+</table>
+<ul type="circle">
+<li><a href="#resources">Mozilla の地域化可能なリソース</a></li>
+<li><a href="#text">地域化可能なテキストファイル</a></li>
+<li><a href="#chrome">Mozilla の Chrome 入門</a></li>
+<li><a href="#registering">地域化可能なリソースの登録方法</a></il>
+ <ul><li><a href="#reg_struct">登録可能なパッケージの構造</a></li>
+   <li><a href="#reg_pack">新しいロケールパッケージを作る</a></li>
+   <li><a href="#reg_reg">パッケージを登録する</a></li></ul>
+<li><a href="#XPI">簡単な XPI 言語パックを作る</a></li>
+ <ul><li><a href="#XPI_jars">JAR ファイルの中にリソースを梱包する</a></li>
+   <li><a href="#XPI_script">インストール・スクリプトを用意する</a></li>
+   <li><a href="#XPI_pack">全部 XPI パッケージの中に置く</a></li></ul>
+</ul>
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="resources"></a>Mozilla の地域化可能なリソース</h3></td></tr>
+</table>
+<p>Mozilla ユーザ・インタフェースはレイアウトエンジンが実行時に描画するのに使ういくつかの XML ページで成り立っています。
+ このことはユーザ・インタフェース・リソースがただのテキストファイルと一般的な Web フォーマットで保存された画像で構成されていることを意味します。
+ ユーザ・インタフェースの一部である地域化可能リソースはこの規則の例外ではありません。</p>
+<p>忘れてはならないこととして、すべてのテキストエディタがいかなるテキストファイルを編集するのにも十分適しているというわけではないことがあります。
+ ここでのキーワードはテキストの<b>エンコーディング</b>です。
+ エンコーディングはアプリケーションが文字や記号を電子的文書に変換する方法です。
+ すべてのプレーン・テキストが同じエンコーディングであるわけではありません。
+ 同じプログラム（例えば Windows のメモ帳）であっても、別の言語を使うマシン（例えばスロバキア語や中国語など）であれば、同じ記号を異なった方法で保存する場合があり、また種類によってスクリプトや記号を読み込み／受け入れできない場合もあります。 
+ 操作する文字列テキストを Mozilla が理解できるエンコーディングに"エンコード"できる<a href="mlp_tools.html#texteditors">ツール</a>が必要でしょう。</p>
+<p>ユーザ・インタフェースのファイルは Web 文書として解析される場合が非常に多いでしょう。
+ Web 文書がアクセス拒否されなくてはならないというセキュリティのための機能へのアクセスを持つという点において異なっています。そのため、ユーザ・インタフェースのリソースはインストールされ、<a href="#registering">登録され</a>る必要があります。
+ すべてのユーザ・インタフェース素材は、Web ページが HTTP プロトコルを使って他のドキュメントを指すのと似た方法で、<a href="#chrome">"chrome"</a> プロトコルを通してお互いのファイルを参照するよう動作します。</p>
+<p>便宜上、Mozilla アプリケーション・スィートを構成するたくさんのユーザ・インタフェースファイルは、バイナリの chrome/ フォルダ以下の（Java アーカイブの .jar ファイルとの共通点は少ないのですが）.jar 拡張子をもつ少数の zip 圧縮ファイルの中に含まれています。
+ これらの集約ファイルはたいてい、多少は地域化可能素材を整えてあります。地域化可能素材は存在するならば <i>locale/</i> フォルダの下に集められています。
+<p><i>chrome/</i> フォルダの外に置かれている追加の地域化可能なリソースはデフォルトのユーザ・プロファイルとその他の任意リソース（<a href="http://mycroft.mozdev.org">検索プラグイン</a>、<a href="http://spellchecker.mozdev.org/">スペルチェッカー</a>辞書など）を含んでいます。
+ この素材は登録の必要はありません。</p>
+<p>典型的な場面を考えてみます。
+ 英語 - Mozilla に同梱された合衆国（en-US）ロケールリソース。
+ これらは、たいてい地域化作業者が作業者の言語のバージョンの Mozilla を得るために作業すべきファイルです。</p>
+
+<blockquote><dl>
+<dt>chrome/ <b>en-US.jar</b> !locale/en-US/<i>component</i>/*<br>
+ <tt> 各々のコンポーネントは、<i>chrome://component/locale/*</i></tt> 配下に登録されています。</dt>
+<dd><tt>en-US.jar</tt> アーカイブには、地域化対象部分として登録されていて Mozilla アプリケーション（コンポーネント別）のユーザ・インタフェース全体で使われるものがまとめて収められています。
+   <br><br></dd>
+
+<dt>chrome/ <b>en-mac.jar</b> !locale/en-US/<i>component</i>/*  <span id="comment"> (プラットフォームによっては <b>en-win.jar</b> や <b>en-unix.jar</b>) </span><br>
+ <tt> 各々のコンポーネントは、<i>chrome://component/locale/*</i></tt> 配下に登録されています。</dt>
+<dd>Mozilla のユーザ・インタフェースのうちプラットフォーム依存のものだけが含まれています。
+   これらのファイルすべてには、完全に同じコンポーネントが含まれています。
+   したがって、この３ファイルのうち１つのコンポーネントだけが有効なものとして登録されます。<br><br></dd>
+
+<dt>chrome/ <b>US.jar</b> !locale/US/<i>component</i>/*<br>
+ <tt> 各々のコンポーネントは、<i>chrome://component/locale/*</i></tt> 配下に登録されています。</dt>
+<dd>
+   いわゆる<a href="mlp_regional.html">地域別コンテンツ</a>が収められています。
+   これらは、ユーザ・インタフェースをあちこちで使われる外部リソースへの地域特定のポインタです。
+   この素材はその他の地域化対象リソースとは<a href="#XPI_jars">異なったロケールコード</a>を使います。
+   そのため、このコンテンツだけ独立して選択できるようになっています。
+   <br><br></dd>
+
+<dt>defaults/profile/US/*</dt>
+<dd>プロファイルのテンプレートです。
+   これらのファイルは次のようないくつかのファイルについてのユーザプロフィルのテンプレートを含んでいます。<br />
+   <ul>
+   <li>ブックマーク、デフォルトのウィンドウの形・位置、MIME タイプの結びつけ、デフォルトのサイドバーパネル、デフォルトの検索プラグイン
+   </ul>
+   これらのファイルは<a href="mlp_regional.html">地域コンテンツ</a>の一部ですが、新しいユーザプロファイルを作成する時にだけ使われます。
+   フォルダ名は地域素材のために使われているロケールコードと一致しなくてはなりません。
+   <br><br></dd>
+
+<dt>searchplugins/*, components/myspell/*, ...</dt>
+<dd>追加の要素です。
+   これらの任意ファイルは、<a href="http://mycroft.mozdev.org/">Mycroft</a> 検索プラグインから、<a href="http://spellchecker.mozdev.org">スペルチェッカー</a>辞書、アプリケーションを全面的にユーザの習慣に順応させるための適切な配布がされるかもしれないその他の地域化可能・ロケール依存コンポーネントに分類されます。
+   <br><br></dd>
+
+</dl></blockquote>
+
+
+<a name="text"></a>
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>地域化可能テキストファイル</h3></td></tr>
+</table>
+<p>上述の通り、すべてのテキストエディタが Mozilla のテキストリソースを編集するのに適しているわけではありません。
+ このアプリケーションは最初から万国の利用者・開発者を考慮して設計されたため、多くの有名なテキストエディタで今も使われている旧来の 8 ビットエンコーディングは、すぐに Mozilla のためには不十分であることが明らかになりました。<p>
+<p>中心となる地域化可能なリソースは以下のものから構成されています:
+ <ul><li>DTD files = XML 定義テーブル。エンコーディング: <b>UTF-8</b></li>
+     <li>properties files = Java/JS properties 定義。エンコーディング:
+       <b>Escaped Unicode</b> (\uXXXX)</li></ul></p>
+<p>正しくこれらのファイルを手動編集するためには、これらのエンコーディングを処理可能な<a href="mlp_tools.html#texteditors">テキストエディタ</a>が必要となるでしょう。
+ このようにして、Mozilla は<a href="http://www.unicode.org">Unicode コンソーシアム</a>で定義された文字・記号の全体を使うことができます。</p>
+<p>Mozilla Translator のような<a href="mlp_tools.html#leveraging">ツール</a>は、ユーザに意識させることなくこれらの込み入った部分を扱うことができます。</p>
+<p><i>dtd</i>、<i>properties</i> 両方のテキストファイルには名前づけられた文字列の集合が入っています。
+ 前者は XML 文書の規則を、後者は JavaScript の慣習を遵守しなくてはなりません。
+ この規則・慣習はコメント、引用、使うことができる文字を決定づけます。</p>
+<p>これらのファイルを直接編集しようとするとき、心にとめておく必要のある一般的なルールを以下のテーブルに一覧します:</p>
+
+<table border="0"><tr><td>
+
+<table align="left" width="43%" border="1">
+<thead>
+ <tr><th>&nbsp;&nbsp;&nbsp;<b>dtd</b></th></tr>
+</thead>
+<tbody>
+ <tr><td>文字列形式:<br><font color="maroon">&lt;!ENTITY string_name "Text Text"></font></td></tr>
+ <tr>
+  <td align="center">
+   <table align="left" border="0">
+    <thead><tr><th>許されない文字:</th></tr></thead>
+    <tbody>
+    <tr><td>&amp;</td></tr>
+    <tr><td>&lt;</td></tr>
+    <tr><td>"</td></tr>
+    <tr><td>&#037;</td></tr>
+    <tbody>
+   </table>
+   <table border="0">
+    <thead><tr><th>代替文字:</th></tr></thead>
+    <tbody>
+    <tr><td>&amp;amp;</td></tr>
+    <tr><td>&amp;lt;</td></tr>
+    <tr><td>&amp;quot;</td></tr>
+    <tr><td>&amp;#037;</td></tr>
+    <tbody>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <table width="100%" border="0">
+    <thead><tr><th colspan="2">その他の有用な事前に定義された実体:</th></tr></thead>
+    <tbody>
+    <tr><td width="50%">&gt;</td><td width="50%">&amp;gt;</td></tr>
+    <tr><td>&apos;</td><td>&amp;apos;</td></tr>
+    <tr><td colspan="2">&amp;十進数; 形式でその他すべての Unicode 文字</td></tr>
+    <tbody>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>一行／複数行コメント: <font color="maroon">&nbsp;&lt;!-- テキストをこの部分に --></font></td>
+ </tr>
+</tbody>
+</table>
+
+<table width="55%" border="1">
+<thead>
+ <tr><th>&nbsp;&nbsp;&nbsp;<b>properties</b></th></tr>
+</thead>
+<tbody>
+ <tr><td>文字列形式:<br><font color="maroon">string_name = Text Text</font></td></tr>
+ <tr>
+  <td align="center">
+   <table align="left" border="0">
+    <thead><tr><th>許されない文字:</th></tr></thead>
+    <tbody>
+    <tr><td>改行 (文字列の終わり)</td></tr>
+    <tr><td>バックスラッシュ "\"</td></tr>
+    <tr><td>ダブルクォートとシングルクォート " '</td></tr>
+    <tbody>
+   </table>
+   <table border="0">
+    <thead><tr><th>代替文字:</th></tr></thead>
+    <tbody>
+    <tr><td>改行文字としての <tt>\n</tt><br></td></tr>
+    <tr><td>バックスラッシュとしての <tt>\\</tt></td></tr>
+    <tr><td><tt>\"</tt> と <tt>\'</tt></td></tr>
+    <tbody>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <table width="100%" border="0">
+    <thead><tr><th colspan="2">その他の有用なエスケープされた文字:</th></tr></thead>
+    <tbody>
+    <tr><td width="50%">\b</td><td width="50%">バックスペース</td></tr>
+    <tr><td>\f</td><td>改ページ</td></tr>
+    <tr><td>\r</td><td>キャリッジリターン(CR)</td></tr>
+    <tr><td>\t</td><td>タブ</td></tr>
+    <tr><td colspan="2"><p>\uXXXX 形式でその他のすべての Unicode 文字：
+      XXXX は 4桁の 16進数の Unicode 番号</p>
+      <p>行の最後の文字としての「継続のバックスラッシュ "\"」は次の行に文字列が続くことを示します。</p>
+      </td></tr>
+    <tbody>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>
+      行全体コメント（行の最初の文字から）:<font color="maroon">#&nbsp;テキスト&nbsp;テキスト</font><br>
+      行の最後のコメント: <font color="maroon">//&nbsp;テキスト&nbsp;テキスト</font><br>
+      複数行コメント: <font color="maroon">/* テキストが続く */</font></td>
+ </tr>
+</tbody>
+</table>
+
+</td></tr></table>
+<p></p>
+
+<a name="chrome"></a>
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3>Mozilla Chrome の紹介</h3></td></tr>
+</table>
+<p>ここでの最終目標は、自分にあった Mozilla に登録された新しい言語リソースを作ることです。
+ ひとたび登録すれば、ユーザはアプリケーション全体で、新しい言語リソースを選択し、現在使用するものとして有効化することができます。
+ これは設定で言語を選択し（<font size="-1"> (Edit | Preferences | Appearance | Language/Contents)</font><span class="comment">訳注：編集 | 設定 | 表示 | 言語/コンテンツ</span>）、再起動するということです。<p>
+<p>言語リソースの登録は、Mozilla のレジストリの中の一覧に追加するということです。
+ Mozilla レジストリはいくつのパッケージがインストールされたかの軌跡を残しています。
+ どの Mozilla コンポーネント（アプリケーション）もたいてい三つの異なるパッケージにモジュール化されています:
+<ul type="square"><li><i>コンテント</i>: XML と JavaScript が混在するファイルで、特定のアプリケーション（例：メール、ナビゲータ、コンポーザ、ブックマーク管理、等）のためのユーザ・インタフェースのロジックを含んでいます。
+ XML ファイルは XUL と呼ばれる特定のタグのセットを使ってそれぞれのアプリケーションのウィンドウを記述します。
+ それらは実行時に <abbr title="Document Object Model">DOM</abbr> プロパティを通して JavaScript を使って操作できます。</li>
+<li><i>スキン</i>: <abbr title="eXtensible Stylesheet Language">XLS</abbr>、<abbr title="Cascading Style Sheet">CSS</abbr> 、Web 用画像ファイルが集まったもので、ユーザインタフェースのある部分の最終的な見栄えを定義しており、アプリケーションの内容によって記述されます。</li>
+<li><i>ロケール</i>: 地域化可能ソースで、内容はユーザと対話するのに使われます。</li>
+</ul></p>
+<p>このモジュール化によって、あるアプリケーション内容にとって複数の外観（スキン、テーマという名称で知られている）や言語（ロケール）を持つ機能が得られました。それも、ただアプリケーションの XUL ファイルによって指し示されるファイルを切り替えるというだけでです。</p>
+<p>現在選択されているロケールとスキンという考え方により、ロケールとスキンの切り替えが可能となっています。
+ もちろん前者に焦点を置いていますが、後者にもまったく同じ思想が当てはまります。</p>
+<p>どのロケールパッケージも主に二つのプロパティによって識別できます。構成するコンテント（アプリケーション）コンポーネントと所有するロケール（<a href="mlp_howto.html#registration">言語-地域 code</a>）です。</p>
+<p>ひとたび、Mozilla のユーザインタフェースの言語を選択すると、ロケールコードの対応するロケールパッケージは、<tt>chrome://</tt> プロトコルを通じてデフォルトロケールリソースとして配置されます。
+ アプリケーションファイルは、実際のところ、ユーザのストレージデバイスへの直接のポインタを持っていません。
+ その代わりに、現在のアプリケーションの <tt>chrome://</tt> 空間の <i>locale/</i> を通してアクセスします。
+ そして、現在選択されているデフォルトロケールは、アプリケーションの <i>locale/</i> フォルダの中の対応するロケールリソースと Mozilla によって対応がとられます。</p>
+<p><i>この考え方を例を使ってより明確にしましょう。</i><br>
+ コンポーネントが "<tt>navigator</tt>" という名前のアプリケーションが、<tt>navigator.xul</tt>  という XML ファイルに記述された新しいウィンドウを生成します。そこで Web 検索ボタンの中に文字列を表示させる必要が出てきます。</p>
+<p>アプリケーションは、<tt>navigator.xul</tt> 文書をウィンドウを生成するために Mozilla エンジンに通します。
+ "<tt>navigator</tt>" はアプリケーションの中に、対応するコンテント、スキン、ロケールパッケージとともに登録されています。
+ <tt>navigator</tt> コンポーネントには複数の異なったロケールパッケージを登録することもできるでしょう。それぞれのリソースは他の言語のリソースのコピーで、ロケールコードで識別されます。その中で、いっときに一つのロケールパッケージだけを選択しなくてはなりません。</p>
+<p>アプリケーションは現在どのロケールが選択されているかを知る必要はありません。
+ すべてのリソースは <tt>chrome</tt> プロトコルを通してアクセスされるため、選択されたロケールのリソースだけが <tt>navigator</tt> コンポーネントの <i>locale/</i> chrome アドレスのもとにマッピングされます。現在選択されているリソースは <tt>navigator</tt> からアクセスできる<i>当該</i>アプリケーションリソースとなるのです（それが唯一アクセス可能なものとして）。</p>
+<p>アプリケーションは新しいウィンドウを記述するファイルのため以下の URI を通ります:<br>
+<dl><dd><tt>chrome://navigator/content/navigator.xul</tt></dd></dl>
+ その上で、 <tt>navigator.xul</tt> が内部の文字列を参照します<br>
+<dl><dd><tt>chrome://navigator/locale/navigator.dtd</tt></dd></dl>
+ ボタンに表示するためのテキストを読み出すために参照します。アプリケーションはそして、どの言語であれ変更することなく表示します。
+ 関連するファイルが選択されたロケールのリソースからアプリケーションまで通過するのを取りはからうのが基底となる chrome です。</p>
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="registering"></a>地域化可能ソースを登録する方法</h3></td></tr>
+</table>
+<p>Mozilla の地域化可能リソースのうちユーザインタフェース部分は、選択して使用するためには登録される必要があります。</p>
+<p>Mozilla にリソースを登録するためには以下のうちのいずれかが必要です:
+<ul>
+ <li><abbr title="Cross Platform Installer">XPI</abbr> パッケージ内部の JavaScript インストーラでリソース同梱
+ <abbr title="Cross Platform Installer">XPI</abbr> パッケージの中の JavaScript インストーラスクリプトをリソースの固まりと一緒に配布されたコンテンツに登録しましょう。
+  そのスクリプトは以下の状況でもうまく処理できなくてはならないでしょう:
+  <ul>
+   <li>プラットフォーム依存素材の条件付き登録</li>
+   <li>複数ユーザ環境で、アプリケーション大と単独ユーザプロファイルのいずれかのインストール</li>
+   <li>エラー状況処理</li>
+  </ul>
+ </li>
+ <li>新しいパッケージを <tt>chrome/installed-chrome.txt</tt> ファイルを新しいパッケージとしてリストに入れてください。これにより、root（管理者）ユーザが次回に Mozilla を再起動する際にパッケージを登録できるようになります。 
+ </li>
+</ul></p>
+
+<h4><a name="reg_struct"></a>登録可能パッケージの構造</h4>
+<p>Mozilla に登録できる最小単位はパッケージです。</p>
+<p>パッケージを、そのコンポーネント名称のもとに登録された Mozilla アプリケーションが所有するファイルのグループであると考えることができます。
+ <a href="#chrome">先に</a>触れたように、パッケージは主に三つの部品、コンテント、スキン、ロケールから成ります。
+ ではロケールパッケージの作成に注目していきます。</p>
+<p>あるコンポーネントがある程度地域化可能に作られていれば、地域化可能リソースは同じコンポーネント名称を持つロケールパッケージの中に外部化されています。
+ 望む限りたくさんのロケールパッケージをロケールコードで識別して同じコンポーネント名で登録できます。</p>
+<p>パッケージの基本的コンポーネントは:
+<ul>
+ <li>パッケージそのものによって含まれたファイルで、一つのフォルダか .jar アーカイブの一つのフォルダに集められています（jar について、すべての点において典型的な zip アーカイブと考えることができます）。</li>
+ <li><tt>contents.rdf</tt> XML ファイル。このファイルには登録された後にどこが挿入場所になるのか加え、作者名や対象となる Mozilla のバージョンなどパッケージ自身の情報が記述されています。</li>
+</ul></p>
+
+<h4><a name="reg_pack"></a>新しいロケールパッケージを作る</h4>
+<p>では、"<tt>editor</tt>" のための簡体字中国語パッケージ（<a href="mlp_howto.html#registration">ロケールコードは</a> "zh-CN"）を作ると仮定しよう。
+ 対象の Mozilla の<a href="javascript:MozVersion()">バージョン</a> は 1.2とします。
+ 以下の手順に従うことになるでしょう:</p>
+<ul type="square">
+ <li>一般的な zip 解凍ユーティリティで <b>en-US.jar</b> ファイルの中の <i>locale/en-US/editor/</i> から英語リソースを抽出する。</li>
+ <li><b>.dtd</b>、 <b>.properties</b> その他のファイルを<a href="mlp_tools.html#texteditors">編集して</a>、元となる英語のファイルを中国語に<a href="mlp_howto.html#what2loc">地域化します。</a></li>
+ <li>パッケージの情報に従って、<b>contents.rdf</b> を編集し、地域化されたリソースファイルと同じフォルダの中に置きます。</li>
+ <li>圧縮された jar ファイルに、任意にパッケージをアーカイブすることもできます。</li>
+</ul></p>
+<p>これから修正する <tt>contents.rdf</tt> をそうするべきかみてみましょう:</p>
+<table border="0" cellspacing="5">
+<caption><tt>editor</tt> コンポーネントの zh-CN ロケールパッケージのための <tt><b>contents.rdf</b></tt></caption>
+<tr><td bgcolor="#CCCCCC">
+<pre>
+&lt;?xml version="1.0"?&gt;
+&lt;RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:chrome="http://www.mozilla.org/rdf/chrome#" &gt;
+
+<font color="maroon">&lt;!-- まずは "locale" のルートに "zh-CN" カテゴリを作成します   --&gt;</font>
+  &lt;RDF:Seq about="urn:mozilla:locale:root" &gt;
+    &lt;RDF:li resource="urn:mozilla:locale:<font color="red">zh-CN</font>" /&gt;
+  &lt;/RDF:Seq&gt;
+
+<font color="maroon">&lt;!-- コンテンツのためのグローバルなバージョンを代入して、簡体字中国語に関する情報を追加・更新します --&gt;</font>
+  &lt;RDF:Description about="urn:mozilla:locale:<font color="red">zh-CN</font>"
+       chrome:displayName="<font color="green">Chinese Simplified (zh-CN)</font>"
+       chrome:author="<font color="green">MLP Staff</font>"
+       chrome:name="<font color="green">zh-CN</font>"
+       chrome:previewURL="<font color="green">http://www.mozilla.org/previewimages/China.png</font>"
+       chrome:localeVersion="<font color="red">1.2</font>" &gt;
+
+<font color="maroon">&lt;!-- zh-CN ロケールの内部に、バージョン情報とともに "editor" パッケージを追加します --&gt;</font>
+       &lt;chrome:packages&gt;
+         &lt;RDF:Seq about="urn:mozilla:locale:<font color="red">zh-CN</font>:packages"&gt;
+           &lt;RDF:li resource="urn:mozilla:locale:<font color="red">zh-CN</font>:<font color="red"><b>editor</b></font>"
+                   chrome:localeVersion="<font color="red">1.2</font>" /&gt;
+         &lt;/RDF:Seq&gt;
+       &lt;/chrome:packages&gt;
+
+  &lt;/RDF:Description&gt;
+
+&lt;/RDF:RDF&gt;
+</pre>
+</td></tr></table>
+
+<h4><a name="reg_reg"></a>パッケージを登録する</h4>
+<p>パッケージ化が完了すれば、<a href="#XPI">以下のセクションで触れる</a> XPI パッケージを作って、成果物を Mozilla のフォルダにコピーしパッケージを登録できるようにする、あるいは <i>chrome/</i> フォルダの中に置かれた <tt><b>installed-chrome.txt</b></tt> ファイルの中に一行加える事ができます。 
+<p>上述の中国語 <tt>editor</tt> パッケージのための地域化されたファイルを、Mozilla <i>chrome/</i> ディレクトリにある <tt><b>editorpackagetest</b></tt> と呼ばれるフォルダの中に置く場合、行は以下のようになるでしょう。<br>
+ <tt>locale,install,url,resource:/chrome/editorpackagetest/</tt></p>
+<p>一度 Mozilla を再起動すると、登録されたパッケージの中に置いておいた情報を探すために、<tt>install.log</tt> の中（XPI インストールのためのものだけ）と <tt>chrome.rdf</tt> の中を見るて、登録が成功しているかどうか知ることができます。</p>
+<p>Mozilla のレジストリに新しいロケールのノードを追加したばかりであれば（この例ではまだ簡体字中国語をインストールしたことがなければ）、設定 <font size="-1">(Edit | Preferences | Appearance | Language/Contents)</font> <span class="comment">（訳注：JLP では 編集 | 設定 | 表示 | 言語/コンテンツ）</span>）の中に <i>displayName</i> プロパティが追加されているのが見られるでしょう。</p>
+<p>また、<tt>contents.rdf</tt> ファイルの<a href="javascript:MozVersion()">バージョン</a>情報を正しく設定することを忘れないでください。でなければ、追加したリソースをユーザが選択しようとしても Mozilla は拒否してしまいます。</p>
+
+
+<table border=0 cellspacing=0 cellpadding=0 cols=1 width="100%" bgcolor="#FFFFCC" >
+<tr><td><h3><a name="XPI"></a>簡単な XPI 言語パックを作る</h3></td></tr>
+</table>
+<p>この章では、<abbr title="Cross Platform Installer">XPI</abbr> アーカイブの形で自己インストール可能な言語パックの形で地域化作業結果の成果物を配布可能とする方法について説明しましょう。</p>
+<p>自己インストール可能 XPI アーカイブはホストマシンの中の jar 圧縮ファイルの中にグループ化された地域化されたリソースをコピーし、それらを登録します。ここでは jar ファイルと XPI ファイル自体とインストール用スクリプトの準備方法について説明します。</p>
+
+<h4><a name="XPI_jars"></a>JAR ファイルの中にリソースを梱包する</h4>
+<p>Mozilla の地域化されたリソースファイルから jar アーカイヴを作るのは簡単です。<a href="mlp_tools.html#others">zip 互換ユーティリティ</a>でフォルダごとにまとめられたファイルを集まりを圧縮して、書庫ファイルの拡張子を <i>.zip</i> から <i>.jar</i> に変更すればよいのです。
+ 必ずディレクトリ構造はインストール・スクリプトで使われる情報と一致しなくてはならないことに留意してください。</p>
+<p>仮にイタリア語リソースの jar、<tt><b>it-IT.jar</b></tt> のために使うディレクトリ構造があるとします:
+<table border="0" cellspacing="10" align="center">
+<caption><tt><b>it-IT.jar</b></tt> contents.</caption>
+<tr><td bgcolor="#CCCCCC">
+<pre><font size="-2">/locale/it-IT/<font color="lime">communicator</font>/contentAreaCommands.dtd
+                           contentAreaCommands.properties
+                           <font color="red">contents.rdf</font>
+                           ...
+                           /bookmarks/addBookmark.dtd
+                                     /bm-props.dtd
+                                     /...
+                           /directory/...
+                           /dom/...
+                           /downloadmanager/...
+                           /history/...
+                           ...
+/locale/it-IT/<font color="lime">cookie</font>/<font color="red">contents.rdf</font>
+                    /cookie.properties
+                    /cookieAcceptDialog.dtd
+                    ...
+/locale/it-IT/<font color="lime">editor</font>/<font color="red">contents.rdf</font>
+                    /EdAdvancedEdit.dtd
+                    /EdColorPicker.dtd
+                    ...
+/locale/it-IT/<font color="lime">...</font></font></pre>
+</td></tr></table></p>
+<p>同じような方法で <tt><b>it-mac.jar</b></tt>、<tt><b>it-unix.jar</b></tt>、<tt><b>it-win.jar</b></tt>、<tt><b>IT.jar</b></tt> を英語の相当物の内容を翻訳して用意することができます。</p>
+<p><tt>IT.jar</tt> アーカイヴに同梱された地域コンテンツは言語リソースとは違うロケールコードが必要となるだろうことを覚えておいてください。
+ この新しいロケールはこれらのパッケージの中で使われる <tt>contets.rdf</tt> ファイルの中の<i>地域ロケール</i>として正しく印づけられる必要があります。
+ 手短に言えば、これは <tt>localeType</tt> プロパティを追加することを意味します。
+<dl><dd><tt>chrome:localeType="region"</tt></dd></dl>
+ 上記は地域ロケールノードの中で、<tt>name</tt> や <tt>author</tt> などと並列なものです。</p>
+<table border="0">
+<tr><td bgcolor="#CCCCCC">
+<p><a name="regionlocalecode"></a><b>メモ:</b> 地域ロケールコードの選び方は？<br>
+ コードの文字を<i>重複なく</i>保つことが目的となります。
+ 梱包した地域素材が単一の公用語を持つ国家を対象とするのであれば、<a href="http://www.din.de/gremien/nas/nabd/iso3166ma/codlstp1/en_listp1.html">ISO 国家コード</a>で十分でしょう（例："<tt><b>IT</b></tt>" はイタリアのために使われます）。
+ そうでなく、この素材が複数の共用語を持つ国家地域を対象としたり、知名度の低い言語を対象としたりするなら、<tt><b>reg-ll-NN</b></tt> 型のコードを選ぶ方がよいでしょう。
+ <tt>ll</tt> が国家の、<tt>NN</tt> が言語の<a href="mlp_howto.html#registration">ISO コード</a>です（例：<tt>reg-en-CA</tt> や <tt>reg-fr-CA</tt> はそれぞれカナダにおける英語とフランス語の地域リソースとしてあり得るロケールコードです）。
+</td></tr></table>
+<p></p>
+
+<h4><a name="XPI_script"></a>インストール・スクリプトを用意する</h4>
+<p>これは実際に複雑な（といっても難しいというのとは違う）問題です。
+ とりあえず、実際のスクリプトを通して、どういう風に動作するのかを手短に検討してみましょう。 </p>
+<p>このインストール・スクリプトは、<tt><b>install.js</b></tt> と名前づけられた通常の JavaScript テキストファイルで、XPI パッケージのルートに置かれています。
+ このスクリプトに以下の動作を期待しています:</p>
+<ol>
+<li><a name="1"></a>インストール手順を初期化する。</li>
+<li><a name="2"></a>アプリケーションバイナリの設置先フォルダを取得する。</li>
+<li><a name="3"></a>設置先フォルダに十分な空き容量があるかチェックする（フォルダが変われば違うストレージ単位に割り当てられているかもしれない）。</li>
+<li><a name="4"></a>利用可能な容量が十分なら、XPI アーカイブの内容を設置先フォルダの中の <tt><b>bin/</b></tt> フォルダに解凍する。</li>
+<li><a name="5"></a>コピーしようとするフォルダに書き込みアクセス権限がないなどの発生しうるエラー状態をチェックする。
+    もし、ファイルのコピーが成功しなければ、望むらくはファイルを置くだけの空きスペースのあるだろうユーザ・プロファイル・フォルダを取得して、再度試みることもできます。</li>
+<li><a name="6"></a>ファイルが適切なフォルダに置かれたら、パッケージごとに登録します。
+
+<li><a name="7"></a>ユーザのホストプラットフォームのみに関係するファイルにも気を配ります。</li>
+</ol>
+<p>では、スクリプトのコードを見てみましょう:</p>
+<table border="0" cellspacing="5">
+<caption><tt><b>install.js</b></tt> XPI インストール・スクリプト。</caption>
+<td bgcolor="#CCCCCC"><pre>
+
+  <font color="maroon">// この関数はディスクの空き容量を取得するために後で使います</font>
+<font color="#444444" size="-1">    function verifyDiskSpace(dirPath, spaceRequired)
+    {
+      var spaceAvailable;
+      // 与えられたパスのディスクの利用可能容量を得る
+      spaceAvailable = fileGetDiskSpaceAvailable(dirPath);
+      // 得られたディスク容量をキロバイトに変換する
+      spaceAvailable = parseInt(spaceAvailable / 1024);
+      // チェックを行う
+      if(spaceAvailable < spaceRequired)
+      {
+        logComment("Insufficient disk space: " + dirPath);
+        logComment("  required : " + spaceRequired + " kB");
+        logComment("  available: " + spaceAvailable + " kB");
+        return(false);
+      }
+      return(true);
+    }</font>
+
+  <font color="maroon">// この関数はホストのプラットフォームを得るために後で使います</font>
+<font color="#444444" size="-1">    function getPlatform()
+    {
+      var platformStr, platformNode;
+
+      if('platform' in Install)
+      {
+        platformStr = new String(Install.platform);
+
+        if (!platformStr.search(/^Macintosh/))
+          platformNode = 'mac';
+        else if (!platformStr.search(/^Win/))
+          platformNode = 'win';
+        else if (!platformStr.search(/^OS\/2/))
+          platformNode = 'win';
+        else
+          platformNode = 'unix';
+      }
+      else
+      {
+        var fOSMac  = getFolder("Mac System");
+        var fOSWin  = getFolder("Win System");
+        logComment("fOSMac: "  + fOSMac);
+        logComment("fOSWin: "  + fOSWin);
+        if(fOSMac != null)
+          platformNode = 'mac';
+        else if(fOSWin != null)
+          platformNode = 'win';
+        else
+          platformNode = 'unix';
+      }
+      return platformNode;
+    }</font>
+
+
+  <font color="maroon" size="+1"><b>// *********** Main ***********</b></font>
+  var srDest, err, fProgram;
+  
+  <font color="maroon">// ----LOCALIZATION NOTE: この部分だけ翻訳します ------</font>
+  var prettyName       = "<font color="green">Simplified Chinese Language Pack</font>";
+  var regName          = "locales/mozilla/<font color="green">zh-CN</font>";
+  var localeName       = "<font color="green">zh-CN</font>";
+  var regionLocaleName = "<font color="green">CN</font>";
+  var PlatforNeutral   = "<font color="green">zh-CN.jar</font>";
+  var Regional         = "<font color="green">CN.jar</font>";
+  var macJar           = "<font color="green">zhCN-mac.jar</font>";
+  var unixJar          = "<font color="green">zhCN-nix.jar</font>";
+  var winJar           = "<font color="green">zhCN-win.jar</font>";
+  srDest               = <font color="green">123</font>; <font color="maroon">// 必要な容量をキロバイトで</font>
+  XPIserial            = "<font color="green">5.0.18.2003010521</font>";
+  <font color="maroon">// --- END CHANGABLE STUFF ---</font>
+
+<a href="#1"><font color="white">1</font></a> err = initInstall(prettyName, regName, XPIserial); 
+  logComment("initInstall: " + err);
+
+<a href="#2"><font color="white">2</font></a> fProgram = getFolder("Program");
+  logComment("fProgram: " + fProgram);
+  var chromeType = LOCALE|DELAYED_CHROME;
+
+<a href="#3"><font color="white">3</font></a> if(verifyDiskSpace(fProgram, srDest))
+  {
+    setPackageFolder(fProgram);
+<a href="#4"><font color="white">4</font></a>   err = addDirectory("",
+                       XPIserial, <font color="maroon">// インストールするバージョンの文字列</font>
+                       "bin",     <font color="maroon">// XPI を解凍するディレクトリ名</font>
+                       fProgram,  <font color="maroon">// 設置先フォルダ</font>
+                       "",        <font color="maroon">// fProgram に関連するサブディレクトリ</font>
+                       true);     <font color="maroon">// 上書きフラグ？Force Flag</font>
+    logComment("addDirectory() returned: " + err);
+
+<a href="#5"><font color="white">5</font></a>   if (err!=SUCCESS)
+    { <font color="maroon">// アプリケーション格納場所にユーザ横断的にインストールできなければ、プロファイルへのインストールを試みる</font>
+      resetError();
+      fProgram = getFolder("Profile");
+      logComment("fProgram: " + fProgram);
+      chromeType = LOCALE|PROFILE_CHROME;
+      if(verifyDiskSpace(fProgram, srDest))
+      {
+        setPackageFolder(fProgram);
+        err = addDirectory("", XPIserial, "bin", fProgram, "", true);
+        logComment("addDirectory() returned: " + err);
+      }
+      else err = INSUFFICIENT_DISK_SPACE;
+    }
+
+    if (err==SUCCESS)   <font color="maroon">// 何も問題なければ先に進む</font>
+    {
+<a href="#6"><font color="white">6</font></a>     <font color="maroon">// 解凍したパッケージの登録</font>
+
+                           <font color="maroon"><b>// zh-CN.jar</b></font>
+      lpath   = "locale/"+localeName+"/";
+      jarPath = getFolder (fProgram, "chrome/"+PlatforNeutral);
+      registerChrome(chromeType, jarPath, lpath+"<font color="lime">autoconfig/</font>" );
+      registerChrome(chromeType, jarPath, lpath+"<font color="lime">communicator/</font>" );
+      registerChrome(chromeType, jarPath, lpath+"<font color="lime">contents-pack/</font>" );
+      registerChrome(chromeType, jarPath, lpath+"<font color="lime">cookie/</font>" );
+      registerChrome(chromeType, jarPath, lpath+"<font color="lime">editor/</font>" );
+          <font color="lime">...</font>
+
+<a href="#7"><font color="white">7</font></a>     switch (getPlatform()) {
+       case "mac":         <font color="maroon"><b>// zhCN-mac.jar</b></font>
+        logComment("Registering Mac packages");
+        lpath   = "locale/"+localeName+"/";
+        jarPath = getFolder (fProgram, "chrome/"+macJar);
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">communicator-platform/</font>" );
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">global-platform/</font>" );
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">navigator-platform/</font>" );
+          <font color="lime">...</font>
+        break;
+
+       case "unix":         <font color="maroon"><b>// zhCN-nix.jar</b></font>
+        logComment("Registering Unix packages");
+        lpath   = "locale/"+localeName+"/";
+        jarPath = getFolder (fProgram, "chrome/"+unixJar);
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">communicator-platform/</font>" );
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">global-platform/</font>" );
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">navigator-platform/</font>" );
+          <font color="lime">...</font>
+        break;
+
+       case "win":         <font color="maroon"><b>// zhCN-win.jar</b></font>
+        logComment("Registering Windows packages");
+        lpath   = "locale/"+localeName+"/";
+        jarPath = getFolder (fProgram, "chrome/"+winJar);
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">communicator-platform/</font>" );
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">global-platform/</font>" );
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">messenger-mapi/</font>" );
+        registerChrome(chromeType, jarPath, lpath+"<font color="lime">navigator-platform/</font>" );
+          <font color="lime">...</font>
+      }
+
+                           <font color="maroon"><b>// CN.jar</b></font>
+      lpath   = "locale/"+regionLocaleName+"/";
+      jarPath = getFolder (fProgram, "chrome/"+Regional);
+      registerChrome(chromeType, jarPath, lpath+"<font color="lime">communicator-region/</font>" );
+      registerChrome(chromeType, jarPath, lpath+"<font color="lime">editor-region/</font>" );
+      registerChrome(chromeType, jarPath, lpath+"<font color="lime">messenger-region/</font>" );
+          <font color="lime">...</font>
+
+      err = performInstall(); 
+      logComment("performInstall() returned: " + err);
+    }
+    else cancelInstall(err);
+  }
+  else cancelInstall(INSUFFICIENT_DISK_SPACE);
+  
+  <font color="maroon">// ******** End Main **********</font>
+
+</pre>
+</td></tr></table>
+
+<p><i>logComment()</i> の呼び出しが、インストール進捗についての有用な情報を <tt>install.log</tt> に書き込めるということを覚えておいてください。</p>
+<p>従来の JavaScript コードであることで、このインストーラ・スクリプトは、考えられるほとんどすべての場合に対応して操作や修正ができます。
+ アクセス可能な必須のインストール呼び出しは <a href="../../projects/xpinstall/">XPInstall プロジェクトページ</a>により詳細に記述されています。</p>
+
+<h4><a name="XPI_pack"></a>全部 XPI パッケージの中に置く</h4>
+<p>必要なものがすべて揃ったならば、配布の準備のために一つのファイルに詰め込むことができます。</p>
+<p>
+今まで示してきた例では、以下に示すようなディレクトリ構造を持つ空のフォルダの中に成果物を置きます。
+ <tt>chrome/</tt> フォルダの中は登録可能なもので、<tt>defaults/</tt> フォルダの中のものは登録の必要がないことに注意してください。</p>
+<p>そこで、最終的な zip アーカイブの中にすべてを<a href="mlp_tools.html#others">圧縮</a>します。
+ このファイルを正しく Mozilla に認識させるためには
+一度 Navigator でローカルにこのファイルを開くだけで、（ユーザへのインストールプロンプトを Navigator に表示させ）Mozilla に正しく認識させるためには、ファイルの拡張子を <tt><b>.zip</b></tt> から <tt><b>.xpi</b></tt> に変更しなければなりません。
+<table border="0" cellspacing="10">
+<caption><tt><b>ChineseLanguagePack.xpi</b></tt> アーカイヴのディレクトリ構造</caption>
+<tr><td bgcolor="#CCCCCC">
+<pre>/<b>install.js</b>
+/bin/chrome/<b>zh-CN.jar</b>
+           /<b>zhCN-mac.jar</b>
+           /<b>zhCN-nix.jar</b>
+           /<b>zhCN-win.jar</b>
+           /<b>CN.jar</b>
+    /defaults/profile/CN/<b>bookmarks.html</b>
+                        /<b>localstore.rdf</b>
+                        /<b>mimeTypes.rdf</b>
+                        /<b>panels.rdf</b>
+                        /<b>search.rdf</b>
+                        /chrome/<b>userChrome-example.css</b>
+                               /<b>userContent-example.css</b>
+</pre>
+</td></tr></table></p>
+<p>最後の注意として、XPI パッケージはオンラインでのインストールにきわめて便利だということを付け加えておこう。
+ いくらかの JavaScript コード一つの伴った HTML ドキュメントは、一つの呼び出しでユーザに対してインストールに必要とされるコンポーネントを尋ねること、また複数の XPI パッケージの段階のダウンロードやインストールを始めることができます。</p>
+<p>必要な JavaScript コードはこれだけです:</p>
+<pre>  xpi = {'Chinese Language Pack': 'http://www.invented.cn/ChineseLanguagePack.xpi',
+         'Beautiful skin installation': 'http://foo.bar.com/beautifulSkin.xpi',
+         <b>...</b>    };
+  InstallTrigger.install(xpi);</pre>
+<p>XPI ファイルに対するサーバの MIME Type は次の通りです:</p>
+<dl><dd><tt><b>application/x-xpinstall</b></tt></dd></dl>
+
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/l10n/mlp_chrome.html">英語版</a> 2004/03/24</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/l10n/mlp_chrome.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

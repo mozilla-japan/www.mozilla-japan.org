@@ -1,0 +1,505 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>S/MIME ツールキット</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/security/pki/nss/smime/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/smime/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+<center>
+<h2>S/MIME ツールキット</h2>
+
+<!-- Change Log:
+ 
+   03/07/00 mlarson Added Project Goals, Feature List
+                    removed ^M  from EOLs
+   03/08/00 mlarson removed non-public items, and created Design sec.
+   03/09/00 mlarson minor edits (spelling, grammar, etc).
+   06/8/00 cotter updates for code checkin, utilities
+-->
+    
+<FONT SIZE="-1">
+
+ニュースグループ： 
+<A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">
+netscape.public.mozilla.crypto
+</A><BR>
+
+テクニカル コンタクト：
+<A HREF="mailto:chrisk@netscape.com?subject=Open Source SMIME Toolkit Feedback">
+Christian Kaiser</A><BR>
+
+管理者：
+<A HREF="mailto:lord@netscape.com?subject=Open Source SMIME Toolkit Feedback">
+Bob Lord
+
+</A></FONT>
+</center></FONT>
+
+<H3>概観</H3>
+
+<P>
+S/MIME ツールキットは、様々な MIME パーサーやジェナレータと共に組み込むことができる
+ API を通じて S/MIME 機能を提供します。
+<a href="http://www.ietf.org/rfc/rfc2633.txt">S/MIME version 3</A> 
+の機構をサポートします。
+
+<P>
+S/MIME ツールキットは、独自に MIME パーサーとして機能することはできません。
+テスト用に簡単なパーサーを持っていますが、 Mozilla 
+メール/ニュース プロジェクト用に開発された MIME パーサー
+（<A HREF=../../../../../mailnews/libmime-description.html>libmime</A> 
+をご覧ください） のように利用するには、最終的なアプリケーションが必要です。
+</P>
+
+<H3>プロジェクト情報</H3>
+
+<P>
+ソースコードをチェックアウトするには、
+</P>
+
+<P><tt>cvs -d :pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot co mozilla/security</tt>
+
+<P>
+ライブラリ ソースコードは <tt>nss/lib/smime</tt> にあります。
+</P>
+
+<P>
+二つのユーティリティは <tt>nss/cmd/smimetools</tt> にあります：
+</P>
+
+<ul>
+<li><tt>smime</tt> は、署名され、そして/または、 Netscape Communicator 4.7 
+および Microsoft Outlook で正しく検証し暗号化解除される S/MIME 
+で暗号化されたメッセージを普通の RFC822 メッセージに変換する Perl スクリプトです。
+
+<!--<tt>smime</tt> is a Perl script that turns ordinary RFC822 messages 
+into signed and/or encrypted S/MIME messages that verify and decrypt correctly in
+Netscape Communicator 4.7 and Microsoft Outlook.-->
+
+<li><tt>cmsutil</tt> は、 CMS/PKCS7 メッセージを生成し、
+ <tt>smime</tt> により利用されます。
+</ul>
+
+<P>
+次のようにして、自動的に生成され、署名された電子メールを送ることができます：
+</P>
+
+<P>
+<tt>"cat rfc822msg.txt | smime -S "nickname" -p "passwd" | mail chrisk@netscape.com"</tt>
+</P>
+
+<P>
+<tt>"nickname"</tt> は署名される証明書のニックネームで、
+<tt>"passwd"</tt> は暗号鍵データベース パスワードです。
+</P>
+
+<P>
+ <tt>chrisk@netscape.com</tt> に送られるメッセージは、
+署名され、 Netscape Communicator 4.7 および Microsoft Outlook 
+により正しく検証されます。
+</P>
+
+<H3>現時点の作業</H3>
+
+<P>
+私達が現在しなければならない作業には、次のものが含まれます：
+</P>
+
+<ul>
+<li>API の第一版を記録し、改良作業に着手する。</li>
+
+<li>API を見直して、必要に応じて API の定義に変更を加えて、
+様々な MIME パーサーへの組み込み適正を決定する。</li>
+
+<li>理想的にビルド プロセスに組み込めるようなテスト ハーネスを作成する。</li>
+
+<li>優先順位をつけたこれからの作業リストを作成する：
+例えば、暗号化メッセージ構文 （Cryptographic Message Syntax：CMS） および
+ S/MIME v3 機能。</li>
+</ul>
+
+
+<h3>現況</h3>
+
+<P>
+バージョン 1.0 コードを完成し、 mozilla.org に追加しました。
+</P>
+
+<h3>ターゲット アプリケーション</h3>
+
+<P>
+新しい S/MIME ツールキット向けのアプリケーションには次のものが含まれる予定です：
+</P>
+
+<ul>
+<li> Mozilla メール/ニュース クライアントでの S/MIME サポート。</li>
+<li>WebMail クライアントでの S/MIME サポート。</li>
+<li>EDI メッセージング。</li>
+<li>Perl スクリプトを利用して <a href="http://www.ietf.org/rfc/rfc2633.txt">
+S/MIME</a> を生成および処理に利用できる Perl モジュール。</li>
+</ul>
+
+
+<H3>デザイン</H3>
+
+
+ S/MIME ツールキットは、 <A HREF="../../nss/">NSS</A> 暗号化および
+ PKI サービスの主要機能の上に実装されます。
+</P>
+
+<P>
+ S/MIME API は、次のいくつかの理由から C 言語で実装されます：
+</P>
+
+<UL>
+<LI>既存の NSS コードが C で書かれており、
+それを今後とも維持することで同じレベルの移植性を保つことができるから。</LI>
+<LI>広く使われている C++ コンパイラが現在の基準に達していないから。</LI>
+<LI>アプリケーションの中 （特に組み込みアプリケーション） には、
+ C++ ランタイム パフォーマンスとの相性が悪いものがある。</LI>
+<!--Some applications (especially embedded apps) may not want
+            the C++ runtime performance overhead.-->
+<LI>S/MIME が依存する NSS C コードの中には、 C++ API と相性が悪いものがある。</LI>
+<!--Some of the NSS C code on which S/MIME depends may be
+difficult to interface with a C++ API.-->
+<LI>もちろん、 C++ を使うことによるソフトウェア エンジニアリング上および管理上の利点はあります。
+なので C++ を採用するという案をごみ箱に捨ててしまったわけではありません。</LI>
+</UL>
+</P>
+
+<H3>プロジェクト ゴール</H3>
+
+<P>
+ S/MIME ツールキットの最終的なゴールは、実際のアプリケーションに実装できるような、
+利用価値の高いコードを作成することです。この目標を見失わないようにするため、
+私達が達成したいと考えていることをリストにしてみました。
+</P>
+
+<P>
+ S/MIME ツールキットは、将来 ...
+</P>
+
+<UL>
+<LI><B> S/MIME を使いやすくし、幅広く様々な MIME パーサーやジェナレータに組み込みます。</B>
+
+<P>
+私達は、ユーザーの要求を先回りして提供できるような柔軟な API を求めています。
+例えば、通常とストリーミングの両方の入/出力をサポートする必要があります。
+</P>
+
+<P>
+非メール/ MIME 利用環境の暗号化メッセージを完全にサポートできるよう、
+<A HREF="http://www.ietf.org/rfc/rfc2630.txt">暗号化メッセージ構文 （CMS） </A> 
+を実装する必要があります。
+</P>
+
+<P>
+最後に、一般的な MIME パーサーおよびジェナレータに実装できるような、
+ S/MIME 固有のグルーコード （glue code） が必要です。
+</P>
+</LI>
+
+<LI><P><B>
+よく利用される <a href="http://www.ietf.org/rfc/rfc2633.txt">S/MIME v3</A>
+の機能を実装します。
+</B></P></LI>
+
+<P>
+次の機能が 「よく利用される」 リストに挙がっています。重要度の高いものから順に：
+</P>
+<P><UL>
+<LI><TT>sMimeCapabilities</TT> および <TT>sMimeEncryptionKeyPreferences</TT> 属性</LI>
+<LI><TT>signingCertificate</TT> 属性</LI>
+<LI>DSA 署名</LI>
+<LI>Triple-DES CBC バルク暗号化 （Triple-DES CBC bulk encryption）</LI>
+<LI>Diffie-Helman キー アグリーメント プロトコル （Diffie-Helman key agreement protocol）</LI>
+</UL></P>
+
+<P>
+<LI><B>
+ CMS メッセージの生成および処理のために特別に API を提供します。
+</B>
+
+<P>
+S/MIME は CMS メッセージを基礎にしていますが、 CMS 
+は MIME 以外 （ウォレット、データ保存、汎用メッセージ　（generic messaging）、
+など） の利用環境でも多くの便利なアプリケーションを備えています。
+</P></LI>
+
+<LI>
+<B> 
+S/MIME および生 CMS メッセージを、署名、検証、暗号化、
+および暗号解除できるサポートツールを提供します。
+</B>
+
+<P>
+コードのテストや検証が実際にコードを書くより困難な場合、
+ツールキットの利用はかなり困難です。
+
+<!--A toolkit just isn't easy to use if it's harder to test and
+verify the code than it is to write it.-->
+</P>
+</LI>
+
+<LI><P><B>
+基本的なテストに適した軽量の MIME パーサーを提供します。
+</B></P></LI>
+</UL>
+
+
+<H3>目標にはなっていないもの</H3>
+
+<P>
+目標にはなっていないもののリストの中には、達成できるものも含まれていますが、
+私達は意識的にそれらを目標からはずしています。
+</P>
+
+<P>
+ S/MIME ツールキットは、将来にわたっても ...
+</P>
+
+<UL>
+<LI><P><B>
+ S/MIME v3 向けのリファレンス実装 （reference implementation） はしません。
+</B></P>
+
+<P>
+ S/MIME ツールキットは、 S/MIME v3 の全ての機能を実装するわけではありません。
+例えば、現時点で ESS にはサポートが計画されていない部分もあります。
+</P>
+</LI>
+
+<LI><P><B>
+ MIME ヘッダーの分析または生成はしません。
+</B></P>
+
+<P>
+目標は、すでにビルド、デバック、およびテストを経た
+ MIME パーサー/ジェナレータを実装することです。
+</P>
+</LI></UL>
+
+
+<H3>機能一覧</H3>
+
+<P>
+下に示した一覧は、これから実装される機能を重要なものから順に示したものです。
+それぞれの機能にたいして S/MIME ツールキットは適切な API を使用して、
+属性 （または機能） を生成し処理することができるようになります。
+</P>
+
+<P>
+ツールキットは、
+<A HREF="http://www.ietf.org/rfc/rfc2632.txt">RFC2632</A>、
+<A HREF="http://www.ietf.org/rfc/rfc2633.txt">RFC2633</A>、または
+<A HREF="http://www.ietf.org/rfc/rfc2634.txt">RFC2634</A> 
+で定義された<B>あらゆる</B>機能や属性を含むメッセージを、
+不具合を表示することなく処理できなければなりません。
+ <FONT COLOR=GREEN>（*）</FONT> 印のついた機能は、 Communicator 
+向けに実装された現在の PKCS7 および iS/MIME で利用できます。
+</P>
+
+<OL>
+<li>MIME パーサー インターフェース：
+ストリーミングおよびワンショット モードの両方での入/出力
+<FONT COLOR=GREEN>（* - ストリーミング モード）</FONT></li>
+
+<li>MIME パーサー インターフェース：
+clear-signed および inline-signed メッセージ
+（multipart/signed および application/pkcs7-mime）</li>
+
+<li>CMS：
+内部および外部署名のある SignedData オブジェクト （RFC2630 - 5）
+ <FONT COLOR=GREEN>(* - 外部署名）</FONT>
+</li>
+
+<li>CMS：
+EnvelopedData オブジェクト（RFC2630 - 6） <FONT COLOR=GREEN>（*）
+</FONT></li>
+
+<li>SMIME：
+smimeCapabilities 属性</li>
+
+<li>CERT：
+ SignedData メッセージ用署名および CRL の一覧作成
+<FONT COLOR=GREEN>（*）</FONT></li>
+
+<li>CMS：
+MD5 および SHA1 ダイジェスト アルゴリズム
+（RFC2630 12.1.1、 12.1.2）<FONT COLOR=GREEN>（*）</FONT></li>
+
+<li>CMS：
+RSA 署名アルゴリズム （RFC2630 12.2.2）<FONT COLOR=GREEN>（*）</FONT></li>
+
+<li>CMS：
+DSA 署名アルゴリズム （RFC2630 - 12.2.1）<FONT COLOR=GREEN>（*）</FONT></li>
+
+<li>CMS：
+RSA 暗号鍵トランスポート プロトコル （RFC2630 12.3.2.1）<FONT COLOR=GREEN>（*）
+</FONT></li>
+
+<li>CMS：
+Triple-DES CBC および RC2 CBC コンテンツ暗号化アルゴリズム
+（RFC2630 12.4.1 および 12.4.2） <FONT COLOR=GREEN>（*）</FONT></li>
+
+<li>SMIME：
+sMIMEEncryptionKeyPreference 属性 （デュアル キー サポート）</li>
+
+<li>ESS：
+signingCertificate 属性 （RFC2634 - 5）</li>
+
+<li>ESS：
+トリプル ラッピング （Triple Wrapping）（RFC2634 - 1.1）</li>
+
+<li>CMS：
+証明書および証明書失効リストのみを含む "degenerate" SignedData オブジェクト
+（RFC2630 - 5）</li>
+
+<li>CMS：
+Ephemeral Static Diffie-Helman Key Agreement Protocol （ESDH）
+（RFC2630 12.3.1.1）。 これには、 Triple-DES CBC および RC2 キー ラップ
+アルゴリズムが含まれます。</li>
+
+<li>CMS：
+EncryptedData オブジェクト （RFC2630 - 8）</li>
+
+<P>
+次に挙げた機能は優先順位が低く、 version 1.0 には含まれる可能性が低いものです：
+</P>
+
+<li>CMS：
+Static Static Diffie Hellman Key Agreement Protocol （SSDH）
+（RFC2630 12.3.1.1）</li>
+
+<li>CMS：
+SignedData オブジェクトのための multiple signers</li>
+
+<li>CMS：
+counter signatures （RFC2630 - 11.4）</li>
+
+<li>CMS：
+DigestedData オブジェクト （RFC2630 - 7）</li>
+
+<li>CMS：
+AuthenticatedData オブジェクト （RFC2630 - 9）</li>
+
+<li>ESS：
+Signed Receipt Requests and Receipts （RFC2634 - 2）</li>
+
+<li>ESS：
+セキュリティ ラベル （RFC2634 - 3）</li>
+
+<li>ESS: 
+contentHints 属性 （RFC2634 - 2.9）</li>
+
+<li>ESS：
+contentIdentifier/contentReference 属性 （RFC2634 - 2.7, 2.11）</li>
+
+<li>ESS：
+メール リスト エージェント （Mail List Agent: MLA） Processing （RFC2634 - 4）</li>
+
+</OL>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/smime/index.html">英語版</a> 2000/09/18</span> - <span>和訳版 2004/11/09</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/smime/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

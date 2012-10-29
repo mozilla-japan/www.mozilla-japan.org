@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>To Do リスト</title>
+  <link rel="stylesheet" type="text/css" href="thunderbird.css" />
+</head>
+
+<body>
+
+<div id="header"><img src="tbird-header.png" alt="Thunderbird&trade; Mail"></div>
+
+<div id="allBodyText">
+
+<div CLASS="horizontal-menu">
+<table WIDTH="100%">
+<tr><td CLASS="horizbanner">
+<a HREF="../../">Home</a>
+|
+<a HREF="../../projects/">Projects</a>
+|
+<a HREF="../../catalog/">Docs</a>
+|
+<a HREF="../../docs/jargon.html">Jargon</a>
+
+</td><td CLASS="horizbanner">
+<a HREF="http://bugzilla.mozilla.org/">Bugzilla</a>
+|
+<a HREF="http://lxr.mozilla.org/">LXR</a>
+|
+<a HREF="http://tinderbox.mozilla.org/showbuilds.cgi?tree=SeaMonkey">Tree Status</a>
+</td><td ALIGN="RIGHT" CLASS="horizbanner">
+<a HREF="../../feedback.html">Feedback</a>
+|
+
+<a HREF="../../faq.html">FAQ</a>
+|
+<a HREF="/search.html">Search</a>
+</td>
+</tr>
+</table>
+</div>
+
+<br>
+<div align="center" class="header-column">To Do リスト</div>
+
+<p>メインの Thunderbird プロジェクトページで述べたとおり、私たちの最初の目標は <a href="releases/">Mozilla 1.4 release</a> に基づいた0.1リリースに向かって突き進むことです。我々の短期的な目標は、長期的目標を現実のものとすべく体制を整えることです。To Do リストには、私たちが最初のテスト用ビルドを公開した際に皆さんが特定した、Thunderbird におけるバグや諸問題も含まれています。 これらのタスクがまだ完了していないことを確認するために、<a href="/projects/thunderbird/changes.html">最近の変更</a>リストも確認してください。
+
+
+<div class="header-minor">短期的 To Do リスト</div>
+<p> 以下は必ずしも重要度順に並んでいるとは限りません。
+  <ul>
+    <li>メール独自のコンテキストメニューを再実装します。特に、メッセージ表示部の、ブラウザ向けのコンテキストメニューアイテムが山ほど出てきたり隠れたりする、contentAreaContextOverlay.xul と nsContextMenu.js を使うコンテキストメニューをです。この二つのファイルを削除して、メール用にカスタマイズされたバージョンに置き換えます。
+    <li>アドレス帳の列とアドレス帳の選択用の列のためのデフォルト値を localstore.rdf に、追加します。
+    <li>mail/extensions の中に Thunderbird 拡張をビルドするためのビルド設定オプションが必要です。例えば "--enable-mail-extensions=offline smime"などです。
+    <li>Phoenix がデフォルトのメールソフトとして Thunderbird を起動することを確実にするために、ウィンドウズのレジストリキー、 HKEY_CLASSES_ROOT\mailto に書き込む必要があります。(<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=202497">Bug #202497</a>)
+	<li>私たちは <a href="http://lxr.mozilla.org/seamonkey/source/uriloader/exthandler/unix/nsOSHelperAppService.cpp#1244">nsIExternalProtocolService::loadUrl</a> を Linux 用に実装するために、Linux の達人を必要としています。この助けが得られないと、私たちが望むようにディフォルトブラウザで http url（や他の非メール url）をロードすることができません。このルーチンを Linux 上で実装するための OS integration hooks が何か、私は知りません。もしかしたら使っているデスクトップ環境に依存するのでしょうか？(ひょっとしたらこの件について、Bryner が gnome に関することで何か知っているかもしれません。)
+	<li>mail chrome から、contextHelp.js への参照を全て削除する。Thunderbird でこのファイルを見つけられないというエラーがあるため、（ontextHelp.js への参照を全て削除することで）パフォーマンスが劇的に改善する可能性があります。このファイルをロードする chrome を全て削除することで、私たちの作業を加速することができるかもしれません。
+	<li>Linux 上での、添付ファイルやメッセージを保存する機能に関する問題のレポート。
+    <li>テキスト版のファイルをメモ帳(あるいはデフォルトのテキストビューワ)で開く View Source を作る。
+	<li>Thunderbird について ダイアログを Help メニューに追加します。(Jason)
+    <li>Unix 版の Thunderbird を作成してくれるボランティアを探します。
+	<li>mach-o 版の Thunderbird を作成してくれるボランティアを探します。
+	<li>threadPane.xul や folderPane.xul のような、chrome 内の主要な XUL ファイルを検査し、fakeAccount.css のような、不要な CSS ファイルを除去します。
+	<li>classic テーマを置き換える新しいテーマを調査します。0.1リリースにおいては、これはただ単に、何か新しいツールバーアイコンを入手し、ブランチのclassic テーマにダンプするということを意味するだけかもしれません。(Arvind がこの作業をする予定です。)
+	<li>Help Viewer を持たないであろうことから、Help ボタンを取り除くか、隠すかします。
+	<li>Junk Mail Control についての説明をする情報ダイアログを追加し、ユーザーが初めてその機能を使おうとしたときに表示されるようにします。これは、Phoenix における popup blocking dialog のように動作します。
+	<li>ブラウザchrome ではなくメールを示す、新しい example テーマ アイコンが必要です。
+	<li><strike>ウィンドウズ用のデスクトップアイコンファイル (.ico)が必要です。現在は phoenix/mozilla の .ico ファイルを使っています。(Jason Kersey が作業中です。)</strike>
+	<li><strike>単体のメールクライアントに必要なくて、ブラウザが必要とするだろうモジュール(gopherやftpなど)をビルドするのを止める作業を続けます。</strike>
+	<li><strike>プラグインと、JAVA のコードをビルドから取り除きます。(mail/config コードを通してなされました。)</strike>
+    <li><strike>ウィンドウズ用のデスクトップアイコンファイル (.ico)が必要です。現在は phoenix/mozilla の .ico ファイルを使っています。(Jason Kersey が作業中です。)</strike>
+	<li><strike>Mozilla プロファイルがすでにマシン上にインストールされていない状態での、Thunderbird の動作不良に関するレポート。これは私たちが Thunderbird プロファイルに移行したら問題ではなくなるかもしれません。(mscott が現在これを修正中です。) (<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=201891">Bug #201891</a>)</strike>
+    <li><strike>作業が全く進行していない際にプログレスバーが隠されていません。</strike>
+	<li><strike>Preferences を Options に改名して、Tools 以下にメニューを移動します。</strike>
+	<li><strike>カスタマイズ可能なツールバー。(Mozilla/xpfe toolkit への逆移植。)</strike>
+    <li><strike>classic をデフォルトのテーマにする。</strike>
+	<li><strike>Tools / Import が mail import dialog を表示しません。</strike>
+	<li><strike>現在の設定 UI を検査し、Advanced や System Panel などのスタンドアローンのメールソフトでは意味をなさないアイテムを削除します。</strike>
+	<li><strike>フォルダ表示部の列のヘッダが、実際はソートできないのに、ソートできそうに思わせる表示になっています。このツリーにソートインジケータを表示しないようにする方法が何かあるはずです。</strike>
+	<li><strike>Mach-o と Unix 用のビルドを発表する。</strike>
+	<li><strike>Mozilla 1.4 trunk における修正の中で、Thunderbird の0.1ブランチに逆移植したいものはありますか？おそらくジャンクメールに関する改良がそれにあたるでしょう。</strike>
+	<li><strike>メール スタートページと throbberのurl がThunderbird プロジェクトページを指すようにする。</strike>
+  </ul>
+
+<p>
+<div class="header-minor">長期的 To Do リスト</div>
+  <ul>
+    <li>より良いパフォーマンスおよびフットプリントを目指してメールニュースを静的アトムに変換します。これは Thunderbird や mozilla にも利益をもたらします。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=201561">Bug #201561</a>を見てください。 
+	<li><strike>必要とされる Thunderbird ライブラリ群と chrome を一まとめにするための mail/config ディレクトリを Thunderbird に追加します。</strike>
+	<li><strike>フットプリントとパフォーマンスの向上のため、全てのメール用DLLを一つのDLLにまとめます。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=179533">Bug #179533</a>を見てください。</strike>.
+    <li><strike>私たちのブランチから離れ、 trunk に作業の場を移します。これは、trunk 上での衝撃を最小化するために、Thunderbird の作業の場を <a href="http://lxr.mozilla.org/mozilla/source/mail">mozilla/mail</a> に移すことを意味します。ビルド設定の変更を Mozilla の trunk に移植します。それに、私たちが手を加えた XUL/JS ファイルを枝分かれさせます。 目標は、trunk に移る際の衝撃を最小化し、新しい Mozilla/mail ディレクトリに可能な限りのものを持たせることです。</strike>
+	<li> trunk との同期が済んだら、私たちは作業の場を<a href="http://lxr.mozilla.org/mozilla/source/toolkit">
+	新しいツールキット</a> に移行し、Phoenixの UI の流儀に従います。
+	<li>新しいテーマをどのようにしてダウンロードすることになるのか？ ブラウザがなければ、私たちはテーマのリストを表示させるブラウザの chrome を一切持っていないことになります。どのようにユーザーを Thunderbird のテーマページに連れて行き、彼らに Thunderbird 用の新しいテーマをダウンロードさせるのですか？
+	<li>パフォーマンス向上のために、オーバーレイをなくします。
+	<li>mozilla/editor と mozilla/xpfe の chrome にまだ依存しているものを取り除きます。
+	<li>Phoenixで使われている、拡張の概念を開発します。smime、オフライン機能および受信確認のような機能をダウンロード可能な拡張機能に移行します。
+	<li><strike>Thunderbird ビルドから、不必要な chrome やモジュールを削除し続けます。</strike>
+	<li>GRE を活用したインストーラを組み立てます。
+	<li>blake によってデザインされた新しいメール作成 UI に移行します(<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=146259">Bug #146259</a>)。
+	<li><a href="/projects/embedding/MRE.html">Mozilla GRE</a> 問題を解決します。そうすれば私たちはより快適に利用できるし、GREを活用することもできます。これは、私たちがインストーラを必要としていることを意味するのですか？<a href="/projects/phoenix/">Phoenix の皆さん</a> と一緒に作業してください。そうすれば双方が GRE を利用でき、双方のアプリケーションのダウンロードサイズを小さくすることができます。
+	<li>Phoenix の開発者と、Send Page 機能を Phoenix に追加するために作業します。
+  </ul>
+
+
+</div>
+
+<div id="end">
+Copyright  &copy; 1998-2003 The Mozilla Organization<br>
+<a href="http://www.mozilla.org/webtools/bonsai/cvslog.cgi?file=mozilla-org/html/projects/thunderbird/todolist.html&rev=&root=/cvsroot/">Document History</a>
+<br> <a href="http://doctor.mozilla.org/?file=mozilla-org/html/projects/thunderbird/todolist.html">Edit this Page</a> (or <a href="http://www.mozilla.org/README-cvs.html">via CVS</a>).
+<BR>
+<div align="right"><font size="-1">
+訳者： Pju &lt;<a href="mailto:pju@ppmz.com">pju@ppmz.com</a>&gt;<br>
+<a href="http://www.mozilla.org/projects/thunderbird/todolist.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>
+利用者の利便のために翻訳部門によって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.orgjp/td/index.html">http://www.mozilla-japan.org/jp/td/index.html</a>
+</font>
+</div>
+
+</body>
+</html>

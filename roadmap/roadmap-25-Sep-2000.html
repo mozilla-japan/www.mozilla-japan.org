@@ -1,0 +1,540 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>
+Mozilla 開発ロードマップ
+（Mozilla Development Roadmap）
+</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/roadmap/roadmap-25-Sep-2000.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/roadmap/roadmap-25-Sep-2000.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+<h1>mozilla 開発ロードマップ</h1>
+
+<p>
+<center>2000年9月25日 <a href="mailto:brendan@mozilla.org">Brendan Eich</a>
+</center>
+
+<p>
+<center><a href="#document-history">更新履歴（Document History）</a>
+</center>
+
+<p>
+Mozilla 開発ロードマップへようこそ。
+このドキュメントは Mozilla プロジェクトがたどってきた道のりを簡単に述べた後、
+どこへ向かっているか を詳しく述べます。
+鍵である『ロードルール』と 進行中である Mozilla-ブラウザ ソース マイルストーンリリース
+（マイルストーンリリースからはだれでも商用やその他の製品をビルドすることができます）
+のリリーススケジュールを提案します。
+また、Mozilla-プラットフォーム がどのように進化するべきか、
+再び 活動上の また『リリースプロセス』の視点からヒントを示します。
+
+<p>
+よく寄せられる質問に対しての最新情報を取り入れた回答は
+<a href="faq.html">roadmap FAQ</a> 
+を見てください。
+<!--<BR>（訳者注：2000年9月27日現在、中身はありません）-->
+
+<h2 align=center>背景 (background)</h2>
+
+<p>
+<a href="roadmap-26-Oct-1998.html">古いロードマップ</a>
+は Mozilla プロジェクトを次のものを使って組み直すという 1998年10月の重大な決定を記録していました。
+すなわち
+<a href="../newlayout/">新しいレイアウトエンジン</a>（現在は Gecko と呼んでいます）、
+クロスプラットフォーム フロントエンド（<a href="../xpfe/">XPFE</a>）、
+<a href="../xpfe/xptoolkit/">XP ツールキット</a> でビルドした
+<a href="../editor/">現在は</a> <a href="../mailnews/">いくつかの</a>
+<a href="../xpapps/">XP Apps</a>、
+そして スクリプタブル コンポーネント アーキテクチャ（<a href="../projects/xpcom/">XPCOM</a>
+と <a href="../scriptable/">XPConnect</a>）です。
+古いロードマップは Mozilla が大幅な進路転換をするのには役立ちましたが、
+プロジェクトの進行に道筋を示すのには失敗しました 〜 私の失敗です。弁解の言葉もありません。
+プラスの面としては コードに対して そしてコミュニティーに対して
+数多くの実証的な手法と開発を規定、促進しました。
+しかし それは過ぎた話です。今 私たちには別のロードマップが必要です。
+
+<p>
+netscape.com として Mozilla をもとにした
+<a href="http://home.netscape.com/browsers/6/">商業製品</a>
+（訳者注：日本語ページは<A HREF="http://home.netscape.com/ja/browsers/6/">こちら</A>）
+の出荷準備を進めるにあたって、いくつかのテクニカルポイントと
+より企画的かつ計画的に手法を規定する ロードマップが必要です。
+Mozilla は新しい機能を必要としていませんし、
+特別な『新しい』もしくは『次世代の』モジュールも必要としていません
+（確かに モジュールの書き換えはされるでしょうし されるべきです。
+また 新しい機能もあるでしょうが、
+ここで そういったものを引き合いに出すつもりはありません）。
+私たちがいまだ現在のアーキテクチャを終わらせようとしていたり
+面倒な局面（たとえば ゴミ取りの不足によるメモリーリーク）
+から目をそらそうとしていたりするときには
+『あの次の丘を越えて突き進もう』という使命についてなにか苦言を呈するつもりです。
+
+<p>
+Mozilla は パフォーマンス、安定性、そして 正確さを必要としています。
+私たちは『Mozilla 1.0』プロジェクトの残り10パーセントのところまで来ています。
+道はさらに険しくなっていきますが。
+
+<h2 align=center>目先のツリープラン (near-term tree plan)</h2>
+
+<p>
+私たち staff@mozilla.org は PR3 のための Netscape 6 ブランチを提案します。
+このブランチは、そのまま RTM に向かいます。
+本流は footprint（訳者注：メモリの消費を押さえることを意味しているようです）、
+API の組み込み、そして
+IBM の BiDi ブランチ、<a href="mailto:roc+moz@cs.cmu.edu">roc</a> の新しい ビューマネージャ、
+ActiveState DOM スクリプティングサポート などを含む
+その他の修正に取り組み続けます。
+どの種の変更が本流に入るのか、いつ、だれが決めるのかというルールは 後述の
+<a href="#new-milestones">新しいマイルストーン</a> と
+<a href="#project-management">プロジェクトマネージメント</a> の項目に
+念入りに作られています。
+
+<p>
+Netscape 6 ブランチのチェックインルールは netscape.com によって定義され、
+phil@netscape.com からの
+<a href="news://news.mozilla.org/39C7A253.6080300%40netscape.com">メッセージ</a>
+で明確にされています。
+ブランチにおけるこれらのルールにしたがわない人は CVS アクセスを失うリスクを負います。
+（mozilla.org が cvs.mozilla.org やほかのあらゆる mozilla.org CVS サーバ上の
+ベンダーブランチの背後の究極の権威者であり、そうでなければならないからです。）
+
+<p>
+協力者がブランチの変更をコミットする場合に mozilla.org がお願いしたい唯一のことは 
+本流に対してもただちに同じ更新をしてほしいということです。
+ただし 短期的な解決法のために 本流に対して適用するのが不適切である場合を除きます。
+（この場合は 長期的な解決法をできるだけ早く 本流にコミットをするべきです。
+それまでの間は 長期的な解決法がない ということをオープンなバグとして追跡するべきです。）
+本流の更新なしには、モジュールオーナーやほかのブランチの協力者は
+リスクをともなってオーナーシップを本流におくでしょう。
+netscape.com はこのガイドラインに基本的には同意しています。
+（例外はあるかもしれません。
+出たとこ勝負でいって ブランチの差分の実装を見守ることもあるでしょう。）
+
+<h2 align=center>ブランチの詳細 (branch details)</h2>
+
+<img src="../roadmap-images/branching.png">
+
+<p>
+ここに示される Netscape 6 のブランチは PR3 (<tt>nsbeta3</tt>) ブランチポイント
+からスタートします。
+<!-- 和訳02版 ---
+mozilla.org は Netscape が PR3 をリリースする直前に
+ブランチにもとづく（mozilla）名義の M18 マイルストーンビルドをリリースします。
+私たちは M18 ができるだけ PR3 にマッチすることを目指しています。
+---- 和訳03版 -->
+mozilla.org は Netscape が PR3 をリリースした直後に
+<b>本流</b> にもとづく（mozilla）名義の M18 マイルストーンビルドをリリースします。
+（これは 最近の計画変更で、本流の修正を M18 に取込みたいという要求と
+ブランチにおいて 修正の移植が 意図せず XP ファイルに影響するかもしれないという
+プレッシャーをやわらげる ためのものです。）
+
+<p>
+その後、Netscape 6 ブランチには 独断で『Mozilla 0.6』と名付けた
+オプショナルブランチがあります。
+それは netscape.com が 『（製品としての）製造を解禁』（RTM:release to manufacturing）
+するポイント -- すなわち コードが Netscape 6 へコンパイルされる前に
+ブランチが変更できる最後のポイントにあります。
+このポイントから後のブランチは Netscape 6.01、6.02（仮）などのリリース
+をサポートするためだけに存在します。
+
+<p>
+（私が netscape.com にこれらの 6.0<i>n</i> リリースをコミットしている
+のではないことに注意してください。
+Netscape 6 ブランチが RTM の後も存続する理由を述べているだけです。
+将来の Mozilla 開発は本流を使って行われます。いかなる長く続くブランチでもなく。）
+
+<p>
+Mozilla 0.6 ブランチは <a href="../projects/mathml/">MathML</a> と ほかの機能拡張や
+Gecko の内部 API に依存するであろう 『完全でないプラグイン(not-quite-plugins)』
+をサポートするため <i>だけ</i> に存在します。
+Mozilla ユーザーは タグ付けされたソースを引っ張り、
+MathML を含んで 既存の Netscape 6 インストレーションにシームレスに『ドロップイン』
+する『交換用の Gecko』をビルドしたいでしょう。
+
+<p>
+RTM ポイントで MathML や同様の機能拡張がすべて Netscape 6 ブランチソース
+とともにうまく動けば Mozilla 0.6 は RTM タグの別名である static タグになり、
+CVS ブランチである必要はまったくありません。
+そうでなければ、Netscape 6 ブランチからわかれたブランチは
+MathML などが 『ドロップイン』の形式で Netscape 6 とともに動くようにするために
+必要とされるだろうと信じています。
+私たちはそのような Mozilla 0.6 ブランチにおいては
+できる限り小さい作業をするつもりです。
+
+<a name="#code-review">
+<h2 align=center>コードの検証 (code review)</h2>
+</a>
+
+<p>
+mozilla.org は netscape.com の助けを得て チェックインを是正するための
+全面的なコードの検証を始めています。
+私たちは 今まで netscape.com 外の協力者としては
+waterson@mozilla.org と brendan@mozilla.org だけだった（現在の
+<a href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=SeaMonkey">チェックインの要件
+</a>については）コード検証者(code reviewers)である
+<a href="../hacking/reviewers.html">強力なハッカー</a> の集団をみんな使って
+コードの品質を上げること、ベストプラクティスをよりよく教えあうこと、
+直面していたり潜在しているリグレッションをさけること
+を願っています。
+
+<p>
+この新しい <a href="mailto:reviewers@mozilla.org">reviewers@mozilla.org</a>
+グループは
+ブランチにおいて正しい（変更の）交換がなされることを確実にするために（短期的に、極最小のリスク）
+そして本流において Mozilla や Netscape 6 の後継を保護するために
+（長期的に、よりよい しかし最小ではない分離、残りの
+<a href="#new-milestones">マイルストーンプラン</a>、そして
+<a href="#project-management">プロジェクトマネージメント</a>
+の望みのために 少々のリスクは大目にみて）
+すべてのブランチと本流の変更を検証し、是正しなければなりません。
+
+<p>
+もちろん、悪い設計の品質について検査することはできませんし
+またそれをコードレビューすることもできません。
+よりよい設計検証と計画のために 設計変更や新設計を提案、検証するには
+いつもの mozilla ニュースグループが使われるべきです（今日そうであるように）。
+mozilla.org の
+<a href="#project-management">新しいプロジェクトマネージメント</a>
+のチームも手伝うことができます。
+しかし mozilla.org は基本的にコードをくばり、私たちはコードの品質を向上することが必要です。
+それを行うための 私たちが知る最良の手段は、すべてのコード（変更されたそれぞれのファイルで
+コードの変更部分と まわりの変更されていない部分の両方）を検証するトップハッカーを得ることです。
+
+<h2 align=center>品質保証 とリリース（qa and release）</h2>
+<p>
+leaf@mozilla.org は 本流と（後に Netscape 6 商用ビルドの変造副製品として生じる）
+Netscape 6 ブランチから Mozilla のナイトリービルドをプロデュースします。
+ブランチビルドは <tt>MN6</tt> と呼ばれる新しいマイルストーン名のもとに
+ftp.mozilla.org に現われます。
+
+<p>
+asa@mozilla.org と IRC の #smoketest、#qa は 日々の動作確認のために
+Mozilla 本流ビルドを QA します。
+asa@mozilla.org は週毎の <tt>MN6</tt> を QA し、MathML やほかの機能拡張、完全でないプラグインをテストします。
+
+<p>
+私たちはブランチと本流の両方を扱うための tinderbox のマシンリソースを確保し
+Mozilla コミュニティーに本流のナイトリービルドをプロデュースするつもりです。
+私たちは netscape.com に ブランチの tinderbox は Netscape 6 の商用ツリーのみをビルドすること を提案し
+この netscape.com の tinderbox の要件は ブランチが続く間 必要であれば十分だと願っています。
+この変更は Netscape 6 の商用 tinderbox グループに 少なくとも Linux を追加することが必要ですが
+現在の SeaMonkey マシンのほとんどを本流用に解放しなければなりません。
+新しい mozilla.org のビルド実験マシンはなにか違うものをつくり上げることができます。
+leaf@mozilla.org はここに詳細を考えています。
+
+<p>
+私たちは ツリーの終結が必要とされるなら IRC の #mozilla が dmose@mozilla.org や
+ほかのスタッフの助けを得て 本流における保安官の役割を担えると信じています。
+明示的な保安官名簿が必要なら、dmose@mozilla.org が
+beppe@netscape.com、trudelle@netscape.com、ほか とともに一丸となってあたるでしょう。
+
+<a name="new-milestones">
+<h2 align=center>新しいマイルストーン（new milestones）</h2>
+</a>
+
+<p>
+M18 の後、そして Mozilla 0.6（Netscape 6 となった Mozilla ソースと同一のものとして使う名前）
+のスタートとともに mozilla.org は Mozilla-アプリケーションスウィート
+（少なくとも<tt>ブラウザ</tt> と <tt>メール／ニュース</tt>）のターゲットマイルストーンを
+<a href="http://bugzilla.mozilla.org/">bugzilla</a>
+<a href="http://bugzilla.mozilla.org/enter_bug.cgi">products</a>
+の中で次のように設定しなおすことを提案します。
+<ul>
+<li>
+混雑と混乱をさけるため、古いターゲットマイルストーン（<tt>M1</tt> から <tt>M30</tt>）は
+Target Milestone メニューから拒絶されます。
+もちろん、古いバグが参照できるように bugzilla のデータベースには残ります。
+<li>
+<tt>mozilla0.6</tt>、<tt>mozilla0.9</tt>、<tt>mozilla0.9.1</tt>、
+<tt>mozilla1.0</tt>、<tt>mozilla1.0.1</tt>
+の形式の新しいターゲットマイルストーンが 私たちが後で拡張できるように
+<tt>mozilla1.2.1</tt> のような ある区切りまで作られます。
+依然として Future のターゲットマイルストーンもあるでしょう。
+<li>
+これらの新しいターゲットマイルストーンは キーワードでもあることをよく理解してください。
+あるバグが <tt>mozilla1.0</tt> でフィックスされるべきであると提案するために、
+だれでも そのキーワードをバグ（情報）に加えることができます。
+バグがそのマイルストーンまでにフィックスされそうかどうかを見分けるために、
+だれでもバグの Target Milestone 設定をチェックすることができます。
+開発者のターゲットマイルストーンはいつものとおりです。
+<tt>[nsbeta3+]</tt> や <tt>[mozilla1.0+]</tt>
+といったステータスはホワイトボードを汚すだけなので無用です。
+
+<li>
+Mozilla には
+バグにターゲットマイルストーン キーワードを加えてコミュニティーの成果をあげるだけでなく
+適切に新しいマイルストーンをターゲッティングして 分担している開発者を率先する
+プロジェクトマネージメントも必要です。
+詳しくは後述の <a href="#project-management">プロジェクトマネージメント</a> の項目を見てください。
+</ul>
+
+<p>
+次の表は新しいマイルストーンのスケジュールを非常におおまかな日程で示しています。
+私たちはそれぞれのマイルストーンをいくぶんずらしがちですが、
+四半期毎のマイルストーンを守ろうとしています。
+私たちはかたくなに日程通り進めることはしません、さもないと
+Mozilla コミュニティーはなにかの口実をつけて
+『1.0』というバージョン文字にあたいする Mozilla 1.0 をしり込みするでしょう。
+しかし 私たちは断固としてレギュラーマイルストーンをプロデュースするつもりです。
+時間通りでも そうでなくても 列車は走るのです！
+
+<p>
+もしあなたが Mozilla の企業の協力者で あなたのスケジュールに 以下に提案されている
+マイルストーンとうまく連係しないものがあるなら、staff@mozilla.org にメールして
+よりきめ細かいマイルストーン や 一連のマイルストーンを尋ねてください。
+次の Mozilla マイルストーンのために あなたが何週間『ラウンドアップ』に立てるか
+調整と早急な確認を試みます。
+
+<p>
+<table border=1 bgcolor="#EEEEEE">
+<tr><th align=center colspan=2>2000年</th>
+    <th align=center colspan=8>2001年</th>
+</tr>
+<tr><td align=center><i>10月</i></td>
+    <td align=center><i>以降</i></td>
+    <td align=center colspan=2><i>第1四半期</i></td>
+    <td align=center colspan=2><i>第2四半期</i></td>
+    <td align=center colspan=2><i>第3四半期</i></td>
+    <td align=center colspan=2><i>第4四半期</i></td>
+</tr>
+<tr><td><span class="smalltt">M18</tt></td>
+    <td><span class="smalltt">mozilla0.6</tt></td>
+    <td><span class="smalltt">mozilla0.9</tt></td>
+    <td><span class="smalltt">mozilla0.9.1</tt></td>
+    <td><span class="smalltt">mozilla1.0</tt></td>
+    <td><span class="smalltt">mozilla1.0.1</tt></td>
+    <td><span class="smalltt">mozilla1.1</tt></td>
+    <td><span class="smalltt">mozilla1.1.1</tt></td>
+    <td><span class="smalltt">mozilla1.2</tt></td>
+    <td><span class="smalltt">mozilla1.2.1</tt></td>
+</tr>
+</table>
+
+<p>
+Mozilla 開発者
+とりわけ Mozilla コードにもとづく商業製品をリリースしようと計画している協力者が
+レギュラーマイルストーンに期待することができるのは重要です。
+開発者は
+最初に（たとえば）<tt>mozilla1.1</tt> にターゲットされていた作業がずれるかどうか、
+その作業が <tt>mozilla1.2</tt> の列車に飛び乗ることができるか
+（それまで 標準ビルドに組み込まれずに残っていたり #ifdef で外されていたり
+CVS ブランチにあったりしていて）
+を知る必要があります。
+私たちは 前年をかけて得られた経験にもとづいて 3カ月サイクルが現実的であり、
+プロジェクトが 意味深い新しい開発、安定化、改良をおこなって切り上げるのに
+ほどよく短い と信じてます。
+
+<p>
+私たちが 6週間毎に行おうと願っている <tt>mozilla1.1.1</tt> や
+同様の『中間』マイルストーンは 公正さをチェックするマイルストーンで、
+だれもが 次の四半期マイルストーンがどのくらい進歩しようとしているか
+を評価するのに役立つものです。
+6週間周期が長過ぎると思ったときは、<tt>mozilla1.1.2</tt> や そのような
+安定化ミニマイルストーンを追加して 4週間周期にスイッチすることもありえます。
+私たちは メジャーマイルストーンの間の そのようなマイナーマイルストーンを
+３つ以上は想定していません。
+<p>
+私たちはコンポーネント化を歓迎しますが、すべての Mozilla ソースがいっしょにビルド
+されなければならないケースが一般的です。
+API が成熟して私たちがそれらをフリーズするのにともない、
+コンポーネントオーナーが独自のマイルストーンスケジュールを開発し
+独自の CVS タグとソース（とさらにはバイナリー）リリースによってコンポーネント
+を供給することを願います。
+それが Mozilla をスケールアップし、過度のコンポーネント間依存をさける 唯一の方法です。
+しかし私たちはいまだ
+<tt>mozilla1.5</tt> が 十分にテストされたコンポーネントを 安定したインタフェースによって
+たがいにつないだ 単なる組み合わせであるときでも
+mozilla.org がクロスコンポーネントマイルストーンや『ブランド』の成果をリリースすること
+をリードしていると予見しています。
+それはハッピーな日になるでしょう！
+
+<a name="project-management">
+<h2 align=center>プロジェクトマネージメント</h2>
+</a>
+
+<p>
+助けを必要としているバグに対して タイムリーなかたちで 開発者をふりむけるため、
+リスクを減らすため、
+そして Mozilla にもとづく商業プロジェクトが製品リリースを管理することを助けるために
+mozilla.org はプロジェクトマネージャ
+<a href="mailto:drivers@mozilla.org">drivers@mozilla.org</a>
+のグループを作ることを提案します。
+（私たちは "project managers" よりも運送の含蓄を込めて "drivers" のような短い名前をえらびます）
+
+<p>
+私たちが考えているのは次の人たちです：
+<ul>
+<li>David Baron, <a href="mailto:dbaron@fas.harvard.edu">dbaron@fas.harvard.edu</a>
+<li>Chris Blizzard, <a href="mailto:blizzard@redhat.com">blizzard@redhat.com</a>
+<li>Asa Dotzler, <a href="mailto:asa@mozilla.org">asa@mozilla.org</a>
+<li>Brendan Eich, <a href="mailto:brendan@mozilla.org">brendan@mozilla.org</a>
+<li>Warren Harris, <a href="mailto:warren@netscape.com">warren@netscape.com</a>
+<li>Robert O'Callahan, <a href="mailto:roc+moz@cs.cmu.edu">roc+moz@cs.cmu.edu</a>
+<li>Tim Rowley, <a href="mailto:tor@cs.brown.edu">tor@cs.brown.edu</a>
+</ul>
+
+<p>
+私たちはこれらの仲間が用いる処理に過度のものを求めるのではなく
+彼らがたずさえてくるテクニックを信じようとつとめます。
+私たちは 同数（に別れて競合すること）をさけるために
+奇数人（多すぎず、ラッキーで、すばらしい７人）を選びました。
+私たちは モジュールオーナーに期待するのと同様に
+（プロジェクトマネージメント『モジュール』をあずかる）プロジェクトマネージャー（drivers）に
+責任感と コミュニティーの満足感を期待します。
+
+<p>
+最低限、私たちは
+プロジェクトマネージャーが
+四半期毎のスケジュールにしたがってバグをソートするのに
+新しい bugzilla のターゲットマイルストーンキーワードを使うこと、
+Mozilla コミュニティーの望みを考慮して
+秩序立ってターゲットバグをフィックスするために
+開発者を配置したり募集したりすること
+を求めます。
+プロジェクトマネージャーはもちろん
+それぞれのマイルストーンの意図やそれに類する内容、
+マイルストーンを定めるのに使ったスケージュールの根拠を
+公開文書やニュースグループへのポストで明らかにしなければいけません。
+
+<p>
+それ以上のことを 私たちはプロジェクトマネージャーに委任します。
+私たちはそうとうな量の努力を 依存性を確かめること、スケジュールを修正すること、
+そして開発者をコーディネートすることに費やすことになりそうです。
+
+<a name="document-history">
+<h2 align=center>更新履歴（document history）</h2>
+</a>
+
+<blockquote>
+<h3>第３稿</h3>
+<li>バージョンナンバーを 1.0、1.1、1.2 におちつけました。必要に応じて
+1.0.1、1.1.1 といった中間マイルストーンもあります。
+<li>M18 を ブランチの説明図やマイルストーンの表に示すとともに、説明文で言及。
+<li><a href="mailto:ianh@netscape.com">Ian Hickson</a>
+のよりよい PNG のブランチ説明図を使用。
+</blockquote>
+
+<blockquote>
+<h3>第２稿</h3>
+<li>バージョンナンバーが現実的な数字でなかったのを 整数のペアにしました
+（指摘してくれた ianh@netscape.com に感謝します）。
+<li>表の背景色をあまり暗くないグレイに直しました。
+</blockquote>
+
+<blockquote>
+<h3>第１稿</h3>
+<li>古いロードマップは役目を終えました。
+<li>新しいマイルストーンスケジュール、コード検証、そして プロジェクトマネージメントを提案。
+</blockquote>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/roadmap/roadmap-25-Sep-2000.html">英語版</a> 2000/12/15</span> - <span>和訳版 2004/09/23</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/roadmap/roadmap-25-Sep-2000.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

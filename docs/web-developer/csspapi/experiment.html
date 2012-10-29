@@ -1,0 +1,91 @@
+<html>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>クロスブラウザ DHTML API テストスイート</TITLE>
+
+     
+<!-- DO NOT DELETE: this empty style sheet element becomes the
+          style sheet to which CSS1 rules are added in IE4+. -->
+     
+<STYLE ID="ietssxyz" TYPE="text/css"> </STYLE>
+     
+<!-- This external script defines cross-browser functions for
+          accessing CSS1 and CSSP properties. -->
+     
+<SCRIPT LANGUAGE="JavaScript1.2" SRC=xbdhtml.js> </SCRIPT>
+     
+<!-- Make your function calls to define CSS1 rules in this
+          SCRIPT, now that the target style sheet has been created
+          in IE4+ and the functions have been loaded. -->
+     
+<SCRIPT LANGUAGE="JavaScript1.2"><!--
+
+//--></SCRIPT>
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<style type="text/css" media="screen,tv">
+H1, H2, H3, H4, H5, H6	{ margin: 1em 3em 0.5em; }
+.comment	{ color: #20A040;
+		  font-size: 80%; }
+</style>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+<CENTER>
+  <H2>クロスブラウザ DHTML API テストスイート</H2>
+</CENTER>
+<P>各テストが成功すれば true と表示されます。</P>
+<P>失敗した場合は false と表示されます。</P>
+<P>失敗を素早く探すには、テストドキュメントを開いて、&quot;false&quot;を検索してください。<br>
+  <span class="comment">[訳注] 多くの環境では、Ctrl + F キーによって検索Windowが開くと思います。</span></P>
+<P>xbdhtml.js 中の関数を変更した場合は、このテストスイートを使って機能を１つも損なっていないことを確認するようにしてください。このように使用することで、テストスイートは既存のソフトウェアモジュールの再利用と拡張を簡単にできるようにします。スクリプト開発者は変更を加えた後にスクリプトの全ての関数を簡単かつ素早く再テストすることができるのです。品質保証の自動化により開発とソフトウェア品質の向上が促進されます。</P>
+<P>モジュールを開発すると同時にテストスイートを書いてください。関数を書く度に、その関数が正しく機能することを確認する一連のテストを書いてください。一連のテストでは必ずその関数が扱うと想定している全ての入力に渡ってテストするようにしてください。限界となる値については特に注意を払ってください。<br>
+  <span class="comment">[訳注] &quot;限界となる値&quot;というのは、引数の数が最小の場合や、正の整数を必要とする引数に１を渡す場合のことなどです。</span></P>
+<P>テストスイートを書くのは初めは時間が掛かりますが、後に中心的な関数を修正して、それらが壊れていないことを再確認しなければいけなくなったときには時間の節約になります。手動で関数を再テストすることが二度となくなるのです。テストスイートはコードを多くのプラットフォームやアプリケーションのバージョン毎にテストすることを簡単にします。テストスイートは、ソフトウェアが徹底的にテストされているという自信を与えることで、開発者のストレスを減らします。</P>
+<CENTER>
+  <TABLE BORDER=0 CELLPADDING=5>
+    <TR>
+      <TD>HTML 位置指定</TD>
+      <TD><A HREF="testpos.html">testpos.html</A></TD>
+    </TR>
+    <TR>
+      <TD>ネストした要素の取得</TD>
+      <TD><A HREF="testnest.html">testnest.html</A></TD>
+    </TR>
+    <TR>
+      <TD>切り抜き範囲の取得と設定</TD>
+      <TD><A HREF="testclip.html">testclip.html</A></TD>
+    </TR>
+    <TR>
+      <TD>表示非表示</TD>
+      <TD><A HREF="testhide.html">testhide.html</A></TD>
+    </TR>
+    <TR>
+      <TD>Z-Index 並び替え</TD>
+      <TD><A HREF="testz.html">testz.html</A></TD>
+    </TR>
+    <TR>
+      <TD>背景色</TD>
+      <TD><A HREF="backgnd.html">backgnd.html</A></TD>
+    </TR>
+    <TR>
+      <TD>背景画像</TD>
+      <TD><A HREF="backimg.html">backimg.html</A></TD>
+    </TR>
+    <TR>
+      <TD>マークアップの生成</TD>
+      <TD><A HREF="testmark.html">testmark.html</A></TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<p class="comment">[訳注] これらのテストページではコメントなどは和訳しておりません。ページタイトルなど明らかにおかしかった部分は一貫性を持つようにしました。<br>
+  また、各ページ毎には記載しておりませんが、これらのテストページは全てこのページ同様に mozilla.org 和訳プロジェクトによって提供されるものです。</p>
+<!--#include virtual="/includes/footer.html"-->
+<hr>
+<p align="right"><font size="-1">訳者： dynamis &lt;<a href="mailto:translator@skillup.jp">translator@skillup.jp</a>&gt;<br>
+  <a href="http://www.mozilla.org/docs/web-developer/csspapi/experiment.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。</p>
+</font></p>
+</BODY>
+</HTML>

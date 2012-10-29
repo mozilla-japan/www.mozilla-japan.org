@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="euc-jp"?>
+<?xml-stylesheet href="default.css" type="text/css"?>
+<!--?xml-stylesheet href="imageless.css" type="text/css"?-->
+
+<!DOCTYPE SearchResult>
+
+<SearchResult xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<Header>
+
+  <SearchTitle>
+    これらは、Mozilla プラットフォームや Mozilla ブラウザ、ソースコード、あるいは、アプリケーションその他の製品開発に Mozilla の開発ツールを利用しているベンダーの一部です。
+    これらのベンダーは「アプリケーションスイート」「組み込みアプリケーション」「拡張機能、アドオン」といった一般的なカテゴリに分類されます。
+    ソートボタンを使って、新しい順、企業名順、ベンダーの種類順に並べ替えができます。
+  </SearchTitle>
+
+  <Toolbar>
+    <html:form>
+      <html:input type="button" id="Type" onclick="sort_a(vendors,this.id)" value="種類順"/>
+      <html:input type="button" id="Title" onclick="sort_a(vendors,this.id)" value="企業名順"/>
+      <html:input type="button" id="Date" onclick="sort_1(vendors,this.id)" value="新着順"/>
+      <!--html:input type="button" id="img" onclick="initiateToggle(); return false;" value="Show Graphics" /-->
+      <Label>で並べ替える</Label>
+    </html:form>
+  </Toolbar>
+
+</Header>
+
+<VendorSet>
+
+<Vendor>
+  <html:img src="http://www.redbacksystems.com/images/redback_logo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.redbacksystems.com/projects/mozngw/">MozNGW</Title>
+  <Synopsis>MozNGW は、Novell GroupWise サーバコンポーネント用の Mozilla ベースのクライアントです。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20040621</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.gnome.org/projects/epiphany/images/epiphany-64.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.gnome.org/projects/epiphany/">Epiphany</Title>
+  <Synopsis>Epiphany は、GNOME デスクトップ用 Web ブラウザです。シンプルかつ標準に準拠したブラウザを目指しています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20040621</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/nslogo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://channels.netscape.com/ns/browsers/7/">Netscape 7</Title>
+  <Synopsis>Netscape 7.1 [<Link xlink:type="simple" xlink:show="replace" xlink:href="http://wp.netscape.com/ja/browser/">日本語版</Link>]  は、Windows、Mac OS、Linux 向けの、Mozilla 1.4 をベースとした最新の Netscape 商用ディストリビューションです。ユーザインターフェイスは、開発者向けではなく、エンドユーザ向けに合わせられており、AIM やスペルチェッカーといった追加機能が含まれています。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030701</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://bdn.borland.com/images/topnav/bdnetwork2.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bdn.borland.com/article/0,1410,28199,00.html">Borland</Title>
+  <Synopsis>Mozilla は、Borland の Kylix2 IDE 内部の HTML プレビュー機能を提供しています。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030603</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.openvms.compaq.com/img/hpc60_topnav_hp_logo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.openvms.compaq.com/new/">HP/Compaq</Title>
+  <Synopsis>HP-UX と IPF プラットフォーム向けの初めての Mozilla が <Link xlink:type="simple" xlink:show="replace" xlink:href="http://www.hp.com/go/mozilla/">ダウンロード可能に</Link> なっています。この他にも、HP は、<Link xlink:type="simple" xlink:show="replace" xlink:href="http://h30097.www3.hp.com/internet/moz_form.html">Tru64 UNIX</Link> 向けに Mozilla Web Client を、<Link xlink:type="simple" xlink:show="replace" xlink:href="hthttp://www.openvms.compaq.com/openvms/products/ips/register_mozilla.html">OpenVMS</Link> 向けに Mozilla を提供しており、自社のプリンタ支援製品では Netscape 7.0/Mozilla 1.0.1 の組み込み版を利用しています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20030812</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.ptc.com/images/nav_head/sparky/ptc_web_logo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.ptc.com/">PTC</Title>
+  <Synopsis>PTC は、賞を取った Web 利用が可能な CADCAM 製品 <Product xlink:type="simple" xlink:show="replace" xlink:href="http://www.ptc.com/go/wildfire/">PRO/Engineer Wildfire</Product> に Gecko を利用しています。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030409</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://wirespring.com/images/mediakit/firecast_rocksolid-small.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.wirespring.com/Products/">FireCast</Title>
+  <Synopsis>WireSpring Technologies による FireCast は、対話型キオスク (訳注: 街頭、駅、空港、店舗などに設置された、タッチパネル操作の情報端末) のネットワークを展開、遠隔管理するための、Linux ベースのプラットフォームです。Linux ベースのキオスク運営システムである FireCast OS は、クライアントへのコンテンツ表示から GUL 管理ツールの提供まで、あらゆることに組み込みの Mozilla ブラウザを利用しています。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030403</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/mozdev.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.mozdev.org/">mozdev.org</Title>
+  <Synopsis>Mozdev は、拡張機能、アドオン、Mozilla アプリケーションを提供している 100 以上のプロジェクトをホストしています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20030402</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.xulplanet.com/images/xulplanet.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.xulplanet.com/downloads/xabyl/">Xabyl</Title>
+  <Synopsis>Xabyl は、XBL ファイルを視覚的に編集するためのエディタです。XUL を使って実装されており、Mozilla にインストールできます。</Synopsis>
+  <Type>拡張機能、アドオン</Type>
+  <Date>20030402</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/conectiva.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.conectiva.com/">Conectiva</Title>
+  <Synopsis>Conectiva は、ラテンアメリカを対象とした GNU/Linux ディストリビューションです。ディストリビューションには Mozilla と Netscape 7 がバンドルされています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20030402</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/unitedlinux.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.unitedlinux.com/">UnitedLinux</Title>
+  <Synopsis>UnitedLinux は、エンタープライズ市場を対象とし、Mozilla を含んだ GNU/Linux ディストリビューションです。以下の創立企業 4 社のリソースを結集しています: Conectiva、The SCO Group、SuSE Linux AG、TurboLinux, Inc.</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20030402</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/sgi_logo_us.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.sgi.com/">Silicon Graphics</Title>
+  <Synopsis>Silicon Graphics は、自社の <product xlink:type="simple" xlink:show="replace" xlink:href="http://www.sgi.com/developers/technology/irix/irix6519.html">Irix Operating System</product> のリリースとともに Mozilla ブラウザ (Mozilla 1.0.1 が最新) をビルド、ディストリビュートしています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20030402</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/manyone.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.manyone.net/homesite/index2.html">ManyOne Networks</Title>
+  <Synopsis>ManyOne Networks は、「最も遅いインターネット接続環境でも、インターネットを探索するための、より気取らない、直感的、教育的な楽しい方法」となる、Mozilla ベースの ManyOne Universal Browser をリリースしました。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030402</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.bradsoft.com/topstyle/img/tslogo_3sm2.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.bradsoft.com/topstyle/">topstyle</Title>
+  <Synopsis>Topstyle は、Topstyle Pro HTML/CSS/XHTML エディタに、レンダリングエンジンとして Gecko を採用しています。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030401</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/AOL.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.aol.com/">AOL</Title>
+  <Synopsis>AOL for Mac OS X は、Gecko ベースの Web ブラウザを統合しています。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030401</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.getax.ch/dyn/rep/ent_aigle.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.getax.ch/dyn/">GEtax</Title>
+  <Synopsis>スイスのジュネーブ税務署、GEtax (米国内国税歳入局の地方版に相当) は、納税申告 Web アプリケーションへのアクセスと、収入申告フォームへ記入を支援するために、地方の納税者全員に CD を郵送しています。40 万人に出荷されている CD には、Windows、Linux、Mac OS X 向けのフランス語版 Mozilla 1.2.1 が含まれています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20030401</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="/projects/camino/images/icon.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="/projects/camino/">Camino</Title>
+  <Synopsis>Camino (以前は Chimera と呼ばれていました) は、Mac OS X 向けの、シンプルな軽量・高速ブラウザを供給することを目的としたプロジェクトです。Camino には、Cocoa フロントエンドと結び付いた UNIX バックエンドが含まれており、Gecko レイアウトエンジンを組み込んでいます。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20030401</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.oeone.com/images/oe_logo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.oeone.com/">OEOne</Title>
+  <Synopsis>OEOne は、使いやすく、多くのアプリケーションが用意されている、「Linux と Mozilla テクノロジーのパワーを結集した」オペレーティング環境を制作しています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20030401</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.nokia.com/pics/logo_nokia.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.nokia.com/">Nokia</Title>
+  <Synopsis>Nokia は、インターネットとデジタル放送を結合した、家庭向けのパワフルな娯楽情報番組センターである <Link xlink:type="simple" xlink:show="replace" xlink:href="http://press.nokia.com/PR/200009/790116_5.html">Media Terminal</Link> の一部に Mozilla を利用しています。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030401</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/ibm.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www-3.ibm.com/software/os/warp/browser/">IBM Web Browser</Title>
+  <Synopsis>IBM Web Browser は、スペルチェッカーと Flash プラグインを追加した、OS/2 向けの Mozilla ポートです。IBM は、INotes Web ベースメール製品にも Mozilla ブラウザを利用しています。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20030401</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://bugzilla.mozilla.org/ant.jpg" width="100"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://itos.gsfc.nasa.gov/~bugzilla/ ">http://itos.gsfc.nasa.gov/~bugzilla/</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://swsi.gsfc.nasa.gov/bugzilla/">NASA SWSI</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.ecoinformatics.org/">Ecoinformatics.org</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.internet2.edu/shibboleth/">Internet2</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.mcs.anl.gov/voyager/">http://bugzilla.mcs.anl.gov/voyager/</Title>
+  <Synopsis>Bugzilla を利用している政府機関や研究プロジェクトです。</Synopsis>
+  <Type>ツール</Type>
+  <Date>20030403</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://bugzilla.mozilla.org/ant.jpg" width="100"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.cliftonlabs.com/bugzilla/">Clifton Labs</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugs.decisionsoft.com/">DecisionSoft</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://oss.sgi.com/bugzilla/">SGI</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www-124.ibm.com/developerworks/oss/linux/bugzilla/">IBM</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="https://bugs.wirex.com/">Wirex</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.solarmetric.com/">Solarmetric</Title>
+  <Synopsis>バグの追跡やプロジェクト管理タスクに Bugzilla を利用している、民間の開発企業やコンサルタントです。</Synopsis>
+  <Type>ツール</Type>
+  <Date>20030403</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://bugzilla.mozilla.org/ant.jpg" width="100"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://devbox.library.arizona.edu/BugTracker/">Arizona U.</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://aleida.mit.edu/bugs/">MIT</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.andrew.cmu.edu/">CMU</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.maths.mq.edu.au/~steffen/Alpha/bugzilla/">mq.edu.au</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://tools.arlut.utexas.edu/bugzilla/">UTexas</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://titanium.dstc.edu.au/bugzilla/">dstc.edu.au</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://tech.pharmacy.wsu.edu/bugzilla/">WSU</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.seis.sc.edu/pgzilla/">seis.sc.edu</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://ecomapp2.stanford.edu/bugzilla/index.cgi">Stanford</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://mgldev.scripps.edu/bugs/">Scripps</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://deuce.doc.wustl.edu/bugzilla/index.cgi">doc.wustl.edu</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://cvs.cs.cornell.edu:12000/bugzilla/">Cornell</Title>
+  <Synopsis>Bugzilla を利用している大学です。</Synopsis>
+  <Type>ツール</Type>
+  <Date>20030403</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://bugzilla.mozilla.org/ant.jpg" width="100"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.w3.org/Bugs">W3.org</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.apache.org/">Apache</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.osdl.org/">OSDL</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.ximian.com/">Ximian</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.mindrot.org/">Open SSH</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.openoffice.org/project_issues.html">Issueszilla</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.horde.org/">Horde</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.opendarwin.org/en/">OpenDarwin</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.handhelds.org/">handhelds.org</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://dot.kde.org/1032319933/">KDE</Title>
+  <Synopsis>バグの追跡に Bugzilla を利用している、いくつかのオープンソースプロジェクトです。</Synopsis>
+  <Type>ツール</Type>
+  <Date>20030403</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://bugzilla.mozilla.org/ant.jpg" width="100"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.redhat.com/bugzilla/">Red Hat</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugzilla.suse.de/">SuSE</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.mandrakelinux.com/en/">Mandrake</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugs.gentoo.org/">Gentoo</Title>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://bugs.terrasoftsolutions.com/bugzilla/">Tera Soft Solutions</Title>
+  <Synopsis>Red Hat、Mandrake、SuSE、Gentoo、Tera Soft は、自社の Linux 開発プロジェクトのバグの追跡に Bugzilla を利用しています。</Synopsis>
+  <Type>ツール</Type>
+  <Date>20030403</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.bugopolis.com/Images/Banner2.jpg"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.bugopolis.com/">Bugopolis</Title>
+  <Synopsis>Bugopolis は、設立当初から、Bugzilla を含めた、あらゆる組織で使える、バグ追跡のための完全なハードウェア、ソフトウェアソリューションを開発しています。</Synopsis>
+  <Type>ツール</Type>
+  <Date>20030403</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.redhat.com/img/homepg_rh_logo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.redhat.com/">Red Hat Linux</Title>
+  <Synopsis>Red Hat Linux は、Mozilla を含む、様々なアプリケーションをパッケージにした、Linux OS のディストリビューションです。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20021201</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.compuserve.com/styleguide/CS_1a.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.compuserve.com/">Compuserve</Title>
+  <Synopsis>Compuserve は、Compuserve クライアントの バージョン 7.0 に Gecko を組み込んでいます。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20021201</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/sunlogo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://wwws.sun.com/software/solaris/netscape/">Sun Netscape 7</Title>
+  <Synopsis>Sun Netscape 7 は、Netscape からリリースされている、最新のインターネットクライアントスイートの Solaris ポートです。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20021201</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://activestate.com/images/activestate_logo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://activestate.com/Products/Komodo/">Komodo</Title>
+  <Synopsis>ActiveState Komodo は、スクリプト言語のためのクロスプラットフォームな統合開発環境 (IDE)です。Mozilla プラットフォームの上にビルドされています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20021201</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://images.linspire.com/template/slogan.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.linspire.com/">Linspire</Title>
+  <Synopsis>Linspire (以前は LindowsOS と呼ばれていました) は、Walmart などの大規模小売店で PC に搭載されて販売されている、使いやすい、Windows に似た OS で、Mozilla ブラウザを売り物にしています。</Synopsis>
+  <Synopsis>(訳注: 株式会社ライブドアから発売されている <Link xlink:type="simple" xlink:show="replace" xlink:href="http://lindows.livedoor.com/">LindowsOS 日本語版</Link> では、一般ユーザーのアカウントで「ウェブブラウザ」を起動すると、<Link xlink:type="simple" xlink:show="replace" xlink:href="http://www.mozilla.gr.jp/wazilla/">和ジラプロジェクト</Link> のページがデフォルトのホームページになっているブラウザが起動します。しかし、Lindows 日本語版に同梱されているのは、Mozilla をベースとした Lindows Internet Suite という独自のブラウザであって、和ジラではありません。作成にあたって和ジラが参考にされ、その名残がデフォルトのホームページとして残っているだけだと思われます。誤解のないようにお願いします)</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20021201</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.ximian.com/images/product_logos/80x80/desktop.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.ximian.com/">Ximian  GNOME</Title>
+  <Synopsis>Ximian GNOME は、Linux/Unix ユーザのための、使いやすいデスクトップ環境で、Mozilla が含まれています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20021201</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.debian.org/logos/openlogo-nd-50.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.debian.org/">Debian</Title>
+  <Synopsis>Debian は、Mozilla を含む、多くのアプリケーションがバンドルされている Linux ディストリビューションです。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20020101</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.fabula.eu.org/fabula_ws.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.fabula.eu.org/">Fabula</Title>
+  <Synopsis>Fabula は、ヨーロッパ内で少数言語が使われている地域の小学校における、バイリンガルな学習と読み書き能力のサポートを目的としたプロジェクトです。Fabula は、バイリンガルなマルチメディア童話ブックを作成し、情報をやりとりするための、使いやすい一連のソフトを開発し、教師や生徒が、2 種類の言語で書かれたテキストや、インタラクティブな画像、音声、画面上の言葉リスト、言葉遊びを組み合わせて、リッチで面白い教材を生み出せるようにしています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20020101</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://galeon.sourceforge.net/graphics/galeon_logo1.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://galeon.sourceforge.net/">Galeon</Title>
+  <Synopsis>Galeon は、Gecko (Mozilla のレンダリングエンジン) をベースとした GNOME Web ブラウザです。高速で、手軽なインターフェイスが特長です。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20020101</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/k-meleon.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://kmeleon.sourceforge.net/">K-Meleon</Title>
+  <Synopsis>K-Meleon は、Gecko (Mozilla のレンダリングエンジン) をベースとした、Windows 向けの高速 Web ブラウザです。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20020101</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/nautilus-logo.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.gnome.org/projects/nautilus/">Nautilus</Title>
+  <Synopsis>Nautilus は、Gecko ベースの Web ブラウザを統合した GNOME ファイルマネージャです。</Synopsis>
+  <Type>組み込みアプリケーション</Type>
+  <Date>20020101</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.beonex.com/global/logo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.beonex.com/">Beonex</Title>
+  <Synopsis>Beonex は、エンドユーザ、個人、企業を対象としたインターネットクライアントソフトウェアスイートで、ユーザのセキュリティやプライバシーを重視しています。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20020101</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.doczilla.com/logo.gif"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.doczilla.com/doczilla.html">DocZilla</Title>
+  <Synopsis>DocZilla は、拡張 XML/SGML パーサやレンダリング機能を搭載した Mozilla ベースの Web ブラウザです。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20020101</Date>
+</Vendor>
+
+<Vendor>
+  <html:img src="http://www.mozilla.org/university/nvu_icon128.png"/>
+  <Title xlink:type="simple" xlink:show="replace" xlink:href="http://www.nvu.com/">Nvu</Title>
+  <Synopsis>Nvu は、Mozilla ベースの Linux と Windows 用 HTML エディタです。主要スポンサーである Linspire, Inc. の支援を受けて、Daniel Glazman が開発しています。Nvu は、FTP サイトマネージャや (Mozilla Conmposer では拡張機能として利用可能な) CaScadeS という CSS エディタを統合した、パワフルな Web サイトオーサリングツールです。</Synopsis>
+  <Type>アプリケーションスイート</Type>
+  <Date>20041015</Date>
+</Vendor>
+
+</VendorSet>
+
+<Footer>
+
+  <DocumentInfo><Link xlink:type="simple" xlink:show="replace" xlink:href="http://www.mozilla.org/university/hof.xml">このドキュメントのオリジナルは、mozilla.org において、英語で管理・公開されています。</Link></DocumentInfo>
+  <DocumentInfo>この和訳は、利用者の利便のために <Link xlink:type="simple" xlink:show="replace" xlink:href="/jp/td/">Mozilla Japan 翻訳部門</Link> によって提供されています。</DocumentInfo>
+  <DocumentInfo>ご覧の文書に関するコメントは <Link xlink:type="simple" xlink:show="replace" xlink:href="http://moz.skillup.jp/jtp/viewforum.php?f=2">mozilla.org 日本語版について</Link> までお寄せください。</DocumentInfo>
+
+</Footer>
+
+<html:script src="hof.js" />
+
+</SearchResult>

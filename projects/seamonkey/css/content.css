@@ -1,0 +1,97 @@
+/* general styles for SeaMonkey pages */
+
+/* main page, following product pages template */
+
+.product-seamonkey {
+  background: url("../images/project-seamonkey-screen.png") no-repeat;
+}
+
+#product-side .unstable:before {
+  line-height: 0.1;
+  font-size: 1px;
+  margin: -15px -15px 0 -15px;
+  height: 15px;
+  display: block;
+  border: none;
+  content: url("../images/unstable_tl.gif");
+}
+#product-side .unstable {
+  background: #C0DCDC url("../images/unstable_back.gif") top right no-repeat;
+  color: red;
+  padding: 15px 70px 15px 15px;
+  margin-bottom: 5px;
+}
+#product-side .unstable:after {
+  display: block;
+  padding-top: 15px;
+  line-height: 0.1;
+  font-size: 1px;
+  content: url("../images/unstable_bl.gif");
+  margin: -10px -70px -15px -15px;
+  height: 8px;
+  background: transparent url("../images/unstable_br.gif") scroll no-repeat bottom right ;
+}
+
+/* release pages */
+
+.release-date {
+  text-align: right;
+  margin-top: 0;
+}
+
+#old {
+  font-size: smaller;
+}
+
+/* relnote README pages */
+
+.fieldset  {
+  border-top: thin solid rgb(223,220,217);
+  border-right: thin solid rgb(178,176,174);
+  border-bottom: thin solid rgb(178,176,174);
+  border-left: thin solid rgb(223,220,217);
+  padding: .1em 1em 0em 0em;
+  margin: 2em 0em 1.2em .2em;
+  background-color: rgb(217, 219, 225);
+  -moz-border-radius: .4em;
+}
+
+.fieldset:hover {
+  background-color: rgb(213, 214, 225);
+}
+
+.fieldset ul {
+  margin-top: 0em;
+}
+
+.fieldset li {
+  margin-right: 1.5em;
+}
+
+.fieldset ul :link  {
+  font-weight: normal;
+  color: #554FA0;
+}
+
+.fieldset ul :visited {
+  font-weight: normal;
+}
+
+.legend  {
+  display: inline;
+  position: relative;
+  top: -1.0em;
+  margin-left: 1.8em;
+  padding: .2em .8em .2em .8em;
+  font-size: larger;
+  font-weight: bolder;
+  color: rgb(0, 51, 153);
+  letter-spacing: .1em;
+  background-color: white;
+  -moz-border-radius: .6em .6em .2em .2em;
+  opacity: .7;
+  border-top: thin solid rgb(223,220,217);
+  border-right: thin solid rgb(178,176,174);
+  border-bottom: thin solid rgb(178,176,174);
+  border-left: thin solid rgb(223,220,217);
+}

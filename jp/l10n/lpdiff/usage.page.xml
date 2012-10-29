@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-lpdiff-usage" basename="usage" pathtoroot="../../../">
+
+<meta>
+	<dc:title>LpDiff の使い方</dc:title>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+	<dc:language>en</dc:language>
+	<dcterms:audience>developers</dcterms:audience>
+</meta>
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 title="無駄な手間を省いて言語リソースを効率的にメンテナンス"><tt:meta mode="title"/></h1>
+	
+	<h2>Graphical User Interface</h2>
+	<ol>
+		<li>
+			<h3>起動 : Launch LpDiff</h3>
+			<a href="lpdiff.png"><img src="lpdiff.small.png" class="screenshot" alt="起動直後の LpDiff ウィンドウ"/></a>
+			<div class="ja">
+				<p>コマンドプロンプトなどのコンソールから以下のコマンドを入力してください。</p>
+				<p class="indent"><kbd>java -jar LpDiff.jar</kbd></p>
+				<p class="note">Windows 環境であれば jar ファイルをダブルクリックしても起動します。</p>
+			</div>
+			<hr class="dotted"/>
+			<div class="en">
+				<p>Type this command on your console.</p>
+				<p class="indent"><code>java -jar LpDiff.jar</code></p>
+				<p class="note">If you are working on Windows, you can launch by double click on the jar file.</p>
+			</div>
+		</li>
+		<li class="clearright">
+			<h3>読込 : Load Directories</h3>
+			<a href="loaddir.png"><img src="loaddir.small.png" class="screenshot" alt="リソースディレクトリ選択ダイアログ"/></a>
+			<a href="loaddir.cvs.png"><img src="loaddir.cvs.small.png" class="screenshot" alt="リソースディレクトリ選択ダイアログ(入力後)"/></a>
+			<div class="ja">
+				<p>"Load Directories" メニューを選択してください。ダイアログが表示されるので差分比較をする言語リソースが収められているディレクトリを入力して下さい。</p>
+				<p>指定されたディレクトリ配下のファイルが左ペインにツリー表示されます。</p>
+			</div>
+			<hr class="dotted"/>
+			<div class="en">
+				<p>Select "Load Directories" menu. In the dialog shown, type target directories which contains the language resource files you want to compare.</p>
+				<p>Then directory and file tree are shown in the left pane.</p>
+			</div>
+		</li>
+		<li class="clearright">
+			<h3>表示 : Show Diff Tables</h3>
+			<a href="lpdiff.firefox.png"><img src="lpdiff.firefox.small.png" class="screenshot" alt="リソース読み込み後のウィンドウ"/></a>
+			<a href="lpdiff.browser.dtd.png"><img src="lpdiff.browser.dtd.small.png" class="screenshot" alt="リソースの比較表示"/></a>
+			<div class="ja">
+				<p>変更や追加または削除されたファイル名の末尾にはそれぞれ順に "(*)" や "(+)" または "(-)" が表示されます。ディレクトリ名の末尾に表示されている数字はそのディレクトリ中のファイルのうち過不足や変更のあったファイル数です。</p>
+				<p>ファイル名をダブルクリックするとそのファイルで定義されている言語リソースの差分表が右ペインに表示されます。変更されたものは青、追加されたものは赤、削除されたものは緑で表示されます。</p>
+			</div>
+			<hr class="dotted"/>
+			<div class="en">
+				<p>Modified, added or deleted files have postfix of "(*)", "(+)" or "(-)". At the end of the directory names you can see the numbers, which indicate how many files in the directory don't match.</p>
+				<p>Double click on filename in the left pane, then language resouce diff of the file will be shown in the right pane. Modified entity are shown in blue text, added ones are in red and deleted ones are in green.</p>
+			</div>
+		</li>
+		<li class="clearright">
+			<h3>出力 : Print Diff HTML</h3>
+			<a href="printdiff.png"><img src="printdiff.small.png" class="screenshot" alt="Print difference 出力先指定ダイアログ"/></a>
+			<a href="printall.png"><img src="printall.small.png" class="screenshot" alt="Print all 出力先指定ダイアログ"/></a>
+			<div class="ja">
+				<p>言語リソースの差分出力には "Print difference" と "Print all" の 2 通りの形式があります。前者は差分のみをまとめて 1 つの HTML ファイルに出力し、後者は変更のないものも含めて全リソースの比較表を言語リソースファイル毎の HTML に出力します。</p>
+				<dl>
+					<dt>Print difference</dt>
+					<dd>"Print difference" メニューを選択するとダイアログが表示されるので、差分出力を書き込む <em>HTML ファイル</em>を指定して下さい。"Write defaut CSS" のチェックを入れると出力 HTML 用の CSS ファイルが一緒に保存されます。</dd>
+					<dt>Print all</dt>
+					<dd>"Print all" メニューを選択しても同じようなダイアログが表示されますが、この場合はリソース比較 HTML を保存する <em>ディレクトリ</em>を指定して下さい。</dd>
+				</dl>
+			</div>
+			<hr class="dotted"/>
+			<div class="en">
+				<p>Lpdiff have two methods to output diff of language resources: "Print difference" and "Print all". Former one outputs only differences into the single HTML file, latter one generates all resources' diff table into HTML files corresponding to each language resource files.</p>
+				<dl>
+					<dt>Print difference</dt>
+					<dd>You'll see a dialog when you select "Print difference" menu, then specify <em>HTML file</em> you want to write diff into. When you check "Write default CSS", style file for the output HTML will be saved too.</dd>
+					<dt>Print all</dt>
+					<dd>You'll also see the similar dialog when you select "Print all" menu, but here you should specify <em>directory</em> you want to save HTMLs.</dd>
+				</dl>
+			</div>
+		</li>
+	</ol>
+
+	<h2>Character User Interface</h2>
+	<div class="ja">
+		<p>LpDiff はコマンドラインツールとして使用することもできます。次のように入力すると "Print difference" および "Print all" メニューと同じ出力が得られます。</p>
+		<p class="indent"><kbd>java -jar LpDiff.jar -diff [比較元ディレクトリ] [比較先ディレクトリ] [出力ファイル名]</kbd><br/>
+			<kbd>java -jar LpDiff.jar -all [比較元ディレクトリ] [比較先ディレクトリ] [出力ディレクトリ名]</kbd></p>
+	</div>
+	<hr class="dotted"/>
+	<div class="en">
+		<p>You can also use LpDiff from your console. Type below commands to print the same output as "Print dirrerence" or "Print all" menu.</p>
+		<p class="indent"><kbd>java -jar LpDiff.jar -diff [compare dir 1] [compare dir 2] [output file]</kbd><br/>
+			<kbd>java -jar LpDiff.jar -all [compare dir 1] [compare dir 2] [output dir]</kbd></p>
+		<p class="indent"><kbd></kbd></p>
+	</div>
+</tt:htmlbody>
+
+</page>
+</contents>

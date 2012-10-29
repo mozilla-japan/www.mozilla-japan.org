@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 構文</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/rationale/syntax.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="unit-patterns.html">
+<link rel="Next" href="miscellaneous.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background-color:#FFFFE0;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="white-space:nowrap;">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">根拠</div>
+    <div class="title1">構文</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="unit-patterns.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="miscellaneous.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">11/19/2002 (Tue)</p>
+
+<p>この節では草案の開発中に考えられていた他の構文を幾つか示す。</p>
+
+<h2><a name="semicolon-insertion"></a>セミコロンの挿入</h2>
+
+<h3>定義</h3>
+
+<p>文間のセミコロンを省略してもプログラムが記述できるのは、暗黙のセミコロンの挿入があるためである。JavaScript 1.5 、JavaScript 2.0
+はいずれも2種類のセミコロン挿入を持つ:</p>
+
+<dl>
+  <dt><a name="grammatical-semicolon-insertion"></a>文法的セミコロンの挿入</dt>
+  <dd>閉じ括弧 <code class="terminal-keyword">}</code> やプログラムの終端の前のセミコロンは JavaScript 1.5 、JavaScript 2.0
+    のいずれでも省略可能である。これに加えて JavaScript 2.0 パーサは <code>if</code>-<code>else</code> 文の
+    <code class="terminal-keyword">else</code> の前と <code>do</code>-<code>while</code> 文の <code class="terminal-keyword">while</code>
+    の前のセミコロンの省略も認めている。</dd>
+  <dt><a name="line-break-semicolon-insertion"></a>改行におけるセミコロンの挿入</dt>
+  <dd>JavaScript プログラムの先頭から <var>n</var> 番目までのトークンは文法的に正しいが、<var>n</var>+1番目のトークンが誤っていて、且つ
+    <var>n</var> 番目のトークンと <var>n</var>+1番目のトークンの間に改行がある場合は、パーサは <var>n</var> 番目のトークンと
+    <var>n</var>+1番目のトークンの間に <span class="terminal">VirtualSemicolon</span> を挿入してからプログラムをもう1度パースしようとする。</dd>
+</dl>
+
+<p>文法的セミコロンの挿入は<a href="../formal/parser-grammar.html">構文文法</a>の生成規則により直接実装 (実現)
+され、上記の場合は単純にセミコロンを必要としない。ソースコード中の改行は文法的セミコロンの挿入には無関係である。</p>
+
+<p>改行におけるセミコロンの挿入を<a href="../formal/parser-grammar.html">構文文法</a>で実装 (実現)
+するのは容易ではない。この種のセミコロンの挿入は構文的に誤ったプログラムを正しいプログラムに変えてしまい、ソースコードの改行にも依存する。</p>
+
+<h3>議論</h3>
+
+<p>文法的セミコロンの挿入は無害なものである。一方、改行におけるセミコロンの挿入には以下に示す問題がある:</p>
+
+<ol>
+  <li>改行におけるセミコロンの挿入はプログラムのソースコードにおける改行に依存してしまう</li>
+  <li>この種のセミコロン挿入の結果はプログラマの考えと一致しない</li>
+  <li>新しい構文が導入されると既存のプログラムの挙動は不意に変わってしまうことがある</li>
+</ol>
+
+<p>最初の問題は、XML 属性を扱い、改行を空白に変換するプリプロセッサの構築を困難にする。2番目と3番目の問題はより深刻である。プログラマは</p>
+
+<pre>a = b + c
+(d + e).print()</pre>
+
+<p>というプログラムが以下のようになると考えるが</p>
+
+<pre>a = b + c;
+(d + e).print();</pre>
+
+<p>実際にはこのプログラムは以下のようにパースされる:</p>
+
+<pre>a = b + c(d + e).print();</pre>
+
+<p>このことが分かるとプログラマは混乱する。</p>
+
+<p>3番目の問題は最も深刻なものである。新しい機能が言語に追加されると誤った構文は正しいものになる。仮に既存のプログラムが改行におけるセミコロンの挿入を発生させるために誤った構文を使っているとしたら、機能が追加された途端、暗黙の内にそのプログラムの挙動は変更されてしまう。例えば
+(<code>4&nbsp;&quot;in&quot;</code> のように) 数値リテラルの後ろに文字列リテラルを並べて書くと JavaScript 1.5 では不正だが、JavaScript
+2.0 においては単位式として構文的に正しいものである。残念ながらこの構文の拡張は次のような JavaScript 1.5 プログラムの意味を変更してしまう:</p>
+
+<pre>a = b + 4
+"in".print()</pre>
+
+<p>JavaScript 1.5 で以下のようになっていたものが</p>
+
+<pre>a = b + 4;
+"in".print();</pre>
+
+<p>JavaScript 2.0 では次のようになる</p>
+
+<pre>a = b + 4"in".print();</pre>
+
+<p>JavaScript 2.0 では数値リテラルと文字列リテラルを同じ行に置くことを要求する [no&nbsp;line&nbsp;break]
+制限を文法に追加することにより、この不一致を克服している。残念ながらこの互換性は諸刃の剣であり、JavaScript 1.5 との互換性のために
+JavaScript 2.0 は非常に多くの [no&nbsp;line&nbsp;break] 制限を持たなければならなくなる。その全てを漏らさず設定することは困難であり、1つでも忘れると
+JavaScript 2.0 プログラムで (先に述べた) 再解釈が起こることになる。また、</p>
+
+<pre>internal
+  function f(x) {return x*x}</pre>
+
+<p>というコードが</p>
+
+<pre>internal function f(x) {return x*x}</pre>
+
+<p>のようにならず、</p>
+
+<pre>internal;
+function f(x) {return x*x}</pre>
+
+<p>となることでプログラマは驚くだろう (<code>internal;</code> は式文である) 。</p>
+
+<p>JavaScript 2.0 の初期のバージョンでは改行におけるセミコロンの挿入を認めていなかった。現在は非 strict
+モードにおいてのみ認められており、strict モードでは言語の単純化のために [no&nbsp;line&nbsp;break] 制限は全て取り除かれる。これらの副作用として
+strict モードと非 strict モードで異なる振る舞いをするプログラム (上に挙げた例のような) を書くことができるが、これは単純さのための代価に過ぎない。</p>
+
+<h2><a name="regular-expressions"></a>正規表現リテラル</h2>
+
+<p>JavaScript 2.0 は正規表現リテラルを検出する規則に JavaScript 1.5
+と同じものを採用することで互換性を保持している。この方法ではパースせずに JavaScript
+プログラムから全てのトークンを見つけることが不可能になるため、構文指向テキストエディタやマシンスキャナといったプログラムの設計が困難になる。</p>
+
+<p>JavaScript 2.0 の字句文法を構文文法から独立させた場合、ツールは JavaScript プログラムを簡単に扱えるようになり、例えば
+JavaScript 2.0 或いはそれ以降のプログラムを正確に HTML ページに埋め込むために、例えば <code>&lt;/</code>
+といったものを全て避けることができる。完全なパーサは JavaScript のバージョン毎に変わる。このような困難を理解するには以下の JavaScript 1.5
+コード片を比較するとよい:</p>
+
+<pre>for (var x = a in foo &amp;&amp; "&lt;/x&gt;" || mot ? z:/x:3;x&lt;5;y&lt;/g/i) {xyz(x++);}
+for (var x = a in foo &amp;&amp; "&lt;/x&gt;" || mot ? z/x:3;x&lt;5;y&lt;/g/i) {xyz(x++);}</pre>
+
+<h3>正規表現の代替構文</h3>
+
+<p>JavaScript 2.0 の設計で早期に検討されていた代替案に、正規表現の明確な構文と新しい構文の使用があった。<span class="terminal">RegularExpression</span>
+はその開始、終了デリミタに <code>/</code> と <code>/</code> の代わりに <code>&laquo;</code> と <code>&raquo;</code>
+を使用することが明確に示されてた。例えば <code>&laquo;3*&raquo;</code> は0個以上の <code>3</code> にマッチする正規表現である。<code>&laquo;&raquo;</code>
+とすると空の正規表現となり、空文字列だけにマッチする。一方 <code>//</code> はコメントの開始になる。JavaScript 1.5 で空の正規表現を記述する場合は
+<code>/(?:)/</code> としなければならない。</p>
+
+<h3><a name="syntactic-resynchronization"></a>構文の再同期</h3>
+
+<p>JavaScript の将来のバージョンの機能で記述されたプログラムの部分をレキシカルアナライザが読み飛ばすためにブロックの終点
+(<code>}</code> が相当する) を探さなければならないとき、構文の再同期が起こる。通常これは問題では無いが、正規表現により字句解析が構文解析に依存するようになるので事は複雑になる。正規表現リテラルの解釈に使う規則はプログラムの各部分において変えなければならない。以下の規則は正しく機能するか、或いはその簡易解析は正規表現の位置を決定するための入力に基づいて処理される。<span class="issue">これについては更なる作業が必要である。</span></p>
+
+<p>構文の再同期において JavaScript 2.0 は <code>/</code> が正規表現の開始なのか、除算 (或いは <code>/=</code>) 演算子なのかを前のトークンだけに基づき決定する。</p>
+
+<table border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <th align="left" style="white-space:nowrap;"><code>/</code> の解釈</th>
+  <th align="left" style="white-space:nowrap;">前のトークン</th>
+</tr>
+<tr>
+  <td valign="top" style="white-space:nowrap;"><code class="terminal-keyword">/</code> か <code class="terminal-keyword">/=</code> &nbsp;</td>
+  <td><span class="terminal">Identifier</span> &nbsp; <span class="terminal">Number</span> &nbsp; <span class="terminal">RegularExpression</span>
+    &nbsp; <span class="terminal">String</span><br>
+    <code class="terminal-keyword">)</code> &nbsp; <code class="terminal-keyword">++</code> &nbsp; <code class="terminal-keyword">--</code>
+    &nbsp; <code class="terminal-keyword">]</code> &nbsp; <code class="terminal-keyword">}</code><br>
+    <code class="terminal-keyword">class</code> &nbsp; <code class="terminal-keyword">false</code> &nbsp; <code class="terminal-keyword">null</code>
+    &nbsp; <code class="terminal-keyword">private</code> &nbsp; <code class="terminal-keyword">protected</code> &nbsp; <code class="terminal-keyword">public</code>
+    &nbsp; <code class="terminal-keyword">super</code> &nbsp; <code class="terminal-keyword">this</code> &nbsp; <code class="terminal-keyword">true</code><br>
+    <code class="terminal-keyword">get</code> &nbsp; <span class="js2"><code class="terminal-keyword">include</code> &nbsp; </span><code class="terminal-keyword">set</code><br>
+    その他の区切り子</td>
+</tr>
+<tr>
+  <td valign="top" style="white-space:nowrap;"><span class="terminal">RegularExpression</span> &nbsp;</td>
+  <td><code class="terminal-keyword">!</code> &nbsp; <code class="terminal-keyword">!=</code> &nbsp; <code class="terminal-keyword">!==</code>
+    &nbsp; <code class="terminal-keyword">#</code> &nbsp; <code class="terminal-keyword">%</code> &nbsp; <code class="terminal-keyword">%=</code>
+    &nbsp; <code class="terminal-keyword">&amp;</code> &nbsp; <code class="terminal-keyword">&amp;&amp;</code> &nbsp; <code class="terminal-keyword">&amp;&amp;=</code>
+    &nbsp; <code class="terminal-keyword">&amp;=</code> &nbsp; <code class="terminal-keyword">(</code> &nbsp; <code class="terminal-keyword>*</code>
+    &nbsp; <code class="terminal-keyword">*=</code> &nbsp; <code class="terminal-keyword">+</code> &nbsp; <code class="terminal-keyword">+=</code>
+    &nbsp; <code class="terminal-keyword">,</code> &nbsp; <code class="terminal-keyword">-</code> &nbsp; <code class="terminal-keyword">-=</code>
+    &nbsp; <code class="terminal-keyword">-&gt;</code> &nbsp; <code class="terminal-keyword">.</code> &nbsp; <code class="terminal-keyword">..</code>
+    &nbsp; <code class="terminal-keyword">...</code> &nbsp; <code class="terminal-keyword">/</code> &nbsp; <code class="terminal-keyword">/=</code>
+    &nbsp; <code class="terminal-keyword">:</code> &nbsp; <code class="terminal-keyword">::</code> &nbsp; <code class="terminal-keyword">;</code>
+    &nbsp; <code class="terminal-keyword">&lt;</code> &nbsp; <code class="terminal-keyword">&lt;&lt;</code> &nbsp; <code class="terminal-keyword">&lt;&lt;=</code>
+    &nbsp; <code class="terminal-keyword">&lt;=</code> &nbsp; <code class="terminal-keyword">=</code> &nbsp; <code class="terminal-keyword">==</code>
+    &nbsp; <code class="terminal-keyword">===</code> &nbsp; <code class="terminal-keyword">&gt;</code> &nbsp; <code class="terminal-keyword">&gt;=</code>
+    &nbsp; <code class="terminal-keyword">&gt;&gt;</code> &nbsp; <code class="terminal-keyword">&gt;&gt;=</code> &nbsp; <code class="terminal-keyword">&gt;&gt;&gt;</code>
+    &nbsp; <code class="terminal-keyword">&gt;&gt;&gt;=</code> &nbsp; <code class="terminal-keyword">?</code> &nbsp; <code class="terminal-keyword">@</code>
+    &nbsp; <code class="terminal-keyword">[</code> &nbsp; <code class="terminal-keyword">^</code> &nbsp; <code class="terminal-keyword">^=</code>
+    &nbsp; <code class="terminal-keyword">^^</code> &nbsp; <code class="terminal-keyword">^^=</code> &nbsp; <code class="terminal-keyword">{</code>
+    &nbsp; <code class="terminal-keyword">|</code> &nbsp; <code class="terminal-keyword">|=</code> &nbsp; <code class="terminal-keyword">||</code>
+    &nbsp; <code class="terminal-keyword">||=</code> &nbsp; <code class="terminal-keyword">~</code><br>
+    <code class="terminal-keyword">abstract</code> &nbsp; <code class="terminal-keyword">break</code> &nbsp; <code class="terminal-keyword">case</code>
+    &nbsp; <code class="terminal-keyword">catch</code> &nbsp; <code class="terminal-keyword">const</code> &nbsp; <code class="terminal-keyword">continue</code>
+    &nbsp; <code class="terminal-keyword">debugger</code> &nbsp; <code class="terminal-keyword">default</code> &nbsp; <code class="terminal-keyword">delete</code>
+    &nbsp; <code class="terminal-keyword">do</code> &nbsp; <code class="terminal-keyword">else</code> &nbsp; <code class="terminal-keyword">enum</code>
+    &nbsp; <code class="terminal-keyword">export</code> &nbsp; <code class="terminal-keyword">extends</code> &nbsp; <code class="terminal-keyword">final</code>
+    &nbsp; <code class="terminal-keyword">finally</code> &nbsp; <code class="terminal-keyword">for</code> &nbsp; <code class="terminal-keyword">function</code>
+    &nbsp; <code class="terminal-keyword">goto</code> &nbsp; <code class="terminal-keyword">if</code> &nbsp; <code class="terminal-keyword">implements</code>
+    &nbsp; <code class="terminal-keyword">import</code> &nbsp; <code class="terminal-keyword">in</code> &nbsp; <code class="terminal-keyword">instanceof</code>
+    &nbsp; <code class="terminal-keyword">interface</code> &nbsp; <code class="terminal-keyword">is</code> &nbsp; <code class="terminal-keyword">namespace</code>
+    &nbsp; <code class="terminal-keyword">native</code> &nbsp; <code class="terminal-keyword">new</code> &nbsp; <code class="terminal-keyword">package</code>
+    &nbsp; <code class="terminal-keyword">return</code> &nbsp; <code class="terminal-keyword">static</code> &nbsp; <code class="terminal-keyword">switch</code>
+    &nbsp; <code class="terminal-keyword">synchronized</code> &nbsp; <code class="terminal-keyword">throw</code> &nbsp; <code class="terminal-keyword">throws</code>
+    &nbsp; <code class="terminal-keyword">transient</code> &nbsp; <code class="terminal-keyword">try</code> &nbsp; <code class="terminal-keyword">typeof</code>
+    &nbsp; <code class="terminal-keyword">use</code> &nbsp; <code class="terminal-keyword">var</code> &nbsp; <code class="terminal-keyword">volatile</code>
+    &nbsp; <code class="terminal-keyword">while</code> &nbsp; <code class="terminal-keyword">with</code></td>
+</tr>
+</table>
+
+<p><code>//</code> は前のトークンに関係無く、コメントの開始と解釈される。</p>
+
+<p>ただ1つ議論の余地のある選択は <code>)</code> と <code>}</code> である。<code>)</code> か <code>}</code> の後ろの <code>/</code>
+は除算のシンボル (<code>)</code> か <code>}</code> が部分式かオブジェクトリテラルを閉じる場合) と正規表現トークン
+(<code>)</code> か <code>}</code> が前の文、<code>if</code> 、<code>while</code> 、或いは <code>for</code> 式を閉じる場合)
+のいずれにもなり得る。<code>(x+y)/2</code> のような式で <code>/</code> を <span class="terminal">RegularExpression</span>
+として解釈すると問題があるので、<code>)</code> か <code>}</code> の後ろでは除算演算子として解釈する。正規表現リテラルを式文の先頭に置きたい場合は、正規表現を括弧内に記述するのが最善である。幸い、正規表現操作の結果を変数に代入するのが普通なのでこのようなことは一般的ではない。</p>
+
+<h2><a name="type-declarations"></a>型宣言</h2>
+
+<p>現在の草案では JavaScript 2.0 は宣言中に型を含める場合にパスカルスタイルのコロンを使うようになっている。例えば:</p>
+
+<pre>var x:Integer = 7;
+function square(a:Number):Number {return a*a}</pre>
+
+<p>これは ECMA ワーキンググループの決定によるが、Waldemar だけは賛成していない。これには他に2、3の構文が考えられる:</p>
+
+<h3>C スタイル</h3>
+
+<p>関数の戻り値の型を引数リストの後ろに書く修正 C スタイルが考えられる:</p>
+
+<pre>var Integer x = 7;
+var Integer y = 8, Integer z = 9;  // Integer 型変数を2つ宣言する
+function square(Number a) Number {return a*a}</pre>
+
+<p>文法が曖昧になるため、関数の戻り値の型を引数リストの前に置くことはできない。</p>
+
+<p>実際には実装は <a href="../core/variables.html#N-TypedIdentifier" class="nonterminal">TypedIdentifier</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>
+と <a href="../core/functions.html#N-Result" class="nonterminal">Result</a> 文法規則を以下で置換することにより、パスカルスタイルと修正
+C スタイルの両方の宣言を許容できる。最終的な文法は LALR(1) のままである。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-TypedIdentifier"></a><span class="nonterminal">TypedIdentifier</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<code class="terminal-keyword">:</code>&nbsp;<a href="../core/expressions.html#N-TypeExpression" class="nonterminal">TypeExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="../core/expressions.html#N-TypeExpression" class="nonterminal">TypeExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a href="../core/functions.html#N-Result" class="nonterminal">Result</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">:</code>&nbsp;<a href="../core/expressions.html#N-TypeExpression" class="nonterminal">TypeExpression</a><sup class="nonterminal-attribute">allowIn</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<code class="terminal-keyword">{</code>}]&nbsp;<a href="../core/expressions.html#N-TypeExpression" class="nonterminal">TypeExpression</a><sup class="nonterminal-attribute">allowIn</sup></div>
+</div>
+
+<p>修正 C スタイル構文を使用することの利点は以下の通りである:</p>
+
+<ul>
+  <li>Pascal/Modula/Ada 構文対 C/C++/Java 構文という議論において JavaScript は Java 寄りである。</li>
+  <li>コロンは既に文ラベルとオブジェクトリテラル要素 (例えば <code>{a:17, b:33}</code>)
+    の構文に使用されている。オブジェクトリテラル中でフィールドの型を宣言する場合に後者は特に厄介である。プログラマの中には関数に名前付き引数を渡すのに便利な手段としてこれらを使用している者もいる。<ins class="clsByTranslator">[訳注:
+    例えば以下のようなものである:]</ins>
+<pre><ins class="clsByTranslator">// JavaScript 1.5 で擬似名前付き引数
+
+function divide(arg) {
+  assert("numerator" in arg &amp;&amp; "denominator" in arg);
+  return arg["numerator"] / arg["denominator"];
+}
+
+// 或いは
+// function divide(/* ... */) {
+//   assert(arguments.length &gt; 0);
+//   assert("numerator" in arguments[0] &amp;&amp; "denominator" in arguments[0]);
+//   return arguments[0]["numerator"] / arguments[0]["denominator"];
+// }
+
+divide({numerator : 6, denominator : 2}); // 3</ins></pre></li>
+</ul>
+
+<h3><a name="attribute-style"></a>属性スタイル</h3>
+<H3><A name="attribute-style"></A>Attribute-Style</H3>
+
+<p>属性は簡単な式であるので型として評価することもできるだろう。<code>var</code> 宣言と <code>const</code>
+宣言についてはこれらの属性は宣言された変数の型となる。<code>function</code> 宣言についてはそれらの属性は関数の戻り値の型となる。一貫した文体のために引数の型は識別子の前に書く。</p>
+
+<pre>Integer var x = 7;
+Integer var y = 8, z = 9;        // Integer 型変数を2つ宣言する
+Number function square(Number a) {return a*a}</pre>
+
+<p>このスタイルは簡潔であり、見た目も幾分自然である。</p>
+
+<p>繰り返しになるが実装はパスカルスタイルと属性スタイルの両方の宣言を許容でき、その最終的な文法は LALR(1)
+のままである。しかしながら2つ或いは3つのスタイルを使うことによる混乱を起こすよりも、どれか1つに決めてしまった方が良い
+(この柔軟性は既存のプログラムとの互換性のために使用できるだろうが)。</p>
+
+<h2>型式</h2>
+
+<p>以下の理由により、JavaScript 2.0 では型式に値式と同じ構文を使用する:</p>
+
+<ul>
+  <li>2種類の式に対して異なる構文を用意すると言語が複雑になる。</li>
+  <li>JavaScript は動的言語であり、型を値として扱うことは有用である。</li>
+  <li>値式と型式を明確に区別するのは困難である。<code>(expr1)(expr2)</code> という式で <code>expr1</code>
+    は型式、値式のどちらだろうか? 同じ構文を使っていれば問題無い。</li>
+</ul>
+
+<h2>関数の宣言</h2>
+
+<h3><a name="getter-setter"></a>ゲッタとセッタ</h3>
+
+<p>ECMA TC39 モジュラリティ サブコミッティの統一見解により、ゲッタの定義に <code>getter&nbsp;function&nbsp;</code><var>id</var><code>&nbsp;(</code>...<code>)</code>
+ではなく <code>function&nbsp;get&nbsp;</code><var>id</var><code>&nbsp;(</code>...<code>)</code> を、セッタの定義に
+<code>setter&nbsp;function&nbsp;</code><var>id</var><code>&nbsp;(</code>...<code>)</code> ではなく
+<code>function&nbsp;set&nbsp;</code><var>id</var><code>&nbsp;(</code>...<code>)</code> を使用することになった。前者の構文を使用するためには
+<a href="../core/functions.html#N-FunctionName" class="nonterminal">FunctionName</a> は以下のように簡単化される:</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a href="../core/functions.html#N-FunctionName" class="nonterminal">FunctionName</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a></div>
+</div>
+
+<p>更に2つの属性 <code>getter</code> 、<code>setter</code> を追加する必要がある。この決定はいずれの構文も他方より実装が困難になることはないという美学に基づいた。</p>
+
+<h2><a name="language-directives"></a>言語ディレクティブ</h2>
+
+<p>初期の草案で<a href="../core/pragmas.html">プラグマ</a>の代替案となっていたものは、構文エラーを、問題となっている文が解析されたときではなく実行されたときに出していた。この方法では単一のプログラムに将来のバージョンの
+JavaScript で書かれた部分を含むことができた (そのバージョンの JavaScript
+を解釈できないシステムがその部分を実行しない限りはエラーにならないというわけである)。エラーを含む箇所が実行されない場合、そのエラーがスクリプトを破壊することもない。例えば以下の関数は
+<code>whizBangFeature</code> が <code>false</code> であれば正しく終了する:</p>
+
+<pre>function move(x:Integer, y:Integer, d:Integer) {
+  x += 10;
+  y += 3;
+  if (<code>whizBangFeature</code>) { <ins class="clsByTranslator">// [訳注: 勢いよく飛んで行ってどこかにぶつかるという意味?]</ins>
+    simulate{@x and #y} along path
+  } else {
+    x += d; y += d;
+  }
+  return [x,y];
+}</pre>
+
+<p><code>simulate{@x and #y} along path</code> というコードは構文的には誤りであるが、スクリプトがこのコード片を実行しない限りはエラーによりスクリプトが破壊されることはない。</p>
+
+<p>このアプローチの問題はデバッグが巧くいかないことである。構文エラーは実行時ではなくコンパイル時に発見できなければどうしようもない。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:bottom;white-space:nowrap;">
+    <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+    最終更新: 2002年11月19日 (火)</address>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="unit-patterns.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="miscellaneous.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal&#64;student.interq.or.jp">exeal&#64;student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/rationale/syntax.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

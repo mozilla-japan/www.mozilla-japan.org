@@ -1,0 +1,155 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title>ファイル毎のパーミッション</title>
+   <link rel="alternate" hreflang="en" modified="February 11, 2001">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/components/per-file.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<center>
+<h1>ファイル毎のバーミッション</h1></center>
+
+<p><br><script>document.write('<a href="mailto:mstoltz'+String.fromCharCode(64)+
+                       'netscape.com">Mitch Stoltz</a><br>');</script>
+<script>
+        function lastMod() {
+                var d = new Date(document.lastModified);
+                return (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear();
+        }
+        document.write(lastMod() + '<br>');
+</script>
+<hr WIDTH="100%">
+このページは、個々のファイルに対して特権を設定する方法を説明する。
+
+<UL>
+<li><b>ファイル毎のパーミッションとは?</b><br>
+通常、パーミッションはあるホストのページ全て (あるいはある証明書に署名されたページ全て) という単位で与えられる。スクリプトが特権を要求して、かつユーザーがそのホストあるいは証明書に対して設定を行っていなかった時、"grant/deny" (許可/拒否) ダイアログが表示され、ユーザーの決定がそのホスト/証明書と結び付いた全てのファイルに適用される。<p>
+このモデルの欠点は、ローカルファイルシステム (file:// プロトコルでアクセスするもの全て) が一つのセキュリティ範囲として扱われ、その為にローカルファイルシステム上の一つのファイルに与えた特権が全てのページ -それは潜在的に安全でない- に適用される事だ。ファイル毎のパーミッションは個々のファイルに対して特権を与えられるようにする。
+
+<p>
+
+<LI><b> やり方 </b><br>
+
+ファイル毎のパーミッションは、ユーザー設定 (preference) の中に、ユーザー設定を変更するために特権を持ったスクリプト、あるいは設定ファイルを編集する他の手段によって、設定されていなければならない。例えば、ウェブアプリケーション開発者が HTML ページをユーザーのドライブの <tt>C:/Programs/Webapp/index.html</tt> にインストールして、そのページが XPConnect へのアクセスを必要とする JavaScript を含むとする。UniversalXPConnect 特権をユーザーのドライブ上の全てのファイルに与えるのは安全ではなかろう。そうする代りに、開発者は次のような数行をユーザー設定に加えるこのができるのではないだろうか:<p>
+<tt>
+user_pref("capability.principal.myapp.id","file:///C|/Programs/Webapp/index.html");
+user_pref("capability.principal.myapp.granted","UniversalXPConnect");
+</tt>
+<p>
+このような数行は XPConnect アクセスを <tt>index.html</tt> だけに与え、他のファイルには与えない。上の <tt>myapp</tt> という言葉は、あらゆるあなたのアプリケーションにとって一意の識別子に置き換えられる。構文をもう少し一般的に書いてみると:
+<p>
+<tt>
+user_pref("capability.principal.&lt;グループ名&gt;.id","&lt;スペースで区切った絶対 URL のリスト。&gt;");<br>
+user_pref("capability.principal.&lt;グループ名&gt;.&lt;granted|denied&gt;","&lt;特権の名前&gt;");
+</tt>
+<p>
+&lt;グループ名&gt; の所はあらゆる英数字の識別子、&lt;特権の名前&gt; は <tt>UniversalXPConnect</tt> やあなたのスクリプトが求めている拡張機能を表すその他のあらゆる特権の文字列が入る。特権についてもっと詳しい情報は、<A HREF="jssec.html">JavaScript セキュリティのドキュメンテーション</a> を参照のこと。
+
+<LI><b>問題</b><br>
+この仕組みはクロスプラットフォームではない。明らかに例の中の URL は各プラットフォーム用に変更しなければならないだろうし、ファイルが移動したら変更しなければならない。相対リンクを指定する方法の方が良いだろう。
+</UL>
+
+<A HREF="index.html">[Component Security Main Page]</a>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/components/per-file.html">英語版</a> 2001/02/11</span> - <span>和訳版 2004/10/07</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/components/per-file.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

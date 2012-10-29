@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Seamonkey のバイブル</title>
+
+    
+    <style type="text/css" media="screen,tv">
+    li.c1 {list-style: none}
+    </style>
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/rules/bible.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+<h1>Seamonkey 技術者向けバイブル</h1>
+
+    <blockquote cite="#source">
+<p>巻き起こる復讐の嵐のなか野獣は進み来る。無神論者たちの棲家は押しつぶされ、焼き払われて土へと帰す。その者たちの証は最後の日までその居場所を野獣に知らせ続ける。</p>
+出典：『もじら伝』 第 12 章 10 節</blockquote><cite id="source"></cite><span class="comment">【訳注：原文は、聖書の雰囲気を出すためこのように書かれています。ここでは、野獣を Seamonkey、無神論者を有名なブラウザと読み替えれば雰囲気がつかめます。「マタイ伝 8：21」といったところでしょう。】</span>
+
+<p><strong>エンジニアと、その仕事、さらに開発の過程での多くの努力に敬意を払えば、上で述べたことが起こります。</strong></p>
+
+<p><strong>短時間で行われる、広範囲なプラットフォームにまたがる開発では多くのコミュニケーションが必要で、また激務を強いられます。このドキュメントでは、効率的に協力を行い、またプロジェクトに参加する他のメンバーの生産性を維持するために必要なことを説明します。何らかの問題が生ずると、影響を受けるプロジェクト参加者の範囲は、時間の経過に伴って広がっていくことを忘れないでください。</strong></p>
+
+<p><strong>バグの分析と特定</strong></p>
+
+    <ul>
+<li>他のエンジニアに作業を依頼する前に何らかの解析作業を行ってください。</li>
+
+<li>バグに対する適切なデータを添付し、可能な限り迅速かつ効果的に、適切なエンジニアにバグの解析を委託します。</li>
+
+<li>管理者、他のメンバーに相談して、バグのリストに優先順位を付けてもらい、さらにそのバグに付けた優先順位が妥当であるか確認してもらいます。</li>
+
+<li>早い段階でバグのリストに優先順位を付け、定期的に見直します。自身と、他のプロジェクト参加者、そして製品使用者に影響を与える最も重要な問題の優先順位を常に上位に設定します。</li>
+
+<li>バグを修正したアップデートをチェックインする場合は、変更を行った部分にテスト範囲を広げるために必要なコメントを提出してください。</li>
+    </ul>
+    
+    <p>
+<strong>チェックイン前の段階における連絡と計画</strong> (この時点で問題による影響を受けるのは自身だけです) 
+    </p>
+    
+    <ul>
+<li><a href="/projects/seamonkey/rules/code_review.html">コードレビュー</a>を行います。 また第三者のチェックを受け、可能な限りミスを取り除きます。</li>
+
+<li>ブランチと、個々の改版を安全にリリースするための対策を練ります。</li>
+
+<li>数々の助言を受けて、コードに反映していきます。多くの人の目でチェックを受け、集まる助言を反映していきます。</li>
+
+<li>全体的なバグ出しのためのテストを実施します。さらに変更部分のテストを行います。チェックインを行う前後のツリーの状況を確認します。</li>
+
+<li>チェックインの前にヘルプを用意しておきます。</li>
+
+<li>新しいファイルを追加する場合には<a href="/build/making-additions.html">必要な変更をすべて行ったか</a>確認してください。</li>
+
+<li>ツリーへの変更が何らかの影響を与える場合には、チェックイン前に通知メッセージを送信してください。</li>
+
+<li>変更したファイルすべてをチェックインしてください。このとき、先に新しいファイルを追加してから古いファイルを削除します。</li>
+
+<li>チェックイン終了を通知するための確認メッセージを送信します。</li>
+
+<li>ツリーが赤い場合には緑になるまでチェックインを行わないでください。</li>
+
+<li class="c1"><br>ツリーが赤い場合にどうしてもチェックインが必要で、変更個所が現状の問題に影響を与えず、<br>新たな問題の元にならないことが確実なときには、現状の問題にかかわっている当事者に<br>メールを送り、変更について当事者間で打ち合わせを行います。<br></li>
+    </ul>
+    
+    <p>
+<strong>検証を前にしたビルド段階における連絡と計画</strong> (問題が発生すると自身に影響が及びます。多くの関係者がかかわっていて、また誰でも関係者になれます。) 
+    </p>
+    
+    <ul>
+<li>チェックインをすることで関係者となり、ツリーの状態に対する責任が発生します。</li>
+
+<li>変更、その他によってビルドに問題が生じていないか tinderbox を監視します。</li>
+
+<li>チェックインが完了後は、すべてのツリーが緑色になるまで、いつでも対応ができる状態を保ってください。</li>
+
+<li>変更によって問題が生じた場合の対応は次のとおりです。</li>
+
+        <li class="c1">
+            <ul>
+<li>問題について責任がある旨の通知を受け取ります。</li>
+
+<li>緑色にするまでの時間を見積もります。</li>
+
+<li>将来同様の問題が発生することを防ぐために、記録を残して経験を共有します。</li>
+
+<li>誰かに迷惑をかけた場合には必ず礼を尽くしましょう。</li>
+            </ul>
+        </li>
+
+<li>ビルドの検証が始まる翌朝までの期間は、使用可能に準じた状態になります。</li>
+
+<li>当事者としてかかわっている間に問題を解決します。</li>
+
+    </ul>
+    
+    <p>
+<strong>検証段階における連絡と計画</strong> (問題が発生すると上記の関係者に加え、ビルドチームと品質保証・受け入れ試験の担当者にも影響が及びます。)
+    </p>
+    
+    <ul>
+<li>ビルドの検証が終わるまで、いつでも対応できる状態を保ってください。また、ビルドや簡易試験で生じた問題をビルドチームが解析する際にも関係する責任があります。</li>
+
+<li>ビルドに関する問題と、簡易試験の妨げになるバグに対して対応を行い、できるだけ速やかに解決します。</li>
+    </ul>
+    
+    <p>
+<strong>完成段階における連絡と計画</strong> (問題が発生すると上記の関係者に加え、品質保証の受入検査以外のスタッフ、40000 人の Mozilla テスター、マイルストーン tarball をダウンロードする 1500 人の人々に影響が及びます。)
+    </p>
+    
+    <ul>
+<li>変更部分に関係するバグについてフィードバックデータがないか監視します。</li>
+
+<li>ニュースグループで知らされるパッチや提案に従うことで、モジュールの改善を行います。</li>
+    </ul>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/rules/bible.html">英語版</a></span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/rules/bible.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

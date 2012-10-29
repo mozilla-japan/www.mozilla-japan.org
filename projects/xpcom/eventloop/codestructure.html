@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>XP イベントループコードの構造</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/xpcom/eventloop/codestructure.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/xpcom/eventloop/codestructure.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<center>
+<h1>
+XP イベントループコードの構造</h1></center>
+
+<div align=right>By <a href="mailto:travis@netscape.com">Travis Bogard</a>
+<br>Last Modified: 9-2-99</div>
+
+<p><br>&nbsp;このページは、XP イベントループがどのように実装されているかというを情報を伝えるためのページです。
+このページは、XP イベントループの設計をカバーしていませんが、設計を実装するための実際の C++ のレイアウトをカバーしています。
+まだ、設計しておらず、設計についてもっと知りたいのであれば、<a href="index.html">メイン XP イベントループ ページ</a>にある、背景やループのタイプ、そしてインタフェースセットについての全体のドキュメントを読んでください。
+これが、イベントループを移植する必要のある人にとって、助けとなることを望みます。それだけでなく、XP イベントループがどのような構造になっているのかに興味を持っている人にも参考になるはずです。
+<h3>
+コードのレイアウトは、いくつかのキーとなる原則により決定されました:</h3>
+
+<ul>
+<li>
+<b>パフォーマンス</b> - 最初の、そして第一の原則は、クロスプラットフォーム性を保ちながらも、イベントループをできるだけ効率的にすることでした。
+明らかに、すべてをネイティブコードで書けば、最善のパフォーマンスが得られます。
+しかしながら、これは保守するのが難しく、そして(パフォーマンスの向上は)微々たるものです。(再利用可能で保守可能なコードのためには、本当にわずかなパフォーマンスの衝突であれば、許されます)。
+しかしながら、これを乗り越えて、XP を保持しながら、コードをできるだけ効率的にする努力が行われました。
+</li>
+
+<li>
+<b>XP コードの高い割合</b> - イベントループを実装する実装と API の多くがネイティブであるにもかかわらず、プラットフォームを通じて、コードのかなりの部分が冗長でした、
+これらの場合、共通ロジックとプログラムフローを XP の場所に移動して、非 XP のコードを最小化するためのあらゆる努力が実行されました。
+</li>
+
+<li>
+<b>カット&amp;ペーストの最小化</b> - 多くの異なるプラットフォームで似ているコードがあるだけでなく、イベントループには、3 つのタイプもあります。
+これらの基本的な性質は、その核となる部分ではとてもよく似ています。もっとも、それ以外の部分は、違うのですが。
+これらのことにより、変種の間でのコードのカット&amp;ペーストをしがちになります。そして、後でそれぞれの実装でバグが見つかるのです。
+実際の実装は、プラットフォームコードとして存在するため、同期させる場所の数は、プラットフォームの数の 3 倍となります。
+そのため、主な目標の一つは、カット&amp;ペーストされたコードを整理統合し、代わりにそれを何らかの方法で共有することでした。
+このうちいくつかは、明らかに、前のゴールとして記述されていた大部分を XP コードにすることで、コードを共有することです。
+その他の部分は、一つのプラットフォーム上において、ループの 3 つの変種を越えて、コードを共有することを狙います。
+</li>
+
+<li>
+<b>依存の最小化</b> - リンク依存性を最小化するするのも重要です。
+多くのプラットフォームでのイベントループとの対話は、選択された UI ツールキットに依存して変わるため、すべてのツールキットで動くようにするためには、それぞれのツールキットとリンクしなければなりません。
+特定のどの<a href="../glossary/module.html">モジュール</a>に対しても、一回に一つのツールキットだけとリンクするような方法が必要です。
+ただし、これを実現するために、上述した他のゴールをあきらめたくはありませんでした。
+カット&amp;ペーストの問題については、特にそうです。
+</li>
+
+<li>
+<b>移植性</b> - 最後に、しかし特に重要なのですが、このコードは、他のプラットフォームに簡単に移植できるようにする必要がありました。
+これは、2 つのことを意味します。 最初は、コードが XP であるという事実により、対象のプラットフォームにおいて、そのプラットフォームで普通使われるループへのアクセスをあきらめなければいけないような事態を引き起こすべきではない、ということです。
+率直に言って、 XP イベントループを使うアプリは、ネイティブなプラットフォーム API 呼び出しを使わない時に、ネイティブイベントループに対して制御できるのと同じように、制御できなければならないのです。
+2 番目に、
+実際にコードを移植する際には、順調に作業できるようにすべきであり、そして、追跡に膨大な量の作業を要求するような、混沌の中で作業しなければならない事態は避けるべきです。
+このドキュメントが、移植についてのドキュメントと同様に、このプロセスを簡単にするための一歩であるようにと願っています。
+もっとも、コードレイアウトも、この目的を念頭において設計されました。
+</li>
+</ul>
+
+<h3>
+コンポーネント</h3>
+それぞれのタイプのイベントループの実装が<a href="../glossary/component">コンポーネント</a>にあります。
+3 つのイベントループのタイプがあるため、それぞれのループのタイプごとに実装している<a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/xp/nsCEventLoop.idl">3 つの異なるコンポーネント</a>があります。
+それぞれをコンポーネント上に置くことで、それぞれのコンポーネントを自分のモジュールに入れることができます。
+(我々の場合は、3 つすべてのコンポーネントは、一つのモジュールに存在します。)
+しかし、そのため、同じコンポーネントに対して、複数の実装ができるようにできます。
+これにより、どの UI ツールキットを使うようにしたかということに基づいて、使うイベントループの実装を実行時に決めることができるようになりました。
+<h3>
+クラス階層</h3>
+コードをできるだけ再利用して、コードの大部分を XP 化するために、実装を 4 つのクラス階層のレベルに分割しました。
+コードは、実際は、二つのレベルが XP コード側に、もう二つがプラットフォーム側にある構造になっています。
+プラットフォームのコードには、ビルド時に決まる、使用する特定のプラットフォームのファイルの実装に応じた名前がつけられます。
+これにより、コード中に 'ifdef' を使わずにすみます。
+<p>各レベルは、 2 つのグループにまとめられます。 まず、基本のイベントループのグループ(nsCBaseLoop と nsCPlatformBaseLoop)があり、これはイベントループコンポーネントを実装するのに必要な基本の実装です。
+このレベルには、 XP のクラスが一つとプラットフォームのクラスが一つあります。
+そして、クラスのグループのレベルがあり、これは、イベントループの特定のタイプの実装(nsCBaseAppLoop と nsCAppLoop)を処理します。
+このレベルにおいても、 またXP のクラスが一つとプラットフォームのクラスが一つあります。
+以下は、クラス階層の 4 つのレベルを作るクラスのリストです。(すべてのプラットフォームのリンクは、Windows の実装に対するものです。)
+<br>&nbsp;
+<h4>
+<a NAME="nsCBaseLoop"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/xp/nsCBaseLoop.cpp">nsCBaseLoop</a></h4>
+	  このクラスは、すべてのイベントループの基本です。このクラスが実行する処理は :
+<ul>
+<li>
+<b>XPCOM の作業</b> - このレベルは、イベントループと XPCOM コンポーネントを作るのに必要なロジックをすべて処理します。
+</li>
+
+<li>
+<b>インタフェースエラーのチェック</b> - nsIEventLoop のためのインタフェース境界のすべてのエラーチェックを行います。
+このレベルは、インタフェース境界について、すべて処理します。
+  実装がプラットフォームごとに違う、イベントループごとに違うなどの理由で、適切なメソッドを実装できないものは、サブクラスが実装する必要のある純粋仮想関数に処理を受け渡します。
+その結果、これらのサブクラスは、エラーチェックをしなくて済むと同時に、それをしてもいけないのです。
+これは、ネイティブなイベントループにできるだけ近いパフォーマンスを保つために重要なことです。
+</li>
+
+<li>
+<b>Run() の実装</b> - Run() の実装は、要求されているリスナーに基づくもので、とても効率化された構成になっています。
+このレベルは、要求された基本的なイベント構造の作成を処理します。そして、特定のタイプのループにより後で実装される、純粋仮想関数に処理を受け渡します。
+</li>
+
+<li>
+<b>イベントとイベントフィルターの管理</b> - このレベルは、イベントの作成と複製を行います。
+要求されたときに、それらのオブジェクトからプラットフォームデータの取り出しも行います。
+</li>
+</ul>
+
+<h4>
+<a NAME="nsCPlatformBaseLoop"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/windows/nsCPlatformBaseLoop.cpp">nsCPlatformBaseLoop</a></h4>
+このクラスは、nsCBaseLoop をサブクラス化したものです。これは、すべてのイベントループの親の階層にあります。
+このクラスにより、クラスがいろいろなイベントループタイプに分かれる前に、プラットフォーム特有の実装を挿入することができます。
+ここには、特定のプラットフォームにおいて、すべてのイベントのタイプを通じて共通なネイティブコードがあるべきです。
+このクラスが実行する処理は :
+<ul>
+<li>
+<b>エラーチェックを防ぐ</b> - これを仮想的にオーバライドするものは、エラーチェックをするべきではありません。
+しかし、実際のインタフェース境界をオーバライドする場合は、エラーチェックをしなければなりません。
+もっとも、インタフェース境界は、オーバライドすべきではありません。</li>
+
+<li>
+<b>プラットフォームメソッドの実装を共有する</b> - 特定のプラットフォームにおいて、イベントループのすべてのタイプに対して、メソッドが同じ実装になるのであれば、ここで実装すべきです。そして、クラスでのループのタイプに応じて分かれた後の部分でのコピー&amp;ペーストを避けるようにすべきです。
+</li>
+</ul>
+
+<h4>
+<a NAME="nsCBaseAppLoop"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/xp/nsCBaseAppLoop.cpp">nsCBaseAppLoop</a>,&nbsp;<a NAME="nsCBaseThreadLoop"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/xp/nsCBaseThreadLoop.cpp">nsCBaseThreadLoop</a>,
+and&nbsp;<a NAME="nsCBaseBreathLoop"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/xp/nsCBaseBreathLoop.cpp">nsCBaseBreathLoop</a></h4>
+このクラスは、nsCPlatformBaseLoop をサブクラス化したものです。これは、すべてのイベントループの親の階層にあります。
+このクラスは、イベントループのタイプごとに異なるが、すべてのプラットフォームで同じであるコードを提供します。
+このクラスが実行する処理は :
+<ul>
+<li>
+<b>様々な RunWith*() 関数の実装</b> - nsCBaseLoop は、 多くの RunWith*() 関数を呼び出します。この関数は、どのリスナーが要求されたかに基づいて、異なる処理を行います。
+これは、チェックの繰り返しにより、パフォーマンスを遅くしてしまうのを避けるために行われます。
+これを乗り越えて、 これらの Run ループは、イベントループのタイプに依存して変わるため、nsCBaseLoop ではなく、このレベルで実行されなければなりません。
+これらは、多くのプラットフォーム仮想関数の呼び出しにより実装されるため、このコードは、 仮想関数がプラットフォームごとのサブクラスによりオーバライドされることで、XP 化されることができます。
+</li>
+</ul>
+
+<h4>
+<a NAME="nsCAppLoop"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/windows/nsCAppLoop.cpp">nsCAppLoop</a>,&nbsp;<a NAME="nsCThreadLoop"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/windows/nsCThreadLoop.cpp">nsCThreadLoop</a>,
+and&nbsp;<a NAME="nsCBreathLoop"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/windows/nsCBreathLoop.cpp">nsCBreathLoop</a></h4>
+このクラスは、適切な nsCBase*Loop (nsCAppLoop に対しては nsCBaseAppLoop、など) をサブクラス化したものです。
+このクラスは、クラス階層での最終的なクラスです。そして、このクラスは、要求されたタイプのイベントループのコンポーネントを実装するものとしてインスタンス化されます。
+このコードは、ほとんどの場合、すべてのプラットフォーム固有のものです。
+クラスの名前の中にプラットフォームが含まれないことに注意してください。
+これは、どのクラスをインスタンス化するかという負担をビルドシステムが負って、コード中に`ifdef'を使わずに済むように、意図的に行われました。
+<ul>
+<li>
+<b>残りの純粋仮想関数の実装</b> - 高いレベルでは実装されなかった、すべてのメソッドをこのレベルで実装する必要があります。
+一つのイベントタイプだけがほとんど変わらないのであれば、高いレベルのクラスの実装をオーバライドすることもできます。
+</li>
+
+<li>
+<b>クラスファクトリーの "Create" 関数の実装</b> - このコードは、イベントループコンポーネントを作成するのに、総称クラスファクトリーを使います。  
+作成するクラス名を知っているため、このレベルでクラスの作成を行います。
+</li>
+</ul>
+
+<h3>
+その他のコンポーネント</h3>
+完全な XP イベントループを作るのに使われるその他のコンポーネントがあります。
+これらのコンポーネントは、実際には、イベントループのコードの中で、インスタンス化と作成が行われます。
+どちらも完全にプラットフォームコードに実装されていますが、 XP インタフェースを提供しています。
+<br>&nbsp;
+<h4>
+<a NAME="nsCEvent"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/windows/nsCEvent.cpp">nsCEvent</a></h4>
+このクラスは、nsIEvent インタフェースを実装しています。
+このオブジェクトは、プラットフォームの基本的なイベントです。これは、インスタンス化され、順に回されます。
+これは、その nsIEvent インタフェースを通じて、プラットフォームに依存しない実体として回されます。
+しかしながら、特定のプラットフォームでは、適切な Get または SetNativeData() 関数を呼び出すことで、そのプラットフォームデータに素早くアクセスすることができます。
+実は、nsCEvent のメインの仕事は、このデータをラップして、アクセス関数を通じてのアクセスを提供することです。
+これらの関数を通じて渡されるデータは、void* 型であり、どちらの側もそのデータの構造を知っている必要があります。
+いくつかのプラットフォームでは、それらの OS で定義されている構造体を再利用できるかもしれません。または、おそらくネイティブデータである他の既知の構造体を定義する必要があるかもしれません。
+<h4>
+<a NAME="nsCEventFilter"></a><a href="http://lxr.mozilla.org/seamonkey/source/xpcom/appshell/eventloop/windows/nsCEventFilter.cpp">nsCEventFilter</a></h4>
+このクラスは、nsCEventFilter インタフェースを実装しています。
+このオブジェクトは、プラットフォームイベントのフィルターデータの取得のためのラッパーです。
+ほとんど nsCEvent と同じように、このクラスは、単純に Get と SetNativeData() 関数を提供しています。これにより、内部的なフィルターデータを取得することができます。
+同様に、nsCEvent のように、データは、void* を通じて受け渡されます。
+これは、どちらの側もそのデータの構造を知っている必要があるということを意味します。
+いくつかのプラットフォームでは、それらの OS で定義されている構造体を再利用できるかもしれません。または、おそらくネイティブデータである他の既知の構造体を定義する必要があるかもしれません。
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/xpcom/eventloop/codestructure.html">英語版</a> 1999/09/02</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/xpcom/eventloop/codestructure.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

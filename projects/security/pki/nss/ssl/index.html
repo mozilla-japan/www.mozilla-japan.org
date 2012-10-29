@@ -1,0 +1,161 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE>SSL/TLS</TITLE>
+
+<!--
+
+Rev: 1.8  山口 nosupamu_syamagu@mozilla.gr.jp
+
+-->
+
+<link rel="alternate" hreflang="en" modified="January 5, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/ssl/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<center>
+<h2>SSL/TLS</h2>
+<i><FONT SIZE="-1">
+
+ニュースグループ：
+<A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</A><BR>
+
+メインテクニカルコンタクト：
+<A HREF="mailto:misterssl@netscape.com?subject=Open Source SSL Feedback">Nelson Bolyard</A><BR>
+
+管理者に怒鳴り込もう：
+<A HREF="mailto:lord@netscape.com?subject=Open Source SSL Feedback">Bob Lord</A></FONT></i>
+</center>
+
+<p>NSS は、Secure Sockets Layer（SSL）v2 と v3、および Transport Layer Security（TLS）を実装します。このページでは、NSS 内の SSL/TLS についての情報をまとめます。</p>
+
+<p>SSL プロトコルは、クライアントとサーバとの間で相互認証をできるようにし、認証され暗号化された接続を確立します。SSL は TCP/IP の上位で作動し、HTTP、LDAP、IMAP、NNTP、その他の上位レベルネットワークプロトコルの下位で作動します。SSL はもともと Netscape によって開発され、事実上のインターネット標準になりました。SSL 3.0 仕様（または SSL v3）をテキスト形式で参照する場合は、<a href="draft302.txt">The SSL Protocol, Version 3.0</a> を参照してください。オリジナルの SSL 0.2 仕様（または SSL v2）については、<a href="draft02.html">The SSL 0.2 Specification</a> を参照してください。</p>
+
+<p><b>バージョンナンバーについての覚書：</b>SSL2 および SSL3 の両者は、16 ビット（2 バイト）バージョンナンバーフィールドを持っています。SSL2 はこれを単一の 16 ビットの整数として解釈し、公式ナンバーは 2 となります（例：0x0002）。SSL3 は、2 バイトのバージョンナンバーを 1 バイトの「メジャー」ナンバーとして解釈し、1 バイトのバージョンナンバーを「マイナー」（または端数）ナンバーとして解釈します。そのため、0x0002 という値は SSL3 によって、2.0 ではなく、0.2 と解釈されます。</p>
+
+<p>TLS は、IETF によって標準化された SSL ベースのプロトコルです。このプロトコルは、SSL 実装との後方互換性を保ちつつ、最終的には SSL に取って代わります。TLS プロトコル仕様のバージョン 1.0 については、<A HREF="http://www.ietf.org/rfc/rfc2246.txt">The TLS Protocol</A> を参照してください。</p>
+
+<p>次に挙げる資料から、NSS によって提供される SSL/TLS API で作業をしようとする前に理解する必要のある背景情報を得ることができます：</p>
+
+<ul>
+    <li><A HREF="http://enterprise.netscape.com/docs/cms/62/cert/admin/pki.htm">公開鍵暗号化入門</A>：NSS の基礎となる公開鍵暗号化の基本的なコンセプトを解説します。</li>
+    <li><A HREF="http://enterprise.netscape.com/docs/cms/62/cert/admin/SSL.htm">SSL 入門</A>：SSL プロトコルへの入門。SSL によってサポートされている暗号化方式や SSL ハンドシェークに関わる手順を紹介します。</li>
+</ul>
+
+<p>SSL 関連の NSS API を使用するにあたっての情報は、次を参照してください：</p>
+<ul>
+   <li><A HREF="../intro.html">Network Security Services 入門</A>：NSS ライブラリや資料の紹介</li>
+   <li><A HREF="../ref/ssl/">SSL レファレンス</A>：SSL 操作を行う際に使用する API についての資料</li>
+   <li><A HREF="http://lxr.mozilla.org/mozilla/source/security/nss/cmd/SSLsample/">SSL サンプルコード</A>：NSS API を使用した基本的な SSL クライアントおよびサーバの操作を例証するサンプルコードの HTML バージョン</li>
+</ul>
+
+<p>SSL 実装のデバッグについての情報は、<a href="traces/index.html">SSL 3.0 接続リハーサル</a>を参照してください。</p>
+
+<p>FIPS を用いた特殊な SSL 暗号スイートについての情報は、<a href="fips-ssl-ciphersuites.html">FIPS SSL CipherSuites</a> を参照してください。</p>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/ssl/index.html">英語版</a> 2005/01/05</span> - <span>和訳版 2005/01/07</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/ssl/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

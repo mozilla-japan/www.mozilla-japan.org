@@ -1,0 +1,1011 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE> Certificate Database Tool の利用</TITLE>
+<link REL="stylesheet" HREF="../../../../../persistent-style.css" TYPE="text/css">
+<link REL="icon" HREF="../../../../../images/mozilla-16.png" TYPE="image/png">
+
+<!--
+オリジナル
+文書：Using the Certificate Database Tool
+URL ：http://www.mozilla.org/projects/security/pki/nss/tools/certutil.html
+
+和訳
+１版：2001/01/26  山口（Rev: 1.6  Jan 17 2001 10:21）
+２版：2001/02/10  山口（Rev: 1.8  Feb 09 2001 17:52）
+３版：2002/05/21  山口（Rev: 1.10 May 14 2002 11:47）
+
+Rev: 1.11 山口 no_spam_syamagu@mozilla-japan.org
+
+-->
+
+<link rel="alternate" hreflang="en" modified="December 20, 2002">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/tools/certutil.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<CENTER><H2><A NAME="1013897">
+ Certificate Database Tool の利用
+</H2></A></CENTER>
+
+
+<P><A NAME="1038927"><center><FONT SIZE="-1">
+ニュースグループ： 
+<A href="news://news.mozilla.org/netscape.public.mozilla.crypto">
+netscape.public.mozilla.crypto</A><br>
+
+著者： 
+<A href="mailto:cotter@netscape.com?subject=Certutil Doc Feedback">
+Sean Cotter
+</A><br>
+
+管理者： 
+<A href="mailto:wtc@netscape.com?subject=Certutil Doc Feedback">
+Wan-Teh Chang
+</A>
+</A></FONT></center></P>
+
+<P><A NAME="1038971">
+Certificate Database Tool は、 Netscape Communicator の <CODE>cert7.db</CODE> および
+ <CODE>key3.db</CODE> を作成および変更することができるコマンドライン ユーティリティです。
+さらに、 <CODE>cert7.db </CODE> ファイル内の証明書を一覧表示、生成、
+変更または削除ができ、パスワードを生成し変更したり、新たに公開鍵と秘密鍵のペアを生成し、
+暗号鍵のデータベースの内容を表示したり、 <CODE>key3.db</CODE> 
+ファイル内の暗号鍵ペアを削除することもできます。
+</A></P>
+
+<P><A NAME="1038902">
+一般的に、暗号鍵および証明書管理のプロセスは、暗号鍵データベースに鍵を生成することから始まり、
+それから証明書データベースに証明書を生成し運用します。
+</A></P>
+
+<P><A NAME="1037764">
+この文書では、証明書および暗号鍵データベース管理について解説します。
+セキュリティモジュールデータベースツール運用についての情報は、
+<A HREF="modutil.html">セキュリティモジュールデータベースツールを利用する</A>
+をご覧下さい。
+</A></P>
+
+<H2><A NAME="Availability"></A>
+<A NAME="1031698">
+利用環境
+</A></H2>
+
+<P><A NAME="1037781">
+このツールが利用できるプラットフォームについては、
+<A HREF="../release_notes.html">リリースノート</A>をご覧下さい。</P>
+
+<H2><A NAME="Syntax"></A>
+<A NAME="1028268">
+構文
+</A></H2>
+
+<P><A NAME="1033678">
+Certificate Database Tool を起動するには、次のコマンドを入力してください：
+</A></P>
+
+<P><A NAME="1033679">
+<CODE>certutil</CODE> <VAR><I>option</I></VAR> [<VAR><I>arguments</I></VAR>]</VAR>
+</A></P>
+
+<P><A NAME="1028271">
+ <I>options</I> および <I>arguments</I> となっているところは、
+次のセクションで一覧表示したオプションと引数の組み合わせです。
+各々のコマンドにオプションが一つ付きます。それぞれのオプションには、
+全く引数をつけなくても、付けても構いません。文字列の使い方は、
+オプションを付けずにコマンドを発するか、 <CODE>-H</CODE> 
+オプションをつけてコマンドを発してください。
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1027593">
+オプションと引数
+</A></H3>
+
+<P><A NAME="1028291">
+オプションは処理 （action） を特定し、大文字で表されます。
+オプションの引数は処理を調整し、小文字で表されます。
+Certificate Database Tool のコマンドオプションおよび引数は、
+次のように定義されます：
+</A></P>
+
+<P><B></B>
+<TABLE BORDER="2" CELLPADDING=5>
+<TR><TD VALIGN=baseline ALIGN=left>
+<A NAME="1038207"><B>オプション</B></A>
+
+<TD VALIGN=baseline ALIGN=left><P>
+<A NAME="1038205"></A></P>
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1032245"><CODE>-N</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1032247">新しい証明書および暗号鍵データベースを作成します。</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1032249"><CODE>-S</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1032251">個別の証明書を生成し、それを 証明書データベースに加えます。</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033985"><CODE>-R</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033987">完全な証明書を作成できるよう認証局 （CA） 
+に提出できる証明書要求ファイルを作成します。 <CODE>-o</CODE> <I>output-file</I> 
+という引数を使わない限り、ディフォルトは標準出力です。</A></P>
+<P><A NAME="1038712"></A></P>
+<P><A NAME="1038714">ASCII 出力を指定するには引数 <CODE>-a</CODE> を使用します。</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033981">
+<CODE>-C</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033983">
+新しいバイナリー証明ファイルを、バイナリー証明書要求ファイルから作成します。
+引数 <CODE>-i</CODE> を証明書要求ファイルを特定するために利用します。
+この引数が使われなかった場合、Certificate Database Tool はファイル名を求めるプロンプトを表示します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039087">
+<CODE>-G</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039109">
+公開鍵と秘密鍵のペアを暗号鍵データベースに生成します。暗号鍵データベースは、
+前もって存在していなければなりません。もしない場合は、
+このオプションがディフォルトでデータベースを初期化します。
+</A></P>
+
+<P><A NAME="1039110"></A></P>
+<P><A NAME="1039111">
+スマートカードの中には （例えば、 Litronic カード） 、
+暗号鍵を一組しか保存できないものがあります。
+こうしたカード用にもう一組暗号鍵を作りたい場合でも、すでにあるペアに上書きされます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039083"><CODE>-F</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039125">
+秘密鍵を暗号鍵データベースから削除します。引数 <CODE>-n</CODE> を使って、
+削除する暗号鍵を指定します。引数 <CODE>-d</CODE> を使って、
+どの暗号鍵データベースから秘密鍵を削除するのか指定します。
+</A></P>
+<P><A NAME="1039126"></A></P>
+<P><A NAME="1039127">
+引数 <CODE>-k</CODE> を使って、 DSA 鍵か RSA 鍵のどちらを削除するのかを指定します。
+引数 <CODE>-k</CODE> を使わない場合、指定されたニックネームの RSA 鍵を探しに行きます。
+</A></P>
+<P><A NAME="1039128"></A></P>
+<P><A NAME="1039129">
+鍵を削除する際、 <CODE>-D</CODE> を使って、
+必ずその鍵に関連する全ての認証を証明書データベースから削除して下さい。
+</A></P>
+<P><A NAME="1039130"></A></P>
+<P><A NAME="1039131">
+スマートカードの中には （例えば、 Litronic カード） 、
+生成した公開鍵を削除できなくするものがあります。
+このような場合、暗号鍵ペアのうち秘密鍵のみを削除します。
+コマンド <CODE>certutil -K -h</CODE> <I>tokenname</I> を使って、
+公開鍵を表示することができます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039079"><CODE>-K</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039161">
+暗号鍵データベースにある暗号鍵の keyID を一覧表示します。
+keyID とは、 RSA キーあるいは DSA キーの <CODE>publicValue</CODE> のモジュールです。
+ID は、16 進数で表示されます （&quot;0x&quot; は表示されません）。
+</A></P>
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033977"><CODE>-A</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033979">
+既存の証明書を証明書データベースに加えます。
+証明書データベースは前もって存在していなければなりません。
+もしない場合、このオプションがディフォルトでデータベースを初期化します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039193"><CODE>-D</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039187">
+証明書データベースから証明書を削除します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033973"><CODE>-L</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033975">
+ある特定のデータベース内の、全ての証明書を一覧表示、
+または指定された証明書の情報を表示します。
+</A></P>
+<P><A NAME="1038718"></A></P>
+<P><A NAME="1038719"> <CODE>-h</CODE> <I>tokenname</I> 引数を使い、
+特定のハードウェアまたはソフトウェア証明の証明書データベースを指定します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033969"><CODE>-V</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033971">
+証明書とその属性の妥当性を検査します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033965"><CODE>-M</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033967">
+引数 <CODE>-t</CODE> の値を使って証明書のトラスト属性を変更します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033957"><CODE>-H</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033959">
+Certificate Database Tool で利用されるオプションおよび引数の一覧を表示します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039217"><CODE>-W</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039207">
+暗号鍵データベースへのパスワードを変更します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039225"><CODE>-U</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039203">
+利用可能な全てのモジュールを一覧表示するか、単一名のモジュールを表示します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038213"><B>引数</B></A></P>
+<TD VALIGN=baseline ALIGN=left><P>
+<A NAME="1038156"></A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033953"><CODE>-a</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033955">
+入力あるいは出力に ASCII 形式を使うか、 ASCII 形式を使えるようにします。
+この形式は、 <A HREF="http://andrew2.andrew.cmu.edu/rfc/rfc1113.html">
+<A href="http://andrew2.andrew.cmu.edu/rfc/rfc1113.html">RFC #1113</A>
+に従います。証明書要求には、 指定変更されていない限り、
+ASCII 出力がディフォルトで標準出力となっています。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033949"><CODE>-b </CODE><I>validity-time</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034296">
+証明書の妥当性を検査する時間を指定します。
+証明書の妥当性を <CODE>-V</CODE> オプションと共に使用する際に使ってください。
+<I>validity-time </I> 引数のフォーマットは、&quot;YYMMDDHHMMSS[+HHMM|-HHMM|Z]&quot;です。
+オフセットタイムを指定する場合は、&quot;YYMMDDHHMMSS+HHMM&quot; か &quot;YYMMDDHHMMSS-HHMM&quot;
+を使ってください。このオプションが使われない場合、
+妥当性検査はディフォルトでシステム時間に合せられます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033945"><CODE>-c </CODE><I>issuer</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034332">
+新たに証明書の妥当性を発行する認証局の証明書を特定します。
+その認証局の正確なニックネームかエイリアスを使用するか、
+その認証局の電子メールアドレスを使ってください。
+文字列にスペースが入る場合、文字列 <I>issuer</I> を引用符で囲んでください。
+<!--Identify the certificate of the CA from which a new certificate will derive its authenticity. -->
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1033941"><CODE>-d </CODE><I>directory</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038653">
+証明書および暗号鍵データベースファイルがあるデータベースディレクトリを指定します。
+UNIX ではディフォルトの場合、Certificate Database Tool は、
+ <CODE>$HOME/.netscape</CODE>  （つまり、 <CODE>~/.netscape</CODE>） にあります。
+Windows NTではディフォルトの場合、カレントディレクトリになります。
+</A></P>
+<P><A NAME="1038660"></A></P>
+<P><A NAME="1038654">
+ <CODE>cert7.db</CODE> および <CODE>key3.db</CODE> データベースファイルは、
+同じディレクトリに格納されなければなりません。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left><P><A NAME="1033941">
+<CODE>-P </CODE><I>dbprefix</I></A></P>
+<TD VALIGN=baseline ALIGN=left><P>
+ <CODE>cert7.db</CODE> および <CODE>key3.db</CODE> で使われるプレフィックスを指定します
+（例えば、 <CODE>my_cert7.db</CODE> および <CODE>my_key3.db</CODE>）。
+このオプションは、特別な場合として提供されています。
+証明書や暗号鍵データベースの名前を変更したりはしないでください。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034106"><CODE>-e</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034108">
+証明書の署名を妥当性検査のプロセス中にチェックします。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034102"><CODE>-f </CODE><I>password-file</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034396">
+証明書に含めたり、証明書データベースにアクセスするようにように、
+自動的にパスワードを提供するファイルを指定します。
+これは、プレインテキストファイルで、パスワードを一つ含んでいます。
+このファイルに無許可でアクセスされないように注意を払ってください。
+</A></P>
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039243"><CODE>-g </CODE><I>keysize</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039260">
+新しい公開鍵と秘密鍵のペアを生成する際、その暗号鍵サイズを設定します。
+最小サイズは 256 ビットで、最大は 1024 ビットです。ディフォルトは 1024 ビットです。
+最小サイズと最大サイズの間であれば、どのサイズでも構いません。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034098"><CODE>-h </CODE><I>tokenname</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034444">
+利用する、または作動するトークンの名前を指定します。
+指定されていない場合は、ディフォルトのトークンはインターナル スロット （internal slot）
+ です（正確にはインターナルスロット 2 です）。このスロットもまた、
+文字列 <CODE>"internal"</CODE> で指定することができます。
+内部スロットとはハードウェア デバイスではなく、ソフトウェア内にある仮想スロットのことです。
+インターナル スロット 2 は、暗号鍵および認証サービス （certificate services）
+ によって利用されます。インターナル スロット 1 は、暗号化サービス （cryptographic services）
+ によって利用されます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034094"><CODE>-i </CODE><I>cert</I>|<I>cert-request-file</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038301">
+特定の証明書、または証明書要求ファイルを指定します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034090"><CODE>-k rsa|dsa|all</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039301">
+暗号鍵のタイプを指定します： RSA、 DSA またはその両方です。
+ディフォルトの値は <CODE>rsa</CODE> です。暗号鍵のタイプを指定することで、
+重複するニックネームによって起こるミスを防ぐことができます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034086"><CODE>-l</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034088">
+オプション <CODE>-V</CODE> で証明書の妥当性検査をしている際、詳細情報を表示します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034082"><CODE>-m </CODE><I>serial-number</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034084">
+生成される証明書に固有のシリアル番号を割り振ります。
+この作業は、認証局によってなされなければなりません。
+ディフォルトのシリアル番号は、0 （ゼロ） です。シリアル番号は整数に限られます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034078"><CODE>-n </CODE><I>nickname</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034080">
+一覧表示、生成、データベースへの追加、変更、
+あるいは妥当性検査をする証明書または暗号鍵のニックネームを指定します。
+ <I>nickname</I> にスペースが入る場合は引用符で囲みます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034074"><CODE>-o </CODE><I>output-file</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034076">
+新しい証明書やバイナリー証明書要求のための出力ファイル名を指定します。
+文字列 <I>output-file</I> にスペースが入る場合は引用符で囲みます。
+この引数が使われなかった場合、ディフォルトの出力先は標準出力となります。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034070"><CODE>-p </CODE><I>phone</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034072">
+新しい証明書やバイナリー証明書要求に入れる連絡先の電話番号を指定します。
+この文字列にスペースが入る場合は引用符で囲みます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039311"><CODE>-q </CODE><I>pqgfile</I> </A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039313">
+ DSA キーペアを生成する際、指定されたファイルから代替 PQG 値を読み込みます。
+この引数がない場合、暗号鍵データベースツールは独自に PQG 値を生成します。
+ PQG ファイルは別個の DSA ユーティリティにより作り出されます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034066"><CODE>-r</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034068">
+オプション <CODE>-L</CODE> によって証明書の情報を一覧表示する際、
+その証明書のバイナリー DER エンコードを表示します。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034062"><CODE>-s </CODE><I>subject</I></A></P>
+<TD VALIGN=baseline ALIGN=left
+><P><A NAME="1034064">
+新しい証明書や証明書要求された場合、その証明書の所有者を特定します。
+それにスペースが含まれる場合は引用符で囲みます。
+対象を特定する際のフォーマットは、 <A HREF="http://andrew2.andrew.cmu.edu/rfc/rfc1113.html">
+<A href="http://andrew2.andrew.cmu.edu/rfc/rfc1485.html">RFC #1485</A>
+に従います。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034193"><CODE>-t </CODE><I>trustargs</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034595">
+既存の証明書に変更を加えたり、生成する証明書に適用したり、または、
+証明書をデータベースに追加する際にトラスト属性を指定します。
+</A></P>
+<P><A NAME="1038474"></A></P>
+<P><A NAME="1038470">
+三つのカテゴリーが利用でき、次のようになります：
+"<I>SSL</I>, <I>email</I>, <I>object signing</I>"。
+それぞれのカテゴリーポジションには、属性コードが全く付かないか、
+複数の属性コードが付きます：
+</A></P><P><A NAME="1038241">
+</A></P><P><A NAME="1038242">
+<CODE>p</CODE>&nbsp;&nbsp;&nbsp;&nbsp;妥当なピア<br>
+<CODE>P</CODE>&nbsp;&nbsp;&nbsp;&nbsp;トラステッドピア （<CODE>p</CODE> を含む） <br>
+<CODE>c</CODE>&nbsp;&nbsp;&nbsp;&nbsp;妥当な認証局<br>
+<CODE>T</CODE>&nbsp;&nbsp;&nbsp;&nbsp;クライアント証明書を発行するトラステッド認証局
+（<CODE>c</CODE>を含む） <br>
+<CODE>C</CODE>&nbsp;&nbsp;&nbsp;&nbsp;サーバ証明書を発行するトラステッド認証局 （SSL のみ）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（<CODE>c</CODE> を含む） <br>
+<CODE>u</CODE>&nbsp;&nbsp;&nbsp;&nbsp;証明書は認証や署名に利用できます<br>
+<CODE>w</CODE>&nbsp;&nbsp;&nbsp;&nbsp;警告を送ります （この状況の中で証明書が使われた際に、
+警告を含めるため他の属性と共に利用します。）</A></P>
+<P><A NAME="1038190"></A></P>
+<P><A NAME="1038479">
+カテゴリのための属性コードはカンマによって分けられ、属性全体のセットは引用符で囲まれます。
+例えば：
+</A></P>
+<P><A NAME="1038480"><CODE>-t "TCu,Cu,Tuw"</CODE></A></P>
+<P><A NAME="1038082"></A></P>
+<P><A NAME="1038484">
+その時点での証明書および証明書データベースのトラスト属性を一覧を見るためには、
+オプション <CODE>-L</CODE> を使ってください。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034189"><CODE>-u </CODE><I>certusage</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034631">
+オプション <CODE>-V</CODE> を利用して証明書の妥当性を検査する際、
+適用する利用環境 （usage context） を指定します。その環境には次のものがあります：
+</A></P>
+<P><A NAME="1038507"><CODE></CODE></A></P>
+<P><A NAME="1038508">
+<CODE>C</CODE> （SSL クライアントとして）<br>
+<CODE>V</CODE> （SSL サーバとして）<br>
+<CODE>S</CODE> （電子メール署名者として）<br>
+<CODE>R</CODE> （電子メール受信者として）
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1037458"><CODE>-v </CODE><I>valid-months</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1037460">
+新しい証明書の有効期間を表す月数を設定します。
+<CODE>-w</CODE> を使ってオフセットが追加されたり、減算されない限り、
+有効期間はその時点のシステム時間から開始されます。
+もしこの引数が使われない場合は、ディフォルトの有効期間は 3 ヶ月です。
+この引数を使った場合は、引数 <I>valid-month</I> によって設定された値に、
+ディフォルトの 3 ヶ月間が自動的に加えられます。例えば、
+このオプションを使って <CODE>3</CODE> という値を引数 <I>valid-month</I> 
+に設定した場合、ディフォルトの 3 ヶ月にさらに 3 を加えることになるので、
+結果的に有効期限は 6 ヶ月となります。また、マイナスの値を使って、
+ディフォルトの有効期間を短くすることもできます。例えば、
+ <CODE>-2</CODE> という値を設定することで、ディフォルトから 2 を引き、
+有効期間を 1 ヶ月にすることができます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034185"><CODE>-w </CODE><I>offset-months</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034187">
+証明書の有効期間の開始時を、月単位で、その時点のシステム時間からのオフセット設定をします。
+証明書を生成したり、生成した証明書をデータベースに追加したりする場合に使います。
+負のオフセットを示すため、マイナス記号 （<CODE>-</CODE>） を使って、オフセットを整数で表示します。
+この引数が使われない場合、有効期間はその時点のシステム時間から開始されます。
+有効期間の長さは、引数 <CODE>-v</CODE> で設定されます。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034181"><CODE>-x</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034183">
+証明書を生成するためにCertificate Database Tool を使用します。これは、
+他の認証局から署名を取り寄せるためではなく、
+証明書を生成したりデータベースに加えたりするためのものです。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034177"><CODE>-y </CODE><I>exp</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039386">
+新しい RSA 公開鍵をデータベースに生成する際、ディフォルト値の 65537 ではない、
+代替指数値を設定します。利用できる代替指数は 3 および 17 です。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039319"><CODE>-z </CODE><I>noise-file</I></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039321">
+指定されたバイナリーファイルからシード値を読み込み、
+ RSA 秘密鍵と公開鍵ペアを生成する際に利用します。
+この引数は、ハードウェアにより生成されたシード値を利用できるようにし、
+キーボードから手動で値を設定しなくても済むようにします。
+ファイルの最小サイズは 20 バイトです。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034173"><CODE>-1</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034175">
+新たに生成されたり、データベースに追加された証明書に key usage extension を加えます。
+このエクステンションにより、証明書キー （certificate's key） を 
+SSL サーバやオブジェクト署名といった特定の操作を支援するように専用化できるようになります。
+Certificate Database Tool は、
+証明書キーをどのように利用するのか選択するようにプロンプトを表示します。
+こうした利用法は、 <I>Netscape Certificate Management System Installation 
+and Deployment Guide</I> の添付資料 C の 
+<A href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/cms/41/dep_gide/ext.htm">
+Standard X.509 v3 Certificate Extensions</A> に解説されています。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034169"><CODE>-2</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1038749">
+新たに生成されたり、データベースに追加された証明書に basic constraint extension を加えます。
+このエクステンションは、 certificate chain verification process をサポートします。
+Certificate Database Tool は、
+ certificate constraint extension を選択するようにプロンプトを表示します。
+constraint extension は、 <I>Netscape Certificate Management System Installation 
+and Deployment Guide</I> の添付資料 C の 
+<A href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/cms/41/dep_gide/ext.htm">
+Standard X.509 v3 Certificate Extensions</A> に解説されています。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034165"><CODE>-3</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034167">
+新たに生成されたり、データベースに追加された証明書に authority keyID extension を加えます。
+このエクステンションにより、ある特定の証明書を、
+単一のサブジェクト名に関連付けられた複数の証明書の中から、
+証明書の正式な発行者として特定することができるようになります。
+Certificate Database Tool は、 
+authority keyID extension を選択するようにプロンプトを表示します。
+authority keyID extension は、 <I>Netscape Certificate Management System Installation 
+and Deployment Guide</I> の添付資料 C の 
+<A href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/cms/41/dep_gide/ext.htm">
+Standard X.509 v3 Certificate Extensions</A> に解説されています。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1034161"><CODE>-4</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1040255">
+新たに生成されたり、データベースに追加された証明書に CRL distribution point extension を加えます。
+このエクステンションは、証明書の関連証明書失効リスト （CRL） の URL を特定します。
+Certificate Database Tool は、 URL を入力するようにプロンプトを表示します。
+ CRL distribution point extension は、 <I>Netscape Certificate Management System Installation 
+and Deployment Guide</I> の添付資料 C の 
+<A href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/cms/41/dep_gide/ext.htm">
+Standard X.509 v3 Certificate Extensions</A> に解説されています。
+
+<!-- This extension identifies the URL of a certificate's associated certificate revocation list (CRL).-->
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039329"><CODE>-5</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1040231">
+新たに生成されたり、データベースに追加された証明書に Netscape certificate type extension 
+を加えます。 Netscape certificate type extension は、
+ <I>Netscape Certificate Management System Installation 
+and Deployment Guide</I> の添付資料 C の 
+<A href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/cms/41/dep_gide/ext.htm">
+Standard X.509 v3 Certificate Extensions</A> に解説されています。
+</A></P>
+
+<TR><TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1039325"><CODE>-6</CODE></A></P>
+<TD VALIGN=baseline ALIGN=left>
+<P><A NAME="1040242">
+新たに生成されたり、データベースに追加された証明書に extended key usage extension を加えます。
+ extended key usage extension は、
+ <I>Netscape Certificate Management System Installation 
+and Deployment Guide</I> の添付資料 C の 
+<A href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/cms/41/dep_gide/ext.htm">
+Standard X.509 v3 Certificate Extensions</A> に解説されています。
+</A></P>
+
+</TABLE>
+<TABLE>
+<TR><TD>
+</TABLE>
+ </A></P>
+
+<H2><A NAME="Usage"></A>
+<A NAME="1028519">
+利用例
+</A></H2>
+
+<P><A NAME="1037923">
+Certificate Database Tool の機能は、オプションと引数の組み合わせを用いて、
+下にグループ化して示してあります。四角括弧内のオプションと引数はオプショナルで、
+四角括弧のついていないものは必ず必要です。
+</A></P>
+
+<ul>
+<LI><A NAME="1037924">新たな <CODE>cert7.db</CODE> ファイルを作るには：</A></LI>
+<BLOCKQUOTE><A NAME="1037925">
+<CODE>-N [-d </CODE><I>certdir</I><CODE>] 
+</CODE></BLOCKQUOTE></A></P>
+
+<P><LI><A NAME="1037926">
+新たに証明書を発行し、それを一回のコマンドでデータベースに追加するには：</A></LI>
+<BLOCKQUOTE><A NAME="1037927">
+<CODE>-S -k rsa|dsa -n </CODE><I>certname</I><CODE> -s </CODE><I>subject</I><CODE> <br>
+[-c </CODE><I>issuer</I><CODE> |-x] -t </CODE><I>trustargs</I><CODE> [-h </CODE><I>tokenname</I><CODE>] <br>
+[-m </CODE><I>serial-number</I><CODE>] [-v </CODE><I>valid-months</I><CODE>] [-w </CODE><I>offset-months</I><CODE>] <br>
+[-d </CODE><I>certdir</I><CODE>] [-p </CODE><I>phone</I><CODE>] [-f </CODE><I>password-file</I><CODE>] [-1] [-2] [-3] [-4] 
+</CODE></BLOCKQUOTE></A></P>
+
+<P><LI><A NAME="1037928">
+別々に証明書を要求するには：</A></LI>
+<BLOCKQUOTE><A NAME="1037929">
+<CODE>-R -k rsa|dsa -s </CODE><I>subject</I><CODE> [-h </CODE><I>tokenname</I><CODE>] <br>
+[-d </CODE><I>certdir</I><CODE>] [-p </CODE><I>phone</I><CODE>] [-o </CODE><I>output-file</I><CODE>] [-f </CODE><I>password-file</I><CODE>] 
+</CODE></BLOCKQUOTE></A></P>
+
+<P><LI><A NAME="1037930">
+バイナリー証明書 （binary certificate） の要求に応えて、
+新たにバイナリー証明書を発行するには：</A></LI>
+
+<BLOCKQUOTE><A NAME="1037931">
+
+
+<CODE>-C -c </CODE><I>issuer</I><CODE> [-f </CODE><I>password-file</I><CODE>] <br>
+
+[-h </CODE><I>tokenname</I><CODE>] -i </CODE><I>cert-request-file</I><CODE> -o </CODE><I>output-file</I><CODE> [-m </CODE><I>serial-number</I><CODE>]<br>
+[-v </CODE><I>valid-months</I><CODE>] [-w </CODE><I>offset-months</I><CODE>] [-d </CODE><I>certdir</I><CODE>] [-1] [-2] [-3] <br>
+[-4] 
+</CODE></BLOCKQUOTE></A></P>
+
+<P><LI><A NAME="1037932">
+証明書を既存のデータベースに加えるには：</A></LI>
+<BLOCKQUOTE><A NAME="1037933">
+<CODE>-A -n </CODE><I>certname</I><CODE> -t </CODE><I>trustargs</I><CODE> [-h </CODE><I>tokenname</I><CODE>] [-d </CODE><I>certdir</I><CODE>] [-a] <br>
+[-i </CODE><I>cert-request-file</I><CODE>] 
+</CODE></BLOCKQUOTE></A></P>
+
+<P><LI><A NAME="1037934">
+全ての証明書、あるいは名前付き証明書を一覧表示するには：</A></LI>
+<BLOCKQUOTE><A NAME="1037935">
+<CODE>-L [-n </CODE><I>certname</I><CODE>] [-d </CODE><I>certdir</I><CODE>] [-r] [-a] 
+</CODE></BLOCKQUOTE></A></P>
+
+<P><LI><A NAME="1037936">
+証明書の妥当性検査を行うには：</A></LI>
+<BLOCKQUOTE><A NAME="1037937">
+<CODE>-V -n </CODE><I>certname</I><CODE> -b </CODE><I>validity-time</I><CODE> -u </CODE><I>certusage</I><CODE> [-e] [-l] [-d </CODE><I>certdir</I><CODE>] 
+</CODE></BLOCKQUOTE></A></P>
+
+<P><LI><A NAME="1037938">
+証明書のトラスト属性を変更するには： </A></LI>
+<BLOCKQUOTE><A NAME="1037939">
+<CODE>-M -n </CODE><I>certname</I><CODE> -t </CODE><I>trustargs</I><CODE> [-d </CODE><I>certdir</I><CODE>] 
+</CODE></BLOCKQUOTE></A></P>
+
+<P><LI><A NAME="1037940">
+Certificate Database Tool で利用されるオプションと引数の一覧を表示するには：</A></LI>
+<BLOCKQUOTE><A NAME="1037941">
+<CODE>-H 
+</CODE></BLOCKQUOTE></A>
+
+</ul>
+<H2><A NAME="Examples"></A>
+<A NAME="1037918">
+実例
+</A></H2>
+
+<P><A NAME="1038537">
+<A HREF="certutil.html#1028724">新たな証明書データベースを構築する</A><br>
+<A HREF="certutil.html#1034026">データベース内の証明書を一覧表示する</A><br>
+<A HREF="certutil.html#1028731">証明書要求をする</A><br>
+<A HREF="certutil.html#1034020">証明書を発行する</A><br>
+<A HREF="certutil.html#1034010">証明書をデータベースに加える</A><br>
+<A HREF="certutil.html#1035544">証明書の妥当性検査をする</A>
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1028724">
+新たな証明書データベースを構築する
+</A></H3>
+
+<P><A NAME="1034720">
+この例では、特定のディレクトリに新しい証明書データベース （<CODE>cert7.db</CODE> ファイル） 
+を構築します：
+</A></P>
+
+<P><A NAME="1034722">
+<CODE>certutil -N -d </CODE><I>certdir</I>
+</A></P>
+
+<A NAME="1034726">
+暗号鍵データベースまたはその他のツールを利用して、関連する
+ <CODE>key3.db</CODE> および <CODE>secmod.db</CODE> ファイルを生成しなければなりません。
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1034026">
+データベース内の証明書を一覧表示する
+</A></H3>
+
+<P><A NAME="1034749">
+この例では、特定のディレクトリにある <CODE>cert7.db</CODE> ファイル内の全ての証明書を一覧表示します：
+</A></P>
+
+<P><A NAME="1034751">
+<CODE>certutil -L -d </CODE><I>certdir</I>
+</A></P>
+
+<P><A NAME="1034753">
+Certificate Database Tool は、下のような出力結果を表示します：
+</A></P>
+
+<P><A NAME="1034755">
+<CODE>Certificate Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trust Attributes </CODE></A></P>
+<A NAME="1037237">
+<CODE>Uptime Group Plc. Class 1 CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>VeriSign Class 1 Primary CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,C, <br>VeriSign Class 2 Primary CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C,C <br>AT&amp;T Certificate Services&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>GTE CyberTrust Secure Server CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,, <br>Verisign/RSA Commercial CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>AT&amp;T Directory Services&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>BelSign Secure Server CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,, <br>Verisign/RSA Secure Server CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>GTE CyberTrust Root CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>Uptime Group Plc. Class 4 CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,C, <br>VeriSign Class 3 Primary CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C,C <br>Canada Post Corporation CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>Integrion CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C,C <br>IBM World Registry CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C,C <br>GTIS/PWGSC, Canada Gov. Web CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>GTIS/PWGSC, Canada Gov. Secure CA&nbsp;&nbsp;&nbsp;C,C,C <br>MCI Mall CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>VeriSign Class 4 Primary CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C,C <br>KEYWITNESS, Canada CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C,C, <br>BelSign Object Publishing CA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,,C <br>BBN Certificate Services CA Root 1&nbsp;&nbsp;C,C, <br>p&nbsp;&nbsp;&nbsp;&nbsp;Valid peer <br>P&nbsp;&nbsp;&nbsp;&nbsp;Trusted peer (implies p) <br>c&nbsp;&nbsp;&nbsp;&nbsp;Valid CA <br>T&nbsp;&nbsp;&nbsp;&nbsp;Trusted CA to issue client certs (implies c) <br>C&nbsp;&nbsp;&nbsp;&nbsp;Trusted CA to issue server certs(for ssl only) (implies c) <br>u&nbsp;&nbsp;&nbsp;&nbsp;User cert <br>w&nbsp;&nbsp;&nbsp;&nbsp;Send warning </CODE></A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1028731">
+証明書要求をする
+</A></H3>
+
+<P><A NAME="1035439">
+<CODE>certutil -R -s "CN=John Smith, O=Netscape, L=Mountain View, ST=California, C=US" -p "650-555-8888" -o mycert.req -d </CODE><I>certdir</I> </A></P>
+</A></P>
+
+<P><A NAME="1035441">
+<CODE>certutil -R -s "CN=John Smith, O=Netscape, L=Mountain View, ST=California, C=US" -p "650-555-8888" -k e95c -o e95c.req -d </CODE><I>certdir</I>
+</A></P>
+
+<P><A NAME="1035468">
+要求ファイルを作成する前に、 Certificate Database Tool はパスワードを求めてきます：
+</A></P>
+
+<P><A NAME="1035445">
+<CODE>Enter Password or Pin for "Communicator Certificate DB": </CODE>
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1034020">
+証明書を発行する
+</A></H3>
+
+正統な証明書は、トラステッド認証局から発行されなければなりません。
+認証局のキーペアが得られない場合、引数 <CODE>-x</CODE> を使って、
+自己署名証明書 （例証として） を作成することができます。この例では、
+指定されたディレクトリに、自己署名された <CODE>myissuer</CODE>
+という名前の新しいバイナリー証明書を生成します。</A></P>
+<P><A NAME="1038600">
+
+<CODE>certutil -S -s "CN=My Issuer" -n myissuer -x -t "C,C,C" -1 -2 -5 -m 1234 <br>-f </CODE><I>password-file</I><CODE> -d </CODE><I>certdir</I> </A></P>
+
+<P><A NAME="1035482">
+
+次の例では、<CODE>mycert.req</CODE> と名付けられたバイナリ−証明書要求から、
+<CODE>mycert.crt</CODE> という名前の新しいバイナリー証明書を、
+指定されたディレクトリに生成します。これは、前述した自己署名された証明書である
+<CODE>myissuer</CODE> によって発行されます。</A></P>
+
+<P><A NAME="1035502">
+<CODE>certutil -C -m 2345 -i mycert.req -o mycert.crt -c myissuer -d </CODE><I>certdir</I> </A></P>
+
+<P><A NAME="1034013">
+<CODE>certutil -C -m 2345 -i one.req -o one.crt -c e95c.crt -d </CODE><I>certdir</I>
+</A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1034010">
+証明書をデータベースに加える
+</A></H3>
+
+<P><A NAME="1035548">
+<CODE>certutil -A -n jsmith@netscape.com -t "p,p,p" -i mycert.crt <br>-d </CODE><I>certdir</I> </A></P>
+
+<P><A NAME="1035550">
+<CODE>certutil -A -n jsmith@netscape.com -t "C,C,C" -i e95c.crt <br>-d </CODE><I>certdir</I>
+</A></P>
+
+<P><A NAME="1035552">
+次のコマンドでデータベース内の証明書を見ることができます：
+</A></P>
+
+<P><A NAME="1035554">
+<CODE>certutil -L -n jsmith@netscape.com -d </CODE><I>certdir</I>
+</A></P>
+
+<P><A NAME="1035556">
+Certificate Database Tool は、次のような出力結果を表示します：
+</A></P>
+
+<P><A NAME="1035557">
+<CODE>Certificate: <br>&nbsp;&nbsp;Data: <br>&nbsp;&nbsp;&nbsp;&nbsp;Version: 3 (0x2) <br>&nbsp;&nbsp;&nbsp;&nbsp;Serial Number: 0 (0x0) <br>&nbsp;&nbsp;&nbsp;&nbsp;Signature Algorithm: PKCS #1 MD5 With RSA Encryption <br>&nbsp;&nbsp;&nbsp;&nbsp;Issuer: CN=John Smith, O=Netscape, L=Mountain View, ST=California, C=US <br>&nbsp;&nbsp;&nbsp;&nbsp;Validity: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Before: Thu Mar 12 00:10:40 1998 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not After: Sat Sep 12 00:10:40 1998 <br>Subject: CN=John Smith, O=Netscape, L=Mountain View, ST=California, C=US </CODE></A></P>
+<A NAME="1035568">
+<CODE>Subject Public Key Info: <br>&nbsp;&nbsp;Public Key Algorithm: PKCS #1 RSA Encryption <br>&nbsp;&nbsp;RSA Public Key: <br>&nbsp;&nbsp;&nbsp;&nbsp;Modulus: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00:da:53:23:58:00:91:6a:d1:a2:39:26:2f:06:3a: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;38:eb:d4:c1:54:a3:62:00:b9:f0:7f:d6:00:76:aa: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18:da:6b:79:71:5b:d9:8a:82:24:07:ed:49:5b:33: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bf:c5:79:7c:f6:22:a7:18:66:9f:ab:2d:33:03:ec: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;63:eb:9d:0d:02:1b:da:32:ae:6c:d4:40:95:9f:b3: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44:8b:8e:8e:a3:ae:ad:08:38:4f:2e:53:e9:e1:3f: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8e:43:7f:51:61:b9:0f:f3:a6:25:1e:0b:93:74:8f: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c6:13:a3:cd:51:40:84:0e:79:ea:b7:6b:d1:cc:6b: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;78:d0:5d:da:be:2b:57:c2:6f <br>&nbsp;&nbsp;&nbsp;&nbsp;Exponent: 65537 (0x10001) <br>Signature Algorithm: PKCS #1 MD5 With RSA Encryption <br>Signature: <br>&nbsp;&nbsp;44:15:e5:ae:c4:30:2c:cd:60:89:f1:1d:22:ed:5e:5b:10:c8: <br>&nbsp;&nbsp;7e:5f:56:8c:b4:00:12:ed:5f:a4:6a:12:c3:0d:01:03:09:f2: <br>&nbsp;&nbsp;2f:e7:fd:95:25:47:80:ea:c1:25:5a:33:98:16:52:78:24:80: <br>&nbsp;&nbsp;c9:53:11:40:99:f5:bd:b8:e9:35:0e:5d:3e:38:6a:5c:10:d1: <br>&nbsp;&nbsp;c6:f9:54:af:28:56:62:f4:2f:b3:9b:50:e1:c3:a2:ba:27:ee: <br>&nbsp;&nbsp;07:9f:89:2e:78:5c:6d:46:b6:5e:99:de:e6:9d:eb:d9:ff:b2: <br>&nbsp;&nbsp;5f:c6:f6:c6:52:4a:d4:67:be:8d:fc:dd:52:51:8e:a2:d7:15: <br>&nbsp;&nbsp;71:3e </CODE></A></P>
+<A NAME="1036339">
+<CODE>Certificate Trust Flags: <br>&nbsp;&nbsp;SSL Flags: <br>&nbsp;&nbsp;&nbsp;&nbsp;Valid CA <br>&nbsp;&nbsp;&nbsp;&nbsp;Trusted CA <br>&nbsp;&nbsp;Email Flags: <br>&nbsp;&nbsp;&nbsp;&nbsp;Valid CA <br>&nbsp;&nbsp;&nbsp;&nbsp;Trusted CA <br>&nbsp;&nbsp;Object Signing Flags: <br>&nbsp;&nbsp;&nbsp;&nbsp;Valid CA <br>&nbsp;&nbsp;&nbsp;&nbsp;Trusted CA </CODE></A></P>
+
+<H3><A NAME="Head2;"></A>
+<A NAME="1035544">
+証明書の妥当性検査をする
+</A></H3>
+
+<P><A NAME="1036649">
+この例では、証明書の妥当性を検査します：
+</A></P>
+
+<P><A NAME="1035541">
+<CODE>certutil -V -n jsmith@netscape.com -b 9803201212Z -u SR -e -l <br>-d </CODE><I>certdir</I>
+</A></P>
+
+<P><A NAME="1036674">
+Certificate Database Tool は、次の例に似た結果を表示するか、
+</A></P>
+
+<P><A NAME="1037451">
+<CODE>Certificate:'jsmith@netscape.com' is valid.</CODE>
+</A></P>
+
+<P><A NAME="1037453">
+または、
+</A></P>
+
+<P><A NAME="1037452">
+<CODE>UID=jsmith, E=jsmith@netscape.com, CN=John Smith, O=Netscape Communications Corp., C=US : Expired certificate</CODE>
+</A></P>
+
+<P><A NAME="1037673">
+あるいは、
+</A></P>
+
+<P><A NAME="1037664">
+<CODE>UID=jsmith, E=jsmith@netscape.com, CN=John Smith, O=Netscape Communications Corp., C=US : Certificate not approved for this operation</CODE></A></P>
+<PRE><A NAME="1028726"></A></PRE>
+
+<HR>
+
+
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/tools/certutil.html">英語版</a> 2002/12/20</span> - <span>和訳版 2004/11/09</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/tools/certutil.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

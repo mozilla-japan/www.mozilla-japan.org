@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>迷惑メールの削除</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/mailnews/arch/spam/purge.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/mailnews/arch/spam/purge.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<div style="text-align: center;"><span style="font-weight: bold;">迷惑
+メールの削除</span><br>
+<a href="mailto:sspitzer@mozilla.org">Seth Spitzer</a><br>
+</div>
+テストには、次の設定を使用してください：<br>
+<br>
+NSPR_LOG_FILE=c:\purgelog.txt<br>
+NSPR_LOG_MODULES=MsgPurge:5<br>
+<br>
+user_pref("mail.purge.min_delay",5);  ( 初期値は 480 分つまり 8 時間 )<br>
+user_pref("mail.purge._interval",1); ( 初期値は 5 分 )<br>
+<br>
+timer_interval は削除の対象になるものがあるかどうかをチェックする頻度を示します。<br>
+min_delay は、所定のフォルダにおいて、最新の削除が行われてから充分な時間が
+経過しているか、です。<br>
+<br>
+例えば私が POP と IMAP の二つのアカウントを持っているとして、それぞれに
+迷惑メール・フォルダがあり、いずれも自動削除が設定されているとします。<br>
+<br>
+これがどのように動作するかを以下に示します：<br>
+<br>
+起動<br>
+<br>
+ 5 分経過後：<br>
+&nbsp; 削除の対象を探します<br>
+&nbsp;  POP 迷惑メール・フォルダを調べると、削除が行われていないので、削除を行います。<br>
+&nbsp; このフォルダの lastPurgeTime を今に設定します。<br>
+&nbsp; <br>
+ 5 分経過後：<br>
+&nbsp; 削除の対象を探します<br>
+&nbsp;  POP 迷惑メール・フォルダを調べると、 5 分前 ( 8 時間以下）に削除されているので、
+これをスキップします。&nbsp; <br>
+&nbsp;  IMAP 迷惑メール・フォルダを調べると、削除が行われていないので、削除を行います。<br>
+<br>
+ 5 分経過後：<br>
+&nbsp; 削除の対象を探します<br>
+&nbsp;  POP 迷惑メール・フォルダを調べると、 10 分前 ( 8 時間以下）に削除されているので、
+これをスキップします。&nbsp; <br>
+&nbsp;  IMAP 迷惑メール・フォルダを調べると、 5 分前 ( 8 時間以下）に削除されているので、
+これをスキップします。&nbsp; <br>
+<br>
+ 5 分経過後：<br>
+&nbsp; 削除の対象を探します<br>
+&nbsp;  POP 迷惑メール・フォルダを調べると、 15 分前 ( 8 時間以下）に削除されているので、
+これをスキップします。&nbsp; <br>
+&nbsp;  IMAP 迷惑メール・フォルダを調べると、 10 分前 ( 8 時間以下）に削除されているので、
+これをスキップします。&nbsp; <br>
+<br>
+...<br>
+<br>
+ 5 分経過後：<br>
+&nbsp; 削除の対象を探します<br>
+&nbsp;  POP 迷惑メール・フォルダを調べると、 485 分前 ( 8 時間より後）に削除されているので、
+これを削除します。<br>
+&nbsp; このフォルダの lastPurgeTime を今に設定します。<br>
+<br>
+ 5 分経過後：<br>
+&nbsp; 削除の対象を探します<br>
+&nbsp;  POP 迷惑メール・フォルダを調べると、 5 分前 ( 8 時間以下）に削除されているので、
+これをスキップします。&nbsp; <br>
+&nbsp;  IMAP 迷惑メール・フォルダを調べると、 485 分前 ( 8 時間より後）に削除されているので、
+これを削除します。<br>
+&nbsp; このフォルダの lastPurgeTime を今に設定します。<br>
+<br>
+ lastPurgeTime がフォルダに格納されているため、その場で抜けて
+ 再起動しても、問題にはなりません。<br>
+<br>
+(注意しなければならないことは、 min_delay がない場合（または min_delay が &lt; timer_interval となる場合）、
+同じフォルダを何度も削除し続けるため、他のフォルダにたどり着かないことです。）<br>
+<br>
+<span style="font-weight: bold;">より詳しくは：</span><br>
+<br>
+（メール・アカウントが読み込まれた時から始まる
+）mail.purge.timer_interval の分ごとに 
+全てのアカウントを通じて、<br>
+<br>
+次の条件を満たす最初のサーバを検索します：<br>
+<ul>
+  <li>入ってくるメッセージを取得できる（もし不可能であっても気にすることは
+  ありません。というのも、この種類のアカウントは迷惑メール・コントロールには出てこないからです）</li>
+  <li>自動削除が設定されている</li>
+  <li>有効な迷惑メール・フォルダが実在している</li>
+  <li> mail.purge.min_delay の分の間削除されたことがない</li>
+  <li>使用されていない (例えばこれが POP アカウントであれば、
+  新しいメールを受信しているようなことがない）</li>
+  <li>( IMAP のように) 迷惑メール・フォルダを開く
+  のに認証が必要な場合、認証を持っている</li>
+</ul>
+<br>
+もしサーバが見つかれば探すのを止め、そのフォルダを検索して、迷惑メール・コントロール
+ごとの削除間隔より古いメッセージをすべて見つけます。 <br>
+<br>
+検索した結果に基づき、迷惑メールとみなされたメッセージのみを削除します。<br>
+これは msgHdr （ .msf ファイルに格納されています）の迷惑メールスコアの属性を
+チェックすることにより行います。<br>
+<br>
+次のようにする方が効率的なことはわかっています： <br>
+「 n 日より古く、迷惑メールであるメッセージを全て検索する。」<br>
+しかし、全ての IMAP サーバがそうした種類の検索に対応しているわけ
+ではないので、この方法は取れません。<br>
+その代わりに、「 n 日より古い全てのメッセージ」を検索して、 Junk と印された
+メッセージだけを削除します。<br>
+それらのメッセージは .msf ファイル（ msg db ）で Junk と印されています。 <br>
+<br>
+次に、そのアカウントで最後に削除が行われた時間を更新します（これは迷惑メール・フォルダに<br>
+格納されていますので、もし迷惑メール・フォルダが共有されていれば、正しいことを行うことになります）<br>
+<br>
+削除を行うのは、タイマーが発動する都度にアカウント一つだけです。<br>
+<br>
+仮に私が削除用にセットアップされたアカウントを 5 個持っているとして、<br>
+アカウント全てに至るまでには 5 回のタイマー発動がかかります。<br>
+（削除サービスが可能であるのは一度に 1 回だけです）。<br>
+<br>
+最新の削除時刻がフォルダに格納されているため、 "mail.purge.min_delay" 
+の間隔はセッションを越えて動作します。 
+
+
+
+<hr class="hide">
+</div>
+</div>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/mailnews/arch/spam/purge.html">英語版</a> 2003/09/06</span> - <span>和訳版 2006/03/02</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/mailnews/arch/spam/purge.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

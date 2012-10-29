@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+  <title>Mozilla 1.4 FAQ: 3. Mozilla Messenger (メール/ニュース)</title>
+  <link rel="stylesheet" title="オレンジ" href="../defaultstyle.css" type="text/css">
+  <link rel="alternate stylesheet" title="シンプル" href="../basicstyle.css" type="text/css">
+  <link rel="alternate stylesheet" title="太平洋" href="../bluestyle.css" type="text/css">
+  <link rel="icon" href="../images/mozilla-16.png" type="image/png">
+  <script src="../detect-problems.js" type="text/javascript"></script>
+  <script src="../stylesheets.js" type="text/javascript"></script>
+ </head>
+ <body onload="loadStyle();silentlyFixErrors('../')">
+  <div id="mainHeaderContainer" class="sectionHeaderContainer">
+   <img src="../images/dino.png" alt="" id="dinoHead">
+   <div id="mainHeader" class="sectionHeader"><a href="../" id="mozillaLogo"></a></div>
+  </div>
+  <div id="mainSection" class="section">     
+   <h1><a name="top">3. Mozilla Messenger (メール/ニュース)</a></h1>
+   <div class="toc">
+   <ul>
+    <li><a href="#mail-only">3.1. メールプログラムだけ、単独でインストールできますか?</a></li>
+    <li><a href="#default-mail">3.2. Mozilla をデフォルトのメールプログラムにするには?</a></li>
+    <li><a href="#other-default">3.3. Mozilla とともに他のメールプログラムを使用できますか?</a></li>
+    <li><a href="#mail-tab">3.4. Messenger (メール/ニュース) をブラウザのタブで開けますか?</a></li>
+    <li><a href="#web-mail">3.5. Mozilla Messenger (メール/ニュース) で Netscape WebMail や Hotmail のアカウントにアクセスできますか?</a></li>
+    <li><a href="#virus">3.6. Mozilla Messenger は、e-メール・ウィルスに感染しますか?</a></li>
+    <li><a href="#import">3.7. e-メールのメッセージを他のメールプログラムからインポートするには?</a></li>
+    <li><a href="#export">3.8. e-メールのメッセージを他のメールプログラムや他のコンピュータにエクスポートするには?</a></li>
+    <li><a href="#spell-checker">3.9. Mozilla にスペルチェッカーは付属してますか?</a></li>
+    <li><a href="#biff">3.10. Mozilla に、メール着信のお知らせ機能はありますか?</a></li>
+    <li><a href="#calendar">3.11. Mozilla Messenger にカレンダー機能はありますか?</a></li>
+    <li><a href="#sign-and-encrypt">3.12. 署名された、あるいは暗号化されたメッセージを送受信するのに、<abbr title="Secure/Multipurpose Internet Mail Extensions">S/MIME</abbr>、<abbr title="Pretty Good Privacy">PGP</abbr>、あるいは GnuPG を使用するには?</a></li>
+    <li><a href="#news-abbr">3.13. ニュースグループの名称表示を省略形ではなく表示するには?</a></li>
+    <li><a href="#rot13">3.14. ニュースリーダーで <abbr title="Rotate 13 (encoding the alphabet by shifting it 13 places to the right)">ROT13</abbr> を読むあるいは投稿するには?</a></li>
+    <li><a href="#multiple-smtp">3.15. 複数の SMTP (送信) メールサーバを設定するには?</a></li>
+   </ul>
+   </div>
+   <div class="content">           
+    <dl class="faqs">
+
+<dt><a onclick="return false;" name="mail-only" href="#mail-only">3.1. メールプログラムだけ、単独でインストールできますか?</a></dt>
+<dd>
+<p>スタンドアローンでインストールできるのはブラウザだけです。Messenger、Composer、そして ChatZilla は、ブラウザ抜きではインストールできません。ただし、開発中の新しいスタンドアローン版メールクライアント <a href="/projects/thunderbird/">Mozilla Thunderbird</a> を使ってみることができます。</p>
+</dd>
+
+<dt><a onclick="return false;" name="default-mail" href="#default-mail">3.2. Mozilla をデフォルトのメールプログラムにするには?</a></dt>
+<dd>
+<p>Messenger を最初に起動した時、Mozilla をデフォルトのメールクライアントにするか、と聞かれる筈です。もしあなたが 「いいえ」と答えて、後からデフォルトのメールクライアントに<b>したい</b>、と思ったなら:</p>
+<ul>
+ <li>
+ <p><b>Windows、Mac:</b> 編集｜設定｜メール &amp; ニュースグループ (Edit | Preferences | Mail &amp; Newsgroups) を選択して、「Mozilla Mail をデフォルトのメールアプリケーションとして使用する」 (Use Mozilla Mail as the default mail application) にチェックマークを入れてください。</p>
+ <p>Windows で、<tt>mailto:</tt> リンクのクリック時の動作に問題が残っているなら、スタート｜設定｜コントロールパネル で、インターネットオプション を開いてください。「プログラム」タブで、「電子メール」の横のドロップダウンリストから 「Mozilla 1.4 Mail」を選択してください。</p>
+ </li>
+ <li>                                                         
+ <p><b>GNOME</b> <i>(Unix/Linux)</i><b>:</b> Control Panel を開きます。Document Handlers | URL Handlers を開きます。 左のテキストフィールドに <tt>mailto</tt> を入力し、右の欄に<tt>gnome-moz-remote &quot;%s&quot;</tt> を入力します。次に、下記のテキストを <tt>~/.gnome/gnome-moz-remote</tt> に加えます (もしこのファイルがなければ作成してください):</p>
+ </li>
+</ul>
+<pre class="screen">[Mozilla]<br> fileid=<b><i>Mozilla をインストールした ディレクトリの 絶対パス</i></b>/mozilla<br></pre>
+<ul>
+ <li>                                                          
+ <p><b>KDE 3</b> <i>(Unix/Linux)</i><b>:</b> コントロールセンター (Control Center) を開いて、ネットワーク | Eメール (Network | Email) を開きます。優先するEメールクライアント (Preferred Email Client) の所に下記を入力します:</p>
+ </li>
+</ul>
+<pre class="screen"><b><i>Mozilla をインストールした ディレクトリの 絶対パス</i></b>/mozilla --mail<br></pre>
+</dd>
+
+<dt><a onclick="return false;" name="other-default" href="#other-default">3.3. Mozilla とともに他のメールプログラムを使用できますか?</a></dt>
+<dd>
+<p><b>Windows、Macintosh:</b> Mozilla が他のメールプログラムを使用するようにするには、ブラウザのアドレスバーに <q>about:config</q> と入力してください。右クリック (Mac OS ではオプションクリック) して New &gt; Boolean を選択してください。名前に <kbd>network.protocol-handler.external.mailto</kbd>、値に <kbd>true</kbd> と入力してください。</p>
+<p>これにより、Mozilla の e-mail リンクをクリックすると、システム標準のメールプログラムが起動します。</p>
+<p><b>GNOME, KDE</b> <i>(Unix/Linux)</i><b>:</b> 現在の所、GNOME や KDE では不可能です。しかし、Unix 版の Mozilla を、最終化された <a href="http://www.freedesktop.org/desktops/">X Desktop Group Standard</a> に適合させる作業が進行中です。</p>
+</dd>
+
+<dt><a onclick="return false;" name="mail-tab" href="#mail-tab">3.4. Messenger (メール/ニュース) をブラウザのタブで開けますか?</a></dt>
+<dd>
+<p>そのタブのアドレスバーで、 <kbd><a href="chrome://messenger/contents/messenger.xul">chrome://messenger/contents/messenger.xul</a></kbd> を入力してください。このタブをブックマークすることが出来ますし、グループブックマークの一つにすることも出来ます。</p>
+<p><b>注意:</b> これは、サポート外の機能です。タブを閉じると Mozilla が全て終了する、など、奇妙な現象が生じるかも知れません。</p>
+</dd>
+
+<dt><a onclick="return false;" name="web-mail" href="#web-mail">3.5. Mozilla Messenger (メール/ニュース) で Netscape WebMail や Hotmail のアカウントにアクセスできますか? </a></dt>
+<dd>
+<p>いいえ。Netscape WebMail と Hotmail は、独自のプロトコルを使用しています。e-メール・クライアントから直接 WebMail にアクセスするためには、Netscape 6 以降と AIM が必要です。Hotmail の場合は、Microsoft Outlook か Outlook   Express が必要です。同様の事が行なえる独自のシェアウェアもあります。</p>
+<p>ウェッブ上では、WebMail のアカウントには <a href="http://webmail.netscape.com/"><tt>http://webmail.netscape.com/</tt></a> から、また Hotmail には <tt><a href="http://www.hotmail.com">http://www.hotmail.com/</a></tt> からアクセスできます。 Microsoft Messenger を使用しているのなら、適切なリンクをクリックすると、デフォルトのブラウザが起動して、あなたの inbox に行けるでしょう。</p>
+</dd>
+
+<dt><a onclick="return false;" name="virus" href="#virus">3.6. Mozilla Messenger は、e-メール・ウィルスに感染しますか?</a></dt>
+<dd>
+<p>Mozilla Messenger では、ウィルスやワームが自動実行される事は<b>ありません</b>。ウィルスが実行されることなしに、どのような添付ファイルが送られたか見ることが出来ますし、ウィルスが被害を与えるためには、あなたがファイルをシステムに保存して、かつそれを意図的に実行しなければなりません。</p>
+<p>JavaScript は、メール/ニュースでは、デフォルトで off になっていますので、開いただけでは e-メールがスクリプトを実行するのは不可能です。</p>
+<p>他のメールプログラムと同様、メールで受け取ったいかなるファイルでも、実行する前に充分注意をしてください。適切なアンチウィルスソフトも、安全を維持するのに役立つでしょう。</p>
+<p>詳しくは <a href="../extra/using-junk-control.html#read_junk">ジャンクメールコントロールに関する補足的なチュートリアル</a> をご覧ください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="import" href="#import">3.7. e-メールのメッセージを他のメールプログラムからインポートするには?</a></dt>
+<dd>
+<p>Mozilla Messenger (メール/ニュース) を開いて、ツール｜インポート (Tools | Import) を選択し、ダイアログのガイドに従ってください。</p>
+<p>チュートリアル <a href="/docs/end-user/guide/get-started.html#oh-yeah">Mozilla をはじめよう</a> をご覧ください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="export" href="#export">3.8. e-メールのメッセージを他のメールプログラムや他のコンピュータにエクスポートするには?</a></dt>
+<dd>
+<p>Mozilla のメールファイルは、標準的なプレインテキストの <q>mbox</q> 形式で、これは殆どすべてのメールプログラムが使用またはインポートできる形式です。多くのメールプログラムは、Mozilla と同様に <q>mbox</q> 形式を使用しているユードラ (Eudora) からインポートする機能を備えていますので、この機能を使えば Mozilla メールのファイルを正しく読み込む事ができるでしょう。</p>
+<p>あなたのメールファイルはあなたのプロファイル (<a href="profile.html">ユーザープロファイル</a>を参照) の中の、<tt>Mail</tt> フォルダと、(もしあなたが IMAP を使用していれば) <tt>ImapMail</tt> フォルダの中にあります。各々のメールフォルダ (例えば、Inbox、Sent、等) は、二つのファイルとして保存されています。一つは、拡張子のないファイル (例、<tt>INBOX</tt>) で、これは (<q>mbox</q> 形式の) メールファイルそれ自身です。もう一つは、拡張子 <tt>.msf</tt> の付いたファイル (例、<tt>INBOX.msf</tt>) で、これはメールファイルの目次 (メールの要約ファイル: Mail Summary File) です。他のプログラムにインポートするときは、拡張子のないファイルをインポートするようにしてください。</p>
+<p>メールファイルを他の Mozilla プロファイルまたは他の場所にインストールされた Mozilla に移行したいときは、メールファイルをその場所の <tt>Mail</tt> フォルダに置くだけです。</p>
+</dd>
+
+<dt><a onclick="return false;" name="spell-checker" href="#spell-checker">3.9. Mozilla にスペルチェッカーは付属してますか?</a></dt>
+<dd>
+<p>バージョン 1.4.1 から、Mozilla はスペルチェッカーを標準装備しています。サードパーティーのプラグインは必要ありません。</p>
+<p>各言語のスペルチェッカー辞書は <a href="http://www.mozcafe.com/download/">MozillaCafe</a> からダウンロードできます。</p>
+</dd>
+
+<dt><a onclick="return false;" name="biff" href="#biff">3.10. Mozilla に、メール着信のお知らせ機能はありますか?</a></dt>
+<dd>
+<p>Windows 版 Mozilla には、メール着信通知機能があります。Mozilla Messenger (メール/ニュース) を最初に開いたときにバックグラウンドで起動し、Messenger ウィンドウを閉じた後も Mozilla が起動していれば、メールチェックを定期的に続けます。メール着信通知機能は、新着メールを受信したとき、システムトレイに新着メールアイコンを表示します。Mozilla が起動していないとメール着信通知機能は動きません。</p>
+<p>メール着信通知機能の設定は、編集｜設定｜メール &amp; ニュースグループ (Edit | Preferences | Mail &amp; Newsgroups) にあります。</p>
+</dd>
+
+<dt><a onclick="return false;" name="calendar" href="#calendar">3.11. Mozilla Messenger にカレンダー機能はありますか?</a></dt>
+<dd>
+<p>カレンダー機能は、 <a href="/projects/calendar/">Calendar プロジェクト</a> で開発中です。現存するカレンダーの標準: <a href="http://www.isi.edu/in-notes/rfc2445.txt">iCalendar</a>、 <a href="http://www.isi.edu/in-notes/rfc2446.txt">iTIP</a>、 そして <a href="http://www.isi.edu/in-notes/rfc2447.txt">iMIP</a> に基づくものになるでしょう。</p>
+<p>これはとても早期のベータ版で、デザインはまだ完成していません。現在の所、Windows と Linux で、テスト用のビルドが入手可能です (Macintosh で手伝ってくれる人をさがしています)。カレンダーのプログラミングにおける手助けを、心から歓迎します。</p>
+</dd>
+
+<dt><a onclick="return false;" name="sign-and-encrypt" href="#sign-and-encrypt">3.12. 署名された、あるいは暗号化されたメッセージを送受信するのに、S/MIME、 PGP、 あるいは GnuPG を使用するには?</a></dt>
+<dd>
+<p>S/MIME を使用するには、メール/ニュースを開いて、編集｜メール &amp; ニュースグループのアカウント設定｜<i>アカウント名</i>｜セキュリティ (Edit | Mail & Newsgroup Account Settings | <i>account name</i> | Security) を選択します。アカウントごとに、デジタル署名ないし暗号化に使用する証明書を設定できます。</p>
+<p>PGP や GnuPG を使用可能にするプログラムは、まだ Mozilla には含まれていませんが、<a href="http://enigmail.mozdev.org">Enigmail</a> で開発中です。</p>
+</dd>
+
+<dt><a onclick="return false;" name="news-abbr" href="#news-abbr">3.13. ニュースグループの名称表示を省略形ではなく表示するには?</a></dt>
+<dd>
+<p>ブラウザのアドレスバーに <q><tt>about:config</tt></q> と入力し、<tt>mail.server.default.abbreviate</tt> の値を <kbd>false</kbd> に変えてください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="rot13" href="#rot13">3.14. ニュースリーダーで ROT13 を読むあるいは投稿するには?</a></dt>
+<dd>
+<p>開発中の ROT13 ツールが、 <a href="http://www.xulplanet.com/downloads/view.cgi?category=applications&amp;view=minirot13">XULPlanet</a> から入手できます。</p>
+</dd>
+
+<dt><a onclick="return false;" name="multiple-smtp" href="#multiple-smtp">3.15. 複数の SMTP (送信) メールサーバを設定するには?</a></dt>
+<dd>
+<p>Edit メニューを開き、Mail &amp; Newsgroup Account Settings を選択します。Outgoing Server (SMTP) を選択します。Advanced をクリックします。新規 SMTP サーバを追加してください。</p>
+<p>アカウントの送信サーバを設定するには、Mail &amp; Newsgroup Account Settings ダイアログで、アカウントの中にある Server Settings を選択します。Advanced をクリック、サーバを選択、OK をクリックしてください。</p>
+</dd>
+
+   </dl>
+   </div>
+   <div id="footer"><img src="../images/dino_tail.png" id="dinoTail" alt=""></div> 
+  </div>
+  <div id="documentinfo">
+   <p>
+    訳者: 池田 譲治<br>
+    <a href="http://www.mozilla.org/start/1.4/faq/mail-news.html" class="style">このドキュメントのオリジナルは、mozilla.org において、英語で管理・公開されています。</a><br>
+    この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/" class="style">もじら組 和訳プロジェクト</a> によって提供されています。<br>
+    ドキュメントの内容に関するフィードバックは、英語で、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=214845" title="Bug 214845 - The new mozilla 1.4.1 homepage">Bugzilla</a> にお願いします。<br>
+    和訳ドキュメント一覧など、詳しい情報は <a href="http://www.mozilla-japan.org/jp/td/" class="style">www.mozilla.gr.jp/jt</a> をご覧ください。
+   </p>
+  </div>
+ </body>
+</html>

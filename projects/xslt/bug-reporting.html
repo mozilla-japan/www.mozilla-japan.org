@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <title>Reporting bugs on XSLT in Mozilla</title>
+    <style>dt {font-weight: bold;}</style>
+
+<style type="text/css" media="screen,tv">
+.trinfo { 
+	border: 1px dashed #999;
+	background-color: #f3f3f3;
+	color: #000; padding: 1em;
+	font-size: small;
+}
+.em {
+	text-align: center;
+	font-size: 200%;
+}
+.text {
+	margin-left: 2em;
+	margin-right: 2em;
+	text-align: center;
+}
+.jtp {
+	margin-right: 2em;
+	text-align: right;
+	font-size: 80%;
+}
+</style>
+
+<link rel="alternate" hreflang="en" modified="April  5,  2004">
+
+  
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/xslt/bug-reporting.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<div class="trinfo">
+  <p class="em">この文書は鋭意翻訳中です。</p>
+  <!--p class="text">現在、<a href="">草稿</a> を公開しています。</p>
+
+  <p class="text">コメントはもじら組和訳プロジェクト <a href="http://moz.skillup.jp/jtp/"> 連絡用掲示板 </a> の <a href="http://moz.skillup.jp/jtp/viewtopic.php?p=3544">該当スレッド</a> にお願いします。</p-->
+  <p class="text">原文 &quot;<a href="http://www.mozilla.org/projects/xslt/bug-reporting.html">Reporting bugs on XSLT in Mozilla</a>&quot; は <a href="http://www.mozilla.org/">mozilla.org</a> をご覧ください。</p>
+
+  <p class="jtp"><a href="http://www.mozilla-japan.org/">Mozilla Japan</a> <a href="http://www.mozilla-japan.org/jp/td/">翻訳部門</a></p>
+</div>
+
+  
+  
+    <center><h1>Reporting bugs on XSLT in Mozilla</h1>
+      by <a href="mailto:axel&#64;pike.org">Axel Hecht</a><p>
+    </center>
+    A few common evangelism issues:
+    <dl>
+      <dt>Mimetypes</dt>
+      <dd>Your server needs to send both the source and the stylesheet
+        with a XML mime type, <code>text/xml</code> or
+        <code>application/xml</code>. To find out the current type,
+        load the file in Mozilla and look at the page info. Or use a
+        download tool, those usually tell the mime type.</dd>
+      <dt>XSLT Namespace</dt>
+      <dd>The XSLT1.0 namespace is
+        <code>http://www.w3.org/1999/XSL/Transform</code>. Older
+        IEs had a namespace with WD in it, which is uncompatible with XSLT1.0
+        and therefor unsupported.</dd>
+    </dl>
+
+    <h2>Prerequisites</h2>
+    <dl>
+      <dt>Use a current build.</dt>
+      <dd>We are, like all Mozilla modules, not
+        making as much progress as we'd love, but we do change stuff. If
+        you feel like you have encountered a bug in our XSLT
+        implementation, try a current build. Or check for resolved
+        bugs, too.</dd>
+      <dt>Search already filed bugs.</dt>
+      <dd>XSLT is a pretty small component within Mozilla and our
+        buglist is reasonably small. Just take a minute or two and
+        look thru the <a
+          href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&component=XSLT&order=Reuse+same+sort+as+last+time">existing bugs</a>.
+        If your build is somewhat dated (Netscape builds, stable
+        Mozilla releases or maybe just a milestone), please look for
+        dupes in the RESOLVED and VERIFIED bugs as well.</dd>
+    </dl>
+
+    <h2>It's a boy, err, bug <a href="#disclaimer">*</a></h2>
+    There are basically four types of bugs in XSLT
+    <dl>
+      <dt>Crashers and hangs:</dt>
+      <dd>File those as they are, debuggers will show us the
+        way. Unless you file bugs like "10k works, 20 doesn't". That's
+        most likely an out of memory crash (we still have some of those)
+        and we need you to produce the stacktrace. (You need to build a
+        debug build for that.) Out of memory is system dependent.</dd>
+      <dt>XPath expressions don't work:</dt>
+      <dd>File 'em, this should be a trivial testcase though (see
+        below).</dd>
+      <dt>XSLT output is wrong:</dt>
+      <dd>In general you want to create a testcase focusing on
+        reproducing what doesn't work in your application. It might be
+        easier to create a new testcase then stripping down your
+        application.</dd>
+    </dl>
+
+    <h2>Creating testcases</h2>
+    Keep in mind, XSLT is complex, and so is finding out what's
+    wrong. As we can only guess what you expect to see, we need you to
+    do most the work on the testcase. Here are a few rules of thumb.
+    <ol>
+      <li>Keep the size of the testcase to a minimum. If you double
+        the size of your testcase, it will take at least 4 times the
+        amount of work to understand what your stylesheet does.</li>
+      <li>Make clear what you expect your testcase to do.</li>
+      <li>Use separate files only if they are required to reproduce
+        the bug. Import precedence would be an example. Please spare
+        us the time to look into several stylesheets to find the
+        offending code. Is an image in your testcase really the item
+        that the bug is about? Stuff like this are alot easier for you
+        to track and reduce than for us.</li>
+      <li>Attach the XSLT stylesheet first, and use the bugzilla URL
+        as href in the PI in the XML source. Set the mimetypes of the
+        both attachements to <code>text/xml</code>. You have to do
+        that by hand, bugzilla doesn't provide a drop down item (known
+        bug). If your testcase needs a CSS stylesheet, you'll probably
+        need to attach that before.</li>
+      <li>"But it works in IE". IE has a different understanding of
+        XSLT than Mozilla. IE serializes your output and parses it
+        again, so it suffices that stuff *looks* fairly well to
+        work. Mozilla takes the tree as generated as result. BIG
+        DIFFERENCE, trust us.</li>
+      <li>Related to the above, if you have other means of generating
+        your output, run it thru a validator like
+        <a href="http://validator.w3.org">validator.w3.org</a>. If
+        your output doesn't validate as HTML 4, we have no way to fix
+        it.</li>
+    </ol>
+
+    Now what's a good testcase? See
+    <a href="http://bugzilla.mozilla.org/showattachment.cgi?attach_id=43502">Attachment 43502</a>
+    in bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=88745">88745</a>.
+    It links directly to
+    <a href="http://bugzilla.mozilla.org/showattachment.cgi?attach_id=43501">Attachement 43501</a>,
+    so we get one stop shopping here. And it's small. The xml contains
+    just the necessary two testcase, one matching, one not, and the
+    stylesheet contains only the relevant test. It gives prompt
+    feedback as to wether the bug is resolved or not.
+    <p></p>
+    <div>
+      <a name="disclaimer">*</a> Yes, this is sexism. Boys are bugs, girls are
+    not. Sorry, guys.
+    </div>
+  
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/xslt/bug-reporting.html">英語版</a> 2004/04/05</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/xslt/bug-reporting.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

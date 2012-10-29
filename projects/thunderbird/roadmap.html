@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <title>Thunderbird 2.0 ロードマップ</title>
+    <style type="text/css" media="screen,tv">
+      <!--
+      .past { color: #909090; background-color: #DFDFDF; }
+      .past a { color: #909090; font-weight: bold; }
+
+      #milestoneTable {
+        font-size: small;
+        border: 1px solid black;
+        margin: 15px 0 15px 15px;
+      }
+
+      #milestoneTable td {
+        vertical-align: top;
+        padding: .25em;
+      }
+
+      .header {
+        border-bottom: 1px solid #707070;
+        font-weight: bold;
+      }
+
+      .current, .current a {
+        background-color: #909090;
+        color: #FFFFFF;
+      }
+
+      .current td {
+        border-bottom: 3px double black;
+      }
+
+      .current.alpha {
+        background-color: #B0B0B0;
+      }
+      
+      .current.beta {
+        background-color: #A0A0A0;
+      }
+            
+      .current.alpha td {
+        border-top: 3px double black;
+        border-bottom: none;
+      }
+
+      .current.beta td {
+        border-bottom: none;
+      }
+    --></style>
+    <link rel="alternate" hreflang="en" modified="August 27, 2006">
+  
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/thunderbird/roadmap.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+    <h1>Thunderbird 2 ロードマップ</h1>
+    <p><em><a href="mailto:mscott@mozilla.org">Scott MacGregor</a> (2/14/2006)</em></p>    
+    <h2>はじめに</h2>
+      <p>目標は、Windows、Linux および Mac OS X に対応した電子メール製品の「最高級品」をビルドし続けることです。特に重点を置くのは次の分野です：プライバシー、スパム対策、セキュリティ、そして電子メールの整理・管理。現行リリースから次期メジャーリリースに向けた必要な開発作業において、野心的な目標を立てました。Thunderbird 2 への到達方法として、現在われわれが考えていることを、以下にまとめました。</p>
+      
+    <h2>機能</h2>
+    <p>機能策定計画や議論は Mozilla Wiki で行われています。より詳しくは、 <a href="http://wiki.mozilla.org/Thunderbird:2.0_Product_Planning"> Thunderbird 2 Product Planning</a> という資料を参照してください。</p>
+    <p>Thunderbird 2 リリースに向けたトップレベルテーマは次の通りです： <ul>
+      <li>電子メールの整理・管理のためのツール <ul>
+          <li>お気に入り、未読、最近使用したメール、といったカスタム可能なフォルダーペイン</li>
+          <li>メッセージのタグ付け</li>
+          <li>タブによるメッセージ表示</li>  
+        </ul>
+      </li>
+      <li>より効果的な情報提供<ul>
+          <li>新着メール通知の改良</li>
+          <li>フォルダーサマリーのポップアップ</li>
+        </ul>
+      </li>
+      <li>迷惑メールとの戦い</li>
+      <ul>
+        <li>ベイズ理論をベースにした現行アルゴリズムの改良</li>
+        <li>トークン保存の簡素化・エージング</li>         
+      </ul>
+    </ul>開発作業に参加したい方は、モジュールオーナーに連絡をしてください。特に、ベイズ式スパムフィルタの改良にあたって、数学が得意な人を求めています。</p>
+    
+    <h2>ブランチ計画と管理</h2>
+      <h3>Thunderbird 2</h3>
+      <p>Thunderbird 2 は、Firefox および Thunderbird 1.5 のために作られた Gecko 1.8 ブランチ（branch）の継続的な開発をベースとします。開発者が注意しなければならないのは、開発の成果を branch と trunk の両方に反映し、 aviary-branch のような不整合が発生しないようにすることです。Thunderbird 2 固有の機能開発は、1.8 branch へのチェックイン前にモジュールオーナーからの承認を必ず受けてください。</p>
+           
+      <h3>Thunderbird 1.5.x</h3>
+      <p>Thunderbird 1.5 へは、2006 年中に複数回の安定性向上のためのアップデートを行う計画です。これら安定性向上アップデートは Mozilla 1.8.0 branch がベースとなり、新しいソフトウェアアップデートシステムを利用する予定です。この branch に施された変更は、セキュリティ問題および、深刻なクラッシュ、そして数件の深刻なリグレッション修正に限られます。</p>
+    
+      <h3>Thunderbird 3</h3>
+      <p>Thunderbird 3 では、ユーザインターフェースに更なる拡張を施し、プラットフォームに関する多くの重要な改良が行われます。こうした開発作業は、Gecko 1.9 （現在の Mozilla trunk） をベースにする予定です。現在、さまざまなユーザインターフェースの改良についてブレーンストームを行っている最中で、Gecko 1.9 に施される進化したグラフィックレンダリング性能を活用する予定です。Thunderbird 2 の機能実装作業の多くは、まず trunk にチェックインされ、その後 1.8 branch にチェックインされる予定です。</p>
+    
+    <h2>マイルストーン計画</h2>
+      <p>いつものことですが、この計画は変更される可能性があります。</p>
+      <table id="milestoneTable" cellspacing="0">
+        <tr>
+          <td class="header" style="width: 160px">マイルストーン</td>
+          <td class="header" style="width: 120px">リリース日</td>
+          <td class="header">概要</td>
+        </tr>
+        <tr class="past">
+          <td>1.0</td>
+          <td>2004-12-06</td>
+          <td>正式リリース</td>
+        </tr>
+        <tr class="past">
+          <td>1.5</td>
+          <td>2006-01-11</td>
+          <td>ソフトウェアアップデート、リアルタイムのスペルチェック、フィッシング検出機能、ポッドキャスティング</td>
+        </tr>
+        <tr class="current alpha">
+          <td>2a</td>
+          <td>2006 年 7 月末</td>
+          <td>機能完成前のアルファ版</td>
+        </tr>
+        <tr class="current beta">
+          <td>2b</td>
+          <td>2006 年 9 月中旬</td>
+          <td>機能的に完成したベータ版</td>
+        </tr>
+        <tr class="current beta">
+          <td>リリース候補</td>
+          <td>2006 年 11 月</td>
+          <td></td>
+        </tr>
+        <tr class="current">
+          <td>2</td>
+          <td>2006 年 11 月末 / 12 月</td>
+          <td>最終リリース</td>
+        </tr>
+        <tr>
+          <td>3.0</td>
+          <td>2007 年第 2 四半期？</td>
+          <td></td>
+        </tr>
+      </table>
+    
+      <p>日付は変わる可能性があります。製品を秋までに出荷するために、機能実装を 2006 年夏半ばまでには完了したいと考えています。<h2>リリース前のビルド</h2>
+    <p>アルファ版はテスト目的のマイルストーンであり、最終版としてリリースされる予定のものではありません。機能が欠けていたり、無数のバグが含まれている可能性があります。開発者やテストコミュニティと協力し、最終版のリリース前に行われるべき主要な変更点について初期のフィードバックを提供してもらい、それを踏まえて開発しようというのが目的です。</p>
+    
+    <p>ベータ版は機能的には完成しており、リリースしようとしている製品の大体の目安となるものです。これらは、Thunderbird の次回リリースがどのようなものになるのか見てみたいと考えている、より一般の早期導入者やテスター向けです。最終版のリリース前に修正すべき最も重要な問題に関するフィードバックを得るのが目的です。</p>
+    
+    <p>リリース候補 (Release Candidates) は、上の各区分や最終版自体をリリースする直前に出される複写版です。通常、リリースの数日あるいは数週間前に投稿し、修正すべき重大なバグがないかどうか確かめます。特に問題がなければ、そのリリース候補を「最終版」としてリリースします。</p>
+    
+    <p><strong>注意！</strong>　アルファ版は一般の消費者向けではなく、クラッシュしたり、ブックマークやプロファイル、ハードディスクの内容が失われるといった可能性があります。運良く動作したナイトリービルドとほとんど違いはありません。プレビューリリースについても、バグによる損失を受ける可能性がありますので、リリース前の製品をテストしたい人以外はダウンロードしないでください。</p>
+    
+      <h3>リリース日について</h3>
+      <p>上に書いた日付は暫定的なもので、各リリースの大まかなスケジュール配分を把握してもらうためのものにすぎません。このドキュメントが最後に更新された時点でのリリース日の予定を示しており、それ以後変わる可能性があります。<h2>ローカライズ</h2>
+    <p>1.x と同様に、今後のリリースはすべて、リリース時点で準備が整っている様々な言語で利用可能になります。リリースのタイミングに左右されるローカライズやその他の関係者は、最新のリリース時期の目安として <strong>このドキュメント</strong> を利用してください。</p>
+    
+    <h2>マーケティング</h2>
+    <p>Gecko テクノロジーを広めていく手段としてクライアント製品がもっとも重要な位置を占めおり、Thunderbird 普及のためにも積極的にマーケティング活動を展開していきます。<a href="/products/thunderbird/why/">使う理由</a> シリーズは、マーケティング努力の手始めとしては成功でした。その他の取り組みとしては、<a href="http://www.mozilla.com/thunderbird/">新しい製品サイト</a>、<a href="/products/thunderbird/buttons.html">プロモーションバナーやサインキャンペーン</a> が挙げられます。また、<a href="http://www.spreadfirefox.jp">SpreadFirefox</a> マーケティング努力も活用したいと考えています。</p>
+    
+    <h2>サポートネットワーク</h2>
+    <p>Thunderbird には、非常に素晴らしいコミュニティ支持者が付いています。私たちは、次の 2 つのサイトを特に強調したいと思います。役立つ情報を幅広く取り上げている <a href="/support/thunderbird/">Thunderbird Help</a>、そして、ユーザや開発者のための主要なディスカッションサイトである <a href="http://forums.mozillazine.org/index.php?c=8">MozillaZine フォーラム</a> です。<h2>過去のロードマップ</h2>
+    <ul>
+      <li>
+        <a href="roadmap-1.5.html">Thunderbird 1.5 - 2006 年 1 月 11 日出荷済み</a></li>
+    </ul>
+  
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/thunderbird/roadmap.html">英語版</a> 2006/08/27</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/thunderbird/roadmap.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

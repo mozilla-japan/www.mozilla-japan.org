@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Mozilla Japan 翻訳部門 - 和訳作業ガイド</title>
+
+<link rel="stylesheet" type="text/css" href="local.css" media="screen">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+<ul id="nav">
+<li><a href="../../jp/td/"><strong>翻訳部門</strong></a></li>
+<li><a href="http://forums.firehacks.org/trans/"><strong>翻訳部門フォーラム</strong></a></li>
+<li><a href="../../jp/td/workflow.html"><strong>参加方法と和訳作業</strong></a>
+<ul>
+<li><a href="../../jp/td/guide.html">和訳作業ガイド</a></li>
+<li><a href="../../jp/td/update-guide.html">和訳更新ガイド</a></li>
+<li><a href="../../jp/td/faq.html">よくある質問</a></li>
+</ul>
+</li>
+<li><a href="http://www.mozilla-japan.org/jp/td/xul/"><strong>XUL Tutorial<br>和訳プロジェクト</strong></a></li>
+<li><a href="../../jp/td/links.html"><strong>参考資料</strong></a></li>
+<li><a href="../../jp/td/about.html"><strong>翻訳部門について</strong></a>
+<ul>
+<li><a href="../../jp/td/contributors.html">参加者・スタッフ</a></li>
+<li><a href="../../jp/td/history.html">活動履歴</a></li>
+</ul>
+</li></ul>
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<h1>和訳作業ガイド</h1>
+
+<p>この作業ガイドは、和訳ドキュメントを読みやすくし、サイト全体で統一感を出すための、文体や訳語、書式などの指針を示すものです。なお、この内容は <a href="http://www.linux.or.jp/JF/">JF Project</a>、<a href="http://www.linux.or.jp/JM/">JM Project</a> などの各翻訳プロジェクトにて採用されているものを参考にしています。</p>
+
+<ol>
+
+	<li><a href="#section-1">和訳について</a></li>
+
+	<li><a href="#section-2">HTML ファイルのヘッダについて</a></li>
+
+	<li><a href="#section-3">HTML ファイルの変更について</a></li>
+
+	<li><a href="#section-4">HTML 内のリンクについて</a></li>
+
+	<li><a href="#section-5">文体について</a></li>
+
+	<li><a href="#section-6">専門用語などの表記について</a></li>
+
+	<li><a href="#section-7">訳注について</a></li>
+
+</ol>
+
+<p>※ XUL Tutorial 和訳プロジェクトの作業方針については、翻訳部門フォーラムにある <a href="http://forums.firehacks.org/trans/viewtopic.php?t=269">XulPlanet-JP 作業細則 ver 1.0.1</a> もあわせてご覧ください。</p>
+
+
+
+<h2 id="section-1">和訳について</h2>
+
+<p>翻訳する部分は、ページ中央部の本文だけです。mozilla.org と Mozilla Japan では同様のテンプレートシステムを採用していますので、ヘッダ、メニュー、フッタはドキュメントの登録時に自動的に追加されます。では、和訳する HTML ソースを入手しましょう。まずはテキストエディタを使って作業する例で解説します。</p>
+
+<ol>
+
+    <li>オリジナルドキュメントの一番下にある Edit this Page というリンクをクリックしてください。</li>
+
+    <li>表示されるソースを全て選択し、エディタに貼り付けてください。</li>
+
+    <li>オリジナルドキュメントと同じファイル名を付けて、文字コードは EUC-JP に変換して保存してください。(参照：<a href="#section-2">HTML ファイルのヘッダについて</a>)</li>
+
+    <li>オリジナルドキュメントを参照して、原文の最終更新日をヘッダー部に追加してください。(参照：<a href="#section-2">HTML ファイルのヘッダについて</a>)</li>
+
+    <li>おもむろに和訳作業に取り掛かってください。</li>
+
+</ol>
+
+<p>Mozilla Composer や Nvu などのアプリケーションを使って作業をしたい方は次のようにしてください。こちらの方法で作業をする場合は、「<a href="#section-2">HTML ファイルのヘッダについて</a>」にある作業をする必要はありません。</p>
+
+<ol>
+
+    <li>ブラウザ機能のページ保存機能を使ってオリジナルドキュメントの「HTML ファイルのみ」を保存してください。</li>
+
+    <li>保存したファイルを Mozilla Composer または Nvu といったアプリケーションで開いてください。</li>
+
+    <li>ファイルの文字コードを EUC-JP に変換してください。<span class="comment">【例：Mozilla Composer の場合は「保存と文字エンコードの変更」から EUC-JP を指定してください。】</span></li>
+
+    <li>おもむろに和訳作業に取り掛かってください。<span class="comment">【注：最終更新日の情報などは編集しないでください。】</span></li>
+
+</ol>
+
+
+
+<h2 id="section-2">HTML ファイルのヘッダについて</h2>
+
+<p>和訳ドキュメントの文字コードはすべて <strong>EUC-JP</strong> で統一しています。和訳した HTML ファイルは EUC-JP で保存してください。原文に EUC-JP 以外の文字コードを指定する meta 要素が含まれている場合は、EUC-JP に変更してください。<span class="comment">【注：原文では ISO-8859-1 などが指定されていることがあります】</span> 改行コードは CR+LF だと嬉しいです。</p>
+
+<p>title 要素の直後にオリジナルドキュメントの更新日を追記してください。例えば最終更新日が November 12, 2004 だった場合、書式は次のようになります。</p><pre class="code">&lt;link rel=&quot;alternate&quot; hreflang=&quot;en&quot; modified=&quot;November 12, 2004&quot;&gt;</pre>
+
+
+
+<h2 id="section-3">HTML ファイルの変更について</h2>
+
+<ul>
+
+	<li>オリジナルドキュメントの HTML の書き方からあまり大きく変更しないでください。</li>
+
+	<li>和訳作業に関する情報を HTML 内にコメントとして残しても構いません。例えば和訳の参考となる資料の URL を書き残しておけば、次に作業する人にとって役に立ちます。</li>
+
+</ul>
+
+
+
+<h2 id="section-4">HTML 内のリンクについて</h2>
+
+<p>リンクや画像などの URL は次のように変更してください。この変更により画像ファイルへのリンクが途切れますが、管理担当者が画像ファイルそのものを取得しサーバへ置きますので大丈夫です。なお、オリジナルドキュメントへリンクを向けることに意味がある箇所は、そのままにしてください。</p>
+
+<ul>
+
+	<li>相対パスで記述されているものはそのままにしてください。</li>
+
+	<li>mozilla.org サイト内の他のファイルへ向かうリンクのうち、例えば <span class="url">http://www.mozilla.org/foo/bar.html</span> のようにサーバ名から記述されているものは、サーバ名を取り除いた <span class="url">/foo/bar.html</span> に変更してください。<span class="url">http://www.mozilla.org/</span> となっているものは、単に 「<span class="url">/</span>」  (スラッシュ記号) だけにしてください。</li>
+
+	<li><span class="url">https://bugzilla.mozilla.org/show_bug.cgi?...</span> のように mozilla.org が提供する Web ツールを利用するリンクはそのままにしてください。</li>
+
+	<li>ただし、cvs-www へのリンク、<span class="url">http://cvs-www.mozilla.org/webtools/bonsai/cvsquery.cgi?...</span> などは <span class="url">http://bonsai-www.mozilla.org/cvsquery.cgi?...</span> のように変更してください。また、lxr.mozilla.org へ向かうリンクのうち、HTML ファイルを参照しているものに限り、例えば <span class="url">http://lxr.mozilla.org/foo/bar.html</span> を <span class="url">/lxr/foo/bar.html</span> というように変更してください。</li>
+
+	<li>上記以外のリンクは、特に理由がない限りは変更しないでください。</li>
+
+</ul>
+
+
+
+<h2 id="section-5">文体について</h2>
+
+<ul>
+
+	<li>英数字は特に理由がなければ半角を用いてください。見やすさのため、日本語と英数字の間には半角スペースを挿入してください。<br>
+
+    <p>よい例：</p><pre class="good code">&lt;p&gt;私は mozilla.org から毎日のように nightly を get している。&lt;/p&gt;</pre>
+
+    <p>悪い例：</p><pre class="bad code">&lt;p&gt;私はmozilla.orgから毎日のようにnightlyをgetしている。&lt;/p&gt;</pre></li>
+
+	<li>語尾は「です・ます」調を基本にしてください。ただし表中説明や項目説明は「だ・である」調でもかまいません。適宜判断をよろしくお願いします。</li>
+
+	<li>漢字単語が連続する時は、重要でない単語をひらがなにすると文書が読みやすくなります。</li>
+
+	<li>むやみに複雑な言い回しとなって分かりにくいと思われる場合は、適度に表現をくだいて書いてください。</li>
+
+	<li>和文における句読点に対応する英文のコンマ 「,」 やピリオド 「.」 は和訳時に全角の句読点にしてください。ただし、英文表記のままにする部分はコンマ 「,」 やピリオド 「.」 のままにしてください。</li>
+
+	<li>オリジナルドキュメントが意図する文体があるならば、それに従ってください。例えば、非常にくだけた表現で書かれている文書を堅苦しく訳す必要はありません。</li>
+
+</ul>
+
+
+
+<h2 id="section-6">専門用語などの表記について</h2>
+
+<p>専門用語の表記は、日本語表記・英字・カナ表記のうち一般的によく用いられる (と思われる) 表記にしてください。英字表記であることに意味がある箇所は、無理に和訳せずそのままにしてください。</p>
+
+<p>具体的な参考資料としては <a href="links.html">参考資料</a> ならびに次のページをご覧ください。</p>
+
+<dl>
+
+    <dt><a href="http://www.mozilla-japan.org/jp/l10n/term/all.html">日英用語対照表</a></dt>
+
+    <dd>Mozilla Japan ローカライズセンターで定められている対訳表 (随時更新されます)</dd>
+
+    <dt><a href="/docs/jargon.html">Mozilla の Jargon 集 (用語集)</a></dt>
+
+    <dd>Mozilla のハッカーが普段使用する Jargon を集めたページ</dd>
+
+</dl>
+
+<p>また翻訳部門でも <a href="http://wiki.fdiary.net/mozilla/">独自の翻訳対訳集</a> を作成しつつあります。Wiki を使って誰もが単語を登録できるようになっていますので、対訳集の作成にご協力ください。</p>
+
+
+
+<h2 id="section-7">訳注について</h2>
+
+<p>内容を補足したり、関連する日本語資料を紹介するために訳注を付ける必要があるときは、訳注であることが読者にはっきりと分かるよう、次のようなタグを使って記述してください。</p>
+
+<pre class="code"><samp>&lt;span class="comment"&gt;【訳注: この機能は Windows 専用です】&lt;/span&gt;</samp></pre>
+
+<p>これは次のように見えます。(文字サイズは標準の 90%、文字色は緑色)</p>
+
+<div class="screen"><span class="comment">【訳注: この機能は Windows 専用です】</span></div>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span>最終更新 2007/06/22</span></p>
+</div>
+
+</div>
+</body>
+</html>

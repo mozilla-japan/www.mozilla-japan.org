@@ -1,0 +1,34 @@
+div, p, li {
+	line-height: 1.6;
+}
+
+.skiplink {
+	display: none;
+}
+
+#mozte-banner a:hover {
+	color: #00f;
+	background-color: #ff6;
+}
+
+#mozte-header {
+	font-weight: bold;
+}
+
+.notice {
+	border: solid black 1px;
+	padding: 1em;
+}
+
+.moreinfo {
+	border: 1px dashed #999;
+	padding: 1em;
+	color: #000;
+	background-color: #f3f3f3;
+}
+
+.documentinfo {
+	margin-top: 1em;
+	text-align: right;
+	font-size: small;
+}

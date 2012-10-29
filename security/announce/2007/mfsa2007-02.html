@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2007-02: クロスサイトスクリプティング攻撃からの保護の強化</title>
+<link rel="alternate" hreflang="en" modified="February 23, 2007">
+<style type="text/css" media="screen,tv">
+  dl.table dt { margin: 0; width: 11em; font-weight: bold; float: left; }
+  dl.table dd { margin: 0 0 0 12em; }
+  #mainContent ul { padding-left: 0; list-style-type: none; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<h1>Mozilla Foundation セキュリティアドバイザリ 2007-02</h1>
+<dl class="table">
+  <dt>タイトル</dt><dd>クロスサイトスクリプティング攻撃からの保護の強化</dd>
+  <dt>重要度</dt><dd>低</dd>
+  <dt>公開日</dt><dd>2007/02/23</dd>
+  <dt>報告者</dt><dd>複数</dd>
+  <dt>影響を受ける製品</dt><dd>Firefox</dd><dd>SeaMonkey</dd>
+  <dt>修正済みのバージョン</dt><dd>Firefox 2.0.0.2</dd><dd>Firefox 1.5.0.10</dd><dd>SeaMonkey 1.0.8</dd>
+</dl>
+<h2>概要</h2>
+<p>Firefox 2.0.0.2 および 1.5.0.10 では、Web サイトがより容易にクロスサイトスクリプティング (XSS) 攻撃から訪問者を保護できるよう、いくつかの小さな変更が行われました。</p>
+<h4>HTML 要素の属性に含まれる不正な終了文字</h4>
+<p>Mozilla ブラウザのパーサはこれまで HTML 要素の属性名に含まれる不正な終了文字を無視していました。これは、場合によっては、イベントハンドラなどの問題ある属性を除去しようとする Web サイトのコンテンツフィルタを回避するために利用される可能性がありました。コンテンツフィルタが、終了文字や区切り文字を検出する正規表現を使って属性を検索した場合にこの問題が露呈します。</p>
+<p>新しい動作では、こうした区切り文字などの文字を、長い不正な属性名の一部とみなす代わりに考慮しないようにして、<code>onload..="doEvil();"</code> といった書式が実行されないようにしました。</p>
+<p><a href="http://nvd.nist.gov/nvd.cfm?cvename=CVE-2007-0995">CVE-2007-0995</a><br>
+<a href="http://ha.ckers.org/xss.html#XSS_Non_alpha_non_digit2">http://ha.ckers.org/xss.html#XSS_Non_alpha_non_digit2</a><br>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=314980">https://bugzilla.mozilla.org/show_bug.cgi?id=314980</a><br>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=315473">https://bugzilla.mozilla.org/show_bug.cgi?id=315473</a></p>
+<h4>子フレームへの文字セットの継承</h4>
+<p>Web 上の文書は、利用される文字セットを、文書内またはサーバによって送信される HTTP ヘッダ内で指定しなくてはなりません。しかし実際には多くのサイトがこれに従っておらず、ブラウザ側で推測を行う必要があります。こうした推測のひとつに、文字セットの指定されていない子フレームは、トップレベルのページで利用されているデフォルトの文字セット (通常はユーザの地域設定から決定されます) ではなく、親ウィンドウの文字セットを引き継ぐ、というものがありました。</p>
+<p>この動作が、ユーザが作成したコンテンツを受け入れながら、文字セットや文字エンコーディングを指定していないサイトに対する XSS 攻撃に利用される可能性のあることが、Stefan Esser 氏によって実証されました。この場合、まず最初に、tell-tale や山括弧が含まれていないためフィルタに検出されづらい、UTF-7 でエンコードされたスクリプトタグをターゲットとするサイトに埋め込んでおくことで、攻撃は実行されます。それから、そのコードが埋め込まれた (ブログのコメントなど見た目は問題なさそうな) コンテンツを含むページを、文字エンコーディングとして UTF-7 を指定した悪質なサイト上の <code>iframe</code> に読み込みます。ユーザがその悪質なページを表示すると、埋め込まれたコードが、ターゲットとされたサイトのコンテキストで実行されます。</p>
+<p>新しい動作では、親コンテンツが子フレームとして同じサイトから出力されていない限り、トップレベルウィンドウと同じデフォルトの文字エンコーディングか文字セットを利用するようにしました。</p>
+<p><a href="http://nvd.nist.gov/nvd.cfm?cvename=CVE-2007-0996">CVE-2007-0996</a><br>
+<a href="http://www.hardened-php.net/advisory_032007.142.html">Hardened-PHP Project Advisory 03/2007: Multiple Browsers Cross Domain Charset In heritance Vulnerability</a><br>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=356280">https://bugzilla.mozilla.org/show_bug.cgi?id=356280</a></p>
+<h4>パスワード入力フォームの埋め込み</h4>
+<p>MySpace ユーザが最近、ユーザが作成したコンテンツ上で、MySpace の通常のログインフォームに見せかけて別のサイトにデータを送信する偽のフォームを利用し、フィッシング攻撃の被害に遭いました。それは MySpace の通常のログインフォームと同じ作りであったため、Firefox のパスワードマネージャはそのフォームを正当なものと認識し、保存されていたパスワードを自動的に補完しました。なお、パスワードマネージャを使わない場合でも、他のブラウザでアクセスした多くのユーザはそのフォームに自分でパスワードを入力し、同じように被害に遭いました。このため MySpace は、ユーザが作成したコンテンツにパスワード入力フォームが含まれないよう、サイトに変更を行いました。</p>
+<p>Firefox のパスワードマネージャは、パスワードデータの送信先を保存して、フォームの送信先が以前入力した際と同じ場合のみ補完を行うよう改良が行われました。しかしこれでも、攻撃者が通常のフォームコントロールに加えてサイトにスクリプトを埋め込むことができた場合は、そのスクリプトからユーザの入力をすべて読み取ることができるため、ユーザを保護することはできません。</p>
+<p><a href="http://nvd.nist.gov/nvd.cfm?cvename=CVE-2006-6077">CVE-2006-6077</a><br>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=360493">https://bugzilla.mozilla.org/show_bug.cgi?id=360493</a></p>
+<h4>Adobe Reader の汎用的な XSS</h4>
+<p>Adobe Reader を通じた「汎用的なクロスサイトスクリプティング」が、Stefano Di Paola 氏によって 23rd Chaos Communication Congress で公開されました。この脆弱性 (CVE-2007-0045) は、PDF 文書を提供しているすべてのサイトに対して利用することができ、Adobe Reader 7.0.8 およびそれ以前のバージョンに影響します。</p>
+<p>これらの古いバージョンを利用している場合は、<a href="http://www.adobe.com/jp/">Adobe Reader 8</a> にアップグレードすることで、この問題やその他の脆弱性を回避することができます。アップグレードの必要性に気付いていないユーザを保護するため、Firefox は Adobe Reader によるこの種類のリクエストをブロックするように変更が加えられました。</p>
+<p><a href="http://www.wisec.it/vulns.php?page=9">http://www.wisec.it/vulns.php?page=9</a><br>
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=366082">https://bugzilla.mozilla.org/show_bug.cgi?id=366082</a></p>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2007/mfsa2007-02.html">英語版</a> 2007/02/23 &mdash; 和訳版 2011/01/06 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2007/mfsa2007-02.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

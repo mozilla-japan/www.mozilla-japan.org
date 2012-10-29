@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>ColorSync in Mozilla</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/colorsync/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/colorsync/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<BLOCKQUOTE>
+ <P>&nbsp;</P>
+ <P><B><BR>
+ <FONT SIZE=+3>ColorSync in Mozilla</FONT><BR>
+ <FONT size="+1">プラットフォーム不依存の色表示をMozillaブラウザで作成するプロジェクト</FONT><BR>
+ </B></P>
+ <P><BR>
+ Web上での発表や、商取引が重要となってきたのにつれて、ソースから出力への色の管理方法がブラウザの未来において不可欠のものになってきた。
+ 特に、サーバー上に保存されているソース画像が表示設定を補正していなければ、HTML出力の様々な画面で違って表示されるということがある。
+ ColorSyncは印刷や、グラフィックアートの業界で広く採用されているApple Computerの技術であり、違ったデバイスで補正するのに必要な設定をプラットフォームに提供するものである。
+ ブラウザと、ColorSyncの融合は、人々が画像のあるWebサイトを訪問するだけでなく、それらを作成者が意図したように見るということであり、
+        それによって人々は作品をオンラインカテゴリから注文し、メールでそれが届いたときにその色で驚かされずにすむ。</P>
+ <P>&nbsp;</P>
+ <P><B><FONT SIZE=+1>ColorSync Building Blocks - ICC Profiles</FONT></B></P>
+ <P>ColorSyncは、デバイスの&lt;カラープロファイル&gt;に基づくもので、ICC形式のファイルに納められた特定のデバイスに対応した設定データーによって、デバイスの設定を行う。</P>
+ <P>以下の画像フォーマット向けの設定がICCプロファイルによってなされる。</P>
+</BLOCKQUOTE>
+
+<UL>
+ <UL>
+  <LI>TIFF
+  <LI>JPEG
+  <LI>GIF
+  <LI>PNG
+  <LI>PICT, and possibly more
+ </UL>
+</UL>
+
+<BLOCKQUOTE>
+ <P>しかしながら、それらのフォーマットに従ったプロファイルを受け付けるブラウザは、埋め込まれたプロファイルを見つけ、それらのうちソースあった色を利用する。
+ これは、すでに Internet Explorer 4.0.1 にてサポートされている。</P>
+ <P>付け加えるならば、HTMLの&lt;IMG&gt;や&lt;BODY&gt;のエレメントにおいて、プロファイルはその画像と関連付けられるもので、全てについて設定されるのではない。
+ 付け加えられたHTMLエレメントの詳細や、ブラウザで画像をプロファイルとともに利用するサンプルサイトは、Appleの<A href="http://colorsync.apple.com/">ColorSyncのWebサイト</A>にある。</P>
+ <P>&nbsp;&nbsp;埋め込みに対するプロファイルの関連づけの利益は、プロファイルが一度ダウンロードされたら、複数のイメージ・ページや、セッションにおいて利用できると言うことである。
+ これは、Webサイト構築者に画像を書き直さなくてもいい・HTMLに簡単な付け加えができるなどいくつかの自由度を与える。
+ GoLiveのCyberStudio&nbsp;3&nbsp;では、コンテンツ作成者はプロファイルの関連づけと色の調整の双方を利用できる。<BR></P>
+ <P><B><FONT SIZE=+1>なにがMozillaに付け加えられたか</FONT></B></P>
+ <P>新しいコードはColorSyncを用いたICCプロファイルを含む画像の色設定の手段を付け加えるものである。
+ これは、ColorSyncの正式公開版コードでは<I>なく</I>、ColorSyncと呼ばれるコードである。
+ 今後、他のOSでも同様に動作するかもしれないが、ColorSyncは現在MacOSのコンポーネントであるからである。
+ 新しいコードは、OSの既存ColorSyncを検査し、ブラウザがICCプロファイル付きの画像にであったとき、その機能を利用する。
+ 追記しておくと、画像は、既存ICCプロファイルを利用するか、その中に含むかを選択できる。
+ それ故に、我々は、最初に画像デコーダに利用できる画像プロファイルを探す機能を追加した。
+ 次に、我々はネットワークのICCプロファイルのURL（または、ローカルファイル）を取得するコードを新しく付け加えた。
+ このコードはプロファイルがすでに取得済みかの情報を保持し、もし取得済みならダウンロードしない機能も持っている。
+ 最後に、コードとパフォーマンス設定を通じて機能の利用を設定するユーザーインターフェースが加えられた。<BR></P>
+ <P><B><FONT size="+1">プロジェクトの現況</FONT></B></P>
+ <P>&nbsp;&nbsp;AppleとMozilla/Netscapeの技術者はこの機能を追加することの様々な問題点を大さっぱな仕様を起草し、改訂することによって議論した。
+ もしその追加が時節をとらえてブラウザの将来のバージョンに行われ、様々なモジュール所有者の多くの協議の末の外部の助言がAppleのコード記述開始時に色あせていればその追加はより早く行われていただろう。</P>
+ <P>ColorSyncのアルファーステージがいま、Macプラットフォームでのみならず動き始めたので、Mozillaの機能のどこにでもColorSyncを利用することが可能になるのに対して、フロントエンドを垣根のように利用することと共に、我々はより多くのプラットフォームによらない画像ライブラリにおける機能をできるだけ追加することを決定した。
+ コードの現在の状況はMacとWinの双方のフロントエンドが、同様にいくつかの新しいIMGCBエントリポイントを持っていて、そのコード自体も同一のものである。
+ XのフロントエンドはそれらのIMGCBエントリポイントへの半券を持っている状況である。</P>
+ <P>将来になされるもの</P>
+</BLOCKQUOTE>
+
+<UL>
+ <UL>
+  <LI>JPEG/GIFのプロファイルをサポートする
+  <LI>&lt;IMG... ICCPROFILE=...&gt; のサポート
+  <LI>&lt;BODY... ICCPROFILE=...&gt; のサポート
+  <LI>パフォーマンスのサポート&nbsp;:&nbsp;{no matching, match if profile, match to default}
+  <LI>印刷時に機能する。なぜなら、デコード時に画像は適応させられるからである。
+ </UL>
+</UL>
+
+<BLOCKQUOTE>
+ <P>まだ行われていないもの（将来へ？）</P>
+</BLOCKQUOTE>
+
+<UL>
+ <UL>
+  <LI>色表の取得（コードは存在するが、まだ試験していないので機能させていない）</LI>
+  <LI>PNGフォーマットでのプロファイルのサポート</LI>
+  <LI>プレビューなどの他のカラーマネージメントのサポート</LI>
+ </UL>
+</UL>
+
+<BLOCKQUOTE>
+ <P>変更は主に画像に関するlibファイルで行われ、拡張命令や新規呼び出しはicc_profile.cという新しいファイルのルーチンとして組み込まれた。
+ 私は、いくつかのレイアウトに関するコードも新しいIMG/BODYタグを解析できるように変更した。
+ 最終的に、フロントエンドのソースコードや付け加えのIMGCBエントリポイントについていえば、Macリソースファイルに新しい'ppob'リソースを加えた。
+ これは、新規の優遇を可能にし、コードは画像に関するlibファイルに加えられ、読み込まれる。<BR></P>
+ <P><B><FONT SIZE="+1">あなたにできること</FONT></B></P>
+ <P>上のリストは色表の保管とPNGプロファイルにふれているものである。
+ ICCプロファイルを可能にするPNG規格はPNGワーキンググループによって付け加えられたところである。
+ 規格表は、以下のサイトにてダウンロードできる。</P>
+ <BLOCKQUOTE>
+  <P><A href="http://www.cs.berkeley.edu/~amc/png/">http://www.cs.berkeley.edu/~amc/png/</A></P>
+  <P><A href="http://www.cdrom.com/pub/png">http://www.cdrom.com/pub/png</A></P>
+ </BLOCKQUOTE>
+ <P>このプロジェクトでは、コードをjpegとGIFの画像libファイル内の読み込みルーチンに付け加えたが、同じようなコードをPNGの読み込みルーチンにも付け加えられる。
+ もし、&quot;color world&quot;がうまくいけば、これはメモリに画像を読み込むのに似た利用方法である、情報を再利用できる意義を持ったICCプロファイルのセットからの情報の表を保てるビルドを意味する。
+ 入力ソースと出力プロファイルが複数の画像にて同一であると期待できるなら、いくつかの場合にて有効な前提であると期待できるのでよいアイデアである。
+ 新しいファイルにてこの過程を実行するようなコードがあるが、まだ表には出ていない。</P>
+ <P>最後に、勇気を持って、まだ細部を詰めていない他のいくつかのなすべきであろうことをあげる。</P>
+</BLOCKQUOTE>
+
+<UL>
+ <UL>
+  <LI>画像圧縮ソフトで、プロファイルをはめ込む・関連付ける</LI>
+  <LI>どのようにMWContextへAVID(MAC)を取り入れるか</LI>
+  <LI>プレビューをColorSyncと一緒に印刷する</LI>
+  <LI>ガンマ値をチェックするモード</LI>
+  <LI>プロファイルの表示リストを現在のページにはめ込む・関連付ける（私はおそらくこれをデバッグのいくつかのポイントのために実行せねばならないだろう）</LI>
+ </UL>
+</UL>
+
+<BLOCKQUOTE>
+    <P>もし、あなたがMozillaのColorSyncのサポートを手伝うことに興味を覚えたなら、私や、他のMozilla.orgのメンバーに連絡してください。ありがとう。<BR></P>
+    <P>Eric Broadbent<BR><A href="mailto:ebb3@apple.com">ebb3@apple.com</A><BR>August 31, 1998</P>
+  </BLOCKQUOTE>
+  
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/colorsync/index.html">英語版</a> 1998/09/08</span> - <span>和訳版 2006/03/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/colorsync/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

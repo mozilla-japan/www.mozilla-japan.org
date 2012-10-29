@@ -1,0 +1,7 @@
+@import "default.css";
+
+body { margin: 0 15%; color: #333; background-color: #fff; line-height: 150%; }
+p, ul, ol, dl { margin: 1em 0; }
+a { color: #17479e; }
+#skip { margin: 0; text-indent: -9999px; }
+#logo { margin: 1.5em 0; }

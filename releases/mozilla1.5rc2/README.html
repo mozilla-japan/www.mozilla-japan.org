@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Mozilla 1.5 Release Candidate 2 の新機能</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { text-align: center; }
+	p, li, dt, dd { line-height: 160%; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 160%; }
+	table.diff { width: 100%; table-layout: fixed; }
+	table.diff td { width: 50%; vertical-align: top; }
+	.modified { background-color: lightblue; }
+	.added, .removed { background-color: lightgreen; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="November 2, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.5rc2/README.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+
+
+<h1>Mozilla 1.5 Release Candidate 2 の新機能</h1>
+<p>このドキュメントには、Mozilla 1.5 Release Candidate 2 で実装された新機能や、重要なバグの修正、その他新しい問題の一部が書かれています。決して、新機能や修正、バグの完全なリストではありません。より詳細な修正のリストは <a href="changelog.html">「大まかな変更ログ」</a> をご覧ください。</p>
+<h2><a name="new">新機能と修正</a></h2>
+<p>(訳注: Mozilla 1.4 以降)</p>
+
+<table border="0" cellpadding="5" cellspacing="5" class="diff">
+<tr>
+<td class="modified">
+
+<ul>
+	<li>Mozilla Composer に、次のような多くの素晴らしい改良が含まれています:
+		<ul>
+			<li>画像・テーブル・絶対位置指定オブジェクトのリサイズ機能向上</li>
+			<li>絶対位置指定オブジェクト (position:absolute) のサポート - マウスでウィンドウ内を自由に移動可能</li>
+			<li>上下位置指定 (z-index) のサポート</li>
+			<li>絶対位置指定オブジェクトの移動時にはグリッド表示で容易に配置可能</li>
+			<li>ソースの表示に、シンプルなテキストエリアに代わってエディタを使用 (検索・置換が可能)</li>
+			<li>キャレットの動作、インラインスタイルの処理、CSS スタイルの処理に数々の修正</li>
+		</ul>
+	</li>
+	<li>Chatzilla がログ保存機能をサポートし、多くの <a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=80125,114104,198538,200097,114744,200188,199201,202644,184228,206915,86526,209524,198823,193246,205792,201324">バグの修正</a> が行われました。</li>
+	<li>DOM Inspector が #document ノード (ドキュメントのルート階層) を表示できるようになりました。</li>
+	<li>about:config に簡易検索フィルタが実装されました。</li>
+	<li>タブブラウズ機能の向上:
+		<ul>
+			<li>タブブラウズ機能とブックマークグループ使用時の「戻る」「進む」ナビゲーション機能が強化されました。ブックマークグループを読み込んだ後、「戻る」ボタンで直前のタブセットの状態に戻ることが可能になりました。</li>
+			<li>複数のタブが開いているときにウィンドウを閉じる際、確認ダイアログを表示するようになりました。(ダイアログは次回から表示させないこともできます)</li>
+		</ul>
+	</li>
+	<li>JavaScript Console からソース表示ウィンドウの該当行にジャンプできるようになりました。</li>
+	<li>CSS 疑似要素の「::」表記法をサポートしました。様々な -moz-* 疑似要素に関して、古い「:」表記法はまだサポートされていますが、Mozilla 1.5 ではサポートされません。テーマは、疑似要素に「::」表記法を用いてアップデートする必要があります。</li>
+	<li>Mail &amp; News と Composer にスペルチェッカーが実装されました。</li>
+	<li>Mail &amp; News に添付ファイルリストの印刷機能が付きました。</li>
+	<li>Mozilla の <abbr title="Internet Relay Chat">IRC</abbr> クライアント ChatZilla に、多くの改良をもたらす重要な見直しがおこなわれました。</li>
+	<li>Mail &amp; News で、特定の ID を通じて送信される <strong>すべての</strong> メッセージにヘッダ行を追加できるようになりました。</li>
+	<li>Mail &amp; News で多く見られた、SSL 暗号化 SMTP 接続でハングしてしまう問題が修正されました。</li>
+	<li>スタイルが指定されていない XML の表示が改良されました。</li>
+	<li>Mail &amp; News で、メッセージに日付を指定して既読マークを付けられるようになりました。</li>
+	<li>Gecko が &lt;hr&gt; 要素の色指定をサポートしました。</li>
+	<li>Windows で多く見られた、アドレスバーのドロップダウンリストが折り畳まれない問題が修正されました。</li>
+	<li>「ソースの表示」で、ステータスバーに行番号、桁番号が表示されるようになりました。</li>
+	<li>その他、パフォーマンス、安定性、標準サポート、Web ページ互換性に関する改良がおこなわれています。</li>
+	<li>Windows 9x における GDI リソースの問題が解決しました。</li>
+</ul>
+
+</td>
+<td class="modified">
+
+<ul>
+	<li>Mail &amp; News と Composer にスペルチェッカーが実装されました。</li>
+	<li>Mail &amp; News にさらなる改良が加えられました。
+		<ul>
+			<li>特定の ID を通じて送信される <strong>すべての</strong> メッセージにヘッダ行を追加できるようになりました。</li>
+			<li>SSL 暗号化 SMTP 接続でハングしてしまう、多く発生していた問題が修正されました。</li>
+			<li>添付ファイルリストの印刷機能が付きました。</li>
+			<li>メッセージに日付を指定して既読マークを付けられるようになりました。</li>
+		</ul>
+	</li>
+	<li>Mozilla Composer に、次のような多くの優れた改良が含まれています。
+		<ul>
+			<li>画像・テーブル・絶対位置指定オブジェクトのリサイズ機能が向上しました。</li>
+			<li>絶対位置指定オブジェクト (position:absolute) をサポートしました。マウスを使ってウィンドウ内を自由に移動できます。</li>
+			<li>上下位置指定 (z-index) をサポートしました。</li>
+			<li>絶対位置指定オブジェクトは、グリッド表示によって簡単に移動・配置できます。</li>
+			<li>View Source ウィンドウに、シンプルなテキストエリアに代わって (検索・置換が可能な) エディタを使用しました。</li>
+			<li>キャレットの動作、インラインスタイルの処理、CSS スタイルの処理に数々の修正がおこなわれました。</li>
+		</ul>
+	</li>
+	<li>タブブラウズ機能に次のような改良が加えられました。
+		<ul>
+			<li>ブックマークグループが読み込まれたとき、既存のタブを置き換えるようになりました。これは、タブブラウズ機能の設定から、以前のタブを「追加する」モードに切り替えることも可能です。</li>
+			<li>タブブラウズ機能とブックマークグループ使用時の「戻る」「進む」ナビゲーション機能が強化されました。ブックマークグループを読み込んだ後、「戻る」ボタンで直前のタブセットの状態に戻ることが可能になりました。</li>
+			<li>複数のタブが開いているときにウィンドウを閉じると、確認ダイアログが表示されるようになりました。(次回から表示させないこともできます)</li>
+		</ul>
+	</li>
+	<li>Mozilla の <abbr title="Internet Relay Chat">IRC</abbr> クライアント ChatZilla に、ログ保存機能をはじめ、<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_id=80125,114104,198538,200097,114744,200188,199201,202644,184228,206915,86526,209524,198823,193246,205792,201324">さらに多くの改良</a> をもたらす重要な見直しがおこなわれました。</li>
+	<li>DOM Inspector が #document ノード (ドキュメントのルート階層) を表示できるようになりました。</li>
+	<li>JavaScript Console から View Source ウィンドウの該当行にジャンプできるようになりました。</li>
+	<li>View Source ウィンドウのステータスバーに行番号、桁番号が表示されるようになりました。</li>
+	<li>about:config に簡易検索フィルタが実装されました。</li>
+	<li>Gecko が &lt;hr&gt; 要素の色指定をサポートしました。</li>
+	<li>CSS 疑似要素の「::」表記法をサポートしました。様々な -moz-* 疑似要素に関して、古い「:」表記法はまだサポートされていますが、Mozilla 1.5 ではサポートされません。テーマは、疑似要素に「::」表記法を用いてアップデートする必要があります。</li>
+	<li>スタイル指定のない XML 表示が改良されました。</li>
+	<li>Windows 版における GDI リソースの問題が一部解決しました。</li>
+	<li>Windows で多く見られた、アドレスバーのドロップダウンリストが折り畳まれない問題が修正されました。</li>
+	<li>その他、パフォーマンス、安定性、標準サポート、Web ページ互換性に関する改良がおこなわれています。</li>
+</ul>
+
+</td>
+</tr>
+</table>
+
+<h2><a name="new-issues">新しい問題</a></h2>
+<p>ここには、前回のマイルストーン以降 <a href="known-issues.html">既知の問題</a> のページに追加された事項が載っていますが、バグ自体は以前からあったものである可能性もあります。</p>
+
+<table border="0" cellpadding="5" cellspacing="5" class="diff">
+<tr>
+<td class="modified">
+
+<ul>
+	<li>Mac OS では、古いバージョンの Flash プラグインが入っていると、Flash を使ったサイトでクラッシュします。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=200511">200511</a>)</li>
+</ul>
+
+</td>
+<td class="modified">
+
+<ul>
+	<li>Mozilla 1.5 は、過去の Mac OS 版 Macromedia Flash Player プラグイン (6.0 r67 以前のすべてのバージョン) と互換性がありません。Mac OS ユーザは、一部の Flash サイトでクラッシュする問題を避けるために、最新版の Flash Player にアップグレードしてください。最新版は <a href="http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&P2_Platform=MacOSX&Lang=Japanese">Macromedia Flash Player Download Center for OS X</a> から無償で入手できます。</li>
+</ul>
+
+</td>
+</tr>
+</table>
+
+<ul>
+	<li>mozilla.org が配布している Linux バイナリは GCC 3.2 でコンパイルされるようになりました。これらのバイナリを利用する場合、GCC の古いバージョンでコンパイルされている、RealPlayer のような一般的なプラグインは機能しません。Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=213234">213234</a> と <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=158385">158385</a> をご覧ください。</li>
+</ul>
+
+
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.5rc2/README.html">英語版</a> 2003/11/02</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.5rc2/README.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

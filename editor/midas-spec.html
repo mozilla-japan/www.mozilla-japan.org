@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>リッチテキスト編集 仕様</title>
+<link rel="alternate" hreflang="en" modified="May 20, 2003">
+  <meta name="author" content="Kathleen Brade">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/editor/midas-spec.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+  
+ 改訂：2002年11月15日<br>
+ <br>
+リッチテキスト編集コントロールです。<span style="color:green; font-size:small;">（訳注；以下の URI もご参照下さい：<a href="http://devedge-temp.mozilla.org/viewsource/2003/midas/01/">Rich-Text Editing in Mozilla 1.3</a>）</span><br>
+ <br>
+ 
+<h1>リッチテキスト編集を可能にする：</h1>
+ 
+<div style="margin-left: 40px;">ある文書があるとき、"designMode" 属性を加えて、それを "on" にして、編集可能な文書を手に入れることができます。
+例えば、Javascript では、"edit" の id をもった iframe（インラインフレーム）があれば、次のようにしてその contentDocument を手に入れ、designMode を "on" に指定することができます：<br>
+ 
+<div style="margin-left: 40px;"><code>document.getElementById("edit").contentDocument.designMode="on";</code>
+</div>
+ <br>
+今のところ、designMode を "off" にすることで完全に編集を遮断することはできません。
+designMode を"off" にすることによって命令によっては処理されなくなるでしょうが、文字を打つことや他の行動はまだ可能です。<br>
+ </div>
+ <br>
+ 
+<h1>命令を呼び出す：</h1>
+<h2>execCommand<br>
+</h2>
+ 
+<div style="margin-left: 40px;">リッチテキスト編集が可能な文書がある場合、3つのパラメータとともに execCommand を要求することによってその文書上に具体的な命令を呼び出すことができます。
+例えば、Javascript では、編集可能な文書があるとき、次のように要求することによって bold コマンドを呼び出すことができます：<br>
+ 
+<div style="margin-left: 40px;"><code>editableDocument.execCommand("Bold", 
+false, null); </code></div>
+注：designMode を "On" にしていなかったならば、エラーになるでしょう。
+このことは、間違った文書で execCommand を要求するときにもまた、起こるかもしれません。<br>
+ <br>
+execCommand には3つの要求されたパラメータがあります。:<br>
+ 
+<ol>
+   <li>命令文字列 (command string)</li>
+   <li>ユーザーインターフェースを示すための真偽値 (boolean flag for showing UI)</li>
+   <li>値文字列 (value string)</li>
+ 
+</ol>
+最初のパラメータは、命令を含む文字列です。
+第2のパラメータは、真偽値です。
+もしそれが真 (true) に指定されているなら、エラーになるでしょう (NS_ERROR_NOT_IMPLEMENTED)。
+第3のパラメータは、値である文字列です。
+例えばフォントサイズを指定する際の特定のサイズのような、詳細を要求される命令がいくつかあるでしょう。<br>
+ <br>
+「サポート済の命令」のセクションでは、それぞれの命令と、必要な一致している値 (value) についての文書があります。
+<br>
+</div>
+ 
+<div style="margin-left: 40px;"> </div>
+ <br>
+<h2>queryCommandEnabled</h2>
+<blockquote>この命令は編集可能な文書で命令します。
+1つの要求されたパラメータがあります（命令文字列 (the command string) ）。
+もし命令が選択されている範囲か、校正挿入位置（またはその両方）で実行できる場合は、結果は真 (true) である真偽値になります。
+もし現在選択されている範囲か、校正用挿入の位置を与えられた命令 (execCommand) が呼び出されるべきでないならば、結果は偽 (false) です。<br>
+</Blockquote>
+<br>
+<h2>queryCommandState</h2>
+<blockquote>xxx<br>
+</Blockquote>
+<br>
+<h2>queryCommandValue</h2>
+<blockquote> xxx<br>
+</Blockquote>
+<br>
+<h1>サポート済の命令：</h1>
+ 
+<div style="margin-left: 40px;">下記の命令一覧はアルファベット順で表記されています。
+命令は複数のものが組み合わさった場合があってもいいし、あなたのコードをもっと読みやすくするために何をしてもいいです。<span style="color:green; font-size:small;">（訳注：タブや改行などを適切なところに入れてもよい、ということだと思います。）</span><br>
+ <br>
+ 
+<table cellpadding="2" cellspacing="2" border="1"
+ style="text-align: left; width: 100%;">
+   <tbody>
+     <tr>
+       <td style="vertical-align: top;">命令<br>
+       </td>
+       <td style="vertical-align: top;">値<br>
+       </td>
+       <td style="vertical-align: top;">解説／実際に起こること<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;">backcolor<br>
+       </td>
+       <td style="vertical-align: top;">????<br>
+       </td>
+       <td style="vertical-align: top;">この命令は現在のところテストされていません。<br>
+ この命令は文書の背景色を指定します。</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;">bold<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">選択された範囲がなれけば、挿入点から後に入力された文字を太字にします。<span style="color:green; font-size:small;">（訳注：つまり、この命令を実行した後は文字を入力すると太字になるということです。Netscape DevEdge に実例がありますのでそちらもご参照下さい。以下に登場する同じような文面も同様です。）</span><br>
+      <br>
+選択された範囲があり、全ての文字がすでに太字ならば、太字が除かれます。
+そうでないならば、全ての選択された文字が太字になります。<br>
+       </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;">copy<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">選択された範囲があれば、この命令はその範囲をクリップボードにコピーします。
+選択された範囲がなれけば、何も起こりません。<br>
+       <br>
+ 注：ショートカットキーが自動的にこの命令を実行します（典型例としては、accel-C）<br>
+       </td>
+     </tr>
+     <tr>
+      <td valign="top">createlink<br>
+      </td>
+      <td valign="top">url (href)<br>
+      </td>
+      <td valign="top">選択された範囲がなれけば、この命令は何も起こりません。
+選択された範囲があれば、リンクの href として url パラメータとともに、選択された範囲のまわりにリンクが挿入されます。<br>
+      </td>
+    </tr>
+    <tr>
+       <td style="vertical-align: top;">cut<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">選択された範囲があれば、この命令は、クリップボードに選択された範囲をコピーして、エディットコントロールから選択された範囲を削除します。
+選択された範囲がなければ、何も起こりません。<br>
+       <br>
+ 注：ショートカットキーが自動的にこの命令を実行します（典型例としては、accel-X）<br>
+       </td>
+     </tr>
+     <tr>
+      <td valign="top">delete<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top">この命令は、選択された全てのテキストとオブジェクトを削除します。<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">fontname<br>
+      </td>
+      <td valign="top">????<br>
+      </td>
+      <td valign="top">この命令は、選択された範囲にフォントフェイス（字体）を指定します。
+もしくは選択された範囲がなければ、挿入部分に指定します。<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">fontsize<br>
+      </td>
+      <td valign="top">????<br>
+      </td>
+      <td valign="top">この命令は、選択された範囲にフォントサイズを指定します。
+もしくは選択された範囲がなければ、挿入部分に指定します。<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">forecolor<br>
+      </td>
+      <td valign="top">????<br>
+      </td>
+      <td valign="top">この命令は現在のところテストされていません。<br>
+この命令は、文字色を選択された範囲、もしくは挿入部分に指定します。<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">formatblock<br>
+      </td>
+      <td valign="top">????<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">heading<br>
+      </td>
+      <td valign="top">????<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+       <td style="vertical-align: top;">indent<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">挿入記号のあるところのブロックをインデント（字下げ）します。<br>
+       </td>
+     </tr>
+     <tr>
+      <td valign="top">inserthorizontalrule<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top">この命令は挿入点に水平線を挿入します。<br>
+      <br>
+選択された範囲を削除しますか？<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">insertimage<br>
+      </td>
+      <td valign="top">url (src)<br>
+      </td>
+      <td valign="top">この命令は挿入点に (url で参照された) 画像を挿入します。<br>
+ <br>
+ 選択された範囲を削除しますか？<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">insertorderedlist<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">insertunorderedlist<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+       <td style="vertical-align: top;">italic<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">選択された範囲がなれけば、挿入点から後に入力された文字を斜体字に指定します。<br>
+      <br>
+選択された範囲があり、全ての文字がすでに斜体字ならば、斜体字が除かれます。
+そうでないならば、全ての選択された文字が斜体字になります。</td>
+     </tr>
+     <tr>
+      <td valign="top">justifycenter<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">justifyfull<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">justifyleft<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">justifyright<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+       <td style="vertical-align: top;">outdent<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">挿入記号の位置しているところのブロックをアウトデントします。
+もしブロックがアウトデントの命令をする前にインデントしていないときは、何も起きません。<br>
+      <br>
+注：もしアウトデントがなされていないとき、エラーを投げますか？<br>
+      </td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;">paste<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">この命令は時々、安全性につけこまれないようにするために実行できません。<br>
+      <br>
+この命令は挿入記号の位置にクリップボードの内容を貼り付けします。
+選択された部分があるときは、クリップボードの内容を挿入する前にそれは削除されます。<br>
+       <br>
+ 注：ショートカットキーが自動的にこの命令を実行します（典型例としては、accel-V）</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;">redo<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">この命令は前のアンドゥ行動をリドゥします。
+もし直前の行動がアンドゥでなければ、この命令は何の効果もありません。<br>
+       <br>
+ 注：ショートカットキーが自動的にこの命令を実行します（典型例としては、accel-shift-Z）</td>
+     </tr>
+     <tr>
+      <td valign="top">removeformat<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+       <td style="vertical-align: top;">selectall<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">この命令は編集可能な領域の内容の全てを選択します。<br>
+       <br>
+ 注：ショートカットキーが自動的にこの命令を実行します（典型例としては、accel-A）<br>
+       </td>
+     </tr>
+     <tr>
+      <td valign="top">strikethrough<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top">選択された範囲がなれけば、挿入点から後に入力された文字に対して抹消線が指定されます。<br>
+      <br>
+選択された範囲があり、全ての文字にすでに抹消線が引かれているならば、抹消線が除かれます。
+そうでないならば、全ての選択された文字に抹消線が引かれます。<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">subscript<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top">選択された範囲がなれけば、挿入点から後に入力された文字に対して下付き文字が指定されます。<br>
+ <br>
+ 選択された範囲があり、全ての文字がすでに下付き文字ならば、それが除かれます。
+そうでないならば、全ての選択された文字が、下付き文字になります。<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">superscript<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top">選択された範囲がなれけば、挿入点から後に入力された文字に対して上付き文字が指定されます。<br>
+  <br>
+  選択された範囲があり、全ての文字がすでに上付き文字ならば、それが除かれます。
+そうでないならば、全ての選択された文字が、上付き文字になります。<br>
+      </td>
+    </tr>
+    <tr>
+       <td style="vertical-align: top;">underline<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">選択された範囲がなれけば、挿入点から後に入力された文字に対して下線が指定されます。<br>
+      <br>
+選択された範囲があり、全ての文字がすでに下線が引かれているならば、それが除かれます。
+そうでないならば、全ての選択された文字に下線が引かれます。</td>
+     </tr>
+     <tr>
+       <td style="vertical-align: top;">undo<br>
+       </td>
+       <td style="vertical-align: top;">none<br>
+       </td>
+       <td style="vertical-align: top;">この命令は前の行動をアンドゥします。
+もしその文書において何も行動を起こしていなければ、この命令は何の効果もありません。<br>
+       <br>
+ 注：ショートカットキーが自動的にこの命令を実行します（典型例としては、accel-Z）<br>
+       </td>
+     </tr>
+    <tr>
+      <td valign="top">unlink<br>
+      </td>
+      <td valign="top">none<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+   
+  </tbody> 
+</table>
+ <br>
+ </div>
+ <br>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/editor/midas-spec.html">英語版</a> 2003/05/20</span> - <span>和訳版 2004/10/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/editor/midas-spec.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

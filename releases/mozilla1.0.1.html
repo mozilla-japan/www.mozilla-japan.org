@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Mozilla 1.0.1</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { text-align: center; margin: .75em; }
+	p, dt, blockquote { line-height: 1.6; }
+	li, dd { line-height: 1.6; margin-bottom: 0.5em; }
+	#stableinfo { border: 1px dashed #999; background-color: #eee; color: #000; padding: 1em; font-size: small; }
+	.important { font-size: small; }
+	#install { margin: 1em 0em; padding: .25em 1em; background-color: #ccc; color: #000; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 1.6; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="July 11, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.0.1.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h1>Mozilla 1.0.1</h1>
+<p>Mozilla 1.0.1 は最新の安定化リリースではありません。まだお使いのプラットフォーム用のビルドがない場合を除いては、<a href="stable.html">最も安定したリリース</a> を試してください。私たちは Mozilla のバイナリ版を <strong>テスト目的の利用に限って</strong> 公開しています。また、エンドユーザ向けのサポートは提供していません。<a href="/mirrors.html">ミラーサーバ</a> [<a href="/mirrors_jp.html">日本国内</a>] もありますので、どうぞご利用ください。</p>
+<p id="stableinfo">訳注: <strong>安定化リリース</strong> という言葉は、単に「アプリケーションの動作が安定している」という意味ではありません。もちろん、日々更新されているナイトリービルドに比べれば、そういう意味でも安定しているはずですが、決して「フリーズしない」とか「不正確な動作をしない」ということではありません。このリリースが基づいている、各種仕様、API、ライブラリといったものを固定して、Mozilla をベースにした製品を計画しているベンダーやデベロッパが腰を据えて開発作業に当たれるようにするというのが、このリリースの主眼です。<p>
+<p class="important">このソースコードは、アメリカ合衆国の輸出管理規制及びその他合衆国法の適用対象であり、いくつかの国 (現在は、アフガニスタン (タリバン支配地域)、キューバ、イラン、イラク、リビア、北朝鮮、スーダン、シリア) へは輸出、再輸出することができません。また、合衆国からの輸入を禁止されている個人や組織 (輸出管理局のリストに記載された非合法団体・組織及び特別指定外国人を含む) への輸出、再輸出もできません。</p>
+<p>私たちは、mozilla.org ドメインから利用可能なすべてのソースコードや実行可能コードについて、西暦 2000 年対応であることを保証しません。</p>
+
+<div id="install">
+	<h3>Mozilla 1.0.1 をダウンロード</h3>
+	<p>これは最もポピュラーな Mozilla 1.0.1 ビルドのリストです。たいていなら、あなたはこの中のどれかを求めているでしょう。</p>
+	<p><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-win32-1.0.1-installer.exe">Microsoft Windows</a> (95、98、ME、NT、2000、XP) | <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-macosX-1.0.1.smi.bin">Mac OS X</a> | <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-mac-101-full-instal.bin">Mac OS 8.5, 8.6, 9.x</a> | <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-i686-pc-linux-gnu-1.0.1-sea.tar.gz">x86 Linux</a></p>
+</div>
+
+<p><strong>Mozilla 1.0.1</strong> - 2002 年 9 月 10 日 リリース</p>
+
+<ul>
+	<li><a href="mozilla1.0.1/">リリースノート</a> - リリースノートには、インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+	<li>ソースコード Tarball (<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/src/mozilla-source-1.0.1.tar.gz">gzip</a> - 40 MB) (<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/src/mozilla-source-1.0.1.tar.bz2">bzip2</a> - 29.6 MB) (<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/src/mozilla-source-1.0.1.sit.bin">sit.bin</a> - 62 MB)</li>
+	<li>この <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/README">Readme</a> ファイルでは、Mozilla 1.0.1 を CVS から取り込む手順を説明しています。</li>
+	<li><a href="/projects/l10n/mlp_status.html#moz_1.01">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - 簡体字中国語 (中国) / 繁体字中国語 (台湾) / チェコ語 / デンマーク語 / 英語 (イギリス) / エストニア語 / フランス語 / ドイツ語 / ギリシア語 / ヘブライ語 / イタリア語 / 日本語 / 韓国語 / マレー語 / ポーランド語 / ルーマニア語 / スロバキア語 / スロベニア語 / ソルビア語 / スペイン語 (アルゼンチン) / スペイン語 (スペイン) / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>) <p style="border: 1px dashed #000000; padding: 0.5em; margin-right: 10px;">もじら組 JLP プロジェクトからも <a href="http://www.mozilla-japan.org/jp/l10n/install.html">日本語パック</a> / <a href="http://www.mozilla-japan.org/jp/l10n/download.html">日本語化スイート</a> をダウンロードできます。</p></li>
+	<li>Linux 版、Windows 版、Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.3/download.html">Java ランタイム環境 (JRE)</a> [<a href="http://java.sun.com/j2se/1.3/ja/download.html">日本語版</a>] をインストールしてください。Mac OS では、Mozilla はすでにシステムにインストールされている Java を使用します。</li>
+</ul>
+
+<h4>Windows</h4>
+<ul>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-win32-1.0.1-installer.exe">Talkback が有効なフルインストーラ .exe</a> [<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.01/mozilla-win32-1.0.1-jaJP-installer.exe">日本語版</a>] (9.8 MB) - クラッシュデータを報告できます。他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-win32-1.0.1-stub-installer.exe">Talkback が有効なネットインストーラ .exe</a> (214 KB) - このビルドは、指定したコンポーネントだけをダウンロード、インストールできます (最小で 6 MB)。</li>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-win32-1.0.1-talkback.zip">Talkback が有効な zip ファイル</a> [<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.01/mozilla-win32-1.0.1-jaJP-talkback.zip">日本語版</a>] (10.6 MB)</li>
+</ul>
+
+<h4>Mac OS 8.5, 8.6, 9.x</h4>
+<ul>
+	<li>Mac バイナリファイルには <a href="http://www.stuffit.com/expander/macindex.html">Stuffit Expander</a> [<a href="http://stuffit.act2.co.jp/mac/">日本語版</a>] 4.5 以降が必要です。</li>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-mac-101-full-instal.bin">Talkback が有効なフルインストーラ</a> (12.8 MB) - クラッシュデータを報告できます。他の Mac OS ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-mac-101-stub-instal.bin">Talkback が有効なネットインストーラ</a> (257 KB) - このビルドは、指定したコンポーネントだけをダウンロード／インストールできます (最小で 6 MB)。</li>
+</ul>
+
+<h4>Mac OS X</h4>
+<ul>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-macosX-1.0.1.smi.bin">ディスクイメージ</a> (14.9 MB) - 自動マウント ディスクイメージ</li>
+</ul>
+
+<h4>Linux</h4>
+<ul>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-i686-pc-linux-gnu-1.0.1-sea.tar.gz">x86 Talkback が有効なフルインストーラ</a> (すべてのコンポーネントを一括ダウンロード) (11.6 MB) - 他の x86 Linux ビルドが何か分からなければ、このビルドを入手してください。</li>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-i686-pc-linux-gnu-1.0.1-installer.tar.gz">x86 Talkback が有効なネットインストーラ</a> (93 KB) - このビルドは、指定したコンポーネントだけをダウンロード／インストールできます (最小で 6 MB)。</li>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-i686-pc-linux-gnu-1.0.1.tar.gz">x86 tar.gz フォーマット</a> [<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.01/mozilla-i686-pc-linux-gnu-1.0.1-jaJP.tar.gz">日本語版</a>] (11.9 MB)</li>
+</ul>
+
+<h4>HPUX</h4>
+<ul>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-hppa2.0w-hp-hpux11.00-1.0.1.tar.gz">HP11.00 用 tar.gz フォーマット</a> (22.9 MB) - このビルドは <a href="http://www.hp.com/workstations/support/software/hpux/gnome/downloads.html">HP の GNOME 1.2 Desktop</a> と <a href="http://hpux.connect.org.uk/hppd/hpux/Gtk/Development/gtk+-1.2.10/">Connect の 1.2.10 Gtk</a> のどちらでも動作します。</li>
+</ul>
+
+<h4>OS/2</h4>
+<ul>
+	<li>IBM 提供 - <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0.1/mozilla-os2-vacpp-1.0.1.zip">x86 zip ファイル</a> (15.3 MB)</li>
+</ul>
+
+<hr>
+
+<p>古いビルドについては <a href="mozilla1.0.html">Mozilla 1.0</a> / <a href="old-releases-0.9.2-1.0rc3.html">Mozilla 0.9.2 - Mozilla 1.0 RC3</a> / <a href="old-releases.html">Mozilla 0.6 - Mozilla 0.9.1</a> / <a href="../projects/seamonkey/release-notes/">Milestone 3 - Milestone 18</a> からダウンロードできます。</p>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.0.1.html">英語版</a> 2003/07/11</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.0.1.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

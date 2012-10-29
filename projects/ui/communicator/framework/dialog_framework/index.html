@@ -1,0 +1,643 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>ダイアログユーザ体験(UE)構成</title>
+
+<META name="GENERATOR" content="IBM NetObjects TopPage V4.0.3  for Windows">
+<style type="text/css" media="screen,tv">
+<!--
+.menutopmenu {  background-color: #CCCCCC; border: outset 1px; padding-top: 2px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; font-family: Tahoma, Arial, sans-serif; font-size: 2.5mm; font-weight: bold; line-height: normal; text-align: left; position:relative; width: 200px}
+.menushortcut { text-align: right;}
+.menuchangeable {background-color: #CCFFCC; color: #99CC99;}
+.menuselected {background-color: #CCDDCC; color=#FFFFFF}
+body {  font-family: Verdana, Arial, Helvetica, sans-serif}
+-->
+</style>
+
+<!--
+
+訳者： むらまつ mura@cools.com
+
+-->
+
+<link rel="alternate" hreflang="en" modified="December 22,  2000">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/ui/communicator/framework/dialog_framework/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+<table border=0 cellspacing=0 cellpadding=2 width="100%" >
+  <tr> 
+    <td valign=BOTTOM><font size=+1>Communicator Seamonkey </font></td>
+    <td valign=BOTTOM> 
+      <div align=right><font size=+1>UI Specification</font></div>
+    </td>
+  </tr>
+  <tr bgcolor="#66CCCC"> 
+    <td>
+      <p><b><font size=+3>ダイアログユーザ体験(UE)構成</font></b></p>
+      <p><b>ニュースグループへフィードバックを投稿</b></p>
+    </td>
+    <td> 
+      <div align=right><b><i><font size=-1>最終更新: </font></i></b> 
+2001/03/21(水) 06:30:25
+      </div>
+    </td>
+  </tr>
+</table>
+<table border=0 cellspacing=0 cellpadding=0 width="100%" >
+  <tr> 
+    <td valign=TOP width="49%"><b>著者</b> German W. Bauer&nbsp; <br>
+      <b>最初の作成日:</b>&nbsp; 1999年4月09日&nbsp;</td>
+    <td valign=TOP><b>状態:</b> 準備段階の仕様 - ご自身のリスクでお使いください。<b>実装情報はまた次の機会に。</b></td>
+  </tr>
+  <tr> 
+    <td valign=TOP width="49%"><b>クイックリンク:&nbsp;</b> 
+      <blockquote><a href="../.">Seamonkeyの全体的なUIホームページ</a> <br>
+        Navigator Seamonkey 製品
+        <p>設計<a href="#Overview">概要</a> <br>
+          設計<a href="#Cheatsheet">早見表</a> <br>
+          設計<a href="#Details">詳細&nbsp;</a></p>
+        <p><b>特有の</b>ダイアログ:</p>
+        <ul>
+          <li>Navigator のダイアログ (お待ちください)</li>
+          <li>Messenger のダイアログ ( 〃 )</li>
+          <LI>Ender のダイアログ ( 〃 )
+        </ul>
+      </blockquote>
+    </td>
+    <td valign=TOP><b>チーム構成</b> <br>
+      &nbsp; 
+      <blockquote>&nbsp; </blockquote>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" bgcolor="#993366">
+  <tr> 
+    <td height="21"> 
+      <h2><b><font color="#CC9933">古い仕様は更新されている可能性があります。</font></b></h2>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h3><a name="Overview"></a>要旨/概要</h3>
+この文書はクロスアプリケーション(およびクロスアプリケーションにできる箇所)のダイアログレイアウト、
+および標準のテンプレート/カテゴリーの範疇に入らないダイアログを作成するための一般的なガイドラインについて記述しています。
+<h3>目標</h3>
+<UL>
+  <LI>ダイアログについて、アプリ・プラットフォーム全体で一貫性を保ちます。(Communicator Seamonkey の起動後、機能が動的に追加された場合でも)
+  <LI>使用感をテストして必要とされた/証明された時は、プラットフォームの特性を考慮します。
+たとえばコマンドボタンの配置など。
+  <LI>テンプレートを使い、共通ダイアログの一貫した実装をできるだけシンプルにできるようにします。
+    <BR>
+  <LI>結合可能なモジュールとウィジェットを使い、特別なダイアログの一貫した作成をできるだけシンプルにできるようにします。
+</UL>
+<h3> <BR>
+  ターゲットユーザ</h3>
+<blockquote>この機能のターゲットユーザーは、Seamonkey PRD に記述されている全ての Communicator
+Seamonkey ユーザです。</blockquote>
+<h3>ユーザ作業</h3>
+<blockquote>&nbsp; 
+  <table border=0 cellpadding=2 bgcolor="#333333" >
+    <tr> 
+      <td colspan="3"> 
+        <table border=0 >
+          <tr bgcolor="#66CCCC"> 
+            <td valign=TOP><b>初級</b></td>
+            <td valign=TOP><b>中級</b></td>
+            <td valign=TOP><b>上級</b></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr bgcolor="#330033"> 
+            <td colspan="3" bgcolor="#CCCCCC"><font size=-1>データ表示面全てに共通します</font></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr bgcolor="#FFFFFF"> 
+            <td valign=TOP> 
+              <ul>
+                <li>設定などの、メインとなる作業に次ぐ補助的な作業を行います。</li>
+                <li>エラーメッセージや、悪い影響を及ぼす可能性のある動作の情報を得たり、
+情報を提供するメッセージを得たりします。</li>
+              </ul>
+              <p>&nbsp;</p>
+            </td>
+            <td valign=TOP>&nbsp;キーボードだけでダイアログを操作してみます。</td>
+            <td valign=TOP></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</blockquote>
+<hr align="LEFT" width="40%" size="4" noshade color="#66cccc">
+<h2><a name="Cheatsheet"></a>設計早見表</h2>
+<br>
+<hr align="LEFT" width="40%" size="4" noshade color="#66cccc">
+<h2><a name="Details"></a>設計哲学 </h2>
+<h2>&nbsp;</h2>
+<h3>Web のルック＆フィール</h3>
+<P>Seamonkey は、<b>プラットフォームから独立した</b>ルック＆フィールを備えた最初のアプリケーションになるでしょう。
+このために、ダイアログのセットは Macintosh と Windows で同一になります。
+コマンドボタンの並びをクロスプラットフォームにするか、Macintosh・Windows・Linuxそれぞれに委ねるかについては、
+結論を得ていない問題となっています。
+いずれにしても、柔軟でモジュール化されたものに設計することにより、
+そのようなプラットフォーム別の並び順を持つボタンも２・３回設計し直すことなく実装することが<B>可能</B>になります。</P>
+<p>昔からの OS に基づいたリソース体系でのダイアログ設計と異なる点としてもう１つ、
+置き場所の固定されたシステムには頼らず、
+各要素が HTML 4 と同じように設計されるというのがあります。
+その一方で、使用するフォントやローカリゼーションの影響を受けます。
+<H2>ダイアログの詳細</H2>
+<H3>モードレスおよびモーダルなダイアログボックス</H3>
+<P>ダイアログはモードレスにもモーダルにも、移動可能なモーダルにもなることができます。
+どんな時にどれを組み込めばいいでしょうか。<BR>
+</P>
+<TABLE width="597">
+  <TBODY> 
+  <TR bgcolor="#8080c0"> 
+    <TD width="25%"><B><FONT color="#ffffff">モーダルダイアログ</FONT></B></TD>
+    <TD width="25%"><FONT color="#ffffff"><B>モードレスダイアログ</B></FONT></TD>
+    <TD width="25%"><FONT color="#ffffff">移動可能なモーダルダイアログ</FONT></TD>
+    <TD><FONT color="#ffffff"><B>フローティングパレット</B></FONT></TD>
+  </TR>
+  <TR valign="top"> 
+    <TD>モーダルダイアログは、それを閉じるまで他の全てのアプリケーションとの対話を禁止します。</TD>
+    <TD bgcolor="#ffffff">そのアプリケーションも含めどのアプリケーションとも自由に対話できるものですが、
+そのアプリケーションの 'カレントの' ウィンドウとの関連は持ったままです。
+(その点で後述のフローティングパレットとは異なります)</TD>
+    <TD>他のアプリケーションへ切り替えることはできても、
+同じアプリケーションの他のウィンドウへ切り替えることはできないようにします。</TD>
+    <TD>全てのドキュメントウィンドウの手前に位置し、
+設定の変更を対話的にできるようにします。
+追いやることができませんが、設定の変更はすぐにドキュメントに反映されます。
+同様に、現在選択されているものを反映させるために、設定の表示を更新します。
+この機能は、パレットウインドウとしてもツールバーとしても表示することが可能です。</TD>
+  </TR>
+  <TR valign="top" background="gray90.gif" bgcolor="#E0E0E0"> 
+    <TD> 
+      <UL>
+        <LI>ダイアログ内での中継ぎとなる作業をアプリの続行前に完了しなければならない時に使用します。
+        <LI>すぐに扱われなければならない警報があった時に使用します。
+        <LI>ダイアログボックスが後ろへ簡単に隠されてしまう可能性がある時に使用します。
+初心者は画面を所かまわずクリックしがちです。
+そうするとモードレスウィンドウをどこからどう移ったかすぐに見失ってしまいます。
+      </UL>
+    </TD>
+    <TD> 
+      <UL>
+        <LI>同じ作業を何度も実行しなければならない時に使用します。(検索/置換など)
+        <LI>ダイアログの値を変えた結果を知るため、
+アプリケーションを見たり対話的作業が必要になったりする時に使用します。(設定など)
+        <LI>同じダイアログを同時にいくつも開く可能性がある時に使用します。(ダウンロードの進行状況など)
+      </UL>
+    </TD>
+    <TD> 
+      <UL>
+        <LI>ダイアログ作業がアプリの続行前に完了されなければならない時で、
+なおかつ現在のウインドウとのつながりを知る必要がある時に使用します。
+      </UL>
+    </TD>
+    <TD> 
+      <UL>
+        <LI>設定を何度も変える必要があり、かつドキュメントからの直接のフィードバックを必要とする時に使用します。
+      </UL>
+    </TD>
+  </TR>
+  </TBODY> 
+</TABLE>
+<H3>ダイアログボックスタイプ</H3>
+<H4>ダイアログボックス</H4>
+<P>何度も元に戻ることを必要としない周辺的な作業に使用します。
+ダイアログボックスは、ナビゲーションのためにタブを使ったり、
+設定を操作するのにコントロールを使ったり、
+元に戻る時や設定を確定する時のためにコマンドボタンを並べて使ったりすることができます。
+XPFE の実装では、ダイアログのウィンドウフレームはネイティブなものを使用しますが、
+制御は Gecko を通して行われます。</P>
+<P><I>例:</I></P>
+<H4>警告ダイアログボックス</H4>
+<P>通知する時に使用します。
+アプリケーションで起きた致命的なエラー、警告、その他のアドバイス(後述)などがあります。
+アイコンで警告の性質を識別し、通常はそれに伴ってテキストを記述します。
+下のほうに並べるコマンドボタンは以下のものをいくつかまたは全て使用します。
+つまり、OK ボタン(メッセージの承認や動作の確認を行う)、キャンセルボタン(その動作を行わない)、ヘルプボタンです。</P>
+<TABLE width="80%">
+  <TBODY> 
+  <TR valign="middle"> 
+    <TD width="25%"><IMG src="messagel.gif" width="32" height="32" border="0"> 情報</TD>
+    <TD width="25%"><IMG src="questionl.gif" width="32" height="32" border="0"> 問い合わせ</TD>
+    <TD width="25%"><IMG src="alertl.gif" width="32" height="32" border="0"> 警告</TD>
+    <TD width="25%"><IMG src="errorI.gif" width="32" height="32" border="0"> 致命的なエラー</TD>
+  </TR>
+  </TBODY> 
+</TABLE>
+<P><I>例: SSL 通信に入る時の警告</I><IMG src="next_exit_ssl_win.gif" width="341" height="170" border="0"></P>
+<H4>チューザー(chooser)/セレクター</H4>
+<P>フォントや色を選び出すことができます。プレビューを入れることもできます。
+ファイル選択など、ネイティブなダイアログを使用することになる場合もあります。
+変更を何度も行う必要がないものを選ぶ時に使用してください。</P>
+<P><I>例: ファイル選択</I></P>
+<H4>プロパティダイアログ</H4>
+<P>これを使うことにより、現在の状況や選択しているものの属性を調べたり変えたりすることができます。</P>
+<UL>
+  <LI>変更のフィードバックが直接かつ何度も必要となる時、あるいは
+そのダイアログの作業が文書ダイアログの作業と直接つながっている時は、全ての文書ウィンドウの手前に表示するフローティングパレットまたはツールバーと一緒に使用します。<BR>
+    <I>例: エディタウィジェット <IMG src="ender_palette.gif" width="95" height="21" border="0"></I><BR>
+  <LI>変更のフィードバックを直接必要としない時や、メインウィンドウの作業と直接つながっていない変更を行う時は、メインのインタフェースを乱さなくて済むよう、移動可能なモーダルダイアログと一緒に使用します。<BR>
+    <I>例: 設定ダイアログ</I><IMG src="next_prefs_win.gif" width="136" height="110" border="0"><I><BR>
+    </I> 
+</UL>
+<H2>設計詳細</H2>
+<H3>一般的なダイアログレイアウト構成</H3>
+<P>ダイアログは全て、同じようなダイアログモデルに従い、次の３つの主要なセクションに分かれています。</P>
+<table width="75%">
+  <tr bgcolor="#CCCCCC"> 
+    <td>内容エリア。必要とされる幅を基に、サイズ変更が可能なウィジェットまたはメッセージテキストがあります。</td>
+  </tr>
+  <tr background="gray90.gif"> 
+    <td>横方向のコマンドボタンエリア。プラットフォームに基づいたもので置き換えることができます。
+      表示位置: 下 最小の高さ: 30 ピクセル</td>
+  </tr>
+  <tr bgcolor="#9999CC"> 
+    <td><font color="#FFFFFF">オプション: ブランドエリア。
+ダイアログの所有者/発行元を区別します。(コンポーネントを基準とした世界では重要かもしれません)
+      表示位置: 左 最小の高さ: 30 ピクセル</font></td>
+  </tr>
+</table>
+<P>&nbsp; </P>
+<TABLE width="200" height="100">
+  <TBODY> 
+  <TR> 
+    <TD rowspan="2" bgcolor="#9999cc">&nbsp;</TD>
+    <TD width="90%" bgcolor="#cccccc">&nbsp;<BR>
+      <BR>
+      <BR>
+      <BR>
+      <BR>
+    </TD>
+  </TR>
+  <TR> 
+    <TD width="152" height="10" background="gray90.gif">&nbsp;</TD>
+  </TR>
+  </TBODY> 
+</TABLE>
+<H3>一般的なマージンと揃え方向</H3>
+<P>ダイアログとコンポーネントの間に空けるスペースの推奨値は次のとおりです。</P>
+<P>下と左のマージンは 11 ピクセル、上と右のマージンは 10 ピクセルを推奨します。</P>
+<P>ダイアログウィンドウの一般的なスタイルシートは次のようになります。</P>
+<P><font face="monospace">#body {margin-left: 11px; margin-right: 10px; margin-top:10 
+  px; margin-bottom:11px; background-color:#CCCCCC; font: message-box;}</font></P>
+<H3>フォントタイプ - フォントの使用法</H3>
+<P>フォントタイプの使用規則は単純なものです。<BR>
+  ダイアログは特定のフォントサイズ指定よりも、スタイルシートの指定の方に合わせられます。
+  デフォルトでは、私たちは CSS2 の &quot;font: message-box;&quot; をダイアログに指定します。<BR>
+  太字(ボールド)は使用しないで下さい。<BR>
+  イタリックも使用しないで下さい。<BR>
+  エディットフィールドに続くテキストは右揃えして下さい。<BR>
+  テキストラベルは短めになるよう心がけましょう。<BR>
+  <BR>
+</P>
+<H3>特定ウィジェットのマージンと揃え方向</H3>
+<P>私たちは、プラットフォームが異なればフォントサイズも異なり、
+  ロケールが異なればテキスト長も異なるだろうと思っています。
+  私たちが使っているのは、
+  (説明するために単純に考えれば) HTML に多少似ている柔軟性の高い XUL
+  アーキテクチャ(と書くと撞着語法になるでしょうか?)です。
+  従って、ダイアログ用にグリッドの固定したシステムは<B><I>指定しないで</I></B>、
+  大きいフォントサイズや長いテキストの時に大きくなり、
+  小さい幅で済む時に小さくできるような柔軟で拡張性の高いシステムを考え出すのがベストでしょう。
+  私たちはそれを目指して、Hyatt と Vaughan が作ったボックスレイアウトシステムを使おうとしているところです。
+  これに照らし合わせれば、コントロールの位置を x と y の絶対座標で指定しないで、
+  それぞれの相対的な間隔やグルーピングを調整する意味が出てきます。</P>
+<P>スタイルシートを使うことにより、コントロール自身が必要な余白を把握できます。
+  私たちはその方法で、最もよく使われるコントロールとそれらの間で必要となる最低限の間隔、
+  および必要に応じてグルーピング時の間隔についてここで記述していきます。
+  要するに、各ウィジェットの周りの「バッファゾーン」の設計を行います。
+  ここに書いたのは、デフォルトの見え方の基本的なスタイル属性です。
+  ボタンであれば、普通の状態、つまり押せる状態かつ押されていない状態で表しています。</P>
+<!-- 訳注 -->
+<P>(訳注: 撞着語法とは、本来は矛盾する意味の言葉同士をつなげて「熱い氷」のような表現を作る方法です。原文では「flexible」と「architecture[建築様式、建造物]」を指して言っているものと思われます。)</P>
+<!-- 訳注end -->
+<H4>コマンドボタン</H4>
+<P><BR>
+</P>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_cmdButton.gif" width="276" height="116" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: 1px; margin-bottom: 2px; border: 1px outset #CCCCCC; padding-left: 
+      4px; padding-right: 3px; padding-top: 3px; padding-bottom: 2px; background-color: 
+      #CCCCCC; </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<P> <I><BR>
+  ボタンの最小幅は 60 ピクセルほど必要です。
+  (<b>これをスタイルシートや Gecko でどう表すかについてはまだわかりません</b>)
+  全てのボタンの幅は、コマンドボタン行にある内側の余白が上に示した最も大きいボタンの幅に合うように、
+  その幅に合わせようとしています。</I> </P>
+<H4>イメージボタン<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_tbButton_imaonly.gif" width="156" height="128" border="0"><img src="widget_tbButton_imaleft_text.gif" width="336" height="128" border="0"><img src="widget_tbButton_imatop_text.gif" width="188" height="176" border="0"></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: 1px; margin-bottom: 1px; border: 1px outset #CCCCCC; padding-left: 
+      3px; padding-right: 3px; padding-top: 2px; padding-bottom: 2px; background-color: 
+      #CCCCCC; </font></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<h4>テキストラベル<BR>
+</h4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_label.gif" width="268" height="120" border="0"></td>
+    <td><font face="monospace" size="-1">margin: 0px; border: none; padding-left: 
+      4px; padding-right: 3px; padding-top: 5px; padding-bottom: 5px; background-color: 
+      #CCCCCC; </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H5>&nbsp;</H5>
+<H4>テキストエディットフィールド<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_textfield.gif" width="284" height="120" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: 1px; margin-bottom: 2px; border: 1px inset #CCCCCC; padding-left: 
+      4px; padding-right: 3px; padding-top: 3px; padding-bottom: 2px; background-color: 
+      #FFFFFF; </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>コンボボックス<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_combo.gif" width="340" height="116" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: 1px; margin-bottom: 2px; ほかは未決 </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>ポップアップメニューボタン<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_popup.gif" width="332" height="116" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: 1px; margin-bottom: 1px; border: 1px outset #CCCCCC; padding-left: 
+      4px; padding-right: 3px; padding-top: 3px; padding-bottom: 2px; background-color: 
+      #CCCCCC; </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>選択リストボックス<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_list.gif" width="328" height="256" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: 1px; margin-bottom: 1px; ほかは未決</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>&nbsp; </H4>
+<H4>チェックボックス<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_checkbox_label.gif" width="344" height="120" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: ???px; margin-bottom: 5px; border: none; padding: 0px; background-color: 
+      #CCCCCC;</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>ラジオボタン<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_radio_label.gif" width="328" height="120" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: ???px; margin-bottom: 5px; border: none; padding: 0px; background-color: 
+      #CCCCCC;</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>プログレスバー<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_progr.gif" width="276" height="116" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 4px; margin-right: 3px; 
+      margin-top: 1px; margin-bottom: 2px; border: 1px inset #CCCCCC; padding: 
+      1px; background-color: #CCCCCC;</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>&nbsp; </H4>
+<H4>横線を使ったグルーピング<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_line.gif" width="220" height="116" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 6px; margin-right: 5px; 
+      margin-top: 8px; margin-bottom: 9px; border: none; padding-left: 3px; padding: 
+      0px;</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>&nbsp; </H4>
+<H4>グループボックスを使ったグルーピング<BR>
+</H4>
+<table width="75%" border="0">
+  <tr valign="top"> 
+    <td><img src="widget_groupbox.gif" width="400" height="200" border="0"></td>
+    <td><font face="monospace" size="-1">margin-left: 6px; margin-right: 5px; 
+      margin-top: 5px; margin-bottom: 6px; border: 2px ridge #CCCCCC; padding-left: 
+      3px; padding-right: 2px; padding-top: ???; padding-bottom: 3px;</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<H4>&nbsp; </H4>
+<H3>典型的なコマンドボタン</H3>
+<H4>OK ボタンとキャンセルボタン</H4>
+<H4>適用ボタン</H4>
+<H4>ヘルプボタン</H4>
+<H4>ダイアログのデフォルトボタン</H4>
+<H3>コモンダイアログのテンプレート</H3>
+<h4>例: 設定ダイアログ面</h4>
+<h4><img src="prefs_example_anim.gif" width="545" height="438"></h4>
+<h4>例: 質問ダイアログ</h4>
+<i>次の例は、プラットフォーム特有のコマンドボタンの並び順を持つダイアログが、
+XULで一番下に代わりのコマンドボタン領域を設けるというモジュール化手法を使ったらどのような見え方になるのかを示しています。</i><br>
+<img src="next_acc_cookie_win.gif" width="341" height="170"> <img src="next_acc_cookie_mac.gif" width="341" height="170">
+<h4>&nbsp;</h4>
+<hr size="5" noshade width="400" align="left">
+<table border="0" cellpadding="4" width="100%">
+  <tr valign="top"> 
+    <td> 
+      <H2>問題</H2>
+    </td>
+    <td ></td>
+    <td></td>
+  </tr>
+</table>
+<H3>XUL/XPFE の可能性に関する問題:</H3>
+<P>本文の必要とする高さと幅に合わせてダイアログの幅を自動調整する必要がある。<BR>
+  XPFE は何ができるのか: モーダルは? 移動可能モーダルは? モードレスは? パレットは?<BR>
+  コマンドボタンの位置決め(訳注:原文は「div」としか書いていません)などのためにプラットフォーム特有の部分的な XUL が必要。</P>
+<P>行うべきこと: 仕様は外側をフレンドリーなものにする必要あり。そのためのグローバルで共有するスタイル属性も必要。<BR>
+</P>
+<p>&nbsp;</p>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/ui/communicator/framework/dialog_framework/index.html">英語版</a> 2000/12/22</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/ui/communicator/framework/dialog_framework/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

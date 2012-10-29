@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 TRANSITIONAL//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<!-- This page was created by the Gecko output system. -->
+<title>MLP - その他の地域化製品</title>
+
+<style type="text/css" media="screen,tv">
+     table.FF th { border-bottom: solid #FFA538; border-width: 0 0 3px 0; background: #FCD9AE; padding: 1px 0 1px 0; }
+     table.FF td { border-bottom: solid #FCD9AE; border-width: 0 0 1px 0; padding: 1px 0 1px 0; }
+     table.FF td a { white-space: nowrap; font-size-adjust: -1; }
+     table.TB th { border-bottom: solid #2194FF; border-width: 0 0 3px 0; background: #8CC7FF; }
+     table.TB td { border-bottom: solid #2194FF; border-width: 0 0 1px 0; }
+     table.TB td a { white-space: nowrap; font-size-adjust: -1; }
+     table.Cm th { border-bottom: solid #2B5CA7; border-width: 0 0 3px 0; background: #E9E9E9; }
+     table.Cm td { border-bottom: solid #2B5CA7; border-top: solid #E9E9E9; border-width: 1px 0 1px 0; }
+     table.Cm td a { white-space: nowrap; font-size-adjust: -1; }
+     td { vertical-align: top; } 
+     h1, h1 + p { text-align: center; }
+     h2, h3 {background-color: #FFC;}
+     a.sl { text-decoration: none; color: black; }
+     a:hover { text-decoration: underline; }
+</style>
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<!-- XPInstall Scripts -->
+<script type="text/javascript">
+
+function triggerURL(url) {
+   if (!InstallTrigger.updateEnabled())
+        return false;
+   else
+        InstallTrigger.startSoftwareUpdate(url);
+}
+
+function instWarning(xpi, lastinstalledlocale)
+{
+ if (navigator.userAgent.indexOf('Gecko') == -1)
+     alert ("This package is designed to be installed on Mozilla Gecko "+
+            "compatible browsers. "+
+            "Browse to ftp.mozilla.org to download locally this file and "+
+            "install it later on a Mozilla Gecko compatible browser.");
+ else if (!InstallTrigger.enabled())
+     alert ("The installation of this package requres you to enable "+
+            "online installations from the preferences.");
+ else {
+      document.cookie = 'lastinstalledlocale=' + escape(lastinstalledlocale);
+      InstallTrigger.install(xpi);
+      }
+}
+
+function setTBcookie (CookieTxt)
+{ document.cookie = 'TBlangpack=' + escape(CookieTxt); }
+</script>
+
+<!--
+Rev: 1.77 山口 syamagu @ mozilla.gr.jp
+Rev: 1.83 山口 
+http://moz.skillup.jp/jtp/viewtopic.php?t=1175
+
+Rev: 1.189 山口
+Rev: 1.200 山口
+Rev: 1.202 山口
+-->
+
+<link rel="alternate" hreflang="en" modified="May 5, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/l10n/mlp_otherproj.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<h1>その他の地域化プロジェクト</h1>
+
+<p><a href="news://news.mozilla.org/netscape.public.mozilla.l10n">ニュースグループ</a> /
+      <a href="mailto:mozilla-l10n-request@mozilla.org?subject=subscribe">メーリングリスト</a><br>
+      <a href="mailto:MLP&#32;Staff&#32;&lt;mlp-staff&#64;mozilla.org&gt;">Mozilla 地域化プロジェクト・スタッフ</a><br>
+      <a href="http://wiki.mozilla.org/L10n:Home_Page">L10n Wiki</a></p>
+
+<p><abbr title="Mozilla Localization Project"><b>MLP</b></abbr>&nbsp;
+［<a href="./">地域化プロジェクトホーム</a>］ | ［その他の地域化プロジェクト］</p>
+
+<h3>内容</h3>
+
+<p>Mozilla Organization は必ずしもインターネット・スイート（別名：Seamonkey）である Mozilla を意味する訳ではありません。mozilla.org のオープンコミュニティは、Mozilla を取り巻くその他数多くのコードツリーも管理しています。このページでは、Seamonkey プロジェクトの外側で、誰が、どこで、どのような地域化努力を進めているのかを追跡し、彼らの成果をリストしようと思います。</p>
+
+<p>サポートされているプロジェクトに関して、以下の情報を掲載します：</p>
+<ul type="circle">
+  <li> 登録されている地域化プロジェクト </li>
+  <li>関係者のコンタクト情報</li>
+  <li>そして貢献された成果</li>
+</ul>
+
+<p>現在、私たちは以下の mozilla.org プロジェクトを扱っています：</p>
+<ul>
+  <li><big><a href="mlp_status.html">Mozilla Application Suite（プロジェクト Seamonkey）</a></big><br>
+      ブラウザ、メール・ニュースグループクライアント、HTML ウェブページ・ビジュアルエディタ、IRC チャットクライアント、ウェブ開発ツール（JavaScript デバッガと DOM Inspector）が統合されたインターネット・スイート</li>
+  <li><big><a href="#firefox">Mozilla Firefox</big>（旧名：Firebird<span class="comment">【訳注：さらにその前は Phoenix】</span>）</a></li>
+  <li><big><a href="#thunderbird">Mozilla Thunderbird</a></big></li>
+  <li><big><a href="#camino">Mozilla Camino</a></big></li>
+</ul>
+
+<h2><a name="phoenix"><img src="../../images/ico-ff.png" height="32" width="32" alt=""></a> 
+          <a name="firebird">Mozilla</a> <a name="firefox">Firefox</a></h2>
+
+<p>ローカライゼーションプロジェクトとツリー管理は、<a href="/projects/firefox/l10n/">Firefox ウェブサイト</a> で行われています</a>。
+
+<p>ここに掲載されている貢献者は全てボランティアで、Mozilla Firefox を自分たちの言語で利用できるように頑張っています。もしあなたの言語が掲載されていないのなら、あるいは登録されている人を支援したいのなら（リストの一番右の欄は提供された最新の地域化リリースを表示しています）、<a href="http://texturizer.net/firebird/localize.html">Mozilla Firefox の地域化の方法</a>（そして <a href="mlp_howto.html">Mozilla の地域化の方法</a>）を読んで、既に登録されている貢献者に連絡を取り、ニュースグループか <a href="mailto:MLP&#32;Staff&#32;&lt;mlp-staff&#64;mozilla.org&gt;">MLP スタッフ</a> を経由してご自分を貢献者として登録してください。</p>
+
+
+<h3><img src="../../images/ico-ff.png" height="16" width="16" alt=""><b>
+<a name="phx_contrib">Mozilla</a> <a name="frb_contrib">Firefox</a> <a name="ffox_contrib">ダウンロード</a></b></h3>
+
+<p>以下に掲載するのは私たちの <font size="+2"><a href="#firefox">貢献者</a></font> によって提供された地域化された製品です。公式の <a href="http://www.mozilla.org/projects/firefox/">プロジェクトページ</a>（<a href="../firefox/">和訳</a>）で Mozilla Firefox についてのより詳しい情報を得ることができます。</p>
+
+
+
+<!--和訳に際しての省略の断り書き-->
+<div class="trinfo">
+  <p class="em">お断り</p>
+  
+  <p class="text">以下のリストは日本語に関連するもののみを掲載しています。その他の言語 / リリースに関する情報をご覧になりたい方は <a href="http://www.mozilla.org/projects/l10n/mlp_otherproj.html">オリジナルの文書</a> をご覧ください。</p>
+
+  <p class="jtp"><a href="http://www.mozilla-japan.org/jp/td/">翻訳部門</a></p>
+</div>
+
+<table class="FF" cellspacing="2" cellpadding="2" width="87%">
+ <thead>
+  <tr> 
+    <th>リリース</th>
+    <th>言語</th>
+    <th abbr="Builds">地域化されたフルビルド</th>
+  </tr>
+ </thead>
+ <tbody>
+<!-- /---------------------------------------------------------------------\
+     |>> >  >   >    >       Firefox Downloads table       <    <   <  < <<|
+     \---------------------------------------------------------------------/ --> 
+
+  <tr>
+    <td rowspan="1"><a name="ffox_0.10"></a>Firefox&nbsp;1.0PR</td>
+    
+    <td><a class="sl" href="#mlp_ja-JP">日本語</a></td>
+    <td>インストール可能な言語パック： <a href="postinst-notes/ff08.html" onclick="javascript:
+         xpi = {'Japanese Firefox Language Pack': 'http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.10.1/contrib-localized/firefox-1.0PR.ja-JP.mac.langpack.xpi'};
+         instWarning(xpi,'ja-JP');">mac</a>、
+      <a href="postinst-notes/ff08.html" onclick="javascript:
+         xpi = {'Japanese Firefox Language Pack': 'http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.10.1/contrib-localized/firefox-1.0PR.ja-JP.langpack.xpi'};
+         instWarning(xpi,'ja-JP');">win/unix</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.10.1/contrib-localized/firefox-1.0PR.ja-JP.win32.installer.exe">Win32 インストーラ</a>
+</td>
+  </tr>
+  <tr>
+  </tr>
+
+  <tr>
+    <td colspan="3"><a name="ffox_0.9.3"></a>Firefox&nbsp;0.9.3 の日本語版は登録されていません。</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="ffox_0.9.1"></a>Firefox&nbsp;0.9.1<br>
+                                             Firefox&nbsp;0.9.2</td>
+    
+    <td><a class="sl" href="#mlp_ja-JP">日本語</a></td>
+    <td>インストール可能な言語パック： <a href="postinst-notes/ff08.html" onclick="javascript:
+         xpi = {'Japanese Firefox Language Pack': 'http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9.1/contrib-localized/firefox-0.9.1-jaJP-langpack-mac.xpi'};
+         instWarning(xpi,'ja-JP');">mac</a>、
+      <a href="postinst-notes/ff08.html" onclick="javascript:
+         xpi = {'Japanese Firefox Language Pack': 'http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9.1/contrib-localized/firefox-0.9.1-jaJP-langpack-unix.xpi'};
+         instWarning(xpi,'ja-JP');">unix</a>、
+      <a href="postinst-notes/ff08.html" onclick="javascript:
+         xpi = {'Japanese Firefox Language Pack': 'http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9.1/contrib-localized/firefox-0.9.1-jaJP-langpack-win.xpi'};
+         instWarning(xpi,'ja-JP');">win</a>、<br>
+      <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9.1/contrib-localized/firefox-0.9.1-i686-pc-linux-gtk2+xft-jaJP.tar.gz">Linux x86 GTK2 tar.gz</a>、<br>
+
+      <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9.2/contrib-localized/firefox-0.9.2-win32-jaJP.zip">Win32 zip</a>、<br>
+      <a href="http://ftp.mozilla.org/public/mozilla.org/firefox/releases/0.9.2/contrib-localized/firefox-0.9.2-win32-jaJP-installer.exe">Win32 フルインストーラ</a>
+</td>
+  </tr>
+  <tr>
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="ffox_0.9"></a>Firefox&nbsp;0.9</td>
+    
+    <td><a class="sl" href="#mlp_ja-JP">日本語</a></td>
+    <td>インストール可能な言語パック： <a href="postinst-notes/ff08.html" onclick="javascript:
+         xpi = {'Japanese Firefox Language Pack': 'http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9/contrib-localized/firefox-0.9-jaJP-langpack-mac.xpi'};
+         instWarning(xpi,'ja-JP');">mac</a>、
+      <a href="postinst-notes/ff08.html" onclick="javascript:
+         xpi = {'Japanese Firefox Language Pack': 'http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9/contrib-localized/firefox-0.9-jaJP-langpack-unix.xpi'};
+         instWarning(xpi,'ja-JP');">unix</a>、
+      <a href="postinst-notes/ff08.html" onclick="javascript:
+         xpi = {'Japanese Firefox Language Pack': 'http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9/contrib-localized/firefox-0.9-jaJP-langpack-win.xpi'};
+         instWarning(xpi,'ja-JP');">win</a>、<br>
+      <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9/contrib-localized/firefox-0.9-i686-pc-linux-gtk2+xft-jaJP.tar.gz">Linux x86 GTK2 tar.gz</a>、<br>
+
+      <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.9/contrib-localized/firefox-0.9-win32-jaJP-installer.exe">Win32 フルインストーラ</a>
+</td>
+  </tr>
+  <tr>
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="ffox_0.8"></a>Firefox&nbsp;0.8</td>
+    
+    <td>日本語</td>
+    <td>
+	<a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.8/contrib-localized/firefox-0.8-i686-pc-linux-gnu-jaJP.tar.gz">Linux x86 GTK tar.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.8/contrib-localized/firefox-0.8-i686-pc-linux-gtk2+xft-jaJP.tar.gz">Linux x86 GTK2+XFT tar.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.8/contrib-localized/firefox-0.8-win32-jaJP-installer.exe">Win32 フルインストーラ</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firefox/releases/0.8/contrib-localized/firefox-0.8-win32-jaJP.zip">Win32 zip</a>
+</td>
+  </tr>
+  <tr>
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="fireb_0.7"></a>MozillaFirebird&nbsp;0.7<br>
+                                             MozillaFirebird&nbsp;0.7.1</td>
+    
+    <td><a class="sl" href="#mlp_ja-JP">日本語</a></td>
+    <td><a href="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7.1-mac-jaJP.dmg.gz">Mac OS X dmg.gz バージョン 0.7.1</a>、<br><br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-i686-pc-linux-gnu-jaJP.tar.gz">Linux x86 GTK tar.gz</a>、<br>
+
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-i686-linux-gtk2+xft-jaJP.tar.gz">Linux x86 GTK2+XFT tar.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-mac-jaJP.dmg.gz">Mac OS X dmg.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-win32-jaJP-installer.exe">Win32 フルインストーラ</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-win32-jaJP.zip">Win32 zip</a></td>
+  </tr>
+
+  
+ 
+  <tr>
+    <td rowspan="1"><a name="fireb_0.61"></a>MozillaFirebird&nbsp;0.6.1</td>
+    
+    <td>日本語</td>
+    <td><a href="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.6.1/contrib-localized/MozillaFirebird-0.6.1-mac-jaJP.dmg.gz">Mac OS X gzipped disk img</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.6.1/contrib-localized/MozillaFirebird-0.6.1-win32-jaJP-installer.exe">Win32 フルインストーラ</a></td>
+  </tr>
+
+  <tr>
+    <td colspan="3"><a name="fireb_0.6"></a>Mozilla Firebird&nbsp;0.6 以前の日本語版ビルドは登録されていません。</td>
+  </tr>
+
+ </tbody>
+</table>
+
+
+<h2><img src="../../images/ico-tb.gif" height="34" width="34" alt=""> <a name="thunderbird">Mozilla Thunderbird</a></h2>
+
+<p>以下に掲載するのは、登録された地域化プロジェクトと各チームのコンタクト情報です。</p>
+
+<p>ここに掲載されている貢献者は全てボランティアで、Mozilla Thunderbird を自分たちの言語で利用できるように頑張っています。もしあなたの言語が掲載されていないのなら、あるいは登録されている人を支援したいのなら（リストの一番右の欄は提供された最新の地域化リリースを表示しています）、<a href="mlp_howto.html">Mozilla の地域化の方法</a> を読んで、既に登録されている貢献者に連絡を取り、ニュースグループか <a href="mailto:MLP&#32;Staff&#32;&lt;mlp-staff&#64;mozilla.org&gt;">MLP スタッフ</a> を経由してご自分を貢献者として登録してください。</p>
+
+  <!--和訳に際しての省略の断り書き-->
+<div class="trinfo">
+  <p class="em">お断り</p>
+  
+  <p class="text">以下のリストは日々更新されており、残念ながら全てを和訳に反映することはできません。より詳しい状況を確認したい方は <a href="http://www.mozilla.org/projects/l10n/mlp_otherproj.html">オリジナルの文書</a> をご覧ください。</p>
+
+  <p class="jtp"><a href="http://www.mozilla-japan.org/jp/td/">翻訳部門</a></p>
+</div>
+
+<table class="TB" cols="3" width="93%"
+   summary="Registered contributors table for MLP Thunderbird">
+ <thead>
+  <tr>
+    <th abbr="Lang">言語<small>（ロケールコード）</small><br/><small>登録済チーム数：
+
+    25
+
+    </small></th>
+    <th abbr="Team">貢献者</th>
+    <th abbr="Links">地域化ウェブサイトなど ...</th>
+    <th nowrap abbr="Latest" title="Shows the latest commited work"><small>最新登録済リリース</small></th>
+
+  </tr>
+ </thead>
+ <tbody>
+    
+  <tr>
+   <td colspan="4"><p class=snip>... 略 ...</p></td>
+  </tr>
+ 
+  <tr>
+   <td><a name="mlp_tb_ja-JP"></a>日本語<small>（ja-JP）</font></td>
+   <td><a href="mailto:Mozilla&#32;Japanese&#32;Localization&#32;Team&#32;&lt;moz&#45;&#10;&#108;&#112;&#64;mozill&#97;&#46;&#103;&#114;.jp&gt;">Mozilla Japan ローカライズセンター</a></td>
+   <td><a href="http://www.mozilla-japan.org/jp/l10n/">ローカライズセンター</a></td>
+   <td><a href="#thund_0.8">v1.0</a></td>
+  </tr>
+
+  <tr>
+   <td colspan="4"><p class=snip>... 略 ...</p></td>
+  </tr>
+ </tbody>
+</table>
+
+
+
+      <h3><img src="../../images/ico-tb.gif" height="16" width="16" alt=""><b><a name="thb_contrib"> Mozilla Thunderbird ダウンロード</a></b></h3>
+
+<p>以下に掲載するのは私たちの <big><a href="#thunderbird">貢献者</a></big> によって提供された地域化された製品です。公式の <a href="http://www.mozilla.org/projects/thunderbird/">プロジェクトページ</a>（<a href="../../projects/thunderbird/">和訳</a>）で Mozilla Thunderbird についてのより詳しい情報を得ることができます。</p>
+
+
+
+<!--和訳に際しての省略の断り書き-->
+<div class="trinfo">
+  <p class="em">お断り</p>
+  
+  <p class="text">以下のリストは日本語に関連するもののみを掲載しています。その他の言語 / リリースに関する情報をご覧になりたい方は <a href="http://www.mozilla.org/projects/l10n/mlp_otherproj.html">オリジナルの文書</a> をご覧ください。</p>
+
+  <p class="jtp"><a href="http://www.mozilla-japan.org/jp/td/">翻訳部門</a></p>
+</div>
+
+
+<table class="TB" cellspacing="2" cellpadding="2" width="87%">
+ <thead>
+  <tr> 
+    <th>リリース</th>
+    <th>言語</th>
+    <th abbr="Builds">地域化済フルビルド</th>
+  </tr>
+ </thead>
+ <tbody>
+<!-- /---------------------------------------------------------------------\
+     |>> >  >   >    >     Thunderbird Downloads table     <    <   <  < <<|
+     \---------------------------------------------------------------------/ --> 
+
+  <tr>
+
+    <td rowspan="1"><a name="thund_1.0"></a>Thunderbird&nbsp;1.0</td>
+    <td><a class="sl" href="#mlp_tb_ja-JP">日本語</a></td>
+
+    <td><a href="postinst-notes/tb03.html" onclick="javascript:setTBcookie('Japanese,1.0,ja-JP,ja-JP')">ンストール可能な言語パック</a>,<br>
+     <a href="postinst-notes/tb03.html" onclick="javascript:setTBcookie('Japanese (mac),1.0,ja-JPM,ja-JP')">ンストール可能な言語パック （Mac）</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/1.0/contrib-localized/thunderbird-1.0.ja-JP.linux-i686.tar.gz">Linux x86 tar.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/1.0/contrib-localized/thunderbird-1.0.ja-JP.win32.installer.exe">Win32 インストーラ</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/1.0/contrib-localized/thunderbird-1.0.ja-JP.mac.dmg.gz">Mac OS X 圧縮ディスクイメージ</a></td>
+
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="thund_0.8"></a>Thunderbird&nbsp;0.8</td>
+    <td>日本語</td>
+    <td><a href="postinst-notes/tb03.html" onclick="javascript:setTBcookie('Japanese,0.8,ja-JP,ja-JP')">インストール可能な言語パック（windows）</a>、<br>
+     <!-- <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.8/contrib-localized/thunderbird-0.8.ja-JP.linux.i686.tar.gz">Linux x86 GTK2 tar.gz</a>、<br> -->
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.8/contrib-localized/thunderbird-0.8.ja-JP.win32.installer.exe">Win32 フルインストーラ</a></td>
+  </tr>
+
+  <tr>
+    <td colspan="3"><a name="thund_0.7.3"></a>Thunderbird&nbsp;0.7.3 の日本語版は登録されていません。</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="thund_0.7.1"></a>Thunderbird&nbsp;0.7.1<br>
+                                              Thunderbird&nbsp;0.7.2</td>
+    <td>日本語</td>
+    <td><a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.7.1/contrib-localized/thunderbird-0.7.1-i686-pc-linux-gtk2+xft-jaJP.tar.gz">Linux x86 GTK2 tar.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.7.2/contrib-localized/thunderbird-0.7.2-win32-jaJP.zip">Win32 zip</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.7.2/contrib-localized/thunderbird-0.7.2-win32-jaJP-installer.exe">Win32 フルインストーラ</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="thund_0.7"></a>Thunderbird&nbsp;0.7</td>
+    <td>日本語</td>
+    <td><a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.7/contrib-localized/thunderbird-0.7-i686-pc-linux-gtk2+xft-jaJP.tar.gz">Linux x86 GTK2+XFT tar.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.7/contrib-localized/thunderbird-0.7-win32-jaJP-installer.exe">Win32 フルインストーラ</td>
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="thund_0.6"></a>MozillaThunderbird&nbsp;0.6</td>
+    <td>日本語</td>
+    <td><a href="postinst-notes/tb03.html" onclick="javascript:setTBcookie('Japanese,0.6,jaJP,ja-JP')">インストール可能な言語パック</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-i686-pc-linux-gtk2+xft-jaJP.tar.gz">Linux x86 GTK2+XFT tar.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-macosx-jaJP.dmg.gz">Mac OS X dmg.gz</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-win32-jaJP-installer.exe">Win32 フルインストーラ</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-win32-jaJP.zip">Win32 zip</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="1"><a name="thund_0.5"></a>MozillaThunderbird&nbsp;0.5</td>
+    <td>日本語</td>
+    <td><a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.5/contrib-localized/thunderbird-0.5-linux-gtk2-xft-jaJP.tar.bz2">Linux x86 GTK2+XFT tar.bz2</a>、<br>
+       <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.5/contrib-localized/thunderbird-0.5-macosx-jaJP.dmg.gz">Mac OS X Compressed DiskImg</a>、<br>
+       <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.5/contrib-localized/thunderbird-0.5-win32-jaJP.zip">Win32 zip</a></td>
+  </tr>
+
+
+  <tr>
+    <td rowspan="1"><a name="thund_0.4"></a>MozillaThunderbird&nbsp;0.4</td>
+    <td>日本語</td>
+    <td>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-i686-pc-linux-gtk2-gnu-jaJP.tar.bz2">Linux x86 GTK2+XFT tar.bz2</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-win32-jaJP-installer.exe">Win32 フルインストーラ</a>、<br>
+     <a href="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-win32-jaJP.zip">Win32 zip</a></td>
+  </tr>
+
+
+  <tr>
+    <td colspan="3"><a name="thund_0.3"></a>MozillaThunderbird&nbsp;0.3 以前の日本語版ビルドは登録されていません。</td>
+
+  </tr>
+ </tbody>
+</table>
+
+
+<h2><img src="../../images/ico-cam.png" height="34" width="34" alt=""><a name="camino">Mozilla Camino</a></h2>
+
+<p>以下に掲載するのは、登録された地域化プロジェクトと各チームのコンタクト情報です。</p>
+
+<p>ここに掲載されている貢献者は全てボランティアで、Mozilla Camino を自分たちの言語で利用できるように頑張っています。もしあなたの言語が掲載されていないのなら、あるいは登録されている人を支援したいのなら（リストの一番右の欄は提供された最新の地域化リリースを表示しています）、&gt;&gt;地域化担当者からの資料が必要です&lt;&lt;、既に登録されている貢献者に連絡を取り、ニュースグループか <a href="mailto:MLP&#32;Staff&#32;&lt;mlp-staff&#64;mozilla.org&gt;">MLP スタッフ</a> を経由してご自分を貢献者として登録してください。</p>
+
+<!--和訳に際しての省略の断り書き-->
+<div class="trinfo">
+  <p class="em">お断り</p>
+  
+  <p class="text">以下のリストは日本語に関連するもののみを掲載しています。その他の言語 / リリースに関する情報をご覧になりたい方は <a href="http://www.mozilla.org/projects/l10n/mlp_otherproj.html">オリジナルの文書</a> をご覧ください。</p>
+
+  <p class="jtp"><a href="http://www.mozilla-japan.org/jp/td/">翻訳部門</a></p>
+</div>
+
+<table class="Cm" cols="3" width="93%"
+   summary="Registered contributors table for MLP Camino">
+ <thead>
+  <tr>
+    <th abbr="Lang">言語<small>（ロケールコード）</small><br/><small>登録済チーム数：
+
+    0
+
+    </small></th>
+    <th abbr="Team">貢献者</th>
+    <th abbr="Links">地域化ウェブサイトなど ...</th>
+    <th abbr="Latest" title="Shows the latest commited work"><small>最新登録済リリース</small></th>
+  </tr>
+
+ </thead>
+ <tbody>
+    
+<tr>
+   <td>Japanese (ja-JP)</td>
+   <td><em>Waverider*</em></td>
+   <td>&nbsp;</td>
+   <td align="center">0.8.2<sup>(1)</sup></td>
+</tr>
+
+  <tr>
+   <td colspan="4"><hr style="height: 1px; color: black;"></td>
+  </tr>
+
+  <tr>
+
+   <td colspan="4"><sup>(1)</sup> 公式国際版で利用可能<br>
+   <sup>(2)</sup> <a href="http://caminol10n.mozdev.org/">caminol10n mozdev.org プロジェクト</a> からのスタンドアローンインストーラとして利用可能</td>
+  </tr>
+
+ </tbody>
+</table>
+
+
+<h3><img src="../../images/ico-cam.png" height="16" width="16" alt=""><b><a name="cmn_contrib"> Mozilla Camino ダウンロード</a></b></h3>
+
+<p>以下に掲載するのは私たちの <font size="+2"><a href="#camino">貢献者</a></font> によって提供された地域化された製品です。公式の <a href="http://www.mozilla.org/projects/camino/">プロジェクトページ</a>（<a href="../camino/">和訳</a>）で Mozilla Camino についてのより詳しい情報を得ることができます。</p>
+
+
+
+<table class="Cm" cellspacing="2" cellpadding="2" width="87%">
+ <thead>
+  <tr> 
+    <th>リリース</th>
+    <th>言語</th>
+    <th abbr="Builds">地域化済フルビルド</th>
+  </tr>
+ </thead>
+ <tbody>
+<!-- /---------------------------------------------------------------------\
+     |>> >  >   >    >        Camino Downloads table       <    <   <  < <<|
+     \---------------------------------------------------------------------/ --> 
+
+  <tr>
+    <td colspan="3" align="center">mozdev.org にある <a href="http://caminol10n.mozdev.org/">Camino L10n project</a> が提供します。</td>
+
+  </tr>
+
+ </tbody>
+</table>
+
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/l10n/mlp_otherproj.html">英語版</a> 2005/05/05</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/l10n/mlp_otherproj.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

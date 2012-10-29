@@ -1,0 +1,1236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Mozilla アクセシビリティ・アーキテクチャー</title>
+  <style>
+  <!--
+  a.classname {background-color: white; border: 1px solid black; margin: 2px; padding-left: .5em; padding-right: .5em;}
+  a.classname:hover {background-color: #fee; border: 3px solid gray; margin: 0px;}
+  a.classname:focus {background-color: #fee; border: 3px solid gray; margin: 0px;}
+
+  h2 {
+	  font: bold;
+	  font-size: x-large;
+	  background: steelblue;
+	  color: white;
+	  margin-top: 1em;
+	  margin-bottom: 1em;
+	  padding-left: 1em;
+	}
+  .classdiagram { background-color: #fff;}
+  .leftbox {
+    position: relative;
+	top:30px
+	width:100px;
+	float: left;
+	border:1px solid #000;
+	font-size: 100%;
+	z-index: 1;
+	}
+  .medium {padding-top: 1.5em;}
+  .bigclass {
+    position: relative;
+	padding: 5px;
+	top: -1em;
+	height: 13em;
+	left: 1em;
+	width: 13em;
+  }
+  .smallclass {
+   padding-top: 5px;
+   padding-bottom: 5px;
+  }
+  .mediumclass {
+   padding-top: 5px;
+   padding-bottom: 5px;
+  }
+
+  .details {
+   border: 1px dotted black;
+   max-width: 15em;
+   font-size: 80%;
+   font-style: italic;
+   background-color: white;
+   padding-left: .5em;
+   padding-right: .5em;
+   margin: 2px;
+  }
+  .attention {
+    border: 1px solid black;
+	padding: 1em;
+	background-color: beige;
+	font-size: 120%;
+	margin-bottom: 0.5em;
+	}
+  -->
+  
+  
+  
+  .trinfo { 
+	border: 1px dashed #999;
+	background-color: #f3f3f3;
+	color: #000; padding: 1em;
+	font-size: small;
+}
+.em {
+	text-align: center;
+	font-size: 200%;
+}
+.text {
+	margin-left: 2em;
+	margin-right: 2em;
+	text-align: center;
+}
+.td {
+	margin-right: 2em;
+	text-align: right;
+	font-size: 80%;
+}
+
+
+  </style>
+  <script language="javascript">
+function handleKeyPress(event)
+{
+  var newFocus = 0;
+  if (event.charCode == 0x50) { // VK_P
+    event.preventDefault();
+    newFocus = event.target.getAttribute('parent');
+  }
+  if (event.charCode == 0x4e) { // VK_N
+    event.preventDefault();
+    newFocus = event.target.getAttribute('nextsibling');
+  }
+  if (event.charCode == 0x46) {  // VK_F
+    event.preventDefault();
+    newFocus = event.target.getAttribute('firstchild');
+  }
+
+  if (event.charCode == 0x56) {  // VK_V
+    event.preventDefault();
+	newFocus = event.target.getAttribute('id');
+    var elements = document.getElementsByTagName('a');
+    for (var count = 0; count< elements.length; count++) {
+  	  if (elements[count].getAttribute('nextsibling') == newFocus) {
+	    newFocus = elements[count].getAttribute('id');
+	  }
+	}
+  }
+  if (newFocus) {
+    try {
+		document.getElementById(newFocus).focus();
+	} catch(ex) {}
+  }
+}
+
+function showDetailedView(showDetails)
+{
+  var newStyle = showDetails? '': 'display: none;';
+  var elements = document.getElementsByTagName('div');
+  for (var count = 0; count< elements.length; count++) {
+    if (elements[count].getAttribute('class') == 'details') {
+	  elements[count].setAttribute('style', newStyle);
+	}
+  }
+}
+  </script>
+
+<!--
+
+1.7	aaronleventhal%moonset.net	2004-09-10 06:32	 	Renaming file
+
+-->
+
+</head>
+<body>
+
+<h1>Mozilla アクセシビリティ・アーキテクチャー</h1>
+<h3><i>Aaron Leventhal へのフィードバック- aaronleventhal<span style="letter-spacing: -0.1em;">@ m o o n s e t&nbsp; . </span>net 
+にお願いします。</i></h3>
+<div style="margin-left: 40px;"><a href="#Intro">1. 始めに</a><br>
+<br>
+<a href="#Accessible_Nodes_and_Interfaces"> 2. アクセス可能なノードと
+インターフェイス</a><br>
+<div style="margin-left: 40px;"><a href="#MSAA_tree_vs._DOM_tree">アクセシビリティのツリーは DOM ツリーのサブセット (Subset) </a><br>
+<a href="#directories">アクセシビリティ API モジュール・ディレクトリー構造</a><br>
+<a href="#Wrap_Classes">ツールキットに固有のコードを置く場所</a><br>
+<a href="#Class_Inheritence_Diagram">アクセシビリティ API モジュール・クラスの継承図(キーボード操作可能!)</a><br>
+<br>
+</div>
+<a href="#Traversing_the_Tree">3. アクセス可能なツリーと探索</a><br>
+<div style="margin-left: 40px;"><a href="#Traversal_Calling_Sequence">探索呼出しシーケンス</a></div>
+<div style="margin-left: 40px;"><a href="#Traversal_Overloading">探索メソッドのオーバーロード</a><br>
+<br>
+</div>
+<a href="#Accessible_Events">4. アクセシビリティのイベント</a><br>
+<div style="margin-left: 40px;"><a href="#Examples_of_Gecko_Event_to_Accessible">Gecko イベントからアクセシビリティ・イベントへの翻訳リスト</a><br>
+<a href="#DOM_Mutation_Events">DOM ミューテーションイベント - 多重的使用</a><br>
+<a href="#Unique_32-bit_Identifiers_in_MSAA">MSAA における一意の 32 ビット識別子</a><br>
+<br>
+</div>
+<a href="#Accessible_Cache"> 5. アクセシビリティのキャッシュ</a><br>
+<div style="margin-left: 40px;"><a href="#Purposes_of_the_Accessibility_Cache">なぜアクセシビリティ・キャッシュが必要か</a><br>
+<a href="#Three_Levels_of_the_Accessibility_Cache">アクセシビリティ・キャッシュの 3 つのレベル</a><br>
+<a href="#nsAccessNode">nsAccessNode の役割</a><br>
+<a href="#Init">nsAccessNode::Init()</a><br>
+<a href="#Shutdown">nsAccessNode::Shutdown()</a><br>
+<a href="#Challenges_of_the_Accessibility_Cache">アクセシビリティ・キャッシュの課題</a><br>
+</div>
+<br>
+<a href="#Future_Directions"> 6. 将来の方向性</a><br>
+</div>
+<h2>1. <a name="Intro"></a>始めに</h2>
+<p style="margin-left: 40px;">この資料は Mozilla の アクセシビリティ API モジュールを理解したい人々に向けて、プラットフォームのアクセシビリティ API へのサポートを提供します。アクセシビリティ API はスクリーンリーダー、スクリーン拡大鏡、音声検知ソフトウエアーなどサードパーティのソフトウエアーによって使用されますが、この事で、フォーカスの変更のような重要なイベントについてだけでなく、ドキュメントの内容についての情報や UI のコントロールについての情報が必要になります。Mozilla は　Windows 上の MSAA や Linux/Unix 上の ATK という二つのアクセシビリティ API をサポートします。しかし Apple の OS X用の Carbon アクセシビリティ・モデルは現在サポートしていません。</p>
+<div style="margin-left: 40px;"> </div>
+<p style="margin-left: 40px;"> <a href="http://www.mozilla.org/access/windows/msaa-server"> MSAA を実装するためのドキュメントのサーバー</a>が変更になりました。また、どのように MSAA クライアントが Gecko のサポートを利用できるかについて、第三者ソフトウエアー・ベンダー向け手引書である <a href="http://www.mozilla.org/access/windows/at-apis"> Gecko
+Info for Windows Accessibility Vendors</a> を読むことも可能です。もし、Linux や UNIX のアクセシビリティに興味をお持ちならば、<a href="http://www.mozilla.org/projects/ui/accessibility/unix/">Mozilla ATK プロジェクトページ</a> をお調べ下さい。</p>
+<div style="margin-left: 40px;"> </div>
+<p style="margin-left: 40px;">この資料の読者はインターフェイス、W3C DOM、XUL、レイアウトオブジェクト・ツリーの概念に通じていることが必要です。<br>
+</p>
+<h2>2. <a name="Accessible_Nodes_and_Interfaces"></a>アクセシビリティのノードとインターフェイス</h2>
+<div style="margin-left: 40px;"> <p>各オペレーティングシステムのアクセシビリティ API は、次のような点について固有の前提を備えてます： 最も重要な情報は何か、Mozilla のようなアクセシビリティ・サーバが API のプログラム・インターフェースをどのように使用して、この情報をアクセシビリティ・クライアント（補助テクノロジー）に渡すべきかといった点についてです。各プラットフォームのアクセシビリティ API は、異なる条件を備えていますが、共通の特徴が数多くあります。たとえばすべて、各オブジェクトのアクセシビリティの名前や、テキスト表示を公表し、限定されたリストから列挙整数値を使用して、オブジェクトの役割を公表します。アクセシビリティの役割の定数は、ROLE_BUTTON、ROLE_CHECKBOX および ROLE_LIST であり、各 API によって名前や数値が少し異なる可能性はあります。一般的に、アクセシビリティの API は類似する概念を備えますが、メソッド、定数、インターフェイスなどの名前は異なります。</p>
+<p>アクセシビリティ API ツールキット間に共通性が高いことを考えると、クロスプラットフォーム風にコードについて書いてから、一貫した方法で<a href="#Wrap_Classes">プラットフォームの違いを処理する</a>と自然です。 公表したいオブジェクトの情報を返す標準の XPCOM のインターフェイスによって、共通化されたコードがツールキット特有のコードへ適応可能となります。フォーカス可能なすべてのノード、テーブル、テキストには、アクセシビリティのインターフェイスがあります。これらのオブジェクトは「アクセシビリティのノード」と呼ばれます。これらの各ノードは、最低でも、標準のクロスプラットフォームなアクセシビリティ・インターフェイスである <a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/nsIAccessible.idl">nsIAccessible</a> （テキストの名前、列挙された役割識別子、状態フラグ一式を提供します)と、時には追加のインターフェイスをサポートします。たとえば、テーブルは nsIAccessibleTable を、テキストは nsIAccessibleText を、エディット・ボックスは nsIEditableText をサポートします。ただし、nsIAccessible は現在 Windows で使用されていないために、ATK の特定のデイレクトリーに移動しています。私たちは、複数あるリッチな ATK インターフェイスを Windows 上でサポートする可能性を排除するつもりはありません。</p>
+<p>ツールキット特有のクラスはその結果、XPCOM インターフェイスを使用して、公表したいオブジェクトについての情報を収集し、必要な変更を行い、そして、Windows 上で Microsofit COM や、Linux/Unix上で GTK2 の ATK API を使用します。<br></p>
+<p>補助テクノロジーはその時、この情報を様々に使用することが出来ます。ドキュメント全部をすぐに読み込む、最近のイベント関連のドキュメントのみを見る、あるいは画面の位置に基づいてアクセシビリティのオブジェクト・モデルを探索するなどです。</p>
+</div>
+<h3 style="margin-left: 40px;"><a name="MSAA_tree_vs._DOM_tree"></a>アクセシビリティのツリーは DOM ツリーの下位のノードのみから成る</h3>
+<div style="margin-left: 40px;">
+<p>すべの DOM ノードがアクセシビリティ API ツールキットによって公表されるわけではなく、ツールキットの開発者が重要であるとみなすもののみが、公表されます。Mozilla は独自のアクセシビリティ・オブジェクトを維持しています。これは DOM ツリーに似ていますが、完全に同じような構造を保っているわけではありません。 
+</p>
+
+<ul>
+      <img src="tree-relativity.gif" alt="Diagram showing MSAA tree is a subset of the DOM tree" title="MSAA ツリーを示す図は、DOM ツリーの下位集合である">
+</ul>
+<p>
+上記：MSAA ツリーを示す図は、DOM ツリーの下位集合です。他のアクセシビリティ API の状況も同様です。
+</p>
+<p>
+  補助テクノロジー・ベンダーが知りたいのに、公表されていない DOM ノードがあるとすればどうなる ？ というのは問題です。CSS 規則、タグの名前と属性などの DOM 情報を知りたいのに、MSAA の IAccessible が提供していなければどうなる ? というのも問題です。
+</p>
+<p>Windows 上では、MSAA の IAccessible を飛び越してすべての DOM ノード用の追加インターフェイスをサポートすることで、私たちはこの問題を解決します。<code>QueryInterface()</code> は、二つのインターフェイス間を切り替えるのに使用することが出来ます。DOM ノード用に MSAA のノードが存在しないならば、&nbsp; pAccessible -&gt;<code> QueryInterface(IID_IAccessible)</code> が null を返します。さらに、テキストノードよりも小さなテキストの断片（例：単語）の情報とサポートの提供を私たちに依頼して来たベンダーもありました。そして、このために Mozilla が ISimpleDOMText をサポートします。</p>
+
+<p>ATK では、現実の DOM 情報を取得するインターフェイスはありません。Mozilla の ATK サポートを管理している Sun Microsystems は、ATK が十分にリッチで、Sun Microsystems で求められる補助テクノロジーの全てを提供できると考えています。</p>
+</div>
+<h3><a name="directories">アクセシビリティ API モジュール・ディレクトリー構造</a></h3>
+<div style="margin-left: 40px;"> <a name="directories"> </a>
+<p><a name="directories">ディレクトリー構造の一般規則:</a></p>
+<ul>
+  <li> <a name="directories">内部使用のクロスプラットフォーム・インターフェイスとツールキット特有のインターフェイスは共に </a><a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/">accessible/public.</a> に存在します。</li>
+  <li>各種オブジェクト（ドキュメント、テキスト、テーブル、編集ボックス、ボタンなど）の実装は <a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/">accessible/src.</a> に存在します。</li>
+  <li>特定のツールキット用のコードとインターフェイスは正しいディレクトリーに収納されるべきです。ツールキットの特定の実装はクラスネームに「Wrap」を付け加えることになっています。たとえば、各ツールキット用の特定のドキュメントコードは public な nsDocAccessible である nsDocAccessibleWrap に収まっています。</li>
+</ul>
+<br>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <th style="vertical-align: top;">ディレクトリー<br>
+      </th>
+      <th style="vertical-align: top;">目的<br>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/">accessible/public</a></td>
+      <td style="vertical-align: top;">すべてのツールキットにある共用インターフェイス</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/msaa">accessible/public/msaa</a></td>
+      <td style="vertical-align: top;">MSAA の IAccessible を拡張するのに使用される Custom COM インターフェイス</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/atk">accessible/public/atk</a></td>
+      <td style="vertical-align: top;">内部 XPCOM ATK インターフェイス</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/base/">accessible/src/base</a></td>
+      <td style="vertical-align: top;">HTML と XUL の実装によって共用化される共通の実装<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/html">accessible/src/html/</a></td>
+      <td style="vertical-align: top;">ドキュメント と　HTML オブジェクトの実装<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/xul/">accessible/src/xul/</a></td>
+      <td style="vertical-align: top;">ユーザーインターフェイスと XUL オブジェクトの実装<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/msaa/">accessible/src/msaa/</a></td>
+      <td style="vertical-align: top;">Windows の実装<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/atk/">accessible/src/atk/</a></td>
+      <td style="vertical-align: top;">ATK の実装は最終的には Linux と Unix 以外のプラットフォームで使用されるかもしれない。<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/mac/">accessible/src/mac/<br>
+      </a></td>
+      <td style="vertical-align: top;">OS X 用プラットフォーム特定クラスの空実装。これらの実装は後に埋められるかもしれない。<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/other/">accessible/src/other/</a></td>
+      <td style="vertical-align: top;">現在サポートされていないプラットフォーム上でビルドが機能不全にならないための、プラットフォームの特定クラスの空実装。<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h3><a name="Wrap_Classes">ツールキットに固有のコードを置く場所</a></h3>
+<div style="margin-left: 40px;"><a name="Wrap_Classes"> </a>
+<p><a name="Wrap_Classes">ATK と MSAA とは、共通部分が 75% しかない、異なるアクセシビリティ API ツールキットなので、多数あるツールキット固有のコードをどこかに置かなければなりません。以前に、これは集合単位で存在しました。ひとつは、accessible/src に、もう一つは widget/src に、二つの別のオブジェクトのツリーが確保されました。しかし、アクセシビリティ・キャッシュを実装するとき、このことで多くの障害が発生する可能性があったので、コードは各ツールキットに固有のソースデイレクトリーの中の「Wrap」クラスへと移動されました。
+</a></p>
+<p><a name="Wrap_Classes">nsTextAccessibleWrap と nsDocAccessibleWrap など、名前に「Wrap」が含まれるクラスは、名前に「Wrap」が含まれない似た名前のクロスプラットフォームのクラスを継承します。これらのクラスは、Init() と Shutdown() などのメソッドをオーバライドでき、所定のツールキットのみが必要とするインターフェイスをサポートする他のメソッドを追加できます。例えば、nsAccessibleWrap は IAccessible のメソッドを実装しますが、それもまた nsAccessible であるので、必要情報を参照するために、「this」 によって nsAccessible のメソッドを呼び込むだけで十分です。</a></p>
+</div>
+<h3 style=""><a name="Class_Inheritence_Diagram"></a>クラスの継承図</h3>
+<div class="attention" style="margin-left: 40px; margin-right: 40px;">
+<p>ズーム可能: 拡大や縮小するために Netscape や Mozilla では Ctrl+Plus と Ctrl+Minus を押す</p>
+<button onclick="showDetailedView(true);" accesskey="S">クラス詳細を<u>示す</u></button> <button onclick="showDetailedView(false);" accesskey="H">クラス詳細を<u>隠す</u></button>
+<p>クラスの名前にフォーカスがある時、タイプする: </p>
+<ul>
+  <li>Shift+P: このクラスが継承する親へ移動</li>
+  <li>Shift+F: このクラスを継承する直下のクラスへ移動</li>
+  <li>Shift+V: 同じ親を継承する直前のクラスへ移動</li>
+  <li>Shift+N: 同じ親を継承する直下のクラスへ移動</li>
+</ul>
+</div>
+<table class="classdiagram" onkeypress="handleKeyPress(event);">
+	<tbody>
+    <tr>
+      <td style="vertical-align: top;" height="100%" valign="top">
+      <table height="100%">
+		<tbody>
+          <tr>
+            <td height="100%" valign="top">
+            <div class="bigclass" style="background-color: rgb(221, 204, 221); top: 0em; left: 0em;">
+ <table>
+              <tbody>
+                <tr>
+                  <td> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsAccessNode" id="nsAccessNode" firstchild="nsAccessNodeWrap">nsAccessNode</a>
+                  <div class="details">nsIAccessNode を実装</div>
+
+                  <div class="details">重要なデーターメンバ:<br>
+nsCOMPtr&lt;nsIDOMNode&gt; mDOMNode;<br>
+nsWeakPtr mWeakShell;</div>
+
+                  <div>&nbsp;</div>
+			</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="bigclass" style="background-color: rgb(221, 221, 221);">
+            <table>
+				 <tbody>
+                <tr>
+                  <td> 				 <a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsAccessNodeWrap" id="nsAccessNodeWrap" parent="nsAccessNode" firstchild="nsAccessible">nsAccessNodeWrap</a>
+
+                  <div class="details">COM interface である ISimpleDOMNode (MSAA のみ)を実装. アクセスできないノード上のこの interface をサポートすることが、nsAccessNode と nsAccessNodeWrap を必要とする理由</div>
+
+                  <div>&nbsp;</div>
+				 </td>
+				</tr>
+              </tbody>
+            </table>
+
+            <div class="bigclass" style="background-color: rgb(238, 221, 221);">
+            <table>
+              <tbody>
+                <tr>
+                  <td> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsAccessible" id="nsAccessible" parent="nsAccessNodeWrap" firstchild="nsAccessibleWrap">nsAccessible</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="details">アクセス速度に重要なメンバ:<br>
+nsIAccessible *mParent、*mNextSibling、*mFirstChild; <br>
+PRInt16 mAccChildCount; // -1 は初期化されていないという意味</div>
+
+            <div>&nbsp;</div>
+
+            <div class="bigclass" style="background-color: rgb(221, 238, 238);">
+            <table>
+						 <tbody>
+                <tr>
+                  <td> 						 <a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsAccessibleWrap" id="nsAccessibleWrap" parent="nsAccessible" firstchild="nsFormControlAccessible">nsAccessibleWrap</a>
+                  <div class="details">COM interface である
+IAccessible (MSAA) と IENUMVariant (MSAA を高速化)を実装</div>
+
+                  <div class="details">すべてのアクセシビリティの特有のクラスは最終的にこのクラスを継承し、またこのように、すべてのクラスのルーツにある nsAccessNode を含めて上記にリストされた 3 つのクラスを継承する。そして、アクセシビリティが連携する DOM ノードを保持する。</div>
+
+                  <div>&nbsp;</div>
+						 </td>
+						</tr>
+              </tbody>
+            </table>
+					</div>
+            <div class="bigclass" style="border: 3px dashed black; top: 4em; left: -3em; height: 17em; background-color: rgb(238, 221, 187);">
+
+            <table>
+						 <tbody>
+                <tr>
+                  <td> 						 <a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsAccessibilityService">nsAccessibilityService</a>
+
+                  <div class="details" style="margin-top: 1em;">- クラス階層外に存在する -</div>
+
+                  <div class="details" style="margin-top: 1em;">nsIAccessibilityService を実装：要求に応じてこの図表のすべての型へのアクセシビリティを作り出す働きをする単独のクラス</div>
+
+                  <div class="details" style="margin-top: 1em;">この機能を使用するとアクセシビリティのモジュールがロードされる。また、アプリケーションの終了を監視して終了の際は、ShutdownAccessibility() を呼び出す。</div>
+							 						 </td>
+						</tr>
+              </tbody>
+            </table>
+					</div>
+				</div>
+				</div>
+			</div>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+	</td>
+	<td style="margin: 0px; background-color: rgb(221, 238, 238); padding-left: 44px; padding-top: 0px; padding-bottom: 0px;" width="75%">
+
+      <div style="background-color: rgb(255, 255, 255);"><!-------------------->
+
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+                  <td class="mediumclass"> 				<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsFormControlAccessible" parent="nsAccessibleWrap" nextsibling="nsLinkableAccessible" firstchild="nsRadioButtonAccessible" id="nsFormControlAccessible">nsFormControlAccessible</a>
+
+                  <div class="details">フォーム制御用の名前と状態を取得するための一般規則を実装する。子を許可しないと言う点において、リーフアクセシブルのように動作する。</div>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+		</td>
+		<td> 		<br>
+            </td>
+            <td>
+            <table>
+				<tbody>
+                <tr>
+                  <td>
+                  <table>
+						<tbody>
+                      <tr>
+                        <td><img alt="is ancestor of" title="は右の祖先" src="rightarrow.gif"></td>
+						<td class="mediumclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsRadioButtonAccessible" id="nsRadioButtonAccessible" parent="nsFormControlAccessible" firstchild="nsXULRadioButtonAccessible" nextsibling="nsXULColorPickerTileAccessible">nsRadioButtonAccessible</a>
+						</td>
+					</tr>
+                    </tbody>
+                  </table>
+				</td>
+				<td>
+                  <table>
+						<tbody>
+                      <tr>
+							<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+							<td class="smallclass"> 							<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULRadioButtonAccessible" id="nsXULRadioButtonAccessible" parent="nsRadioButtonAccessible" nextsibling="nsHTMLRadioButtonAccessible">nsXULRadioButtonAccessible</a>
+							</td>
+						</tr>
+						<tr>
+							<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+							<td class="smallclass"> 							<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLRadioButtonAccessible" id="nsHTMLRadioButtonAccessible" parent="nsRadioButtonAccessible">nsHTMLRadioButtonAccessible</a>
+							</td>
+						</tr>
+
+                    </tbody>
+                  </table>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+
+            <table>
+				<tbody>
+                <tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULColorPickerTileAccessible" id="nsXULColorPickerTileAccessible" parent="nsFormControlAccessible" nextsibling="nsXULDropmarkerAccessible">nsXULColorPickerTileAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULDropmarkerAccessible" id="nsXULDropmarkerAccessible" parent="nsXULProgressMeterAccessible" nextsibling="nsXULProgressMeterAccessible">nsXULDropmarkerAccessible</a>
+					</td>
+				</tr>
+				<tr class="smallclass">
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULProgressMeterAccessible" id="nsXULProgressMeterAccessible" parent="nsFormControlAccessible" nextsibling="nsXULCheckboxAccessible">nsXULProgressMeterAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULCheckboxAccessible" id="nsXULCheckboxAccessible" parent="nsFormControlAccessible" nextsibling="nsHTMLCheckboxAccessible">nsXULCheckboxAccessible</a> 					</td>
+				</tr>
+				<tr class="smallclass">
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLCheckboxAccessible" id="nsHTMLCheckboxAccessible" parent="nsFormControlAccessible" nextsibling="nsHTMLTextFieldAccessible">nsHTMLCheckboxAccessible</a>
+					</td>
+				</tr>
+				<tr class="smallclass">
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLTextFieldAccessible" id="nsHTMLTextFieldAccessible" parent="nsFormControlAccessible" nextsibling="nsHTMLButtonAccessible">nsHTMLTextFieldAccessible</a> 					</td>
+				</tr>
+				<tr class="smallclass">
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLButtonAccessible" id="nsHTMLButtonAccessible" parent="nsFormControlAccessible">nsHTMLButtonAccessible</a>
+
+                  <div class="details">&lt;input&gt; タグによってつくられるボタン用で、簡単なラベルを備えることが出来る。また nsHTML4ButtonAccessible を参照のこと</div>
+					</td>
+				</tr>
+
+              </tbody>
+            </table>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+                  <td class="mediumclass"> 				<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsLinkableAccessible" id="nsLinkableAccessible" parent="nsAccessibleWrap" nextsibling="nsBlockAccessible" firstchild="nsTextAccessible">nsLinkableAccessible</a>
+
+                  <div class="details">リンク用およびリンクの子がある時のため。リンクの状態と名前をサポート</div>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+		</td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+                  <td>
+                  <table>
+						<tbody>
+                      <tr>
+                        <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+						<td class="mediumclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsTextAccessible" id="nsTextAccessible" parent="nsLinkableAccessible" firstchild="nsXULTextAccessible" nextsibling="nsHTMLImageAccessible">nsTextAccessible</a>
+
+                        <div class="details">子は認められない</div>
+						</td>
+					</tr>
+                    </tbody>
+                  </table>
+				</td>
+				<td>
+                  <table>
+					<tbody>
+                      <tr>
+						<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+						<td class="smallclass"> 							<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTextAccessible" id="nsXULTextAccessible" nextsibling="nsHTMLTextAccessible" parent="nsTextAccessible">nsXULTextAccessible</a> 						</td>
+					</tr>
+					<tr>
+						<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+						<td class="smallclass"> 							<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLTextAccessible" id="nsHTMLTextAccessible" parent="nsTextAccessible" nextsibling="nsHTMLLabelAccessible">nsHTMLTextAccessible</a> 						</td>
+					</tr>
+					<tr>
+						<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+						<td class="smallclass"> 							<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLLabelAccessible" id="nsHTMLLabelAccessible" parent="nsTextAccessible">nsHTMLLabelAccessible</a>
+						</td>
+					</tr>
+
+                    </tbody>
+                  </table>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+
+            <table>
+				<tbody>
+                <tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLImageAccessible" id="nsHTMLImageAccessible" parent="nsLinkableAccessible" nextsibling="nsHTMLAreaAccessible">nsHTMLImageAccessible</a> 					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLAreaAccessible" id="nsHTMLAreaAccessible" parent="nsLinkableAccessible" nextsibling="nsHTMLLinkAccessible">nsHTMLAreaAccessible</a>
+                  <div class="details">イメージマップ &lt;area&gt;用。DOM の別の部分に在るが、画像の子として nsHTMLImageAccessible によって作られる。</div>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLLinkAccessible" id="nsHTMLLinkAccessible" parent="nsLinkableAccessible">nsHTMLLinkAccessible</a>
+					</td>
+				</tr>
+
+              </tbody>
+            </table>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+                  <td class="mediumclass"> 				<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsBlockAccessible" id="nsBlockAccessible" parent="nsAccessibleWrap" nextsibling="nsOuterDocAccessible" firstchild="nsDocAccessible">nsBlockAccessible</a>
+
+                  <div class="details">オーバラップする子を処理可能であり、特定のピクセル位置のアクセス可能な子を返す AccGetAt() が呼ばれた時、最も小さい子を返す。</div>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+		</td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+					<td> 					<img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"> 					</td>
+					<td class="smallclass">
+                  <table>
+						<tbody>
+                      <tr>
+                        <td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsDocAccessible" id="nsDocAccessible" parent="nsBlockAccessible" nextsibling="nsHTMLTableAccessible" firstchild="nsDocAccessibleWrap">nsDocAccessible</a>
+
+                        <div class="details">nsIAccessibleDocument を実装する。ドキュメントにおいて、すべての nsAccessNode(したがって nsアクセシビリティも) のキャッシュを含む。</div>
+						</td>
+						<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+						<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsDocAccessibleWrap" id="nsDocAccessibleWrap" firstchild="nsRootAccessible" parent="nsDocAccessible">nsDocAccessibleWrap</a>
+                        <div class="details">ISimpleDOMDocument (MSAA のみ) を実装。ツールキットイベントを起動する </div>
+						</td>
+						<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+						<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsRootAccessible" id="nsRootAccessible" parent="nsDocAccessibleWrap">nsRootAccessible</a>
+
+                        <div class="details">最上層のウインドウにつき一つ。nsCaretAccessible を保持。 DOM イベント用にツールキットイベントを起動する。</div>
+						</td>
+						</tr>
+                    </tbody>
+                  </table>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLTableAccessible" id="nsHTMLTableAccessible" parent="nsBlockAccessible" nextsibling="nsHTMLTableCellAccessible">nsHTMLTableAccessible</a> 					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLTableAccessible" id="nsHTMLTableCellAccessible" parent="nsBlockAccessible">nsHTMLTableCellAccessible</a>
+					</td>
+				</tr>
+
+              </tbody>
+            </table>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 		<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsOuterDocAccessible" id="nsOuterDocAccessible" parent="nsAccessibleWrap" nextsibling="nsXULMenuPopupAccessible">nsOuterDocAccessible</a>
+            <div class="details">新しいドキュメントを発生させるエレメント用: &lt;iframe&gt;、&lt;browser&gt; および &lt;editor&gt;</div>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULMenuPopupAccessible" id="nsXULMenuPopupAccessible" parent="nsAccessibleWrap" nextsibling="nsXULMenubarAccessible">nsXULMenuPopupAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULMenubarAccessible" id="nsXULMenubarAccessible" parent="nsAccessibleWrap" nextsibling="nsXULMenuitemAccessible">nsXULMenubarAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td>
+            <table class="mediumclass">
+			 <tbody>
+                <tr>
+                  <td> 				<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULMenuitemAccessible" id="nsXULMenuitemAccessible" parent="nsAccessibleWrap" nextsibling="nsXULSelectableAccessible" firstchild="nsXULSelectOptionAccessible">nsXULMenuitemAccessible</a>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+		</td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULSelectOptionAccessible" id="nsXULSelectOptionAccessible" parent="nsXULMenuitemAccessible" nextsibling="nsXULListitemAccessible">nsXULSelectOptionAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULListitemAccessible" id="nsXULListitemAccessible" parent="nsXULMenuitemAccessible" nextsibling="nsXULMenuSeperatorAccessible">nsXULListitemAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULMenuSeperatorAccessible" id="nsXULMenuSeperatorAccessible" parent="nsXULMenuitemAccessible">nsXULMenuSeperatorAccessible</a>
+					</td>
+				</tr>
+
+              </tbody>
+            </table>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td>
+            <table class="mediumclass">
+			 <tbody>
+                <tr>
+                  <td> 				<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULSelectableAccessible" id="nsXULSelectableAccessible" parent="nsAccessibleWrap" nextsibling="nsXULSelectListAccessible">nsXULSelectableAccessible</a>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+		</td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULListboxAccessible" id="nsXULListboxAccessible" parent="nsXULSelectableAccessible">nsXULListboxAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULComboboxAccessible" id="nsXULComboboxAccessible" parent="nsXULSelectableAccessible">nsXULComboboxAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTreeAccessible" id="nsXULTreeAccessible" parent="nsXULSelectableAccessible">nsXULTreeAccessible</a>
+                  <div class="details"><a href="#Traversal_Overloading">ツリー項目は DOM ノードを持たないので、自分自身の子を作ら</a>なければならない。</div>
+					</td>
+				</tr>
+
+              </tbody>
+            </table>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULSelectListAccessible" id="nsXULSelectListAccessible" parent="nsAccessibleWrap" nextsibling="nsHTMLSelectableAccessible">nsXULSelectListAccessible</a>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td>
+            <table class="mediumclass">
+			 <tbody>
+                <tr>
+                  <td> 				<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLSelectableAccessible" id="nsHTMLSelectableAccessible" parent="nsAccessibleWrap" nextsibling="nsLeafAccessible" firstchild="nsHTMLSelectListAccessible">nsHTMLSelectableAccessible</a>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+		</td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLSelectListAccessible" id="nsHTMLSelectListAccessible" parent="nsHTMLSelectableAccessible" nextsibling="nsHTMLComboboxAccessible" firstchild="nsHTMLComboboxListAccessible">nsHTMLSelectListAccessible</a>
+					</td>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLComboboxListAccessible" id="nsHTMLComboboxListAccessible" parent="nsHTMLSelectListAccessible">nsHTMLComboboxListAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLComboboxAccessible" id="nsHTMLComboboxAccessible" parent="nsHTMLSelectableAccessible">nsHTMLComboboxAccessible</a>
+					</td>
+				</tr>
+
+              </tbody>
+            </table>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td>
+            <table class="mediumclass">
+			 <tbody>
+                <tr>
+                  <td> 				<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsLeafAccessible" id="nsLeafAccessible" parent="nsLeafAccessible" firstchild="nsHTMLSelectOptionAccessible" nextsibling="nsHTMLGroupboxAccessible">nsLeafAccessible</a>
+                  <div class="details">子は認められない</div>
+				</td>
+			</tr>
+              </tbody>
+            </table>
+		</td>
+		<td>
+            <table>
+				<tbody>
+                <tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLSelectOptionAccessible" id="nsHTMLSelectOptionAccessible" parent="nsLeafAccessible" nextsibling="nsHTMLComboboxTextfieldAccessible" firstchild="nsHTMLSelectOptGroupAccessible">nsHTMLSelectOptionAccessible</a>
+					</td>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLSelectOptGroupAccessible" id="nsHTMLSelectOptGroupAccessible" parent="nsHTMLSelectOptionAccessible">nsHTMLSelectOptGroupAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLComboboxTextfieldAccessible" id="nsHTMLComboboxTextfieldAccessible" parent="nsLeafAccessible" nextsibling="nsHTMLComboboxButtonAccessible">nsHTMLComboboxTextfieldAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 					<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLComboboxButtonAccessible" id="nsHTMLComboboxButtonAccessible" parent="nsLeafAccessible" nextsibling="nsCaretAccessible">nsHTMLComboboxButtonAccessible</a> 					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsCaretAccessible" id="nsCaretAccessible" parent="nsLeafAccessible" nextsibling="nsHTML4ButtonAccessible">nsCaretAccessible</a>
+                  <div class="details">最上層ウインドウにひとつ。nsRootAccessible に所有される。自らを nsISelectionListener として附属させ、ツールキットイベントのカレット移動を起動する。</div>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTML4ButtonAccessible" id="nsHTML4ButtonAccessible" parent="nsLeafAccessible" nextsibling="nsHTMLHRAccessible">nsHTML4ButtonAccessible</a>
+                  <div class="details">開始と終了タグ間で任意のコンテンツを備えることができる&lt;ボタン&gt;タグによって作られるボタン用である。また nsHTMLButtonAccessible を参照のこと。</div>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLHRAccessible" id="nsHTMLHRAccessible" parent="nsLeafAccessible" nextsibling="nsXULToolbarSeparatorAccessible">nsHTMLHRAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULToolbarSeparatorAccessible" id="nsXULToolbarSeparatorAccessible" parent="nsLeafAccessible" nextsibling="nsXULTabAccessible">nsXULToolbarSeparatorAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTabAccessible" id="nsXULTabAccessible" parent="nsLeafAccessible" nextsibling="nsXULTooltipAccessible">nsXULTabAccessible</a> 					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTooltipAccessible" id="nsXULTooltipAccessible" parent="nsLeafAccessible" nextsibling="nsXULTreeitemAccessible">nsXULTooltipAccessible</a> 					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTreeitemAccessible" id="nsXULTreeitemAccessible" parent="nsLeafAccessible" nextsibling="nsXULTreeColumnitemAccessible">nsXULTreeitemAccessible</a>
+					</td>
+				</tr>
+				<tr>
+					<td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+					<td class="smallclass"> 						<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTreeColumnitemAccessible" id="nsXULTreeColumnitemAccessible" parent="nsLeafAccessible">nsXULTreeColumnitemAccessible</a>
+					</td>
+				</tr>
+
+              </tbody>
+            </table>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLGroupboxAccessible" id="nsHTMLGroupboxAccessible" parent="nsAccessibleWrap" nextsibling="nsHTMLTableCaptionAccessible">nsHTMLGroupboxAccessible</a>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLTableCaptionAccessible" id="nsHTMLTableCaptionAccessible" parent="nsAccessibleWrap" nextsibling="nsHTMLWin32ObjectAccessible">nsHTMLTableCaptionAccessible</a>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsHTMLWin32ObjectAccessible" id="nsHTMLWin32ObjectAccessible" parent="nsAccessibleWrap" nextsibling="nsXULGroupboxAccessible">nsHTMLWin32ObjectAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULGroupboxAccessible" id="nsXULGroupboxAccessible" parent="nsAccessibleWrap" nextsibling="nsXULButtonAccessible">nsXULGroupboxAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULButtonAccessible" id="nsXULButtonAccessible" parent="nsAccessibleWrap" nextsibling="nsXULRadioGroupAccessible">nsXULButtonAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULRadioGroupAccessible" id="nsXULRadioGroupAccessible" parent="nsAccessibleWrap" nextsibling="nsXULStatusBarAccessible">nsXULRadioGroupAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULStatusBarAccessible" id="nsXULStatusBarAccessible" parent="nsAccessibleWrap" nextsibling="nsXULToolbarAccessible">nsXULStatusBarAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULToolbarAccessible" id="nsXULToolbarAccessible" parent="nsAccessibleWrap" nextsibling="nsXULTabBoxAccessible">nsXULToolbarAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTabBoxAccessible" id="nsXULTabBoxAccessible" parent="nsAccessibleWrap" nextsibling="nsXULTabPanelsAccessible">nsXULTabBoxAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTabPanelsAccessible" id="nsXULTabPanelsAccessible" parent="nsAccessibleWrap" nextsibling="nsXULTabsAccessible">nsXULTabPanelsAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTabsAccessible" id="nsXULTabsAccessible" parent="nsAccessibleWrap" nextsibling="nsXULTreeColumnsAccessible">nsXULTabsAccessible</a> 		</td>
+		</tr>
+        </tbody>
+      </table>
+<!-------------------->
+      <table class="medium">
+		<tbody>
+          <tr>
+            <td><img alt="is ancestor of" title="is ancestor of" src="rightarrow.gif"></td>
+		<td class="mediumclass"> 			<a class="classname" href="http://lxr.mozilla.org/seamonkey/ident?i=nsXULTreeColumnsAccessible" id="nsXULTreeColumnsAccessible" parent="nsAccessibleWrap">nsXULTreeColumnsAccessible</a>
+		</td>
+		</tr>
+        </tbody>
+      </table>
+      </div>
+	</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. <a name="Traversing_the_Tree"></a>アクセシビリティのツリー構造と探索<br>
+</h2>
+<div style="margin-left: 40px;">
+アクセシビリティのツリーは要求に応じて、構築されます。最初のアクセシビリティの要求は普通、開かれた一つのウインドウ内のドキュメントへのアクセシビリティです。widget/src/gtk2 や widget/src/windows 内のコードはこのドキュメントアクセシビリティを返さなければなりません。最初にドキュメントの子アクセシビリティが要求されたとしても、ドキュメントアクセシビリティが最初に作られることになります。というのは、ドキュメント内に作られるどんなアクセシビリティでもキャッシュされる必要があるからです。
+</p>
+
+<p>ドキュメントアクセシビリティが要求されると、PresShell に到達するイベントが起動されます。PresShell はその時、accessibility service singleton(<a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/nsIAccessibilityService.idl">nsIAccessibilityService</a>) を使用してドキュメントアクセシビリティを作りウィジェットコードへ返します。なぜドキュメントアクセシビリティがそれを必要としてるコードの中で直接作成されないかという理由は、何の nsIDOMNode が現在のウインドウのドキュメントオブジェクトと連携しているかウィジェットコードが知らないためです。pres shell がウィジェットコード用のドキュメントアクセシビリティを作るために、現在のウィジェット (nsWindow/nsIWidget) 用のドキュメントがなくてはなりません。</p>
+<p>この方法のよい点のひとつは、accessibility.dll/libaccessibility.so が 実際にアクセシビリティの働きが使用されるまでは、ロードされる必要がないことであり、ほとんどのユーザーはロードすることはまずありません。</p>
+<p>個々のオブジェクトの他のアクセシビリティも同様に、要求に応じて作られます。補助テクノロジーは、最初に深さ(または幅)の検索を使用して、ツリー全体を得る事を選択できますし、フォーカスのようなイベントに基づくだけで、アクセシビリティを得ることを選択できます。また、画面の特定の位置でアクセシビリティを得ることもできます。どのように補助テクノロジーのクライアントがデーターを要求しても、所定のノード用のアクセシビリティは一度しか作成されません。アクセシビリティのキャッシュは、所定の dom ノード用に既に作成されたアクセシビリティを読み出すために使用されます。<br>
+</p>
+<p>このツリーの探索はツールキットを使った特別な呼出しによってなされます。最終的に nsIAccessible メソッドの呼出しとなり、GetAccParent()、GetAccNextSibling()、GetAccPreviousSibling()、GetAccFirstChild()、GetAccLastChild()、GetAccChildCount() および GetChildAt(childNum) などが呼び出されます。探索では、ATK は MSAA よりもっと便利なメソッドを備えており、例えば、nsIAccessibleTable::CellRefAt() を使用することで、テーブルの特定の行や列へのアクセシビリティへ直接到達することが出来ます。</p>
+<p>アクセシビリティのノードへアクセス可能な子の数を計算するのに使用されるアルゴリズムは高価です。現在のアクセシビリティのノードにおいて、すべてのアクセス可能な子が、直下の子か孫か何世代後の子から来ているかを推定することは出来ません。従って、あたかもすべてのアクセス可能な子を作っているかのように、ツリーを繰り返し下って、下りながら、全体数に追加しなければなりません。</p>
+<p>この作業を安価にすませるために、子のカウントや子へのアクセスが1度要求されると、子のカウントとすべての子のカウントが共に、同時に計算されそしてキャッシュされることで、この高価な処理を二度以上実行することが避けられます。<br>
+</p>
+<p>上述の nsIAccessible GetAccBlah() 探索メソッドはすべて、nsAccessible において実装が初期設定されています。初期設定実装は <a href="http://lxr.mozilla.org/seamonkey/ident?i=nsAccessibleTreeWalker">nsAccessibleTreeWalker</a> と呼ばれるクラスを使用し、実際の仕事をします。 nsAccessibleTreeWalker は DOM とドキュメント内の匿名のコンテンツを歩き、各ノードへのアクセシビリティの取得を nsIAccessibilityService::GetAccessible() に依頼します。もしアクセシビリティがキャッシュにあれば、返されます。XUL エレメントは、アクセシビリティを返すことができる nsIAccessibleProvider インターフェイスのサポートをチェックされます。HTML エレメントはノードの最初のフレームに nsIFrame::GetAccessible() によってアクセシビリティの取得を依頼します。もし、nsnull が返されると tree walker は、下位レベルの最初の並びにある次のノードをチェックします。
+</p>
+<a name="Traversal_Calling_Sequence"></a>
+<h3>呼出しシーケンス:</h3>
+<div class="attention" style="margin: 1em;">
+<p>アクセシビリティのノードが nsIAccessible の探索メソッドによって返される方法</p>
+<pre style="margin-left: 0px;">ATK/MSAA ツールキット探索メソッド <img src="rightarrow.gif" title="calls into" alt="calls into" style="height: 11px; width: 30px;">
+nsAccessible 探索メソッド <img src="rightarrow.gif" title="calls into" alt="calls into" style="width: 30px; height: 11px;">
+DOM &amp; 匿名コンテンツを探索する nsAccessibleTreeWalker method <img src="rightarrow.gif" title="calls into" alt="calls into" style="width: 30px; height: 11px;">
+コンテンツノードを使う nsIAccessibilityService::GetAccessible()<img src="rightarrow.gif" title="calls into" alt="calls into" style="width: 30px; height: 11px;">
+    nsDocAccessible::GetCachedAccessNode() 成功なら返し、さもなくば、 <img src="rightarrow.gif" title="calls into" alt="calls into" style="width: 30px; height: 11px;">
+    nsIAccessibleProvider::GetAccessible() (if XUL) さもなくば <img src="rightarrow.gif" title="calls into" alt="calls into" style="width: 30px; height: 11px;">
+    nsIFrame::GetAccessible() (if HTML)、何も返さないか、さもなくば<img src="rightarrow.gif" title="call into" alt="call into" style="width: 30px; height: 11px;">
+nsIAccessibilityService::Create[InsertTypeNameHere]Accessible() <img src="rightarrow.gif" title="which uses" alt="which uses" style="width: 30px; height: 11px;"><br>operator new によってオブジェクトが最終的にコンストラクトされる。</pre>
+</div>
+<p>nsIAccessibleProvider::GetAccessible() か nsIFrame::GetAccessible() のいずれか経由で、accessibility service へと呼び戻したり、アクセシビリティの各型を作る特定のメソッドを使うことによって、新しいアクセシビリティは作られます。たとえば、nsHTMLTableCellFrame::GetAccessible() は最終的に nsIAccessibilityService::CreateHTMLTableCellAccessible() を呼出し、これは |new nsHTMLTableCellAccessible(domNode、weakPresShell) を使用します;<br>
+</p>
+<h3><a name="Traversal_Overloading"></a>特別な例外: 探索オーバーロード</h3>
+<p style="margin-left: 40px;">アクセスできる必要な子がノード用の DOM 従ツリーに存在しない場合があります。このようなケースとして：</p>
+<div style="margin-left: 40px;"> </div>
+<ul style="margin-left: 40px;">
+  <li><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/html/nsHTMLImageAccessible.cpp">nsHTMLImageAccessible</a>: MSAA では、画像アクセシビリティは、イメージマップを備えていれば、アクセス可能な子たちを持つことがでます。子たちはイメージマップの領域であり、DOM ツリーの異なる部分に存在します。</li>
+  <li><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/html/nsHTMLSelectAccessible.cpp">nsHTMLComboboxAccessible</a>: html コンボボックスは、DOM ノードを備えていませんし、テキスト領域や、ボタン、リスト用の匿名コンテンツを持ちません。将来は、XBL フォーム制御が使用される可能性がありますが、その場合は、これらの従部品用に dom コンテンツが存在することになり、探索メソッドをオーバーライドする必要もなくなります。こんなわけで、nsXULComboboxAccessible (<menulist>) 用にこれらの探索メソッドをオーバーライドする必要はありません。</li>
+  <li><a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/base/nsOuterDocAccessible.cpp">nsOuterDocAccessible</a>: &lt;iframe&gt;、
+&lt;browser&gt; および &lt;editor&gt;などのエレメントに使用され、新しいドキュメント全部を発生させますが、実際、エレメント自身の DOM には子のノードを備えていません。</li>
+  <li><a href="http://www.mozilla.org/access/%3Ca%20href=" http://lxr.mozilla.org/seamonkey/source/accessible/src/xul/nsxultreeaccessiblecpp="">nsXULTreeAccessible</a>: 各ツリー項目用に DOM ノードを備えていませんが、ツリーの各行、列用にテキストを得るために、ツリー自身によって特別なインターフェイスが提供されます。</li>
+</ul>
+<div style="margin-left: 40px;"> </div>
+<p style="margin-left: 40px;">これらのアクセシビリティの実装において、nsIAccessible::GetAccChildCount()、::GetAccFirstChild() および ::GetAccLastChild() がオーバライドされます。こうすれば、通常の探索メソッドである nsAccessibleTreeWalker を使わずに、私たちが欲するどのような子アクセシビリティでも作られます。nsHTMLComboboxAccessible と nsXULTreeItemAccessible の場合のように、各アクセシビリティに DOM ノードがない時は、Shutdown() メソッドをオーバライドして、親が終了された時にメモリーから子が取り除かれるようにします。この場合はまた、DOM の無い子用に ::GetAccNextSibling()、 ::GetAccPreviousSibling() をオーバーライドします。そうしないと、子たちはお互いどのように見つけてよいか分かりません。
+</p>
+<div style="margin-left: 40px;"> </div>
+<p style="margin-left: 40px;"> 必ず子を持ちたくないような nsLeafAccessible、nsTextAccessible および他のアクセシビリティの実装において、通常されているように、これらの子を得るメソッドをオーバーライドして何も返さないこともまた有益です。リーフやテキストオブジェクトに何も返さないことも、ツリーの構築と探索を高速化するのに役立ちます。</p>
+</div>
+<h2>4. <a name="Accessible_Events"></a>アクセシビリティのイベント</h2>
+<div style="margin-left: 40px;">アクセシビリティのイベントは <a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/nsIAccessibleEventReceiver.idl">nsIAccessibleEventReceiver.idl</a> にリスト表示されている、連続したイベント番号を使用して、所定のプラットフォームのイベントメカニズムへと翻訳される DOM イベントです。アクセシビリティのクライアントは、どんな種類のイベントが発生し、どのアクセシビリティノード上でイベントが発生したかを見出すことができます。<br>
+<br>
+<h3><a name="Examples_of_Gecko_Event_to_Accessible"></a>Gecko イベントからアクセシビリティ・イベントへの翻訳一覧表</h3>
+<div style="margin-left: 40px;"> アクセシビリティのドキュメントは、内部にあるノード上の DOM イベントを監視します。その結果、正しいアクセシビリティのイベントを起動します。これは、<a href="http://lxr.mozilla.org/seamonkey/search?string=accessible%5C%3A%5C%3Ahandleevent">HandleEvent()</a> の中で発生します。<br>
+<br>
+Note: <span style="font-style: italic;">この表は途中までしかありませんので、全部見たい方は HandleEvent() メソッドを参照して下さい。</span><br>
+<br>
+<table style="text-align: left; width: 845px; height: 144px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <th style="vertical-align: top;">Gecko イベント (または呼び戻し)<br>
+      </th>
+      <th style="vertical-align: top;">イベント型<br>
+      </th>
+      <th style="vertical-align: top;">アクセシビリティ・イベント<br>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">フォーカス、選択<br>
+      </td>
+      <td style="vertical-align: top;">標準 HTML DOM イベント<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_FOCUS<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">DOMMenuItemActive、
+DOMMenuBarActive</td>
+      <td style="vertical-align: top;">Mozilla DOM<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_FOCUS<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">DOMNodeInserted </td>
+      <td style="vertical-align: top;">W3C DOM ミューテーションイベント<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_CREATE (ATK)<br>
+EVENT_REORDER (MSAA)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">DOMSubtreeModified</td>
+      <td style="vertical-align: top;">W3C DOM ミューテーションイベント<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_REORDER<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">DOMNodeRemoved<br>
+      </td>
+      <td style="vertical-align: top;">W3C DOM ミューテーションイベント<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_DESTROY (ATK)<br>
+EVENT_REORDER (MSAA)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">CheckboxStateChange、
+RadioStateChange<br>
+      </td>
+      <td style="vertical-align: top;">Mozilla DOM</td>
+      <td style="vertical-align: top;">EVENT_STATE_CHANGE<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ポップアップ表示<br>
+      </td>
+      <td style="vertical-align: top;">Mozilla DOM</td>
+      <td style="vertical-align: top;">EVENT_MENUSTART<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ポップアップ待避<br>
+      </td>
+      <td style="vertical-align: top;">Mozilla DOM<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_MENUEND<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">nsDocAccessible::ScrollPositionDidChange()、
+then nsDocAccessible::ScrollTimerCallback()<br>
+      </td>
+      <td style="vertical-align: top;">nsIScrollPositonListener と
+nsITimer 呼び戻し<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_SCROLLINGEND (クイックタイマーは、余分なイベントが起動されるのを避けるために、いつスクロールを一次停止するかまたは停止するかを決めるのに使用される。)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">nsDocAccessible::OnStateChange()、
+:nsDocAccessible:OnLocationChange()<br>
+      </td>
+      <td style="vertical-align: top;">nsIWebProgressListener 呼び戻し<br>
+      </td>
+      <td style="vertical-align: top;">EVENT_STATE_CHANGE (MSAA)<br>
+EVENT_REORDER (ATK)<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<h3><a name="DOM_Mutation_Events"></a>DOM ミューテーションイベント - 多重的使用<br>
+</h3>
+<div style="margin-left: 40px;"><p>DOM ミューテーションイベントはすばらしいものです。ドキュメント内のノードが作成、移動、また変更されるときはいつも、これらのイベントは、Gecko によって起動されます。ミューテーションの存在する共通の理由はウェブページ・スクリプトとエディター内のユーザーのアクションのためです。
+</p>
+<p>いくつかの理由のために DOM ミューテーション・イベントは監視されます:</p>
+</div>
+<ul style="margin-left: 40px;">
+  <li>補助テクノロジークライアントへのドキュメント変更の伝達。しかし、Windows には<a href="http://www.mozilla.org/access/windows/msaa-server#Crash_prone">自動 Windows 生成版である EVENT_CREATE と EVENT_DESTROY によるクラッシュ問題</a>があるため、MSAA のクライアントはミューテーションイベントを監視することは出来ません。その代用としてより安全な EVENT_REORDER を起動します・・。</li>
+  <li><a href="#Accessible_Cache">アクセシビリティ・キャッシュ</a>のどの部分が無効化を必要としているかを調べます。しかし、ドキュメントが引き続きロードされているのでミューテーションイベントが起動されるから、この仕事をするのではない事に注意が必要です。</li>
+</ul>
+<div style="margin-left: 40px;"> 2003 年 5 月現在、私たちはまだ、DOMAttrModied を使用してノード上の属性の変更を監視していません。属性の変更の中には、キャッシュの一部分を無効化する必要性を信号で伝達する可能性のあるものが存在するので、変更を監視する必要があります。例えば、アンカーエレメント上の名前や href 属性が変わったり、img のユーズマップ属性が変わるかどうかについてです。これらのケースはごくまれですが、万が一発生する可能性のある場所では、現実的なシナリオを考えておくべきです。これに対応するならば、コードは <a href="http://lxr.mozilla.org/seamonkey/search?string=Accessible::AttrModified">nsDocAccessible::AttrModified()</a><a></a> に保持されることになります。<br>
+<a> </a></div>
+<h3><a name="Unique_32-bit_Identifiers_in_MSAA"></a>MSAA における一意の 32 ビット識別子<br>
+</h3>
+<div style="margin-left: 40px;"> MSAA では、ターゲットの各アクセシビリティへ一意の 32 ビットの子番号をイベントを使って渡す必要があります。この値を得るために、私たちは現在、DOM ノードへポインターを持って行き、整数へ変え、さらに、ネゲートします。 MSAA クライアントが、AccessibleObjectFromEvent() を使用して、アクセシビリティのノードを呼び戻すと、Windows はその子 ID 番号付きの子のドキュメントアクセシビリティを要求します。これは <a href="http://lxr.mozilla.org/seamonkey/search?string=DocAccessibleWrap::get_accChi">nsDocAccessibleWrap::get_accChild()</a> において処理され、そこで私たちは、負の子番号をチェックし、<a href="#Accessible_Cache">アクセシビリティキャッシュ</a> を使用して正しいオブジェクトを返します。</div>
+</div>
+<h2>5. <a name="Accessible_Cache"></a>アクセシビリティキャッシュ</h2>
+<div style="margin-left: 40px;"> アクセシビリティモジュールは一連のハッシュテーブルとして実装されたキャッシュを保持します--ドキュメントあたり一つ。ハッシュキーは各アクセシビリティ用の DOM ノードへのポインターです。このようにすれば、 DOM ノードに同じアクセシビリティオブジェクトが二回作られる必要が一切ありません。<br>
+<h3><a name="Purposes_of_the_Accessibility_Cache"></a>なぜアクセシビリティ・キャッシュが必要か</h3>
+<p style="margin-left: 40px;"> アクセシビリティ・キャッシュにはたくさんの目的があります: </p>
+<ul>
+  <ul>
+    <li><u>安定性</u>: Gecko DOM とレイアウトチームは必要な場所でのメモリーの膨張を避けたいので、DOM 上やアクセシビリティオブジェクトへポイントバックするレイアウトノードで、4バイトを使用する余裕がありません。従って、所有権は逆転し--アクセシビリティノードが自分の dom オブジェクトを所有します。しかし、このことで、Mozilla は終了したいのに、補助テクノロジーのクライアントは引き続きアクセシビリティへの接続を保持しているため、不安定な状態が発生します。このクラッシュは、Gecko モジュールがすでにいくつかアンロードされ、メモリー内にもはや必要なデストラクターが存在しない時、補助テクノロジーがアクセシビリティを解放すると発生します。</li>
+    <li><u>性能</u>: ハッシュテーブルで各 DOM ノード用にアクセシビリティノードをキャッシュすることで、非常に高速にアクセシビリティが戻されるので、ある DOM ノード用に新しいアクセシビリティが要求される度に再計算し、新アクセシビリティが作成されるのを回避することが出来ます。また、一度 GetAccChildCount() のために計算し、特定の子が要求される時再計算してしまうような、アクセシビリティの子の二重計算を避けることが出来ます。</li>
+    <li><u>イベント</u>: 私たちはアクセシビリティのクライアントがイベントのデータをチェックしない内に、イベント用のアクセシビリティが解放される事がないようにしなければなりません。また、MSAA のクライアントは、私たちがイベントに与える一意の子 ID を使ってイベントアクセシビリティにアクセスする必要があります。私たちが子 ID を取り戻す時、アクセシビリティを検索するために必要なハッシュキーを再び作ることが出来ます。最後にMSAA クライアントは、イベント用とツリー探索用に各々同じアクセシビリティを取得するので、自分自身の内部モデルと比較することが出来ます。たとえば、この事で MSAA クライアントは、自分自身のキャッシュの一部分や、DOM ミューテーションイベントに基づいたデーターモデルを無効にすることが可能です。</li>
+  </ul>
+</ul>
+<h3><a name="Three_Levels_of_the_Accessibility_Cache"></a>アクセシビリティ・キャッシュの 3 つのレベル</h3>
+<p style="margin-left: 40px;">アクセシビリティ・キャッシュには 3 つのレベルがあります:</p>
+<div style="margin-left: 40px;"> </div>
+<ul style="margin-left: 40px;">
+  <li><u>ドキュメントアクセシビリティのグローバルキャッシュ</u>
+(gGlobalDocAccessibleCache)、はどんなドキュメントにでもアクセスするのに使われます。</li>
+  <li><u>アクセシビリティの Per-document キャッシュ</u>は、各 nsDocAccessible (mAccessNodeCache) のキャッシュで、それまで各ドキュメント用に作成された全てのアクセシビリティノードを保持しています。</li>
+  <li><u>nsAccessible 内のメンバー変数</u> は、子の数 (mAccChildCount)、親 (mParent)、最初の子 (mFirstChild) および次の兄弟 (mNextSibling) を記録します。もし mNextSibling がマジックバリューの DEAD_END_ACCESSIBLE (void*)1 と等しければ、これ以上兄弟がいないことが通知されます。もし、mNextSiblings == nsnull であれば、さらに兄弟がいる可能性を示します。
+</li>
+</ul>
+<div style="margin-left: 40px;"> </div>
+<p style="margin-left: 40px;">このアーキテクチャーのお陰で、ドキュメントアクセシビリティのキャッシュを破棄するだけで、ドキュメントが消される時、ドキュメント全部のキャッシュノード量を迅速に除去することが出来ます。</p>
+<div style="margin-left: 40px;"> </div>
+<p style="margin-left: 40px;">しかし、DOM ノードのキャッシュされたアクセシビリティを取得するには二段階が必要です。まず最初に、ノードのドキュメント用のグローバルキャッシュからドキュメントアクセシビリティを取得する必要があり、次に、ドキュメントアクセシビリティの特定のキャッシュを使って dom ノードへのエントリーをチェックします。この事は、毎回新しいアクセシビリティを作成するよりはるかに高速な工程なので大きな問題とはなりません。この二段階は <a href="http://lxr.mozilla.org/seamonkey/search?string=GetCachedAccessible">nsAccessibilityService::GetCachedAccessible(domNode)</a> において実装されます。
+</p>
+<div style="margin-left: 40px;"> </div>
+<p style="margin-left: 40px;">子の数、親、最初の子、および次の兄弟の記録を保持しているメンバー変数のお陰で、すでに訪問されたアクセシビリティのノードへはたちどころに探索ができます。</p>
+<h3><a name="nsAccessNode"></a>nsAccessNode の役割</h3>
+<p style="margin-left: 40px;">もしあなたが、私たちのアクセシビリティ・モジュールの ATK 部門で作業することが多いならば、 <a href="http://lxr.mozilla.org/seamonkey/find?string=nsaccessnode">nsAccessNode</a> の目的が分からないかもしれません。それを使用するインターフェイスが存在しないからです。事実上、nsAccessNode は <a href="http://lxr.mozilla.org/seamonkey/source/accessible/public/msaa/ISimpleDOMNode.idl">ISimpleDOMNode</a> を MSAA へ拡張するために存在しており、そしてそれは <a href="http://lxr.mozilla.org/seamonkey/source/accessible/src/msaa/nsAccessNodeWrap.cpp">nsAccessNodeWrap</a> において実装されます。ISimpleDOMNode は補助テクノロジーによって使用され、「アクセスが」可能であるか不可能である個々の DOM ノードについての情報へアクセスします。</p>
+<div style="margin-left: 40px;"> </div>
+<p style="margin-left: 40px;">nsAccessNode は、「アクセスでき」ない DOM ノードも含め、すべての　DOM モードを指し示すことが可能なので、nsAccessible になることも、またならないこともあります。つまり、私たちがキャッシュしなければならない最低の共通分母が nsAccessNode です。 </p>
+<h3><a name="Init"></a>nsAccessNode::Init()<br>
+</h3>
+<div style="margin-left: 40px;">nsAccessibilityService::GetAccessible() が新しく作られたアクセシビリティを取得する時、新オブジェクト上に nsIAccessNode::Init() を呼出します。そしてこれが、新オブジェクトをドキュメントアクセシビリティ用のキャッシュへ追加します。各 nsAccessNode はオブジェクト用の dom ノードと weak pres shell を保持します。weak pres shell はハッシュキーを作成するのに使われ gGlobalDocAccessibleCache よりドキュメントアクセシビリティを取得します。dom ノードポインターは新しいハッシュキーを作成し、ドキュメントアクセシビリティの mAccessNodeCache へ nsIAccessNode* を加えるのに使用されます。</div>
+<p style="margin-left: 40px;">
+Init() メソッドもまた仮想的で、アクセシビリティの多くがそのメソッドをオーバーライドして自分自身の特別な初期化を行います。オーバーライドするならば、完了時に、親クラスの Init() メソッドも呼び込む必要があります。</p>
+<h3><a name="Shutdown"></a>nsAccessNode::Shutdown()</h3>
+<p style="margin-left: 40px;">Shutdown() は、所定の nsAccessNode/nsAccessible 用の dom ノードがもはや存在しない時、使用されます。その呼び出され方は様々です: </p>
+<div style="margin-left: 40px;"> </div>
+<ul>
+  <ul>
+    <li><u>nsWindow 用デストラクタによって</u>: ドキュメントが破棄される時、そのウインドウもまた消えます。新たにロードしているドキュメントがあれば、既に作成されて提供される自分自身の別ウインドウを備えています。事実、約一秒間ほど二つの nsDocAccessible が同じ画面上のスペースに存在します。ひとつは破棄される古いドキュメント用であり、もうひとつは、まだ表示されていないロード中のドキュメント用です。側註: 新しいドキュメントが表示されるまで、新しいドキュメントが準備完了である事を示すイベントは起動されません。</li>
+    <li>ノードやサブツリーのノードが変化したり排除されたりしていることを示している nsDocAccessible における<u>ミューテーションイベントの呼び戻しから</u> 。私たちはサブツリー内のすべての dom ノードを繰り返し移動して、各ノードのキャッシュへ nsIAccessNode による追加がないかどうかチェックをし、ある場合はキャッシュから締め出します。この方法が、メンバー変数の mFirstChild と mNextSibling を使って、すべてのアクセシビリティをただ探索するのより優れているのは、nsAccessible ではない nsAccessNode を無視するからです。</li>
+    <li><u>プログラムの終了によって</u>、nsAccessibilityService は NS_XPCOM_SHUTDOWN_OBSERVER_ID を監視するとき、gGlobalDocAccessibleCache 内のドキュメントアクセシビリティを繰り返し移動して、すべてのドキュメントアクセシビリティを破壊します。　
+</li>
+  </ul>
+</ul>
+<h3><a name="Challenges_of_the_Accessibility_Cache"></a>アクセシビリティ・キャッシュの課題
+</h3>
+<p style="margin-left: 40px;">アクセシビリティ・キャッシュを扱う時用心しなければならない問題があります:</p>
+<div style="margin-left: 40px;"> </div>
+<ul>
+  <ul>
+    <li><u>有効で残っている</u>: 所定のドキュメントの変更や、ドキュメントの排除によって、キャッシュの一部は更新されるか排除されなければなりません。私たちは DOM ミューテーションイベントを使ってドキュメントの変更を監視し、キャッシュの適当な部分を無効化します。注意すべきは、DOM ミューテーションイベントが完了しなければ、キャッシュは DOM を正しく反映しないことになっている点です。無くなるノードを排除しなければ、必要以上にメモリーを消費してしまいます。</li>
+    <li><u>DOM ノードのないアクセシビリティ</u>: DOM ノードを持たないアクセシビリティの子であるため、<a href="#Traversal_Overloading">アクセシビリティの親が作り出す</a>アクセシビリティの子がいます。これらのアクセシビリティは 、キャッシュへの追加が DOM ノードに基づいていないので、DOM の探索によって排除されません。従って、Shutdown() メソッドが呼び出された時、これらのアクセシビリティを作り出した親が排除の責任を負います。この件は、現在 nsHTMLComboboxAccessible と nsXULTreeAccessible へと実装されています。 </li>
+  </ul>
+</ul>
+</div>
+<h2><a name="Future_Directions"></a>6. 将来の方向性</h2>
+<div style="margin-left: 40px;">
+<p>概ね、アクセシビリティの API モジュールの仕事は、いまや結論に向かうべき時です。不幸にして、私たちは今もなお、市場の主要なスクリーンリーダーや、スクリーン拡大鏡や、音声検出器について、全面的な協力関係にありません。この状況を早く変えて、主要ベンダー（および Linux/UNIX のGnopernicus) と協力してこの目標を達成したいと思っています。 </p>
+<p>いずれにしても、当面 Windows 上の唯一の計画は補助テクノロジーベンダーからのフィードバック情報に基づいた細かいバグの修正のためのものです。Linux と UNIX では、新しいアーキテクチャー（「Wrap」クラスをもっと多く使用するなど）の注入に対してもっと多くの仕事が必要となるでしょう。</p>
+<p>Macintosh アクセシビリティ API、Windows の将来のバージョン用に Microsoft によって開発されつつある新 API、または、クロスプラットフォームや小型装置での利用のために開発されたその他の新しい API をサポートすると決めると、さらなる作業が生まれます。私たちの全体的なアクセシビリティ・アーキテクチャーが、大きな困難を伴わずに、これらの API をサポートできることを願ってやみません。
+
+
+</p>
+</div>
+
+
+</body>
+</html>

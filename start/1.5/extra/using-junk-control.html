@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla のジャンクメールコントロールを利用するには</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/start/1.5/extra/using-junk-control.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="secondLevel sectionAbout">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/start/1.5/extra/using-junk-control.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="Mozilla と Mozilla Foundation について"  href="../../../about/mozilla.html"><strong>Mozilla と Mozilla<br>Foundation について</strong></a>
+<ul>
+<li><a title="Mozilla について"  href="../../../about/mozilla.html">Mozilla について</a></li>
+<li><a title="Mozilla Foundation について"  href="../../../foundation/">Mozilla Foundation</a></li>
+<li><a title="Mozilla パートナーシップ"  href="../../../foundation/partnerships.html">パートナーシップ</a></li>
+<li><a title="ライセンス規約と商標"  href="../../../foundation/licensing.html">ライセンス規約と商標</a></li>
+<li><a title="Mozilla Foundation に寄付する"  href="../../../foundation/donate.html">寄付</a></li>
+<li><a title="Mozilla コミュニティに参加する"  href="../../../contribute/">参加するには</a></li>
+</ul>
+</li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>ジャンクメールコントロールを利用するには</h1>
+<p>このドキュメントは、Mozilla に付属しているヘルプファイルに載っていない、ジャンクメールコントロール (迷惑メール監視機能) に関する補足的なチュートリアルです。</p>
+<p class="mice">このドキュメントの目的は単なる情報提供に過ぎません。インターネット上でプライバシーや個人情報の安全を守るために、ある程度の対策を講じる手助けにはなるかもしれません。しかし、この情報は、オンライン上でのあらゆるプライバシーやセキュリティに関する問題を解決するものではありませんし、インターネット上での十分なプライバシー・セキュリティ保護対策について mozilla.org の勧告を説明するものでもありません。</p>
+<ol class="toc">
+	<li><a href="#junk_controls">ジャンクメールコントロールを利用するには</a></li>
+	<li><a href="#junk_controls_options">ジャンクメールコントロールのオプション</a></li>
+	<li><a href="#junk_and_filter">ジャンクメールコントロールとフィルタ</a></li>
+	<li><a href="#opt_out_junk">ジャンクメールの配信停止について</a></li>
+	<li><a href="#prevent_junk">メールアドレスの収集を防ぐには</a></li>
+	<li><a href="#read_junk">スパムメールを開封しても大丈夫ですか?</a></li>
+	<li><a href="#bounce">ジャンクメールの送信者に対して、自分へのメールを「宛先不明」で差し戻すには</a></li>
+	<li><a href="#more_junk_info">Web 上の関連資料</a></li>
+</ol>
+<h2 id="junk_controls">ジャンクメールコントロールを利用するには</h2>
+<p>Mozilla のジャンクメールコントロールは、受信メッセージを評価し、それらがジャンクメール (迷惑メール) かどうかを特定できる機能です。この機能はベイズ式分類法を利用しており、最初に、ジャンクメールとそうでない普通のメールをたくさん Mozilla に示して、トレーニングをおこなう必要があります。それから、新着メールを自動分類させます。Mozilla が間違った判断をした場合は、そのたびに訂正してください。</p>
+<p>この機能を初めて使ったとき、何もしていないように見えても驚かないでください。このシステムは、頻繁に使えば、非常に正確な動作をするようになります。</p>
+<p>ジャンクメールコントロールの使い方:</p>
+<ol>
+	<li>
+		<p>まず、Mozilla にジャンクメールとそうでない普通のメールを認識させて、トレーニングしてください。選択したメールのジャンクステータスを切り替えるには、以下の 3 通りの方法があります。</p>
+		<ul>
+			<li><p>Tools メニューを開いて、<q>Mark the selected messages as junk</q> か <q>Mark the selected messages as not junk</q> を選択します。</p></li>
+			<li><p>ツールバーの Junk ボタンをクリックします。</p></li>
+			<li><p><img src="junk-column.png" alt="" style="float: right; margin: 1em;"> メッセージリストの Junk Status カラムをクリックして切り替えます。(見当たらない場合は、リストヘッダバーのいちばん右にあるボタン <img src="columns.png" alt="" style="vertical-align: middle;"> をクリックして、ポップアップメニューから Junk Status を選択してください)</p></li>
+		</ul>
+		<p>ジャンクステータスを切り替えると、Junk Status カラムにゴミ箱アイコンが表示 (非表示) されて、選択されたメッセージのジャンクステータスが分かるようになっています。</p>
+	</li>
+	<li>
+		<p>Tools メニューを開いて、<q>Junk Mail Controls...</q> を選択します。お使いのメールアカウントに対するジャンクメールコントロール機能を有効にすると、Mozilla は自動的に受信メッセージを分類するようになります。(<a href="#junk_controls_options">ジャンクメールコントロールのオプション</a> 参照)</p>
+	</li>
+	<li>
+		<p>ウイルスに感染したメールをトレーニングさせた場合は、ホワイトリストの無効化を検討してください。(メールを通じて広がる多くのウイルスは、感染したコンピュータのアドレス帳に載っている人たちに大量のメッセージを送りつけます) ウイルス (Klez など) に感染したメールが引っ掛かっていないか、確認してください。</p>
+	</li>
+	<li>
+		<p>メッセージを、ジャンクメール、あるいは普通のメールであると間違って分類した場合は、必ず訂正してください。</p>
+	</li>
+	<li>
+		<p>既存のメッセージを分析するには、メッセージを選択して、Tools メニューを開き、<q>Run Junk Mail Controls</q> を選択してください。</p>
+	</li>
+</ol>
+<p class="important">注意: トレーニング・データベースに、ジャンクメールでない普通のメールの情報が含まれていないと、ジャンクメールコントロールは機能しません。ジャンクメールコントロールが機能しない場合は、メッセージをいくつか選択して、ジャンクメールではないことを明示的に覚えさせてください。</p>
+<h2 id="junk_controls_options">ジャンクメールコントロールのオプション</h2>
+<p>ジャンクメールコントロール機能をカスタマイズするには、Tools メニューを開いて <q>Junk Mail Controls...</q> を選択してください。</p>
+<ul>
+	<li>
+		<p><strong class="ui">Account</strong>: メールアカウントを選択すると、そのアカウントのジャンクメールコントロール設定を変更できます。(注意: どのアカウントも同じトレーニング・データベースを共有します)</p>
+	</li>
+	<li>
+		<p><strong class="ui">Junk Mail Log</strong>: このボタンをクリックすると、ダイアログが開いて、ジャンクメール検出の履歴を確認できます。ダイアログから履歴を削除することも可能です。</p>
+	</li>
+	<li>
+		<p><strong class="ui">Enable junk mail controls</strong>: このオプションを切り替えると、ジャンクメールの分類を有効 (無効) にできます。</p>
+	</li>
+	<li>
+		<p><strong class="ui">Do not mark messages as junk mail if the sender is in my address book</strong>: このオプションを選択すると、知人からのメールがうっかりジャンクメールに分類されてしまうのを防ぐことができます。</p>
+	</li>
+	<li>
+		<p><strong class="ui">Move incoming messages determined to be junk mail to</strong>: このオプションをクリックすると、ジャンクメールとして分類されたメールを、自動的に特別なフォルダに移動できます。</p>
+		<ul>
+			<li><p><strong class="ui">&quot;Junk&quot; folder on [アカウント]</strong>: これを選択すると、デフォルトのジャンクフォルダを利用します。</p></li>
+			<li><p><strong class="ui">Other: [アカウント]</strong>: これを選択すると、好きな名前を付けた独自のジャンクフォルダを利用します。</p></li>
+			<li><p><strong class="ui">Automatically delete junk messages older than __ days from this folder</strong>: ジャンクメールとして分類された過去のメールが本当にジャンクメールであるという自信があれば、このオプションを選択して、猶予期間を過ぎたジャンクメールを自動的に削除することができます。</p></li>
+		</ul>
+	</li>
+	<li>
+		<p><strong class="ui">When I manually mark messages as Junk</strong>: これを選択すると、手動でジャンクメールをマークしたときに、Mozilla にどのような処理をさせるかを指定できます。</p>
+		<ul>
+			<li><p><strong class="ui">Move them to the &quot;Junk&quot; folder</strong>: これを選択すると、手動でマークしたジャンクメールはジャンクフォルダに移動されます。</p></li>
+			<li><p><strong class="ui">Delete them</strong>: これを選択すると、手動でマークしたジャンクメールはゴミ箱に移動されます。</p></li>
+		</ul>
+	</li>
+</ul>
+<h2 id="junk_and_filter">ジャンクメールコントロールとフィルタ</h2>
+<p>ジャンクメールコントロールは、メールフィルタの後に実行され、Inbox フォルダとそのサブフォルダにのみ適用されます。この仕組みをうまく利用すると、例えば、ジャンクメールかどうか分からないメールにフィルタを掛けて、Inbox 以外の特別なフォルダに移動させれば、それらのメッセージはジャンクメールとして分類されずに済みます。(ニュースレターを購読する場合や、議論が管理されたメーリングリストに参加している場合は特に便利です)</p>
+<h2 id="opt_out_junk">ジャンクメールの配信停止について</h2>
+<p>たいていのスパムメールには、配信停止の手続きが書かれています。しかし、これは絶対に <q>スパム業者のウソ</q> ですから、そのまま書いてある手続きに従ってはいけません。返信をしてしまえば、単にあなたのメールアドレスが確認されて、さらにジャンクメールが増えてしまいます。</p>
+<h2 id="prevent_junk">メールアドレスの収集を防ぐには</h2>
+<p>残念なことに、メールアドレスの公開を友人のみにするなど個人利用に限定しない限り、遅かれ早かれスパム業者はあなたのメールアドレスを収集してしまいます。スパム業者は通常、メーリングリストや Usenet の投稿、Web サイトを検索して、メールアドレスを収集しています。メーリングリストに投稿する場合は、数多く提供されているフリーメールのどれかを利用して、公開アカウントを作成しましょう。公開アカウントがジャンクメールの標的になったら、いつでもまた新しいアカウントを作成できます。ニュースグループに投稿する場合は、そのニュースグループのルールによって、公開アカウントを利用するか匿名で投稿すれば良いでしょう。</p>
+<h2 id="read_junk">スパムメールを開封しても大丈夫ですか?</h2>
+<p>Mozilla はメール内で自動的にマシンコードを実行することはありません。また、デフォルトでは、メールに書かれたスクリプトを実行しないようになっています。このため、通常はスパムメールを開封しても大丈夫です。(ただし、他の人にメッセージを転送する場合は、丁寧に、どの添付ファイルもウイルスに感染していないか確認しましょう。あなたにとって大丈夫であっても、他の人にとってはそれが安全でないかもしれません)</p>
+<p>プライバシーに対する心配があるなら、いくつか知りたいことがあるでしょう:</p>
+<ul>
+	<li>
+		<p>Mozilla は、デフォルトではメッセージにリモート画像を読み込みます。画像を取得するためのリクエストがリモートサーバに送られることで、あなたがメールを読んだことが確認されてしまうおそれがありますから、リモート画像の読み込みを禁止したいと考える人もいるでしょう。</p>
+		<p>Mail &amp; Newsgroups 内でリモート画像を無効にするには、Edit メニューを開き、<q>Preferences</q> を選択します。<q>Privacy &amp; Security</q> のカテゴリを選択し、サブカテゴリ <q>Images</q> を選んでください。<q>Do not load remote images in Mail &amp; Newsgroup messages</q> のオプションにチェックを入れてください。</p>
+	</li>
+	<li>
+		<p>リモート画像かメッセージに含まれた画像かどうかにかかわらず、すべての画像を表示させたくない場合、あるいは、すばやく画像を表示できるようにしたい場合は、View メニューを開いて、<q>Message Body As</q> を選択し、<q>Simple HTML</q> か <q>Plain Text</q> を選択してください。また、View メニューの <q>Display Attachments Inline</q> からチェックを外してください。</p>
+		<p>特定のメッセージに限って画像を表示させるには、<q>Original HTML</q> オプションを選択し、<q>Display Attachments Inline</q> にチェックを入れてください。</p>
+	</li>
+	<li>
+		<p>Mozilla は、デフォルトではメールメッセージが Cookie を読み書きしないよう設定してあります。これが本当かどうかを確かめるには、Edit メニューを開いて <q>Preferences</q> を選択してください。Preferences ダイアログの中から <q>Privacy &amp; Security</q> カテゴリを選択し、サブカテゴリ <q>Cookies</q> を選び、<q>Disable cookies in Mail &amp; Newsgroup</q> オプションにチェックが入っているか確認してください。</p>
+		<p>Netscape のサイトで <a href="http://wp.netscape.com/security/basics/privacy.html#secure">Cookie に関する詳しい情報</a> を見ることができます。</p>
+	</li>
+	<li>
+		<p>Mozilla は、デフォルトではメッセージ内でスクリプトを実行しません。これが本当かどうかを確かめるには、Edit メニューを開いて <q>Preferences</q> を選択してください。Preferences ダイアログの中から <q>Advanced</q> カテゴリを選択し、サブカテゴリ <q>Script &amp; Plug-ins</q> を選んでください。<q>Enable JavaScript for</q> ペインの中で <q>Mail &amp; Newsgroups</q> にチェックが入っているか確認してください。</p>
+	</li>
+</ul>
+<h2 id="bounce">ジャンクメールの送信者に対して、自分へのメールを「宛先不明」で差し戻すには</h2>
+<p>迷惑メールの送信者に対して、偽の unknown-recipient (受取人不明を知らせる) 返信メッセージを送り返すことができる「宛先不明」機能を、今まで多くのユーザがリクエストしてきました。その目的は、通常、そのような「宛先不明」メッセージを受信する帯域をジャンクメールの送信者に負担させ、懲らしめることです。残念ながら、そうした手段は、ほとんどの場合、罪のない第三者を懲らしめることになってしまいます。ジャンクメール送信者の多くは他人のメールアドレスを詐称しているため、「宛先不明」メッセージを送り返すことで、その人たちに二重の危害を加えることになります。そのようなことをしても、ジャンクメールの送信者にとって、メッセージを送受信するコストはほとんどかかりません。一方で、ネットワーク事業者に対して、スパムメールとあなたの「宛先不明」メッセージの両方を処理させる負担をかけることになります。また、プロバイダも、偽の「宛先不明」メッセージを送り返すユーザの利用を禁止する可能性があります。</p>
+
+<h2 id="more_junk_info">Web 上の関連資料</h2>
+<p>スパムとスパム業者について詳しく知りたいときは、<a href="http://spam.abuse.net">spam.abuse.net</a> をご覧ください。また、素晴らしい <a href="http://www.cybernothing.org/faqs/net-abuse-faq.html">Net Abuse FAQ</a> も参考になります。これらのサイトが役に立つと思ったら、ぜひブックマークしておきましょう。</p>
+
+<hr class="hide" />
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/start/1.5/extra/using-junk-control.html">英語版</a> 2004/06/29</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/start/1.5/extra/using-junk-control.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

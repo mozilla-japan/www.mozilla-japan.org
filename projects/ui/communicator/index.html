@@ -1,0 +1,503 @@
+
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>無題</title>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset="> -->
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/ui/communicator/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+<table border=0 bgcolor="#C2D2EB" width="100%">
+  <tr> 
+    <td width="60%"> 
+      <h1>ユーザ体験 | <font color="#333333">仕様</font></h1>
+    </td>
+    <td width="40%"> 
+      <p align=right><i>最終更新日: 2000年12月22日<br>
+        German Bauer</i></p>
+    </td>
+  </tr>
+</table>
+<p>目次:</p>
+<p><a href="#across">アプリケーション縦断</a><br>
+  <a href="#browser">ブラウザ</a><br>
+  <a href="#mail">メール</a>&amp;ニュース<br>
+  エディタ </p>
+<p>&nbsp;</p>
+<table border=1 width="100%">
+  <tr bgcolor="#D2D2D2"> 
+    <td colspan=3> 
+      <p><font size="+1"><b><a name="across"></a>アプリケーション縦断のユーザ体験(UE)仕様
+        <a href="./framework/">一覧</a>| <font size="-1" color="#666666">ニュースグループへフィードバックを投稿</font></b></font></p>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#ECECFF"> 
+      <p><b>仕様</b></p>
+    </td>
+    <td bgcolor="#ECECFF"> 
+      <p><b>著者</b></p>
+    </td>
+    <td bgcolor="#ECECFF"> 
+      <p><b>投稿日</b></p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>ユーザ体験の<a href="./framework/screenlayout/">構造</a> |<b> 古いです</b></p>
+    </td>
+    <td> 
+      <p>German Bauer</p>
+    </td>
+    <td> 
+      <p>2000/12/22</p>
+    </td>
+  </tr>
+  <tr>
+    <td><a href="./framework/menu_framework/">メニューの構造</a> </td>
+    <td>German Bauer</td>
+    <td>2001/05/26</td>
+  </tr>
+  <tr>
+    <td>XPFEの<a href="./framework/dialog_framework/">ダイアログ</a> |<b> 古いです</b></td>
+    <td>German Bauer</td>
+    <td>2000/12/22</td>
+  </tr>
+  <tr>
+    <td>XPFEの<a href="./framework/xpfe_widgets/">ウィジェット</a> |<b> 古いです</b></td>
+    <td>German Bauer</td>
+    <td>2000/12/22</td>
+  </tr>
+  <tr>
+    <td><a href="./framework/contextmenus/">コンテキストメニュー</a>概観 |<b> 古いです</b></td>
+    <td>German Bauer</td>
+    <td>2000/12/22</td>
+  </tr>
+  <tr>
+    <td><a href="./framework/switchtasks/">タスクバー</a> |<b> 古いです</b></td>
+    <td>German Bauer</td>
+    <td>2000/12/22</td>
+  </tr>
+  <tr>
+    <td><a href="./framework/status/">ステータス領域</a> |<b> 古いです</b></td>
+    <td>German Bauer</td>
+    <td>2000/12/22</td>
+  </tr>
+  <tr>
+    <td><a href="./framework/sidebar/">サイドバー</a> |<b> 古いです</b></td>
+    <td>German Bauer</td>
+    <td>2000/12/22</td>
+  </tr>
+  <tr>
+    <td><a href="./framework/preferences/">設定の概観</a> |<b> 古いです</b></td>
+    <td>German Bauer</td>
+    <td>2000/12/22</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table border=1 width="100%">
+  <tr> 
+    <td colspan=3 bgcolor="#C2D2EB"> 
+      <p><font size="+1"><b><a name="browser"></a>ブラウザのユーザ体験仕様<a href="./browser/">一覧</a>| 
+        <font size="-1" color="#666666">ニュースグループへフィードバックを投稿</font></b></font></p>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#ECECFF"> 
+      <p><b>仕様</b></p>
+    </td>
+    <td bgcolor="#ECECFF"> 
+      <p><b>著者</b></p>
+    </td>
+    <td bgcolor="#ECECFF"> 
+      <p><b>投稿日</b></p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td>スマートブラウジングと<a href="./browser/search/">検索機能</a></td>
+    <td> 
+      <p>German Bauer</p>
+    </td>
+    <td> 
+      <p>2001/05/29</p>
+    </td>
+  </tr>
+  <tr> 
+    <td><a href="./browser/navmenus/">ナビゲーターメニュー</a>のデザイン |<b> 古いです</b></td>
+    <td> 
+      <p>German Bauer</p>
+    </td>
+    <td> 
+      <p>2000/12/22</p>
+    </td>
+  </tr>
+  <tr> 
+    <td><a href="./browser/bnh/">ブックマーク</a>と履歴</td>
+    <td> 
+      <p>German Bauer</p>
+    </td>
+    <td> 
+      <p>2001/1/8</p>
+    </td>
+  </tr>
+  <tr> 
+    <td><a href="./browser/wallet/">ユーザデータの管理</a>(プライバシー/便利機能) |<b> 古いです</b></td>
+    <td> 
+      <p>German Bauer</p>
+    </td>
+    <td> 
+      <p>2000/12/22</p>
+    </td>
+  </tr>
+  <tr> 
+    <td height=11><a href="./browser/keyboard/">ウェブページキーボード</a>ナビゲーション
+      |<b> 古いです</b></td>
+    <td height=11> 
+      <p>Lake Roca</p>
+    </td>
+    <td height=11> 
+      <p>2000/12/22</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><a href="./browser/formfill/">自動フォームフィル</a></p>
+    </td>
+    <td> 
+      <p>German Bauer</p>
+    </td>
+    <td> 
+      <p>2001/1/29</p>
+    </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>アクセラレータ</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>テキスト形式のガイドライン</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table border=1 width="100%">
+  <tr> 
+    <td colspan=3 bgcolor="#C2D2EB"> 
+      <p><font size="+1"><b><a name="mail"></a>メールのユーザ体験仕様 <a href="/mailnews/specs/">一覧</a> 
+        | <font size="-1" color="#666666">ニュースグループへフィードバックを投稿</font></b></font></p>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#ECECFF"> 
+      <p><b>仕様</b></p>
+    </td>
+    <td bgcolor="#ECECFF"> 
+      <p><b>著者</b></p>
+    </td>
+    <td bgcolor="#ECECFF"> 
+      <p><b>投稿日</b></p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>３ペインメール</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>３ペインメールの<a href="/mailnews/specs/threepane/MailMenusM.html">メニュー</a> 
+      </p>
+    </td>
+    <td> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><a href="/mailnews/specs/compose/">メール作成</a> 
+      </p>
+    </td>
+    <td> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>メール作成の<a href="/mailnews/specs/compose/Comp_MenusM.html">メニュー</a> 
+      </p>
+    </td>
+    <td> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td height=11> 
+      <p><a href="/mailnews/addressbook/">アドレス帳</a> 
+      </p>
+    </td>
+    <td height=11> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td height=11> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>アドレス帳の<a href="/mailnews/specs/addressbook/AB_MenusM.html">メニュー</a> 
+      </p>
+    </td>
+    <td> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><a href="/mailnews/specs/search/">検索機能</a> 
+      </p>
+    </td>
+    <td> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><a href="/mailnews/specs/filters/">フィルタリング機能</a> 
+      </p>
+    </td>
+    <td> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>ニュース購読</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><a href="/mailnews/specs/accounts/">アカウント設定</a> 
+      </p>
+    </td>
+    <td> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><a href="/mailnews/specs/prefs/Preferences.html">設定</a></p>
+    </td>
+    <td> 
+      <p>Jennifer Glick</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>アクセラレータ</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>テキスト形式のガイドライン</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+</table>
+<div align="right"><font size="-1">
+訳者： むらまつ &lt;<a href="mailto:mura@cools.com">mura@cools.com</a>&gt;<br>
+<a href="http://www.mozilla.org/projects/ui/communicator/index.html">このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。</a><br>
+またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>
+利用者の利便のためにmozilla.org 和訳プロジェクトによって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.org/jp/td/index.html">
+http://www.mozilla-japan.org/jp/td/index.html</a>
+</font></div>
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/ui/communicator/index.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/ui/communicator/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

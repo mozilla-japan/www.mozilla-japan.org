@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla 1.7 (RC3 / 最終版草稿) リリースノート</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/releases/mozilla1.7rc3/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.7rc3/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla 1.7 (RC3 / 最終版草稿) リリースノート</h1>
+<p>このリリースノートには、Mozilla 1.7 RC3 のシステム必要条件、インストール方法、既知の問題が載っています。このリリースノートはフィードバックを受けて更新されますので、後日またチェックして、新しい情報が追加されていないか確認してください。<!-- (訳注: 最新の情報は <a href="http://www.mozilla.org/releases/mozilla1.7RC3/">原文 (英語)</a> をご覧ください) -->ソースコードや、お使いのプラットフォームに合った最新版の Mozilla をダウンロードするには、<a href="../">Mozilla 1.x リリース</a> のページをご覧ください。</p>
+<p><span class="comment">訳注: RC3 とは、Release Candidate 3 の略で、日本語に直すと「リリース候補第三弾」となります。Mozilla 1.7 は Mozilla 1.4.x に代わる安定化ブランチとなるため、これまで 2 回にわたってリリース候補を公開し、ユーザからのフィードバックを受けて開発を進めてきました。今回が最後のリリース候補で、正式リリースまであと一歩というところです。</span></p>
+<h2>目次</h2>
+<dl>
+	<dt><a href="README.html">Mozilla 1.7 RC3 新着情報</a></dt>
+	<dd><a href="README.html#new">新機能と修正</a></dd>
+	<dd><a href="README.html#new-issues">新たな問題</a></dd>
+	<dt><a href="/docs/end-user/guide/get-started.html">エンドユーザ資料</a></dt>
+	<dd><a href="/docs/end-user/guide/get-started.html#before-installing-mozilla">インストールの前に</a></dd>
+	<dd><a href="/docs/end-user/guide/get-started.html#previous-mozilla">他のバージョンの Mozilla がインストールされている場合</a></dd>
+	<dd><a href="/docs/end-user/guide/get-started.html#previous-netscape7">Netscape 6/7 がインストールされている場合</a></dd>
+	<dt><a href="installation.html">インストール方法</a></dt>
+	<dd><a href="installation.html#linux">Linux</a></dd>
+	<dd><a href="installation.html#mac">Macintosh</a></dd>
+	<dd><a href="installation.html#win">Windows</a></dd>
+	<dd><a href="installation.html#files">Mozilla が生成・使用するファイル</a></dd>
+	<dd><a href="installation.html#files_profiles">プロファイルの場所</a></dd>
+	<dt><a href="installation-ports.html">ポートのインストール方法</a></dt>
+	<dt><a href="installation-extras.html">Java、プラグイン、その他の拡張機能</a></dt>
+	<dt><a href="known-issues.html">既知の問題</a></dt>
+	<dd><a href="known-issues.html#general">一般</a></dd>
+	<dd><a href="known-issues.html#browser">Navigator (Web ブラウザ)</a></dd>
+	<dd><a href="known-issues.html#mail">Mail &amp; Newsgroups</a></dd>
+	<dd><a href="known-issues.html#composer">Composer (HTML 編集ツール)</a></dd>
+	<dd><a href="known-issues.html#venkman">JavaScript デバッガ</a></dd>
+	<dd><a href="known-issues-int.html">国際化に関する問題</a></dd>
+</dl>
+<!--
+<div style="border: 1px dashed #666; padding: 0 1em; color: inherit; background-color: #eee;">
+	<p>訳注: <a href="../mozilla1.7rc1/">Mozilla 1.7 RC2 リリースノート</a> から変わったところをスクロールしながら簡単にチェックできるよう、和訳ドキュメントでは、これらの差分を確認し、Bonsai テイストを取り入れて左右に色分けしたレイアウトを各ページで採用しています。色分けは次のようになっています。</p>
+	<p><span style="padding: 0em 1em; background-color: lightgreen;">&nbsp;</span> 追加 (右側) / 削除 (左側) された部分 | <span style="padding: 0em 1em; background-color: lightblue;">&nbsp;</span> 書き換えられた部分</p>
+</div>
+-->
+
+<hr class="hide" />
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.7rc3/index.html">英語版</a> 2004/06/08</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.7rc3/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

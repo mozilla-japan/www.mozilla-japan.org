@@ -1,0 +1,114 @@
+/*
+Blogs Portal Default Stylesheet
+Copyright (C) 2007-2008 Mozilla Japan
+*/
+
+body { margin: 0; padding: 0; min-width: 980px; color: #333; background-color: #fff; font-size: 12px; }
+* { font-family: "Lucida Grande", "Bitstream Vera Sans", "Segoe UI", Calibri, Verdana, Arial, "ヒラギノ角ゴ Pro W3", メイリオ, "ＭＳ Ｐゴシック", IPAPGothic, sans-serif; font-size: 100%; line-height: 1.6; }
+h1, h2, h3, h4, h5, h6, p, div, form, ul, ol, li, dl, dt, dd { margin: 0; outline: 0; border: 0; padding: 0; }
+li { list-style-type: none; }
+input, textarea { vertical-align: top; }
+img { border: 0; vertical-align: top; }
+a:link, a:visited { color: #039; background-color: transparent; text-decoration: none; }
+a:hover, a:focus, a:active { color: #039; background-color: transparent; text-decoration: underline; }
+
+/* Global Header ************************************************************ */
+
+#globalheader { height: 38px; overflow: hidden; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalheader-bg.png) repeat-x; text-indent: -99999px; }
+#globalheader-inner { margin: 0 auto; width: 940px; height: 38px; }
+#globalheader a { display: block; width: 100%; height: 100%; overflow: hidden; }
+#globallogo { width: 89px; height: 36px; float: left; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globallogo.png) no-repeat scroll 0 8px; }
+#globalnav { padding: 0 1px; width: 540px; float: right; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalnav.png) no-repeat; }
+#globalnav li { width: 90px; height: 36px; float: left; }
+body.products #gn-products a, #gn-products a:hover { background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalnav.png) repeat scroll -1px -38px; }
+body.addons #gn-addons a, #gn-addons a:hover { background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalnav.png) repeat scroll -91px -38px; }
+body.support #gn-support a, #gn-support a:hover { background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalnav.png) repeat scroll -181px -38px; }
+body.developer #gn-developer a, #gn-developer a:hover { background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalnav.png) repeat scroll -271px -38px; }
+body.blogs #gn-blogs a, #gn-blogs a:hover { background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalnav.png) repeat scroll -361px -38px; }
+body.about #gn-about a, #gn-about a:hover { background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalnav.png) repeat scroll -451px -38px; }
+
+/* Breadcrumbs ************************************************************** */
+
+#breadcrumbs { padding: 4px 50px 30px 50px; color: #999; background: #F7F8F8 url("http://www.mozilla-japan.org/img/template/breadcrumbs-background.png") bottom repeat-x; font-size: 85%; }
+#breadcrumbs div { margin: 0 auto; max-width: 900px; }
+#breadcrumbs a:link, #breadcrumbs a:visited { color: #666; }
+#breadcrumbs a:hover, #breadcrumbs a:active { color: #333; }
+
+/* Header ******************************************************************* */
+
+#header { margin-bottom: -40px; height: 182px; overflow: hidden; background: #fff url(http://www.mozilla-japan.org/img/dalvay-extended/template/head-bg-large.png) repeat-x scroll 0 -153px; text-indent: -99999px; }
+#header-inner { margin: 0 auto; width: 940px; padding: 30px 1px 40px 1px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/head-bg-block.png) no-repeat scroll top right; }
+#header h1 { height: 60px; background: transparent no-repeat; }
+#header h1 a { display: block; width: 350px; height: 60px; overflow: hidden; }
+#header p { height: 0; overflow: hidden; }
+
+/* Wrapper ****************************************************************** */
+
+#wrapper { margin: 0 auto; width: 940px; overflow: hidden; }
+/* 2 columns: content + sidebar */
+#wrapper.MR #content { width: 730px; float: left; }
+#wrapper.MR #sideA { width: 190px; float: right; }
+/* 2 columns: content + extended sidebar */
+#wrapper.MRx #content { width: 650px; float: left; }
+#wrapper.MRx #sideA { width: 270px; float: right; }
+/* 2 columns: sidebar + content */
+#wrapper.LM #content { width: 730px; float: right; }
+#wrapper.LM #sideA { width: 190px; float: left; }
+/* 2 columns: extended sidebar + content */
+#wrapper.LMx #content { width: 650px; float: right; }
+#wrapper.LMx #sideA { width: 270px; float: left; }
+/* 3 columns: sidebar + content + sidebar */
+#wrapper.LMR #content { margin-left: 210px; width: 520px; float: left; }
+#wrapper.LMR #sideA { margin-left: -730px; width: 190px; float: left; }
+#wrapper.LMR #sideB { width: 190px; float: right; }
+
+/* Content ****************************************************************** */
+
+#content { overflow: hidden; }
+.row { overflow: hidden; }
+.row .col1 { float: left; }
+.row .col2 { float: right; }
+#wrapper.LM .row .col1, #wrapper.LM .row .col2, #wrapper.MR .row .col1, #wrapper.MR .row .col2 { width: 355px; }
+#wrapper.LMx .row .col1, #wrapper.LMx .row .col2, #wrapper.MRx .row .col1, #wrapper.MRx .row .col2 { width: 315px; }
+.separator { margin: 15px 0; height: 1px; overflow: hidden; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/template/separator.png) no-repeat top center; }
+
+/* Sidebar ****************************************************************** */
+
+.sidebar .box { position: relative; margin-bottom: 10px; color: #5f6775; width: 100%; overflow: hidden; }
+.sidebar .box .title { position: relative; padding: 5px 12px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/sidebar/box-bg.png) no-repeat; }
+.sidebar .box .title h2 { height: 18px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/sidebar/box-titles.png) no-repeat; text-indent: -9999px; }
+.sidebar .box .items { position: relative; margin-bottom: 5px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/sidebar/box-bg.png) repeat-y scroll -190px 0; }
+.sidebar .box .item { position: relative; padding: 12px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/sidebar/box-bg.png) no-repeat scroll -570px bottom; }
+.sidebar .box .item.last { padding-top: 5px; bottom: -5px; background-position: -380px bottom; }
+.sidebar .box .item h3 { margin-bottom: .2em; line-height: 1.5; }
+.sidebar .box .item h3 a { color: #5f6775; line-height: 1.5; }
+.sidebar .box .item.indent { padding-left: 52px; }
+.sidebar .box .item.indent h3 { position: relative; }
+.sidebar .box .item.indent h3 img { position: absolute; top: 0; left: -42px; width: 32px; }
+.sidebar .box .item p { font-size: 11px; }
+.sidebar .box .item a.more { padding-right: 10px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/icon-small/arrow-1.png) no-repeat scroll center right; }
+.sidebar .box .item.list li { padding-left: 15px; background: transparent url(http://www.mozilla-japan.org/img/dalvay-extended/icon-small/bullet-square-1.png) no-repeat scroll 3px .7em; }
+.sidebar .box .item.list-simple ul { margin: -2px 0; }
+.sidebar .box .item.list-simple li { display: block; }
+.sidebar .box .item.list-simple a { display: block; width: 166px; padding: 2px 0; font-size: 11px; color: #5F6775; line-height: 1.4; }
+.sidebar .box .item.list-simple a:hover { color: #039; }
+
+/* Menu Box ***************************************************************** */
+
+.menu-box { width: 190px; background: url(http://www.mozilla-japan.org/img/dalvay-extended/menu-box/menu-box-top.png) top left no-repeat; }
+.menu-box * { line-height: 150%; }
+.menu-box ul { margin: 0; padding: 3px 0; list-style-type: none; background: url(http://www.mozilla-japan.org/img/dalvay-extended/menu-box/menu-box-bottom.png) bottom left no-repeat; }
+.menu-box li { width: 190px; }
+.menu-box ul li a:link, .menu-box ul li a:visited, .menu-box ul li span { display: block; padding: 6px 12px; background: url(http://www.mozilla-japan.org/img/dalvay-extended/menu-box/menu-box-bg.png) 0 0 no-repeat; text-decoration: none; font-weight: bold; width: 166px; }
+.menu-box ul li span { background: url(http://www.mozilla-japan.org/img/dalvay-extended/menu-box/menu-box-bg.png) -380px 0 no-repeat; }
+.menu-box ul li a:hover, .menu-box ul li a:active { background: url(http://www.mozilla-japan.org/img/dalvay-extended/menu-box/menu-box-bg.png) -190px 0 no-repeat; }
+.menu-box ul ul { background: none; padding: 0; }
+.menu-box ul li ul li a:link, .menu-box ul li ul li a:visited, .menu-box ul li ul li a:hover, .menu-box ul li ul li a:active, .menu-box ul li ul li span { padding-left: 24px; width: 154px; font-weight: normal; }
+
+/* Footer ******************************************************************* */
+
+#globalfooter { margin-top: 50px; background: #fff url(http://www.mozilla-japan.org/img/dalvay-extended/template/globalfooter-bg.png) repeat-x; }
+#globalfooter * { color: #888888; font-size: 10px; }
+#globalfooter-inner { margin: 0 auto; padding: 20px 0 50px 0; width: 940px; }
+#globalfooter h2 { position: absolute; top: 0; left: -99999px; }
+#globalfooter li { display: inline; margin-right: 1.5em; }

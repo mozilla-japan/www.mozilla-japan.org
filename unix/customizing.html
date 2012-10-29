@@ -1,0 +1,1069 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla をカスタマイズする</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/unix/customizing.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/unix/customizing.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<h1>Mozilla のカスタマイズ</h1>
+<p>このドキュメントの目的は、ユーザの好みにあわせてカスタマイズできる、あまり文書化されていない Mozilla の機能の一部について、いくつかのヒントを提供することです。</p>
+<p>ここに載っているテクニックのほとんどがクロスプラットフォームです。このドキュメントが mozilla.org ドキュメントツリーの中でどこの URL にあるかということに惑わされないでください。(訳注: このドキュメントは unix ディレクトリにありますが、ここで扱っている Mozilla のカスタマイズは、プラットフォームに関係なく利用できるということです)</p>
+<p>このドキュメントで扱っているトピックの一部です:</p>
+
+<ul>
+	<li><a href="#usercss">ユーザ CSS (UI フォントの変更を含む)</a></li>
+	<li><a href="#fonts">Linux でフォントをもっと読みやすくする</a></li>
+	<li><a href="#keys">キーバインディング</a></li>
+	<li><a href="#prefs">その他の便利な設定</a></li>
+	<li><a href="#ui">ユーザインターフェイス部品のルック &amp; フィール</a></li>
+</ul>
+
+<p>Mozilla をカスタマイズするその他の方法には <a href="/projects/security/components/ConfigPolicy.html">設定可能なセキュリティポリシー</a> もあります。</p>
+
+<hr>
+
+<h2><a name="usercss">ユーザ CSS (フォント、色、その他のスタイルの変更)</a></h2>
+<p>Mozilla のフォントや色の大部分は CSS (カスケーディングスタイルシート) によって管理されています。</p>
+<p>これは Mozilla の chrome ディレクトリにある .css ファイルで設定されていますが、ユーザは <b>userContent.css</b> や <b>userChrome.css</b> と呼ばれる 2 つのファイルでこれをオーバーライドすることができます。これらのファイルをユーザのプロファイルディレクトリ直下にある chrome サブディレクトリに置いてください。<b>userChrome.css</b> は Mozilla アプリケーションの UI クロームに関する CSS を管理し、<a href="#userContent"><b>userContent.css</b></a> はウィンドウ内のコンテンツに関する CSS を管理します。</p>
+
+<h3>userChrome.css</h3>
+<p>これは userChrome.css で変更可能なものの一例です。</p>
+
+<pre wrap>
+/* ダイアログやその他様々なテキストのフォントサイズ・フォントファミリーを設定 */
+window {
+  font-size: 3.5mm !important;
+  font-family: helvetica !important;
+}
+
+/* Sidebar をウィンドウの右端に配置する */
+window > hbox {
+  direction:rtl;
+}
+window > hbox > * {
+  direction:ltr;
+}
+
+/* パーソナルツールバー */
+/*
+ * 注意: パーソナルツールバー上のアイコンに影響を与えるルールは、フォルダコンテンツには当てはまりません。
+ * これらは「ブックマークメニュー」のルールによって制御されています。
+ */
+
+/* パーソナルツールバーにあるブックマークアイコンを消す */
+toolbarbutton.bookmark-item > .toolbarbutton-icon {
+  display: none;
+}
+
+/* 他の手段: */
+/* ブックマークフォルダのアイコンだけを選択する */
+/*
+.bookmark-item[type=&quot;menu&quot;] > .toolbarbutton-icon {
+  (ここに何か書きます)
+}
+ */
+
+/* タブグループのアイコンだけを選択する */
+/*
+.bookmark-item.bookmark-group > .toolbarbutton-icon {
+  (ここに何か書きます)
+}
+ */
+
+/* 例: 普通のブックマークに付いているアイコンを消すだけなら */
+/*
+.bookmark-item:not(.bookmark-group):not([type=&quot;menu&quot;]) > .toolbarbutton-icon {
+  display: none;
+}
+ */
+
+/* アイコンなし操作のための視覚的補助 */
+
+/* タブグループのブックマークを斜体・茶色にする */
+.bookmark-group > .toolbarbutton-text {
+  font-style: italic;
+  color: brown;
+}
+
+/* ブックマークフォルダを太字・濃紺色にする */
+.bookmark-item[type=&quot;menu&quot;] > .toolbarbutton-text {
+  font-weight: 900;
+  color: navy;
+}
+
+/* ブックマークメニュー */
+
+/* ブックマークメニューの中にある「普通の」ブックマークアイコンを消す */
+menuitem.bookmark-item > .menu-iconic-left {
+  display: none;
+}
+
+/* その他の例: */
+
+/* ブックマークメニューの中にあるブックマークフォルダのアイコンを消す */
+menu.bookmark-item > .menu-iconic-left {
+  display: none;
+}
+
+/* ブックマークメニューの中にあるブックマークグループのアイコンを消す */
+menuitem.bookmark-group > .menu-iconic-left {
+  display: none;
+}
+
+/* アイコンを消したブックマークメニューアイテムをデザインする (パーソナルツールバーのスタイルをまねする) */
+/* ブックマークフォルダ */
+menu.bookmark-item {
+  color: navy !important;
+  font-weight: 900 !important;
+}
+
+/* タブグループのブックマーク */
+menuitem.bookmark-group {
+  color: brown !important;
+  font-style: italic !important;
+}
+
+/* 以下のようにすれば普通のブックマークを選択できます */
+/*
+menuitem.bookmark-item {
+  (ここに何か書きます)
+}
+*/
+
+/* タブブラウザのタブ */
+
+/* タブブラウザのアイコンを消す */
+/* 注意: いくつかのテーマでは、タブ並びの中に空白の縦方向の余白がいくつか残ってしまいます */
+
+/* 常にすべてのタブアイコンを消す */
+/*
+.tabbrowser-tabs .tab-icon {
+  display: none;
+}
+ */
+
+/* 代わりに、デフォルトのタブブラウザアイコンだけを消す (それぞれの Web サイトが指定するアイコンは消さない) */
+.tabbrowser-tabs *|tab:not([image]) .tab-icon {
+  display: none;
+}
+
+/* タブの上にマウスが乗ったとき (常に) アイコンを表示 */
+/*
+.tabbrowser-tabs *|tab:hover .tab-icon {
+  display: -moz-box;
+}
+ */
+
+/* タブがロードされている間タブロードインジケータを表示 */
+/*
+.tabbrowser-tabs *|tab[busy] .tab-icon {
+  display:-moz-box;
+}
+*/
+
+/* タブ読み込み中にタブ読み込みインジケーターを表示 */
+/*
+.tabbrowser-tabs *|tab[busy] .tab-icon {
+  display:-moz-box;
+}
+*/
+
+/* タブのタイトルを 10 パーセント小さくする */
+.tabbrowser-tabs .tab-text {
+  font-size: 90%;
+}
+
+/* エディタ、メール ツールバーにある大きなアイコンを消す (bug 78843/94581) */
+.toolbar-primary-icon {
+  visibility: collapse;
+}
+
+/* メニューを大きくさっぱりと読みやすくする (昔の SGI 風)
+ * menubar は 12 月 19 日以降のビルドでは使われていませんが、Netscape 6 には必要とされます。
+ * 他のものは 12 月 19 日以降のビルドでも有効です。
+ */
+menubar, menubutton, menulist, menu, menuitem {
+  font-family: helvetica !important;
+  font-style: italic !important;
+  font-weight: bold !important;
+  font-size: 4mm !important;
+}
+
+/* 次の 2 つは「スライダー」としても「スクロールバー」としても動きません。
+ * どうやらスクロールバーのサイズは、上下左右の矢印に使われている画像によって
+ * 制御されているようです。
+slider {
+  height: 20px !important;
+}
+slider[align=&quot;vertical&quot;] {
+  width: 20px !important;
+}
+*/
+
+/* 1 行のテキストフィールド */
+input {
+  /* テキストフィールドのフォントサイズ・フォントファミリーを設定 */
+  font-family: clean !important;
+  font-size: 13px !important;
+
+  /* 背景色をちょっとさっぱりしたものに設定 */
+  background-color: rgb(200, 255, 220) !important;
+
+  /* キーバインディングを追加する
+   * この方法の説明については「カスタムキーバインディング」以下をご覧ください。
+   */
+  -moz-binding: url(&quot;resource:///res/builtin/myHTMLBindings.xml#myInputFields&quot;) !important;
+}
+
+/* 複数行のテキストエリア */
+textarea {
+  background-color: rgb(200, 255, 220) !important;
+}
+
+/* ドロップダウンアドレスやオートコンプリート (自動補完) ウィンドウは灰色になっています。
+ * これらを URL フィールドとより調和させ、もっと Netscape 4.x のようにするには:
+ */
+
+/* URL ドロップダウンボックス */
+#ubhist-popup {
+  background: white !important;
+  border: 1px solid black !important;
+  padding: 0px !important;
+}
+
+/* オートコンプリート (自動補完) テキストフィールド */
+.textfield-popup {
+  background: white !important;
+  border: 1px solid black !important;
+}
+
+#ubhist-popup &gt; .popup-internal-box, .textfield-popup &gt; .popup-internal-box {
+  border-left: 1px solid white !important;
+  border-top: 1px solid white !important;
+  border-right: 1px solid white !important;
+  border-bottom: 1px solid white !important;
+}
+
+/* ツールチップにボーダーライン (1px) を追加 */
+.tooltip-label {
+  border: 1px solid !important;
+}
+
+/* メール
+ *
+ * メールウィンドウでこの他に変更できるものを見つけるには、
+ * themes/modern/messenger 以下のソースツリーにあるファイルをご覧ください。
+ */
+
+/* メッセージペインのサブジェクトに使われているフォントを指定
+ * (太字、固定幅フォントで幅が広すぎるので)
+ */
+.subjectvalue {
+  font-family; helvetica !important;
+  font-weight: normal !important;
+}
+
+/* スレッドとフォルダペインを読みやすくする */
+treechildren {
+  font-size: 14px !important;
+}
+
+/* メール &amp; ニュース メッセージ (3 つの分割ウィンドウの右上にある部分ウィンドウ) の
+ * 背景色を灰色から白色に変更
+ */
+outliner {
+  background-color: white !important;
+}
+
+/* Chatzilla のステータスエリア */
+.status-label {
+  color: yellow !important;
+}
+.status-data {
+  color: white !important;
+}
+</pre>
+
+<h3><a name="userContent">userContent.css</a></h3>
+<p>これは userContent.css で変更可能なものの一例です。</p>
+
+<pre wrap>
+/* ドロップダウンフォームの周りすべてに Netscape 4.x のように細い黒線を付ける */
+:-moz-dropdown-list {
+  border: 1px solid black !important;
+  border-top-style: solid !important;
+}
+
+/* marquee の表示を無効にする */
+marquee {
+  -moz-binding: none; display: block; height: auto !important;
+  /* これはただ display:none !important; とするよりもいいと思います。
+   * なぜなら、こうすると今まで通り marquee の中にテキストが見え、
+   * しかもスクロールをさせないですむのです。
+   */
+}
+/*
+
+/*
+ * bug 103843/105547 が修正されるまで、新しいウィンドウを
+ * ポップアップする一部のリンクをハイライトさせる便利な代替策:
+ */
+:link:hover[target=&quot;_blank&quot;],:visited:hover[target=&quot;_blank&quot;] {
+  color: white !important; background: red !important;
+}
+:link:hover[target=&quot;_new&quot;],:visited:hover[target=&quot;_new&quot;] {
+  color: white !important; background: red !important;
+}
+
+/*
+ * 以下は Chatzilla 用です:
+ */
+
+/* Chatzilla のコンテンツエリアすべてのデフォルト */
+.output-window {
+  background: #555 !important;
+  color: white !important;
+  font-weight: bold !important;
+
+  /* CSS シンタックスのテスト用:
+  border-style: solid;
+  border-width: thick;
+  border-color: #0f0 !important;
+   */
+}
+
+/* 自分が打ったメッセージ */
+.msg-data[msg-user$=&quot;ME!&quot;] {
+  color: orange !important;
+  background: #555 !important;
+}
+
+/* 自分以外のすべての人のメッセージを違う色にすることができます。
+ * これによって会話が追いやすくなります。
+ */
+.msg-data[mark=&quot;odd&quot;] {
+  color: white !important;
+  background: #666 !important;
+}
+
+/* 直接自分に対するメッセージ */
+.msg-data[important] {
+  color: yellow !important;
+  /* background: gray !important; */
+}
+
+/* 参加者がチャンネルを出たときのメッセージ */
+.msg-data[msg-type=&quot;QUIT&quot;] {
+  background: #444 !important;
+  color: yellow !important;
+}
+
+/*
+ * メールメッセージでは、ユーザが指定したスタイルが無視されます。
+ * 詳しくは http://bugzilla.mozilla.org/show_bug.cgi?id=18427 をご覧ください。
+ */
+.moz-text-html font, .moz-text-html div, .moz-text-html body {
+  font-size: inherit !important;
+  font-family: inherit !important;
+  color: inherit !important;
+  background-color: inherit !important;
+  background-image: inherit !important;
+  text-align: inherit !important;
+  text-indent: inherit !important;
+}
+</pre>
+
+
+<h2><a name="fonts">Linux でフォントをもっと読みやすくする</a></h2>
+<p>多くの Linux 製品がフォントに関する問題を抱えています。特に、多くの Web ページに使われている Arial は、かたまりのよう見えて、要求されたサイズより小さいフォントになってしまうでしょう。</p>
+<p>(その問題に関する) 議論の全文は <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=46415">bug 46415</a> にありますが、Redhat ユーザにとっての簡単な解決策はこのようになります:</p>
+<p>読みにくい「Arial」フォントを使ったページを見つけたら - 例えば、この <font face="arial">Arial font</font> が、この段落にある他のテキストより小さく見えたり読みにくければ (訳注: この <font face="verdana">Verdana font</font> と比べてみてください。よく分からなければ <a href="http://www.mozilla.org/unix/customizing.html#fonts">原文 (英語)</a> を参照してください) - 次のコマンドを試してください。</p>
+
+<pre wrap>
+mv /usr/share/fonts/ISO8859-2 /usr/share/fonts.ISO8859-2
+</pre>
+
+<p>そして X からログアウトし、再度ログオンしてください。</p>
+<p>必要ならば、次のコマンドでいつでもこれを取り消すことができます:</p>
+
+<pre wrap>
+mv /usr/share/fonts.ISO8859-2 /usr/share/fonts/ISO8859-2
+</pre>
+
+<p><a href="http://home.online.no/%7Erut-aane/linux.html#fuzzy">このあいまいな Linux フォントに関する優れた議論</a> も読むだけの価値があります。</p>
+
+<hr>
+
+<h2><a name="keys">キーバインディング</a></h2>
+
+<h3>Mozilla キーバインディングの背景にあるいくつかの理論</h3>
+<p><a href="#key_example">(私は理論には関心がありません、コピーできる例だけ見せてください という方はこちらへスキップしてください)</a></p>
+
+<h4><a name="accelkey">修飾キー: アクセルキー</a></h4>
+<p>Mozilla は、クロスプラットフォームアプリケーションとして、異なるプラットフォーム上で別々の修飾キー (modifier key) を扱わなければなりません。Windows は Control キーをそのバインディングの大部分に使っています (例えば Ctrl + Q でアプリケーションを終了します)。Mac は Command キーを使っています (Cmd + Q は Windows における Ctrl + Q と同じ働きをします)。Unix は伝統的に Alt キーを使っています。なぜなら、Unix のアプリケーションは Control に Mozilla のウィンドウバインディングと矛盾する、他のバインディングを持っているからです。しかし、Windows バックグラウンドを持つ一部の Linux ユーザは Control を使いたいと思っています (Control はデフォルトです。理論上 Alt キーを好む人はたいてい経験豊富なユーザです)。そこで Mozilla では、ウィンドウバインディングに使われる修飾キーを <b>アクセル (accel)キー</b> と呼び、それは変更可能なものとなっています。</p>
+<p>アクセルキーは 2 つの設定の組み合わせによって変更されます (隠し設定を付ける方法についての情報は <a href="#prefs">「設定」の項目</a> をご覧ください。) キーの値は <a href="http://lxr.mozilla.org/seamonkey/source/dom/public/idl/events/nsIDOMKeyEvent.idl">nsIDOMKeyEvent.idl</a> による VK_CONTROL と VK_ALT と VK_META ですが、残念なことに prefs ファイルでは (まだ) 記号は動きません。そこで、17 を Alt に、18 を Control に、 224 を Meta (あるいは Mac では Command) に、それぞれの数を使う必要があります。</p>
+
+<dl>
+	<dt>ui.key.accelKey</dt>
+	<dd>整数: 第一アクセレータ修飾キーを設定します</dd>
+	<dt>ui.key.menuAccessKey</dt>
+	<dd>整数: メニューアクセスキーを設定します</dd>
+	<dt>ui.key.menuAccessKeyFocuses</dt>
+	<dd>ブール: 設定すると、メニューアクセスキーを押したときに、フォーカスがメニューシステムに移って、1 番目のメニュー (ふつうは [ファイル]) を強調表示します。これは、一部の Unix Window マネージャでは問題を起こすので、Unix ではデフォルトでオフになっています。</dd>
+	<dt>ui.key.generalAccessKey</dt>
+	<dd>整数: Web ページ内で使用するアクセスキーを設定します (これに関する議論は bug 128452 をご覧ください)</dd>
+</dl>
+
+<p>もっと具体的な例を挙げると、Unix ユーザは、アクセルキーを Alt に変えて、(Netscape 4.x のように) Alt によるメニューアクセスをオフにすると、これを実現できます。</p>
+
+<pre wrap>
+user_pref(&quot;ui.key.accelKey&quot;, 18);
+user_pref(&quot;ui.key.menuAccessKey&quot;, 0);
+</pre>
+
+<h3>Mozilla ではキーバインディングがどのように働くか</h3>
+<p>Mozilla のキーバインディングは 2 つのメカニズム - <a href="/xpfe/xptoolkit/">XUL</a> と <a href="/xpfe/xptoolkit/keys.html">XBL</a> によって処理されます。XUL バインディングは XBL バインディングをオーバーライドすることもあります。これはバグ (<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=77976">bug 77976</a>) として知られています。</p>
+<p>XUL ベースのコマンドにカスタムキーバインディングを作成するには、mozilla/chrome/comm.jar ファイルを展開して、適切なバインディングを追加あるいは編集し、新たに comm.jar ファイルを圧縮してください。(XUL アクセレータのリバインドを簡単にする作業の経過については <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=102993">bug 102993</a> をご覧ください) このセクションの残りの部分では、カスタム XBL バインディングについて説明します。</p>
+<p>Mozilla のデフォルト XBL バインディングは「<b>****Bindings.xml</b>」のような名前で chrome ファイルに入っています。特に、テキストフィールドやテキストエリア、ブラウザウィンドウ、エディタウィンドウ用のバインディングは <b>htmlBindings.xml</b> に入っています。さらに、プラットフォーム独自のバインディングがあり、それは <b>platformHTMLBindings.xml</b> ファイルに入っています。これらには、Unix の Emacs 風のテキスト編集キー、Windows の異なったスクロール処理、Mac の「やり直し」のための異なったバインディング、といったものが含まれています。</p>
+<p>その他のウィンドウ用のキーバインディングが含まれたファイルには、<b>treeBindings.xml</b>、<b>tabBindings.xml</b>、<b>radioBindings.xml</b> といったものがあります。私はメールウィンドウ用のバインディングがどこにあるのか知りません。これを見かけて知っている誰かがこのドキュメントを更新してくれることを望んでいます。</p>
+<p>通常の Mozilla インストールでは、<b>htmlBindings.xml</b> と <b>platformHTMLBindings.xml</b> ファイルは、インストールディレクトリの <b>res/builtin</b> 以下にあります。これらのファイルはそこで見ることができます。また、これらのファイルを編集して、独自のバインディングを追加することも可能です。</p>
+<p>キーバインディングの典型的なセットはこのようなものです (分かりやすく編集してあります):</p>
+
+<pre wrap>
+  &lt;binding id=&quot;inputFieldsBase&quot;&gt;
+    &lt;handlers&gt;
+    &lt;!-- コピーをアクセルキー C に設定 --&gt;
+    &lt;handler event=&quot;keypress&quot; id=&quot;key_copy&quot; key=&quot;c&quot; modifiers=&quot;accel&quot;
+        command=&quot;cmd_copy&quot;/&gt;
+
+    &lt;!-- 左向きの矢印キー --&gt;
+
+    &lt;handler event=&quot;keypress&quot; id=&quot;key_left&quot; keycode=&quot;VK_LEFT&quot;
+        command=&quot;cmd_charPrevious&quot;/&gt;
+
+    &lt;/handlers&gt;
+  &lt;/binding&gt;
+</pre>
+
+<p>これは 2 種類のキーハンドラを表しています。どちらも <b>keypress</b> イベントで働きます。(<b>keydown</b> や <b>keyup</b> イベントを扱うこともできますが、自分が何をしているのか知らない限り、これらは一般的にお勧めできません。)</p>
+<p>1 番目のハンドラは <b>コピー</b> コマンドをアクセルキー <b>C</b> に関連付けています。キーを表示可能なアスキー文字で表すには、<b>key=</b> に続けて普通の文字を使ってください。<b>アクセルキー</b> は現在お使いのプラットフォームで第 1 位の修飾キーです。デフォルトの状態では、これは、Windows や Unix では <b>Control</b> に、Mac では <b>Command</b> に関連付けられていますが、別のキーを定義することもできます (下の <a href="#accelkey">アクセルキーの変更</a> をご覧ください)。その他に使用できる修飾キーには Control、Alt、Shift があり、最終的には Meta も含まれるでしょう (Meta はまだすべてのプラットフォームで実装されていません)。修飾キーはカンマで区切られます。例: <b>modifiers=&quot;alt,shift&quot;</b></p>
+<p>2 番目のハンドラは <b>キーコード</b> 記号を使っており、表示不可能なアスキーではないキーが使われています。キー記号のリストは <a href="http://lxr.mozilla.org/seamonkey/source/dom/public/idl/events/nsIDOMKeyEvent.idl">nsIDOMKeyEvent.idl</a> にあります (キーコード名から DOM_VK_prefix を除いてください)。表示可能なアスキー文字の多くに相当するキーコードが一般的にあるということに気が付くでしょう。これら (例: <b>keycode=&quot;VK_A&quot;</b>) を使うことは強く思いとどまるべきですが、将来的にこれらの文字はなくなると思われます。これらの文字を使う唯一の理由は、keypress 以外のイベントに関するバインディングを定義することですが (keypress のみアスキーのキー値を返します)、これらを使う理由は現在のところありません。</p>
+
+<h3><a name="key_example">カスタムキーバインディングの設定: サンプル</a></h3>
+<p>キーバインディングは、XBL の部品 (テキストフィールドやテキストエリアなど) か、ウィンドウ全体 (ブラウザウィンドウや Composer ウィンドウなど) かの、どちらのバインディングを設定するかによって、2 通りの方法で設定されます。</p>
+
+<h4>Mozilla ウィンドウのカスタムキーバインディング</h4>
+<p>userHTMLBindings.xml は壊れているようです。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=201011">bug 201011</a> をご覧ください。以下のセクションは、このファイルの本来の働きを説明したものです:<br>エディタ、ブラウザウィンドウについては、userHTMLBindings.xml と呼ばれるファイルを作成し、Mozilla がインストールされているディレクトリにある res/builtin ディレクトリにそれを関連付けてください。(最終的に、私たちはこれをユーザの chrome ディレクトリに入れたいと思っていますが、まだこれは動作しません。この問題の解決への動きは <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=12911">bug 12911</a> をご覧ください。今のところは、あなたの chrome ディレクトリに本物のユーザバインディングファイルを保存し、そこから res/builtin ディレクトリへのシンボリックリンク (Windows ではショートカット、Mac ではエイリアス) を張ることをお勧めします。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=201011">bug 201011</a> が修正されるまで、Mozilla のインストールディレクトリにある res/builtin/platformHTMLBindings.xml ファイルを編集して、個々のキーバインディングを追加・変更することで対応できます。</p>
+<p>これは userHTMLBindings.xml のサンプルです:</p>
+
+<pre wrap>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;!-- 正しく動かすためには、このファイルは Mozilla ツリーの中で --&gt;
+&lt;!-- res/builtin/userHTMLBindings.xml という名前を付けられなければなりません。 --&gt;
+
+&lt;bindings id=&quot;htmlBindings&quot;
+   xmlns=&quot;http://www.mozilla.org/xbl&quot;
+   xmlns:xul=&quot;http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul&quot;&gt;
+
+  &lt;binding id=&quot;editorUser&quot;&gt;
+    &lt;handlers&gt;
+      &lt;handler event=&quot;keypress&quot; key=&quot;w&quot; modifiers=&quot;control&quot;
+       command=&quot;cmd_deleteWordBackward&quot;/&gt;
+    &lt;/handlers&gt;
+  &lt;/binding&gt;
+
+  &lt;binding id=&quot;browserUser&quot;&gt;
+    &lt;handlers&gt;
+      &lt;handler event=&quot;keypress&quot; keycode=&quot;VK_BACK&quot;
+       command=&quot;cmd_scrollPageUp&quot;/&gt;
+      &lt;handler event=&quot;keypress&quot; key=&quot;v&quot; modifiers=&quot;alt&quot;
+       command=&quot;cmd_scrollPageUp&quot;/&gt;
+      &lt;handler event=&quot;keypress&quot; key=&quot;v&quot; modifiers=&quot;control&quot;
+       command=&quot;cmd_scrollPageDown&quot;/&gt;
+    &lt;/handlers&gt;
+
+  &lt;/binding&gt;
+
+&lt;/bindings&gt;
+</pre>
+
+<h4>各部品のカスタムキーバインディング</h4>
+<p>テキストフィールドやテキストエリアといった部品については、myHTMLBindings.xml と呼ばれるファイルを作成し、それを res/builtin ディレクトリに置いてください。</p>
+<p>myHTMLBindings.xml とは次のようなものです:</p>
+
+<pre wrap>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;!-- 正しく動かすためには、このファイルは Mozilla ツリーの --&gt;
+&lt;!-- res/builtin ディレクトリに置かなければなりません。 --&gt;
+
+&lt;bindings id=&quot;htmlBindings&quot;
+   xmlns=&quot;http://www.mozilla.org/xbl&quot;
+   xmlns:xul=&quot;http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul&quot;&gt;
+
+  &lt;binding id=myInputFields
+   extends=&quot;resource:///res/builtin/platformHTMLBindings.xml#inputFields&quot;&gt;
+
+    &lt;handlers&gt;
+
+    &lt;handler event=&quot;keypress&quot; key=&quot;g&quot; modifiers=&quot;control&quot;
+        command=&quot;cmd_deleteWordBackward&quot;/&gt;
+    &lt;!-- (上の例を参考にして、好きなバインディングをここに挿入してください) --&gt;
+
+    &lt;/handlers&gt;
+  &lt;/binding&gt;
+
+&lt;/bindings&gt;
+</pre>
+
+<p>ただし、部品については特別な手順があります。myHTMLBindings は自動的に認識されません。そのため、あなたの user.css ファイル (プロファイルディレクトリの chrome サブディレクトリにあります) に以下の行を追加する必要があります (これは、カスタムバインディングをプロファイルごとに分けて設定しなければならないということですので、気を付けてください)。</p>
+
+<pre wrap>
+input {
+  /* キーバインディングをいくつか追加します */
+  -moz-binding: url(&quot;resource:///res/builtin/myHTMLBindings.xml#myInputFields&quot;) !important;
+}
+</pre>
+
+<h3>カスタムキーバインディングに使われる合法的なコマンド</h3>
+<p>キーバインディングではどんなコマンドが合法なのでしょうか? ウィンドウ内のコマンドハンドラで登録されているあらゆるものを使うことができます。ここに利用可能なコマンドの一部を挙げます。</p>
+<p><a href="http://lxr.mozilla.org/seamonkey/source/dom/src/base/nsGlobalWindow.cpp#5733">nsDomWindowController コマンド</a> (抜粋があるものは一般的に合法です)</p>
+
+<ul>
+	<li>cmd_copy</li>
+	<li>cmd_cut</li>
+	<li>cmd_paste</li>
+	<li>cmd_selectAll</li>
+	<li>cmd_selectNone</li>
+	<li>cmd_copyLink</li>
+	<li>cmd_copyImageLocation</li>
+	<li>cmd_copyImageContents</li>
+	<li>cmd_scrollTop</li>
+	<li>cmd_scrollBottom</li>
+	<li>cmd_scrollPageUp</li>
+	<li>cmd_scrollPageDown</li>
+	<li>cmd_scrollLineUp</li>
+	<li>cmd_scrollLineDown</li>
+	<li>cmd_scrollLeft</li>
+	<li>cmd_scrollRight</li>
+	<li>cmd_selectCharPrevious</li>
+	<li>cmd_selectCharNext</li>
+	<li>cmd_wordPrevious</li>
+	<li>cmd_wordNext</li>
+	<li>cmd_selectWordPrevious</li>
+	<li>cmd_selectWordNext</li>
+	<li>cmd_beginLine</li>
+	<li>cmd_endLine</li>
+	<li>cmd_selectBeginLine</li>
+	<li>cmd_selectEndLine</li>
+	<li>cmd_selectLinePrevious</li>
+	<li>cmd_selectLineNext</li>
+	<li>cmd_selectPagePrevious</li>
+	<li>cmd_selectPageNext</li>
+	<li>cmd_selectMoveTop</li>
+	<li>cmd_selectMoveBottom</li>
+</ul>
+
+<p><a href="http://lxr.mozilla.org/seamonkey/source/editor/libeditor/base/nsEditorController.cpp#130">エディタ コマンド</a> (フォーカスがテキストを打てるところにあるときは合法です)</p>
+
+<ul>
+	<li>cmd_paste</li>
+	<li>cmd_pasteQuote</li>
+	<li>cmd_delete</li>
+	<li>cmd_deleteCharBackward</li>
+	<li>cmd_deleteCharForward</li>
+	<li>cmd_deleteWordBackward</li>
+	<li>cmd_deleteWordForward</li>
+	<li>cmd_deleteToBeginningOfLine</li>
+	<li>cmd_deleteToEndOfLine</li>
+	<li>cmd_delete</li>
+	<li>cmd_deleteCharBackward</li>
+	<li>cmd_deleteCharForward</li>
+	<li>cmd_deleteWordBackward</li>
+	<li>cmd_deleteWordForward</li>
+	<li>cmd_deleteToBeginningOfLine</li>
+	<li>cmd_deleteToEndOfLine</li>
+	<li>cmd_scrollTop</li>
+	<li>cmd_scrollBottom</li>
+	<li>cmd_moveTop</li>
+	<li>cmd_moveBottom</li>
+	<li>cmd_selectTop</li>
+	<li>cmd_selectBottom</li>
+	<li>cmd_lineNext</li>
+	<li>cmd_linePrevious</li>
+	<li>cmd_selectLineNext</li>
+	<li>cmd_selectLinePrevious</li>
+	<li>cmd_charPrevious</li>
+	<li>cmd_charNext</li>
+	<li>cmd_selectCharPrevious</li>
+	<li>cmd_selectCharNext</li>
+	<li>cmd_beginLine</li>
+	<li>cmd_endLine</li>
+	<li>cmd_selectBeginLine</li>
+	<li>cmd_selectEndLine</li>
+	<li>cmd_wordPrevious</li>
+	<li>cmd_wordNext</li>
+	<li>cmd_selectWordPrevious</li>
+	<li>cmd_selectWordNext</li>
+	<li>cmd_scrollPageUp</li>
+	<li>cmd_scrollPageDown</li>
+	<li>cmd_scrollLineUp</li>
+	<li>cmd_scrollLineDown</li>
+	<li>cmd_movePageUp</li>
+	<li>cmd_movePageDown</li>
+	<li>cmd_selectPageUp</li>
+	<li>cmd_selectPageDown</li>
+</ul>
+
+<p>Composer コマンド (Composer のような HTML エディタにフォーカスがあるときは合法です) ここには挙げられていません。これは XBL バインディングからテストされていないためですが、理論上は動くはずです。</p>
+<p>ブラウザのコマンドは、どの集中ロケーション (記憶場所) でも定義されていません。これらは以下のものを含む、多くのファイルに散在しています (「cmd_」あるいは「Browser:」で始まる文字列を探してください)。
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/browser/resources/content/linkToolbarOverlay.xul">linkToolbarOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/browser/resources/content/navigator.js">navigator.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/browser/resources/content/navigatorOverlay.xul">navigatorOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/browser/resources/content/personalToolbar.js">personalToolbar.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/browser/resources/content/viewSourceOverlay.xul">viewSourceOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/communicator/resources/content/contentAreaContextOverlay.xul">contentAreaContextOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/communicator/resources/content/utilityOverlay.js">utilityOverlay.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/communicator/resources/content/viewZoomOverlay.xul">viewZoomOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/communicator/resources/content/unix/platformCommunicatorOverlay.xul">platformCommunicatorOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/components/bookmarks/resources/locale/en-US/bookmark.properties">bookmark.properties</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/components/bookmarks/resources/bookmarks-temp.js">bookmarks-temp.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/components/bookmarks/resources/bookmarks.xml">bookmarks.xml</a>、<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/components/bookmarks/resources/bookmarksOverlay.xul">bookmarksOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/xpfe/components/bookmarks/resources/bookmarksTree.js">bookmarksTree.js</a></p>
+<p>メール &amp; ニュースのコマンドは以下のファイルに散在しています (こちらも、「cmd_」で始まる文字列を探してください)。
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/addrbook/resources/content/abCommon.js">abCommon.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/addrbook/resources/content/addressbook.xul">addressbook.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/commandglue.js">commandglue.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/mail3PaneWindowCommands.js">mail3PaneWindowCommands.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/mailABOverlay.xul">mailABOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/mailContextMenus.js">mailContextMenus.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/mailEditorOverlay.xul">mailEditorOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/mailNavigatorOverlay.xul">mailNavigatorOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/mailOverlay.xul">mailOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/mailWindowOverlay.js">mailWindowOverlay.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/mailWindowOverlay.xul">mailWindowOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/messageWindow.js">messageWindow.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/messenger.xul">messenger.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/content/win/platformMailnewsOverlay.xul">platformMailnewsOverlay.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/search/resources/content/SearchDialog.js">SearchDialog.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/compose/resources/content/MsgComposeCommands.js">MsgComposeCommands.js</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/compose/resources/content/messengercompose.xul">messengercompose.xul</a>、
+<a href="http://lxr.mozilla.org/seamonkey/source/mailnews/extensions/smime/resources/content/msgCompSMIMEOverlay.js">msgCompSMIMEOverlay.js</a></p>
+<p>もしどなたかブラウザやメール &amp; ニュースのコマンドを調べる時間があって、きちんとしたリストを作っていただければ、それは大いに評価され、うれしいことに、このドキュメントの次の改訂に含まれるでしょう。</p>
+
+<hr>
+
+<h2><a name="prefs">その他の便利な設定</a></h2>
+<p>はじめに、注意: 以下の設定 (prefs) は、たいてい [設定] ダイアログにユーザインターフェイスがありませんので、設定ファイルを編集して定義する必要があります。通常の設定は、ユーザのプロファイルディレクトリにある <b>pref.js</b> に保存されています (設定が変更されるたびに Mozilla によって上書きされます) が、ヒントとして: 上書きしたくない設定や JavaScript (たとえばコメント) は、同じディレクトリにある <b>user.js</b> と呼ばれるファイルに入れておくことができます。このファイルはユーザの管理下にあり、Mozilla に読み込みはされますが、上書きされることはありません。</p>
+<p>user.js を使うときの注意: user.js でデフォルトと異なる値を定義された設定は prefs.js にも書き込まれます。そのため、user.js にある設定を削除したりコメントアウトしたりしても、当然 Mozilla が以前の設定を使うのをやめさせることにはなりません。もし user.js を変更したのに期待した結果が得られないときは、必ず prefs.js をチェックして、矛盾した値が定義されていないかどうか確かめてください。</p>
+<p>ここに私が便利だと思っているいくつかの設定を挙げます。これは私が user.js で設定しているものです。アドレスバーに about:config と入力すれば、利用できる設定の完全なリストや、それらの現在の設定を見ることができます。</p>
+
+<pre wrap>
+//
+// user.js: Mozilla が上書きしない個人設定
+//
+
+////////////////////////////////////////////////////////////
+// イライラを止める
+////////////////////////////////////////////////////////////
+
+// テキストの点滅を消す
+user_pref(&quot;browser.blink_allowed&quot;, false);
+
+// アニメーション画像モード: 標準、1 回のみ、なし
+// この設定は現在 [プライバシーとセキュリティ] &gt; [画像] に UI があります。
+user_pref(&quot;image.animation_mode&quot;, &quot;once&quot;);
+
+// 現在のサーバから送られていない画像をブロックするための設定 UI を表示
+// これは Mozilla ではデフォルトで表示されるようになっています。
+user_pref(&quot;imageblocker.enable&quot;, true);
+
+// イライラさせるオートコンプリート (自動補完) ポップアップを完全に消す
+// (実際には UI があるのですが隠されています)
+user_pref(&quot;browser.urlbar.autocomplete.enabled&quot;, false);
+user_pref(&quot;browser.urlbar.showPopup&quot;, false);
+user_pref(&quot;browser.urlbar.showSearch&quot;, false);
+
+// ダウンロードマネージャを消す (0 = ダウンロードマネージャ、1 = シンプルなダイアログ?)
+user_pref(&quot;browser.downloadmanager.behavior&quot;, 1);
+
+// marquee タグを有効にする (デフォルトでは無効になっています):
+user_pref(&quot;browser.display.enable_marquee&quot;, true);
+
+////////////////////////////////////////////////////////////
+// プラットフォームパリティ、UI の問題
+////////////////////////////////////////////////////////////
+
+// キーの変更: bug 22515 参照
+// Motif 式のアクセスキー
+user_pref(&quot;ui.key.accelKey&quot;, 18);
+user_pref(&quot;ui.key.menuAccessKey&quot;, 0);
+//user_pref(&quot;ui.key.menuAccessKeyFocuses&quot;, false);
+
+// Windows 式のアクセスキー
+//user_pref(&quot;ui.key.accelKey&quot;, 17);
+//user_pref(&quot;ui.key.menuAccessKey&quot;, 18);
+//user_pref(&quot;ui.key.menuAccessKeyFocuses&quot;, true);
+
+// これをコメントアウトすると Unix 式の自動コピーが無効になります。
+// (非 Unix プラットフォームでは、これを true にすると自動コピーが有効になります)
+//user_pref(&quot;clipboard.autocopy&quot;, false);
+
+// 中ボタン付きマウスの設定:
+// Unix ではデフォルトで true に、その他のプラットフォームでは false になっています。
+user_pref(&quot;middlemouse.paste&quot;, false);
+user_pref(&quot;middlemouse.openNewWindow&quot;, true);
+user_pref(&quot;middlemouse.contentLoadURL&quot;, false);
+user_pref(&quot;middlemouse.scrollbarPosition&quot;, false);
+
+// 新しい行を貼り付けたときの動作:
+// 0 = 変更せず貼り付け、1 = 1 行目だけ貼り付け、2 = 空白に置き換え、3 = 新しい行を削除
+//user_pref(&quot;editor.singleLine.pasteNewlines&quot;, 0);
+
+// Netscape 6 ブランチのバグ:
+// Unix ではフレームスタイルのドラッグアウト設定が初期化されません。
+// そのため、テキストの 1 行下をドラッグしても、行の終わりで選択範囲が途切れません。
+//pref(&quot;browser.drag_out_of_frame_style&quot;, 1);
+
+////////////////////////////////////////////////////////////
+// UI ルック &amp; フィールの問題
+////////////////////////////////////////////////////////////
+
+// タブフォーカスモデル ビットフィールド:
+// 1 = テキストコントロールをフォーカス、2 = 他のフォーム要素をフォーカス、
+// 4 = リンクを追加
+// ほとんどのユーザは 1、3 あるいは 7 が必要でしょう。
+user_pref(&quot;accessibility.tabfocus&quot;, 1);
+
+// これ以下のサイズのフォントを表示しない: bug 30910 参照
+// これは新しいクロスプラットフォームの設定です。
+// 古い Unix 専用の font.min-size 設定が軽視されていますが、まもなく取り除かれるでしょう。
+// 今はこの設定のための UI があり、[表示] &gt; [フォント] で見ることができます。
+user_pref(&quot;font.minimum-size.x-western&quot;, 13);
+
+// あるフォントの表示を禁止する: bug 104075 参照
+// すべての Arial フォントを禁止します。なぜなら AbiWord は見にくいフォントを
+// インストールし、それらはとても使えるいいフォントとは思えないからです。
+user_pref(&quot;font.x11.rejectfontpattern&quot;, &quot;fname=.*arial.*&quot;);
+
+// rejectfontpattern 用のいくつかの代替書式:
+// Some alternate forms for rejectfontpattern:
+// &quot;fname=.*arial.*;scalable=.*;outline_scaled=.*;\
+// xdisplay=.*;xdpy=.*;ydpy=.*;xdevice=.*&quot;);
+// &quot;fname=-zz-abiword.*;scalable=false;outline_scaled=false;&quot;);
+// 代わりに、受け取ったパターンがそのフォントに合わない場合、それを拒否する:
+//user_pref(&quot;font.x11.acceptfontpattern&quot;, &quot;.*&quot;);
+
+// サブメニューの遅延 (表示待機時間) をかなり長く設定する
+// どこかをクリックするまで、メニューが表示されたままの状態にします。
+// これは、マウスがメニューから 1 ピクセルでも横にずれたり、
+// メニューとサブメニューの間の線を横切るたびに (メニューが) 非表示になるのを防ぎ、
+// もっと Motif のメニューみたいに動作するようにします。
+user_pref(&quot;ui.submenuDelay&quot;, 7000);
+
+// Type Ahead Find の設定:
+user_pref(&quot;accessibility.typeaheadfind&quot;, true);
+user_pref(&quot;accessibility.typeaheadfind.linksonly&quot;, true);
+user_pref(&quot;accessibility.typeaheadfind.startlinksonly&quot;, false);
+user_pref(&quot;accessibility.typeaheadfind.timeout&quot;, 5000);
+
+// テキストの選択範囲の色を設定:
+user_pref(&quot;ui.textSelectBackground&quot;, &quot;green&quot;);
+user_pref(&quot;ui.textSelectForeground&quot;, &quot;white&quot;);
+// Type Ahead Find の選択範囲の色は若干異なります:
+user_pref(&quot;ui.textSelectBackgroundAttention&quot;, &quot;blue&quot;);
+// widgetSelectBackground がいつ、どのような状態で呼び出されるのかははっきりしません。ぜひ発見してください。
+user_pref(&quot;ui.widgetSelectBackground&quot;, &quot;orange&quot;);
+
+////////////////////////////////////////////////////////////
+// ポップアップウィンドウの制御
+////////////////////////////////////////////////////////////
+
+// ポップアップを無効にするための設定可能なセキュリティポリシーを使います。
+// http://www.mozilla.org/projects/security/components/ConfigPolicy.html をご覧ください。
+// 特定のサイトについて (JavaScript 内の) window.open を止める:
+user_pref(&quot;capability.policy.popupsites.sites&quot;, &quot;http://www.annoyingsite1.com http://www.popupsite2.com&quot;);
+user_pref(&quot;capability.policy.popupsites.Window.open&quot;,&quot;noAccess&quot;);
+// または、どのサイトでも window.open を止める:
+user_pref(&quot;capability.policy.default.Window.open&quot;,&quot;noAccess&quot;);
+
+// さらに重要 - JavaScript ウィンドウが読み込み時に新しいウィンドウをポップアップするのを無効にする
+// (多くのポルノサイトやスパムサイトがやるようなものです):
+user_pref(&quot;dom.disable_open_during_load&quot;, true);
+
+// 「target=」で指定された新しいウィンドウのポップアップを無効にする
+// これは現在、[設定] ダイアログの中にある [詳細] &gt; [スクリプト &amp; ウィンドウ] から設定できます。
+user_pref(&quot;browser.block.target_new_window&quot;, true);
+
+// 現在、マウスクリックの結果として呼び出されていない
+// JavaScript の window.open() メソッドを無効にすることができます。
+// dom.disable_open_click_delay の設定を 0 以外の数にした場合、
+// そこで指定したマウスをクリックしてからのミリ秒以上の数字が呼び出されたとき
+// window.open は動かなくなります。
+user_pref(&quot;dom.disable_open_click_delay&quot;, 1000);
+
+////////////////////////////////////////////////////////////
+// その他いろいろなもの
+////////////////////////////////////////////////////////////
+
+// デフォルトのユーザエージェント文字列をオーバーライドする:
+user_pref(&quot;general.useragent.override&quot;, &quot;Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.0.0; hi, Mom) Gecko/20020604&quot;);
+
+// ソース表示ウィンドウの構文ハイライト (色分け表示)
+// [表示] &gt; [配色] にユーザインターフェイスがあります
+user_pref(&quot;browser.view_source.syntax_highlight&quot;, false);
+
+// Chatzilla で、スマイリー代用記号 (黄色の顔文字) に加えてオリジナルのテキストを表示
+user_pref(&quot;extensions.irc.munger.smileyText&quot;, true);
+
+// エディタからの HTML 出力のためにカラムを送り込む:
+user_pref(&quot;editor.htmlWrapColumn&quot;, 72);
+
+// JavaScript の警告を表示
+// [設定] ダイアログの [デバッグ] パネルでも設定できます。
+user_pref(&quot;javascript.options.strict&quot;, true);
+
+// デフォルトの紙サイズを US-Letter から A4 に変更:
+//user_pref(&quot;print.postscript.paper_size&quot;, &quot;A4&quot;);
+
+////////////////////////////////////////////////////////////
+// 便利なメール &amp; ニュースの設定
+////////////////////////////////////////////////////////////
+
+// (メッセージ返信時の設定)
+// 0 = 返信を引用テキストの下に書き始める
+// 1 = 返信を引用テキストの上に書き始める
+// 2 = 引用テキストを選択し返信をその下に書き始める
+// 3 = 引用テキストを選択し返信をその上に書き始める
+// Mozilla は 0 をデフォルトにしていますが、Netscape では 1 になっています (げっ!)
+user_pref(&quot;mailnews.reply_on_top&quot;, 0);
+
+// 受信メッセージのユーザエージェントを表示
+user_pref(&quot;mailnews.headers.showUserAgent&quot;, true);
+
+// 収集アドレス帳を止める
+user_pref(&quot;mail.collect_email_address&quot;, false);
+
+// メッセージウィンドウのグラフィカルな返信スタイルを止める
+user_pref(&quot;mail.quoted_graphical&quot;, false);
+// (絵を使った) 標識を表示、http://www.bucksch.org/1/projects/mozilla/16507 参照
+user_pref(&quot;mail.display_glyph&quot;, true);
+
+// (HTML 形式の返信の中で) プレーンテキストの引用に HTML 形式の引用を使う
+user_pref(&quot;mail.quoteasblock&quot;, true);
+
+// Format=flowed 設定、RFC 2646
+user_pref(&quot;mailnews.send_plaintext_flowed&quot;, true);
+user_pref(&quot;mailnews.display.disable_format_flowed_support&quot;, true);
+user_pref(&quot;mail.display_struct&quot;, true);
+user_pref(&quot;mail.send_struct&quot;, false);
+</pre>
+
+<p>他にも便利な隠し設定があると思います。他の人たちもその恩恵を受けられるように、それを (見つけたら) このリストに加えてください!</p>
+
+<hr>
+
+<h2><a name="ui">ユーザインターフェイス部品のルック &amp; フィール</a></h2>
+<p>CSS によって制御されていない Mozilla のルック &amp; フィールの多くは、いわゆる「ルック &amp; フィール」オブジェクトによって制御されています。これは典型的に、ユーザの色などの設定といった、現在のプラットフォームにおける OS の動作をまねることを試みていますが、常にうまくいくわけではありません。また、ユーザが Mozilla を OS の残りのものとは異なるように設定したいと思う場合があるかもしれません。そのような理由から、ルック &amp; フィールの調節は <a href="#prefs">設定</a> を使ってオーバーライドすることができます。</p>
+<p>これが、最後にこの項目が修正された時点の、ルック &amp; フィール設定のリストです。最も最新のバージョンを求めるなら、ソースファイル <a href="http://lxr.mozilla.org/seamonkey/source/widget/src/xpwidgets/nsXPLookAndFeel.cpp">nsXPLookAndFeel.cpp</a> が常に最新のものとなっています。<b>注意: これらの設定すべてが実際に何かをするとは限りません</b>。また、あるプラットフォームでは動いても他のプラットフォームでは動かないといったことがあります。実験してみてください。</p>
+
+<h4>整数の値を取るルック &amp; フィール設定</h4>
+
+<ul>
+	<li>ui.windowTitleHeight</li>
+	<li>ui.windowBorderWidth</li>
+	<li>ui.windowBorderHeight</li>
+	<li>ui.widget3DBorder</li>
+	<li>ui.textFieldBorder</li>
+	<li>ui.textFieldHeight</li>
+	<li>ui.buttonHorizontalInsidePaddingNavQuirks</li>
+	<li>ui.buttonHorizontalInsidePaddingOffsetNavQuirks</li>
+	<li>ui.checkboxSize</li>
+	<li>ui.radioboxSize</li>
+	<li>ui.textHorizontalInsideMinimumPadding</li>
+	<li>ui.textVerticalInsidePadding</li>
+	<li>ui.textShouldUseVerticalInsidePadding</li>
+	<li>ui.textShouldUseHorizontalInsideMinimumPadding</li>
+	<li>ui.listShouldUseHorizontalInsideMinimumPadding</li>
+	<li>ui.listHorizontalInsideMinimumPadding</li>
+	<li>ui.listShouldUseVerticalInsidePadding</li>
+	<li>ui.listVerticalInsidePadding</li>
+	<li>ui.caretBlinkTime</li>
+	<li>ui.caretWidthTwips</li>
+	<li>ui.submenuDelay</li>
+	<li>ui.menusCanOverlapOSBar</li>
+</ul>
+
+<h4>浮動小数点の値を取るルック &amp; フィール設定</h4>
+
+<ul>
+	<li>ui.textFieldVerticalInsidePadding</li>
+	<li>ui.textFieldHorizontalInsidePadding</li>
+	<li>ui.textAreaVerticalInsidePadding</li>
+	<li>ui.textAreaHorizontalInsidePadding</li>
+	<li>ui.listVerticalInsidePadding</li>
+	<li>ui.listHorizontalInsidePadding</li>
+	<li>ui.buttonVerticalInsidePadding</li>
+	<li>ui.buttonHorizontalInsidePadding</li>
+</ul>
+
+<h4>色によるルック &amp; フィール設定</h4>
+<p>(これらが実際に動くかどうかははっきりしません)</p>
+
+<ul>
+	<li>ui.windowBackground</li>
+	<li>ui.windowForeground</li>
+	<li>ui.widgetBackground</li>
+	<li>ui.widgetForeground</li>
+	<li>ui.widgetSelectBackground</li>
+	<li>ui.widgetSelectForeground</li>
+	<li>ui.widget3DHighlight</li>
+	<li>ui.widget3DShadow</li>
+	<li>ui.textBackground</li>
+	<li>ui.textForeground</li>
+	<li>ui.textSelectBackground</li>
+	<li>ui.textSelectForeground</li>
+	<li>ui.activeborder</li>
+	<li>ui.activecaption</li>
+	<li>ui.appworkspace</li>
+	<li>ui.background</li>
+	<li>ui.captiontext</li>
+	<li>ui.graytext</li>
+	<li>ui.highlight</li>
+	<li>ui.highlighttext</li>
+	<li>ui.inactiveborder</li>
+	<li>ui.inactivecaption</li>
+	<li>ui.inactivecaptiontext</li>
+	<li>ui.infobackground</li>
+	<li>ui.infotext</li>
+	<li>ui.menu</li>
+	<li>ui.menutext</li>
+	<li>ui.scrollbar</li>
+	<li>ui.threedface</li>
+	<li>ui.buttonface</li>
+	<li>ui.buttonhighlight</li>
+	<li>ui.threedhighlight</li>
+	<li>ui.buttontext</li>
+	<li>ui.buttonshadow</li>
+	<li>ui.threeddarkshadow</li>
+	<li>ui.threedshadow</li>
+	<li>ui.threedlightshadow</li>
+	<li>ui.window</li>
+	<li>ui.windowframe</li>
+	<li>ui.windowtext
+	<li>ui.-moz-field</li>
+</ul>
+
+<hr>
+<author>
+Akkana Peck, akkzilla at shallowsky dot com
+</author>
+
+<hr class="hide" />
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/unix/customizing.html">英語版</a> 2003/10/30</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/unix/customizing.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

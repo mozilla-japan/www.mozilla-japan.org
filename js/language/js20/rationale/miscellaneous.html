@@ -1,0 +1,648 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 その他</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/rationale/miscellaneous.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="syntax.html">
+<link rel="Next" href="../compatibility.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="white-space:nowrap;">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">根拠</div>
+    <div class="title1">その他</div></td>
+  <td align="right" valign="top" style="white-space:nowrap;"><a href="syntax.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="../compatibility.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">06/04/2003</p>
+
+<p>この節では草案作成中に考えられていたその他の代替案を幾つか示す。</p>
+
+<h2><a name="types"></a>型</h2>
+
+<h3><code>Object</code></h3>
+
+<p>型階層の根底は JavaScript 1.5 にあった <a href="../libraries/types.html#Object"><code>Object</code></a>
+型が採られた。数値、文字列、論理値の各単純値 (プリミティブ値) は <code>Object</code>
+の派生クラスのインスタンスとなり、以前からあったラッパクラスは削除された。これは JavaScript 1.5
+における単純値とオブジェクトの混同を無くすためである。</p>
+
+<p>他に考えられていたものとしては新しい根底型に <code>any</code> を定義するものがあった。この型は単純な数値、文字列、論理値と同様
+<code>Object</code> の祖先で、それぞれ自身の型 <code>number</code> 、<code>string</code> 、<code>boolean</code> を持つことができた。この筋書きの下では
+JavaScript 1.5 のクラス <code>Number</code> 、<code>String</code> 、<code>Boolean</code> は <code>Object</code> の派生クラスのままだが、その単純値はそれらのクラスのメンバではなくなる
+&#8212; 例えば <code>false</code> は <code>boolean</code> のメンバだが <code>Boolean</code> のメンバではない。<code>false</code>
+をボクシングして得られたオブジェクトは <code>Boolean</code> クラスのメンバだが <code>boolean</code> のメンバではなく、<code>if</code>
+文では真と (!) 評価されてしまう。</p>
+
+<p><code>any</code> 案は JavaScript 1.5 と互換性の高いものだが、新しく持ち込まれる複雑さと混乱は必要以上の互換性に見合ったものではない。代わりに
+JavaScript 2.0 はこの部分において JavaScript 1.5 の挙動よりも簡単で整理されたものになっている。</p>
+
+<h3><code>Never</code> と <code>Void</code></h3>
+
+<p><a href="../libraries/types.html#Never"><code>Never</code></a> 型と <a href="../libraries/types.html#Void"><code>Void</code></a>
+型は異なる目的で使う。(関数の) 戻り値の型として使う場合、<code>Never</code> は関数が処理を返さないことを示し、<code>Void</code>
+は関数は値を返すが返される値は無効である (常に <code>undefined</code>) であることを示す。</p>
+
+<p>以下の例は <code>Never</code> と <code>Void</code> の使用法を示すものである:</p>
+
+<pre>// この関数は無効な値を返す。
+// This function returns no useful value.
+function display(message:String):Void {
+  document.write("&lt;\_P&gt;" + message + "&lt;\/P&gt;\n");
+}
+
+// この関数は処理を返さない。
+// This function cannot return.
+function abort(message:String):Never {
+  display(message);
+  throw AbortException;
+}
+
+function chickenCount(myChickens:Array[Chicken]):Integer {
+  if (notHatched(myChickens))
+    abort("Can&#8217;t count the chickens yet");
+  else
+    return myChickens.length;
+}</pre>
+
+<p>仮に関数 <code>abort</code> が戻り値の型を明示していなかったり <code>Never</code> 以外の型を指定している場合は、コンパイラは関数
+<code>chickenCount</code> の内で警告を出すということに注意していただきたい。これは <code>chickenCount</code> が
+<code>Integer</code> を返すように宣言されているにも関わらず、値を返さずに関数から抜けるコード経路 (<code>if</code> 文が偽になる場合)
+を含むからである。関数 <code>abort</code> の戻り値の型 <code>Never</code> は <code>chickenCount</code>
+内にそのようなコード経路が存在しないということをコンパイラに知らせるものである。</p>
+
+<p>コンパイラの警告の問題を解決するのに、その関数が処理を返さないことをコンパイラに検証させないためにということで、戻り値の型を <code>Never</code> にするアイデアは良いものだったかもしれない。</p>
+
+<h3><a name="typed-arrays"></a>型付き配列</h3>
+
+<p>草案には元々他にも配列型が含まれていた (簡潔さのために除外された)。以下は言語の将来のバージョンで採用される可能性のあるものである:</p>
+
+<div class="indent">
+  <table border="1" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col valign="top" style="white-space:nowrap;">
+	<col valign="top">
+  </colgroup>
+  <tr align="left">
+    <th>型</th>
+    <th>値の集合</th>
+  </tr>
+  <tr>
+    <td><code>Array</code></td>
+    <td><code>Array[Object]</code> と同じ</td>
+  </tr>
+  <tr>
+    <td><code>Array[</code><var>t</var><code>]</code></td>
+    <td>型 <var>t</var> の要素を格納する全ての (連続、非連続) 配列、及び <code>null</code></td>
+  </tr>
+  <tr>
+    <td><code>List[</code><var>t</var><code>]</code></td>
+    <td>型 <var>t</var> の要素を格納しする可変長連続配列、及び <code>null</code></td>
+  </tr>
+  <tr>
+    <td><var>t</var><code>[]</code></td>
+    <td>型 <var>t</var> の要素を格納する固定長連続配列、及び <code>null</code></td>
+  </tr>
+  <tr>
+    <td><code>ConstArray</code></td>
+    <td><code>ConstArray[Object]</code> と同じ</td>
+  </tr>
+  <tr>
+    <td><code>ConstArray[</code><var>t</var><code>]</code></td>
+    <td>型 <var>t</var> の要素を格納する全ての定数配列、及び <code>null</code></td>
+  </tr>
+  </table>
+</div>
+
+<p>非連続配列は空洞を持つ。連続配列は必ず0から始まる添字を持つ連続した要素を持つ。可変長配列は <code>length</code>
+プロパティを設定することで長さが変化する。</p>
+
+<p><var>A</var> が <code>Array[</code><var>t</var><code>]</code> 、<code>List[</code><var>t</var><code>]</code>
+、<var>t</var><code>[]</code> 、<code>ConstArray</code> 、及び <code>ConstArray[</code><var>t</var><code>]</code>
+のいずれかの型式である場合、以下の3つの操作で <var>A</var> 型の配列の作成、或いは変換が可能になる:</p>
+
+<ul>
+  <li><code>new&nbsp;</code><var>A</var><code>(</code><var>elt1</var><code>,&nbsp;</code><var>elt2</var><code>,&nbsp;</code>...<code>)</code>
+    は与えられた要素 (要素数は1でもよい) を使って相当する配列型のインスタンスを作成する。</li>
+  <li><code>new&nbsp;</code><var>A</var><code>(length:&nbsp;</code><var>n</var><code>)</code> は相当する配列型のインスタンスを長さ
+    <var>n</var> で作成する。各要素の初期値は配列が非連続であれば空洞であり、連続していれば <var>A</var>
+    の要素型のデフォルト値になる。この形式を使うには<a href="named.html">名前付き引数</a>拡張が必要である。</li>
+  <li><var>A</var><code>(</code><var>B</var><code>)</code> は相当する配列型のインスタンスを作成する。新しいインスタンスの各要素は
+    <var>B</var> から複製されたものであり、<var>B</var> は何らかの配列でなければならない。<var>A</var> が連続配列で <var>B</var>
+    が空洞を持つ場合の結果は未解決である。</li>
+</ul>
+
+<p><code>ConstArray</code> 以外の配列型インスタンスが等しいのはそれらが同一のオブジェクトである場合だけである。<code>ConstArray</code>
+配列型インスタンスが等しいのは要素が同じで要素の型 <var>t</var> も同じ場合である。</p>
+
+<h3><a name="type-expressions"></a>型式</h3>
+
+<p>他に以下の表のような型演算子が定義できた。<var>s</var> と <var>t</var> は型式である。</p>
+
+<div class="indent">
+  <table border="1" cellspacing="2" cellpadding="0">
+  <colgroup>
+  	<col valign="top" style="white-space:nowrap;">
+    <col valign="top">
+    <col valign="top">
+  </colgroup>
+  <tr align="left">
+    <th align="left">型</th>
+    <th>値</th>
+    <th>値 <var>v</var> の暗黙の強制型変換</th>
+  </tr>
+  <tr>
+    <td><var>t</var><code>[]</code></td>
+    <td>型 <var>t</var> の固定長配列及び <code>null</code></td>
+    <td><code>undefined</code> <script type="text/javascript">document.write(U_rarr)</script> <code>null</code></td>
+  </tr>
+  <tr>
+    <td><code>const&nbsp;</code><var>t</var></td>
+    <td>型 <var>t</var> (配列型でなければならない) を読み取り専用の配列型にする</td>
+    <td>無し</td>
+  </tr>
+  <tr>
+    <td><code>-</code> <var>t</var></td>
+    <td>型が <var>t</var> である <code>null</code> を除くあらゆる値</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>~</code> <var>t</var></td>
+    <td>型 <var>t</var> のあらゆる値及び <code>undefined</code></td>
+    <td><code>undefined</code> <script type="text/javascript">document.write(U_rarr)</script> <code>undefined</code>。型
+      <var>t</var> の他の暗黙の強制型変換には既に定義がある</td>
+  </tr>
+  <tr>
+    <td><code>+</code><var>t</var></td>
+    <td>型 <var>t</var> のあらゆる値及び <code>null</code></td>
+    <td><code>null</code> <script type="text/javascript">document.write(U_rarr)</script> <code>null</code>。<code>undefined</code>
+      <script type="text/javascript">document.write(U_rarr)</script> <code>null</code> (<code>undefined</code> が <var>t</var>
+      のメンバでない場合)。型 <var>t</var> の他の暗黙の強制型変換には既に定義がある</td>
+  </tr>
+  <tr>
+    <td><var>s</var> <code>+</code> <var>t</var></td>
+    <td>型 <var>s</var> と型 <var>t</var> のいずれか、或いは両方の全ての値</td>
+    <td><var>v</var><script type="text/javascript">document.write(U_isin)</script><var>s</var><code>+</code><var>t</var>
+      であれば <var>v</var> を使う。それ以外の場合で <var>v</var>&nbsp;<code>as</code>&nbsp;<var>s</var> が定義されていれば
+      <var>v</var>&nbsp;<code>as</code>&nbsp;<var>s</var> を使う。これら以外の場合で <var>v</var>&nbsp;<code>as</code>&nbsp;<var>t</var>
+      が定義されていれば <var>v</var>&nbsp;<code>as</code>&nbsp;<var>t</var> を使う</td>
+  </tr>
+  <tr>
+    <td><var>s</var> <code>*</code> <var>t</var></td>
+    <td>型 <var>s</var> であり、型 <var>t</var> でもある全ての値</td>
+    <td><var>v</var>&nbsp;<code>as</code>&nbsp;<var>s</var>&nbsp;<code>as</code>&nbsp;<var>t</var>
+      が定義されていて、且つ <var>s</var><code>*</code><var>t</var> のメンバであれば
+      <var>v</var>&nbsp;<code>as</code>&nbsp;<var>s</var>&nbsp;<code>as</code>&nbsp;<var>t</var> を使う</td>
+  </tr>
+  <tr>
+    <td><var>s</var> <code>/</code> <var>t</var></td>
+    <td>型 <var>s</var> であるが型 <var>t</var> ではない全ての値</td>
+    <td><var>v</var>&nbsp;<code>as</code>&nbsp;<var>s</var> が定義されていて、且つ <var>s</var><code>/</code><var>t</var>
+      のメンバであれば <var>v</var>&nbsp;<code>as</code>&nbsp;<var>s</var> を使う。</td>
+  </tr>
+  </table>
+</div>
+
+<p>添字演算子 <code>[]</code> は配列型を作成するのに使用できる。<code>Array</code>
+とは異なり、これらの配列には空洞が無く、整数値でのみインデクシング可能、固定長、そして派生不能である &#8212;
+<var>t</var><code>[]</code> は<a href="../core/definitions.html#class-attributes">クラス修飾属性</a> <code>final</code> を持つ。</p>
+
+<p>新しい<a href="../core/expressions.html#unary">単項演算子</a>として <code>const</code> が追加できた。この演算子は
+<a href="operators.html#N-PostfixExpressionOrSuper" class="nonterminal">PostfixExpressionOrSuper</a> <var>x</var>
+をオペランドにとり、<var>x</var> が <code>ConstArray</code> 配列以外のインスタンスであれば <code>const&nbsp;</code><var>x</var>
+は <var>x</var> のコピーを <code>ConstArray[</code><var>T</var><code>]</code> で返す。ここに <var>T</var> は、<var>x</var>
+の各要素が <var>T</var> のメンバであることを最もよく表す型である。<var>x</var> が配列型であれば <code>const&nbsp;</code><var>x</var>
+は対応する <code>ConstArray</code> 型となる。</p>
+
+<ul>
+  <li><var>t</var><code>[]</code> は <var>t</var> の書き込み可能配列型である。</li>
+  <li><code>const&nbsp;</code><var>t</var><code>[]</code> は <var>t</var> の定数配列型である。</li>
+  <li><var>t</var><code>[][]</code> は <var>t</var> の書き込み可能配列の書き込み可能配列型である。<br>
+    <VAR>t</VAR><CODE>[][]</CODE> is the type of writable arrays of writable arrays of <VAR>t</VAR>.</li>
+  <li><code>const&nbsp;</code><var>t</var><code>[][]</code> は <var>t</var> の書き込み可能配列の定数配列型である &#8212;
+    <code>const</code> は <code>[]</code> よりも結合が弱いので <code>const&nbsp;(</code><var>t</var><code>[])[]</code> としても同じである。</li>
+  <li><code>(const&nbsp;</code><var>t</var><code>[])[]</code> は <var>t</var> の定数配列の書き込み可能配列型である。</li>
+</ul>
+
+<h2><a name="constructors"></a>多重コンストラクタ</h2>
+
+<p>以前の JavaScript 2.0 草案では、1つのクラスが複数のコンストラクタを異なる名前で持ち、静的関数と同じ構文で呼び出すことができた。これらは言語の単純さを保つために除外された。現在では各クラスは最高でも1つしかコンストラクタを持てず、同じクラスから別のコンストラクタを呼び出す
+<code>this(</code><var>args</var><code>)</code> 形式も除外された。コンストラクタは以下で述べるように定義されていた。</p>
+
+<p>コンストラクタはクラス <var>C</var> の新しいインスタンスを作成する関数で、<code>constructor</code>
+属性を使って定義する。コンストラクタは普通、クラスと同じ名前で与えられるが、その場合は <code>constructor</code>
+属性は省略可能であり、コンストラクタはいわゆる<strong>デフォルトコンストラクタ</strong>として <code>new</code>&nbsp;<var>C</var>
+で呼び出し可能になる。コンストラクタの名前がクラス名と異なる場合はそのクラスの <code>static</code> 関数として呼ぶ:</p>
+
+<p class="indent"><code>class&nbsp;C&nbsp;{</code><br>
+<code>&nbsp;&nbsp;var&nbsp;a:String;</code><br>
+<br>
+<code>&nbsp;&nbsp;constructor&nbsp;function&nbsp;C(p:String)&nbsp;{this.a&nbsp;=&nbsp;"New&nbsp;"+p}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;この&nbsp;<code>constructor</code>&nbsp;属性は省略可能<br>
+<code>&nbsp;&nbsp;constructor&nbsp;function&nbsp;make(p:String)&nbsp;{this.a&nbsp;=&nbsp;"Make&nbsp;"+p}</code><br>
+<code>&nbsp;&nbsp;static&nbsp;function&nbsp;obtain(p:String):C&nbsp;{return&nbsp;new&nbsp;C(p)}</code><br>
+<code>}</code><br>
+<br>
+<code>var&nbsp;c:C&nbsp;=&nbsp;new&nbsp;C("one");</code><br>
+<code>var&nbsp;d:C&nbsp;=&nbsp;C.C("two");</code><br>
+<code>var&nbsp;e:C&nbsp;=&nbsp;C.make("three");</code><br>
+<code>var&nbsp;f:C&nbsp;=&nbsp;C.obtain("four");</code><br>
+<br>
+<code>c.a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;<code>"New&nbsp;one"</code>&nbsp;を返す<br>
+<code>d.a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;<code>"New&nbsp;two"</code>&nbsp;を返す<br>
+<code>e.a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;<code>"Make&nbsp;three"</code>&nbsp;を返す<br>
+<code>f.a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;<code>"New&nbsp;four"</code>&nbsp;を返す</p>
+
+<p>コンストラクタ内では <code>this</code> によりそのクラスのインスタンス変数を参照することができる。 クラス <var>C</var> をクラス
+<var>B</var> の派生クラスとすると <var>C</var> のインスタンス作成中に <var>B</var> のコンストラクタが呼ばれるわけだが、その際
+<var>B</var> のコンストラクタは部分的に構築されているインスタンスでクラス <var>C</var>
+の仮想メソッドを呼び出すことができるだろう。同様に <var>B</var> のコンストラクタは <code>this</code> をグローバル変数 <var>v</var>
+に格納することができ、他の関数は部分的に構築されているオブジェクト <var>v</var> で <var>C</var>
+のメソッドを呼び出すことが可能である。クラス <var>C</var> とその祖先クラスのいずれも上記のどちらかの動作をするコンストラクタを持たない場合に限ってクラス
+<var>C</var> のメソッドは <var>C</var> の完全に初期化されたインスタンスで呼ばれるだけということが保証され得る。</p>
+
+<p>コンストラクタは自動的に新しく作成されたオブジェクトを返すので <code>return</code>
+文で値を返すべきではない。コンストラクタの戻り値の型も記述してはいけない。</p>
+
+<p><code>constructor</code> 関数は常に新しいインスタンスを返す。一方、<code>static</code>
+関数はそのクラスの既存のインスタンスを返すことができる。クラス <var>C</var> と同名の <code>static</code>
+関数を定義することは可能で、そのような関数はクラスの外側からはコンストラクタのように見える (<code>new</code> <var>C</var>
+として呼び出すことができる) が、そのクラスの既存のインスタンスを呼び出し側に与えることができる。しかしながら、派生クラスには
+<var>C</var> がそのクラスのコンストラクタでないことが分かってしまうだろう。これは派生クラスのコンストラクタから <var>C</var>
+の擬似コンストラクタを呼び出すことができないためである。</p>
+
+<p>クラス <var>C</var> がデフォルトコンストラクタ <var>C</var><code>.</code><var>C</var> を定義しない場合は
+<var>C</var><code>.</code><var>C</var> は自動的に定義される。この自動的に定義されるコンストラクタは <var>C</var>
+の基底クラスのデフォルトコンストラクタ <var>B</var><code>.</code><var>B</var> と同じ引数をとる。<var>C</var><code>.</code><var>C</var>
+は <var>B</var><code>.</code><var>B</var> を呼び出した後、<var>C</var> の新しいインスタンスメンバをそのデフォルト値で初期化する。</p>
+
+<h3>基底コンストラクタの呼び出し</h3>
+
+<p>クラス <var>C</var> の基底クラスを <var>B</var> とする。コンストラクタ <var>C</var><code>.</code><var>n</var> は <code>this</code>
+や <code>super</code> にアクセスしたり呼び出し側に処理を戻す前にコンストラクタ <var>B</var><code>.</code><var>m</var> か
+<var>C</var><code>.</code><var>m</var> を呼び出さなければならない。この呼び出しは明示的なものでも暗黙のものでもよい。仮に
+<var>C</var><code>.</code><var>n</var> が実行パス上でコンストラクタ <var>B</var><code>.</code><var>m</var>
+、<var>C</var><code>.</code><var>m</var> いずれの呼び出しも含んでいなければ、自動的に <var>C</var><code>.</code><var>n</var>
+の文の先頭に <var>B</var><code>.</code><var>B</var> の引数無しの呼び出し文が挿入される。コンストラクタ <var>C</var><code>.</code><var>n</var>
+が例外を投げて処理を抜ける場合は他のコンストラクタを呼び出す必要は無い。<var>C</var><code>.</code><var>n</var> は2回以上コンストラクタ呼び出しを行ってはならない。</p>
+
+<p>コンストラクタ <var>C</var><code>.</code><var>n</var> は以下の文を使って他のコンストラクタを呼び出すことができる:</p>
+
+<div class="indent">
+  <table border="0" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col valign="top" style="white-space:nowrap;">
+    <col valign="top">
+  </colgroup>
+  <tr>
+    <td><code>super(</code><var>args</var><code>)</code></td>
+    <td><var>B</var> のデフォルトコンストラクタ <var>B</var><code>.</code><var>B</var> を呼ぶ。</td>
+  </tr>
+  <tr>
+    <td><code>super.</code><var>m</var><code>(</code><var>args</var><code>)</code></td>
+    <td><var>B</var> のコンストラクタ <var>B</var><code>.</code><var>m</var> を呼ぶ。<var>m</var> は <var>B</var>
+      のコンストラクタの1つを名前付ける <a href="../core/expressions.html#N-QualifiedIdentifier" class="nonterminal">QualifiedIdentifier</a> でなければならない。</td>
+  </tr>
+  <tr>
+    <td><code>this(</code><var>args</var><code>)</code></td>
+    <td><var>C</var> のデフォルトコンストラクタ <var>C</var><code>.</code><var>C</var> を呼ぶ。</td>
+  </tr>
+  <tr>
+    <td><code>this.</code><var>m</var><code>(</code><var>args</var><code>)</code></td>
+    <td><var>C</var> のコンストラクタ <var>C</var><code>.</code><var>m</var> を呼ぶ。<var>m</var> は <var>C</var>
+      のコンストラクタの1つを名前付ける <a href="../core/expressions.html#N-QualifiedIdentifier" class="nonterminal">QualifiedIdentifier</a> でなければならない。</td>
+  </tr>
+  </table>
+</div>
+
+<p>上記の文は部分式などでない完全な文でなければならない。上の4つの形式の内、最初のものは確実に
+<a href="../core/statements.html#N-SuperStatement" class="nonterminal">SuperStatement</a> となるが、残りの3つは
+<a href="../core/statements.html#N-ExpressionStatement" class="nonterminal">ExpressionStatement</a>
+としてパースされる。以下の規則により、これら3つの形式 (<code>super.</code><var>m</var><code>(</code><var>args</var><code>)</code>
+、<code>this(</code><var>args</var><code>)</code> 、<code>this.</code><var>m</var><code>(</code><var>args</var><code>))</code>
+が式、コンストラクタ呼び出しのいずれとして扱われるか決まる:</p>
+
+<ul>
+  <li>より大きな式の一部であれば (例えば <code>this(3,4)+5</code>) 式である。</li>
+  <li>コンストラクタの内側に置かれなければ (入れ子になった関数は除く) 式である。</li>
+  <li><code>super.</code><var>m</var><code>(</code><var>args</var><code>)</code> の <var>m</var>
+    が基底クラスのコンストラクタの名前に無ければ式である (この場合、<code>this</code> 上で基底クラスのプロパティ <var>m</var>
+    が探索され、<var>args</var> を引数にしてメソッドとして呼び出す) </li>
+  <li><code>this.</code><var>m</var><code>(</code><var>args</var><code>)</code> の <var>m</var>
+    が現在のクラスのコンストラクタの名前に無ければ式である (この場合、<code>this</code> 上で基底クラスのプロパティ <var>m</var>
+    が探索され、<var>args</var> を引数にしてメソッドとして呼び出す) 。</li>
+  <li>それ以外はコンストラクタ呼び出しである。</li>
+</ul>
+
+<p>オブジェクト作成中にクラス階層レベルを飛び越えたりすることはできない &#8212; 例えば <var>C</var> の基底クラスが <var>B</var>
+で、<var>B</var> の基底クラスが <var>A</var> のときは、<var>C</var> のコンストラクタは直接 <var>A</var>
+のコンストラクタを呼び出すことはできない。</p>
+
+<h2><a name="class-extension"></a>クラス拡張</h2>
+
+<p>クラス拡張はどこか他の場所で定義されたクラスにメソッドを追加する機能である。クラス拡張は JavaScript 2.0
+草案に含まれていたが、言語の単純さを保つために除外された。クラス拡張は有用なものだが、クラス設計は著しく複雑になり、厄介な問題 &#8212;
+パッケージ <var>P</var> がまずパッケージ <var>Q</var> から基底クラス <var>C</var> をインポートし、次に <var>C</var> の派生クラス
+<var>D</var> を定義、最後に <var>D</var> のメソッドと同じ名前、同じ名前空間で <var>C</var> を拡張した場合どうするのか &#8212;
+が発生する。</p>
+
+<p>クラス拡張は以下で述べる <code>extend</code> 属性を使って行う。</p>
+
+<h3><code>extend</code> 属性</h3>
+
+<p><code>extend</code> 属性は1つの引数 <var>C</var> をとり、定義をクラス <var>C</var>
+に新メンバとして追加する。この引数はクラスとして評価される<a href="../core/expressions.html#compile-time-constant">コンパイル時定数式</a>でなければならない。これによりクラス
+<var>C</var> が既にパッケージ <var>P</var> で定義されていても、既存の <var>C</var> にメソッドを追加できるようになる。これには幾つか制限がある:</p>
+
+<ul>
+  <li><code>extend</code> 属性が使用できるのは <code>function</code> 、<code>const</code> 、<code>class</code>
+    、<code>namespace</code> 及び <code>static&nbsp;var</code> 定義のみである。例えばクラス <var>C</var>
+    のオブジェクトに新インスタンス変数を追加するのにクラス拡張は使えない。ただしゲッタとセッタは可能である。<a href="operators.html">演算子</a>の定義にも使えない。</li>
+  <li>新メンバは <code>static</code> か <code>final</code> でなければならず、既存のメンバをオーバーライドすることはできない。新メンバが
+    <code>function</code> であればデフォルトで <code>final</code> になる。</li>
+  <li>新メンバは現在のパッケージで定義された名前空間で定義しなければならない。これは特に新メンバを <code>public</code>
+    で定義できないことを意味している。それは <code>public</code> 名前空間はシステムにより定義済みであり他のあらゆるパッケージにより定義されるものではないからである。デフォルトの名前空間は
+    <code>internal</code> で <var>C</var> の新メンバを現在のパッケージ内でのみ可視にする。</li>
+  <li>新メンバは <var>C</var> の元々のメンバに備わっている特別なアクセス権を持たない。例えば <var>C</var> の
+    <code>private</code> メンバは不可視であり、<var>P</var> が現在のパッケージでなければ <var>P</var> の <code>internal</code>
+    メンバも不可視である。一方、現在のパッケージの <code>internal</code> メンバは可視である。</li>
+</ul>
+
+<p>以下は新しく作成した名前空間 <code>StringExtension</code> を使ってシステムクラス String にメソッドを追加する例である:</p>
+
+<pre>namespace StringExtension;
+
+StringExtension extend(String) function scramble():String {...}
+StringExtension extend(String) function unscramble():String {...}
+
+use namespace(StringExtension);
+
+var x:String = "abc".scramble();</pre>
+
+<p>クラス拡張が評価されるとメソッド <code>scramble</code> と <code>unscramble</code> は <code>use&nbsp;namespace(StringExtension)</code>
+のスコープ内のコード中にある全ての文字列で使用可能になる。名前空間 <code>StringExtension</code> で限定すると名前 <code>scramble</code>
+、<code>unscramble</code> は特別な意味を帯びるため、クラス拡張により他の無関係のパッケージとの間に名前の衝突が起こる可能性は無い。</p>
+
+<p>クラス拡張を他のパッケージにエクスポートするつもりが無ければ、デフォルト名前空間 <code>internal</code>
+の動作は大抵の場合素晴らしいものであり、上の例は簡単になる:</p>
+
+<pre>extend(String) {
+  function scramble():String {...}
+  function unscramble():String {...}
+}
+
+var x:String = "abc".scramble();</pre>
+
+<h2><a name="interfaces"></a>インターフェイス</h2>
+
+<p>インターフェイスは JavaScript 2.0 で検討されたが、言語の単純さを保つために除外された &#8212;
+動的な型付けが起こる言語では静的な型付けが起こる言語ほどの必要性は無い。</p>
+
+<p>インターフェイスは以下の構文とセマンティクスの追加により定義されただろう。</p>
+
+<h3>インターフェイスの定義</h3>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-InterfaceDefinition"></a><span class="nonterminal">InterfaceDefinition</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_omega)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code class="terminal-keyword">interface</code>&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<a href="#N-ExtendsList" class="nonterminal">ExtendsList</a>&nbsp;<a href="../core/statements.html#N-Block" class="nonterminal">Block</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">interface</code>&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<a href="../core/statements.html#N-Semicolon" class="nonterminal">Semicolon</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_omega)</script></sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ExtendsList"></a><span class="nonterminal">ExtendsList</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">extends</code>&nbsp;<a href="#N-TypeExpressionList" class="nonterminal">TypeExpressionList</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-TypeExpressionList"></a><span class="nonterminal">TypeExpressionList</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/expressions.html#N-TypeExpression" class="nonterminal">TypeExpression</a><sup class="nonterminal-attribute">allowIn</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-TypeExpressionList" class="nonterminal">TypeExpressionList</a>&nbsp;<code class="terminal-keyword">,</code>&nbsp;<a href="../core/expressions.html#N-TypeExpression" class="nonterminal">TypeExpression</a><sup class="nonterminal-attribute">allowIn</sup></div>
+</div>
+
+<p>インターフェイス <var>I</var> が <var>I</var> を実装するクラス <var>C</var>
+の基底型ではないという点を除けば、インターフェイスはクラスのようなものである。その代わり <var>C</var> のインスタンス <var>c</var>
+は型 <var>I</var> に<a href="../libraries/types.html#implicit-coercion">暗黙に強制型変換</a>可能で、<var>I</var> のインスタンス
+<var>i</var> が得られ、<var>i</var> を型 <var>C</var> に<a href="../libraries/types.html#implicit-coercion">暗黙の強制型変換</a>すると元のインスタンス
+<var>c</var> が得られる。これは <var>c</var><code>&nbsp;==&nbsp;</code><var>i</var> が成立するかどうかを示すものではない。</p>
+
+<p>インターフェイスは具象メンバ、抽象メンバの両方を持つことができるが、コンストラクタを持つことはできない。</p>
+
+<p>名前の衝突が無ければ、インターフェイス <var>I</var> のメンバは <var>I</var> を実装するクラス <var>C</var> のあらゆるインスタンス
+<var>c</var> のプロパティとしてアクセスできる。しかしながらインターフェイス <var>I</var> のメンバ <var>m</var> をクラス <var>C</var>
+のメンバと同じ名前で定義し、なお2つのメンバを区別することは正しいことである。また1つのクラスが両方とも名前 <var>m</var>
+のメンバを持つ2つのインターフェイス <var>I</var> と <var>J</var> を実装し、2つの <var>m</var>
+を区別するのも正しいことである。メンバ探索 <var>c</var><code>.</code><var>m</var> を処理するときどちらのメンバが得られるかは、<var>c</var>
+が最後にどちらのインターフェイス、或いはオブジェクト型に変換されたかによる。</p>
+
+<h3>クラス定義</h3>
+
+<p>クラス定義の <a href="#N-Inheritance" class="nonterminal">Inheritance</a> 節はインターフェイスを許容するために
+<code>implements</code> 節にインターフェイスのリストを指定するものに修正される:</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ClassDefinition"></a><span class="nonterminal">ClassDefinition</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code class="terminal-keyword">class</code>&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<a href="#N-Inheritance" class="nonterminal">Inheritance</a>&nbsp;<a href="../core/statements.html#N-Block" class="nonterminal">Block</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Inheritance"></a><span class="nonterminal">Inheritance</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">extends</code>&nbsp;<a href="../core/expressions.html#N-TypeExpression" class="nonterminal">TypeExpression</a><sup class="nonterminal-attribute">allowIn</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">implements</code>&nbsp;<a href="#N-TypeExpressionList" class="nonterminal">TypeExpressionList</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">extends</code>&nbsp;<a href="../core/expressions.html#N-TypeExpression" class="nonterminal">TypeExpression</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">implements</code>&nbsp;<a href="#N-TypeExpressionList" class="nonterminal">TypeExpressionList</a></div>
+</div>
+
+<p>新しく定義したクラスは、基底クラスと基底インターフェイスから (もしあれば) インスタンスメンバと静的メンバを継承する。基底クラスとインターフェイスで衝突がある場合は、基底クラスを優先する。2つの基底インターフェイスで衝突がある場合はどちらかを優先させること無く、探索ではインスタンスメンバについては基底インターフェイス名で限定し、静的メンバについては基底インターフェイス名で直接限定しなければならない。</p>
+
+<h2>属性</h2>
+
+<h4><a name="primitive"></a><code>primitive</code></h4>
+
+<p>以前の草案では <code>primitive</code> <a href="../core/definitions.html#class-attributes">クラス修飾属性</a>が考えられていた。この属性を使用するとそのクラス型の変数が格納できる値の集合から
+<code>null</code> を排除することができた。例えばクラス <var>C</var> を <code>primitive</code> 属性を使って定義すると <code>null</code>
+は型 <var>C</var> のメンバではなくなる (型 <var>C</var> の未初期化の変数にデフォルト値を指定する方法が無ければならない)。この属性によりユーザ定義クラスに
+<code>Number</code> などの定義済みクラスのような振る舞いを持たせることが可能になる。</p>
+
+<p>この属性が現在の草案が除外されたのは、未定義クラスの循環問題のためである。仮にクラス <var>C</var> が未定義でも型 <var>C</var>
+の変数を作成することは可能なのだ (この変数は <code>null</code> で初期化される)。<var>C</var> が単純 (プリミティブ)
+クラスであることが分かると、この値を遡って変更しなければならない。</p>
+
+<h2><a name="import"></a>パッケージのインポ−ト</h2>
+
+<p><ins class="clsByTranslator">[訳注: この節の内容は「コア言語」の「パッケージ - パッケージの参照」とほとんど同じである]</ins></p>
+
+<p>以下に述べるように <a href="../core/packages.html#import"><code>import</code>
+ディレクティブ</a>により多くのオプションを使って、より良い識別子、名前空間の管理が可能なように拡張できる:</p>
+
+<p>パッケージ <var>P</var> は <code>import</code> ディレクティブを使うことで異なるパッケージ <var>Q</var> を参照できる:</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ImportDirective"></a><span class="nonterminal">ImportDirective</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code class="terminal-keyword">import</code>&nbsp;<a href="#N-ImportBinding" class="nonterminal">ImportBinding</a>&nbsp;<a href="#N-IncludesExcludes" class="nonterminal">IncludesExcludes</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">import</code>&nbsp;<a href="#N-ImportBinding" class="nonterminal">ImportBinding</a>&nbsp;<code class="terminal-keyword">,</code>&nbsp;<code class="terminal-keyword">namespace</code>&nbsp;<a href="../core/expressions.html#N-ParenListExpression" class="nonterminal">ParenListExpression</a>&nbsp;<a href="#N-IncludesExcludes" class="nonterminal">IncludesExcludes</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ImportBinding"></a><span class="nonterminal">ImportBinding</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/packages.html#N-PackageName" class="nonterminal">PackageName</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<code class="terminal-keyword">=</code>&nbsp;<a href="../core/packages.html#N-PackageName" class="nonterminal">PackageName</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IncludesExcludes"></a><span class="nonterminal">IncludesExcludes</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">,</code>&nbsp;<code class="terminal-keyword">exclude</code>&nbsp;<code class="terminal-keyword">(</code>&nbsp;<a href="#N-NamePatterns" class="nonterminal">NamePatterns</a>&nbsp;<code class="terminal-keyword">)</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">,</code>&nbsp;<code class="terminal-keyword">include</code>&nbsp;<code class="terminal-keyword">(</code>&nbsp;<a href="#N-NamePatterns" class="nonterminal">NamePatterns</a>&nbsp;<code class="terminal-keyword">)</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NamePatterns"></a><span class="nonterminal">NamePatterns</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NamePatternList" class="nonterminal">NamePatternList</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NamePatternList"></a><span class="nonterminal">NamePatternList</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/expressions.html#N-QualifiedIdentifier" class="nonterminal">QualifiedIdentifier</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NamePatternList" class="nonterminal">NamePatternList</a>&nbsp;<code class="terminal-keyword">,</code>&nbsp;<a href="../core/expressions.html#N-QualifiedIdentifier" class="nonterminal">QualifiedIdentifier</a></div>
+</div>
+
+<p><a href="../core/expressions.html#N-ParenListExpression" class="nonterminal">ParenListExpression</a>
+が与えられた場合、それはパッケージから提供される名前空間のリストであるべきである。これらの名前空間は <code>import</code> 文により
+<code>use</code> される。パッケージ間の名前の衝突を解決するために、<a href="#N-IncludesExcludes" class="nonterminal">IncludesExcludes</a>
+はどの名前をインポートするかを決めるためのきめ細かい制御を可能にする。<code>include</code> 節、<code>exclude</code>
+節はどの名前の集合が最上位変数として共有されるかを決定する。<code>include</code> を使った場合はリストに挙げられた名前だけがアクセス可能になる。逆に
+<code>exclude</code> の場合はリストに含まれていない全ての名前がアクセス可能になる。例えば:</p>
+
+<p class="indent"><code>package&nbsp;My.P1&nbsp;{</code><br>
+<code>&nbsp;&nbsp;explicit&nbsp;namespace&nbsp;N;</code><br>
+<br>
+<code>&nbsp;&nbsp;N&nbsp;const&nbsp;a&nbsp;=&nbsp;"global&nbsp;a";</code><br>
+<code>&nbsp;&nbsp;N&nbsp;const&nbsp;b&nbsp;=&nbsp;"global&nbsp;b";<br>
+&nbsp;&nbsp;N&nbsp;class&nbsp;C&nbsp;{</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;var&nbsp;x&nbsp;=&nbsp;2;</code><br>
+<code>&nbsp;&nbsp;}</code><br>
+<code>&nbsp;&nbsp;N&nbsp;const&nbsp;c&nbsp;=&nbsp;new&nbsp;C(i:5);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;<code>c.i</code>&nbsp;を&nbsp;<code>5</code>&nbsp;で初期化する<br>
+<code>&nbsp;&nbsp;const&nbsp;x&nbsp;=&nbsp;"global&nbsp;x";</code><br>
+<code>}</code><br>
+<br>
+<code>package&nbsp;My.P2&nbsp;{</code><br>
+<code>&nbsp;&nbsp;import&nbsp;P&nbsp;=&nbsp;My.P1,&nbsp;namespace(N),&nbsp;exclude(N::b,&nbsp;x);&nbsp;&nbsp;//</code>&nbsp;<code>My.P1</code>&nbsp;をインポートし、名前空間&nbsp;<code>N</code>&nbsp;を&nbsp;<code>use</code>&nbsp;する。ただし&nbsp;<code>N::b</code>
+と&nbsp;<code>x</code>&nbsp;は除外する<br>
+<code>&nbsp;&nbsp;c;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;OK。クラス&nbsp;<code>C</code>&nbsp; のインスタンスとして評価される<br>
+<code>&nbsp;&nbsp;N;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;エラー:&nbsp;<code>N</code>&nbsp;は&nbsp;<code>explicit</code>&nbsp;なので見つからない<br>
+<code>&nbsp;&nbsp;P.N;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;OK。パッケージ&nbsp;<code>My.P1</code>&nbsp;内の名前空間&nbsp;<code>N</code>&nbsp;として評価される<br>
+<code>&nbsp;&nbsp;a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;OK。<code>"global&nbsp;a"</code>&nbsp;として評価される<br>
+<code>&nbsp;&nbsp;b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;エラー:&nbsp;<code>N::b</code>&nbsp;は除外されているので見つからない<br>
+<code>&nbsp;&nbsp;P.b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;OK。<code>"global&nbsp;b"</code>&nbsp;として評価される<br>
+<code>&nbsp;&nbsp;(P.N)::b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;エラー:&nbsp;<code>N::b</code>&nbsp;は除外されているので見つからない<br>
+<code>&nbsp;&nbsp;x;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;エラー:&nbsp;グローバルな&nbsp;<code>x</code>&nbsp;は除外されているので見つからない<br>
+<code>&nbsp;&nbsp;C.x;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//</code>&nbsp;OK。<code>2</code>&nbsp;として評価される<br>
+<code>}</code></p>
+
+<p><code>include</code> 節も <code>exclude</code> 節も無ければ、<code>exclude()</code> としたことと同じになる。</p>
+
+<p><code>import</code> ディレクティブは以下の処理を行う:</p>
+
+<ul>
+  <li><a href="../core/packages.html#N-PackageName" class="nonterminal">PackageName</a>
+    で指定されたパッケージを探す。対象パッケージがまだロードされていなければロードし、該当パッケージの
+    <a href="../core/statements.html#N-Block" class="nonterminal">Block</a> の評価が終わるまで待つ。対象パッケージがロードする側のパッケージをロードする場合は、パッケージ循環例外をスローする。</li>
+  <li><var>P</var> を対象パッケージオブジェクトとする。</li>
+  <li><a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a> が与えられていれば現在のスコープ内で
+    <var>P</var> に <code>const</code> バインドする。</li>
+  <li><var>P</var> 内の <code>explicit</code> でない各最上位定義 <var>N</var><code>::</code><var>n</var> (<var>n</var> は名前空間
+    <var>N</var> にある) について、与えられた <a href="#N-IncludesExcludes" class="nonterminal">IncludesExcludes</a> で
+    <var>N</var><code>::</code><var>n</var> が除外されていればその定義はスキップする。除外されていなければ、<var>N</var><code>::</code><var>n</var>
+    がグローバルスコープで定義されていない限り別名 <var>N</var><code>::</code><var>n</var> をグローバルスコープで <var>P</var> の
+    <var>N</var><code>::</code><var>n</var> にバインドする。</li>
+  <li><a href="../core/expressions.html#N-ParenListExpression" class="nonterminal">ParenListExpression</a>
+    が与えられていれば、その中の各式 <var>E</var> を評価し、<var>E</var> 中で (前に <var>P</var><code>.</code> が付いているものとして)
+    制限の無い識別子を探す。これらの各式 <var>E</var> は名前空間 <var>S</var> として評価されるべきであり、与えられた
+    <a href="#N-IncludesExcludes" class="nonterminal">IncludesExcludes</a> を使って
+    <code>use&nbsp;namespace(</code><var>S</var><code>)</code> を評価する。</li>
+</ul>
+
+<p>パッケージ <var>P</var> が <code>public</code> な最上位定義 <var>n</var> を持っており、パッケージ <var>Q</var> が
+<code>import&nbsp;PkgP&nbsp;=&nbsp;</code><var>P</var> で <var>P</var> をインポートすると、パッケージ <var>Q</var>
+は <var>n</var> 或いは <code>PkgP.</code><var>n</var> のいずれでも <var>n</var> を参照することができる。短い形式の <var>n</var>
+は他の <var>n</var> と衝突する場合は使用できない。その最上位スコープの汚染を避けるためにパッケージ <var>Q</var> は
+<code>import&nbsp;PkgP&nbsp;=&nbsp;</code><var>P</var><code>,&nbsp;include()</code> 或いは
+<code>import&nbsp;PkgP&nbsp;=&nbsp;</code><var>P</var><code>,&nbsp;exclude(</code><var>n</var><code>)</code> を使ってパッケージ
+<var>P</var> をインポートすることができる。この場合、<code>PkgP.</code><var>n</var> を使う以外にパッケージ <var>Q</var> は
+<var>n</var> を参照する方法は無い。</p>
+
+<p>パッケージ <var>P</var> が <code>explicit</code> な最上位定義 <var>n</var> を持ち、パッケージ <var>Q</var> が <var>P</var>
+をインポートした場合、<code>PkgP.</code><var>n</var> を使う以外にパッケージ <var>Q</var> が <var>n</var> を参照する方法は無い。</p>
+
+<p>パッケージ <var>P</var> が名前空間 <var>N</var> 内に最上位定義 <var>n</var> を持ち、パッケージ <var>Q</var> が
+<code>import&nbsp;PkgP&nbsp;=&nbsp;</code><var>P</var> で <var>P</var> をインポートすると、パッケージ <var>Q</var> は
+<code>PkgP.</code><var>N</var><code>::</code><var>n</var> 或いは <var>N</var><code>::</code><var>n</var> のいずれでも <var>n</var>
+を参照することができる (いずれの場合も名前 <var>N</var> も同様にアクセス可能でなければならない。<var>N</var> のアクセス性が
+<code>public</code> でない場合は名前の限定を、<var>N</var> のアクセス性が <code>explicit</code> である場合は <var>n</var> ではなく
+<code>(PkgP.</code><var>N</var><code>)</code> の使用を必要とする可能性がある)。パッケージ <var>Q</var> は代わりに
+<code>import&nbsp;PkgP&nbsp;=&nbsp;</code><var>P</var><code>,&nbsp;namespace(</code><var>N</var><code>)</code> を使ってパッケージ
+<var>P</var> をインポートすることで、名前の衝突が無ければただ <var>n</var> と書くだけで <var>n</var> を参照可能になる。
+他にも、パッケージ <var>Q</var> は後ろに <code>use&nbsp;namespace(</code><var>N</var><code>)</code> (或いは
+<code>use&nbsp;namespace(PkgP.</code><var>N</var><code>)</code>) が続く <code>import&nbsp;PkgP&nbsp;=&nbsp;</code><var>P</var>
+を実行することで同様の効果を得ることができる。</p>
+
+<h2>wrap モード</h2>
+
+<p>この草案の初期のドラフトには、(型の) 範囲を超えた整数に対してエラーを生成する代わりに、その整数を暗黙の内に整数<a href="../libraries/machine-types.html">マシン型</a>に変換する
+wrap <a href="../core/pragmas.html">プラグマ</a>が含まれていた。このプラグマの有効範囲はプラグマの字句的な有効範囲と同じである。このプラグマの基本的な機能は結果が左辺値に収まらないときにエラーを生成する代わりに、<code>sbyte</code>
+、<code>byte</code> 、<code>short</code> 、<code>ushort</code> 、<code>int</code> 、<code>uint</code> 、<code>long</code>
+、及び <code>ulong</code> において算術的な折り返しを行うことである。</p>
+
+<p>このプラグマは効率重視のコードでは有用なものだが、言語の単純さを保持するために除外された。折り返しは整数マシン型のいずれかに明示的にキャストすることでも実現できる。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td valign="bottom" style="white-space:nowrap;"><address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+    最終更新: 2003年6月4日 (水)</address></td>
+  <td align="right" valign="top" style="white-space:nowrap;"><a href="syntax.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="../compatibility.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal&#64;student.interq.or.jp">exeal&#64;student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/rationale/miscellaneous.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

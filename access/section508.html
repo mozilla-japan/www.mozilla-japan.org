@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>第 508 条に対する Mozilla の対応度</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/access/section508.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/section508.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<H1>第 508 条に対する Mozilla の対応度</H1>
+
+<p>合衆国連邦リハビリテーション法の第 508 条は、ソフトウェアおよびその他の電子・情報テクノロジーに対するアクセシビリティの要件を定めた新しい標準です。<a href="http://www.section508.gov/index.cfm?FuseAction=Content&ID=12#Software">第 508 条（&#167; 1194.21）は Mozilla に特に関係している部分</a> であり、合衆国政府機関が Mozilla ソフトウェアコンポーネントを含むソフトウェアを購入できるかどうかに関係します。</p>
+
+<p>
+こちらに <a href="http://bugzilla.mozilla.org/buglist.cgi?query_format=&short_desc_type=allwordssubstr&short_desc=&product=Browser&product=MailNews&long_desc_type=substring&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=sec508&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&bug_severity=blocker&bug_severity=critical&bug_severity=major&bug_severity=normal&bug_severity=minor&emailassigned_to1=1&emailtype1=exact&email1=&emailassigned_to2=1&emailreporter2=1&emailqa_contact2=1&emailtype2=exact&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">Mozilla Seamonkey Application Suite に関る第 508 条関連の詳細なバグリスト</a> を用意しました。中には比較的程度の軽いものもあります。
+</p>
+
+<p>
+次に掲載している情報は参考目的にのみ提供されているもので、法的拘束力を持つ VPAT <span class="comment">【訳注：Voluntary Product Accessibility Template：自主的製品アクセシビリティ・テンプレート】</span> ではありません。ここに第 508 条による要件を挙げ、各要件において Mozilla Seamoneky 1.8a4 がどの程度それらを満たして いるかを明らかにします：
+</p>
+
+
+<table border="1" cellspacing="0" >
+  <tr>
+    <th>
+      要件
+    </th>
+    <th>
+      Windows
+    </th>
+    <th>
+      Linux/UNIX
+    </th>
+    <th>
+      Mac OS
+    </th>
+  </tr>
+
+  <tr>
+    <td>
+      （a）ソフトウェアがキーボードを有するシステム上で実行されるように設計されている場合、製品の機能はキーボードから実行できなければならない。その場合、機能そのもの、もしくはその機能の実行結果が文字として認識できるようにしなければならない。
+      </td>
+    <td colspan="2">
+      <i>ほぼ達成</i>　<br>
+
+      <br>
+	  
+	  付記：1）Sidebar はマウスがないとカスタマイズができないが、ブラウザに同梱されている全ての Sidebar 機能は他の手段でも利用できる。2）Java およびプラグインはキーボードから利用することはできない。そのためプラグインはキーボードしか使えないユーザのためにはインストールしてはならない。3）CSS の位置固定レイアウトを使った HTML では一部スクロールできない。しかし、CSS の固定位置はほとんど使用されない。<br>
+      <br>
+	  キーボードのための追加機能：1）<a href="./typeaheadfind.html">Find as you type</a> を用いることで、リンクを素早く探ることができ、便利なテキスト検索を行うことができる。2）キャレットを使った閲覧（F7 キーで切替）を行うことで、ユーザは、キーボードを使って任意のコンテントを選択することができ、閲覧機能のみのエディタ内でコンテントを利用しているかのように移動することができる。
+    </td>
+    <td>
+      <i>未達成</i>　Mac のキーボードバグに関しては十分な注意が払われていない。更なる調査が必要。</td>
+  </tr>
+
+  <tr>
+    <td>
+      （b）アプリケーションは、アクセシビリティ機能として見なされる、他の製品で有効になっている機能を妨害または無効化してはならない。ここでのアクセシビリティ機能とは業界の標準に従って開発および資料報告されている機能を指す。アプリケーションはまた、アプリケーション・プログラミング・インターフェースがオペレーティングシステムの製造者によって資料報告され製品開発者に提供されているアクセシビリティ機能として見なされる、どのようなオペレーティングシステムの機能も妨害または無効化してはならない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （c）その時点で明確に定義されている画面上のフォーカスという認識手段が、入力フォーカスの変更に対応してインタラクティブなインターフェース要素の中で提供されていなければならない。フォーカスの移動を追跡できるように、フォーカスはプログラム的に表示されなければならない。
+    </td>
+    <td colspan="2">
+      <i>達成</i>　MSAA（Windows）および ATK（Linux/UNIX）を経由してプログラム的にフォーカスを行うことができる。
+    </td>
+    <td>
+      <i>未達成</i>：フォーカスを表示することができるが、Carbon/Cocoa アクセシビリティをサポートしてプログラム的にそれを表示する必要がある。
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （d）識別子、操作および要素の状態を含めたユーザインターフェース要素についての十分な情報が補助的テクノロジーに対して提供されていなければならない。画像がプログラム要素を表す時、その画像によって伝達される情報はテキストでも取得可能になっていなければならない。
+    </td>
+    <td colspan="2">
+      <i>達成</i>　MSAA（Windows）および ATK（Linux/UNIX）を経由して補助機能へと情報を伝達している。
+    </td>
+    <td>
+      <i>未達成</i>　Cocoa または Carbon アクセシビリティ API を利用するような開発努力は行われていない。
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （e）コントロール、インジケータのステータス、またはその他プログラム的要素を識別するためにビットマップ画像が使用されている時、それら画像に与えられている意味がアプリケーションの動作全体に渡って一貫していなければならない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （f）文字情報は、文字を表示するためのオペレーティングシステム機能を経由して提供されなければならない。提供されなければならない最低限の情報は、テキストコンテント、テキスト入力キャレット位置、そしてテキスト属性である。
+    </td>
+    <td colspan="2">
+      <i>達成</i>　キャレット位置およびテキスト属性は MSAA（Windows）および ATK（Linux/UNIX）を経由して表示されている。
+    </td>
+    <td>
+      <i>未達成</i>　Cocoa または Carbon アクセシビリティ API を利用するような開発努力は行われていない。
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （g）アプリケーションはユーザが選択したコントラストおよび色選択またはその他個別のディスプレイ属性を無効化してはならない。
+    </td>
+    <td>
+      <i>達成</i>　標準テーマである Classic はオペレーティングシステムのフォントおよびカラーコントラスト設定を使用する。Windows で「高コントラストテーマ」が使用されている場合は、Classic およびシステムの見た目と使用感が自動的に選択される。
+    </td>
+    <td>
+      <i>達成</i>　標準テーマである Classic はオペレーティングシステムのフォントおよびカラーコントラスト設定を使用する。Linux/UNIX では、OS の設定を使用するかどうかは、ユーザの選択となる。
+    </td>
+    <td>
+      <i>不明 - 要調査</i>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （h）アニメーションが表示された時、ユーザのオプションとして、少なくとも一種類の非アニメーション表示モードが表示できなければならない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>　Mozilla の［プライバシー＆セキュリティ］-［画像］設定で、アニメーションを静止させることができる。
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （i）情報伝達、操作の識別、反応の呼び出し、または視覚要素の区別のためにカラーコーディングを唯一の手段として利用してはならない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>　付記：通常 Mozilla は、リンクが開かれたことを示すために色に依存している。しかし、これはユーザ独自のスタイルシートで変更することができる。
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （j）製品においてユーザが色およびコントラスト設定を調節できるようにしている時、様々なコントラスト値を作り出すことができる色選択が提供されていなければならない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>　Mozilla の外見設定には、選択可能な色が非常に沢山用意されている。
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （k）ソフトウェアは発光または点滅するテキスト、オブジェクトまたは、2 Hz 以上および 55 Hz 以下の頻度で発光または点滅する要素を使用してはならない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>　Mozilla はウェブページ内の &lt;blink&gt; および text-decoration: blink をサポートしている。この場合、Mozilla は 1 Hz で点滅する。これは許容範囲内であり、より厳密な MIL-STD 標準<span class="comment">【訳注：米国軍用規格】</span>に従っている。
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      （l）電子フォームが使用されている時、そのフォームで利用者が補助的なテクノロジーを使って、全ての指示およびヒントを含めてフォームの完成および提出に必要となる情報、フィールド要素、および機能を利用できるようにしなければならない。
+    </td>
+    <td colspan="3">
+      <i>部分的に達成</i>　以下の機能パフォーマンス必要条件を参照のこと。スクリーンリーダ・アクセスは現在テスト中である。Ad Block と呼ばれるエクステンションを利用することで、アクセシビリティに悪影響を及ぼす余分なノイズコンテントをウェブページから削除することができる。
+    </td>
+  </tr>
+</table>
+
+ 
+<h2>機能パフォーマンス必要条件</h2>
+<table border="1" cellspacing="0" >
+  <tr>
+	<th>
+
+	  要件
+	</th>
+	<th>
+	  Windows
+	</th>
+	<th>
+	  Linux/UNIX
+	</th>
+	<th>
+	  Mac OS
+	</th>
+
+  </tr>
+  <tr>
+    <td>a）ユーザの視力を必要としない操作および情報取得のモードが少なくとも一つは提供されているか、もしくは、目の見えない人や視覚障害を持つ人が利用する補助技術のサポートが提供されていなければならない。
+    </td>
+    <td>
+    <i>部分的に達成</i>　alpha 版では Window-Eyes をサポート（最新の 1.8 alpha テストビルドまたは Window-Eyes の特別ビルドが必要）
+    </td>
+    <td><i>部分的に達成</i>　beta 版で Gnopernicus がサポートされている。</td>
+    <td>Mac OS X ではサポートされているスクリーンリーダはない</td>
+
+  </tr>
+  <tr>
+    <td>b）20/70 より良い視力<span class="comment">【訳注：日本式だと 0.3 以上】</span>を必要としない操作および情報取得のモードが、音声と拡大印刷出力とで同時に、あるいは独立して少なくとも一つは提供されているか、もしくは、視覚障害を持つ人が利用する補助技術のサポートが提供されていなければならない。
+    </td>
+    <td><i>達成</i>　ビルトインの text zoom はウィンドウのサイズのみに限定される。ZoomText version 8.11 が動作する。付記：文書読み上げ（DocReader）およびアプリケーション読み上げ（AppReader）モードは、コラム化されたテキストをサポートしない。フォーカスが、常に正しくテキストから音声に読み上げられるとは限らない。しかし、機能は動作し、このモードを用いて Mozilla と共に ZoomText を使うことは十分に可能である。残りの問題についての作業のために AI Squared と交渉している。
+    </td>
+    <td><i>達成。しかしテストが必要。</i>　gnome-mag と共に動作する。</td>
+    <td>Mac OS X では拡大鏡機能は一切サポートされていない。</td>
+  </tr>
+
+  <tr>
+    <td>
+		c）ユーザの聴力を必要としない操作および情報取得のモードが少なくとも一つは提供されているか、もしくは、耳の聞こえない人や聴覚障害を持つ人が利用する補助技術のサポートが提供されていなければならない。
+    </td>
+    <td>
+		<i>達成</i>　オペレーティングシステムで利用可能になっている「サウンド解説」（showsounds）を用いる。
+    </td>
+    <td>
+		<i>達成</i>　オペレーティングシステムで利用可能になっている showsounds を用いる。
+    </td>
+
+    <td>情報がない。</td>
+  </tr>
+  <tr>
+    <td>
+	d）製品を使用する上で音声情報が重要な場合、操作および情報取得のモードが、音響的に補正する方式で少なくとも一つは提供されているか、もしくは、補聴装置のサポートが提供されていなければならない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>　音声は Gecko の中核ではない -- プラグインまたは OS が音声プレイバックを処理する。
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    e）ユーザの発声を必要としない操作および情報取得のモードが少なくとも一つは提供されているか、障害を持つユーザによって利用される補助技術をサポートしていなければならない。通常の操作では、ユーザの発声は必要とされない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>　音声入力は必要とされない。
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+    f）細かな動作や同時に行う操作を必要とせず、且つ、リーチの制限や筋力の低下があっても操作できる、操作および情報取得のモードが少なくとも一つは提供されていなければならない。
+    </td>
+    <td colspan="3">
+      <i>達成</i>　キーボードドライバを経由する全ての入力技術は、Mozilla で動作する -- これには固定キー機能、フィルタキー機能、画面上の仮想キーボードなどが含まれる。
+    </td>
+  </tr>
+</table>
+
+
+
+<hr class="hide" />
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/section508.html">英語版</a> 2004/08/18</span> - <span>和訳版 2005/01/10</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/section508.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>Mozilla WSDL の動作例</title>
+
+<style type="text/css" media="screen,tv">
+.comment {
+    color: #20A040;
+    font-size: 80%;
+}
+.orig { font-size:smaller; color:gray; }
+</style>
+<!--
+
+私家版用語集(masao): （この文書中でできるだけ統一して使いたい用語）
+
+・Mozilla 1.4beta → 「Mozilla 1.4 β版」
+・call → 「呼び出し」「呼び出す」
+・example → 「動作例」
+
+-->
+
+<!--
+
+訳者： 高久雅生 masao@ulis.ac.jp
+
+-->
+
+<link rel="alternate" hreflang="en" modified="May 13,  2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/webservices/examples/mozilla-wsdl/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<big style="font-weight: bold;"><big><big>Mozilla WSDL の動作例</big></big></big><br>
+
+<br>
+<a href="mailto:doron@netscape.com">Doron Rosenberg</a>
+(doron@netscape.com)<br>
+<br>
+Mozilla 1.4 β版で Gecko は WSDL (Web Service Description Language) に対応し、Web サービスと容易にやりとりできるようになりました。
+ここでの例では、ユーザの入力した文字列にマッチする書籍がないか Amazon Web サービスに問い合わせます。
+<br>
+<br>
+<big><span style="font-weight: bold;">セキュリティに関する注意</span></big><br>
+
+本動作例では、（mozilla.org から amazon.com へ）別のドメインに対して呼び出しを行う必要があるため、Mozilla のドメイン間セキュリティモデルに違反します。
+Mozilla 1.4 β版には、特に Web サービス用に開発された<a href="/lxr/mozilla/source/extensions/webservices/docs/New_Security_Model.html">新しいセキュリティモデル</a>があります。
+これを使えば、Web サービスを呼び出す権限をブラウザに与えることができるようになります。
+しかし、これは非常に新しい機能なので、現在公開されている Web サービスにはまだ対応していません。
+従って、代わりに以下のユーザ設定を行うことにより、<a href="http://devedge-temp.mozilla.org/viewsource/2002/bypassing-security-restrictions/">このセキュリティの制限を回避しなければなりません</a>。<br>
+
+<code><br>
+user_pref("signed.applets.codebase_principal_support",       true);<br>
+<br>
+</code><big><small>
+この設定により、Mozilla はユーザに amazon.com にアクセスするのを許可するかどうかを確認するようになります。<br>
+
+<br>
+</small><span style="font-weight: bold;">
+動作例<br>
+
+</span><small>
+動作例では、ユーザが Amazon Web サービスに与えたキーワードにマッチする書籍を検索できます。
+例えば、"Mozilla" と打ち込んだ場合、この悪名高いトカゲ <span class="comment">[ 訳注: Mozilla のこと ]</span> に関連する本がヒットするでしょう。
+この動作例を実行するには<a href="amazonwsdl.html">ここをクリックしてください</a>。<br>
+
+<br>
+<big><span style="font-weight: bold;">どのように動作するのか</span></big><br>
+
+</small></big>
+まず、Amazon 側の <a href="http://soap.amazon.com/schemas2/AmazonWebServices.wsdl">WSDL ファイル</a>を使って "Amazon" オブジェクトを初期化します。
+これにより、ブラウザでは Amazon Web サービス用のプロキシオブジェクトが生成され、Amazon のサービスがまるでローカルのリソースであるかのようにスクリプトから扱えるようになります。
+WSDL ファイルにはインタフェースが記述されています。
+これには、どのようなメソッドが呼び出せるか、どんな引数を渡すのか、どんな返り値が返ってくるのかなどが詳細に記述されています。
+プロキシオブジェクトに対してあるメソッドが呼び出されると、Mozilla はこの WSDL ファイルに基づいた SOAP エンベロープを生成し、それを Amazon に送信します。
+Amazon が返答を返すと、Mozilla は SOAP レスポンスを JavaScript のオブジェクトに変換します。
+今回の場合は、タイトル・著者名の配列・定価・Amazon 価格などのような各書籍についての情報を含む "book" オブジェクトの配列が対象となります。
+<br>
+
+<br>
+動作例では、この情報を受け取って、それをそのページの DOM に追加することで表示を行います（新たにページを読み込むわけではありません）。<br>
+
+<br>
+<big><span style="font-weight: bold;">
+リソース<br>
+
+</span></big>
+<a href="../../">Mozilla.org の Web サービスプロジェクトのページ</a><br>
+
+<a
+ href="http://devedge-temp.mozilla.org/viewsource/2003/soap/01/">SOAP In
+Gecko</a> <span class="comment">（英文）</span><br>
+<a
+ href="http://associates.amazon.com/exec/panama/associates/ntg/browse/-/1067662/104-8408885-5274312">Amazon
+Web Services</a> <span class="comment">（英文）</span><br>
+<br>
+<br>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/webservices/examples/mozilla-wsdl/index.html">英語版</a> 2003/05/13</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/webservices/examples/mozilla-wsdl/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

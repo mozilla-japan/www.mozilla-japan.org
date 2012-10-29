@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-suite" basename="index" pathtoroot="../../../">
+
+<meta>
+	<dc:title>Mozilla Localization</dc:title>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 class="image"><img src="../../../images/logo-moz.gif" width="350" height="100" alt="Mozilla - 信頼と実績のインターネットスイート" title="ブラウザから開発環境まで全てまとめてお任せを"/></h1>
+	<p>2004 年に向けて設計された多機能統合型 Web ブラウザ Mozilla のローカライズを行っています。<br/>
+		こちらで公開している Mozilla は安定性が十分に確認されていない開発リリースや上級者向けの特殊なパッケージとなりますので、通常のご利用に際しては <a href="${mj-suite}">Mozilla 製品情報ページ</a>で配布しているものをご利用下さい。動作確認にご協力頂ける場合にはこちらで公開している最新開発リリースをテストして頂き、見つかった問題を <a href="${l10n-forum}">L10N フォーラム</a>までお知らせ頂けると助かります。</p>
+	
+	<tt:include idref="about-package"/>
+	
+	<tt:section id="mozilla-1.8.x">
+		<h2>Mozilla Suite 1.8.x</h2>
+		<dl>
+			<dt>mozilla.org のナイトリービルド</dt>
+			<dd><a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/nightly/latest-trunk/">英語版ナイトリー</a></dd>
+			<dt>Mozilla Japan の開発リリース</dt>
+			<dd><a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a1/">1.8a1</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a2/">1.8a2</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a3/">1.8a3</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a4/">1.8a4</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a5/">1.8a5</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a6/">1.8a6</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8b1/">1.8b1</a></dd>
+			<dt>L10N フォーラムのトピック</dt>
+			<dd><a href="http://forums.firehacks.org/l10n/viewforum.php?f=1">開発リリースのアナウンス</a></dd>
+		</dl>
+		<p>最新版でない Nightly ビルドについては<a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/nightly/">日付毎のディレクトリ</a>からダウンロードしてください。
+			latest ディレクトリは後方互換のために残されたもので、latest-trunk と同じです。</p>
+	</tt:section>
+	
+	<tt:section id="mozilla-1.7.x">
+		<h2>Mozilla Suite 1.7.x</h2>
+		<dl>
+			<dt>mozilla.org のナイトリービルド</dt>
+			<dd><a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/nightly/latest-1.7/">英語版ナイトリー</a></dd>
+			<dt>Mozilla Japan の開発リリース</dt>
+			<dd><a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7a/">1.7a</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7b/">1.7b</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7rc1/">1.7rc1</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7rc2/">1.7rc2</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7rc3/">1.7rc3</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7.5/">1.7.5</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7.6/">1.7.6</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7.7/">1.7.7</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7.8/">1.7.8</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7.10/">1.7.10</a> : 
+				<a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.7.11/">1.7.11</a></dd>
+			<dt>L10N フォーラムのトピック</dt>
+			<dd><a href="http://forums.firehacks.org/l10n/viewforum.php?f=1">開発リリースのアナウンス</a></dd>
+		</dl>
+		<p>最新版でない Nightly ビルドについては<a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/nightly/">日付毎のディレクトリ</a>からダウンロードしてください。
+			公式リリースについては <a href="${mj-mozilla}">Mozilla Suite 製品情報ページ</a>をご覧ください。</p>
+	</tt:section>
+	
+	<!-- <!- - <h2>Mozilla 1.8 alpha5 日本語版</h2>
+	<tt:packagetable product="suite" version="1.8a5" server="mozilla-japan" lastonly="yes"/> - ->
+	<h2>Mozilla 1.8 alpha4 日本語版</h2>
+	<tt:packagetable product="suite" version="1.8a4" server="mozilla-japan" lastonly="yes"/>
+	<h2>Mozilla 1.8 alpha3 日本語版</h2>
+	<tt:packagetable product="suite" version="1.8a3" server="mozilla-japan" lastonly="yes"/>
+	<h2>Mozilla 1.8 alpha2 日本語版</h2>
+	<tt:packagetable product="suite" version="1.8a2" server="mozilla-japan" lastonly="yes"/>
+	<h2>Mozilla 1.8 alpha1 日本語版</h2>
+	<tt:packagetable product="suite" version="1.8a1" server="mozilla-japan" lastonly="yes"/>
+	<!- - <h2>Mozilla 1.7.5 日本語版</h2>
+	<tt:packagetable product="suite" version="1.7.5" server="mozilla-japan" lastonly="yes"/> - ->
+	<h2>Mozilla 1.7.3 日本語版</h2>
+	<tt:packagetable product="suite" version="1.7.3" server="mozilla-japan" lastonly="yes"/> -->
+</tt:htmlbody>
+
+</page>
+</contents>

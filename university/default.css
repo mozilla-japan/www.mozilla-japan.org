@@ -1,0 +1,89 @@
+SearchResult {
+	display: block;
+	color: #000;
+	background-color: #f3f3f3;
+	font-size: 1em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+Header {
+	display: block;
+	width: 80%;
+	margin: 1em;
+	border: 1px solid #000;
+	padding: 1em;
+	-moz-border-radius: 1em;
+}
+
+SearchTitle {
+	display: block;
+	margin-bottom: 1em;
+	line-height: 1.6;
+}
+
+Toolbar {
+	font-size: small;
+	text-align: right;
+}
+
+Label {
+	font-weight: bold;
+}
+
+VendorSet {
+	display: block;
+}
+
+Vendor {
+	display: block;
+	width: 80%;
+	margin: 1em;
+	border: 1px solid #ccc;
+	padding: 1em;
+	-moz-border-radius: 1em;
+	color: #000;
+	background-color: #fff;
+}
+
+Title {
+	display: block;
+	color: #00f;
+	background-color: transparent;
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+Link, Product {
+	color: #00f;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+Synopsis {
+	display: block;
+	margin: .5em 0em;
+	line-height: 1.6;
+}
+
+Type {
+	color: #666;
+	background-color: transparent;
+}
+
+Date {
+	display: none;
+}
+
+Footer {
+	display: block;
+	width: 80%;
+	margin: 1em;
+	padding: 1em;
+}
+
+DocumentInfo {
+	display: block;
+	font-size: small;
+	line-height: 1.6;
+}

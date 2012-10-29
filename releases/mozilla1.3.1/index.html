@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Mozilla 1.3.1 リリースノート</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { text-align: center; }
+	p, li { line-height: 160%; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 160%; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="May 6, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.3.1/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+
+
+<h1>Mozilla 1.3.1 リリースノート</h1>
+
+<p>このリリースノートでは、Mozilla 1.3.1 に関する、システム必要条件、インストール手順、既知の問題について記述しています。このリリースノートはフィードバックを受けて更新されますので、後日またチェックして新しい情報がないか確認してください。（訳注 : 最新の情報は <a href="http://www.mozilla.org/releases/mozilla1.3.1/">原文（英語）</a> をご覧ください） ソースコードや、あなたが使っているプラットフォーム向けの最新版の Mozilla をダウンロードするには <a href="../">リリース</a> ページをご覧ください。Mozilla の使い方や設定に関する詳しい情報は <a href="/catalog/end-user/">エンドユーザ資料</a> をご覧ください。（訳注 : もじら組のサイトにある <a href="http://www.mozilla.gr.jp/docs/beginmoz-1.0/">はじめての Mozilla 1.0</a> も大変参考になる資料です）</p>
+<p style="border: 1px dashed #000; padding: 1em">訳注 : 下に書いてある通り、Mozilla 1.3 からの変更点は Mac OS X 版 XPI 機能の修復のみです。リリースノートもそれ以外特に変更はありません。「新機能」「追加事項」以降の全文については <a href="/releases/mozilla1.3/">Mozilla 1.3 リリースノート</a> [<a href="/releases/mozilla1.3/diff_1.3b_1.3.html">差分ドキュメント</a>] を参照してください。</p>
+
+<h2>Mozilla 1.3.1 の新機能</h2>
+<p>Mozilla 1.3.1 は、Mac OS X ユーザのために XPI 機能を修復するためにリリースされました。XPI 機能を必要とする Mac ユーザで、Mozilla 1.4 ベータ版にアップグレードできない、あるいは Mozilla 1.4 のファイナルリリースを待っているという人は、ぜひ今回のリリースにアップグレードすることをお勧めします。</p>
+<ul>
+	<li>Mozilla メール に迷惑メール分類機能が追加されました。最初に少し「トレーニング」をしておくと、クライアントがスパムメッセージと一般のメッセージを識別し、それを隔離することができます。Mozilla の迷惑メール分類機能に関する詳細は、<a href="/mailnews/spam-howto.html">Mozilla スパムフィルタリング</a> のページをご覧ください。</li>
+	<li>ニュースグループのフィルタが実装されました。</li>
+	<li>リッチテキスト編集管理機能である Mozilla Midas が、1.3.1 で初めて Mozilla に実装されました。詳しい情報は <a href="/editor/midas-spec.html">Midas のページ</a> をご覧ください。</li>
+	<li>画像自動リサイズは、画像を、実際の大きさ／ブラウザウィンドウに合わせた大きさを切り換えて表示できる機能です。この機能を試すには、大きな画像をブラウザウィンドウに読み込むか、ウィンドウを小さくします。それから、画像の上でクリックすると、自動サイズと実際のサイズを切り換えられます。この機能は、設定の［表示］パネルから無効（有効）にできます。</li>
+	<li>ユーザは「動的に」プロファイルを切り換えられるようになりました。この機能を試すには、［ツール（Tools）］メニューから［プロファイルを切り換える（Switch Profile）...］を選んでください。</li>
+	<li>Find As You Type - 以前は Type Ahead Find と呼ばれていました - のための新しい設定パネルが付きました。（［詳細（Advanced）］ - ［キーボードナビゲーション（Keyboard Navigation）］）</li>
+ 	<li>ChatZilla に専用の設定パネルが付きました。（ChatZilla をインストールした場合）</li>
+	<li>また、Mozilla 1.3.1 には、パフォーマンス、標準準拠、サイト互換性の修正も含まれています。</li>
+	<li>Mozilla に新しいスプラッシュスクリーンが付きました。私たちは既に知っていることなので、これに関して Bugzilla にバグを報告しないでください。</li>
+	<li>Red Hat 8.x 用 RPMS は GCC 3.2 でコンパイルされています。</li>
+</ul>
+<p>（訳注 : Mozilla 1.2.1 以降のものも含む）</p>
+
+<h2>リリースノートへの追加事項</h2>
+<p>ここには、前回のマイルストーン以降このリリースノートに追加された事項が載っていますが、バグ自体は以前からあったものである可能性もあります。</p>
+<ul>
+	<li><span style="text-decoration: line-through">Mac OS X では、XPInstall が 1.3.1 で無効になっています。これは、Mac OS X 版の Mozilla 1.3.1 に拡張機能やテーマをインストールできないためです。（bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=196959">196959</a>）</span></li>
+	<li>Mozilla の以前のバージョン向けにリリースされた mozdev のスペルチェッカーは、1.3.1 以上のビルドでは動作せず、クラッシュの原因となります。<a href="http://spellchecker.mozdev.org/installation.html#mozilla1.3b">新しいスペルチェッカー</a> にアップグレードしてください。（bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=185251">185251</a>）</li>
+	<li>MRJ Java プラグインは Mozilla 1.3.1 では利用できません。そのため LiveConnect が機能しません。Mozilla は、アプレットの表示に Apple の Java Applet プラグインを利用します（このプラグインを利用できる場合）。（bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=97613">97613</a>）</li>
+	<li>Mozilla 1.3.1 やトランクビルドでは、XBL ベースのフォームコントロールが壊れており、利用できません（bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=185612">185612</a>）。HTML ページで HTML フォームコントロールが見られず、機能しない場合は、「pref.js」ファイルの「user_pref(&quot;nglayout.debug.enable_xbl_forms&quot;, true);」を確認してください。注意 : これは、以前の Mozilla ビルドで、「デバッグ」パネルから設定を変更している場合のみ有効になっています。一般のユーザはこれらの設定を変更しない方がいいでしょう。</li>
+</ul>
+
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.3.1/index.html">英語版</a> 2003/05/06</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.3.1/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

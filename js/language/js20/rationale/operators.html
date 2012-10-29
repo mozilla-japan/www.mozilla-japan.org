@@ -1,0 +1,974 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 演算子</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/rationale/operators.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="named.html">
+<link rel="Next" href="units.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		background:transparent none;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap;">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">根拠</div>
+    <div class="title1">演算子</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="named.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="units.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">05/22/2003 (Thr)</p>
+
+<p class="issue">オーバーライド可能な演算子は元々 JavaScript 2.0 草案に含まれていたが、JavaScript 2.0
+の軽量化のために将来のバージョンに見送られた。実装されるとしたら演算子のオーバーライドは本節で述べるような振る舞いをしていた。</p>
+
+<h2>概要</h2>
+
+<p>JavaScript 2.0 では <code>+</code> 、<code>*</code> 、<var>a</var><code>[</code><var>b</var><code>]</code>
+、<code>-=</code> などのような数多くの演算子が使用可能であり、これらはその実引数の型に基づきディスパッチ (呼び出しの転送)
+が行われる。演算子の中には単一のオペランドについてのみディスパッチを行うものもあり、その挙動はプロパティ探索のようなものである。その他の演算子では2つのオペランドに対して同時にディスパッチされる。また、既存の演算子を組み合わせるためのシンタックスシュガーになっているものもある。</p>
+
+<p>JavaScript の全ての演算子は最初から定義済みである。加えてクラスが既存の挙動をオーバーライドすることにより別の定義を提供することもできる。このオーバーライドはディスパッチされるオペランドの少なくとも一方がそのクラスかそのクラスの子孫クラスのインスタンスである場合にのみ適用される。演算子のオーバーライドは有用で、例えば単位を
+JavaScript 2.0 コア部に追加することなく定義できる。</p>
+
+<p>この節では JavaScript ソースコードにおける演算子の展開、演算子の組み込み定義、及びオーバーライドの意味について示す。</p>
+
+<h2>演算子の呼び出し</h2>
+
+<p>式中で演算子を呼び出すと、以下の表に従って当該演算子が呼び出される。「演算子呼び出し」ではどの演算子が実際に呼び出されるかを示すのに擬似構文を使う
+(演算子の呼び出しに使用できるのは表の左側の式だけである)。</p>
+
+<div class="indent">
+  <table border="1" cellspacing="2" cellpadding="0">
+  <colgroup>
+  	<col span="1" style="white-space:nowrap;" />
+  </colgroup>
+  <tr align="left" valign="top">
+    <th>式</th>
+    <th>演算子の呼び出し</th>
+  </tr>
+  <tr valign="top">
+    <td><code>+</code><var>x</var></td>
+    <td>operator&nbsp;<code>"+"(</code><var>x</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>-</code><var>x</var></td>
+    <td>operator&nbsp;<code>"-"(</code><var>x</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>~</code><var>x</var></td>
+    <td>operator&nbsp;<code>"~"(</code><var>x</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>++</code><var>x</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"++"(</code><var>x</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>++</code></td>
+    <td><code>(</code><var><script type="text/javascript">document.write(U_xi)</script></var><code>&nbsp;=&nbsp;</code><var>x</var><code>,&nbsp;</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"++"(</code><var>x</var><code>),&nbsp;</code><var><script type="text/javascript">document.write(U_xi)</script></var><code>)</code>
+      ただし <var><script type="text/javascript">document.write(U_xi)</script></var> は一時変数</td>
+  </tr>
+  <tr valign="top">
+    <td><code>--</code><var>x</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"--"(</code><var>x</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>--</code></td>
+    <td><code>(</code><var><script type="text/javascript">document.write(U_xi)</script></var><code>&nbsp;=&nbsp;</code><var>x</var><code>,&nbsp;</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"--"(</code><var>x</var><code>),&nbsp;</code><var><script type="text/javascript">document.write(U_xi)</script></var><code>)</code>
+      ただし <var><script type="text/javascript">document.write(U_xi)</script></var> は一時変数</td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>(</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+    <td>operator&nbsp;<code>"()"(</code><var>x</var><code>,&nbsp;</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>new&nbsp;</code><var>x</var></td>
+    <td>operator&nbsp;<code>"new"(</code><var>x</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>new&nbsp;</code><var>x</var><code>(</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+    <td>operator&nbsp;<code>"new"(</code><var>x</var><code>,&nbsp;</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>[</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>]</code></td>
+    <td>operator&nbsp;<code>"[]"(</code><var>x</var><code>,&nbsp;</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>[</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>]&nbsp;=&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"[]="(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>,&nbsp;</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>delete&nbsp;</code><var>x</var><code>[</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>]&nbsp;&nbsp;</code></td>
+    <td>operator&nbsp;<code>"delete[]"(</code><var>x</var><code>,&nbsp;</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;+&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"+"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;-&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"-"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;*&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"*"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;/&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"/"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;%&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"%"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&lt;&lt;&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"&lt;&lt;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&gt;&gt;&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"&gt;&gt;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&gt;&gt;&gt;&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"&gt;&gt;&gt;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&lt;&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"&lt;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&gt;&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"&lt;"(</code><var>y</var><code>,&nbsp;</code><var>x</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&lt;=&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"&lt;="(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&gt;=&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"&lt;="(</code><var>y</var><code>,&nbsp;</code><var>x</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;in&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"in"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;==&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"=="(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;!=&nbsp;</code><var>y</var></td>
+    <td><code>!(</code>operator&nbsp;<code>"=="(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;===&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"==="(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;!==&nbsp;</code><var>y</var></td>
+    <td><code>!(</code>operator&nbsp;<code>"==="(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&amp;&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"&amp;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;^&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"^"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;|&nbsp;</code><var>y</var></td>
+    <td>operator&nbsp;<code>"|"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;+=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"+"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;-=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"-"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;*=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"*"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;/=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"/"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;%=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"%"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&lt;&lt;=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"&lt;&lt;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&gt;&gt;=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"&gt;&gt;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&gt;&gt;&gt;=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"&gt;&gt;&gt;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;&amp;=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"&amp;"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;^=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"^"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>&nbsp;|=&nbsp;</code><var>y</var></td>
+    <td><code>(</code><var>x</var><code>&nbsp;=&nbsp;</code>operator&nbsp;<code>"|"(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>))</code></td>
+  </tr>
+  </table>
+
+</div>
+
+<h3><a name="operator-dispatch"></a>演算子のディスパッチ</h3>
+
+<p>単項演算子では普通のメソッドと同じように単一ディスパッチが行われる。<code>in</code>
+は単項演算子と同じように右オペランドのクラスでのみオーバーライドされ、右オペランドにのみディスパッチされる。<code>null</code>
+は通常のメソッドディスパッチと同様に <code>Null</code> と <code>Object</code> のみのメンバとみなされる。</p>
+
+<p>二項演算子では両オペランドの型に基づいて二重ディスパッチが行われる。二項演算子
+<script type="text/javascript">document.write(U_psi)</script> が
+<var>a</var>&nbsp;<script type="text/javascript">document.write(U_psi)</script>&nbsp;<var>b</var> という式で呼び出されると、適用可能な全ての
+operator&nbsp;<code>&quot;</code><script type="text/javascript">document.write(U_psi)</script><code>&quot;(</code><var>x</var><code>,&nbsp;</code><var>y</var><code>)</code>
+メソッドが探索され、最適なものが呼び出される。operator&nbsp;<code>&quot;</code><script type="text/javascript">document.write(U_psi)</script><code>&quot;(</code><var>x</var><code>:</code><var>X</var><code>,&nbsp;</code><var>y</var><code>:</code><var>Y</var><code>)</code>
+の定義が <var>a</var>&nbsp;<script type="text/javascript">document.write(U_psi)</script>&nbsp;<var>b</var>
+に対して<strong>適用可能である</strong>とは <var>a</var> の値が <var>X</var> の<a href="../core/concepts.html#type">メンバ</a>であり、且つ
+<var>b</var> の値が <var>Y</var> の<a href="../core/concepts.html#type">メンバ</a>である場合である。ただし、普通のメソッドのディスパッチと同様に
+<code>null</code> は型 <code>Null</code> 及び <code>Object</code> のみのメンバとみなされ対象外となる。operator&nbsp;<code>&quot;</code><script type="text/javascript">document.write(U_psi)</script><code>&quot;(</code><var>x</var><code>:</code><var>X</var><code>,&nbsp;</code><var>y</var><code>:</code><var>Y</var><code>)</code>
+の定義が<strong>最適である</strong>とはその演算子が適用可能であり、且つ適用可能な全ての operator&nbsp;<code>&quot;</code><script type="text/javascript">document.write(U_psi)</script><code>&quot;(</code><var>x</var><code>:</code><var>X&#39;</var><code>,&nbsp;</code><var>y</var><code>:</code><var>Y&#39;</var><code>)</code>
+の定義が <var>X</var> <script type="text/javascript">document.write(U_sube)</script> <var>X&#39;</var> 且つ <var>Y</var>
+<script type="text/javascript">document.write(U_sube)</script> を満たす場合である。<script type="text/javascript">document.write(U_psi)</script>
+の最適な定義が1つも見つからなかったり、複数存在する場合は式
+<var>a</var>&nbsp;<script type="text/javascript">document.write(U_psi)</script>&nbsp;<var>b</var> の評価時にエラーになる。</p>
+
+<p>クラス <var>C</var> 内の演算子のオペランドでは <a href="../core/expressions.html#super"><code>super</code>
+式</a>を使うことができる。この場合その演算子の適用可能な定義はその位置で型 <var>T</var>
+の引数をとるように定義するものに限定される。ここに <var>T</var> はクラス <var>C</var>
+の適当な祖先クラスである。これにより演算子をオーバーライドするメソッドはその演算子の基底クラスでの定義を呼び出すことができる。</p>
+
+<h2>式文法の変更</h2>
+
+<p><code>super</code> 式に対応するために、式に関する文法規則は以下のように変更される。</p>
+
+<h3>super 式</h3>
+
+<p><a href="#N-FullSuperExpression" class="nonterminal">FullSuperExpression</a> を別の規則に分離するために、文法規則
+<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a> は2つに分割される:</p>
+
+<div class="grammar-rule">
+<div class="grammar-lhs"><a name="N-SuperExpression"></a><span class="nonterminal">SuperExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code class="terminal-keyword">super</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-FullSuperExpression" class="nonterminal">FullSuperExpression</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-FullSuperExpression"></a><span class="nonterminal">FullSuperExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code class="terminal-keyword">super</code>&nbsp;<a href="../core/expressions.html#N-ParenExpression" class="nonterminal">ParenExpression</a></div>
+</div>
+
+<p><code>super</code> はクラス <var>C</var> 内でのみ使用可能であり、<var>C</var> のインスタンス <var>v</var>
+として評価される部分式に適用可能である。この部分式は <a href="../core/expressions.html#N-ParenExpression" class="nonterminal">ParenExpression</a>
+か或いは省略することができる。省略した場合はデフォルトで <code>this</code> になる。</p>
+
+<p>以下の文法に示すように、<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a> は次のいずれかの演算子のオペランドとして組み込まれなければならない:</p>
+
+<ul>
+  <li><code>.</code> (プロパティ探索)、<code>[]</code> (インデクシング)、<code>()</code> (関数呼び出し)、<code>new</code>
+    、<code>new()</code> の各演算子の左オペランド (<code>()</code> 、<code>new()</code> 演算子については
+    <a href="#N-SuperExpression" class="nonterminal">SuperExpression</a> は
+    <a href="#N-FullSuperExpression" class="nonterminal">FullSuperExpression</a> でなければならない)</li>
+  <li><code>in</code> 演算子の右オペランド</li>
+  <li>単項演算子 <code>+</code> 、<code>-</code> 、<code>~</code> 、<code>++</code> 、<code>--</code> のオペランド</li>
+  <li>二項演算子 <code>+</code> 、<code>-</code> 、<code>*</code> 、<code>/</code> 、<code>%</code> 、<code>&lt;&lt;</code>
+    、<code>&gt;&gt;</code> 、<code>&gt;&gt;&gt;</code> 、<code>|</code> 、<code>^</code> 、<code>&amp;</code> 、<code>&lt;</code>
+    、<code>&gt;</code> 、<code>&lt;=</code> 、<code>&gt;=</code> 、<code>==</code> 、<code>!=</code> 、<code>===</code>
+    、<code>!==</code> のいずれかのオペランド</li>
+  <li>演算子 <code>+=</code> 、<code>-=</code> 、<code>*=</code> 、<code>/=</code> 、<code>%=</code> 、<code>&lt;&lt;=</code>
+    、<code>&gt;&gt;=</code> 、<code>&gt;&gt;&gt;=</code> 、<code>|=</code> 、<code>^=</code> 、<code>&amp;=</code> のいずれかのオペランド</li>
+</ul>
+
+<p><code>super</code> はプロパティ探索をクラス <var>C</var>
+の基底クラスから継承された定義に限定することで、組み込まれている演算子の挙動を変更する。「<a href="../core/namespaces.html#property-lookup">プロパティ探索</a>」及び「<a href="#operator-dispatch">演算子のディスパッチ</a>」も見よ。</p>
+
+<h3>後置式</h3>
+
+<p>以下の文法規則は <code>super</code> 式を <code>()</code> (関数呼び出し)、<code>new</code> 、<code>new()</code> 、後置
+<code>++</code> 、及び後置 <code>--</code> のオペランドとして許容するために修正される。修正の無い規則は以下に挙げていない。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-PostfixExpressionOrSuper"></a><span class="nonterminal">PostfixExpressionOrSuper</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/expressions.html#N-PostfixExpression" class="nonterminal">PostfixExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-FullPostfixExpression"></a><span class="nonterminal">FullPostfixExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/expressions.html#N-PrimaryExpression" class="nonterminal">PrimaryExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="../core/expressions.html#N-ExpressionQualifiedIdentifier" class="nonterminal">ExpressionQualifiedIdentifier</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-FullNewExpression" class="nonterminal">FullNewExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-FullPostfixExpression" class="nonterminal">FullPostfixExpression</a>&nbsp;<a href="../core/expressions.html#N-PropertyOperator" class="nonterminal">PropertyOperator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a>&nbsp;<a href="../core/expressions.html#N-PropertyOperator" class="nonterminal">PropertyOperator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-FullPostfixExpression" class="nonterminal">FullPostfixExpression</a>&nbsp;<a href="../core/expressions.html#N-Arguments" class="nonterminal">Arguments</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-FullSuperExpression" class="nonterminal">FullSuperExpression</a>&nbsp;<a href="../core/expressions.html#N-Arguments" class="nonterminal">Arguments</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-PostfixExpressionOrSuper" class="nonterminal">PostfixExpressionOrSuper</a>&nbsp;[no&nbsp;line&nbsp;break]&nbsp;<code class="terminal-keyword">++</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-PostfixExpressionOrSuper" class="nonterminal">PostfixExpressionOrSuper</a>&nbsp;[no&nbsp;line&nbsp;break]&nbsp;<code class="terminal-keyword">--</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-FullNewExpression"></a><span class="nonterminal">FullNewExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code class="terminal-keyword">new</code>&nbsp;<a href="../core/expressions.html#N-FullNewSubexpression" class="nonterminal">FullNewSubexpression</a>&nbsp;<a href="../core/expressions.html#N-Arguments" class="nonterminal">Arguments</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">new</code>&nbsp;<a href="#N-FullSuperExpression" class="nonterminal">FullSuperExpression</a>&nbsp;<a href="../core/expressions.html#N-Arguments" class="nonterminal">Arguments</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ShortNewExpression"></a><span class="nonterminal">ShortNewExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code class="terminal-keyword">new</code>&nbsp;<a href="../core/expressions.html#N-ShortNewSubexpression" class="nonterminal">ShortNewSubexpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">new</code>&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<h3>単項演算子</h3>
+
+<p>以下の文法規則は <code>super</code> 式を単項 <code>+</code> 、<code>-</code> 、<code>~</code> 、前置 <code>++</code>
+、及び前置 <code>--</code> の各演算子のオペランドとして許容するために修正される。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><A name="N-UnaryExpression"></a><span class="nonterminal">UnaryExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/expressions.html#N-PostfixExpression" class="nonterminal">PostfixExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>delete</code>&nbsp;<a href="../core/expressions.html#N-PostfixExpression" class="nonterminal">PostfixExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>void</code>&nbsp;<a href="#N-UnaryExpression" class="nonterminal">UnaryExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>typeof</code>&nbsp;<a href="#N-UnaryExpression" class="nonterminal">UnaryExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>++</code>&nbsp;<a href="#N-PostfixExpressionOrSuper" class="nonterminal">PostfixExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>--</code>&nbsp;<a href="#N-PostfixExpressionOrSuper" class="nonterminal">PostfixExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>+</code>&nbsp;<a href="#N-UnaryExpressionOrSuper" class="nonterminal">UnaryExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>-</code>&nbsp;<a href="#N-UnaryExpressionOrSuper" class="nonterminal">UnaryExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>-</code>&nbsp;<span class="terminal">NegatedMinLong</span></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>~</code>&nbsp;<a href="#N-UnaryExpressionOrSuper" class="nonterminal">UnaryExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class=terminal-keyword>!</code>&nbsp;<a href="#N-UnaryExpression" class="nonterminal">UnaryExpression</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnaryExpressionOrSuper"></a><span class="nonterminal">UnaryExpressionOrSuper</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-UnaryExpression" class="nonterminal">UnaryExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<h3>乗算演算子</h3>
+
+<p>以下の文法規則は <code>super</code> 式を二項演算子 <code>*</code> 、<code>/</code> 、及び <code>%</code>
+のオペランドとして許容するために修正される。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-MultiplicativeExpression"></a><span class="nonterminal">MultiplicativeExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-UnaryExpression" class="nonterminal">UnaryExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-MultiplicativeExpressionOrSuper" class="nonterminal">MultiplicativeExpressionOrSuper</a>&nbsp;<code class="terminal-keyword">*</code>&nbsp;<a href="#N-UnaryExpressionOrSuper" class="nonterminal">UnaryExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-MultiplicativeExpressionOrSuper" class="nonterminal">MultiplicativeExpressionOrSuper</a>&nbsp;<code class="terminal-keyword">/</code>&nbsp;<a href="#N-UnaryExpressionOrSuper" class="nonterminal">UnaryExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-MultiplicativeExpressionOrSuper" class="nonterminal">MultiplicativeExpressionOrSuper</a>&nbsp;<code class="terminal-keyword">%</code>&nbsp;<a href="#N-UnaryExpressionOrSuper" class="nonterminal">UnaryExpressionOrSuper</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-MultiplicativeExpressionOrSuper"></a><span class="nonterminal">MultiplicativeExpressionOrSuper</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-MultiplicativeExpression" class="nonterminal">MultiplicativeExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<h3>加算演算子</h3>
+
+<p>以下の文法規則は <code>super</code> 式を二項演算子 <code>+</code> 、<code>-</code> のオペランドとして許容するために修正される。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-AdditiveExpression"></a><span class="nonterminal">AdditiveExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-MultiplicativeExpression" class="nonterminal">MultiplicativeExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-AdditiveExpressionOrSuper" class="nonterminal">AdditiveExpressionOrSuper</a>&nbsp;<code class="terminal-keyword">+</code>&nbsp;<a href="#N-MultiplicativeExpressionOrSuper" class="nonterminal">MultiplicativeExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-AdditiveExpressionOrSuper" class="nonterminal">AdditiveExpressionOrSuper</a>&nbsp;<code class="terminal-keyword">-</code>&nbsp;<a href="#N-MultiplicativeExpressionOrSuper" class="nonterminal">MultiplicativeExpressionOrSuper</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-AdditiveExpressionOrSuper"></a><span class="nonterminal">AdditiveExpressionOrSuper</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-AdditiveExpression" class="nonterminal">AdditiveExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<h3>ビットシフト演算子</h3>
+
+<p>以下の文法規則は <code>super</code> 式を <code>&lt;&lt;</code> 、<code>&gt;&gt;</code> 、及び <code>&gt;&gt;&gt;</code>
+演算子のオペランドとして許容するために修正される。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ShiftExpression"></a><span class="nonterminal">ShiftExpression</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-AdditiveExpression" class="nonterminal">AdditiveExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a>&nbsp;<code class="terminal-keyword">&lt;&lt;</code>&nbsp;<a href="#N-AdditiveExpressionOrSuper" class="nonterminal">AdditiveExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a>&nbsp;<code class="terminal-keyword">&gt;&gt;</code>&nbsp;<a href="#N-AdditiveExpressionOrSuper" class="nonterminal">AdditiveExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a>&nbsp;<code class="terminal-keyword">&gt;&gt;&gt;</code>&nbsp;<a href="#N-AdditiveExpressionOrSuper" class="nonterminal">AdditiveExpressionOrSuper</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ShiftExpressionOrSuper"></a><span class="nonterminal">ShiftExpressionOrSuper</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<h3>関係演算子</h3>
+
+<p>以下の文法規則は <code>super</code> 式を <code>&lt;</code> 、<code>&gt;</code> 、<code>&lt;=</code> 、及び <code>&gt;=</code>
+演算子のオペランドとして、また <code>in</code> 演算子の右オペランドとして許容するために修正される。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RelationalExpression"></a><span class="nonterminal">RelationalExpression</span><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">&lt;</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">&gt;</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">&lt;=</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">&gt;=</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">is</code>&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">as</code>&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">in</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-attribute">allowIn</sup>&nbsp;<code class="terminal-keyword">instanceof</code>&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">RelationalExpression</span><sup class="nonterminal-attribute">noIn</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-attribute">noIn</sup>&nbsp;<code class="terminal-keyword">&lt;</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-attribute">noIn</sup>&nbsp;<code class="terminal-keyword">&gt;</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-attribute">noIn</sup>&nbsp;<code class="terminal-keyword">&lt;=</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-attribute">noIn</sup>&nbsp;<code class="terminal-keyword">&gt;=</code>&nbsp;<a href="#N-ShiftExpressionOrSuper" class="nonterminal">ShiftExpressionOrSuper</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-attribute">noIn</sup>&nbsp;<code class="terminal-keyword">is</code>&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-attribute">noIn</sup>&nbsp;<code class="terminal-keyword">as</code>&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-attribute">noIn</sup>&nbsp;<code class="terminal-keyword">instanceof</code>&nbsp;<a href="#N-ShiftExpression" class="nonterminal">ShiftExpression</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RelationalExpressionOrSuper"></a><span class="nonterminal">RelationalExpressionOrSuper</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<h3>等価演算子</h3>
+
+<p>以下の文法規則は <code>super</code> 式を <code>==</code> 、<code>!=</code> 、<code>===</code> 、及び <code>!==</code>
+演算子のオペランドとして許容するために修正される。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-EqualityExpression"></a><span class="nonterminal">EqualityExpression</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-RelationalExpression" class="nonterminal">RelationalExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-EqualityExpressionOrSuper" class="nonterminal">EqualityExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<code class="terminal-keyword">==</code>&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-EqualityExpressionOrSuper" class="nonterminal">EqualityExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<code class="terminal-keyword">!=</code>&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-EqualityExpressionOrSuper" class="nonterminal">EqualityExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<code class="terminal-keyword">===</code>&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-EqualityExpressionOrSuper" class="nonterminal">EqualityExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<code class="terminal-keyword">!==</code>&nbsp;<a href="#N-RelationalExpressionOrSuper" class="nonterminal">RelationalExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-EqualityExpressionOrSuper"></a><span class="nonterminal">EqualityExpressionOrSuper</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-EqualityExpression" class="nonterminal">EqualityExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<h3>ビット演算子</h3>
+
+<p>以下の文法規則は <code>super</code> 式を <code>&amp;</code> 、<code>^</code> 、及び <code>|</code>
+演算子のオペランドとして許容するために修正される。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-BitwiseAndExpression"></a><span class="nonterminal">BitwiseAndExpression</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-EqualityExpression" class="nonterminal">EqualityExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-BitwiseAndExpressionOrSuper" class="nonterminal">BitwiseAndExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<code class="terminal-keyword">&amp;</code>&nbsp;<a href="#N-EqualityExpressionOrSuper" class="nonterminal">EqualityExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-BitwiseXorExpression"></a><span class="nonterminal">BitwiseXorExpression</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-BitwiseAndExpression" class="nonterminal">BitwiseAndExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-BitwiseXorExpressionOrSuper" class="nonterminal">BitwiseXorExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<code class="terminal-keyword">^</code>&nbsp;<a href="#N-BitwiseAndExpressionOrSuper" class="nonterminal">BitwiseAndExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-BitwiseOrExpression"></a><span class="nonterminal">BitwiseOrExpression</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-BitwiseXorExpression" class="nonterminal">BitwiseXorExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-BitwiseOrExpressionOrSuper" class="nonterminal">BitwiseOrExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<code class="terminal-keyword">|</code>&nbsp;<a href="#N-BitwiseXorExpressionOrSuper" class="nonterminal">BitwiseXorExpressionOrSuper</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-BitwiseAndExpressionOrSuper"></a><span class="nonterminal">BitwiseAndExpressionOrSuper</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-BitwiseAndExpression" class="nonterminal">BitwiseAndExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-BitwiseXorExpressionOrSuper"></a><span class="nonterminal">BitwiseXorExpressionOrSuper</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-BitwiseXorExpression" class="nonterminal">BitwiseXorExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-BitwiseOrExpressionOrSuper"></a><span class="nonterminal">BitwiseOrExpressionOrSuper</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-BitwiseOrExpression" class="nonterminal">BitwiseOrExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+</div>
+
+<h3>代入演算子</h3>
+
+<p>以下の文法規則は <code>super</code> 式を <code>+=</code> 、<code>-=</code> 、<code>*=</code> 、<code>/=</code> 、<code>%=</code>
+、<code>&lt;&lt;=</code> 、<code>&gt;&gt;=</code> 、<code>&gt;&gt;&gt;=</code> 、<code>|=</code> 、<code>^=</code> 、及び
+<code>&amp;=</code> 演算子のオペランドとして許容するために修正される。</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-AssignmentExpression"></a><span class="nonterminal">AssignmentExpression</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/expressions.html#N-ConditionalExpression" class="nonterminal">ConditionalExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="../core/expressions.html#N-PostfixExpression" class="nonterminal">PostfixExpression</a>&nbsp;<code class="terminal-keyword">=</code>&nbsp;<a href="#N-AssignmentExpression" class="nonterminal">AssignmentExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-PostfixExpressionOrSuper" class="nonterminal">PostfixExpressionOrSuper</a>&nbsp;<a href="../core/expressions.html#N-CompoundAssignment" class="nonterminal">CompoundAssignment</a>&nbsp;<a href="#N-AssignmentExpression" class="nonterminal">AssignmentExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-PostfixExpressionOrSuper" class="nonterminal">PostfixExpressionOrSuper</a>&nbsp;<a href="../core/expressions.html#N-CompoundAssignment" class="nonterminal">CompoundAssignment</a>&nbsp;<a href="#N-SuperExpression" class="nonterminal">SuperExpression</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="../core/expressions.html#N-PostfixExpression" class="nonterminal">PostfixExpression</a>&nbsp;<a href="../core/expressions.html#N-LogicalAssignment" class="nonterminal">LogicalAssignment</a>&nbsp;<a href="#N-AssignmentExpression" class="nonterminal">AssignmentExpression</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_beta)</script></sup></div>
+</div>
+
+<h2><a name="built-in-operator-definitions"></a>組み込み演算子の定義</h2>
+
+<p>全ての演算子は組み込みの定義を持つ。以下の表にその要約を示す。</p>
+
+<div class="indent">
+  <table border="1" cellspacing="2" cellpadding="0">
+  <tr align="left">
+    <th>名前</th>
+    <th>シグニチャ</th>
+    <th>動作</th>
+  </tr>
+  <tr valign="top">
+    <td><code>"()"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;...&nbsp;</code><var>args</var><code>)</code></td>
+    <td><var>args</var> を引数として <var>x</var> を呼び出し、その結果を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"new"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;...&nbsp;</code><var>args</var><code>)</code></td>
+    <td><var>args</var> を引数として <var>x</var> のコンストラクタスロットを呼び出し、その結果を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"[]"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>n</var><code>:Object)</code></td>
+    <td><var>x</var> の <code>public</code> プロパティの内、名前が <var>n</var><code>.toString()</code>
+      である最終導出プロパティの値を返す。「<a href="../core/namespaces.html#property-lookup">プロパティ探索</a>」も見よ。</td>
+  </tr>
+  <tr valign="top">
+    <td rowspan="2"><code>"[]="</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object,&nbsp;</code><var>n</var><code>:Object)</code></td>
+    <td><var>x</var> の <code>public</code> プロパティの内、名前が <var>n</var><code>.toString()</code>
+      である最終導出プロパティの値を <var>y</var> に設定にする。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>(</code><var>x</var><code>:Array,&nbsp;</code><var>y</var><code>:Object,&nbsp;</code><var>n</var><code>:Object)</code></td>
+    <td><var>x</var> の <code>public</code> プロパティの内、名前が <var>n</var><code>.toString()</code>
+      である最終導出プロパティの値を <var>y</var> に設定にし、JavaScript 1.5 と同様に <code>length</code> プロパティを更新する。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"delete[]"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>n</var><code>:Object)</code></td>
+    <td><var>x</var> の <code>public</code> プロパティの内、名前が <var>n</var><code>.toString()</code>
+      である最終導出プロパティの削除を試みる。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"~"</code></td>
+    <td><code>(</code><var>x</var><code>:Object)</code></td>
+    <td>ToInt32(operator&nbsp;<code>"+"(</code><var>x</var><code>)</code>) のビット反転を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"++"</code></td>
+    <td><code>(</code><var>x</var><code>:Object)</code></td>
+    <td>operator&nbsp;<code>"+"(</code>operator&nbsp;<code>"+"(</code><var>x</var><code>),&nbsp;1)</code> を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"--"</code></td>
+    <td><code>(</code><var>x</var><code>:Object)</code></td>
+    <td>operator&nbsp;<code>"-"(</code>operator&nbsp;<code>"+"(</code><var>x</var><code>),&nbsp;1)</code> を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td rowspan="6"><code>"+"</code></td>
+    <td><code>(</code><var>x</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td><var>x&#39;</var>&nbsp;=&nbsp;ToPrimitive(<var>x</var>) 、<var>y&#39;</var>&nbsp;=&nbsp;ToPrimitive(<var>y</var>)
+      とする。<var>x&#39;</var> と <var>y&#39;</var> のいずれかが文字列であれば
+      operator&nbsp;<code>"+"(</code><var>x&#39;</var><code>,&nbsp;</code><var>y&#39;</var><code>)</code> を返す。それ以外の場合は
+      ToNumber(<var>x&#39;</var>)&nbsp;+&nbsp;ToNumber(<var>y&#39;</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>(</code><var>x</var><code>:String,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td><var>x</var> に <var>y</var><code>.toString()</code> を結合したものを返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:String)</code></td>
+    <td><var>x</var><code>.toString()</code> に <var>y</var> を結合したものを返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>(</code><var>x</var><code>:String,&nbsp;</code><var>y</var><code>:String)</code></td>
+    <td><var>x</var> に <var>y</var> を結合したものを返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>(</code><var>x</var><code>:Number,&nbsp;</code><var>y</var><code>:Number)</code></td>
+    <td><var>x</var>&nbsp;+&nbsp;<var>y</var> を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td rowspan="2"><code>"-"</code></td>
+    <td><code>(</code><var>x</var><code>:Object)</code></td>
+    <td>-ToNumber(<var>x</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;&#8211;&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"*"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;<script type="text/javascript">document.write(U_times)</script>&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"/"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;/&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"%"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;%&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"&lt;&lt;"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;&lt;&lt;&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"&gt;&gt;"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;&gt;&gt;&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"&gt;&gt;&gt;"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;&gt;&gt;&gt;&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"&lt;"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>JavaScript 1.5 と同じ。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"&lt;="</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>JavaScript 1.5 と同じ。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"in"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>JavaScript 1.5 と同じ。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"=="</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>JavaScript 1.5 と同じ。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"==="</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>JavaScript 1.5 と同じ。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"&amp;"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;&amp;&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"^"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;^&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  <tr valign="top">
+    <td><code>"|"</code></td>
+    <td><code>(</code><var>x</var><code>:Object,&nbsp;</code><var>y</var><code>:Object)</code></td>
+    <td>ToNumber(<var>x</var>)&nbsp;|&nbsp;ToNumber(<var>y</var>) を返す。</td>
+  </tr>
+  </table>
+
+</div>
+
+<h2><a name="operator-overriding"></a>演算子のオーバーライド</h2>
+
+<p>演算子のオーバーライドはクラス <var>C</var> 内でのみ可能である。クラスは <code>operator</code> 属性
+(<code>operator</code> は演算子オーバーライドのために追加された<a href="../core/definitions.html#member-attributes">メンバ修飾属性</a>)
+で関数を定義しなければならず、関数名は以下の表の文字列から選ばなくてはならない。この名前は識別子ではなく文字列でなければならない。<a href="#N-FunctionName" class="nonterminal">FunctionName</a>
+文法規則は文字列を許容するように拡張される:</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-FunctionName"></a><span class="nonterminal">FunctionName</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">get</code>&nbsp;[no&nbsp;line&nbsp;break]&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">set</code>&nbsp;[no&nbsp;line&nbsp;break]&nbsp;<a href="../core/expressions.html#N-Identifier" class="nonterminal">Identifier</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<span class="terminal">String</span></div>
+</div>
+
+<p><a href="#N-FunctionName" class="nonterminal">FunctionName</a> を <span class="terminal">String</span>
+にできるのは演算子のオーバーライドを行う場合だけである。</p>
+
+<p>表には各演算子が持つことのできるシグニチャも示した。引数の内少なくとも1つ型は <var>C</var> でなければならず
+(<var>C</var> の派生クラスの型は認められない)、<code>===</code> 演算子については両方とも型は <var>C</var>
+でなければならない。1つのクラスは引数の型 <var>X</var> 、<var>Y</var> を変えることで、同じ二項演算子に対して (単項演算子は不可)
+異なるシグニチャを定義できる。これらの型が <code>Object</code> である場合は省略できる。以下の表で型が <var>C</var>
+、<var>X</var> 、<var>Y</var> のいずれかである引数は省略可能にしたり名前付きにしたりできない。演算子のオーバーライドを行うメソッドの戻り値の型は何でもよい。</p>
+
+<div class="indent">
+  <table border="1" cellspacing="2" cellpadding="0">
+  <tr align="left" valign="top">
+    <th>名前</th>
+    <th>シグニチャ</th>
+  </tr>
+  <tr valign="top">
+    <td><code>"~"<br>
+      "++"<br>
+      "--"</code></td>
+    <td><code>(</code><var>x</var><code>:</code><var>C</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>"+"<br>
+      "-"</code></td>
+    <td><code>(</code><var>x</var><code>:</code><var>C</var><code>)</code><br>
+      <code>(</code><var>x</var><code>:</code><var>C</var><code>,&nbsp;</code><var>y</var><code>:</code><var>Y</var><code>)</code><br>
+      <code>(</code><var>x</var><code>:</code><var>X</var><code>,&nbsp;</code><var>y</var><code>:</code><var>C</var><code>)</code><br>
+      <code>(</code><var>x</var><code>:</code><var>C</var><code>,&nbsp;</code><var>y</var><code>:</code><var>C</var><code>)</code>
+    </td>
+  </tr>
+  <tr valign="top">
+    <td><code>"*"<br>
+      "/"<br>
+      "%"<br>
+      "&lt;&lt;"<br>
+      "&gt;&gt;"<br>
+      "&gt;&gt;&gt;"<br>
+      "&lt;"<br>
+      "&lt;="<br>
+      "=="<br>
+      "&amp;"<br>
+      "^"<br>
+      "|"</code></td>
+    <td><code>(</code><var>x</var><code>:</code><var>C</var><code>,&nbsp;</code><var>y</var><code>:</code><var>Y</var><code>)</code><br>
+      <code>(</code><var>x</var><code>:</code><var>X</var><code>,&nbsp;</code><var>y</var><code>:</code><var>C</var><code>)</code><br>
+      <code>(</code><var>x</var><code>:</code><var>C</var><code>,&nbsp;</code><var>y</var><code>:</code><var>C</var><code>)</code>
+    </td>
+  </tr>
+  <tr valign="top">
+    <td><code>"==="</code></td>
+    <td><code>(</code><var>x</var><code>:</code><var>C</var><code>,&nbsp;</code><var>y</var><code>:</code><var>C</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>"in"</code></td>
+    <td><code>(</code><var>x</var><code>:</code><var>X</var><code>,&nbsp;</code><var>y</var><code>:</code><var>C</var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>"()"<br>
+      "new"<br>
+      "[]"<br>
+      "delete[]"</code></td>
+    <td><code>(</code><var>x</var><code>:</code><var>C</var><code>,&nbsp;</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+  </tr>
+  <tr valign="top">
+    <td><code>"[]="</code></td>
+    <td><code>(</code><var>x</var><code>:</code><var>C</var><code>,&nbsp;</code><var>y</var><code>:</code><var>Y</var><code>,&nbsp;</code><var>a</var><sub class="var-sub">1</sub><code>,</code>&nbsp;...<code>,&nbsp;</code><var>a<sub>n</sub></var><code>)</code></td>
+  </tr>
+  </table>
+
+</div>
+<p>演算子メソッドはその演算子の結果を返すべきであり、<code>++</code> 、<code>--</code>
+演算子であれば結果はインクリメント、デクリメントされた値である。<code>()</code> 、<code>new</code> 、<code>[]</code>
+、<code>delete[]</code> 、<code>[]=</code> 演算子は余分に引数リストをとり、必要があれば省略可能、名前付き、残余引数を含めることができる。<code>[]=</code>
+演算子は1つ以上の省略不可能な引数をとる必要があり、この引数が要素に格納する値となる。</p>
+
+<p><code>&gt;</code> 、<code>&gt;=</code> 、<code>!=</code> 、及び <code>!==</code> 演算子は <code>&lt;</code> 、<code>&lt;=</code>
+、<code>==</code> 、及び <code>===</code> 演算子呼び出しのシンタックスシュガーになっているため、直接オーバーライドすることはできない
+(代わりに後者の演算子をオーバーライドするとよい)。<code>!</code> 、<code>||</code> 、<code>^^</code> 、<code>&amp;&amp;</code>
+、及び <code>?:</code> 演算子も直接オーバーライドできないが、これらの演算子は <code>toBoolean</code>
+の再定義の影響を受ける。<code>||</code> 、<code>&amp;&amp;</code> 、及び <code>?:</code>
+演算子がオーバーライド不能であるのはこれらが全ての引数を評価するとは限らないからである。プログラマがこの短絡評価を利用するのはよくあることである。<code>!</code>
+演算子がオーバーライド不能であるのは以下のような有用な等価性を維持するためである:</p>
+
+<ul>
+  <li><code>if&nbsp;(!</code><var>x</var><code>)&nbsp;</code><var>A</var><code>&nbsp;else&nbsp;</code><var>B</var> <script type="text/javascript">document.write(U_equiv)</script>
+    <code>if&nbsp;(</code><var>x</var><code>)&nbsp;</code><var>B</var><code>&nbsp;else&nbsp;</code><var>A</var></li>
+  <li><code>!(</code><var>x</var><code>&nbsp;&amp;&amp;&nbsp;</code><var>y</var><code>)</code> <script type="text/javascript">document.write(U_equiv)</script>
+    <code>!</code><var>x</var><code>&nbsp;||&nbsp;!</code><var>y</var></li>
+  <li><var>x</var><code>&nbsp;!=&nbsp;</code><var>y</var> <script type="text/javascript">document.write(U_equiv)</script>
+    <code>!(</code><var>x</var><code>&nbsp;==&nbsp;</code><var>y</var><code>)</code></li>
+</ul>
+
+<p>演算子の定義に名前空間を指定することはできない。演算子にはいかなるアクセス制限も無い。</p>
+
+<h3>例</h3>
+
+<p>以下のクラス定義は演算子のオーバーライドを使った例である。</p>
+
+<pre>class Complex {
+  var x:Number, y:Number;
+
+  operator function "+"(a:Complex):Complex {
+    return a;
+  }
+
+  operator function "-"(a:Complex):Complex {
+    return new Complex(x: -a.x, y: -a.y);
+  }
+
+  operator function "+"(a:Complex, b:Complex):Complex {
+    return new Complex(x: a.x+b.x, y: a.y+b.y);
+  }
+
+  operator function "+"(a:Complex, b:Number):Complex {
+    return new Complex(x: a.x+b, y: a.y);
+  }
+
+  operator function "+"(a:Number, b:Complex):Complex {
+    return new Complex(x: a+b.x, y: b.y);
+  }
+
+  function toBoolean():Boolean {
+    return this.x != 0 || this.y != 0;
+  }
+}</pre>
+
+<h2><code>toBoolean</code> メソッド</h2>
+
+<p><code>toString</code> と同様に、あらゆるオブジェクトはオーバーライド可能な <code>toBoolean</code> メソッドを持つ。このメソッドは
+<code>if</code> 、<code>while</code> 、<code>do while</code> 、及び <code>for</code> といった文や、<code>!</code> 、<code>||</code>
+、<code>^^</code> 、<code>&amp;&amp;</code> 、及び <code>?&nbsp;:</code> といった演算子により呼び出される。このメソッドは
+<code>true</code> か <code>false</code> のいずれかを返さなければならない。</p>
+
+<h2><a name="for-in"></a>for-in 演算子</h2>
+
+<p>オブジェクト <var>x</var> のクラスはシステム定義の名前空間 <code>Iterator</code>
+に属する以下の3つのメソッドをオーバーライドすることにより、<code>for&nbsp;(</code><var>v</var><code>&nbsp;in&nbsp;</code><var>x</var><code>)</code>
+のようなループの意味をオーバーライドすることができる:</p>
+
+<div class="indent">
+  <table border="0" cellspacing="2" cellpadding="0">
+  <tr align="left">
+    <th style="white-space:noerap;">メソッド</th>
+    <th>説明</th>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>.Iterator::forIn()</code></td>
+    <td>反復リストが空であれば <code>null</code> を返し、それ以外のときは名前が <code>value</code> 、<code>state</code>
+      である <code>public</code> プロパティを持つオブジェクト <var>o</var> を返す (<var>o</var>
+      は他にプロパティを持っていてもよい)。<var>o</var><code>.value</code>
+      の値は反復により最初に返される要素である。<var>o</var><code>.state</code> の値は型は何でもよく、<code>Iterator::next</code>
+      か <code>Iterator::done</code> のいずれかに一度だけ渡される。<var>o</var><code>.state</code> が <code>Iterator::next</code>
+      か <code>Iterator::done</code> に渡された後の <var>o</var> の値は正当性を保証されない。</td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>.Iterator::next(</code><var>i</var><code>)</code></td>
+    <td><var>i</var> は前回の <code>Iterator::forIn</code> か <code>Iterator::next</code>
+      呼び出しの戻り値である。反復が終了していればこのメソッドは <code>null</code> を返し、それ以外のときは名前が
+      <code>value</code> 、<code>state</code> である <code>public</code> プロパティを持つオブジェクト <var>o</var> を返す
+      (<var>o</var> は他にプロパティを持っていてもよい)。<var>o</var><code>.value</code> の値は反復により次に返される要素である。<var>o</var><code>.state</code>
+      の値は型は何でもよく、<code>Iterator::next</code> か <code>Iterator::done</code> のいずれかに一度だけ渡される。<var>o</var><code>.state</code>
+      が <code>Iterator::next</code> か <code>Iterator::done</code> に渡された後の <var>o</var> の値は正当性を保証されない。</td>
+  </tr>
+  <tr valign="top">
+    <td><var>x</var><code>.Iterator::done(</code><var>i</var><code>)</code></td>
+    <td><var>i</var> は前回の <code>Iterator::forIn</code> か <code>Iterator::next</code> 呼び出しの戻り値である。このメソッドの呼び出しは、反復が早めに終了し、必要な解体が可能になったことを
+      <var>x</var> に通知する。<code>Iterator::forIn</code> や <code>Iterator::next</code> から返された各 <var>i</var> は後で <code>Iterator::next</code> か <code>Iterator::done</code>
+      のいずれかに一度だけ渡されることが保証される。<code>Iterator::done</code> は <code>undefined</code> を返すべきである。</td>
+  </tr>
+  </table>
+
+</div>
+
+
+<h3>根拠</h3>
+
+<p>for-in 演算子をオーバーライドするためのアプローチは他にもあった。上に挙げた3つのメソッドを使ったアプローチが選ばれたのは以下の理由による:</p>
+
+<dl>
+  <dt>関数とコールバック (<code>Iterator::forIn</code> が <var>f</var> をとるようにし、コレクションの各要素について
+    <var>f</var> を呼び出させる) ではなく反復子オブジェクトを使うのは何故か?</dt>
+  <dd>これは反復子モデルでは将来的に2つのコレクションで同時に反復を行うような拡張が可能だからである。これはコールバックでは不可能なことである。</dd>
+  <dt><code>Iterator::forIn</code> と <code>Iterator::next</code> が反復子だけを返しその反復子を与えられて要素を返すメソッド
+    <code>Iterator::get</code> を別に用意するようなことをせず、<code>Iterator::forIn</code> や <code>Iterator::next</code>
+    がオブジェクトを返すようになっているのは何故か?</dt>
+  <dd><code>Iterator::get</code> は不可避な同一性の汚染も招く。<code>null</code> (や他の値)
+    はコレクションの要素として正しいものであり、<code>Iterator::get</code> から返された値を使って反復が終了したかどうかを調べることはできない
+    (よって代わりに <code>Iterator::forIn</code> か <code>Iterator::next</code> に <code>null</code>
+    を返させることによって反復の終了を示さなければならないのである)。しかしながら <code>Iterator::forIn</code> か
+    <code>Iterator::next</code> を呼び出してから <code>Iterator::get</code> を呼び出すまでの間に他のスレッドが最後の要素を削除し、<code>Iterator::get</code>
+    が処理に詰まってしまうこともあり得る。反復の終了に例外を使うこともできるが、プログラム実行パスの早期に例外ハンドリングを行うことになる。</dd>
+  <dt>戻り値として2つの要素を持つ読み取り専用の配列ではなく、2つの名前付きスロットを持つオブジェクトを使うのは何故か?</dt>
+  <dd>配列の要素は全て同じ型でなければならないが、名前付きスロットはそれぞれ異なる型を持つことができるからである。</dd>
+  <dt><code>Iterator::done</code> を定義したのは何故か?</dt>
+  <dd>いくつかのオブジェクトは反復をサポートするために一時的な足場を立てる。このメソッドはそのような足場を解体可能になったことをオブジェクトに知らせる。JavaScript
+    は現在のところ終了処理が欠如しているので、反復が早めに打ち切られたことを反復オブジェクトが知るには他に方法が無い &#8212;
+    同じオブジェクトに対して同時に複数の反復を行うと問題が起こるため、次の反復の開始で前の反復の終了を示すことはできない。</dd>
+</dl>
+
+<h2><a name="class-reflection"></a>クラスリフレクション演算子</h2>
+
+<p>草案の初期のドラフトにはインスタンスのクラスを返す <code>.class</code>
+演算子が含まれていた。この演算子は以下の文法生成規則で定義されていた:</p>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">PropertyOperator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code class="terminal-keyword">.</code>&nbsp;<a href="../core/expressions.html#N-QualifiedIdentifier" class="nonterminal">QualifiedIdentifier</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code class="terminal-keyword">.</code>&nbsp;<code class="terminal-keyword">class</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="../core/expressions.html#N-Brackets" class="nonterminal">Brackets</a></div>
+</div>
+
+<p>この演算子が削除されたのはインスタンスのクラスの取得が抽象性の破壊を引き起こすからである。ファクトリメソッド
+<ins class="clsByTranslator">[訳注: インスタンスを生成するメソッド]</ins> <var>m</var> のクライアントは
+<var>m</var> が指定されたクラス <var>C</var> 、或いはその派生クラスの内いずれのクラスのインスタンスを返すか決定することが可能になり、<var>m</var>
+は正確にどのインスタンスを返すかの実装上での決定をクライアントを破綻させずに変更することが不可能になる。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:bottom;white-space:nowrap;">
+    <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+    最終更新: 2003年5月22日 (木)</address>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="named.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="units.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal&#64;student.interq.or.jp">exeal&#64;student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/rationale/operators.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

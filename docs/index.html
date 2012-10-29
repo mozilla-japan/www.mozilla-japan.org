@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>Mozilla 開発者資料</title>
+  <link rel="alternate" hreflang="en" modified="June 27, 2004">
+<!--
+Rev: 1.98 山口z
+-->
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/docs/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+<h1>Mozilla 開発者資料</h1>
+<p>資料: <strong>Mozilla 開発者向け</strong> | <a href="web-developer/">Web
+開発者向け</a> | <a href="end-user/">エンドユーザ向け</a></p>
+<p>このページは、Mozilla プロジェクトのために開発をしている人たちにとって、いくつかのより重要なドキュメントへのリンクを提供します。<a
+ href="mdp/">Mozilla ドキュメンテーションプロジェクトのページ</a> も、Mozilla
+ドキュメンテーションの取り組みに関する情報を提供しています。</p>
+<h2>もくじ</h2>
+<ul>
+  <li><a href="#intro">入門編</a></li>
+  <li><a href="#building">Mozilla をビルドする</a></li>
+  <li><a href="#core">主要な Mozilla アーキテクチャ</a></li>
+  <li><a href="#code">コードモジュールとライブラリ</a></li>
+  <li><a href="#modularity">モジュール性と開発関連</a></li>
+  <li><a href="#perf">パフォーマンス</a></li>
+  <li><a href="#security">セキュリティ</a></li>
+  <li><a href="#misc">その他</a></li>
+</ul>
+<h2><a name="intro" id="intro">入門編</a></h2>
+<ul>
+  <li><a href="/mission.html">私たちの使命</a></li>
+  <li><a href="/unity-of-interface.html">インターフェイスの統一</a></li>
+  <li><a href="jargon.html">Mozilla 専門用語ファイル</a></li>
+  <li><a href="source-directories-overview.html">ソースコードディレクトリ概観</a> -
+ソースツリーにある主要なディレクトリそれぞれの解説</li>
+  <li><a href="/projects/seamonkey/brownbag.html">Seamonkey
+持ち込みトレーニングビデオ</a> - ビデオによる Mozilla テクノロジー入門</li>
+  <li><a href="/roadmap.html">Mozilla ロードマップ</a></li>
+  <li><a href="/faq.html">FAQ</a></li>
+  <li><a href="/hacking/coding-introduction.html">ハッカーのための参加ガイド</a></li>
+  <li><a href="/hacking/code-review-faq.html">コードレビューの FAQ</a> (r= と
+sr= って何?) </li>
+  <li><a href="/hacking/reviewers.html">スーパーレビュー(Super-review) ガイド</a>
+(sr ってだれ?) </li>
+</ul>
+<h2><a name="building" id="building" href="/build/">Mozilla をビルドする</a></h2>
+<ul>
+  <li><a href="/build/win32.html">Win32</a></li>
+  <li><a href="/build/mac.html">Mac OS X (Mach-O) </a></li>
+  <li><a href="/build/unix.html">Unix/Linux</a></li>
+  <li><a href="/ports/beos/dev.m8/">BeOS</a></li>
+  <li><a href="/build/distribution.html">Mozilla 配布製品をビルドする</a> -
+エンドユーザ向け配布製品のために Mozilla をビルドしパッケージする方法</li>
+  <li><a href="/build/mac-build-system.html">Macintosh ビルドシステムを理解する</a></li>
+  <li><a href="/build/verification.html">ツリー検証プロセス</a></li>
+  <li><a href="/build/making-additions.html">ビルドを壊さずにファイルを追加する方法</a></li>
+  <li><a href="/build/jar-packaging.html">Jar パッケージング</a></li>
+  <li><a href="/build/sheriff.html">ツリーの保安要員</a></li>
+  <li><a href="/projects/embedding/">Mozilla の組み込み</a></li>
+</ul>
+<h2><a name="core">主要な Mozilla アーキテクチャ</a></h2>
+<ul>
+  <li><em><a href="/projects/xpcom/">XPCOM</a></em> -
+オブジェクトを個々のコンポーネントに変えるためのクロスプラットフォームスキーム
+    <ul>
+      <li><a href="modunote.htm">モジュール化技術</a> (XPCOM とは何か、その利用方法)</li>
+      <li><a href="/projects/xpcom/QI.html">QueryInterface の参照実装</a></li>
+      <li><a href="/projects/xpcom/Ownership.html">COM オーナーシップガイドライン</a></li>
+      <li><a href="/projects/xpcom/nsCOMPtr/">nsCOMPtr</a></li>
+      <li>最新の <a href="/projects/xpcom/string-guide.html">string ガイド</a></li>
+      <li><a href="/lxr/seamonkey/source/string/doc/string-guide.html">mozilla/string
+への不完全なガイド</a></li>
+      <li><a href="/projects/xpcom/mozIRegistry.html">Mozilla レジストリ</a></li>
+      <li><a href="/projects/xpcom/consoleservice.html">コンソールサービス</a> -
+ユーザが目にするエラーやメッセージをログ収集する
+        <ul>
+          <li><a href="/projects/xpcom/using-consoleservice.html">コンソール
+サービスを使用する</a> - コードソース例の付いたシンプルな文書</li>
+        </ul>
+      </li>
+      <li>IBM developerWorks - XPCOM 概観
+        <ul>
+          <li><a
+ href="http://www-106.ibm.com/developerworks/components/library/co-xpcom/">Part
+1: XPCOM 入門</a> - Mozilla によるコンポーネントアーキテクチャ</li>
+          <li><a
+ href="http://www-106.ibm.com/developerworks/components/library/co-xpcom2/">Part
+2: XPCOM コンポーネント原理</a> - XPCOM プログラミング入門</li>
+          <li><a
+ href="http://www-106.ibm.com/developerworks/components/library/co-xpcom3/">Part
+3: XPCOM をセットアップする</a> - XPCOM 開発環境を構築する</li>
+          <li><a
+ href="http://www-106.ibm.com/developerworks/components/library/co-xpcom4/">Part
+4: コンポーネント開発</a></li>
+          <li><a
+ href="http://www-106.ibm.com/developerworks/components/library/co-xpcom5/">Part
+5: 実装</a> - XPCOM コンポーネントをコーディング、インストール、テストする</li>
+        </ul>
+      </li>
+      <li><a
+ href="http://aspn.activestate.com/ASPN/Downloads/Komodo/PyXPCOM/readme/">PyXPCOM</a>
+- ActiveState による Python と XPCOM あいだのバインディング</li>
+    </ul>
+  </li>
+  <li><em><a href="/scriptable/">XPConnect</a></em> - JavaScript による
+XPCOM をベースとしたクラスへのアクセス</li>
+  <li><em><a href="/scriptable/xpidl/">XPIDL</a></em> - XPCOM
+インターフェイスクラスを指定するために使用される、クロスプラットフォームインターフェイス記述言語</li>
+  <li><em>XBL</em> - 拡張可能なバインディング言語 -
+他のドキュメントのエレメントへ付属させることが可能なバインディングを記述するためのマークアップ言語
+    <ul>
+      <li><a href="/projects/xbl/xbl.html">XBL 1.0 仕様</a></li>
+      <li><a
+ href="http://web.archive.org/web/20041111155627/developer.netscape.com/evangelism/docs/articles/xbl/"><i>XML
+バインディング言語</i></a> - Marcell Ortutay 著</li>
+    </ul>
+  </li>
+  <li><em><a href="/projects/xul/">XUL</a></em> - XML ユーザインターフェイス言語 -
+Mozilla のクロスプラットフォーム UI の基礎
+    <ul>
+      <li><a href="/projects/xul/xul.html">XUL 1.0 仕様</a></li>
+      <li><a href="http://www.wiley.com/remtitle.cgi?0471415804"><i>基本
+XUL プログラミング</i></a> - Bullard、Smith、Daconta 共著 - この本は、Mozilla
+のユーザインターフェイス言語である XUL を使って、カスタムユーザインターフェイスを構築するための入門書です。訂正については <a
+ href="http://www.xulbook.com/">XUL book</a> 公式サイトをご覧ください。</li>
+      <li><i><a href="http://www.xulplanet.com/">XUL Planet</a></i>
+        <ul>
+          <li><a href="http://www.xulplanet.com/tutorials/xultu/">XUL
+チュートリアル</a></li>
+          <li><a href="http://www.xulplanet.com/tutorials/xul1.0/">XUL
+1.0 ガイド</a> - 既存の XUL コードを XUL 1.0
+と互換性をもつように更新するために、知っておくべき様々なことが書いてあります</li>
+        </ul>
+      </li>
+      <li><em><a href="/xpfe/xulref/">XUL プログラマーのための参考書</a></em> (<a
+ href="http://www.mozilla.org/xpfe/Xulref.zip">圧縮 HTML 版</a> と <a
+ href="http://www.mozilla.org/xpfe/xulref-french/">フランス語版</a> もあります)</li>
+    </ul>
+  </li>
+  <li><em><a href="/projects/xpinstall/">XPInstall</a></em> -
+クロスプラットフォームのインストール、パッケージング、ソフトウェアの更新を行うための技術</li>
+  <li><em><a href="/projects/nspr/">NSPR</a></em> -
+クロスプラットフォームのオペレーティングシステム機構</li>
+</ul>
+<h2><a name="code" id="code">コードモジュールとライブラリ</a></h2>
+<ul>
+  <li><a href="/owners.html">モジュールオーナー</a> - このドキュメントでは、Mozilla
+を構成する様々なソースコードディレクトリに関する連絡先を挙げています。これは、mozilla.org
+が配布するコードに責任を持っている人たちのことです。彼らが責任を持つコードを変更したいときには、その人たちに相談してください。</li>
+  <li><a href="/editor/">エディタ</a></li>
+  <li><a href="/mailnews/">メール &amp; ニュース</a></li>
+  <li><a href="/projects/embedding/embedshell/">EmbedShell</a> - <a
+ href="/projects/webshell/">WebShell</a> の再設計</li>
+  <li><a href="/projects/intl/">国際化</a>
+    <ul>
+      <li><a href="refList/i18n/">I18N や L10N とは何か?</a></li>
+      <li><a href="/projects/intl/string-resources.html">ストリングリソース</a></li>
+      <li><a href="/projects/projects/l10n/">Mozilla の地域化</a></li>
+    </ul>
+  </li>
+  <li><a href="/js/">JavaScript ライブラリ</a></li>
+  <li><a href="/newlayout/">レイアウトエンジン</a> (Gecko)
+    <ul>
+      <li><a href="/newlayout/xml/">Mozilla における XML</a></li>
+      <li><a href="dom/">Mozilla における ドキュメントオブジェクトモデル (DOM)</a></li>
+    </ul>
+  </li>
+  <li><a href="/rdf/doc/">Mozilla における RDF</a></li>
+  <li><a href="/projects/netlib/">ネットワークライブラリ</a> (Necko)
+    <ul>
+      <li><a href="/build/revised-user-agent-strings.html">ユーザエージェント文字列</a></li>
+      <li><a href="/projects/netlib/new-handler.html">Mozilla
+プロトコルハンドラの記述</a></li>
+    </ul>
+  </li>
+  <li><a href="/projects/security/components/">コンポーネントセキュリティ</a>
+    <ul>
+      <li><a href="/projects/security/components/design.html">設計</a></li>
+      <li><a href="/projects/security/components/ConfigPolicy.html">設定可能
+なセキュリティポリシー</a></li>
+    </ul>
+  </li>
+</ul>
+<h2><a name="modularity" id="modularity">モジュール性と開発関連</a></h2>
+<ul>
+  <li><a href="modunote.htm">モジュール化技術</a></li>
+  <li><a href="/hacking/portable-cpp.html">C++ 移植性ガイド</a></li>
+  <li><a href="events.html">Mozilla におけるイベントハンドリング</a></li>
+  <li><a href="url_load.html">HTML HTTP リクエストの流れ</a></li>
+  <li><a href="/build/jar-packaging.html">Jar パッケージング 101</a></li>
+  <li><a href="command-line-args.html">Mozilla のコマンドラインオプション</a></li>
+  <li><a href="/unix/">Unix</a>
+    <ul>
+      <li><a href="/unix/installer.html">インストーラとプロファイル</a></li>
+      <li><a href="/unix/debugging-faq.html">デバッグに関する FAQ</a></li>
+      <li><a href="/unix/xlib.html">Xlib Toolkit ポート</a></li>
+      <li><a href="/unix/threading-on-unix.html">Unix におけるスレッディング</a></li>
+      <li><a href="/unix/dpi.html">DPI、フォントサイズの問題</a></li>
+    </ul>
+  </li>
+</ul>
+<h2><a name="perf" id="perf" href="/performance/">パフォーマンス</a></h2>
+<ul>
+  <li><a href="/performance/tools.html">ツール</a></li>
+  <li><a href="/performance/profiling-juju.html">Tips</a></li>
+  <li><a href="/performance/refcnt-balancer.html">Refcount バランサー</a></li>
+  <li><a href="/projects/xpcom/MemoryTools.html">メモリリーク、
+refcnt リークのデバッグ方法</a></li>
+</ul>
+<h2><a name="security" id="security" href="/projects/security/">セキュリティ</a></h2>
+<ul>
+  <li><a href="/projects/security/pki/psm/">パーソナルセキュリティマネージャ (PSM)</a></li>
+  <li><a href="/projects/security/pki/nss/">ネットワークセキュリティサービス (NSS)</a>
+    <ul>
+      <li><a href="/projects/security/pki/nss/intro.html">ネットワークセキュリティサー
+ビス入門</a></li>
+      <li><a href="/projects/security/pki/nss/smime/">S/MIME Toolkit</a></li>
+      <li><a href="/projects/security/pki/nss/ref/ssl/">SSL リファレンス</a></li>
+      <li><a href="/projects/security/pki/nss/tools/certutil.html">証明書デー
+タベースツールの利用</a></li>
+      <li><a href="/projects/security/pki/nss/tools/modutil.html">セキュリティ
+モジュールデータベースツールの利用</a></li>
+      <li><a href="/projects/security/pki/nss/tools/ssltap.html">SSL
+デバッギングツールの利用</a></li>
+    </ul>
+  </li>
+  <li><a href="/projects/security/components/">コンポーネントセキュリティ</a>
+    <ul>
+      <li><a href="/projects/security/components/design.html">設計</a></li>
+      <li><a href="/projects/security/components/ConfigPolicy.html">設定可能
+なセキュリティポリシー</a></li>
+    </ul>
+  </li>
+</ul>
+<h2><a name="misc" id="misc">その他</a></h2>
+<ul>
+  <li><strong>サンプルコードとテクニカルノート</strong>
+    <ul>
+      <li><a href="xul/samples/">XUL サンプル</a></li>
+      <li><a href="xul/xulnotes/">XUL テクニカルノート</a></li>
+    </ul>
+  </li>
+  <li><strong>スライド</strong>
+    <ul>
+      <li><a href="ora-oss2000/">O'Reilly オープンソースコンベンション 2000</a></li>
+      <li><a href="codestock99/">CodeStock '99</a></li>
+      <li><a href="/newlayout/xml/xml-devcon/slides/slide1.xml">Gecko
+における XUL と、関連のあるスタンダード</a></li>
+    </ul>
+  </li>
+  <li><strong>ガイドラインとリファレンス</strong>
+    <ul>
+      <li><a href="lxr-comments.html">LXR のための Mozilla のコメント付け</a></li>
+      <li><a href="refList/i18n/">国際化・地域化ガイドライン</a></li>
+      <li><a href="refList/user-interface/">ユーザインターフェイスガイドライン</a></li>
+    </ul>
+  </li>
+  <li><strong>アドオン開発者資料</strong>
+    <ul>
+      <li><a href="../projects/plugin.html">Mozilla プラグイン API ガイド</a></li>
+      <li><a href="http://home.netscape.com/eng/mozilla/ns6/themes/">Netscape
+6 テーマの作成</a></li>
+    </ul>
+  </li>
+  <li><strong>スタンダードとプロトコル</strong>
+    <ul>
+      <li><a href="/library.html">スタンダードとプロトコルのライブラリ</a></li>
+    </ul>
+  </li>
+  <li><strong>拡張機能</strong>
+    <ul>
+      <li><a href="extensions/tasks/">タスク</a></li>
+    </ul>
+  </li>
+</ul>
+<h2><a href="/classic/">過去のドキュメント</a></h2>
+<p>Mozilla Classic に関する資料や、その他の役目を終えたドキュメントです。</p>
+<p>このプロジェクトへ <a href="contribute.html">資料を寄稿する</a> 方法をお読みください。</p>
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/docs/index.html">英語版</a> 2004/06/27</span> - <span>和訳版 2004/10/14</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/docs/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

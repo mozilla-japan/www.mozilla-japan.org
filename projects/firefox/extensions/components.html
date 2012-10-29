@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>拡張機能コンポーネントの登録</title>
+<link rel="alternate" hreflang="en" modified="February 20, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/extensions/components.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+<h1>拡張機能コンポーネントの登録</h1>
+<p>Firefox の新しい <a href="./">拡張機能システム</a> は、各拡張機能がそれぞれのコンポーネントディレクトリで独自の XPCOM コンポーネント群を提供することを可能にします。これによって、拡張機能の作者は、アプリケーション (Firefox) のコンポーネントディレクトリに干渉しない独自のコンポーネントを開発できるようになります。(拡張機能は基本的に、別のページで説明されているディレクトリ階層以外の場所にファイルをインストールしないことが望ましいです)</p>
+<h2>残る 2 つの問題</h2>
+<ol>
+  <li>コンポーネントレジストリ (compreg.dat) は、アプリケーションとともに、システムの中でユーザが書き込み権限を持たない場所にあります。このため、プロファイルにインストールされた拡張機能コンポーネントをキャッシュするメリットが得られません。</li>
+  <li>拡張機能やそれらのコンポーネントの削除や無効化を処理する仕組みがありません。そういったイベントによってコンポーネントレジストリのエントリーが削除され、続いて、アプリケーションに元々含まれていたバージョンのコンポーネントによってセットされたエントリーまで削除されてしまうと、それらのエントリーを元に戻す方法がありません。</li>
+</ol>
+<h2>提案された解決策</h2>
+<p>コンポーネントレジストリを、起動のたびに毎回コンポーネントをチェック・登録する処理を行わないようにするためのキャッシュと見なすことです。提案されている新しい拡張機能システムにはプロファイルコンポーネントの仕組みが含まれているので、アプリケーションディレクトリだけでなくプロファイルディレクトリにもコンポーネントを保存できます。つまり、compreg.dat ファイルはこれらのソースすべてのキャッシュであり、他のキャッシュとともにプロファイルディレクトリに存在することになります。</p>
+<p><code>&lt;プロファイル&gt;/compreg.dat<br>&lt;プロファイル&gt;/extensions/* &lt;- 拡張機能の構造</code></p>
+<p>コンポーネントレジストリは、アプリケーションのコンポーネントフォルダと拡張機能フォルダ、そしてプロファイルの拡張機能フォルダにインストールされたコンポーネントの登録キャッシュなので、拡張機能フォルダではなくプロファイルのルート階層に含まれます。</p>
+<p>(複数のプロファイルがあって) プロファイルが指定されていないときは、XPCOM が起動してプロファイルマネージャの UI が表示されます。プロファイルが選択されている場合、XPCOM はいったん終了し、正しいレジストリで再起動されます。プロファイルが 1 つしかなかったり、コマンドラインから指定された場合は、プロファイルが早めに分かるので (つまりそれが main 関数へのパラメータとなって) XPCOM の初期化中にコンポーネントレジストリの場所を特定できます。Gecko の再起動は、コマンドライン引数として選択されたプロファイルでアプリケーションを再起動することを意味します。</p>
+<h2>拡張機能コンポーネントの登録</h2>
+<p>新しい拡張機能がインストールされ、コンポーネントが提供された場合、拡張機能マネージャはプロファイルディレクトリに .autoreg ファイルを置きます。これは、次回起動時にコンポーネントレジストリを消去して再生成させるためのものです。拡張機能のインストールは頻繁に行われるものではないので、この程度の処理コストは許容範囲内です。</p>
+<h2>拡張機能のアンインストールと無効化</h2>
+<p>フロントエンドを通じて拡張機能がアンインストール・無効化された場合、コンポーネントとフロントエンドのオーバーレイは動的に解放することができないので、削除は次回起動時にしかできません。</p>
+<p>拡張機能がアンインストールされると、拡張機能マネージャは、次回起動時に <strong>登録されない</strong> 拡張機能コンポーネントフォルダへのパスを特定し、それをテキストのログファイルに書き込みます。それから、プロファイルディレクトリに .autoreg ファイルを置きます。コンポーネントレジストリは次回起動時に再生成され、アンインストール・無効化された拡張機能は登録されません。それ以外の拡張機能はすべて再登録されます。</p>
+<p>この解決策によって、上に書いた 2 つの問題を回避できます。拡張機能が既存のコンポーネントを上書きした場合は、その拡張機能がアンインストールされた後、アプリケーションに元々含まれていたバージョンのコンポーネントが再登録されます。これは、アンインストール・無効化イベントの後には必ずコンポーネントレジストリの再生成が行われるためです。</p>
+<h2>注意</h2>
+<p>コンポーネントマネージャは &lt;プロファイル&gt;/extensions/&lt;拡張機能&gt;/components/* を検索するということを知っておく必要があります。</p>
+<p><br><br>&mdash; Benjamin Smedberg、Darin Fisher、Ben Goodger 他</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/extensions/components.html">英語版</a> 2004/02/20</span> - <span>和訳版 2005/05/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/extensions/components.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

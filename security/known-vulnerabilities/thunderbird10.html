@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>Thunderbird 1.0 セキュリティアドバイザリ</title>
+<link rel="alternate" hreflang="en" modified="July 15, 2008">
+<style type="text/css" media="screen,tv">
+  #mainContent { line-height: 160%; }
+  table { width: 100%; background-color: #eee; }
+  table .number { width: 1em; }
+  table .type { width: 5em; }
+  table .fixed { width: 5em; }
+  table .milestone { width: 7em; }
+  table .severity { width: 8em; }
+  table .description { width: auto; }
+  table .bugid { width: 4em; }
+  table .workaround { width: 9em; }
+  table .date { width: 5em; }
+  .critical { background-color: #ff8080; }
+  .high { background-color: #ffc080; }
+  .moderate { background-color: #ffff80; }
+  td { text-align: center; vertical-align: top; }
+  h2 { margin-top: 2em; }
+  .logo { vertical-align: middle; }
+  .vulnlist { margin: 0 2em; }
+  .vulnlist  dl dt { margin: 0; width: 8em; font-weight: normal; float: left; }
+  .vulnlist  dl dd { margin: 0 0 0 8em; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/known-vulnerabilities/">Mozilla 製品における既知の脆弱性</a> &gt; Thunderbird 1.0 セキュリティアドバイザリ</p>
+<h2><img class="logo" src="/images/product-thunderbird.png"> Thunderbird 1.0 セキュリティアドバイザリ</h2>
+<p class="important">Thunderbird 1.0 のサポートは終了しており、最後の更新である Thunderbird 1.0.8 も、新しいバージョンでは修正されているいくつかの <a href="thunderbird15.html">既知の脆弱性</a> の影響を受けます。すべてのユーザに <a href="http://mozilla.jp/thunderbird/">最新版</a> へのアップグレードを推奨します。</p>
+
+<p>重要度の区分け:</p>
+<ul>
+  <li><span class="critical">最高</span>: 任意のコードを実行したり、ソフトウェアをインストールすることが可能な脆弱性で、通常のブラウジングの範囲を超えるユーザの操作を必要としないもの</li>
+  <li><span class="high">高</span>: ユーザが訪れた他のサイトから機密データを集めたり、それらのサイトにデータやコードを注入することが可能な脆弱性で、通常のブラウジングの範囲を超えるユーザの操作を必要としないもの</li>
+  <li><span class="moderate">中</span>: デフォルトではない特殊な設定を行った場合のみ攻撃可能であったり、複雑な操作や思いも寄らない手順を必要とする点を除けば、「高」または「最高」に分類されるであろう脆弱性</li>
+  <li><span class="low">低</span>: サービス妨害 (DoS) 攻撃、少量のデータの漏えい、なりすましなど、比較的重要でないセキュリティ脆弱性 (SSL 利用サイトの検知不可能な偽装は、たいていの場合、他のサイトで入力されるはずの機密データを盗み取るために利用されるため、「高」に分類されます)</li>
+</ul>
+
+<div class="vulnlist">
+  <h3 id="thunderbird1.0.8">Thunderbird 1.0.8 で修正済み</h3>
+  <dl>
+    <dt><a href="/security/announce/2006/mfsa2006-27.html" class="moderate">MFSA 2006-27</a></dt><dd>テーブル再構築によるコードの実行</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-26.html" class="low">MFSA 2006-26</a></dt><dd>メールに関する複数の情報漏えい</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-25.html" class="critical">MFSA 2006-25</a></dt><dd>印刷プレビューを通じた特権の昇格</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-24.html" class="moderate">MFSA 2006-24</a></dt><dd>crypto.generateCRMFRequest を使った特権の昇格</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-22.html" class="moderate">MFSA 2006-22</a></dt><dd>CSS の letter-spacing に関するヒープオーバーフロー</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-21.html" class="critical">MFSA 2006-21</a></dt><dd>インライン転送時のメッセージ内での JavaScript 実行</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-19.html" class="moderate">MFSA 2006-19</a></dt><dd>valueOf.call() を使ったクロスサイトスクリプティング</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-18.html" class="moderate">MFSA 2006-18</a></dt><dd>Mozilla Firefox のタグの順序に関する脆弱性</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-17.html" class="moderate">MFSA 2006-17</a></dt><dd>window.controllers を通じたクロスサイトスクリプティング</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-16.html" class="moderate">MFSA 2006-16</a></dt><dd>valueOf.call() を通じた XBL コンパイル範囲へのアクセス</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-15.html" class="moderate">MFSA 2006-15</a></dt><dd>JavaScript 関数のクローン親を使った特権の昇格</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-14.html" class="moderate">MFSA 2006-14</a></dt><dd>XBL.method.eval を通じた特権の昇格</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-11.html" class="moderate">MFSA 2006-11</a></dt><dd>メモリ破壊の形跡があるクラッシュ (rv:1.8)</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-10.html" class="moderate">MFSA 2006-10</a></dt><dd>JavaScript ガーベジコレクションの危険性監査</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-09.html" class="moderate">MFSA 2006-09</a></dt><dd>イベントハンドラを使ったクロスサイト JavaScript インジェクション</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-05.html" class="moderate">MFSA 2006-05</a></dt><dd>XULDocument.persist() を使った Localstore.rdf への XML インジェクション</dd>
+    <dt><a href="/security/announce/2006/mfsa2006-01.html" class="moderate">MFSA 2006-01</a></dt><dd>JavaScript ガベージコレクションの脆弱性</dd>
+  </dl>
+  <h3 id="thunderbird1.0.7">Thunderbird 1.0.7 で修正済み</h3>
+  <dl>
+    <dt><a href="/security/announce/2005/mfsa2005-59.html" class="high">MFSA 2005-59</a></dt><dd>コマンドライン処理を通じたシェルの実行 (Linux 版のみ)</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-58.html" class="low">MFSA 2005-58</a></dt><dd>Firefox 1.0.7 および Mozilla Suite 1.7.12 で修正された複数の脆弱性</dd>
+  </dl>
+  <h3 id="thunderbird1.0.5">Thunderbird 1.0.5/1.0.6 で修正済み</h3>
+  <dl>
+    <dt><a href="/security/announce/2005/mfsa2005-56.html" class="critical">MFSA 2005-56</a></dt><dd>共通関数オブジェクトを通じたコードの実行</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-55.html" class="high">MFSA 2005-55</a></dt><dd>XHTML ノードの偽装</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-52.html" class="moderate">MFSA 2005-52</a></dt><dd>同一生成元違反: フレームが top.focus() を呼び出し可能</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-50.html" class="moderate">MFSA 2005-50</a></dt><dd>攻撃に利用される可能性のある InstallVersion.compareTo によるクラッシュ</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-46.html" class="low">MFSA 2005-46</a></dt><dd>JavaScript 無効時にも XBL スクリプトが実行される</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-44.html" class="critical">MFSA 2005-44</a></dt><dd>非 DOM プロパティの上書きを通じた特権の昇格</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-41.html" class="critical">MFSA 2005-41</a></dt><dd>DOM プロパティの上書きを通じた特権の昇格</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-40.html" class="moderate">MFSA 2005-40</a></dt><dd>インストールオブジェクトのインスタンスチェック欠落</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-33.html" class="moderate">MFSA 2005-33</a></dt><dd>JavaScript の「ラムダ」置き換えにより、メモリの内容が読み出される</dd>
+  </dl>
+  <h3 id="thunderbird1.0.2">Thunderbird 1.0.2 で修正済み</h3>
+  <dl>
+    <dt><a href="/security/announce/2005/mfsa2005-30.html" class="critical">MFSA 2005-30</a></dt><dd>Netscape Extension 2 を含む GIF 画像の処理過程でヒープオーバーフローが生じる</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-25.html" class="moderate">MFSA 2005-25</a></dt><dd>画像のドラッグ＆ドロップによる実行可能ファイルの偽装</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-21.html" class="critical">MFSA 2005-21</a></dt><dd>.lnk ファイルを 2 回ダウンロードすることで任意のファイルが上書きされる</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-18.html" class="low">MFSA 2005-18</a></dt><dd>文字列ライブラリにおけるメモリ上書き</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-17.html" class="low">MFSA 2005-17</a></dt><dd>「ユーザ名:パスワード@ホスト名」を使ったダウンロード元 URL の偽装</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-15.html" class="moderate">MFSA 2005-15</a></dt><dd>UTF-8 から Unicode への変換過程でヒープオーバーフローが生じる</dd>
+  </dl>
+  <h3 id="thunderbird1.0">Thunderbird 1.0 で修正済み</h3>
+  <dl>
+    <dt><a href="/security/announce/2005/mfsa2005-11.html" class="high">MFSA 2005-11</a></dt><dd>メールクライアントが Cookie の要求に応じる</dd>
+  </dl>
+  <h3 id="Thunderbird-0.9">Thunderbird 0.9 で修正済み</h3>
+  <dl>
+    <dt><a href="/security/announce/2005/mfsa2005-10.html" class="high">MFSA 2005-10</a></dt><dd>「javascript:」形式のリンクによって Internet Explorer が起動される</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-06.html" class="high">MFSA 2005-06</a></dt><dd>悪質な「news:」形式の URL を処理する過程でヒープオーバーランが生じる</dd>
+    <dt><a href="/security/announce/2005/mfsa2005-02.html" class="moderate">MFSA 2005-02</a></dt><dd>添付ファイルが一時的に誰でも読み取り可能な状態で保存される</dd>
+  </dl>
+</div>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/known-vulnerabilities/thunderbird10.html">英語版</a> 2008/07/15 &mdash; 和訳版 2011/01/06 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/known-vulnerabilities/thunderbird10.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

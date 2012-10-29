@@ -1,0 +1,462 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=ECU-JP">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en]C-AOLNSCP  (Win98; U) [Netscape]">
+   <title>ブラウザ、バージョン、プラットフォーム互換 JavaScript と Dynamic HTML</title>
+<!-- Changed by: Eric Krock, 10-July-1997 -->
+<!-- 上記のコメントは最終更新日とは異なっています。 -->
+<!-- Transrated by: dynamis <translator@skillup.jp>, 2001/09 -->
+<script LANGUAGE="JavaScript">
+function check_navigator() { //Last revision 10 July 1997 by Eric Krock
+if (navigator.appVersion >= "4") { ; }
+else { alert("Sorry, you need Communicator 4.0 or greater to\n"+
+"guarantee the interactive examples will work for you.\n\n"+
+"But please enjoy reading this TechNote!"); }
+} // end function check_navigator
+</script>
+<!-- CSSの利用は訳者による追加 これ以外にも、日本語での可読性を考慮してfontタグの除去などを行っています -->
+<style type="text/css" media="screen,tv">
+H1, H2, H3, H4, H5, H6	{ margin: 1em 3em 0.5em; }
+.comment	{ color: #20A040;
+		  font-size: 80%; }
+</style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" onLoad="check_navigator();">
+<p class="comment">[訳注] Link先ページ名もその大部分を和訳しましたが、実際のLink先は全て原文のままです。別途和訳が用意されているページでも、タイトル名が異なることが多いと思います。</p>
+<hr size="1" NOSHADE width="100%">
+<center>
+  <h2>クロスブラウザ、クロスプラットフォーム、後方互換 Dynamic HTML 入門</h2>
+  <hr WIDTH=200 SIZE=1 NOSHADE>
+  <p><b>Eric Krock, Netscape<br>
+    Vladimir Ermakov, <a href="mailto:vladimire@netscape.com">Netscape</a></b></p>
+  <p><b>最終更新日 : <font color="#006600">2000/12/14</font></b></p>
+  <p>どのブラウザでも同じ動作をする Dynamic HTML を書きたいのですか？ このテクニカルノートは、古いブラウザでも支障なく最大限多くの読者が閲覧できる Dynamic HTML ページの作成にあたって役立つ、Netscape サイトや他のいろいろなところで入手できるツールやテクニカルノートや記事などの概要を説明します。</p>
+</center>
+<hr SIZE=1 NOSHADE>
+<h3>目次</h3>
+<ul>
+  <li><a href="#1">何故クロスブラウザ Dynamic HTML にするのか？</a></li>
+  <li><a href="#2">クロスブラウザ DHTML とは？</a></li>
+  <li><a href="#3">問題点</a></li>
+  <li><a href="#4">CSS1 サポート</a></li>
+  <li><a href="#5">CSSP サポート</a></li>
+  <li><a href="#6">後方互換</a></li>
+  <li><a href="#7">ブラウザ依存コンテンツ</a></li>
+  <li><a href="#8">JavaScript による CSS1 プロパティの設定</a></li>
+  <li><a href="#9">JavaScript による CSSP プロパティの設定</a></li>
+  <li><a href="#10">クロスブラウザイベントハンドリング</a></li>
+  <li><a href="#11">フルスクリーンモード</a></li>
+  <li><a href="#12">ツール</a></li>
+  <li><a href="#cssp">CSSP とは？</a></li>
+  <li><a href="#comments">コメント</a></li>
+  <li><a href="#15">参考文献</a></li>
+</ul>
+<a NAME="1"></a>
+<hr SIZE=1 NOSHADE>
+<h3>何故クロスブラウザ Dynamic HTML にするのか？</h3>
+<p>HTML の利点は、それが世界中のどのコンピュータでも作成・表示することができ、ネットワーク間を手軽に且つ透過的にやりとりすることができるということです。これにより以前は物理的記憶装置や LAN に束縛されていた情報が解き放たれ、どこの誰でも、何でも、何処からでも見ることができるようになったのです。</p>
+<p>HTML の欠点は静的で面白くないことです。Dynamic HTML は DHTML 互換のブラウザ上では HTML ページに命を吹き込む一方、いかなるクライアントやコンピュータでも HTML の部分はなお正しく表示されます。Lynx のようなテキスト表示のみのブラウザではアニメーションなどは決してできませんが、上手く書かれた Dynamic HTML であれば(どのブラウザでも完全に機能する上に)、古いブラウザや、身体障害者やロボット検索のためのテキストだけを扱うブラウザでもコンテンツを読めるように、美しく簡素化します。</p>
+<p>つまり、変化の激しい今日でもウェブデザイナーは、特定のオペレーティングシステムやブラウザに縛られることなく、身体障害者や古いブラウザや古い OS の利用者を締め出したりすることもなく、Dynamic HTML のパワーを存分に使うことができるということなのです。</p>
+<p>クロスプラットフォーム、クロスブラウザの実現は共に重要です。というのも、コンテンツプロバイダーは可能な限り多くの顧客の獲得に必死であり、企業はエクストラネットを通じて全ての顧客やサプライヤーに網を張り巡らせたいのですから。どちらの場合でも、潜在的な閲覧者、顧客、広告収入、販売といったものを OS のバージョンやブラウザのベンダーなどによってふいにしたくないはずです。視聴者の20-40%しか見れないようなテレビ広告を出したい人なんていますか？しかし、もしコンテンツを特定 OS やブラウザに限定すれば、それが現実となるのです。</p>
+<p>クロスプラットフォーム DHTML の作成は、各ブラウザがプラットフォーム互換として提供している共通基盤を用いる限りにおいて簡単にできるものです。個別のブラウザ毎に、対象とする全てのプラットフォーム間でどんな機能が利用可能であるか理解する必要があります。各ブラウザが対象とする全てのプラットフォームで確実に提供している機能が何であるか(各ブラウザのクロスプラットフォーム機能)をひとたび理解しても、次に、どのように３つのブラウザに互換 (クロスブラウザ機能)となるように作ればよいかを理解する必要があります。<br>
+  <span class="comment"> [訳注] 本文書中には明記されていませんが、3つのブラウザとはIE/NN/Geckoの３つのことを指しています。(同著者の書いた他の文書から判断できます)</span></p>
+<p>開発者達は Netscape や Microsoft に HTML 4.0 や W3C DOM のサポートを要求し続けています。そこで、クロスブラウザ DHTML を作るために標準が完全にサポートされるのを待つというのも一つの方法と言えるかも知れません。しかしながら、大部分の人は閲覧者や顧客を今惹き付けたいのであり、現時点での最良の方法はブラウザ間で共通する機能を基に作り、標準の機能でそのまま現在利用できるものを利用するようにすることです。</p>
+<a NAME="2"></a>
+<hr NOSHADE SIZE=1>
+<h3>クロスブラウザDHTMLとは？</h3>
+<p>Netscape と Microsoft は彼らのブラウザにそれぞれ独自に Dynamic HTML の定義をしています。W3C DOM level 1 (MozillaやNetscape6がサポート)と W3C DOM level 2 (MozillaやNetscape6が部分的サポート)が、Dynamic HTMLの書き方についての初の業界標準規格となっています。クロスブラウザ DHTML はプラットフォームやブラウザ間互換である DHTML 機能のサブセットです。(ユーザーエージェントのサポートする技術を条件付で利用することで全てのブラウザで同じ<em>結果</em>が得られるというなら、それが重要なのです)<br>
+  クロスブラウザ DHTML には以下のものが含まれます：</p>
+<ul>
+  <li>カスケーディングスタイルシート・レベル１ (CSS1) の一貫したサポート</li>
+  <li>カスケーディングスタイルシートポジショニング (<a href="#cssp">CSSP</a>) の一貫したサポート</li>
+  <li>ジャバスクリプトの一貫したサポート</li>
+  <li>ドキュメントオブジェクトモデル</li>
+  <li>イベントモデル</li>
+  <li>ダウンロード可能なフォント (ダイナミックフォントとして知られているもの)</li>
+  <li>フルスクリーンモード</li>
+</ul>
+<p>ブラウザやプラットフォームに依存するものは何であれクロスブラウザ DHTML ではない。特に、クロスブラウザ DHTML の開発者は、あるブラウザでは機能するが他のブラウザや古いブラウザでエラーになってしまうページを作らないようにするべきである。目標とするのは、最新のブラウザには同じ機能を提供し、古いブラウザでは美しく簡素化することです。</p>
+<h4>前提知識</h4>
+<p>このテクニカルノートは<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/tech/javascript/index.html" target="_top">ジャバスクリプト</a>、<a href="http://www.w3.org/pub/WWW/TR/" target="_top">カスケーディングスタイルシート・レベル1</a> (CSS1)、<a href="http://www.w3.org/pub/WWW/TR/" target="_top">HTML要素のカスケーディングスタイルシートによる配置</a> (<a href="#cssp">CSSP</a>)、Navigator 4 の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/communicator/dynhtml/index.htm" target="_top">Document
+Object Model</a>、スタイルシートの構成や位置情報プロパティを JavaScript で操作可能にする <a href="http://www.w3.org/DOM/">W3C のドキュメントオブジェクトモデル</a>に馴染みのある読者を想定しています。(まだこれらの技術をよく知らないのでしたら、まずは Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">Dynamic
+HTML によるプレゼンテーション</a>のページに行って、CSS1、CSSP、JavaScript によるドキュメントオブジェクトモデルを介してのスタイルシートプロパティの操作についての実践チュートリアルを読んでいってください)</p>
+<a NAME="3"></a>
+<hr SIZE=1 NOSHADE>
+<h3>問題点</h3>
+<p>Web テクノロジーに関する標準は今や戦艦を沈めてしまえるほどです。兵器庫には HTML 4.0、CSS1、CSSP、ECMA-262、W3C DOM、RDF、XML、CSS2、更にその他に英数字を３ないし４字組み合わせたものが無数に用意されています。</p>
+<p>こんなにも多くの標準があるにも関わらず、どうして未だに互換性問題があるのでしょう？ 以下のようなものが主な問題原因として挙げられるでしょう：</p>
+<ul>
+  <li>Mozilla と Netxcape 6 が登場するまで多くの既存の標準(HTML 4.0、CSS1、CSSP、W3C DOM level 1 など)を高いレベルでサポートするブラウザが全くなかった。</li>
+  <li>標準はしばしば解釈や実装による違いの余地を残している。</li>
+  <li>標準はしばしばベンダーに準拠を強制しない提案や推奨を含んでいる。</li>
+  <li>標準はしばしばベンダーが標準に含まれない拡張を行うことを認めている。</li>
+  <li>標準の策定と批准のプロセスはしばしばベンダーによる機能の実装に後れをとっている。</li>
+</ul>
+<p>アプリケーションの作成における現実的な方法は、標準を学び、ベンダーの実装を学び、共通する機能を理解し、最大公約数を基に作成することです。</p>
+<p>このテクニカルノートでは後方互換を実現する為のクライアントサイドテクノロジーに焦点を当てます。古いブラウザのために美しく簡素化を行う独立したページの作成方法を説明します。しかし、ユーザのクライアントを判別してブラウザやバージョン別に最適化したページの一つを返すことで、この問題をサーバサイドで処理することもできます。クライアントサイドとサーバサイドの両方での開発ができるのであれば、この二つの手法を組み合わせたものが最も効果的になることが多いです。この問題に対するクライアントサイドとサーバサイドでのソリューションの違いについて更に知りたいのでしたら、Netscape のサイトにある&quot;<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=johnson_homepg/johnson_homepg2.html">第二部：Dynamic HTML と古いブラウザ--どうするべきか</a>&quot;を読んで下さい。</p>
+<a NAME="4"></a>
+<hr SIZE=1 NOSHADE>
+<h3>CSS1 サポート</h3>
+<p>カスケーディングスタイルシート・レベル1 (CSS1) は一つのブラウザやプラットフォームに依存しない方法で HTML ページの構成やスタイルを指定することを可能にします。CSS1 についてまだよく知らないのでしたら、Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">Dynamic HTML によるプレゼンテーション</a>のページに行って、CSS1 の実践チュートリアルを読んでいってください。より詳細を知りたければ、Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/tech/dynhtml/resources.html">Dynamic HTML 追加情報ページ</a> や <a href="http://www.w3.org/pub/WWW/TR/">W3C のサイト</a>にある CSS1 仕様書をご覧下さい。</p>
+<p>CSS1 のサポート状況はブラウザやプラットフォーム間で異なります。CSS1 のサポート状況の違いを知りたいのでしたら、ブラウザとプラットフォーム毎のプロパティサポート状況完全比較表をご覧下さい：<a href="http://www.webreview.com/style/css1/charts/mastergrid.shtml">http://www.webreview.com/style/css1/charts/mastergrid.shtml</a></p>
+<p>忘れてはならないのは、個々の CSS1 プロパティを利用したい場合には、ターゲットにするブラウザが各プラットフォームでそれをサポートしているかをまず調べなければならないということです。</p>
+<a NAME="5"></a>
+<hr SIZE=1 NOSHADE>
+<h3>CSSP サポート</h3>
+<p><a href="#cssp">CSSP</a> によるマークアップによって、HTML 要素が絶対位置指定または相対位置指定のいずれで配置されるかを宣言し、それらのページ上での初期位置を指定し、要素が初めに隠れているか表示されているかを決めることができます。CSSP についてまだよく知らないのでしたら、Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">Dynamic HTML によるプレゼンテーション</a>ページに行って、CSSPの実践チュートリアルを読んでいってください。より詳細を知りたければ、<a href="http://www.w3.org/pub/WWW/TR/">W3C のサイト</a>にあるカスケーディングスタイルシートによる HTML 要素の配置に関する仕様書をご覧下さい。Web には数多くの非公式チュートリアルがあり、私のお薦めは <a href="http://www.westciv.com/style_master/academy/positioning_tutorial/index.html">Positioning
+With CSS2</a> です。</p>
+<p>Netscape 6 と Mozilla は W3C の CSSP についての標準を非常にしっかりと対応しているので、コードをこれらのブラウザで動作させたければ標準への準拠を確認してください。問題に出くわすのは、古いブラウザ上で動作させるときです。私たちは WebReview.com のブラウザ間の CSS1 サポート状況比較ほどに、厳密に、個別に、プロパティ一つずつの Navigator 4.x と Internet Explorer の CSSP サポートの違いについては明るくありません。私たちのクロスブラウザ CSSP 開発上の経験から分かっているのは、絶対位置指定、ピクセル単位の位置指定、各要素の独立した位置指定、要素がネストしないようにするといったことをする場合は、入念にテストをしてやっと同じまたはほぼ同じように見えるクロスブラウザレイアウトを実現できるのだということです。Navigator 4.0/Win32、Navigator 4.0/Mac、Navigator 4.0/UNIX、Internet Explorer 4.0/Win32 でのクロスブラウザ CSSP のサポートをするための簡易&quot;セーフ&quot;リストは、絶対位置指定と以下のプロパティをピクセル単位で指定することです。</p>
+<center><table BORDER CELLPADDING=2 style="text-align: center">
+  <tr>
+    <th ALIGN=LEFT CLASS="large">プロパティ</th>
+    <th ALIGN=LEFT CLASS="large">値</th>
+  </tr>
+  <tr>
+    <td ALIGN=LEFT CLASS="medium">position</td>
+    <td ALIGN=CENTER CLASS="medium">absolute</td>
+  </tr>
+  <tr>
+    <td ALIGN=LEFT CLASS="medium">left</td>
+    <td ALIGN=CENTER CLASS="medium">pixel 単位</td>
+  </tr>
+  <tr>
+    <td ALIGN=LEFT CLASS="medium">top</td>
+    <td ALIGN=CENTER CLASS="medium">pixel 単位</td>
+  </tr>
+  <tr>
+    <td ALIGN=LEFT CLASS="medium">width</td>
+    <td ALIGN=CENTER CLASS="medium">pixel 単位</td>
+  </tr>
+  <tr>
+    <td ALIGN=LEFT CLASS="medium">height</td>
+    <td ALIGN=CENTER CLASS="medium">pixel 単位</td>
+  </tr>
+  <tr>
+    <td ALIGN=LEFT CLASS="medium">clip</td>
+    <td ALIGN=CENTER CLASS="medium">pixel 単位</td>
+  </tr>
+  <tr>
+    <td ALIGN=LEFT CLASS="medium">z-index</td>
+    <td ALIGN=CENTER CLASS="medium">自然数</td>
+  </tr>
+  <tr>
+    <td ALIGN=LEFT CLASS="medium">visibility</td>
+    <td ALIGN=CENTER CLASS="medium">inherit | visible | hidden</td>
+  </tr>
+</table></center>
+<p>クロスブラウザ CSSP サポートはピクセル単位で一致したレイアウトまでは保証しないことを心に留め置いてください。(グラフィックデザイナー達がこれを知って残念がるのも無理もないのだが、実際のところ、CSSP 標準は PostScript に匹敵するほどの精細なレイアウト制御を可能にすることを意図しているものではない) 結果として、位置指定、境界、背景などというものには時として少々の差異が生じます。しかしながら、Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/technote/javascript/prestemp/prestemp.html">Dynamic HTML によるプレゼンテーションテンプレート</a>のような多くの実際のアプリケーションには十分なレベルのクロスブラウザ互換性です。</p>
+<h4>クライアントについて学ぼう！</h4>
+<p>全てのブラウザで動作する (そして古いブラウザでは美しく簡素化する) JavaScript と Dynamic HTML を作成する上でキーとなるのは、<em>ユーザのブラウザのベンダーとバーションを判別</em>し、その<em>ブラウザで正しく動作する JavaScript に分岐処理をする</em>ことです。ユーザのブラウザベンダー (Netscape、Microsoft、Opera など) とバージョン番号 (2.x、3.x、4.x、5.x など) の判別には、<a href="../sniffer/browser_type.html">The Ultimate JavaScript Client Sniffer</a>にあるブラウザ判別スクリプトを利用してください。この自由にダウンロード可能なサンプルコードは <code>is.nav</code>、<code>is.nav3</code>、<code>is.nav4</code>、<code>is.gecko</code>、<code>is.ie5up</code>、<code>is.oprera</code> といった真偽値や、<code>is.major</code> 整数値や <code>is.minor</code> 浮動小数点値といったバージョン番号などのプロパティを持つ is オブジェクトを生成します。JavaScript 中でこれらのプロパティをチェックすることでコードがどのブラウザで実行されているかを判別し、そのブラウザに適切なコードに分岐させることができます。例えば、<code>(is.major == 5)</code> ではなく <code>(is.major &gt;= 5)</code> を使い、<code>is.nav6</code> や <code>is.ie5</code> ではなく <code>is.nav6up</code> か <code>is.gecko</code> や <code>is.ie5up</code> を使ってください。そうしないと、そのコードは恐ろしい &quot;V50 バグ&quot; (&quot;Y2K バグ&quot;の遠い親戚)に陥ってしまい、ブラウザのバージョンが 5 から 6 に変わってしまえば動作しなくなってしまいます。<br>
+  <span class="comment">[訳注] 上で紹介されている <a href="../sniffer/browser_type.html">The Ultimate JavaScript Client Sniffer</a> 程の詳細なものは必要ないという場合は <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/evangelism/tools/practical-browser-sniffing/">Practical Browser Sniffering</a> などを検討してみてください。個人的には、独自に修正したものを使っていますが。(^^;</span></p>
+<a NAME="6"></a>
+<hr NOSHADE SIZE=1>
+<h3>後方互換</h3>
+<p>次のような理由で JavaScript に非対応または JavaScript を無効化しているブラウザに対しても、互換性を確保するのはよいことです：</p>
+<ul>
+  <li>JavaScript を無効にする Firewall の背後からのアクセスをするユーザもいる。</li>
+  <li>身体障害を持つユーザ(特に、視覚障害)はテキストのみのブラウザを利用するであろうということ。</li>
+</ul>
+<p>JavaScript 非対応 またはテキストブラウザのために美しく簡素化するために、コンテンツの一部としてスクリーンに表示されず、無視されるようにするために、style と script タグを HTML のコメントで必ず囲むようにして下さい。後方互換のためにコメントにする例を示します：</p>
+<center><table BORDER=0 CELLPADDING=5 BGCOLOR="#FFFFCC" >
+<tr>
+<td>
+        <pre>&lt;style type="text/css">&lt;!--
+P { color: red }
+-->&lt;/style>
+
+&lt;script language="JavaScript1.2">&lt;!--
+var i = 0;
+//-->&lt;/script></pre>
+</td>
+</tr>
+</table></center>
+<p>勿論、style や script タグが外部ファイルへのリンクである場合は、JavaScript 非対応 や CSS 非対応ブラウザがそれらのタグと外部ファイルへのリンクを無視するようにするためにコメントにする必要は一切ありません：</p>
+<center><table BORDER=0 CELLPADDING=5 BGCOLOR="#FFFFCC" >
+<tr>
+<td>
+        <pre>&lt;link rel=&quot;stylesheet&quot; type="text/css" href="style.css">
+
+&lt;script language="JavaScript1.2" src="style.js">&lt;/script></pre>
+</td>
+</tr>
+</table></center>
+
+<p class="comment">[訳注] 現在では大部分の非対応ブラウザが script や style タグを認識して無視してくれます。XHTMLではこのようなコメントを禁止していますので、今後は徐々にここに書かれたようなコメントを入れる習慣は無くなっていくものと思われます。(XHTMLにする場合以外はコメントにしておくことを推奨します)</p>
+<h4>JavaScript 対応の古いブラウザについて</h4>
+<p>初期仕様の JavaScript を搭載している古いブラウザが、解釈できない新しい仕様に基づいた JavaScript を読み込んでしまわないようにするために、script タグには使われているコードが JavaScript のどのバージョンのものであるかを指定する為に language 属性が用意されています。次の表は、どのタグがどのブラウザで読み込まれるかを示すものです：</p>
+<table BORDER WIDTH="100%" >
+<tr>
+    <td><b>タグの記述</b></td>
+    <td><b>読み込むブラウザ</b></td>
+</tr>
+
+<tr>
+<td><tt>&lt;SCRIPT></tt></td>
+
+    <td>全ての JavaScript 対応ブラウザ</td>
+</tr>
+
+<tr>
+<td><tt>&lt;SCRIPT LANGUAGE="JavaScript"></tt></td>
+
+    <td>全ての JavaScript 対応ブラウザ</td>
+</tr>
+
+<tr>
+<td><tt>&lt;SCRIPT LANGUAGE="JavaScript1.1"></tt></td>
+
+<td>Nav3+, IE4+</td>
+</tr>
+
+<tr>
+<td><tt>&lt;SCRIPT LANGUAGE="JavaScript1.2"></tt></td>
+
+<td>Nav4+, IE4+</td>
+</tr>
+
+<tr>
+<td><tt>&lt;SCRIPT LANGUAGE="JavaScript1.1" SRC=foo.js></tt></td>
+
+<td>Nav3+, IE4+</td>
+</tr>
+
+<tr>
+<td><tt>&lt;SCRIPT LANGUAGE="JavaScript1.2" SRC=foo.js></tt></td>
+
+<td><font color="#FF0000">Nav3+</font>,
+IE4+</td>
+</tr>
+</table>
+<p class="comment">[訳注] HTML 仕様には language 属性でのこのようなバージョン指定は定義されていません。JavaScript 1.3 で Navigator が仕様と違う動作をすることや、IEがこれらのバージョンで求められる実装をしていないところが多々見受けられる点なども考えると、この方法は必ずしも最善策とは言えません。</p>
+<p>この方法は一つの例外を除いて大変上手くいきます：Navigator 3 には無視しなければならないにもかかわらず language 属性に&quot;JavaScript1.2&quot;を指定した外部 JavaScript ファイル (src=attribute のとしてリンクされたファイル) を読み込んでしまう有名なバグがあるのです。</p>
+<p>Netscape 3 は今では殆ど絶滅していますが、サポートしたいのであればこのバグに対する慣用句があります。つまり、外部 JavaScript 1.2 ファイル中では Navigator 3 でも<em>パースされる</em><span class="comment">([訳注] 構文解析)</span>が Navigator 4.0 以降でのみ<em>実行される</em>ように、JavaScript 1.2 特有の文を明確なブラウザバージョンチェックで囲んでしまうのです。Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/technote/javascript/prestemp/prestemp.html">Dynamic HTML によるプレゼンテーションテンプレート</a>ではこの対策の使用例が示されています：</p>
+<center><table BORDER=0 CELLPADDING=5 BGCOLOR="#FFFFCC" >
+<tr>
+      <td>
+        <pre>// Navigator 3 には無視しなければならないにもかかわらず
+// &lt;script language="JavaScript1.2" src=&quot;...&quot;>とした外部
+// JavaScript ファイルを読み込んでしまうバグの対策。
+// このコードは 4.x 以降でのみ実行されることに注意。
+
+if (parseInt(navigator.appVersion) > 3) {
+&nbsp;if (is.nav4up) document.captureEvents(Event.KEYPRESS);
+&nbsp;document.onkeypress = handleKeys;
+} // Nav4+ のみでの実行部分終了</pre>
+</td>
+</tr>
+</table></center>
+<p>この対応策には一つ問題があります。もし外部 JavaScript 1.2 ファイルがいくつかの JavaScript 1.2 特有のトークン (<code>switch</code> 文や <code>/a*bc+/</code> のような正規表現リテラルなど) を含む場合、Navigator 3 ではパースされるだけで実行されないのだが、Netscape 3 の<em>パーサが</em> JavaScript エラーを生成します。これらのトークンを含む JavaScript 1.2 コードを使う場合は Navigator 3 のパーサがエラーを起こさないようにするために三つの方法があります：</p>
+<ul>
+  <li>当該トークンを含む JavaScript 1.2 コードを外部ファイルから除去し、HTML ページに直接埋め込まれた インライン JavaScript にします。(Nav3 は src= によってリンクされた外部ファイルになっている JavaScript 1.2 のみを読み込み、HTML ファイル自体に含まれるインラインスクリプトは読み込みません)</li>
+  <li>Navigator 3 がそのページを絶対に開かないようにサイト中に別のルートを用意する。(例えば、JavaScript 1.2 ページへのリンクを動的に生成するようにし、ユーザが Navigator 4.0 以降を利用している場合のみ生成します)</li>
+  <li>エラーを生じる JavaScript 特有のトークンの仕様を避けたものに書き換える。(例えば、switch 文の替わりに if 文を使い、正規表現の替わりに 文字列解析を用います)</li>
+</ul>
+<p class="comment">[訳注] JavaScript 1.2 の例は古いと思うかもしれませんが、ECMA-262 3rd に準じた JavaScript 1.5 などでも同様の問題が生じています。例えば、instanceof 演算子や try...catch 文は 1.3 以前のブラウザではパーサがエラーを生成してしまいます。更にこの例に関しては、switch 文で可能だったような代替策は(Navigatorでの独自仕様を除いて)一切ありません。<br>
+  個人的には、JavaScript 1.2 以降対応を前提として、1.3以降に実装されたり、バグありで実装されたものはできる限り独自に用意したもので代用し、当面は instanceof などの新機能は利用しないという方針を採っています。</p>
+<a NAME="7"></a>
+<hr SIZE=0 NOSHADE WIDTH="100%">
+<h3>ブラウザ依存コンテンツ</h3>
+<p>いろいろなブラウザやバージョン間での違いに橋渡しを行う上では、ページを表示しているブラウザをチェックした後に <code>document.write()</code> メソッドを使ってマークアップを動的に生成すると上手くいくことが多いです。この方法によりそれぞれのブラウザやバージョン毎に最適化した、異なるページを表示することが可能になります。<a href="../csspapi/csspapi.html">JavaScript による CSSP プロパティの設定</a>にあるテクニカルノートでは<a href="../csspapi/csspapi.html#markup">クロスブラウザ DHTML マークアップのための三つの方法</a>を解説し、<a href="../csspapi/csspapi.html#content">他のブラウザ依存コンテンツの動的生成</a>で行っているのと同様に DTHML マークアップを動的に生成する関数を収めた API を提供しています。</p>
+<a NAME="8"></a>
+<hr SIZE=0 NOSHADE WIDTH="100%">
+<h3>JavaScript による CSS1 プロパティの設定</h3>
+<p>強力且つ手軽であるのと同時に、スタイルシートには基本的な限界があります。つまり、静的にハードコーディング <span class="comment">([訳注] コード中に固定的な値 (リテラル) として書き込むこと)</span> されるのです。条件付や自動でページをフォーマットすることができないのです。それ故、CSS1 のプロパティは JavaScript によってドキュメントオブジェクトモデルを介して設定しなければならないのです。Navigator 4.x のドキュメントオブジェクトモデルを使って Navigator 4.x で JavaScript から CSS1 プロパティを設定する方法を知らないのでしたら、Netscapeの <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">Dynamic HTML によるプレゼンテーション</a>のページに行ってドキュメントオブジェクトモデルを介したスタイルシートプロパティへの操作に関する実践チュートリアルを読んでいってください。Mozilla や Netscape 6 での方法を知るには、W3C DOM level 1 と level 2 の仕様書を確認してください。IE での CSS プロパティの設定については、この <a href="http://msdn.microsoft.com/workshop/author/default.asp">web
+workshop</a> を確認してください。</p>
+<p>&quot;CSS (つまり、CSS1 と CSSP) でできることは CSSでやれ。CSS でできないことを DOM と JavaScript でやれ。&quot;という鉄則を銘記しておいて下さい。つまり、静的で変化させる必要のない値は CSS で設定し、条件付であったり動的に変化させる必要のある値は JavaScript で設定するということです。</p>
+<p>クロスブラウザ DHTML ページを作成する際の時間を節約するために、Netscape では <a href="../css1technote/css1tojs.html">JavaScript による CSS1 プロパティの設定に関するテクニカルノート</a>を用意しています。このテクニカルノートには CSS1 のプロパティを JavaScript で設定する、Netscape 4.x、Internet Explorer や Netscape Gecko レイアウトエンジンを搭載したユーザーエージェントで機能する JavaScript を自動的に生成する <a href="../css1technote/css1tojs.html#tool">JavaScript
+code generator</a> も含まれています。</p>
+<a NAME="9"></a>
+<hr SIZE=0 NOSHADE WIDTH="100%">
+<h3>JavaScript による CSSP プロパティの設定</h3>
+<p>JavaScript による CSSP プロパティの設定により、背景色や背景画像を変えるのと同様に、動的に動き、消したり表示したりといったことを HTML 要素に対して行うことができるようになります。Navigator 4.0 での JavaScript による CSSP プロパティの設定方法を理解したいのでしたら、Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">Dynamic HTML によるプレゼンテーション</a>のページに行ってドキュメントオブジェクトモデルを介したスタイルシートプロパティの操作に関する実践チュートリアルを読んでいってください。Mozilla や Netscape 6 については W3C DOM level 1,2 を学習してください。この文書の <a href="#15">参考文献</a> 節では多くの参考文献を紹介しています。</p>
+<p>Navigator 4.x、Mozilla、Netscape 6 と Internet Explorer は別々のドキュメントオブジェクトモデルを実装しているので、ブラウザ毎に異なる JavaScript コードで CSSP プロパティを設定しなくてはなりません。Danny Goodman が View Source <span class="comment">([訳注] Netscape サイトの一部分のこと)</span> にて、Netscape 4.x と IE の CSSP プロパティモデルの違いについて解説する素晴らしい記事を書いています。まだこれらの相違点についてよく知らないのでしたら <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_cssp/goodman_cssp.html" target="_top">JavaScript
+Apostle: CSS-Positioning -- The Dynamic HTML Neutral Zone</a> を読んで下さい。Danny の記事で解説されているように、DOM の差異の橋渡しを行う最良の方法はクロスブラウザアプリケーションプログラミングインターフェイス (API) を用意することです。これは単に、要素を取り出し、消し、表示し、動かすなどといった共通して使われる操作を行うための、全てのブラウザで呼び出すことができる一連の関数群のことを指す比喩的な名前でしかないのですが。</p>
+<p>独自のクロスブラウザ DHTML API を用意する手間を省くために、Netscape ではブラウザ間で使える <a href="../csspapi/csspapi.html">JavaScript による CSSP プロパティの設定</a>についてのテクニカルノートを用意しています。このテクニカルノートには、Netscape 4.x、Internet Explorer 4+ 及び Gecko を搭載したユーザーエージェントでの基本的な CSSP プロパティの設定を行うための、自由にダウンロードや再利用できる DHTML API が収められています。この API は一部分でも全体でも利用できるように設計されているので、既存のコードを書き換えたくない場合でも、既存の DHTML アプリケーションに追加することができます。関数は静的な HTML マークアップと動的に生成された HTML マークアップの両方で機能します。</p>
+<p>もう一つの素晴らしいクロスブラウザ DHTML API が Dan Steinman の無料の完全なチュートリアルである <a href="http://www.dansteinman.com/dynduo/" target="_top">The Dynamic Duo Cross-Browser DHTML</a> に含まれています。DHTML コード全体に渡って用いるのであれば、このAPIでは <a href="../csspapi/csspapi.html">JavaScript による CSSP プロパティの設定</a> API にはない追加的な機能が用意されています。<br>
+  <span class="comment">[訳注] Netscape の用意した API ではクロスブラウザを実現することを主眼においていますが、Dan Steinman のAPI は単に CSSP を設定するだけではなく、実際の DHTML アプリケーション作成を効率化する為の補助関数も一緒に用意されているということです。クロスブラウザについて学んだり、独自のものと組み合わせて使うなら Netscape のものが(日本語訳がありますし(^^;)、アプリケーションにそのまま丸々利用するなら Dan Steinman のものがいいのではないかと思います。</span></p>
+<a NAME="10"></a>
+<hr SIZE=0 NOSHADE WIDTH="100%">
+<h3>クロスブラウザイベントハンドリング</h3>
+<p>ここでも Danny Goodman が助けてくれます。<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_events2/goodman_events2.html" target="_top">JavaScript Apostle: Dueling Event Models -- A Cross-Platform Look</a> にて Navigator 4.0 と Internet Explorer 4.0 のイベントハンドリングの差異について説明してくれているのです。まだこの差異について詳しく知らないのでしたらこの記事を今すぐ読んで下さい。次に、彼は <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_drag/goodman_drag.html" target="_top">Cross-Browser Drag and Drop</a> も解説しています。クロスブラウザイベントハンドリングを用いた実際のアプリケーションを見たいのでしたら、Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/technote/javascript/prestemp/prestemp.html">Dynamic HTML によるプレゼンテーションテンプレート</a> バージョン 3.0 について論じている最近更新されたテクニカルノート <span class="comment">([訳注] リンクがないので探したのですが、該当するテクニカルノートは見つけられませんでした) </span>をご覧下さい。Netscape 6 のイベントモデルについて知りたければ Danny Goodman の <a href="http://developer.iplanet.com/viewsource/goodman_w3c/goodman_w3c.html">Getting Ready for the W3C Event Model</a> を読んで下さい。</p>
+<p>リサイズイベントのハンドリングには特に注意してください。リサイズイベントによって動的に配置した HTML 要素の配置が狂ってしまうことがあります。これには三つの対策があります：</p>
+<ul>
+  <li>ウィンドウサイズを変更不能にする。</li>
+  <li>Netscape の<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/examples/dynhtml/resize.html">リサイズイベントとページリロードのキャプチャー</a>のダウンロード可能なサンプルコードを利用する。</li>
+  <li>セッション毎のクッキーに要素位置を記録し、リサイズイベントをキャプチャーし、ウィンドウサイズが変化したら要素位置をクッキーから復元する。</li>
+</ul>
+<a NAME="11"></a>
+<hr SIZE=1 NOSHADE>
+<h3>フルスクリーンモード</h3>
+<p>全てのブラウザは DHTML ページのキャンバスとしてフルスクリーンウィンドウを開く機能を持っています。Netscape のブラウザでは、署名のないスクリプトは、ユーザがウィンドウを閉じられるようにするために表示することが求められているタイトルバーを除いて、全てのコントロールを非表示にしたスクリーンいっぱいのウィンドウを開くことができます。タイトルバーも非表示にしたいのでしたら、スクリプトに署名を付加し、ユーザに UniversalBrowserWrite 特権を認めてもらわなければなりません。(これによりスクリーン全体を乗っ取り、ユーザが逃げられないようにする悪意のスクリプトを防止しているのです) Netscape の特権ベースのセキュリティモデルについてより詳しく知りたければ、Danny Goodman の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_sscripts.html" target="_top">Applying
+Signed Scripts</a> を読み、<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/tech/security/index.html" target="_top">Security
+Developer Central</a> を訪れてください。</p>
+<a NAME="12"></a>
+<hr NOSHADE SIZE=1>
+<h3>ツール</h3>
+<p>Netscape DHTML と Microsoft DHTML の間の橋渡しを行うための各種のツールが登場しています。そのようなツールのいくつかを列挙します：</p>
+<ul>
+  <li><a href="http://www.macromedia.com" TARGET="_top">Macromedia</a> Dreamweaver</li>
+  <li><a href="http://www.astound.com" TARGET="_top">Astound</a> Dynamite</li>
+  <li><a href="http://www.netobjects.com" TARGET="_top">Netobjects</a> Fusion 3.0</li>
+  <li><a href="http://www.mbed.com" TARGET="_top">mBed</a> Interactor</li>
+  <li><a href="http://www.webbase.com/" TARGET="_top">ExperTelligence</a> WebberActive 4.0</li>
+</ul>
+<p>どのツールが一番自分に合うかを選ぶ際に便利な、<a href="http://www.builder.com/Authoring/DTools/?st.bl.fd.auth1.feat">クロスブラウザ DHTML 開発ツールの比較レビュー</a>を Builder.com が用意しています。</p>
+<a NAME="cssp"></a>
+<hr SIZE=1 NOSHADE>
+<h3>CSSP とは？</h3>
+<p>W3C CSS1 勧告が出されてすぐ、Netscape と Microsoft はテーブルと透明画像を用いずに要素の配置を行う方法が必要だと判断しました。彼らは共同でカスケーディングスタイルシートポジショニング (CSSP) と呼ばれていた、要素の配置についてのドラフト仕様を書いて W3C に提出しました。これは後に W3C CSS2 勧告の中に含められたのです。<br>
+   <span class="comment">[訳注] テーブルと透明画像による要素配置というのは、実サイズ 1x1 の透過png/gif を縦横任意の大きさに拡大したものだけを含むセルを組み合わせることで、強制的に&quot;余白&quot;を作り出して位置を制御するという方法。極力避けるべき手法。</span></p>
+<a NAME="comments"></a>
+<hr SIZE=1 NOSHADE>
+<h3>コメント</h3>
+<p>この記事についてコメントや提案、建設的批判をがあるのですか？他にもヒントや助言や問題対応策を追加して欲しいですか？見せたいクロスブラウザ、クロスバージョンコードのサンプルがあるのですか？私たちにメールするには以下のリンクをご利用下さい。</p>
+<ul>
+  <li><a href="mailto:xbrowser@netscape.com?SUBJECT=comment (DON'T CHANGE SUBJECT!)">send
+a comment to xbrowser@netscape.com</a></li>
+  <li><a href="mailto:xbrowser@netscape.com?SUBJECT=submission (DON'T CHANGE SUBJECT!)">submit
+an HTML, JavaScript, or DHTML sample to xbrowser@netscape.com</a></li>
+</ul>
+<script LANGUAGE="JavaScript"><!--
+// Try to be sneaky and prevent spam-bots from seeing this email address.
+// If they're smart enough to include a JavaScript interpreter which
+// parses the page before they scan it, this won't help.
+var atSign="@"
+var mailProtocol="mailto:"
+
+document.write('<h4>このテクニカルノートにコメントがあるのですか？</h4>')
+document.write('<P>JavaScript、Dynamic HTML や その他の Netscape の技術や製品に関してテクニカルサポートやその他の支援が欲しいのでしたら、<A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/support/index.html" TARGET="_top">サポートエリア</A>を訪れてください。')
+document.write('このテクニカルノートに対するコメントや提案は<A HREF="' + mailProtocol + 'xbrowser' + atSign + 'netscape.com?SUBJECT=CSSP API comments (DON&#039;T CHANGE THIS SUBJECT!)">' + 'xbrowser' + atSign + 'netscape.com</A>にメールを送って下さい。')
+document.write('提案が多数あるので私たちは通常は個別に応答することができませんが、送られたコメントはこのサイトの将来のコンテンツ作成に取り入れていきます。</p>')
+//--></script>
+<!-- <script LANGUAGE="JavaScript">
+// Try to be sneaky and prevent spam-bots from seeing this email address.
+// If they're smart enough to include a JavaScript interpreter which
+// parses the page before they scan it, this won't help.
+var atSign="@"
+var mailProtocol="mailto:"
+
+document.write('<B><FONT FACE="Arial, Helvetica" SIZE=-1>Comments About This TechNote?</FONT></B>')
+document.write('<P>If you would like technical support or other assistance regarding JavaScript, Dynamic HTML, or other Netscape technologies and products, please visit the <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/support/index.html" TARGET="_top">support area</A>. ')
+document.write('Email comments and suggestions about this TechNote to <A HREF="' + mailProtocol + 'xbrowser' + atSign + 
+'netscape.com?SUBJECT=CSSP API comments (DON&#039;T CHANGE THIS SUBJECT!)">' +
+'xbrowser' + atSign + 'netscape.com</A>. ')
+document.write('Because of the volume of submissions, we usually can&#039;t respond personally, but we will take your comments into consideration when planning future content for the site.')
+//</script> -->
+<h4>Netscape に継続的にクロスブラウザ DHTML についての情報を送って欲しいのですか？</h4>
+<p>Netscape はクロスブラウザ DHTML 開発を支援するために新しいリソースを順次公開していっています。クロスブラウザ Dynamic HTML についての新しく出されたテクニカルノート、サンプルコードや情報を継続的に知らせて欲しいのでしたら、<a href="mailto:xbrowser-list-request@netscape.com?SUBJECT=subscribe%20ENTER_YOUR_EMAIL_ADDRESS_HERE">xbrouser-list メーリングリストに参加</a>してください。気が変わったら、<a href="xbrowser-list-request@netscape.com?SUBJECT=unsubscribe%20ENTER_YOUR_EMAIL_ADDRESS_HERE">これをクリックして xbrouser-list メーリングリストから削除してください</a>。あなたのメールアドレスが売られたり、ばらまかれたり、他の組織と交換したりされることはありません。</p>
+<a NAME="15"></a>
+<hr SIZE=0 NOSHADE WIDTH="100%">
+<h3>参考文献</h3>
+<p>より詳しいことは以下のリソースを参照してください：<br>
+  <span class="comment">[訳注] いずれも英語Pageへのリンクです。和訳があるものでもリンク先はそのまま原文のものを保持しています。</span></p>
+<ul>
+  <li>一般的なユーザーインターフェイスデザイン</li>
+  <ul>
+    <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_ui.html">JavaScript と UI デザイン</a></li>
+  </ul>
+  <li>カスケーディングスタイルシート</li>
+  <ul>
+    <li>カスケーディングスタイルシート・レベル１</li>
+    <ul>
+      <li>Netscapeの <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">Dynamic HTML によるプレゼンテーション</a>ページの、カスケーディングスタイルシート・レベル１実践チュートリアル</li>
+      <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/support/bugs/index.html?content=known/css.html">スタイルシートの既知の問題</a></li>
+      <li>W3C 勧告：<a href="http://www.w3.org/pub/WWW/TR/">カスケーディングスタイルシート・レベル１</a></li>
+    </ul>
+    <li>カスケーディングスタイルシートポジショニング</li>
+    <ul>
+      <li>Netscapeの <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">Dynamic HTML によるプレゼンテーション</a>ページの、カスケーディングスタイルシートポジショニング実践チュートリアル</li>
+      <li>W3C ワーキングドラフト：<a href="http://www.w3.org/pub/WWW/TR/">カスケーディングスタイルシートによる HTML 要素の位置指定</a></li>
+      <li><a href="http://www.westciv.com/style_master/academy/positioning_tutorial/index.html">CSS2 による位置指定</a></li>
+      <li><a href="http://cgi.din.or.jp/%7Ehagi3/JavaScript/Mozilla/SampleList.cgi?fmt=html">Mozilla DOM の CSSP プロパティサンプル</a></li>
+      <li><a href="http://www.geckonnection.com/">Geckonection.com - Web 標準デモンストレーション、テクニカルノート、サンプルコード</a></li>
+    </ul>
+    <li>クロスブラウザ、クロスプラットフォーム CSS 互換性</li>
+    <ul>
+      <li>WebReview の CSS プロパティ<a href="http://www.webreview.com/style/css1/charts/mastergrid.shtml">完全リスト</a></li>
+      <li>Project Cool の <a href="http://www.projectcool.com/developer/reference/css_style.html">CSS スタイルプロパティ参照表</a></li>
+    </ul>
+  </ul>
+  <li>ジャバスクリプトバージョン検査</li>
+  <ul>
+    <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_javascript.html">JavaScript クライアントの判別</a></li>
+  </ul>
+  <li>ジャバスクリプトドキュメントオブジェクトモデル</li>
+  <ul>
+    <li>Netscapeの <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">Dynamic HTML によるプレゼンテーション</a>ページの、ドキュメントオブジェクトモデルを介しての JavaScript によるスタイルシートプロパティ操作実践チュートリアル</li>
+    <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/communicator/jsguide/js1_2.htm">JavaScript 1.2 の新機能</a></li>
+    <li><a href="http://xarch.tu-graz.ac.at/publ/tutorial/html/layers_glossary.html">レイヤーとレイヤー機能のための JavaScript 拡張</a></li>
+    <li><a href="http://www.w3.org/TR/REC-DOM-Level-1/">W3C DOM Level 1 勧告</a></li>
+    <li><a href="http://www.w3.org/TR/DOM-Level-2-Core/">W3C DOM Level 2 勧告</a></li>
+    <li><a href="http://wsabstract.com/javatutors/dom.shtml">IE5/6 の DOM 入門</a></li>
+  </ul>
+  <li>Netscape の Dynamic HTML</li>
+  <ul>
+    <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/presentations/dynhtml.html">DevEdge Online Dynamic HTML プレゼンテーション</a>
+      <!--<LI>DevCon Preso: <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/devcon/jun97/tra_6/index.htm" TARGET="_top">Introduction to Dynamic HTML</A> <A HREF="developer.netscape.com/devcon/jun97/tra_4/directs.html" TARGET="_top">(viewing instructions)</A></LI>-->
+    </li>
+    <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/devcon/jun97/index.html">DevCon プレゼンテーション</a></li>
+  </ul>
+  <li>クロスブラウザ Dynamic HTML リソース</li>
+  <ul>
+    <li>記事</li>
+    <ul>
+      <li><a href="http://www.dansteinman.com/dynduo/">Danny Goodman による JavaScript オブジェクトロードマップ</a></li>
+      <li><a href="http://developer.iplanet.com/viewsource/goodman_w3c/goodman_w3c.html">W3C イベントモデルに備えて</a></li>
+      <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/goodman_cross/goodman_cross.htm">W3C DOM に備えて</a></li>
+      <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_cssp/goodman_cssp.html" TARGET="_top">JavaScript の使者：CSS-Positioning -- Dynamic HTML 中立地帯</a></li>
+      <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_events.html" TARGET="_top">JavaScriptの使者：JavaScript 1.2 イベントに備えて</a></li>
+      <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_events2/goodman_events2.html" TARGET="_top">JavaScript の使者：イベントモデル間の闘争 -- クロスプラットフォームの視点</a></li>
+      <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=johnson_homepg/johnson_homepg.html" TARGET="_top">Netscape のホームページ：デザインの練習</a></li>
+      <li><a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=johnson_homepg/johnson_homepg2.html" TARGET="_top">Netscape のホームページ第２段：Dynamic HTML と古いブラウザ -- 何を為すべきか？</a></li>
+    </ul>
+    <li>チュートリアル</li>
+    <ul>
+      <li><a href="http://www.dansteinman.com/dynduo/" target="_top">The Dynamic Duo Cross-Browser DHTML</a></li>
+    </ul>
+    <li>テクニカルノートとトラブルシューティング</li>
+    <ul>
+      <li><a href="http://www.macromedia.com/support/dreamweaver/technotes.html" TARGET="_top">Macromedia Dreamweaver テクニカルノート</a></li>
+    </ul>
+    <li>API</li>
+    <ul>
+      <li><a href="http://www.dansteinman.com/dynduo/" target="_top">The Dynamic Duo Cross-Browser DHTML</a></li>
+    </ul>
+    <li><a href="http://www.ruleweb.com/dhtml/" TARGET="_top">Jeff Rule DHTML Demos</a></li>
+    <li><a href="http://www.webreference.com/dhtml/" TARGET="_top">WebReference Dynamic HTML Lab</a></li>
+    <li><a href="http://javertising.com/webtech/index_Revised2.htm" TARGET="_top">Javertising DHTML Tutorial</a></li>
+    <li><a href="http://www.taboca.com/illusionary/" target="_top">Taboca Illusionary Program</a> では厳選された DHTML サイトをステップバイステップで解説しています。</li>
+    <ul>
+      <li>彼らの<a href="http://www.taboca.com/tas/" target="_top">ArtworK Space</a> と <a href="http://www.taboca.com/layer/" target="_top">Layer Station</a> も見逃さないで。</li>
+    </ul>
+    <li><a href="http://www.htmlguru.com/">HTML Guru</a> にはクロスブラウザ DHTML テンプレートが用意されています。</li>
+    <li><a href="http://www.netscapehelp.com/solutions/" TARGET="_top">CompuServe NetscapeHelp Solutions</a></li>
+    <li><a href="http://www.hotwired.com/webmonkey/dynamic_html/" TARGET="_top">WebMonkey DHTML Site</a></li>
+  </ul>
+  <li>追加情報</li>
+  <ul>
+    <li>Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/tech/javascript/index.html?content=resources.html">JavaScript 追加情報ページ</a></li>
+    <li>Netscape の <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/htmlguid/dynamic_resources.html">Dynamic HTML 追加情報ページ</a></li>
+    <li><a href="http://dmoz.org/Computers/Programming/Internet/W3C_DOM/">Dmoz.org/Computers/Programing/Internet/W3C_DOM/</a></li>
+  </ul>
+</ul>
+
+<center>
+  <p>Sun-Netscape Alliance による製品の最新技術情報が必要でしたら、<a href="http://developer.iplanet.com/index.html" target="_top">http://developer.iplanet.com</a> からどうぞ。</p>
+  <p>インターネット上の更なる開発情報が必要でしたら、<a href="http://home.netscape.com/computing/techsearch/index.html?cp=dev01bnts" target="_top">Netscape TechSearch</a> をお試し下さい。</p>
+</center>
+<hr SIZE=1>
+<center><font size=-1><nobr>Copyright &copy;
+1999 <a href="http://home.netscape.com/misc/trademarks.html" TARGET="_top">Netscape
+Communications Corporation</a></nobr>.</font>
+<br><font size=-1>This site powered by: <a href="http://home.netscape.com/servers/index.html" TARGET="_top">Netscape
+Enterprise Server</a> and <a href="http://home.netscape.com/compass/v3.0/index.html" TARGET="_top">Netscape
+Compass Server</a>.</font></center>
+<hr SIZE="1" NOSHADE WIDTH="100%">
+<p align="right"><font size="-1">訳者： dynamis &lt;<a href="mailto:translator@skillup.jp">translator@skillup.jp</a>&gt;<br>
+  <a href="http://www.mozilla.org/docs/web-developer/xbdhtml/xbdhtml.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。</p>
+</body>
+</html>

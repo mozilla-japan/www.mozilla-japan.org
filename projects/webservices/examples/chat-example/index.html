@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<style type="text/css" media="screen,tv">
+.comment {
+    color: #20A040;
+    font-size: 80%;
+}
+.orig { font-size:smaller; color:gray; }
+</style>
+
+<title>Mozilla の Web サービスデモ : 翻訳 Web サービスデモ、翻訳アドオンによる HTTP チャット</title>
+<script src="wsdl-babel.js" />
+
+<!--
+
+訳者： 高久雅生 masao@ulis.ac.jp
+
+-->
+
+<link rel="alternate" hreflang="en" modified="June 16,  2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/webservices/examples/chat-example/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<h2>Mozilla の Web サービスデモ : 翻訳 Web サービスデモ、翻訳アドオンによる HTTP チャット</h2>
+
+
+<a href="mailto:mgalli@netscape.com">Marcio Galli (mgalli @ mgalli.com)</a><br />
+<a href="mailto:roger@livesidebar.com">Roger Soares (roger @ livesidebar.com)</a>
+
+<p>
+ここでは、Web サービスとやりとりをする Web ベースアプリケーションのデモを示します。
+このデモは、お友達とチャットをしたり、そのログを記録するシンプルな HTTP チャットです。
+Mozilla の WSDL 実装のおかげで、このチャットには Babelfish Web サービスを使った自動翻訳機能が付きました。
+</p>
+
+
+<h3>インストールの条件</h3>
+
+<p>
+このデモは Mozilla の WSDL/SOAP 対応に依存していますので、<a href="/">最新の Mozilla ブラウザ</a>をダウンロードすることをお勧めします。
+</p>
+
+<h3>翻訳サービスを試す</h3>
+
+<div style="margin-left:2em;">
+	<h3>インラインの例: 翻訳サービスを試す</h3>
+	
+以下のフォームで翻訳サービスを試せます。
+英語で文を入力して「翻訳」をクリックしてください。
+JavaScript コードが xmethods.com のリモートのメソッドを呼び出し、翻訳結果がページ上に表示されます。
+このページは mozilla.org <span class="comment">[ 訳注: ここでは mozilla.gr.jp ]</span> にありますが、Mozilla は xmethods.com にセキュリティ警告無しに接続します。
+この処理は Mozilla の<a href="/lxr/mozilla/source/extensions/webservices/docs/New_Security_Model.html">新しいセキュリティモデル</a>により、素早く安全に行われます。
+	
+		<br /><br />
+<div style="margin-left:2em;background-color:#eeeeee;padding:10px;-moz-border-radius:12px;">
+	<form onsubmit="Translate(document.getElementById('TEXT').value);return false">
+        <input type="radio" name="optionto" value="en_ja" checked="checked">英語→日本語 |
+        <input type="radio" name="optionto" value="en_pt">英語→ポルトガル語 |
+        <input type="radio" name="optionto" value="en_fr">英語→フランス語 |
+        <input type="radio" name="optionto" value="en_de">英語→ドイツ語<br>
+
+        <br>
+
+	<input type="text" id="TEXT" size="60">
+	<input id="BUTTON" type="button" value="翻訳" onclick="Translate(document.getElementById('TEXT').value)">
+	</form>
+	
+	<div style="background-color:#dddddd;padding:10px;">
+<strong>翻訳結果:</strong>
+	
+	<div id="results"></div>
+	</div>
+	
+
+</div>
+</div>
+<h3>デモを動かす</h3>
+
+<p>
+<a href="http://www.intelinet.com.br/bitchat/">BitPapo の HTTP チャットアプリケーションにアクセスするには、ここをクリックしてください</a><span class="comment">（英語）</span>。
+いったんログインすれば、チャットセッションにメッセージを送信できます。
+右側にあるボタンをクリックするだけで、メッセージの文章を自動翻訳して送ることができます。
+</p>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/webservices/examples/chat-example/index.html">英語版</a> 2003/06/16</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/webservices/examples/chat-example/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

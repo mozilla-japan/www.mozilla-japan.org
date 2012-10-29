@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+<title>Text Color</title>
+
+
+<script>
+function selectColor(color)
+{
+parent.document.getElementById("edit").contentDocument.execCommand(parent.command, false, color);
+parent.document.getElementById("colorpalette").style.visibility="hidden";
+parent.document.getElementById("edit").contentWindow.focus();
+}
+
+function InitColorPalette() {
+  var x;
+  if (document.getElementsByTagName)
+    x = document.getElementsByTagName('TD');
+  else if (document.all)
+    x = document.all.tags('TD');
+  for (var i=0;i<x.length;i++)
+  {
+    x[i].onmouseover = over;
+    x[i].onmouseout = out;
+    x[i].onclick = click;
+  }
+}
+
+function over()
+{
+this.style.border='2px dotted white';
+}
+
+function out()
+{
+this.style.border='1px solid gray';
+}
+
+function click()
+{
+  selectColor(this.id);
+}
+</script>
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/editor/midasdemo/colors.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody><tr>
+<td id="#FFFFFF" bgcolor="#ffffff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFCCCC" bgcolor="#ffcccc" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFCC99" bgcolor="#ffcc99" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFFF99" bgcolor="#ffff99" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFFFCC" bgcolor="#ffffcc" height="20" width="20"><img height="1" width="1"></td>
+<td id="#99FF99" bgcolor="#99ff99" height="20" width="20"><img height="1" width="1"></td>
+<td id="#99FFFF" bgcolor="#99ffff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#CCFFFF" bgcolor="#ccffff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#CCCCFF" bgcolor="#ccccff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFCCFF" bgcolor="#ffccff" height="20" width="20"><img height="1" width="1"></td>
+</tr>
+<tr>
+<td id="#CCCCCC" bgcolor="#cccccc" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FF6666" bgcolor="#ff6666" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FF9966" bgcolor="#ff9966" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFFF66" bgcolor="#ffff66" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFFF33" bgcolor="#ffff33" height="20" width="20"><img height="1" width="1"></td>
+<td id="#66FF99" bgcolor="#66ff99" height="20" width="20"><img height="1" width="1"></td>
+<td id="#33FFFF" bgcolor="#33ffff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#66FFFF" bgcolor="#66ffff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#9999FF" bgcolor="#9999ff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FF99FF" bgcolor="#ff99ff" height="20" width="20"><img height="1" width="1"></td>
+</tr>
+<tr>
+<td id="#C0C0C0" bgcolor="#c0c0c0" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FF0000" bgcolor="#ff0000" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FF9900" bgcolor="#ff9900" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFCC66" bgcolor="#ffcc66" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFFF00" bgcolor="#ffff00" height="20" width="20"><img height="1" width="1"></td>
+<td id="#33FF33" bgcolor="#33ff33" height="20" width="20"><img height="1" width="1"></td>
+<td id="#66CCCC" bgcolor="#66cccc" height="20" width="20"><img height="1" width="1"></td>
+<td id="#33CCFF" bgcolor="#33ccff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#6666CC" bgcolor="#6666cc" height="20" width="20"><img height="1" width="1"></td>
+<td id="#CC66CC" bgcolor="#cc66cc" height="20" width="20"><img height="1" width="1"></td>
+</tr>
+<tr>
+<td id="#999999" bgcolor="#999999" height="20" width="20"><img height="1" width="1"></td>
+<td id="#CC0000" bgcolor="#cc0000" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FF6600" bgcolor="#ff6600" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFCC33" bgcolor="#ffcc33" height="20" width="20"><img height="1" width="1"></td>
+<td id="#FFCC00" bgcolor="#ffcc00" height="20" width="20"><img height="1" width="1"></td>
+<td id="#33CC00" bgcolor="#33cc00" height="20" width="20"><img height="1" width="1"></td>
+<td id="#00CCCC" bgcolor="#00cccc" height="20" width="20"><img height="1" width="1"></td>
+<td id="#3366FF" bgcolor="#3366ff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#6633FF" bgcolor="#6633ff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#CC33CC" bgcolor="#cc33cc" height="20" width="20"><img height="1" width="1"></td>
+</tr>
+<tr>
+<td id="#666666" bgcolor="#666666" height="20" width="20"><img height="1" width="1"></td>
+<td id="#990000" bgcolor="#990000" height="20" width="20"><img height="1" width="1"></td>
+<td id="#CC6600" bgcolor="#cc6600" height="20" width="20"><img height="1" width="1"></td>
+<td id="#CC9933" bgcolor="#cc9933" height="20" width="20"><img height="1" width="1"></td>
+<td id="#999900" bgcolor="#999900" height="20" width="20"><img height="1" width="1"></td>
+<td id="#009900" bgcolor="#009900" height="20" width="20"><img height="1" width="1"></td>
+<td id="#339999" bgcolor="#339999" height="20" width="20"><img height="1" width="1"></td>
+<td id="#3333FF" bgcolor="#3333ff" height="20" width="20"><img height="1" width="1"></td>
+<td id="#6600CC" bgcolor="#6600cc" height="20" width="20"><img height="1" width="1"></td>
+<td id="#993399" bgcolor="#993399" height="20" width="20"><img height="1" width="1"></td>
+</tr>
+<tr>
+<td id="#333333" bgcolor="#333333" height="20" width="20"><img height="1" width="1"></td>
+<td id="#660000" bgcolor="#660000" height="20" width="20"><img height="1" width="1"></td>
+<td id="#993300" bgcolor="#993300" height="20" width="20"><img height="1" width="1"></td>
+<td id="#996633" bgcolor="#996633" height="20" width="20"><img height="1" width="1"></td>
+<td id="#666600" bgcolor="#666600" height="20" width="20"><img height="1" width="1"></td>
+<td id="#006600" bgcolor="#006600" height="20" width="20"><img height="1" width="1"></td>
+<td id="#336666" bgcolor="#336666" height="20" width="20"><img height="1" width="1"></td>
+<td id="#000099" bgcolor="#000099" height="20" width="20"><img height="1" width="1"></td>
+<td id="#333399" bgcolor="#333399" height="20" width="20"><img height="1" width="1"></td>
+<td id="#663366" bgcolor="#663366" height="20" width="20"><img height="1" width="1"></td>
+</tr>
+<tr>
+<td id="#000000" bgcolor="#000000" height="20" width="20"><img height="1" width="1"></td>
+<td id="#330000" bgcolor="#330000" height="20" width="20"><img height="1" width="1"></td>
+<td id="#663300" bgcolor="#663300" height="20" width="20"><img height="1" width="1"></td>
+<td id="#663333" bgcolor="#663333" height="20" width="20"><img height="1" width="1"></td>
+<td id="#333300" bgcolor="#333300" height="20" width="20"><img height="1" width="1"></td>
+<td id="#003300" bgcolor="#003300" height="20" width="20"><img height="1" width="1"></td>
+<td id="#003333" bgcolor="#003333" height="20" width="20"><img height="1" width="1"></td>
+<td id="#000066" bgcolor="#000066" height="20" width="20"><img height="1" width="1"></td>
+<td id="#330099" bgcolor="#330099" height="20" width="20"><img height="1" width="1"></td>
+<td id="#330033" bgcolor="#330033" height="20" width="20"><img height="1" width="1"></td>
+</tr>
+</tbody></table>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/editor/midasdemo/colors.html">英語版</a></span> - <span>和訳版 2006/03/21</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/editor/midasdemo/colors.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

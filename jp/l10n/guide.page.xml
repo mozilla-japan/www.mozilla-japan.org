@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-guide" basename="guide" pathtoroot="../../">
+
+<meta>
+	<dc:title>ガイドライン</dc:title>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1><tt:meta mode="title"/></h1>
+	<p>ローカライズセンターでは Mozilla 製品が日本語化されたソフトであることを感じさせることなく、日本語で自然に使ってもらえるようにと意識してローカライズを行っています。Mozilla 製品の日本語を統一感のある高品位なものとするため、用語の対訳表などと合わせて日本語化のガイドラインを作成・公開しています。<br/>
+		このガイドラインについてご意見がある場合やガイドラインに反する箇所を見つけた場合は <a href="${l10n-forum}">L10N フォーラム</a> までお知らせください。</p>
+	<p>本ガイドラインは現在草稿段階のものです。随時修正していきますのでご了承ください。</p>
+	
+	
+	
+	<tt:section id="style">
+		<h2>文体と表記規則</h2>
+		<p>ローカライズセンターでは製品全体を通して、自然で柔らかな分かり易い日本語となるように心がけています。そのために文体や表記規則などについて以下のような指針を定めています。</p>
+		
+		<dl>
+			<dt>言語差と意訳</dt>
+			<dd>
+				<ul class="noindent">
+					<li>英語と日本語の語順や主述の違いに注意して、逐語訳ではなく自然な日本語表現とする。</li>
+					<li>特に、英語構文に対応した英語直訳特有の言い回しなどは出来る限り避ける。</li>
+					<li>英語は主語が必須の言語だが日本語は省略する言語であり、余分な主語は遠慮無く削除する。</li>
+					<li>その他英語との日本語との違いによる表現や説明の過不足を適時調整する。</li>
+					<li>原文の表現が不適切あるいは不明瞭なところは独自表現に変えることも厭わない。</li>
+				</ul>
+				<table class="examples">
+					<tr>				<th>original:</th>	<td>Update Succeeded.</td></tr>
+					<tr class="bad">	<th>bad ex.</th>	<td>更新成功</td></tr>
+					<tr class="bad">	<th>bad ex.</th>	<td>更新に成功しました。</td></tr>
+					<tr class="good">	<th>good ex.</th>	<td>更新を正常に完了しました。</td></tr>
+					<!-- browser/pageReportFirstTime.dtd - endDescription.label  -->
+					<tr>				<th>original:</th>	<td>You can click on this icon to see which sites Firefox blocked and to allow those sites to open popups if they are required for the site to function correctly.</td></tr>
+					<tr class="bad">	<th>bad ex.</th>	<td>あなたは Firefox がどのサイトでのポップアップをブロックしているか見たり、サイトが正常に機能するためにポップアップが必要とされる場合にそのサイトがポップアップを開くことを許可するためには、このアイコンをクリックすることができます。<span class="comment">(問題外(^^;)</span></td></tr>
+					<tr class="bad">	<th>bad ex.</th>	<td>Firefox がどのサイトでのポップアップをブロックしているか確認したり、正常に機能するために必要なサイトでポップアップを開くことを許可するためには、このアイコンをクリックしてください。<span class="comment">(単なる直訳例)</span></td></tr>
+					<tr class="bad">	<th>bad ex.</th>	<td>どのサイトでのポップアップがブロックされているか確認したり、サイトの閲覧にポップアップが必要なサイトを指定するためには、このアイコンをクリックしてください。<span class="comment">(まだ不自然)</span></td></tr>
+					<tr class="good">	<th>good ex.</th>	<td>このアイコンをクリックすると、ポップアップが禁止されているサイトを確認したり、必要に応じて特定サイトでのポップアップを許可したりできます。</td></tr>
+				</table>
+			</dd>
+			<dt>文体と表現</dt>
+			<dd>
+				<ul class="noindent">
+					<li>文体は敬体(ですます調)で統一する。</li>
+					<li>日本語が堅くならないよう必要以上の漢字は使用しない。</li>
+					<li>固有名詞や専門用語あるいは慣例的なものを除き英語表記は使用しない。</li>
+					<li>カタカナ語についても同様に、自然な日本語に可能な限り置き換える。</li>
+				</ul>
+				<table class="examples">
+					<tr class="bad">	<th>bad ex.</th>	<td>Plug-in が Install されているかチェックして下さい。</td></tr>
+					<tr class="good">	<th>good ex.</th>	<td>プラグインがインストールされているか確認してください。</td></tr>
+					<tr class="except">	<th>exception:</th>	<td>Web, Cookie, DOM, Find As You Type などは英語表記</td></tr>
+				</table>
+			</dd>
+			<dt>コンテクスト</dt>
+			<dd>
+				<p>細部の表現については英語との対応に拘ることなく、以下のようにコンテクストに応じて表現を揃えるようにしています。</p>
+				<dl>
+					<dt>ウィンドウ</dt>
+					<dd>タイトル名は体言止めを原則とする。全体のバランスに注意する。</dd>
+					<dt>メニュー項目</dt>
+					<dd>OS の慣用表現に従う他は簡潔な体言を基本とする</dd>
+					<dt>カテゴリ名</dt>
+					<dd>体言止めを原則とし、コロンをつけたり設定項目の説明と続けて文にしたりはしない。</dd>
+					<dt>ボタンラベル</dt>
+					<dd>動作や目的などを簡潔な体言で表す。可能であれば語数を揃える。</dd>
+					<dt>ツールチップ</dt>
+					<dd>動作だけでなく目的語も含め、何をどのように処理するのか分かるものとする。</dd>
+					<dt>チェックボックス</dt>
+					<dd>末尾では体言ではなく動詞を原則とする。コロンと入力欄が続くはこの限りではない。<br/>
+						やむを得ずラベルが複数の文になる場合を除き、句点は使用しない。</dd>
+					<dt>ラジオボタン</dt>
+					<dd>前後の文脈に注意して簡潔で分かり易い表現とする。末尾の品詞は問わない。
+						止む終えずラベルが複数の文になる場合を除き、句点は使用しない。</dd>
+					<dt>プルダウンメニュー</dt>
+					<dd>可能であれば共通部は前後の説明部に表記し、各項目は簡潔で分かり易いものとする。</dd>
+					<dt>テキスト</dt>
+					<dd>その他の部分のテキストについては文脈判断。文になるところでは句点を使用する。</dd>
+				</dl>
+			</dd>
+			<dt>英数記号と全角半角</dt>
+			<dd>
+				<ul class="noindent">
+					<li>英数字や記号を使用する場合は特別な理由のない限り半角を使用する。</li>
+					<li>日本語文中での句読点および疑問符や感嘆符については全角記号を使用する。</li>
+					<li>英数字と日本語との間には半角空白を入れることを原則とする。</li>
+					<li>記号と日本語の間については文脈や記号に合わせて空白の有無を決める。</li>
+					<li>メニュー項目やボタンラベルなどを表すときは二重引用符を使用する。</li>
+					<li>全角空白および半角カナは使用しない。</li>
+				</ul>
+				<table class="examples">
+					<tr class="bad">	<th>bad ex.</th>	<td>Firefox　は Mozillaプロジェクト（mozilla.org）による次世代Ｗｅｂブラウザです!</td></tr>
+					<tr class="good">	<th>good ex.</th>	<td>Firefox は Mozilla プロジェクト(mozilla.org) による次世代 Web ブラウザです！</td></tr>
+				</table>
+			</dd>
+			<dt>類似表現とかな漢字</dt>
+			<dd>
+				<ul class="noindent">
+					<li>本動詞では文脈に応じて漢字、補助動詞についてはひらがなとする。</li>
+					<li>"すべて" はすべてひらがなとする。</li>
+					<li>"～することが～" はひらがなとする。</li>
+					<li>"～することができます" はなるべく "～できます" と簡潔にする。</li>
+					<li>条件節で用いる "～するとき" はひらがな、"～する場合" は漢字とする。</li>
+					<li>"～するとき" と "～する場合" は時間的か条件的かである程度使い分ける。</li>
+					<li>限定を表す副助詞 "～のみ" と "～だけ" は順に文語調、口語調である程度使い分ける。</li>
+					<li>訳語の選択については<a href="#translation">訳語の選択基準</a>として後述する。</li>
+					<li>その他表現に揺れのあるところは順次検討して使い分けの明確化や統一を行う。</li>
+				</ul>
+			</dd>
+			<dt>カタカナ語と長音</dt>
+			<dd>
+				<p>残念ながらカタカナ語に於ける発音表記や長音の扱いには明確かつ適切な判断基準というものは存在しませんが、製品内での用語統一は必須であるためローカライズセンターでは以下のような表記で統一しています。概してコンピュータ関係の用語は仕様書などで多く使用される慣例に従って長音を使用しないことが多いです。</p>
+				<p class="indent">ブラウザ、メーラ、ユーザ、サーバ、コンピュータ、プロバイダ、プロキシ、マネージャ、インスペクタ、デバッガ、フォルダ、ディレクトリ、フィルタ、ヘッダ、プレーン、ビュー</p>
+				
+			</dd>
+			<dt>その他</dt>
+			<dd>
+				<ul class="noindent">
+					<li>OS によって訳語の異なるものはそれに応じて訳し分ける。</li>
+					<li>初心者の目にするところは特に説明的に分かり易く心がける。</li>
+					<li>可能な限り技術的に正確で正しい表現となるよう心がける。</li>
+				</ul>
+			</dd>
+		</dl>
+	</tt:section>
+	
+	
+	<tt:section id="translation">
+		<h2>訳語の選択基準</h2>
+		<p>特別な知識のない人でもヘルプを参照したりすることなく自然に利用できるソフトウェア。ローカライズセンターではこれを目指して Mozilla 製品のローカライズに取り組んでおります。<br/>
+			そのため、固有名詞や技術的な用語として用いられる場合を除き英語表記は使用しません。カタカナ語についてもそれが既に広く認知されているものや日本語に適切なものがない場合以外、日本語を用いて表すことにしています。また、技術的で知らない人に分かりにくい用語については一部説明的・補足的な訳語とするようにしています。</p>
+		<p>実際の語句については個別に検討していくことになりますのでここに明確な基準を書くことは出来ません。その代わりといっては何ですが、代表的な用語については<a href="${l10n-term-l10n}">L10N 指定訳語一覧</a>を公開しておりますので参考にしてください。</p>
+	</tt:section>
+	
+	
+	<!-- <tt:section id="">
+		<h2>作業手順</h2>
+		<p></p>
+	</tt:section> -->
+</tt:htmlbody>
+
+</page>
+</contents>

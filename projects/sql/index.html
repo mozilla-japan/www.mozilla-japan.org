@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>SQL Support in Mozilla</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/sql/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/sql/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<center><h1>Mozilla における SQL サポート</h1></center>
+<p>
+Mozilla の SQL サポートによりアプリケーションを SQL データベースに直接繋ぐことができます。もう、アプリケーションでの情報のやりとりに Perl や Python といったスクリプト言語を介する必要はありません。アプリケーションとデータを分割しているレイヤーを取り除くことによってプログラマの仕事を単純化します。
+</p>
+
+<h2>パッケージのダウンロード</h2>
+<p>
+<b>Mozilla Firebird 0.6 用のパッケージ</b>
+</p>
+
+<!--
+<dl>
+  <dt><b>Linux</b></dt>
+  <dd><a href="http://xin.utcru.sk/~varga/mozilla/sql/sql-i686-pc-linux-gnu-0.6.xpi">sql-i686-pc-linux-gnu-0.6.xpi</a> (compiled with GCC 3.2.2)</dd>
+  <dd><a href="http://xin.utcru.sk/~varga/mozilla/sql/sql-i686-pc-linux-gnu-0.6-static.xpi">sql-i686-pc-linux-gnu-0.6-static.xpi</a> (compiled with GCC 3.2.2, statically linked with libpq 3.0)</dd>
+</dl>
+-->
+
+<dl>
+  <dt><b>Mac OS X</b></dt>
+  <dd><a
+  href="http://xin.utcru.sk/~varga/mozilla/sql/sql-mac-MachO-0.6-static.xpi">sql-mac-MachO-0.6-static.xpi</a>
+  (libpq 3.0 に静的にリンクされています)</dd>
+</dl>
+
+<dl>
+  <dt><b>Win32</b></dt>
+<!--  <dd><a href="http://xin.utcru.sk/~varga/mozilla/sql/sql-win32-1.4.xpi">sql-win32-1.4.xpi</a></dd> -->
+  <dd><a
+  href="http://xin.utcru.sk/~varga/mozilla/sql/sql-win32-0.6-static.xpi">sql-win32-0.6-static.xpi</a> (libpq 3.0 に静的にリンクされています)</dd>
+</dl>
+
+<p>
+<b>Mozilla 1.4 および Netscape 7.1 用のパッケージ</b>
+</p>
+
+<dl>
+  <dt><b>Linux</b></dt>
+  <dd><a
+  href="http://xin.utcru.sk/~varga/mozilla/sql/sql-i686-pc-linux-gnu-1.4.xpi">sql-i686-pc-linux-gnu-1.4.xpi</a>
+  (GCC 3.2.2 でコンパイルされています)</dd>
+  <dd><a
+  href="http://xin.utcru.sk/~varga/mozilla/sql/sql-i686-pc-linux-gnu-1.4-static.xpi">sql-i686-pc-linux-gnu-1.4-static.xpi</a>
+  (GCC 3.2.2 でコンパイルされています、libpq 3.0 に静的にリンクされています)</dd>
+</dl>
+
+<dl>
+  <dt><b>Mac OS X</b></dt>
+  <dd><a
+  href="http://xin.utcru.sk/~varga/mozilla/sql/sql-mac-MachO-1.4-static.xpi">sql-mac-MachO-1.4-static.xpi</a>
+  (libpq 3.0 に静的にリンクされています)</dd>
+</dl>
+
+<dl>
+  <dt><b>Win32</b></dt>
+  <dd><a href="http://xin.utcru.sk/~varga/mozilla/sql/sql-win32-1.4.xpi">sql-win32-1.4.xpi</a></dd>
+  <dd><a href="http://xin.utcru.sk/~varga/mozilla/sql/sql-win32-1.4-static.xpi">sql-win32-1.4-static.xpi</a> (libpq 3.0 に静的にリンクされています)</dd>
+</dl>
+
+<a href="http://xin.utcru.sk/~varga/mozilla/sql/sqltest-1.4.xpi">sqltest-1.4.xpi</a>
+
+<h2>ソースの入手</h2>
+<p>
+コードは <a
+href="http://lxr.mozilla.org/mozilla/source/extensions/sql/">mozilla/extensions/sql</a>
+ディレクトリにあります。
+</p>
+
+<h2>ビルド</h2>
+<p>
+以下のコマンドを実行して Mozilla に SQL サポートを構築してください。
+</p>
+
+<ol>
+  <li>
+    <pre class="example">configure --enable-extensions=default,sql</pre>
+  </li>
+  <li>
+    <pre class="example">export MOZ_ENABLE_PGSQL=1 <br></pre>
+  </li>
+  <li>
+    <pre class="example">export MOZ_PGSQL_INCLUDES=<i>Your PGSQL directory</i>/include</pre>
+  </li>
+  <li>
+    <pre class="example">export MOZ_PGSQL_LIBS=<i>Your PGSQL directory</i>/lib</pre>
+  </li>
+  <li>通常の方法に従って Mozilla をビルドしてください<br>
+  </li>
+</ol>
+
+<h2>サンプルコード</h2>
+<p>
+テストアプリケーションは <a
+href="http://lxr.mozilla.org/mozilla/source/extensions/sql/sqltest/">mozilla/extensions/sql/sqltest</a>
+ディレクトリにあります。<br>
+</p>
+
+<h2>テスト</h2>
+<p>
+テストアプリケーションを実行するには、ブラウザにロードするか、
+-chrome コマンドラインオプションに
+ chrome://sqltest/content/ を設定して実行してください。 
+</p>
+
+<h2>フィードバック</h2>
+<p>
+<a href="http://bugzilla.mozilla.org/">bugzilla</a> レポートを「SQL」コンポーネントに登録してください。その際には必ず <a
+href="/quality/bug-writing-guidelines.html">バグ報告ガイドライン</a> を読んでバグ報告の仕方について理解するようにしてください。 
+</p>
+
+<h2>リンク</h2>
+<ul>
+<li><a
+href="http://www.oreillynet.com/pub/a/mozilla/2002/12/17/app_dev.html">Remote
+Application Development with Mozilla</a> by Brian King と and Myk Melez</li>
+<li><a href="http://eu.mozdev.org/Brussels2003/talks/jan/index.html">Native Database Support</a> by Jan Varga</li>
+</ul>
+
+<h2>連絡先</h2>
+<p>
+開発： <a href="mailto:varga@utcru.sk">Jan Varga</a><br>
+品質保証： <a href="mailto:sql+qa@sumalachi.net">Owen Marshall</a>
+</p>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/sql/index.html">英語版</a> 2003/07/15</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/sql/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

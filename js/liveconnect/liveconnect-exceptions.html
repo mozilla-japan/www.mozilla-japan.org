@@ -1,0 +1,436 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+    <title>LiveConnect の例外</title>
+  
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/js/liveconnect/liveconnect-exceptions.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+    
+
+    <p align="LEFT"><b><font size="+3">LiveConnect の例外</font><br>
+      by Chris Cooper 
+      &lt<A HREF="mailto:ccooper@neon.polkaroo.net">ccooper@neon.polkaroo.net</A>&gt;</b><br>
+      Last modified: Wed Dec  9  15:00:16 EST 1998      
+</p>
+
+    <p>LiveConnect によって、JavaSctipt とページ内の Java アプレット間の通信と、
+      JavaScript とページにロードされたプラグイン間の通信が可能となった。
+      しかし、現在まで、Java と JavaScript は他方の言語によって生成された例外を
+      受け取る事が出来なかった。LiveConnect の例外処理の実装により、
+      現在はこの二つの言語間で、
+      正常にエラーの回復が出来る。</p>
+
+    <p><b>素早く理解する:</b>
+    <ul>
+      <li><a href="#jsexception">JavaScript の例外を受け取る</a></li>
+      <li><a href="#jexception">Java の例外を JavaScript で受け取る</a></li>
+      <li><a href="#jsjexception">Java を通して投げられた JavaScript の例外を JavaScript で受け取る</a></li>
+      <li><a href="#examples">例</a><ul>
+        <li><a href="#troubleshooting">トラブルシューティング</a></li>
+      </ul>
+      </li>
+    </ul>
+  </p>
+
+    <hr size="5" width="90%">
+
+    <p><b><font size="+1"><a name="jsexception">JavaScript の例外を受け取る</a></font></b></p>
+    <p><dl>
+      <dd>最も基本的な例で始めよう。JavaScript の例外は <code>throw</code> キーワードを使って投げる事が出来、
+      <code>try / catch</code> ブロックを使って受け取る事が出来る。</p>
+      <p><dd>例 次の例 JavaScript のコード...</p>
+      <p><code><pre>try {
+      throw 'Thrown JS exception';
+} catch (e) {
+        print("Exception caught: " + e.toString());
+}
+        </pre></code></p>
+      <p><dd>...次のようなものを受け取るだろう:</p>
+      <p><dd><code>Exception caught: Thrown JS exception</code></p>
+      <p><dd>どんな JS の型 (string, number, boolean, Object, undefined, null) でも例外として投げられる。
+      これについては <a href="#examples">より多くの例</a> を下に載せた。</p>
+    </dl>
+
+    <hr size="5" width="90%">
+
+    <p><b><font size="+1"><a name="jexception">Java の例外を JavaScript で受け取る</a></font></b></p>
+    <p><dl>
+      <dd>JavaScript のコードの一行が、Java のメンバー変数かメソッドを参照しようとし、
+      失敗したら、
+      Java の例外が JavaScript へ投げ帰される。</p>
+      <p><dd>例 次の例 JavaScript のコード...</p>
+      <p><code><pre>try {
+        java.lang.Class.forName("blah");
+} catch (e) {
+        print("Java Exception caught: " + e);
+}
+        </pre></code></p>
+      <p><dd>...次のようなものを受け取るだろう:</p>
+      <p><dd><code>Java Exception caught: java.lang.ClassNotFoundException: 
+blah</code></p>
+    </dl>
+
+    <hr size="5" width="90%">
+
+    <p><b><font size="+1"><a name="jsjexception">Java を通して投げられた JavaScript の例外を JavaScript で受け取る</a></font></b></p>
+    <p><dl>
+      <dd>次のようなシナリオを想像しなさい: JavaScript のある一行が、Java へ呼び出す。Java の側で実行中、このコードは
+      例外が発生する JavaScript 側に呼び戻す。LiveConnect は、この例外を Java 経由で例外を受け取ることの出来る
+      元の JavaScript のレイヤーへ伝播させる。
+      <p><dd>例 次の例 JavaScript のコード...</p>
+      <p><code><pre>try {
+      Packages.Test.doit(this, "throw 'foo';");
+} catch (e) {
+        print("Exception caught: " + e.toString());
+}
+        </pre></code></p>
+      <p><dd>...最初に Java へ呼び出し、第2引数内の JavaScript コードを評価しようとする
+      (内部動作については下の<a href="#Test.java">Test.java を載せたもの</a> を見なさい)。
+      成功すれば、次のようなものを受け取るだろう:</p>
+      <p><dd><code>Exception caught: foo</code></p>   
+      <p>上の単純な JavaScript の例外のように、どんな JS 型 (string, number, boolean, Object, undefined, null) でも
+      この二つの言語をまたいで投げることが出来、型情報は保存される。
+      これについては <a href="#examples">より多くの例</a> を下に載せた。</p>  
+    </dl></p>
+
+    <hr size="5" width="90%">
+
+    <p><b><font size="+1"><a name="examples">例</a></font></b></p>
+    <p><dl>
+      <dd>次の二つのファイルを使うと、LiveConnect の例外処理の様々な機能を
+      試す事が出来る。</p>
+      <p><dd><b>ダウンロード:</b> (右クリック-"Save Link As..." を使用)</p>
+      <p><dl>
+        <dd><a href="./test.js">test.js</a>
+        <dd><a href="./Test.java">Test.java</a></p>
+      </dl></p>
+      <p><dd>下にファイルを二つ載せている。その後には、そのファイルが 
+      LiveConnect engine (jsj あるいは jsj.exe) を通して実行された時に
+      生成される出力を載せている。
+    </dl></p>
+
+    <p><table width="300" 
+      border="1" 
+      cellpadding="5" 
+      cellspacing="5" 
+      rows="4" 
+      cols="1">
+      <tr bgcolor="#BCC0D3">
+        <td>
+          <strong><a name="test.js">test.js</a></strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code><pre>
+print("Throwing JS Exception");
+try {
+      throw 'Thrown JS exception';
+      print("\tNo exception caught\n");       
+} catch (e) {
+        print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Triggering Java ClassNotFoundException");
+try {
+        str = java.lang.Class.forName("blah");
+      print("\tNo exception caught: " + str + "\n");
+} catch (e) {
+        print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Throwing string: Packages.Test.doit(this, throw 'foo';)");
+try {
+      str = Packages.Test.doit(this, "throw 'foo';");
+      print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+      print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Throwing number: Packages.Test.doit(this, throw 42;)");
+try {
+      str = Packages.Test.doit(this, "throw 42;");
+      print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+      print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Throwing number: Packages.Test.doit(this, throw 4.2;)");
+try {
+      str = Packages.Test.doit(this, "throw 4.2;");
+      print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+      print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Throwing boolean: Packages.Test.doit(this, throw false;)");
+try {
+      str = Packages.Test.doit(this, "throw false;");
+      print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+      print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Throwing Object (new Date): Packages.Test.doit(this, throw new Date();)");
+try {
+      str = Packages.Test.doit(this, "throw new Date();");
+      print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+      print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Throwing Object (new String): Packages.Test.doit(this, throw new String();)");
+try {
+      str = Packages.Test.doit(this, "throw new String();");
+      print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+      print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Throwing Object ({a:42}): Packages.Test.doit(this, throw {a:42};)");
+try {
+      str = Packages.Test.doit(this, "throw {a:42};");
+      print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+      print("\tException caught: " + e.toString());
+      print("\tJS Type of exception: " + typeof e + "\n");
+}
+
+print("Throwing undefined: Packages.Test.doit(this, throw undefined)");
+try {
+        str = Packages.Test.doit(this, "throw undefined;");
+        print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+        print("\tException caught.");
+        print("\tJS Type of exception: " + typeof e + "\n");
+}
+         
+print("Throwing null: Packages.Test.doit(this, throw null)");
+try {
+        str = Packages.Test.doit(this, "throw null;");
+        print("\tNo exception caught: " + str + "\n");
+} catch ( e ) {
+        print("\tException caught.");
+        print("\tType of exception: " + typeof e);
+}
+
+          </pre></code>
+        </td>
+      </tr>
+      <tr bgcolor="#BCC0D3">
+        <td>
+          <strong><a name="Test.java">Test.java</a></strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code><pre>
+import netscape.javascript.JSObject;
+
+public class Test {
+
+    public static Object doit(JSObject obj, String code) {
+      obj.eval(code);
+      return null;
+    }
+}
+          </pre></code>
+        </td>
+      </tr>
+      <tr bgcolor="#BCC0D3">
+        <td>
+          <strong><a name="Output">出力:</a></strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code><pre>
+[user@machine liveconnect]$ Linux_All_DBG.OBJ/jsj test.js
+<font color="forestgreen">Throwing JS Exception
+        Exception caught: Thrown JS exception
+        JS Type of exception: string
+
+Triggering Java ClassNotFoundException
+        Exception caught: java.lang.ClassNotFoundException: blah
+        JS Type of exception: object
+
+Throwing string: Packages.Test.doit(this, throw 'foo';)
+        Exception caught: foo
+        JS Type of exception: string
+
+Throwing number: Packages.Test.doit(this, throw 42;)
+        Exception caught: 42
+        JS Type of exception: number
+
+Throwing number: Packages.Test.doit(this, throw 4.2;)
+        Exception caught: 4.2
+        JS Type of exception: number
+
+Throwing boolean: Packages.Test.doit(this, throw false;)
+        Exception caught: false
+        JS Type of exception: boolean
+
+Throwing Object (new Date): Packages.Test.doit(this, throw new Date();)
+        Exception caught: Mon Dec 07 10:09:05 GMT-0500 (EST) 1998
+        JS Type of exception: object
+
+Throwing Object (new String): Packages.Test.doit(this, throw new String();)
+        Exception caught: 
+        JS Type of exception: object
+
+Throwing Object ({a:42}): Packages.Test.doit(this, throw {a:42};)
+        Exception caught: [object Object]
+        JS Type of exception: object
+
+Throwing undefined: Packages.Test.doit(this, throw undefined)
+        Exception caught.
+        JS Type of exception: undefined
+
+Throwing null: Packages.Test.doit(this, throw null)
+        Exception caught.
+        Type of exception: object</font>
+[user@machine liveconnect]$</pre></code>
+        </td>
+      </tr>
+      </table></p>      
+    
+
+    <p><b><font size="+1"><a name="troubleshooting">トラブルシューティング</a></font></b></p>
+    <p><ul>
+      <li>あなたのソースツリー、特に LiveConnect のソースが最新である事を確認しなさい
+      <li>あなたの netscape.javascript クラスが最新で、コンパイルされていて
+      あなたの $CLASSPATH にある事を確認しなさい
+      <li>Test.java がコンパイルされて あなたの $CLASSPATH にある事を確認しなさい
+    </ul></p>
+
+    <hr>
+    <address><a href="mailto:ccooper@neon.polkaroo.net">Chris Cooper</a></address>
+<!-- Created: Fri Oct  9 14:28:41 EDT 1998 -->
+<!-- hhmts start -->
+Last modified: Wed Dec  9 15:00:16 EST 1998
+<!-- hhmts end -->
+<!-- 翻訳情報 ここから -->
+<div align="right">
+<font size="-1"><a href="http://www.mozilla.org/js/liveconnect/liveconnect-exceptions.html">
+このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。<br>
+</a>またドキュメントの管理の言語は現在も英語です。<br>
+この日本語訳は、利用者の利便のために有志によって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href="http://www.mozilla-japan.org/jp/td/index.html">
+http://www.mozilla-japan.org/jp/td/index.html</a></font>
+<FONT SIZE="-1">
+翻訳者: 村脇<BR>
+最終更新日: 2000年6月4日（日）<BR>
+バージョン: 1.4<BR>
+</FONT>
+</div>
+<!-- 翻訳情報 ここまで -->
+  
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/js/liveconnect/liveconnect-exceptions.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/js/liveconnect/liveconnect-exceptions.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+   <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>Rhino 組み込み</title>
+<link rel="alternate" hreflang="en" modified="November 14, 2006">
+<!--
+
+オリジナル
+題名: Embedding Rhino
+URL: http://www.mozilla.org/rhino/tutorial.html
+
+和訳
+2005-05-28  作成: RxOrca Rev.:1.8
+2007-02-26  更新: RxOrca Rev.:1.9
+
+訳注:
+  ホスト・オブジェクトとは, オブジェクトのうちで Nativeオブジェクトでないもの
+  Nativeオブジェクトの一部は, 組み込み(built-in) オブジェクト
+  オブジェクトは, インスタンスを示す場合もあれば, (クラスベースの)クラスを示すこともある
+  top-level =トップレベル =最上位 (=グローバル)
+  フォントのサイズによって見出しレベルを変化させてるっぽい … のを(一部) Hn要素に修正した
+-->
+<link rel="up" href="./" title="Rhino プロジェクト・ページ">
+<link rel="section" href="#runScript" title="RunScript">
+<link rel="section" href="#expose" title="Java API のありさま">
+<link rel="section" href="#usingJSObjs" title="JavaScript オブジェクトを使用する">
+<link rel="section" href="#javaScriptHostObjects" title="JavaScript ホスト・オブジェクト">
+<link rel="section" href="#counterCtors" title="Counter のコンストラクター">
+
+<style type="text/css" media="screen,tv">
+.java_js_code {color: #060; background-color: inherit;}
+.shell_logs_code {color: #636; background-color: inherit;}
+</style>
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/rhino/tutorial.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<p class="crumbs"><em>現在位置:</em> <a href="./">Rhino プロジェクト・ページ</a> &gt; <strong>Rhino 組み込み</strong></p>
+
+<h1 style="text-align: center;">チュートリアル: Rhino 組み込み</h1>
+
+<p>Rhino の組み込みは、簡単に、よい結果をもたらすことができます。
+組み込み開発者側のさらなる努力によって、オブジェクトはスクリプトに公開され、
+もっと便利にカスタマイズできます。
+</p>
+
+<p>このチュートリアルでは、簡単な組み込みから、さらにカスタマイズされた複雑な組み込みまで、順を追って案内します。
+十分 それに沿った、コンパイル可能なサンプルを提供します。
+</p>
+
+<p>これらのサンプルは、配布物の <code>rhino/examples</code> ディレクトリ、
+あるいは、cvs の <code>mozilla/js/rhino/examples</code> にもあります。
+このドキュメントは、<a href="http://lxr.mozilla.org/">lxr</a> を使用することで
+リンクしています。</p>
+
+<p>このドキュメントでは、<span class="java_js_code">緑</span>で
+JavaScript コードを、<span class="java_js_code">緑</span>で Java コードを、
+そして <span class="shell_logs_code">紫</span>でシェルのログを示します。</p>
+
+<h2>本ドキュメントでは …</h2>
+
+<ul class="toc">
+  <li><a href="#runScript">RunScript … 簡単な組み込み</a>
+  <ul>
+    <li><a href="#enteringContext">コンテキストに入る (Entering a Context)</a></li>
+    <li><a href="#initializing">標準オブジェクトの初期化</a></li>
+    <li><a href="#collecting">引数の取り集め</a></li>
+    <li><a href="#evaluating">スクリプトを評価 (Evaluating)</a></li>
+    <li><a href="#print">結果をプリント</a></li>
+    <li><a href="#exit">コンテキストを出る (Exit the Context)</a></li>
+  </ul>
+  </li>
+  <li><a href="#expose">Java API のありさま</a>
+  <ul>
+    <li><a href="#useJava">Java API の使用</a></li>
+    <li><a href="#implementingInterfaces">インターフェースの実装</a></li>
+    <li><a href="#addJava">Java オブジェクトを追加</a></li>
+  </ul>
+  </li>
+  <li><a href="#usingJSObjs">Java から JavaScript オブジェクトを使用する</a>
+  <ul>
+    <li><a href="#usingJSvars">JavaScript 変数の使用</a></li>
+    <li><a href="#callingJSfuns">JavaScript 関数の呼び出し</a></li>
+  </ul>
+  </li>
+  <li><a href="#javaScriptHostObjects">JavaScript ホスト・オブジェクト</a>
+  <ul>
+    <li><a href="#definingHostObjects">ホスト・オブジェクトの定義</a></li>
+    <li><a href="#counter">Counter サンプル</a>
+    <ul>
+      <li><a href="#counterCtors">Counter のコンストラクター</a></li>
+      <li><a href="#classname">クラス名</a></li>
+      <li><a href="#dynamic">動的プロパティー</a></li>
+      <li><a href="#definingMethods">JavaScript の「メソッド」を定義</a></li>
+      <li><a href="#addingCounter">RunScript に Counter を追加</a></li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+</ul>
+
+<h2><a name="runScript" id="runScript">RunScript … 簡単な組み込み</a></h2>
+
+<p>Rhino でできる、もっとも簡単な組み込みは、<a href="http://lxr.mozilla.org/mozilla/source/js/rhino/examples/RunScript.java">RunScript サンプル</a> のようなものです。
+コマンドラインからスクリプトを読み込み、それを実行し、そして結果をプリントする、それだけです。<!-- それがすべてです --></p>
+
+<p>ここに、シェルコマンドラインからの、RunScript 使用例があります …</p>
+
+<pre class="code shell_logs_code">
+$ java RunScript "Math.cos(Math.PI)"
+-1
+$ java RunScript 'function f(x){return x+1} f(7)'
+8
+</pre>
+
+<p>クラスパス (classpath) に、Rhino のクラスと RunScript サンプルのクラスファイルの 両方の指定が必要なことに注意してください。
+さぁ、これから一行ずつ、<code>main</code> の中身を調べてみましょう。</p>
+
+<h3><a name="enteringContext" id="enteringContext">コンテキストに入る (Entering a Context)</a></h3>
+
+<p>このコードは、<code>Context</code> を作成し、入ります。(enter します)</p>
+
+<pre class="code java_js_code">
+Context cx = Context.enter();
+</pre>
+
+<p><code>Context</code> は、スクリプトの実行環境に関する情報を保持します。</p>
+
+<h3><a name="initializing">標準オブジェクトの初期化</a></h3>
+
+<p>このコードは、標準のオブジェクトを初期化します (<code>Object</code>, <code>Function</code>, etc.)。</p>
+
+<pre class="code java_js_code">Scriptable scope = cx.initStandardObjects();
+</pre>
+
+<p>スクリプトを実行できるようにする前に、これを行っておく必要があります。
+<var>null</var> パラメーターは、後の呼び出しに使用するスコープオブジェクト (scope) を、
+作成して返すように、<code>initStandardObjects</code> に伝えます。</p>
+
+<h3><a name="collecting" id="collecting">引数の取り集め</a></h3>
+
+<p>このコードは、標準の Java であり、Rhino 特有ではありません。
+単にすべての引数を集めて、それらを一緒に連結するにすぎません。</p>
+
+<pre class="code java_js_code">
+String s = "";
+for (int i=0; i &lt; args.length; i++) {
+    s += args[i];
+}
+</pre>
+
+<h3><a name="evaluating" id="evaluating">スクリプトを評価 (Evaluating)</a></h3>
+
+<p>このコードは、コンテキスト <code>cx</code> を使用し ストリングを評価 (evaluate) します。</p>
+
+<pre class="code java_js_code">
+Object result = cx.evaluateString(scope, s, "&lt;cmd>", 1, null);
+</pre>
+
+<p>スクリプトの評価では、<var>scope</var> 内で変数を検索して、エラーについては、
+ファイル名 <code>&lt;cmd></code> で行番号 1 としてレポートされるでしょう。</p>
+
+<h3><a name="print" id="print">結果をプリント</a></h3>
+
+<p>このコードは、スクリプトの評価の結果 (変数 <var>result</var> の内容) をプリントします。</p>
+
+<pre class="code java_js_code">
+System.out.println(cx.toString(result));
+</pre>
+
+<p><var>result</var> は、ストリング、JavaScript オブジェクト、または他の値かもしれません。
+<code>toString</code> メソッドは、どんな JavaScript の値もストリングに変換します。</p>
+
+<h3><a name="exit" id="exit">コンテキストを出る (Exit the Context)</a></h3>
+
+<p>このコードは、コンテキストを出ます。(exit します)</p>
+
+<pre class="code java_js_code">
+} finally {
+    Context.exit();
+}
+</pre>
+
+<p>この、コンテキストと現スレッドとの関連付けの解除は、<!-- 必須の-->欠くことのできない後処理です。<!-- Startup and Cleanup Actionsで, 初期処理＆後処理？みたいな感じ。でも途中の andの意味が不明 -->
+<code>enter</code> 呼び出しのそれぞれに対して、<code>exit</code> 呼び出しがあるべきです。
+例外 (exception) が投げられても、それが間違いなく呼び出されるように、<code>Context.enter()</code>
+開始の後の、try ブロックに対応する finally ブロックに、それを記述します。</p>
+
+<h2><a name="expose" id="expose">Java API のありさま</a></h2>
+
+<h3><a name="useJava" id="useJava">Java API の使用</a></h3>
+
+<p>組み込みに必要とされる追加コードはありません。
+<i>LiveConnect</i> と呼ばれる JavaScript の機能で、JavaScript プログラムと Java オブジェクトが対話します (相互作用します) …</p>
+
+<pre class="code shell_logs_code">
+$ java RunScript 'java.lang.System.out.println(3)'
+3.0
+undefined
+</pre>
+
+<h3><a name="implementingInterfaces" id="implementingInterfaces">インターフェースの実装</a></h3>
+
+<p>Rhino を使用することで、JavaScript オブジェクトは、任意の Java インターフェースを実装することができます。
+Java のコードを記述する必要はありません &#8212;&#8212; それは、Rhino の LiveConnect 実装の一部だからです。
+例えば、java.lang.Runnable の実装の方法を、Rhino shell セッションで 見ることができます …</p>
+
+<pre class="code shell_logs_code">
+js&gt; obj = { run: function() { print('hi'); } }
+[object Object]
+js&gt; obj.run()
+hi
+js&gt; r = new java.lang.Runnable(obj);
+[object Object]
+js&gt; t = new java.lang.Thread(r)
+Thread[Thread-0,5,main]
+js&gt; t.start()
+hi
+</pre>
+
+<h3><a name="addJava" id="addJava">Java オブジェクトを追加</a></h3>
+
+<p>次の例は、<a href="http://lxr.mozilla.org/mozilla/source/js/rhino/examples/RunScript2.java">RunScript2</a> です。
+これは、RunScript とほとんど同じですが、2 行のコードの追加があります …</p>
+
+<pre class="code java_js_code">
+Object wrappedOut = Context.javaToJS(System.out, scope);
+ScriptableObject.putProperty(scope, "out", wrappedOut);
+</pre>
+
+<p>これらの行は、<code>System.out</code> の JavaScript 側への反映である、
+グローバル変数 <code>out</code> を追加します …</p>
+
+<pre class="code shell_logs_code">
+$ java RunScript2 'out.println(42)'
+42.0
+undefined
+</pre>
+
+<h2><a name="usingJSObjs" id="usingJSObjs">Java から JavaScript オブジェクトを使用する</a></h2>
+
+<p>スクリプトを評価した後に、変数や関数のためにスコープを検索し、値を取り出したり、JavaScript 関数を呼び出したりすることが可能です。
+これは、<a href="http://lxr.mozilla.org/mozilla/source/js/rhino/examples/RunScript3.java">RunScript3</a> サンプルで説明されます。
+このサンプルは、変数 <var>x</var> の値と、関数 <code>f</code> の呼び出しの結果を、プリントする機能が追加されます。
+<var>x</var> と <var>f</var> の両方が、スクリプトの評価によって定義されると 期待できます。例えば、</p>
+
+<pre class="code shell_logs_code">
+$ java RunScript3 'x = 7'
+x = 7
+f is undefined or not a function.
+$ java RunScript3 'function f(a) { return a; }'
+x is not defined.
+f('my args') = my arg
+</pre>
+
+<h3><a name="usingJSvars" id="usingJSvars">JavaScript 変数の使用</a></h3>
+
+<p><var>x</var> の値をプリントするために、以下のコードを加えます。</p>
+
+<pre class="code java_js_code">
+Object x = scope.get("x", scope);
+if (x == Scriptable.NOT_FOUND) {
+    System.out.println("x is not defined.");
+} else {
+    System.out.println("x = " + Context.toString(x));
+}
+</pre>
+
+<h3><a name="callingJSfuns" id="callingJSfuns">JavaScript 関数の呼び出し</a></h3>
+
+<p>関数 <var>f</var> を得て、それを呼び出し、そして結果をプリントするために、
+このコードを加えます …</p>
+
+<pre class="code java_js_code">
+Object fObj = scope.get("f", scope);
+if (!(fObj instanceof Function)) {
+    System.out.println("f is undefined or not a function.");
+} else {
+    Object functionArgs[] = { "my arg" };
+    Function f = (Function)fObj;
+    Object result = f.call(cx, scope, scope, functionArgs);
+    String report = "f('my args') = " + Context.toString(result);
+    System.out.println(report);
+}
+</pre>
+
+<h2><a name="javaScriptHostObjects" id="javaScriptHostObjects">JavaScript ホスト・オブジェクト</a></h2>
+
+<h3><a name="definingHostObjects" id="definingHostObjects">ホスト・オブジェクトの定義</a></h3>
+
+<p>カスタム・ホスト・オブジェクトは、動的プロパティーのような、特殊な
+JavaScript 機能を実装することができます。</p>
+
+<h3><a name="counter" id="counter">Counter サンプル</a></h3>
+
+<p><a href="http://lxr.mozilla.org/mozilla/source/js/rhino/examples/Counter.java">Counter サンプル</a>は、
+簡単なホスト・オブジェクトです。下記の方法によって、その手順を経験できます。</p>
+
+<p>シェルで組み込み関数 <code>defineClass</code> を使用して、新しいホスト・オブジェクトのクラスを試してみるのは簡単です。
+後で、RunScript にそれを追加する方法を、見ることができます。
+(<code>java -jar</code> オプションは、クラスパスを他に置き換えてしまうので、
+それを使用して <code>Counter</code> クラスにアクセスすることはできないことに、注意してください)</p>
+
+<pre class="code shell_logs_code">
+$ java -cp 'js.jar;examples' org.mozilla.javascript.tools.shell.Main
+js&gt; defineClass("Counter")
+js&gt; c = new Counter(7)
+[object Counter]
+js&gt; c.count
+7
+js&gt; c.count
+8
+js&gt; c.count
+9
+js&gt; c.resetCount()
+js&gt; c.count
+0
+</pre>
+
+<h3><a name="counterCtors" id="counterCtors">Counter のコンストラクター</a></h3>
+
+<p>引数のないコンストラクターは、Rhino ランタイムによって、インスタンスの作成に使用されます。
+counter サンプルでは、初期化する必要がないので、実装は空になっています。</p>
+
+<pre class="code java_js_code">
+public Counter () { }
+</pre>
+
+<p>メソッド <code>jsConstructor</code> は、JavaScript コンストラクターを定義します。
+それは、上記の JavaScript コード <code>new Counter(7)</code> の式で呼び出されます。</p>
+
+<pre class="code java_js_code">
+public void jsConstructor(int a) { count
+= a; }
+</pre>
+
+<h3><a name="classname" id="classname">クラス名</a></h3>
+
+<p>クラス名は、<code>getClassName</code> メソッドによって定義されます。
+これは、コンストラクター名を決定するのに使用されます。</p>
+
+<pre class="code java_js_code">
+public String getClassName() { return "Counter";
+}
+</pre>
+
+<h3><a name="dynamic" id="dynamic">動的プロパティー</a></h3>
+
+<p>動的 (dynamic) プロパティーは、<code>jsGet_</code> か <code>jsSet_</code> で始まるメソッドで定義します。
+メソッド <code>jsGet_count</code> は、<i>count</i> プロパティーを定義します。</p>
+
+<pre class="code java_js_code">
+public int jsGet_count() { return count++;
+}
+</pre>
+
+<p>JavaScript コードの <code>c.count</code> 式 (あるいは表現)は、このメソッドを呼び出すことで、
+上記の結果になります。</p>
+
+<h3><a name="definingMethods" id="definingMethods">JavaScript の「メソッド」を定義</a></h3>
+
+<p>メソッドは、<code>jsFunction_</code> 接頭語を使用して定義することができます。
+ここに、JavaScript の <code>resetCount</code> を定義します。</p>
+
+<pre class="code java_js_code">
+public void jsFunction_resetCount() { count
+= 0; }
+</pre>
+
+<p>上記の <code>c.resetCount()</code> は、このメソッドを呼び出します。</p>
+
+<h3><a name="addingCounter" id="addingCounter">RunScript に Counter を追加</a></h3>
+
+<p>今度は、<a href="http://lxr.mozilla.org/mozilla/source/js/rhino/examples/RunScript4.java">RunScript4 サンプル</a>を見てください。これは、2 か所を除き RunScript と同じです。
+メソッド <code>ScriptableObject.defineClass</code> に、Java のクラスを使用して、トップレベル・スコープで Counter "class" を定義します …</p>
+
+<pre class="code java_js_code">
+ScriptableObject.defineClass(scope, Counter.class);
+</pre>
+
+<p>すると<!-- さて -->、スクリプトから <code>Counter</code> オブジェクトを参照できるようになります …</p>
+
+<pre class="code shell_logs_code">
+$ java RunScript4 'c = new Counter(3); c.count;
+c.count;'
+</pre>
+
+<p>それから、Java のコードにより、<code>Counter</code> オブジェクトの新しいインスタンスを作り、
+7 の値を使って構築し、それを、トップレベル変数 <code>myCounter</code> に割り当てます<!-- 代入とゆー訳でもないし --> …</p>
+
+<pre class="code java_js_code">
+Object[] arg = { new Integer(7) };
+Scriptable myCounter = cx.newObject(scope, "Counter", arg);
+scope.put("myCounter", scope, myCounter);
+</pre>
+
+<p>すると、スクリプトから <code>myCounter</code> オブジェクトを参照できるようになります …</p>
+
+<pre class="code shell_logs_code">
+$ java RunScript3 'RunScript4 'myCounter.count; myCounter.count'
+8
+</pre>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/rhino/tutorial.html">英語版</a> 2006/11/14</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/rhino/tutorial.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

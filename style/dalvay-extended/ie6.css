@@ -1,0 +1,10 @@
+/*
+Blogs Portal IE6-only Stylesheet
+Copyright (C) 2007-2008 Mozilla Japan
+*/
+
+#globalnav { width: 542px; }
+#header-inner { width: 942px; }
+.entry-header .avatar { width: 152px; }
+#globalheader, #wrapper, #content .row { height: 1%; }
+#wrapper.LMR #content { display: inline; }

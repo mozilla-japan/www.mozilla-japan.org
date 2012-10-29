@@ -1,0 +1,576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title>Mozilla 開発ロードマップ</title>
+  <style type="text/css" media="screen,tv">
+    h1, h2 { text-align: center; }
+    #contents ul { margin: 0 1em; padding: 0; list-style: none; }
+    #contents {
+      border-spacing: 0;
+      border-left: 1px solid #ccc;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    #contents td { border-right: 1px solid #ccc; vertical-align: top; }
+    .milestone_schedule {
+      background-color:#eee;
+      text-align:center;
+      margin:0 auto 1em auto;
+      border-collapse: collapse;
+    }
+    .milestone_schedule td, .milestone_schedule th {
+      border: 1px solid gray;
+      padding:2px;
+    }
+    h1, h2 { text-align: center; }
+    .h2_red { color: #ec361d; }
+  </style>
+
+<!--
+
+Rev: 1.120	asa%mozilla.org	Jan 19 22:26 山口 nosupamu_syamagu@mozilla.gr.jp
+
+Rev: 1.148
+Rev: 1.150
+Rev: 1.151
+Rev: 1.152
+
+-->
+
+<link rel="alternate" hreflang="en" modified="March 22, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/roadmap/roadmap-02-Apr-2003.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+ <h1>Mozilla 開発ロードマップ</h1>
+
+<p>
+
+<p style="text-align:center;">
+<a href="mailto:brendan@mozilla.org">Brendan Eich</a>,
+<a href="mailto:hyatt@mozilla.org">David Hyatt</a>
+</p>
+
+<h2>目次</h2>
+<table id="contents">
+  <tr>
+
+    <td>
+      <ul>
+        <li><a href="#introduction">はじめに</a></li>
+        <li><a href="#a-new-roadmap">新しいロードマップ</a></li>
+        <li><a href="#discussion">考察</a></li>
+        <li><a href="#summary-rationale">理由の要約</a></li>
+      </ul>
+
+    </td>
+    <td>
+      <ul>
+        <li><a href="#about-ownership">オーナーシップについて...</a></li>
+        <li><a href="#what-all-this-does-not-mean">以上の記述が意味していない事</a></li>
+        <li><a href="#application-architecture">アプリケーション・アーキテクチャ</a></li>
+        <li><a href="#to-do">やるべき事のリスト</a></li>
+
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li><a href="#milestone-schedule">マイルストーンスケジュール</a></li>
+        <li><a href="roadmap/release-status.html">現在のリリースステータス</a></li>
+        <li><a href="#how-you-can-help">協力するには</a></li>
+
+        <li><a href="#project-management">プロジェクト・マネージメント</a></li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<h2><a name="introduction">はじめに</a></h2>
+
+<p>
+ Mozilla 開発ロードマップへようこそ。1998年に、標準に準拠し、モジュール化され、移植可能な Mozilla の新しいコースを定めた <a href="roadmap/roadmap-26-Oct-1998.html">オリジナルのロードマップ</a> 以来、統合された Mozilla Application Suite の現状への大きな <b><a href="#seamonkey-news">変更</a></b> と共に、ロードマップの三回目の大幅な更新になります。<a href="roadmap/roadmap-05-Jun-2002.html">ひとつ前のロードマップ</a> には、Mozilla 1.3 までのマイルストーンと開発のルールが記載されており、古いロードマップへのリンクもあります。 
+ </p>                                                                         
+
+<p class="h2_red">
+この文書のほとんどで、昨年提案されてた新しいアプリケーション構造が反映されています。その提案の結果生まれた努力は、ようやく実を結びました。比喩を混ぜていうと、新しいアプリケーション生命体 <a href="products/firefox/">Firefox</a> と <a href="products/thunderbird/">Thunderbird</a> が孵化したのです。
+</p>
+
+<p class="h2_red">
+2004年に予定されていた新しい大幅なロードマップアップデートは、延期されました。これから追加される予定の構想は、<a href="http://weblogs.mozillazine.org/roadmap/">Brendan のロードマップブログ</a> をご覧ください。暫定的なロードマップアップデートは、Firefox 1.0 の「aviary 1.0」リリースおよび Thunderbird 1.0、そしてそれに続く 1.8 マイルストーンに焦点を当て、間もなく発表されます。
+</p>
+
+ <p>
+ 私たちは長い道のりを歩んできました。<a href="roadmap/mozilla-1.0.html">Mozilla 1.0 宣言</a> で定められた必要条件を満たした <a href="releases/mozilla1.0.html">Mozilla 1.0</a> マイルストーンを完成させ、これは質の高いリリースであるとともに、より安全な開発と派生製品をリリースするための安定したブランチとして、コミュニティのみならずより広い世界に提供されました。Mozilla 1.0 から生み出された Mozilla ベースのプロジェクトと製品のリストが <a href="university/hof.xml">Mozilla Hall of Fame</a> にあるのでご覧ください。
+ </p>
+
+ <p>1.0 から 1.3 までの中心的な「トランク」開発系では、標準準拠であり、モジュール性があり、移植可能な、1998年に始まったコードベースにおいて、長い間懸案となっていた多くの欠陥を修正する事により、0.9.x マイルストーン期に開始されたフットプリント <span class="comment">【訳注：割り当てられた後、解放されないメモリ領域の大きさのこと】</span> やパフォーマンス関連のプロジェクトを更に進行させました。また私たちは、タブブラウジングやポップアップブロッキング、http://paulgraham.com に着想を得たベイズ式スパムフィルタなど、素晴らしい仕様の登場を目の当たりにしました。さらに、より高速で、ブラウザに焦点を絞ったプロジェクトである <a href="projects/firefox/">Mozilla Firefox</a>（かつての Firebird <span class="comment">【訳注：その前は Phoenix】</span>）や <a href="projects/camino/">Camino</a> （かつての Chimera） も登場しました。
+ </p>
+
+ <h2><a name="a-new-roadmap">新しいロードマップ</a></h2>
+
+
+
+ <p>しかし、1.0 以降に私たちが行ったような段階的な開発は、健全なオープンソース・プロジェクトにとって充分なものではありません。より良い未来への道を描いた新しいロードマップが Mozilla に必要な事は明らかです。以下に提案するのは、独立したアプリケーション・プロセス間で共有可能な <a href="newlayout/">Gecko</a> Runtime Environment （<a href="projects/embedding/">GRE</a>） に基づいた新しいアプリケーション・アーキテクチャです。理論的根拠と予想される代償について述べる前に、まずその意味するところと主な構成要素を以下に示します。
+ </p>
+
+<ol>
+<li>開発努力を新しいスタンドアローンアプリケーションに集中する：現在 <a href="projects/firefox/">Mozilla Firefox</a> と名前がつけられているブラウザ、<a href="projects/thunderbird/">Mozilla Thunderbird</a> メール／ニュースアプリケーション、そして独立で作動する Composer および、Firefox や Thunderbird でも利用されている新しい XUL ツールキットをベースにしたその他のアプリケーション。私たちは Mozilla Firefox と Thunderbird を主力製品とすることを目標にしており、拡張機能の作者やその他の ISV が開発作業を進める際には Firefox や Thunderbird をターゲットにするように働きかけています。
+<p>
+
+<li><b><a name="seamonkey-news">アップデート情報</a></b>：セキュリティアップデートを含めた持続的なメンテナンスを行います。すでに Mozilla を展開している企業やその他の団体のために、 <a href="projects/seamonkey/">SeaMonkey</a> アプリケーションスイートの最終安定ブランチ （1.7.x） を対象とします。
+<p>
+
+   <li><a href="newlayout/">Gecko</a> レイアウト・アーキテクチャの根本的なバグを修正する事によって、メンテナンス性、パフォーマンス、そして拡張性に優れた将来像への道を開きます。このように Gecko を改良することで、全ての製品をより優れたものにすることができます。
+   <p> </p>
+   </li>
+
+   <li>無制限の CVS アクセス権を持つハッカーの集団が関わるというオーナーシップ開発モデルを捨てて、強いリーダーシップと明確な委任制度によってモジュールが強固に守られるという、オープンソース界でより一般的な開発モデルへの移行をさらに進めます。例えば、NSPR や JavaScript、最近の主なマイルストーンでの Gecko、そして Mozilla Firefox のように。
+
+     <p> </p>
+
+   </li>
+
+ </ol>
+
+
+
+ <p>これら新しいロードマップの要素の背後にある理由は、量よりも質を追求する事にあります。成果の数は少なくなりますが、その質は向上しなければなりません。そして、充分な拡張機構があれば、（例えば） メインメニュー項目のようなユーザインターフェースの整理をめぐってコミュニティ内で論争する事もなくなるでしょう。 
+
+ </p>
+
+ <p>もう一つの拡張性の例として、ユーザインターフェース以外のものをあげましょう。Gecko は、実験的または制限付きであっても、新しく台頭してきた XML や関連する標準をサポートする必要があります。その際に、全員が <a href="http://lxr.mozilla.org/mozilla/source/layout/base/nsCSSFrameConstructor.cpp">nsCSSFrameConstructor.cpp</a> をハックしなければならないようでは駄目です （そして、この巨大なファイルは、1.5、1.6 さらにそれ以降の開発期間で徐々に変更を行って、削除あるいは大幅に単純化する必要があります）。優秀な基本技術 （HTML や XUL ウィジェット、SVG） とスタイリングおよびコンポジションツール（CSS、XBL）を利用すれば、新たな C++ コードの爆発的増加やレンダリング・オブジェクトの肥大化を防げる筈です。 
+
+ </p>
+
+
+
+ <h2><a name="discussion">考察</a></h2>
+
+ <p>1998 年 3 月 31 日、Netscape がオリジナルブラウザのコードベースをオープンソースとして公開した時に、人々の期待、製品の計画、チェックインの権限、そして実際のコードの構造、これらの全てが、Netscape 4 の時代に "Communicator" として初めて大々的に PR された巨大なApplication Suite  （ブラウザ、メール、エディタ） を継続させる方向に向かっていました。この「多機能製品」<span class="comment">【訳注：原文は、スイス・アーミーナイフ = 十徳ナイフ】</span> 方式は、1998 年の末に私たちが Gecko、XPFE、 および <a href="scriptable/">スクリプト可能な XPCOM インターフェース</a> で Mozilla をリセットした時にも継続されました。この間に、もちろん Netscape は、主として給料を支払われている貢献者およびインフラという形で、 Mozilla に対して非常に寛大なサポートを行なってきました。 
+ </p>
+
+ <p>その結果は、ユーザインターフェースのフロントエンドに膨大なバックエンド・モジュールを備えた、機能豊富で複雑なアプリケーションでした。この野心的な統合から、<a href="xpfe/xulref/">XUL</a> や <a href="projects/xbl/xbl.html">XBL</a> などのたくさんの良い成果が得られました。 
+ </p>
+
+ <p>それでも、もし単に「ブラウザを書き直す」という事が目的であれば、XUL は経済的なものではなかったでしょう。まさしく <a href="xpfe/ElevatorTouchyFeely.html">意図された通り</a> に、一度クロスプラットフォームのフロントエンドを書けば、ネイティブな OS のツールキットを元にしたフロントエンドを最低三つのプラットフォームに対して書かずに済みました。しかしその結果として、ネイティブなブラウザだけのフロントエンドとブラウザの１つのバックエンドを開発するのに要するのと同じくらいの人数と時間を費やして、スイートの様々なアプリケーションを作成したり、各アプリケーションのコンポーネントを統合したりしているのです。 
+
+ </p>
+
+ <p>上記のような 批判が成立するには、Mozilla と主要な貢献者たち、例えば Netscape が、メール・ユーザエージェントやニュースリーダーや HTML エディタや、アプリケーションの枠組みを開発せず、ブラウザだけを開発する事に甘んじていられた、という仮定が必要です。今から振り返っても、「ブラウザだけ」が充分であったとは思えません。XUL は、価値のあるクロスプラットフォームのメールと composer アプリケーションを実現しただけではなく、カスタマイザー、ローカライザー、ディストリビュータ、そしてポータブルアプリケーションの開発者たちにとっては、大きな勝利（「経済的なもの」） でした。私たちの第一の目的ではなかったのですが、私たちは、実に品質の高い、ウェブ指向のクロスプラットフォームなアプリケーションの枠組みを開発したのです。プラットフォームとしての Mozilla （Mozilla-the-platform） です。  </p>
+
+ <p>とはいうものの、統合に関わるコストは高くつきます。仮に、かゆい所に手が届く有用なユーザインターフェースを作らず、Application Suite としての Mozilla （Mozilla-the-application-suite）のそれぞれのアプリケーションの目標を最低限のものにしたとしても、です。スタンドアロンのアプリケーションは、起動が早く、動的メモリ消費量が平均的に小さく、そしてより頑丈でクラッシュしにくい傾向にあります。  </p>
+
+ <p>Application Suite がコスト高になる別の例は、本質的に過負荷で複雑なユーザインターフェースです（数え出すときりがありませんが、一つだけ例をあげれば、「ファイル｜新規作成」サブメニュー）。スイートがターゲットとするユーザ層が明らかにされた事はなく、このユーザ層は、流行のビジネスと、ボランティア - 貢献者が起こす風に揺れ動いているように思えます。<a href="http://www.mozillazine.org/weblogs/dave/archives/2002_04.html#002696">Hyatt の blog</a> は、スイートというアプローチに反対する立場の意見を的確にまとめています。簡単に言えば、特定の領域で最も動機がある人や、アプリケーションの個々のルックアンドフィールを決めて最後にチェックインする人が誰であれ、偉大なアプリケーションは共有地としては運営できないのです。  </p>
+
+ <p> Gecko もまた、無理をしすぎて苦しんでいます。それは、Gecko の上に立つ統合されたアプリケーションが多すぎるからではなく（これらはデザインと移植のバグの多くを振り分けるのに役立っています）、Gecko が元来、実際問題として拡張するのが容易ではない形式で高度に「モジュール化」されているからです。同時に、Gecko には、いまだに <a href="http://dbaron.org/log/2003-01#l20030109">いびつな （baroque）</a>部分があります。 その原因は、初期におけるデザインの制限と、中心的な問題をパッチで解決してきたためにコードが蓄積された事です。
+ </p>
+
+
+
+ <h2><a name="summary-rationale">理由の要約</a></h2>
+
+ <p>簡単に、また上記したロードマップの要素リスト順に述べると、この新しい計画の理由はこうです。  </p>
+
+ <ol>
+   <li>Mozilla Firefox は、実に小さく、速く、そして <a href="/products/firefox/why/">より良い</a> ものです -- Firefox が、Mozilla コミュニティのいろんな方面で求められている、互いに競合するような機能を全て備えているから良いの <b>ではなく</b>、強固な「アドオン」拡張機能を持っているから良いのです。私たちは、ユーザが違えば要求する機能もまた異なる、という事を認識しています。このような要求は、まったく理にかなったものです。さまざまな機能の全てを、統合された Application Suite に盛り込もうとするのは、合理的ではありません。技術的にも社会的にも受け入れられないものです。
+   <p> </p>
+   </li>
+
+   <li>ブラウザにとって良いものは、メールアプリケーションにも良いものです。Mozilla の統合されたメールは多くの優れた機能を備えていますが、他のアプリとの統合点が多すぎる事の弊害を受けています。また、現存している複雑なフロントエンドを保守しているのは少なすぎる人数の人々であり、彼らの多くは今は別の仕事で給料を得ているのです。
+     <p> </p>
+   </li>
+
+   <li>Gecko の支持者たちが、いま率先して行なっている事は、レイアウト構造のバグとデザインの欠陥に対する修正であり、これは症状にパッチを当てる事では解決できないものです。これらのバグは、メンテナンス性、フットプリント、パフォーマンス、そして拡張性を大きく改善させる際の障害になっています。ソースコードの複雑な部分を削減するだけで、Gecko は、よりメンテナンスしやすく、より速くなり、そしておそらくダイナミック・フットプリントが少なく、コード・フットプリントは著明に少なくなるでしょう。
+   <p> </p>
+   </li>
+
+   <li>Mozilla の最も初期から行われてきた、CVS アクセスの <b>誤った</b> 平等主義モデルと、ツリー全体にわたるハッキングは、終わりを迎えています。当初のハッカーたちの多くは立ち去って、後に残されているのはオーナーのいない、あるいはオーナーの権限が有効ではないモジュール群です。やりすぎと、転職と、伝統的な CVS アクセス権が相まって、mozilla.org が作った <a href="hacking/">コードレビューの資格</a> は、関連するモジュールオーナー（オーナーがいるとすれば、ですが） に求められるべき物よりはるかに敷居の高い物になってしまいました。
+     <p> </p>
+
+   </li>
+
+ </ol>
+
+
+
+ <h2><a name="about-ownership">オーナーシップについて...</a></h2>
+
+ <p>最後の点は、議論の分かれる所です。少しのあいだ詳しく論じ、例外を提示する事ではっきりさせたいと思います。 
+ </p>
+
+ <ul>
+
+   <li> <a href="hacking/reviewers.html">スーパーレビュー</a> は一般論として良い制度です。その領域のエキスパートから一つ、そして強力なジェネラリストからもう一つ、という二段階のレビューは、しばしば（大なり小なり） 危険な変更を成功に導きました。私たちは、有益なものをやめるつもりはありません。
+     <p> </p>
+   </li>
+
+   <li>しばしば数人の献身的なボランティアによって行なわれる、ツリー全体の価値あるクリーンアップと、ビルドシステムのハッキングを軽視している、というつもりはありません -- この種の作業は継続されるべきです。
+     <p> </p>
+
+   </li>
+
+   <li>また、オーナーが常に正しいと言い張ったり、彼らが「終身在職権」を持っていて交代させる事ができないと言うつもりもありません。
+     <p> </p>
+   </li>
+
+ </ul>
+
+
+
+ <p>これらの簡単な問題を片付けた上で、後に残っている重要な点は次のものです。決断力をもって支配するコンポーネントオーナーが一人いれば、オーナー不在で決断が下せない状態よりは、ほとんどの場合よい結果になる、という点です（注意：三人以上の委員会は有効なオーナーではありません）。この事は、トップダウンによるアプリケーションのデザインとポリシーの設定、とりわけユーザインターフェースのデザインにおいて、特に当てはまります。アプリケーション内のユーザインターフェースを首尾一貫したものにするためには、「アプリケーションの皇帝（独裁者）」によるリーダーシップに勝るものはありません。デフォルトの共通キーバインドのように、アプリケーション同士で統一が必要な場合、皇帝たちが連絡し協力して、整理統合することを期待します。 
+ </p>
+
+ <p>Mozilla が「秩序を回復する」時が来たのです。
+
+<!--
+
+原文の "return to normalcy" は、9.11 テロ事件後のアメリカ市民の合い言葉。
+
+-->
+
+偉大なソフトウェアは、一人または数人のハッカーによって作り始められます。より大勢の人々がチームとなって、作成者の指導のもとに、テストし、クリーンアップし、拡張します。そして中には、作成者たちに合流あるいは入れ替わるまでに成長する人たちも出てくるでしょう。コードのテストと同じく、コードのレビューは、すでにあるものをチェックする手続きであり、凡庸な素材から優秀なコードを作ることはできません。 
+ </p>
+
+ <p>従って、ケースバイケースではありますが、スーパーレビュアーたちがそのモジュールではオーナーの権限が有効に働いているとみなしている場合、用心深いオーナーに対してスーパーレビューを必ずしも必須ではないのものとし、強力なオーナーシップを促進します。そして、オーナーシップが弱いか存在しないモジュールでは、私たちはオーナーを見つけるための手段を取るでしょうし、候補者が誰もいなければ、オーナーの権限が低い、あるいはオーナー不在のコードへの依存度を減少するでしょう。ある重要なモジュールにおいてオーナーなしでしばらく「減速走行」できるのであればそうするでしょうが、経験上、それは減速走行よりも深刻な状態に至るのが常だったのです。 
+ </p>
+
+
+
+ <h2><a name="what-all-this-does-not-mean">以上の記述が意味していない事</a></h2>
+
+ <p> 例外をあげることで明確化する、というのをもう少し続けると、次のような事も私たちは提案して <b>いません</b>。</p>
+
+ <ul>
+
+   <li>私たちは SeaMonkey Application Suite やその XPFE フロントエンドを当分の間維持し続けます。この由緒正しいコンポーネントあるいはスイート全体に基づいた製品を出した会社はいくつかありますし、今後出す予定の会社もあります。多くの組織が Netscape 7.x といったような SeaMonkey やその派生製品を展開しています。私たちはこうした製品を、確立された継続的な手法でサポートしていこうと考えています。しかし、私たちは今でも Firefox や Thuderbird によって切り開かれたような、もっと柔軟な <a href="#application-architecture">アプリケーション構造</a> をもった Mozilla にしていこうともしています。こうした分野こそが、私たちの斬新な開発努力が向かうべき方向だと考えています。
+
+     <p> </p>
+
+   </li>
+
+   <li>私たちは、XUL を捨てて、ネイティブな GUI ツールキットのフロントエンドを選ぼうとしているのでは <b>ありません</b>。また私たちは、Mozilla の Gecko をベースにしてネイティブな <a href="http://www.apple.com/macosx/">OS X</a> のフロントエンドを持つブラウザである、Camino を軽視しようとしているのでもありません。どちらのアプローチも成功をおさめており、誠実なファンがいます。Mozilla コミュニティは、両方のアプローチを受け入れたのです （OS X 版の Mozilla Firefox まで作成され、繰り返しテストされています）。
+
+ <p> </p>
+
+   </li>
+
+   <li>従って、Mozilla Firefox を含めた新しいスタンドアローンアプリケーションへと移行するにあたり、私たちは Mac の XUL を捨てるつもりはありません。Mozilla のクロスプラットフォームなアプリケーションとツールキットが、人々が実際に使えるアプリケーションとして、クロスプラットフォームかつ使用可能なものであり続ける事を確認するのが私たちの目標です。また、Gecko の組み込みをテストするための環境は、他のプラットフォームと同様に、Mac でも必要です。ですから、OS X のためのナイトリーおよびマイルストーンビルドを提供し続けるつもります。
+
+     <p> </p>
+
+   </li>
+
+   <li>XPFE に基づいたブラウザと統合されている重要なツール、 <a href="projects/inspector/">DOM インスペクター</a> と <a href="projects/venkman/">Venkman</a> （JavaScript デバッガ）は、新しいスタンドアローンなブラウザでアドオンとしてサポートされる必要があります。
+
+     <p> </p>
+
+   </li>
+
+   <li>Mozilla Application Suite の、そのほかの統合されたコンポーネントである、<a href="projects/calendar/">Calendar</a>、 <a href="projects/rt-messaging/chatzilla/">Chatzilla</a>、そして <a href="editor/">Composer</a> （HTML エディタ・アプリケーション）もまた、なくなりません。これらがどのように含まれるかはまだ未定です。スタンドアローンのツールキット・アプリ になるか（もしそうなら、どちらの XUL ツールキットか）、あるいは Mozilla Firefox の一般的なアドオンになるか （もしそうなら、新しい XUL ツールキットを使用する必要があるでしょう）は不明です。いずれにせよ私たちは、コミュニティが行なうテストとフィードバックのためのデイリー・ビルドとマイルストーン・ビルドを提供するなどして、これらのモジュールのオーナーが必要とするあらゆるサポートを行なうことを約束します。
+
+     <p> </p>
+
+   </li>
+
+ </ul>
+
+
+
+ <h2><a name="application-architecture">アプリケーション・アーキテクチャ</a></h2>
+
+ <p>新しいアプリケーション・アーキテクチャの提案を始めるにあたり、関連する事実を要約し、いくつかの用語を定義しておきましょう。 
+
+ </p>
+
+ <p>現在、Mozilla テクノロジーを使用して作成されるアプリケーションには、主に二種類あります。ひとつは、<b>組み込み</b> アプリケーションです。これは、Mozilla のレイアウト・エンジンを使用していますが、レイアウトされた HTML または XML 文書以外のユーザインターフェースには、独自のコードを使用しています。もう一つは、<b>ツールキット</b> アプリケーションです。これは、Mozilla 自体の上に作成され、クロスプラットフォームとして設計されています。ユーザインターフェースの要素は XUL で定義され、Gecko を使用してレンダリングされています。 
+
+ </p>
+
+ <p>どちらのアプリケーションでも、 Gecko Runtime Environment （<a href="projects/embedding/">GRE</a>） を使用して、一度 Gecko をインストールすれば、それを共有して使用する事ができるようになるでしょう。アプリケーション間でプロファイルが共有できるようにさえなるかもしれませんが、独立したプロセスで動作しているアプリケーションの間でプロファイルを共有できるようなプロセス間の通信機能は、（1.7 アルファ版の時点では） まだ作成されていません 。 
+
+ </p>
+
+ <p>ツールキットアプリケーションは、エクステンションもサポートするでしょう。これは、中核になるアプリケーションの上に置かれて、追加機能を提供するように設計された特殊なアドオンです。ブラウザの場合でいえば、マウスジェスチャー、サイトナビゲーション・ツールバー、DOM インスペクター、そして JavaScript デバッガがこのようなアドオンの例です。 
+
+ </p>
+
+ <p>さらに、私たちは、特定のツールキットアプリケーションは、それ自体がエクステンションでもあるべきだ、と提案します。つまり、スタンドアロンのアプリケーションであると同時に、他のアプリケーションにインストールされるアドオンでもあるように設計されるべきです。このようなアプリケーションの例として、Thunderbird、別名 Mozilla メール があり、スタンドアロンのアプリケーションとしても動作し、また Mozilla Firefox、別名 Mozilla ブラウザにエクステンションとして直接インストールする事もできるようになるでしょう。 
+
+ </p>
+
+ <p>思想としては、統合されすぎた Application Suite から単純なツールキットアプリケーションへの移行です。デフォルトの設定から上級者向けの機能を削除すると同時に、好みのエクステンション群を基本機能に追加してあなた独自のブラウザを作成できる強力なツールを提供します。mozilla.org がサポートしなければならない独自のビルドが多数できるのを避けるために、一般的なエクステンションはすべて無効でインストールされる状態で出荷されるでしょう。こうすれば、エクステンションを使いたい人は簡単に有効にできますし、使いたくない人はアンインストールできます。 
+
+ </p>
+
+ <p>このアーキテクチャは、次の図でわかりやすくなるでしょう。</p>
+
+ <p> </p>
+
+<p style="text-align:center;">
+<img src="app-architecture-diagram.png" alt="アーキテクチャ">
+</p>
+
+ <p>この図でメールは、アプリケーション （四角） と同時に、エクステンション （メールが拡張する対象であるブラウザに向かう矢印を持つ円形）としても示されています。アプリケーションではない純粋なエクステンションは、図の一番上に置かれています。 
+
+ </p>
+
+
+
+ <h2><a name="to-do">やるべき事のリスト</a></h2>
+
+ <p>このロードマップは提案です。私たちは、Mozilla プロジェクトが向かうべきだと私たちが考えている方向を示しているのです。私たちが今いる場所 （1.4 アルファ）からより良い場所に到達するためには、少なくとも以下に示す事を行なう必要があります。 
+ </p>
+
+ <ul>
+   <li>二つのブラウザによってビルドされたファイルに追加された <a href="http://lxr.mozilla.org/mozilla/search?string=MOZ_PHOENIX">MOZ_PHOENIX</a> #ifdefs の数を削減する。理想的にはゼロになるまで。     <p> </p>
+   </li>
+   <li>次のアドオンのサポートと開発を継続する：
+   <ul>
+   <li>DOM インスペクター</li>
+   <li>Venkman </li>
+   <li>サイト・ナビゲーション・ツールバー</li>
+   <li>メールの統合 （メール作成のための &lt;ctrl-M&gt; など） </li>
+   </ul>
+
+     <p> </p>
+
+   </li>
+
+   <li>新しい XUL ツールキットに基づいた Thunderbird の開発。     <p> </p>
+   </li>
+   <li>新旧両方のブラウザ・ビルドをカバーするのに充分な数の tinderbox マシンを用意する。
+ <p> </p>
+   </li>
+ </ul>
+
+
+
+ <p>繰り返しますが、私たちはここで、ただ方向性を示しているだけです。行動計画の詳細はニュースグループや Bugzilla を通じて作り上げていきますが、私たちは将来の数マイルストーンにわたって新しいアプリケーション構造を実装しようと考えています。そして、企業や同様の規模の展開を行っている SeaMonkey を維持する一方、アプリケーション開発努力を新しいアプリケーションに集中していきたいと考えています。コメントをいただきたいと思います。できれば <a href="news://news.mozilla.org/netscape.public.mozilla.seamonkey">mozilla.seamonkey</a> ニュースグループにお願いします。</p>
+
+
+
+<h2><a name="new-milestones"></a><a name="milestone-schedule">マイルストーンスケジュール</a></h2>
+
+ <p>本稿の前のロードマップに <a href="roadmap/roadmap-05-Jun-2002.html#tree-management">記載されている</a> ように、Mozilla プロジェクトは、四半期ごとにマイルストーンをリリースする、という計画に従ってきました。この計画では、新機能を盛り込んだ安定しているリリースを定期的に供給する、という点に重点がおかれています。理想的には、リスキーな変更を「アルファ」マイナーリリースに詰め込み、安定化のための「ベータ」期間が続き、そして短いフリーズ期間内で「出荷の障害になる」バグだけを発見して修正する、というものです。 
+ </p>
+
+ <p>コミュニティの多くの人から、アルファ期間を延長してほしいという要望が出されました。しかし、アルファ期間が長すぎると、大勢のテスターから自動的に送られてくるクラッシュレポートなどのフィードバックを集計して、それに <b>対処する</b> ことができなくなります。とは言っても、アルファ期間をベータ期間よりも長くするのは合理的な事だと私たちも思いますので、ベータ期間から一週間分をアルファ期間へと移しました。以下が更新したマイルストーンスケジュールです。  </p>
+
+<p style="text-align:center">
+<img src="branching-2005-01-25.png" alt="ツリー・マネジメント・ダイアグラム">
+</p>
+
+ <p>下の表は、各マイルストーンの予定を、トランクのフリーズ日、ブランチ作成日、マイルストーンのリリース日に分けてあります。（マイルストーンの開始日は、前のマイルストーンのブランチ日です） 
+ </p>
+
+ <p>
+<table class="milestone_schedule">
+   <tbody>
+     <tr>
+  <th>マイルストーン</th>
+  <th>開始</th>
+  <th>フリーズ</th>
+  <th>ブランチ</th>
+  <th>リリース（目標）</th>
+  <th>リリース（実際）</th>
+     </tr>
+<tr>
+
+<tr> 
+  <td>1.8alpha6</td>
+
+  <td>2004-11-22</td>
+  <td>2005-01-04</td>
+  <td>該当なし</td>
+  <td>2005-01-06</td>
+  <td>2005-01-12</td>
+</tr>
+<tr> 
+  <td>1.8beta1</td>
+
+  <td>2005-01-06</td>
+  <td>2005-02-09</td>
+  <td>該当なし</td>
+  <td>2005-02-11</td>
+  <td>?</td>
+</tr>
+<tr> 
+  <td>1.8beta2</td>
+
+  <td>2005-02-11</td>
+  <td>2005-03-16</td>
+  <td>該当なし</td>
+  <td>2005-03-18</td>
+  <td>?</td>
+</tr>
+<tr> 
+  <td>1.8</td>
+
+  <td>2005-03-18</td>
+  <td>該当なし</td>
+  <td>2005-03-30</td>
+  <td>?</td>
+  <td>?</td>
+</tr>
+<tr> 
+  <td>1.9alpha1</td>
+
+  <td>2005-03-30</td>
+  <td>2005-03-11</td>
+  <td>該当なし</td>
+  <td>2005-03-13</td>
+  <td>?</td>
+</tr>
+<tr> 
+  <td>1.9alpha2</td>
+
+  <td>2005-05-13</td>
+  <td>2005-06-22</td>
+  <td>該当なし</td>
+  <td>2005-06-24</td>
+  <td>?</td>
+</tr>
+</tbody></table>
+
+
+ </p>
+
+ <p> いつもの通り、マイルストーンのフリーズ時刻は、大平洋標準時の火曜日午後 11時 59分です（<a href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=SeaMonkey">tinderbox</a> のページにある告知をご覧ください）。 
+ </p>
+
+ <p> Mozilla ベースの製品をリリースしようと計画していて、その開発スケジュールが上記のマイルストーンとうまく合わない場合は、私たちに <a href="mailto:drivers@mozilla.org">お知らせ</a> ください。（情報の秘密は外部にもれないようにしますし、必要であれば適切な守秘手段をとります。）  </p>
+
+
+
+ <h2><a name="how-you-can-help">協力するには</a></h2>
+
+
+
+ <p> <b>C および C++ ハッカーへ</b>： tinderbox は現在 <a href="http://axolotl.mozilla.org/graph/query.cgi?tbox=backupboy&testname=codesize&autoscale=1&size=&units=bytes&ltype=&points=&showpoint=2004:03:30:12:05:15,24306632&avg=0&days=250">コードフットプリント</a> を計測していますので、フットプリントを増やすのではなく減らしていきましょう。コードを追加するというありがちな誘惑に負けないでください。コードを削除する事、複雑になりすぎたコードを単純化する事、早まった最適化を元に戻す事、そして根拠のない XPCOM の使用や充分に XPCOM 化されていない古いコードを一掃する事を心がけてください。新しい機能を追加しなければならない場合は、正しいライブラリにバンドルされているか、すなわち新しいライブラリを追加しないで良いかを確認してください。<b><a href="http://lxr.mozilla.org/mozilla/find?string=basebrowser">最小限の組み込みブラウザビルド</a> にリンクされるモジュールへのいかなる追加も <a href="about/drivers">driver ら</a> による承認が必要です。</b> </p>
+
+ <p> </p>
+
+ <p> <b>Mozilla 組み込み制作者へ</b>： <tt>embed</tt>、<tt>footprint</tt>、<tt>mlk</tt>、<tt>perf</tt> その他の適切なキーワードをつけて Bugzilla に意見を投稿してください。Bugzilla の新しいリクエスト追跡機能を利用して、そのバグを将来のマイルストーンに対するブロッキングとして指定してください （例： <tt>blocking1.7b?</tt>）。そして、なぜそのマイルストーンまでにバグの修正が必要か、説得力のある説明を付けてください。<a href="#project-management">Mozilla プロジェクト・マネージメント</a>を利用すれば、できるだけ多数のマイルストーンキーワードを満たすように修正目標を決められるようなハッカーがそのバグを担当するように努力します。 
+
+ </p>
+
+ <p> <b>バグ担当者</b>、そして特に、<tt>Future</tt> バグや期日未定のバグを名目上の担当者の代わりに修正できる支援者へ： 割り当てられたバグを <tt>mozilla 1.5</tt> と <tt>mozilla 1.6</tt> マイルストーンの間で修正目標を定めてください。分類の目安として、アプリケーションおよびレイアウト再構築に関するものは 1.5 から 1.6 の間です。バグを支援者に任せるようにしてください。future とされたバグ、あるいは期日未定のバグで、すぐに修正するべきだけど修正を支援してくれる人が見つからない場合、<a href="mailto:drivers@mozilla.org">drivers@mozilla.org</a> に知らせてください。 
+
+ </p>
+
+ <p> <b>コミュニティメンバーへ</b>： Bugzilla のマイルストーン指定機能を使う場合は、慎重に使用してください。担当者の同意がないまま他の人のバグのターゲットマイルストーンを変更しないでください。もちろん、優先度を上げる手助けとして投票することはできます （ただし、パッチを投稿するほうが投票よりも大きな力を持つことを忘れないでください） 。最後に、支持活動や「同感です」的なコメントをバグシステムに投稿するのはご遠慮ください。<b> 
+
+ </b></p>
+
+
+
+ <h2 class="center"><a name="project-management">プロジェクト・マネージメント</a></h2>
+
+ <p>mozilla.org は、早急な援助を必要とするバグへの支援者を求めている開発者のため、またリスクを軽減するため、そして Mozilla ベースの商品化プロジェクトに対して製品リリースの管理面を支援するため、<a href="about/drivers">プロジェクトマネージャーのグループ</a>、<a href="mailto:drivers@mozilla.org">drivers@mozilla.org</a> を創設しました。
+
+ </p>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/roadmap/roadmap-02-Apr-2003.html">英語版</a> 2005/03/22</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/roadmap/roadmap-02-Apr-2003.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

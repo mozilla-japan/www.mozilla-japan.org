@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="library" default="" basedir=".">
+<description>presetdef and macrodef library</description>
+<property name="buildfile.library.loaded" value="true"/>
+
+
+<!-- * common * -->
+<defaultexcludes add="**/*~/**"/>
+<tstamp><format property="tstamp.yyyyMMdd"		pattern="yyyyMMdd"/></tstamp>
+<tstamp><format property="tstamp.yyyyMMddHH"	pattern="yyyyMMddHH"/></tstamp>
+<tstamp><format property="tstamp.yyyyMMddHHmm"	pattern="yyyyMMddHHmm"/></tstamp>
+<tstamp><format property="tstamp.MMddHHmm"		pattern="MMddHHmm"/></tstamp>
+<tstamp><format property="tstamp.yyyy-MM-dd"	pattern="yyyy-MM-dd"/></tstamp>
+
+<tstamp><format property="tstamp.yesterday.yyyy-MM-dd"	pattern="yyyy-MM-dd" offset="-1" unit="day"/></tstamp>
+<tstamp><format property="tstamp.lastweek.yyyy-MM-dd"	pattern="yyyy-MM-dd" offset="-1" unit="week"/></tstamp>
+<tstamp><format property="tstamp.2weekago.yyyy-MM-dd"	pattern="yyyy-MM-dd" offset="-2" unit="week"/></tstamp>
+<tstamp><format property="tstamp.lastmonth.yyyy-MM-dd"	pattern="yyyy-MM-dd" offset="-1" unit="month"/></tstamp>
+
+<loadfile property="N" srcfile="config/newline"/>
+
+<macrodef name="istrue">
+	<attribute name="arg"/>
+	<attribute name="property"/>
+	<attribute name="value" default="true"/>
+	<sequential>
+		<condition property="@{property}" value="@{value}">
+			<or>
+				<istrue value="@{arg}"/><!-- "true", "yes", "on" -->
+				<equals arg1="@{arg}" arg2="y" casesensitive="no" trim="yes"/>
+				<equals arg1="@{arg}" arg2="t" casesensitive="no" trim="yes"/>
+			</or>
+		</condition>
+	</sequential>
+</macrodef>
+<macrodef name="isfalse">
+	<attribute name="arg"/>
+	<attribute name="property"/>
+	<attribute name="value" default="true"/>
+	<sequential>
+		<condition property="@{property}" value="@{value}">
+			<and>
+				<isfalse value="@{arg}"/><!-- not "true", "yes", "on" -->
+				<not><or>
+					<equals arg1="@{arg}" arg2="y" casesensitive="no" trim="yes"/>
+					<equals arg1="@{arg}" arg2="t" casesensitive="no" trim="yes"/>
+				</or></not>
+			</and>
+		</condition>
+	</sequential>
+</macrodef>
+
+<macrodef name="equals">
+	<attribute name="property"/>
+	<attribute name="value" default="true"/>
+	<attribute name="arg1"/>
+	<attribute name="arg2"/>
+	<attribute name="casesensitive" default="true"/>
+	<attribute name="trim" default="false"/>
+	<sequential>
+		<condition property="@{property}" value="@{value}">
+			<equals arg1="@{arg1}" arg2="@{arg2}" casesensitive="@{casesensitive}" trim="@{trim}"/>
+		</condition>
+	</sequential>
+</macrodef>
+
+<macrodef name="isset">
+	<attribute name="arg"/>
+	<attribute name="property"/>
+	<attribute name="value" default="true"/>
+	<sequential>
+		<condition property="@{property}" value="@{value}">
+			<isset property="@{arg}"/>
+		</condition>
+	</sequential>
+</macrodef>
+
+<macrodef name="isnotempty">
+	<!-- this macro depends the order to expand property and attribule
+		 we can use ${@{foo}} but cannot use @{${foo}} so far (expansion order is not documented) -->
+	<attribute name="arg"/>
+	<attribute name="property"/>
+	<attribute name="value" default="true"/>
+	<attribute name="trim" default="false"/>
+	<sequential>
+		<condition property="@{property}" value="@{value}">
+			<and>
+				<isset property="@{arg}"/>
+				<not><equals arg1="${@{arg}}" arg2="" trim="@{trim}"/></not>
+			</and>
+		</condition>
+	</sequential>
+</macrodef>
+
+<macrodef name="propertyalias">
+	<!-- this macro depends the order to expand property and attribule
+		 we can use ${@{foo}} but cannot use @{${foo}} so far (expansion order is not documented) -->
+	<attribute name="property"/>
+	<attribute name="alias"/>
+	<sequential>
+		<condition property="@{alias}" value="${@{property}}">
+			<isset property="@{property}"/>
+		</condition>
+	</sequential>
+</macrodef>
+
+
+
+<!-- * message * -->
+<macrodef name="loadconf">
+	<attribute name="file"/>
+	<attribute name="pattern" default="."/>
+	<sequential>
+		<loadproperties srcfile="@{file}" encoding="UTF-8">
+			<filterchain>
+				<escapeunicode/>
+				<linecontainsregexp>
+					<regexp pattern="@{pattern}"/>
+				</linecontainsregexp>
+			</filterchain>
+		</loadproperties>
+		<!-- <echoproperties prefix=""/> -->
+	</sequential>
+</macrodef>
+
+<macrodef name="loadmessage">
+	<attribute name="file" default="config/language/${lang}.message"/>
+	<attribute name="pattern" default="^(cmsg\.|\t\t)"/>
+	<sequential>
+		<loadproperties srcfile="@{file}" encoding="UTF-8">
+			<filterchain>
+				<escapeunicode/>
+				<linecontainsregexp>
+					<regexp pattern="@{pattern}"/>
+				</linecontainsregexp>
+			</filterchain>
+		</loadproperties>
+		<!-- <echoproperties prefix="vmsg."/> -->
+	</sequential>
+</macrodef>
+
+
+
+<!-- * delete with check & confirm * -->
+<target name="--safedelete-check--">
+	<available property="file.exists" file="${file}" type="file" value="true"/>
+	<available property="dir.exists"  file="${dir}"  type="dir"  value="true"/>
+	<condition property="exists" value="true">
+		<or>
+			<istrue value="${file.exists}"/>
+			<istrue value="${dir.exists}"/>
+		</or>
+	</condition>
+	<available property="file.invalidtype" file="${file}" type="dir"  value="true"/>
+	<available property="dir.invalidtype"  file="${dir}"  type="file" value="true"/>
+</target>
+<target name="--safedelete-file-confirm--" depends="--safedelete-check--" if="file.exists" unless="noconfirm">
+	<loadmessage pattern="^vmsg\.safedelete\.file\."/>
+	<input addproperty="answer.file" message="${vmsg.safedelete.file.confirm}"/>
+	<isfalse property="aborted" arg="${answer.file}"/>
+	<fail if="aborted" message="${vmsg.safedelete.file.aborted}"/>
+</target>
+<target name="--safedelete-dir-confirm--"  depends="--safedelete-check--" if="dir.exists"  unless="noconfirm">
+	<loadmessage pattern="^vmsg\.safedelete\.dir\."/>
+	<input addproperty="answer.dir" message="${vmsg.safedelete.dir.confirm}"/>
+	<isfalse property="aborted" arg="${answer.dir}"/>
+	<fail if="aborted" message="${vmsg.safedelete.dir.aborted}"/>
+</target>
+<target name="--safedelete--" depends="--safedelete-file-confirm--, --safedelete-dir-confirm--">
+	<delete file="${file}" dir="${dir}" failonerror="${failonerror}"/>
+</target>
+
+<macrodef name="safedelete">
+	<attribute name="file" default="???"/>
+	<attribute name="dir" default="???"/><!-- dummy invalid value for default -->
+	<attribute name="failonerror" default="false"/>
+	<sequential>
+		<antcall target="--safedelete--" inheritall="false">
+			<param name="file" value="@{file}"/>
+			<param name="dir" value="@{dir}"/>
+			<param name="failonerror" value="@{failonerror}"/>
+			<propertyset>
+				<propertyref name="noconfirm"/>
+			</propertyset>
+		</antcall>
+	</sequential>
+</macrodef>
+
+
+<!-- * escaped-unicode * -->
+<presetdef name="escapeunicoding-copy">
+	<copy taskname="escapeunicoding-copy" encoding="UTF-8" preservelastmodified="yes" overwrite="true">
+		<filterchain><escapeunicode/></filterchain>
+	</copy><!-- copy task with escapeunicode filterchain is more flexible than native2ascii task -->
+</presetdef>
+
+<macrodef name="escapeunicode-copy">
+	<attribute name="srcdir"/>
+	<attribute name="destdir"/>
+	<attribute name="includes" default="**"/><!-- select total set of files to be copied -->
+	<attribute name="excludes" default=""/>
+	<attribute name="escapeincludes" default="**/*.properties"/><!-- select subset of files to be converted and copied -->
+	<attribute name="escapeexcludes" default=""/>
+	<attribute name="encoding" default="${encoding.properties}"/>
+	<attribute name="preservelastmodified" default="yes"/>
+	<attribute name="overwrite" default="true"/>
+	<sequential>
+		<copy todir="@{destdir}" preservelastmodified="@{preservelastmodified}" overwrite="@{overwrite}">
+			<fileset dir="@{srcdir}" includes="@{includes}" excludes="@{excludes}">
+				<not><and><!-- patternset (includes/excludes) don't support complementary set and using selector -->
+					<filename name="@{escapeincludes}" negate="false"/>
+					<filename name="@{escapeexcludes}" negate="true"/>
+				</and></not>
+			</fileset>
+		</copy>
+		<copy todir="@{destdir}" preservelastmodified="@{preservelastmodified}" overwrite="@{overwrite}" encoding="@{encoding}">
+			<fileset dir="@{srcdir}" includes="@{includes}" excludes="@{excludes}">
+				<filename name="@{escapeincludes}" negate="false"/>
+				<filename name="@{escapeexcludes}" negate="true"/>
+			</fileset>
+			<filterchain><escapeunicode/></filterchain>
+		</copy><!-- copy task with escapeunicode filterchain is more flexible than native2ascii task -->
+	</sequential>
+</macrodef>
+
+<macrodef name="unescapeunicode-copy">
+	<attribute name="srcdir"/>
+	<attribute name="destdir"/>
+	<attribute name="includes" default="**"/><!-- select total set of files to be copied -->
+	<attribute name="excludes" default=""/>
+	<attribute name="unescapeincludes" default="**/*.properties"/><!-- select subset files to be converted and copied -->
+	<attribute name="unescapeexcludes" default=""/>
+	<attribute name="encoding" default="${encoding.properties}"/>
+	<attribute name="preservelastmodified" default="yes"/>
+	<attribute name="overwrite" default="true"/>
+	<sequential>
+		<copy todir="@{destdir}" preservelastmodified="@{preservelastmodified}" overwrite="@{overwrite}">
+			<fileset dir="@{srcdir}" includes="@{includes}" excludes="@{excludes}">
+				<not><and><!-- patternset (includes/excludes) don't support complementary set and using selector -->
+					<filename name="@{unescapeincludes}" negate="false"/>
+					<filename name="@{unescapeexcludes}" negate="true"/>
+				</and></not>
+			</fileset>
+		</copy>
+		<!-- unescpe can be done only by native2ascii but it doesn't support preservelastmodified nor overwrite setting... -->
+		<native2ascii src="@{srcdir}" dest="@{destdir}" reverse="true" encoding="@{encoding}"
+			includes="@{includes}" excludes="@{excludes}">
+			<filename name="@{unescapeincludes}" negate="false"/>
+			<filename name="@{unescapeexcludes}" negate="true"/>
+		</native2ascii>
+	</sequential>
+</macrodef>
+
+<macrodef name="unescapeunicode-unjar">
+	<attribute name="src"/>
+	<attribute name="dest"/>
+	<sequential>
+		<unjar src="@{src}" dest="@{dest}">
+			<patternset excludes="**/*.properties"/>
+		</unjar>
+		<unjar src="@{src}" dest="${temp.root}/unescape/@{dest}">
+			<patternset includes="**/*.properties"/>
+		</unjar>
+		<unescapeunicode-copy srcdir="${temp.root}/unescape/@{dest}"
+			destdir="@{dest}"/>
+	</sequential>
+</macrodef>
+
+
+<!-- * filtering * -->
+<presetdef name="filtering-copy">
+	<copy taskname="filtering-copy" encoding="UTF-8" preservelastmodified="true" overwrite="true">
+		<filterset begintoken="${filter.begintoken}" endtoken="${filter.endtoken}">
+			<filtersfile file="${temp.root}/${filters.filename}"/>
+		</filterset>
+	</copy>
+</presetdef>
+
+
+<!-- * cvs * -->
+<macrodef name="altcvs">
+	<attribute name="cvsroot"		default="${cvs.cvsroot.main}"/>
+	<attribute name="passfile"		default="${cvs.cvspass.file}"/>
+	<attribute name="globaloption"	default="-r"/><!-- -r: read only (default) -w: writable -->
+	<attribute name="command"		default="checkout"/><!-- checkout|export... -->
+	<attribute name="option"		default=""/><!-- command specific options -->
+	<attribute name="tag"			default=""/><!-- HEAD|BASE... -->
+	<attribute name="date"			default=""/><!-- tomorrow|yesterday|last week|YYYY-MM-DD|MM/DD/YYYY... -->
+	<attribute name="module"		default=""/>
+	<attribute name="dest"			default=""/>
+	<attribute name="output"		default="${cvs.root}/cvs.log"/>
+	<attribute name="quiet"			default="false"/>
+	<attribute name="failonerror"	default="false"/>
+	<sequential>
+		<property name="altcvs.passfile" value="@{passfile}"/>
+		<loadmessage pattern="^vmsg\.cvs\.cvspass\."/>
+		<fail message="${vmsg.cvs.cvspass.notfound}">
+			<condition><not><available file="@{passfile}" type="file"/></not></condition>
+		</fail>
+		<cvs cvsroot="@{cvsroot}" passfile="@{passfile}" dest="@{dest}" output="@{output}" quiet="@{quiet}"
+			command="@{globaloption} @{command} @{option}" tag="@{tag}" date="@{date}" package="@{module}"/>
+	</sequential>
+</macrodef>
+
+
+<!-- * diff/lpdiff * -->
+<macrodef name="diff">
+	<attribute name="dir" default="."/>
+	<attribute name="from"/><!-- file|dir -->
+	<attribute name="to"/><!-- file|dir -->
+	<attribute name="output"/>
+	<attribute name="append" default="false"/>
+	<attribute name="option" default="-r -u"/>
+	<sequential>
+		<exec dir="@{dir}" executable="diff" output="@{output}" append="@{append}">
+			<arg line="@{option}"/>
+			<arg value="@{from}"/>
+			<arg value="@{to}"/>
+		</exec>
+	</sequential>
+</macrodef>
+
+<macrodef name="lpdiff">
+	<attribute name="from"/><!-- dir -->
+	<attribute name="to"/><!-- dir -->
+	<attribute name="output"/>
+	<attribute name="mode" default="diff"/><!-- 'all' or 'diff' -->
+	<sequential>
+		<java jar="LpDiff.jar" fork="true">
+			<arg value="-@{mode}"/>
+			<arg value="@{from}"/>
+			<arg value="@{to}"/>
+			<arg value="@{output}"/><!-- note: lpdiff don't have overwrite mode... -->
+		</java>
+	</sequential>
+</macrodef>
+
+
+<!-- * contents.rdf * -->
+<macrodef name="convert-contents.rdf">
+	<attribute name="fromdir"/>
+	<attribute name="todir"/>
+	<attribute name="includes" default="**/contents.rdf"/>
+	<attribute name="excludes" default=""/>
+	<attribute name="failonerror" default="true"/>
+	<attribute name="locale" default="${locale}"/>
+	<attribute name="region" default="${region}"/>
+	<attribute name="langtitle" default="${mozilla.lang.title}"/>
+	<sequential>
+		<copy taskname="converting contents.rdf files from en-US"
+			todir="@{todir}" encoding="${encoding.rdf}" preservelastmodified="true" overwrite="true" failonerror="@{failonerror}">
+			<fileset dir="@{fromdir}" includes="@{includes}" excludes="@{excludes}"/>
+			<filterchain>
+				<replacestring from="urn:mozilla:locale:en-US"		to="urn:mozilla:locale:@{locale}"/>
+				<replacestring from="urn:mozilla:locale:US"			to="urn:mozilla:locale:@{region}"/>
+				<replaceregex pattern='chrome:displayName="English *\(US\)"'
+							  replace='chrome:displayName="@{langtitle}"'/>
+				<replacestring from='chrome:name="en-US"'			to='chrome:name="@{locale}"'/>
+				<replacestring from='chrome:name="US"'				to='chrome:name="@{region}"'/>
+				<replacestring from='chrome:previewURL="http://www.mozilla.org/locales/en-US.gif"'
+								 to='chrome:previewURL="http://www.mozilla.org/locales/@{locale}.gif"'/>
+				<replacestring from='chrome:previewURL="http://www.mozilla.org/locales/US.gif"'
+								 to='chrome:previewURL="http://www.mozilla.org/locales/@{region}.gif"'/>
+			</filterchain>
+		</copy>
+	</sequential>
+</macrodef>
+
+<macrodef name="make-contents.rdf">
+	<attribute name="fromdir"/>
+	<attribute name="todir"/>
+	<attribute name="includes" default="**/contents.rdf"/>
+	<attribute name="excludes" default=""/>
+	<sequential>
+		<copy taskname="making contents.rdf files from template files"
+			todir="@{todir}" encoding="${encoding.rdf}" preservelastmodified="true" overwrite="true">
+			<fileset dir="@{fromdir}" includes="@{includes}" excludes="@{excludes}"/>
+			<filterset>
+				<filter token="AB_CD"					value="${locale}"/>
+				<filter token="MOZ_LANG_TITLE"			value="${mozilla.lang.title}"/>
+				<filter token="MOZILLA_LOCALE_VERSION"	value="${mozilla.locale.version}"/>
+				<filter token="MOZILLA_REGION_VERSION"	value="${mozilla.region.version}"/>
+			</filterset>
+			<filterchain>
+				<striplinecomments>
+					  <comment value="#"/><!-- strip the line: #filter substitution -->
+				</striplinecomments>
+			</filterchain>
+		</copy>
+	</sequential>
+</macrodef>
+
+
+
+</project>

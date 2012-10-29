@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>拡張機能のインストール</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { text-align: center; }
+	p, li, dt, dd { line-height: 160%; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 160%; }
+	table.diff { width: 100%; table-layout: fixed; }
+	table.diff td { width: 50%; vertical-align: top; }
+	.modified { background-color: lightblue; }
+	.added, .removed { background-color: lightgreen; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="July 25, 2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.4/installation-extras.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+
+
+
+<h1>Java、プラグイン、その他拡張機能</h1>
+<p>このドキュメントには、Java、プラグイン、その他 Mozilla に拡張機能をインストールする方法が書かれています。この他のユーザヘルプ資料は <a href="/catalog/end-user/">エンドユーザ資料</a> のページからご覧いただけます。</p>
+<p class="important">プラグインに関する詳細は、mozdev.org の <a href="http://plugindoc.mozdev.org/">PluginDoc</a> をご覧ください。</p>
+
+<ul>
+	<li><a href="#extras_java">Java</a></li>
+	<li><a href="#extras_palm">Palm サポート (Windows のみ)</a></li>
+	<li><a href="#extras_fonts">Linux フォント</a></li>
+	<li><a href="#extras_addons">その他のアドオン</a></li>
+	<li><a href="#extras_talkback">Talkback</a></li>
+</ul>
+
+<h3><a name="extras_java">Java</a></h3>
+
+<table border="0" cellpadding="5" cellspacing="5" class="diff">
+<tr>
+<td class="modified">
+
+<p><strong>Windows と Linux</strong> : Java アプレットを動かすには <a href="http://home.netscape.com/plugins/jvm.html">Java Run Time Environment (JRE)</a> プラグインをインストールする必要があります。<br><em>Windows</em> : インストーラービルドを使う場合は、なにも手を加えなくてもすべて動くはずです。</p>
+
+</td>
+<td class="modified">
+
+<p><strong>Windows と Linux</strong> : Java アプレットを動かすには <a href="http://home.netscape.com/plugins/jvm.html">Java Run Time Environment (JRE)</a> プラグインをインストールする必要があります。</p>
+
+</td>
+</tr>
+<tr>
+<td class="modified">
+
+<p>Java が動かないときには 次のことを確実にしてください: <br>Windows では: C:&yen;JDK*&yen;jre&yen;bin から Mozilla をインストールした ディレクトリの "&yen;plugins" ディレクトリに <tt>NPOJI610.DLL</tt> をコピーしてください。<br>Unix では: mozilla1.4 の <tt>plugins/</tt> ディレクトリに <tt>/usr/java/j*/jre/plugins/i386/ns610/libjavaplugin_oji.so</tt> への symlink を作ってください。ファイルをコピーするのではなく、symlink を作ってください。</p>
+
+</td>
+<td class="modified">
+
+<p><strong>Windows</strong> : インスト−ラ−ビルドを使う場合、あなたのシステムに既に JRE 1.3.0_01 があれば、Mozilla はそれを認識します。あなたが マニュアル設定でプラグインの自動検索を無効にしている場合は 次のようにして Java が動くようにしてください : あなたのマシンに JRE がインストールされた状態で、JRE のインストールディレクトリ (たとえば <tt>C:&yen;Program Files&yen;JavaSoft&yen;JRE&yen;&lt;バージョン&gt;&yen;bin</tt>) から <tt>NPOJI610.dll</tt> を Mozilla のプラグインディレクトリ (たとえば <tt>C:&yen;Program Files&yen;mozilla.org&yen;bin&yen;plugins</tt>) にコピーしてください。</p>
+<p><strong>Linux</strong> : Mozilla の plugins/ ディレクトリに /usr/java/jre&lt;バージョン&gt;plugin/i386/ns610<strong>-gcc32</strong>/libjavaplugin_oji.so への symlink を置いてください。(symlink を作らずにファイル自体をコピーすると、Java がクラッシュする可能性がありますので注意してください)</p>
+
+</td>
+</tr>
+</table>
+
+<p>Linux RPM ビルドでは root 権限で Java をインストールしなければいけません。</p>
+
+<h3><a name="extras_palm" id="extras_palm">Windows に アドレス帳 Palm Sync をインストールする</a></h3>
+<p>Mozilla のアドレス帳と Palm を同期させるためには、［スタート］ &gt; ［プログラム］メニューにある Mozilla グループから <b> アドレス帳 Palm Sync インストール</b> を選択してください。Palm のアドレス帳を Mozilla と同期させるよう設定する場合、アドレス帳は Palm Desctop とは同期しませんのでご注意ください。</p>
+<p>この作業を終えたら、Palm デバイスを接続して、Palm クレイドルにある HotSync ボタンを押すことができます。これで、デスクトップに HotSync Manager ダイアログが現れ、Mozilla を起動できるはずです。同期が完了したら、Mozilla を閉じて再起動し、同期ができているか Mozilla アドレス帳 を開いて確かめてください。</p>
+<p>一部の Palm ユーザは、このプロセスに加え、特別な作業をおこない、レジストリキーを手動で追加する必要があるかもしれません。</p>
+<ol>
+	<li><a href="http://ftp.mozilla.org/pub/mozilla/contrib/palm/AddPalmABSyncRegistryKey.reg">レジストリキー</a> をダウンロードし、ハードドライブに保存してください。</li>
+	<li>Palm ソフトが C:&yen;Palm にインストールされていない場合は、レジストリキーを編集して、適切なパスを設定してください。あなたが指定したパスが &quot; と &quot; に入っているか、それから、各ディレクトリにセパレータが 2 つ使われているか（それぞれの &yen; の代わりに &yen;&yen; を使います）確かめてください。</li>
+	<li>それから、Windows エクスプローラを開いて、このファイルをダブルクリックしてください。「Information in this file has been successfully entered into the registry」というメッセージが表示されるはずです。</li>
+	<li>アドレス帳 Palm Sync インストール を再起動すれば、Mozilla アドレス帳 Palm Sync が使えるようになります。</li>
+</ol>
+
+<h3>フォント</h3>
+<p>Linux システムの多く (特に RedHat Linux) には、Arial フォントに不具合があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=46415" title="Bug 46415 - Arial looks much smaller than Helvetica at same size, and is hard to read">46415</a>) 多くのウェブページ、特に Arial フォントを使用しているページが明確に表示されない、小さい、読みにくいなどの問題がある場合は次のページでフォントサーバを変える二つの方法を紹介しています :</p>
+<p><a href="http://home.online.no/~rut-aane/linux.html#ttf">http://home.online.no/~rut-aane/linux.html#ttf</a><br><a href="http://home.online.no/~rut-aane/linux.html#fuzzy">http://home.online.no/~rut-aane/linux.html#fuzzy</a></p>
+<p>もしこの方法がうまく行かない場合は、<tt>/usr/share/fonts/ISO8859-2</tt> をリネームしたり、移動することで問題が解決されるかもしれません。例えば、次のようなコマンドを入力してください :</p>
+<p><code>mv /usr/share/fonts/ISO8859-2 /usr/share/fonts.ISO8859-2</code></p>
+<p>その後ログアウトして、再度ログインします。この変更を元に戻す必要のある場合は、次のようにします :</p>
+<p><code>mv /usr/share/fonts.ISO8859-2 /usr/share/fonts/ISO8859-2</code></p>
+
+<h3><a name="extras_addons">アドオン</a></h3>
+
+<table border="0" cellpadding="5" cellspacing="5" class="diff">
+<tr>
+<td class="modified">
+
+<p>telnet:// をつかった URL は Linux (や 他の UNIX システムでも) 機能しません。telnet:// の URL は Win32 や MacOS では機能します。解決策 : http://protozilla.mozdev.org/ から protozilla をインストールしてください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=33282" title="Bug 33282 - URL: telnet:// unregistered in Linux">33282</a>)</p>
+<p>インターネットサーチエンジンを追加するなら <a href="http://mycroft.mozdev.org/">http://mycroft.mozdev.org/</a> から手に入れることができます。(訳者注：日本語サイトに対応したものは <a href="http://www.mozilla.gr.jp/tools/search/">もじら組</a>サイトにもあります。また、<a href="http://www.mozilla-japan.org/jp/l10n/">JLP (日本語パック)</a> にも含まれています)</p>
+
+</td>
+<td class="modified">
+
+<p><a href="http://mycroft.mozdev.org/">追加の検索エンジンプラグイン</a> (訳注 : 日本語サイトに対応したものは <a href="http://www.mozilla.gr.jp/tools/search/">もじら組のサイト</a> にもあります)、Linux (およびその他の UNIX システム) 用 <a href="http://protozilla.mozdev.org/">telnet:// URL サポート</a>、<a href="http://multizilla.mozdev.org">タブブラウズ拡張</a>、<a href="http://spellchecker.mozdev.org">スペルチェッカー</a>、その他の Mozilla 用アドオンなど、Mozilla 用の各種拡張機能は <a href="http://www.mozdev.org/">mozdev.org</a> から入手できます。これらの拡張機能は mozilla.org によって正式にサポートされているわけではありませんが、自分が使っている Mozilla の機能を高めようと考えている人には興味深いものばかりです。</p>
+
+</td>
+</tr>
+<tr>
+<td class="modified">
+
+<h3><a name="extras_talkback" id="extras_talkback">自動プロキシ設定で Quality Feedback Agent を利用する</a></h3>
+<p>Windows : もし自動プロキシ設定 を使っていて、mozilla.org へインシデントレポートを送るために Full Circle Talkback Quality Feedback Agent を使いたい場合、<tt>talkback.ini</tt> ファイルを適切なプロキシ設定情報を含むものに置き換える必要があります。その場合、次の手順にしたがってください。</p>
+<ol>
+	<li>HTTP プロキシ、または HTTP プロキシと SOCKS プロキシの両方を使っている場合、あなたが使っているプロキシのホスト名、ドメイン、ポート番号を使って、次の 3 行からなる <tt>talkback.ini</tt> という名前のファイルを作成してください。
+		<p><code>UseUserHTTPProxyInfo=1<br>UserHTTPProxyHost="yourproxy.yourdomain.com"<br>UserHTTPProxyPort=<em>xxxx</em></code></p>
+		<p><em>xxxx</em> となっているところは、お使いのプロキシポート番号です。</p>
+		<p>SOCKS プロキシを使っている場合、次の 3 行からなるファイルを作成してください。</p>
+		<p><code>UseUserSOCKSInfo=1<br>UserSOCKSHost="yourproxy.yourdomain.com"<br>UserSOCKSPort=<em>xxxx</em></code></p>
+		<p><em>xxxx</em> となっているところは、お使いの SOCKS ポート番号です。</p>
+	</li>
+	<li>既存の <tt>talkback.ini</tt> ファイルをあなたが作成したバージョンに置き換えてください。</li>
+</ol>
+<p>Windows 95 と Windows NT システムでは、<tt>talkback.ini</tt> ファイルを mozilla.exe ファイルを含むディレクトリの中の次のディレクトリにコピーしてください。<br><tt>&yen;Fullsoft&yen;data&yen;talkback.ini</tt></p>
+
+</td>
+<td class="modified">
+
+<h3><a name="extras_talkback" id="extras_talkback">Quality Feedback Agent</a></h3>
+<p><a href="/quality/qfa.html">Quality Feedback Agent</a> は、クラッシュ時に Mozilla に関するデータを収集します。これらの情報は、Mozilla 開発者がクラッシュの原因をすばやく発見し、そのバグを修正するのに役立ちます。このソフトは、訪問した Web サイトやパスワードといった機密情報は一切収集しません。クラッシュデータを報告することは、ユーザが Mozilla の品質を高めるために協力可能な、<a href="/quality/">たくさんある方法</a> のうちの 1 つです。この協力は必須ではありませんが、強くお勧めします。</p>
+<p>Windows では、自動プロキシ設定を使っている場合、Quality Feedback Agent を作動させるためには、talkback.ini を <a href="/quality/qfa.html#proxy">編集する</a> 必要があります。</p>
+
+</td>
+</tr>
+<tr>
+<td class="removed">
+
+<h3><a name="#extras_prefs" id="#extras_prefs">user.js を使ったユーザ設定</a></h3>
+<p>Mozilla は非常に柔軟な動作設定が可能です。ただ、すべての設定操作を扱うには UI に充分な余裕がありません。UI の無い設定項目を変更する必要があるときは <tt>user.js</tt> という ユーザ設定ファイルに変更を加えることになります。ここで説明しているのはそのための詳しい手順です。</p>
+<p>このファイルは Mozilla があなたのプロファイルを読み込むときに参照されます。ですから Mozilla が動いている間にあなたがこのファイルを編集しても その変更は Mozilla を再起動するまで効果を持ちません。あなたの <a href="#profileloc">プロファイルディレクトリ</a> にまだ <tt>user.js</tt> ファイルがなければ 新たに作成し、次のような書式の設定行を 正確に 書き込んでください: </p>
+<pre>user_pref("foo.bar.baz", "somevalue");</pre>
+<p>または オン／オフ 設定に対しては</p>
+<pre>user_pref("foo.bar.baz", "true");</pre>
+<p>編集し終わったら Mozilla を再起動してください。</p>
+
+<p>設定情報にマニュアルで変更を加える際には prefs.js を編集しないでください。prefs.js と同じディレクトリに 新しく user.js というテキストファイルを作ってください。user.js の設定情報が 必要に応じて prefs.js の設定情報を上書きします。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=142590" title="Bug 142590 - Add 'Do Not Edit' warning to prefs.js">142590</a>)</p>
+
+<h3><a name="extras_chatzilla" id="extras_chatzilla">ChatZilla</a></h3>
+
+<h4>概要</h4>
+<p>ChatZilla はまだ完成はしていませんが、より完成された IRC クライアントで使用できるコマンド群を厭わないのなら、利用することができます。多くの ChatZilla ユーザが、クラッシュ、不自然な動作、性急さ、息切れを感じ、バグを直そうと必死です。もし皆さんが何か役に立ってみたいとお考えでしたら、どうぞ <a href="news://news.mozilla.org/netscape.public.mozilla.rt-messaging">netscape.public.mozilla.rt-messaging</a> ニュースグループでそう言ってくださるか、<a href="mailto:rginda@netscape.com">rginda@netscape.com</a> まで電子メールを送ってください。</p>
+<p>もし IRC に詳しくない、というのであれば、<a href="http://www.irchelp.org/">www.irchelp.org</a> にある FAQ を参考にして下さい。</p>
+
+<h4>ChatZilla を利用するには</h4>
+<p>ChatZilla を立ち上げるためには、 Mozilla を「 -chat」オプションを追加して立ち上げるか、[ウィンドウ] メニューから ChatZilla を選択してください。</p>
+
+<h4>ChatZilla についての詳細情報</h4>
+<p>ChatZilla の利用方法については、<a href="../../projects/rt-messaging/chatzilla/user-guide.html">ChatZilla User's Guide</a> をご覧下さい。ChatZilla のビルド方法についての情報は、<a href="../../projects/rt-messaging/chatzilla/">こちら</a>をクリックして下さい。（注： Windows や Mac OS 上では、ChatZilla は自動的にビルドされます。）</p>
+
+<h3><a name="extras_devel" id="extras_devel">Web 開発者のみなさんへ</a></h3>
+<p>Web スタンダード （<a title="HyperText Markup Language">HTML</a> 4.01、<a title="Cascading Style Sheets">CSS</a> <a title="CSS1 Technical Report" href="http://www.w3.org/TR/REC-CSS1/">1</a>/<a title="CSS2 Technical Report" href="http://www.w3.org/TR/REC-CSS2/">2</a>、<a title="Document Object Model">DOM</a><a title="DOM1 Technical Report" href="http://www.w3.org/TR/REC-DOM-Level-1/">1</a>/<a title="DOM2 Technical Report" href="http://www.w3.org/TR/1999/CR-DOM-Level-2-19991210/">2</a>、<a title="Extensible Markup Language" href="http://www.w3.org/XML/">XML</a>、<a title="Resource Description Framework" href="../../rdf/doc/">RDF</a>）、JavaScript、<a title="Java Language Specification" href="http://java.sun.com/docs/books/jls/">Java</a>、そして Mozilla のプラグインによるサポートに関してわかっている事項のリストは、次のドキュメントを参照してください:
+	<ul>
+		<li><a href="/docs/web-developer/bugspecs/REC-CSS1.html">http://www.mozilla.org/docs/web-developer/bugspecs/REC-CSS1.html</a></li>
+		<li><a href="http://devedge-temp.mozilla.org/library/release-notes/2002/netscape-7.0/">http://devedge-temp.mozilla.org/library/release-notes/2002/netscape-7.0/</a></li>
+	</ul>
+</p>
+<p>厳格なドキュメントタイプ宣言（たとえば HTML 4.01 Strict）を使ったページが外部スタイルシートに（&lt;link&gt;、@import、他を使って）リンクしていると Mozilla は &quot;<tt>text/css</tt>&quot; という MIME タイプで公開されたスタイルシートだけを読み込みます。<tt>text/plain</tt>、<tt>application/x-pointplus</tt>、そのほかの MIME タイプで公開されているスタイルシートは 読み込まれません。Apache ウェブサーバに適切な css MIME タイプを追加するには システムの <tt>mime.types</tt> ファイルに &quot;<tt>text/css css</tt>&quot; を加えてください。あるいは それができなければ あなたの <tt>.htaccess</tt> ファイルに &quot;<code>AddType  text/css  .css</code>&quot; を加えてください。</p>
+
+<h3><a name="extras_builds" id="extras_builds">その他のビルド見つけるには</a></h3>
+<ul>
+	<li>最新 Mozilla の主要なリリースは、 <a href="../index.html">mozilla.org</a>からダウンロードして下さい。</li>
+	<li>日々更新される Mozilla のビルドは、mozilla.org の<a href="http://ftp.mozilla.org/pub/mozilla/nightly/">FTP サイト</a>からダウンロードして下さい。</li>
+	<li>どうやって <a href="../../source.html">Mozilla をビルドする</a> か調べてみましょう。</li>
+</ul>
+
+<h2><a name="webdev">Mozilla に関わるには</a></h2>
+<ul>
+	<li><a href="http://www.mozillazine.org/articles/article2151.html">Bug Day</a> に参加しましょう。Mozilla のテストを支援したいけれど、どうすれば良いのか分からないのであれば、木曜と金曜に irc.mozilla.org の <a href="irc://irc.mozilla.org/%23mozillazine">#mozillazine</a>（<a href="http://www.mozillazine.org/chat/">Java IRC クライアント</a>） という <a href="http://www.irchelp.org">IRC</a> チャンネルに参加してみてください。参加プロセスを教えてくれたり、また 参加を支援してくれたりする、フレンドリーな Mozillan 達に出会うことが出来ます。</li>
+	<li><a href="../../newlayout/bugathon.html">Bug-A-Thon</a> に参加してください。もしスクリプトが書けるのなら、テストケースを簡単にする手伝いをして下さい。</li>
+	<li><a href="/projects/tech-evangelism/">Mozilla エヴァンジェリズム</a> (<a href="irc://irc.mozilla.org/%23evangelism">#evangelism</a>) に参加してください。ウェブサイトがウェブスタンダードに準拠していくのを推進する Mozilla Organization のプロジェクトです。</li>
+	<li>もっと深く関わりたい場合は、<a href="../../get-involved.html">お勧めのスタートポイント</a> をチェックしてみてください。</li>
+</ul>
+
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.4/installation-extras.html">英語版</a> 2003/07/25</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.4/installation-extras.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

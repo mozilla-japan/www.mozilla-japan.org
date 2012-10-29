@@ -1,0 +1,681 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; SunOS 5.6 sun4m) [Netscape]">
+   <TITLE>Webclient ホームページ</TITLE>
+   <link rel="alternate" hreflang="en" modified="January 20, 2005">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/blackwood/webclient/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<H1>Webclient</H1>
+このドキュメントは WebShell のための Java API を記述しており、java webclient としても知られています。
+<UL>
+	<LI><A HREF="FAQ.txt">Webclient を始める際の FAQ が利用できます。</A></LI>
+<LI>
+<A HREF="#Overview">概要</A></LI>
+
+<LI>
+<A HREF="#History">歴史</A></LI>
+
+<LI>
+<A HREF="#Requirements">必要条件</A></LI>
+
+<LI>
+<A HREF="#Code">コードの入手とビルド</A></LI>
+
+
+<LI>
+<A HREF="#Dev_guide">Webclient 開発者へのガイド</A></LI>
+
+<LI>
+<A HREF="#Impl_guide">Webclient 実装へのガイド</A></LI>
+
+<LI>
+<A HREF="#Using">webclient の使用</A></LI>
+
+<LI>
+<A HREF="#Reqs">要求仕様</A></LI>
+
+<LI>
+<A HREF="#Analysis">必要条件の分析</A></LI>
+
+<LI>
+<A HREF="#Design">設計</A></LI>
+
+<LI>
+<A HREF="#Contribute">貢献する方法</A></LI>
+
+<li>最新の状態は <a href="http://purl.oclc.org/NET/edburns/webclientStatus/">n.p.m.java 上のこのスレッド</a>で見られます。</li>
+
+<LI><B>NEW:</B>
+<A HREF="#Status">状況</A> バイナリを含む、Win32 用の Webclient 2.0 alpha 3 がリリースされました!</LI>
+
+<LI>
+<A HREF="#References">参考資料</A></LI>
+</UL>
+
+<H2>
+<A NAME="Overview"></A>概要</H2>
+
+<TABLE CELLPADDING=10 WIDTH="75%" >
+<TR BGCOLOR="#CCCCCC">
+<TD><B><FONT SIZE=+1>綱領:</FONT></B>&nbsp;
+
+<P>webclient プロジェクトは、包括的なウェブブラウジング機能を与える、最高のブラウザに依存しない Java API を提供することを狙っています。この機能は以下の機能を含みますが、これらに限定されません: 内容のレンダリング、移動、履歴の仕組み、進行の通知。実際に実装される機能は基礎をなすブラウザの実装に依存します。&nbsp;</TD>
+</TR>
+</TABLE>
+
+<H2>
+<A NAME="History"></A>mozilla.org 前史</H2>
+
+<UL>このプロジェクトは Kirk Baker &lt;<A HREF="mailto:kbaker@eb.com">kbaker@eb.com</A>&gt; と Ian Wilkinson &lt;<A HREF="mailto:iw@ennoble.com">iw@ennoble.com</A>&gt; によって開始されたものでもともと <A HREF="http://www.mozillazine.org/talkback.html?article=517">RaptorCanvas</A> と呼ばれていました。1999年の第一四半期に、AOL/Netscape/Sun の契約が成立し、Sun でのグループは Java と Mozilla とをより良く結びつけるために <A HREF="../../blackwood">blackwood プロジェクト</A>を開始しました。blackwood のサブプロジェクトの一つは mozilla webshell に Java API を提供することで、 Krik と Ian が既に成し遂げていました。だから、 webclient の開発で <A HREF="http://www.mozillazine.org/talkback.html?article=656">Sun は Krik と Ian に協力しました</A>。</UL>
+
+<H2>
+<A NAME="Requirements"></A>必要条件</H2>
+
+<UL>
+
+	webclient をビルドし使用するのに求められる必要条件はどの webclient のマイルストーンを使いたいのかによって変わります。更なる情報を得るためには <A HREF="release-notes/">/projects/blackwood/webclient/release-notes/</A> でリリースノートのページを見てください。</LI>
+
+</UL>
+
+<H2>
+<A NAME="Code"></A>コードの入手とビルド</H2>
+
+<H3>
+コードの入手</H3>
+
+<UL>
+
+<P>あなたは最新の webclient をビルドすることも、マイルストーンリリースをビルドすることも出来ます。マイルストーンリリースについて、更なる情報を得るためには <A HREF="release-notes/">/projects/blackwood/webclient/release-notes/</A> を見てください。</P>
+
+</UL>
+
+
+<P>&nbsp;</OL>
+
+<H3>コードのビルド</H3>
+
+<UL>
+
+webclient のビルドに関しては、 <A HREF="release-notes/m3-detail.html#read_this">/projects/blackwood/webclient/release-notes/m3-detail.html#read_this</A> にあるリリースノートでの説明に従ってください。
+
+</UL>
+
+<P>
+<H2>
+<A NAME="Dev_guide"></A>Webclient 開発者へのガイド</H2>
+
+<UL><A HREF="ref_guides/Developer_guide/index.htm">開発者へのガイド</A> は Java アプリケーションへ Mozilla ブラウザを統合するため Webclient API を使うプログラマが使うことを意図しています。
+</UL>
+
+<P>
+<H2>
+<A NAME="Impl_guide"></A>Webclient 実装へのガイド</H2>
+
+<UL><A HREF="ref_guides/Implementation_guide/index.htm">実装へのガイド</A> は Mozilla.org Open Source Public License のもとでの Webclient API の充実への貢献を願うオープンソースコミュニティーのメンバーが使うことを意図しています。
+</UL>
+
+<H2>
+<A NAME="Using"></A>webclient の使用</H2>
+
+<UL>どのように基本的な webclient の機能を使用するかを説明する java-webclient ディストリビューションのブラウザの実例があります。このクラスは便利であるようにここの [<A HREF="#Ref_1">1</A>] リファレンスに含まれます。
+
+<P>あなたは webclientについて <A HREF="../../newlayout/signup.html">Codestock</A> にあるウェブ上のプレゼンテーションを見たいと思うかもしれません。<A HREF="codestock/index.htm">http://www.mozilla.org/projects/blackwood/webclient/codestock/index.htm</A>
+
+<P>基本的に、 <TT>java.awt.Canvas</TT> のサブクラスとして <TT>BrowserControlCanvas</TT> を作り、それをあなたの表示の階層に追加します。
+
+<P>&nbsp;</UL>
+
+<PRE><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ブラウザを作成する
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BrowserControlCanvas browser&nbsp; =&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BrowserControlCanvasFactory.newBrowserControlCanvas();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add(browser,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BorderLayout.CENTER);</TT></PRE>
+
+<UL>そして <A HREF="">BrowserControl インターフェイス</A>を通して組み込みの Mozilla を操作することが出来ます。</UL>
+
+<PRE><TT>public void actionPerformed (ActionEvent evt) {
+&nbsp;&nbsp;&nbsp; String command = evt.getActionCommand();
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; try {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (command.equals("Back")) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (browserControl.canBack()) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; browserControl.back();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int index = browserControl.getHistoryIndex();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String newURL = browserControl.getURL(index);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(newURL);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; urlField.setText(newURL);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (command.equals("Forward")) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (browserControl.canForward()) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; browserControl.forward();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int index = browserControl.getHistoryIndex();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String newURL = browserControl.getURL(index);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(newURL);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; urlField.setText(newURL);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (command.equals("Stop")) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; browserControl.stop();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; browserControl.loadURL(urlField.getText());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; catch (Exception e) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(e.toString());
+&nbsp;&nbsp;&nbsp; }
+} // actionPerformed()</TT></PRE>
+API ドキュメントはここ [<A HREF="#Ref_2">2</A>] から手に入れられます。
+<H2>
+<A NAME="Reqs"></A>要求仕様</H2>
+
+<UL>webclient の要求仕様は <A HREF="RequirementsSpec.html">http://www.mozilla.org/projects/blackwood/webclient/RequirementsSpec.html</A> で手に入れられます。私たちは要求仕様へのフィードバックを歓迎します。<TT>ニュースグループ netscape.public.mozilla.java</TT> に全てのフィードバックを投稿してください。件名: <TT>webclient spec</TT> を使ってください。</UL>
+
+<H2>
+<A NAME="Analysis">必要条件</A>の分析</H2>
+
+<UL>webclient にとって、必要条件の分析は要求仕様を入手し、何が今日のブラウザの API 技術で実際にビルドできるかを理解する作業となるでしょう。webclient の必要条件の分析のドキュメントは <A HREF="RequirementsAnalysis.html">http://www.mozilla.org/projects/blackwood/webclient/RequirementsAnalysis.html</A> で手に入れられます。</UL>
+
+<H2>
+<A NAME="Design"></A>設計</H2>
+
+<UL>
+
+	<P>この節は設計文書へのリンクを含んでいます。現在、設計文書は mozilla を基にした webclient の実装のためにあります。それらは <A HREF="design/spec-compliant-design.html">http://www.mozilla.org/projects/blackwood/webclient/design/spec-compliant-design.html</A> で見ることが出来ます。</P>
+
+
+</UL>
+
+<H2>
+<A NAME="Contribute">貢献する方法</A></H2>
+
+<UL>
+
+<P>
+
+webclient に貢献できるいくつかの方法があります。mozilla の貢献者になることの詳細について知る必要がある場合、mozilla の実装に取り組むことが出来ます。あなたは mozilla への貢献についてのこのドキュメント、<A HREF="http://www.doczilla.com/development/extmoz.html">http://www.doczilla.com/development/extmoz.html</A> を読みたいと思うかもしれません。</P>
+
+<P>
+私は mozilla の実装に集中しています。そのため、もし助けになるものが欲しいならば、<A HREF="issues.txt">問題のページ</A>または <A HREF="pending-grep.txt">pending（未解決） grep ページ</A>を熟読してください。</P>
+
+<P>
+
+あなたは別のブラウザの実装の周りで webclient をラップすることに取り組むことができ、これは価値のある作業です。現在、IE についてはラップする準備が整い、fizzilla については始めるための準備を進めています。
+
+</P>
+
+<P>もしこれらの貢献の選択肢のいずれかにでも興味を持ったら、下のアドレス宛てで私に連絡してください。
+</P>
+
+
+</UL>
+
+
+
+<H2>
+<A NAME="Status"></A>現在の状態</H2>
+
+<!-- 未解決(edburns): リリースノート
+<P>状態に関する詳細な情報を得るためには <A HREF="notes.html">リリースノート</A> を見てください</P>
+-->
+
+<BLOCKQUOTE>
+<DL>
+
+<dt>2005年 1月 19日</dt>
+
+<p>バグの修正と新しい機能を含む新たなリリース。<a href="release-notes/">http://www.mozilla.org/projects/blackwood/webclient/release-notes/</a> でリリースノートを見てください。</p>
+
+<dt>2004年 10月 19日</dt>
+
+<p>再び Annie Lau のおかげで .exe インストーラーの代わりに zip インストーラーを使うことで全ての問題を修正することが出来ました。私は 2.0 alpha へインストールをロールバックしました。<a href="release-notes/">http://www.mozilla.org/projects/blackwood/webclient/release-notes/</a> でリリースノートを見てください。</p>
+
+
+<dt>2004年 10月 18日</dt>
+
+<p>オーストラリアの Annie Lau がバイナリのディストリビューションが動かないと指摘してくれました。このことで私はこの問題を調べることになりました。結果は <a href="http://groups.google.com/groups?q=group:netscape.public.mozilla.java+author:edburns%40yahoo.com&hl=en&lr=&scoring=d&selm=bbf0af98.0410171147.3109d532%40posting.google.com&rnum=1">netscape.public.mozilla.java に</a>投稿されました。私は新しいバイナリを作り、古いものは削除しました。<a href="release-notes/">http://www.mozilla.org/projects/blackwood/webclient/release-notes/</a>でリリースノートを見てください。</p>
+
+<DT>2004年 10月 9日
+</DT>
+
+<p>私はついに win32 用のバイナリディストリビューションを作りました。これは mozilla 1.7 で動き、私が長年実装したいと思っていた「ヘッダー判別」機能を含みます。<a href="release-notes/">http://www.mozilla.org/projects/blackwood/webclient/release-notes/</a> でリリースノートを見てください。</p>
+
+<DT>2004年 8月 3日
+</DT>
+
+<p>私はソースコードのみのリリースをまとめ、それを webclient 2.0 alpha 1 としました。 <a href="release-notes/">http://www.mozilla.org/projects/blackwood/webclient/release-notes/</a> でリリースノートを見てください。
+</p>
+
+<p>このウェブサイトは大幅に見直す必要がありますが、2.0を完成させることの方が優先度が高いのです。</p>
+
+
+
+<DT>20030929</DT>
+
+<p>ここに開発計画を示します。最初、私は以下のすべてを GNU/Linux RedHat 7.2 で行います。あとで Windows に取り組みます。</p>
+
+	<ul>
+
+	<li><p>ブックマークに関する最初のテストを終える。</p></li>
+
+	<li><p> BrowserControlCanvas を親ウィンドウに加えたり、表示したり、隠したり、リサイズすることなどができることを示す、ユニットテストとコアコードを書く。</p></li>
+
+	  <li><p>BrowserControlCanvas を親ウィンドウに加えたり、一連のウェブページに移動できることを示す、ユニットテストとコアコードを書く。</p></li>
+
+	  <li><p>mozilla/java/webclient/src_moz/gtk 内のいやな「スタブ」の残りを削除する。私はもはやこれには JDK 1.3 が必要ではないことがわかりました。</p></li>
+
+	  <li><p>ワークスペースにタグを付ける。</p></li>
+
+	  <li><p>私がコミュニティーから助けを受けるためにドキュメントとビルドの説明を更新する。</p></li>
+
+	</ul>
+
+	<p>私にはこれに貢献する非常に限られた時間しかないので、私は出来るだけ早く最終段階へ到達しようと思います。人々が貢献できるように現在のやり方を説明しようと試みるに値しません。私は誰かに助けてくれるよう頼む前に、それを相当きれいにしなければなりません。</p>
+
+
+<DT>20030928
+</DT>
+
+<p>私はwebclient 2.0 の初めての大きなチェックインをしました。大事なことが行われようとしています。私はプロジェクト全体をリファクタリングして多くのものを片付けています。私は個々の webclient インターフェイスに対する junit テストを作るため、最初にテスト開発を使用しています。現在私は設定、プロファイルマネージャ、ブックマークインターフェイスを動かしています。<a href="http://bonsai.mozilla.org/cvsquery.cgi?treeid=default&module=Blackwood&branch=HEAD&branchtype=match&dir=&file=&filetype=match&who=&whotype=match&sortby=Date&hours=2&date=explicit&mindate=09%2F27%2F2003&maxdate=09%2F28%2F2003&cvsroot=%2Fcvsroot">Bonsai での私のチェックインのメッセージ</a>を見てください。</p>
+
+
+
+<DT>2003年 1月 2日
+</DT>
+
+<p>ついに Win32 と RedHat GNU/Linux 7.2 用にバイナリを利用可能にしました。<a href="release-notes">リリースノート</a>を見てください。私は mozilla/java ディレクトリに WEBCLIENT_20030102I でタグを付けました。Webclient 1.3 は Mozilla 1.0.1 または Netscape 7 で動きます。</p>
+
+
+<DT>2002年 8月 30日
+</DT>
+
+<P>私は GNU/Linux 用の Webclient の XPI バンドルをビルドしました。<A HREF="release-notes">リリースノート</A>のページでそれが手に入ります。私は今<A HREF="/projects/embedding/">組み込みのドキュメント</A>に記録されている、最良のやり方に基づいた webclient での mozilla サポートの大幅な書き直しに着手するつもりです。これにはしばらく時間がかかるかもしれませんが、する必要があります。</P>
+
+<P>cvs タグ <CODE>WEBCLIENT_20020830</CODE> で Blackwood モジュールのタグ付けをしました。このモジュールは <CODE>MOZILLA_0_9_9_BRANCH</CODE> と一緒に使います。</P>
+
+<DT>2002年 6月 1日
+</DT>
+
+<P>私は webclient トランクが linux 上で MOZILLA_0_9_9_BRANCH でビルドできるように Michal Ceresna と John Marmion のパッチを適用しました。誰か linux 上でそれが「デフォルトの設定で」ビルドするのを確かめられませんか? 説明は <A HREF="release-notes/1_1-detail.html#UNIX_INSTALL">http://www.mozilla.org/projects/blackwood/webclient/release-notes/1_1-detail.html#UNIX_INSTALL</A> にあります。</P>
+
+<DT>2002年 5月 18日
+</DT>
+
+<P>私は Win32 用の Webclient 1.2 の XPI バンドルを作りました。バグ <A HREF="http://bugzilla.mozilla.org/show_bug.cgi?id=143115">143115</A> のためにソースバンドルはまだありません。更なる情報を得るためには<A HREF="release-notes">リリースノート</A>を見てください。</P>
+
+<DT>2002年 5月 7日
+</DT>
+
+<P>
+私は win32 で大体動く webclient を作りました。以下の特徴がテストされ、よく動きました。
+</P>
+
+	<UL>
+
+	  <LI><P>ファイル-&gt;新しいウィンドウ
+	  </P></LI>
+
+	  <LI><P>ファイル-&gt;閉じる
+	  </P></LI>
+
+	  <LI><P>表示-&gt;文字列としてページのソースを表示
+	  </P></LI>
+
+	  <LI><P>検索-&gt;検索
+	  </P></LI>
+
+	  <LI><P>検索-&gt;次を検索
+	  </P></LI>
+
+	  <LI><P>編集-&gt;すべて選択
+	  </P></LI>
+
+	  <LI><P>編集-&gt;コピー
+	  </P></LI>
+
+	  <LI><P>履歴-&gt;戻る
+	  </P></LI>
+
+	  <LI><P>履歴-&gt;進む
+	  </P></LI>
+
+	  <LI><P>履歴-&gt; &lt;移動の回数&gt;
+	  </P></LI>
+
+	  <LI><P>ブックマーク-&gt;ブックマークの管理
+	  </P>
+
+	  <P>ブックマークウィンドウがポップアップし、ダブルクリックすることで webclient がそのページに行くことが出来ます。</P>
+
+
+		  </LI>
+
+	  <LI><P>ストリーム-&gt;ファイルからストリームを読み込む...
+	  </P></LI>
+
+	  <LI><P>ストリーム-&gt;ランダムな HTML 入力ストリームを読み込む
+	  </P></LI>
+
+
+	  <LI><P>マウスオーバーイベントが機能する
+	  </P></LI>
+
+	  <LI><P>DOMViewer が機能する
+	  </P></LI>
+
+	  <LI><P>移動ボタンが機能する。
+	  </P></LI>
+
+	</UL>
+
+	<P>これには、ブックマーク-&gt;現在のページを追加する、ブックマーク-&gt;新しいフォルダに現在のページを追加する、プロファイル-&gt;プロファイルを作成する、及び プロファイル-&gt;プロファイルを削除する、が残っています。最初の二つは易しいはずで、二番目の二つでは、それらの実装は現在完全に活動の停止した BlackConnect に基づいたものですから、たぶん取り出すだけでしょう。</P>
+
+<P>win32 上の Webclient の状態に満足したら、それが linux 上でも動くようにします。</P>
+
+<DT>2002年 4月 7日
+</DT>
+
+<P>mozilla 0.99 に取り組むために webclient が Netscape 6.2.1 で動くようにすることを断念しました。ここに短期計画があります。: </P>
+
+	<OL>
+
+	  <LI><P>blackconnect 依存を取り除く
+	  </P></LI>
+
+	  <LI><P>全てが win32 で 0.99 が動くようにし、linuxでも動くようにする。
+	  </P></LI>
+
+	  <LI><P>組み込みを使用するための「正しい方法」についての最近の考えに関連して、webclient が組み込みを使う方法を分析する。
+	  </P></LI>
+
+	  <LI><P>バグに取り組む。
+	  </P></LI>
+
+	  <LI><P>mozilla 0.99 で使用するために 1.1 をリリースする。
+	  </P></LI>
+
+	</OL>
+
+
+<DT>2002年 1月 12日</DT>
+
+<DD><P>
+<CODE><PRE>
+差出人: edburns@acm.org (Ed Burns)
+ニュースグループ: netscape.public.mozilla.java,netscape.public.mozilla.embedding
+件名: Webclient 計画: Netscape 6.2.1 準拠リリース
+メッセージ ID: &lt;133edd06.0201121048.5f6ea51a@posting.google.com&gt;
+
+やあ、Folks、
+
+人々は webclient に興味を示し続けているから、私は
+あいた時間にそれを保守するつもりだ。更新が長く遅れてすまなかった。
+私は新しい仕事を得て、ちょうど今再び Webclient に
+取り掛かっているんだ。
+
+以下が私の当面の計画だ：
+
+- webclient とその従属物が Win32 と Linux 上で Netscape 6.2.1
+（または最も近い mozilla のマイルストーン）で動くようにする。
+
+- blackconntct の公開されたバグを調査する(XPCOM から Java へ)。
+もしそれらを修正するのが難しいようだったら、webclient と blackconnect とを
+分離することを考える
+
+- 一般的な公開されたバグを調査する。
+
+私はこれに一週間で三時間しか時間をかけられないから
+進行は遅くなるだろうが、進歩はあるだろう。
+
+もちろん、コミュニティーからのどんな助けも歓迎するよ。
+
+ありがとう、
+
+Ed
+</PRE></CODE>
+</P></DD>
+
+<DT>2001年 3月 21日</DT>
+
+<DD>それを公式と呼ぶべきときが来ました。webclient 1.0 リリースノートは<A HREF="release-notes/">ここ</A>です。
+</DD><P>
+
+<DT>2001年 3月 6日</DT>
+
+<DD>これは公式リリースではありませんが、私たちは人々に win32 と linux 上の XPI バンドルをテストし始めて欲しいです。リリース前の Webclient 1.0 の<A HREF="release-notes/1_0.html">リリースノート</A>を見てください。これらのリリースノートは完全に助言的で、間違いがあります。私の更新した唯一の部分はバイナリインストールの部分で、手抜かりがあるかもしれません。もし誤りを見つけたら、私に知らせてください。</DD><P>
+
+
+<DT>2001年 1月 9日</DT>
+
+<DD>長く時間が過ぎた状態を更新しました。私の出来る唯一の言い訳は、実用的な Java とともに Netscape 6 を完成させることに取り掛かるために離されていたということだけです。ここに最後のマイルストーンからやった仕事の簡単な要約があります。2000年6月5日からの全ての重要なコードの変更の網羅的な要約に関しては<A HREF="notes.html#01_09_01">このエントリーに関する覚え書きのページ</A>を見てください。
+
+<P>
+	<UL>
+
+	  <LI>設定 API の追加
+	  </LI>
+
+          <LI>ブックマークとブックマークフォルダーの追加を可能にする
+	  </LI>
+
+	  <LI>もし設定がクッキーについて警告するようになっていてブラウザがクッキーを取得したならば、警告ダイアログをポップアップする。
+	  </LI>
+
+          <LI>基本的な認証サポートの追加
+	  </LI>
+
+          <LI>履歴の改善
+	  </LI>
+
+	  <LI>mozilla ツリーの変更についていく
+	  </LI>
+
+          <LI>Linux に対するサポートの追加
+	  </LI>
+
+	  <LI>カスタム アプリケーション ユーザーインターフェイスの改善
+	  </LI>
+
+	</UL>
+
+</P>
+
+	<P>
+	  
+	私たちは webclient 1.0 を2001年3月5日に Windows, Solaris 及び Linux 上の Netscape 6.0 で使用するためにソースとバイナリ形式でリリースします。遅れて申し訳ありません。XPI のパッケージで問題が発生したのです。私たちは現在このリリースの動作を停止させるバグの修正に取り組んでいます。私たちの取り組んでいるバグについては<A HREF="issues.txt">問題のページ</A>を見てください。
+	  
+	</P>
+
+
+</DD>
+
+
+<DT>2000年 6月 26日</DT>
+
+<DD>
+
+Webclient マイルストーン 3 が利用可能になりました。JDK1.2.2 と mozilla M13のもとで Win32 と Solaris で動くことが確認されました。
+
+</DD>
+
+<DT>2000年 4-5月</DT>
+
+<DD>制約された時間のために webclient に限られた作業しかできませんでした。しかし、この時間の間に、webclient が StarOffice 内で実行できるようにしました。
+</DD>
+
+<DT>2000年 3月 08日</DT>
+
+<DD>仕様準拠の実装のためのソースコードがチェックインされました。Win32 と Solaris 上のmozilla マイルストーン 13 で動きました。
+</DD>
+
+
+<DT>2000年 3月 06日</DT>
+
+<DD>Webclient マイルストーン 2 がリリースされました。ソースは<A HREF="src/webclient-m2.tar.gz">ここ</A>から手に入り、win32 のバイナリは<A HREF="bin/win32/m2/webclient.dll">ここ</A>から手に入り、そして solaris のバイバリーは<A HREF="bin/solaris/m2/">ここ</A>から手に入ります。</DD>
+
+<DT>2000年 2月 25日
+</DT>
+
+<DD>Mozilla に基づいた webclient の仕様の実装のドキュメントは <A HREF="design/spec-compliant-design.html">ここ</A> でチェックインされました。
+</DD>
+
+<DT>
+2000年 2月 24日</DT>
+
+<DD>Win32 と Solaris 上の webclient に取り組みました。マイルストーン 2 のリリースが近いです。&nbsp; </DD>
+
+<DT>
+2000年 1月 7日</DT>
+
+<DD>webclient が Win32 と同時に Solaris で動くように試みました。
+
+<P>覚え書きのページに書き足す。それは<A HREF="notes.html">ここ</A>で見られます。webclient についてのニュースがあったらすぐに私はこのページを更新します。</P>
+</DD>
+
+<DT>
+1999年 10月 29日</DT>
+
+<DD>
+必要条件の分析を完成させました。</DD>
+
+<DT>
+1999年 10月 15日</DT>
+
+<DD>
+必要条件の分析に取り組みました。</DD>
+
+<DT>
+1999年 9月 23日</DT>
+
+<DD>
+要求仕様に取り組み、それへのフィードバックを集めました。</DD>
+</DL>
+</BLOCKQUOTE>
+
+<H2>
+<A NAME="References"></A>参考資料</H2>
+
+<UL>
+<LI>
+<A NAME="Ref_1">1. </A><A HREF="http://lxr.mozilla.org/mozilla/source/java/webclient/classes_spec/org/mozilla/webclient/test/EmbeddedMozilla.java">org.mozilla.webclient.test.EmbeddedMozilla</A></LI>
+
+<LI>
+<A NAME="Ref_2">2. </A><A HREF="spec_compliant_api/index.html">api ドキュメント</A></LI>
+</UL>
+
+<HR>
+<ADDRESS>
+<A HREF="mailto:Ed Burns <ed.burns@sun.com>">Ed Burns</A> - Webclient 技術的指導者。</ADDRESS>
+<ADDRESS>
+<A HREF="mailto:ashutosh.kulkarni@eng.sun.com">Ashu Kulkarni</A></ADDRESS>
+
+<P>
+<BR><!-- Created: Wed Jul 28 17:53:07 PDT 1999 --><!-- hhmts start -->最終更新
+: 2000年3月8日水曜日 12:29:11 太平洋標準時&nbsp;<!-- hhmts end -->
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/blackwood/webclient/index.html">英語版</a> 2005/01/20</span> - <span>和訳版 2006/02/09</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/blackwood/webclient/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

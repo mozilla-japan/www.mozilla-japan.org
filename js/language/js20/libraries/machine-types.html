@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 マシン型</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/libraries/machine-types.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="types.html">
+<link rel="Next" href="../formal/index.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	table {
+		font-size:100%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.9em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">ライブラリ</div>
+    <div class="title1">マシン型</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="types.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="../formal/index.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">2003/03/04 (Tue)</p>
+
+<h2>目的</h2>
+
+<p>マシン型は JavaScript 2.0 プログラムで使用される低水準の数値型で、JavaScript 2.0 と他言語との通信に有用な、Java
+形式の整数処理を可能にする。これらの型は通常目的のスクリプトにおいて <code>Number</code> と <code>Integer</code> に取って代わることを意図するものではない。</p>
+
+<h2>内容</h2>
+
+<p>以下の低水準数値型が利用可能である:</p>
+
+<div class="indent">
+  <table border="0" cellspacing="2" cellpadding="0">
+  <colgroup>
+    <col valign="top" style="white-space:nowrap;">
+    <col valign="top">
+    <col valign="top">
+  </colgroup>
+  <tr align="left">
+    <th>型</th>
+    <th>接尾辞</th>
+    <th>値</th>
+  </tr>
+  <tr>
+    <td><code>sbyte</code></td>
+    <td>&nbsp;</td>
+    <td>&#8211;128以上127以下の&#8211;0.0を除く <code>Integer</code> 値</td>
+  </tr>
+  <tr>
+    <td><code>byte</code></td>
+    <td>&nbsp;</td>
+    <td>0 以上255以下の&#8211;0.0を除く <code>Integer</code> 値<br></td>
+  </tr>
+  <tr>
+    <td><code>short</code></td>
+    <td>&nbsp;</td>
+    <td>&#8211;32768以上32767以下の&#8211;0.0を除く <code>Integer</code> 値</td>
+  </tr>
+  <tr>
+    <td><code>ushort</code>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>0以上 65535以下の&#8211;0.0を除く <code>Integer</code> 値</td>
+  </tr>
+  <tr>
+    <td><code>int</code></td>
+    <td>&nbsp;</td>
+    <td>&#8211;2147483648以上2147483647以下の&#8211;0.0を除く <code>Integer</code> 値</td>
+  </tr>
+  <tr>
+    <td><code>uint</code></td>
+    <td>&nbsp;</td>
+    <td>0以上4294967295以下の&#8211;0.0を除く <code>Integer</code> 値</td>
+  </tr>
+  <tr>
+    <td><code>long</code></td>
+    <td><code>L</code></td>
+    <td>&#8211;9223372036854775808以上9223372036854775807以下の長整数値</td>
+  </tr>
+  <tr>
+    <td><code>ulong</code></td>
+    <td><code>UL</code></td>
+    <td>0以上18446744073709551615以下の長整数値</td>
+  </tr>
+  <tr>
+    <td><code>float</code></td>
+    <td><code>F</code></td>
+    <td>正0、負0、無限大、NaN を含む IEEE 単精度浮動小数点数</td>
+  </tr>
+  </table>
+
+</div>
+
+
+<p>上に挙げた型名は予約語では<strong>ない</strong>。</p>
+
+<h3>8、16、32 ビット整数</h3>
+
+<p>最初の6つの型 <code>sbyte</code> 、<code>byte</code> 、<code>short</code> 、<code>ushort</code> 、<code>int</code>
+、及び <code>uint</code> は全て <code>Integer</code> の完全な派生型で、<code>Integer</code> 自体は <code>Number</code>
+の派生型である。個々の数値は複数の型のメンバである。例えば 3.0 は <code>sbyte</code> 、<code>byte</code> 、<code>short</code>
+、<code>ushort</code> 、<code>int</code> 、<code>uint</code> 、<code>Integer</code> 、<code>Number</code> 、及び <code>Object</code>
+のメンバであり、一方&#8211;2000.0は <code>short</code> 、<code>int</code> 、<code>Integer</code> 、<code>Number</code> 、及び
+<code>Object</code> のメンバである。いかなる場合でも JavaScript ではリテラルの 3 と 3.0 を区別しない。</p>
+
+<p><code>sbyte</code> 、<code>byte</code> 、<code>short</code> 、<code>ushort</code>
+、<code>int</code> 、及び <code>uint</code> 値は <code>Number</code> 値として計算、比較が行われる &#8212;
+各処理は IEEE の完全な倍精度計算を用いて行われる。<ins class="clsByTranslator">[訳注: ECMAScript 3rd Edition では浮動小数点数の剰余が
+IEEE 754 の定義から外れていた。今回どうなっているのか私にはよく分からない]</ins></p>
+
+<h4>暗黙の強制型変換</h4>
+
+<p><code>sbyte</code> 、<code>byte</code> 、<code>short</code> 、<code>ushort</code> 、<code>int</code> 、或いは <code>uint</code>
+値からの定義済み<a href="types.html#implicit-coercion">暗黙の強制型変換</a>は、<code>Number</code>
+型におけるもの以外は存在しない。以下の定義済み<a href="types.html#implicit-coercion">暗黙の強制型変換</a>は変換先の型が
+<code>sbyte</code> 、<code>byte</code> 、<code>short</code> 、<code>ushort</code> 、<code>int</code> 、或いは <code>uint</code>
+のときに適用可能である:</p>
+
+<ul>
+  <li><code>undefined</code>
+    <script type="text/javascript">document.write(U_rarr)</script>
+    +0.0</li>
+  <li>&#8211;0.0
+    <script type="text/javascript">document.write(U_rarr)</script>
+    +0.0</li>
+  <li>変換先の型 <var>T</var> の範囲にある <code>long</code> 、<code>ulong</code> 値は、型 <var>T</var> の等価な値に変換される</li>
+  <li>変換先の型 <var>T</var> の範囲にある有限整数の <code>float</code> 値は、型 <var>T</var> の等価な値に変換される</li>
+</ul>
+
+<p>+<script type="text/javascript">document.write(U_infin)</script> 、&#8211;<script type="text/javascript">document.write(U_infin)</script>
+、NaN から <code>sbyte</code> 、<code>byte</code> 、<code>short</code> 、<code>ushort</code> 、<code>int</code> 、或いは <code>uint</code>
+への<a href="types.html#implicit-coercion">暗黙の強制型変換</a>は存在しないことに注意していただきたい。</p>
+
+<h4>明示的な強制型変換</h4>
+
+<p><code>sbyte</code> 、<code>byte</code> 、<code>short</code> 、<code>ushort</code> 、<code>int</code> 、或いは <code>uint</code>
+値からの定義済み<a href="types.html#explicit-coercion">明示的な強制型変換</a>は、<code>Number</code>
+型におけるもの以外は存在しない。以下の定義済み<a href="types.html#explicit-coercion">明示的な強制型変換</a>は変換先の型 <var>T</var>
+が <code>sbyte</code> 、<code>byte</code> 、<code>short</code> 、<code>ushort</code> 、<code>int</code> 、或いは <code>uint</code>
+のときに適用可能である。|<var>T</var>| という表記は型 <var>T</var> の範囲を表し、|<code>sbyte</code>| = |<code>byte</code>| = 256
+、|<code>short</code>| = |<code>ushort</code>| = 65536 、|<code>int</code>| = |<code>uint</code>| = 2<sup>32</sup> である。</p>
+
+<ul>
+  <li><code>undefined</code> <script type="text/javascript">document.write(U_rarr)</script> +0.0</li>
+  <li><code>long</code> 、<code>ulong</code> 値 <var>x</var> は <var>x</var>&nbsp;=&nbsp;<var>y</var>&nbsp;(mod |<var>T</var>|)
+    を満たす型 <var>T</var> の値 <var>y</var> に変換される</li>
+  <li><code>float</code> 値は最初に等価な <code>Number</code> 値に変換された後、次のように変換される</li>
+  <li><code>Number</code> 値は必要であればまず0方向への丸めにより <code>Integer</code> 値 <var>x</var> に変換される。次に
+    <var>x</var> が &#8211;0.0 、+<script type="text/javascript">document.write(U_infin)</script>
+    、&#8211;<SCRIPT type="text/javascript">document.write(U_infin)</script> 、或いは NaN であれば +0.0 に変換される。それ以外の場合は
+    <var>x</var> は <var>x</var>&nbsp;=&nbsp;<var>y</var>&nbsp;(mod |<var>T</var>|) を満たす型 <var>T</var> の値 <var>y</var> に変換される</li>
+</ul>
+
+<h3>64 ビット整数</h3>
+
+<p><code>long</code> 、<code>ulong</code> 型は符号付き、符号無しの 64 ビット整数を表す。<code>long</code> と <code>ulong</code>
+リテラルは接尾辞 <code>L</code> 、<code>UL</code> を使って、指数部、小数点を付けずに記述する。<code>long</code> 型のリテラルは
+<code>&#8211;9223372036854775808L</code> から <code>9223372036854775807L</code> のように記述し、<code>ulong</code> 型のリテラルは
+<code>0UL</code> から <code>18446744073709551615UL</code> のように記述する。</p>
+
+<p><code>long</code> 、<code>ulong</code> 型と <code>Number</code> は互いに共通元を持たないため、<code>5L</code> と <code>5</code>
+を <code>==</code> 、<code>===</code> で比較してもそれらは異なるオブジェクトである。<code>5L</code> と <code>5UL</code> を <code>==</code>
+、<code>===</code> で比較しても、これらも異なるオブジェクトである。</p>
+
+<p><code>long</code> 、<code>ulong</code> 値における否定、加算、減算、乗算、及び剰余 (<code>%</code>) では厳密に正しい結果が得られ、<code>long</code>
+と <code>ulong</code> 値は1つの式に混在させることができる。この場合、<var>x</var> の算術的な結果により5つの場合が考えられる:</p>
+
+<ul>
+  <li>&#8211;9223372036854775808&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;&#8211;1
+    のとき、結果は <code>long</code> 型。</li>
+  <li>0&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;9223372036854775807
+    のとき、少なくとも一方のオペランドが <code>ulong</code> であれば結果は <code>ulong</code> 型。いずれも <code>ulong</code>
+    でなければ結果は <code>long</code> 型。</li>
+  <li>9223372036854775808&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;<var>x</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;18446744073709551615
+    のとき、結果は <code>ulong</code> 型。</li>
+  <li>いずれにも当てはまらない場合は、結果は IEEE の四捨五入モードにより <code>Number</code> で表現可能な最も近い値に変換される。</li>
+</ul>
+
+<p>2つのオペランドに <code>long</code> 、<code>ulong</code> 値を使った除算では、<code>long</code> 、<code>ulong</code>
+及び、<code>Number</code> 値の中から最も正確な商が返される。最も正確な商が <code>long</code> 、<code>ulong</code>
+であることもあるし、<code>Number</code> が最も正確な商になることもある。詳細は<a href="../formal/parser-semantics.html#V-divide">セマンティクス</a>を見よ。</p>
+
+<p><code>long</code> 値と <code>ulong</code> 値の除算、剰余算で0で割った場合の結果として、正或いは負の無限大、NaN のいずれかである
+<code>Number</code> 値を返すことができる。</p>
+
+<p><code>long</code> 、<code>ulong</code> オペランドと <code>Number</code> (或いは <code>Number</code> の派生型)
+、<code>float</code> オペランドとの加算、減算、乗算、除算、及び剰余算では、最初に <code>Number</code> 、<code>float</code>
+オペランドが丁度整数 (+0.0 と -0.0 も整数に含まれるが、無限大と NaN は含まれない) であるかどうかがチェックされる。整数であればこれらの値は上で述べた整数のセマンティクスが使われる。整数でなければ
+<code>long</code> 、<code>ulong</code> オペランドは <code>Number</code> に変換され、<code>Number</code> 同士の演算と同じ方法で処理される。</p>
+
+<p>ビット演算 <code>&amp;</code> 、<code>|</code> 、及び <code>^</code> (の文脈) は少なくとも一方のオペランドが <code>long</code>
+か <code>ulong</code> であれば64ビット幅になる。この場合必要があればもう一方のオペランドは整数に丸められ 2<sup>64</sup>
+で割った余りが使用される。少なくとも一方のオペランドが <code>ulong</code> であれば結果は <code>ulong</code>
+になる。それ以外の場合は結果は <code>long</code> になる。</p>
+
+<p>ビットシフト <code>&lt;&lt;</code> 、<code>&gt;&gt;</code> 、及び <code>&gt;&gt;&gt;</code> (の文脈) は第1オペランドが
+<code>long</code> か <code>ulong</code> であれば64ビット幅になる。第1オペランドが <code>ulong</code> であれば結果は
+<code>ulong</code> になり、そうでなければ結果は <code>long</code> である。<code>&gt;&gt;</code> は最重要ビット
+(符号を決める先頭ビット) をコピーし、<code>&gt;&gt;&gt;</code> は第1オペランドが <code>long</code> 、<code>ulong</code>
+のいずれであるかに関わらず (先頭ビットに) 0 をシフトする。</p>
+
+<p><code>long</code> 、<code>ulong</code> オペランドと <code>Number</code> (或いは <code>Number</code> の派生型)、<code>float</code>
+オペランドとの比較では、いかなる変換も行われず数学的な値がそのまま比較される。</p>
+
+<h4>暗黙の強制型変換</h4>
+
+<p>以下の定義済み<a href="types.html#implicit-coercion">暗黙の強制型変換</a>は変換先の型が <code>long</code> のときに適用可能である:</p>
+
+<ul>
+  <li><code>undefined</code> <script type="text/javascript">document.write(U_rarr)</script> 0L</li>
+  <li>0UL 以上 9223372036854775807UL 以下の <code>ulong</code> 値は等価な <code>long</code> 値に変換される。</li>
+  <li>&#8211;9223372036854775808 以上 9223372036854775807 以下の有限の <code>Integer</code> 値は等価な <code>long</code> 値に変換される。</li>
+  <li>&#8211;9223372036854775808F 以上 9223372036854775807F 以下の有限整数の <code>float</code> 値は等価な <code>long</code> 値に変換される。</li>
+</ul>
+
+<p>以下の定義済み<a href="types.html#implicit-coercion">暗黙の強制型変換</a>は変換先の型が <code>ulong</code> のときに適用可能である:</p>
+
+<ul>
+  <li><code>undefined</code> <script type="text/javascript">document.write(U_rarr)</script> 0UL</li>
+  <li>0L 以上 9223372036854775807L 以下の <code>long</code> 値は等価な <code>ulong</code> 値に変換される。</li>
+  <li>&#8211;0.0 以上 18446744073709551615 以下の有限の <code>Integer</code> 値は等価な <code>ulong</code> 値に変換される。</li>
+  <li>&#8211;0.0F 以上 18446744073709551615F 以下の有限整数の <code>float</code> 値は等価な <code>ulong</code> 値に変換される。</li>
+</ul>
+
+<p>NaN 、正の無限大、負の無限大から <code>long</code> 、<code>ulong</code> への<a href="types.html#implicit-coercion">暗黙の強制型変換</a>は存在しないことに注意していただきたい。</p>
+
+<p><code>long</code> 、<code>ulong</code> 値は <code>Number</code> 、<code>Integer</code> 、及び <code>float</code>
+に<a href="types.html#implicit-coercion">暗黙に強制型変換</a>できる。その結果は <code>Number</code> 、<code>float</code>
+で表現可能な最も近い値に、文字列を数値に変換する場合と同じ方法で丸めたものである。元の値が 0L 、0UL であれば結果は +0.0 、+0.0F になる。</p>
+
+<h4>明示的な強制型変換</h4>
+
+<p>以下の定義済み<a href="types.html#explicit-coercion">明示的な強制的型変換</a>は変換先の型 <var>T</var> が <code>long</code>
+か <code>ulong</code> のときに適用可能である。</p>
+
+<ul>
+  <li><code>undefined</code> <script type="text/javascript">document.write(U_rarr)</script> 0L か 0UL</li>
+  <li><code>long</code> 、<code>ulong</code> 値 <var>x</var> は <var>x</var>&nbsp;=&nbsp;<var>y</var>&nbsp;(mod 2<sup>64</sup>)
+    を満たす型 <var>T</var> の値 <var>y</var> に変換される。</li>
+  <li><code>float</code> 値は最初に等価な <code>Number</code> 値に変換された後、次のように変換される。</li>
+  <li><code>Number</code> 値は必要であればまず0方向への丸めにより <code>Integer</code> 値 <var>x</var> に変換される。次に
+    次に <var>x</var> が&#8211;0.0、+<script type="text/javascript">document.write(U_infin)</script>、&#8211;<script type="text/javascript">document.write(U_infin)</script>、或いは
+    NaN であれば 0L か 0UL に変換される。それ以外の場合は <var>x</var> は
+    <var>x</var>&nbsp;=&nbsp;<var>y</var>&nbsp;(mod 2<sup>64</sup>) を満たす型 <var>T</var> の値 <var>y</var> に変換される。</li>
+</ul>
+
+<p><code>long</code> 、<code>ulong</code> 値 <var>x</var> から <code>Number</code> 、<code>Integer</code> 、<code>float</code>
+、或いは <code>String</code> 型への<a href="types.html#explicit-coercion">明示的な強制型変換</a>が可能である。<code>Number</code>
+、<code>Integer</code> 、<code>float</code> への明示的な強制型変換は暗黙の場合と同じである。<code>String</code>
+型への明示的な強制型変換では <var>x</var> は10進数字から成る文字列として作成され、負の値では先頭にマイナス符号が付く。ゼロは
+<code>&quot;0&quot;</code> という文字列になり、他の数値では全て0以外の (10進) 数字から始まる文字列が作成される。</p>
+
+<h3>単精度浮動小数点数</h3>
+
+<p><code>float</code> 型は IEEE 単精度浮動小数点数を表す。<code>float</code> リテラルは接尾辞 <code>F</code>
+を使って記述する。<code>float</code> の正の無限大、負の無限大、NaN は <code>Number</code> のそれらとは異なるものである。</p>
+
+<p><code>float</code> 型と <code>Number</code> 型は互いに共通元を持たないため <code>==</code> で比較しても <code>5F</code>
+と <code>5</code> は異なるオブジェクトとなる。</p>
+
+<p><code>float</code> 値の符号反転は <code>float</code> 値を返す。他の全ての算術演算では <code>float</code> 値は最初に、相当する
+<code>Number</code> 値に変換される。ビット演算 <code>&amp;</code> 、<code>|</code> 、<code>^</code> 、<code>&lt;&lt;</code>
+、<code>&gt;&gt;</code> 、及び <code>&gt;&gt;&gt;</code> では、処理前に全ての <code>float</code> 値は <code>Number</code>
+型に強制型変換される。</p>
+
+<h4>暗黙の強制型変換</h4>
+
+<p>以下の定義済み<a href="types.html#implicit-coercion">暗黙の強制型変換</a>は、変換先の型が <code>float</code> のときに適用可能である:</p>
+
+<ul>
+  <li><code>undefined</code> <script type="text/javascript">document.write(U_rarr)</script> <code>float(NaN)</code></li>
+  <li><code>Number</code> 値 (NaN 、正の無限大、負の無限大も含む) は IEEE の四捨五入モードにより <code>float</code>
+    で表現可能な最も近い値に変換される。</li>
+  <li><code>long</code> 、<code>ulong</code> 値は <code>float</code> で表現可能な最も近い値 (&#8211;0.0F は除く) に変換される。</li>
+</ul>
+
+<p><code>float</code> 値から <code>Number</code> 型への<a href="types.html#implicit-coercion">暗黙の強制型変換</a>は可能である。結果は同じ
+<code>Number</code> 値である。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:bottom;white-space:nowrap">
+    <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+    最終更新: 2003年03月04日 (火)</address>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="types.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="../formal/index.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal@student.interq.or.jp">exeal@student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/libraries/machine-types.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

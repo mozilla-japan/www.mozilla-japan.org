@@ -1,0 +1,196 @@
+@charset "EUC-JP";
+
+
+
+	/* --- HTML 再定義 --- */
+
+ol, ul	{ margin-bottom: 0; }
+dl	{ margin-left: 1.5em; }
+
+
+em, strong, q, cite, dfn, abbr, acronym, code, samp, kbd, var	{ font-style: normal; }
+
+em	{ font-weight: 600; }
+strong	{ font-weight: 700; font-size: 110%; /* color: #F02000; */ }
+#side strong	{ font-size: 100%; color: inherit; }
+
+q, cite		{ font-style: italic;  font-size: 90%; }
+
+dfn		{ font-weight: 500; }
+abbr, acronym	{  }
+
+
+code, samp, kbd	{ font-size: 90%;  font-family: monospace; }
+var		{ font-style: italic; }
+
+
+
+	/* --- 文書構造 --- */
+
+#toc		{ margin-left: 1em; }
+#toc li		{ list-style-type: none; }
+
+.section	{ clear: both; padding-left: 3%; }
+.subsection	{ clear: both; padding-left: 2%; }
+
+.note		{ font-size: 80%;  color: #404040;  line-height: 1.2; }
+.note:before	{ content: ""; }		/* base/content.css で "Note: " と指定されている… */
+
+.ps		{ font-size: 80%;  color: #20A040; }
+
+.date		{ font-size: 80%;  color: #202020;  line-height: 1.2; }
+
+address		{ font-size: 80%; color: #808080; text-align: right;
+		  float: right; margin-top: -3.75em; padding: 0; height: 0; }
+
+
+	/* --- 詳細情報 --- */
+
+.detail		{ font-size: 90%;  color: #404040;  line-height: 1.2;
+		  margin: 1.5em; border: solid #20A040 1px; padding: 0.75em; }
+
+
+	/* --- 例示 --- */
+
+.example			{ font-size: 80%;
+				  margin: 0 0 0 1em; border: none; padding: 0; }
+.example:before			{ font-weight: normal; }
+
+span.example			{  }
+span.example:before		{ display: inline;
+				  content: " ex. "; }
+span.good.example:before	{ content: " good ex. "; }
+span.bad.example:before		{ content: " bad ex. "; }
+span.except:before		{ content: " exception: "; }
+
+div.example			{  }
+div.example:before		{ display: block; margin-left: 1.5em;
+				  content: "example"; }
+div.good.example:before		{ content: "good example"; }
+div.good.example:before		{ content: "bad example"; }
+div.good.example:before		{ content: "exception"; }
+
+.examples			{ margin: 0.1em 1em; }
+table.examples			{ margin: 0.5em 1em; }		/* marker を使用したいところだが実装されていないので table */
+table.examples th		{ font-size: 80%; vertical-align: top; white-space: pre;
+				  margin: 0; padding: 0; }
+table.examples td		{ font-size: 80%; vertical-align: top;
+				  margin: 0; padding: 0; }
+.examples .good,
+.examples .bad,
+.examples .exception		{ border: none; }
+.examples .good:before,
+.examples .bad:before,
+.examples .except:before	{ white-space: pre; }
+/* IE が before 擬似要素に対応していないので使えない
+<div class="examples">
+  <div class="   bad">これはダメ</div>
+  <div class="  good">これがよい</div>
+  <div class="except">これは例外</div>
+</div>
+.examples .good:before		{ content: "   good ex. "; }
+.examples .bad:before		{ content: "    bad ex. "; margin-left: 0.2em; }
+.examples .except:before	{ content: " exception: "; } */
+
+
+
+	/* --- 特定項目 --- */
+
+.product#firefox		{ background: url("../img/product-firefox.png") no-repeat top left;
+				  padding-left: 80px; }
+.product#thunderbird		{ background: url("../img/product-thunderbird.png") no-repeat top left;
+				  padding-left: 80px; }
+.product#mozilla		{ background: url("../img/product-mozilla.png") no-repeat top left;
+				  padding-left: 80px; }
+
+img.rss				{ vertical-align: middle; }
+
+.section table.packagetable	{  }
+ul.packagelist,
+ul.versionlist			{ list-style-type: none; }
+img.osicon			{ vertical-align: text-bottom; }
+
+img.screenshot			{ float: right; clear: right; margin: 0.5em 0.5em 1em 1em; }
+
+hr.dotted			{ display: block; color: #FFFFFF; background-color: transparent;
+				  margin: 1em 0.5em; border: none; border-top: dashed #808080 1px; height: 0px; }
+/* div.ja + div.en			{ border-top: dashed #808080 1px; } */
+
+
+	/* --- テキスト位置 --- */
+
+.left		{ text-align: left; }
+.center		{ text-align: center; }
+.right		{ text-align: right; }
+
+.indent		{ margin-left: 1.5em; }
+.deepindent	{ margin-left: 3em; }
+.right.indent		{ margin-right: 1.5em; }
+.right.deepindent	{ margin-right: 3em; }
+
+.clear		{ clear: both; }
+
+
+	/* --- テキスト --- */
+
+.smaller	{ font-size: 80%; }		/* .note.psなどとは別 */
+.larger		{ font-size: 125%; }
+.bold		{ font-weight: 600; }
+
+.italic		{ font-style: italic; }
+.oblique	{ font-style: oblique; }
+
+.teletype	{ font-family: /* "ＭＳ ゴシック", "Osaka", */ monospace; }
+.preformat	{ white-space: pre; }		/* 段落はpreタグを使用する */
+.nowrap		{ white-space: nowrap; }
+
+.baseline	{ vertical-align: baseline; }
+.sub		{ vertical-align: sub; }
+.super		{ vertical-align: super; }
+
+
+
+	/* --- 表示形式 --- */
+
+.inline		{ display: inline; }
+.block		{ display: block; }
+.none,
+.off		{ display: none; }
+
+
+
+	/* --- ツールチップ --- */
+
+abbr[title],
+acronym[title]		{ border-bottom: dashed 1px #20A040; }		/* Mozilla では : dotted 1px; */
+span[title]		{ border-bottom: dashed 1px #C8D7E6; }
+em[title]		{ border-bottom: dashed 1px #96AFC8; }
+strong[title]		{ border-bottom: dashed 1px #F02000; }
+q[title], cite[title],
+dfn[title], code[title],
+samp[title], kbd[title],
+var[title]		{ border-bottom: dashed 1px #96AFC8; }
+
+#sidebar span[title]		{ border-bottom: none; }
+
+
+
+	/* --- リスト --- */
+
+ol.nomarker,
+ul.nomarker,
+li.nomarker		{ list-style-type: none; }		/* IEが入れ子リストに継承しないことに注意 */
+ol.noindent		{ padding-left: 2em; padding-right: 0; }
+ul.noindent		{ padding-left: 1em; padding-right: 0; }
+ol.noindent.nomarker,
+ul.noindent.nomarker	{ padding-left: 0; padding-right: 0; }
+ol.compact,
+ul.compact		{ display: compact; }
+
+ul.personlist		{ float: left; margin: 0.5em 0 1em; }
+ul.personlist li	{ float: left; width: 8em; margin: 0.2em 1em 0.2em 0; }
+
+
+div.section	{ clear: none; }	/* IE では clear するとそれより前の float 要素最下部(自分の親の外も含めて)にジャンプする… */
+.clearleft	{ clear: left; }
+.clearright	{ clear: right; }

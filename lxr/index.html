@@ -1,0 +1,159 @@
+<html>
+<HEAD>
+ <TITLE>Mozilla クロスリファレンス</TITLE>
+<!--
+
+オリジナル
+文書：Mozilla Cross-Reference 
+URL ：http://lxr.mozilla.org/index.html
+
+2002/07/05 山口 草稿
+2002/07/07 山口 完了
+
+-->
+
+<link rel="alternate" hreflang="en" modified="November  1,  2000">
+
+</HEAD>
+<BODY>
+
+<TABLE BGCOLOR="#000000" WIDTH="100%" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+<TR><TD><A HREF="/"><IMG
+ SRC="../images/mozilla-banner.gif" ALT=""
+ BORDER=0 WIDTH=600 HEIGHT=58></A></TD></TR></TABLE>
+
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=6 WIDTH="100%">
+ <TR>
+  <TH ALIGN=CENTER COLSPAN=3>
+   <BR>
+   <FONT SIZE="+3">Mozilla クロスリファレンス</FONT>
+   <BR><BR>
+  </TH>
+ </TR>
+ <TR>
+  <TD WIDTH=35% ALIGN=TOP VALIGN=LEFT>
+
+   <TABLE BORDER CELLPADDING=10 CELLSPACING=0 WIDTH="100%" BGCOLOR="#EEEEEE">
+    <TR>
+     <TD>
+
+      <BR>
+      <P ALIGN=CENTER><FONT SIZE="+1"><B>出発点：</B></FONT>
+      <P>
+
+      <DL>
+      <DT>
+         <FONT SIZE="+1"><A HREF="/lxr/seamonkey/"><B>SeaMonkey</B></A></FONT>
+      </DT>
+      <DD>
+         <FONT SIZE="-1">
+          このモジュールは、SeaMonkeyAll、つまり Mozilla ブラウザプロジェクトの中心部分です。<br>
+          （毎時間更新されます）
+         </FONT>
+      </DD>
+
+      <P>
+      <DT>
+         <FONT SIZE="+1"><A HREF="/lxr/mozilla1.0/"><B>Mozilla 1.0</B></A></FONT>
+      </DT>
+      <DD>
+         <FONT SIZE="-1">
+          これは、Mozilla 1.0 ブランチです。<br>
+          （6時間毎に更新されます）
+         </FONT>
+      </DD>
+
+      <P>
+
+      <DT>
+         <FONT SIZE="+1"><A HREF="/lxr/nspr/"><B>NSPR</B></A></FONT>
+      </DT>
+      <DD>
+         <FONT SIZE="-1">
+         このモジュールは、<A HREF="/projects/nspr/">NSPR</A>、つまり、スレッド、I/O、タイミング、メモリ管理を含めた、OSサービスのためのクロスプラットフォームライブラリです。<br>
+         （毎晩更新されます）
+         </FONT>
+      </DD>
+
+      <P>
+      <DT>
+         <FONT SIZE="+1"><A HREF="/lxr/security/"><B>Security</B></A></FONT>
+      </DT>
+      <DD>
+         <FONT SIZE="-1">
+          このモジュールには、NSS を含む<A HREF="/projects/security/">オープンソース PKI</A> に関連するコードが含まれます。<br>
+          （一日三回更新されます）
+         </FONT>
+      </DD>
+
+      <P>
+
+      <DT>
+         <FONT SIZE="+1"><A HREF="/lxr/ef/"><B>Electrical Fire</B></A></FONT>
+      </DT>
+      <DD>
+         <FONT SIZE="-1">
+          これは、/mozilla/ef、つまりマルチプラットフォームの Just-<WBR>In-<WBR>Time Java コンパイラーです。<br>
+          （毎晩更新されます）
+         </FONT>
+      </DD>
+
+      <P>
+
+      <DT>
+         <FONT SIZE="+1"><A HREF="/lxr/mozilla/"><B>Mozilla</B></A></FONT>
+      </DT>
+      <DD>
+         <FONT SIZE="-1">
+          ここには、現在の CVS リポジトリー全体が含まれます。<br>
+          （毎晩更新されます）
+         </FONT>
+      </DD>
+
+      <P>
+
+      <DT>
+         <FONT SIZE="+1"><A HREF="/lxr/classic/"><B>Classic</B></A></FONT>
+      </DT>
+      <DD>
+         <FONT SIZE="-1">
+          これは Mozilla Classic です。xpfe に変更がなされるちょうど前の、1998年 10月 26日からの MozillaSource モジュールのスナップショットです。これは参考のためにここに置いてあります。このブランチには、作業は全く行われていません。
+         </FONT>
+      </DD>
+      </DL>
+
+
+     </TD>
+    </TR>
+   </TABLE>
+
+  </TD>
+  <TD WIDTH=8></TD>
+  <TD ALIGN=TOP VALIGN=LEFT>
+
+<P>これは、<A HREF="http://www.mozilla.org/">Mozilla</A> <span class="comment">（<a href="/">日本語訳</a>）</span>ソースコードのクロスレファレンス表示です。ここで表示されるソースは、mozilla.org <A HREF="http://www.mozilla.org/cvs.html">CVS サーバー</A> <span class="comment">（<a href="/cvs.html">日本語訳</a>）</span>の本流にチェックインされたものです。つまり、これらのページは、一日に何度も更新され、本当の意味で最新最強のページです。
+
+<P>Mozilla ソーステキスト全体に対しての検索、または、パターンに一致するファイル名検索、特定の関数、変数などの定義からの検索も可能です。
+
+<P>ソースコードの個々のファイルは、その場でフォーマットされ、クリック可能な識別子と共に表示されます。<I>識別子</I> とは、マクロ、型定義（typedef）、構造体、列挙子（enum）、共用体（union）、関数プロトタイプ、または変数のことを示します。識別子をクリックすると、それらがどこで、どのよう利用されているか表示されます。
+
+<P>全文検索コマンドは、 <A HREF="http://glimpse.cs.arizona.edu">Glimpse</A> <span class="comment">（英文）</span>を利用して実装されているため、Glimps でできることなら、全て利用できます。<A HREF="search-help.html">正規表現</A>検索は、特に便利です。 
+
+<P>（これら全てのページを、Web クローラー <span class="comment">［訳注：検索エンジン］</span>を使ってダウンロードしようとはしないで下さい。CGI から数<I>ギガバイト</I> もの HTML ファイルが生成され、送り付けられるでしょう！）
+
+<P>ここのページは、<A HREF="http://lxr.linux.no/">LXR</A> ツール <span class="comment">（英文）</span>によって生成されいます。LXR はもともと、Linux カーネルのソースコードを表示するために書かれたものです。（LXR とは &quot;Linux Cross Reference&quot; を指します）<A href="http://lxr.linux.no/">本家 LXR サイト</A> <span class="comment">（英文）</span>をチェックしてみて下さい。
+
+<P>LXR ツールの著者、 <A HREF="mailto:lxr@linux.no">Arne Georg Gleditsch</A> および <A HREF="mailto:lxr@linux.no">Per Kristian Gjermshus</A> に、LXR を書いて公開してくれたことに感謝します。
+  </TD>
+ </TR>
+</TABLE>
+
+<P>
+<div align="right"><font size="-1">
+訳者： 山口 &lt;<a href="mailto:syamagu@mozilla.gr.jp">syamagu@mozilla.gr.jp</a>&gt;<br>
+<a href="http://lxr.mozilla.org/">このドキュメントのオリジナルは mozilla.orgにおいて英語で公布されています。</a><br>
+<p>このドキュメントのオリジナルは、mozilla.org において、英語で管理・公開されています。<br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.orgjp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。</p>
+</font></div>
+</BODY></HTML>

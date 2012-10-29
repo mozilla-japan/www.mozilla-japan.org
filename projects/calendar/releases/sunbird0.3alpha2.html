@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+ <title>Sunbird 0.3 alpha2 リリースノート</title>
+ <link rel="stylesheet" type="text/css" href="../calendar.css">
+ <link rel="alternate" hreflang="en" modified="June 8, 2006">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/calendar/releases/sunbird0.3alpha2.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+<div id="mainContent">
+<h1>Sunbird 0.3 alpha2 リリースノート</h1>
+
+<p>2006 年 5 月 11 日、, the Sunbird/Calendar プロジェクトは Sunbird 0.3 alpha2 をリリースしました。長期にわたるバックエンドコードの書き換え作業が始まって以来、2 番目の正式リリースです。Sunbird 0.3 alpha2 は Sunbird 0.3 に向けてのロードマップにおいて 2 番目のマイルストーンになります。このリリースノートでは、このバージョンにおいてユーザが注意すべきこと、期待すべきでないことを取り上げます。</p>
+
+<p>Sunbird 0.3 alpha2 は <a href="../sunbird/download.html">Sunbird のダウンロードページ</a> からダウンロードできます。</p>
+
+<h2 id="goals">0.3 alpha2 リリースの目標</h2>
+<p>Sunbird 0.3 alpha2 は製品品質を備えたリリースではありません（<a href="#limitations">制限事項と既知のバグ</a> を参照してください） 。その代わりに、新しいバックエンドコードの公開やテストのためのリリースという位置付けです。それには以下のようなものが含まれます：</p>
+
+<ul>
+ <li>イベントタイトルのインライン編集</li><li>日毎表示および週毎表示でのドラッグ・アンド・ドロップ編集の復活</li></ul>
+
+<p>Sunbird 0.3 alpha2 では、新しい表示形式の披露とテストに加えて、Sunbird 0.3 alpha1 に見つかった多数のバグを修正することも目的にしています。重要なものとしては以下が挙げられます：</p>
+
+<ul>
+ <li>繰り返しイベントの個別要素を変更できる機能</li><li>インポート・エクスポートでのエラーを少なくすること</li><li>適切なエラーレポート</li><li>アラーム機能の改善</li><li>新しく、より直感的に理解しやすい 「新規イベント」 ダイアログ</li><li>Mac とのより高い親密性</li><li>その他の多数ある重要なバグ修正</li></ul>
+
+<h2 id="limitations">制限事項と既知のバグ</h2>
+
+<p>Sunbird 0.3 alpha2 の使用前に、このリリースに存在する制限事項に必ず目を通してください：</p>
+
+<ul>
+ <li>Mozilla のコアコードに構造的な変更が行われたため、Sunbird 0.3 alpha2 は Windows 95 や Windows 98、Windows ME では動作しません。</li><li><strong>他のカレンダープログラムで作成したカレンダーファイルと共に Sunbird を使用した場合、データロスが発生する可能性があります。</strong>
+ </li><li>CalDAV サポートは引き続き非常に限られています。</li><li>変更直後 （5 秒以内） に Sunbird をシャットダウンすると、その変更が記録されない場合があります。</li><li>Sunbird 0.3 alpha2 では、1970 年以前および 2031 年以降の日付では利用できません。</li><li>スリープ機能 （snooze functionality） は現在装備されていません。</li><li>繰り返しイベントのためのアラームが正常に作動しない場合があります。</li><li>Sunbird 0.3 alpha1 のプロファイルは自動的に Sunbird 0.3 alpha2 のものへとアップグレードされますが、内部の SQLite データベースがアップデートされるため Sunbird 0.3 alpha1 プロファイルとの互換性がなくなります。</li><li>Sunbird 0.3 alpha2 は、Sunbird 0.2 からのカレンダーファイルを自動的には移行しません。お使いの <a href="http://kb.mozillazine.org/Profile#Sunbird">プロファイルフォルダ</a> から手動でインポートし、リモートカレンダーのファイルを再購読する必要があります。</li></ul>
+
+<p>また、Lightning の <a href="lightning0.1.html#surprising">意表をつく挙動</a> が Sunbird 0.3 alpha2 にもあてはまります。</p>
+
+<h2 id="regressions">Sunbird 0.3 alpha2 からのリグレッション</h2>
+
+<p>開発が進められていますが、一部の問題は Sunbird 0.3 alpha1 リリース時よりも悪化しています：</p>
+
+<ul>
+ <li>カレンダー内に重なるイベントがあった場合、同じ日に登録されている他の相反していないイベントも幅が狭く表示されます。</li><li>位置・詳細情報はもう日毎表示および週毎表示に表示されなくなりました。</li><li>終日イベントは、星アイコンが表示されるのではなく、単純に時間設定が表示されません。</li><li>各表示設定では、複数のイベントを選択できません。unifinder では引き続き複数のイベントを選択できます。</li><li>同様に、［Edit］ メニューから ［Select All］ をしても動作しません。</li><li>Sunbird 0.3 alpha2 では、起動時に「Failed to load XPCOM component」 というエラーが JavaScript コンソールに多数報告されますが、機能は一切失われていません。</li></ul> 
+
+<h2 id="next">次のステップ</h2>
+
+<p>現在の Sunbird 開発ロードマップでは、このリリースが Sunbird 0.3 に向けた最後のアルファリリースとされています。次に計画されている Sunbird リリースは、最終的な製品品質を備えたリリースを作成するための開発努力にむけて、このリリースで見つかったバグを修正することのみを目標とした Sunbird 0.3 beta です。Sunbird 0.3 beta には新機能を直接盛り込むことは計画されていませんが、並行して進められている Lightning の開発状況によっては、Sunbird の次期リリースにも新機能が盛り込まれる可能性があります。</p>
+
+<p>これらの機能の実装具合を追いかけたいユーザはぜひナイトリービルドをダウンロードしてください。いつもどおり、テストや役に立つバグ報告を大いに歓迎します。</div>
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/calendar/releases/sunbird0.3alpha2.html">英語版</a> 2006/06/08</span> - <span>和訳版 2006/09/25</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/calendar/releases/sunbird0.3alpha2.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

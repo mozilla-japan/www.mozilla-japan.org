@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>拡張機能マニフェスト</title>
+<link rel="alternate" hreflang="en" modified="March 5, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/extensions/manifest.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>拡張機能マニフェスト</h1>
+<h2>はじめに</h2>
+<p>拡張機能は <strong>拡張機能マニフェスト</strong> とともに XPI ファイルにパッケージされます。マニフェストファイルには、その拡張機能に関するメタデータや (他の拡張機能やターゲットアプリケーションとの) 依存関係に関する情報が含まれます。このメタデータは、拡張機能をインストールする際に、アプリケーション (Firefox) の拡張機能マネージャが持つデータソースに組み込まれます。</p>
+<p>このドキュメントでは、そのマニフェストの内容を概説します。</p>
+<h2>マニフェストの内容</h2>
+<p><code><pre>
+  &lt;?xml version=&quot;1.0&quot;&gt;
+
+  &lt;RDF xmlns=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+       xmlns:chrome=&quot;http://www.mozilla.org/rdf/chrome#&quot;&gt;
+
+    &lt;Description about=&quot;extension:manifest&quot;&gt;
+      &lt;chrome:id&gt;@banditsoft.com/software/rssbandit&lt;/chrome:id&gt;
+      &lt;chrome:version&gt;1.0&lt;/chrome:version&gt;
+      
+      &lt;!-- この拡張機能をインストールできるターゲットアプリケーションと
+          サポート可能な最小・最大バージョン --&gt;
+      &lt;chrome:targetApplication&gt;
+        &lt;Description about=&quot;urn:mozilla:@mozilla.org/products/firefox&quot;&gt;
+          &lt;chrome:minVersion&gt;0.7&lt;/chrome:minVersion&gt;
+          &lt;chrome:maxVersion&gt;1.2&lt;/chrome:maxVersion&gt;
+        &lt;/Description&gt;          
+      &lt;/chrome:targetApplication&gt;
+      
+      &lt;chrome:targetApplication&gt;
+        &lt;Description about=&quot;urn:mozilla:@mozilla.org/products/thunderbird&quot;&gt;
+          &lt;chrome:minVersion&gt;0.4&lt;/chrome:minVersion&gt;
+          &lt;chrome:maxVersion&gt;0.5&lt;/chrome:maxVersion&gt;
+        &lt;/Description&gt;          
+      &lt;/chrome:targetApplication&gt;
+
+      &lt;chrome:requires&gt;
+        &lt;Description about=&quot;urn:mozilla:@mozdev.org/jslib&quot;&gt;
+          &lt;chrome:minVersion&gt;1.0&lt;/chrome:minVersion&gt;
+          &lt;chrome:maxVersion&gt;1.1&lt;/chrome:maxVersion&gt;
+        &lt;/Description&gt;          
+      &lt;/chrome:requires&gt;
+
+      &lt;chrome:requires&gt;
+        &lt;Description about=&quot;urn:mozilla:@banditsoft.com/software/rdfutils&quot;&gt;
+          &lt;chrome:minVersion&gt;2.5&lt;/chrome:minVersion&gt;
+          &lt;chrome:maxVersion&gt;2.9&lt;/chrome:maxVersion&gt;
+        &lt;/Description&gt;          
+      &lt;/chrome:requires&gt;
+
+      &lt;!-- フロントエンドのメタデータ --&gt;
+      &lt;chrome:name&gt;RSSBandit 4.0&lt;/chrome:name&gt;
+      &lt;chrome:description&gt;An integrated RSS reader for Firefox and Thunderbird&lt;/chrome:name&gt;
+      &lt;chrome:creator&gt;BanditSoft, Inc.&lt;/chrome:creator&gt;
+      &lt;chrome:contributor&gt;John Doe&lt;/chrome:contributor&gt;
+      &lt;chrome:contributor&gt;Jane Doe&lt;/chrome:contributor&gt;
+      &lt;chrome:homepageURL&gt;http://www.banditsoft.com/rssbandit/&lt;/chrome:homepageURL&gt;
+
+      &lt;!-- アップデート情報 --&gt;
+      &lt;chrome:updateURL&gt;http://www.banditsoft.com/rssbandit/update.rdf&lt;/chrome:updateURL&gt;
+      
+      &lt;!-- (拡張機能マネージャが利用する) フロントエンド統合の仕組み --&gt;
+      &lt;chrome:optionsURL&gt;chrome://rssbandit/content/options.xul&lt;/chrome:optionsURL&gt;
+      &lt;chrome:aboutURL&gt;chrome://rssbandit/content/about.xul&lt;/chrome:aboutURL&gt;
+      &lt;chrome:iconURL&gt;chrome://rssbandit/content/rssbandit.png&lt;/chrome:iconURL&gt;
+      
+      &lt;!-- この拡張機能が登録するパッケージとスキン、ロケール --&gt;
+      &lt;chrome:file&gt;
+        &lt;Description about=&quot;urn:mozilla:extensions/&lt;uniquifier&gt;/foo.jar&quot;&gt;
+          &lt;chrome:package&gt;content/rssbandit/&lt;/chrome:package&gt;
+          &lt;chrome:locale&gt;locale/en-US/rssbandit/&lt;/chrome:locale&gt;
+          &lt;chrome:skin&gt;locale/classic/rssbandit/&lt;/chrome:skin&gt;
+        &lt;/Description&gt;
+      &lt;/chrome:file&gt;
+    &lt;/Description&gt;      
+  &lt;/RDF&gt;
+</pre></code></p> 
+<h2>拡張機能マネージャが持つデータソースの文法</h2>
+<p>拡張機能マネージャは、インストールされた拡張機能のデータソースを管理します。このデータソースは、インストール、アンインストール、無効化、有効化、自動アップデートなどの処理に利用されます。拡張機能がインストールされると、マニフェストに記述されたデータがこのデータソースに組み込まれます。詳しくは <a href="installation.html">拡張機能のインストール</a> をご覧ください。</p>
+<p>マニフェストから受け取るメタデータの他にも、データソースの各拡張機能のエントリーに保存される付加的な定型メタデータがいくつかあります。これには次のようなものが含まれます。</p>
+<ul>
+  <li><strong>chrome:toBeDisabled</strong> - ブール値 - 次回起動時に拡張機能を無効化することを示します。</li>
+  <li><strong>chrome:toBeEnabled</strong> - ブール値 - 次回起動時に拡張機能を有効化することを示します。</li>
+  <li><strong>chrome:toBeUninstalled</strong> - ブール値 - 次回起動時に拡張機能をアンインストールすることを示します。</li>
+</ul>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/extensions/manifest.html">英語版</a> 2004/03/05</span> - <span>和訳版 2005/05/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/extensions/manifest.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

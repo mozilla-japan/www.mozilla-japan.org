@@ -1,0 +1,58 @@
+body
+{
+  background:      url(tbird-background.png);
+  color:           black;
+  margin:          0px;
+  padding:         0px;
+  border:          0px;
+}
+
+#header
+{
+  padding:         5px 5px 0px 5px;
+  border-bottom:   1px solid black;
+  min-height:      45px;
+  max-height:      45px;
+}
+
+.header-column
+{
+  font-size:       1.4em;
+}
+
+.header-minor
+{
+  font-weight:     bold;
+  padding:         0px;
+  font-size:       1.2em;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 1px;
+  width: 40ex;
+}
+
+#allBodyText
+{
+  padding:         1%;
+  background:      white;
+  color:           black;
+}
+
+#end
+{
+  border-top:      1px solid black;
+  clear:           both;
+  padding:         3px;
+  background:      inherit;
+  color:           white;
+  font-size:       .8em;
+}
+
+.horizbanner 
+{
+  font-size: 80%;
+}
+
+.horizontal-menu 
+{
+  margin: 1px 3px;
+}

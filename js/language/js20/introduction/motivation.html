@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 動機付け</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/introduction/motivation.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="index.html">
+<link rel="Next" href="notation.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">導入</div>
+    <div class="title1">動機付け</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="index.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous" /></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up" /></a><a href="notation.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next" /></a></td>
+</tr>
+</table>
+
+<p class="mod-date">2002/09/04 (Wed)</p>
+
+<h2>目的</h2>
+
+<p>JavaScript 2.0 の主要な目的は:</p>
+
+<ul>
+  <li>言語をモジュール指向アプリケーション、オブジェクト指向アプリケーションの記述に適合したものにすること</li>
+  <li>堅牢で安全なアプリケーションを簡単に記述できるようにすること</li>
+  <li>他の種々の言語、環境に調和するために JavaScript の機能を改善すること</li>
+  <li>効率重視アプリケーションの記述に対する適合性の向上</li>
+  <li>可能な限り言語を簡潔なものにすること</li>
+  <li>言語の実装を小型で柔軟なものに保つこと</li>
+</ul>
+<p>以下のものは JavaScript 2.0 の目的などでは<strong>ない</strong>:</p>
+
+<ul>
+  <li>JavaScript 2.0 を、プログラミングというものに課せられた責務全てに適合させること</li>
+  <li>JavaScript 2.0 を既存のプログラミング言語に似せること</li>
+</ul>
+
+<p>JavaScript は現時点ではあらゆる目的に使用できるプログラミング言語ではない。JavaScript の長所はソースからの高速実行
+(例えばソースコードの状態でウェブページ内にばらまくことができる)、動的であること、そして Java
+や他の環境に対するインターフェイスである。コンポーネントやライブラリ無しに
+JavaScript プログラムを確実に組んだり、オブジェクト指向のプログラムを書くための機能も追加されるが、JavaScript 2.0
+は上に挙げた長所の改良を目的としている。一方で JavaScript 2.0 を C++ や Java
+といった言語に取って代わるものにしようとしているのではなく、超大規模、効率重視、低水準といった多くの種類のアプリケーションの記述に適しているのは依然としてこれらの言語だろう。</p>
+
+<h2>根拠</h2>
+
+<p>提案された機能は上に挙げた目的から導き出されたものである。例えば堅牢でモジュール性の高いアプリケーションの記述という目的を考えてみよう。</p>
+
+<p>モジュール性の実現のためにいくつかの種類のライブラリの仕組みを考えた。提案されたパッケージの仕組みはこの目的に適ったものだが、それだけでは不十分である。一枚岩になりがちな既存の
+JavaScript プラグラムとは異なり、パッケージとそのクライアントは異なる人間、異なる時間で書かれるのが普通である。パッケージを導入するや否や、パッケージの作者はそのクライアント全てには関知しない、或いはクライアントの作者は必要なパッケージの全てのバージョンには関知しないという問題が発生する。この問題を解決せずに言語にパッケージを追加しても堅牢性の達成は不可能である。そのためパッケージ-クライアント間の抽象機構を定義する手段を構築することにより、この問題に取り組まなければならないのである。</p>
+
+<p>これらの抽象機構の構築のために、省略可能な型と型チェックを追加して言語をより統制のとれたものした。またクラス定義、階層定義とクラスのバージョン管理のための厳密で一貫した構文も導入した。JavaScript
+1.5 とは異なりクラスの作者はクラスのインスタンスについて不変性を保証でき、クラスのインスタンスに対するアクセス制御も可能であるのでパッケージの作者の仕事は簡単になる。クラス定義もまた
+JavaScript 1.5 のものより自己記述的になっており、JavaScript 2.0 のコードは理解、使用し易くなっている。堅牢な派生クラスの定義は
+JavaScript 1.5 では非常に困難だったが、JavaScript 2.0 では容易である。</p>
+
+<p>パッケージを機能させるためには、言語を他方面においてもより堅牢なものにする必要がある。或るパッケージが <code>Object.toString</code>
+を再定義したり、<code>Array</code> プロトタイプにメソッドを追加することにより他のパッケージでそれらの意味が変わってしまうようではまずいわけである。これらの変化
+(古いプログラムを実行しているときは除く。古いプログラムはパッケージを使用しない) を無くすことで言語を簡潔にでき、他にもっと良い方法を提供できる。これにはスレッド同期点を無くすことによる言語実装の高速化という利点も含まれている。要求ごとに新しいパッケージセットで開始するのではなく、多くの異なる要求間でパッケージを共有することにすれば、堅牢な標準パッケージの使用はメモリ要求をも著しく減少させサーバの速度を上げる。他の要求がプロパティを変更している可能性があるからである。</p>
+
+<p>JavaScript 2.0 の他言語インターフェイスは JavaScript 1.5
+のものに比べて一層改良されなければならない。統一の目的が達成されればインターフェイスのユーザはそのインターフェイスが JavaScript
+で書かれているのか、Java で書かれているのか、或いはその他の言語で書かれているのかについて気にする必要は無くなる。またネイティブな
+Java や他の言語で使用できる JavaScript インターフェイスも記述できなければならない。</p>
+
+<p>他言語とのシームレスなインターフェイスを実現するために、JavaScript
+はそれらの言語の基本的なデータ型と同等のものを提供しなければならない。構文など細かい点は同等にする必要は無いが、概念的には同じでなければならない。JavaScript
+1.5 は整数のサポートに欠けており、<code>long</code> を使う Java のメソッドとのインターフェイスは困難になっている。</p>
+
+<p>JavaScript は多くの異なるアプリケーション分野で使用されており、それらの分野の多くは発展途上である。JavaScript 2.0
+はこれらの分野の全てをサポートするのではなく、これらのアプリケーション分野が JavaScript
+コア部の変更を必要とせず、自身の発展途上の標準を定義できるような柔軟な手段を提供すべきである。JavaScript 2.0
+はユーザプログラムにゲッタやセッタなどの機能 &#8212; JavaScript 1.5 では言語コア部でしか達成できなかった機能 &#8212;
+の定義を認めることによってもこの目的に取り組んでいる。</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:bottom;white-space:nowrap">
+    <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br />
+    最終更新: 2002年9月4日 (水)</address>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="index.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous" /></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up" /></a><a href="notation.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next" /></a></td>
+</tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal@student.interq.or.jp">exeal@student.interq.or.jp</a>&gt;<br />
+	<a href="http://www.mozilla.org/js/language/js20/introduction/motivation.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br />
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

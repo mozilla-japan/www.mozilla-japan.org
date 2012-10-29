@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+	<meta name="generator" content=
+    "HTML Tidy for Windows (vers 14 February 2006), see www.w3.org">
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+	<meta http-equiv="Content-Language" content="ja">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+
+	<meta name="DC.author" content="Mike Stoltz">
+	<meta name="DC.creator" content="Mike Stoltz">
+	<meta name="DC.title" content="Mozilla のセキュリティ評価と最良実践ガイド">
+	<meta name="DC.date.created" content="2002-03-22T17:52:03+11:00" scheme="W3CDTF">
+	<meta name="DC.date.modified" content="2006-09-07T09:54:03+11:00" scheme="W3CDTF">
+
+	<title>Mozilla のセキュリティ評価と最良実践ガイド</title>
+
+	<link rel="alternate" hreflang="en" modified="September 7, 2006">
+	<link rel="section" href="#chrome" title="問題">
+	<link rel="section" href="#solutions" title="解決策">
+	<link rel="section" href="#challenges" title="課題">
+	<link rel="section" href="#c++" title="C++">
+	<link rel="subsection" href="#bufferoverruns" title="バッファオーバーラン">
+	<link rel="subsection" href="#formatbugs" title="書式バグ">
+	<link rel="subsection" href="#riskyfunctions" title="危険な関数">
+
+	<link rel="glossary" href="terms.html" title="Javascript セキュリティの重要用語集">
+	<link rel="alternate" hreflang="en" modified="2006/09/07">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/components/reviewguide.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+	<h1>Mozilla のセキュリティ評価と最良実践ガイド</h1>
+
+	<h2>草稿 3 - 2002年5月17日</h2>
+
+	<h3>キーポイント</h3>
+
+	<ul>
+		<li>製品への後付けでは優れたセキュリティを達成できません。設計の段階からセキュリティを考慮しなければならないのです。</li>
+
+		<li>製品のどこにあるバグでもセキュリティ上の脆弱性を引き起こし得ます。セキュリティバグは必ずしも PSM (Personal Security Manager) や ScriptSecurityManager で起こるわけではありません。</li>
+
+		<li>安全なコードを書くことは正しいコードを書くことの不可欠で必要な一部分です。メモリーリーク、初期化されていない変数への参照などを含むコードをチェックインしないでしょうし、レビュアーとしての承認を与えることもないでしょう。同様に、バッファオーバーラン、クロスサイトスクリプティング問題や以下に記述されている誤りを含むコードはチェックインを認められないものなのです。</li>
+
+		<li>要するに、<span class="stronger" style="color: red; background-color: inherit;">セキュリティは全ての人の責務なのです</span>。</li>
+</ul>
+
+	<h2><a name="chrome">問題</a>
+	</h2>
+
+	<h3>目標: 何から保護するのか。</h3>
+
+	<p>「セキュリティ」はかなり漠然とした用語です。「プライバシー」もそうです。より明確に、Mozilla に関するコードを書くとき、何から保護する必要があるのかを以下に示します。</p>
+
+	<ul>
+		<li><strong>任意のコードの実行 / 一般的なファイルシステムへのアクセス</strong> - セキュリティ欠陥についての「至高の探索目標」。もし攻撃者が攻撃者の選んだ任意のコードによってユーザのメモリーに書き込んで実行できるならば、攻撃者はユーザのシステムを制御して、思いのままにどんなデータでも読んだり、修正したり、削除したり、ユーザがアクセスした他のマシンにアクセスしたり、ネット上でユーザに扮したり、攻撃されたマシンを更なる攻撃の拠点として使うことができます。これは私たちのソフトウェアに対する最も危険な種類の攻撃です。任意のコードを実行することとユーザのファイルシステムへの一般的な読み書きのアクセスとが同等であることに注意してください。一方が他方を容易に引き起こします。</li>
+
+		<li><strong>任意のコードについてもう少し</strong> - 以上に記述された攻撃はバッファオーバーフローや他の捕らえにくい脆弱性の存在を必要としていません。ユーザを説得したりだましたりして、攻撃者の FTP サイトからトロイの木馬のプログラムを明確にダウンロードして実行させるのと同じくらい簡単かもしれません。ユーザの愚行の全てを阻止することはできませんが、<em>いつ</em>潜在的に危険なコードをダウンロードしていたのか、そしてそのコードが<em>どこ</em>から来ているのかをユーザに認知させることはできます。私たちはユーザがダウンロードが行われたことを知るようにし、そのダウンロードを信頼するのかどうかを判断できるだけの十分な情報をユーザに与えるべきです。</li>
+
+		<li><strong>特権の奪取</strong> - しばしば信用証明書を手に入れずに、攻撃者はユーザの特権や信用証明書を利用します。例えば、一つのブラウザのウィンドウで銀行のサイトにログインし、二番目のウィンドウで攻撃者のページを訪れることになったと想像してください。もし攻撃者が口座振替を求める銀行のウィンドウ内のフォームに送信できるならば、実際にパスワードを手に入れずに、攻撃者は盗むために証明書を使っていたことになります。</li>
+
+		<li><strong>制限されたローカルファイルへのアクセス / キャッシュの読み込み</strong> - 時々、攻撃者はファイルシステムへの一般的なアクセスをせずにユーザのシステムに悪意のあるコード（主として JavaScript）を埋め込めます。時々、Mozilla は攻撃者が Cookie ファイルやブラウザのキャッシュなどの特定の場所内のディスクにスクリプトを保存するのを助けてしまいます。</li>
+
+		<li><strong>情報漏れ</strong> - Mozilla はユーザのはっきりした同意なしに、ユーザのメールアドレス、実名やその他の身元を確認できる情報を漏らすべきではありません。</li>
+
+		<li><strong>なりすまし</strong> - もし攻撃者があなたの銀行のログインページにそっくりなページを作成できて、そこであなたにパスワードを入れさせたならば、攻撃者はあなたの銀行の預金口座を盗んだことになります。世界中のどんな暗号作成法でもこの攻撃を妨げません。ただ注意深くユーザインターフェイスを設計することによってのみ、攻撃が難しくなるでしょう。</li>
+
+		<li><strong>サービス拒否 - </strong>ブラウザをクラッシュさせたり、無限ループでウィンドウを開かせたり、多くのメールを送りつけることは全てサービス拒否攻撃の一形態です。もしデータの損傷や他の永久的な損害を引き起こさなかったり、システムを危険にさらされた状態にしたままにしているならば、いらいらしている間、私たちはこれらの危険な弱点を突く手法について考えません。これらに対する最もよい解決策は単に再び不愉快なサイトに行かないというものです。</li>
+	</ul>
+
+	<h3>何から保護<span style="color: red; background-color: inherit;">しない</span>のか。</h3>
+	<p>最も安全なコンピューターとは電源が切られ、プラグが抜かれて、コンクリートの中に埋められたものです。セキュリティと機能性は常に競合しているので、保護するものとしないものとしないものとを区別する必要があります。 特に:</p>
+
+	<ul>
+		<li>
+			<strong>ダウンロードされたネイティブコード</strong> - ウェブページやメールのメッセージでユーザが直面するかもしれない全ての事からユーザを守ることができますし、するべきです。しかし、ユーザがダウンロードして実行した実行可能ファイルからユーザを守ることはできません。ネイティブな実行可能ファイルではオペレーティングシステムが守らせることを超えてアクセスをコントロールすることはできません。一般にバイナリの実行可能ファイルはユーザができることなら何でもできます。セキュリティホールやだまされやすいユーザに <em>MyTrojan.exe</em> をダウンロードするように誘うことを通して、一度攻撃者がネイディブコードをユーザのマシンに埋め込むと、攻撃者は勝利して私たちは敗北したことになります。これが、<em>明確に</em>そして<em>説明を受けた上で</em>ユーザがネイティブコードをダウンロードして実行する決定をしなければ、それを行えないように一生懸命努力してきた理由です。</li>
+
+			<ul>
+				<li><strong>インストーラーファイル</strong>:XPInstall を通して送られたファイルはユーザができることなら何でも可能で、これを制限する方法はありません。インストールした後、取るべき策はないので、ユーザはインストールに同意する前にインストールするファイルの製作者を信用しなければなりません。</li>
+
+				<li><strong>プラグイン</strong>は、同様に、一度インストールされると、正にどんなことでもできます。</li>
+			</ul>
+		<li><strong>物理的なアクセス</strong> - もし攻撃者（あるいは詮索好きな家族の一人）があなたのマシンのキーボートのところに座っているならば、その人はあなたのマシンに対して何にでもアクセスし、何でもできます。ログインを必要とする OS を使ったりディスクやファイルレベルの暗号化ソフトを使ったりすることで保護が得られます。これらの何一つも Mozilla プロジェクトの責務ではありません。</li>
+	</ul>
+
+	<p>要するに、主な目標はウェブページを見たり、メールを読んだりするという行動の中で直面する攻撃を防ぐことです。他の攻撃源もありますが、重大な関心事ではありません。</p>
+
+	<h3><a name="challenges">課題</a></h3>
+
+	<p>Mozilla はオープンソースなので、私たちはセキュリティ問題を発見する上で明らかに有利な立場にあります。問題がないかコードに目を通すことのできる人の数に制限を設けていません。同時に、克服しなければならない明確な課題があります:</p>
+
+	<ul>
+		<li>Mozilla は多くの非常に異なったタイプのアプリケーション内に組み込まれ、多くのタイプのユーザに配布されています。これは全てのユーザに対してブラウザを設定して最新の状態を保つ、精通した IT スタッフの存在を当てにできないということです。Mozilla を基にした製品の全てのユーザへのパッチの配布が遅くて難しいかもしれないということでもあります。</li>
+
+		<li>Mozilla は分散したやり方で開発された非常に複雑なアプリケーションです。複雑さはセキュリティの敵です。Mozilla は、もしかするとほとんど協調関係のない異なる集団によって書かれたかもしれないような、モジュール間の相互作用の中にあり、そこではセキュリティ問題がしばしば現れます。それが、他のモジュールによって不適当なデータが与えられたときでさえも、互いのモジュールが正しく動作するように設計しなければならない理由です。</li>
+		<li>Mozilla のユーザインターフェイスはウェブコンテンツを作成するのに使われる言語と同じ言語（XML、HTML や JavaScript）で書かれています。このため信頼できないウェブコンテンツを信頼できるユーザインターフェイスのコードと混同しやすいのです。</li>
+
+		<li>ユーザの中には経験のないコンピューターユーザがたくさんいる可能性があり、そのようなユーザは対話形式のウェブコンテンツに関係する危険を理解していません。これはユーザの判断をできるだけ少なくすることに頼らなければならないということです。Edward Felten が言ったように、<q cite="http://en.wikipedia.org/wiki/Edward_Felten#Quote">「踊る豚かセキュリティかの選択肢が与えられると、ユーザはいつでも踊る豚を選ぶでしょう。」</q><span class="comment">【訳注: この Edward Felten の発言については、<cite>Securing Java</cite> の <a href="http://www.securingjava.com/chapter-one/chapter-one-7.html">How Does Java Security Stack Up? (Ch. 1, Sec. 7)</a> の Figure 1.8 を参照してください】</span></li>
+	</ul>
+
+	<h2><a name="solutions">解決策</a></h2>
+
+	<p>以下が安全な機能を設計し、問題を未然に防ぎ、ありふれた落とし穴を捜す方法についての Mozilla のプログラマ、レビュアーやユーザインターフェイス製作者のためのガイドラインです。</p>
+
+	<h3>セキュリティの黄金律：どんな入力源であっても信用してはいけません</h3>
+
+	<p>偏執病的に聞こえますが、うまくいきます。あなたの入力がどこからのものなのか考えてください。ネットワークからのデータか、ディスク上のファイルか、ユーザの入力か、環境変数か、それともあなたの関数への引数か。もし入力がひょっとしたらあなたの管理外の源に由来するのならば、それがあなたの予想する書式であることを確実にするために<strong>それを確かめてください</strong>。全ての離れたサーバー、環境設定ファイル、コマンドライン引数が、損害を与えることに専念している悪質なハッカーによって作成されたと想定してください。どの入力の組み合わせでもコードが思いがけない振る舞いをするようにならないことを確かめてください。この方法で自分のコードを見ることで信頼性も向上します。セキュリティと信頼性は近い親類なのです。以下の点のほとんどは本当にこの基本規則の例です: 決して確認せずに入力が安全だと想定してはいけません。</p>
+
+
+	<h3>Chrome JS</h3>
+
+	<p>chrome を書くことはウェブページを書くことと非常によく似ており、セキュリティ上の懸念を引き起こします。しかし、chrome JS はネイティブなブラウザのコードの一部として考えられており、それができることについて何の制限も無いので、chrome に対する関心はより高いです。</p>
+
+	<p>覚えておくべき最も重要なことは全てのユーザの入力と、（更に重要なことに）URL を含む、ウェブからのデータを信用できず潜在的に悪意のあるものとして扱うことです。ウェブからのデータが chrome 内のどこで使われようとも、潜在的に危険な要素としてフィルターにかけなければなりません。</p>
+
+	<ul>
+		<li>HTML、XML または XUL をレンダリングしたり URL を読み込むところではどこでも、JavaScript が実行されるかもしれないということを覚えておいてください。HTML と XML の要素には &lt;SCRIPT&gt; タグを含めることができ、Mozilla ではスクリプトを実行させる javascript: と data: スキームを URL に使用できます。メインのブラウザウィンドウ内に表示されたウェブページでは、ブラウザのコンテンツ領域内の全てのものは信頼できないものとして扱われ、保護用の「サンドボックス」内で実行されるので、これは無害です。ダイアログや他の特別なウィンドウにはあてはまりません。あなたのダイアログは現在のウェブページやメールのメッセージに由来するデータを含んでいますか。それはページから取り込まれたリンクを表示しますか。もしそうならば、JavaScript をフィルターにかけるかスクリプトが確実に安全な環境内で実行されるようにしなければなりません。**例**</li>
+	</ul>
+
+	<ul>
+		<li>書かれている言語や書式では<strong>なく</strong>、ファイルの場所や出所によってそれが信頼できるかが決定されます。ブラウザの chrome ディレクトリ内の全てがアプリケーションの一部のように扱われます。chrome ディレクトリ内に含まれるどんな JavaScript にも XPConnect を通じてネイティブなブラウザの API の完全な利用権限を持っており、任意のファイルの読み書きを含めて、コンパイルされた C++ コードができることが何でもできます。デフォルトでは、chrome ディレクトリ外のユーザのローカルなドライブ上のスクリプトファイルはブラウザの API の完全な利用権限を持っていません。それらはちょうどウェブからのスクリプトのように扱われます。最後に、ウェブスクリプトはデフォルトでは信頼できず、スクリプトができることは非常に限られています。これはスクリプトが HTML、XML または XUL ファイルのどれに入っていようと本当です。特権はスクリプトがどの種類のファイルに入ってくるかではなく、スクリプトがどこに由来するのかに基づいているので、単に XUL ファイル内にあるというだけでスクリプトにどんな特権であっても与えるべきではありません。</li>
+	</ul>
+
+	<ul>
+		<li>可能なときはいつでも eval() の使用を避けてください。eval() の原因となるので、setTimeout() と setInterval() への最初の引数として文字列を渡すことも避けてください。Eval は遅い上、悪意のあるコードを挿入して実行するのに役立つ手段を提供します。普通は別の手段があります。もし eval() を使わなければならないならば、関数に渡される文字列が予想した値を含むか確かめるようにしてください。</li>
+
+		<li>chrome Javascript 内では、_content 内の全てが信頼できないので、_content への呼び出しに気をつけてください。渡した引数に気をつけ、結果に用心してください。_content 内のものが予想した型を持っていると想定しないでください。
+			<p>特に:</p>
+
+			<ul>
+				<li>もし obj がコンテンツに由来するならば、obj.toString() の代わりに ToString(obj) を使ってください。ウェブページは obj の toString 関数を再定義していたかもしれません。</li>
+
+				<li>文字列だと予想していたとしても、コンテンツからのオブジェクトが文字列だと想定しないでください。</li>
+
+				<li>コンテンツ内の関数を呼んだならば、ウェブページは渡した引数を読めることを思い出してください。このことはめったに問題にはなりませんが、ネットを通して送り返したくないどんな情報（例えば、ユーザのメールアドレス）でもページに渡さないよう注意してください。</li>
+			</ul>
+		</li>
+
+		<li>もし（chrome かコンテンツのいずれかに書き込むか、document.write を使うか、innerHTML に追加するか、または他の方法で）ウィンドウに文字列を書き込み、文字列の値がウェブページに由来するかもしれないのならば、それを書き込む前に文字列を html エスケープしてください。使用できる <a href="http://lxr.mozilla.org/seamonkey/source/xpfe/global/resources/content/config.js#167">HTML エスケープ関数の例はこれです</a>。</li>
+
+		<li>リンクのターゲット、イメージや埋め込まれたオブジェクトの場所などとしてページやウィンドウに URL を書き、URL がウェブページに由来するかもしれないときはいつでも、URL を調べて、もしプロトコルが javascript: または data: ならばそれを書き出さないでください。これらの種類の URL を読み込むことでスクリプトの実行を引き起こし得ます。もし javascript: や data: を許可したいならば、実行するどんなスクリプトでも chrome スクリプトの全ての特権で実行しないことを確実にしてください。</li>
+	</ul>
+
+	<p>javascript: URL では、（一般に HTML/XML の要素としてレンダリングされる）戻り値とスクリプトの実行による副作用の両方について気をつけてください。</p>
+
+	<h3><a name="c++">C++</a>
+	</h3>
+
+	<p>C や C++ は用途が広い一方で、セキュリティ上の誤ちを非常に犯しやすいです。特にある種の関数は非常に危険で、それらを避けるか非常に気を付けて使うべきです。この節では C や C++ のコードを書く時に避けるべき共通のセキュリティ上の落とし穴が記述されています。<em>Mozilla のどこであっても</em>このような誤りはセキュリティ上の脆弱性を引き起こしうることを覚えておいてください。</p>
+
+	<h4><a name="bufferoverruns">バッファオーバーラン</a></h4>
+
+	<p>バッファは連続したメモリーのブロックです。バッファオーバーランとはバッファが保持できるよりも多くのデータをバッファに書き込むことです。余分なデータはバッファに隣接したメモリー内の他の値を上書きします。それらの値が何であるかによって、それらを上書きすることで、攻撃者はプログラムの処理方法を変えたり、攻撃者の選んだ任意のコマンドを実行することさえできます。C や C++ はこれに対する組み込みの保護を提供していません。(JavaScript の場合は、更なるデータに対応するために必要に応じて動的に大きくなるバッファによって、提供しています。) 以下が必要最低限の例です:</p>
+
+	<pre class="code">
+    void dangerousFunction(char* input)<br>    {<br>      char buf[100];<br><br>      PL_strcpy(buf, input);<br><br>      // 更なるタスク...<br>    }
+</pre>
+
+	<p>これは非常に危険な状態です。一般的には、どこであれサイズのチェックをしていない PL_strcpy（または標準 C ライブラリ関数 strcpy）を見たら、大いに気にしなければなりません。この例では、バッファはプログラムのスタックに蓄えられます。スタック上には他のローカル変数、引数およびこの関数が終了したときにプログラムの実行がジャンプする先の戻りアドレスもあります。もし攻撃者がこの関数への入力として 100 文字以上を渡したら、PL_strcpy 関数はバッファを満たし、そして戻りアドレスを含む、スタック上の他の値を上書きするでしょう。もし攻撃者がどこにバッファに関係のある戻りアドレスがあるのかわかったならば、攻撃者は PL_strcpy に戻りアドレスを攻撃者の選んだ値を設定させるような入力を作り上げることができます。ありふれた手法は攻撃者にユーザのマシンへの更なるアクセスを与えるアセンブリコードでバッファを満たし、戻りアドレスをバッファの最初に設定するというものです。</p>
+
+	<p>これが最も単純な例です。バッファオーバーランはこの例よりもいくらか捕らえにくい多くの形で起こります。一つには、オーバーランはスタックだけではなくヒープでも起こり得ます。つまり、malloc や new で割り当てられたメモリー空間はその上オーバーフローし得たり、隣接するデータが改変されうるのです。バッファに隣接するデータ層を予測することはより困難なので、ヒープ上のオーバーランは不正な収穫のためにはより困難です。しかし、弱点を突く手法は依然として可能です。</p>
+
+	<p>たいていのバッファオーバーフロー問題への解決策はバッファへコピーできるデータ量を制限することです。上の例では、これを行なう最も簡単な方法は PL_strcpy を PL_strncpy という境界のあるバージョンで置き換えることです:</p>
+
+	<pre class="code">
+void saferFunction(char* input)<br>{<br>  char buf[100];<br><br>  PL_strncpy(buf, input, sizeof(buf) - 1);<br>  buf[sizeof(buf) - 1] = '\0';<br><br>  // 更なるタスク...<br>}
+</pre>
+
+	<p>私が PL_strncpy(buf, input, 99) を使うことができたことに注意してください。しかし、もし誰かがバッファのサイズを変更するとしたら、その上 PL_strncpy の呼び出しも変更することを思い起こさなければならないでしょう。コンパイル時に計算され、パフォーマンスへの影響のない、sizeof(buf) を使用する方がずっと安全です。もう一つの注意点は私が明示的にバッファの最後のバイトに null 文字をセットしたことです。（C ライブラリー版の、strncpy と同様に）PL_strncpy はバッファを null で終端させることを保証しないのでこれは必要です。</p>
+
+	<p>{PL_}strcpy に加えて {PL_}strcat、sprintf 一群の呼び出し、scanf や gets のような他の関数もバッファオーバーラン問題の危険にさらされています。完全なリストは下の **リンク** にあります。</p>
+
+	<h4><a name="formatbugs">書式バグ</a></h4>
+	<p>printf()、fprintf()、sprintf() や snprintf() のような関数は書式関数として知られています。これらの関数は '%s' のような書式指定子を含むことのできる、<em>書式文字列</em>を引数に取ります。これらの記号に出会うと、関数を書式文字列にしたがって引数に基づき結果として生じる文字列へデータを挿入します。例えば、</p>
+
+	<pre class="code">
+    printf("Today is the %ith day of %s", 5, "May");    </pre>
+
+	<p>は文字列 "Today is the 5th day of May" をコンソールに出力します。書式関数の危険性は攻撃者が書式文字列の内容に影響を及ぼすことができるときにやってきます。これはもし書式文字列が更なる '%' 書式指定子を含むならば、関数には余分な引数があることになり、関数はスタックから関数の引数やローカル変数を読み込み、それらを出力の文字列に含み始めるからです。このことによって攻撃者はあなたの関数の内部状態について情報を読み取ることができるかもしれません。それより悪いことに、'%n' 書式指定子は対応する引数に、出力した文字列に書き込まれたバイト数を書き込み、もし引数よりもパーセント書式指定子が多いならば、スタック上の他の場所に書き込みます。例えば戻りアドレスの上書きなどにより、攻撃者が実行中のプログラムを変えたり任意のコードを実行させることさえもできるという点で、バッファオーバーランに非常によく似た状態をこれによって作り出します。</p>
+
+	<p>** 例 **</p>
+
+	<p>これらの問題への解決策は信頼できないウェブコンテンツ（または、更に言えばユーザ）に書式文字列を指定させないということです。理想的には、書式文字列はハードコードするべきです。単純な例を挙げると、次のような printf の呼び出しは使用せず:</p>
+
+	<div class="bad example">
+		<pre class="bad code">
+    printf(str);    </pre>
+	</div>
+
+	<p>必ず以下のようにしてください:</p>
+
+	<div class="good example">
+		<pre class="good code">
+    printf("%s", str);    </pre>
+	</div>
+
+	<p>この方法で書式文字列に「錠をおろす」ことで脆弱性が排除されます。もし書式文字列をハードコードできず、それを含むデータが信用できない入力源に由来するかもしれないのならば、あらかじめフィルターにかけてください。例えば、もし書式文字列が %s 書式指定子を使用して、たった三つだけの異なる文字列を含むと予想するならば、そのように入力を検証できるかもしれません:</p>
+
+	<pre class="code">
+    void buildString(char* formatIn, char* data1, char* data2, char* data3)<br>    {<br>      PRInt32 percentCount = 0;<br>      for (PRInt32 j = 0; j &lt; PR_strlen(formatIn); j++)<br>      {<br>        if (formatIn[j] == '%')<br>        {<br>          percentCount++; // % 書式指定子をインクリメントします<br>&nbsp;<br>          if (formatIn[j+1] != 's')<br>            // %s 以外の書式指定子を見つけたので、<br>//エラーで強制終了します<br>            return NS_ERROR_FAILURE;<br><br>          if (percentCount &gt; 3)<br>            // 3を超える % 書式指定子があるので、エラーで強制終了します<br>            return NS_ERROR_FAILURE;<br>        }<br>      }<br>      <br>      char buf[1000];<br>      snprintf(buf, sizeof(buf) -1, formatIn, data1, data2, data3);<br>      buf[sizeof(buf)-1] = '/0'<br>    }
+</pre>
+
+	<p>snprintf を呼び出す前に、書式指定文字列が %- 書式指定子を 3 つだけ含み、更に %s だけを含むことを確かめるために調べています。バッファオーバーランを避けるために sprintf の代わりに sizeof() の制限と共に snprintf を使い、明示的に バッファを null で終端させていることに注意してください。</p>
+
+	<h4><a name="riskyfunctions">危険な関数</a></h4>
+
+	<table cellpadding="8" cellspacing="2" border="1" summary="危険な関数のリストとそれぞれの危険水準、それらがもたらす可能性のある問題及び利用できる置換/代替関数">
+	<caption>
+			危険な関数
+		</caption>
+
+
+		<thead>
+			<tr>
+				<th scope="col">名前</th>
+
+				<th scope="col">危険水準</th>
+
+				<th scope="col">問題</th>
+
+				<th scope="col">解決策</th>
+			</tr>
+		</thead>
+
+
+		<tfoot>
+			<tr>
+				<th>名前</th>
+
+				<th>危険水準</th>
+
+				<th>問題</th>
+
+				<th>解決策</th>
+			</tr>
+		</tfoot>
+
+
+		<tbody>
+			<tr>
+				<td>gets</td>
+
+				<td>非常に高い</td>
+
+				<td>境界チェックなし</td>
+
+				<td>gets を使わないでください。代わりに fgets を使ってください。</td>
+			</tr>
+
+
+			<tr>
+			<td>strcpy</td>
+
+			<td>非常に高い</td>
+
+			<td>境界チェックなし</td>
+
+			<td>strcpy は元の文字列が一定で、コピー先の文字列がそれを保持できるほど十分大きい場合に限り安全です。もしそうでなければ、strncpy を使ってください。</td>
+			</tr>
+
+
+			<tr>
+				<td>sprintf</td>
+
+				<td>非常に高い</td>
+
+				<td>境界チェックなし、書式文字列攻撃</td>
+
+				<td>sprintf を安全に使うのは非常に難しいです。代わりに snprintf を使ってください。 </td>
+			</tr>
+
+
+			<tr>
+				<td>scanf, sscanf</td>
+
+				<td>高い</td>
+
+				<td>境界チェックがない可能性、書式文字列攻撃</td>
+
+				<td>全ての %- 書式指定子が対応する引数の型と一致していることを確かめてください。境界チェックなしで '%s' 書式指定子を使わないでください。x が対応する引数のバッファのサイズである場合、'%xs' を使ってください。信用できず、検証されていないデータを書式文字列内で使用しないでください。</td>
+			</tr>
+
+
+			<tr>
+				<td>strcat</td>
+
+				<td>高い</td>
+
+				<td>境界チェックなし</td>
+
+				<td>もし入力のサイズがよく分かっておらず固定されていなければ、代わりに strncat を使ってください。</td>
+			</tr>
+
+
+			<tr>
+				<td>printf, fprintf, snprintf, vfprintf, vsprintf, syslog</td>
+
+				<td>高い</td>
+
+				<td>書式文字列攻撃</td>
+
+				<td>信用できず、検証されていないデータを書式文字列内で使用しないでください。もし書式文字列がウェブコンテンツやユーザの入力から影響されうるならば、これらの関数を呼び出す前に書式文字列を適切な数字と %- 書式指定子の型で検証してください。出力先のサイズ引数が正しいことを確かめてください。</td>
+			</tr>
+
+
+			<tr>
+				<td>strncpy, fgets, strncat</td>
+
+				<td>低い</td>
+
+				<td>null 終端ではないかもしれません</td>
+
+				<td>いつも明示的に目的のバッファを null で終端させてください。サイズ引数が正しいか確かめてください。目的のバッファに null 文字を加えるように注意してください!</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4>ファイルアクセス問題</h4>
+
+
+	<p>
+	競合<br>
+	一時ファイル<br>
+	パーミッション<br>
+	シンボリック リンク攻撃</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/components/reviewguide.html">英語版</a> 2006/09/07</span> - <span>和訳版 2006/09/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/components/reviewguide.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <link rel="alternate" hreflang="en" modified="December 10, 2006">
+    <meta http-equiv="content-type" content="text/html; charset=euc-jp">
+
+    <title>Mozilla Gran Paradiso Alpha 1 リリースノート</title>
+
+    <style type="text/css" media="screen,tv">
+    <!--
+      .releasenotes-icon {
+        background: url("releasenotes-granparadiso-alpha1.png") no-repeat;
+        padding-top: 70px !important;
+        width: 100% !important;
+        }
+     -->
+    </style>
+  
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/3.0a1/releasenotes/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+    <div id="mainContent" class="right">
+  	  <div class="key-point">
+  		  <div id="product-desc" class="releasenotes-icon"><!-- Introduction -->
+          
+          <p>Gran Paradiso Alpha 1 は、次世代 Mozilla レイアウトエンジン Gecko 1.9 上にビルドされる Firefox の次期メジャーバージョンに向けた初期開発者向けマイルストーンです。Gran Paradiso Alpha 1 は <strong>テスト目的にのみ限って</strong> 提供され、Web アプリケーション開発者やテストコミュニティを対象にしています。現在 Mozilla Firefox をお使いの方は、Gran Paradiso Alpha 1 を <strong>利用しないでください</strong>。</p>
+          <p>このリリースノートには、Gran Paradiso Alpha 1 に関する <a href="#new">新機能</a>、<a href="#download">ダウンロード</a>、<a href="#install">インストール方法</a>、<a href="#issues">既知の問題</a>、<a href="#FAQ">よくある質問</a> が載っています。<a href="https://bugzilla.mozilla.org/">Bugzilla</a> にバグを報告する前に、このリリースノートと <a href="../../../../support/firefox/bugs">バグの登録方法</a> をよくお読みください。</p>
+          <p>こちらの <a href="http://feedback.mozilla.org">フィードバック欄</a> から皆さんのフィードバックをお寄せください。</p>
+        </div>
+      </div><!-- What's New --> 
+      
+      <h2 id="new">本開発マイルストーンにおける変更点</h2>
+      <p>Gecko 1.9 Alpha 1 に複数の新機能が導入され、Gran Paradiso Alpha 1 で検証できるようになりました：</p>
+
+      <ul class="news">
+        <li><a href="http://wiki.mozilla.org/Cairo">Cairo</a> が標準のグラフィックライブラリとして採用され、画像およびテキストの描画全体に影響を与えています。</li>
+        <li>Mac OS X 用ビルドでは <a href="http://wiki.mozilla.org/Mac:Cocoa_Widgets">Cocoa ウィジェット</a> が採用されています。</li>
+        <li><a href="http://wiki.mozilla.org/XPCOM:nsIThreadManager">スレッドモデル</a> がアップデートされています。</li>
+        <li>DOM イベントの切り離し方法が変更されています 。（参照：<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=234455">bug 234455</a>）</li>
+        <li><tt>&lt;object&gt;</tt> 要素のロード方法が変更されています 。（参照：<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1156">bug 1156</a>）</li>
+        <li><a href="http://weblogs.mozillazine.org/roc/archives/2005/11/frame_display_lists.html">Web ページのペイント方法</a> が変更されています。</li>
+        <li>新たな SVG 要素やフィルタが追加され、SVG 仕様との適合性が向上しています。</li>
+      </ul>
+
+      <p>Gecko 1.9 Alpha 1 における複数の変更により、Gran Paradiso Alpha 1 の Web やプラットフォームとの互換性に影響が出ています：</p>
+      
+      <ul class="news">
+        <li>Windows 95、Windows 98 および Windows ME はサポートされません。</li>
+        <li>OS X 10.2 はサポートされません。OS X 10.3.9 以降を推奨します。</li>
+        <li>ドキュメント間の DOM ノードを移動するには、<a href="http://www.w3.org/TR/2000/CR-DOM-Level-2-20000510/core.html#ID-184E7107">DOM の仕様</a> にあるように <tt>importNode</tt> または <tt>adoptNode</tt> を呼び出す必要があります。</li>
+      </ul>
+
+      <p>&nbsp;</p>
+      <h2 id="downloadandinstall">ダウンロードとインストール</h2>
+
+      <h3 id="requirements">必要システム構成</h3>
+      <p>インストールの前に、お使いのコンピュータが <a href="/products/firefox/system-requirements.html">必要システム構成</a> を満たしているか確認してください。</p>
+
+      <h3 id="download">Gran Paradiso Alpha 1 のダウンロード</h3>
+      <p>Mozilla.org からは、さまざまな言語で Windows、Linux、および Mac OS X に対応した Gran Paradiso を提供しています。Gran Paradiso の最新版は、<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/granparadiso/alpha1/">FTP サイト</a> をご確認ください。mozilla.org によって提供されていない、他のシステム・言語向けのビルドについては、このページの最後にある「提供されたビルド」の項目をご覧ください。</p>
+
+      <h3 id="install">Gran Paradiso のインストール</h3>
+      <p>Gran Paradiso をダウンロードしたら、次の指示に従ってください：</p>
+      <h3>Windows</h3>
+      <p><tt class="filename">Gran Paradiso Setup Alpha 1.exe</tt> インストーラをダブルクリックして、インストールします。</p>
+      <h3>Mac OS X</h3>
+      <p>Gran Paradiso Alpha 1.dmg ディスクイメージをダブルクリックして、イメージを展開・マウントします。ブラウザによってはこの作業を自動的に処理するものもあります。GranParadiso ディスクイメージをダブルクリックして Finder に開き、Gran Paradiso のアプリケーションアイコンをハードディスクにドラッグしてください。<strong>ディスクイメージにあるアイコンをダブルクリックしないでください！</strong> アプリケーションを実行する前に、必ず Gran Paradiso アプリケーションをディスクイメージの外にドラッグしてハードディスクにコピーしてください。アプリケーションを Dock に表示したい場合は、アイコンを Dock にドラッグしてください。</p>
+      <h3>Linux/GTK2</h3>
+      <p>tarball を解凍して ./firefox を実行します：<p>
+        <code>tar -xzvf granparadiso-alpha1.tar.gz<br>cd firefox<br>./firefox</code></p>
+      <h3>その他のプラットフォーム</h3>
+      <p>圧縮されたアーカイブを解凍して、<tt>firefox</tt> を実行します。</p>
+
+      <h3 id="uninstall">Gran Paradiso のアンインストール</h3>
+      <p>Gran Paradiso をアンインストールするには、次の指示に従ってください：</p>
+      <h3>Windows</h3>
+      <p><kbd>スタート</kbd> メニューから <kbd>コントロールパネル</kbd> を選択します。コントロールパネルが表示されたら、<kbd>プグラムの追加と削除</kbd> をダブルクリックします。一覧から 「Gran Paradiso (3.0a1)」 を探して、<kbd>削除</kbd> ボタンをクリックしてアンインストールします。</p>
+      <h3>Mac OS X</h3>
+      <p><tt class="filename">GranParadiso</tt> アプリケーションをゴミ箱にドラッグします。</p>
+      <h3>その他</h3>
+      <p><tt class="filename">firefox</tt> フォルダを削除します。</p>
+      <p>以上のガイドではプロファイルデータはそのまま残ります。将来 Firefox をインストールした際に再び使えるようにするためです。プロファイルフォルダを削除したい場合は、<strong>プロファイルフォルダ</strong> のセクションで示されているフォルダを削除してください。プロファイルフォルダを削除すると、ダウンロードした拡張機能やテーマ、ブックマーク、保存されたパスワード、設定その他の情報が削除され、再び Firefox を使用する際にはまっさらなプロファイルで初めから設定し直す必要があります。</p>
+
+      <p>&nbsp;</p>
+      <h2>その他の情報</h2>
+      <h3 id="profilefolder">プロファイルフォルダ</h3>
+      <p>Gran Paradiso は次の場所のいずれかにユーザデータを保存します：</p>
+      <table style="font-size: smaller;" border="1" cellspacing="0">
+        <tr>
+          <td><img src="../../../images/ico-win.png" alt="">Windows 2000、XP</td>
+          <td>Documents and Settings\&lt;ユーザ名&gt;\Application Data\Mozilla\Firefox</td>
+        </tr>
+        <tr>
+          <td><img src="../../../images/ico-win.png" alt=""> Windows NT</td>
+          <td>WINNT\Profiles\&lt;ユーザ名&gt;\Application Data\Mozilla\Firefox</td>
+        </tr>
+        <tr>
+          <td><img src="../../../images/ico-osx.png" alt=""> Mac OS X</td>
+          <td>~/Library/Application Support/Firefox</td>
+        </tr>
+        <tr>
+          <td><img src="../../../images/ico-tux.png" alt="">Linux および Unix システム</td>
+          <td>~/.mozilla/firefox</td>
+        </tr>
+      </table>
+
+   <h3 id="extensions">アドオン</h3>
+      <p>Firefox 環境下でインストールされた拡張機能には、互換性が無く、Gran Paradiso で利用するためにアップデートが必要となるものもあります。なにか問題が見つかった場合は、その拡張機能の管理者にご連絡ください。Gran Paradiso をインストールすると、すべてのアドオンは、Gran Paradiso が次のいずれかの判断をするまで利用できなくなります： a） Gran Paradiso リリースと互換性がある、b） 互換性のある新しいバージョンが利用できる。</p>
+
+      <h2><a name="issues">既知の問題</a></h2>
+      <p>ran Paradiso Alpha 1 で確認されている問題の一部を掲載します。新しいバグを報告する前に、かならずお読みになるとともに、新しいバグが見つかっていないか確認してください。</p>
+
+      <h3>すべてのシステム</h3>
+      <ul>
+        <li>Cairo グラフィックシステムは、過去の Gecko と比較すると、テキストや画像の描画において大幅な変更となります。そのため、非ラテン語系のスクリプトやフォントで誤った描画をすることがあります。</li>
+        <li>フィッシング詐欺サイト警告機能の通知がコンテントエリアに隠れてしまいます。（参照：<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=341950">bug 341950</a>）</li>
+        <li>オンライン・オフラインの切り替え時に Gecko が WHATWG DOM イベントを送るようになりました。（参照：<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=336359">bug 336359</a>）</li>
+        <li><tt>nsCaret</tt> の挙動を変更することで、<a href="http://www.squarefree.com/burningedge/2006/04/21/2006-04-21-trunk-builds/">数多くのバグが修正</a> されました。</li>
+      </ul>
+
+      <h3>Windows</h3>
+      <ul>
+        <li>アップスケールされた画像の描画にエラーが発生し、画像の輪郭がぼやけることがあります。</li>
+      </ul>
+
+      <h3>Mac OS X</h3>
+      <ul>
+        <li>ユーザが設定したデフォルトフォントが適用されないことがあります。</li>
+        <li><tt>下線</tt> や <tt>打ち消し線</tt> といったフォント装飾が適切に表示されない可能性があります。</li>
+        <li>Complex Script （例： Indic） の描画を正常におこなえないことがあります。</li>
+      </ul>
+
+      <h3>Linux および Unix システム</h3>
+      <ul>
+        <li>中国語、日本語、または韓国語で書かれたページでブラウザがハングする可能性があります。（参照：<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=357637">bug 357637</a>）</li>
+        <li>Gecko の先のバージョンと比較して、Complex Script （例： Indic） の処理に時間がかかる可能性があります。</li>
+        <li>Xorg 7.0 以降を実行していないと、互換性問題が発生する可能性があります。</li>
+        <li>複雑なページを印刷する際に問題が発生する可能性があります。</li>
+      </ul>
+
+      <h2><a name="troubleshooting">トラブルシューティング</a></h2>
+      <ul>
+        <li>設計が悪い、あるいは互換性のないアドオンを使うと、頻繁にクラッシュしたり、ページの読み込みが遅くなるなど、ブラウザに問題を引き起こす可能性があります。ブラウザの一部機能が使えない、ブラウザが起動しない、ウィンドウの表示がおかしい、パフォーマンスが低下した、などの問題に遭遇した場合、アドオンが原因となっている可能性があります。そのようなときは、ブラウザをセーフモードで再起動してください。Windows では、スタートメニュー内に作成された "Safe Mode" ショートカットを使うか、firefox.exe -safe-mode で起動してください。Linux では <code>./firefox -safe-mode</code> で起動してください。Mac OS X では、ターミナルを開いて以下のコマンドを実行してください。<p><code>cd /Applications/GranParadiso.app/Contents/MacOS/<br>./firefox-bin -safe-mode</code></p>セーフモードで起動すると、トラブルを引き起こしているアドオンを無効化できます。その後ふたたび再起動してください。</li>
+      </ul>
+      <p>ユーザプロファイルにインストールした拡張機能 （Web ページからインストールしたものなど） をアンインストールし、コマンドラインオプション -install-global-extension を使ってすべてのユーザプロファイルにインストールしたい場合は、コマンドラインオプションを付けてインストールする前に、一度ブラウザを再起動し、その拡張機能の痕跡が残るプロファイルの拡張機能データソースを一掃する必要があります。そうしないと、拡張機能リスト内のエントリーがおかしくなり、目的の拡張機能をグローバルにインストールできなくなる場合があります。</p>
+      <p>ブックマーク、ダウンロード、ウィンドウの配置、ツールバー、履歴、その他の設定に関して不可解な問題に遭遇した場合は、バグを報告する前に、新しいプロファイルを作成して問題が再現されるかどうかを確認してください。新しいプロファイルを作成するには、-P コマンドライン引数をつけて Firefox を起動し、［新しいプロファイルの作成］ ボタンをクリックしてください。設定ファイル （ブックマーク、保存されているパスワードなど） をひとつひとつ移行し、その度に問題が発生するかを確認してください。特定のプロファイルデータのファイルが問題の原因だとわかったら、バグとして報告して、そのファイルを添付してください。</p>
+
+      <p>&nbsp;</p>
+      <h2><a name="FAQ">よくある質問</a></h2>
+      <ol class="faq">
+        <li>どのような協力ができますか？<p>Firefox をこれまでになく良いものにするために、フィードバックをできるだけたくさん集められるよう、開発者の皆さんやテストコミュニティからの支援を必要としています。こちらの <a href="http://wiki.mozilla.org/Firefox3">Gran Paradiso ページ</a> をご覧ください。</p>
+        </li>
+        <li>なぜ私が送ったメールに返事をくれないのですか？<p><a href="http://forums.mozillazine.org/index.php?c=4">フォーラム</a> をご利用ください。Gran Paradiso チームは常時このフォーラムをチェックしています。私たちは毎日多くのメールを受け取っているので、あなたが送ったメールは見過ごされる可能性もあります。</p>
+        </li>
+        <li>アドオンはどこで手に入りますか？<p><a href="https://addons.mozilla.org/firefox/extensions/">拡張機能</a> と <a href="https://addons.mozilla.org/firefox/themes/">テーマ</a> は <a href="https://addons.mozilla.org/">Mozilla Add-ons</a> からダウンロードできます。</p>
+        </li>
+        <li>誰が Gran Paradiso の開発をしているのですか？<p>非常に多くの人が関わっています。［ヘルプ］ メニューの ［Mozilla Firefox について］ を開いて「クレジット」があります。ここに Gran Paradiso に貢献した人たちの一覧があります。</p>
+        </li>
+        <li>Gran Paradiso のソースコードはどこにありますか？<p>Gran Paradiso のソースコードは tarball として <a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/granparadiso/alpha1/source/">ダウンロード</a> できます。最新の開発コードは <a href="http://developer.mozilla.org/ja/docs/Mozilla_Source_Code_Via_CVS">cvs</a> を通じて入手可能です。Firefox 固有のソースは "mozilla/browser" と "mozilla/toolkit"、"mozilla/chrome" にあります。詳しくは <a href="http://developer.mozilla.org/ja/docs/Build_Documentation">ビルド方法</a> に従ってください。</p>
+        </li>
+        <li>メールクライアントはどこにあるのですか？<p>Gran Paradiso は、お使いのシステムでどのアプリケーションがデフォルトのメールクライアントになっていても、それと併せて使うことができます。が、Firefox ブラウザにぴったりな、Mozilla の次世代メールクライアントとして <a href="http://www.mozilla-japan.org/products/thunderbird/">Mozilla Thunderbird</a> をおすすめします。</p>
+        </li>
+      </ol>
+
+      <p>&nbsp;</p>
+      <h2 id="links">その他の関連資料とリンク</h2>  
+      <p>以下のリソースには、Gran Paradiso に関して参考になる情報が載っています：</p>
+      
+      <ul>
+        <li><a href="http://kb.mozillazine.org/">MozillaZine のナレッジベース （英語）</a></li>
+        <li><a href="http://wiki.mozilla.org/Firefox3">Gran Paradiso Planning Center</a></li>
+      </ul>
+      
+      <p>&nbsp;</p>
+      <h2>提供されたビルド</h2>
+      <p>これらは非公式なビルドで、mozilla.org のビルドとは設定が異なる場合があります。また、特定のプラットフォーム向けに最適化、テストされている場合もあります。</p>
+
+      <h3 id="othersystems">その他のシステム</h3>
+      <p>Mozilla.org が提供する 3 種類の公式ビルド以外のプラットフォーム用のビルドは <a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/granparadiso/alpha1/contrib/">FTP サイト</a> をご覧ください。</p><!--
+            Build contributors, please put your builds under:
+              pub/mozilla.org/firefox/releases/granparadiso/<version>/contrib/
+
+            Your build file name should match the pattern set by official builds and include a README explaining any build peculiarities and identifying yourself as the contributor. Thanks.
+          -->
+        
+
+
+      <h3 id="otherlanguages">ローカライズビルド</h3>
+      <p>mozilla.org は、数多くのローカライズビルドを <a href="/projects/l10n/mlp_otherproj.html#firefox" title="Mozilla ローカライズプロジェクト">その製作者</a> に代わって配布しています。<p>Gran Paradiso 公式ローカライズとして認定されていないビルドは、<a href="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/granparadiso/alpha1/contrib-localized/">FTP サイト</a> を参照してください。</p>
+
+    </div><!-- close #mainContent -->
+
+    <div id="side" class="right">
+      <ul id="nav">
+        <li><a href="http://wiki.mozilla.org/Firefox3">Gran Paradiso のページに戻る</a></li>
+        <li><a href="#downloadandinstall">ダウンロードとインストール</a></li>
+        <li><a href="#requirements">必要システム構成</a></li>
+        <li><a href="#download">ダウンロード</a></li>
+        <li><a href="#install">インストール</a></li>
+        <li><a href="#uninstall">アンインストール</a></li>
+        <li><a href="#profilefolder">プロファイルフォルダ</a></li>
+        <li><a href="#addons">アドオン</a></li>
+        <li><a href="#otherchanges">その他の変更点</a></li>
+        <li><a href="#issues">既知の問題</a></li>
+        <li><a href="#troubleshooting">トラブルシューティング</a></li>
+        <li><a href="#FAQ">FAQ</a></li>
+        <li><a href="#othersystems">その他のシステム</a></li>
+        <li><a href="#otherlanguages">その他の言語</a></li>
+        <li><a href="#links">その他の関連資料とリンク</a></li>
+      </ul>
+    </div>
+
+  
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/3.0a1/releasenotes/index.html">英語版</a> 2006/12/10</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/3.0a1/releasenotes/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

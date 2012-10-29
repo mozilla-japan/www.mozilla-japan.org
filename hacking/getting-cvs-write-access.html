@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//dtd html 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <title>Mozilla への CVS 書き込み権限を得る</title>
+<link rel="alternate" hreflang="en" modified="February 1, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/hacking/getting-cvs-write-access.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<!-- 翻訳小沢　2002/5/18 Rev.1.23 2002.Feb 12 19:51 -->
+
+<h1>Mozilla への CVS 書き込み権限を得る</h1>
+
+<div class="abstract">
+  <!-- h1>What is this document?</h1 -->
+  <p>
+    このドキュメントは CVS 書き込み権限を得るために必要なステップについて記述します。
+    このドキュメントは<!-- 削除された： Netscape の正式の社員を<strong>含む</strong>-->すべての潜在的な貢献者
+    に当てはまります。
+  </p>
+</div>
+
+<a name="Logistics">
+</a>
+<h2>実務 Logistics</h2>
+<p>
+急いでそうするには、ここに CVS コミット権限を得るために必要な
+ステップのリストがあります。
+説明は、後述の&quot;どうやって、そしてなぜ&quot;セクションにあります。
+</p>
+
+<ol>
+<li>
+（訳注：Bugzilla に）（当然ですが）バグを申し立ててください。
+Product: mozilla.org ; Component: CVS Account Request　とし、
+デフォルトの Assignee や デフォルトの QA Contact は変更しないで下さい。
+summary で CVS アカウントの作成について触れられていれば、助かります。
+それが適切なら、上司を cc に加えてください。
+</li>
+<li>
+あなたに保証人がいるなら、バグでその人が保証している旨コメントを
+加えてくれるよう、その人に頼んでください。
+</li>
+<li>
+以下に述べるように、スーパーレビューワの認定（approval）が必要かどうか決定してください。
+</li>
+<li>
+もし、必要なければ、バグの中に、なぜスーパーレビューワの認定が必要ないのかを記述してください。
+</li>
+<li>
+もし、必要ならば、適切なスーパーレビューワに認定与えてくれるときはバグにそう記述するように
+お願いしてください。
+</li>
+<li>
+Contribution Form（貢献フォーム）の全ての欄を記入し、フォームで指定された場所にFAXで送信してください。
+</li>
+<li>
+フォームを送信した、という記述でバグをアップデートしてください。
+</li>
+<li>
+適切な mozilla.org スタッフのメンバーが、送信されたフォームを受け取った
+かどうかを示すためにバグでアップデートするでしょう。
+</li>
+<li>
+バグの中に必要な情報がすべて揃ったら、バグをアップデートしてください。 
+これによって、 Bugzilla は、 CVS アカウントの世話をする幸運な mozilla.org スタッフ
+メンバーにメールを発送することが出来ます。
+</li>
+<li>
+mozilla.org のスタッフメンバーが記録されている必要な情報をダブルチェックし、
+情報が揃っていれば、アカウントを作成します。
+</li>
+<li>
+mozilla.org スタッフメンバーは、アカウントが作成された旨バグを記述する更新をし、
+バグをクローズ（close）します。
+</li>
+<!-- li閉じタグ訳者追加 -->
+</ol>
+
+<h2>どのように、そして、なぜ</h2>
+
+<p>
+CVS 書き込み権限を得るためには、あなたが何をやっているかをあなたが知っていることを
+証明することが、基本的には必要です。
+なんと！
+あなたが証明しなければならないのは、以下のようなものです。
+作業しているコードや、あなたの作業で影響を受けるかもしれない他の Mozilla コードに関する能力、
+mozilla.org のチェックイン、ビルド、および他のプロセス
+（例えば、フック状態<span class="comment">（訳注：チェックイン直後でbonsaiでのツリー監視が義務づけられている状態のようなもの）で、
+ビルドをウォッチする）</span>に関する能力、
+そして、基本的で質の高いコーディングの経験です
+あなたが高いビルでもひとっ飛びできるのなら<span class="comment">（訳注：あなたがスーパーマンなら）</span>、それは助けになるでしょう。
+私たちは、対等者レビューによって、コードレビューによって、私たちの特殊な
+ X線画面によってそれを判断します。
+</p>
+
+<p>
+どの場合でも、あなたは、何が起こっているかを知っていることを証明し
+あなたの力量を保証する人を探さなければならず、 CVS 貢献者フォーム
+（CVS Contributor Form）を完全に記入し、サインする必要があります。
+いくつかのケースでは、追加の段階が必要です。
+</p>
+
+<h3>パッチ</h3>
+<p>
+よいパッチを投稿して、モジュールオーナと他の適切な人たちから
+レビューを受けて、 CVS アクセス権限を得るプロセスを始めよう。
+以下の基準を明らかにしたパッチを提出したとあなたが考えたとき、
+“保証人”を捜してください。
+</p>
+
+<h3>保証人とスーパーレビューワ</h3>
+<p>
+保証人は、すでに CVS コミットアクセス権を持っていて、
+あなたにとって、あなたのチェックインと連想されることを十分に
+確信する人です。
+典型的には、あなたの保証人はあなたがパッチを投稿したパッチに対する
+モジュールオーナでしょう。
+あなたの保証人は、あなたがツリーを壊して逃げてしまう、
+という不幸な事態であなたが破産状態になった時に、責任を負います。
+あなたの保証人は、あなたに知識があり、ルールに従う、という事を確認する責任があります。
+保証というのは、大きな責任です。ですので、慎慮ののちにのみ、この確約をするでしょう。
+あなたの保証人は、あなたが自分がなにをしようとしているか、あなたの作業によって
+（あるとしても）まれにしかツリーを壊さないという確証を示すように望むでしょう。
+</p>
+
+<p>
+あるケースでは、保証人による認定は CVS 書き込み権限のための推薦のように
+働きます。
+そして、推薦は“スーパーレビューワ”として知られる
+他の人の認定を受けることが必要です。
+ほかのケースでは、保証人の認定だけあれば充分です。保証人が本質的に
+スーパーレビューワと同等の役割を果たす場合です。
+</p>
+
+<p>
+この二つのプロセスの間の境界線は、とてもシンプルです。
+もし、あなたが作業しているエリアのコードのチェックにスーパーレビューが必要ならば、
+CVS 書き込み権限を収得するのにもスーパーレビューワの保証が必要です。
+スーパーレビューを必要とするコードの内容は、<a href="reviewers.html">ここ</a>で
+見られます。
+私たちは、あなたの保証人がスーパーレビューが必要かどうかをあなたに
+伝えることができるであろうことを望みます（！）
+</p>
+
+<h3>Le Form</h3>
+<p>
+あなたのアカウントをセットアップするために、 <a href="form.html">CVS Contributor Form</a> 
+を記入し、送信する必要があるでしょう。
+フォームにサインすることは、あなたが私たちの法的要求を理解し、承認したことを
+示すことです。
+これらのルールを破ることは、 mozilla.org に法的問題を起こし、
+私たちにあなたの CVS 権限を破棄することを強いるでしょう。
+なにか質問があれば、わたしたちに質問してください。
+</p>
+
+<ul>
+  <li>
+アメリカ合衆国の暗号輸出規制緩和の結果、
+私たちは現在、暗号化のソースコードと暗号化アプリケーションのインタフェースに関する貢献
+を受け取る事ができます。
+しかし、いくつかの制限事項はいまだに適用されますので、
+何か新しいものをチェックインする準備の前に、
+ <a href="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</a> 
+ニュースグループの皆さんにどうか相談してください。
+（Mozilla と暗号のサポートに関する詳細な情報については、 <a href="../crypto-faq.html">Mozilla Crypto FAQ</a> 
+を参照してください）
+  </li>
+
+  <li>
+新しいソースコードはすべて<!-- <a href="../NPL">NPL 、--> MPL/LGPL/GPL のトリプルライセンスもしくは他の mozilla.org で
+認定されたライセンス（<a href="../MPL/license-policy.html">mozilla.org ライセンス方針</a> を参照のこと）を使ったライセンスヘッダを含む必要があります。
+ライセンスによって要求される法的通知を提供しなくてはりません。
+<!-- 注意：Netscape 社の社員だけは、 NPL を使わなければならないでしょう。-->
+  </li>
+
+  <li>
+あなたがチェックインしたコードはあなたに属していなければなりません。
+でなければ、そのそのコードに対してあなたは出版の類とライセンスを与えるすべての
+権利を持っている必要があります。
+  </li>
+
+  <li>
+あなたの CVS アカウントはあなただけのものです。
+他の人には使わせないで下さい。
+もし、他の誰かのパッチをあなたがチェックインするとき、
+ CVS ログの中にパッチがその第三者に帰することを記してください。
+  </li>
+</ul>
+
+<h3>スーパーレビューワ・プロセス</h3>
+<p>
+もし、<a href="./reviewers.html">スーパーレビューが必要なら</a>、
+最低３人の&quot;スーパーレビューワ&quot;（少なくとも一人は、
+CVS 権限を求めている人と同じ事業体に勤務している人ではない必要があります）
+が、文書で承認しなければなりません。
+推薦を承認するために、レビューワは推薦された人のコードとコーディング手腕について、
+十分な直接の知識を持っている必要があります。
+認定は、伝聞知識に基づいてはなりません。
+コードに不適当なところがないことを明らかにするだけでは多分不十分です。
+推薦された人のコードは、その人が複雑な問題（例えば、 IDL インタフェースや
+ XPCOM 参照管理）に出くわし、うまくハンドリングしたことを明らかにする義務があります。
+現在の所、この条件を満たすには、かなり大きなパッチでも３〜４個以下では充分ではないと考えられています。
+</p>
+
+<p>
+あなたが提出したパッチが適切な基準にあったと考えたとき、
+あなたは（例示のパッチを含んでいるバグへのリンクを伴った） E-mail を
+あなたがレビーワや保証者になるべきと考える人たちに送るでしょう。
+一人の人が保証者とスーパーレビューワの両方になることもあります。
+適切なレビューワとあなたが触れたコードのモジュールオーナーを選んでください。
+もし、それがまとめてあなたの必要な三人にならなかった場合、
+ <a href="mailto:brendan@mozilla.org">brendan@mozilla.org</a> と、
+ <a href="mailto:scc@mozilla.org">scc@mozilla.org</a> 
+のいずれかまたは両方を入れてください。
+これのプロセスは、時間がかかります。そのため、新しい参加者は
+“認定されるべきだろうけど、私には十分な情報がまだない”と返答されてしまう
+期間を見込んでおく必要があります。
+よいパッチを提供しつづければ、この期間は過ぎます。
+</p>
+
+<p>
+この全体のプロセスは Mozilla への CVS 書き込み権限を得たい<strong>誰にでも</strong>
+当てはまります。<!-- Netscape の正式な社員も<strong>含みます</strong>。-->
+</p>
+
+<h2>スーパーレビュー内容</h2>
+<p>
+CVS 書き込みアクセスのリクエストを承認するかどうか決める中で、
+レビューワは以下のことを含んだ（しかし、以下のことに限ったわけではない）
+手腕に評価を下すでしょう。
+</p>
+
+<ul>
+  <li>
+Mozilla アーキテクチャを理解していることの証明
+    <ul>
+      <li><span class="code">nsCOMPtr</span> を適切に使うこと</li>
+      <li>XPCOM を適切に使うこと</li>
+      <li>XPIDL を適切に使うこと</li>
+      <li>拡張性とモジュール性の重視</li>
+      <li>依存性の最小化</li>
+      <li>適切な標準に従うこと</li>
+    </ul>
+  </li>
+
+  <li>
+Mozilla のスタイルに従うこと
+    <ul>
+      <li>一貫性のあるフォーマットを使うこと</li>
+      <li>IDL メソッドと属性の interCaps  を使うこと</li>
+      <li><span class="code">public/</span> と <span class="code">src/</span>の使い分けについて見識を立証すること</li>
+    </ul>
+  </li>
+
+  <li>
+変更の影響の連鎖への正しい認識を立証すること
+（例：RDF の中の変更が mailnews に与える影響、 XPCOM の中の変更が地球の反対側に
+ハリケーンを起こす可能性）
+   </li>
+   <li> 
+<a href="best-coding-practices.html">Best Coding Practices in Mozilla</a> の反映
+   </li>
+
+</ul>
+
+<a name="Problems">
+</a>
+<h2>あなたのアカウントに関する問題</h2>
+<ul>
+<li>
+  <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/libraries/bonus-tracks/rheet.wav">
+  rheeet</a> を聞く必要がある？<span class="comment">（訳注：楽屋落ちのジョーク、映画「ウェインズ・ワールド」が元ネタらしい）</span>
+</li>
+<li>
+もし、誰かがあなたのアカウントを使っているのを発見したら、
+product は &quot;mozilla.org&quot; で、 component は &quot;CVS Account Request&quot; でバグを
+報告することで私たちに問題を知らせてください。
+</ul>
+  
+<p>
+連絡先：<a href="mailto:mitchell@mozilla.org">Mitchell Baker</a>
+</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/hacking/getting-cvs-write-access.html">英語版</a> 2004/02/01</span> - <span>和訳版 2004/10/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/hacking/getting-cvs-write-access.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

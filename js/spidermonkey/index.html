@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>SpiderMonkey (JavaScript-C) Engine</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/js/spidermonkey/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/js/spidermonkey/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<!---->
+
+  
+  
+
+  
+    <h1>SpiderMonkey (JavaScript-C) Engine</h1>
+
+    <h3>SpiderMonkey とは何か?</h3>
+    <p>
+      SpiderMonkey は Mozilla の C による JavaScript 実装につけられたコードネームである。
+    <H3>どこで手に入るか?</H3>
+    <p>
+      コア SpiderMonkey エンジンは
+      <A href="http://lxr.mozilla.org/mozilla/source/js/src">mozilla/js/src</A> で見つかる。
+      スタンドアローンなインタプリタは
+      <A href="http://lxr.mozilla.org/mozilla/source/js/src/Makefile.ref">Makefile.ref</a> を使うとビルドできる。
+      詳しいことは
+      <A href="/lxr/mozilla/source/js/src/README.html">mozilla/js/src/README.html</a> を読みなさい。
+      (Mozilla 自体に加えて) JavaScript エンジンを埋め込んでいるプロジェクトは
+      <a href="../projects.html">プロジェクト</a> のページに載せている。
+
+    <p>
+      <A href="../../cvs.html">CVS</A> 経由でエンジンを入手して
+      <a href="/lxr/mozilla/source/js/src/README.html#Build">自分でビルドする</a>ことも出来るし、
+      最新のターボールを
+      (まず<A href="../../mirrors.html">ミラーサイト</A>をチェックして)
+      <A href="ftp://ftp.mozilla.org/pub/js/">ftp://ftp.mozilla.org/pub/js/</A> で
+      捜すことも出来る。
+
+    <H3>より詳しい話を得るには?</H3>
+
+    <center>
+      <table border='1' cellpadding='3'>
+        <tr>
+          <th>サイト</th>
+          <th>説明</th>
+        </tr>
+        <tr>
+          <td>
+            <a href="apidoc/jsguide.html">JS Embedder's Guide</a>
+          </td>
+          <td>
+            JavaScript C エンジンをアプリケーションに埋め込むためのガイド。
+          </td>
+        </tr>
+        <tr>
+          <td>
+            JS Embedder のリファレンスは次のようなフォーマットで:
+            <ul>
+              <li>
+                <a href="apidoc/sparse-frameset.html">一度に一つ</a>
+              <li>
+                <a href="apidoc/complete-frameset.html">一ページにすべて</a>
+              <li>
+                <a href="apidoc/jsref.xml">XML のソースファイル</a>
+            </ul>
+          </td>
+          <td>
+            関数毎の公開 JavaScript API へのリファレンス。
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="/lxr/mozilla/source/js/src/README.html">mozilla/source/js/src/README.html</a>
+          </td>
+          <td>
+            新しい embedder がエンジンの感触をつかむのに良いもう一つの場所で、
+            ビルドの約束事、デバッグ、命名/コーディング慣習、使い方、そして一通りのデザインの項目からなる。
+          </td>
+        </tr>        
+        <tr>
+          <td>
+            <a href="tutorial.html">Embedding チュートリアル</a>
+          </td>
+          <td>
+            Brendan Eich による埋め込みの<b>手短な</b>チュートリアル。
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="gctips.html">ガーベッジコレクションのヒント</a>
+          </td>
+          <td>
+            Brendan Eich によるガーベッジコレクターの落とし穴を避けるためのヒント。
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&component=Javascript+Engine">Open Bugs</a>
+          </td>
+          <td>
+            JavaScript エンジンに対して提出された
+            <a href="http://bugzilla.mozilla.org">Bugzilla</a> の open bugs のリスト。
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <A href="http://lxr.mozilla.org/mozilla/source/js/src">mozilla/js/src</A>
+          </td>
+          <td>
+            <a href="/lxr/">LXR</a> 検索可能な SpiderMonkey のソース。
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="../../rhino/">Rhino Embedding</a>
+          </td>
+          <td>
+            Java エンジン (別名 Rhino) 埋め込みの JavaScript に固有の情報。
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="../language/">言語リソース</a>
+          </td>
+          <td>
+            公布されている JavaScript の標準、JavaScript 2.0 の作業を指す。
+          </td>        
+        </tr>
+        <tr>
+          <td>
+            <a href="../scripting/">スクリプティングリソース</a>
+          </td>
+          <td>
+            推薦する読み物、オンラインリファレンスとチュートリアルとサンプルコードを含む、
+            JavaScript のスクリプティングリソースを指す。
+          </td>
+        </tr>
+      </table>
+    </center>
+
+    <br>
+    [ <a href="http://www.mozilla.org/js">JS Home</a> ]
+    <br>
+
+    <hr>
+    <address><a href="mailto:rginda@netscape.com">Robert Ginda</a></address>
+<!-- Created: Tue Mar  7 17:08:08 PST 2000 -->
+<!-- hhmts start -->
+Last modified: Tue Mar 21 17:29:48 PST 2000
+<!-- hhmts end -->
+  
+
+
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" ALIGN="RIGHT" VALIGN="TOP">
+<FONT SIZE="-1">
+Copyright &copy; 1998-2000 The Mozilla Organization.
+<BR>
+<A HREF="http://www.mozilla.org/webtools/bonsai/cvslog.cgi?file=mozilla-org/html/js/spidermonkey/index.html&amp;rev=&amp;root=/cvsroot/">Last modified March 22,  2000</A>.
+</FONT>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/js/spidermonkey/index.html">英語版</a> 2000/03/22</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/js/spidermonkey/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

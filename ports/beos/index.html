@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 TRANSITIONAL//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Bezilla: Mozilla for BeOS/ZETA</title>
+<link rel="alternate" hreflang="en" modified="October 10, 2005">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/ports/beos/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<H1>Bezilla: Mozilla for BeOS/ZETA</H1>
+
+<div class="keypoint">
+<H2>プロジェクトの目的</H2>
+
+<p>Bezilla プロジェクトは BeOS/ZETA プラットフォームに Mozilla や Firefox を実現させるための取り組みです。このプロジェクトの最も重要な目的は、Haiku や ZETA に限らず、 BeOS 系オペレーティングシステムとその後継 OS に、フリーでしかもオープン Web スタンダードに準じたブラウザーを提供することです。</p>
+</div>
+
+<H2>スクリーンショット</H2>
+<table border="0">
+<tr>
+<td><a href=http://zeta-zone.net/bezilla/deerpark-01.png target='_blank'><img src="http://zeta-zone.net/bezilla/deerpark-01_small.png" /></a>
+</td>
+<td witdh="20"></td>
+<td><a href=http://zeta-zone.net/bezilla/deerpark-02.png target='_blank'><img src="http://zeta-zone.net/bezilla/deerpark-02_small.png" /></a>
+</td>
+</tr>
+<tr>
+<td><a href=http://zeta-zone.net/bezilla/seamonkey-01.png target='_blank'><img src="http://zeta-zone.net/bezilla/seamonkey-01_small.png" /></a>
+</td>
+<td witdh="20"></td>
+<td><a href=http://zeta-zone.net/bezilla/nvu-01.png target='_blank'><img src="http://zeta-zone.net/bezilla/nvu-01_small.png" /></a>
+</td>
+</tr>
+</table>
+
+<H2>リンク</H2>
+
+<li><a href="http://www.livejournal.com/community/bezilla/">BeZilla Blog</a>: Bezilla プロジェクトの開発者が主に開発報告やテストに使っているブログです。</li>
+
+<li><a href="http://www.bebits.com/app/3143">Mozilla Firefox</a>: Bezillaチームが定期的にリリースする Firefox for BeOS/ZETA の安定ビルドのダウンロードページです。</li>
+
+<li><a href="http://www.bebits.com/app/2310">Mozilla SeaMonkey</a>: Mozilla Web Suite/Browser の bebits.com でのダウンロードページです。</li>
+
+<li><a href="http://www.bebits.com/app/2715">Mozilla Firefox - Bleeding Edge</a>: 主にバグ探しのためにリリースされる Firefox for BeOS/ZETA テストビルドのダウンロードページです。</li>
+
+<li><a href="https://addons.mozilla.org/themes/moreinfo.php?application=firefox&category=Retro&numpg=10&id=935">HaikuFox - Firefox Theme</a>: BeOS の雰囲気を持った Firefox 用テーマです。</li>
+
+<H2>チームメンバー</H2>
+<p>現在、Bezilla チームは下記のメンバーで構成されています。</p>
+
+<li>Sergei Dolgov (Fyysik): 開発者、widget、gfx、i18n やその他。現在、Mozilla SeaMonkey のビルドも担当。</li>
+<li><a href="http://developer.mozilla.org/en/docs/User:TQH">tqh</a>: 開発者、BeOS 用 NSPR、XPCOM または Widget での低レベルコード。Firefox のビルドも担当。</li>
+<li>tb100: 色々なパッチを提供。主に gfx 用。</li>
+<li>Nielx: 色々なパッチの提供、BeFox のバグトラッキング。</li>
+<li>Doug Shelton (tigerdog): テストやビルド作成、HaikuFox テーマの開発。</li>
+<li>Jorge Mare (Koki): テストとこれらのページのメインテナンス</li><p>
+
+<b>その他の貢献者</b><p>
+下記の方々も定期的にBezillaプロジェクトに貢献しています。<p>
+
+<li>Christian "biesi" Biesinger: レビューのお手伝い、技術的な支援、パッチのチェックイン</li>
+<li>Josh Soref (timeless): BeOS ポートの元オーナー</li>
+<li>Wan-Teh Chang: いつも技術的な支援をしてくれている NSPR の専門家</li>
+
+<H2>感謝</H2>
+<p>数年にわたってこのプロジェクトに貢献してきた多くの方々の努力のおかけで、現在の Bezilla チームが成り立っています。我々のプラットフォームへの関心が最も低かった時期でも、一人でも本プロジェクトを維持していた Paul Ashford さんには、特別に感謝しています。下記もプロジェクトに参加してきた方々で、感謝の気持ちを表します。</p>
+
+<li>Bradley Johnson</li>
+<li>Christopher Seawood</li>
+<li>Daniel Switkin</li>
+<li>Duncan Wilcox</li>
+<li>Justin Morey</li>
+<li>Makoto Hamanaka (浜中誠、a.k.a. はむ！）</li>
+<li>Matthew Zahorik</li>
+<li>Peter Schultz</li>
+<li>Richard Hess</li>
+<li>Timeless</li>
+<li>Yannick Koehler</li>
+<li>Wade Majors</li>
+
+<H2>Bezillaプロジェクトへの参加</H2>
+<p>本プロジェクトを手伝ってくださる方を歓迎します。プログラムを書いたり、テストをしたり、ドキュメントを作成したり、または他のメンバーを応援したりするだけでも、Bezilla プロジェクトに参加する意欲　（と時間） があれば、bezilla@zeta-zone.net 宛てにメールください。日本語でもOK！</p>
+
+<H2>バグ報告</H2>
+<p>バグが見つかったら、<a href="http://bugzilla.mozilla.org">http://bugzilla.mozilla.org</a>にてバグ報告してください。その際、BeOS 関連バグであることを指定してください。バグ報告は、bugzilla のガイドラインに従って報告してください。</p>
+
+<p>最終更新: 10/9/05<p>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/ports/beos/index.html">英語版</a> 2005/10/10</span> - <span>和訳版 2005/10/19</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/ports/beos/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

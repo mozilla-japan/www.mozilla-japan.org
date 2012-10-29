@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-term" basename="index" pathtoroot="../../../">
+
+<meta>
+	<dc:title>用語データベース</dc:title>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+	<link rel="stylesheet" type="text/css" href="${l10n-css-term}"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1><tt:meta mode="title"/></h1>
+	<p>Mozilla 製品の日本語化や関連ドキュメントでの用語の統一性を保つため、訳語として何を選んでいるか代表的な用語について簡単な一覧を作成しています。専門用語以外にもドキュメント作成者や訳者の参考になるものを併せて収録しておりますので、Mozilla 関連訳語集としてもご利用頂けます。<br/>
+		但しこの対照表は中途半端な未完成のものであり、予告無く随時変更や追加を行っていきますのでご了承ください。</p>
+	
+	<h2>日英用語対照表</h2>
+	<p>英語とそれに対応する訳語の対照表です。必要に応じて参照して下さい。</p>
+	<ul>
+		<li><a href="${l10n-term-l10n}">L10N 指定訳語一覧</a> (<tt:termcount status="jlp"/>/<tt:termcount/> words)</li>
+		<li><a href="${l10n-term-all}">データベース全項目</a> (<tt:termcount/> words)</li>
+	</ul>
+	
+	<h2>全項目一覧</h2>
+	<tt:termlist mode="index" page="all.html"/>
+</tt:htmlbody>
+
+</page>
+</contents>

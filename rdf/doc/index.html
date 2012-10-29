@@ -1,0 +1,482 @@
+
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<!-- todo: see http://www.mozilla.org/README-style.html -->
+
+<title>resource description framework</title>
+
+<!--
+
+訳者：濱崎
+
+Last Updated: v 1.22 に合わせて改訂 2004/02/08 22:27:40 
+-->
+
+<link rel="alternate" hreflang="en" modified="November 11,  2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/rdf/doc/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+<center>
+<h1>Resource Description Framework (RDF)</h1>
+</center>
+
+<p><em>Mozilla における <a href="http://www.w3.org/2001/sw/">意味論上の Web</a> 技術</em></p>
+
+連絡先:<br>
+<a href="mailto:rjc@netscape.com">Robert Churchill</a> (rjc@netscape.com)<br>
+<a href="mailto:hyatt@netscape.com">David Hyatt</a> (hyatt@netscape.com)<br>
+<a href="mailto:waterson@netscape.com">Chris Waterson</a> (waterson@netscape.com)<br>
+<br>
+
+この文書を管理しているのは <br>
+<a href="http://rdfweb.org/people/danbri/">Dan Brickley</a> (<a href="mailto:danbri@w3.org">danbri@w3.org</a>)<br>
+です。<br>
+
+<p>
+<a href="http://www.w3.org/RDF/">Resource Description Framework</a>
+或いは <b>RDF</b> は、<a href="http://www.w3.org/">W3C</a> のテクノロジーです。
+私たちはこれを、インターネット上の資源を集め、融合するために使っています。
+</p>
+
+<p>
+Mozilla の RDF は 元々は 
+<a href="aurora.html">Aurora/Sidebar ユーザインターフェース</a> と
+<a href="SmartBrowsing.html">SmartBrowsing</a> メタデータサービス<!-- いい訳が欲しい -->をサポートするために使われてきました。
+現在 Mozilla で RDF が使われる主な目的は <a href="../../xpfe/xulref/">XUL</a> ベースのアプリケーションを使う上での共通のデータモデルとして、また API としてです。
+</p>
+
+<p>
+開発者向け文書は
+<a href="http://esw.w3.org/topic/FrontPage">ESW wiki</a> の中の
+<a href="http://esw.w3.org/topic/MozillaRdf">MozillaRdf</a> をご覧下さい。
+</p>
+
+
+<h2>一般的な "Mozilla での RDF" 文書</h2>
+
+<p>これらのドキュメントは、Mozilla での RDF の実装を解説しています。
+正式な仕様書は W3C 勧告である <a href="http://www.w3.org/TR/REC-rdf-syntax/">
+RDF のモデルと文法</a> (RDF Model and Syntax) を調べてください。
+また、メタデータによる語彙の解説のための RDF タイプシステムとモデルを
+記述している 勧告の提案書 <a href="http://www.w3.org/TR/PR-rdf-schema/">
+RDF スキーマ</a> (RDF Schema) も参照してください。</p>
+
+<p>
+<a href="../50-words.html">50 語かそれ以下</a>　
+RDF とは何か、それがどのようにして Mozilla の世界に適合するのかについての簡素な説明。
+例が完備されています！</p>
+
+<p>
+<a href="../back-end-architecture.html">バックエンドアーキテクチャ</a>　
+RDF バックエンドがどのように Mozilla で動作しているかを解説する壮大な文書。
+最終的にこの文書は、バックエンドを直接クライアントとして使用する方法を解説するサンプルコード、
+独自のプラッガブル RDF データソースを記述する方法を解説する手順とサンプルコードを持つことになるでしょう。
+</p>
+
+<p>
+<a href="faq.html">Mozilla での RDF についての FAQ</a>　
+RDF を Mozilla で使う際の適度な FAQ。サンプルコードがついています！
+</p>
+
+<p>
+<a href="examples.html">使用例</a>　
+Mozilla で RDF をどのように使うか、その使用例を集めたものです。
+</p>
+
+<p>
+<a href="datasource-howto.html">データソース Howto</a>　
+データソースを作成するための手順書。
+
+さらに、
+XPCOM のアグリゲーション（集約）における、予想のつかない振る舞いについて詳しく調べたい人向けの文書:
+<a href="aggregate.html">メモリ内データベースの集約</a> (Aggregating the In-Memory Datasource)
+</p>
+
+<p>
+<a href="../../docs/xul/xulnotes/template-primer.html">XUL テンプレート入門書</a>　
+
+<em>XUL テンプレート</em>の入門書。XUL テンプレートは、RDF データソースから洒落たユーザインターフェースを構築することができる。
+</p>
+
+<p>
+<a href="xul-template-reference.html">XUL テンプレート解説書</a>　XUL <i>テンプレート</i>の解説書。グラフから内容モデルを構築する機構。
+<em>［この文書は少々古く、新しく拡張されたテンプレートの文法をカバーしていない］</em>
+</p>
+
+<p>
+<a href="../rdf-nglayout.html">どのように NGLayout と一緒に動作するのか
+</a>　RDF/XML は NGLayout を通して動かされ、どのようにして Core DOM Level 1 
+と互換性のある、
+<i>真正の</i> 
+<span class="comment">【訳注：(bona fide)】</span>
+内容モデルを生成するのかを解説する文書。
+</p>
+
+<p>
+<a href="api.html">RDF 技術概要</a> （1999-08-10 改訂） - Mozilla での 
+RDF の実装についてハイレベルな全体像を提供するオリジナルの概要書。
+</p>
+
+<p><a href="vocabs.html">Mozilla RDF 語彙<!-- 用語集? --> （作業中）</a> （オープンソースがオープン標準と出会った - 自家生産の専門用語からコミュニティにリードされるメタデータ語彙に移行させる）
+
+</p> 
+
+<p>
+<a href="sl2b.html">XML アプリケーションの種類</a>  - XML に対抗して RDF を使う場合の簡潔な覚え書き。
+</p>
+
+
+<h2>RDF 活用事例</h2>
+
+<p>
+<a href="SmartBrowsing.html">Smart Browsing と関連リンク</a> 
+（RDF 注釈サービス）　SmartBrowsing システムは、あなたがブラウザを使っているときに、信頼できるサードパーティの
+メタデータサーバが XML/RDF で "関連リンク" 注釈<!-- いい訳が欲しい -->を提供することを可能にします。
+実装方法の詳細は、 <a href="http://lxr.mozilla.org/mozilla/source/xpfe/components/related/src/">nsRelatedLinksHander</a>
+ を参照してください。
+ </p>
+
+<p>
+<a href="aurora.html">Aurora （UI 哲学）</a>　Aurora は、RDF データソース
+（最近では Sidebar と呼ばれている）に対抗して構築された、Mozilla のインターフェースコンポーネントの
+コードネームです（でした）。
+</p>
+
+<p><a href="flash-spec.html">Flash の仕様</a> 
+（フラッシュパネルの実装の詳細）　フラッシュパネルは 現在のユーザが関心を持っているイベントの情報が、
+分単位で更新される XML/RDF ベースのシステムを提供します。
+</p>
+
+<p>
+<a href="z3950.html">Mozilla RDF / Z39.50 統合プロジェクト</a>
+（電子図書館システムへの接続）　これは Mozilla 内から ANSI/NISO Z39.50 検索プロトコルを使うことを調査するサブプロジェクトです。
+</p>
+
+<p>
+<a href="inference.html">推論を有効にする</a>
+- 論理／推論能力を Mozilla に統合するプロジェクトです。
+</p>
+
+
+<h2>ソースコード</h2>
+
+<ul>
+
+<li><a href="http://lxr.mozilla.org/mozilla/source/rdf/base/idl/">Mozilla
+RDF API</a> - IDL インターフェース定義は /rdf/base/idl/ を見てください。
+</li>
+
+<li>ソースコードブラウザ - <a href="http://lxr.mozilla.org/mozilla/source/rdf/">CVS tree への
+Web インターフェース</a>　Mozilla の RDF 実装のコアは
+<a href="http://lxr.mozilla.org/mozilla/source/rdf/base/">/mozilla/rdf/base/</a>にあります。
+いくつかの RDF データソースは<a href="http://lxr.mozilla.org/mozilla/source/rdf/datasource/">/mozilla/rdf/datasource/</a> と
+ <a href="http://lxr.mozilla.org/mozilla/source/xpfe/components/">xpfe/components</a> にあります。
+</li>
+
+<li>なにか新しいことは？
+<ul>
+
+<li>RDF コア:  mozilla/rdf/* ソースへの変更
+<a href="http://bonsai.mozilla.org/cvsquery.cgi?branch=HEAD&file=mozilla/rdf/&date=day">今日</a>、
+<a href="http://bonsai.mozilla.org/cvsquery.cgi?branch=HEAD&file=mozilla/rdf/&date=week">今週
+</a>、または <a href="http://bonsai.mozilla.org/cvsquery.cgi?branch=HEAD&file=mozilla/rdf/&date=week">今月</a>。
+</li>
+
+<li>RDF データソース （<a href="http://lxr.mozilla.org/mozilla/source/xpfe/components/">xpfe/components</a> にある他のものの中にあります） 
+<a href="http://bonsai.mozilla.org/cvsquery.cgi?branch=HEAD&file=mozilla/xpfe/components/&date=day">今日</a>、
+<a href="http://bonsai.mozilla.org/cvsquery.cgi?branch=HEAD&file=mozilla/xpfe/components/&date=week">今週
+</a>、または<a href="http://bonsai.mozilla.org/cvsquery.cgi?branch=HEAD&file=mozilla/xpfe/components/&date=month">今月</a>。
+</li>
+
+</ul>
+</li>
+
+ 
+<li>RDF ステータスリポートの<a href="../../htdig-cgi/htsearch?config=htdig&amp;restrict=&amp;exclude=&amp;words=rdf+status+report&amp;method=and&amp;format=long">検索</a>
+<span class="comment">【訳注：リンク切れ】</span>
+</li>
+
+<li><a name="bug">なにが動いているか?</a> 現在公開されているバグの中で、
+RDF に関わりのあるものを
+<a href="http://bugzilla.mozilla.org/">Bugzilla</a> で検索する:
+
+<ul>
+<li>
+<a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;changedin=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;component=RDF&amp;short_desc=&amp;short_desc_type=substring&amp;long_desc=&amp;long_desc_type=substring&amp;bug_file_loc=&amp;bug_file_loc_type=substring&amp;status_whiteboard=&amp;status_whiteboard_type=substring&amp;cmdtype=doit&amp;newqueryname=&amp;order=%22Importance%22&amp;form_name=query">'RDF' という文字列</a> （注: このクエリーを改良して、バグデータベース内の他のバグを探す事もできます）</li>
+
+<li><a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=11436">［特徴の追跡］ - RDF</a></li>
+
+<li><a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=11414">RDF コアのトップレベルで追跡されるバグ</a></li>
+
+<li><a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=11436">ブックマークのトップレベルで追跡されるバグ</a></li> 
+
+<li><a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=11411">履歴のトップレベルで追跡されるバグ</a></li> 
+
+<li><a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=11413">XUL DOM のトップレベルで追跡されるバグ</a></li> 
+
+<li><a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=11415">フラッシュパネルのトップレベルで追跡されるバグ</a></li>
+
+<li><a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=11416">関連リンクのトップレベルで追跡されるバグ</a></li>
+
+<li><a href="http://bugzilla.mozilla.org/showdependencytree.cgi?id=11650">RDF/XML 仕様違反</a></li> 
+
+
+</ul>
+
+</li>
+
+<li>報告されていないバグを発見した？  どうやって貢献するか、詳細は<a href="/get-involved.html">
+参加方法 </a> を見てください... 
+<span class="comment">【訳注： 原文はミラーサイトへのリンク切れ】</span></li>
+
+<li><a href="http://dmoz.org/">Open Directory</a> の
+<a href="http://directory.mozilla.org/rdf.html">RDF ダンプ</a>
+を操作するコードは、
+<a href="http://lxr.mozilla.org/mozilla/source/rdf/opendir/">/mozilla/rdf/opendir/</a> にあります。</li>
+
+</ul>
+
+
+
+<h2>関連文書</h2>
+
+<ul>
+
+<li><a href="/xpfe/xulrdf.htm">XUL と RDF: アプリケーションオブジェクトモデルの実装</a> 
+
+</li>
+
+
+<li>Mozilla の <a href="http://lxr.mozilla.org/mozilla/source/lib/libpics">PICS</a> ソースコードをブラウズする。　PICS は Platform for Internet Content Selection （インターネットコンテンツ選択のためのプラットフォーム） で、これは
+RDF が元々ベースとしていた技術です。詳細は <a href="http://www.w3.org/PICS/">
+W3C の PICS サイト</a> を見てください.</li>
+
+<li><a href="/blue-sky/misc/199805/intertwingle.html">Blue Sky: Intertwingle</a>  （"膨大な量の発掘、通過、関係、報告、注釈... といった個人のメッセージを扱うことを簡単にするための潜在的プロジェクト"）
+</li>
+
+<li><a href="/blue-sky/misc/199805/collaborative-bookmark-index.html">Blue Sky:
+共同作業が可能なブックマークの索引作り</a></li>
+
+
+<li>Netscape Netcenter の <a href="http://my.netscape.com/publish/">'My
+Netscape Network'</a> は、チャンネルの記述に <em>RDF Site
+Summary</em> と呼ばれる RDF 語彙を使っている。</li>
+
+<li><a href="../references.html">参考文献</a> - RDF に関する他の文書へのリンク。</li>
+
+</ul>
+
+
+<h2><a href="../../community.html">コミュニティ</a></h2>
+
+<p>
+<a href="news://news.mozilla.org/netscape.public.mozilla.rdf">
+<tt>netscape.public.mozilla.rdf</tt></a> は Mozilla の RDF ニュースグループであり、
+<a href="mailto:mozilla-rdf@mozilla.org"> <tt>mozilla-rdf@mozilla.org</tt></a>
+は e-mail ミラーです。RDF 開発者用の他のナイスなメーリングリストは、
+<a href="http://www.ilrt.bris.ac.uk/discovery/rdf-dev/">
+<tt>RDF-DEV</tt></a> です。ここは、より一般的な（Mozilla に限らない）
+RDF に関する話題が流れています。
+RDF 関係者グループの詳細は、<a href="http://www.w3.org/RDF/">W3C のサイト</a> を見てください。
+</p>
+
+<h3>古い文書（更新されるでしょう）</h3>
+
+<p>この下の文書は Mozilla 内の古い RDF 実装を解説していて、新しいレイアウトエンジンを使用するようになって、部分的に時代遅れになっています。
+Mozilla 内でのこの変更に関するさらなる情報は、
+<a href="/roadmap.html">開発 ロードマップ</a>
+を見てください。
+</p>
+
+<ul>
+
+<li>
+<a href="../content-model.html">グラフから内容モデルを作成する</a>　この文書は、何故グラフから内容モデルを作成することが困難なのかを解説し、それを処理するためのいくつかの方法を提案しています。
+この文書は、そこにいるあなたのような、数学者タイプの人の助力を求めています。
+ （状態： 最近のもの、しかし十分最近ではない；−）
+</li>
+
+<li><a href="xml.html">Mozilla での XML</a>　（Mozilla の XML 実装の概要、RDF の役割等） （ただ、 図 guha-1.gif は NGLayout により時代遅れになっている）
+</li><li><a href="history.html">Mozilla 履歴プロジェクト</a>　（計画されていた、履歴の RDF データソースの概要; 要更新）
+</li><li><a href="pcs.html">永続的なクライアントの記憶領域</a>　（'スーパー cookie' としての RDF データソース）
+</li><li><a href="roadmap.html">Navigator での RDF のロードマップ (April 1998)</a>　（将来のためのアイデア; 要更新）
+</li><li><a href="code.html">コードの状態</a>　（廃れた、コーディングの 'to do' リスト）
+</li><li><a href="ntd.html">RDF Todo リスト （一部廃れた todo リスト, 1998）</a>　（要更新）
+</li></ul>
+
+
+
+<h2>RDF 標準</h2>
+
+<p>
+<a href="http://www.w3.org/RDF/">RDF</a> は
+<a href="http://www.w3.org/">W3C</a> が定めた仕様で、
+彼らが推奨する Web 上で（メタ）データを交換するための技術です。
+</p>
+
+<p>
+私たちの狙いは、Mozilla RDF の実装が W3C の仕様を満たすことです。
+もし仕様に反する振る舞いが見つかったら、それが知られているものであるかどうか<a href="#bug">バグデータベース</a>を調べて下さい。
+もし無い場合、明確なテストケースと適切な RDF 仕様書の節の引用を添えて<!-- providing 意訳 -->バグレポートを提出し、
+私たちがどんな間違いをしているのかを教えて下さい<!-- If not then file a bug report telling us what we're doing wrong, providing a clear test case and citing the relevant section of the RDF specification(s).う〜む。意訳 -->。
+RDF 仕様書自体についての質問は、バグレポートではなく<!-- 文章が明確になるよう足す。原文にはない -->、代わりに直接
+&lt;<a href="mailto:www-rdf-comments@w3.org">www-rdf-comments@w3.org</a>&gt;
+に。
+</p>
+
+<p>
+コアモデルと文法の上部にある追加の層は、W3C で定義が進められているところです。
+<a href="http://www.w3.org/RDF/">RDF ホームページ</a>
+は、最新の開発を追跡し、未来の RDF と '意味論上の web' の標準に関する討論に参加するためには最良の場所です。
+</p>
+
+<p>
+例えば、未だ合意に至った RDF Query API は存在しません。
+このような事柄に関する合意された仕様があったら、非常に有益です。
+
+この RDF Query の背景としては、
+<a href="http://www.w3.org/TandS/QL/QL98/">Web 用の問い合わせ言語</a>
+(Query Languages for the Web) ワークショップで作成された、
+いくつかの提案を見るとよいかも知れません。
+W3C は RDF 関係者グループ (RDF Interest Group) を設置しています。
+さらなる情報は、<a href="http://www.w3.org/RDF/">W3C サイト</a> で入手できます。
+ここは、グループの<a href="http://www.w3.org/RDF/IGcharter">憲章</a> と 
+<a href="http://lists.w3.org/Archives/Public/www-rdf-interest/">メールアーカイブ
+</a> を含んでいます。グループは、全ての RDF 実装者に解放されていて、
+RDF に関する未来の W3C の作業への入力を積極的に求めています。
+</p> 
+
+<p>
+私たちは Mozilla の RDF 実装が、将来の W3C 勧告となるべく現在進化中の
+RDF 標準に追従すると考えています。
+モデルと文法の仕様は、
+<a href="http://www.w3.org/Press/1999/RDF-REC">仕上がりました</a>。
+未来の作業は、
+RDF Query 機構についてのものになるでしょう。
+Mozilla の Query 機構は、
+<!-- 訳注：RDF Query 機構と表現を合わせるため Q を大文字にしています 
+-->
+この分野で期待されている将来の開発成果と互換性を保っている必要があります。
+<!-- The query mechanism in Mozilla
+should be compatible with anticipated future developments in this
+area. 
+-->
+
+また、RDF とそれより古い検索手順の関係を調査する探検的な作業については、
+<a href="z3950.html">Z39.50 / RDF プロジェクト</a> を参照してください。
+ </p>
+                                   
+
+<hr>
+<small>
+Last Updated: $Id: index.html,v 1.5 2004/11/13 19:48:00 okome Exp $ <br>
+</small>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/rdf/doc/index.html">英語版</a> 2003/11/11</span> - <span>和訳版 2004/11/14</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/rdf/doc/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

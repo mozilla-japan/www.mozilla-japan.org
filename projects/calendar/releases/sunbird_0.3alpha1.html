@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+ <title>Sunbird 0.3 alpha1 リリースノート</title>
+ <link rel="alternate" hreflang="en" modified="November 8, 2005">
+ <link rel="stylesheet" type="text/css" href="../calendar.css">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/calendar/releases/sunbird_0.3alpha1.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+<div id="mainContent">
+<h1>Sunbird 0.3 alpha1 リリースノート</h1>
+
+<p>2005 年 11 月 4 日、Sunbird/Calendar プロジェクトは Sunbird 0.3 alpha1 をリリースしました。
+長期にわたるバックエンドコードの書き換え作業が始まって以来、最初の正式リリースです。
+Sunbird 0.3 alpha1 は Sunbird 0.3 に向けてのロードマップにおいて最初のマイルストーンになります。
+このリリースノートでは、このバージョンにおいてユーザが期待すべきこと、期待すべきでないことを明らかにしていきます。</p>
+
+<h2 id="goals">0.3 alpha1 リリースの目標</h2>
+<p>Sunbird 0.3 alpha1 は製品品質のリリースというものを意図したものではありません。
+（<a href="#limitations">"制限事項および既知のバグ"</a> を参照。）
+その代わりに、新しいバックエンドコードの公開やテストのためのリリースという位置付けです。
+これは以下のようなものです。</p>
+
+<ul>
+ <li>繰り返し起きるイベントの計算の改善。
+ <li>SQLite を組み込むことによる、ローカルカレンダーの保存機能の改善。
+  (<a href="http://www.sqlite.org/">http://www.sqlite.org/</a>)
+ <li>WebDAV によるリモートカレンダー操作機能の強化。
+  (<a href="http://www.webdav.org/">http://www.webdav.org/</a>)
+ <li>インポート・エクスポート機能の改善。
+</ul>
+
+<p>Sunbird 0.3 alpha1 のリリースに際して、このバックエンドコードに潜むバグや問題をさらけ出すことができるテスタを広く募集しています。
+より綿密なテストをしたいと思っている人は、ガイドとして <a href="http://wiki.mozilla.org/Calendar:Tests">Calendar:Tests page</a> を参考にしてください。
+他の目標は以下のようなものです。</p>
+
+<ul>
+ <li>新しい UI 要素に関するユーザからのフィードバックの取得
+  <ul>
+   <li>'New Calendar' ウィザード
+   <li>インターネット接続・プロキシの設定
+   <li>カテゴリの色分けに関する設定
+  </ul>
+ <li>拡張機能・テーマを完全にサポートした Sunbird のリリース
+</ul>
+
+<h2 id="limitations">制限事項および既知のバグ</h2>
+
+<p>Sunbird 0.3 alpha1 を使用する前に、このリリースに存在する以下の制限事項に目を通しておくことを<strong>強く</strong>お勧めします。
+新しいバックエンドコードを使用しながらも Sunbird 0.2 と同様の機能を備えているものを提供することが目標でした。</p>
+
+
+<ul>
+ <li>Sunbird 0.3 alpha1 は Sunbird 0.2 で使用していた古いカレンダーファイルを自動的には移行しないので、<a href="http://kb.mozillazine.org/Profile#Sunbird">プロファイルフォルダ</a>
+ から手動でインポートするか、リモートカレンダーファイルを再購読する必要がある
+ <li>Windows 版の Sunbird 0.3 alpha1 では 2038 年以降および 1970 年より前を扱おうとするとクラッシュする
+ <li>ドラッグアンドドロップ機能が 0.2 での機能に比べ大幅に制限されている
+ <li>イベントダイアログでタスクからイベントへの切り替えに失敗する
+ <li>イベントにファイルを添付できない
+ <li>印刷機能が非常に制限されている
+ <li>'Tasks in view' オプションが機能しない
+ <li>アラームが 5 分しかスヌーズできない
+ <li>Sunbird が閉じられている間に起動し損なったアラームがその後起動しない
+ <li>Sunbird ではメールアラームが機能しない
+ <li>公開時のエラーの通知が貧弱である
+ <li>タイムゾーンの設定が機能しない
+ <li>カレンダーのチェックを外すと JavaScript エラーが生じる
+</ul>
+
+<h2 id="webdav">WebDAV によるカレンダーバックアップシステム</h2>
+
+<p>繰り返すと、0.3 alpha1 にはデータ消失を引き起こす可能性があります。
+この危険性をできる限り軽減するために、このリリースには <strong>WebDAV カレンダー</strong>によるデータバックアップシステムも組み込まれています。
+新しい変更点を webdav カレンダーに反映させる前に、Sunbird は次のような名前のファイルを生成し現在の状態のバックアップコピーを行います。</p>
+
+<code>calBackupData_|何らかの数字|_edit1.ics</code>
+
+<p>その前のバックアップは</p>
+
+<code>calBackupData_|何らかの数字|_edit2.ics</code>
+
+<p>のようになります。
+他に 3 つのバックアップコピーが 24 時間ごとに更新され、そのファイル名の最後には "day1.ics" などの文字列が付きます。
+これらすべてのバックアップファイルはプロファイルフォルダ（<a href="http://kb.mozillazine.org/Profile#Sunbird">http://kb.mozillazine.org/Profile#Sunbird</a> 
+を参照）内の "Backup Data" フォルダの中に作られます。
+これらのファイルはカレンダーを直前の状態に戻すために直接アップロードすることができるはずです。
+もしこのような必要に迫られた時には、標準のバグ報告手順に従ってその問題を開発者に知らせてください。</p>
+
+<h2 id="next">次のステップ</h2>
+
+<p>Sunbird/Calendar の開発プロセスにおける次のステップは、Lightning 向けに作られた新しい UI 要素の多くを実装し、バックエンドをさらに改良することです。
+これは以下のようなものです。</p>
+
+<ul>
+ <li>インライン編集や完全なドラッグアンドドロップのサポート、視認性の向上がなされた新しいカレンダービュー
+ <li>新しい、よりユーザに優しい 'Create Event' ダイアログ
+ <li>公開・インポートダイアログなどの改善
+ <li>CalDAV (<a href="http://www.caldav.org/">http://www.caldav.org/</a>) プロトコルのサポートの改善
+</ul>
+
+<p>これらの機能の実装具合を追いかけたいユーザはぜひナイトリービルドをダウンロードしてください。
+いつもどおり、テストや役に立つバグ報告を大いに歓迎します。</p>
+
+</div>
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/calendar/releases/sunbird_0.3alpha1.html">英語版</a> 2005/11/08</span> - <span>和訳版 2005/11/11</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/calendar/releases/sunbird_0.3alpha1.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Mozilla アドオン</title>
+  <link rel="stylesheet" title="Orange" href="defaultstyle.css" type="text/css">
+  <link rel="alternate stylesheet" title="Very Simple" href="basicstyle.css" type="text/css">
+  <link rel="alternate stylesheet" title="Light Blue" href="bluestyle.css" type="text/css">
+  <link rel="icon" href="images/mozilla-16.png" type="image/png">
+  <style type="text/css" media="screen,tv"><!-- .addcomment { margin-top: 10px; margin-bottom: 5px; text-align: right; font-size: small; line-height: 1.5em; } --></style>
+  <script src="detect-problems.js" type="text/javascript"></script>
+  <script src="stylesheets.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+  <!-- // Folders URLs where we can fetch the lang packs from
+  var ftpfolder = new Array (
+    "http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/",
+    "http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.01/",
+    "http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.02/" );
+  // Which UA strings corresponds to which div id
+  var uavers = new Array (
+    [ "1.0.0", "moz100" ],
+    [ "1.0.1", "moz101" ],
+    [ "1.0.2", "moz102" ] );
+  
+  function install_lp(i, language, lp, rp) {
+     var xpi = new Object();
+     xpi[language + " Language Pack"] = ftpfolder[i]+"lang"+lp+".xpi";
+     if (rp) {
+      xpi[language + " Contents Pack"] = ftpfolder[i]+"reg"+rp+".xpi";
+     }
+     InstallTrigger.install(xpi);
+  }
+  // -->
+  </script>
+
+ </head>
+ <body onload="loadStyle();silentlyFixErrors()">
+  <div id="mainHeaderContainer" class="sectionHeaderContainer">
+   <img src="images/dino.png" alt="" id="dinoHead">
+   <div id="mainHeader" class="sectionHeader">
+    <a href="./">
+      <img src="images/mozillaLogo.png" id="mozillaLogo" alt="Mozilla 1.0">
+    </a>
+   </div>
+  </div>
+  <div id="mainSection" class="section">
+   <h1>Mozilla アドオン</h1>
+   <div id="mainContent">
+     <p>注意 : Mozilla 用のプラグイン（たとえば Java や Flash）を手に入れるには <a href="plugins.html">プラグイン</a> をご覧ください。<br>（訳注 : 上記のリンク先は英語となっています。日本語によるプラグインの解説は <a href="http://www.mozilla.gr.jp/docs/beginmoz-1.0/navigator.html#navigator-plugin">はじめての Mozilla 1.0</a> にあります）</p>
+
+     <div class="addon">
+       <span class="addonTitle">地域化</span>
+       Mozilla のユーザインターフェイスを、英語からこれらの言語のいずれかに変更できます。
+       <noscript>（インストールには JavaScript が必要です）</noscript>
+
+       <!-- available for Mozilla 1.0.0.. -->
+       <p id="moz100">
+       現在利用可能な Mozilla 1.0 言語パック : 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Asturian', 'astes', 'ast')">オーストリア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Breton', 'brfr', '')">ブルターニュ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Simplified Chinese (China)', 'zhcn', '')">簡体字中国語（中国）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Traditional Chinese (Taiwan)', 'zhtw', '')">繁体字中国語（台湾）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Danish', 'dadk', '')">デンマーク語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Dutch', 'nlnl', '')">オランダ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'English (United Kingdom)', 'engb', '')">英語（イギリス）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Esperanto', 'eo', '')">エスペラント</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Estonian', 'etee', '')">エストニア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'French', 'frfr', 'fr')">フランス語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Galician', 'gles', '')">ガリシア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'German', 'deat', '')">ドイツ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Greek', 'elgr', '')">ギリシア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Hebrew', 'heil', '')">ヘブライ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Hungarian', 'huhu', '')">ハンガリー語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Italian', 'itit', '')">イタリア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Japanese', 'jajp', '')">日本語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Korean', 'kokr', '')">韓国語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Malay', 'msmy', '')">マレー語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Norwegian Nynorsk', 'nnno', '')">ノルウェー・ニューノシュク語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Polish', 'plpl', 'pl')">ポーランド語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Portuguese (Brazil)', 'ptbr', '')">ポルトガル語（ブラジル）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Romanian', 'roro', '')">ルーマニア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Russian', 'ruru', '')">ロシア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Scots', 'scgb', '')">スコットランド語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Slovak', 'sksk', '')">スロバキア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Sorbian', 'wende', '')">ソルビア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Spanish (Argentina)', 'esar', '')">スペイン語（アルゼンチン）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Spanish (for Latin America)', 'eshn', 'hn')">スペイン語（ラテンアメリカ）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Spanish (Spain)', 'eses', 'eses')">スペイン語（スペイン）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Turkish', 'trtr', '')">トルコ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Ukrainian', 'ukua', '')">ウクライナ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0"
+        onclick="install_lp('0', 'Welsh', 'cygb', '')">ウェールズ語</a>
+       </p>
+
+       <!-- available for Mozilla 1.0.1.. -->
+       <p id="moz101">
+       現在利用可能な Mozilla 1.0.1 言語パック : 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Simplified Chinese (China)', 'zhcn', '')">簡体字中国語（中国）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Traditional Chinese (Taiwan)', 'zhtw', '')">繁体字中国語（台湾）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Czech', 'cscz', 'cz')">チェコ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Danish', 'dadk', '')">デンマーク語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'English (United Kingdom)', 'engb', '')">英語（イギリス）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Estonian', 'etee', '')">エストニア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'French', 'frfr', '')">フランス語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'German', 'deat', '')">ドイツ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Greek', 'elgr', '')">ギリシア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Hebrew', 'heil', '')">ヘブライ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Italian', 'itit', '')">イタリア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Japanese', 'jajp', '')">日本語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Korean', 'kokr', '')">韓国語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Malay', 'msmy', '')">マレー語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Polish', 'plpl', 'pl')">ポーランド語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Romanian', 'roro', '')">ルーマニア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Slovak', 'sksk', '')">スロバキア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Slovenian', 'slsi', 'si')">スロベニア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Sorbian', 'wende', '')">ソルビア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Spanish (Argentina)', 'esar', '')">スペイン語（アルゼンチン）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Spanish (Spain)', 'eses', 'es')">スペイン語（スペイン）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.01"
+        onclick="install_lp('1', 'Ukrainian', 'ukua', '')">ウクライナ語</a>
+       </p>
+
+       <!-- available for Mozilla 1.0.2.. -->
+       <p id="moz102">
+       現在利用可能な Mozilla 1.0.2 言語パック : 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Simplified Chinese (China)', 'zhcn', '')">簡体字中国語（中国）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Czech', 'cscz', 'cz')">チェコ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Esperanto', 'eoeo', '')">エスペラント</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'English (United Kingdom)', 'engb', '')">英語（イギリス）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'German', 'deat', '')">ドイツ語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Greek', 'elgr', '')">ギリシア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Italian', 'itit', '')">イタリア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Japanese', 'jajp', '')">日本語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Polish', 'plpl', 'pl')">ポーランド語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Slovak', 'sksk', '')">スロバキア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Sorbian', 'wende', '')">ソルビア語</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Spanish (Spain)', 'eses', 'es')">スペイン語（スペイン）</a> / 
+       <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.02"
+        onclick="install_lp('2', 'Ukrainian', 'ukua', '')">ウクライナ語</a>
+       </p>
+
+  <script type="text/javascript">
+  <!-- // This script hides not relevant lp to the user, if using an 1.0x user agent
+   i = navigator.userAgent.indexOf("rv:");
+   if ( i != -1) {
+    for (c=0; c<uavers.length; c++) {
+     if (navigator.userAgent.indexOf(uavers[c][0],i) == i+3) {
+      // Hide everything
+      document.getElementById('moz100').style.display = "none";
+      document.getElementById('moz101').style.display = "none";
+      document.getElementById('moz102').style.display = "none";
+      // Let the current ua version lang pack reapper
+      document.getElementById(uavers[c][1]).style.display = "block";
+     }
+    }
+   }
+  // -->
+  </script>
+
+       <p>利用可能な言語の数は増え続けていますので、もしあなたがお使いの言語がリストになければ、また今度チェックしてみてください。</p>
+       <p>あなたの言語への地域化に貢献する方法についての詳細と情報は <a href="../../projects/l10n/mlp_status.html">Mozilla 地域化プロジェクト</a> をご覧ください。貢献された地域化資料の <a href="../../projects/l10n/mlp_status.html#contrib">完全なリスト</a> もあります。</p>
+       <p>（ 訳注 : 「もじら組」有志によって作成されている日本語パック（JLP）のダウンロードは <a href="http://www.mozilla-japan.org/jp/l10n/">こちらからどうぞ</a> ）</p>
+     </div>
+
+     <div class="addon">
+        <span class="addonTitle">カレンダー</span>
+        Mozilla カレンダーは、現在アルファ・テスト中ですが大変便利なもので、
+        標準準拠のカレンダリング・ソリューションになるでしょう。
+        Mozilla の 6 人のメンバーがこのアプリケーションのチームを組んでいます。
+        （Windows と Linux のみ）<br>
+        <a href="../../projects/calendar/">インストール</a> |
+        <a href="../../projects/calendar/">ホーム</a>
+     </div>
+
+     <div class="addon">
+        <span class="addonTitle">スペルチェッカー</span>
+        Mozilla はまだ初期設定でスペルチェッカーを搭載していませんが、
+        MozDev で開発中のものがあります。<br>
+        <a href="http://www.beonex.com/communicator/version/0.8/add-ons/binaries/spellcheck/">インストール</a> |
+        <a href="http://spellchecker.mozdev.org/">ホーム</a>
+     </div>
+
+     <div class="addon">
+        <span class="addonTitle">Mail の PGP/GPG 暗号化</span>
+        Mozilla は、安全な E-mail のために、すでに S/MIME を標準サポートしています。
+        Enigmail は PGP/GPG サポートのためのアドオンです。（コマンド・ライン PGP/GPG プログラムが必要とされます）<br>
+        <a href="http://enigmail.mozdev.org/download.html#moz10">インストール</a> |
+        <a href="http://enigmail.mozdev.org/">ホーム</a>
+     </div>
+
+     <div class="addon">
+        <span class="addonTitle">Jabberzilla インスタントメッセージ</span>
+        Jabber はオープンソースのインスタントメッセージクライアントで、
+        地球上にある他のどんなインスタントメッセンジャー（AOL、MSN、ICQ など）にも話しかけることができます。
+        Jabberzilla は Mozilla Sidebar の Jabber クライアントです。<br>
+        <a href="http://jabberzilla.mozdev.org/releases/">インストール</a> |
+        <a href="http://jabberzilla.mozdev.org/">ホーム</a>
+     </div>
+
+     <div class="addon">
+        <span class="addonTitle">MozBlog</span>
+        あなたがネットサーフィンをしているあいだに Mozilla を Blog します。<br>
+        <a href="http://mozblog.mozdev.org/installation.html">インストール</a> |
+        <a href="http://mozblog.mozdev.org/">ホーム</a>
+     </div>
+
+     <div class="addon">
+        <span class="addonTitle">マウスジェスチャー サポート</span>
+        クリック＆ドラッグのマウスジェスチャーを使って Web をナビゲートします。<br>
+       <a href="http://optimoz.mozdev.org/gestures/installation.html">インストール</a> |
+       <a href="http://optimoz.mozdev.org/gestures/">ホーム</a>
+     </div>
+
+     <div class="addon">
+        <span class="addonTitle">MathML エディタ</span>
+        Mozilla は MathML （Mathematics Markup Lauguage） の表示をサポートしています。
+        （専用 <a href="../../projects/mathml/fonts/">フォント</a> を用いると MathML の表現をより優れたものにすることができます）
+        エディタも開発されています。<br>
+       <a href="http://www.newmexico.mackichan.com/MathML/mathmled3.xpi">インストール</a> |
+       <a href="http://www.newmexico.mackichan.com/MathML/mathmled.htm">ホーム</a>
+     </div>
+
+     <div class="addon">
+        <span class="addonTitle">BannerBlind</span>
+        私たちの優秀なポップアップ抑制サポート BannerBlind を追加すれば、ほとんどの Web サイトの広告バナーを隠します。<br>
+       <a href="http://bannerblind.mozdev.org/installation.html">インストール</a> |
+       <a href="http://bannerblind.mozdev.org/">ホーム</a>
+     </div>
+
+     <p>その他の Mozilla アドオンは、
+     <a href="http://www.mozdev.org/">MozDev</a> や <a href="http://www.xulplanet.com/">XULPlanet</a> でご覧いただけます。</p>
+
+<!-- 和訳ドキュメント コメント -->
+<div class="addcomment"><a href="http://www.mozilla.org/start/1.0/addons.html">このドキュメントのオリジナルは mozilla.org において英語で公開されています。</a><br>
+またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>利用者の利便のために mozilla.org 和訳プロジェクトによって提供されたものです。<br>フィードバックは英語で、原文の著者に送ってください。<br>和訳ドキュメントの一覧は以下の URL で見ることができます。<br><a href="http://www.mozilla-japan.org/jp/td/">http://www.mozilla-japan.org/jp/td/</a>&nbsp;</div>
+
+   </div>
+
+   <div id="footer">
+    <img src="images/dino_tail.png" id="dinoTail" alt="">
+   </div>
+  </div>
+  <div class="doubleSpacer"></div>
+ </body>
+</html>

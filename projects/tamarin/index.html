@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <title>Tamarin プロジェクト</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+    <link rel="alternate" hreflang="en" modified="November 8, 2006">
+  
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/tamarin/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+    <h1>Tamarin プロジェクト</h1>
+    <ul class="snav">
+      <li><a href="#goals">目標</a></li>
+      <li><a href="#roadmap">ロードマップ</a></li>
+      <li><a href="#currentstatus">現在の状況</a></li>
+      <li><a href="#teammembers">チームメンバー</a></li>
+      <li><a href="#getinvolved">参加するには</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#trademarks">商標</a></li>
+      <li><a href="#acknowledgments">謝辞</a></li>
+    </ul>
+
+    <h2><a name="goals">目標</a></h2>
+    <p>Tamarin プロジェクトの目標は、言語仕様 ECMAScript 第 4 版 (ES4) を、パフォーマンスの高い、オープンソースのコードとして実装することです。Tamarin のバーチャルマシンは、Mozilla によって、Firefox&reg; や Mozilla テクノロジーを基盤としたその他の製品群に組み込まれている JavaScript コアエンジン「SpiderMonkey」の中で利用されます。Tamarin のソースコードは今後も、Adobe によって、Adobe&reg; Flash&reg; Player に含まれる「ActionScript&trade; Virtual Machine」の一部として利用される予定です。</p>
+    <p>Tamarin のバーチャルマシンは今のところ、JavaScript や Adobe ActionScript、Microsoft Jscript の基礎となっている言語標準 ECMAScript 第 3 版に加えて、ECMAScript 第 4 版の仕様で提案されている新機能の一部を実装しています。Adobe と Mozilla は、コミュニティと協力しながら ES4 のオープンソース実装を開発することで、魅力的な Web アプリケーションの構築技術として、この標準言語の採用を促進したいと考えています。Tamarin プロジェクトは、開発者の技術力を高め、プラットフォームを越えた、よりリッチでインタラクティブなユーザ体験の提供を可能にすることでしょう。</p>
+
+    <h2><a name="roadmap">ロードマップ</a></h2>
+    <p>Tamarin は、次期 ECMAScript 第 4 版 (JS2) をサポートし、2008 年リリース予定の Mozilla 2 プロジェクトの一部として SpiderMonkey に統合されます。<a href="http://weblogs.mozillazine.org/roadmap/archives/2006/10/mozilla_2.html">Brendan Eich の Mozilla 2 に向けたロードマップ</a> で、Mozilla 2 の広範な詳細と Tamarin の役割が説明されています。</p>
+    <p>Tamarin プロジェクトは始まったばかりであり、ロードマップもまだ完成していませんが、次のような技術的目標を掲げています。</p>
+    <ol>
+       <li>SpiderMonkey への Tamarin VM とガベージコレクタの統合</li>
+       <li>Tamarin のソースコード生成に SpiderMonkey のコンパイラを利用</li>
+       <li>新しいハードウェアプラットフォームへのジャストインタイムコンパイラの移植</li>
+       <li>ECMAScript 4 の自己完結型コンパイラの完成</li>
+    </ol>
+    <p>ロードマップができ次第、このページは更新されます。</p>
+
+    <h2><a name="currentstatus">現在の状況</a></h2>
+    <p>Tamarin のソースコードは <a href="http://lxr.mozilla.org/mozilla/source/js/tamarin/">mozilla/js/tamarin/</a> にあり、CVS を通じて取得できます。このコードは、Mozilla の他のコードと同様に、Mozilla トリプルライセンス (MPL/GPL/LGPL) のもとで公開されています。</p>
+    <p>ビルド方法など、Tamarin に関する仮のドキュメントは <a href="http://developer.mozilla.org/ja/docs/Tamarin">Mozilla Developer Center</a> にあります。</p>
+    <p>現在のソースツリーにはまだ Linux (x86) サポートのためのブランチが含まれていません。今後数週間以内に統合される予定です。</p>
+    <p>自己完結型コンパイラにはコンパイラの基盤が含まれていますが、完全に動作させるためには、まだ多くの作業が残っています。</p>
+
+    <h2><a name="teammembers">チームメンバー</a></h2>
+    <p>現時点でのコアチームメンバーは以下の通りです。</p>
+    <ul>
+       <li><a href="mailto:dansmith@adobe.com">Dan Smith</a>, Adobe, Tamarin モジュールオーナー</li>
+       <li><a href="mailto:igor.bukanov@gmail.com">Igor Bukanov</a>, Mozilla, エンジニア</li>
+       <li><a href="mailto:crowder@fiverocks.com">Brian Crowder</a>, Mozilla, エンジニア</li>
+       <li><a href="mailto:jodyer@adobe.com">Jeff Dyer</a>, Adobe, コンパイラアーキテクト</li>
+       <li><a href="mailto:brendan@mozilla.org">Brendan Eich</a>, Mozilla, 最高技術責任者 (CTO) / JavaScript 初期制作者</li>
+       <li><a href="mailto:graydon@mozilla.com">Graydon Hoare</a>, Mozilla, エンジニア</li>
+       <li><a href="mailto:stejohns@adobe.com">Steven Johnson</a>, Adobe, Tamarin 開発者</li>
+       <li><a href="mailto:edwsmith@adobe.com">Edwin Smith</a>, Adobe, Tamarin 初期開発者 / VM アーキテクト</li>
+       <li><a href="mailto:treilly@adobe.com">Tom Reilly</a>, Adobe, Tamarin ガベージコレクタ開発者</li>
+       <li><a href="mailto:rreiatmai@adobe.com">Rick Reitmaier</a>, Adobe, Tamarin JIT 開発者</li>
+       <li><a href="mailto:tierney@adobe.com">Erik Tierney</a>, Adobe, Tamarin 開発者</li>
+    </ul>
+
+    <h2><a name="getinvolved">参加するには</a></h2>
+    <p>Tamarin の開発に協力したい方は、このページを定期的にチェックするか、チームメンバーの誰かにメールを送ってください。</p>
+    <p>また、ニュースグループ <a href="news://news.mozilla.org/mozilla.dev.tech.js-engine">mozilla.dev.tech.js-engine</a> とメーリングリスト <a href="https://lists.mozilla.org/listinfo/dev-tech-js-engine">dev-tech-js-engine</a> を購読することで、Tamarin 開発者の議論に参加できます。</p>
+    <p>Tamarin に関する議論は IRC チャンネル <a href="irc://irc.mozilla.org/tamarin">#tamarin</a> でも行われています。</p>
+
+    <h2><a name="faq">FAQ</a></h2>
+    <p>詳しくは、<a href="faq.html">Tamarin プロジェクト FAQ</a> をご覧ください。</p>
+
+    <h2><a name="trademarks">商標</a></h2>
+    <p>Adobe、Flash、ActionScript は、Adobe Systems Incorporated の商標です。</p>
+
+    <h2><a name="acknowledgments">謝辞</a></h2>
+    <p>Tamarin プロジェクトは、Ben Parker 氏によって始められた <a href="http://www.tamarinframework.org/">Java Swing アプリケーション開発のための Tamarin フレームワーク</a> とは無関係の、独立したプロジェクトです。Tamarin という名称の再使用に快諾いただいた同氏に感謝します。</p>
+
+  
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/tamarin/index.html">英語版</a> 2006/11/08</span> - <span>和訳版 2006/11/11</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/tamarin/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

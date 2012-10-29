@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>CVS を使った Firefox のローカライズ</title>
+<link rel="alternate" hreflang="en" modified="September 22, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/l10n/using-cvs.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>CVS を使った Firefox のローカライズ</h1>
+<p>著者: <a href="mailto:bsmedberg&#64;covad.net?subject=Localizing%20Firefox%20Using%20CVS">Benjamin Smedberg &lt;bsmedberg&#64;covad.net&gt;</a></p>
+<p>Firefox は、集中化された 2 つの場所を通じてソースツリーからローカライズされます。Thunderbird と Firefox が共有している主要なローカライズファイルは、CVS ツリーの mozilla/toolkit/locales (<a href="http://lxr.mozilla.org/aviarybranch/source/toolkit/locales/">LXR</a>) にあります。また、Firefox のみが使用しているローカライズファイルは mozilla/browser/locales (<a href="http://lxr.mozilla.org/aviarybranch/source/browser/locales/">LXR</a>) にあります。</p>
+<h2>英語の元ファイルを入手</h2>
+<p>ローカライズ担当者は、次の 3 つの方法で、翻訳対象となる英語の元ファイルを取得できます。</p>
+<ol>
+  <li>CVS レポジトリからファイルをチェックアウト</li>
+  <li>Firefox のソースツリー全体 (TAR.GZ または ZIP アーカイブ) を mozilla.org の FTP サーバからダウンロード</li>
+  <li>ロケールファイルの ZIP アーカイブをダウンロード (このアーカイブはリリース前のローカライズ確定時に提供されます)</li>
+</ol>
+<h3>CVS からソースファイルを入手</h3>
+<p>CVS からソースファイルを取得するのに CVS アカウントは必要ありません。mozilla.org の CVS サーバは、読み取り専用の anonymous アクセスが可能になっています。ソースコード全体をチェックアウトする方法を説明した <a href="/catalog/development/compiling/cvs-sourcecode.html">こちらのドキュメント</a> が参考になるでしょう。ロケールファイルだけを取得したい場合は、次のコマンドを実行してください。</p>
+<pre class="code">cvs checkout mozilla/toolkit/locales<br>cvs checkout mozilla/browser/locales</pre>
+<p class="note">Firefox 1.0 のソースは、メインの CVS トランクではなく、<var>AVIARY_1_0_20040515_BRANCH</var> という名前のブランチにあります。このブランチからロケールファイルをチェックアウトするには、CVS コマンドに必ず <var>-r</var> オプションを付けます。</p>
+<pre class="command">cvs checkout -r AVIARY_1_0_20040515_BRANCH mozilla/toolkit/locales</pre>
+<h3>ダウンロードした ZIP ファイルを展開</h3>
+<p>JAR、ZIP、XPI ファイルは、名前は違いますが、どれも同じアーカイブ形式です。これらはすべて <code class="command">unzip</code> コマンドラインユーティリティか <a href="http://www.winzip.com/">WinZip</a> のような GUI ツールを使って展開できます。アーカイブファイルの入れ子構造 (XPI ファイルに含まれる JAR ファイルなど) を調べたい場合は <a href="http://www.7-zip.org/">7-ZIP</a> アーカイブエクスプローラを使うと良いでしょう。</p>
+<h2>Firefox 0.9(.x) の言語パックを変換</h2>
+<p>ソースツリーのディレクトリ構造は、Firefox の完成品のディレクトリ構造とは異なるため、Firefox 0.9(.x) のクローム JAR ファイルを新しい形式に変換する perl スクリプトを用意してあります。この perl スクリプトを実行するには Unix ライクな環境 (Linux、Mac OS X、Cygwin) が必要で、Windows では Cygwin がなければ動きません。お使いのマシンが Windows だけで、Cygwin をインストールできない場合は、IRC の #firefox チャンネルにいる bsmedberg か誰かに、あなたが持っているロケールファイルにこのスクリプトを実行してもらうよう頼んでください。このスクリプトは 1 回しか実行する必要はありません。また、次の 5 つのファイルが必要です。</p>
+<ol>
+  <li><code class="filename">ja-JP.jar</code> (プラットフォームに依存しない言語クローム)</li>
+  <li><code class="filename">JP.jar</code> (地域クローム)</li>
+  <li><code class="filename">ja-win.jar</code> (Windows 用言語クローム)</li>
+  <li><code class="filename">ja-mac.jar</code> (Mac 用言語クローム)</li>
+  <li><code class="filename">ja-unix.jar</code> (Unix 用言語クローム)</li>
+</ol>
+<p><a href="repackage-0.9.pl">repackage-0.9.pl</a> はこちらからダウンロードできます。</p>
+<p>スクリプトを実行するには、上の 5 つのファイルを空のディレクトリに置いて、そのディレクトリに移動 (<code class="command">cd</code>) し、以下のコマンドを実行してください。</p>
+<pre class="command">perl -w &lt;repackage-0.9.pl へのパス&gt; ja-JP</pre>
+<p>スクリプトの実行が完了すると、<code class="filename">toolkit-ja-JP.jar</code> と <code class="filename">browser-ja-JP.jar</code> という 2 つの JAR ファイルが生成されるはずです。</p>
+<h2>ローカライズの内容と元の英語版を比較</h2>
+<p>再パッケージスクリプトの実行が終わっても、まだいくつかのファイルをお使いの言語に手作業でコピーする必要があります。それは、プロファイル用デフォルトファイル (bookmarks.html など)、ローカライズした検索プラグイン、その他インストーラが必要とするいくつかのファイルです。どのファイルが必要かを把握できるよう、2 つの言語パックを比較できる別の perl スクリプトを用意しました。このスクリプトでは、ファイルが一致するかどうかと、DTD ファイルや .properties ファイルに同じローカライズエントリーがあるかどうかまで確認できます。言語パックをアップグレードしたときもこのスクリプトを実行する必要があるでしょう。このスクリプトは Mozilla ソースツリーの一部、<a href="http://lxr.mozilla.org/aviarybranch/source/toolkit/locales/compare-locales.pl?raw=1">mozilla/toolkit/locales/compare-locales.pl</a> にあり、ZIP アーカイブと圧縮していないローカルディレクトリのどちらでも比較できます。この perl スクリプトは、Cygwin を必要としない ActiveState perl など、様々な perl で実行できます。例:</p>
+<pre class="command">perl -w compare-locales.pl toolkit-en-US.jar toolkit-ja-JP</pre>
+<p>このコマンドでは、互換性のあるロケールパックを作るために解決しなければらない、一致しなかったファイルやその他の問題の一覧が出力されます。なお、この比較は絶対に確実というわけではありません。完全な構文解析ではなく、正規表現を使ってプロパティやエントリーをチェックするものです。もし間違いに気付いたら、bugzilla.mozilla.org の Firefox プロダクト、Build Config コンポーネントにバグを登録して知らせてください。</p>
+<h2>ローカライズファイルを CVS にチェックイン</h2>
+<p>ロケールパックが完成して、比較スクリプトが明らかなエラーを出さなくなったら、ローカライズの成果を CVS レポジトリにチェックインする準備が整いました。今まで一度も CVS を使ったことがない方は、ZIP アーカイブにしたロケールパックを私に送ってもらうのが一番良いでしょう。そうすれば、私が必要なディレクトリを CVS に追加して、送ってもらったファイルを commit します。CVS の使い方をご存じの方は、自分でファイルを commit してください。その場合、Firefox 1.0 のロケールパックは aviary ブランチにあり、新しいロケールファイルもそのブランチに commit するということを忘れないでください。</p>
+<p>CVS レポジトリへの commit アクセス権を持っていない場合は、<a href="/hacking/getting-cvs-write-access.html">こちらの指示</a> に従ってアクセス権を手に入れてください。CVS アクセス権の承認に 3 人のスーパーレビュー担当は必要ありません。バグを登録するときに bsmedberg&#64;covad.net を CC に入れてくれれば、あなたがローカライズチームのオーナーまたは共同作業者であることを私が保証します。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/l10n/using-cvs.html">英語版</a> 2004/09/22</span> - <span>和訳版 2005/06/03</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/l10n/using-cvs.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

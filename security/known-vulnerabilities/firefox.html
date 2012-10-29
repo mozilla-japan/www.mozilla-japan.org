@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>Firefox セキュリティアドバイザリ</title>
+<link rel="alternate" hreflang="en" modified="October 26, 2012">
+<style type="text/css" media="screen,tv">
+  #mainContent { line-height: 160%; }
+  table { width: 100%; background-color: #eee; }
+  table .number { width: 1em; }
+  table .type { width: 5em; }
+  table .fixed { width: 5em; }
+  table .milestone { width: 7em; }
+  table .severity { width: 8em; }
+  table .description { width: auto; }
+  table .bugid { width: 4em; }
+  table .workaround { width: 9em; }
+  table .date { width: 5em; }
+  .critical { background-color: #ff8080; }
+  .high { background-color: #ffc080; }
+  .moderate { background-color: #ffff80; }
+  td { text-align: center; vertical-align: top; }
+  h2 { margin-top: 2em; }
+  .logo { vertical-align: middle; }
+  .vulnlist { margin: 0 2em; }
+  .vulnlist  dl dt { margin: 0; width: 8em; font-weight: normal; float: left; }
+  .vulnlist  dl dd { margin: 0 0 0 8em; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/known-vulnerabilities/">Mozilla 製品における既知の脆弱性</a> &gt; Firefox セキュリティアドバイザリ</p>
+<h2><img class="logo" src="/images/product-firefox.png"> Firefox セキュリティアドバイザリ</h2>
+
+<p>重要度の区分け:</p>
+<ul>
+  <li><span class="critical">最高</span>: 任意のコードを実行したり、ソフトウェアをインストールすることが可能な脆弱性で、通常のブラウジングの範囲を超えるユーザの操作を必要としないもの</li>
+  <li><span class="high">高</span>: ユーザが訪れた他のサイトから機密データを集めたり、それらのサイトにデータやコードを注入することが可能な脆弱性で、通常のブラウジングの範囲を超えるユーザの操作を必要としないもの</li>
+  <li><span class="moderate">中</span>: デフォルトではない特殊な設定を行った場合のみ攻撃可能であったり、複雑な操作や思いも寄らない手順を必要とする点を除けば、「高」または「最高」に分類されるであろう脆弱性</li>
+  <li><span class="low">低</span>: サービス妨害 (DoS) 攻撃、少量のデータの漏えい、なりすましなど、比較的重要でないセキュリティ脆弱性 (SSL 利用サイトの検知不可能な偽装は、たいていの場合、他のサイトで入力されるはずの機密データを盗み取るために利用されるため、「高」に分類されます)</li>
+</ul>
+
+<div class="vulnlist">
+  <h3 id="firefox16.0.2">Firefox 16.0.2 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-90.html" class="critical">MFSA 2012-90</a></dt><dd>Location オブジェクト問題の修正</dd>
+  </dl>
+  <h3 id="firefox16.0.1">Firefox 16.0.1 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-89.html" class="critical">MFSA 2012-89</a></dt><dd>defaultValue のセキュリティチェックが適用されていない問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-88.html" class="critical">MFSA 2012-88</a></dt><dd>様々なメモリ安全性の問題 (rv:16.0.1)</dd>
+  </dl>
+  <h3 id="firefox16">Firefox 16 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-87.html" class="critical">MFSA 2012-87</a><dt><dd>IME State Manager における解放後使用</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-86.html" class="critical">MFSA 2012-86</a><dt><dd>Address Sanitizer を使って発見されたヒープメモリ破損の問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-85.html" class="critical">MFSA 2012-85</a><dt><dd>Address Sanitizer を使って発見された解放後使用、バッファオーバーフロー、境界外読み取りの問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-84.html" class="high">MFSA 2012-84</a><dt><dd>location.hash を通じた偽装とスクリプト注入</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-83.html" class="critical">MFSA 2012-83</a><dt><dd>Chrome Object Wrapper (COW) が特権付き関数やプロパティへのアクセスを拒否していない</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-82.html" class="high">MFSA 2012-82</a><dt><dd>top オブジェクトと location プロパティにプラグインからアクセスできてしまう</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-81.html" class="critical">MFSA 2012-81</a><dt><dd>GetProperty 関数のセキュリティチェック迂回</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-80.html" class="critical">MFSA 2012-80</a><dt><dd>instanceof 演算子使用時の不正なキャストによるクラッシュ</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-79.html" class="critical">MFSA 2012-79</a><dt><dd>全画面表示と履歴遷移による DoS とクラッシュ</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-78.html" class="critical">MFSA 2012-78</a><dt><dd>リーダーモードページによるクローム特権の所有</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-77.html" class="critical">MFSA 2012-77</a><dt><dd>DOMWindowUtils の一部メソッドによるセキュリティチェックの迂回</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-76.html" class="high">MFSA 2012-76</a><dt><dd>document.domain 設定後も初期生成元へのアクセスが維持される</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-75.html" class="critical">MFSA 2012-75</a><dt><dd>select 要素の存続による攻撃の恐れ</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-74.html" class="critical">MFSA 2012-74</a><dt><dd>様々なメモリ安全性の問題 (rv:16.0/ rv:10.0.8)</dd>
+  </dl>
+  <h3 id="firefox15">Firefox 15 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-73.html" class="high">MFSA 2012-73</a><dt><dd>SPDY による情報漏えい</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-72.html" class="high">MFSA 2012-72</a><dt><dd>Web コンソールで eval 関数がクローム特権コードを実行できてしまう</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-71.html" class="high">MFSA 2012-71</a><dt><dd>__android_log_print の安全でない使用</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-70.html" class="high">MFSA 2012-70</a><dt><dd>location オブジェクトのセキュリティチェックがクロームコードによって迂回される</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-69.html" class="high">MFSA 2012-69</a><dt><dd>サイト SSL 証明書データの誤表示</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-68.html" class="moderate">MFSA 2012-68</a><dt><dd>DOMParser が text/html パース時にリンクされたリソースを拡張機能に読み込む</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-67.html" class="moderate">MFSA 2012-67</a><dt><dd>インストーラが新規インストール後に誤った実行ファイルを起動する</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-66.html" class="critical">MFSA 2012-66</a><dt><dd>HTTPMonitor 拡張機能が明示的な許可なくリモートデバッグに使用される</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-65.html" class="moderate">MFSA 2012-65</a><dt><dd>XSLT の数値フォーマット機能における境界外読み取り</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-64.html" class="high">MFSA 2012-64</a><dt><dd>Graphite 2 のメモリ破損</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-63.html" class="critical">MFSA 2012-63</a><dt><dd>SVG のバッファオーバーフローと解放後使用の問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-62.html" class="critical">MFSA 2012-62</a><dt><dd>WebGL の解放後使用とメモリ破損</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-61.html" class="critical">MFSA 2012-61</a><dt><dd>負の高さを持ったビットマップ形式の画像によるメモリ破損</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-60.html" class="critical">MFSA 2012-60</a><dt><dd>about:newtab を通じた特権昇格</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-59.html" class="high">MFSA 2012-59</a><dt><dd>Object.defineProperty を使った location オブジェクトのシャドーイング</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-58.html" class="critical">MFSA 2012-58</a><dt><dd>Address Sanitizer を使って発見された解放後使用の問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-57.html" class="critical">MFSA 2012-57</a><dt><dd>様々なメモリ安全性の問題 (rv:15.0/ rv:10.0.7)</dd>
+  </dl>
+  <h3 id="firefox14">Firefox 14 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-56.html" class="critical">MFSA 2012-56</a></dt><dd>javascript URL を通じたコードの実行</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-55.html" class="moderate">MFSA 2012-55</a></dt><dd>innerURI 付き feed URL によってページのセキュリティコンテキストが継承される</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-53.html" class="high">MFSA 2012-53</a></dt><dd>Content Security Policy 1.0 の実装ミスによるデータ漏えい</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-52.html" class="critical">MFSA 2012-52</a></dt><dd>JSDependentString::undepend の文字列変換によるメモリ破壊</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-51.html" class="moderate">MFSA 2012-51</a></dt><dd>重複した X-Frame-Options ヘッダが無視される</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-50.html" class="moderate">MFSA 2012-50</a></dt><dd>QCMS における領域外読み取り</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-49.html" class="critical">MFSA 2012-49</a></dt><dd>同一コンパートメントのセキュリティラッパーが回避される</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-48.html" class="moderate">MFSA 2012-48</a></dt><dd>nsGlobalWindow::PageHidden における解放後使用の問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-47.html" class="high">MFSA 2012-47</a></dt><dd>HTML フィードビューにおける JavaScript のフィルタリング漏れ</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-46.html" class="high">MFSA 2012-46</a></dt><dd>data URL を通じた XSS</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-45.html" class="high">MFSA 2012-45</a></dt><dd>location プロパティの偽装問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-44.html" class="critical">MFSA 2012-44</a></dt><dd>Gecko のメモリ破壊</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-43.html" class="moderate">MFSA 2012-43</a></dt><dd>ドラッグ＆ドロップを通じて不正な URL がロケーションバーに表示される</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-42.html" class="critical">MFSA 2012-42</a></dt><dd>様々なメモリ安全性の問題 (rv:14.0/ rv:10.0.6)</dd>
+  </dl>
+  <h3 id="firefox13">Firefox 13 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-54.html" class="moderate">MFSA 2012-54</a></dt><dd>証明書警告ページにおけるクリックジャッキング</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-40.html" class="critical">MFSA 2012-40</a></dt><dd>Address Sanitizer を使って発見されたバッファオーバーフローと解放後使用の問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-39.html" class="moderate">MFSA 2012-39</a></dt><dd>NSS のゼロ長アイテムパースエラー</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-38.html" class="critical">MFSA 2012-38</a></dt><dd>ドキュメント内のノード置換・挿入時に生じる解放後使用の問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-37.html" class="high">MFSA 2012-37</a></dt><dd>Windows ファイル共有とショートカットファイルを通じた情報漏えい</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-36.html" class="high">MFSA 2012-36</a></dt><dd>インラインスクリプトによる Content Security Policy の回避</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-35.html" class="critical">MFSA 2012-35</a></dt><dd>Windows 版の Mozilla Updater と Mozilla Maintenance Service を通じた特権昇格</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-34.html" class="critical">MFSA 2012-34</a></dt><dd>様々なメモリ安全性の問題 (rv:13.0/ rv:10.0.5)</dd>
+  </dl>
+  <h3 id="firefox12">Firefox 12 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-33.html" class="high">MFSA 2012-33</a></dt><dd>RSS/Atom フィード読み込み時の潜在的なサイト識別情報偽装</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-32.html" class="moderate">MFSA 2012-32</a></dt><dd>JavaScript エラーによる HTTP リダイレクトとリモートコンテンツの読み取り</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-31.html" class="critical">MFSA 2012-31</a></dt><dd>OpenType サニタイザのオフバイワンエラー</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-30.html" class="critical">MFSA 2012-30</a></dt><dd>textImage2D を使った WebGL コンテンツによるクラッシュ</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-29.html" class="moderate">MFSA 2012-29</a></dt><dd>ISO-2022-KR/ISO-2022-CN のデコード問題を通じた潜在的な XSS</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-28.html" class="moderate">MFSA 2012-28</a></dt><dd>Origin ヘッダのあいまいな IPv6 による Web サーバのアクセス制限回避</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-27.html" class="high">MFSA 2012-27</a></dt><dd>ページ読み込みの短絡化による XSS</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-26.html" class="high">MFSA 2012-26</a></dt><dd>WebGL.drawElements の FindMaxUshortElement エラーによる動画メモリの不正な読み取り</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-25.html" class="critical">MFSA 2012-25</a></dt><dd>cairo-dwrite を使ったフォント描画中に生じる潜在的なメモリ破壊</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-24.html" class="high">MFSA 2012-24</a></dt><dd>マルチバイトコンテンツ処理エラーを通じた潜在的な XSS</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-23.html" class="critical">MFSA 2012-23</a></dt><dd>gfxImageSurface における不正な解放によるヒープ破壊</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-22.html" class="critical">MFSA 2012-22</a></dt><dd>IDBKeyRange における解放後使用の問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-21.html" class="critical">MFSA 2012-21</a></dt><dd>FreeType v2.4.9 で修正された複数のセキュリティ問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-20.html" class="critical">MFSA 2012-20</a></dt><dd>様々なメモリ安全性の問題 (rv:12.0/ rv:10.0.4)</dd>
+  </dl>
+  <h3 id="firefox11">Firefox 11 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-19.html" class="critical">MFSA 2012-19</a></dt><dd>様々なメモリ安全性の問題 (rv:11.0/ rv:10.0.3 / rv:1.9.2.28)</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-18.html" class="moderate">MFSA 2012-18</a></dt><dd>window.fullScreen が信頼できないコンテンツから書き込み可能となっている問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-17.html" class="critical">MFSA 2012-17</a></dt><dd>キーフレームの cssText を動的な変更後に参照することで生じるクラッシュ</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-16.html" class="critical">MFSA 2012-16</a></dt><dd>JavaScript URL をホームページとして設定することによる特権昇格</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-15.html" class="moderate">MFSA 2012-15</a></dt><dd>複数の Content Security Policy ヘッダを使った XSS</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-14.html" class="critical">MFSA 2012-14</a></dt><dd>Address Sanitizer によって発見された SVG の問題</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-13.html" class="moderate">MFSA 2012-13</a></dt><dd>ドラッグ＆ドロップと JavaScript URL による XSS</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-12.html" class="critical">MFSA 2012-12</a></dt><dd>shlwapi.dll の解放後使用</dd>
+  </dl>
+  <h3 id="firefox10.0.2">Firefox 10.0.2 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-11.html" class="critical">MFSA 2012-11</a></dt><dd>libpng における整数オーバーフロー</dd>
+  </dl>
+  <h3 id="firefox10.0.1">Firefox 10.0.1 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-10.html" class="critical">MFSA 2012-10</a></dt><dd>nsXBLDocumentInfo::ReadPrototypeBindings における解放後使用の問題</dd>
+  </dl>
+  <h3 id="firefox10">Firefox 10 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-09.html" class="moderate">MFSA 2012-09</a></dt><dd>「Firefox Recovery Key.html」が安全でない権限で保存される</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-08.html" class="critical">MFSA 2012-08</a></dt><dd>不正に埋め込まれた XSLT スタイルシートによるクラッシュ</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-07.html" class="critical">MFSA 2012-07</a></dt><dd>Ogg Vorbis ファイルデコード時の潜在的なメモリ破壊</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-06.html" class="high">MFSA 2012-06</a></dt><dd>アイコン画像のエンコード時に追加される未初期化メモリによる情報の誤表示</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-05.html" class="critical">MFSA 2012-05</a></dt><dd>信頼できないオブジェクトを呼び出したフレームスクリプトがセキュリティチェックを迂回する</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-04.html" class="critical">MFSA 2012-04</a></dt><dd>nsDOMAttribute の子ノードを削除後も参照できてしまう</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-03.html" class="high">MFSA 2012-03</a></dt><dd>iframe 要素が name 属性を通じて他ドメインから置き換えられる</dd>
+    <dt><a href="/security/announce/2012/mfsa2012-01.html" class="critical">MFSA 2012-01</a></dt><dd>様々なメモリ安全性の問題 (rv:10.0/ 1.9.2.26)</dd>
+  </dl>
+  <h3 id="firefox9">Firefox 9 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2011/mfsa2011-58.html" class="critical">MFSA 2011-58</a></dt><dd>video 要素を極端なサイズに拡大した場合に生じるクラッシュ</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-57.html" class="high">MFSA 2011-57</a></dt><dd>プラグイン自体によってコンテンツが削除された場合に生じるクラッシュ (Mac)</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-56.html" class="moderate">MFSA 2011-56</a></dt><dd>SVG アニメーションを通じた JavaScript 不要のキー判別</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-55.html" class="critical">MFSA 2011-55</a></dt><dd>nsSVGValue の領域外アクセス</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-54.html" class="critical">MFSA 2011-54</a></dt><dd>YARR 正規表現ライブラリにおける潜在的に悪用可能なクラッシュ</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-53.html" class="critical">MFSA 2011-53</a></dt><dd>様々なメモリ安全性の問題 (rv:9.0)</dd>
+  </dl>
+  <h3 id="firefox8">Firefox 8 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2011/mfsa2011-52.html" class="critical">MFSA 2011-52</a></dt><dd>NoWaiverWrapper を通じたコード実行</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-51.html" class="high">MFSA 2011-51</a></dt><dd>Intel GPU を統合した Mac におけるクロスオリジン画像抜き出し</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-50.html" class="high">MFSA 2011-50</a></dt><dd>Canvas と Windows D2D を用いたクロスオリジンデータ抜き出し</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-49.html" class="critical">MFSA 2011-49</a></dt><dd>Firebug を使ったプロファイリング中に生じるメモリ破壊</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-48.html" class="critical">MFSA 2011-48</a></dt><dd>様々なメモリ安全性の問題 (rv:8.0)</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-47.html" class="high">MFSA 2011-47</a></dt><dd>Shift-JIS を用いた潜在的な XSS 攻撃</dd>
+  </dl>
+  <h3 id="firefox7">Firefox 7 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2012/mfsa2012-02.html" class="low">MFSA 2012-02</a></dt><dd>過度に許容されていた IPv6 リテラル構文による問題</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-45.html" class="moderate">MFSA 2011-45</a></dt><dd>動作データに基づくキー操作の推測</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-44.html" class="critical">MFSA 2011-44</a></dt><dd>OGG ヘッダの読み込みにおける解放後使用の問題</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-43.html" class="critical">MFSA 2011-43</a></dt><dd>loadSubScript によって XPCNativeWrapper のスコープ引数が公開される問題</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-42.html" class="critical">MFSA 2011-42</a></dt><dd>YARR 正規表現ライブラリにおける潜在的に悪用可能なクラッシュ</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-41.html" class="critical">MFSA 2011-41</a></dt><dd>潜在的に悪用可能な WebGL のクラッシュ</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-40.html" class="critical">MFSA 2011-40</a></dt><dd>Enter キーの押下継続によるコードのインストール</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-39.html" class="moderate">MFSA 2011-39</a></dt><dd>CRLF インジェクションによる複数 Location ヘッダへの対策</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-36.html" class="critical">MFSA 2011-36</a></dt><dd>様々なメモリ安全性の問題 (rv:7.0 / rv:1.9.2.23)</dd>
+  </dl>
+  <h3 id="firefox6.0.2">Firefox 6.0.2 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2011/mfsa2011-35.html" class="high">MFSA 2011-35</a></dt><dd>DigiNotar 社の不正な SSL 証明書からのさらなる保護</dd>
+  </dl>
+  <h3 id="firefox6.0.1">Firefox 6.0.1 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2011/mfsa2011-34.html" class="high">MFSA 2011-34</a></dt><dd>DigiNotar 社の不正な SSL 証明書からの保護</dd>
+  </dl>
+  <h3 id="firefox6">Firefox 6 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2011/mfsa2011-38.html" class="high">MFSA 2011-38</a></dt><dd>プラグインと隠ぺいされた window.location オブジェクトを通じた XSS</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-29.html" class="critical">MFSA 2011-29</a></dt><dd>Firefox 6 で修正されたセキュリティ問題</dd>
+  </dl>
+  <h3 id="firefox5">Firefox 5 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2011/mfsa2011-28.html" class="low">MFSA 2011-28</a></dt><dd>ホワイトリストに含まれないサイトによる XPInstall の呼び出し</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-27.html" class="moderate">MFSA 2011-27</a></dt><dd>インライン SVG による XSS エンコーディング問題</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-26.html" class="critical">MFSA 2011-26</a></dt><dd>WebGL における複数のクラッシュ</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-25.html" class="moderate">MFSA 2011-25</a></dt><dd>WebGL テクスチャを用いたクロスドメイン画像漏えい</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-22.html" class="critical">MFSA 2011-22</a></dt><dd>Array.reduceRight() における整数オーバーフローと任意のコード実行</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-21.html" class="critical">MFSA 2011-21</a></dt><dd>multipart/x-mixed-replace 画像によるメモリ破損</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-20.html" class="critical">MFSA 2011-20</a></dt><dd>スクリプト無効時に XUL ドキュメントを表示したときの解放後使用の脆弱性</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-19.html" class="critical">MFSA 2011-19</a></dt><dd>様々なメモリ安全性の問題 (rv:3.0/1.9.2.18)</dd>
+  </dl>
+  <h3 id="firefox4.0.1">Firefox 4.0.1 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2011/mfsa2011-18.html" class="low">MFSA 2011-18</a></dt><dd>XSLT generate-id() 関数のヒープアドレス漏えい</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-17.html" class="critical">MFSA 2011-17</a></dt><dd>WebGLES ライブラリの脆弱性</dd>
+    <dt><a href="/security/announce/2011/mfsa2011-12.html" class="critical">MFSA 2011-12</a></dt><dd>様々なメモリ安全性の問題 (rv:2.0.1/ 1.9.2.17/ 1.9.1.19)</dd>
+  </dl>
+</div>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/known-vulnerabilities/firefox.html">英語版</a> 2012/10/26 &mdash; 和訳版 2012/10/27 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/known-vulnerabilities/firefox.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

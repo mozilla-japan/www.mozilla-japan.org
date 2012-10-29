@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+   <title>オープンソース PKI プロジェクト</title>
+
+<!--
+***************************************** 覚え書き **************************************
+
+オリジナル文書：Open Source PKI Projects
+オリジナルURL ：http://www.mozilla.org/projects/security/pki/
+
+和訳
+１版：2001/01/30  山口（Rev: 1.43 Jan 26 2001 16:27）
+２版：2001/02/18  山口（Rev: 1.44 Feb 16 2001 16:45）
+３版：2001/03/04  山口（Rev: 1.46 Mar 02 2001 23:04）更新
+４版：2001/03/13  山口（Rev: 1.47 Mar 12 2001 12:27）更新
+５版：2001/03/16  山口（Rev: 1.48 Mar 14 2001 17:21）更新
+６版：2001/04/07  山口（Rev: 1.49 Apr 06 2001 16:27）更新
+７版：2001/08/15  山口（Rev: 1.51 Jul 26 2001 14:25）更新
+８版：2001/11/11  山口（Rev: 1.52 Nov 09 2001 11:40）更新
+９版：2002/01/07  山口（Rev: 1.53 Nov 13 2001）更新
+10版：2002/05/08  山口（Rev: 1.56 May  6 17:38 2002）更新
+11版：2003/01/24  山口（Rev: 1.57 Jan 23 11:18 2003）更新
+12版：2003/02/16  山口（Rev: 1.59 Feb  4 16:17 2003）更新
+13版：2003/04/21  山口（Rev: 1.60 Apr 11 14:49 2003）更新
+14版：2003/05/23  山口（Rev: 1.61 May 21 16:21 2003）更新
+
+Rev: 1.62 山口 no_spam_syamagu@mozilla-japan.org
+
+***************************************** 覚え書き **************************************
+-->
+
+<link rel="alternate" hreflang="en" modified="September 13, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+ <h1>オープンソース PKI プロジェクト</h1>
+ <dl>
+  <li><a href="#new">新しいお知らせ</a>
+  <li><a href="#projects">プロジェクト</a>
+  <li><a href="#download">ダウンロード情報</a>
+  <li><a href="#goals">オープンソース PKI の目標</a>
+  <li><a href="#news-information">ニュース &amp; 情報</a>
+ </dl>
+ <hr>
+ 
+
+
+
+<h2 id="new">新しいお知らせ</h2>
+
+<dl>
+<dt>2003年 5月 21日
+<dd><a href="jss/jss_release_3.4.html">JSS 3.4</a> が利用可能になりました。このリリースには <code>RC2/CBC/PKCS5Padding</code> およびバグフィックスが施されています。</li>
+
+<dt>2003年 1月 29日
+<dd><a href="nss/nss-3.7.1/nss-3.7.1-release-notes.html">NSS 3.7.1</a> が利用可能になりました。このリリースにはいくつかのバグフィックスが含まれています。</li>
+
+<dt>2002年 12月 31日
+<dd><a href="jss/jss_release_3.3.html">JSS 3.3</a> が利用可能になりました。このリリースでは Java Cryptography Architecture（JCA）および Java Cryptography Extension（JCE）内のアルゴリズムに対する改良されたサポートが提供されています。さらに SecretDecoderRing を新しく実装し、AES アルゴリズムをサポートします。</li>
+
+<dt>2002年 12月 20日
+<dd><a href="nss/nss-3.7/nss-3.7-release-notes.html">NSS 3.7</a> が利用可能になりました。このリリースでは、膨大な CRL や証明書の題名に対する複数の電子メールアドレスをサポートする NSS 証明書データベースの新しいバージョンを利用しています。</li>
+
+<dt>2002年 12月 4日
+<dd><a href="nss/nss-3.6.1/nss-3.6.1-release-notes.html">NSS 3.6.1</a> が利用可能になりました。このリリースにはいくつかのバグフィックスがされています。</li>
+
+<dt>2002年 10月 18日
+<dd><a href="nss/nss-3.6/nss-3.6-release-notes.html">NSS 3.6</a> が利用可能になりました。このリリースには証明書ルックアップや一覧作成、証明書検証、CRL 処理、ASN.1 DER デコーディング、そして SSL での機能拡張が施されています。さらに、新しい PKCS #11 セッションロギング機能が備えられています。</li>
+
+<dt>2002年 8月 14日
+<dd><a href="jss/jss_release_3.2.html">JSS 3.2</a> が利用可能になりました。このリリースには、Java Cryptography Architecture（JCA）および Java Cryptography Extension（JCE）内のアルゴリズムをサポートする JCA プロバイダが含まれています。</li>
+
+<dt>2002年 7月 1日
+<dd>NSS 3.5 が利用可能になりました。このリリースは、Mozilla 1.0.1 および Netscape 7 用に作成された暫定的なリリースです。</li>
+
+<dt>2002年 6月 10日
+<dd><a href="nss/nss-3.4.2/nss-3.4.2-release-notes.html">NSS 3.4.2</a> が利用可能になりました。このリリースにはいくつかのバグフィックスが施されています。</li>
+
+<dt>2002年 5月 6日
+<dd><a href="nss/nss-3.4.1/nss-3.4.1-release-notes.html">NSS 3.4.1</a>
+が利用できます。このリリースにはいくつかのバグフィックスが含まれます。</li>
+
+<dt>2002年 5月 6日
+<dd><a href="nss/nss-3.4/nss-3.4-release-notes.html">NSS 3.4</a>
+が利用できます。このリリースには新しい SSL 機能、
+新しい SSL サーバセッション実装、そして 6 つの新しい AES TLS 暗号スイートが含まれます。
+このリリースにはまた、NSS 4.0（コードネーム：Stan）機能の一部が実装されています。</li>
+
+<dt>2001年 12月 12日
+<dd><a href="nss/release_notes_332.html">NSS
+3.3.2</a> が利用できます。このリリースにはいくつかのバグフィックスが含まれます。</li>
+
+<dt>2001年 11月 12日
+<dd><a href="jss/jss_release_3.1.1.html">JSS 3.1.1</a>
+が利用可能になりました。このリリースではいくつかのバグが修正されています。</li>
+
+<dt>2001年 11月 9日
+<dd><a href="nss/release_notes_331.html">NSS
+3.3.1</a> が利用可能になりました。このリリースにはバグフィックスが施されています。</li>
+
+<dt>2001年 7月 26日
+<dd><a href="nss/release_notes_33.html">NSS 3.3</a> が利用可能になりました。
+このリリースでは、 JSS（3.1 以降）が NSS の共有ライブラリを利用することができるようになっており、
+クライアント向けには SSL/TLS 用の 5 つの新しい DHE 暗号スイートが実装されています。</li>
+
+<dt>2001年 4月 6日
+<dd><a href="nss/release_notes_321.html">NSS 3.2.1</a> が利用できるようになりました。
+このリリースには、改良された SSL パフォーマンス、バグフィックス、そして
+ <a href="nss/buildnss_32.html">より解りやすくなったビルドインストラクション</a>
+が含まれます。</li>
+
+<dt>2001年 3月 12日
+<dd>NSS 3.2 用 Java インターフェースの初めてのパブリックリリース、
+<a href="jss/jss_release_3_0.html">JSS 3.0</a> が利用できます。</li>
+
+<dt>2001年 3月 2日</li>
+<dd>
+<ul>
+<li><a href="nss/release_notes_32.html#distribution"> NSS 3.2
+バイナリーディストリビューション</a> が、
+ <a href="nss/intro.html#1028203">NSS 共有ライブラリー</a> および
+ <a href="nss/tools/">NSS ツール</a>とともに利用できます。
+このバイナリーは、 10 のプラットフォームでテストされ、
+ 16 の OS リリースで認証されています。</li>
+
+<li><a href="nss/plan_3_3.html">NSS 3.3 プラン</a>  ができました。
+ NSS 3.3 の主要な目標は、 <a href="jss/">JSS</a> が
+NSS 共有ライブラリーを利用できるようにすることです。</li>
+</ul>
+</dl>
+
+<p><a href="new.html">過去のニュース</a>
+
+
+<h2 id="projects">プロジェクト</h2>
+
+<p>
+オープンソース PKI プロジェクトには、次のものが含まれます：
+</p>
+
+<dl>
+   <dt><a href="nss/">ネットワーク セキュリティ サービス （NSS）</a>
+        <dd>セキュリティ強化可能なアプリケーションのクロスプラットフォーム開発を支援するように設計されたライブラリーです。NSS と共にビルドされたアプリケーションは、
+        <a href="../../../docs/jargon.html#SSL">SSL v2 および v3</a>、
+        <a href="../../../docs/jargon.html#TLS">TLS</a>、
+        <a href="../../../docs/jargon.html#PKCS5">PKCS #5</a>、
+        <a href="../../../docs/jargon.html#PKCS7">PKCS #7</a>、
+        <a href="../../../docs/jargon.html#PKCS11">PKCS #11</a>、
+        <a href="../../../docs/jargon.html#PKCS12">PKCS #12</a>、
+        <a href="../../../docs/jargon.html#SMIME">S/MIME</a>、
+        <a href="../../../docs/jargon.html#X.509">X.509 v3</a> 証明書、および他のセキュリティ規格をサポートします。Netscape および Sun は NSS を利用して幅広い製品でこうした規格をサポートしています。そのような製品には、Netscape Certificate Management System、 iPlanet Web Server、Netscape Enterprise Server、iPlanet Directory Server、Netscape Directory Server、iPlanet Messaging Server そして Netscape Messaging Server が含まれます。NSS はまた、Netscape Communicator にもセキュリティ機構を提供しています。</li>
+
+         Sun-Netscape 連合は、 iPlanet Certificate Management System、
+        iPlanet Web Server、 iPlanet Directory Server、および iPlanet Messaging Server
+        を含めた、幅広い製品でこれらの規格をサポートするよう NSS を採用しています。
+         NSS はまた、Netscape Communicator にもセキュリティ機構を提供しています。
+        <br>
+   <dt><a href="jss/">Java 対応ネットワーク セキュリティ サービス （JSS）</a>
+        <dd>NSS に対する Java インターフェースは、 
+        NSS でサポートされているセキュリティ規格および暗号化テクノロジーのほとんどをサポートします。
+        JSS はまた、 ASN.1 タイプおよび BER/DER エンコーディングにピュア Java 
+        インターフェースを提供します。
+        <br>
+  <dt><a href="psm/">パーソナル セキュリティ マネジャー （PSM）</a>
+        <dd>セキュリティ強化可能なクライアント アプリケーションのクロス 
+        プラットフォーム開発を支援するように設計されたライブラリーとデーモンです。
+        これらのライブラリーは NSS の上にビルドされ、 Netscape
+        が現在進めている、 Netscape Communicator 4.7
+        向けセキュリティーモジュールの開発に用いられています。
+        <br>
+   <dt><a href="pkcs11/">PKCS #11 規格適合テスト</a>
+          <dd>PKCS #11 の実装をテストするように設計されたテストススイート。
+</dl>
+
+
+<h2 id="download">ダウンロード情報</h2>
+<p>
+
+<ul>
+    <li><a href="nss/index.html#mozillacvs">NSS についての Mozilla CVS 情報</a>：
+         Mozilla CVS ツリー内の NSS ファイル。
+    <li><a href="src/download.html">PKI ソースをダウンロードする</a>： 
+         PKI プロジェクトのソースコード tarball。
+    <li><a href="http://docs.iplanet.com/docs/manuals/psm.html">
+        ネットスケープ パーソナル セキュリティ マネジャー</a>：
+         Netscape Communicator 4.7 以降のバージョンで利用できるネットスケープ 
+        パーソナル セキュリティ マネジャーの
+        <a href="http://sbsdownload.netscape.com/psm/index.cgi">バイナリー</a>。
+    <li><a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/">
+        Mozilla 対応ネットスケープ パーソナル セキュリティ マネジャー</a>：
+         Mozilla マイルストーンリリース 17 以降のリリースで利用できるネットスケープ 
+        パーソナル セキュリティ マネジャー 1.3 のバイナリー。
+</ul>
+
+<h2 id="goals">オープンソース PKI の目標</h2>
+<p>
+
+<ul> 
+   <li>品質、スケーラビリティー、および PKI 製品を製作する際に利用されるセキュリティーコード
+    feature set を向上させる。</li>
+   <li>より多くのオープンソースアプリケーションでの PKI 機能へのサポートを含め、
+    PKI 利用可能なアプリケーションやサービスの開発および普及を業界全体に働きかける。</li>
+   <li>ソースコードの公開検証を奨励することによって、
+    セキュリティーソフトウェアの信頼性を向上させる。
+   <li>商業やインターネットでの規格に準拠したセキュリティー基盤の成長を促す。</li>
+</ul>
+
+<h2 id="news-information">ニュース & 情報</h2>
+
+<p>プレスリリースおよび他の情報源：</p>
+
+<ul>
+   <li><a href="http://home.netscape.com/newsref/pr/newsrelease793.html">
+    mozilla.org プレスリリース</a></li>
+   <li><a href="../../../crypto-faq.html">Mozilla Crypto FAQ</a>
+</ul>
+
+<p>
+現在進行中の NSS および PSM に関連する技術的な議論に参加するには、
+<tt>irc.mozilla.org</tt> サーバの <tt>#mozcrypto</tt> の IRC チャンネルにご参加ください。
+</p>
+
+
+ <address>ニュースグループ <span class="comment">【訳注：英語】</span>：
+  <a href="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</a><br>
+
+  管理者に怒鳴り込むには：
+  <a href="mailto:lord@netscape.com?subject=Open Source PKI Feedback">Bob Lord</a></address>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/index.html">英語版</a> 2004/09/13</span> - <span>和訳版 2004/10/06</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

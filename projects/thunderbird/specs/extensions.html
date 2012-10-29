@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla Thunderbird 拡張機能</title>
+<link rel="alternate" hreflang="en" modified="December 3, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/thunderbird/specs/extensions.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla Thunderbird 拡張機能</h1>
+<p>拡張機能は Mozilla Thunderbird の機能性を広げるすばらしい方法です。利用可能な Thunderbird の拡張機能は次の場所で見つけることができます：</p>
+<ul>
+  <li><a href="http://texturizer.net/thunderbird/extensions/">Mozilla Thunderbird Extensions Site</a> </li>
+  <li><a href="http://extensionroom.mozdev.org/">Extensions Room</a></li>
+</ul>
+<p>多くの貢献者たちが MozillaZine に投稿したり、あるいは私に直接メールをくれて次のように言っています。「私は Thunderbird が好きだが、乗り換える前にどうしても *任意の機能をここに挿入* ができるようにしてほしい。」拡張機能はみなさんがこうした機能を追加する優れた方法であり、これによりそれぞれのユーザにとって Thunderbird がよりよいものになります。拡張機能のすばらしいところのひとつは、小さな機能用の overlay を書くためであれば Thunderbird 全体がどのようにデザインされているかについてのエキスパートである必要がないということです。Thunderbird の拡張機能を書くということは、このプロジェクトに対する貢献とコードベース入門のすばらしい方法です！</p>
+<p>このドキュメントは２部に分かれています：</p>
+<ul>
+  <li>拡張機能のアイディア </li>
+  <li>Thunderbird 拡張機能の書き方（例を含む）</li>
+</ul>
+<h2>拡張機能のアイディア</h2>
+<p>拡張機能を書きたくてアイディアを探しているのなら、フォーラムやメール経由で私に送られてきたアイディアがいくつかあります。これらは Mozilla Thunderbird にとってすばらしい拡張機能になると思われます。もしこれらのアイディアに誰かが取りかかっているようであれば、このページをなるべく速く更新するようにします。</p>
+<ul>
+  <li>Mozilla Mail のようにメール３ペインツールバーに「すべてのメッセージを取得」する機能を追加する拡張機能。この拡張機能はすでに<a href="http://extensionroom.mozdev.org/more-info.php/getmess">作業中</a>です。</li>
+  <li><a href="/mailnews/arch/MozAB_Palm_HotSync.html">Mozilla Palm Synch support（同期化サポート）</a>を追加する拡張機能。今ある Mozilla Mail 用の palm 同期化拡張機能をビルドするくらい、そして xpi の中にバンドルするくらいシンプルにするべきです。</li>
+  <li>メール３ペインに <a href="http://forums.mozillazine.org/viewtopic.php?t=8635&amp;highlight=">quick reply box（クイック返信ボックス） </a>を追加する拡張機能。これがどのようなものかと言う私のコメントは<a href="http://forums.mozillazine.org/viewtopic.php?p=101022#101022">こちら</a>を見てください。</li>
+  <li>PGP/MIME サポートの拡張機能。（別名 <a href="http://enigmail.mozdev.org/">Thunderbird 用 Enigmail</a>）</li>
+  <li>Mozilla Mail のような View / Messages / Simple / Plain / HTML メニューの追加。これの復活はできる限りシンプルにすべきです。このメニューアイテムの実装には Mozilla Mail で使われている XUL と JS を見てください。</li>
+  <li>Yahoo メール、もしくは hotmail サポートを追加する拡張機能。これはよくリクエストされる機能です。この機能をどのように実装すべきかについて話し合うスレッドを始めましたので、<a href="http://forums.mozillazine.org/viewtopic.php?p=97996#97996">Adding Yahoo Mail support</a> を見てください。</li>
+  <li>ウインドウズ用にシステムトレイに最小化する拡張機能（これは拡張機能では不可能かも）。</li>
+  <li><a href="http://texturizer.net/thunderbird/tips.html#app_quotelevels">auto quote colors（自動引用の色）</a>の設定を可能にする拡張機能。</li>
+  <li>デフォルトで SMIMM サポートをオフにしてこれを実装する拡張機能。</li>
+  <li>デフォルトで LDAP サポートをオフにしこれを実装する拡張機能。</li>
+  <li>コンポーズウインドウの一部を変更する拡張機能。これは送信するメールの優先順位をメニュー項目を深くたどる代わりに直接このウインドウから設定できるようにするためのものです（簡単なものであること）。</li>
+  <li>さまざまなインスタントメッセージクライアントを統合する拡張機能。  </li>
+  <li>Thunderbird に about:config 機能を追加する拡張機能。これはツールのメニュー項目に追加し about:config を設定するウインドウを表示するようにしたほうがいいでしょう。これによって prefs.js を手動で編集することなく環境を設定することができるようになります。</li>
+  <li>署名として vCard を追加する拡張機能。  </li>
+  <li>迷惑メールフィルタを鍛える時間を短くするための、あらかじめ設定した学習フィルタを追加する拡張機能（おそらくライト、ミディアム、そしてヘビーな training.dat ファイル）。</li>
+  <li>ROT13 サポートを追加する拡張機能。  </li>
+  <li>POP と IMAP のための kerberos 認証サポートの追加。これによって kerberos 認証を使用しているカレッジの人たちが Mozilla Thunderbird を使えるようになります。</li>
+  <li>学習した迷惑メールフィルタを表示し、そしてさらに、修正する拡張機能はどうでしょう（training.dat ファイルを読み込んで表示する必要があります）。</li>
+  <li>送信するメッセージにランダムな署名を加える拡張機能。（これを行う Mozilla 用の拡張機能がすでにあるようですが、おそらく Thunderbird 用に微修正する必要があるでしょう (<a href="http://tagzilla.mozdev.org/">TagZilla</a>）</li>
+</ul>
+<p>さらに他のアイディアに関しては MozillaZine のスレッドを見てください：<a href="http://forums.mozillazine.org/viewtopic.php?t=13377">Ideas for Thunderbird Extensions</a></p>
+<h2>拡張機能の書き方</h2>
+<p>まずはじめに <a href="/docs/tutorials/tinderstatus/">Mozilla 拡張機能の作り方</a> を読んでください。次に、拡張機能の書き方のモデルとして役に立つ <a href="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/extensions/offline/">オフライン拡張機能</a> を見てください。ここでは Mozilla チュートリアルでの詳細については繰り返しません。また、始める前に外部 XUL overlay 作業に精通している必要があります。たいていの拡張機能は Thunderbird の chrome に入り込むために新しい overlay を作成する必要があります。オフライン拡張機能でいくつか示しておきます：</p>
+<ol>
+  <li>xul overlay を使用して拡張機能を書く。chrome の url は自分自身のネームスペースを持たなくてはなりません（例えば、<code class="filename">chrome://messenger/content/msgOfflineOverlay.xul</code> ではなく<code class="filename">chrome://messenger-offline/content/msgOfflineOverlay.xul</code>）。</li>
+  <li>locale と content ディレクトリは、overlay と 新しい locale パッケージのインストールを指示するための contents.rdf ファイルをそれぞれ必要とします。offline.jar にあるバージョンを参考にしてください。</li>
+  <li>多くの拡張機能ではそれを設定するためのダイアログが必要になるでしょう。content/contents.rdf 内に "settingsURL" フィールドを記入することによってその拡張機能用にこれを行うことができます。その拡張機能パネルから設定ダイアログを選択すると、Thunderbird はその settingURL 用の chrome を読み込もうとします。オフライン拡張機能はこの方法でユーザが設定できるようにしています。既存の preference 階層に overlay することを考える前に設定ダイアログを先に考えてください。そのほうがたいていの場合作業をより上手く進めることが出来ます。</li>
+  <li class="remark">なるべく早いうちに拡張機能をアンインストールするコードの書き方についての情報をいくつか書き足します。</li>
+  <li>新しい overlays/chrome/images/locale 情報を含む JAR ファイルを作成（例えば offline.jar）</li>
+  <li><code class="filename">install.js</code> と jar ファイルを <code class="filename">.xpi</code> 拡張子を持った新しい zip ファイルにする。</li>
+  <li>ここまでは Thunderbird の優れた拡張機能をビルドするのに時間を費やしてきました。ではユーザのために <a href="offline.html">オフライン拡張機能ユーザ ガイド</a> のようなインストラクションを書き上げましょう。その拡張機能の使い方をより簡単に理解できるようにスクリーンショットなどを挿入するといいでしょう。content/contents.rdf の authorURL フィールドに記入して間違いなくあなたのページを指すようにしてください！</li>
+  <li>これで終わりです！ヘルプサイトに発表してください。</li>
+</ol>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/thunderbird/specs/extensions.html">英語版</a> 2004/12/03</span> - <span>和訳版 2005/05/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/thunderbird/specs/extensions.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

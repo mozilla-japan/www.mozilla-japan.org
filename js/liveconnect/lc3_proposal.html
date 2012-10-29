@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <title>LiveConnect Release 3 目標/特徴</title>
+   <link rel="alternate" hreflang="en" modified="August 21,  2000">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/js/liveconnect/lc3_proposal.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<H1>LiveConnect Version 3 目標</H1>
+
+<TABLE BORDER CELLPADDING=3 >
+ <TR BGCOLOR="#DDDDDD">
+  <TH WIDTH="20%">
+<CENTER><B><FONT SIZE=+2>課題/特徴</FONT></B>
+<BR><B><FONT SIZE=-1>(優先される順番の</FONT></B>
+<BR><B><FONT SIZE=-1>降順で記載)</FONT></B></CENTER></TH>
+  <TD>
+
+<CENTER><B><FONT SIZE=+2>詳細</FONT></B></CENTER>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>Thread-safe 性</CENTER>
+  </TD>
+  <TD>
+LiveConnect の LC2 リリースは完全には thread-safe でなかった。
+(OJI のような LiveConnect の元のアプリケーションが厳密な thread-safe 性を
+要求しなかったので、LC2 の最優先課題ではなかった。)
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>Rhino 互換性</CENTER>
+  </TD>
+  <TD>
+Rhino (Java での JavaScript) と LC2 の振る舞いは、特に例外処理の領域で、
+それとなく異なっていた。Rhino と LC2 の両方が
+一つのテスト一式が LiveConnect の両バージョンで使えるように
+修正されるべきだ。
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>OJI LiveConnect との一致</CENTER>
+  </TD>
+  <TD>
+OJI プロジェクトはその要求に適合するように LiveConnect API を変更し、
+その結果を別のディレクトリに置いた。
+ソースを同じコードベースに統合するするようがある。
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>予想可能なオーバーロードされた
+<BR>メソッドの解決</CENTER>
+  </TD>
+  <TD>
+2 個以上のオーバーロードされた Java のメソッドが JS からの呼び出しで引数の数と型に
+互換性がある時、Java のメソッドの選択が、Java のリフレクション API に最初に列挙された
+ものを使う事によって、任意に行われている。
+残念ながら、列挙時のメソッドの順序はどんな仕様にも規定されていないので、
+JVM ベンダー間の違いによって、
+
+<P>代わりに、オーバーロードされた Java のメソッドの中から選ぶ
+<A HREF="lc3_method_overloading.html">JVM 独立な規則一式</A> を定義した。
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>明示的なオーバーロードされた
+<BR>メソッドの解決</CENTER>
+  </TD>
+  <TD>
+JS 言語の型付けシステムと Java のそれとの間の弱い対応は、
+曖昧かつ/もしくははっきりしないという結果になる。
+例えば、JS の数値型はあらゆる Java の浮動小数点あるいは整数型:
+byte, char, short, int, long, float, double にマップできる。
+
+<P>メソッドオーバーロード解決処理を回避し、<A HREF="lc3_method_overloading.html#ExplicitMethod">明示的に
+呼び出すメソッドを指定する</A>方法が必要である。例えば:
+
+<P><TT><FONT SIZE=-1>myPrintMethod = java.io.PrintStream["print(double)"];</FONT></TT>
+<BR><TT><FONT SIZE=-1>myPrintMethod(13);</FONT></TT>
+<BR>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>Java のインスタンスを使った Java の static メソッドの呼び出し</CENTER>
+  </TD>
+  <TD>
+Java 言語では static メソッドをクラス名もしくはクラスのインスタンスへの参照を
+使って呼び出す事ができるが、LiveConnect の現在のバージョンでは前者のみしか
+できない。
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER><I>java.lang.String</I> オブジェクトが
+<BR>JS の文字列メソッドを"継承"する</CENTER>
+  </TD>
+  <TD>
+LiveConnect の現在のバージョンでは、Java の String を JS の文字列メソッドのレシーバとして
+使う前に JS の文字列に変更する必要がある。
+一般的には、例えば空文字列を Java の文字列に追加する事で。
+
+<P>
+<UL>
+ <TT>s = new java.lang.String("foo")</TT>
+ <BR><TT>s = s + "";&nbsp; // </TT><I>s は今 JS の文字列である。</I>
+ <BR><TT>s.match("oo")</TT>
+</UL>
+
+<P>目標は、<I>java.lang.String</I> オブジェクトを、
+JS の文字列の全メソッドを"継承"する特別な物と扱う事で、
+明示的に JS の文字列へ変換する必要をなくす事だ。
+だから例えば上の例の 2 番目の文は不必要になる。
+<BR>
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+
+<CENTER>JavaArray オブジェクトが
+<BR>JS の配列メソッドを"継承"する</CENTER>
+  </TD>
+  <TD>
+JS の Array の関数は意図的に一般的であるので、reverse() と join() のような
+JS の配列のユーティリティメソッドを JavaArray オブジェクトに適用
+できるべきである。
+  </TD>
+ </TR>
+ <TR>
+  <TD ROWSPAN="2">
+
+<CENTER>新しい JS 言語の特徴を
+<BR>サポート</CENTER>
+  </TD>
+  <TD>
+ECMA 言語へ追加された <TT>instanceof</TT> と <TT>in</TT> のサポートを
+追加。
+  </TD>
+ </TR>
+ <TR>
+  <TD>
+<A HREF="liveconnect-exceptions.html">JS の例外に変換された Java
+の例外</A>。例えば Java を呼び出す JS を Java が呼び出した時の、
+Java の呼び出し側に伝播した未捕捉の例外。
+  </TD>
+ </TR>
+</TABLE>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/js/liveconnect/lc3_proposal.html">英語版</a> 2000/08/21</span> - <span>和訳版 2004/10/07</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/js/liveconnect/lc3_proposal.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

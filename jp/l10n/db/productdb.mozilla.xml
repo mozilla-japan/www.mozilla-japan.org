@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database xml:lang="ja-JP" lang="ja" type="productdb"
+	xmlns="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:tt="http://dynamis.jp/2003/TransTools">
+
+
+
+<!-- * Mozilla Suite * -->
+<product id="suite" name="Mozilla Suite" shortname="Mozilla">
+	<version full="1.4.2" major="1" minor="4" micro="2" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.4.2/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.4.2/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="4735bf15722ece23992c50fc7a62c5fd">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.4.2/mozilla-1.4.2-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.42/langjajp.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.4.2/moz1.4.2-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="fortune" platform="win" type="installer" md5="100ec41658ede39a5eabe0f249562b66">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.4.2/mozilla-win32-1.4.2-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.42/mozilla-win32-1.4.2-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.4.2/mozilla-win32-1.4.2-ja.exe"/>
+		</package>
+		<package creatorid="snip" platform="linux" type="installer" md5="48e74b25e4354e7d4a15687a79f7c1ad">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.4.2/mozilla-i686-pc-linux-gnu-1.4.2-installer-jaJP.tgz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.42/mozilla-i686-pc-linux-gnu-1.4.2-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.4.2/mozilla-i686-linux-1.4.2-ja.tgz.gz"/>
+		</package>
+		<package creatorid="fortune" platform="mac" type="zip" md5="90c6c5fe33c2711f89c2cd4e61f13ea4">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.4.2/mozilla-mac-1.4.2-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.42/mozilla-mac-MachO-1.4.2-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.4.2/mozilla-mac-1.4.2-ja.zip"/>
+		</package>
+	</version>
+
+
+	<version full="1.5" major="1" minor="5" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.5/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.2" platform="all" type="xpi" md5="9194432e58561fd4047d6fb911eb04e5">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.5/mozilla-1.5-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/langjajp.xpi"/>
+		</package>
+		<package creatorid="fortune" platform="win" type="zip" md5="7340c04315419fe2e1be85d373f7db2e">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.5/mozilla-win32-1.5-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/mozilla-win32-1.5-jaJP.zip"/>
+		</package>
+		<package creatorid="fortune" platform="win" type="installer" md5="4bcac3e1a8cd9916850bb2447f698061">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.5/mozilla-win32-1.5-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/mozilla-win32-1.5-jaJP-installer.exe"/>
+		</package>
+		<package creatorid="snip" platform="linux" type="tar.gz" md5="282c2e9f23cdc25d4d03da61dfdb711f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.5/mozilla-i686-pc-linux-gnu-1.5-sea-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/mozilla-i686-pc-linux-gnu-1.5-jaJP-sea.tar.gz"/>
+		</package>
+	</version>
+	
+	
+	<version full="1.5.1" major="1" minor="5" micro="1" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.5.1/checksum.md5"/>
+		</checksum>
+		<package creatorid="fortune" platform="mac" type="tgz" md5="091f9be68c65061d79d53d96c256fb01">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.5.1/mozilla-mac-MachO-1.5.1-jaJP.tgz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.51/mozilla-mac-MachO-1.5.1-jaJP.tgz"/>
+		</package>
+	</version>
+	
+	
+	<version full="1.6b" major="1" minor="6" stage="beta">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6b/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.6b/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="ffa25b6ddc2949da6f220e915c6db996">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6b/mozilla-1.6b-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6beta/langjajp.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer" md5="1bfda19685f950d614b57d3d6447fb3c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6b/mozilla-win32-1.6b-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6beta/mozilla-win32-1.6b-jaJP-installer.exe"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="tar.gz" md5="2caa0508e17dec424a993c2b1479a9bd">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6b/mozilla-mac-MachO-1.6b-jaJP.tgz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6beta/mozilla-i686-pc-linux-gnu-1.6b-jaJP-sea.tar.gz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="mac" type="installer" md5="0cfa16e8e2083fcd0037b81fe7419271">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6b/mozilla-i686-pc-linux-gnu-1.6b-installer-jaJP.tgz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6beta/mozilla-mac-MachO-1.6b-jaJP.tgz"/>
+		</package>
+	</version>
+	
+	
+	<version full="1.6" major="1" minor="6" stage="release">
+		<tt:note xmlns="${ns.xhtml}">Windows 版の Mozilla 1.6 にはファイルパスに<span title="厳密には日本語に限らずマルチバイト文字">日本語</span>を含む場合に<a href="http://bugzilla.mozilla.gr.jp/show_bug.cgi?id=3584">メールの添付ファイル名が文字化けするバグ</a>があります。 Mozilla Mailer をご利用になる場合には十分にご注意下さい。なおこれは<span title="英語版を使っても解決しません">日本語版固有のバグではありません</span>。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.6/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.2.1" platform="all" type="xpi" md5="b7a60a95b2e4630d475f195b3a1473e9">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6/mozilla-1.6-langjajp-tm0.2.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6/langjajp.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.6/moz1.6-langjajp-tm0.2.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.2.1" platform="win" type="installer" md5="7840eb7f10657aed4ae41e34ae2fd0bb">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6/mozilla-win32-1.6-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6/mozilla-win32-1.6-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.6/mozilla-win32-1.6_2-ja.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.2.1" platform="linux" type="installer" md5="00527e022937afb0f44c0846b374f239">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6/mozilla-i686-pc-linux-gnu-1.6-installer-jaJP.tgz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6/mozilla-i686-pc-linux-gnu-1.6-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.6/mozilla-i686-linux-1.6-ja.tgz"/>
+		</package>
+		<package creatorid="snip" revision="0.2.1" platform="linux" type="tar.gz" md5="2749d991660573b849812f2096e1e92c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6/mozilla-i686-pc-linux-gnu-1.6-jaJP.tar.gz"/>
+		</package>
+		<package creatorid="fortune" revision="0.2.1" platform="mac" type="zip" md5="2deed2c909edf91583619a92e560c1d9">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.6/mozilla-mac-1.6-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6/mozilla-mac-MachO-1.6-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.6/mozilla-mac-1.6_1-ja.zip"/>
+		</package>
+		<!-- <package revision="0.2.1" platform="freebsd" type="port">
+			<file url="http://moz.skillup.jp/archive/suite/1.6/mozilla-1.6_1,2.tgz"
+				md5="f0acca2f3e000c147aad40e75c48cc31"/>
+			<file url="http://moz.skillup.jp/archive/suite/1.6/ja-mozilla-jlp-1.6_1,1.tgz"
+				md5="c40f314b6448d31d34e4d8e1c22c97be"/>
+		</package> -->
+	</version>
+	
+	
+	<version full="1.7b" major="1" minor="7" stage="beta">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7b/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7b/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="40895257c41aefb811a18f6ff60ca9e3">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7b/mozilla-1.7b-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7beta/langjajp.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7b/moz1.7b-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer" md5="0b5c45c33ca613890e396060f7ca81ba">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7b/mozilla-win32-1.7b-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7beta/mozilla-win32-1.7b-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7b/mozilla-win32-1.7b-ja.exe"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="tar.gz" md5="7695cfdae887bf7252da8b650fe2968b">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7b/mozilla-i686-pc-linux-gnu-1.7b-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7beta/mozilla-i686-pc-linux-gnu-1.7b-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7b/moz1.7b-jaJP-0.1-i686-pc-linux-gnu.tar.gz"/>
+		</package>
+	</version>
+	<version full="1.7rc1" major="1" minor="7" stage="rc1">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc1/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc1/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="7d99e85e782039d28638952f099566b9">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc1/mozilla-1.7rc1-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc1/langjajp.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc1/moz1.7rc1-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer" md5="68a7ce210dc1e4ae6c7a4d3d19d10ae1">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc1/mozilla-win32-1.7rc1-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc1/mozilla-win32-1.7rc1-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc1/mozilla-win32-1.7rc1-ja.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="linux" type="installer" md5="dd28e4cdf32ecc1fa5a40fe236a12d7f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc1/mozilla-i686-pc-linux-gnu-1.7rc1-installer-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc1/mozilla-i686-pc-linux-gnu-1.7rc1-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc1/mozilla-i686-linux-1.7rc1-ja.tar.gz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="mac" type="zip" md5="fc8d775bb491ccceeff43c3449297f8b">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc1/mozilla-mac-1.7rc1-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc1/mozilla-mac-1.7rc1-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc1/mozilla-mac-1.7rc1-ja.zip"/>
+		</package>
+	</version>
+	<version full="1.7rc2" major="1" minor="7" stage="rc2">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc2/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc2/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="17f6ba375f3534c836623019c0989f57">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc2/mozilla-1.7rc2-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc2/langjajp.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc2/moz1.7rc2-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer" md5="4a19a6e0fd718399d225ceb904d8511c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc2/mozilla-win32-1.7rc2-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc2/mozilla-win32-1.7rc2-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc2/mozilla-win32-1.7rc2-ja.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="linux" type="installer" md5="5a9e033bede0ae6d1806e0f45259a449">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc2/mozilla-i686-pc-linux-gnu-1.7rc2-installer-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc2/mozilla-i686-pc-linux-gnu-1.7rc2-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc2/mozilla-i686-linux-1.7rc2-ja.tar.gz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="mac" type="zip" md5="c9eff2af08b465175f420860154cd02f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc2/mozilla-mac-1.7rc2-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc2/mozilla-mac-MachO-1.7rc2-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc2/mozilla-mac-1.7rc2-ja.zip"/>
+		</package>
+	</version>
+	<version full="1.7rc3" major="1" minor="7" stage="rc3">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc3/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc3/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="b5c9b98e7bc2aa4f19dc020e7a78714f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc3/mozilla-1.7rc3-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc3/langjajp.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc3/moz1.7rc3-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer" md5="bf3ccf46a9363807778c95b157c73bc3">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc3/mozilla-win32-1.7rc3-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc3/mozilla-win32-1.7rc3-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc3/mozilla-win32-1.7rc3-ja.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="linux" type="installer" md5="42cd350dead70e20efc31272240c249c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc3/mozilla-i686-pc-linux-gnu-1.7rc3-installer-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc3/mozilla-i686-pc-linux-gnu-1.7rc3-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc3/mozilla-i686-linux-1.7rc3-ja.tar.gz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="mac" type="zip" md5="99b1fcc5f791b03ae4bec873ba16433f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7rc3/mozilla-mac-1.7rc3-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc3/mozilla-mac-MachO-1.7rc3-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7rc3/mozilla-mac-1.7rc3-ja.zip"/>
+		</package>
+	</version>
+	
+	<version full="1.7" major="1" minor="7" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="c42ab031971f36985131023a45c92396">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/mozilla-1.7-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="">
+				<mirror serverid=""/>
+				<mirror serverid=""/>
+			</file>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7/moz1.7-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="all" type="xpi" md5="718fd514a1c723f7f0f90bcabd9f6b5f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/mozilla-1.7-langjajp-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7/langjajp.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7/moz1.7-langjajp-tm0.1.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer" md5="dae74c65cb994912daed7d74e5abe0bd">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/mozilla-win32-1.7-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7/mozilla-win32-1.7-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7/mozilla-win32-1.7-ja.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="linux" type="installer" md5="7b87874cca65f538ce72a6f3b5342707">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/mozilla-i686-pc-linux-gnu-1.7-installer-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7/mozilla-i686-linux-1.7-ja.tar.gz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1.1" platform="linux" type="installer" md5="6c10e0b0db4a4190b520a08c8db6f7d9">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/mozilla-i686-pc-linux-gnu-1.7-installer-jaJP-2.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7/mozilla-i686-pc-linux-gnu-1.7-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7/mozilla-i686-linux-1.7_1-ja.tar.gz"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="linux" type="tar.gz" md5="de0b9ae685e11a2e65d08a502e48542e">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/mozilla-i686-pc-linux-gnu-1.7-jaJP.tar.gz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="mac" type="zip" md5="b6916b8fefaf2d13fee00211cb69525a">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/mozilla-mac-1.7-ja.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7/mozilla-mac-1.7-ja.zip"/>
+		</package>
+		<package creatorid="fortune" revision="0.1.1" platform="mac" type="zip" md5="b1d63c74e1db75f1de275aad05c15d18">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7/mozilla-mac-1.7_1-ja.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7/mozilla-mac-MachO-1.7-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7/mozilla-mac-1.7_1-ja.zip"/>
+		</package>
+	</version>
+	<version full="1.7.1" major="1" minor="7" micro="1" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.1/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.1/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1.1" platform="all" type="xpi" md5="718fd514a1c723f7f0f90bcabd9f6b5f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.1/mozilla-1.7-langjajp-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.1/moz1.7-langjajp-tm0.1.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1.1" platform="win" type="installer" md5="19c0caf24ae68011271324491e8d528f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.1/mozilla-win32-1.7.1-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.1/mozilla-win32-1.7.1-ja.exe"/>
+		</package>
+		<package creatorid="toyama" revision="0.1.1" platform="win" type="zip" md5="3ddd6b51d5227045043f21d1ed5acfa1">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.1/mozilla-win32-1.7.1-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.1/mozilla-win32-1.7.1JP.zip"/>
+		</package>
+	</version>
+	<version full="1.7.2" major="1" minor="7" micro="2" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.2/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.2/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.2" platform="all" type="xpi" md5="e7562006fd295a817be17bc6ba62a4c5">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.2/mozilla-1.7-langjajp-tm0.2.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.2/moz1.7-langjajp-tm0.2.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.2" platform="win" type="installer" md5="75fa825ccb8deb7f7a144affe6a59c5d">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.2/mozilla-win32-1.7.2-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.2/mozilla-win32-1.7.2-ja.exe"/>
+		</package>
+		<package creatorid="toyama" revision="0.2" platform="win" type="zip" md5="1896a7698da5062f8a85e85765bb7cd4">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.2/mozilla-win32-1.7.2-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.2/mozilla-win32-1.7.2JP.zip"/>
+		</package>
+		<package creatorid="fortune" revision="0.2" platform="linux" type="installer" md5="b313adbe94ae1384a0aa143744fb4e5d">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.2/mozilla-i686-pc-linux-gnu-1.7.2-installer-jaJP.tgz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.2/mozilla-i686-linux-1.7.2-ja.tgz"/>
+		</package>
+		<package creatorid="fortune" revision="0.2" platform="mac" type="zip" md5="28c8f6c96676772b0fd88605a86a61be">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.2/mozilla-mac-1.7.2-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/suite/1.7.2/mozilla-mac-1.7.2-ja.zip"/>
+		</package>
+	</version>
+	
+	
+	<version full="1.7.3" major="1" minor="7" micro="3" stage="release">
+		<tt:note>Windows 用インストーラには英語リソースを含めているため、英語版で使用していたプロファイルから乗り換えた際にはメニューに日本語と英語が混在してしまうことがあります。このような場合には、表示言語を一度英語に切り替えてから再度日本語に戻して下さい。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.3/checksum.md5"/>
+		</checksum>
+		<package creatorid="kozawa" revision="0.5" platform="all" type="xpi" md5="9cf10d7d178b288cc62bdfc824ee6b58">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.3/mozilla-1.7.3-langjajp.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="fortune" revision="0.5" platform="win" type="installer" md5="6405b2b71a850c5b1281d82670eec11a">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.3/mozilla-win32-1.7.3-installer-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="toyama" revision="0.5" platform="win" type="zip" md5="f122d325a737741323d47fa1f53052fa">
+
+
+
+
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.3/mozilla-win32-1.7.3-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="fortune" revision="0.5" platform="linux" type="installer" md5="28d3418b64a91beae50aae19b9980adf">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.3/mozilla-i686-pc-linux-gnu-1.7.3-installer-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="fortune" revision="0.5" platform="mac" type="zip" md5="ca4675e428bc12fad0df583e153a5c4c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/releases/1.7.3/mozilla-mac-1.7.3-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+	</version>
+	
+	
+	
+	<version full="1.8a1" major="1" minor="8" micro="a1" stage="alpha">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a1/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a1/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi"
+			md5="02fef931846387ecde027ef8fac46d9c" sha1="1b9479827870c104bbe3c1407be6aed4ee715cf1">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a1/mozilla-1.8a1-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer"
+			md5="7c03e444d9a4771420cb2f3816f4a88c" sha1="28a4d508fca2aa243d24c987c31865f40fcb67c7">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a1/mozilla-win32-1.8a1-installer-jaJP.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="linux" type="installer"
+			md5="a74c7084aacb5dc7429f1116706467d6" sha1="e2700c5978abb158e520f11af3fe2655a343bdbc">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a1/mozilla-i686-pc-linux-gnu-1.8a1-installer-jaJP.tgz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="mac" type="zip"
+			md5="0f04fd8f8cff3d261132fda79be56a52" sha1="12903bcd6d501fe68eb8f48fdd6a93db1e6139a9">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a1/mozilla-mac-1.8a1-jaJP.zip"/>
+		</package>
+	</version>
+	<version full="1.8a2" major="1" minor="8" micro="a2" stage="alpha">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a2/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a2/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi"
+			md5="4d7f7042b4f470058ed3d95bc4772639" sha1="e1567d5ee9ac556bf2c127a9daf166a383f1d713">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a2/moz1.8a2-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer"
+			md5="690423a06c300811778de3380540f5af" sha1="c04d93e6441a2ff792bd046d806a110d0c99a6c0">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a2/mozilla-win32-1.8a2-installer-jaJP.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="linux" type="installer"
+			md5="947c53bfffb876faa3d78bfd2f0ec11f" sha1="e163b0ce8bc85cdbc28ed951132f8a9538d81542">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a2/mozilla-i686-pc-linux-gnu-1.8a2-installer-jaJP.tgz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="mac" type="zip"
+			md5="c75a41b24dc7616831fa4d526c529f12" sha1="651d6439b98d3db193978587f4d1d5148cd45e02">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a2/mozilla-mac-1.8a2-jaJP.zip"/>
+		</package>
+	</version>
+	<version full="1.8a3" major="1" minor="8" micro="a3" stage="alpha">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a3/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a3/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1.2" platform="all" type="xpi"
+			md5="02105b5e044858630b950c272197beb7" sha1="0924bc8cc4f22b1a5b9d4da6bcd7cc27f50803c6">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a3/moz1.8a3-langjajp-tm0.1.2.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1.2" platform="win" type="installer"
+			md5="3440a9dc34b4503e83a7727bd35e6f6b" sha1="a6218e1566791c8dbed97178b2cd831c99f444b1">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a3/mozilla-win32-1.8a3-installer-jaJP.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.1.2" platform="linux" type="installer"
+			md5="46a2fc8de325934646f555c7949639b9" sha1="72b4b867919a6d8da13177122c442eae4782dfd1">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a3/mozilla-i686-pc-linux-gnu-1.8a3-installer-jaJP.tgz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1.2" platform="mac" type="zip"
+			md5="5c85377b2ab74a3ed9f972ac078a57b7" sha1="e9f91135a91d5b135fd9786095f2dd5ce2e71f58">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a3/mozilla-mac-1.8a3-jaJP.zip"/>
+		</package>
+	</version>
+	<version full="1.8a4" major="1" minor="8" micro="a4" stage="alpha">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a4/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a4/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi"
+			md5="320f9a0ad941bde72391c3dab8b4feca" sha1="e9421028a4a17f7b1d8c4ae74cb6ad2ce5d5cb03">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a4/moz1.8a4-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="win" type="installer"
+			md5="074e153119e1c0334eeb205ad35d2b3f" sha1="9793775b523156e951891ffce1d0db6048578431">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a4/mozilla-win32-1.8a4-installer-jaJP.exe"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="linux" type="installer"
+			md5="abeb3367649c94efaacbff61260dbdf2" sha1="457690df49cb3a4d8de789e673385e53e2b47663">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a4/mozilla-i686-pc-linux-gnu-1.8a4-installer-jaJP.tgz"/>
+		</package>
+		<package creatorid="fortune" revision="0.1" platform="mac" type="zip"
+			md5="9cdba58ba0fcae8113f3764f38f0369b" sha1="337eeab67f42c22c3d6777ed1a00d0026dc1c2ab">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/1.8a4/mozilla-mac-1.8a4-jaJP.zip"/>
+		</package>
+	</version>
+</product>
+
+
+
+</database>

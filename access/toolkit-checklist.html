@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>アクセシビリティのツールキット　チェックリスト</title>
+  
+  <style>
+<!--
+	h2 { font-style: italic; }
+-->
+  </style>
+
+<link rel="alternate" hreflang="en" modified="November 10, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/toolkit-checklist.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h1>アクセシビリティのツールキット　チェックリスト</h1>
+<h2>新ツールキット実装時の必要事項</h2>
+
+<p>原著者：Aaron Leventhal - <a href="mailto:aaronleventhal@moonset.net">aaronleventhal@moonset.net</a></p>
+<h3>作業</h3>
+<p>
+新ツールキット実装時に重要なことは:
+</p>
+<ul>
+  <li>異なるプラットフォーム間に対応する<u>標準キーボードの機能</u>を実装する。<br>
+  </li>
+  <li>UI（ユーザインターフェース）の公開： 画面読み上げ機能、画面拡大鏡、音声検知ソフトウェアといった補助テクノロジーがソフトウェアを理解するための方法として。</u></li>
+
+  <li>オペレーテイングシステムとの<u>テーマ互換性</u> を、すくなくともオプションとして供給する。あなたのソフトウエアーをハイコントラストや大フォントテーマで動作させている低視力のユーザーがいるでしょうから。</li>
+  <li><u><a href="http://www.section508.gov/index.cfm?FuseAction=Content&amp;ID=12#Software">
+508項</a> よりさらに先を行く。</u>万人に対して本当のユーザビリティーを実装し、あなたのツールキットが各プラットフォームのガイドラインにそったものとする。</li>
+</ul>
+<h3>手段</h3>
+<p>2 種類の基本的なツールキットがあり、アクセシビリティを実装する際にはそれぞれが異なる問題を引き起こします。</p>
+
+	
+
+
+<ul>
+  <li><a href="http://www.eclipse.org/">Eclipse</a> と <a href="http://www.wxwidgets.org/">wxWidgets</a> のようなネイティブなウィジェットツールキットは、すでになにかのアクセシビリティが内蔵されています。これらのツールキットは、各プラットフォーム用の一貫した API によって OS が実装するウィジェットを包み込みます。個々のウィジェットは主にオペレーテイングシステムから発生するので、すでにキーボードコマンドを実装しておりオペレーテイングシステムの視覚的テーマに準拠します。同様に、補助テクノロジーは、すでにネイティブなウィジェットを理解しているので、カスタムの制御用に MSAA のサポートを実装することだけが必要になります。ただし、ラッピング層がアクセシビリティバグを引き起こす可能性もありますので、広範囲にわたってテストをおこなって穴をふさぐ必要があります。また wxWidgets のように、独自の描画コントロールおよびオーナー描画コントロールが簡単にアクセシビリティ API をサポートできるような方法を提供する必要もあります。カスタム化とオーナー描画コントロールは将来にわたり存在するでしょうし、現在も当然あります。例えば、Windows ではチェックボックスのリストが、チェック済 / 未チェックという複数の画像を使って実装されています。</li>
+  <li><i>オーナー描画ツールキット</i> は、<a href="http://www.xulplanet.com/">XUL</a> および <a href="http://www.macromedia.com/devnet/flex/articles/struts.html">Flash の Flex UI フレームワーク</a> のように、ネイティブなウィジェットをほとんどまたは全く使用しません。これらのツールキットは最初からアクセシビリティを実装してもらい、キーボードや API あるいは OS のテーマサポートに限っては、有償で入手する必要があります。この場合、完全もしくは部分的なアクセシビリティソリューションを追加するだけでも大仕事となり、MSAA ソリューションが動作しない部分では Windows の補助テクノロジーベンダーとの共同作業だけでなく、複数人のフルタイムの従業員が必要になるでしょう。多くの場合、こうしたツールキットは各制御用に別ウィンドウを使用しません。このような場合は、MSAA イベントシステムが各イベントに対して正しい IAccessible を呼び出せるように、一意の 32 ビットの子 ID を生成するようにしてください。</li>
+
+</ul>
+<h3>チェックリスト</h3>
+<p>このチェックリストは現時点では Microsoft Windows のみに対応しています。欠けている部分もすべて埋めるとともに、Linux や OS X に対応した情報も加えたいと考えています。質問がある場合、またご支援をいただける場合は、Ｅメールを送ってください。<a href="mailto:aaronleventhal@moonset.net">aaronleventhal@moonset.net</a>
+</p>
+<h4>概要</h4>
+<ol>
+  <li>ダイアログ ボックス/ウインドウズ/一般</li>
+  <ol type="a">
+    <li>Esc キーはダイアログ ボックスを取り消し、親ウインドウ上で前に表示していたものを再表示する。</li>
+    <li>Alt+F4 はウィンドウを閉じる。Esc キーに近いが、キャンセルボタンのないダイアログボックスでも動作する。</li>
+
+    <li>Alt+space は、Restore（復元）, Move（移動）, Size（サイズ変更）, Minimize（最小化）,Maximize（最大化）, Close（閉じる）によってウインドウのメニューを開く。</li>
+    <li>Move（移動）と Size（サイズ変更）オプションは、キーボード上の矢印キーによって使用可能になるようにする。</li>
+    <li>ウインドウズでは最初のフォーカスは、クリック可能なタブ付きプロパティシートラベル以外の、最初のフォーカス可能なウィジェットに行く。</li>
+ <li>タブオーダーを定義可能にする。デフォルトのタブオーダーはドキュメントウィンドウのオーダーにあるべき。</li>
+    <li>Tab キーでの移動は、表示されない項目を含まずに、最初に戻らなければならない。</li>
+    <li>動的に追加された項目によって、タブサイクルが乱されたり、無秩序になったりしてはならない。</li>
+
+    <li>タブサイクルは前進しても後退しても同じであること。</li>
+    <li>F6 と Shift+F6 キーの組合せによってウインドウ内のペイン間を順番に回るべき。</li>
+    <li>あらゆるウィジェット上でフォーカスが見える状態であること。フォーカスは必ず見えること。</li>
+    <li>Shift+F10 かコンテキストメニューキーボードはフォーカスされた項目を右クリックされたのと同じように動作するべき。そしてコンテキストメニューは現在フォーカスされている対象の直下かすぐ右側に示すべきである。</li>
+    <li>チェックボックスと言ったほとんどのウィジェットは、それ自体の外側にラベルを持つことができる。こうすることで、ウィジェットがクリックされたり、ニーモニックが押された時に、そのウィジェットにフォーカスすることができる。システムは、ウィジェットに関連のない静的な独立したテキストとしてではなく、各ウィジェットに対してこうしたラベルを作成・関連付ける必要がある。MSAA をサポートするにあたっては、どのラベルがどのウィジェットに対応しているかを知っておく必要がある。</li>
+    <li> MSAAのサポート：クラス＃32770 の標準ダイアログウインドウでなければ、ROLE_DIALOG を使用してウインドウを出現させる。そうしないと、フォーカスを受け取っても自動的にダイアログを読まないスクリーンリーダーがある。すでに標準ウインドウクラスの msctls_statusbar32 を使用しているステータスバーでなければ、ROLE_STATUSBAR を使用して、ステータスバーを出現させる。各ウインドウの MSAA ツリーで親子関係が正しく明示されるようにする。</li>
+
+  </ol>
+  <li>MSAA サポート全般</li>
+  <ol type="a">
+    <li>フォーカスイベント</li>
+    <li>イベントの呼び戻しを操作。これはフォーカスされたり、連携する他のイベントが存在する可能性のあるすべてのウィジェットの、ウインドウ化されない子用の一意の ID を必要とする。つまり、一意の子 ID が各ツリーアイテム用に必要になる</li>
+    <ul>
+      <li>最も重要な基本的 IAccessible イベントをサポートする</li>
+      <li>get_accParent: IAccessible の親を取得</li>
+      <li>get_accChildCount: IAccessible の子の数を取得</li>
+      <li>get_accChild: IAccessible の子を取得</li>
+      <li>get_accName: IAccessible の「名前」を取得。例として、ボタン、チェックボックス、メニューアイテムの名前。ラベルが、各ウィジェットと別々ではなく、一緒に作成されるべき理由のひとつがこれ</li>
+      <li>get_accValue: IAccessible の「値」を取得。例としてスライダーの番号、リンク用の URL、ユーザーがテキスト領域に入力するテキストなど</li>
+      <li>get_accRole: この IAccessible が使用されている理由を表す列挙値を取得。
+例としてリンク、スタティックなテキスト、編集可能テキスト、チェックボックス、テーブルセルなど</li>
+
+      <li>get_accState: on/off のあり得る状態を示す 32 ビットのフィールド。例として、フォーカスされた、フォーカス可能な、選択された、選択可能な、表示できる、（パスワードで）保護された、チェックされたなど</li>
+      <li>get_accKeyboardShortcut: この IAccessible （アンダーライン付きの alt キーとの組合せニーモニック）用のキーボードショートカットを取得</li>
+      <li>get_accFocus: フォーカスされた子がどれか分かる</li>
+      <li>get_accSelection: この項目のどの子が選択されたか分かる</li>
+      <li>accLocation: この IAccessible ノードの x,y 座標と高さと幅を取得する</li>
+      <li>accNavigate: この IAccessible から最初また最後の子へ、前後の兄弟へ、上、下、左、右へと移動[重要だが、up/down/left/right キーは実装不要]</li>
+
+      <li>accDoDefaultAction: get_accDefaultAction によって記述されたアクションを実行</li>
+    </ul>
+    <li>unavailable、focused、readonly、offscreen、focusable など最も重要な基本的 MSAA の状態を全ての項目でサポートする</li>
+    <li>余分な手間を省くために、<a href="http://www.mozilla.org/access/windows/msaa-server">MSAA Server を実装する</a>をご利用下さい。</li></ol>
+  <li>ニーモニック</li>
+
+  <ol type="a">
+    <li>XML においてウィジェットをテキストラベルによって定義する機能。 (ラベルの属性や先頭の char を使用) </li>
+    <li>全て標準の共通ダイアログボックス用に自動的にニーモニックを定義。（Yes/No の確認ダイアログボックス、および　Retry/Exit　のエラーダイアログボックスのように）</li>
+    <li>メソッドの呼び出しによって作成されたダイアログボックス内のニーモニックをサポート</li>
+    <li>レイアウトエンジン - 正しい文字下にアンダーラインを引く。</li>
+    <li>イベント - キーストロークに正しい動作をさせる。</li>
+
+    <li>MSAA サポートは、IAccessible の get_accKeyboardShortcut を使用する </li>
+  </ol>
+  <li>MS Windows 設定のためのサポート</li>
+  <ol type="a">
+    <li>ハイコントラストチェックボックスが設定 (アクセシビリティコントロールパネルで SPI_GETHIGHCONTRAST) される時や、ユーザーがあなたのソフトウエアーで「ネイティブ」なスキンを選択するときは、現在の OS のスキンからすべての look and feel を取得する</li>
+    <li>LeftAlt+LeftShift+printscreen キー を使用してハイコントラストテーマが動的に切り替え可能</li>
+
+    <li>アプリケーションがふるまいを変更できるように XML/scripts へ SPI_GETSCREENREADER フラッグを公開する</li>
+    <li>項目選択用に可能な箇所はどこでもシステムのハイライト色を使用する。ただしこの時、一度に2箇所以上同じ色を使用しない。そうしないと、ハイライトが変更されるたびに、スクリーンリーダーがその色のついたものを読み上げてしまう。</li>
+    <li>キャレットの正確な幅の調整には SPI_GETCARETWIDTH に留意する。</li>
+    <li>「マウスポインターのデフォルトボタンへのルート」設定に留意する</li>
+    <li>ユーザーが、alt キーが押されている時以外に、ニーモニックの隠蔽を希望することは可能。これは、SPI_GETKEYBOARDCUES と SPI_GETMENUUNDERLINES によってサポートされる</li>
+  </ol>
+</ol>
+<h4>簡単なウィジェット</h4>
+<ol>
+  <li>ボタン
+    <ol type="a">
+      <li>タブ、矢印、変更されていない文字ニーモニック</li>
+      <li>画像付きボタン用テキストラベルを要求かつサポートする、これはツールチップと同でありうる。</li>
+      <li>スペースキーがボタンを作動する。</li>
+      <li>エンターキーがフォーカスされたボタンを作動する。(つまりその時点でフォーカスされているボタン。他のボタンがフォーカスされているときには、デフォルトボタンは濃い枠で表示されない）</li>
+      <li>ボタンをクリックすることで作動するポップアップを備える時、エンターキーやスペースバーもまたポップアップを作動するべき。</li>
+
+      <li>ツールバーやツールバーのボタンはフォーカス可能ではないが、ツールチップは可能にすべき。できれば、ツールチップがキーボードショートカットと連携してキーボードショートカットに自動的にテキストを追加できるようにするべき。
+</li>
+      <li>MSAA のサポートは haspopup の状態を含む。</li>
+    </ol>
+  </li>
+  <li>デフォルトボタン</li>
+  <ol type="a">
+    <li>XML で定義する機能</li>
+
+    <li>エンターキーが起動させるが、他のウィジェットがエンターキーを必要とするフォーカスを備えている時はできない。</li>
+    <li>現在フォーカスされているウィジェットがエンターキーを必要としない時、濃い枠線を動的に描く。</li>
+	<li>イベント - キーストロークを正しく動作させる。</li>
+    <li>MSAA サポート (デフォルト状態)</li>
+  </ol>
+  <li>リンク
+    <ol type="a">
+
+      <li>エンターキーはリンクを作動させる（このようにリンクがフォーカスされているときは、デフォルトボタンは濃い枠線をこれ以上表示しない）。</li>
+      <li>MSAA サポートはリンク接続された状態および、目的地の URL を保持するアクセス可能値を含む。</li>
+    </ol>
+  </li>
+  <li>テキスト領域 - 1行および複数行</li>
+  <ol type="a">
+    <li>これらのテキスト領域にはネイティブのウィジェットを使うのがおそらくベスト。そうしないと、アクセシビリティのサポートは著しく困難になる。</li>
+
+    <li>Tab キーは必ず次の項目をフォーカスすべきで、相当な理由と移動させる別の方法がない限りは、タブを挿入させるべきではない。</li>
+    <li>必ずシステムの選択色を使用する。そうでないと、スクリーンリーダーがテキストを読まない</li>
+    <li>フォーカスがテキスト領域にない時は、必ずキャレットが点滅しないようにする。</li>
+    <li>以下の標準編集キーを使用して操作すること：矢印キー、home、end、pageup、pagedown、ctrl+left/right、選択用 shifted キー、delete、ctrl+delete、backspace、ctrl+backspace、ctrl+a、ctrl+b、ctrl+c、ctrl+i、ctrl+u、ctrl+x、ctrl+v、ctrl+[shift]+z キー</li>
+    <li>複数行のテキスト領域では、エンターキーが新しい行を挿入する。(このように複数行の領域がフォーカスされた時は、デフォルトボタンがそれ以上、濃い枠線を表示することはない。)</li>
+    <li>オートコンプリートテキスト領域では、必ず up/down 矢印が押されない限りは、オートコンプリートポップアップが実際のフォーカスや MSAA フォーカスを受け取らないようにすること。リストそれ自体の中では、フォーカスが実際にない限り、デフォルトのシステムハイライト色を使用しないこと。</li>
+
+    <li>オートコンプリートテキスト領域では、オートコンプリートされ選択されたテキストが、必ず delete キーや backspace キーによって取り除かれるようにすること。</li>
+    <li>オートコンプリートテキスト領域では、左矢印キーや右矢印キーがポップアップを閉じてテキストの文字から文字へと移動を開始するようにする。 </li>
+    <li>MSAA サポートは、パスワードで保護されているテキストと読み取り専用領域で read only となっているテキストを保持するアクセス可能値を含む 。</li>
+  </ol>
+  <li>チェックボックス</li>
+  <ol type="a">
+    <li>スペースバーによる切り替え</li>
+
+    <li>MSAA サポートはチェックボックスの状態および statechange イベントを含む。</li>
+  </ol>
+  <li>スライダー</li>
+  <ol type="a">
+    <li>スライダーを移動させるキーボードのサポートに使用: 矢印キー、home、end、PgUp、PgDn キー</li>
+
+    <li>MSAA サポートは ROLE_SLIDER、アクセス可能値、値変更イベントを含む。</li>
+  </ol>
+  <li>プログレスバー</li>
+  <ol type="a">
+    <li>MSAA サポートはアクセス可能な名前、値、名前と値変更イベントを含む。 </li>
+  </ol>
+</ol>
+<h4>グループ化された操作ウィジェット</h4>
+<ol>
+  <li>メニュー</li>
+  <ol type="a">
+    <li>矢印キー, Enter, Escape キー</li>
+    <li>Alt キーによってのみ、メインメニューへ入る。</li>
+    <li>メニューから離れると、フォーカスは以前にあった場所へ戻る</li>
+
+    <li>変更されたニーモニックと変更されないニーモニック</li>
+    <li>MSAA サポート (フォーカスイベント、メニュー開始完了イベント、ラジオメニュー項目、チェックボックスメニュー項目を含む)</li>
+  </ol>
+  <li>スタチックテキストおよびグループボックス</li>
+  <ol type="a">
+    <li>MSAA サポート</li>
+  </ol>
+  <li>ラジオグループ
+    <ol type="a">
+      <li>選択されたラジオボタンのみがタブオーダーになっている。</li>
+      <li>他のラジオボタンは up/down 矢印によって選択とフォーカスが可能になる。</li>
+      <li>フォーカスされたラジオボタンが必ず選択され、かつフォーカスされないものはけして選択されない。</li>
+
+      <li>ラジオボタンのラベルが、テキスト領域やコンボボックスやあるいはプロンプトとして他の制御を備える時も、キーボードと MSAA サポートが引き続き正しく動作すること。</li>
+      <li> MSAA サポートはチェックボックスの状態と状態変更イベントを含む。</li>
+    </ol>
+  </li>
+  <li>タブパネル</li>
+
+  <ol type="a">
+    <li>Ctrl+[shift]+tab や Ctrl+PgUp/PgDn はタブを切り替える。</li>
+    <li>タブはフォーカス可能となる。そして次に left/right 矢印キーを押して切り替える</li>
+    <li>一回目のタブクリックでタブが切り替わり、二回目のクリックでフォーカスされる。</li>
+    <li>MSAA サポート。注：ユーザーのアクセスを容易にするために「5 of 3」などのように、現在のタブの位置を表示するアクセシビリティの記述を使用できる。「of」は補助テクノロジーによって解釈可能でありローカライズ不要。 </li>
+  </ol>
+  <li>リストとコンボボックス</li>
+
+  <ol type="a">
+    <li>タブ付きリストの場合、他の項目がすでに選択されていなければ、最初の項目を選択する。</li>
+    <li>F4キー や Alt+down キー や alt+up キー はコンボボックスの開閉を切り替える。</li>
+    <li>Escape キーはコンボボックスが開いていれば閉じる。（Escape キーでダイアログボックス全体を閉じてしまわないように注意する）</li>
+    <li>Up/down 矢印キーの移動：Shift+up と shift+down は移動し選択範囲を広げる。</li>
+    <li>文字を入力すると移動できる。（同じ文字を入力するとその文字を含む各項目に移動し、異なる文字を入力するとその文字列全体ではじまる最初の項目に移動する）
+</li>
+
+    <li>複数選択は Ctrl+ 矢印を押すと選択することなくフォーカスを動かすことができる。そしてスペースキーを押すと項目を選択でき、Shift+ スペースを押すとその時点のポイントを選択でき、Ctrl+ スペースを押すとその時点の項目の選択状態を切り替えることができる。 </li>
+    <li>Shift+F10 キーかコンテキストメニューキーを使い現在の項目のコンテキストメニューを表示する。コンテキストメニューイベントを発生させる。Mac OS X では Ctrl+ スペースでコンテキストメニューが開く。</li>
+    <li>スペースバーはチェックボックスを切り替える。</li>
+    <li>リストがフォーカスされていないときは、リストボックスに、オーナー描画リスト項目を使用して異なるハイライト色を表示すること。そうしなければ、リストはフォーカスされずに、スクリーンリーダーは選択されたリスト項目を本来読んではいけない時に読むことがある。フォーカスされていないリストでは、より薄い色のハイライトを使用してフォーカスされていない状態であることを示す。オートコンプリートリストでは、システムカラー補正を１個使用してアクティブな状態に見せるが、リスト項目はユーザーがただタイプして編集しようとしている間は呼応しない。</li>
+    <li>MSAA サポートは、選択可能なアクセス、選択可能な状態、複数選択可能な状態、拡張選択可能な状態および、チェクボックスの子用の状態変更イベントを含む。</li>
+  </ol>
+
+  <li>ツリー</li>
+  <ol type="a">
+    <li>ツリー一覧がタブ付きの場合、他の項目がすでに選択されていなければ、最初の項目を選ぶ。</li>
+    <li>Up/down 矢印キー移動</li>
+    <li>左矢印は始めに枝を折り畳んで親へ移動する。</li>
+    <li>右矢印は始めに枝を広げて、最初の子へ移動する。</li>
+
+    <li>Ctrl+矢印キーを使い選択せずにフォーカスを移動することで複数選択は可能。そして、スペースキーで項目を選択し、shift+space キーで現在のポイントへを選択するか control+space キーで現在の項目を選択に切り替える。</li>
+    <li>一文字または複数文字をタイプして移動させる（これについては、上記リストサポートと同等である）。</li>
+    <li>Shift+F10 キーかコンテキストメニューキーを使い現在の項目のコンテキストメニューを表示する（Mac OS X では Ctrl+スペースでコンテキストメニューが開く）。</li>
+    <li>スペースバーはチェックボックスを切り替える。</li>
+    <li>エンターキーは、もしダブルクリックがそうできるならば、項目を有効にすべきである。</li>
+    <li>MSAA サポートは、リスト内の現在のレベルや位置を示す選択可能なアクセス、情報伝達画像や対話式画像のための代替テキスト、選択可能、複数選択可能、拡張選択可能な状態、チェックボックスの子要素の拡張、折り畳み、切替用の状態変更イベントを含む。ユーザーが容易にアクセスできるために、「L3, 6 of 9」などのように、現在のツリー一覧のレベルと、位置を示す記述可能なアクセスを利用できることに留意する。「of」と「L」とは、補助テクノロジーによって解釈されるので、ローカライズはしないこと。
+ </li>
+
+    <li>Mac OS X の相違点: option+left キーと option+right キーは多重レベルの拡張と折り畳みをする。</li>
+    <li>Mac OS X の相違点: ユーザーは複数行を選択でき１キーエンターで拡張できる。拡張後は、複数選択（お互い離れている）は保持される。</li>
+  </ol>
+</ol>
+
+
+
+</div>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/toolkit-checklist.html">英語版</a> 2004/11/10</span> - <span>和訳版 2006/03/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/toolkit-checklist.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

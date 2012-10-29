@@ -1,0 +1,653 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+ <title>2.0 Alpha 3 リリースノート</title>
+<link rel="alternate" hreflang="en" modified="February 23, 2005">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/blackwood/webclient/release-notes/2_0_alpha_3-detail.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<p>2.0 Alpha 3 リリースノート</p>
+
+<p><a NAME="read_this"></a></p>
+
+<hr WIDTH="100%">
+
+<h2>ビルドしインストールする前にこれを読んでください</h2>
+
+<P>
+
+私たちはソースとバイナリ リリースをしており、バイナリは win32 で動くことのみがわかっています。
+
+</P>
+`
+<P>
+
+Webclient 2.0 Alpha 3 は Mozilla 1.7 に依存します。もし webclient をソースからビルドするならば、はじめに Mozilla をビルドしなければなりません。mozilla 1.7 のビルドの説明には <A HREF="/build/">http://www.mozilla.org/build/</A> を見てください。
+</P>
+
+<h2>2.0 リリースのインストール</h2>
+
+<H3><A NAME="WIN32_BIN_INSTALL">Win32</A></H3>
+
+<P>この節は win32 バイナリディストリビューションを使用してどのように webclient をインストールし起動するのかを説明しています。</P>
+
+
+	<OL>
+
+		<LI><P>既存のインストールしている webclient を全て<A HREF="#uninstall">アンインストールしてください</A>。
+	  </P></LI>
+
+
+	  <LI><P><A HREF="http://java.sun.com/j2se/1.4.2/download.html">http://java.sun.com/j2se/1.4.2/download.html</A> から JDK 1.4.2 をインストールしてください。より古い JDK で動くかもしれませんが、自己責任になります。</LI>
+
+	  <LI><P>JRE をインストールした場所にシステムの環境変数 JDKHOME を設定してください。<B>注!!!</B>、もし JRE をスペースを含む、<CODE>C:\Program Files\jdk1.4.2\JRE</CODE> のようなディレクトリにインストールしたならば、長いファイル名に対する古臭い ~1 慣習を使わなければなりません。つまり、
+	  <CODE><PRE>JDKHOME=C:\PROGRA~1\jdk1.4.2\JRE</PRE></CODE>
+	  </P>
+
+	  <LI>
+
+<P><A HREF="http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-win32-1.7.zip">http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-win32-1.7.zip</A> から Mozilla 1.7 をインストールしてください。他のインストーラーは webclient が見つけられない場所に必要なライブラリを置くので、zip インストーラーを使うことは重要です。
+
+      </P></LI>
+
+	  <LI><P> 前の手順でインストールしたブラウザを起動し、ブラウザを操作するのに必要なプロキシの設定を全て行ってください。ブラウザを終了させてください。
+	  </P></LI>
+
+          <li><p>Jakarta Apache Ant 1.6.1 をインストールしてください。もし ant が何であるかを知らなければ、webclient 上でアプリケーションをビルドすることが出来ません。<a href="http://ant.apache.org/">http://ant.apache.org/</a> で ant について学びに行き、学んだら戻って来てください。JDK 1.4 のもとでの javah ターゲットに関して以前のバージョンの ant には問題があるので、1.6.1 以降を使用しなければなりません。</p></li>
+
+		  <li><p><a href="../bin/win32/webclient_2_0_a3_win32.zip">http://www.mozilla.org/projects/blackwood/webclient/bin/win32/webclient_2_0_a3_win32.zip</a> にあるバイナリをダウンロードしてください。mozilla 1.7 内の mozilla.exe と同じディレクトリへそれを解凍してください。
+	  </p></li>
+
+	  <li><p>zip ファイルを解凍したディレクトリに cd（移動）してください。<code>ant</code> コマンドを実行してください。これによってテストブラウザが起動します。開発を始めるためには、<a href="http://lxr.mozilla.org/mozilla/source/java/webclient/test/manual/src/classes/org/mozilla/webclient/test/TestBrowser.java">http://lxr.mozilla.org/mozilla/source/java/webclient/test/manual/src/classes/org/mozilla/webclient/test/TestBrowser.java</a> でテストブラウザのソースコードを見てください。
+	  </p></li>
+
+	</OL>
+
+
+<h2>2.0 Alpha 3 リリースのビルド</h2>
+
+<H3><A NAME="SHARE_INSTALL">ビルドの説明 -- クロスプラットフォーム</A></H3>
+
+<P>
+
+この節は全てのプラットフォームにおいて 2.0 Alpha 3 をビルドする前に行わなければならない手順です。
+
+</P>
+
+    <OL>
+
+	  <LI><P>mozilla 1.7 ソース tarball を手に入れてください。
+	  </P></LI>
+
+      <LI><P> 
+	
+	  <B>デバッグを有効にして</B> Mozilla 1.7 をビルドしてください。それをする方法についての説明には、<A HREF="/build/">http://www.mozilla.org/build/</A> へ行ってください。あなたがディレクトリ $MOZILLA へそれをビルドしたと想定しましょう。
+
+      </P></LI>
+
+      <LI><P> 
+
+	  いったん Mozilla 1.7 がうまくビルドされたら、プロファイルを作成するためにそれを起動して、もしファイアウォールの背後にあるならば、プロキシの設定を行わなければなりません。もし mozilla が外部のウェブページを見ることが出来なければ、webclient も見ることが出来ません。
+
+  </P></LI>
+
+      
+      <LI><P><A HREF="http://java.sun.com/">http://java.sun.com/</A> から JDK 1.4.2 をインストールしてください。webclient コード内で私たちはどんな Java2 特有の使用法も使わないよう努力しましたが、より古い JDK で webclient をテストしていません。webclient はより古い JDK で動作しそうですが、いくつかの微調整をしなければならないかもしれません。これにはバグがあります。このドキュメントの<A HREF="#bugs">既知のバグ</A>の節を見てください。
+      </P></LI>
+
+	  <li><p>Jakarta Apache Ant 1.6.1 をインストールしてください。もし ant が何であるかを知らなければ、ソースから webclient をビルドすることができません。<a href="http://ant.apache.org/">http://ant.apache.org/</a> で ant について学びに行き、学んだら戻って来てください。JDK 1.4 のもとでの javah ターゲットに関して以前のバージョンの ant には問題があるので、1.6.1 以降を使用しなければなりません。
+      </p></li>
+
+	  <li><p>JUnit 3.8.1 をインストールしてください。もし junit が何であるか知らなければ、チェックインするための必要条件として実行しなければならない、webclient の 単体テストを実行することが出来ません。<a href="http://www.junit.org/">http://www.junit.org/</a> から Juit について学んでください。
+	  </p></li>
+
+
+
+      <LI> <p>ソースを手に入れてください。あなたはソース tarball を使うことや、それを CVS からチェックアウトすることができます。
+      </p>
+
+      <OL type="a"><LI>
+
+		  <P><A HREF="../src/webclient-src-2_0_a3.zip">http://www.mozilla.org/projects/blackwood/webclient/src/webclient-src-2_0_a3.zip</A> から $MOZILLA へ webclient のソースを解凍してください。
+      </P>
+
+</UL>
+
+</LI>
+
+	  <LI><P>CVS から webclient のソースをチェックアウトしてください。<a href="/catalog/development/compiling/cvs-sourcecode.html">http://www.mozilla.org/catalog/development/compiling/cvs-sourcecode.html</a> での説明に従い、そして <code>Webclient</code> と呼ばれる CVS モジュールをチェックアウトしてください。
+	  </P>
+
+<P>このソースのディレクトリ階層は次のようになるでしょう<span class="comment">【訳注: a の zip ファイルに関しては、src ディレクトリを java にリネームします。】</span></P>
+
+<P>
+<PRE>
+$MOZILLA
+  java/
+   build.xml
+   config/
+   dom/
+   external/
+   util/
+   webclient/
+
+</PRE>
+</P>
+</LI>
+
+</OL>
+
+      </LI>
+      
+      <LI><P> mozilla をビルドするのに必要な環境変数に加えて、次の環境変数が定義されているか確かめてください: 
+      
+	<P>
+	  
+	<DL>
+	  
+	  <P>
+	  <DT> JDKHOME, MOZ_JDKHOME, JAVA_HOME, 
+	  </DT>
+	  
+	  <DD> 上の全てを JDK をインストールしている場所への絶対パスに設定しなければなりません。例えば、<CODE>C:\jdk1.3</CODE>
+	  </DD>
+	  
+	</P>
+
+	  <P>
+	  <DT> MOZILLA_FIVE_HOME
+	  </DT>
+	  
+	  <DD> mozilla bin ディレクトリ。例えば、<CODE>D:\Projects\mozilla\dist\win32_d.obj\bin</CODE>
+	  </DD>
+	  
+	</P>
+
+	  <P>
+	  <DT> ANT_HOME
+	  </DT>
+	  
+	  <DD> ant をインストールしたディレクトリ。例えば、<CODE>D:\Files_2k\apache-ant-1.6.1</CODE>
+	  </DD>
+	  
+	</P>
+
+	  <P>
+	  <DT> BUILD_WEBCLIENT_ONLY
+	  </DT>
+	  
+	  <DD> 1
+	  </DD>
+	  
+	</P>
+
+	  <P>
+	  <DT> MOZ_SRC
+	  </DT>
+	  
+	  <DD> mozilla ディレクトリのトップレベルの親ディレクトリに設定してください。例えば、<code>D:\Projects\mozilla\MOZILLA_1_6</code>
+	  </DD>
+	  
+	</P>
+
+	  <P>
+	  <DT> XPCOM_DEBUG_BREAK
+	  </DT>
+	  
+	  <DD> warn
+	  </DD>
+	  
+	</P>
+
+	  <P>
+	  <DT> NSPR_LOG_MODULES
+	  </DT>
+	  
+	  <DD> webclient:4,webclientstub:4
+	  </DD>
+	  
+	</P>
+
+	  <P>
+	  <DT> NSPR_LOG_FILE
+	  </DT>
+	  
+	  <DD> logfile.txt
+	  </DD>
+	  
+	</P>
+
+	</DL>
+
+	</P>
+
+	  </P></LI>
+
+	  <li><p>ネイティブな makefile が生成されるように Make してください。</p>
+
+          <OL type="a">
+
+          <li><p><code>$MOZILLA/java/makefiles</code> の内容を ファイル <code>$MOZILLA/allmakefiles.sh</code> 内の <code>add_makefiles</code> エントリの前に付加してください。
+          </p></li>
+
+	  <li><p>$MOZILLA へ cd（移動）し、<code>./configure</code> を再実行してください。これをしたとき、次の makefile が生成されているはずです。もし生成されていなければ、ニュースグループに投稿してください。
+	  </p>
+
+<P>
+<PRE>
+$MOZILLA
+  java/
+    dom/jni/Makefile
+    dom/src/Makefile
+    webclient/src_moz/gtk/Makefile
+    webclient/src_moz/Makefile
+    webclient/src_ie/Makefile
+    webclient/src_share/Makefile
+</PRE>
+</P>
+
+
+          </li>
+
+
+          </OL>
+
+
+
+
+          </li>
+
+	  <li><p>次の内容を含む $MOZILLA/java/build.properties ファイルを作成してください:
+	  </p>
+<p><pre>
+# もしこれが unix だったら、build.unix.classes=true にします
+build.win32.classes=true
+# これは .class ファイルが置かれる場所です
+build.home=D:\\Projects\\mozilla\\MOZILLA_1_4\\mozilla\\mozilla/dist/classes
+compile.debug=true
+junit.jar=D:\\Files_2k\\junit3.8.1\\junit.jar
+#native.waitForDebugger=true
+#debug.jvm.args=-Xdebug -Xrunjdwp:transport=dt_shmem,address=jdbconn,server=y,suspend=y
+</pre></p>
+
+</li>
+
+
+
+	</OL>
+
+<a NAME="WIN32_INSTALL"></a>
+
+    <h3>ビルドの説明 -- Win32</h3>
+
+    <OL>
+      
+      <LI><P> あなたの環境に MOZ_DEBUG=1 を設定してください
+	</P></LI>
+
+	  <LI><P> PATH が %JDKHOME%\bin、%JDKHOME%\jre\bin、%MOZ_TOOLS\bin、%MOZILLA_FIVE_HOME% 及び %MOZILLA_FIVE_HOME%/componentsset を含むように、PATH を設定してください。
+	  </P></LI>
+
+
+	  <LI><P> <A HREF="#SHARE_INSTALL">ビルドの説明 -- クロスプラットフォーム</A>での説明に従ってください
+	</P></LI>
+
+      <LI><P> cd $MOZILLA\java
+	</P></LI>
+
+	<LI><P> コマンド <code>ant</code> を実行してください。
+	これによって mozilla util クラス、javaDOM 及び webclient がビルドされます。
+      </P></LI>
+
+	  <LI><P> あなたのマシンで mozilla が起動されていないことを確かめてください。cd
+      $MOZILLA\java\webclient </P></LI>
+
+	  <LI><P> <code>ant test</code> を実行してください。これによって自動的に JUnit テストが実行されます。もしこれら全てがうまく実行されたならば、うまくいっています。
+      </P></LI>
+
+      <li><p>まだ mozilla を起動せずに、<code>ant run.test.browser</code> を実行してください。これによって <a href="https://jdic.dev.java.net/">JDIC</a> プロジェクトから手に入れた、簡単なテストブラウザが起動されます。</p></li>
+
+
+    </OL>
+    
+<hr WIDTH="100%">
+
+<h2><a NAME="uninstall"></a>2.0 Alpha 3 ビルドのアンストール</h2>
+
+<H3>バイナリインストールを使用した場合のアンインストール</H3>
+
+    <OL>
+		  
+
+        <LI><P> 起動中の mozilla または webclient のインスタンスを全て終了させてください
+	  </P></LI>
+
+      
+      <LI><P> cd $MOZILLA_FIVE_HOME
+	</P></LI>
+      
+      <LI><P> rm -rf javadev
+	</P></LI>
+
+      <LI><P> rm -rf *webclient* *javadom* *blackconnect* components/*javadom* components/*bcorb* components/*bcjava* components/*bcTest* components/*bcxpcom*
+	</P></LI>
+
+    </OL>
+
+
+<H3>ソースからビルドした場合のアンインストール</H3>
+
+<H4>クロスプラットフォーム</H4>
+
+<P>mozilla 1.7 リリースノートでの mozilla を削除に関する説明に従ってください。
+</P>
+
+    <OL>
+      
+      <LI><P> cd $MOZILLA
+	</P></LI>
+      
+      <LI><P> rm -rf ./java
+	</P></LI>
+
+    </OL>
+
+
+<h4>Unix</h4>
+
+    <OL>
+
+      <LI><P> クロスプラットフォームのアンインストールをしてください。
+	</P></LI>
+      
+      <LI><P> cd $MOZILLA/dist/bin
+	</P></LI>
+
+      <LI><P> rm libwebclient*.so libjavadomjni.so
+	</P></LI>
+
+    </OL>
+
+
+<h4>Windows</h4>
+
+    <OL>
+
+      <LI><P> クロスプラットフォームのアンインストールをしてください。
+	</P></LI>
+      
+      <LI><P> cd $MOZILLA\dist\WIN32_D.OBJ\bin
+	</P></LI>
+
+      <LI><P> del webclient.dll javadomjni.dll
+	</P></LI>
+
+    </OL>
+
+
+<hr WIDTH="100%">
+
+<h2><a NAME="FILES_USED"></a></h2>
+
+<h2><a NAME="LIMITED"></a></h2>
+
+
+
+<h2>利用できる機能と利用できない機能</h2>
+
+<h3>このリリースにおける新しい機能</h3>
+
+	<ul>
+
+		<li><p>要求ヘッダー判別。例として <a href="http://lxr.mozilla.org/mozilla/source/java/webclient/test/manual/src/classes/org/mozilla/webclient/test/TestBrowser.java">http://lxr.mozilla.org/mozilla/source/java/webclient/test/manual/src/classes/org/mozilla/webclient/test/TestBrowser.java</a> を見てください。</p></li>
+
+	  <li><p>java.awt.MouseListener のサポート。例として <a href="http://lxr.mozilla.org/mozilla/source/java/webclient/test/automated/src/classes/org/mozilla/webclient/MouseListenerTest.java">http://lxr.mozilla.org/mozilla/source/java/webclient/test/automated/src/classes/org/mozilla/webclient/MouseListenerTest.java</a>を見てください。</p></li>
+
+	  <li><p>webclient が独自の設定ファイルを使用するようにします。これによって webclient と mozilla を同時に起動できるようになります。
+	  </p></li>
+
+	  <li><p>テキストフィールドにタイプできないフォーカスの問題の修正。
+	  </p></li>
+
+	  <li><p>java.awt.KeyListener のサポート。例として <a href="http://lxr.mozilla.org/mozilla/source/java/webclient/test/automated/src/classes/org/mozilla/webclient/KeyListenerTest.java">http://lxr.mozilla.org/mozilla/source/java/webclient/test/automated/src/classes/org/mozilla/webclient/KeyListenerTest.java</a> を見てください。</p></li>
+
+	  <li><p>NewWindowListener のサポート。これによってブラウザが新しいウィンドウを要求する場合に正しく対処できるようになります。例として <a href="http://lxr.mozilla.org/mozilla/source/java/webclient/test/automated/src/classes/org/mozilla/webclient/WindowCreatorTest.java">http://lxr.mozilla.org/mozilla/source/java/webclient/test/automated/src/classes/org/mozilla/webclient/WindowCreatorTest.java</a> を見てください。
+	  </p></li>
+
+	</ul>
+
+
+<h3>以前のリリースからの新しい機能</h3>
+
+<P>
+このリリースは非常に限られた機能しか持ちません。次のメソッドが動くことが知られています。
+</P>
+
+<pre>
+
+BrowserControlFactory.setAppData()
+
+BrowserControlFactory.newBrowserControl()
+
+BrowserControlFactory.deleteBrowserControl()
+
+BrowserControlFactory.appTerminate()
+
+Bookmarks.getBookmarks()
+
+次のインターフェイスに対する BrowserControl.queryInterface()
+
+  BrowserControl.BOOKMARKS_NAME
+  BrowserControl.HISTORY_NAME
+  BrowserControl.BROWSER_CONTROL_CANVAS_NAME
+  BrowserControl.EVENT_REGISTRATION_NAME
+  BrowserControl.NAVIGATION_NAME
+  BrowserControl.CURRENT_PAGE_NAME
+  BrowserControl.PREFERENCES_NAME
+  BrowserControl.PROFILE_MANAGER_NAME
+
+EventRegistration.addDocumentLoadListener()
+EventRegistration.removeDocumentLoadListener()
+
+History.canBack()
+History.canForward()
+History.back()
+History.forward()
+
+Navigation.loadURL()
+Navigation.loadFromStream()
+Navigation.refresh()
+Navigation.stop()
+Navigation.post()
+
+Preferences.getPrefs()
+Preferences.setPref()
+Preferences.registerPrefChangedCallback()
+Preferences.unregisterPrefChangedCallback()
+
+ProfileManager.createNewProfile()
+ProfileManager.getProfileCount()
+ProfileManager.profileExists()
+ProfileManager.setCurrentProfile()
+ProfileManager.getProfileList()
+ProfileManager.renameProfile()
+ProfileManager.deleteProfile()
+
+CurrentPage.getSelection()
+CurrentPage.selectAll()
+
+</pre>
+
+<a NAME="KNOWN_ISSUES"></a>
+
+<hr WIDTH="100%">
+
+<h2>既知の問題</h2>
+
+
+<a NAME="general_browser"></a>
+
+<h3>ブラウザと一般的な問題</h3>
+
+<UL>
+
+<LI><P>Webclient ではまだ負荷テストが行われていないので、恐らく少し使っただけで見つかる、多くの問題があるでしょう。</P></LI>
+
+</UL>
+
+
+<a NAME="printing"></a>
+
+<h3>印刷</h3>
+
+<P>印刷はまだ実装されていません。</P>
+
+<a NAME="plugins"></a>
+
+<h3>プラグイン</h3>
+
+<P>webclient 内部でプラグインを動かすことが出来ますが、win32 上では、Java プラグインは動かないでしょう。java プラグインを削除しなければなりません。このファイルの win32 バイナリのインストールの節を見てください。</P>
+
+<a NAME="bookmarks"></a>
+
+<h3>ブックマークと履歴</h3>
+
+<P>ブックマークと履歴のインターフェイスの両方は不完全にしか実装されていません。</P>
+
+<a NAME="profiles"></a>
+
+<h3>プロファイル</h3>
+
+<P>もし webclient が奇妙な動作をするのであれば、それは mozilla のレジストリファイルとの衝突によるものかもしれません。mozilla 1.7 リリースノートでのレジストリを削除する手順に従い、新しいレジストリを生成するために mozilla 1.7 を再起動してください。
+</P>
+
+<a NAME="bugs"></a>
+
+<h3>既知のバグ</h3>
+
+	<UL>
+
+	  <LI><P>unix 上で ファイル-&gt;新しいウィンドウ が動作しません。: <A HREF="http://bugzilla.mozilla.org/show_bug.cgi?id=156712">Bug 156712</A>。このバグは本当に私にとって難問です。</P></LI>
+
+
+	  <LI><P>フリーズするバグは修正されました!
+	  </P></LI>
+
+
+	  <LI><P>組み込みのアプリーケーションで setCurrentHistoryIndex が動作しません。<A HREF="http://bugzilla.mozilla.org/show_bug.cgi?id=47278">http://bugzilla.mozilla.org/show_bug.cgi?id=47278</A> を見てください
+	  </P></LI>
+
+
+	  <LI><P> Webclient を使用するには Webclient が表示されている必要があります。<A HREF="http://bugzilla.mozilla.org/show_bug.cgi?id=44075">http://bugzilla.mozilla.org/show_bug.cgi?id=44075</A> を見てください
+	  </P></LI>
+
+
+	  <LI><P> 完全なリストには、<A HREF="http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&email1=&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&bugidtype=include&bug_id=&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&component=Java+APIs+to+WebShell&short_desc=&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&status_whiteboard=&status_whiteboard_type=substring&keywords=&keywords_type=anywords&field0-0-0=noop&type0-0-0=noop&value0-0-0=&cmdtype=doit&newqueryname=&order=Reuse+same+sort+as+last+time">この bugzilla のリンクを</A>たどるか、<A HREF="http://bugzilla.mozilla.org/query.cgi">http://bugzilla.mozilla.org/query.cgi</A> での bugzilla の検索ページに行き、コンポーネント「Java APIs to WebShell」の全てのバグを検索してください。
+	  </P></LI>
+
+
+	</UL>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/blackwood/webclient/release-notes/2_0_alpha_3-detail.html">英語版</a> 2005/02/23</span> - <span>和訳版 2006/02/14</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/blackwood/webclient/release-notes/2_0_alpha_3-detail.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

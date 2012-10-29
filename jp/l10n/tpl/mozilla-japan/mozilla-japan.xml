@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:space="preserve"
+	template="none">
+<head><tt:htmlheader/></head>
+<body>
+<div id="container">
+	<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+	<tt:header/>
+	<hr class="hide"/>
+	<div id="mBody">
+		<tt:sidebar/>
+		<hr class="hide"/>
+		<div id="mainContent">
+			<tt:htmlbody/>
+		</div>
+	</div>
+	<hr class="hide"/>
+	<tt:footer/>
+</div>
+</body>
+</html>

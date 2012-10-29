@@ -1,0 +1,1244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>Mozilla XForms Beta1 リリースノート - 2005/02/02</title>
+  <link rel="alternate" hreflang="en" modified="February 3, 2005">
+  <style type="text/css" media="screen,tv">
+    table.req { width: 80%; }
+    table.req td { vertical-align: top; }
+    tr.header { background-color: #ccc; }
+    tr.even { background-color: #eeeeee; }
+	  td.c { text-align: center }
+    dt a { font-weight: normal; }
+	</style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/xforms/ReleaseNotes-20050202.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla XForms Beta1 リリースノート - 2005/02/02</h1>
+<p class="comment">この和訳ドキュメントは草稿です。誤訳を含む可能性もありますので、必要に応じて原文をご参照ください。</p>
+
+<h2>目次</h2>
+<ol>
+  <li><a href="#c01">ハードウェア・ソフトウェア必要条件</a></li>
+  <li><a href="#c02">HTTP サーバ必要条件</a></li>
+  <li><a href="#c03">W3C XForms - 文書構造</a></li>
+  <li><a href="#c04">W3C XForms - 処理モデル</a></li>
+  <li><a href="#c05">W3C XForms - データ形式</a></li>
+  <li><a href="#c06">W3C XForms - モデルアイテムプロパティ</a></li>
+  <li><a href="#c07">W3C XForms - XForms における XPath 表現</a></li>
+  <li><a href="#c08">W3C XForms - フォームコントロール</a></li>
+  <li><a href="#c09">W3C XForms - XForms ユーザインターフェース</a></li>
+  <li><a href="#c10">W3C XForms - XForms アクション</a></li>
+  <li><a href="#c11">W3C XForms - 送信</a></li>
+  <li><a href="#c12">XForms のスタイル付け</a></li>
+  <li><a href="#c13">コメントとバグの報告</a></li>
+  <li><a href="#c14">より詳しい情報を得るには</a></li>
+</ol>
+
+<h2 id="c01">1. ハードウェア・ソフトウェア必要条件</h2>
+<h3>Windows (クライアント)</h3>
+<table border="0" cellpadding="2" cellspacing="2" class="req">
+  <tr>
+    <td>OS:</td>
+    <td>98SE, ME, NT 4.0, 2000, XP</td>
+  </tr>
+  <tr>
+    <td>プロセッサ:</td>
+    <td>Pentium 233 MHz 以上</td>
+  </tr>
+  <tr>
+    <td>メモリ:</td>
+    <td>64 MB</td>
+  </tr>
+  <tr>
+    <td>ディスク容量:</td>
+    <td>52 MB</td>
+  </tr>
+</table>
+<h3>Linux (クライアント)</h3>
+<table border="0" cellpadding="2" cellspacing="2" class="req">
+  <tr>
+    <td valign="top">OS:</td>
+    <td>Red Hat 7.0 以降、Debian 3.0 以降、SuSE 7.2 以降<br>または、kernel 2.2.14 (以降) と以下のライブラリ (またはこれと互換性のあるバージョン) を含む Linux ディストリビューション<ul><li>glibc 2.2</li><li>GTK 1.2.x (1.2.5 を推奨)</li><li>XFree86 3.3.x</li><li>libstdc++ 2.9.0</li></ul></td>
+  </tr>
+  <tr>
+    <td>プロセッサ:</td>
+    <td>Pentium 233 MHz 以上</td>
+  </tr>
+  <tr>
+    <td>メモリ:</td>
+    <td>64 MB</td>
+  </tr>
+  <tr>
+    <td>ディスク容量:</td>
+    <td>52 MB</td>
+  </tr>
+</table>
+<h3>Mac OS (クライアント)</h3>
+<table border="0" cellpadding="2" cellspacing="2" class="req">
+  <tr>
+    <td valign="top">OS:</td>
+    <td>Mac OS X 10.1.x、Mac OS X 10.2.x 以降</td>
+  </tr>
+  <tr>
+    <td>プロセッサ:</td>
+    <td>G3 266 MHz</td>
+  </tr>
+  <tr>
+    <td>メモリ:</td>
+    <td>64 MB</td>
+  </tr>
+  <tr>
+    <td>ディスク容量:</td>
+    <td>72 MB</td>
+  </tr>
+</table>
+
+<h2 id="c02">HTTP サーバ必要条件</h2>
+<p>XHTML (例: <code>application/xhtml+xml</code>) コンテンツを送信できる HTTP サーバ</p>
+
+<h2 id="c03">3. W3C XForms - 文書構造</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr>
+    <td class="c">3.1</td>
+    <td>名前空間</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">3.2.1</td>
+    <td>共通属性</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">3.2.2</td>
+    <td>リンク属性</td>
+    <td class="c">-</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">3.2.3</td>
+    <td>シングルノードバインディング属性</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">3.2.4</td>
+    <td>ノードセットバインディング属性</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">3.2.5</td>
+    <td>モデルアイテムプロパティ属性</td>
+    <td class="c">-</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">3.3.1</td>
+    <td><code>model</code></td>
+    <td class="c">Yes</td>
+    <td>(スキーマ属性を通じた) 外部スキーマファイルの読み込みは機能しません。インラインスキーム定義は使えます。</td>
+  </tr>
+  <tr class="even">
+    <td class="c">3.3.2</td>
+    <td><code>instance</code></td>
+    <td class="c">一部</td>
+    <td>Bug 279021 - 外部インスタンスデータに影響</td>
+  </tr>
+  <tr>
+    <td class="c">3.3.3</td>
+    <td><code>submission</code></td>
+    <td class="c">Yes</td>
+    <td>制限事項は Bug 268285、278761、278762 を参照</td>
+  </tr>
+  <tr class="even">
+    <td class="c">3.3.4</td>
+    <td><code>bind</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">3.4</td>
+    <td>MustUnderstand モジュール</td>
+    <td class="c">No</td>
+    <td>現時点ではまだ必要条件なし</td>
+  </tr>
+  <tr class="even">
+    <td class="c">3.5.1</td>
+    <td><code>extension</code></td>
+    <td class="c">No</td>
+    <td>現時点ではまだ必要条件なし</td>
+  </tr>
+</table>
+
+<h2 id="c04">4. W3C XForms - 処理モデル (イベント)</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr>
+    <td class="c">4.2.1</td>
+    <td><code>xforms-model-construct</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.2.2</td>
+    <td><code>xforms-model-construct-done</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.2.3</td>
+    <td><code>xforms-ready</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.2.4</td>
+    <td><code>xforms-model-destruct</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.3.1</td>
+    <td><code>xforms-next<br>xforms-previous</code></td>
+    <td class="c">No</td>
+    <td>Bug 278448</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.3.2</td>
+    <td><code>xforms-focus</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.3.3</td>
+    <td><code>xforms-help<br>xforms-hint</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.3.4</td>
+    <td><code>xforms-refresh</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.3.5</td>
+    <td><code>xforms-revalidate</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.3.6</td>
+    <td><code>xforms-recalculate</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.3.7</td>
+    <td><code>xforms-rebuild</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.3.8</td>
+    <td><code>xforms-reset</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.3.9</td>
+    <td><code>xforms-submit</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.1</td>
+    <td><code>DOMActivate</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.2</td>
+    <td><code>xforms-value-changed</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.3</td>
+    <td><code>xforms-select<br>xforms-deselect</code></td>
+    <td class="c">No</td>
+    <td>Bug 278448</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.4</td>
+    <td><code>xforms-scroll-first<br>xforms-scroll-last</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.5</td>
+    <td><code>xforms-insert<br>xforms-delete</code></td>
+    <td class="c">No</td>
+    <td>Bug 278448</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.6</td>
+    <td><code>xforms-valid</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.7</td>
+    <td><code>xforms-invalid</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.8</td>
+    <td><code>DOMFocusIn</code></td>
+    <td class="c">No</td>
+    <td>Bug 278448</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.9</td>
+    <td><code>DOMFocusOut</code></td>
+    <td class="c">No</td>
+    <td>Bug 278448</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.10</td>
+    <td><code>xforms-readonly</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.11</td>
+    <td><code>xforms-readwrite</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.12</td>
+    <td><code>xforms-required</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.13</td>
+    <td><code>xforms-optional</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.14</td>
+    <td><code>xforms-enabled</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.15</td>
+    <td><code>xforms-disabled</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.16</td>
+    <td><code>xforms-in-range</code></td>
+    <td class="c">No</td>
+    <td>Bug 278448</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.17</td>
+    <td><code>xforms-out-of-range</code></td>
+    <td class="c">No</td>
+    <td>Bug 278448</td>
+  </tr>
+  <tr>
+    <td class="c">4.4.18</td>
+    <td><code>xforms-submit-done</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.4.19</td>
+    <td><code>xforms-submit-error</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.5.1</td>
+    <td><code>xforms-binding-exception</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.5.2</td>
+    <td><code>xforms-link-exception</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.5.3</td>
+    <td><code>xforms-link-error</code></td>
+    <td class="c">No</td>
+    <td>Bug 278448</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.5.4</td>
+    <td><code>xforms-compute-exception</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.6.1</td>
+    <td>イベントシーケンス: <code>input, secret, textarea, range, upload</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.6.2</td>
+    <td>イベントシーケンス: <code>output</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.6.3</td>
+    <td>イベントシーケンス: <code>select, select1</code></td>
+    <td class="c">Yes</td>
+    <td>4.6.6 および 4.6.7 参照</td>
+  </tr>
+  <tr>
+    <td class="c">4.6.4</td>
+    <td>イベントシーケンス: <code>trigger</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.6.5</td>
+    <td>イベントシーケンス: <code>submit</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">4.6.6</td>
+    <td>シーケンス: 値変更なしの選択</td>
+    <td class="c">No</td>
+    <td>xforms-select/deselect 実装が必要</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.6.7</td>
+    <td>フォーカス変更による値変更</td>
+    <td class="c">一部</td>
+    <td>Everything in but DOMFocusIn/Out</td>
+  </tr>
+  <tr>
+    <td class="c">4.6.8</td>
+    <td>トリガーの起動</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">4.6.9</td>
+    <td>送信</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<h2 id="c05">5. W3C XForms - データ形式</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr>
+    <td class="c">5.1</td>
+    <td>XML スキーマ組み込みデータ形式</td>
+    <td class="c">一部</td>
+    <td>以下のリスト参照</td>
+  </tr>
+  <tr class="even">
+    <td class="c">5.2.1</td>
+    <td><code>xforms:listItem</code></td>
+    <td class="c">No</td>
+    <td>Bug 279026</td>
+  </tr>
+  <tr>
+    <td class="c">5.2.2</td>
+    <td><code>xforms:listItems</code></td>
+    <td class="c">No</td>
+    <td>Bug 279026</td>
+  </tr>
+  <tr class="even">
+    <td class="c">5.2.3</td>
+    <td><code>xforms:dayTimeDuration</code></td>
+    <td class="c">No</td>
+    <td>Bug 279026</td>
+  </tr>
+  <tr>
+    <td class="c">5.2.4</td>
+    <td><code>xforms:yearMonthDuration</code></td>
+    <td class="c">No</td>
+    <td>Bug 279026</td>
+  </tr>
+  </tbody>
+</table>
+<p>サポートされている形式: string, gday, gmonth, gyear, gyearmonth, gmonthday, datetime, date, time, duration, integer, float, byte, decimal, anyURI, base64Binary</p>
+
+<h2 id="c06">6. W3C XForms - モデルアイテムプロパティ</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr>
+    <td class="c">6.1.1</td>
+    <td><code>type</code></td>
+    <td class="c">一部</td>
+    <td>上記の形式に限定</td>
+  </tr>
+  <tr class="even">
+    <td class="c">6.1.2</td>
+    <td><code>readonly</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">6.1.3</td>
+    <td><code>required</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">6.1.4</td>
+    <td><code>relevant</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">6.1.5</td>
+    <td><code>calculate</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">6.1.6</td>
+    <td><code>constraint</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">6.1.7</td>
+    <td><code>p3ptype</code></td>
+    <td class="c">No</td>
+    <td>Bug 279049</td>
+  </tr>
+  <tr class="even">
+    <td class="c">6.2</td>
+    <td>極小データ形式</td>
+    <td class="c">一部</td>
+    <td>simpleType の length, minlength, maxlength, pattern, maxinclusive, mininclusive, maxexclusive, minexclusive, totaldigits, fractiondigits 使用をサポート</td>
+  </tr>
+</table>
+
+<h2 id="c07">7. W3C XForms - XForms における XPath 表現</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr>
+    <td class="c">7.1</td>
+    <td>XPath データ形式</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.2</td>
+    <td><code>hasFeature</code> メソッドを呼び出すための特色機能文字列</td>
+    <td class="c">No</td>
+    <td>Bug 279057</td>
+  </tr>
+  <tr>
+    <td class="c">7.3.1</td>
+    <td><code>getInstanceDocument()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.3.2</td>
+    <td><code>rebuild()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.3.3</td>
+    <td><code>recalculate()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.3.4</td>
+    <td><code>revalidate()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.3.5</td>
+    <td><code>refresh()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.4</td>
+    <td>評価コンテキスト</td>
+    <td class="c">No</td>
+    <td>Bug 265460</td>
+  </tr>
+  <tr>
+    <td class="c">7.5.1</td>
+    <td>動的依存関係</td>
+    <td class="c">一部</td>
+    <td>Bug 265212 - 現時点では代替策を使用</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.5.2</td>
+    <td>モデルバインディング表現</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.5.3</td>
+    <td>UI バインディング表現</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.5.4</td>
+    <td>他の XML 用語内の UI バインディング</td>
+    <td class="c">No</td>
+    <td>現時点ではまだ必要条件なし</td>
+  </tr>
+  <tr>
+    <td class="c">7.5.5</td>
+    <td>バインディング例</td>
+    <td class="c">n/a</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.6</td>
+    <td>XForms コア機能ライブラリ</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.7.1</td>
+    <td><code>boolean-from-string()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.7.2</td>
+    <td><code>if()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.8.1</td>
+    <td><code>avg()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.8.2</td>
+    <td><code>min()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.8.3</td>
+    <td><code>max()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.8.4</td>
+    <td><code>count-non-empty()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.8.5</td>
+    <td><code>index()</code></td>
+    <td class="c">No</td>
+    <td>Bug 278209</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.9.1</td>
+    <td><code>property()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.10.1</td>
+    <td><code>now()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.10.2</td>
+    <td><code>days-from-date()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.10.3</td>
+    <td><code>seconds-from-dateTime()</code></td>
+    <td class="c">No</td>
+    <td>Bug 263384</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.10.4</td>
+    <td><code>seconds()</code></td>
+    <td class="c">No</td>
+    <td>Bug 263384</td>
+  </tr>
+  <tr>
+    <td class="c">7.10.5</td>
+    <td><code>months()</code></td>
+    <td class="c">No</td>
+    <td>Bug 263384</td>
+  </tr>
+  <tr class="even">
+    <td class="c">7.11.1</td>
+    <td><code>instance()</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">7.12</td>
+    <td>拡張機能</td>
+    <td class="c">No</td>
+    <td>現時点ではまだ必要条件なし</td>
+  </tr>
+</table>
+
+<h2 id="c08">8. W3C XForms - フォームコントロール</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr>
+    <td class="c">8.1.1</td>
+    <td>一般的な必要条件</td>
+    <td class="c">-</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.1.2</td>
+    <td><code>input</code></td>
+    <td class="c">一部</td>
+    <td>Bug 273428 - テキストの処理、カスタムコントロールの処理は行わない。例えば、データ形式を参照する場合、テキスト入力欄として表示されたままになる。</td>
+  </tr>
+  <tr>
+    <td class="c">8.1.3</td>
+    <td><code>secret</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.1.4</td>
+    <td><code>textarea</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">8.1.5</td>
+    <td><code>output</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.1.6</td>
+    <td><code>upload</code></td>
+    <td class="c">一部</td>
+    <td>Bug 275453</td>
+  </tr>
+  <tr>
+    <td class="c">8.1.7</td>
+    <td><code>range</code></td>
+    <td class="c">No</td>
+    <td>Bug 271044</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.1.8</td>
+    <td><code>trigger</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">8.1.9</td>
+    <td><code>submit</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.1.10</td>
+    <td><code>select</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">8.1.11</td>
+    <td><code>select1</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.2.1</td>
+    <td><code>choices</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">8.2.2</td>
+    <td><code>item</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.2.3</td>
+    <td><code>value</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">8.3</td>
+    <td><code>filename</code></td>
+    <td class="c">No</td>
+    <td>Bug 275453</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.3.2</td>
+    <td><code>mediatype</code></td>
+    <td class="c">No</td>
+    <td>Bug 275453</td>
+  </tr>
+  <tr>
+    <td class="c">8.3.3</td>
+    <td><code>label</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.3.4</td>
+    <td><code>help</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">8.3.5</td>
+    <td><code>hint</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">8.3.6</td>
+    <td><code>alert</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<h2 id="c09">9. W3C XForms - XForms ユーザインターフェース</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr class="even">
+    <td class="c">9.2.1</td>
+    <td><code>switch</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">9.2.2</td>
+    <td><code>case</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">9.2.3</td>
+    <td><code>toggle</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">9.3.1</td>
+    <td><code>repeat</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">9.3.2</td>
+    <td>属性を通じた反復構造の生成</td>
+    <td class="c">No</td>
+    <td>bug 264329</td>
+  </tr>
+  <tr>
+    <td class="c">9.3.3</td>
+    <td><code>itemset</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">9.3.4</td>
+    <td><code>copy</code></td>
+    <td class="c">No</td>
+    <td>Bug 279063</td>
+  </tr>
+  <tr>
+    <td class="c">9.3.5</td>
+    <td><code>insert</code></td>
+    <td class="c">No</td>
+    <td>Bug 278211</td>
+  </tr>
+  <tr class="even">
+    <td class="c">9.3.6</td>
+    <td><code>delete</code></td>
+    <td class="c">No</td>
+    <td>Bug 278211</td>
+  </tr>
+  <tr>
+    <td class="c">9.3.7</td>
+    <td><code>setindex</code></td>
+    <td class="c">No</td>
+    <td>Bug 278209</td>
+  </tr>
+  <tr class="even">
+    <td class="c">9.3.8</td>
+    <td>繰り返し処理</td>
+    <td class="c">一部</td>
+    <td>インデックスを処理する UI インタラクションはテストされていません</td>
+  </tr>
+  <tr>
+    <td class="c">9.3.9</td>
+    <td>入れ子反復</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">9.3.10</td>
+    <td>UI インタラクション</td>
+    <td class="c">No</td>
+    <td>部分的には整っていますが、テストされていません</td>
+  </tr>
+</table>
+
+<h2 id="c10">10. W3C XForms - XForms アクション</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr>
+    <td class="c">10.1</td>
+    <td>XForms アクションモジュール</td>
+    <td class="c">-</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">10.1.1</td>
+    <td><code>action</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">10.1.2</td>
+    <td><code>dispatch</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">10.1.3</td>
+    <td><code>rebuild</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">10.1.4</td>
+    <td><code>recalculate</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">10.1.5</td>
+    <td><code>revalidate</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">10.1.6</td>
+    <td><code>refresh</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">10.1.7</td>
+    <td><code>setfocus</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">10.1.8</td>
+    <td><code>load</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">10.1.9</td>
+    <td><code>setvalue</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">10.1.10</td>
+    <td><code>send</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">10.1.11</td>
+    <td><code>reset</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">10.1.12</td>
+    <td><code>message</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">10.1.13</td>
+    <td><code>insert, delete, setindex</code></td>
+    <td class="c">No</td>
+    <td>Bug 278211</td>
+  </tr>
+</table>
+
+<h2 id="c11">11. W3C XForms - 送信</h2>
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+  <tr class="header">
+    <th width="10%">セクション</th>
+    <th width="35%">タイトル</th>
+    <th width="10%">対応状況</th>
+    <th width="45%">備考</th>
+  </tr>
+  <tr>
+    <td class="c">11.1</td>
+    <td><code>xforms-submit</code></td>
+    <td class="c">-</td>
+    <td>今のところ、(セキュリティ上の理由により) 送信はそのドキュメントの送信元のサーバに限定しています。<br>無関係のインスタンスデータも送信されてしまいます (Bug 280264)。</td>
+  </tr>
+  <tr class="even">
+    <td class="c">11.2</td>
+    <td>送信オプション</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">11.3</td>
+    <td><code>application/xml</code> でのシリアライズ</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">11.4</td>
+    <td><code>multipart/related</code> でのシリアライズ</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">11.5</td>
+    <td><code>multipart/form-data</code> でのシリアライズ</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">11.6</td>
+    <td><code>multipart/x-www-form-urlencoded</code> でのシリアライズ</td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">11.7</td>
+    <td>送信メソッド: <code>post, multipart-post, form-data-post, urlencoded-post</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="even">
+    <td class="c">11.8</td>
+    <td><code>put</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="c">11.9</td>
+    <td><code>get</code></td>
+    <td class="c">Yes</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<h2 id="c12">12. XForms のスタイル付け</h2>
+<p>W3C の XForms 勧告では、XForms 基準に基づいた要素の選択に <a href="http://www.w3.org/TR/2003/REC-xforms-20031014/sliceF.html#id2644859">疑似クラス</a> を使うことができます。今回の Mozilla XForms 製品のリリースでは、この疑似クラスはサポートされていません。その代わりに属性が使われています。この問題は最終リリースまでに修正されます。例えば、入力欄に不正な値が含まれていた場合に、それらの背景色を赤色に変えるには、以下の CSS が使われます。</p>
+<blockquote><p>@namespace xf url("http://www.w3.org/2002/xforms");<br>xf|*[invalid] input {<br>&nbsp; background-color: red;<br>}</p></blockquote>
+<p>今回のリリースでサポートされている属性は、valid, invalid, enabled, disabled, required, optional, read-write, read-only です。</p>
+
+<h2 id="c13">13. コメントとバグの報告</h2>
+<dl>
+  <dt>コメント<br><a href="/projects/xforms/">http://www.mozilla.org/projects/xforms/</a></dt>
+  <dd>Mozilla XForms の議論に使われているフォーラムに関する最新情報は Mozilla XForms プロジェクトのページをご覧ください。</dd>
+  <dt>バグの登録<br><a href="http://bugzilla.mozilla.org/">http://bugzilla.mozilla.org/</a></dt>
+  <dd>Mozilla XForms 製品に問題を発見した場合は、Mozilla のバグ報告システムを使って XForms コンポーネントに登録してください。</dd>
+</dl>
+
+<h2 id="c14">14. より詳しい情報を得るには</h2>
+<dl>
+  <dt>Mozilla XForms<br><a href="/projects/xforms/">http://www.mozilla.org/projects/xforms/</a></dt>
+  <dd>Mozilla の XForms プロジェクトに関する情報源です。プロジェクトの連絡先、概要、関連バグと機能一覧などが載っています。</dd>
+  <dt>W3C XForms<br><a href="http://w3c.org/MarkUp/Forms/">http://w3c.org/MarkUp/Forms/</a></dt>
+  <dd>XForms 勧告 (1.0 と次期 1.1) の詳細をまとめたサイトです。勧告の歴史、作業グループ、サポートされているアプリケーションやブラウザなどの情報が載っています。XForms 1.0 のテストケース一式もあります。
+</dd>
+</dl>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/xforms/ReleaseNotes-20050202.html">英語版</a> 2005/02/03</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/xforms/ReleaseNotes-20050202.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

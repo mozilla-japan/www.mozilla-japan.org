@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-lot-reference" basename="reference" pathtoroot="../../../">
+
+<meta>
+	<dc:title>Localization Tools 簡易リファレンス</dc:title>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+	<dcterms:audience>developers</dcterms:audience>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+s
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1><tt:meta mode="title"/></h1>
+	<p>lot で用意されている主要なターゲットと一部の重要な設定項目について簡単にまとめました。</p>
+	
+	<tt:toc/>
+	
+	<!-- 相互参照などを可能にするため referencedb を定義するべき… -->
+	<tt:section id="properties">
+		<h3>プロパティリファレンス</h3>
+		<dl>
+			<dt>lang</dt>
+			<dd>設定値例: english, <em>japanese</em><br/>
+				出力メッセージなどに使用する言語。初期値は build.xml の冒頭で指定します。</dd>
+			<dt>mode</dt>
+			<dd>設定値例: aviary, <em>mozilla1.8</em>, trunk, extension<br/>
+				動作モード。どの系列の言語パックを作成するモードで動作するか、あるいは拡張機能のパッケージを作成するモードで動作するかを指定します。</dd>
+			<dt>package</dt>
+			<dd>設定値例: <em>firefox</em>, thunderbird, venkman, chomedit<br/>
+				作成するパッケージ。言語パックであれば対象製品の名前、拡張機能であれば拡張機能自身の名前を指定します。</dd>
+			<dt>locale</dt>
+			<dd>設定値例: ja, ja-JP-mac, en-US, ja-JP, ja-JPM<br/>
+				言語パックのロケール名。 extension モードでは指定不要です。</dd>
+			<dt>firefox.version</dt>
+			<dd>設定値例: 1.5, 1.5.0.1, 1.0.8<br/>
+				Firefox のバージョン。生成されるファイル名などに使用されます。パッケージの対応バージョン (<var>minVersion</var>, <var>maxVersion</var>) とは異なります。</dd>
+			<dt>thunderbird.version</dt>
+			<dd>設定値例: 1.5, 1.5.1, 1.0.7<br/>
+				Thunderbird のバージョン。生成されるファイル名などに使用されます。パッケージの対応バージョン (<var>minVersion</var>, <var>maxVersion</var>) とは異なります。</dd>
+			<dt>version</dt>
+			<dd>設定値例: 1.5, 1.5.1, 1.0.7<br/>
+				firefox.version, thunderbird.version のショートハンド。コマンドラインから指定するときにのみ使用します。</dd>
+			<dt>package.revision</dt>
+			<dd>設定値例: 1.5.0.1, 1.0.5, 0.1.1<br/>
+				作成するパッケージのバージョン。 install.rdf での値や生成ファイル名などに使われます。</dd>
+			<dt>package.revision.pre</dt>
+			<dd>設定値例: 1.5, 1.0, 0.1<br/>
+				作成するパッケージの一つ前のバージョン。パッケージの作成時には使われませんが、diff-xpi など複数バージョン間に渡る処理では現在バージョン(<var>package.revision</var>) と共に使用されます。</dd>
+		</dl>
+	</tt:section>
+	
+	<tt:section id="targets">
+		<h3>ターゲットリファレンス</h3>
+		<dl>
+			<dt>auto</dt>
+			<dd>以降のターゲットではユーザへの確認無しで全自動処理をします。</dd>
+			<dt>help</dt>
+			<dd>ヘルプを表示します。</dd>
+			<dt>examples</dt>
+			<dd>使用例を表示します。</dd>
+			<dt>clean</dt>
+			<dd>lot の生成した一時ファイルを削除します。デフォルトでは temp ディレクトリとその配下の全ファイルが削除されます。</dd>
+			<dt>lose</dt>
+			<dd>lot の生成した中間ファイルを削除します。デフォルトでは loose ディレクトリ配下にパッケージ別に分けられたディレクトリのファイルが削除されます。</dd>
+			<dt>prepare</dt>
+			<dd>設定ファイルの読み込みやフィルタの準備などをします。</dd>
+			<dt>template</dt>
+			<dd>tpl ディレクトリのテンプレートを元に中間ファイルを生成します。</dd>
+			<dt>convert</dt>
+			<dd>src ディレクトリのソースファイルにフィルタを適用して中間ファイルを生成します。</dd>
+			<dt>modify</dt>
+			<dd>生成された中間ファイルを設定値などに応じて書き換えます。</dd>
+			<dt>grind</dt>
+			<dd>template, convert, modify ターゲットにより中間ファイルを生成します。なお、言語パックの中間ファイルは L10N CVS にチェックインされるものと同じです。</dd>
+			<dt>jar</dt>
+			<dd>中間ファイルを元に JAR パッケージを作成します</dd>
+			<dt>dest</dt>
+			<dd>JAR パッケージ以外のファイルをコピーします。</dd>
+			<dt>xpi</dt>
+			<dd>jar, dest ターゲットで用意したファイルを XPI パッケージにまとめます。</dd>
+			<dt>mount</dt>
+			<dd>jar, dest, xpi ターゲットにより中間ファイルから XPI パッケージを生成します。</dd>
+			<dt>build</dt>
+			<dd>prepare, template, convert, modify, jar, dest, xpi ターゲットにより src ファイルから XPI パッケージを生成します。ビルド対象パッケージは <var>mode</var>, <var>package</var> や <var>locale</var> プロパティに応じて選択されます。</dd>
+			<dt>backuplot</dt>
+			<dd>lot のアーカイブパッケージを作成します。バックアップ対象は <var>backuplot.includes</var> と <var>backuplot.excludes</var> プロパティで指定します。</dd>
+			<dt>backupsrc</dt>
+			<dd>lot のソースパッケージを作成します。バックアップ対象となるのは動作モード別のソース、テンプレート、フィルタです。</dd>
+			<dt>restoresrc</dt>
+			<dd>ソースパッケージをリストアします。 backupsrc ターゲットで既存のソース、テンプレート、フィルタをバックアップした上で、<var>file</var> (restoresrc.file) プロパティで指定したソースパッケージで置き換えます。</dd>
+			<dt>diff</dt>
+			<dd>言語リソースの差分パッチファイルを生成します。比較対象ディレクトリは <var>fromdir</var> (<var>diff.fromdir</var>) と <var>todir</var> (<var>diff.todir</var>) プロパティで指定します。</dd>
+			<dt>patch</dt>
+			<dd>diff ターゲットで生成した差分パッチを適用します。適用するパッチは <var>file</var> (<var>patch.file</var>) プロパティで指定します。</dd>
+			<dt>diff-src</dt>
+			<dd>diff コマンドでソースファイルの差分を生成します。主にロケール間差分の生成に使用するもので、比較対象ロケールは <var>fromlocale</var> (<var>diff.src.fromlocale</var>) と <var>tolocale</var> (<var>diff.src.tolocale</var>) プロパティで指定します。</dd>
+			<dt>diff-loose</dt>
+			<dd>diff コマンドで中間ファイルの差分を生成します。主にロケール間差分の生成に使用するもので、比較対象ロケールは <var>fromlocale</var> (<var>diff.loose.fromlocale</var>) と <var>tolocale</var> (<var>diff.loose.tolocale</var>) プロパティで指定します。</dd>
+			<dt>diff-jar</dt>
+			<dd>diff コマンドで JAR パッケージの差分を生成します。主にバージョン間差分の生成に使用するもので、比較対象パッケージは <var>fromfile</var> (<var>diff.jar.fromfile</var>) と <var>tofile</var> (<var>diff.jar.tofile</var>) プロパティで指定します。</dd>
+			<dt>diff-xpi</dt>
+			<dd>diff コマンドで XPI パッケージの差分を生成します。主にバージョン間差分の生成に使用するもので、比較対象パッケージは <var>fromfile</var> (<var>diff.xpi.fromfile</var>) と <var>tofile</var> (<var>diff.xpi.tofile</var>) プロパティで指定します。</dd>
+			<dt>lpdiff-src</dt>
+			<dd><a href="${l10n-lpdiff}">LpDiff</a> を使ってソースファイルの差分一覧表を生成します。主にロケール間差分の生成に使用するもので、比較対象ロケールは <var>fromlocale</var> (<var>lpdiff.src.fromlocale</var>) と <var>tolocale</var> (<var>lpdiff.src.tolocale</var>) プロパティで指定します。</dd>
+			<dt>lpdiff-loose</dt>
+			<dd><a href="${l10n-lpdiff}">LpDiff</a> を使って中間ファイルの差分一覧表を生成します。主にロケール間差分の生成に使用するもので、比較対象ロケールは <var>fromlocale</var> (<var>lpdiff.loose.fromlocale</var>) と <var>tolocale</var> (<var>lpdiff.loose.tolocale</var>) プロパティで指定します。</dd>
+			<dt>lpdiff-jar</dt>
+			<dd><a href="${l10n-lpdiff}">LpDiff</a> を使って JAR パッケージの差分一覧表を生成します。主にバージョン間差分の生成に使用するもので、比較対象パッケージは <var>fromfile</var> (<var>lpdiff.jar.fromfile</var>) と <var>tofile</var> (<var>lpdiff.jar.tofile</var>) プロパティで指定します。</dd>
+			<dt>lpdiff-xpi</dt>
+			<dd><a href="${l10n-lpdiff}">LpDiff</a> を使って XPI パッケージの差分一覧表を生成します。主にバージョン間差分の生成に使用するもので、比較対象パッケージは <var>fromfile</var> (<var>lpdiff.xpi.fromfile</var>) と <var>tofile</var> (<var>lpdiff.xpi.tofile</var>) プロパティで指定します。</dd>
+			<dt>cvs-pass</dt>
+			<dd>cvs コマンドで使用する .cvspass ファイルを cvs ディレクトリに生成します。</dd>
+			<dt>cvs-*****</dt>
+			<dd>CVS 関連ターゲットの殆どでは、<var>mode</var> と <var>locale</var> プロパティに応じて対象のブランチやモジュールが選択されます。 <var>locale</var> は指定しなければ en-US が対象となります。必要であれば <var>module</var> (<var>cvs.module</var>) プロパティで直接指定することもできます。</dd>
+			<dt>cvs-checkout</dt>
+			<dd>cvs コマンドを使って mozilla.org のサーバから言語リソースを checkout します。</dd>
+			<dt>cvs-export</dt>
+			<dd>cvs コマンドを使って mozilla.org のサーバから言語リソースを export します。</dd>
+			<dt>cvs-exportsrc</dt>
+			<dd>cvs コマンドを使って mozilla.org のサーバから言語リソースを src ディレクトリに export します。</dd>
+			<dt>cvs-diff</dt>
+			<dd>cvs コマンドを使って 手元のファイルと CVS サーバのファイルとの間の差分を生成します。作業ディレクトリは <var>cvs.diff.checkout.dir</var> プロパティで指定します。</dd>
+			<dt>cvs-changelog</dt>
+			<dd>cvs コマンドを使って CVS サーバの変更ログを取得します。</dd>
+			<dt>cvs-tagdiff</dt>
+			<dd>cvs コマンドを使って CVS サーバの変更されたファイルのリストを取得します。作業ディレクトリは <var>cvs.diff.checkout.dir</var> プロパティで指定します。</dd>
+			<dt>cvs-rdiff</dt>
+			<dd>cvs コマンドを使って CVS サーバの変更を差分パッチ形式で取得します。</dd>
+			<dt>cvs-checkoutdiff</dt>
+			<dd>cvs コマンドを使って CVS サーバから言語リソースを checkout し、diff コマンドを使ってローカルで差分ファイルを生成します。大半のプラットフォームの cvs rdiff では不可能な、ブランチ上の日付間差分を取得するために使います。</dd>
+			<dt>cvs-exportdiff</dt>
+			<dd>cvs コマンドを使って CVS サーバから言語リソースを export し、diff コマンドを使ってローカルで差分ファイルを生成します。大半のプラットフォームの cvs rdiff では不可能な、ブランチ上の日付間差分を取得するために使います。</dd>
+			<dt>installer</dt>
+			<dd>インストーラの再パッケージングを行います。</dd>
+			<dt>compare-locales</dt>
+			<dd>mozilla.org による言語リソース比較スクリプト compare-locales.pl を使って中間ファイルを英語リソースに対して比較検証します。比較するロケールを <var>locale</var> プロパティで指定しなければなりません。</dd>
+			<dt>errorcheck</dt>
+			<dd>dtd ファイルと properties ファイルの構文と使用語句を確認します。</dd>
+			<dt>escape</dt>
+			<dd>properties ファイルは Unicode エスケープに変換して、他のファイルについてはそのままコピーします。コピー元とコピー先のディレクトリは <var>fromdir</var> (<var>escape.fromdir</var>) と <var>todir</var> (<var>escape.todir</var>) プロパティで指定します。文字エンコーディングの種類は <var>encoding</var> (<var>escape.encoding</var>) プロパティで指定します。</dd>
+			<dt>unescape</dt>
+			<dd>properties ファイルは Unicode エスケープから逆変換して、他のファイルについてはそのままコピーします。コピー元とコピー先のディレクトリは <var>fromdir</var> (<var>unescape.fromdir</var>) と <var>todir</var> (<var>unescape.todir</var>) プロパティで指定します。文字エンコーディングの種類は <var>encoding</var> (<var>unescape.encoding</var>) プロパティで指定します。</dd>
+		</dl>
+	</tt:section>
+	
+</tt:htmlbody>
+
+</page>
+</contents>

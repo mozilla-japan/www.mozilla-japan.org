@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 実行モデル</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="us-en" href="http://www.mozilla.org/js/language/js20/rationale/execution-model.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="index.html">
+<link rel="Next" href="member-lookup.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		color:#333;
+		background:#FFFFE0 none;
+		font-size:80%;
+		line-height:1.2em;
+		text-align:right;
+		border:1px dashed #996;
+		margin-top:1em;
+		padding:3px;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		background:transparent none;
+		font-size:0.8em;
+		font-style:italic;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		background:transparent none;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertcal-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">根拠</div>
+    <div class="title1">実行モデル</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="index.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="member-lookup.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">09/10/2002 (Tue)</p>
+
+<h2 class="issue">このページはやや古いものである。</h2>
+
+<h2>はじめに</h2>
+
+<p>(値、関数、型、クラス、メソッド、プラグマなどの) 宣言はいつその効果を生ずるのだろうか? 式が評価されるのはいつだろうか?
+これらの問いに対する答えは、一般的なプログラミング言語の間で異なる。以下の C++ や Java のような構文を持つ関数定義を考えよう:</p>
+
+<pre>gadget f(widget x) {
+  if ((gizmo)(x) != null)
+    return (gizmo)(x);
+  return x.owner;
+}</pre>
+
+<p>Java や C++ のような静的言語では、全ての型式はコンパイル時に評価される。例えばこの例の <code>widget</code> と <code>gadget</code>
+はコンパイル時に評価される。<code>gizmo</code> が型であれば、これもコンパイル時に評価される (<code>(gizmo)(x)</code>
+は型キャストになる)。<code>(gizmo)(x)</code> が引数が1つの関数呼び出しなのか (この場合 <code>gizmo</code> は実行時に評価される)
+型キャストなのか (この場合 <code>gizmo</code> はコンパイル時に評価される)
+を決定するためには、変数を表す識別子と型を表す識別子を静的に区別できなければならないことに注意していただきたい。大抵の場合、以下の C++
+のようにコンパイルが非常に困難だと考えられている例外があるにも関わらず、静的言語における宣言は囲っているスコープを通して可視である:</p>
+
+<pre>typedef int *x;
+
+class foo {
+  typedef x *y;
+  typedef char *x;
+}</pre>
+
+<p>多くの動的言語では型式を実行時に構築、評価、操作できる。(<a href="../../bibliography.html#common-lisp">Common Lisp</a> などの)
+幾つかの動的言語は式の早期評価のためにコンパイル時と実行時を区別し、構造体 (<code>eval-when</code>) を提供している。(<a href="../../bibliography.html#scheme">Scheme</a>
+などの) 最も単純な動的言語では入力を単一のパスで処理し、コンパイル時と実行時を区別しない。上に挙げた関数をこのような単純な言語で評価した場合、<code>widget</code>
+と <code>gadget</code> は関数呼び出し時に評価される。</p>
+
+<h3><a name="challenges">挑戦</a></h3>
+
+<p>JavaScript はスクリプト言語である。多くのプログラマは様々な環境で動作する JavaScript
+スクリプトをウェブページに組み込みたいと考えている。これらの環境の中にはスクリプトで使用したいライブラリを提供するものがあるかもしれないが、一方で他の環境ではスクリプトがそれらのライブラリを模倣しなければならないかもしれない。スクリプト言語で簡単に実現できると思われる例について見てみよう:</p>
+
+<p>Bob はウェブページに使うスクリプトを書いており、特定の環境 (Macintosh) では利用可能だが他の環境では得られない選択的なパッケージ
+<code>MacPack</code> をスクリプト中で使用したいと考えている。<code>MacPack</code> には <code>HyperWindoid</code> というクラスが含まれており、Bob
+はこのクラスの派生クラスとして彼自身のクラス <code>BobWindoid</code> を作成しようと思っているのである。他のプラットホームでは Bob
+は <code>BobWindoid</code> とは異なる実装を持つ <code>BobWindoid</code>&#39; を模倣クラスとして定義しなければならない &#8212;
+このクラスは異なるメソッドとフィールドの集合を持つ。また、Bob のパッケージには <code>WindoidGuide</code>
+というクラスもある。<code>BobWindoid</code> クラスと <code>BobWindoid</code>&#39; クラスのコードとメソッドシグニチャは
+<code>WindoidGuide</code> 型のオブジェクトを参照し、<code>WindoidGuide</code> のコードは <code>BobWindoid</code> 型 (或いは <code>BobWindoid</code>&#39;
+型) のオブジェクトを参照する。</p>
+
+<p>JavaScript が動的実行モデル (後述する) を使っていたら宣言の効果が生ずるのはその実行時だけであり、Bob
+は彼のパッケージを以下に示すように実装できる。</p>
+
+<pre>class WindoidGuide; // 前方宣言
+
+if (onMac()) {
+  import "MacPack";
+
+  global class BobWindoid extends HyperWindoid {
+    private var x;
+    var g:WindoidGuide;
+
+    private function speck() {...};
+    public function zoom(a:WindoidGuide, uncle:HyperWindoid = null):WindoidGuide {...};
+  }
+} else {
+  // BobWindoid&#39; クラスの模倣
+  global class BobWindoid {
+    private var i:Integer, j:Integer;
+    var g:WindoidGuide;
+
+    private function advertise(h:WindoidGuide):WindoidGuide {...};
+    private function subscribe(h:WindoidGuide):WindoidGuide {...};
+    public function zoom(a:WindoidGuide):WindoidGuide {...};
+  }
+}
+
+class WindoidGuide {
+  var currentWindoid:BobWindoid;
+
+  function introduce(arg:BobWindoid):BobWindoid {...};
+}</pre>
+
+<p>一方、言語が静的なものであれば (型はコンパイル時の式ということになる)、Bob は問題にぶつかったことだろう。彼が選択的な2つの
+<code>BobWindoid</code> クラスを宣言するにはどうすればよかったのだろうか?</p>
+
+<p>Bob の最初の考えは、彼のパッケージを3つの <tt>SCRIPT</tt> HTML タグ (それぞれ <code>BobWindoid</code> 、<code>BobWindoid</code>&#39;
+、<code>WindoidGuide</code> を含む) に分割し、プラットホームに応じて最初の2つを切り替えるというものだった。あいにくこれではうまく動かない。これらのクラスは相互に参照し合うため、<code>BobWindoid</code>
+クラス (或いは <code>Windoid</code>&#39; クラス) の定義を <code>WindoidGuide</code> クラスの定義から引き離すと型エラーが発生するのである。更に Bob
+は多くのページでスクリプトを共有したいと思っているので、単一のファイル <tt>BobUtilities.js</tt> に全てのスクリプトをまとめたいのである。</p>
+
+<p>これは JavaScript 2.0 で型式がコンパイル時に評価される仮定の下で新しく持ち上がった問題であることに注意していただきたい。JavaScript
+1.5 にはコンパイル時に式を評価するという概念が無いため、この問題は起こらない。また、JavaScript 1.5 では、グローバル変数 <var>g</var>
+を1つだけ宣言して条件分岐で無名関数を代入することにより、クラス (実際は関数に過ぎないが) を条件的に定義することは比較的簡単なことである。</p>
+
+<p>Bob の問題を解決する動的実行モデルと静的実行モデルの中間に位置する案もある。<a href="#conditional-compilation">その内の1つ</a>はこの章の終わりで説明する。</p>
+
+<h2>動的実行モデル</h2>
+
+<p>純粋な<strong>動的実行モデル</strong>ではプログラム全体が単一のパスで処理される。宣言がその効果を生ずるのは実行されたときだけで、永久に実行されない宣言は無視される。Visual
+Basic の初期のバージョンと同じく <a href="../../bibliography.html#scheme">Scheme</a> はこのモデルに従っている。</p>
+
+<p>動的実行モデルは言語を大幅に単純化し、インタープリタはファイルから読み込まれたプログラムと対話型コンソールから入力されたプログラムを同等に扱うことができる。また、動的実行モデルのインタープリタや JIT コンパイラはスクリプトのダウンロードが完全に終了していなくてもスクリプトの実行を開始することができる。</p>
+
+<p>動的実行モデルの最大の利点は、動的に得られた情報に基づいて JavaScript 2.0 スクリプトの一部を有効/無効化できることである。例えば、CSS
+の単位計算ライブラリを提供する環境ではスクリプトやライブラリは他にクラスや関数の定義を追加できるだろうし、そういった環境でなくてもスクリプトやライブラリは正しく稼動する。</p>
+
+<p>動的実行モデルにおいては、関数や変数が使用される前に定義されるようにするために、それらに名前を付けることが識別子に対して要求される。「使用」は識別子がスコープ規則により変数或いは関数に解決される箇所で、識別子が読み取り、書き込み、或いは呼び出されるときに起こる。関数外側の
+<code>if</code> や <code>while</code> のような制御文の内側からの参照は、実行がその参照に到達したときのみ解決される。関数本体からの参照は関数が呼び出された後でのみ解決される。このため、実装は
+<code>eval</code> を含まない関数やメソッド内の全ての参照をその関数が初めて呼び出されるときに解決してもよい。</p>
+
+<p>これらの規則よれば、以下のプログラムは正しいものであり <code>7</code> をプリントするであろう:</p>
+
+<pre>function f(a:Integer):Integer {
+  return a+b;
+}
+
+var b:Integer = 4;
+print(f(3));</pre>
+
+<p>変数 <code>b</code> がホストにより定義済みだとして、<code>featurePresent</code> が真であればこのプログラムもまた正しく動く:</p>
+
+<pre>function f(a:Integer):Integer {
+  return a+b;
+}
+
+if (!featurePresent) {
+  var b:Integer = 4;
+}
+
+print(f(3));</pre>
+
+<p>一方、以下のプログラムは <code>f</code> が定義される前に参照されているのでエラーになる:</p>
+
+<pre>print(f(3));
+
+function f(a:Integer):Integer {
+  return a*2;
+}</pre>
+
+<p>相互再帰関数の定義は、それらが呼び出される前にそれらの全てを定義する限りは問題にはならない。</p>
+
+<h2>混成実行モデル</h2>
+
+<p>JavaScript 1.5 は純粋な動的実行モデルには従っておらず、互換性のために JavaScript 2.0
+もこのモデルから逸脱しており、代わりに混成実行モデルを採用している。JavaScript 2.0 は以下の静的実行モデルの様相を
+JavaScript 1.5 から受け継いでいる:</p>
+
+<ul>
+  <li>グローバルスコープで宣言された変数は、宣言が評価されたときではなくプログラムに入ったときに作成される。</li>
+  <li>関数内部で宣言されたローカル変数は、宣言が評価されたときではなく関数に入ったときに作成される。</li>
+  <li>他で規定しない限り、グローバルスコープで宣言された関数は、宣言が評価されたときではなくプログラムに入ったときに作成される。</li>
+  <li>他で規定しない限り、関数内に入れ子で宣言された関数は、宣言が評価されたときではなくその関数が入ったときに作成される。</li>
+</ul>
+<p>これらに加えて、クラス宣言の評価には相互参照クラスを認めるための遅延評価のために特別な規定がある。</p>
+
+<p>上に挙げた2つ目の条件から、以下のプログラムは JavaScript 2.0 では動作する:</p>
+
+<pre>const b:String = "Bee";
+
+function square(a:Integer):Integer {
+  b = a;   // グローバルな b ではなく、ローカルな b を参照する
+  return b*a;
+  var b:Integer;
+}</pre>
+
+<p>このようなことは認められてはいるが、この例のような変数を宣言する前に使用するのはまずいスタイルであり、警告が出されるかもしれない。</p>
+
+<p>上に挙げた3つ目の条件から、純粋な動的実行モデルの項の最後の例は正しく動く:</p>
+
+<pre>print(f(3));
+
+function f(a:Integer):Integer {
+  return a*2;
+}</pre>
+
+<p>繰り返すが関数を宣言する前に最上位でその関数を呼び出すのはまずいスタイルであり、警告が出されるかもしれない。またクラスとともに用いた場合はうまく動かない。</p>
+
+  <h2>動的実行モデルのコンパイル</h2>
+
+  <p>おそらく、動的実行モデルに基づきスクリプトをコンパイルする最も簡単な方法は、関数定義を未処理のまま蓄積しておき最初に呼び出されたときにだけそれらをコンパイルするというものである。この方法は永久に呼び出されない関数のコンパイルにかかるオーバーヘッドを避けることができるため、多くの
+  JIT コンパイラが使用している。静的実行モデルにおいてコンパイラはソースコードを二度走査するか、或いは二度目のために一度目で全て未処理のまま保存しておく必要があるため、上記の方法は静的実行モデルの場合よりもより少ないオーバーヘッドですむ。</p>
+
+  <p>オフラインでの動的実行モデルスクリプトのコンパイルも、<code>eval</code> が既存の宣言を隠す新しい宣言を導入しないように制限されている限りは難しいものではない
+  (もし <code>eval</code> がそのようなことが可能であれば、静的実行モデルも含めてあらゆる実行モデルで問題が発生することだろう)。動的実行モデルの下では、一度コンパイラがスコープの終端に達するとそのスコープは完了したとみなされる。そしてこの時点でそのスコープ中の全ての識別子が解決可能な範囲は静的モデルの場合と同じである。</p>
+
+
+<h2><a name="conditional-compliation"></a>条件コンパイル案</h2>
+
+  <p><a href="#challenges">Bob の問題</a>は C プリプロセッサに似た条件コンパイルにより解決することもができる。条件コンパイルの採用するとすれば、条件コンパイルのメタ言語としてどのような式が良いか考えなければならない。C
+  のプリプロセッサは貧弱なものである。JavaScript アプリケーションにおいて、コンパイルをどう制御するか決めるときに DOM
+  や環境などを詳しく調べるためには、しばしば JavaScript の力をフルに使う必要がある。その上、JavaScript
+  をメタ言語として使用すると、プログラマが習得しなければならない言語は少なくなる。</p>
+
+  <p>以下はこれをいかにして可能にするか考えてみたものである:</p>
+
+  <ul>
+    <li>スクリプトの実行は複数の段階に分けて行われる。最後のものが<strong>実行時 (run time)</strong> と呼ばれるもので、その前には
+      <strong>コンパイル時 (compile time)</strong> という段階がある。コンパイル時の前には (必要があればだが)
+      <strong>コンパイル-コンパイル時 (compile compile time)</strong> という段階があり、更にその前には (これも必要があればだが)
+      <strong>コンパイル-コンパイル-コンパイル時 (compile compile compile time)</strong> という段階がある
+      (以下続く)。<strong>コンパイル-コンパイル時</strong> 以前の段階を持つことは稀だが、高速な開発ツールを使えばそのようなコードを生成できるだろう。</li>
+    <li>前の段階 (コンパイル時など) で作成された全ての定義は、それより後の段階 (実行時など) でも可視である。引数をその型にキャスト
+      する関数としても使用できる型を定義すると、実装は <code>(x)(y)</code> が関数 <code>x</code> の呼び出しなのか、<code>y</code>
+      の型 <code>x</code> へのキャストなのかについて心配する必要が無くなる。</li>
+    <li><span class="nonterminal">TypeExpression</span> はコンパイル時に評価される。これらは変数、定数、フィールドの型として、また、関数の引数と戻り値の型、基底クラスとして (文法生成規則に) 現れる。</li>
+    <li>宣言はコンパイル時に蓄積される。変数は宣言されるがその初期化子は評価されない。関数とクラスはコンパイル時に宣言、定義される。</li>
+    <li><span class="nonterminal">Block</span> の前に記号 <code>#</code>
+      を置くことで、そのブロックを実行時のものからコンパイル時のものへ移行させることができる。例えば <code>#{var&nbsp;x:int&nbsp;=&nbsp;3}</code>
+      はコンパイル時の定数 x を定義し、3に初期化する。また <code>var</code> 、<code>const</code> 、<code>function</code>
+      宣言はその前に <code>#</code> を置くことで、直接移行できるため、<code>#var&nbsp;x:int&nbsp;=&nbsp;3;</code> でも同じことを達成できる。</li>
+    <li>コンパイル時のものに移行されたブロックや文中の <span class="nonterminal">TypeExpression</span>
+      はコンパイル-コンパイル時に評価される。前の例では <code>int</code> がその <span class="nonterminal">TypeExpression</span> である。</li>
+    <li>(<code>#{#var&nbsp;x:int&nbsp;=&nbsp;3}</code> のように) 2度移行されたブロックや文はコンパイル-コンパイル時に評価される (以下同様)。</li>
+    <li>コンパイル時パスでは、以下に示す構成体を用いてソースコード文を実行時パスから選択的に取り除くことができる。もし最初の
+      <span class="nonterminal">Expression</span> が真であれば、最初の <span class="nonterminal">Statements</span>
+      リストが実行時パスに含められる。それ以外の場合で2番目の <span class="nonterminal">Expression</span> が真であれば2番目の
+      <span class="nonterminal">Statements</span> リストが実行時パスに含められる (以下同様)。
+      <div class="grammar-rule"><code class="terminal-keyword">#</code>&nbsp;<code class="terminal-keyword">if</code>&nbsp;<code class="terminal-keyword">(</code>&nbsp;<span class="nonterminal">Expression</span>&nbsp;<code class="terminal-keyword">)</code>&nbsp;<span class="nonterminal">Statements</span>&nbsp;[<code class="terminal-keyword">#</code>&nbsp;<code class="terminal-keyword">else</code>&nbsp;<code class="terminal-keyword">if</code>&nbsp;<code class="terminal-keyword">(</code>&nbsp;<span class="nonterminal">Expression</span>&nbsp;<code class="terminal-keyword">)</code>&nbsp;<span class="nonterminal">Statements</span>]&nbsp;...&nbsp;[<code class="terminal-keyword">#</code>&nbsp;<code class="terminal-keyword">else</code>&nbsp;<span class="nonterminal">Statements</span>]&nbsp;<code class="terminal-keyword">#</code>&nbsp;<code class="terminal-keyword">end</code>&nbsp;<code class="terminal-keyword">if</code></div>
+    </li>
+    <li>C とは異なり、上の <span class="nonterminal">Statements</span> の持つ括弧、中括弧、角括弧などは閉じられていなければならない。また
+      C とは異なり、前処理 (preprocessing) は行指向ではない。このため <code>#</code> は行のどこに現れてもよい。</li>
+    <li>コンパイル-コンパイル時段階では <code>#if</code> を使ってコンパイル時コードを条件的に取り除くことができる
+      (コンパイル-コンパイル-コンパイル時についても同様)。</li>
+  </ul>
+
+  <p>変数の初期化子はコンパイル時には評価されないため、型名 <code>int</code> の別名 <code>a</code> を定義するには
+  <code>var&nbsp;a&nbsp;=&nbsp;int</code> ではなく <code>#var&nbsp;a&nbsp;=&nbsp;int</code> を使わなければならないことに注意していただきたい。</p>
+
+  <p>この下書きは解決すべき多くの問題、例えば型付けされた変数が宣言されてから初期化されるまでの間どのように処理されるか
+  (この問題は動的実行モデルでは起こらない) とか、実行時パスのレキシカルスコープがコンパイル時パスのスコープとどのように関係するかなどといったことを焦点にしているのではない。</p>
+
+
+<h2>動的実行モデルと条件コンパイルの比較</h2>
+
+  <p>いずれのアプローチも Bob の問題を解決するが、他の側面においてはこれらは異なったものである。以下に現れる「条件コンパイル」とは今まで説明してきた条件コンパイル案を指すものである。</p>
+
+  <ul>
+    <li>動的実行モデルは説明するのも解析するのも簡潔である</li>
+    <li>動的実行モデルはプログラマでない人間でも習得が容易である。</li>
+    <li>条件コンパイルは C/C++ プログラマにとって親しみのあるものである。</li>
+    <li>条件コンパイルは、制御メタ言語か、実行を実行時からコンパイル時に移行するための手段を必要とする。これらは意図しない結果を招くことが多く
+      (コンパイル時評価は実行時評価と同じスコープに従わない)、<a href="../../bibliography.html#common-lisp">Common Lisp</a>
+      における問題の元となっている。</li>
+    <li>条件コンパイルを使うと関数を定義される前にトップレベルで呼び出すことが可能になるので、より正確に JavaScript 1.5
+      のセマンティクスを模することができる。</li>
+    <li>条件コンパイルを使うと変数が参照される前にその初期化子が実行されるとは保証されなくなる。動的実行モデルはこのことを保証する。</li>
+    <li>プロトタイプは実行時に計算されることが多いので、条件コンパイルを使うと一般的なプロトタイプベースの型は使用できない。動的実行モデルでは使用可能である。</li>
+    <li>条件コンパイルで関数子とテンプレートをサポートするには他に構文を用意しなければならない。動的実行モデルは最初からこれらの拡張がなされている。</li>
+  </ul>
+
+<h2><a name="compiler-block"></a>コンパイラブロック</h2>
+
+<p>ある時期考えられていたが不採用となった実行モデル案にコンパイラブロックというものもある。コンパイラブロックは次のような構文を持つ:</p>
+
+<div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code class="terminal-keyword">compile</code>&nbsp;<code class="terminal-keyword">{</code>&nbsp;<span class="nonterminal">Statement</span>&nbsp;...&nbsp;<span class="nonterminal">Statement</span>&nbsp;<code class="terminal-keyword">}</code></div>
+<p>compile 属性はそのブロックを早期評価してもよい (強制ではない) というヒントを示すものである。このブロックの内側の文はそれらの文、より早期に評価されるブロックの結果、そして早期に使用可能になるよう設計された環境プロパティにのみ依存していなければならない。早期評価が行われない場合は、コンパイラブロックは囲っているプログラムの全てのスコープ規則とセマンティクスを考慮する。コンパイラブロックにより導入されたあらゆる定義は
+(一度) 保存され、通常の評価時に再導入される。これに対し、副作用は通常の評価時に再導入されるかもしれないしされないかもしれないため、コンパイラブロックは副作用に依存すべきではない。</p>
+
+<p><code>compile</code> は属性であるので、ブロック中で個々の定義を囲まなくてもそれぞれに適用できる。</p>
+
+<p>例として、以下の定義の後、</p>
+
+<pre>compile var x = 2;
+
+function f1() {
+  compile {
+    var y = 5;
+    var x = 1;
+    while (y) x *= y--;
+  }
+  return ++x;
+}
+
+function f2() {
+  compile {
+    var y = x;
+  }
+  return x+y;
+}</pre>
+
+<p>グローバルな <code>x</code> の値は <code>2</code> のままであり、<code>f1()</code> の呼び出しは常に <code>121</code>
+を、<code>f2()</code> の呼び出しは <code>4</code> を返す。仮に <code>x=5</code> という文がグローバルレベルで評価されても
+<code>f1()</code> は <code>121</code> を返すままである。これはローカルな <code>x</code> が使用されていることによる。これに対して <code>f2()</code>
+の呼び出しは実装の解釈によっては <code>7</code> と <code>10</code> のいずれをも返す &#8212;
+実装が <code>compile</code> ブロックを早期評価し値を保存すれば <code>7</code> を返し、そうしなければ <code>10</code>
+を返すのである。この例から分かるように、コンパイラブロック内部での変数定義はまずいテクニックである。普通は定数を使った方が良い。</p>
+
+<p>完全な動的実行モデルに則った JavaScript 2.0 実装は <code>compile</code>
+属性を無視して、全てのコンパイラブロックを通常のタイミングで評価することにしてもよい。完全な静的実行モデルに則った実装は全てのユーザ定義の型と属性をコンパイラブロック中で定義するよう要求してもよい。</p>
+
+<p><code>const&nbsp;four&nbsp;=&nbsp;2+2</code> のように単純な定数式を伴った <code>const</code> 定義を暗黙のコンパイラ定義
+(<code>compile&nbsp;const&nbsp;four&nbsp;=&nbsp;2+2</code>) として扱うべきだろうか?</p>
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td style="vertical-align:bottom;white-space:nowrap">
+      <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+      最終更新: 2002年9月10日 (火)</address>
+    </td>
+    <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="index.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="member-lookup.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+  </tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal&#64;student.interq.or.jp">exeal&#64;student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/rationale/execution-model.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE>パーソナル セキュリティ マネジャー （PSM）</TITLE>
+
+<!--
+*************************************** 覚え書き ************************************
+
+オリジナル文書：Personal Security Manager (PSM)
+オリジナルURL ：http://www.mozilla.org/projects/security/pki/psm/index.html
+
+和訳
+１版：2001/01/25  山口 
+２版：2001/01/26  山口 訂正（Rev.: 1.16 Jan 24 2001 13:57）
+３版：2001/02/01  山口 更新（Rev.: 1.17 Jan 31 2001 11:36）
+４版：2001/02/03  山口 更新（Rev.: 1.18 Feb 02 2001 12:55）
+５版：2001/05/01  山口 更新（Rev.: 1.19 Apr 30 2001 13:32）
+６版：2001/05/21  山口 更新（Rev.: 1.19 May 21 2001 11:42）
+７版：2001/06/12　山口 更新（Rev.: 1.21 Jun 11 2001 16:40）
+８版：2001/07/01　山口 更新（Rev.: 1.23 Jun 29 2001 15:23）
+９版：2001/09/30　山口 更新（Rev.: 1.27 Sep 28 2001 18:40）
+10版：2003/02/26　山口 更新（Rev.: 1.29 Feb 25 20:07 2003）
+11版：2003/02/26　山口 更新（Rev.: 1.30 November 29, 2005）
+
+*************************************** 覚え書き ************************************
+-->
+
+<link rel="alternate" hreflang="en" modified="November 29, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/psm/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+<center>
+<h2>パーソナル セキュリティ マネジャー （PSM）</h2>
+
+<FONT SIZE="-1">
+ニュースグループ： 
+<A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</A><BR>
+
+テクニカル コンタクト：
+<a href="mailto:kengert@redhat.com,wtchang@redhat.com,rrelyea@redhat.com?subject=PSM%20Feedback">
+Kai Engert、Wan-Teh Chang、Bob Relyea</a></font></i><br>
+
+<i><font size="-1">マネージャ：
+<a href="mailto:blord@redhat.com?subject=PSM%20Feedback">Bob Lord</a></font></i>
+</center>
+
+<P>パーソナル セキュリティ マネジャー （PSM）は、クライアント側のアプリケーションに代わって暗号化作業を行うライブラリ一式です。この作業には、 SSL 接続の確立、オブジェクト署名と署名証明、（発行や取り消しを含む） 認証管理、そしてその他の一般的な PKI 機能が含まれます。
+</P>
+
+<p>
+<a href="#psm23">PSM 2.3</a><BR>
+<a href="#psm21">PSM 2.1</a><br>
+<a href="#psm20">PSM 2.0</a><BR>
+<a href="#documentation">参考文献</a><br>
+<a href="#standards">スタンダード サポート</a><BR>
+<a href="#mozillacvs">Mozilla CVS 情報</a><BR>
+<a href="#netscape6">Netscape 6 への組み込み</a>
+
+
+<h3><a name=psm23>PSM 2.3</a></h3>
+
+PSM 2.3 は S/MIME を実装しています。詳細情報は、<a href="smime_guide.html">S/MIME を利用する</a>をご覧下さい。
+
+<h3><a name=psm21>PSM 2.1</a></h3>
+
+PSM 2.1 には次の改良が施されています：
+<ul>
+	<li>多くのバグフィックス
+	<li>CRL ロード が必要な MIME タイプへのより細かな対応
+	<li>マスターパスワード設定パネルの新しいマスターパスワード再設定ボタン
+	<li>空欄マスターパスワードへの対応<!--support for a null master password-->
+	<li>多くの細かな UI の改良
+</ul>
+
+<p>変更が行われた主な個所や UI の詳細については、 <a href="help_21/">PSM 2.1 & プライバシーヘルプ：作業進捗状況</a>をご覧下さい。</p>
+
+<h3><a name=psm20>PSM 2.0</a></h3>
+
+<P>
+ PSM 2.0 は、処理中に SSL 実装する機能 （in-process SSL implementation） を備えており、Mozilla そして Netscape 6.1 に完全実装されています。次の文書では PSM 2.0 について説明します：
+</P>
+
+<ul>
+<li><a href="roadmap.html">PSM 2.0 ロードマップ ： 技術情報</a> では、違ったタイプの PSM で技術的にどの方向を目指しているのか、そして、どのように PSM 2.0 XPCOM 共有ライブラリーを整えていくのかをまとめています。
+
+    <li><a href="http://people.netscape.com/lord/psm/n61/">Netscape 6.1 用 Crypto の新しい点</a>：
+     PSM 2.0 の新機能を Communicator 4.x および Netscape 6.0 とを簡単に比較します。</li>
+    <li><a href="roadmap.html">PSM 2.0 ロードマップ：技術的概観</a> では、違ったタイプの PSM で技術的にどの方向を目指しているのか、そして、どのように PSM 2.0 XPCOM 共有ライブラリーを整えていくのかをまとめています。</li>
+    
+    <li><a href="buildpsm.html">PSM ビルドガイド</a> では、PSM 2.0 を Mozilla で利用するための詳細なガイドを提供しています。現在、PSM 2.0 は Windows、Macintosh、そして Linux 向けの Mozilla 用に毎日ビルドされています。</li>
+</ul>
+
+<a name="documentation"><h3><a name="documentation">参考文献</h3></a>
+
+<p>初期の PSM 2.0 計画：
+
+<ul>
+	<li><a href="plan_20.html">PSM 2.0 プラン</a> では、初期の目標、機能、ユーザーインターフェース、
+	そして当時設定されたスケジュールを解説しています。</li>
+	<li><a href="piptasks.html">PSM 2.0 タスクリスト</a> では、開発の初期段階でのタスクおよび依存関係を詳細に解説しています。</li>
+	<li><a href="http://people.netscape.com/lord/psm/readmefirst.html">PSM 2.0 UI</a> では、PSM 2.0 UI の初期計画を、XUL mockup も含めて解説しています。</li>
+</ul>
+
+<p>ヘルプ、ヘルプボタン：
+
+<ul>
+     <li><a href="help_21/">PSM 2.1 & プライバシーヘルプ：作業進捗状況</a> では、ヘルプファイルへの最新の変更状況、PSM 2.1 やプライバシー保護機能に施される予定の変更を、進行中の文書へのリンクと共に紹介します。</li>
+     <li><a href="help_20/">PSM 2.0 ヘルプ</a>では、 PSM 2.0/Netscape 6.1 で公開されたヘルプファイルへのリンクと共にヘルプの概況を紹介します。</li>
+     <li><a href="pip_ui_elements.html">PSM 2.0 UI エレメントのターゲット＆テキスト</a>では、全てのヘルプボタン、 re UI テキストの注釈の PSM 2.0 UI エレメント、ターゲットを示しています。</li>
+</ul>
+
+<p>開発の背景および以前のバージョン：
+<ul>
+	<li><A HREF="arch.html">パーソナルセキュリティマネージャ 1.x アーキテクチャ</A>：PSM 1.x アーキテクチャの概観。
+	<li><A HREF="history.html">パーソナルセキュリティマネージャ略歴</A>：パーソナルセキュリティマネージャがもともとどのように開発されたのかを解説します。</li>
+	
+<P>
+PSM プロジェクトについてのその他の情報は、次をご覧下さい：
+</P>
+
+<ul>
+	<li><a href="http://sbsdownload.netscape.com/psm/index.cgi">
+	Communicator 用パーソナル セキュリティ マネジャーをダウンロードする</a>：Netscape Communicator 4.7 以降で利用するには、Netscape Personal Security Manager 1.4 バイナリーをダウンロードして下さい。
+	
+	<li><A HREF="../src/download.html">PKI ソースをダウンロードする</A>：2000 年 2 月 14 日に発表された PSM ソースコードのオリジナルリリース。
+</ul>
+
+<p>
+パーソナル セキュリティ マネジャーは、 <A HREF="../nss/">NSS</A> の上にビルドされており、その NSS は、 <A HREF="../../../nspr/">Netscape Portable Runtime （NSPR）</A> の上にビルドされています。 PSM と共にビルドされたアプリケーションは、 NSPR を呼び出す必要はありませんが、 NSS と共にビルドされたアプリケーションは、NSPR を呼び出さなければなりません。
+</p>
+
+<P>
+PSM は、一つ、あるいはそれ以上の数のアプリケーションのために、全てのセキュリティ操作をこなします。開発者は、PSM ライブラリを呼び出して、 PSM の暗号化機能にアクセスすることが出来ます。
+</P>
+
+<a name="standards"><h3>スタンダード サポート</h3></a>
+
+<P>
+Mozilla、Netscape 6、Netscape Communicator 4.7、とその他クライアント アプリケーション用パーソナル セキュリティマネジャーによりサポートされる暗号操作には、以下のものが含まれます：
+</P>
+
+<ul>
+   <li><a HREF="../../../../docs/jargon.html#SSL">SSL v2 および v3</a>：SSL 認証、暗号化、干渉検知。
+
+   <li><a HREF="../../../../docs/jargon.html#TLS">TLS</a>： SSL の IETF バージョン。
+
+   <li><a HREF="../../../../docs/jargon.html#SMIME">S/MIME</a>（Mozilla には未実装） ： 署名付き、暗号化メール（必要に応じて、別個の署名および暗号化キーを使用）。
+
+   <li><a HREF="../../../../docs/jargon.html#PKCS5">PKCS #5</a>：プライベート・キー保存用の暗号。
+
+   <li><a HREF="../../../../docs/jargon.html#PKCS7">PKCS #7</a>：署名操作。
+
+   <li><a HREF="../../../../docs/jargon.html#PKCS11">PKCS #11</a>：PKCS #11 モジュールと関連する （スマート・カードのような） 暗号証明との通信。
+	<!--Communication with PKCS #11 modules and associated cryptographic tokens
+	 (such as smart cards).-->
+
+   <li><a HREF="../../../../docs/jargon.html#PKCS12">PKCS #12</a>：認証や関連するプライベート・キーのエクスポートと取り込み。
+
+   <li><a HREF="../../../../docs/jargon.html#CRMF">CRMF	</a>/<a HREF="../../../../docs/jargon.html#CMMF">CMMF</a>：認証局 （CA: certificate authority） との通信。
+
+   <li><a HREF="../../../../docs/jargon.html#OCSP">OCSP</a>：認証の妥当性をリアルタイムで確認。 
+</ul>
+
+<P>
+PSM （現況と予定） で利用可能な暗号化アルゴリズムについての詳細情報は、<a HREF="../nss/algorithms.html">Netscape 6.x、パーソナル セキュリティ マネジャー、及び iPlanet サーバで利用できる暗号技術</a> をご覧下さい。
+</P>
+
+</P>
+PSM を利用している場合、次の URL へ行くことで、バージョン番号とサポートされているアルゴリズムを確認することが出来ます：<a href="http://gemal.dk/browserspy/psm.html">http://gemal.dk/browserspy/psm.html</a>
+</P>
+
+<h3><a name="mozillacvs">Mozilla CVS 情報</h3>
+
+<h4>PSM 1.x</h4>
+
+<p>
+PSM 1.x は、 <tt>mozilla/security/psm/</tt> にチェックインされています。ディレクトリは、 <tt>lib/</tt>、 <tt>server/</tt>、<tt>ui/</tt>、および <tt>doc/</tt> です。
+</p>
+
+<p>
+<tt>coreconf</tt> が <tt>mozilla/security/</tt> のルート部分にチェックインされています。
+</p>
+
+<p>
+<tt>coreconf/location.mk</tt> および <tt>coreconf/source.mk</tt> は、<tt>$(COREDEPTH)/dist</tt> ではなく、 <tt>$(COREDEPTH)/../dist</tt> の <tt>dist</tt> を見つけます。
+</p>
+
+<h4>PSM 2.0</h4> 
+
+<p>
+PSM 2.0 は、 <tt>mozilla/security/manager/</tt> にチェックインされています。
+</p>
+
+<h3><a name="netscape6">Netscape 6 への組み込み</h3>
+
+<p>
+PSM 2.0 は完全なオープンソースで Netscape 6.1 と共に公開されています。
+</p>
+
+<p>
+完全なオープンソース NSS 3.1 （およびそれ以降） を基礎にした、パーソナル セキュリティ マネジャーの現行ビルドは、 Mozilla の日替わりビルドに組み込まれています。
+</p>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/psm/index.html">英語版</a> 2005/11/29</span> - <span>和訳版 2005/12/24</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/psm/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

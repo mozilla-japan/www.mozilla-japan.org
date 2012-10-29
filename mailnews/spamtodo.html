@@ -1,0 +1,669 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla スパムフィルタ機能 作業用 todo リスト</title>
+<style type="text/css" media="screen,tv">
+	p, li, dt, dd { line-height: 1.75em; }
+	h2 { margin: 0.5em; }
+	.main { margin-bottom: 0.5em; }
+	.addcomment { margin-top: 10px; margin-bottom: 5px; text-align: right; font-size: small; line-height: 1.5em; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="November 12,  2002">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/mailnews/spamtodo.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h2>Mozilla スパムフィルタ機能 作業用 todo リスト</h2>
+<p>
+このページは、コードがデフォルトのビルドに入る前に、未解決のジャンクメール関係の問題を記録する場所として使われていました。
+
+現在、私たちは Bugzilla でこれらの追跡をおこなう方向に向かっており、私はこのページを登録（添付）してバグに関連づける予定です。
+
+ただし、新しい問題はもうここには追加されません。
+
+</p>
+
+
+
+<p style="margin: 10px; border: 1px dashed #000000; padding: 10px">
+
+訳者より : 上にあるように、現在、スパムフィルタ機能のバグは <a href="http://bugzilla.mozilla.org/">Bugzilla</a> に移行中のようです。
+
+この todo リストは今後更新（追加）される予定がなく、すぐに内容が古くなってしまうようなので、和訳するのをやめました。
+
+他のページと違って IRC のログと思われる会話が多く入っていることもあり、ちょっと訳に自信もないので（汗）&nbsp;
+
+スパムフィルタ機能に関心のある方は <a href="http://bugzilla.mozilla.org/query.cgi">Bugzilla で検索</a> してみてください。
+
+本当にごめんなさい m(_ _)m
+
+</p>
+
+      <hr>
+
+
+
+	<p>
+
+	  top most todo items for dmose:
+
+	</p>
+
+
+
+<ol>
+
+   <li><strike>fix the 5 (not 3) state problem</strike></li>
+
+   <li><strike>fix the regression in tree.xml (varga might be able to help).&nbsp;
+
+new columns (with no ordinal, like junkStatus will be for users once we land)
+
+ should be on the far right, not the far left.&nbsp; (you said it's on the
+
+ left for Mail.app, can you screen shot?)&nbsp; we still want the regression
+
+ fixed.</strike></li>
+
+   <li><strike>send everything through the view, fix the cycler issue (http://bugzilla.mozilla.org/show_bug.cgi?id=169638#c87),
+
+&nbsp;make the view a listener</strike></li>
+
+   <li><strike>land bienvenu's IMAP patch</strike></li>
+
+   <li>cmdRequiringMsgBody commands && offline: how do we deal with offline but no message body?  refuse to allow junk button use and toggling?  or queue up for going online?</li>
+
+   <li><strike>some messages are left unclassified</strike></li>
+
+   <li><strike>rename "analyze messages" to "run junk mail controls on selected messages"; make localizable.</strike></li>
+
+  <li><strike>since news support can wait, we should just stop showing news accounts
+
+ in junkMail.xul.&nbsp; (it's a one liner to hide them, but they junk status
+
+column will still show)</strike></li>
+
+</ol>
+
+
+
+ for later:<br>
+
+
+
+<ol>
+
+   <li>filing in non-existant Junk Mail folder causes error message</li>
+
+   <li>integrate with help</li>
+
+   <li>infrastructure (non-spam-code) assertions get trigged by spam code</li>
+
+   <li>don't allow the user to use move for news accounts (in junkMail.js,
+
+use get the root folder from the incoming server, and check rootFolder.canDeleteMessages)</li>
+
+   <li>add code to classify incoming news messages</li>
+
+   <li><strike>land new icons from gail</strike></li>
+
+   <li>add junk icon to msg hdr area (I've got the start of this, will hand
+
+of to dmose later)</li>
+
+   <li> serialize msgdbview classifications so that progress in
+
+   classifications is obvious through the UI, and we get through all
+
+   classification callbacks before calling EndBatch()</li>
+
+   <li>fix cycler in search window</li>
+
+   <li>make sure both new and existing profiles get the "non-junk" view</li>
+
+   <li>initial size of junk dialog & log dialog too big</li>
+
+   <li>switch junkMail.xul back to &lt;dialog&gt; from &lt;window&gt;</li>
+
+   <li>spam-status persistence via IMAP keywords/X-Mozilla-Status2?</li>
+
+   <li>logging code issues:
+
+   <ol>
+
+     <li>localize it</li>
+
+     <li>logging could be more informative</li>
+
+     <li>merge junk & filter logging code, (lots of duplicated code)</li>
+
+   </ol>
+
+   <li>refactor nsIMsgFilterList and nsISpamSettings to eliminate
+
+       duplicated code</li>
+
+   <li>allow whitelisting from multiple addressbooks</li>
+
+</ol>
+
+
+
+<br>
+
+<hr>
+
+UI issues:
+
+<br>
+
+now:
+
+<ol>
+
+   <li>classic skin work (bug 178566)</li>
+
+   <li><strike>modern: threadpane JUNK & UNKNOWN icons hard to distinguish when
+
+	selected</strike></li>
+
+</ol>
+
+
+
+later:
+
+
+
+<ol>
+
+   <li>should junk control window have icon for when iconified?</li>
+
+   <li>revisit modality of log windows for this and filtering</li>
+
+   <li>should "Next" button default to off in toolbar?</li>
+
+   <li>do we need progress / status when doing bulk message "analyze" or
+
+	bulk "marking"?  see also item 6 in dmose's later list</li>
+
+   <li>should the junk icon column in the threadpane always default to
+
+   on?  or only when the feature is enabled for the acct?</li>
+
+   <li>add a "mark junk messages as read" option to the junk control
+
+   dialog so you don't get distracted from work email by the junk
+
+   folder going bold on you.?</li>
+
+   <li>thread page / message pane context menus for analyze / mark?</li>
+
+   <li>header pane icon for junk status (think how will we know from
+
+       the stand alone msg window, or if thread pane is collapsed,
+
+       or if junk column is hidden?)</li>
+
+   <li>toggle the junk button toolbar text, based on selected messages?</li>
+
+   <li>keep "Mark Selected..." Tools menu items?</li>
+
+</ol>
+
+
+
+<hr>
+
+bienvenu:<br>
+
+<ol>
+
+  <li>Stuck IMAP URL queue issues (related to unclassified messages)</li>
+
+  <li><strike>AB whitelisting issues</strike></li>
+
+</ol>
+
+
+
+<hr width="100%" size="2">beard: just doing further validation<br>
+
+     beard: further work on international HTML messages<br>
+
+     beard: maybe trying out the other algorithms<br>
+
+     beard: I'm still concerned that my spam corpus isn't working correctly
+
+  with mailnews, while it does work in my Java implementation.<br>
+
+     beard: looking into it<br>
+
+     beard: I want to compare the histograms<br>
+
+
+
+<hr width="100%" size="2"><strike>will need to fork rules .dat to land the mail view
+
+stuff</strike><br>
+
+<hr width="100%" size="2">naving: the junk folder creation part has changed<br>
+
+naving: it is going to be driven from UI<br>
+
+saspitzer: you mean, when I choose "Junk" on "Account", and hit ok, that
+
+will create the folder?<br>
+
+saspitzer: (and set the folder flags, I assume)<br>
+
+naving: I don't if that is good UI design but yeah something like that<br>
+
+saspitzer: will the back end still create the folder on they fly if it doesn't
+
+exist?<br>
+
+saspitzer: I mean, what if I remove the folder.<br>
+
+saspitzer: or are we going to make it so you can't remove the junk mail folder?<br>
+
+naving: backend will not do anything special, we were creating folder on
+
+filter move but that idea has been crunched<br>
+
+naving: if it is there then we are going to move it<br>
+
+saspitzer: what is "on filter move"?<br>
+
+naving: I mean just like any other filter move<br>
+
+naving: filter: movetofolder action<br>
+
+naving: we were creating folder prior to moving messages when playing back
+
+filter moves<br>
+
+naving: for junk folder<br>
+
+saspitzer: ok, so we can create the folder from the UI, but we might want
+
+to add code (to david's patch that moves messages) to also create a folder
+
+lazily, but that will take some <br>
+
+work, as folder creation (at least for imap) is asynch.<br>
+
+saspitzer: we (you me david) should talk about this more later.<br>
+
+saspitzer: I got a question for you<br>
+
+naving: shoot<br>
+
+saspitzer: actually, never mind.<br>
+
+naving: so you want me to do the new UI folder creation part<br>
+
+saspitzer: no, we'll conflict.<br>
+
+saspitzer: I've got a mess of changes.<br>
+
+naving: ok, then you do it<br>
+
+naving: you may have to set the folder junk flag at the right place in backend
+
+if we are <br>
+
+going to have a special icon/order for junk folder. I can help w/ you that.
+
+I have a patch for that.<br>
+
+
+
+<hr width="100%" size="2">nhotta, ducarroz, beard, bienvenu: mime is stripping
+
+  out tokens, converting html. affects our effectiveness.<br>
+
+
+
+<hr width="100%" size="2"><strike>beard: by the way, training a folder at
+
+a time is too slow<br>
+
+    beard: I rewrote mine to send all the messages in at once, instead of
+
+ on the callback, and it sped it up considerably<br>
+
+    beard: it only blocks while sending in the URLs to the messages.</strike><br>
+
+
+
+<hr width="100%" size="2"><strike>bienvenu: get this working for pop3</strike><br>
+
+
+
+<hr width="100%" size="2"><strike>bienvenu: make sure that we use the disk/memory
+
+  cache when the filter plugin runs, to avoid multiple msg fetches</strike><br>
+
+    <br>
+
+    related:<br>
+
+    dmose: i already talked with bienvenu about work that needs to happen
+
+to  optimize imap<br>
+
+    dmose: so that we don't download all the mime parts<br>
+
+    dmose: i'm still waiting for some more feedback from him, but he's busy
+
+  at the moment :-)<br>
+
+
+
+<hr width="100%" size="2"><span style="text-decoration: line-through;">bienvenu:
+
+ move filter plugin comptr from folder  to server</span><br>
+
+
+
+<hr width="100%" size="2">bienvenu: oh, I'm only spam filtering pop on get
+
+  new mail, not when you open any local folder<br>
+
+    bienvenu: that's probably an issue<br>
+
+    bienvenu: for imap, just new mail, which is newly downloaded unread mail<br>
+
+    bienvenu: for pop, it's just new mail from your pop server<br>
+
+    bienvenu: so, if we run the spam filter on new msgs in other local folders,
+
+  they'll pick up the spam<br>
+
+    bienvenu: we do that for imap now<br>
+
+    bienvenu: for local, we aren't doing it on new messages<br>
+
+    bienvenu: like we are for imap.<br>
+
+    bienvenu: and I think we should<br>
+
+
+
+<hr width="100%" size="2">bienvenu: hey, is the spam flag supposed to get
+
+  set on the spam folder?<br>
+
+    saspitzer: it is, but I haven't done it yet.<br>
+
+    bienvenu: we need to set it during folder discovery, I think.<br>
+
+    bienvenu: like we do for the sent folder<br>
+
+    bienvenu: and other folders that are set in prefs.js<br>
+
+    saspitzer: what if we create it on the fly?<br>
+
+    saspitzer: or does that go through folder discovery as well?<br>
+
+    bienvenu: then we set it then as well (I think...)
+
+<hr width="100%" size="2"><span style="text-decoration: line-through;">naving
+
+ / david: purge related crash on shutdown, (http://bugzilla.mozilla.org/show_bug.cgi?id=173545)</span><br>
+
+
+
+<hr width="100%" size="2">bienvenu: we should get the msg body before we
+
+  run the spam filter. <br>
+
+
+
+<hr width="100%" size="2">bienvenu: Also, we need to make it so we don't
+
+  fetch the whole message body, if possible<br>
+
+    bienvenu: I don't think JF's code does that - he just only emits the interesting
+
+ things to beard<br>
+
+
+
+<hr width="100%" size="2">bienvenu: if the folder in question is configured
+
+  for offline use, downloading <br>
+
+    bienvenu: the msg body for the spam filter should also put the message
+
+ in the offline store<br>
+
+
+
+<hr width="100%" size="2">bienvenu:<br>
+
+    <br>
+
+    The mozilla implementation currently filters messages that have been
+
+<br>
+
+     filtered by other mail filters (at least for imap). We may want to <br>
+
+     reconsider, but for me, it's very useful, because I filter messages
+
+<br>
+
+     addressed to me into a folder, and I get a lot of spam addressed to
+
+me,  <br>
+
+     which makes the secondary spam filtering very useful. <br>
+
+
+
+<hr width="100%" size="2">bienvenu: if the user has the inbox configured
+
+  to automatically download message bodies (for offline), use those bodies<br>
+
+
+
+<hr width="100%" size="2">dmose: so the JS stuff has been dropped entirely
+
+  in favor of C++?<br>
+
+    dmose: should probably just CVS remove it<br>
+
+    saspitzer: beard is still using it for reference, so might want ot check
+
+  with him.<br>
+
+
+
+<hr width="100%" size="2">dmose: why did the iface change from having separate
+
+  header/body calls to a single call for filtering a message?<br>
+
+    dmose: what happened to the idea of using a score?<br>
+
+
+
+<hr width="100%" size="2">beard: tools to create / dump binary token dbs<br>
+
+
+
+<hr width="100%" size="2">beard / sspitzer:  ship with default good / bad
+
+ dbs?<br>
+
+
+
+<hr width="100%" size="2"><strike>sspitzer: spam addition to
+
+mailViews.dat for non junk
+
+(http://bugscape.mcom.com/show_bug.cgi?id=20458) FIX IN HAND</strike><br>
+
+
+
+<hr width="100%" size="2"><strike>sspitzer: getting the patch ready to turn it all
+
+  on.</strike><br>
+
+
+
+ <hr width="100%" size="2"><strike>gail: icons </strike><strike>(temporary
+
+  icons checked)</strike><br>
+
+
+
+<hr width="100%" size="2">
+
+<pre>
+
+2.   Right now, analyze doesn't heed your spam settings. Should it?<br>
+
+
+
+If this menu item is available even if they haven't enabled JM controls
+
+(i like this idea better, user doesn't have to enable jm controls but
+
+can still use them manually as desired), then:
+
+
+
+a. if they Have enabled jm controls and picked settings,
+
+we should obey them.
+
+
+
+b. if they have Not enabled jm controls, we should just identify junk
+
+and potential junk msgs in the thread pane using /the jm column. JM
+
+column appears and displays status.
+
+</pre>
+
+
+
+<hr width="100%" size="2">ducarroz: completed mime stuff, consulting if needed
+
+ <br>
+
+    peterv: consulting ifneeded<br>
+
+     help / docs: (ian / robinf?)<br>
+
+       <br>
+
+    <br>
+
+ <br>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/mailnews/spamtodo.html">英語版</a> 2002/11/12</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/mailnews/spamtodo.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

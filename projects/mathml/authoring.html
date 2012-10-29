@@ -1,0 +1,647 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Authoring MathML for Mozilla</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/mathml/authoring.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/mathml/authoring.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<h2 align="center">Mozilla での MathML の記述</h2>
+
+<p>Roger B. Sidje 
+&lt;<i><a href="mailto:rbs@maths.uq.edu.au">rbs@maths.uq.edu.au</a></i>&gt;
+</p>
+
+<table align='right' width='200' border='1'>
+<tr>
+<th align='center' bgcolor='#c0c0c0'>
+<font color='#000000'>XML/XHTML<br>の検証</font>
+</th></tr>
+
+<tr><td align='center'>
+<p>
+ W3C の<br>
+<A HREF="http://validator.w3.org/">HTML/XHTML<br>検証サービス</A>で
+</p>
+
+<p>
+ RUWF? の<br>
+<A HREF="http://www.xml.com/pub/a/tools/ruwf/check.html">XML 文法点検</A>で
+<br><br></p>
+
+<!--
+訳者註：
+原文のリンク
+http://www.xml.com/xml/pub/tools/ruwf/check.html
+はリンク切れで、それに対応するリンクが
+http://www.xml.com/pub/a/tools/ruwf/chech.html
+であると推定される
+-->
+
+</td></tr>
+
+<tr><th align='center' bgcolor='#c0c0c0'>
+<font color='#000000'><br> CSS の<br>検証</font>
+</th></tr>
+
+<tr><td align='center'>
+<p>
+   <a href="http://jigsaw.w3.org/css-validator/validator-uri.html">WEB</a><br>から直接
+</p>
+<p>
+  <a href="http://jigsaw.w3.org/css-validator/validator-text.html">テキストエリアに<br>コピー & ペースト</a>で
+</p>
+<p>
+  <a href="http://jigsaw.w3.org/css-validator/validator-upload.html">ファイルの<br>アップロード</a>で
+</p>
+</td></tr>
+</table>
+
+<table width="150" align="left">
+<tr><td bgcolor="#FEFFE6">
+<b>目次</b>
+
+<ul>
+<li>序文<br><br></li>
+<li>要点<br><br></li>
+<li>XHTML への適合<br><br></li>
+<li>MathML のヒント<br><br></li>
+</ul>
+</td><td>&nbsp;</td></tr>
+</table>
+
+<h3>序文</h3>
+
+<p>
+MathML についての決定的な参照先は 
+<a href="http://www.w3.org/Math/">MathML の仕様書</a>
+です。Mozilla での MathML の実装は、始めに MathML 1.x と、
+それへの付加 (利点) と反対された特徴 (欠点) が考慮された MathML 2.0 での
+<A HREF="http://www.w3.org/TR/REC-MathML/chap3_1.html">
+プレゼンテーションマークアップ</A>
+に適合することを目的としています。
+</p>
+
+<p>
+このページでは現在の実装の中からほとんどを取得できるような
+MathML の記法について要約します。
+</p>
+
+<p>
+この実装は現在進行中なので、
+正確な機能が欠如しているか一部しか実行できないかもしれません。
+その上、Mozilla 自身がまだ開発段階で不安定性や予期せぬ振舞いを残しています。
+このように、
+<A HREF="../../projects/mathml/">Mozilla で MathML</A>
+を実験しようとする者は、Mozilla が最先端の物であることを知って、
+これらの事実を心に止めておくべきです。
+</p>
+
+<p>
+<A HREF="../../get-involved.html">参加</A>
+は貴方の貢献の一部です。
+あなたの還元は WEB 上に MathML の文書を置き
+仲間にもそうするように誘ってみること、
+<A HREF="../../quality/bug-writing-guidelines.html">BugZilla</A>
+にバグを報告すること、またコードに関して援助ができるのなら
+<A HREF="/lxr/seamonkey/source/layout/mathml/">
+現在のコードを検査・改良すること</A>、そして
+<A HREF="../../projects/mathml/update.html">今後の課題</A>
+に項目を載せることによって発表されるべきです。
+</p>
+
+<h3>要点</h3>
+
+<!-- 
+訳者註：
+原文では h2 になっているが、文書構成上どうみても h3 が正しい 
+-->
+
+<p>
+MathML は
+<A HREF="http://www.w3.org/TR/REC-xml">XML</A>
+の応用なので，
+<code>&lt;math&gt;...&lt;/math&gt;</code>
+タグで囲まれた部分は整形式 XML でなくてはなりません。
+</p>
+
+<p>
+Mozilla は同一文書内での XML と HTML の混合をまだサポートしていません。
+つまり HTML 文書内の
+<code>&lt;math&gt;</code>
+タグで囲まれた部分は Mozilla では正しく表示されません。
+</p>
+
+<p>
+<code>&lt;math&gt;...&lt;/math&gt;</code>
+タグで囲まれた部分を Mozilla で正しく表示される為には、
+その部分が整形式 XML 文書内で整形式 XML でなければなりません。
+これは、ほかの XML と同様で、それぞれの開始タグ
+<code>&lt;tag&gt;</code>
+は終了タグ
+<code>&lt;/tag&gt;</code>
+と共に用いなければならず
+全ての要素は完全な入れ子の状態でなければならない事を意味します。
+</p>
+
+<p>
+HTML の限界により、W3C は今
+<A HREF="http://www.w3.org/TR/xhtml1/">XHTML</A>
+を作成し HTML にはもう手を加えないと考えられます。
+XHTML (eXtensible HTML) は XML の規則で HTML を再構成したものです。
+いい加減なマークアップが許されてしまう HTML とは反対に、
+整形式でない XML (つまり整形式でない XHTML) 文書は正しく表示されません。
+</p>
+
+<p>
+Mozilla は XML 1.0 に対応していますが、
+XHTML にはその仕様が完全に定まってないという特異性のため完全に対応していません
+(例えば、文書が text/html として提供されるか
+text/xml として提供されるかに依って、
+DOM で大文字を返すか小文字を返すかが決まります)。
+</p>
+
+<p>
+XHTML は厳格で、HTML のきちんとしたバージョンなので、
+XHTML で書かれたページはほとんどのブラウザで正しく表示されます。
+そしてこれは Mozilla の MathML エンジンに都合が良いので、
+著者・作成者は XHTML の文法を用いるべきです。
+これは Mozilla で MathML を『すぐ使える』ようにする為の過酷な段階です。
+</p>
+
+<h3>XHTML への適合</h3>
+
+ここに Mozilla で正しく表示できるような
+XHTML に適合した文書を作成するための主な法則を挙げます。
+
+<ul>
+  <li><b>XHTML のタグはすべて小文字で</b> 
+    <table border="1" width="75%">
+      <tr> 
+        <td width="50%" align="center"> 
+          <p><b>HTML</b> 
+        </td>
+        <td width="50%" align="center"> 
+          <p><b>XHTML</b> 
+        </td>
+      </tr>
+      <tr> 
+        <td width="50%"> 
+          <p><b><code>&lt;H1 Align=&quot;CENTER&quot;&gt;コーシー積分&lt;/H1&gt;</code></b> 
+        </td>
+        <td width="50%"> 
+          <p><b><code>&lt;<font color="red">h1 a</font>lign=&quot;<font color="red">center</font>&quot;&gt;コーシー積分&lt;/<font color="red">h1</font>&gt;</code></b> 
+        </td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><b>すべての空でない要素は閉じる</b> 
+    <table border="1" width="75%">
+      <tr> 
+        <td width="50%" align="center"> 
+          <p><b>HTML</b> 
+        </td>
+        <td width="50%" align="center"> 
+          <p><b>XHTML</b> 
+        </td>
+      </tr>
+      <tr> 
+        <td width="50%" valign="top"> <b> 
+          <pre>
+&lt;p&gt;MathML
+  &lt;ul&gt;
+    &lt;li&gt;プレゼンテーションマークアップ
+    &lt;li&gt;コンテントマークアップ
+  &lt;/ul&gt;
+            </pre>
+          </b> </td>
+        <td width="50%" valign="top"> <b> 
+          <pre>
+&lt;p&gt;MathML
+  &lt;ul&gt;
+    &lt;li&gt;プレゼンテーションマークアップ<font color="red">&lt;/li&gt;</font>
+    &lt;li&gt;コンテントマークアップ<font color="red">&lt;/li&gt;</font>
+  &lt;/ul&gt;
+<font color="red">&lt;/p&gt;</font>
+            </pre>
+          </b></td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><b>空要素タグはその末尾にスラッシュ (/) を付加</b> 
+    <table border="1" width="75%">
+      <tr> 
+        <td width="50%" align="center"> 
+          <p><b>HTML</b> 
+        </td>
+        <td width="50%" align="center"> 
+          <p><b>XHTML</b> 
+        </td>
+      </tr>
+      <tr> 
+        <td width="50%"> 
+          <p><b><code>&lt;img src=&quot;myimage.gif&quot;&gt;</code></b> 
+        </td>
+        <td width="50%"> 
+          <p><b><code>&lt;img src=&quot;myimage.gif&quot; <font color="red">/</font>&gt;</code></b> 
+        </td>
+      </tr>
+      <tr> 
+        <td width="50%"> 
+          <p><b><code>&lt;br&gt;</code></b> 
+        </td>
+        <td width="50%"> 
+          <p><b><code>&lt;br <font color="red">/</font>&gt;</code></b> 
+        </td>
+      </tr>
+      <tr> 
+        <td width="50%"> 
+          <p><b><code>&lt;hr&gt;</code></b> 
+        </td>
+        <td width="50%"> 
+          <p><b><code>&lt;hr <font color="red">/</font>&gt;</code></b> 
+        </td>
+      </tr>
+    </table>
+    <br>
+  </li>
+  <li><b>すべての属性値は引用符で囲む</b></li>
+  <table border="1" width="75%">
+    <tr> 
+      <td width="50%" align="center"> 
+        <p><b>HTML</b> 
+      </td>
+      <td width="50%" align="center"> 
+        <p><b>XHTML</b> 
+      </td>
+    </tr>
+    <tr> 
+      <td width="50%"> 
+        <p><b><code>&lt;table border=0&gt;</code></b> 
+      </td>
+      <td width="50%"> 
+        <p><b><code>&lt;table border=<font color="red">&quot;</font>0<font color="red">&quot;</font>&gt;</code></b> 
+      </td>
+    </tr>
+  </table>
+  <br>
+  <li><b>属性は属性値まできちんと書く</b></li>
+  <table border="1" width="75%">
+    <tr> 
+      <td width="50%" align="center"> 
+        <p><b>HTML</b> 
+      </td>
+      <td width="50%" align="center"> 
+        <p><b>XHTML</b> 
+      </td>
+    </tr>
+    <tr> 
+      <td width="50%"> 
+        <p><b><code>&lt;td nowrap&gt;</code></b> 
+      </td>
+      <td width="50%"> 
+        <p><b><code>&lt;td nowrap<font color="red">=&quot;nowrap&quot;</font>&gt;</code></b> 
+      </td>
+    </tr>
+  </table>
+  <br>
+  <li>文書のルート要素は <code>&lt;html&gt;</code> で次の XHTML 名前空間を記す<br>
+    <code>&lt;html xmlns="http://www.w3.org/1999/xhtml"></code><br>
+    <br>
+  </li>
+  
+<li>全ての文書に <code>DOCTYPE</code> 宣言が必要
+<pre>
+&lt;!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "DTD/xhtml1-strict.dtd"&gt;
+
+&lt;!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "DTD/xhtml1-transitional.dtd"&gt;
+
+&lt;!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
+     "DTD/xhtml1-frameset.dtd"&gt;
+</pre>
+  </li>
+</ul>
+
+
+
+<p>以下は最小な XHTML 文書の例です。</p>
+
+  
+<pre><font color="#500000"><b>&lt;?xml</b> <font color="#0000A0"><b>version=&quot;</b></font><font color="#000080">1.0</font><font color="#0000A0"><b>&quot;</b></font><font color="#500000"></font><b>?&gt;</b></font>  
+<font color="#500000"><b>&lt;!DOCTYPE</b> <font color="#0000A0"><b>html PUBLIC</b></font><font color="#000080"> &quot;-//W3C//DTD XHTML 1.0 Strict//EN</font><font color="#0000A0">" &quot;DTD/xhtml1-strict.dtd"</font><b>&gt;</b></font>  <font color="#500000"><b>
+&lt;html</b> <font color="#0000A0"><b>xmlns=&quot;</b></font><font color="#000080">http://www.w3.org/1999/xhtml</font><font color="#0000A0"><b>&quot;</b></font><b>&gt;</b></font>  
+  <font color="#500000"><b>&lt;head</b><b>&gt;</b></font>  
+    <font color="#500000"><b>&lt;title</b><b>&gt;</b></font><font color="#005000">最小な XHTML 文書</font><font color="#500000"><b>&lt;/title&gt;</b></font>  
+  <font color="#500000"><b>&lt;/head&gt;</b></font>  
+  <font color="#500000"><b>&lt;body</b><b>&gt;</b></font>  
+    <font color="#500000"><b>&lt;p</b><b>&gt;
+      </b></font><font color="#005000">すべての検証済 XHTML を受け入れます、それゆえ</font> 
+<font color="#005000">      </font><font color="#500000"><b>&lt;a</b> <font color="#0000A0"><b>href=&quot;</b></font><font color="#000080">http://www.mozilla.org/</font><font color="#0000A0"><b>&quot;</b></font><b>&gt;</b></font><font color="#005000">リンク</font><font color="#500000"><b>&lt;/a&gt;</b></font><br>      <font color="#005000">が表示されます。</font> <font color="#500000">
+<b>    &lt;/p&gt;</b></font>  
+  <font color="#500000"><b>&lt;/body&gt;</b></font>  
+<font color="#500000"><b>&lt;/html&gt;</b></font>
+</pre>
+
+
+<h3>Mozilla での記述</h3>
+
+<!--
+これは目次に存在しないが...
+-->
+
+<p>一度文書が XHTML に対応すれば、次の例に示されるように、
+Mozilla ではほんの少しだけ重要でない改訂が必要です。</p>
+
+<pre><font color="#500000"><b>&lt;?xml</b> <font color="#0000A0"><b>version=&quot;</b></font><font color="#000080">1.0</font><font color="#0000A0"><b>&quot;</b></font><font color="#500000"></font><b>?&gt;</b></font>
+<font color="#500000"><b>&lt;!DOCTYPE</b> <font color="#0000A0"><b>html PUBLIC </b></font><font color="#000080"><b>&quot;</b><span style="background-color:yellow">-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN</span><b>&quot;</b>
+               <b>&quot;</b><span style="background-color:yellow">http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd</span><b>&quot;</b></font> <span style="background-color:yellow"><b>[
+  &lt;!ENTITY mathml "</b>http://www.w3.org/1998/Math/MathML<b>"&gt;
+]</b></span><b>&gt;</b></font>  
+<font color="#500000"><b>&lt;html</b> <font color="#0000A0"></font></font><font color="#0000A0"><b>xmlns=&quot;</b></font><font color="#000080">http://www.w3.org/1999/xhtml</font><font color="#0000A0"><b>&quot;</b></font><font color="#500000"><b>&gt;</b></font>
+  <font color="#500000"><b>&lt;head</b><b>&gt;</b></font>
+    <font color="#500000"><b>&lt;title</b><b>&gt;</b></font><font color="#005000">MathML を含む最小の XHTML</font><font color="#500000"><b>&lt;/title&gt;</b></font> 
+  <font color="#500000"><b>&lt;/head&gt;</b></font>
+  <font color="#500000"><b>&lt;body</b><b>&gt;</b></font>
+    <font color="#500000"><b>&lt;p</b><b>&gt;
+      </b></font><font color="#005000">検証済 XHTML と MathML を受け入れました，その結果</font> 
+    <font color="#500000"><b>  &lt;a</b> <font color="#0000A0"><b>href=&quot;</b></font><font color="#000080">http://www.mozilla.org/</font><font color="#0000A0"><b>&quot;</b></font><b>&gt;</b></font><font color="#005000">リンク</font><font color="#500000"><b>&lt;/a&gt;</b></font>
+      <font color="#005000">と分数</font> 
+    <font color="#500000"><b>  &lt;math</b> <font color="#0000A0"><b>xmlns=&quot;</b></font><font color="#000080">&mathml;</font><font color="#0000A0"><b>&quot;</b></font><b>&gt;</b></font>
+        <font color="#500000"><b>&lt;mfrac</b><b>&gt;</b></font>
+          <font color="#500000"><b>&lt;mi</b><b>&gt;</b></font><font color="#005000">a</font><font color="#500000"><b>&lt;/mi&gt;</b></font>
+      <font color="#500000"><b>    &lt;mi</b><b>&gt;</b></font><font color="#005000">b</font><font color="#500000"><b>&lt;/mi&gt;</b></font>
+      <font color="#500000"><b>  &lt;/mfrac&gt;</b></font>
+    <font color="#500000"><b>  &lt;/math&gt;</b></font>
+      <font color="#005000">が表示されます</font> 
+    <font color="#500000"><b>&lt;/p&gt;</b></font>
+  <font color="#500000"><b>&lt;/body&gt;</b></font>
+<font color="#500000"><b>&lt;/html&gt;</b></font>
+</pre>
+
+<font color="red">[ もしブラウザが MathML 対応ならば、
+<a href="authoring-example.xml">この例の表示結果を見て下さい</a> ]</font>
+
+<h3>MathML のヒント</h3>
+
+<ul>
+
+<li>
+  <b>検証済 MathML を用いましょう。</b>
+  それぞれの要素の文法は、MathML の仕様書によって正確に定義されています。
+  例えば、多くの MathML の要素は決まった数の子要素が要求されます。
+  WEB サイトに検証済 MathML を置くことによって訪れた人に恩恵を与えましょう。
+  いい加減な HTML を一蹴する事でブラウザを威張らせましょう。
+  今 XML/XHTML/MathML と共に、
+  新たな立場で WEB をきれいな状態にすることから始まります。<br><br>
+</li>
+
+<li>
+  <b>無関係な、そして無意味に内容を混乱させるタグは避けましょう。</b>
+  次の例は検証済マークアップです
+  (そして Mozilla の MathML エンジンによって正しく表示されます)：
+<pre>
+  &lt;msup&gt;
+    &lt;mrow&gt;
+      &lt;mrow&gt;
+        &lt;mrow&gt;
+          &lt;mi&gt;a&lt;/mi&gt;
+        &lt;/mrow&gt;
+      &lt;/mrow&gt;
+   &lt;/mrow&gt;
+   &lt;mi&gt;b&lt;/mi&gt;
+  &lt;/msup&gt;
+</pre>
+
+<p>
+しかしながら、パフォーマンスとメモリ消費の点でいくつか欠点があります：
+<ul>
+  <li>ネットでファイルを取得する際のオーバーヘッド</li>
+  <li>すべての余分な &lt;mrow&gt; が DOM に記憶される</li>
+  <li>CSS フレームがそれぞれの余分な &lt;mrow&gt; で展開される</li>
+  <li>再読込 (フォーマット)時に時間が無駄</li>
+</ul>
+</p>
+
+<p>余分な &lt;mrow&gt; を取り除くことによってより単純に、
+わかり易く(また読み易く)なります：
+<pre>
+    &lt;msup&gt;
+      &lt;mi&gt;a&lt;/mi&gt;
+      &lt;mi&gt;b&lt;/mi&gt;
+    &lt;/msup&gt;
+</pre>
+同様に， 'sin' や 'mod' 関数に関しては、
+<code>&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;</code>
+や
+<code>&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;</code>
+よりは、
+<code>&lt;mo&gt;sin&lt;/mo&gt;</code>
+や
+<code>&lt;mo&gt;mod&lt;/mo&gt;</code>
+を用いて下さい。
+</p>
+<br>
+</li>
+
+<li>
+  <b>トークン要素の始めや終りでの無視できる空白は避けましょう。</b>
+<pre>
+    &lt;mi&gt;       a       &lt;/mi&gt;
+</pre>
+  よりは
+<pre>
+    &lt;mi&gt;a&lt;/mi&gt;
+</pre>
+を用いて下さい：<br>
+MathML は既に多弁なので、貴方が冗長を加える必要はないですよ？
+また、フォーマット時にコード中の空白をこらしめる為に、
+多大な代償が支払われることも記しておきましょう。
+WEB 上では、
+コマンドライン上で長い TeX のコンパイルを最後まで待てる人でも
+サイトの遅さには負けてどこかへ出かけてしまう、
+ということも覚えておいて下さい。
+そのような空白をマークアップから排除し続けることによって、
+フォーマット時のいくつかの作業を飛ばすことができ、
+あなたのサイトを訪れた人に
+速くより快適なブラウジングの経験をさせることができます。<br><br> 
+</li>
+
+<li>
+  <b>特定の表示を除きたいならば属性を用いましょう。</b>  
+  例えば： stretchy='false', lspace='0',
+    accent='true',
+    accentunder='true'．
+  既定値での振舞いは予想しているものと異なるかもしれません。<br><br>
+</li>
+
+<li>
+  <b>数字の属性値には CSS の単位を用いましょう。</b>
+
+  沢山の単位が用意されています (em, ex, px, in, cm, mm, pt, pc, %)。
+特定の文書にどの単位を用いるかは貴方の自由です。
+単位のない数字の属性値、例えば lspace='10' はあいまいで、
+Mozilla の MathML エンジンはそのような属性をすべて無視してしまいます。
+0 だけは明確な単位を必要としません。<br><br>
+</li>
+
+<li>
+  <b>マークアップに意味を持たせましょう、そして内容と見栄えを分けましょう。</b>
+例えば、<code>&lt;mi&gt;(&lt;/mi&gt;</code>
+(or any <code>&lt;mi&gt;symbol&lt;/mi&gt;</code>) のような使用は避けて下さい。
+もし記号が別の方法でしか正しい識別子と示されるのでなければ、代りに
+<code>&lt;mo&gt;symbol&lt;/mo&gt;</code> を用いて下さい。
+  このような記述よりは
+<pre>
+        &lt;mi fontweight='bold'&gt;
+</pre>
+  次のように
+<pre>
+        &lt;mi type='vector'&gt;
+</pre>
+     スタイルシートへの次のような記述と共に用いて下さい。
+<pre>
+        mi[type='vector'] { 
+          font-weight: bold; 
+        }
+</pre>
+このように、
+CSS を書き換えることによってすべてのベクトルの見栄えを変更することができます。
+</li>
+
+</ul>
+
+<hr size="1" noshade>
+<h4>次も見て下さい：</h4>
+<ul>
+<li><A HREF="http://www.webreview.com/1999/07_16/webauthors/xhtmlonly.html">
+XHTML: 美しいコードへの最後，最良の望み</A></li>
+
+<!--
+訳者註：
+原文のリンク
+http://www.wevreview.com/1999/07/16/feature/xhtmlonly.html
+はリンク切れで、それに対応するリンクが
+http://www.wevreview.com/1999/07_16/webauthors/xthmlonly.html
+であると推定される
+-->
+
+<li>
+<A HREF="http://www.w3.org/TR/xhtml1/">拡張可能なハイパーテキストマークアップ言語： XML 1.0 の規則に沿った HTML 4 の再構成</A></li>
+</ul>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/mathml/authoring.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/mathml/authoring.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

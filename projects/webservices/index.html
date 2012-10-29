@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="DC.subject" content="Mozilla and Web Services">
+<meta name="DC.title" content="Mozilla and Web Services">
+<meta name="DC.date.created" content="2003-04-25T17:56:03+11:00" scheme="W3CDTF">
+<meta name="DC.date.modified" content="2005-01-30T09:54:03+11:00" scheme="W3CDTF">
+ 
+<title>Mozilla と Web サービス</title>
+
+<link rel="subsection" href="#what" title="What are Web Services?">
+<link rel="subsection" href="#support" title="Mozilla Web Services support">
+<link rel="subsection" href="#how" title="More usable Web Services">
+<link rel="subsection" href="#more" title="Learning more on Web Services">
+<link rel="subsection" href="#involved" title="How to get involved">
+<link rel="subsection" href="#roadmap" title="Mozilla Web Services Roadmap">
+<link rel="subsection" href="#bugs" title="Bugs">
+
+<!--
+
+Rev:1.13 山口 nosupamu_syamagu@mozilla.gr.jp
+Rev:1.14
+Rev:1.16
+Rev:1.17
+Rev:1.18
+
+-->
+
+<link rel="alternate" hreflang="en" modified="January 30, 2005">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/webservices/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Web サービス</h1>
+
+<p>ニュースグループ：<a href="news://news.mozilla.org/netscape.public.mozilla.xml">netscape.public.mozilla.xml</a>
+
+<div style="float: left;">
+ <p>コンタクト：<br>
+ <a href="mailto:harishd@hotmail.com">Harish Dhurvasula</a><br>
+ <a href="mailto:mgalli@mgalli.com">Marcio Galli</a></p>
+</div>
+
+<div style="text-align: right;">
+ <p><strong>デモ：</strong><br>
+ <a href="http://mgalli.com/wsdom/moz-crossportal/fs-4/">xmethods.net Currency Converter</a><br>
+ <a href="examples/mozilla-wsdl/index.html">Amazon In-page Search</a><br><br>
+ <strong>（注：Babelfish xmethods.net インターフェースは<br>現在利用できません）</strong><br>
+ <a href="examples/babelfish-wsdl/index.html">翻訳例</a><br>
+ <a href="examples/chat-example/index.html">自動翻訳付き HTTP チャット</a></p>
+
+<strong>関連技術</strong><br>
+<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=92928">Bug 92928: accepting socket connections</a>
+
+</div>
+	
+<hr> 
+<p><i><a href="http://www.w3.org/TR/SOAP/">Simple Object Access Protocol ( SOAP ) 1.1</a> および
+<a href="http://www.w3.org/TR/wsdl">Web Services Description Language ( WSDL ) 1.1</a> 仕様</i></p>
+
+<p><strong>目次：</strong></p>
+<ol class="toc">
+  <li><a href="#what">Web サービスとは何ですか？</a></li>
+  <li><a href="#support">Mozilla は Web サービスをサポートしていますか？</a></li>
+  <li><a href="#how">Mozilla はどのようにして Web サービスを使いやすくしているのですか？</a></li>
+  <li><a href="#more">Mozilla の Web サービスサポートについて詳しく知りたいのですが。</a></li>
+  <li><a href="#involved">Mozilla の Web サービスに関わるにはどうしたらいいですか？</a></li>
+  <li><a href="#roadmap">Mozilla Web サービスロードマップ</a></li>
+  <li><a href="#bugs">バグ</a></li>
+</ol>
+
+<h3><a name="what">Web サービスとは何ですか？</a></h3> 
+
+<p><a href="http://www.w3.org/2002/ws/">Web サービス</a>とは <a href="http://www.w3.org/XML/">XML</a> ベースのテクノロジで、アプリケーションが環境に依存することなくお互いにやり取りできるようにします。これは、Web インターフェース（<a href="http://www.w3.org/XML/">XML</a>）を通じて標準化されたフォーマット（<a href="http://www.w3.org/TR/SOAP/">SOAP</a> および <a href="http://www.w3.org/TR/wsdl">WSDL</a> API）でメッセージをやり取りすることで成立します。</p> 
+
+<h3><a name="support">Mozilla は Web サービスをサポートしていますか？</a></h3>
+
+<p>「はい」であり「いいえ」です！　Mozilla は Web サービスをホストはしませんが、他のサービスとやり取りするために低次と高次の API （それぞれ SOAP と WSDL を指します）を提供しています。一般に利用できるサービスが多くあり、それらは <a href="http://www.xmethods.net/">XMethods</a> Web サイトにリストアップされています。その中には <a href="http://lxr.mozilla.org/mozilla/source/extensions/webservices">Mozilla 実装</a>をテストや事例として用いています。Mozilla SOAP API の使用についてより詳しく知るためには、<a href="../../lxr/mozilla/source/extensions/webservices/docs/Soap_Scripts_in_Mozilla.html">SOAP Scripts in Mozilla</a> ドキュメントを参照してください。SOAP の詳細を隠してサービスの呼び出しを単純化する、プロキシモデルを理解するためには、<a href="http://devedge-temp.mozilla.org/viewsource/2003/wsdl/01/">Accessing Web Services In Mozilla Using WSDL Proxying</a> ドキュメントを参照してください。</p>
+
+<!-- 
+<h3>Where is Mozilla at with Web Services? </h3>
+-->
+
+<h3><a name="how">Mozilla はどのようにして Web サービスを使いやすくしているのですか？</a></h3>
+
+<p>リソースがロードされたドメイン内のリソースのみにアクセスするようにスクリプトを制限することで、あるドメインから別のドメインへとロードされたあらゆるスクリプトは、ロードされたドメイン内のリソースにアクセスできなくなります。Mozilla は、クロスドメイン問題を克服する独特の方法を提供しています。それは、特殊な設定のためにセッティング／ハッキングで苦労することなく、スクリプトが分散されたサービスにアクセスできるようにしています。この新しいセキュリティモデルによって、信頼できないスクリプトや認証から、外部リソースへの正当なアクセスを要求する可能性のあるスクリプトに至るまで、内部リソースを区別し保護します。より深く Mozilla の Web サービスセキュリティを理解するためには、<a href="../../lxr/mozilla/source/extensions/webservices/docs/New_Security_Model.html">New Security Model</a> ドキュメントを参照してください。</p>
+
+<h3><a name="more">Mozilla の Web サービスサポートについて詳しく知りたいのですが。</a></h3>
+<ul>
+  <li><a href="examples/mozilla-wsdl/index.html">Amazon Web サービスを利用した WSDL プロキシ例</a></li>
+  <li><a href="examples/babelfish-wsdl/index.html">Babelfish と xmethods.com を利用した WSDL プロキシ例</a></li>
+  <li><a href="examples/chat-example/index.html">HTTP チャットと xmethods.com を利用した翻訳 Web サービスのデモ</a></li>
+  <li><a href="http://devedge-temp.mozilla.org/central/xml/">DevEdge XML Central</a></li>
+  <li><a href="../../lxr/mozilla/source/extensions/webservices/docs/Soap_Scripts_in_Mozilla.html">Mozilla での SOAP スクリプト</a></li>
+  <li><a href="http://www.oreillynet.com/pub/a/javascript/synd/2002/08/30/mozillasoapapi.html">Mozilla SOAP API を利用する</a></li>
+  <li><a href="http://www.xmlwebservices.cc/index_Samples.htm">Web サービスサンプル</a></li>
+  <li><a href="http://www.xml.com/pub/a/2000/03/29/tutorial/">Mozilla での XML Web ページ</a></li>
+</ul>
+
+<h3><a name="involved">Mozilla の Web サービスに関わるにはどうしたらいいですか？</a></h3>
+
+<ul>
+  <li><a href="http://lxr.mozilla.org/seamonkey/source/extensions/webservices/soap/tests/">SOAP テストスイート</a></li>
+  <li><a href="http://lxr.mozilla.org/seamonkey/source/extensions/webservices/wsdl/tests/">WSDL テストスイート</a></li>
+  <li><a href="http://devedge-temp.mozilla.org/viewsource/2003/soap/01/">Netscape Gecko ベースブラウザでの SOAP</a></li>
+  <li><a href="http://www.oreillynet.com/pub/a/javascript/synd/2002/08/30/mozillasoapapi.html">Mozilla SOAP API を利用する</a> (O'Reilly technote)</li>
+  <li><a href="http://developer.apple.com/internet/webservices/mozillasoapapi.html">Using the Mozilla SOAP API</a> (Apple Developer)</li>
+  <li><a href="http://devedge-temp.mozilla.org/viewsource/2002/meet-the-makers-presentation/#soap">Web サービスとユーザーエージェント</a></li>
+</ul>
+
+<h3><a name="roadmap">Mozilla Web サービスロードマップ</a></h3>
+
+<table cellpadding="4" cellspacing="2" border="1">
+  <tbody>
+    <tr>
+      <th scope="col">機能</th>
+      <th scope="col">ステータス</th>
+      <th scope="col">利用可能性</th>
+      <th scope="col">バグ</th>
+    </tr>
+    <tr>
+      <td><a
+ href="../../lxr/mozilla/source/extensions/webservices/docs/Soap_Scripts_in_Mozilla.html">SOAP
+1.1</a></td>
+      <td>2002年 2月 21日に開始</td>
+      <td>Mozilla 1.0 以降</td>
+      <td><a
+ href="https://bugzilla.mozilla.org/show_bug.cgi?id=107795">107795</a></td>
+    </tr>
+    <tr>
+      <td><a
+ href="http://devedge-temp.mozilla.org/viewsource/2003/wsdl/01/">WSDL 1.1</a></td>
+      <td>2003年 3月 20日に開始</td>
+      <td>Mozilla 1.4a 以降</td>
+      <td><a
+ href="https://bugzilla.mozilla.org/show_bug.cgi?id=196102">196102</a></td>
+    </tr>
+    <tr>
+      <td>Web サービスのための <a href="../../lxr/mozilla/source/extensions/webservices/docs/New_Security_Model.html">新しいセキュリティモデル</td>
+      <td>2003年 3月 24日に開始</td>
+      <td>Mozilla 1.4a 以降</td>
+      <td><a
+ href="https://bugzilla.mozilla.org/show_bug.cgi?id=183824">183824</a></td>
+    </tr>
+    <tr>
+      <td>Web サービスモジュール</td>
+      <td>2003年 4月 25日に作成</td>
+      <td>Mozilla 1.4 以降</td>
+      <td><a
+ href="https://bugzilla.mozilla.org/show_bug.cgi?id=201078">201078</a></td>
+    </tr>
+    <tr>
+      <td>セキュリティモデル拡張</td>
+      <td>2003年 7月 1日に開始</td>
+      <td>Mozilla 1.5 以降</td>
+      <td><a
+ href="https://bugzilla.mozilla.org/show_bug.cgi?id=203371">203371</a></td>
+    </tr>
+    <tr>
+      <td>UDDI 1.2 Inquiry API サポート</td>
+      <td>進行中</td>
+      <td>Mozilla 1.6 以降</td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>SOAP 1.2.</td>
+      <td><abbr title="To be determined">TBD</abbr></td>
+      <td><abbr title="To be determined">TBD</abbr></td>
+      <td><br></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3><a name="bugs">バグ</a></h3>
+
+<p>Mozilla の Web サービスに関するバグは Browser 製品、Web Services コンポーネントに登録してください。<a href="http://bugzilla.mozilla.org/buglist.cgi?query_format=&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;product=Browser&amp;component=Web+Services&amp;long_desc_type=substring&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;status_whiteboard_type=allwordssubstr&amp;status_whiteboard=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=exact&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailqa_contact2=1&amp;emailtype2=exact&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;changedin=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;remaction=run&amp;namedcmd=blocking1.4%2B&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">この検索結果</a> は現在オープンなバグを表示します。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/webservices/index.html">英語版</a> 2005/01/30</span> - <span>和訳版 2005/02/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/webservices/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

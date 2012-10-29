@@ -1,0 +1,274 @@
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1/GPL 2.0
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Rhino code, released May 6, 1999.
+   -
+   - The Initial Developer of the Original Code is
+   - Netscape Communications Corporation.
+   - Portions created by the Initial Developer are Copyright (C) 1997-1999
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   -
+   - Alternatively, the contents of this file may be used under the terms of
+   - the GNU General Public License Version 2 or later (the "GPL"), in which
+   - case the provisions of the GPL are applicable instead of those above. If
+   - you wish to allow use of your version of this file only under the terms of
+   - the GPL and not to allow others to use your version of this file under the
+   - MPL, indicate your decision by deleting the provisions above and replacing
+   - them with the notice and other provisions required by the GPL. If you do
+   - not delete the provisions above, a recipient may use your version of this
+   - file under either the MPL or the GPL.
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<!--   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Norris Boyd">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en]C-NSCP  (WinNT; U) [Netscape]">-->
+   <meta name="KeyWords" content="Rhino, JavaScript, Java">
+
+   <title>Rhino 1.5 の最新情報</title>
+
+<link rel="alternate" hreflang="en" modified="March 10,  2000">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/rhino/js15.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<center>
+<h1>Rhino 1.5 の最新情報</h1></center>
+
+<h2>
+ECMA 262 Edition 3 の適合</h2>
+Rhino 1.5 は ECMA 262 Edition 3（時々「 ECMAScript 」と照会される）に適合した JavaScript 1.5 を実行します。Edition 3 は、下に記載されている JavaScript 1.4 ですでに与えられていた JavaScript の特徴を標準化しています。
+<ul>
+<li>
+正規表現</li>
+<li>
+<tt>switch</tt> 文</li>
+<li>
+<tt>do</tt>...<tt>while</tt> ループ
+</li>
+<li>
+文のラベルとラベル付き <tt>break</tt> と <tt>continue</tt>
+表記ラベルと <tt>break</tt> と <tt>continue</tt> ラベル
+</li>
+<li>
+オブジェクト・リテラル
+</li>
+<li>
+ネスト化された関数
+</li>
+<li>
+例外ハンドル
+</li>
+
+<li>
+<tt>instanceof</tt> 演算子
+</li>
+
+<li>
+<tt>in</tt> オペレター
+</li>
+
+</ul>
+その他に、Edition 3 と JavaScript 1.5 に追加された新しい機能は下記の通りです。
+<ul>
+<li>
+貪欲な量指定子の様な演算子を含む Perl 5 の正規表現
+</li>
+
+<li>
+例外として捕捉されたエラー
+</li>
+
+<li>
+数字整形 (<tt>Number.prototype.toFixed</tt>, <tt>Number.prototype.toExponential</tt> と <tt>Number.prototype.toGeneral</tt>)
+</li>
+</ul>
+
+<h2>
+Rhino 1.4 Release 3 からの変更</h2>
+最初のリリースからオープン・ソース (1.4 Release 3) になるまでの、その他の重要な変更点は下に記載します。ここではバグ修正については述べられてなく、API の変更と重要な機能変更のみです。
+<h3>
+コンパイル・モード</h3>
+Rhino は実行可能な二つのモードを持っています。インタープリタ・モードは Java によって実行されるインタープリタ・ループを持っており、コンパイル・モードは JavaScript コードをクラス・ファイル中の Java バイト・コードにコンパイルします。このコンパイル作業は、すでにインタープリタ用に利用可能な API を使ったスクリプト・エバリュエーションの一部として、もしくは、別個のコンパイル・タイム・ステップ中に行われます。そのインタープリタ用のコードは <tt>org.mozilla.javascript.optimizer</tt> のパッケージの中にあります。
+
+<br>&nbsp;
+<h3>JavaScript コンパイラ</h3>
+現在、このディストリビューションはコマンド・ラインから呼ぶことのできる特別はクラスを含んでいます。これは <tt>jsc</tt>, the JavaScript compiler です。このツールは JavaScript から Java クラスを生成する為に使います。
+
+JavaScript のスクリプトが applet や servlet のような重要なプロトコルを実装できるように、自由にインターフェースを実装したり、自由に基底クラス拡張した Java のクラスを作成できるようにするオプションがあります。
+
+<a href="http://www.mozilla.org/rhino/jsc.html">http://www.mozilla.org/rhino/jsc.html</a> を参照してください。
+<br>&nbsp;
+<h3>
+LiveConnect 3</h3>
+現在、Rhino は LiveConnect 3 の仕様 (LC3) をサポートしています。一番の著しい変更は overloaded method resolution をサポートした事です。 <a href="http://www.mozilla.org/js/liveconnect/lc3_proposal.html">LiveConnect Release 3 Goals/Features</a> を参照してください。
+<br>&nbsp;
+<h3>
+Java のプロパティを反映した JavaBeans のプロパティ</h3>
+getFoo/setFoo メソッドを持つ Java のクラスは JavaScript の反映中に「 foo 」というプロパティを持ちます。ブーリアン・メソッドも、また、反映されています。
+<br>&nbsp;
+<h3>
+動的なスコープのサポート</h3>
+Rhino 1.5 の実行は、特に、サーバーの組み込みの様な、マルチスレッド環境で有効な、動的なスコープをサポートしています。
+<br>&nbsp;
+<h3>
+<tt>ScriptableObject.defineClass</tt>の為の新セマンティックス（意味論）</h3>
+JavaScript オブジェクトを定義する為の古いルールは奇異になってきました。現在、それらのルールは、まだサポートされていますが、より偽りのない定義がサポートされています。詳しくは <a href="http://www.mozilla.org/js/rhino/org/mozilla/javascript/ScriptableObject.html#defineClass(org.mozilla.javascript.Scriptable, java.lang.Class)">javadoc</a> 参照してください。
+<br>&nbsp;
+<h3>Java 2 の <tt>-jar</tt> オプションをサポート</h3>
+現在、Java 2 の新しい <tt>-jar</tt> オプションを使って、シェルをスタートさせる事が可能になりました。
+<br>&nbsp;
+<h3>
+シェルの変更</h3>
+ここでは二つの変更点について紹介します。最上位変数での「 environment 」と「 history 」の追加です。
+<br>&nbsp;
+<h3>
+スクリプトに明白な Java クラス</h3>
+ある JavaOne の出席者が、多くの組み込みが全ての Java クラスにアクセス可能なスクリプトを必要としないのではないか、という指摘しました。これは素晴らしい指摘で、私は、どのクラスがスクリプトにあらわにされるか組み込みに選択させる事を許す <a href="../js/rhino/org/mozilla/javascript/SecuritySupport.html">SecuritySupport</a> というインターフェイスを追加しました。
+<br>&nbsp;
+<h3>
+SecuritySupport と JavaAdapter</h3>
+Andrew Wason さんは新しい JavaAdapter の特徴（クラス・ファイルの生成によって、JavaScript オブジェクトに、任意の Java インターフェイスを実行させる事を許す）の問題を指摘しました。それは、Rhino にバイト・アレイから組み込みによって供給されたルーチンへのクラスの生成を委譲させる <a href="../js/rhino/org/mozilla/javascript/SecuritySupport.html">SecuritySupport</a> インターフェイスをサポートしていませんでした。この能力は、クラスの生成は特別な動作と考える為、セキュリティの見地から重要です。
+<p>
+私は、この問題を修正する為の変更を mozilla.org の CVS リポジトリに送りました。もし、Context が生成された時、SecuritySupport クラスが指定されたら、JavaAdapter の使用が、クラス生成を SecuritySupport クラスに委譲します。
+<br>&nbsp;
+<h3>
+Context.exit()</h3>
+Context.exit() はインスタンス・メソッドから静的メソッドに変更されました。これはまた、それ（Context.exit()）に、静的な Context.enter() メソッドを適合させます。
+<br>&nbsp;
+<h3>
+Context.enter(Context)</h3>
+新しい Context.enter からのオーバー・ロードが追加されました。この追加作業無しでは、存在する Context をスレッドに加える事は可能ではありませんでした。詳しくは <a href="http://www.mozilla.org/js/rhino/org/mozilla/javascript/Context.html#enter(org.mozilla.javascript.Context)">javadoc</a> を参考にしてください。
+<br>&nbsp;
+<h3>
+Listeners for Context</h3>
+Context は現在、その二、三の属性として、属性変更 listeners をサポートしました。
+<h3>
+
+<hr WIDTH="100%"><br>
+<a href="index.html">戻る</a></h3>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/rhino/js15.html">英語版</a> 2000/03/10</span> - <span>和訳版 2004/10/02</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/rhino/js15.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

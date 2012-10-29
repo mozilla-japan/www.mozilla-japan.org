@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-filename" basename="filename" pathtoroot="../../">
+
+
+<meta>
+	<dc:title>ファイル名規則</dc:title>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+	<dcterms:audience>staffs</dcterms:audience>
+</meta>
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 title="マイケルと自称しているおたくにマイクと呼びかけてみても、おそらくは返事をしないだろう。自分に呼びかけているはずがないと思うからだ。 － ロバート X クリンジリー"><tt:meta mode="title"/></h1>
+	<p>ローカライズセンターで公開する Mozilla 製品の日本語版や JLP のファイル名は <a href="https://bugzilla.mozilla.org/attachment.cgi?id=157639">mozilla.org の規定するファイル名規則</a>(<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=257117">bug 257117</a>) をベースに、必要な独自項目を追加したものに従っています。ここではそのファイル名規則について解説します。</p>
+	
+	
+	<h2>原則</h2>
+	<p>ローカライズセンターで公開するパッケージのファイル名は mozilla.org のものに合わせることを原則としています。<br/>
+		現在 mozilla.org のファイル名が自身の規定するものに従っていないため多少混乱しておりますが、ローカライズセンターの開発リリースでは全て次に説明するファイル名規則を使用し、公式リリースについては mozilla.org がそのバージョンで採用しているディレクトリ構造およびファイル名に合わせます。<br/>
+		なお、ファイル名規則に従っていない件について MLP スタッフに問い合わせたところ、Firefox や Thunderbird についてはその開発担当者達の判断により公式リリースのみ簡単で短いファイル名とされているとのことです。英語版の Mozilla Suite については単にビルドスクリプトのコードを誰も修正していないために旧ファイル名規則のままリリースされているということです。残念ながら英語版の Mozilla Suite だけは旧ファイル名規則のまま放置されるようです。(^^;</p>
+	<p></p>
+	
+	<h2 id="details">詳細</h2>
+	<p>ローカライズセンターで公開するパッケージに使用するファイル名規則は次のようになります。但しテスト用のファイルや修正パッチ、あるいは独自に用意しているツールなどについてはこの限りではありません。</p>
+	<p><a href="#appname">appname</a>-<a href="#version">version</a>[-<a href="#buildid">buildid</a>].<a href="#langcode">langcode</a>.<a href="#platform">platform</a>[-<a href="#special">special]</a>[.<a href="#type">type</a>][-<a href="#contributor">contributor</a>][-<a href="#revision">revision</a>][.<a href="#misc">misc</a>].<a href="#extension">extension</a></p>
+	<p>ドットやハイフンが何を区切っているのかなどの規則性がやや不明瞭ですが、バージョン番号の中で使用されているのを例外として、ドット区切りの基本構成単位をハイフンで更に細かく分けるという感じです。多分。(^^;</p>
+	<dl>
+		<dt id="appname">appname</dt>
+		<dd>
+			<p>appname ではアプリケーションの名前を小文字だけで表記します。この中にドットやハイフンを含めてはなりません。</p>
+			<ul>
+				<li>firefox</li>
+				<li>thunderbird</li>
+				<li>mozilla</li>
+				<li>seamonkey</li>
+				<li>xulrunner</li>
+				<li>sunbird</li>
+				<li>venkman</li>
+				<li>inspector</li>
+				<li><del>Firefox</del> <span class="note">(大文字不可)</span></li>
+			</ul>
+		</dd>
+		<dt id="version">version</dt>
+		<dd>
+			<p>バージョン番号はドット区切りで表現されます。各部分は 1 つ以上の数字で始まる必要があります。なお、通例 Mozilla 製品のバージョン番号は 4 つの部分からなり、それぞれ次のようになっています。</p>
+			<p>major.minor[.micro[.build]][stage]</p>
+			<ul>
+				<li>1.0</li>
+				<li>1.0PR</li>
+				<li>1.7.5</li>
+				<li>1.8a</li>
+				<li>1.8a5</li>
+				<li>0.9.24b.7</li>
+				<li><del>1.5.a</del> <span class="note">(数字で始まっていない)</span></li>
+			</ul>
+		</dd>
+		<dt id="buildid">buildid</dt>
+		<dd>
+			<p>これはローカライズセンターの独自項目です。<br/>
+				言語パックなどを除くすべての Nightly 対応開発リリースと多くの公式リリース候補に付加します。ビルドは一日に複数回作成されることもあるため、ビルド日付ではなく、一律ビルドID を付加します。</p>
+			<ul>
+				<li>-1982030303</li>
+				<li>-2005031323</li>
+				<li>-2010010100</li>
+				<li><del>-19820303</del> <span class="note">(日付のみは廃止)</span></li>
+				<li><del>.1982030303</del> <span class="note">(ドットでなくハイフン)</span></li>
+			</ul>
+		</dd>
+		<dt id="langcode">langcode</dt>
+		<dd>
+			<p>langcode は<a href="http://www.loc.gov/standards/iso639-2/englangn.html">言語コード</a>と<a href="http://www.loc.gov/standards/iso639-2/englangn.html">国コード</a>の 2 つの部分からなります。これは <a href="http://www.ietf.org/rfc/rfc2070.txt">rfc 2070</a> で規定されているものになります。複数の言語リソースを含むパッケージについてはこれは省略されるというのが mozilla.org のファイル名規則ですが、英語と日本語だけを含めているパッケージについてはそれと分かり易いように en-US+ja のように表すことがあります。<br/>
+				Firefox/Thunderbird 1.0.x の Mac OS X 用言語リソースでは、rfc には違反しますが諸般の事情により国コード部に JPM を使用していました。Firefox/Thunderbird 1.5 以降では <a href="http://www.ietf.org/rfc/rfc3066.txt">rfc 3066</a> の dialect を用いて ja-JP-mac とすることになりました。</p>
+			<ul>
+				<li>ja</li>
+				<li>ja-JP-mac</li>
+				<li>en-US</li>
+				<li>fr</li>
+				<li>en-US+ja</li>
+				<li>ja-JP</li>
+				<li>ja-JPM</li>
+				<li>fr-FR</li>
+				<li>chr-US</li>
+			</ul>
+		</dd>
+		<dt id="platform">platform</dt>
+		<dd>
+			<p>バイナリパッケージが依存するオペレーティングシステム、プロセッサー、ツールキットなどを表します。プラットフォームに依存しないパッケージではこのフィールドは省略します。通常、このフィールドは autoconf で $(TARGET_OS)-$(TARGET_CPU) として取得する値になりますが、一部の値は規定であるとして省略されます。</p>
+			<ol>
+				<li>Windows プラットフォームのパッケージは "win32" とします。 64ビット Windows では "win64" となる予定(？)</li>
+				<li>Macintosh (OSX) プラットフォームのパッケージでは "mac" とします。</li>
+				<li>"linux-gnu" は単に "linux" とだけ表記します。</li>
+			</ol>
+		</dd>
+		<dt id="special">special</dt>
+		<dd>
+			<p>ライブラリなどが非標準のビルドについてはそれを special として付記します。</p>
+			<ol>
+				<li>Linux プラットフォームでは GTK2 が標準のツールキットです。 GTK 用のバイナリビルドでは "-gtk1" と明記します。</li>
+				<li>以前の標準ビルドでは SVG は無効となっていました。 SVG を有効にしたビルドではそれを区別できるよう -svg-cairo, -svg-libart または -svg-gdiplus を付記していました。</li>
+			</ol>
+			<ul>
+				<li>win32</li>
+				<li>mac</li>
+				<li>linux-i386</li>
+				<li>win32-svg-gdiplus</li>
+				<li>mac-svg-cairo</li>
+				<li>linux-i686-gtk1</li>
+				<li>linux-i386-gtk1-svg-libart</li>
+			</ul>
+		</dd>
+		<dt id="type">type</dt>
+		<dd>
+			<p>パッケージ種別を表します。バイナリのアーカイブパッケージについてはこれを省略します。</p>
+			<ul>
+				<li>installer</li>
+				<li>langpack</li>
+				<li>src</li>
+			</ul>
+		</dd>
+		<dt id="contributor">contributor</dt>
+		<dd>
+			<p>これはローカライズセンターの独自項目です。<br/>
+				各パッケージの主担当者以外が作った貢献リリースについては、貢献者の名前を英数小文字で入れています。</p>
+			<ul>
+				<li>-asa</li>
+				<li>-bsmedberg</li>
+				<li>-dynamis</li>
+				<li>-rebron</li>
+			</ul>
+		</dd>
+		<dt id="revision">revision</dt>
+		<dd>
+			<p>これはローカライズセンターの独自項目です。<br/>
+				mozilla.org による同一ビルドに対応する多数の開発リリースなどを用意するため、それを区別するためのリビジョンを最後に付記します。表記規則としては <a href="#version">version</a> と同様に最大 4 つの部分からなります。<br/>
+				Firefox/Thunderbird の言語パックではすべてのリリースを通して一意の番号としています。 <br/>
+				Firefox/Thunderbird 1.0.x では 4 つの部分のうち JLP のリビジョンに通常 3 つを使用し、最後の部分は同一 JLP に対して複数のパッケージを作成する場合や非標準パッケージを作成するときなどに使用していました。</p>
+			<ul>
+				<li>-1</li>
+				<li>-3</li>
+				<li>-1.0rc7</li>
+				<li>-1.0.3</li>
+				<li>-0.7.7</li>
+				<li>-0.6.10</li>
+			</ul>
+		</dd>
+		<dt id="misc">misc</dt>
+		<dd>
+			<p>これもローカライズセンターの独自項目です。<br/>
+				同一 revision に対して試験的に設定や構成の異なる複数のパッケージを作成する場合などに、ローカライズセンターで独自に作成した特別なパッケージを区別できるようにします。<br/>
+				英数字だけであれば任意の文字列を使用できますが、これ以外の部分で表現できる場合には使わないでください。例えば fix, fix2... は公式リリースを修正して再リリースした際に明確に区別がつくように付加したもので、通常は単に revision 番号を上げます。</p>
+			<ul>
+				<li>test <span class="note">(試験的と強調)</span></li>
+				<li>fix <span class="note">(修正版と強調)</span></li>
+				<li>fix2 <span class="note">(更なる修正版と強調)</span></li>
+				<li>nordf <span class="note">(RDF ファイル無し)</span></li>
+				<li>noinspector <span class="note">(DOM Inspector 無し)</span></li>
+				<li>withvenkman <span class="note">(Venkman 同梱)</span></li>
+				<li><del>release</del> <span class="note">(今後使用禁止)</span></li>
+			</ul>
+		</dd>
+		<dt id="extension">extension</dt>
+		<dd>
+			<p>ファイル種別を表す拡張子。拡張子だけが異なるパッケージは圧縮方式以外は同一のパッケージになります。</p>
+			<ul>
+				<li>firefox-1.0PR.en-US.linux-i386.tar.gz</li>
+				<li>firefox-1.0PR.en-US.linux-i386.tar.bz2</li>
+				<li>firefox-1.0PR.en-US.linux-i386.7z</li>
+			</ul>
+			<p>これらは全て同一のパッケージになります。</p>
+		</dd>
+	</dl>
+	
+	<h2 id="notice">注意</h2>
+	<p>開発リリースの名前規則はかなり複雑になっていますので、注意が必要です。以下、注意点を箇条書きします。</p>
+	<ul>
+		<li>Firefox/Thunderbird 1.0.6 および Mozilla Suite 1.7.11 以前にはこのファイル名規則に従っていないものが多数あるため、それらは参考になりません。必ずこのページの<a href="#examples">用例</a>を参考にし、不明な点は事後でも良いので L10N ML で問い合わせてください。</li>
+		<li>言語パックなどを除く Nightly 対応開発リリースには <a href="#buildid">buildid</a> が必須です。リリース候補と指定された Nightly に対して作成する場合であっても付加します。これによりファイル名が非常に長くなりますが、ベースとなるビルドを明らかにするために必要です。</li>
+		<li>先に en-US の Final リリースが出てから、それをベースに日本語版の公式リリース候補として作成する場合については、公式リリース候補と強調するために <a href="#buildid">buildid</a> を省略しても構いませんが、リリース候補についてビルド ID を省略するかどうかは製品毎に統一してください。テスト用の特殊なパッケージなどは Final リリースをベースにしている場合でも必ず <a href="#buildid">buildid</a> を付加します。</li>
+		<li><a href="#buildid">buildid</a> は当初日付までの 8 桁だけとしていましたが、同日中に複数のビルドが作成されることも少なくないため、必ず時刻を含めた 10 桁のビルド ID を使います。</li>
+		<li><a href="#revision">revision</a> は必須ではありませんが、複数のパッケージを繰り返し作成する可能性が高い時は最初から -1 などを付加してください。</li>
+		<li><a href="#revision">revision</a> の決め方については、全リリースに対して一意につけても、対象バージョン毎に一意につけても構いません。製品毎に一定の規則に従って番号付けを行ってください。</li>
+		<li><a href="#misc">misc</a> は特別な修正を施した試験的バージョンなど、明確な意図がある場合にのみ使用してください。設定やファイル構成が異なるもの同時に複数作ってテストする場合などにはこれを使用しますが、単にミスを修正して更新した場合は <a href="#revision">revision</a> を上げます。</li>
+		<li>ファイル名だけでは Trunk 対応版であるか Branch 対応版であるかは明確にならない期間がありますが、それは mozilla.org 同様パッケージを収めるディレクトリによって区別します。ファイル名に aviary, branch や trunk などといった文字列を含めることはしません。</li>
+	</ul>
+	
+	
+	<h2 id="examples">用例</h2>
+	<p>公式リリースと開発リリースそれぞれのパッケージの正しいファイル名の例です。既存のファイルにはこのファイル名規則に従っていないものが多数ありますので、既存ファイルではなくこれらの(殆どが架空の)用例を参考にしてください。</p>
+	<dl>
+		<dt id="fx_1.0">Firefox 1.0.x Relesease</dt>
+		<dd>
+			<p>Firefox 1.0.x 公式リリースのファイル名 (例外)</p>
+			<ul>
+				<li>Firefox Setup 1.0.5.exe</li>
+				<li>firefox-1.0.5.tar.gz</li>
+				<li>firefox-1.0.5.installer.tar.gz</li>
+				<li>Firefox 1.0.5.dmg</li>
+				<li>ja-JP.xpi</li>
+				<li>ja-JPM.xpi</li>
+			</ul>
+		</dd>
+		<dt id="tb_1.7">Thunderbird 1.0.x Relesease</dt>
+		<dd>
+			<p>Thunderbird 1.0.x 公式リリースのファイル名 (例外)</p>
+			<ul>
+				<li>Thunderbird Setup 1.0.6.exe</li>
+				<li>thunderbird-1.0.6.tar.gz</li>
+				<li>Thunderbird 1.0.6.dmg</li>
+				<li>ja-JP.xpi</li>
+				<li>ja-JPM.xpi</li>
+			</ul>
+		</dd>
+		<dt id="moz_1.7">Mozilla Suite 1.7.x Relesease</dt>
+		<dd>
+			<p>Mozilla Suite 1.7.x 公式リリースのファイル名</p>
+			<ul>
+				<li>mozilla-1.7.9.ja-JP.win32.installer.exe</li>
+				<li>mozilla-1.7.9.ja-JP.win32.zip </li>
+				<li>mozilla-1.7.9.ja-JP.linux-i686-gtk1.tar.gz</li>
+				<li>mozilla-1.7.9.ja-JP.linux-i686.tar.gz</li>
+				<li>mozilla-1.7.9.ja-JP.linux-i686.installer.tar.gz</li>
+				<li>mozilla-1.7.9.ja-JP.mac.dmg</li>
+				<li>mozilla-1.7.9.ja-JP.langpack.xpi</li>
+			</ul>
+		</dd>
+		<dt id="fx_1.5">Firefox 1.5.x Relesease</dt>
+		<dd>
+			<p>Firefox 1.5.x 公式リリースのファイル名</p>
+			<ul>
+				<li>未定</li>
+			</ul>
+		</dd>
+		<dt id="tb_1.5">Thunderbird 1.5.x Relesease</dt>
+		<dd>
+			<p>Thunderbird 1.5.x 公式リリースのファイル名</p>
+			<ul>
+				<li>未定</li>
+			</ul>
+		</dd>
+		<dt id="fx_dev">Firefox Devlopment Relesease</dt>
+		<dd>
+			<p>Firefox 開発リリースのファイル名</p>
+			<ul>
+				<li>firefox-1.0.5-2005071119.ja-JP.win32.installer.exe</li>
+				<li>firefox-1.0.1.ja-JP.langpack-0.8.10.xpi</li>
+				<li>firefox-1.0.1.ja-JPM.langpack-0.8.10.xpi</li>
+				<li>firefox-1.0+.ja.langpack-1.0.3.xpi</li>
+				<li>firefox-1.0+.ja.langpack-1.0.3.1.xpi</li>
+				<li>firefox-1.0+.ja.langpack-1.0.4-noinspector.xpi</li>
+				<li>firefox-1.0+.ja.langpack-1.0.5-withvenkman.xpi</li>
+				<li>firefox-1.0+.ja-JP-mac.langpack-1.0.5.xpi</li>
+			</ul>
+		</dd>
+		<dt id="tb_dev">Thunderbird Devlopment Relesease</dt>
+		<dd>
+			<p>Thunderbird 開発リリースのファイル名</p>
+			<ul>
+				<li>thunderbird-1.0.6-2005071616.ja-JP.win32.installer.exe</li>
+				<li>thunderbird-1.0.6-2005071604.ja-JP.linux-i686.tar.gz</li>
+				<li>thunderbird-1.0.6-2005071604.ja-JP.linux-i686-test.tar.gz</li>
+				<li>thunderbird-1.0.6-2005071605.ja-JPM.mac.dmg</li>
+				<li>thunderbird-1.0.2.ja-JP.langpack-0.6.10.1.xpi</li>
+				<li>thunderbird-1.0.2.ja-JPM.langpack-0.6.10.1.xpi</li>
+				<li>thunderbird-1.0+.ja.langpack-1.0.3.xpi</li>
+				<li>thunderbird-1.0+.ja-JP-mac.langpack-1.0.3.xpi</li>
+			</ul>
+		</dd>
+		<dt id="moz_dev">Mozills Suite Devlopment Relesease</dt>
+		<dd>
+			<p>Mozilla Suite 開発リリースのファイル名</p>
+			<ul>
+				<li>mozilla-1.7.9.ja-JP.win32.installer.exe</li>
+				<li>mozilla-1.7.9.ja-JP.win32.installer-1.exe</li>
+				<li>mozilla-1.7.9.ja-JP.win32.zip</li>
+				<li>mozilla-1.7.9.ja-JP.win32-2.zip</li>
+				<li>mozilla-1.7.9.ja-JP.linux-i686.installer.tar.gz</li>
+				<li>mozilla-1.7.9.ja-JP.linux-i686.installer-3.tar.gz</li>
+				<li>mozilla-1.7.9.ja-JP.mac.dmg</li>
+				<li>mozilla-1.7.9.ja-JP.mac-4.dmg</li>
+				<li>mozilla-1.7.9-2005030300.ja-JP.win32.installer.exe</li>
+				<li>mozilla-1.7.9-2005030301.ja-JP.win32.zip</li>
+				<li>mozilla-1.7.9-2005030302.ja-JP.linux-i686-gtk1.tar.gz</li>
+				<li>mozilla-1.7.9-2005030304.ja-JP.linux-i686.tar.gz</li>
+				<li>mozilla-1.7.9-2005030308.ja-JP.linux-i686.installer.tar.gz</li>
+				<li>mozilla-1.7.9-2005030316.ja-JP.mac.dmg</li>
+				<li>mozilla-1.7.9.ja-JP.langpack-1.xpi</li>
+				<li>mozilla-1.7.9.ja-JP.langpack-3.xpi</li>
+				<li>mozilla-1.7.9.ja-JP.langpack-dynamis-3.1.xpi</li>
+			</ul>
+		</dd>
+		<dt id="other">Other Products and Tools</dt>
+		<dd>
+			<p>その他のファイル名</p>
+			<ul>
+				<li>lot-1.0.zip</li>
+				<li>lot-1.0rc7.2005081506.zip</li>
+				<li>venkman-0.9.85.ja.xpi</li>
+				<li>venkman-0.9.85.en-US+ja.xpi</li>
+				<li>sunbird-0.2+-2005060708.ja.win32.zip</li>
+				<li>sunbird-0.2+-2005060708.ja.linux-i686.tar.gz</li>
+				<li>xulrunner-1.9a1-2005080910.ja.win32.zip</li>
+				<li>xulrunner-1.9a1-2005080910.ja.linux-i686.tar.gz</li>
+				<li>seamonkey-1.0a-2005080706.ja.win32.installer.exe</li>
+				<li>seamonkey-1.0a-2005080706.ja.linux-i686.tar.gz</li>
+			</ul>
+		</dd>
+	</dl>
+</tt:htmlbody>
+
+</page>
+</contents>

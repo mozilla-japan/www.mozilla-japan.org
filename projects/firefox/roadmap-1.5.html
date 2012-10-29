@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla Firefox 2.0/3.0 ロードマップ</title>
+<link rel="alternate" hreflang="en" modified="January 17, 2006">
+<style type="text/css" media="screen,tv">
+  #milestoneTable { margin: 1em; border: 1px solid #000; border-spacing: 0; font-size: small; }
+  #milestoneTable th { border-bottom: 1px solid #707070; font-weight: bold; text-align: left; }
+  #milestoneTable td { padding: .25em; vertical-align: top; }
+  .past { color: #909090; background-color: #dfdfdf; }
+  .past a { color: #909090; font-weight: bold; }
+  .current, .current a { color: #fff; background-color: #909090; }
+  .current td { border-bottom: 3px double #000; }
+  .current.alpha { background-color: #B0B0B0; }
+  .current.beta { background-color: #a0a0a0; }
+  .current.alpha td { border-top: 3px double #000; border-bottom: none; }
+  .current.beta td { border-bottom: none; }
+</style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/roadmap-1.5.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Firefox 2.0/3.0 ロードマップ</h1>
+<p><em><a href="mailto:ben&#64;mozilla.org">Ben Goodger</a> (2005/07/20)</em></p>
+<h2>はじめに</h2>
+<p>2005 年、Firefox は Gecko や XULRunner テクノロジーにとって最も重要な配布手段のひとつとなります。私たちの目標は、Windows、Linux、そして Mac OS X における最高のブラウザ製品を提供し続けることです。私たちは、現在から次のメジャーリリースまでの間の作業について、野心的な目標を立てています。このドキュメントでは、Firefox 2.0 へどのようにたどり着こうと考えているのか、現時点での計画を解説します。今のところまだ短期的なものですが、そのうち <a href="roadmap-1.0.html">1.0 ロードマップ</a> のように充実させていきます。</p>
+<h2>体制</h2>
+<p>私たちは Firefox 2.0、3.0 に向けた計画を立てていますが、予定している作業は (現時点では) 1.5 (2005 年 9 月)、2.0 (未定)、3.0 (未定) という 3 回のメジャーマイルストーンに分ける予定です。主要な開発作業はすべて Mozilla トランク上で行い、3 回のリリースは Gecko のバージョンと同期させます。</p>
+<h2>マイルストーン計画</h2>
+<p>いつものことですが、この計画は変更される可能性があります。</p>
+<table id="milestoneTable">
+  <tr>
+    <th style="width: 20em" colspan="2">マイルストーン</th>
+    <th style="width: 6em">リリース日</th>
+    <th style="width: 6em">バグ</th>
+    <th style="width: auto;">概要</th>
+  </tr>
+  <tr class="past">
+    <td>1.0</td>
+    <td>Phoenix</td>
+    <td>2004/11/09</td>
+    <td><a href="https://bugzilla.mozilla.org/buglist.cgi?product=Firefox&amp;target_milestone=Firefox1.0&amp;bug_status=NEW,ASSIGNED,REOPENED">バグ</a>
+      <a href="https://bugzilla.mozilla.org/buglist.cgi?keywords_type=nowords&keywords=fixed-aviary1.0&amp;bug_status=NEW,ASSIGNED,REOPENED&amp;field0-0-0=flagtypes.name&amp;type0-0-0=equals&amp;value0-0-0=blocking1.0%2B">+</a>
+      <a href="https://bugzilla.mozilla.org/buglist.cgi?keywords_type=nowords&keywords=fixed-aviary1.0&amp;bug_status=NEW,ASSIGNED,REOPENED&amp;field0-0-0=flagtypes.name&amp;type0-0-0=equals&amp;value0-0-0=blocking1.0-">-</a>
+      <a href="https://bugzilla.mozilla.org/buglist.cgi?keywords_type=nowords&keywords=fixed-aviary1.0&amp;bug_status=NEW,ASSIGNED,REOPENED&amp;field0-0-0=flagtypes.name&amp;type0-0-0=equals&amp;value0-0-0=blocking1.0%3F">?</a></td>
+    <td>正式リリース</td>
+  </tr>
+  <tr class="past">
+    <td>1.0.1</td>
+    <td>Rose &amp; Crown</td>
+    <td>2005/02/24</td>
+    <td></td>
+    <td>セキュリティアップデート</td>
+  </tr>
+  <tr class="past">
+    <td>1.0.2</td>
+    <td>&nbsp;</td>
+    <td>2005/03/20</td>
+    <td>&nbsp;</td>
+    <td>セキュリティアップデート</td>
+  </tr>
+  <tr class="past">
+    <td>1.0.3</td>
+    <td>&nbsp;</td>
+    <td>2005/04/15</td>
+    <td>&nbsp;</td>
+    <td>セキュリティアップデート</td>
+  </tr>
+  <tr class="past">
+    <td>1.0.4</td>
+    <td>&nbsp;</td>
+    <td>2005/05/11</td>
+    <td>&nbsp;</td>
+    <td>セキュリティアップデート</td>
+  </tr>
+  <tr class="past">
+    <td>1.0.5</td>
+    <td>&nbsp;</td>
+    <td>2005/07/12</td>
+    <td>&nbsp;</td>
+    <td>セキュリティアップデート</td>
+  </tr>
+  <tr class="past">
+    <td>1.0.6</td>
+    <td>&nbsp;</td>
+    <td>2005/07/19</td>
+    <td>&nbsp;</td>
+    <td>API 互換性の修正</td>
+  </tr>
+  <tr class="past">
+    <td>1.0.7</td>
+    <td>&nbsp;</td>
+    <td>2005/09/20</td>
+    <td>&nbsp;</td>
+    <td>API 互換性の修正</td>
+  </tr>
+  <tr class="current alpha">
+    <td>1.1a1</td>
+    <td>Deer Park Alpha 1<br><small><em>&quot;Strippenkaart&quot;</em></small></td>
+    <td>2005/05/31</td>
+    <td>バグ</td>
+    <td>機能的には未完成な開発者向けプレビュー版</td>
+  </tr>
+  <tr class="current alpha">
+    <td>1.1a2</td>
+    <td>Deer Park Alpha 2</td>
+    <td>2005/07/12</td>
+    <td>バグ</td>
+    <td>機能的には未完成な開発者向けプレビュー版</td>
+  </tr>
+  <tr class="current beta">
+    <td>1.4</td>
+    <td>Firefox 1.5 Beta 1</td>
+    <td>2005/09/08</td>
+    <td>バグ</td>
+    <td>機能的に完成した一般向けプレビュー版</td>
+  </tr>
+  <tr class="current beta">
+    <td>1.4.1</td>
+    <td>Firefox 1.5 Beta 2</td>
+    <td>2005/10/06</td>
+    <td>バグ</td>
+    <td>機能的に完成した一般向けプレビュー版</td>
+  </tr>
+  <tr class="current">
+    <td>1.5</td>
+    <td>Firefox 1.5<br><small><em>&quot;Deer Park&quot;</em></small></td>
+    <td>2005/未定</td>
+    <td><a href="https://bugzilla.mozilla.org/buglist.cgi?product=Firefox&amp;target_milestone=Firefox1.5&amp;keywords_type=nowords&amp;keywords=fixed1.8&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED">バグ</a></td>
+    <td>Gecko の新バージョン、ヒューマンインターフェースガイドラインへの準拠作業 (進行中)、ソフトウェアアップデートと拡張機能マネージャの改良</td>
+  </tr>
+  <tr>
+    <td>2.0</td>
+    <td>&quot;The Ocho&quot;</td>
+    <td>2006</td>
+    <td>バグ</td>
+    <td>The Next Big Thing&trade;</td>
+  </tr>
+  <tr>
+    <td>3.0</td>
+    <td></td>
+    <td>未定</td>
+    <td>バグ</td>
+    <td>The Next Next Big Thing&trade;</td>
+  </tr>
+</table>
+<p>いつものことですが、これらの日付は変わる可能性があり、このドキュメントが更新された時点で残っている一連の作業の状況に関する、私たちの統一見解を表したものに過ぎません。</p>
+<p>これを図にして表すと、1.5 に向けた計画は次のようになります。</p>
+<p><img src="../../roadmap/branching-2005-05-04.png" alt="Firefox 1.1 ロードマップ画像"></p>
+<p>(この図の日付は間違っています)</p>
+<h3>ネーミングについて...</h3>
+<p>議論の結果、現在進行中のリリースについては、以下のネーミング構成を取ることにしました。</p>
+<ol>
+  <li>各メジャーリリースにはコードネームを付けます (例: 1.5 は &quot;Deer Park&quot;)</li>
+  <li>アルファ版には <em>&ldquo;&lt;コードネーム&gt; alpha&rdquo;</em> といった名前を付けます</li>
+  <li>公開ベータ版には <em>Firefox 1.5 beta</em> といった名前を付けます</li>
+  <li>最終版には <em>&ldquo;Firefox &lt;バージョン&gt;&rdquo;</em> といった名前を付けます</li>
+</ol>
+<p>アルファ版はテスト目的のマイルストーンであり、最終版としてリリースされる予定のものではありません。機能が欠けていたり、様々なバグが含まれている可能性があります。開発者やテストコミュニティと協力し、最終版のリリース前に行われるべき主要な変更点について初期のフィードバックを提供してもらい、それを踏まえて開発しようというのが目的です。</p>
+<p>ベータ版は機能的には完成しており、リリースしようとしている製品の大体の目安となるものです。これらは、Firefox の次回リリースがどのようなものになるのか見てみたいと考えている、より一般の早期導入者やテスター向けです。最終版のリリース前に修正すべき最も重要な問題に関するフィードバックを得るのが目的です。</p>
+<p>リリース候補 (Release Candidates) は、上の各区分や最終版自体をリリースする直前に出される複写版です。通常、リリースの数日あるいは数週間前に投稿し、修正すべき重大なバグがないかどうか確かめます。特に問題がなければ、そのリリース候補を「最終版」としてリリースします。</p>
+<p><strong>注意!</strong> アルファ版は一般の消費者向けではなく、クラッシュしたり、ブックマークやプロファイル、ハードディスクの内容が失われるといった可能性があります。運良く動作したナイトリービルドとほとんど違いはありません。プレビューリリースについても、バグによる損失を受ける可能性がありますので、リリース前の製品をテストしたい人だけがダウンロードすべきです。</p>
+<h3>リリース日について...</h3>
+<p>上に書いた日付は暫定的なもので、各リリースの大まかなスケジュール配分を把握してもらうためのものにすぎません。このドキュメントが最後に更新された時点でのリリース日の予定を示しており、それ以後変わる可能性があります。</p>
+<h2>目標</h2>
+<p>私たちは現在も 2.0/3.0 に向けた目標について検討を進めており、開発の性能要件ドキュメントを作成中です。目標に含まれるのは、おそらく次のような分野です。</p>
+<ul>
+  <li>ブックマーク・履歴の改良</li>
+  <li>サイト別オプション</li>
+  <li>拡張機能システム、検索ツールバー、ソフトウェアアップデート、検索、その他の部分の機能向上</li>
+  <li>アクセシビリティ準拠</li>
+  <li>その他 ... ?</li>
+</ul>
+<p>(注: このリストに挙げたアイテムは、2.0/3.0 まで完成しないということではありません。むしろ 2.0/3.0 までに作業を進めたいもので、1.5 や 2.0、3.0 までに実装される予定です)</p>
+<h2>ローカライズ</h2>
+<p>1.0 と同様に、今後のリリースはすべて、リリース時点で準備が整っている様々な言語で利用可能になります。リリースのタイミングに左右されるローカライズやその他の関係者は、最新のリリース時期の目安として <strong>このドキュメント</strong> を利用してください。</p>
+<h2>マーケティング</h2>
+<p>マーケティングは今後も私たちの戦略の重要な位置を占めます。コミュニティマーケティングの取り組みの中心は <a href="http://www.spreadfirefox.com/">SpreadFirefox</a> でご覧いただけます。これに加えて、独自の <a href="/products/firefox/">マーケティング資料</a> の開発も続けていきます。</p>
+<h2>ブランディング (暫定的なもの)</h2>
+<p>Firefox 1.5 は「Mozilla Firefox」と呼ばれます。Firefox 2.0 は「Mozilla Firefox 2」と呼ばれる予定です。バージョンの詳細は About (Mozilla Firefox について) ウィンドウに表示されます。</p>
+<h2>サポートネットワーク</h2>
+<p>Firefox には、非常に素晴らしいコミュニティ支持者が付いています。私たちは、次の 2 つのサイトを特に強調したいと思います。Mozilla Firefox の拡張機能、テーマ、その他役に立つ情報を幅広く集めている <a href="/support/firefox/">Firefox Help</a>、そして、ユーザや開発者のための主要なディスカッションサイトである <a href="http://forums.mozillazine.org/?c=4">MozillaZine フォーラム</a> です。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/roadmap-1.5.html">英語版</a> 2006/01/17</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/roadmap-1.5.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Policy on Handling Performance Regressions</title>
+<link rel="alternate" hreflang="en" modified="October 1, 2002">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/hacking/regression-policy.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<h1>パフォーマンス低下の扱いに関する方針</h1>
+<p> <b><font size="+1">内容</font></b> </p>
+<p><b><a href="#Basic%20Policy">基本方針</a>：重大なパフォーマンスの低下が発生した場合にはツリーを閉鎖します。</b></p>
+<p><b><a href="#Implementation">実行</a>：ツリーを閉鎖する場合と再開の方法を説明します。</b></p>
+<p><b><a href="#New%20Features">新機能とパフォーマンス</a>：役に立つ新機能の実現を目指すことで、パフォーマンスの低下を招く場合があります。</b></p>
+
+<p><b><a href="#Footprint%20Increases">リソース消費量の増加</a>：ツリー閉鎖の方針は適用しません。</b></p>
+<p><b><a name="Basic Policy"></a>基本方針：ツリー閉鎖</b>：高いパフォーマンスは Mozilla のリリースおよび Mozilla を基にした有償製品では重要な目標です。したがって、開発段階で気付かなかったか、あるいは解決されなかったパフォーマンスの低下を放置することはできません。しかし、自動化ツールではパフォーマンス低下の原因を究明する手助けしかできません。監視員はこういったパフォーマンスの低下を防ぐため第一線で監視を行い、必要な場合にはツリーの閉鎖を行います。こうして、重大なパフォーマンスの低下があった場合には方針に従ってツリーを閉鎖します。 </p>
+<b><a name="Implementation"></a>実行</b>：パフォーマンス低下の測定では、星取表に各種の試験結果を記録していきます。ここに含まれる試験項目には、起動時間 (<a href="http://tegu.mozilla.org/graph/query.cgi?testname=startup&amp;tbox=comet&amp;autoscale=1&amp;days=7&amp;avg=1">Ts</a>)、ページのロード (<a href="http://tegu.mozilla.org/graph/query.cgi?tbox=btek&amp;testname=pageload&amp;autoscale=1&amp;days=7&amp;avg=1">Tp</a>)、および新規ウィンドウのオープン (<a href="http://tegu.mozilla.org/graph/query.cgi?testname=xulwinopen&amp;tbox=comet&amp;autoscale=1&amp;days=7&amp;avg=1">Txul</a>) があります。この試験は、CPU の処理速度、メモリー容量が異なる複数のコンピュータで実施します。パフォーマンスの低下により、ある一定以上の「黒星」* を残した場合には<br>
+<ul>
+<li>ツリーが閉鎖されます。</li>
+
+  <ul>
+<li>問題にかかわる当事者 - 問題の当事者が、自身のチェックインが問題の原因かどうか調査します。 </li>
+  </ul>
+  <ul>
+<li>問題解決に 1 時間与えられます。 </li>
+  </ul>
+  <ul>
+<li>当事者は、コードが問題の原因ではない理由を説明することで、当事者のチェックインがパフォーマンス低下に関係がないことを証明します。監視員やパフォーマンスの責任者を納得させるだけの有効な説明が必要です。たとえば次のような説明をします。「変更したコードは起動後に実行されるので、起動時のパフォーマンス低下には関係がありません」</li>
+  </ul>
+
+<li>61 分経過すると、パフォーマンス低下との因果関係がないことを証明できなかったチェックインが監視員によって取り消されます。</li>
+<li>問題の原因が不明な場合には次のことを実施します。</li>
+  <ul>
+<li>ツリーの閉鎖を継続します。</li>
+<li>あらゆる変更が取り消されます。</li>
+  </ul>
+  <ul>
+<li>取り消されたチェックインを再度有効にするには、パフォーマンス低下の測定プロセスを通る必要があります。監視員がチェックインの許可を出します。 </li>
+  </ul>
+
+<li>原因について合理的な説明が付く場合には以下のことを実施します。</li>
+  <ul>
+<li>原因と考えられるチェックインが取り消されます。<br>
+    </li>
+<li>星取表による評価を保留し、パフォーマンス低下の修正を確認します。</li>
+<li>その後、ツリーを再開します。</li>
+  </ul>
+</ul>
+<p> <b>*</b> 不合格とする「黒星」の数は敢えて定義していません。その理由は、監視員が黒星をいくつまでなら許すか決定する際には、パフォーマンスの責任者、上級レビュアー、mozilla.org のスタッフ、および関係する開発者と協議するからです。このような決定に対する反論が増加した場合には、mozilla.org のスタッフが正確なガイドラインを検討し、現状の方針に対して多くの経験を盛り込んだ詳細な方針を策定します。したがって、黒星を多く付けられた場合でも、監視員個人への攻撃はしないでください。最善を尽くして、適切な人からの意見を求め、場合によっては必要な対処をすることが監視員には求められます。また、変更を取り消された当事者は今後のために、どのような場合には、どのような理由で、何をすれば良いのかということに関して意見を寄せてください。多くの方からの意見をお待ちしています。チェックインの取り消しの有無が元で、監視員を悪意のある攻撃の対象としないようにお願いします。</p>
+
+<p><a name="New Features"></a><b>新機能とパフォーマンス</b>：要望の多い機能の追加によってパフォーマンスの低下を招く場合があります。Mozilla への追加が望まれる機能については、次のとおり対応します。パフォーマンスの低下を改善するために、可能な限りの協力をします。次の手順を繰り返します。新機能の実質的な重要性を評価します。この評価は厳格に実施します。新機能の重要性が低い場合、パフォーマンスの低下を容認することは困難です。新機能が多くのユーザーにとって重要な場合、drivers@mozilla.org で新機能の価値を検討し、あわせてパフォーマンスの低下を許容してまでもその新機能が必要である理由を検討します。当該のパフォーマンス低下を修正するか、従来どおりのパフォーマンスを維持して新機能を実現する方法を見つけた場合、その修正が許可される可能性が高くなります。わずかなパフォーマンスの低下であっても、関係者がパフォーマンスの低下を容認するためには、多くの労力を必要とします。</p>
+<p><a name="Footprint Increases"></a><b>リソース消費量の増加</b>：この方針は、Mozilla が消費するリソースが増加した場合には適用されません。必要なメモリーの増加、およびメモリー リークの原因を究明するのは容易であるというスタッフの見解により、リソースの問題には、この方針を適用しません。 </p>
+<p> <b>連絡先</b>：Mitchell Baker &lt;<a href="mailto:mitchell@mozilla.org">mitchell@mozilla.org</a>&gt; 
+</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/hacking/regression-policy.html">英語版</a> 2002/10/01</span> - <span>和訳版 2004/10/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/hacking/regression-policy.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 字句セマンティクス</title>
+<link rev="alternate" hreflang="en" modified="June 30, 2003" href="http://www.mozilla.org/js/language/js20/formal/lexer-semantics.html">
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link type="text/css" rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="lexer-grammar.html">
+<link rel="Next" href="regexp-grammar.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	div.translation-footer {
+		background:#FFFFE0 none;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		padding:3px;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	span.comment {
+		color:#090;
+		font-size:90%;
+	}
+	span.comment code {
+		color:#090;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">正式な記述</div>
+    <div class="title1">字句セマンティクス</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="lexer-grammar.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="regexp-grammar.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">2003-06-30 (Mon)</p>
+
+<p>字句解析器が Unicode 文字の入力ストリームをトークンの並びに変換するのに使うアクションは字句セマンティクスにより記述される。ここでは利便性のために<a href="lexer-grammar.html">字句文法</a>を再掲する。<a href="notations.html">セマンティクスの表記法</a>も見よ。</p>
+
+<p>この文書には <a href="http://www.mozilla.org/js/language/js20/formal/lexer-semantics.rtf">Word RTF 版</a> <span class="comment">[英語]</span> もある。</p>
+
+<!--SEMANTICS-->
+
+<p>字句解析の開始記号は次のいずれかである。つまり、直前の入力要素が数値であれば <a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">num</sup>
+、直前の入力要素が数値でなく <code>/</code> であり、それを正規式として解釈していれば <a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">re</sup>
+、また直前の入力要素が数値でなく <code>/</code> であり、それを除算演算子か除算代入演算子として解釈していれば <a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">div</sup>
+である。</p>
+
+<p>上記に加え、文字列から数値への変換の構文セマンティクスに使う <a href="#N-StringNumericLiteral" class="nonterminal">StringNumericLiteral</a>
+、<code>parseFloat</code> 関数の実装の構文セマンティクスに使う <a href="#N-StringDecimalLiteral" class="nonterminal">StringDecimalLiteral</a>
+という開始記号がある。</p>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm-stmt"><a name="T-lineBreak"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">lineBreak</span>;</div>
+<div class="algorithm-stmt"><a name="T-endOfInput"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">endOfInput</span>;</div>
+<div class="algorithm">
+  <div class="stmt"><a name="D-Keyword"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">Keyword</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">name</span>:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><a name="D-Punctuator"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">Punctuator</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">name</span>:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><a name="D-Identifier"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">Identifier</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">name</span>:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><a name="D-NumberToken"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">NumberToken</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">value</span>:&nbsp;<a href="notation.html#D-GeneralNumber" class="domain-name">GeneralNumber</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+<div class="algorithm-stmt"><a name="T-negatedMinLong"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">negatedMinLong</span>;</div>
+<div class="algorithm">
+  <div class="stmt"><a name="D-StringToken"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">StringToken</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">value</span>:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><a name="D-RegularExpression"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">RegularExpression</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">body</span>:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a>,</div>
+    <div class="stmt"><span class="field-name">flags</span>:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+<div class="algorithm-stmt"><a name="D-Token"></a><span class="domain-name">Token</span>
+  =&nbsp;<a href="#D-Keyword" class="domain-name">Keyword</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>
+  <a href="#D-Punctuator" class="domain-name">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>
+  <a href="#D-Identifier" class="domain-name">Identifier</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>
+  <a href="#D-NumberToken" class="domain-name">NumberToken</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>
+  {<a href="#T-negatedMinLong" class="tag-name">negatedMinLong</a>}&nbsp;<script type="text/javascript">document.write(U_cup)</script>
+  <a href="#D-StringToken" class="domain-name">StringToken</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>
+  <a href="#D-RegularExpression" class="domain-name">RegularExpression</a>;</div>
+<div class="algorithm-stmt"><a name="D-InputElement"></a><span class="domain-name">InputElement</span>&nbsp;=&nbsp;{<a href="#T-lineBreak" class="tag-name">lineBreak</a>,&nbsp;<a href="#T-endOfInput" class="tag-name">endOfInput</a>}&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;<a href="#D-Token" class="domain-name">Token</a>;</div>
+<div class="algorithm-stmt"><a name="T-syntaxError"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">syntaxError</span>;</div>
+<div class="algorithm-stmt"><a name="T-rangeError"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">rangeError</span>;</div>
+<div class="algorithm-stmt"><a name="D-SemanticException"></a><span class="domain-name">SemanticException</span>&nbsp;=&nbsp;{<a href="#T-syntaxError" class="tag-name">syntaxError</a>,&nbsp;<a href="#T-rangeError" class="tag-name">rangeError</a>};</div>
+
+<h3>Unicode 文字クラス</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnicodeCharacter"></a><span class="nonterminal">UnicodeCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;あらゆる Unicode 文字</div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnicodeInitialAlphabetic"></a><span class="nonterminal">UnicodeInitialAlphabetic</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;Unicode 文字データベースでの分類が
+    <tt>Lu</tt> (uppercase letter)、<tt>Ll</tt> (lowercase letter)、<tt>Lt</tt> (titlecase
+    letter)、<tt>Lm</tt> (modifier letter)、<tt>Lo</tt> (other letter)、<tt>Nl</tt> (letter number) のいずれかであるあらゆる文字</div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnicodeAlphanumeric"></a><span class="nonterminal">UnicodeAlphanumeric</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;Unicode 文字データベースでの分類が
+    <tt>Lu</tt> (uppercase letter)、<tt>Ll</tt> (lowercase letter)、<tt>Lt</tt> (titlecase
+    letter)、<tt>Lm</tt> (modifier letter)、<tt>Lo</tt> (other letter)、<tt>Nd</tt> (decimal number)、<tt>Nl</tt>
+    (letter number)、<tt>Mn</tt> (non-spacing mark)、<tt>Mc</tt> (combining spacing mark)、<tt>Pc</tt> (connector
+    punctuation) のいずれかであるあらゆる文字</div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-WhiteSpaceCharacter"></a><span class="nonterminal">WhiteSpaceCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code><span class="control">&#171;TAB&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;VT&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;FF&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;SP&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u00A0&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u2000&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2001&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2002&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2003&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2004&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2005&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2006&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2007&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u2008&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2009&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u200A&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u200B&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u3000&#187;</span></code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineTerminator"></a><span class="nonterminal">LineTerminator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code><span class="control">&#171;LF&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;CR&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u0085&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2028&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2029&#187;</span></code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ASCIIDigit"></a><span class="nonterminal">ASCIIDigit</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;|&nbsp;<code>1</code>&nbsp;|&nbsp;<code>2</code>&nbsp;|&nbsp;<code>3</code>&nbsp;|&nbsp;<code>4</code>&nbsp;|&nbsp;<code>5</code>&nbsp;|&nbsp;<code>6</code>&nbsp;|&nbsp;<code>7</code>&nbsp;|&nbsp;<code>8</code>&nbsp;|&nbsp;<code>9</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm-stmt"><span class="action-name">DecimalValue</span>[<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>&nbsp;=&nbsp;<a href="notation.html#V-digitValue" class="global-variable">digitValue</a>(<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>);</div>
+
+<h3>コメント</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineComment"></a><span class="nonterminal">LineComment</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;<code>/</code>&nbsp;<a href="#N-LineCommentCharacters" class="nonterminal">LineCommentCharacters</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineCommentCharacters"></a><span class="nonterminal">LineCommentCharacters</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineCommentCharacters" class="nonterminal">LineCommentCharacters</a>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonTerminator"></a><span class="nonterminal">NonTerminator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeCharacter" class="nonterminal">UnicodeCharacter</a>&nbsp;<b>except</b>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-SingleLineBlockComment"></a><span class="nonterminal">SingleLineBlockComment</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;<code>*</code>&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<code>*</code>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-BlockCommentCharacters"></a><span class="nonterminal">BlockCommentCharacters</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<a href="#N-NonTerminatorOrSlash" class="nonterminal">NonTerminatorOrSlash</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-PreSlashCharacters" class="nonterminal">PreSlashCharacters</a>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-PreSlashCharacters"></a><span class="nonterminal">PreSlashCharacters</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<a href="#N-NonTerminatorOrAsteriskOrSlash" class="nonterminal">NonTerminatorOrAsteriskOrSlash</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-PreSlashCharacters" class="nonterminal">PreSlashCharacters</a>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonTerminatorOrSlash"></a><span class="nonterminal">NonTerminatorOrSlash</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>&nbsp;<b>except</b>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonTerminatorOrAsteriskOrSlash"></a><span class="nonterminal">NonTerminatorOrAsteriskOrSlash</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>&nbsp;<b>except</b>&nbsp;<code>*</code>&nbsp;|&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-MultiLineBlockComment"></a><span class="nonterminal">MultiLineBlockComment</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;<code>*</code>&nbsp;<a href="#N-MultiLineBlockCommentCharacters" class="nonterminal">MultiLineBlockCommentCharacters</a>&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<code>*</code>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-MultiLineBlockCommentCharacters"></a><span class="nonterminal">MultiLineBlockCommentCharacters</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-MultiLineBlockCommentCharacters" class="nonterminal">MultiLineBlockCommentCharacters</a>&nbsp;<a href="#N-BlockCommentCharacters" class="nonterminal">BlockCommentCharacters</a>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+
+<h3>空白類文字</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-WhiteSpace"></a><span class="nonterminal">WhiteSpace</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-WhiteSpaceCharacter" class="nonterminal">WhiteSpaceCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-SingleLineBlockComment" class="nonterminal">SingleLineBlockComment</a></div>
+</div>
+
+<h3>改行</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineBreak"></a><span class="nonterminal">LineBreak</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineComment" class="nonterminal">LineComment</a>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-MultiLineBlockComment" class="nonterminal">MultiLineBlockComment</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineBreaks"></a><span class="nonterminal">LineBreaks</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LineBreak" class="nonterminal">LineBreak</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineBreaks" class="nonterminal">LineBreaks</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-LineBreak" class="nonterminal">LineBreak</a></div>
+</div>
+
+<h3>入力要素</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-argument"><span class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></span>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="nonterminal-attribute">re</span>,&nbsp;<span class="nonterminal-attribute">div</span>,&nbsp;<span class="nonterminal-attribute">num</span>}</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NextInputElement"></a><span class="nonterminal">NextInputElement</span><sup class="nonterminal-attribute">re</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">re</sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">NextInputElement</span><sup class="nonterminal-attribute">div</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">NextInputElement</span><sup class="nonterminal-attribute">num</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a>,&nbsp;<code>\</code>}]&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></sup>]:&nbsp;<a href="#D-InputElement" class="domain-name">InputElement</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">re</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">re</sup>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">re</sup>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">div</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NextInputElement" class="nonterminal">NextInputElement</a><sup class="nonterminal-attribute">num</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a>,&nbsp;<code>\</code>}]&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a>&nbsp;<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup>];</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-InputElement"></a><span class="nonterminal">InputElement</span><sup class="nonterminal-attribute">re</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LineBreaks" class="nonterminal">LineBreaks</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentifierOrKeyword" class="nonterminal">IdentifierOrKeyword</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Punctuator" class="nonterminal">Punctuator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RegExpLiteral" class="nonterminal">RegExpLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-EndOfInput" class="nonterminal">EndOfInput</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">InputElement</span><sup class="nonterminal-attribute">div</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LineBreaks" class="nonterminal">LineBreaks</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentifierOrKeyword" class="nonterminal">IdentifierOrKeyword</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Punctuator" class="nonterminal">Punctuator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DivisionPunctuator" class="nonterminal">DivisionPunctuator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-EndOfInput" class="nonterminal">EndOfInput</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-EndOfInput"></a><span class="nonterminal">EndOfInput</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<span class="terminal">End</span></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineComment" class="nonterminal">LineComment</a>&nbsp;<span class="terminal">End</span></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></sup>]:&nbsp;<a href="#D-InputElement" class="domain-name">InputElement</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-LineBreaks" class="nonterminal">LineBreaks</a>]&nbsp;=&nbsp;<a href="#T-lineBreak" class="tag-name">lineBreak</a>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IdentifierOrKeyword" class="nonterminal">IdentifierOrKeyword</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-IdentifierOrKeyword" class="nonterminal">IdentifierOrKeyword</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Punctuator" class="nonterminal">Punctuator</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">div</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DivisionPunctuator" class="nonterminal">DivisionPunctuator</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-DivisionPunctuator" class="nonterminal">DivisionPunctuator</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-attribute">re</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RegExpLiteral" class="nonterminal">RegExpLiteral</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpLiteral" class="nonterminal">RegExpLiteral</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InputElement" class="nonterminal">InputElement</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_nu)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-EndOfInput" class="nonterminal">EndOfInput</a>]&nbsp;=&nbsp;<a href="#T-endOfInput" class="tag-name">endOfInput</a>;</div>
+  </div>
+</div>
+
+<h3>キーワード及び識別子</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IdentifierOrKeyword"></a><span class="nonterminal">IdentifierOrKeyword</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IdentifierOrKeyword" class="nonterminal">IdentifierOrKeyword</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<A href="#N-IdentifierName" class="nonterminal">IdentifierName</a>]:&nbsp;<a href="#D-InputElement" class="domain-name">InputElement</a></div>
+  <div class="lvl">
+    <div class="stmt"><span class="semantic-keyword">begin</span></div>
+    <div class="lvl">
+      <div class="stmt"><var>id</var>:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Lex</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>];</div>
+      <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>id</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>
+        {&#8220;<code>abstract</code>&#8221;, &#8220;<code>as</code>&#8221;, &#8220;<code>break</code>&#8221;,
+        &#8220;<code>case</code>&#8221;, &#8220;<code>catch</code>&#8221;, &#8220;<code>class</code>&#8221;,
+        &#8220;<code>const</code>&#8221;, &#8220;<code>continue</code>&#8221;, &#8220;<code>debugger</code>&#8221;,
+        &#8220;<code>default</code>&#8221;, &#8220;<code>delete</code>&#8221;, &#8220;<code>do</code>&#8221;,
+        &#8220;<code>else</code>&#8221;, &#8220;<code>enum</code>&#8221;, &#8220;<code>export</code>&#8221;,
+        &#8220;<code>extends</code>&#8221;, &#8220;<code>false</code>&#8221;, &#8220;<code>finally</code>&#8221;,
+        &#8220;<code>for</code>&#8221;, &#8220;<code>function</code>&#8221;, &#8220;<code>get</code>&#8221;,
+        &#8220;<code>goto</code>&#8221;, &#8220;<code>if</code>&#8221;, &#8220;<code>implements</code>&#8221;,
+        &#8220;<code>import</code>&#8221;, &#8220;<code>in</code>&#8221;, &#8220;<code>instanceof</code>&#8221;,
+        &#8220;<code>interface</code>&#8221;, &#8220;<code>is</code>&#8221;, &#8220;<code>namespace</code>&#8221;,
+        &#8220;<code>native</code>&#8221;, &#8220;<code>new</code>&#8221;, &#8220;<code>null</code>&#8221;,
+        &#8220;<code>package</code>&#8221;, &#8220;<code>private</code>&#8221;, &#8220;<code>protected</code>&#8221;,
+        &#8220;<code>public</code>&#8221;, &#8220;<code>return</code>&#8221;, &#8220;<code>set</code>&#8221;,
+        &#8220;<code>super</code>&#8221;, &#8220;<code>switch</code>&#8221;, &#8220;<code>synchronized</code>&#8221;,
+        &#8220;<code>this</code>&#8221;, &#8220;<code>throw</code>&#8221;, &#8220;<code>throws</code>&#8221;,
+        &#8220;<code>transient</code>&#8221;, &#8220;<code>true</code>&#8221;, &#8220;<code>try</code>&#8221;,
+        &#8220;<code>typeof</code>&#8221;, &#8220;<code>use</code>&#8221;, &#8220;<code>var</code>&#8221;,
+        &#8220;<code>volatile</code>&#8221;, &#8220;<code>while</code>&#8221;,
+        &#8220;<code>with</code>&#8221;}&nbsp;<span class=semantic-keyword>and</span>
+        <span class="semantic-keyword">not</span>&nbsp;<span class="action-name">ContainsEscapes</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>]&nbsp;<span class="semantic-keyword">then</span></div>
+      <div class="lvl">
+        <div class="stmt"><span class="semantic-keyword">return</span>&nbsp;<a href="#D-Keyword" class="domain-name">Keyword</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;<var>id</var><b><script type="text/javascript">document.write(U_rang)</script></b></div>
+      </div>
+      <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#D-Identifier" class="domain-name">Identifier</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;<var>id</var><b><script type="text/javascript">document.write(U_rang)</script></b></div>
+      <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+    </div>
+    <div class="stmt"><span class="semantic-keyword">end</span>;</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IdentifierName"></a><span class="nonterminal">IdentifierName</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NullEscapes" class="nonterminal">NullEscapes</a>&nbsp;<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NullEscapes"></a><span class="nonterminal">NullEscapes</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NullEscapes" class="nonterminal">NullEscapes</a>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NullEscape"></a><span class="nonterminal">NullEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>\</code>&nbsp;<code>_</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-InitialIdentifierCharacterOrEscape"></a><span class="nonterminal">InitialIdentifierCharacterOrEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>\</code>&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-InitialIdentifierCharacter"></a><span class="nonterminal">InitialIdentifierCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeInitialAlphabetic" class="nonterminal">UnicodeInitialAlphabetic</a>&nbsp;|&nbsp;<code>$</code>&nbsp;|&nbsp;<code>_</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ContinuingIdentifierCharacterOrEscape"></a><span class="nonterminal">ContinuingIdentifierCharacterOrEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>\</code>&nbsp;<A href="#N-HexEscape" class="nonterminal">HexEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ContinuingIdentifierCharacter"></a><span class="nonterminal">ContinuingIdentifierCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeAlphanumeric" class="nonterminal">UnicodeAlphanumeric</a>&nbsp;|&nbsp;<code>$</code>&nbsp;|&nbsp;<code>_</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>]:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>]
+      =&nbsp;<b>[</b><span class="action-name">Lex</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>]<b>]</b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NullEscapes" class="nonterminal">NullEscapes</a>&nbsp;<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>]
+      =&nbsp;<b>[</b><span class="action-name">Lex</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>]<b>]</b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">1</sub>]&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<b>[</b><span class="action-name">Lex</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>]<b>]</b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">1</sub>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>]:&nbsp;<a href="notation.html#D-Boolean" class="domain-name">Boolean</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>]
+      =&nbsp;<span class="action-name">ContainsEscapes</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NullEscapes" class="nonterminal">NullEscapes</a>&nbsp;<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>]
+      =&nbsp;<span class="tag-name">true</span>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>]
+      =&nbsp;<span class="action-name">ContainsEscapes</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a><sub class="nonterminal-sub">1</sub>]&nbsp;<span class="semantic-keyword">or</span>
+      <span class="action-name">ContainsEscapes</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IdentifierName" class="nonterminal">IdentifierName</a>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a>]&nbsp;=&nbsp;<span class="tag-name">true</span>;</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>]:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a>]
+      =&nbsp;<a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>\</code>&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a>]</div>
+    <div class="lvl">
+      <div class="stmt"><span class="semantic-keyword">begin</span></div>
+      <div class="lvl">
+        <div class="stmt"><var>ch</var>:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Lex</span>[<a href="#N-HexEscape" class="nonterminal">HexEscape</a>];</div>
+        <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;the nonterminal
+          <a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a> can expand into
+          <b>[</b><var>ch</var><b>]</b>&nbsp;<span class="semantic-keyword">then</span></div>
+        <div class="lvl">
+          <div class="stmt"><span class="semantic-keyword">return</span>&nbsp;<var>ch</var></div>
+        </div>
+        <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<A href="#T-syntaxError" class="tag-name">syntaxError</a></div>
+        <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+      </div>
+      <div class="stmt"><span class="semantic-keyword">end</span>;</div>
+    </div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>]:&nbsp;<a href="notation.html#D-Boolean" class="domain-name">Boolean</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a>]
+      =&nbsp;<span class="tag-name">false</span>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-InitialIdentifierCharacterOrEscape" class="nonterminal">InitialIdentifierCharacterOrEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>\</code>&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a>]&nbsp;=&nbsp;<span class="tag-name">true</span>;</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>]:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a>]
+      =&nbsp;<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>\</code>&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a>]</div>
+    <div class="lvl">
+      <div class="stmt"><span class="semantic-keyword">begin</span></div>
+      <div class="lvl">
+        <div class="stmt"><var>ch</var>:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Lex</span>[<a href="#N-HexEscape" class="nonterminal">HexEscape</a>];</div>
+        <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;the nonterminal
+          <a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a> can expand into
+          <b>[</b><var>ch</var><b>]</b>&nbsp;<span class="semantic-keyword">then</span></div>
+        <div class="lvl">
+          <div class="stmt"><span class="semantic-keyword">return</span>&nbsp;<var>ch</var></div>
+        </div>
+        <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-syntaxError" class="tag-name">syntaxError</a></div>
+        <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+      </div>
+      <div class="stmt"><span class="semantic-keyword">end</span>;</div>
+    </div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>]:&nbsp;<a href="notation.html#D-Boolean" class="domain-name">Boolean</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a>]
+      =&nbsp;<span class="tag-name">false</span>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">ContainsEscapes</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>\</code>&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a>]&nbsp;=&nbsp;<span class="tag-name">true</span>;</div>
+  </div>
+</div>
+
+<h3>区切り文字</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Punctuator"></a><span class="nonterminal">Punctuator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>!</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>!</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>!</code>&nbsp;<code>=</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>%</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>%</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&amp;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&amp;</code>&nbsp;<code>&amp;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&amp;</code>&nbsp;<code>&amp;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&amp;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>(</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>)</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>*</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>*</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code>&nbsp;<code>+</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>,</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code>&nbsp;<code>-</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>.</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>.</code>&nbsp;<code>.</code>&nbsp;<code>.</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>:</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>:</code>&nbsp;<code>:</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&lt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&lt;</code>&nbsp;<code>&lt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&lt;</code>&nbsp;<code>&lt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&lt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>=</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>=</code>&nbsp;<code>=</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>?</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>[</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>]</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>^</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>^</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>^</code>&nbsp;<code>^</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>^</code>&nbsp;<code>^</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>{</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>|</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>|</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>|</code>&nbsp;<code>|</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>|</code>&nbsp;<code>|</code>&nbsp;<code>=</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>}</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>~</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DivisionPunctuator"></a><span class="nonterminal">DivisionPunctuator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>/</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<code>/</code>,&nbsp;<code>*</code>}]</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>/</code>&nbsp;<code>=</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>]:&nbsp;<a href="#D-Token" class="domain-name">Token</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>!</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>!</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>!</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>!=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>!</code>&nbsp;<code>=</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>!==</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>%</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>%</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>%</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>%=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&amp;</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&amp;</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&amp;</code>&nbsp;<code>&amp;</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&amp;&amp;</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&amp;</code>&nbsp;<code>&amp;</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&amp;&amp;=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&amp;</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&amp;=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>(</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>(</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>)</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>)</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>*</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>*</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>*</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>*=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>+</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>+</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>+</code>&nbsp;<code>+</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>++</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>+</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>+=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>,</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>,</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>-</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>-</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>-</code>&nbsp;<code>-</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>--</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>-</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>-=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>.</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>.</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>.</code>&nbsp;<code>.</code>&nbsp;<code>.</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>...</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>:</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>:</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>:</code>&nbsp;<code>:</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>::</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>;</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>;</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&lt;</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&lt;</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&lt;</code>&nbsp;<code>&lt;</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&lt;&lt;</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&lt;</code>&nbsp;<code>&lt;</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&lt;&lt;=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&lt;</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&lt;=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>=</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>==</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>=</code>&nbsp;<code>=</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>===</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&gt;</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&gt;</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&gt;</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&gt;=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&gt;&gt;</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&gt;&gt;=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&gt;&gt;&gt;</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>&gt;</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>&gt;&gt;&gt;=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>?</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>?</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>[</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>[</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>]</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>]</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>^</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>^</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>^</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>^=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>^</code>&nbsp;<code>^</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>^^</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>^</code>&nbsp;<code>^</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>^^=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>{</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>{</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>|</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>|</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>|</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>|=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>|</code>&nbsp;<code>|</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>||</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>|</code>&nbsp;<code>|</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>||=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>}</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>}</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Punctuator" class="nonterminal">Punctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>~</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>~</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DivisionPunctuator" class="nonterminal">DivisionPunctuator</a>]:&nbsp;<a href="#D-Token" class="domain-name">Token</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DivisionPunctuator" class="nonterminal">DivisionPunctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<code>/</code>,&nbsp;<code>*</code>}]]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>/</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DivisionPunctuator" class="nonterminal">DivisionPunctuator</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;<code>=</code>]&nbsp;=&nbsp;<a href="#D-Punctuator" class="domain-name">Punctuator</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">name</span>:&nbsp;&#8220;<code>/=</code>&#8221;<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+</div>
+
+<h3>数値リテラル</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NumericLiteral"></a><span class="nonterminal">NumericLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>&nbsp;<a href="#N-LetterF" class="nonterminal">LetterF</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>&nbsp;<a href="#N-LetterL" class="nonterminal">LetterL</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>&nbsp;<a href="#N-LetterU" class="nonterminal">LetterU</a>&nbsp;<a href="#N-LetterL" class="nonterminal">LetterL</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IntegerLiteral"></a><span class="nonterminal">IntegerLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterF"></a><span class="nonterminal">LetterF</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>F</code>&nbsp;|&nbsp;<code>f</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterL"></a><span class="nonterminal">LetterL</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>L</code>&nbsp;|&nbsp;<code>l</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterU"></a><span class="nonterminal">LetterU</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>U</code>&nbsp;|&nbsp;<code>u</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a>]:&nbsp;<a href="#D-Token" class="domain-name">Token</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>]
+      =&nbsp;<a href="#D-NumberToken" class="domain-name">NumberToken</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;(<span class="action-name">Lex</span>[<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>])<sub>f64</sub><b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>]
+      =&nbsp;<A href="#D-NumberToken" class="domain-name">NumberToken</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;(<span class="action-name">Lex</span>[<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>])<sub>f64</sub><b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>&nbsp;<a href="#N-LetterF" class="nonterminal">LetterF</a>]
+      =&nbsp;<a href="#D-NumberToken" class="domain-name">NumberToken</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;(<span class="action-name">Lex</span>[<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>])<sub>f32</sub><b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>&nbsp;<a href="#N-LetterL" class="nonterminal">LetterL</a>]</div>
+    <div class="lvl">
+      <div class="stmt"><span class="semantic-keyword">begin</span></div>
+      <div class="lvl">
+        <div class="stmt"><var>i</var>:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Lex</span>[<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>];</div>
+        <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>i</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;2<sup>63</sup>&nbsp;&#8211;&nbsp;1&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#D-NumberToken" class="domain-name">NumberToken</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<var>i</var><sub class="tag-name">long</sub><b><script type="text/javascript">document.write(U_rang)</script></b></div>
+        <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>i</var>&nbsp;=&nbsp;2<sup>63</sup>&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#T-negatedMinLong" class="tag-name">negatedMinLong</a></div>
+        <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-rangeError" class="tag-name">rangeError</a></div>
+        <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+      </div>
+      <div class="stmt"><span class="semantic-keyword">end</span>;</div>
+    </div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NumericLiteral" class="nonterminal">NumericLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>&nbsp;<a href="#N-LetterU" class="nonterminal">LetterU</a>&nbsp;<a href="#N-LetterL" class="nonterminal">LetterL</a>]</div>
+    <div class="lvl">
+      <div class="stmt"><span class="semantic-keyword">begin</span></div>
+      <div class="lvl">
+        <div class="stmt"><var>i</var>:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>&nbsp;<script type="text/javascript">document.write(U_larr)</script>&nbsp;<span class="action-name">Lex</span>[<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>];</div>
+        <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>i</var>&nbsp;<script type="text/javascript">document.write(U_le)</script>&nbsp;2<sup>64</sup>&nbsp;&#8211;&nbsp;1&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#D-NumberToken" class="domain-name">NumberToken</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<var>i</var><sub class="tag-name">ulong</sub><b><script type="text/javascript">document.write(U_rang)</script></b></div>
+        <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">throw</span>&nbsp;<a href="#T-rangeError" class="tag-name">rangeError</a></div>
+        <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+      </div>
+      <div class="stmt"><span class="semantic-keyword">end</span>;</div>
+    </div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-IntegerLiteral" class="nonterminal">IntegerLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>];</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-argument"><span class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></span>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="nonterminal-attribute">noLeadingZeros</span>,&nbsp;<span class="nonterminal-attribute">allowLeadingZeros</span>}</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DecimalLiteral"></a><span class="nonterminal">DecimalLiteral</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<a href="#N-LetterE" class="nonterminal">LetterE</a>&nbsp;<a href="#N-SignedInteger" class=nonterminal>SignedInteger</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterE"></a><span class="nonterminal">LetterE</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>E</code>&nbsp;|&nbsp;<code>e</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Mantissa"></a><span class="nonterminal">Mantissa</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<code>.</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<code>.</code>&nbsp;<A href="#N-Fraction" class="nonterminal">Fraction</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>.</code>&nbsp;<a href="#N-Fraction" class="nonterminal">Fraction</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DecimalIntegerLiteral"></a><span class="nonterminal">DecimalIntegerLiteral</span><sup class="nonterminal-attribute">noLeadingZeros</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>0</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<A href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">DecimalIntegerLiteral</span><sup class="nonterminal-attribute">allowLeadingZeros</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonZeroDecimalDigits"></a><span class="nonterminal">NonZeroDecimalDigits</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-NonZeroDigit" class="nonterminal">NonZeroDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-NonZeroDigit"></a><span class="nonterminal">NonZeroDigit</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>1</code>&nbsp;|&nbsp;<code>2</code>&nbsp;|&nbsp;<code>3</code>&nbsp;|&nbsp;<code>4</code>&nbsp;|&nbsp;<code>5</code>&nbsp;|&nbsp;<code>6</code>&nbsp;|&nbsp;<code>7</code>&nbsp;|&nbsp;<code>8</code>&nbsp;|&nbsp;<code>9</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Fraction"></a><span class="nonterminal">Fraction</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>]:&nbsp;<a href="notation.html#D-Rational" class="domain-name">Rational</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<a href="#N-LetterE" class="nonterminal">LetterE</a>&nbsp;<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>]<script type="text/javascript">document.write(U_times)</script>10<sup><span class="action-name">Lex</span>[<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>]</sup>;</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>]:&nbsp;<a href="notation.html#D-Rational" class=domain-name>Rational</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<code>.</code>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<code>.</code>&nbsp;<a href="#N-Fraction" class="nonterminal">Fraction</a>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>]&nbsp;+&nbsp;<span class="action-name">Lex</span>[<a href="#N-Fraction" class="nonterminal">Fraction</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Mantissa" class="nonterminal">Mantissa</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>.</code>&nbsp;<a href="#N-Fraction" class="nonterminal">Fraction</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-Fraction" class="nonterminal">Fraction</a>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_zeta)</script></sup>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>]&nbsp;=&nbsp;0;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-attribute">noLeadingZeros</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalIntegerLiteral" class="nonterminal">DecimalIntegerLiteral</a><sup class="nonterminal-attribute">allowLeadingZeros</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonZeroDigit" class="nonterminal">NonZeroDigit</a>]&nbsp;=&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-NonZeroDigit" class="nonterminal">NonZeroDigit</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]
+      =&nbsp;10<script type="text/javascript">document.write(U_times)</script><span class="action-name">Lex</span>[<a href="#N-NonZeroDecimalDigits" class="nonterminal">NonZeroDecimalDigits</a><sub class="nonterminal-sub">1</sub>]&nbsp;+&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>];</div>
+  </div>
+</div>
+<div class="algorithm-stmt"><span class="action-name">DecimalValue</span>[<a href="#N-NonZeroDigit" class="nonterminal">NonZeroDigit</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>&nbsp;=&nbsp;<a href="notation.html#V-digitValue" class="global-variable">digitValue</a>(<a href="#N-NonZeroDigit" class="nonterminal">NonZeroDigit</a>);</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-Fraction" class="nonterminal">Fraction</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]:&nbsp;<a href="notation.html#D-Rational" class="domain-name">Rational</a>&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]/10<sup><span class="action-name">NDigits</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]</sup>;</div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-SignedInteger"></a><span class="nonterminal">SignedInteger</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-OptionalSign"></a><span class="nonterminal">OptionalSign</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>
+    =&nbsp;<span class="action-name">Lex</span>[<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>]<script type="text/javascript">document.write(U_times)</script><span class="action-name">Lex</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>];</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>]:&nbsp;{&#8211;1,&nbsp;1};</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;&#171;empty&#187;]&nbsp;=&nbsp;1;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>+</code>]&nbsp;=&nbsp;1;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>-</code>]&nbsp;=&nbsp;&#8211;1;</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DecimalDigits"></a><span class="nonterminal">DecimalDigits</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]&nbsp;=&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]
+      =&nbsp;10<script type="text/javascript">document.write(U_times)</script><span class="action-name">Lex</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">1</sub>]&nbsp;+&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">NDigits</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">NDigits</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]&nbsp;=&nbsp;1;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">NDigits</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]&nbsp;=&nbsp;<span class="action-name">NDigits</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">1</sub>]&nbsp;+&nbsp;1;</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-HexIntegerLiteral"></a><span class="nonterminal">HexIntegerLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>0</code>&nbsp;<a href="#N-LetterX" class="nonterminal">LetterX</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LetterX"></a><span class="nonterminal">LetterX</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>X</code>&nbsp;|&nbsp;<code>x</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-HexDigit"></a><span class="nonterminal">HexDigit</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;|&nbsp;<code>1</code>&nbsp;|&nbsp;<code>2</code>&nbsp;|&nbsp;<code>3</code>&nbsp;|&nbsp;<code>4</code>&nbsp;|&nbsp;<code>5</code>&nbsp;|&nbsp;<code>6</code>&nbsp;|&nbsp;<code>7</code>&nbsp;|&nbsp;<code>8</code>&nbsp;|&nbsp;<code>9</code>&nbsp;|&nbsp;<code>A</code>&nbsp;|&nbsp;<code>B</code>&nbsp;|&nbsp;<code>C</code>&nbsp;|&nbsp;<code>D</code>&nbsp;|&nbsp;<code>E</code>&nbsp;|&nbsp;<code>F</code>&nbsp;|&nbsp;<code>a</code>&nbsp;|&nbsp;<code>b</code>&nbsp;|&nbsp;<code>c</code>&nbsp;|&nbsp;<code>d</code>&nbsp;|&nbsp;<code>e</code>&nbsp;|&nbsp;<code>f</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;<a href="#N-LetterX" class="nonterminal">LetterX</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>]&nbsp;=&nbsp;<span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>]
+      =&nbsp;16<script type="text/javascript">document.write(U_times)</script><span class="action-name">Lex</span>[<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a><sub class="nonterminal-sub">1</sub>]&nbsp;+&nbsp;<span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a>];</div>
+  </div>
+</div>
+<div class=algorithm-stmt><span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a>]:&nbsp;<a href="notation.html#D-Integer" class="domain-name">Integer</a>&nbsp;=&nbsp;<a href="notation.html#V-digitValue" class=global-variable>digitValue</a>(<a href="#N-HexDigit" class="nonterminal">HexDigit</a>);</div>
+
+<h3>文字列リテラル</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-argument"><span class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></span>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="nonterminal-attribute">single</span>,&nbsp;<span class="nonterminal-attribute">double</span>}</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringLiteral"></a><span class="nonterminal">StringLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>'</code>&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-attribute">single</sup>&nbsp;<code>'</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>"</code>&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-attribute">double</sup>&nbsp;<code>"</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a>]:&nbsp;<a href="#D-Token" class="domain-name">Token</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>'</code>&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-attribute">single</sup>&nbsp;<code>'</code>]
+      =&nbsp;<a href="#D-StringToken" class="domain-name">StringToken</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<span class="action-name">Lex</span>[<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-attribute">single</sup>]<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringLiteral" class="nonterminal">StringLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>"</code>&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-attribute">double</sup>&nbsp;<code>"</code>]
+      =&nbsp;<a href="#D-StringToken" class="domain-name">StringToken</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">value</span>:&nbsp;<span class="action-name">Lex</span>[<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-attribute">double</sup>]<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringChars"></a><span class="nonterminal">StringChars</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<a href="#N-StringChar" class="nonterminal">StringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringChar"></a><span class="nonterminal">StringChar</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-LiteralStringChar" class="nonterminal">LiteralStringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>\</code>&nbsp;<a href="#N-StringEscape" class="nonterminal">StringEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LiteralStringChar"></a><span class="nonterminal">LiteralStringChar</span><sup class="nonterminal-attribute">single</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeCharacter" class="nonterminal">UnicodeCharacter</a>&nbsp;<b>except</b>&nbsp;<code>'</code>&nbsp;|&nbsp;<code>\</code>&nbsp;|&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">LiteralStringChar</span><sup class="nonterminal-attribute">double</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeCharacter" class="nonterminal">UnicodeCharacter</a>&nbsp;<b>except</b>&nbsp;<code>"</code>&nbsp;|&nbsp;<code>\</code>&nbsp;|&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>]:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;&#171;empty&#187;]&nbsp;=&nbsp;&#8220;&#8221;;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-StringChar" class="nonterminal">StringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup><sub class="nonterminal-sub">1</sub>]&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<b>[</b><span class="action-name">Lex</span>[<a href="#N-StringChar" class="nonterminal">StringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>]<b>]</b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-StringChars" class="nonterminal">StringChars</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup><sub class="nonterminal-sub">1</sub>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringChar" class="nonterminal">StringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>]:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringChar" class="nonterminal">StringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-LiteralStringChar" class="nonterminal">LiteralStringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>]&nbsp;=&nbsp;<a href="#N-LiteralStringChar" class="nonterminal">LiteralStringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringChar" class="nonterminal">StringChar</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_theta)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>\</code>&nbsp;<a href="#N-StringEscape" class="nonterminal">StringEscape</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-StringEscape" class="nonterminal">StringEscape</a>];</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringEscape"></a><span class="nonterminal">StringEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-ZeroEscape" class="nonterminal">ZeroEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-IdentityEscape" class="nonterminal">IdentityEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-IdentityEscape"></a><span class="nonterminal">IdentityEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>&nbsp;<b>except</b>&nbsp;<code>_</code>&nbsp;|&nbsp;<a href="#N-UnicodeAlphanumeric" class="nonterminal">UnicodeAlphanumeric</a></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringEscape" class="nonterminal">StringEscape</a>]:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringEscape" class="nonterminal">StringEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringEscape" class="nonterminal">StringEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-ZeroEscape" class="nonterminal">ZeroEscape</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-ZeroEscape" class="nonterminal">ZeroEscape</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringEscape" class="nonterminal">StringEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-HexEscape" class="nonterminal">HexEscape</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-HexEscape" class="nonterminal">HexEscape</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringEscape" class="nonterminal">StringEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-IdentityEscape" class="nonterminal">IdentityEscape</a>]&nbsp;=&nbsp;<a href="#N-IdentityEscape" class="nonterminal">IdentityEscape</a>;</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ControlEscape"></a><span class="nonterminal">ControlEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>b</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>f</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>n</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>r</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>t</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>v</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>]:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>b</code>]&nbsp;=&nbsp;&#8216;<code><span class="control">&#171;BS&#187;</span></code>&#8217;;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>f</code>]&nbsp;=&nbsp;&#8216;<code><span class="control">&#171;FF&#187;</span></code>&#8217;;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>n</code>]&nbsp;=&nbsp;&#8216;<code><span class="control">&#171;LF&#187;</span></code>&#8217;;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>r</code>]&nbsp;=&nbsp;&#8216;<code><span class="control">&#171;CR&#187;</span></code>&#8217;;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>t</code>]&nbsp;=&nbsp;&#8216;<code><span class="control">&#171;TAB&#187;</span></code>&#8217;;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ControlEscape" class="nonterminal">ControlEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>v</code>]&nbsp;=&nbsp;&#8216;<code><span class="control">&#171;VT&#187;</span></code>&#8217;;</div>
+  </div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ZeroEscape"></a><span class="nonterminal">ZeroEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>}]</div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-ZeroEscape" class="nonterminal">ZeroEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>}]]:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>&nbsp;=&nbsp;&#8216;<code><span class="control">&#171;NUL&#187;</span></code>&#8217;;</div>
+</div>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-HexEscape"></a><span class="nonterminal">HexEscape</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>x</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>u</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>U</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-HexEscape" class="nonterminal">HexEscape</a>]:&nbsp;<a href="notation.html#D-Char16" class="domain-name">Char16</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-HexEscape" class="nonterminal">HexEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>x</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">2</sub>]
+      =&nbsp;<a href="notation.html#V-integerToChar16" class="global-variable">integerToChar16</a>(16<script type="text/javascript">document.write(U_times)</script><span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">1</sub>]&nbsp;+&nbsp;<span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">2</sub>]);</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-HexEscape" class="nonterminal">HexEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>u</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">2</sub>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">3</sub>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">4</sub>]
+      =&nbsp;<a href="notation.html#V-integerToChar16" class="global-variable">integerToChar16</a>(4096<script type="text/javascript">document.write(U_times)</script><span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">1</sub>]&nbsp;+&nbsp;256<script type="text/javascript">document.write(U_times)</script><span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">2</sub>]&nbsp;+
+      16<script type="text/javascript">document.write(U_times)</script><span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">3</sub>]&nbsp;+
+      <span class="action-name">HexValue</span>[<a href="#N-HexDigit" class="nonterminal">HexDigit</a><sub class="nonterminal-sub">4</sub>]);</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-HexEscape" class="nonterminal">HexEscape</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>U</code>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>&nbsp;<a href="#N-HexDigit" class="nonterminal">HexDigit</a>]
+      =&nbsp;????;</div>
+  </div>
+</div>
+
+<p><span class="comment">[訳注: 最後の部分の &#8220;????&#8221; は編集上のミスではない。現時点でセマンティクスの実装は終了しておらず、未確定という意味である]</span></p>
+
+<h3>正規表現リテラル</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpLiteral"></a><span class="nonterminal">RegExpLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RegExpBody" class="nonterminal">RegExpBody</a>&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpFlags"></a><span class="nonterminal">RegExpFlags</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a>&nbsp;<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpBody"></a><span class="nonterminal">RegExpBody</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<code>*</code>}]&nbsp;<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a>&nbsp;<code>/</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpChars"></a><span class="nonterminal">RegExpChars</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a>&nbsp;<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RegExpChar"></a><span class="nonterminal">RegExpChar</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-OrdinaryRegExpChar" class="nonterminal">OrdinaryRegExpChar</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>\</code>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-OrdinaryRegExpChar"></a><span class="nonterminal">OrdinaryRegExpChar</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>&nbsp;<b>except</b>&nbsp;<code>\</code>&nbsp;|&nbsp;<code>/</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpLiteral" class="nonterminal">RegExpLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RegExpBody" class="nonterminal">RegExpBody</a>&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a>]:&nbsp;<a href="#D-Token" class="domain-name">Token</a>
+    =&nbsp;<a href="#D-RegularExpression" class="domain-name">RegularExpression</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">body</span>:&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpBody" class="nonterminal">RegExpBody</a>],&nbsp;<span class="field-name">flags</span>:&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a>]<b><script type="text/javascript">document.write(U_rang)</script></b>;</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a>]:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;&#171;empty&#187;]&nbsp;=&nbsp;&#8220;&#8221;;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a><sub class="nonterminal-sub">1</sub>]&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<b>[</b><span class="action-name">Lex</span>[<a href="#N-ContinuingIdentifierCharacterOrEscape" class="nonterminal">ContinuingIdentifierCharacterOrEscape</a>]<b>]</b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-NullEscape" class="nonterminal">NullEscape</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpFlags" class="nonterminal">RegExpFlags</a><sub class="nonterminal-sub">1</sub>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpBody" class="nonterminal">RegExpBody</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>/</code>&nbsp;[lookahead<script type="text/javascript">document.write(U_notin)</script>{<code>*</code>}]&nbsp;<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a>&nbsp;<code>/</code>]:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a>&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a>];</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a>]:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a>]&nbsp;=&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpChars" class="nonterminal">RegExpChars</a><sub class="nonterminal-sub">1</sub>]&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<span class="action-name">Lex</span>[<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a>]:&nbsp;<a href="notation.html#D-String" class="domain-name">String</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-OrdinaryRegExpChar" class="nonterminal">OrdinaryRegExpChar</a>]&nbsp;=&nbsp;<b>[</b><a href="#N-OrdinaryRegExpChar" class="nonterminal">OrdinaryRegExpChar</a><b>]</b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-RegExpChar" class="nonterminal">RegExpChar</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>\</code>&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a>]&nbsp;=&nbsp;<b>[</b>&#8216;<code>\</code>&#8217;,&nbsp;<a href="#N-NonTerminator" class="nonterminal">NonTerminator</a><b>]</b>;</div>
+  </div>
+</div>
+
+<h2>文字列から数値への変換</h2>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringNumericLiteral"></a><span class="nonterminal">StringNumericLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-SignedDecimalLiteral"></a><span class="nonterminal">SignedDecimalLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">allowLeadingZeros</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<code>I</code>&nbsp;<code>n</code>&nbsp;<code>f</code>&nbsp;<code>i</code>&nbsp;<code>n</code>&nbsp;<code>i</code>&nbsp;<code>t</code>&nbsp;<code>y</code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>N</code>&nbsp;<code>a</code>&nbsp;<code>N</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringWhiteSpace"></a><span class="nonterminal">StringWhiteSpace</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;&#171;empty&#187;</div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-WhiteSpaceOrLineTerminatorChar" class="nonterminal">WhiteSpaceOrLineTerminatorChar</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-WhiteSpaceOrLineTerminatorChar"></a><span class="nonterminal">WhiteSpaceOrLineTerminatorChar</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpaceCharacter" class="nonterminal">WhiteSpaceCharacter</a>&nbsp;|&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm-stmt"><a name="T-PlusZero"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">+zero</span>;</div>
+<div class="algorithm-stmt"><a name="T-MinusZero"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">&#8211;zero</span>;</div>
+<div class="algorithm-stmt"><a name="T-PlusInfinity"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">+<script type="text/javascript">document.write(U_infin)</script></span>;</div>
+<div class="algorithm-stmt"><a name="T-MinusInfinity"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script></span>;</div>
+<div class="algorithm-stmt"><a name="T-NaN"></a><span class="semantic-keyword">tag</span>&nbsp;<span class="tag-name">NaN</span>;</div>
+<div class="algorithm-stmt"><a name="D-ExtendedRational"></a><span class="domain-name">ExtendedRational</span>&nbsp;=&nbsp;<a href="notation.html#D-Rational" class="domain-name">Rational</a>&nbsp;<script type="text/javascript">document.write(U_cup)</script>&nbsp;{<a href="#T-PlusZero" class="tag-name">+zero</a>,&nbsp;<a href="#T-MinusZero" class="tag-name">&#8211;zero</a>,&nbsp;<a href="#T-PlusInfinity" class="tag-name">+<script type="text/javascript">document.write(U_infin)</script></a>,&nbsp;<a href="#T-MinusInfinity" class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script></a>,&nbsp;<a href="#T-NaN" class="tag-name">NaN</a>};</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringNumericLiteral" class="nonterminal">StringNumericLiteral</a>]:&nbsp;<a href="#D-ExtendedRational" class="domain-name">ExtendedRational</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringNumericLiteral" class="nonterminal">StringNumericLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>]&nbsp;=&nbsp;<a href="#T-PlusZero" class="tag-name">+zero</a>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringNumericLiteral" class="nonterminal">StringNumericLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringNumericLiteral" class="nonterminal">StringNumericLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>]
+      =&nbsp;<a href="#V-combineWithSign" class="global-variable">combineWithSign</a>(<span class="action-name">Lex</span>[<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>],&nbsp;<span class="action-name">Lex</span>[<a href="#N-HexIntegerLiteral" class="nonterminal">HexIntegerLiteral</a>]);</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>]:&nbsp;<a href="#D-ExtendedRational" class="domain-name">ExtendedRational</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">allowLeadingZeros</sup>]
+      =&nbsp;<a href="#V-combineWithSign" class="global-variable">combineWithSign</a>(<span class="action-name">Lex</span>[<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>],&nbsp;<span class="action-name">Lex</span>[<a href="#N-DecimalLiteral" class="nonterminal">DecimalLiteral</a><sup class="nonterminal-attribute">allowLeadingZeros</sup>]);</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>&nbsp;<code>I</code>&nbsp;<code>n</code>&nbsp;<code>f</code>&nbsp;<code>i</code>&nbsp;<code>n</code>&nbsp;<code>i</code>&nbsp;<code>t</code>&nbsp;<code>y</code>]
+      =&nbsp;<span class="action-name">Lex</span>[<a href="#N-OptionalSign" class="nonterminal">OptionalSign</a>]&nbsp;&gt;&nbsp;0&nbsp;?&nbsp;<a href="#T-PlusInfinity" class="tag-name">+<script type="text/javascript">document.write(U_infin)</script></a>&nbsp;:&nbsp;<a href="#T-MinusInfinity" class="tag-name">&#8211;<script type="text/javascript">document.write(U_infin)</script></a>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>N</code>&nbsp;<code>a</code>&nbsp;<code>N</code>]&nbsp;=&nbsp;<a href="#T-NaN" class="tag-name">NaN</a>;</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><a name="V-combineWithSign"></a><span class="semantic-keyword">proc</span>&nbsp;<span class="global-variable">combineWithSign</span>(<var>sign</var>:&nbsp;{&#8211;1,&nbsp;1},&nbsp;<var>q</var>:&nbsp;<a href="notation.html#D-Rational" class="domain-name">Rational</a>):&nbsp;<a href="#D-ExtendedRational" class="domain-name">ExtendedRational</a></div>
+  <div class="lvl">
+    <div class="stmt"><span class="semantic-keyword">if</span>&nbsp;<var>q</var>&nbsp;<script type="text/javascript">document.write(U_ne)</script>&nbsp;0&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<var>sign</var><script type="text/javascript">document.write(U_times)</script><var>q</var></div>
+    <div class="stmt"><span class="semantic-keyword">elsif</span>&nbsp;<var>sign</var>&nbsp;&gt;&nbsp;0&nbsp;<span class="semantic-keyword">then</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#T-PlusZero" class="tag-name">+zero</a></div>
+    <div class="stmt"><span class="semantic-keyword">else</span>&nbsp;<span class="semantic-keyword">return</span>&nbsp;<a href="#T-MinusZero" class="tag-name">&#8211;zero</a></div>
+    <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">if</span></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+
+<h3>parseFloat 変換</h3>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-StringDecimalLiteral"></a><span class="nonterminal">StringDecimalLiteral</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Lex</span>[<a href="#N-StringDecimalLiteral" class="nonterminal">StringDecimalLiteral</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-StringWhiteSpace" class="nonterminal">StringWhiteSpace</a>&nbsp;<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>]:&nbsp;<a href="#D-ExtendedRational" class="domain-name">ExtendedRational</a>
+    =&nbsp;<span class="action-name">Lex</span>[<a href="#N-SignedDecimalLiteral" class="nonterminal">SignedDecimalLiteral</a>];</div>
+</div>
+<!--/SEMANTICS-->
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td style="vertical-align:bottom;white-space:nowrap">
+      <address><a href="mailto:waldemar&#x40;netscape.com">Waldemar Horwat</a><br>
+      最終更新: 2003年6月30日 (月)</address>
+    </td>
+    <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="lexer-grammar.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="regexp-grammar.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+  </tr>
+</table>
+
+<div class="translation-footer">
+	訳者: exeal &lt;<a href="mailto:exeal&#x40;student.interq.or.jp">exeal&#x40;student.interq.or.jp</a>&gt;<br />
+	この文書は翻訳で、原文は <a href="http://www.mozilla.org/js/language/js20/formal/lexer-semantics.html">mozilla.org において英語で管理・公開されています</a>。<br />
+	この翻訳文書は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br />
+	翻訳文書についてのコメントは <a href="http://moz.skillup.jp/jtp/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。
+</div>
+
+</body>
+</html>

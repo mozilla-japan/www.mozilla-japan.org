@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP"><meta http-equiv="Content-Language" content="en"><meta http-equiv="Content-Style-Type" content="text/css"><meta http-equiv="Content-Script-Type" content="text/javascript"><title>SeaMonkey 1.0.6 インストール方法</title>
+<link rel="alternate" hreflang="en" modified="November 30, 2006">
+<link rel="stylesheet" type="text/css" href="../../css/content.css" media="all"><link rel="up" href="./" title="SeaMonkey 1.0.6">
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/releases/seamonkey1.0.6/installation.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<p class="crumbs"><em>You are here:</em>
+<a href="../../">SeaMonkey プロジェクト</a> &gt; <a href="../">リリース</a> &gt; <a href="./">SeaMonkey
+1.0.6</a> &gt; <strong>インストール方法</strong>
+</p><h1>SeaMonkey 1.0.6 インストール方法</h1>
+<div class="important"><strong><p>以前のバージョンとの非互換
+問題を避けるために、SeaMonkey インストーラはインストールディレクトリが空でない場合、削除するよう指示します。
+インストールディレクトリにプロファイルまたはその他、個人的なファイルを置いている場合、NO と答えてください。
+そうでなければファイルは削除されるでしょう。デフォルトの場所にプロファイルを置いているユーザは影響を受けません。
+</p><p>プロファイルをバックアップするヘルプは<a href="/start/1.5/faq/profile.html">プロファイル FAQ</a>
+を見てください。
+</p></strong></div><p>このドキュメントはシステム要件、互換性情報そして
+SeaMonkey 1.0.6 インストール方法の概要を説明しています。</p>
+<ul> <li><strong><a href="#linux">Linux</a></strong><a href="#linux"> </a> <ul> <li><a href="#linux_require">要件</a></li> <li><a href="#linux_install">インストール方法</a> <ul>
+<li><a href="#linux_install_installer">SeaMonkey
+インストーラを使う
+</a></li> <li><a href="#linux_install_manual">.tar.gz
+アーカイブを使う</a></li>
+<li><a href="#linux_install_multiuser">マルチユーザインストール</a></li>
+<li><a href="#linux_install_gnome">SeaMonkey を GNOME
+パネルに追加する</a></li> <li><a href="#linux_install_rpm">RPM
+バイナリインストール</a></li> </ul> </li> <li><a href="#linux_uninstall">アンインストール</a></li> </ul>
+</li> <li><strong><a href="#mac">Macintosh</a></strong>
+(Mac OS X) <ul> <li><a href="#mac_requirements">要
+件</a></li>
+<li><a href="#mac_install">インストール方法</a></li>
+<li><a href="#mac_uninstall">アンインストール</a></li>
+</ul> </li> <li><strong><a href="#win">Windows</a></strong>
+<ul> <li><a href="#win_requirements">要件</a></li>
+<li><a href="#win_install">インストール方法</a>
+<ul> <li><a href="#win_install_installer">SeaMonkey
+インストーラを使う</a></li> <li><a href="#win_install_manually">the .zip ファイル手動インストール</a></li>
+</ul> </li> <li><a href="#win_uninstall">ア
+ンインストール</a></li>
+</ul> </li> <li><strong>移植版（他のオペレーティングシステム）</strong>
+<ul> <li>現在、利用できる移植版はありません。</li> </ul> </li>
+<li><a href="#files">ファイルを作るまたは使う</a> <ul>
+<li><a href="#files_profiles">プロファイルの場所</a></li>
+</ul> </li> <li><a href="installation-extras.html">Java 、プラグインその他のインストール</a></li>
+</ul><h1><a name="linux"></a><span class="very-strong">Linux</span> </h1>
+<h2><a name="linux_require" id="linux_require">シ
+ステム要件</a></h2>
+<ul> <li>次のライブラリバージョン（または互換）は GTK1 ビルドで求められます：glibc 2.<b>2.5</b>,
+XFree86 3.3.x, GTK 1.2.x, Glib 1.2.x. Red Hat Linux <b>7</b>.0,
+Debian 3.0、そして SuSE 7.3 （またはそれ以降）のインストールは動作するはずです。
+推奨されたビルド（GTK2）は glibc 2.3.2, XFree86 4.3.x, GTK 2.x,
+glib 2.x, libstdc++-3.3 を求めます。
+</li> <li>Intel pentium クラスプロセッサー（233 MHz またはより速いのを推奨）</li>
+<li>64 MB の RAM
+</li> <li>100MB のハードディスク空き容量（キャッシュサイズを減らせば、はっきりとスペースが空きます）
+</li></ul><h2><a name="linux_install"></a>イ
+ンストール方法</h2>
+<p class="important"><strong>注意：</strong>
+SeaMonkey 1.0.6 をインストールする前に、SeaMonkey の以前のバージョンをアンインストールすることをお勧めします。
+これはブックマーク、履歴、cookie そしてプロファイルディレクトリに保存されているその他の情報を削除しません。
+</p><p class="important"><strong>注意：</strong>
+ファイルをインストールディレクトリに書き込むには少なくとも一回は SeaMonkey を実行しなければなりません。
+異なったユーザ（製品をインストールした人以外）が最初にプログラムを実行する場合、コアダンプが発生するでしょう。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=49345" title="Bug 49345 - Document that admins must run product once after installation">49345</a>)
+</p>
+<p><strong>注意：</strong>
+これらの説明は bash シェルで使えます。bash を使っていないならば、bash シェルを使うかコマンドをそれに応じて調整してください。</p>
+<h3><a name="linux_install_installer"></a>SeaMonkey
+インストーラによるインストール</h3>
+<p>ダウンロードする SeaMonkey インストーラによる SeaMonkey
+インストールはこれらのステップに従ってください：
+</p><ol> <li>seamonkey1.0.6 という名前のディレクトリを作って（<kbd>mkdir
+seamonkey1.0.6</kbd>）、そのディレクトリに移ってください（<kbd>cd
+seamonkey1.0.6</kbd>）。
+</li> <li>インストーラファイルをダウンロードするリンクをクリックしてください（<tt>seamonkey-1.0.6.en-US.linux-i686.installer.tar.gz</tt>）。</li>
+<li>SeaMonkey ディレクトリに移って（<kbd>cd
+seamonkey1.0.6</kbd>）、コマンドに従ってアーカイブを解凍してください：<br>
+<kbd>gunzip -dc sea*.tar.gz | tar
+-xvf -</kbd><br> （<tt>seamonkey-installer</tt>
+という名前の SeaMonkey のサブディレクトリに置いてあります）
+</li> <li><tt>seamonkey-installer</tt>
+ディレクトリに移って（<kbd>cd seamonkey-installer</kbd>）、
+<kbd>./seamonkey-installer</kbd> コマンドでインストーラを実行してください。
+</li> <li>SeaMonkey のインストールウィザードの説明に従ってください。
+</li> <li>SeaMonkey を実行するには、インストールしたディレクトリに移って <kbd>./seamonkey</kbd>
+コマンドを実行してください。
+</li></ol><h3><a name="linux_install_manual"></a>tar.gz
+アーカイブによる手動インストール</h3>
+<p>ダウンロードする .tar.gz アーカイブファイルによる SeaMonkey のインストールをするには
+</p><ol> <li>"seamonkey1.0.6" という名前のディレクトリを作って(<kbd>mkdir
+seamonkey1.0.6</kbd>)、そのディレクトリに移ってください (<kbd>cd
+seamonkey1.0.6</kbd>)。
+</li> <li>非インストーラのseamonkey*.tar.gz ファイルを <tt>seamonkey1.0.6</tt>
+ディレクトリの中にダウンロードするリンクをクリックしてください。
+</li> <li>seamonkey ディレクトリに移って（<kbd>cd
+seamonkey1.0.6</kbd>）、コマンドに従ってファイルを解凍してください。
+<br> <kbd> gunzip -dc sea*.tar.gz | tar -xvf - </kbd>
+（これはあなたの seamonkey1.0.6 ディレクトリの下に "seamonkey" サブディレクトリを作ります。）</li>
+<li>seamonkey ディレクトリに移ってください（<kbd>cd
+seamonkey</kbd>）。
+</li> <li>./seamonkey 実行スクリプトで seamonkey を実行してください。
+</li></ol><h3> <strong><a name="linux_install_multiuser"></a>マルチユーザ Linux インストール</strong></h3>
+<p>Unix 上のマルチユーザに SeaMonkey をインストールするには、通常のインストールをし、その後、SeaMonkey
+ディレクトリに次のようなスクリプトを
+作り、それを実行できるようにし（<tt>chmod u+x &lt;scriptname&gt;</tt>）、
+mozilla ディレクトリに書き込み権限のあるユーザで実行します（例えば root）。
+<b>このプログラムを su[do] root として実行してはいけません。</b>
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=52653" title="Bug 52653 - regxpcom creates .mozilla in Real User's home">52653</a>)
+</p>
+<pre>#!/bin/sh<br>dist_bin=`dirname $0`<br>MOZILLA_FIVE_HOME=$dist_bin<br>LD_LIBRARY_PATH=$dist_bin<br>export MOZILLA_FIVE_HOME LD_LIBRARY_PATH<br>$dist_bin/regxpcom<br>$dist_bin/regchrome<br>touch $dist_bin/chrome/user-skins.rdf $dist_bin/chrome/user-locales.rdf<br></pre><p>そ
+の時、それにアクセスする許可を持っているどんなユーザも SeaMonkey のインストールを実行できるようにすべきです。
+</p><h3><a name="linux_install_gnome"></a>SeaMonkey
+を GNOME パネルに追加する</h3>
+<ol> <li>GNOME
+メインメニューボタンをクリックし、パネルメニューを開き、その後、パネルに追加サブメニューを開きランチャーを選びます。
+</li><li>パネル上の SeaMonkey アイコンを右クリックし次のコマンドを入力します：
+<br> <br> <tt><em>ディレクトリ名</em>/seamonkey</tt><br>
+<br><em>ディレクトリ名</em>はあなたの SeaMonkey
+をダウンロードしたディレクトリの名前です。
+例えば SeaMonkey の提案するデフォルトのディレクトリは <tt>/usr/local/seamonkey</tt>
+です。
+<br></li> <li>アイコン名を入力し、望むならコメントを入力してください。
+</li> <li>アイコンボタンをクリックし、アイコンの場所を次のように入力してください：
+<br> <br><!-- mozicon50.xpm was shipped in n7pr1. So this note appears to apply to netscape too, at least for the time being. --><tt><em>ディ
+レクトリ名</em>/icons/mozicon50.xpm</tt><br>
+<br><em>ディレクトリ名</em>はあなたが SeaMonkey
+をインストールしたディレクトリです。デフォルトディレクトリは <tt>/usr/local/seamonkey/icons/mozicon50.xpm</tt>
+です。</li>
+</ol><h3><strong><a name="linux_install_rpm"></a>RPM
+ビルドをインストールする</strong></h3>
+<p><em>これはまだ SeaMonkey にはあてはまらないかもしれません。</em></p>
+<p>Red Hat RPM ビルドはデフォルト Red Hat 7.x と Red Hat 8.x
+インストールで動作するよう作られています。 これらの RPM を SuSE 上で使うには <a href="http://rpmfind.net/linux/rpm2html/search.php?query=gdk-pixbuf">
+gdk-pixbuf</a> パッケージのインストールが求められます。 (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=85218" title="Bug 85218 - mozilla-0.9.1-rpm libgdk_pixbuf.so.2 missing">85218</a>)
+</p>
+<h2><a name="linux_uninstall"></a>アンインストール</h2>
+<ul> <li>SeaMonkey をインストールした <tt>seamonkey1.0.6</tt>
+ディレクトリを削除してください。
+</li> <li><a href="#files_profiles">プロファイル情報</a>が
+含まれている<tt>~/.mozilla</tt> ディレクトリを削除してください。 </li>
+</ul><h1><a name="mac" id="mac">Macintosh</a></h1>
+<h2><a name="mac_requirements"></a>システム要件</h2>
+<ul> <li>Mac OS X 10.2 またはそれ以降</li> <li>PowerPC
+プロセッサー (266 MHz またはより速いのを推奨)</li> <li>64 MB の
+RAM （256 MB 推奨）</li> <li>100MB
+のハードディスク空き容量（キャッシュサイズを減らせば、はっきりとスペースが空きます）</li>
+</ul><h2><a name="mac_install"></a>インストール
+方法 (Mac OS X)</h2>
+<p>ダウンロードする SeaMonkey ディスクイメージをインストールするにはこれらのステップに従ってください：
+</p><ol>あなたのマシンに SeaMonkey をダウンロードするための <tt>seamonkey-1.0.6.en-US.mac.dmg</tt>
+リンクをクリックしてください。
+デフォルトで、そのファイルはデスクトップにダウンロードされます。 <li>.dmg ファイルをダブルクリックしハードディスクに
+SeaMonkey アイコンをドラッグしてください。
+</li> <li>私たちはそれをアプリケーションフォルダにコピーすることを勧めます。
+</li> <li>今、ディスクイメージをイジェクトしてください。</li> <li>
+あなたが好むなら、いつでも容易にアクセスできるように dock にドラッグできます。
+</li></ol><h2><a name="mac_uninstall"></a>ア
+ンインストール方法</h2>
+<ol> <li><tt class="filename">/Users/<var>&amp;
+lt;あなたのユーザ名&gt;</var>/Library/Mozilla</tt>
+のアプリケーションファイルを削除してください
+（ただし <tt class="filename">Profiles</tt>
+サブフォルダは残してください）。
+</li> <li><tt class="filename">/Users/yourusername/Library/Preferences</tt>
+から "<tt class="filename">Mozilla Registry</tt>"　ファイルを
+削除してください。
+</li><li>インストールした場所から <tt class="filename">SeaMonkey</tt>
+を削除してください（言い換えれば <tt class="filename">/Applications</tt>)。</li>
+</ol><h1><a name="win"></a>Windows</h1>
+<h2><a name="win_requirements" id="win_requirements">シ
+ステム要件</a></h2>
+<ul> <li>Windows 95*, 98, 98SE, Windows Me, Windows NT
+3.51, Windows NT 4.0, Windows 2000, Windows XP または Windows 2003<br>
+&nbsp;&nbsp;&nbsp;<em>* <a href="http://www.microsoft.com/com/default.mspx">DCOM for
+Windows 95</a> を用いた場合</em></li> <li>Intel
+pentium
+クラスプロセッサー （233 MHz またはより速いのを推奨）</li> <li>64
+MB の RAM</li> <li>100MB
+のハードディスク空き容量（キャッシュサイズを減らせば、はっきりとスペースが空きます）</li>
+</ul><p class="important">特定の ATI ビデオドライバーは
+SeaMonkey と互換性がなくクラッシュするかもしれません。クラッシュを経験したのであれば
+最新の ATI ドライバーに<a href="http://mirror.ati.com/support/driver.html">アッ
+プグレード</a>してみてください。
+(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=101055" title="Bug 101055 - Scrolling vertically crashes system - ATI Video Driver Problem">101055</a>)</p>
+<h2><a name="win_install" id="win_install">インス
+トール方法</a></h2>
+<p class="important"><strong>注意：</strong>
+セットアッププログラムを実行する前に全てのプログラムを終了することを強くお勧めします。また一時的にウィルス検出ソフトを動作しないようにすべきで
+す。</p>
+<h3><a name="win_install_installer"></a>SeaMonkey
+インストーラによるインストール</h3>
+<p>ダウンロードする SeaMonkey インストーラで SeaMonkey
+をインストールするにはこれらのステップに従ってください：
+</p><ol> <li>あなたのマシンにファイルをダウンロードするには <tt>seamonkey-1.0.6.en-US.win32.installer.exe</tt>
+リンクをクリックしてください。
+</li> <li>ダウンロードしたファイルに行き、セットアッププログラムを始めるには、あなたのマシン上の
+SeaMonkey プログラムをダブルクリックしてください。
+</li> <li>セットアッププログラムの画面上の説明に従ってください。プログラムは最初、自動的に始まります。
+</li></ol><h3><a name="win_install_manually">.zip
+ファイルによる手動インストール</a></h3>
+<p>ダウンロードする .zip ファイルと手動インストールによる SeaMonkey
+のインストールをするには、これらのステップに従ってください：
+</p><ol> <li>あなたのマシンに .zip ファイルをダウンロードするには <tt>seamonkey-1.0.6.en-US.win32.zip</tt>
+リンクをクリックしてください。
+</li> <li>ダウンロードしたファイルに行き、圧縮ファイルをダブルクリックしてください。
+注意：このステップは WinZip の最近のバージョンをもうインストールしていて使い方を知っていると想定しています。
+そうでないなら、 <a href="http://www.winzip.com">www.winzip.com.</a>
+で WinZip とプログラムについての情報を得ることができます。
+</li><li>.zip ファイルから <tt>C:\Program
+Files\SeaMonkey1.0.6</tt> のようなディレクトリに解凍してください。
+</li> <li>SeaMonkey を始めるには、SeaMonkey を解凍したディレクトリに行き
+SeaMonkey.exe アイコンをダブルクリックしてください。
+</li></ol><h3><a name="win_uninstall"></a>ア
+ンインストール方法</h3>
+<ul> <li>SeaMonkey
+インストーラを使ったなら、単に設定/コントロールパネル/プログラムの追加と削除に行き SeaMonkey 1.0.6 を選択してください。
+</li><li>zip ビルドを使ったなら単に SeaMonkey をインストールした SeaMonkey1.0.6
+ディレクトリを削除して<a href="#files_profiles">プロファイルディレクトリ</a>を
+削除してください。
+</li></ul><h1><a name="files">ファイルを作るまたは使
+う</a></h1>
+<p>SeaMonkey はあなたに関連したデータを<a href="#profiles">プロファイル</a>と
+呼ばれる場所に保存します。
+プロファイルにはあなたの設定、メールフォルダ、履歴、cookie、アドレスブックそしてその他の重要なデータが含まれます。
+これらのファイルのリストは以下の通りです。
+</p><table style="width: 80%;" cellpadding="3" cellspacing="3"> <tbody><tr> <td></td><td class="deftable-head">ディレクトリ</td></tr><tr>
+<td class="deftable-item"><tt>キャッシュ</tt></td>
+<td class="deftable-def">キャッシュファイル（一時的なインターネットファイル）。詳しい情報は
+URL バーに <tt>about:cache</tt> と入力してください。</td> </tr>
+<tr> <td class="deftable-item"><tt>chrome</tt></td>
+<td class="deftable-def">ユーザが定義したスタイルとインストールされたテーマとアプリケーション</td>
+</tr> <tr><td class="deftable-item"><tt>Imap
+メール</tt></td>
+<td class="deftable-def">IMAP メール</td> </tr>
+<tr> <td class="deftable-item"><tt>メール</tt></td>
+<td class="deftable-def">ローカルフォルダと POP3 メール</td>
+</tr> <tr> <td class="deftable-item"><tt>ニュー
+ス</tt></td>
+<td class="deftable-def">Usenet ニュースグループ</td> </tr>
+<tr> <td></td> <td class="deftable-head">ファ
+イル
+</td></tr> <tr> <td class="deftable-item"><tt><i>somenumber</i>.s</tt></td>
+<td class="deftable-def"><a title="Tools -&gt; Password Manager -&gt; Manage Stored Passwords">パ
+スワードデータ</a> </td> </tr> <tr> <td class="deftable-item"><tt><i>somenumber</i>.w</tt></td>
+<td class="deftable-def"><a title="Tools -&gt; Form Manager -&gt; Edit Form Info">フォーム自動入力データ</a>
+</td> </tr> <tr> <td class="deftable-item"><div><tt>.autoreg</tt></div></td>
+<td class="deftable-def">XPCOM 自動登録鍵 SeaMonkey
+に次起動したときに新しくインストールされたコンポーネントを確認するよう教えます。
+</td> </tr> <tr> <td class="deftable-item"><div><tt>appreg</tt></div>
+<div><tt>registry.dat</tt></div> <div><tt>registry</tt></div></td>
+<td class="deftable-def">アプリケーションレジストリ。SeaMonkey
+が維持しているプロファイルのトラックファイルです。
+</td> </tr> <tr><td class="deftable-item"><tt>abook.mab</tt></td>
+<td class="deftable-def"><a title="Window -&gt; Address Book">個人的なアドレス帳</a>
+</td> </tr> <tr> <td class="deftable-item"><tt>bookmarks.html</tt></td>
+<td class="deftable-def"><a title="Bookmarks -&gt; Manage Bookmarks">ブックマーク</a> </td>
+</tr> <tr> <td class="deftable-item"><tt>cert7.db</tt></td>
+<td class="deftable-def"><a title="Edit -&gt; Preferences -&gt; Privacy &amp; Security -&gt; Certificates -&gt; Manage Certificates">ク
+ライアント認証データーベース</a> </td> </tr> <tr>
+<td class="deftable-item"> <div><tt>compreg.dat</tt></div></td>
+<td class="deftable-def">SeaMonkey XPCOM レジストリ。SeaMonkey
+自身のコンポーネントのトラックで維持されているファイル
+</td> </tr><tr> <td class="deftable-item"><tt>cookies.txt</tt></td>
+<td class="deftable-def"><a title="Tools -&gt; Cookie Manager -&gt; Manage Stored Cookies">Cookie</a>
+</td> </tr> <tr> <td class="deftable-item"><tt>hostperm.1</tt></td>
+<td class="deftable-def"><a title="Tools -&gt; Cookie Manager -&gt; Manage Stored Cookies -&gt; Cookie Sites">Cookie</a>,
+<a title="Tools -&gt; Image Manager -&gt; Manage Image Permissions">画
+像</a>そして<a title="Tools -&gt; Popup Manager -&gt; Manage Popups">ポッ
+プアップ</a>許可。
+初期バージョンで cookperm.txt に保存されていた情報</td>
+</tr> <tr> <td class="deftable-item"><tt>history.dat</tt></td>
+<td class="deftable-def"><a title="Go -&gt; History">URL
+履歴
+</a> </td> </tr> <tr> <td class="deftable-item"><tt>history.mab</tt></td>
+<td class="deftable-def"><a title="Window -&gt; Address Book -&gt; Collected Addresses">収集アドレス帳</a>
+</td> </tr> <tr> <td class="deftable-item"><tt>key3.db</tt></td>
+<td class="deftable-def"><a title="Edit -&gt; Preferences -&gt; Privacy &amp; Security -&gt; Certificates -&gt; Manage Certificates">鍵
+データーベース</a> </td> </tr> <tr> <td class="deftable-item"><tt>localstore.rdf</tt></td>
+<td class="deftable-def">デフォルトウィンドウ設定の定義。持続的な値の保存。ツールバー、サイ
+ズ、位置など</td>
+</tr> <tr> <td class="deftable-item"><tt>downloads.rdf</tt></td>
+<td class="deftable-def">ダウンロード履歴</td> </tr>
+<tr> <td class="deftable-item"><tt>training.dat</tt></td>
+<td class="deftable-def"><a href="/mailnews/spam.html">ジャ
+ンクメールフィルター</a>のトレーニングデーターベース</td> </tr> <tr>
+<td class="deftable-item"><tt>mimeTypes.rdf</tt></td>
+<td class="deftable-def"><a title="Edit -&gt; Preferences -&gt; Navigator -&gt; Helper Applications">ヘ
+ルパーアプリケーション</a>で定義可能なファイルの MIME タイプの定義
+</td> </tr> <tr> <td class="deftable-item"><tt>panacea.dat</tt></td>
+<td class="deftable-def">メールフォルダのキャッシュ。全てのメール/ニュースデーターベースで特
+定のフィールドの要約、ほとんどの場合、フォルダペインに表示するために使われる。
+</td> </tr> <tr> <td class="deftable-item"><tt>panels.rdf</tt></td>
+<td class="deftable-def">サイドバーにどのパネルを表示するかの情報</td> </tr>
+<tr><td class="deftable-item"><tt>prefs.js</tt></td>
+<td class="deftable-def">全ての設定。詳しい情報は URL バーに <tt>about:config</tt>
+と入力してください。</td> </tr> <tr>
+<td class="deftable-item"><tt>pluginreg.dat</tt></td>
+<td class="deftable-def">全ての登録されているプラグイン。詳しい情報は URL バーに <tt>about:plugins</tt>
+と入力してください。</td> </tr> <tr> <td class="deftable-item"><tt>search.rdf</tt></td>
+<td class="deftable-def">サイドバーの検索エンジンについての情報</td> </tr>
+<tr> <td class="deftable-item"><tt>secmod.db</tt></td>
+<td class="deftable-def"><a title="Edit -&gt; Preferences -&gt; Privacy &amp; Security -&gt; Certificates -&gt; Manage Security Devices">セ
+キュリティモジュールデーターベース</a> </td> </tr> <tr>
+<td class="deftable-item"><tt>URL.tbl</tt></td>
+<td class="deftable-def"><a title="Tools -&gt; Form Manager -&gt; Manage Sites -&gt; Forms Never Saved">フォー
+ム自動入力データ除外サイト</a> </td> </tr> <tr>
+<td class="deftable-item"><tt>user.js</tt></td>
+<td class="deftable-def">SeaMonkey が起動した後に prefs.js
+に書き込まれるユーザ設定</td> </tr>
+<tr> <td class="deftable-item"><tt>xpti.dat</tt></td>
+<td class="deftable-def">XPCOM typelib 情報カタログ
+</td> </tr> <tr> <td class="deftable-item"><div><tt>XUL.mfl</tt></div>
+<div><tt>XUL FastLoad File</tt></div> <div><tt>XUL.mfasl</tt></div></td>
+<td class="deftable-def">XUL 高速読み込みファイル。コンパイル済みの chrome と
+JavaScript を含みます。</td> </tr> <tr>
+<td class="deftable-item"> <div><tt>Invalid.mfasl</tt></div>
+<div><tt>Aborted.mfasl</tt></div></td> <td class="deftable-def">いつか SeaMonkey が XUL 高速読み込みファイルを無効にします。
+これらは以前のファイルです。それらをデバッグするつもりでないなら削除できます。</td> </tr> <tr>
+<td class="deftable-item"> <div><tt>mozver.dat</tt></div></td>
+<td class="deftable-def">（Windows）コンポーネントバージョンの保存</td>
+</tr> <tr> <td class="deftable-item"> <div><tt>SeaMonkeyUninstall.exe</tt></div></td>
+<td class="deftable-def">（Windows）アンインストーラ実行ファイル</td>
+</tr> <tr> <td></td> <td class="deftable-head">その他のファイル</td></tr> <tr>
+<td class="deftable-item"><tt><i>*</i>.msf</tt></td>
+<td class="deftable-def">メールの要約ファイル。メールフォルダの要約を含みます。Imap
+メールとメールディレクトリに置かれます。</td> </tr> <tr> <td class="deftable-item"><tt>msgFilterRules.dat</tt></td>
+<td class="deftable-def"><a title="Edit -&gt; Message Filters">現在のサーバのメールフィルター</a>を含みま
+す。Imap メールとメールディレクトリに置かれます。
+</td></tr> <tr> <td class="deftable-item"><tt><i>*</i>.rc</tt></td>
+<td class="deftable-def">現在のサーバのニュースグループの要約を含みます。ニュースディレクトリ
+に置かれます。</td> </tr>
+<tr> <td class="deftable-item"><tt>hostinfo.dat</tt></td>
+<td class="deftable-def">現在のサーバで利用できる全てのニュースグループを含みます。ニュース
+ディレクトリに置かれます。</td>
+</tr></tbody></table><h2><a name="files_profiles" id="files_profiles">プロファイルの場所</a></h2>
+<p>以下のリストは<em>代表的な</em>プロファイルの場所です：</p>
+<dl><dt>Windows</dt>
+<dd><p>Windows 95、Windows 98、または Windows ME
+（ログインなしで）上で、プロファイルディレクトリは主に<br>
+&nbsp; &nbsp; <tt class="filename">C:\Windows\Application
+Data\Mozilla\Profiles\<var>[プロファイル名]</var>\<var>[ランダムな
+記号列]</var>.slt\</tt>
+</p><p>Windows 95、Windows 98 またはログインありの Windows ME
+上で、プロファイルディレクトリは主に<br>
+&nbsp; &nbsp; <tt class="filename">C:\Windows\Profiles\<var>[ロ
+グイン名]</var>\Application Data\Mozilla\Profiles\<var>[プロファイル名]</var>\<var>[ラ
+ンダムな記号列]</var>.slt\</tt></p>
+<p>Windows 2000 または Windows XP 上で、プロファイルディレクトリは主に<br>
+&nbsp; &nbsp; <tt class="filename">C:\Documents
+and Settings\<var>[ログイン名]</var>\Application
+Data\Mozilla\Profiles\<var>[プロファイル名]</var>\<var>[ランダムな記号列]</var>.slt\</tt></p>
+<p>注意：Windows 2000 または Windows XP で、<tt>Document
+and Settings</tt> ディレクトリは二重に隠されています。アクセスするには、Windows エクスプローラでシステムディレクトリ・ファイルの表示と隠しディレクトリ・ファイルを
+有効にする必要があります。
+</p>
+</dd><dt>Mac OS X</dt>
+<dd><p>プロファイルの場所は主に：<br>
+&nbsp; &nbsp; <tt class="filename">~/Library/Mozilla/Profiles/<var>[プロファイル名]</var>/<var>[ランダムな記号列]</var>.slt/</tt></p>
+</dd><dt>Linux</dt>
+<dd><p>プロファイルの場所は主に：<br>
+&nbsp; &nbsp; <tt class="filename">~/.mozilla/<var>[プロファイル名]</var>/<var>[ランダムな記号列]</var>.slt/</tt></p>
+</dd></dl>
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/releases/seamonkey1.0.6/installation.html">英語版</a> 2006/11/30</span> - <span>和訳版 2007/01/02</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/releases/seamonkey1.0.6/installation.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

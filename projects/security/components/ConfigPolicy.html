@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>設定可能なセキュリティポリシー（CAPS）</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/security/components/ConfigPolicy.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/components/ConfigPolicy.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<center><h1>設定可能なセキュリティポリシー</h1></center>
+
+<p><br><a href="mailto:jruderman@hmc.edu">Jesse Ruderman</a><br>
+
+<hr WIDTH="100%">
+
+
+<h3><a name="whatare"><q>設定可能なセキュリティポリシー</q> とは何なのか？</a></h3>
+
+<p>Mozilla の設定可能なセキュリティポリシーでは、ユーザがブラウザに関してセキュリティポリシーを設定でき、異なるインターネットサイトに対して異なるセキュリティポリシーを持つことができます。この設定可能なセキュリティポリシーという考え方は、様々な考え方から生まれました。Bell 研究所の研究員である Vinod Anupam と Alain Mayer は、資料を作成し Mozilla にコードを貢献しました。悪名高い <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=858">bug 858</a> は、このような機能の wishlist として見なされています。この機能のためのコードは <a href="http://lxr.mozilla.org/seamonkey/source/caps/">CAPS</a>（capabilities：機能）と呼ばれています。最後に IE のゾーンという考え方は、このアイデアの一部を利用しています。</p>
+
+<p>この文書は JavaScript に精通したプログラマを対象にしています。</p>
+
+<p><font color="#FF0000">注意：Mozilla 0.9.9 の段階では、ゾーンポリシーを作成するためには "policynames" ラインが必要です。詳細は以下を参照してください。</font>
+
+
+<h3><a name="global">グローバルポリシーを設定する</a></h3>
+<p>ポップアップ広告に悩まされていて、全てのウェブページで新しいブラウザウィンドウを開かないように設定したい場合を考えてみましょう。これは Mozilla ユーザ設定ファイル（user.js）に以下の行を加えれば設定することができます：
+
+<blockquote>
+<tt>user_pref("capability.policy.default.Window.open", "noAccess");</tt><br>
+</blockquote>
+
+<p> <tt>Window.open</tt> を <tt>noAccess</tt> に設定することで、ウェブページは <tt>Window</tt> タイプのあらゆるオブジェクトの <tt>open</tt> プロパティにアクセスできなくなります。ウェブページが <tt>window.open()</tt>（または <tt>open()</tt>）を使って新しいウィンドウを開こうとすると、失敗します。セキュリティマネージャが JavaScript 例外を投げ、この機能を呼び出せないようにするからです。ウェブページがこの例外を取り込まない限り、スリクプとは停止し、JavaScript コンソールにエラーメッセージ（Tasks-&gt;Tools-&gt;JavaScript Console）が表示されます。</p>
+
+
+<h3><a name="zones">ゾーンポリシー</a></h3>
+
+<p><tt>default</tt> は特別です。なぜなら全てのサイトに適用されるからです。このディフォルト設定を上書きする形で、特定のサイトやサイト群に対してポリシーを設定することもできます。例えば、www.evil.org や www.annoying.com ではダイアログ・ウィンドウを表示させないようにするには、次のようなコードを利用することもできます：</p>
+
+<blockquote><tt>
+user_pref("capability.policy.policynames", "strict");<br>
+user_pref("capability.policy.strict.sites",
+"http://www.evil.org http://www.annoying.com");<br>
+user_pref("capability.policy.strict.Window.alert", "noAccess");<br>
+user_pref("capability.policy.strict.Window.confirm", "noAccess");<br>
+user_pref("capability.policy.strict.Window.prompt", "noAccess");<br>
+</tt></blockquote>
+
+<p>最初の行で、作成したいポリシーの名前を定義しています。この例では <tt>"strict"</tt> です。複数のポリシーを定義したい場合は、同じ行に全て書き込んでください。以下のような感じです：
+
+<blockquote><tt>
+user_pref("capability.policy.policynames", "strict, shoppingsites, ");<br>
+</tt></blockquote>
+
+<p>"<tt>capability.policy.strict.sites</tt>" 設定ではウェブサイトでどの <tt>strict</tt> ポリシーを適用するかを定義します。この設定の値はサイトのリスト（プロトコルとホスト名のみ）です。スペースで区切ってください。最後の三行では制限ポリシーを定義しています。これらのサイトに対して、上の例では <tt>window.alert()</tt>、<tt>window.confirm()</tt>、そして <tt>window.prompt()</tt> にアクセスできないようにしています。</p>
+
+<p><tt>strict</tt> ポリシー下のサイトが <tt>window.open()</tt> を使って新しいウィンドウを開くことができるかは定義されていないので、ディフォルトのポリシーが依然として適用されることに注意してください。</p>
+
+<p><tt>window.open()</tt> へのアクセスをブロックすることで、www.usefulsite.net でもスクリプトが作動しなくなってしまった場合を考えてみましょう。このページに対しては、<tt>Window.open</tt> ポリシーをディフォルトの値である <tt>sameOrigin</tt> に戻すように設定することで、window.open 制限を迂回できるようにすることができます：
+
+<blockquote>
+<tt>user_pref("capability.policy.policynames", "trustable");</tt><br>
+<tt>user_pref("capability.policy.trustable.sites", "http://www.usefulsite.net");</tt><br>
+<tt>user_pref("capability.policy.trustable.Window.open", "sameOrigin");</tt><br>
+</blockquote>
+
+<p>ポリシーの名前は何でも構いません。この例では <tt>strict</tt> と <tt>trustable</tt> を利用しました。しかし <tt>blacklist</tt> や <tt>mypolicy</tt> といったものでも構いません。</p>
+
+
+<h3><a name="levels">セキュリティレベル</a></h3>
+
+<p>三つの特別なセキュリティレベルがあります：
+
+<ul>
+<li><tt>noAccess</tt>：ウェブサイトはこのプロパティにアクセス、あるいはこの機能を呼び出すことは絶対できません。
+<li><tt>sameOrigin</tt>（ディフォルト）：ウェブページはこのプロパティにアクセスすることができますが、同一サイトのページにのみアクセスできます。Mozilla が二つのページを同一サイトにあるかどうかをどのように判断しているかについての説明は <a href="same-origin.html">こちらの文書</a> を参照してください。
+<li><tt>allAccess</tt>：ウェブサイトは、同一サイトまたはあらゆるサイトでもこのプロパティにアクセスすることができます。
+</ul>
+
+<p>セキュリティレベルが上記三つのどれにも当てはまらない場合は、<a href="terms.html#priv">privilege</a> 名として扱われ、スクリプトは、<a href="signed-scripts.html">署名</a> され且つユーザがダイアログを通じてスクリプトに権限を与えた場合にのみ、アクセスすることができます。</p>
+
+
+<h3><a name="getset">Get と Set</a></h3>
+
+<p>プロパティ名の後に <tt>.get</tt> や <tt>.set</tt> を追加すると、プロパティの読み込みのみや、プロパティの値の変更のみに対して適用できるポリシーを指定することができます。これで、あるポリシーではプロパティを読み込み、別のプロパティではその値を変更するように指定することができます。ページが値を設定できないようにしつつ、読み込むことはできるようにする例を <a href="#examples">下のセクション</a> で見てください。</p>
+
+<p><tt>Class.property.get</tt> と <tt>Class.property.set</tt> を同じレベルに設定すると、<tt>Class.property</tt> をそのレベルに設定することと同じことになります。ファンクションの名前の後には <tt>get</tt> や <tt>set</tt>（例： <tt>open</tt> や <tt>write</tt>）を使わないでください。なぜなら、"get" や "set" のコンセプトは、ファンクション <em>ではない</em> プロパティ（例：<tt>bgColor</tt> や <tt>location</tt>）にのみ適用されるからです。</p>
+
+
+<h3><a name="objectnames">オブジェクト名を特定する</a></h3>
+
+<p>使用する正しいオブジェクト名を特定するのは、時として困難です。例えば、あるウェブページがフォームを送信できないようにしたい、しかしフォーム要素のクラス名を知らない、という場合を考えてみましょう。最も簡単な方法は、オブジェクトを文字列に変換するスクリプトを書くことです。フォームを持つページに行って、ロケーションバーに <tt>javascript:alert(document.forms[0])</tt> と入力すれば、<tt>document.forms[0]</tt> が <tt>[xpconnect wrapped HTMLFormElement]</tt> であることが分かるでしょう。<tt>HTMLFormElement</tt> はクラスの名前で、<tt>HTMLFormElement.submit</tt> を <tt>noAccess</tt> に設定して、ウェブページが <tt>form.submit</tt> を利用してフォームを送信できないようにします。</p>
+
+<p><tt>HTMLAnchorElement</tt> といった要素の中には、クラス名を簡単に見つけられなくするような特殊な <tt>toString</tt> ファンクションを持つものがあります。ロケーションバーに <tt>javascript:alert(document.links[0])</tt> に入力すると、クラス名ではなく、最初のリンクの URL が表示されるはずです。この問題を回避するには、<tt>document.links[0]</tt> オブジェクトに対してディフォルトの <tt>toString</tt> ファンクションを利用することです。なので：<tt>javascript:alert(window.toString.apply(document.links[0]))</tt> となります。</p>
+
+<h3><a name="caveat">警告：プロパティの中には複数のアクセスパスを持っているものがある</a></h3>
+
+<p>プロパティへのアクセスをブロックする際、HTML 要素の属性のようにプロパティによってはアクセスする方法が複数あるということを覚えておいてください。これは重要です。例えば、ユーザが <tt>www.evil.org</tt> からのスクリプトが HTML アンカータグ <tt>(&lt;A HREF="..."&gt;)</tt> の <tt>href</tt> 属性にアクセスできないようにしたい場合を考えてみてください。次のような prefs では不十分です：
+
+<blockquote><tt>
+user_pref("capability.policy.policynames", "nohrefs");<br>
+user_pref("capability.policy.nohrefs.sites", "http://www.evil.org");<br>
+user_pref("capability.policy.nohrefs.HTMLAnchorElement.href", "noAccess");<br>
+</tt></blockquote>
+
+<p>上記の prefs では <tt>www.evil.org</tt> 上のスクリプトが <tt>document.links[1].href</tt> にアクセスできないようにはしますが、このスクリプトは、DOM 2 のシンタックスである <tt>document.links[1].attributes.getNamedItem("href")</tt> や <tt>document.links[1].getAttribute("href")</tt> を使って、全く同じ情報にアクセスすることができるのです。次の prefs であれば href 属性へのアクセスを完全にブロックすることができます：
+
+<blockquote><tt>
+user_pref("capability.policy.policynames", "nohrefs");<br>
+user_pref("capability.policy.nohrefs.sites", "http://www.evil.org");<br>
+user_pref("capability.policy.nohrefs.HTMLAnchorElement.href", "noAccess");<br>
+user_pref("capability.policy.nohrefs.HTMLAnchorElement.attributes", "noAccess");<br>
+user_pref("capability.policy.nohrefs.HTMLAnchorElement.getAttribute", "noAccess");<br>
+user_pref("capability.policy.nohrefs.HTMLAnchorElement.getAttributeNS", "noAccess");<br>
+</tt></blockquote>
+
+<p>一般的なルールとして、属性へのアクセスをブロックするためには、<tt>attributes</tt> プロパティや <tt>getAttribute</tt> および <tt>getAttributeNS</tt> メソッドへのアクセスもブロックしなければなりません。</p>
+
+<h3><a name="syntax">完全な設定シンタックス</a></h3>
+
+<p>JavaScript のセキュリティポリシーに関してのシンタックスのより正式なステートメントを掲載します：</p>
+
+<ul>
+<li>ポリシーは <em>ポリシー名ライン</em>、<em>サイトライン</em>、そして単数・複数の <em>ポリシーライン</em> から成ります。<tt>default</tt> ポリシーの場合は <em>サイトライン</em> を飛ばしてください。ただし、他の全ての部分では必要です。<p>
+
+<li><em>ポリシー名ライン</em> では定義したい全てのポリシーの名前を指定します。定義するポリシーが幾つあろうと、ポリシー名ラインは一行のみにしなければ成りません。次のような形式になります：<br>
+    <tt>user_pref("capability.policy.policynames", "&lt;list of policy names&gt;");</tt><br>
+    &lt;list of policy names&gt; となっている部分は、定義したいポリシー名のリストです。コンマや空白で分けます。<p>
+
+<li><em>サイトライン</em> は次のような形式になります：<br>
+    <tt>user_pref("capability.policy.&lt;policy name&gt;.sites","&lt;URL list&gt;");</tt>
+    <ul>
+       <li>&lt;policy name&gt; は文字と数字のあらゆる組み合わせが可能です。但し文字で始めてください。
+       <li>"&lt;URL list&gt; は URL のリストです。空白で区切ってください。リスト内の各 URL は、定義されたプロトコル（例：http:）を使用する全ての URL に適用される <tt>protocol:</tt>、または特定のホスト（例：http://www.annoyingsite.myisp.com）に適用される <tt>protocol://host</tt> とすることができます。URL のパス部分（ホスト名の / やそれ以降のいずれか）を含めないようにしてください。
+    </ul><p>
+
+<li><em>ポリシー名</em> は次のような形式になります：<br>
+    <tt>user_pref("capability.policy.&lt;policy name&gt;.&lt;class name&gt;.&lt;property name&gt;","allAccess | noAccess | sameOrigin | &lt;capability name&gt;");</tt>
+    <ul>
+       <li>&lt;policy name&gt; はサイトライン上のポリシー名と同じでなければなりません。
+       <li>pref の値（<tt>allAccess</tt> など）は上で解説しています。
+    </ul>
+</ul>
+
+<h3><a name="jspolicies">あるサイトの全ての JavaScript を無効にする</a></h3>
+
+<p>特殊なプロパティ <tt>javascript.enabled</tt> は JavaScript の実行を不能にするために利用することができます。<tt>default</tt> ポリシーを使ってグローバルに、またはサイトポリシーを使ってサイト群に対して適用することができます。設定の値は <tt>"noAccess"</tt> か <tt>"allAccess"</tt> にしなければなりません。これ以外の値では動作しません。次の例は、site1.com と site2.com で全ての JavaScript の実行を不能にします：
+
+<blockquote><pre>
+user_pref("capability.policy.policynames", "nojs");
+user_pref("capability.policy.nojs.sites", "http://site1.com http://site2.com");
+user_pref("capability.policy.nojs.javascript.enabled", "noAccess");
+</pre></blockquote>
+
+<p>次の例では goodsite.com を除く全てのサイトで JavaScript の実行を不能にします：
+
+<blockquote><pre>
+user_pref("capability.policy.policynames", "jsok");
+user_pref("capability.policy.default.javascript.enabled", "noAccess");
+user_pref("capability.policy.jsok.sites", "http://goodsite.com");
+user_pref("capability.policy.jsok.javascript.enabled", "allAccess");
+</pre></blockquote>
+
+<p><tt>"allAccess"</tt> または <tt>"noAccess"</tt> という値だけが <tt>javascript.enabled</tt> ポリシー prefs では有効だということに注意してください。この場合に <tt>"sameOrigin"</tt> や他の文字列を使用しないでください。また、次の設定：<p>
+
+<blockquote><tt>user_pref("javascript.enabled", false);</tt>
+</blockquote>
+
+<p>は、全てのサイトに対して <tt>capability.policy.default.javascript.enabled</tt> を含め <em>すべての</em> <tt>capability.policy</tt> をオーバーライドすることにも注意してください。<p>
+
+<h3><a name="examples">追加例</a></h3>
+
+<h4><a name="noresize">ウェブページがブラウザ・ウィンドウのサイズを変更できないようにする</a></h4>
+
+<blockquote><pre>
+user_pref("capability.policy.default.Window.innerWidth.set", "noAccess");
+user_pref("capability.policy.default.Window.innerHeight.set", "noAccess");
+user_pref("capability.policy.default.Window.outerWidth.set", "noAccess");
+user_pref("capability.policy.default.Window.outerHeight.set", "noAccess");
+user_pref("capability.policy.default.Window.sizeToContent", "noAccess");
+user_pref("capability.policy.default.Window.resizeTo", "noAccess");
+user_pref("capability.policy.default.Window.resizeBy", "noAccess");
+</pre></blockquote>
+
+<h4><a name="nomove">ウェブページがブラウザ・ウィンドウの位置を変更できないようにする</a></h4>
+
+<blockquote><pre>
+user_pref("capability.policy.default.Window.screenX.set", "noAccess");
+user_pref("capability.policy.default.Window.screenY.set", "noAccess");
+user_pref("capability.policy.default.Window.moveTo", "noAccess");
+user_pref("capability.policy.default.Window.moveBy", "noAccess");
+</pre></blockquote>
+
+<h4><a name="screen_settings">ウェブページが使用している解像度や色設定を検知できないようにする</a></h4>
+
+<p>（注：以下のラインでは画像解像度を検知する全ての方法をブロックする訳ではありません。最も一般的な方法しかブロックしません。また以下のラインでは、ウェブページがウィンドウサイズの大きさを検知するのを防ぐことはできません。）</p>
+
+<!-- 
+(The other way to get your screen reslolution: try to create a
+10000x10000 window, or resize your window to 10000x10000.  Mozilla 
+will make it as big as your screen instead, and then the web page 
+can use numerous methods to determine the size of the window.) 
+-->
+
+<blockquote><pre>
+user_pref("capability.policy.default.Screen.top", "noAccess");
+user_pref("capability.policy.default.Screen.left", "noAccess");
+user_pref("capability.policy.default.Screen.width", "noAccess");
+user_pref("capability.policy.default.Screen.height", "noAccess");
+user_pref("capability.policy.default.Screen.pixelDepth", "noAccess");
+user_pref("capability.policy.default.Screen.colorDepth", "noAccess");
+user_pref("capability.policy.default.Screen.availWidth", "noAccess");
+user_pref("capability.policy.default.Screen.availHeight", "noAccess");
+user_pref("capability.policy.default.Screen.availLeft", "noAccess");
+user_pref("capability.policy.default.Screen.availTop", "noAccess");
+</pre></blockquote>
+
+<h4><a name="status_text">ウェブページがステータスバーの文字列を変更できないようにする</a></h4>
+
+<p>ウェブページの中には、リンクにマウスカーソルを合わせた時に、ステータスバーのテキストを変えて「ブラインド・リンク」を作り、ステータスバーにリンクアドレスを表示させないようにするものがあります。以下の行で多くのブラインド・リンクを通常のリンクにすることができます。</p>
+
+<!-- 
+(The other way to make a blind link: wait for the user to click on the 
+link, and then quickly change the link address so the user ends up
+going to a different address than the one that was shown in the
+status bar.) 
+-->
+
+<blockquote><pre>
+user_pref("capability.policy.default.Window.status", "noAccess");
+</pre></blockquote>
+
+
+<h3><a name="ui">ユーザインターフェース</a></h3>
+
+<p>セキュリティポリシーを設定するためのユーザインタフェースはできていません。将来、設定パネルに、ユーザが user.js を手動で編集することなく、また JavaScript の知識がなくてもポリシーを設定できる専用のパネルを備えたいと考えています。これが機能の実装において最も難しい部分になる見込です。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=38966">bug 38966</a> を参照してください。
+<br>
+
+
+
+
+<hr class="hide" />
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/components/ConfigPolicy.html">英語版</a> 2003/06/18</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/components/ConfigPolicy.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

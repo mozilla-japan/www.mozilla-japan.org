@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla Web 開発者資料</title>
+
+<style type="text/css" media="screen,tv">
+
+body {
+    background: #fff;
+    color: #000;
+}
+
+:link { color: #00e; }
+:visited { color: #551A8B; }
+:link:active, :visited:active { color: #f00; }
+
+h3 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-left: 4em;
+    margin-right: 4em;
+}
+
+ul {
+    margin-left: 8em;
+    padding-left: 0;
+    margin-right: 4em;
+}
+
+ul ul {
+    margin-left: 4em;
+}
+
+li {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+p {
+    margin-left: 8em;
+    margin-right: 4em;
+}
+
+p.top {
+    margin-left: 4em;
+    margin-right: 4em;
+}
+
+p#maint {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+h1, p.links {
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+}
+
+</style>
+
+<!--
+<BASE HREF="http://www.mozilla-japan.org/docs/web-developer/">
+正確な内容は、原文を参照してください。
+原文タイトル：Web developer documentation for Mozilla
+原文： http://www.mozilla.org/docs/web-developer/index.html 
+
+和訳：ちゃど（chado@mail.wbs.ne.jp）
+(Rev 1.5) 2000.12.21  01:41 
+(Rev 1.7) 2000.12.23  04:36 
+(Rev 1.8) 2000.12.25  18:18 
+(Rev 1.10) 2000.12.28 20:52 
+(Rev 1.11) 2001.09.05 01:10
+(Rev 1.12) 2001.09.15 02:10
+・HTML 4.01 クイックリファレンス サイドバータブ、CSS2 クイックリファレンス サイドバータブ のリンク追加
+(Rev 1.13) 2001.10.16 04:20
+・Netscape の HTML タグリファレンス、W3C の DOM Level 2 Core、DOM Level 2 HTML 仕様 追加
+(Rev 1.16) 2001.11.15 19:07
+・quirks モード、Wab Author FAQ リンク追加 など
+
+引継和訳: dynamis
+2002/04/29: ちゃどさんによる訳を引き継いで Rev1.20 を反映させた。
+            具体的には段落の移動やリンクの追加/変更および表現の修正など。
+2002/05/03: 資料集ページは/catalog/以下に別途新しいものが作られ、/docs/以下は過去のものとなっていたのでその旨を注記。
+2002/06/10: Quirks を英語で残す表記に修正。
+            Rev1.22 を反映。但しリンクを除去するのではなく時代遅れだと註を入れるのみとした。折角訳したんだから…(^^;
+2002/06/24: Rev1.23 を反映。JavaScript資料のリンク先を更新。
+2002/10/12: Rev1.27 を反映。いくつかのリンク追加やマークアップ修正など。
+2003/01/03: Rev1.28 を反映。筆者のアドレス変更など。
+2003/08/18: Rev1.29 を反映。DevEdgeのリンク修正、DOM 関連リンクの文書タイトル修正など。
+2003/09/21: Rev1.30 を反映。MIME タイプ判別法へのリンクを追加。
+
+-->
+
+<link rel="alternate" hreflang="en" modified="September  2,  2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/docs/web-developer/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<h1>Web 開発者資料</h1>
+
+<p class="links">
+    資料:  
+    <a href="../">Mozilla 開発者向け</a>
+    | <b>web 開発者向け</b>
+    | <a href="../end-user/">エンドユ−ザ−向け</a>
+</p>
+      <!-- Mozilla Foundation になってからトップページからリンクされるようになったし、どういう扱いを受けているページなのだろう…(^^;
+      <div class="comment" style="text-align: center;">[訳註] 資料集は既に<a href="../../catalog/index.html">新デザインの資料集</a>に移行しています。こちらの資料集は最低限の更新しか為されません。</div> -->
+      <p class="top">
+
+    このページは web 開発者（web ページを書く人々）向けの資料へのリンクを提供します。すなわち Mozilla やその他の同じ標準をサポートするブラウザ用の web ページを書くのに使われる言語に関心のある人達のためのものです。
+        <!-- 和訳独自記述 ここから -->
+    <BR>
+    <BR>
+    <span class="comment">[訳註] このページから参照されている文書の多くは英文ですが、<A HREF="http://www.w3.org/TR/">W3C Technical Reports and Publications</A> 配下のドキュメントの中には独自に和訳されているものが多くあります。<A HREF="http://www.w3.org/Consortium/Translation/Japanese.html">W3Cの仕様書等の文書の日本語訳集</A>などを必要に応じて参照してみてください。</span>
+        <!-- 和訳独自記述 ここまで -->
+
+      </p>
+
+<p class="links">
+    [ <a href="#mozilla">Mozilla 向けの記述</a>
+    | <a href="#document">ドキュメントの形式</a>
+    | <a href="#style">スタイル</a>
+    | <a href="#scripting">スクリプティング</a>
+    ]
+</p>
+
+
+<h2><a name="mozilla">Mozilla 向けの記述</a></h2>
+
+    <ul>
+        <li><a href="faq.html">Mozilla Webページ作者 <acronym title="Frequently Asked Questions">FAQ</acronym></a></li>
+        <li><strong><a href="http://devedge-temp.mozilla.org/">Netscape DevEdge</a></strong> - Netscape の啓蒙チームによる記事、記述資料やクロスブラウザスクリプティングツール、及び <a href="http://devedge-temp.mozilla.org/toolbox/sidebars/">Mozilla 用のサイドバータブ</a></li>
+        <li><a href="upgrade_2.html">あなたのウェブページでウェブ標準を</a> (旧 <i>あなたのウェブページにウェブスタンダードを導入</i>)</li>
+        <li><a href="quirks/">Mozilla Quirks モード</a>
+<ul>
+                
+            <li><a href="quirks/doctypes.html">DOCTYPE 判別</a></li>
+            <li><a href="quirks/quirklist.html">Quirks リスト</a></li>
+          </ul>
+        </li>
+        <li><a href="mimetypes.html">Mozilla が文書の MIME タイプを判断する方法</a></li>
+        <li><b><a href="../codestock99/">CodeStock '99</a></b> のスライド:
+          <!-- js ファイルなどの外部ファイルが必要なので、リンクを本家に向けています。 ここから -->
+            <a href="/docs/codestock99/gecko/index.htm">Gecko</a>、
+            <a href="/docs/codestock99/html40/index.htm">HTML 4.0</a>、
+            <a href="/docs/codestock99/css/index.htm">CSS</a>、
+            <a href="/docs/codestock99/xml/xml.htm">XML</a>、
+            <a href="/docs/codestock99/dom1/index.htm">DOM1</a>、
+            <a href="/docs/codestock99/dom2/index.htm">DOM2</a>、
+            <a href="/docs/codestock99/xbdhtml/index.htm">Cross-Browser Design</a>
+        </li>
+        <!-- js ファイルなどの外部ファイルが必要なので、リンクを本家に向けています。 ここまで -->
+      </ul>
+
+<h2><a name="document">ドキュメントの形式</a></h2>
+
+    <h3>HTML</h3>
+
+        
+      <p>
+
+            HTML（HyperText Markup Language）は web で使用されている主なドキュメント形式です。HTML には構造上の（たとえば見出しやリスト、段落など）そして表現上の（たとえばフレーム、太字体や斜字体のテキスト、しばしば表など）マークアップ両方があります。
+
+        </p>
+
+        <ul>
+            <li>W3C の <a href="http://www.w3.org/TR/html4/">HTML 4 仕様</a> （Mozilla ではほぼサポートされています）</li>
+            <li>Netscape の <a href="http://devedge-temp.mozilla.org/library/manuals/1998/htmlguide/">HTML タグ リファレンス</a></li>
+       </ul>
+
+    <h3>XML</h3>
+
+        
+        <p>
+            XML はマークアップ言語を定義する枠組みです。XML は Web で使用するためにデザインされた SGML（その中で HTML 
+            が定義されます）のサブセットであり、それゆえに、より少ない機能を持ち、より厳密なエラ−処理が要求されます。
+        </p>
+
+        <ul>
+            <li>W3C の <a href="http://www.w3.org/TR/REC-xml">XML 仕様</a></li>
+            <li>W3C の <a href="http://www.w3.org/TR/REC-xml-names/">XML 名前空間仕様</a></li>
+            <li><i><a href="../../newlayout/xml/xml-devcon/slides/slide1.xml">Gecko における XML と関連する標準</a></i> のスライド</li>
+            <li>Netscape の <i><a href="http://devedge-temp.mozilla.org/library/manuals/2001/xslt/1.0/">XML 変換 : 名前空間 と XSLT</a></i></li>
+        </ul>
+
+<h2><a name="style">スタイル</a></h2>
+
+    <h3>CSS</h3>
+
+        
+      <p>
+
+            カスケーディング・スタイル・シート（CSS）は HTML や XML のためのシンプルなスタイルシート言語です。CSS
+            はスタイル宣言とドキュメントのセレクタにマッチした部分を結びつけるシンプルな宣言構文をもちます。
+
+        </p>
+
+        <ul>
+            
+        <li>W3C の <a href="http://www.w3.org/TR/REC-CSS1">CSS1 仕様</a> <strong><a href="bugspecs/REC-CSS1.html">(Mozilla の注釈版)</a></strong></li>
+            
+        <li>W3C の <a href="http://www.w3.org/TR/CSS21/">CSS2 仕様</a>（Mozilla では一部サポートされています）</li>
+           
+        <li>Netscape の <i>CSS2 クイックリファレンス</i>
+             <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/evangelism/sidebar/">
+             サイドバータブ</a>。プロパティや属性値、公式な CSS2 仕様を手軽にご覧になれます。</li>
+        <li>WestCiv の <a
+                href="http://www.westciv.com/style_master/house/tutorials/">CSS
+                チュートリアル</a> と <a
+                href="http://www.westciv.com/style_master/house/">その他の
+                CSS 情報源</a></li>
+        </ul>
+
+<h2><a name="scripting">スクリプティング</a></h2>
+
+      <p class="top">
+
+    JavaScript は web ページ上のスクリプトとして最も一般的に使われているプログラミング言語です。DOM は ドキュメントの状態や それがどのように表示されるかを表すオブジェクトのセットです。DOM は動的な効果を生むために JavaScript から変更できます。</p>
+
+    <h3>全般</h3>
+
+        
+      <ul>
+            
+        <li><a href="xbdhtml/xbdhtml.html">クロスブラウザ、クロスプラットフォームスクリプティング入門</a> <span class="comment">[訳註] この文書は過去の遺物です。</span></li>
+        <li><a href="sniffer/browser_type.html">究極の JavaScript クライアント判別</a> <span class="comment">[訳註] この文書は過去の遺物です。</span></li>
+      </ul>
+
+    <h3>JavaScript</h3>
+        <ul>
+            <li>Netscape の <a href="http://devedge-temp.mozilla.org/central/javascript/">JavaScript セントラル</a></li>
+            <li>Netscape の <a href="http://devedge-temp.mozilla.org/library/manuals/2000/javascript/1.5/guide/">コア JavaScript ガイド</a> (旧 <a href="http://devedge-temp.mozilla.org/library/manuals/2000/javascript/1.4/guide/">JS 1.4 版</a> も参照)</li>
+            <li>Netscape の <a href="http://devedge-temp.mozilla.org/library/manuals/2000/javascript/1.5/reference/">コア JavaScript リファレンス</a> (旧 <a href="http://devedge-temp.mozilla.org/library/manuals/2000/javascript/1.4/reference/">JS 1.4 版</a> も参照)</li>
+            <li><a href="../../js/language/">JavaScript 言語リソース</a> - 過去、現在、そして将来の言語仕様</li>
+        </ul>
+
+    <h3>Mozilla のドキュメントオブジェクトモデル</h3>
+        <ul>
+            <li><strong><a href="../dom/">Mozilla のドキュメントオブジェクトモデル</a></strong> (多数のページの目次)</li>
+            <li><a href="../dom/domref/">Mozilla DOM リファレンス</a></li>
+        </ul>
+
+    <h3>&quot;DOM Level 0&quot;</h3>
+
+        <p>
+            &quot;DOM Level 0&quot; は W3C が DOM の標準化を始める前にブラウザ間で共通だったオブジェクトモデルです。
+        </p>
+
+        <ul>
+            
+        <li>Netscape の <a href="http://devedge-temp.mozilla.org/library/manuals/2000/javascript/1.3/guide/">クライアントサイド JavaScript ガイド</a>（Javascript と &quot;DOM Level 0&quot; を扱います）</li>
+            
+        <li>Netscape の <a href="http://devedge-temp.mozilla.org/library/manuals/2000/javascript/1.3/reference/">クライアントサイド JavaScript リファレンス</a>（Javascript と &quot;DOM Level 0&quot; を扱います）</li>
+            <li><a href="../../js/scripting/">JavaScript スクリプティングリソース</a> - &quot;ダイナミック HTML&quot; と JavaScript に関するさまざまなサイトへのリンク</li>
+        </ul>
+
+    <h3>W3C DOM Level 1</h3>
+
+        
+      <p>
+
+            W3C の DOM Level 1 は HTML や XML ドキュメントの内容を表現し、動的な変更を加えることを可能にするオブジェクトモデルです。
+
+        </p>
+
+        <ul>
+            
+        <li>W3C の <a href="http://www.w3.org/TR/DOM-Level-1/">DOM レベル 1 仕様</a></li>
+        <li>W3C の <a href="http://www.w3.org/TR/DOM-Level-2-Core/">DOM レベル 2 コア</a> と <a href="http://www.w3.org/TR/DOM-Level-2-HTML/">DOM レベル 2 HTML</a> 仕様 -  概して DOM レベル 1 仕様 の改訂版</li>
+            <li>サポート一覧
+                <ul>
+                    
+            <li><a href="../dom/grids/core_tab.html">コア DOM レベル 1 標準サポート一覧</a></li>
+                    
+            <li><a href="../dom/grids/html_tab.html">HTML DOM レベル 1 標準サポート一覧</a></li>
+                </ul>
+            </li>
+            <li>テクニカルノート
+                <ul>
+                    
+            <li><a href="../dom/technote/intro/">DOM レベル 1 コアの使用</a>（暫定）</li>
+                    <li><a href="../dom/technote/whitespace/">DOM に於ける空白文字</a>（暫定）</li>
+                    
+            <li><a href="../dom/technote/tn-dom-table/">基本的 DOM インターフェイスによる HTML 要素の動的操作法</a></li>
+                </ul>
+            </li>
+            <li><a href="../dom/samples/">DOM サンプル</a></li>
+        </ul>
+
+    <h3>W3C DOM Level 2 （一部）</h3>
+
+        <p>
+
+            DOM Level 2 は DOM Level 1 のすべてに スタイルシート、イベント処理、そのほかの多くを追加した 
+            オブジェクトモデルです。
+
+        </p>
+
+        
+      <ul>
+            
+        <li>W3C の <a href="http://www.w3.org/TR/DOM-Level-2-Style/">DOM レベル 2 スタイル 仕様</a>（Mozilla ではほぼサポートされています）</li>
+        <li>W3C の <a href="http://www.w3.org/TR/DOM-Level-2-Events/">DOM レベル 2 イベント 仕様</a>（Mozilla では一部サポートされています）</li>
+        <li><a href="csspapi/csspapi.html">JavaScript による CSSP プロパティ設定クロスブラウザ API</a> <span class="comment">[訳註] この文書は過去の遺物です。</span></li>
+        <li><a href="css1technote/css1tojs.html">JavaScript による CSS1 プロパティ設定コード生成</a></li>
+      </ul>
+
+
+      <p id="maint">
+
+    Mozilla ドキュメンテーションは 
+    <a href="news://news.mozilla.org/netscape.public.mozilla.documentation">netscape.public.mozilla.documentation</a> に議論の場を設けています。<a href="../contribute.html">資料の寄稿</a> は歓迎しますが、重複をさけるために意味のある寄稿について前もって話し合う方がよいかもしれません。このページに対する補足や提案を 
+    <a href="mailto:dbaron@dbaron.org">David Baron にメール</A> してください。
+
+</p>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/docs/web-developer/index.html">英語版</a> 2003/09/02</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/docs/web-developer/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

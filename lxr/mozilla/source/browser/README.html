@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Mozilla Firebird</title>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/lxr/mozilla/source/browser/README.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla Firebird</h1>
+<p>訳注 : 「ビルド方法」以外の内容については、大部分の情報が古くなっていますので、あらかじめご承知おきください。</p>
+<p>このプロジェクトは、Galeon や K-Meleon、Chimera と同じように Mozilla ブラウザコンポーネントを再設計したものですが、XUL ユーザインターフェイス言語を使って記述され、クロスプラットフォームを意識して設計されています。</p>
+<h2>理念、方針、戦略、具体的な設計決定</h2>
+<ol>
+	<li>CVS へのアクセスは非常に小規模なチームに限定されています。私たちは、名声と称賛に値するハックに基づき、必要に応じて随時拡大していきます。</li>
+	<li>これは、ブラウザに限定したアプリケーション単独の開発工程となります。メールクライアント、Web ページエディタなどは、この工程の範囲外となります。その他のアプリケーションの接続は、当面の目標ではありませんが、最終的には提供されると思います。</li>
+	<li>起動時にプロファイルマネージャは出ませんが、今でもコマンドラインから複数のプロファイルを選択できるようになっています。</li>
+	<li>デフォルトのテーマは、システムのルック &amp; フィールを尊重するために、nsITheme を利用した Classic ベースのものになる予定です。Mozilla Firebird は、古くて気の抜けた Communicator アイコンを利用しません。追加のテーマもサポートされますが、それらは Mozilla Firebird の一部ではありません。</li>
+	<li>ツールバーはカスタマイズ可能になります。これには、アドレスバーを好きな場所に移動できる機能も含まれます (ただ分割するだけではなく、ツールバーの幅全体を変更できる仕組みです)。</li>
+	<li>パーソナルツールバーはパーソナルツールバーであって、whorebar ではありません。</li>
+	<li>フォーム情報の記憶のような機能は、すべて一から書き直されます。</li>
+	<li>Sidebar も追加する予定ですが、現在 Mozilla に付いているものとは違った動作をするかもしれません。</li>
+	<li>検索機能やブックマークのためのアクセスポイントは 239 もありません!</li>
+	<li>throbber (ページ読み込みアニメーションアイコン) は削るかもしれません。</li>
+	<li>インターフェイスは「オタク系」ではありませんし、「ハッカー重視」でもありません。あるいは「必要最低限」でもありません。私たちの理念は、多くの人にとって最高の Web ブラウザを設計することです。(これは、すべての機能をデフォルトで有効にしなければならない、ということではありません)</li>
+</ol>
+<h2>注記</h2>
+<p>私たちは、エディタ部品や Gecko のその他の部分を、このプロジェクトの一部として再設計することはありません。</p>
+<p>私たちは、このアプリケーションを <a href="./projects/embedding/MRE.html">MRE</a> か <a href="/projects/xul/xre.html">XRE</a> に移行する予定ですが、これらのプロジェクトの受け入れ準備が整っていないため、この作業はまだ始まっていません。</p>
+<h2>よくある質問</h2>
+<h3>Q1. このプロジェクトを始めた理由は?</h3>
+<p>私たちの何人かが、現在のブラウザ開発に必要な、制約 (例えば、必要のない機能、互換性、市場の要求、長期にわたる議論など) のない、優秀で使いやすいブラウザの開発を楽しみたいと思ったことがきっかけです。</p>
+<p>他の人は、単に、1 つの巨大なスイートを実行する代わりに、overlay を外したり、アプリケーションを個別のプロセスに分割するといった、トランクに対する最大限の最適化を実証するための試作品としてこのプロジェクトを利用しています。</p>
+<h3>Q2. 開発を小規模なチームに限定している理由は?</h3>
+<p>トランクに関する作業をしているチームの大きさは、トランクの開発が遅れる、たくさんある理由のうちの 1 つになっています。私たちは、(市場の制約を外した) より少ない依存関係、(ユーザインターフェイスを議論するために委員会を作るようなことのない) より早い革新、(後方互換性を必要としない) より自由な試みが、より優れた完成品につながると考えています。</p>
+<h3>Q3. バグはどこに登録すればいいですか?</h3>
+<p>私たちは、強力な爆発と大体の流れを切り分けている状態です。明らかに壊れている部分はたくさんあり、私たちはそれに関するバグは必要としていません。バグ (機能リクエストはバグではありません) を見つけた場合、それが Mozilla Firebird 限定のバグである (Mozilla で再現しない) ことを確認し、現在ある Mozilla Firebird のバグにすべて目を通して、既に報告されていないかどうか十分確認した上で、Bugzilla に Phoenix プロダクトとして報告してください。</p>
+<h3>Q4: 「よくある質問」を作成するなど、時間の無駄ではありませんか?</h3>
+<p>もし「よくある質問」がなかったら、これらの質問にひとつひとつ答えていくのは、とんでもない時間の無駄になるからです。</p>
+<h3>Q5: 参加方法は?</h3>
+<p>プロジェクトからの招待によります。私たちは実力主義を採用しており、グループ内部の人から尊敬を得た人だけが、グループに招待されます。</p>
+<h2>ソースの入手とビルド方法</h2>
+<h3>UNIX / Windows (gmake) / Mac (mach-o)</h3>
+<ol>
+	<li>home ディレクトリ、あるいは mozilla ディレクトリに .mozconfig ファイルを作成し、以下のように記述します。<p>export MOZ_PHOENIX=1<br>mk_add_options MOZ_PHOENIX=1<br>ac_add_options --enable-crypto<br>ac_add_options --disable-tests<br>ac_add_options --disable-debug<br>ac_add_options --disable-mailnews<br>ac_add_options --disable-composer<br>ac_add_options --enable-optimize=-O2<br>ac_add_options --disable-ldap<br>ac_add_options --disable-mailnews<br>ac_add_options --enable-extensions=default,-inspector,-irc,-venkman,-content-packs,-help<br>ac_add_options --enable-plaintext-editor-only</p></li>
+	<li>CVS からソースを落とし、<a href="/build/unix.html">Mozilla のビルド方法</a> に書いてある通りにビルドします。</li>
+	<li>dist/bin に残った MozillaFirebird 実行ファイルを起動します。</li>
+</ol>
+<h2>Mac (CodeWarrior)</h2>
+<p>このプラットフォームは現在サポートされていません。</p>
+
+<p style="text-align: right; font-size: small;"><a href="http://lxr.mozilla.org/mozilla/source/browser/README.html">このドキュメントのオリジナルは、mozilla.org において、英語で管理／公開されています。</a><br>この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">もじら組 和訳プロジェクト</a> によって提供されています。<br>ドキュメントの内容に関するフィードバックは、英語で、原文の著者に送ってください。<br>和訳ドキュメント一覧など、詳しい情報は <a href="http://www.mozilla-japan.org/jp/td/">www.mozilla.gr.jp/jt</a> をご覧ください。</div>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/lxr/mozilla/source/browser/README.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/lxr/mozilla/source/browser/README.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

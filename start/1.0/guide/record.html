@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Mozilla 1.0 ガイド : 記録を正すこと</title>
+<link rel="stylesheet" title="Orange" href="../defaultstyle.css" type="text/css" />
+<link rel="alternate stylesheet" title="Very Simple" href="../basicstyle.css" type="text/css" />
+<link rel="alternate stylesheet" title="Light Blue" href="../bluestyle.css" type="text/css" />
+<link rel="icon" href="../images/mozilla-16.png" type="image/png" />
+<script src="../detect-problems.js" type="text/javascript"></script>
+<script src="../stylesheets.js" type="text/javascript"></script>
+<style type="text/css" media="screen,tv">
+	p, li, dt, dd, pre, blockquote { line-height: 1.75em; }
+	ul { list-style-type: circle; }
+	.addcomment { margin-top: 10px; margin-bottom: 5px; text-align: right; font-size: small; line-height: 1.5em; }
+</style>
+</head>
+<body onload="loadStyle();silentlyFixErrors('../')">
+<div id="mainHeaderContainer" class="sectionHeaderContainer">
+<img src="../images/dino.png" alt="" id="dinoHead" />
+<div id="mainHeader" class="sectionHeader"><a href="../"><img src="../images/mozillaLogo.png" id="mozillaLogo" alt="Mozilla 1.0" /></a></div>
+</div>
+<div class="section" id="mainSection">
+<div style="padding: 1em">
+<h1><a id="section">記録を正すこと</a></h1>
+<p><br /></p>
+<h2><a id="index">インデックス</a></h2>
+<ul>
+	<li><a href="#why-bother">「ブラウザ戦争」は終わっていないのですか？ Mozilla はインターネットに影響するのですか？</a></li>
+	<li><a href="#completion">なぜ Mozilla 1.0 は完成までこんなに時間が掛かったのですか？</a></li>
+	<li><a href="#user-experience">ユーザ体験が<i>本当に</i>革新を得るのはいつですか？</a></li>
+	<li><a href="#bug-count">「バグ・カウント」は上がり続けていると聞きました。これは本当ですか？</a></li>
+	<li><a href="#sponsoring-corps">mozilla.org と Netscape や AOL のようなスポンサー企業との関係は何ですか？</a></li>
+	<li><a href="#netscape">Netscape がほとんどの作業（コードやドキュメントの記述、テストなど）を行っているのではないのですか？</a></li>
+	<li><a href="#aol">AOL は Mozilla を利用するのですか？</a></li>
+	<li><a href="#codebase">Mozilla コードベースを管理しているライセンス条件とは何ですか？</a></li>
+	<li><a href="#other-tech">他にどんな技術がありますか？ それを便利だと思うのは誰ですか？</a></li>
+	<li><a href="#mozilla-dot-org">mozilla.org では何が起こっているのですか？</a></li>
+</ul>
+<ul>
+	<li><a href="index.html#index">メイン インデックス</a></li>
+</ul>
+<p><br /></p>
+<h3><a id="why-bother">「ブラウザ戦争」は終わっていないのですか？ Mozilla はインターネットに影響するのですか？</a></h3>
+<p>地球のデジタル共有地、インターネットは、私たちの生活の中で重要性を増しています。<strong>その活力への鍵は相互運用性です</strong> - <b>オープン・デベロップメント</b>、<b>オープン・スタンダード</b>、<b>オープンソース・ソフトウェア</b>は、グローバル E-mail アドレッシング・配達システムのような、その他の重要な国際的システムと同じように、第一にインターネットの誕生へ導いたものです。</p>
+<p>このオープンの精神を引き継いで、Mozilla 1.0 のコードと開発ツールは、Web 上のコンテンツやデータの表現を自由に制作し、表示する必要のある資源とともに、開発者に用意されています。</p>
+<p>Mozilla プロジェクトの目標は、Web 上のコンテンツをオープンにしておくための、スタンダードに準拠したクライアント テクノロジーの創造を革新し、容易にすることです。ますます多くのプログラマーや企業が、戦略的技術として Mozilla を採用するにつれて、Mozilla 1.0 は、インターネットを越えて<strong>オープンソースでスタンダードに準拠したソフトウェアの拡散と採択</strong>をさらに助長し、今度はその活力に貢献します。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="completion">なぜ Mozilla 1.0 は完成までこんなに時間が掛かったのですか？</a></h3>
+<p>まず、プロジェクトの領域が劇的に変化しました。当初のプロジェクトは、Netscape Communicator 4.<i>x</i> 製品ラインから、計画された 5.<i>x</i> 製品ラインへの、増分のみのアップグレードでした。しかし、そのプロジェクトが立ち上がってから、その目標の多くが、現存のコードベースを使って取り組めないということが明らかになりました。</p>
+<p>そして、決定は Mozilla プロジェクトをリセットし、<strong>新しいコードの形を生成</strong>させるということになりました。この決定がプロジェクトの領域を劇的に拡大したのです。</p>
+<p>次に、新しいコードベースに向けて、すべてのデザイン変更が一度に行われませんでした。開発プロセスは家を改築するような大変なことだということが分かりました。理想的には、1 つの計画は始める前に詳細が正確で、完璧ではなくてはなりません ・・・ しかし現実には、これはめったに可能なことではありません。</p>
+<p>最後に、これは私たちの 1.0 リリースではありますが、世間一般に製品の最初のリリースに適合したスタンダードによって評価されることはないでしょう。代わりに、Mozilla 1.0 は最新の商用ブラウザの世代と対照して比較されるでしょう。そのため私たちは、このリリースが本当に「<b>プライム・タイムの準備ができた</b>」かどうかを確かめる必要のために時間を費やしました。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="user-experience">ユーザ体験が<i>本当に</i> 革新を得るのはいつですか？</a></h3>
+<p>機能性、そしてユーザインターフェースの両方の観点から、Mozilla 1.0 の強調すべき点は、Netscape が信頼できる Netscape Communicator 4.<i>x</i> シリーズに取って代わるものを創造させたことでした。しかしながら、ユーザ体験の将来の発展と特に関係があり、Mozilla がエキサイティングで速やかに発達する未来を自称する覆いの下には、重大な変化がありました :</p>
+<ul>
+	<li>機能性は、4.<i>x</i> シリーズの中にあったものよりずっと<b>モジュール</b>で<b>拡張性</b>があります。</li>
+	<li>全体のユーザインターフェースは XUL を使って定義されていて、これはだれもが Mozilla のユーザインターフェースによって実験できる、スタンダードの Web ページデザイン技術を使うことができるということを意味しています。</li>
+</ul>
+<p>たとえば、タブブラウジング機能を考えてください。H. J. van Rantwijk はこの機能を他のブラウザで使いました。昨年、彼と何人かの友人は <a href="http://multizilla.mozdev.org/" title="MozDev の Multizilla プロジェクト">Multizilla</a> を制作するために XUL を使いました。David Hyatt はその作品を見て、すぐに基本的な特徴を最初から実装した、新しい XUL 部品を作成しました。基本的なタブブラウジング機能は現在標準の Mozilla の機能セットの一部となっていて、さらに洗練された Multizilla プロジェクトの作業は続いています。</p>
+<p>Mozilla プロジェクトとそのまわりの開発コミュニティは、常に上達するプロジェクトを創造するために協力して作業しています。そして私たちは、ユーザインターフェースの実験と製品の実装は、一度 Mozilla 1.0 を世に送り出せば加速するだろうと予想しています。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="bug-count">「バグ・カウント」は上がり続けていると聞きました。これは本当ですか？</a></h3>
+<p>「バグ・レポート」は、多様な人々を巻き込んで公然と追跡することが十分に重要な、Mozilla プロジェクトに関係するどんな問題についても、Bugzilla で作られることができます。私たちのバグ報告・追跡システムは、Mozilla プロジェクトの開始から作られた<b>すべての</b>レポートを含んでいます。そしてデータベースには解決したバグが残っていますので、この数は必然的に増えるのです。</p>
+<p>プロジェクトの全般的な品質のバグ・レポートの数について話す正確な方法はありません :</p>
+<ol>
+	<li>一部のレポートはプロジェクトの活動に関するもので、コードに関するものではありません。</li>
+	<li>コードに関係した重大なバグの数は、その他のバグとまったく同じものか、悪性のバグ・レポートのどちらかで、一部は特定の機能強化についての意見、あるいはリクエストの表現です。</li>
+	<li>新しい特徴へのリクエスト（RFE、「機能強化へのリクエスト」）はバグ・レポートとして追跡されます。</li>
+	<li>私たちは「メタ・バグ」のシリーズを持っています。これはプロジェクト管理のために使われます。たとえば、そのリリースについて重要な問題点を追跡する、各マイルストーン リリースについてのメタ・バグがあります。</li>
+	<li>整理されているバグ・レポートの数は、プロジェクトの関係者の数に影響されます。多くの関係者がいれば、それだけ Bugzilla へたどり着くバグ・レポートが多くなります。</li>
+	<li>バグ・レポートの存在は、少しでもユーザへのバグの影響について考えれば小さいものだと言えます。1 つのバグ・レポートがすべてのユーザに矛盾なく影響する巨大な問題を含んでいるかもしれませんし、ほとんどのユーザがめったに遭遇しない、大変特殊な問題を含んでいるかもしれません。バグ・レポートがますます多くの珍しい問題を扱うにつれて、レポートの数が、全般的な品質の向上について同時に増えるのは、実際あり得ることなのです。</li>
+</ol>
+<p>バグ・レポートの数は「bugginess」の追跡を手助けしませんが、私たちは他の bugginess、特に標準的な製造概念である<b>平均故障間隔</b> (MTBF) の大きさを追跡<b>します</b>（たとえば、近頃のビルドの <a href="http://ftp34.newaol.com/pub/data/crash-data/M1RC2-smart-analysis-all.txt">この分析</a> をご覧ください）。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="sponsoring-corps">mozilla.org と Netscape や AOL のようなスポンサー企業との関係は何ですか？</a></h3>
+<p>Mozilla.org は Mozilla を<strong>成功したオープンソースプロジェクト</strong>にすることを見いだします。これはすべての Mozilla コミュニティをサポートし、Mozilla コードベースを利用したり改良することに興味がある人たちのために、連絡とコミュニティの主要な場所を提供します。</p>
+<p>Mozilla.org は、意志決定において、完全な独立を維持します。決定は、コードベースとすべての Mozilla コミュニティの、長期の健全な状態のために役立てられます。Mozilla.org は、スタッフの場所や資源（サーバその他）について企業の貢献を受けています。また、コミュニティから入手できる最高の寄付を受けていますし、販売業者とも緊密に連絡を取っています。</p>
+<p>Chief Lizard Wrangler を含む、mozilla.org の一部のメンバーはボランティアです。他のスタッフメンバーは雇い主によって後援されています。すべての場合において、むしろプロジェクトから起こった特定の製品よりも、プロジェクトそのものへ献身が必要とされます。Mozilla.org には、<strong>完全な透明性</strong>への長年の責任があります。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="netscape">Netscape がほとんどの作業（コードやドキュメントの記述、テストなど）を行っているのではないのですか？</a></h3>
+<p>Netscape は Mozilla プロジェクトに対する最大単独の貢献者で、たくさんの前述のボランティアを雇い、彼らの多くをプロジェクトにフルタイムで働かせることによって、コミュニティを元気づけてきました。</p>
+<p>Netscape の従業員は、数少ない主要なボランティアや、増え続けている、Mozilla のコードを使っているその他の企業の従業員と常に協力して、コードベースの大部分の側面に親密に関係してきました。今日まで、Netscape と関わりのない、およそ 300 人の人々が、プロジェクトに対してコードの貢献者になってきました。</p>
+<p>プロジェクトの他の側面に参加している人々の数は、それよりも一層多くなります。特に、製品テストやバグ報告に関わっている人たちの数は莫大です。近頃の mozilla.org のリリースは毎回 30 〜 40 万の人々にダウンロードされていて、プロジェクトに優秀でタイムリーなテストデータを与えてくれています。</p>
+<p>また、コードを書いているそれらの開発者を手伝うテストの活動に参加している人たちは何百人もいます。これは開発者がさらに有能で精鋭であるようにしています。</p>
+<p>同様に、様々なチュートリアルを含め、生成されているドキュメンテーションの多くはボランティアのコミュニティによるものです。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="aol">AOL は Mozilla を利用するのですか？</a></h3>
+<p>Mozilla.org は、将来の AOL の行動について話すことはできません。それができるのは AOL だけです。AOL の 100 パーセント子会社である CompuServe は、現在 CompuServe 7.0 クライアントの一部として、「Gecko」として知られている Mozilla テクノロジーを出荷しています。AOL は現在こちらも Gecko を使った AOL 7.0 クライアントのベータ版をテストしていますが、どんな将来の計画についてコメントすることも時期尚早です。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="codebase">Mozilla コードベースを管理しているライセンス条件とは何ですか？</a></h3>
+<p>Mozilla コードベースは<strong>オープンソース／フリーソフト</strong>として<strong>開発、認可</strong>されています。これは、ソースコードの受け取り側が<strong>基本的な権利</strong>を保証されているということを意味します。</p>
+<p>Mozilla コードベースの大部分は <a href="../../../MPL/">Mozilla Public License</a> と Netscape Public License によって管理されています。互換性のあるオープンソース／フリーソフトライセンス（BSD や MIT ライセンスのような）のファイルも含まれるでしょう。</p>
+<p>これは Mozilla コードベースが合法的であり得るコードベースであり得るということを意味しています :</p>
+<ul>
+	<li>表示 （<tt><a href="http://lxr.mozilla.org/seamonkey/">http://lxr.mozilla.org/</a></tt>）</li>
+	<li>変更 （<tt><a href="../../../cvs.html">http://mozilla.org/cvs.html</a></tt>）</li>
+	<li>使用 （<tt><a href="../../../build/)">http://mozilla.org/build/</a></tt>）</li>
+	<li>配布 （<tt><a href="../../../MPL/">http://mozilla.org/MPL/</a></tt>）</li>
+</ul>
+<p>は、目的を問わず、どんな個人、企業によっても行われます。</p>
+<p>オープンソースとフリーソフトについての詳しい情報は、<tt><a href="http://opensource.org">http://opensource.org</a></tt> や <tt><a href="http://www.fsf.org">http://www.fsf.org</a></tt> でそれぞれご覧いただけます。</p>
+<p>コードベースは現在、同じフリーでも <a href="../../../MPL/relicensing-faq.html">互換性のないライセンス</a> （GNU GPL と LGPL） を持つ他のプロジェクトのコードと Mozilla のコードを、簡単に、合法的に化合できるようにするため、リライセンスされています。遅延は <a href="../../../MPL/missing.html">「行方不明」の貢献者たち</a> のひと握りです。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="other-tech">他にどんな技術がありますか？ それを便利だと思うのは誰ですか？</a></h3>
+<p>Mozilla のコードベースは<strong>幅広い種類の、比較的モジュラー式でスタンダードベースの機能性</strong>を含んでいます。開発者、特に OEM は、そのコードベースが、移植性がありスタンダードに準拠した Web やネット関連ソフトの作成、拡張のための、魅力あるフリーの「プラグ・アンド・プレイ・グラウンド」な品質の高いソフトのソースであることに気付くでしょう。</p>
+<p>その機能性の多くは Mozilla 1.0 で使われていますが、一部は使われていません。</p>
+<p>たとえば、Bugzilla のような開発者ツールがあります。これは Mozilla プロジェクトの範囲から離れた外側で成功している、Mozilla テクノロジーの見本です。Mozilla とは関係のない他のオープンで私営のプロジェクトで、現在、情報の追跡のために世界的に<b>使われている数千の Bugzilla インストレーション</b>があります。</p>
+<p>さらに、Java による JavaScript の実装である <a href="../../../rhino/">Rhino</a> のような、様々なその他のプロジェクトもあります（これは Java ソリューションを開発している人が、エンドユーザに対してスクリプト能力を提供できるようにします）。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<h3><a id="mozilla-dot-org">mozilla.org では何が起こっているのですか？</a></h3>
+<p>それが何であっても、それは<strong>著しくオープン</strong>です。最初の「<a href="../../../roadmap/roadmap-26-Oct-1998.html" title="最初の Mozilla ロードマップ ドキュメント">ロードマップ</a>」ドキュメント（1998 年 10 月）にある最初の設計原則がまさにその問題について触れていることは、注目に値することです（他の原則は技術的な問題に関するものでした）。</p>
+<p>Web サイトはふつう、開発者によって開発者向けに書かれています。それはたいてい、報道関係者やエンドユーザのようなその他の読者たちを無視し、また彼らによって無視されます。もしあなたが十分な技術的、実際的知識を持っていれば、Web サイト編集・アーカイブ機能や、様々なプラットフォーム上で動く様々な製品ビルドのリアルタイム・ステータスの、ごまかしの見た目が単純でグラフィカルな表示のような、印象的なツールが手に入ります（例 : ある Mozilla プロジェクト ブランチのための最新のステータスの <a href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=SeaMonkey">この表示</a>）。</p>
+<p>Mozilla 開発は、定期的に更新される「<a href="../../../roadmap.html" title="近頃のロードマップ ドキュメント">ロードマップ</a>」ドキュメントで定義されている方針をたどります。優先順位と目標は <a href="../../../roadmap/mozilla-1.0.html">mozilla 1.0 宣言</a> のような「宣言」ドキュメントで定義されています。</p>
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+<!-- This Guide began life as a proposed Reviewers' Guide by Ralph Mellor before being handed off to Brian Heinrich. Contributors (as of this writing, late in the evening of 3.VI.02) include:  Mitchell Baker; Heikki Toivonen, Gagan Saksena, and Steve Adamski (wrangled by Nisheeth Ranjan); Catherine H. Corre; and Ian ('Hixie') Hickson. Additional comments and suggestions by David ('Red Drag Diva') Gerard (a.k.a. 'Anagram Man'), Catherine H. Corre, Ben Bucksch, grayrest, and others. Mycrofted, wrangled, re-written, and edited by Brian Heinrich. This Guide has been brought to you by the letter 'M' (Mozilla and McNally's Extra Ale). -->
+
+<!-- 和訳ドキュメント コメント -->
+<div class="addcomment"><a href="http://www.mozilla.org/start/1.0/guide/record.html">このドキュメントのオリジナルは mozilla.org において英語で公開されています。</a><br>
+この和訳は、利用者の利便のために <a href="../../../jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。</div>
+
+</div>
+<div id="footer"><img src="../images/dino_tail.png" id="dinoTail" alt="" /></div>
+</div>
+<div class="doubleSpacer"></div>
+</body>
+</html>

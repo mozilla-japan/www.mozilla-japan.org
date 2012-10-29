@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Firefox 1.5/2.0 CCK (クライアント・カスタマイズ・キット) ウィザード</title>
+<link rel="alternate" hreflang="en" modified="November 8, 2006">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/cck/firefox/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Firefox 1.5/2.0 CCK (クライアント・カスタマイズ・キット) ウィザード</h1>
+<h2>バージョン 1.1 リリースノート</h2>
+<p>
+CCK ウィザードのバージョンVersion 1.1 がリリースされました。
+</p>
+<p>
+addons.mozilla.org で入手できます。
+</p>
+<p>
+<a href="https://addons.mozilla.org/firefox/2553/">https://addons.mozilla.org/firefox/2553/</a>
+</p>
+<p>
+このバージョンで Firefox 2.0 がサポートされました。Firefox 2.0 のための更新点は次の通りです。
+<ul>
+<li>ブックマークへの区切り線挿入のサポート。
+<li>OpenSearch ファイル読み込みのサポート。
+</ul>
+</p>
+<p>
+バグの報告は <a href="https://bugzilla.mozilla.org/enter_bug.cgi?product=Other%20Applications&component=CCK&version=Trunk">こちら</a> へ。
+</p>
+<p>
+<a href="faqs.html">FAQ</a> のページもあります。質問や問題点があれば、私にお知らせください。FAQ に追加できます。
+</p>
+<p>
+以前のバージョンにおける変更点については <a href="relnote.html">過去のリリースノート</a> をご参照ください
+</p>
+<h3>商標に関する重要な情報</h3>
+<p>
+商標についての考慮が必要になるのは、あなたが組織や会社の外部に配布しようとしている場合だけである、
+という点に注意してください。
+</p>
+<p>
+派生物の商標に関する注意点は、それが CCK で作られたかどうかには関係しません。
+CCK は、フリーパスを与えるものではなく、また派生物に許されるものと許されないものを
+左右するものでもありません。
+</p>
+<p>
+派生物に許可されているものといないものについては、
+<a href="http://www.mozilla.org/foundation/trademarks/">こちらのウェブサイト</a> を参照してください。
+</p>
+
+
+<h3>ディストリビュータ向け</h3>
+<p>
+Firefox 1.5/2.0 CCK は、Firefox をカスタマイズする拡張機能を作成することができます。
+これにより、以下のカスタマイズが可能になります。
+<ul>
+<li>ユーザエージェント文字列に識別子を追加する</li>
+<li>デフォルトのホームページと起動時のページを変更する</li>
+<li>タイトルバーのテキストを変更する</li>
+<li>読み込み中アイコンを変更する</li>
+<li>読み込み中アイコンのリンク先とツールチップを変更する</li>
+<li>ウェブページへリンクするヘルプメニュー項目を追加する</li>
+<li>ポップアップと XPInstall がデフォルトで許可されるサイトを規定する</li>
+<li>ブラウザプラグインをプリインストールする</li>
+<li>検索エンジンをプリインストールする</li>
+<li>個人用ツールバーにフォルダ、ブックマーク、ライブブックマークを追加する</li>
+<li>ブックマークフォルダにフォルダ、ブックマーク、ライブブックマークを追加する</li>
+<li>デフォルトの設定を定める</li>
+<li>設定をロックする</li>
+<li>レジストリキーを追加する (Windows のみ)</li>
+<li>証明書を追加する (下の注意を参照)</li>
+<li>デフォルトのプロキシ設定を定める</li>
+<li>他の XPI をパッケージに同梱する</li>
+<li>about:config を無効にする</li>
+
+</ul>
+</p>
+<p><b>
+重要: CCK が動作するには、パスの通ったところに ZIP.EXE がなければなりません。または、<a href="http://maf.mozdev.org/">MAF</a> 拡張機能をインストールする方法もあります。
+</b></p>
+<p><b>注意: 証明書を Firefox へ追加した場合、そのブラウザを Firefox という名前のまま、会社や施設の外で公開することはできません。この機能は、Firefox を会社や施設のユーザーに配布する、という目的のためのものです。
+</b></p>
+<p>
+CCK がインストールされると、ツールメニューに "CCK Wizard" というメニュー項目が追加されます。この項目から起動できるウィザードに従うことによって、Firefox 1.5/2.0 をカスタマイズするための XPI ファイルが作成できます。
+</p>
+<p>
+CCK を Windows のインストーラの一部にする場合、「<a href="wininstall.html">Firefox 1.5 CCK の Windows インストーラパッケージへの追加</a>」を参照してください。
+</p>
+<p>
+CCK を Firefox 2 のインストーラの一部にする場合、<a href="http://benjamin.smedbergs.us/release-repackager/">Firefox Release Repackager</a> を参照してください。現在の所 Mac 限定ですが、他のプラットフォームでも作業中です。
+</p>
+<p>
+CCK をアップデートするためのアップデートサイトを作りたい場合、<a href="update_site.html">この文書</a> を参照してください。
+</p>
+<h3>開発者向け</h3>
+<p>
+今のところ、CCK は拡張機能として <code>extensions/cck/browser</code> ディレクトリに置かれています。CCK をトランクにビルドする場合、.mozconfig ファイルに以下の行を追加してください。
+<pre>
+ac_add_options --enable-extensions=default,cck
+</pre>
+</p>
+<p>
+これにより CCK ウィザードを開発ビルドで使用することが可能になります。CCK ウィザードは Mozilla 1.8 Branch の一部ではないことに気をつけてください - トランクでビルドしなくてはならないのです。
+</p>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/cck/firefox/index.html">英語版</a> 2006/11/08</span> - <span>和訳版 2006/12/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/cck/firefox/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

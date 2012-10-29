@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Thunderbird 最近の作業</title>
+<link rel="alternate" hreflang="en" modified="June 25, 2003">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/thunderbird/changes.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Thunderbird には何が行われているのか?</h1>
+<p>このドキュメントは、Thunderbird チームが <a href="/mailnews/">Mozilla メール</a>を基礎とするスタンドアロンメールクライアントをビルドするために行っている最近の作業の記録です。私たちは自分の自由時間にこのプロジェクトの作業をしていますので、もし私たちがコメントや要望に対してすぐに反応できなくても我慢してください。このページは、私たちのゴールについて説明することを目的としているのではなく、私たちが行っている作業についての日々の記録です。公式のビルドは <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/thunderbird/">ftp.mozilla.org</a> で見つけることができます。
+<p class="comment">【訳者(tai)より：私の訳は２００３年６月２５日分で終了とします。もし要望があれば再開します。最新の記録をお知りになりたい方はこのドキュメントのオリジナルである <a href="http://www.mozilla.org/projects/thunderbird/changes.html">Recent Thunderbird Work</a> を御覧下さい。】</p>
+<h2>６月２５日</h2>
+<p>新しいウインドウズのビルドをリリースしました。コンポーズウインドウの新しいコンタクトサイドバーのレイアウトを再デザインしました。まだ表現とテキストに取り組んでます。<a href="roadmap.html">ロードマップ</a>、<a href="build.html">ビルドの仕方</a>、<a href="index.html">メインのプロジェクトページ</a>、そして<a href="specs/extensions.html">機能拡張のページ</a>を大きく更新しました。これらはすべてひどく古くなっていました。
+<h2>６月２４日</h2>
+<p>コンポーズウインドウの <a href="specs/images/abPicker.png">新しい address picker sidebar</a> に初めての版を組み込みました。ドラッグしたり、ダブルクリックしたり、もしくはボタンを使用して、このサイドバー経由でアドレスブックからコンポーズウインドウにアドレスを追加することができます。コンポーズツールバーのアドレスボタンがより使いやすくなっていて以前のアドレスピッカーダイアログよりももっと魅力的なものになっているといいのですが。</p>
+<h2>６月２２日</h2>
+<p>addressing widget にアドレスを入力する方法を Outlook スタイルのテキストボックスに改造しようとしましたが、結局断念しました。今の時点ではこれをうまく行う前に、私たちの複数行テキストウィジェットは多くの XBL の作業が必要になります。</p>
+<h2>６月１６日</h2>
+<p><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/thunderbird/nightly/extensions/offline/">正式な offline UI extension</a> を Thunderbird にチェックインしました。<a href="specs/offline.html">offline extension</a> の使い方についてのドキュメントを書きました。<a href="specs/extensions.html">Thunderbird Extensions</a> のドキュメントを更新し、extension の書き方についてより詳細に記しました。extension 設定パネルに磨きをかけ、extension で authURL 属性をサポートするようにしました。privacy 設定パネルを advanced パネルに編入し、環境設定パネルの数を減らしました（でもまだ多すぎです）。コンポーズウインドウが mail url をサポートするよう改良しました。これでウインドウズユーザがブラウザで mail url をクリックしたときに Thunderbird のコンポーズウインドウが正しく開かれるはずです。</p>
+<h2>６月１５日</h2>
+<p>extensions UI の見栄えをよくする作業をしました。offline の UI と環境設定を公式な Thunderbird extension にしました。私の望みはこの extension が他の extension を作る人たちにとってテンプレートのような役割をしてくれることです。extensionパネルに setting ボタンをつけました。</p>
+<h2>６月１４日</h2>
+<p>extensions 設定パネルから Thunderbird に extensions をインストールする機能を加えました。この機能によってさまざまな機能拡張をインストールしてユーザのニーズを満たすように Thunderbird をカスタマイズすることができます。詳しくは <a href="specs/extensions.html">Thunderbird Extensions</a> を見てください。</p>
+<h2>６月１３日</h2>
+<p>コンポーズウインドウが mailto URL を window 引き数として正しく扱えるようにしました。なぜこれが重要かって？これはブラウザで mailto リンクをクリックするとアドレス欄に何も挿入されないままコンポーズウインドウが立ち上がってしまうという Thunderbird のバグを解消しているからさ！これは <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=209403">Bug #209403</a> でたどることができます。テーマパネル用の UI を改良しました。Mozilla トランクと一致するよう、バージョン文字列を 1.5a にしました。</p>
+<h2>６月１０日</h2>
+<p>テーマ設定パネルで Thunderbird にテーマをインストールする機能を追加しました。この機能は次のビルド、おそらく１１日にリリースするビルドで使えるようになります。テーマ用の JAR ファイルをどのように統合するかについての変更が間もなく文書化されます。詳細は明日。</p>
+<h2>６月７日</h2>
+<p>ブラウザの代わりにメールを表示するデフォルトテーマ用プレビューイメージが出来ました。Thunderbird のローカルバージョンをトランクと一致するように 1.5a に変更しました。デフォルトでアドレスブックの多くのコラムを隠しました。折り畳み部分に対するいくつか残っていた参照を取り除き、メール３ペイン chrome からいくつかの不必要な vbox を取り除くいくつかのパッチが Stephen Walker から寄せられました。Stephen Walker からは、folderPane.xul と threadPane.xul を縮小する別のパッチも寄せられました。これでまたパフォーマンスがあがるはずです。</p>
+<h2>６月４日</h2>
+<p>タブウィジェットの一部である時、キャプションタグの見栄えが良くなるようにいくつかのスタイルルールをアドレスブック編集と新規カードに追加しました。現在のダイアログよりももっと整理されて見えるようにジャンクメールコントロールダイアログを暫定的に再デザインしました。chrome からライセンス情報を取り外す多くの作業を Stephen Walker がしてくれました。Stephen Walker から Win XP 似の file picker を表示するパッチが来ました。</p>
+<h2>６月３日</h2>
+<p>chrome ファイルがパッケージ化された jar に入る前に、このファイルからライセンスとコピーライトの情報のすべてをはぎ取ることによって xul pre-processor を活用するパッチを Stephen Walker から得ました。これは Thunderbird chrome の全体的なサイズの縮小に役立つはずです。各種アドレスブックダイアログの overlays を縮小しました。このパッチを提供してくれた Stephen Walker に感謝します。 Thunderbird から MNG デコーダーを取り除き、MNG throbber をアニメ gif に入れ替えました（この新しい gif を提供してくれた Pavlov に感謝します）。</p>
+<h2>６月２日</h2>
+<p>ウインドウズの res\Entities 内のすべてのファイルを、単なる html 属性の複数ファイルの代わりにパッケージにするパッチを Stephen Walker が作ってくれました。これでおそらく特定の文字セットのメール表示で起こるいくつかの I18N 問題が解決すると思います。<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=201891">Bug #201891</a> に対するパッチを当てました。これで Thunderbird をビルドする際に手動でこのパッチを当てる必要がなくなりました。これは、初めて Thunderbird を起動する時に layout で無限ループを起こしてしまう問題を解決します。多くの人が望んでいたので、ツールバーアイコンをメニューバーにドロップできる機能を追加しました（この機能はわざと外していたのです）。ツールバーのカスタマイズ後にメニュー項目が使用できなくなる JS error を修正しました。</p>
+<h2>５月３０日</h2>
+<p>Thunderbird のヘルプメニューに about Mozilla Thunderbird ダイアログを追加しました。アドレスブックとメールコンポーザの dtd、xul そして CSS 用 overlay を縮小する Stephen Walker からのパッチを取り込みました。Stephen ありがとう。これらのコンポーネントでは新規ウインドウのパフォーマンスがあがるはずです。しかしこれらの変更は Thunderbird 中の外部からのテーマを壊してしまうでしょう。メール３ペインウインドウのツールバーをカスタマイズするダイアログに新しいアイコンを表示するようにしました。これは、アドレスブックとコンポーザのウインドウでは、新しいテーマに変わるまでこれらの新しいアイコンは表示されないと言うことです。</p>
+<h2>５月２９日</h2>
+<p>メール用ツールバーでは大きいアイコンとテキストを標準にしました。メール３ペインウインドウでカスタマイズされたコンテクストメニューを表示するようにしました。messenger.xul に commandglue.js を含まないようにしました。あるタイプを重複して定義してしまう JS error を避けるためです。空の overlay のすべての発生と  mail chrome から communicatorOverlay.xul を取り除く Stephen Walker からのパッチを取り入れました。Firebird のようにツールバーをカスタマイズするためのコンテキストメニューをメール３ペインに組み込みました。</p>
+<h2>５月２５日</h2>
+<p>メール３ペインに小さいアイコンのサポートを追加しました。その３ペイン用の Arvid の小さいアイコンが到着しました。ツールバーに showing / hiding text（テキストを表示／隠す）のサポートを追加しました。小さい throbber アイコンを追加しました。</p>
+<h2>５月２４日</h2>
+<p>メール３ペインウインドウ用の Arvid のツールバーアイコンが到着しました！かっこいいアイコンを本当にありがとう、Arvid。アドレスブックのディレクトリペインでコラムタイトルのように sidebarheader を使うように改良しました（フォルダーペインで行った作業と似ています）。qute テーマ用のアニメ throbber が到着しました。Thunderbird をビルドするのに mng イメージデコーダーが必要になるかもしれません。Minotaur として残っていた名称参照を取り除き、 Thunderbird と入れ替えます。</p>
+<h2>５月２２日</h2>
+<p>フォルダペインを作り直しました。ツリー上のコラムタイトルを取り除いて、Firebird のようなサイドバーのタイトル要素で置き換えています。もしこの変更が気に入れば、アドレスブックのディレクトリペインにもこの作業を行うつもりです。メール３ペインでのメニューバーにユーザがアイコンをドラッグアンドドロップでき無くすることによって、カスタマイズ可能なツールバーを 'Dummy proof' にしています。Arvid が作ってくれた新しいメールアラートのアイコンを試してください。私のハックをスキンファイルからオートコンプリートの作業に、messengercompose.css から xul.css の ifdef に戻しました。うぉう、ul pre-processor は素晴らしい。</p>
+<h2>５月２０日</h2>
+<p>環境設定ダイアログの整備が大分進みました。多くの設定（アドレッシング、配達証明、接続）を Advanced パネルに縮小して移しました。Advanced パネルで多くのカテゴリーをリストできるように折り畳み式のグループボックスのような展開できるバインディングを整備しました。今は新しいツールキットでビルドするための変更が終わるのを待っていて、明日までにはこれら環境設定の変更が終わるはずです。</p>
+<h2>５月１９日</h2>
+<p>たくさんの toolkit 作業。環境設定のカテゴリーの数を減らしはじめました。環境設定のパネルの外見を "よりすっきり" したものにする必要があります。現在は初期設定パネルのスタイルに Firebird に似たものを使用しています。通知 (Notification) パネルがなくなりましたが、その機能はメール環境設定の一般 (general) カテゴリーの中にあります。ラベル (Labels) と配達証明 (Return Receipts) は '詳細設定 (Advanced)' パネルに組みいれました。どこか別に場所を作るまで、一時的に socks proxy 設定を Privacy のパネルに移しました。これはプロキシのサポートを必要としている人が HTML メールを見られるようにします。</p>
+<h2>５月１８日</h2>
+<p>Thunderbird を mozilla/toolkit へ移行する多くの作業をしました。mozilla/mail の変更のすべてを組み込みました。移行作業を終了する前に mozilla/toolkit 用の小さなパッチを当てる必要があります。</p>
+<h2>５月１４日</h2>
+<p>休暇から戻りました。Thunderbird が gtk2 を使用するようにパッチを当てました。このビルドに関する問題の解決を助けてくれたすべての人に感謝します。トランクにうまくマージできなかった時に誤って抜け落ちてしまった thread メニュー項目を View メニューに追加しました。先週から Mozilla Mail の変更点に同期化しています。</p>
+<h2>５月８日</h2>
+<p><a href="http://spellchecker.mozdev.org/">MozDev SpellChecker（スペルチェッカー）</a> を Thunderbird に組み込みました。スペルチェッカーが入ったんです！ まだトランクに入れていませんが、次の Thunderbird ナイトリービルドには入るはずです。メールの受信を知らせる Windows のシステムトレイのアイコンがまた表示されるようになりました。再び使用できるように、メール作成ツールバーのカスタマイズについてたくさんの作業をしました。メールの作成ウインドウでスペルチェックのボタンをデフォルトのボタンに設定しました。</p>
+<h2>５月７日</h2>
+<p>mail.jar の中では壊れてしまうので、pipnss と pippki の jar ファイルをビルドから取り除きました。mail compose / View メニューの 'Toolbar' 項目で使用する DTD に、違う DTD を使用してしまう配列の問題を修正しました。</p>
+<h2>５月６日</h2>
+<p>リンクにホバーしたときの情報がステータスバー上に表示されないという問題を修正しました。ヘルパーアプリケーションのプログレスダイアログの代わりに空のダイアログが作成されてしまう問題を修正しました。ここ２日に渡って新しい Windows のビルドにすべての chrome が組み込まれなかった問題を修正しました。</p>
+<h2>５月５日</h2>
+<p>最近のフットプリントの作業によって引き起こされたいくつかの問題を修正しました。セキュリティの DTD とプロパティファイルを組み入れ、UI を作りました。検索ダイアログを再び作動するようにしました。同じく View / Zoom / その他メニューの問題も修正しました。</p>
+<h2>５月２日</h2>
+<p>Chrome の縮小作業がやっと終わりました。chrom ファイルのすべてをの jar ファイルを展開した mozilla/mail/config ではパッケージングのステップが新しくなりました。このために私たちは Thunderbird で必要とする専用の各 xul、dtd、css、.properties、image ファイルを手作業で選別しています。これらのファイルは次の int に再バンドルされています：qute.jar (テーマ), mail.jar (すべての content), そして en-US-mail.jar (ロケール)。これによって Thunderbird では必要としないブラウザーとエディターのすべての chrome を取り除くことができます。こうした努力の結果、Windows のダウンロードサイズが３００Kも少なくなりました！</p>
+<h2>４月２３日</h2>
+<p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=191970">Bug #191970</a> に対する修正が入ったので、Thunderbird をビルドするための新しい .mozconfig オプションが利用できるようになりました。詳しくはビルドのページを見て下さい。David Tenser のおかげで新しいデフォルトのスタートページができました。新しい Windows のスナップショットがリリースされました。</p>
+<h2>４月２１日</h2>
+<p>この週末は Thunderbird にとってとても有意義なものになりました。私たちは Windows 版のダウンロードサイズをほぼ２メガバイトも減らしたのです！ふーっ。これは mailnews をビルドする時に、フットプリントとパフォーマンスを向上させる単一の DLL <a  href="http://bugzilla.mozilla.org/show_bug.cgi?id=179533">Bug #179533</a> になるようなビルドオプションを追加することによって達成することができました。<a href="http://lxr.mozilla.org/mozilla/source/mail/config">mail/config</a> に Thunderbird 用のパッケージングリストを追加したのでインストールファイルに含めるファイルをより選択できるようになりました。もし Windows 上でビルドし Thunderbird をインストールするのなら、mozilla/dist/bin ではなく、mozilla/dist/thunderbird の中を見て下さい。Thunderbird に必要なファイルだけを mozilla/dist/bin から mozilla/dist/thunderbird にコピーしています。</p>
+<h2>４月１６日</h2>
+<p>trunk での修正をいくつかピックアップしました：Bug #107877--&gt; メールでフォントの指定、スタイル、サイズを設定する機能。Bug #77202 --&gt; pop アカウント作成後に新規の pop メッセージをダウンロードするオプションを account wizard（アカウントウィザード）に追加。 Thunderbird では、新規 pop アカウントのデフォルトでメッセージをサーバに残すか確認します。</p>
+<h2>４月１５日</h2>
+<p>商標 / 著作権のリトマス試験をクリアできたので、このアプリケーションの名称を Thunderbird に変更しました。ブランド名の変更です。最新の Mozilla メールのバグ修正（特に、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=143565">Bug #143565</a>）と同期しました。</p>
+<h2>４月１４日</h2>
+<p>Languages pref（言語設定）カテゴリーを取り除き、そこにあった設定を "Compose" と "Message Display" に振り分けました。 （各設定カテゴリー用のアイコンを持った）Firebird に似た UI を持つためには、現在あるカテゴリーの数を減らす必要があります。tasksOverlay.xul を空にしました。この overlay が縮小されて適当な chrome に入ったたからです。</p>
+<h2>４月８日</h2>
+<p>Minotaur トランクビルドは Minotaur 専用の profile を使用するようになりました。もはや mozilla の profile を使用してごまかしたりしません。これは、もし mozilla メールの設定を Minotaur で使用したいのなら、手動でこれらの設定を移す必要があるということです。私たちの最初の Minotaur トランクバージョンは今夜リリースされます。</p>
+<h2>４月７日</h2>
+<p><i>トランク作業：</i>主要な Minotaur の改良点が <a href="http://lxr.mozilla.org/mozilla/source/mail">mozilla/mail</a> に入ったことにより、トランク上での Minotaur のビルドにますます近づきました。トランク移行に関するバグは <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=173084">Bug #173084</a> と <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=194315">194315</a> です。パッチはレビューの段階にあり、うまくいけばすぐにでも反映されるでしょう。</p>
+<p>新しい Minotaur の profile 用にメール固有の localstore.rdf を作成しました。スレッドペイン中の付加的な列をデフォルトでは隠すします。スレッドペインの高さを直したいと思っています。このファイルの最初のウインドウのデフォルトサイズも直したいのですが、まだ手をつけていません。また、ユーザが一番最初にメールを起動したときに、スクリーンの左上ではなく真ん中にメールのウインドウが現れるようにしたいと思っています。デフォルトのツールバーボタンにアドレスブックを加えます。</p>
+<h2>４月４日</h2>
+<p><i>トランク作業： </i>オフライン UI のすべてを、 デフォルトでは Minotaur でビルドされない mail/extensions/offline の中のオフライン固有のオーバーレイに移しました。ひとたびダウンロード可能な拡張が用意できれば、オフラインのユーザはこれを拡張として取り込むことができます。今のところは、オフラインのサポートを望むのなら、mail/extensions/offline をビルドすることもできます。これは、ステータスバーにオフラインの表示がなく、ファイルメニュー下のオフラインメニュー項目も無いという事を意味します。<i>これからすること：Minotaur でメールオフラインのサポートをビルドするための build config flag を追加する。</i>オフラインの設定パネルは今のところ offline extension package の一部です。"Preferenes..." から "Options..." へ項目名の変更。"Mail &amp; Newsgroup Account Settings..." から "Account Settings..." へ項目名の変更。View メニューから 'Reload' を取り除く。Phoenix に合わせて、Edit メニュー下ではなく Tools に Prefs や Account setting 設定メニュー項目を移動する。View メニューから View Message Body As を取り除く。</p>
+<h2>４月３日</h2>
+<p><i>トランク作業：</i>みんなが引き出しているブランチではないところで行っています。Help メニュー下に <a href="http://texturizer.net/minotaur/">Minotaur Help site</a> へ向かう項目を追加しました。進行状況を示す必要のないとき、メールの３ペインのプログレスメータを隠します。ステータスバーからセキュリティアイコンを取り除きます。ステータスバーの "Loading Document" を "Loading Message" に変更。フォルダーペインとアドレスブックディレクトリペインではソートできないので、これらのペインのソート表示アイコンを隠しました。これによって UI の外見が少しすっきりしました。</p>
+<h2>４月２日</h2>
+<p>トランクでの Minotaur 再ビルドは着々と進行中です。Minotaur のビルドをサポートする mozilla のコア部分の変更に対するパッチの生成をはじめる準備ができたところです。（ほとんどがビルド設定の変更です）</p>
+<h2>３月２４日</h2>
+<p>これから２日間ほどはこのページ上で大きな進展は見られないでしょう。しかしこれは、私たちが Minotaur に熱心に取り組んでいないからではありません。いまは mozilla トランクの MINOTAUR_0_1_BRANCH に入れる作業を再ビルドしているところです。これには４，５日かかると思われ、それから mozilla トランクへの組み入れを始めるつもりです。</p>
+<h2>３月１９日</h2>
+<p>この名前が確実に承認されるまで実行ファイルの名前を Thunderbird から元の名前に戻します。</p>
+<h2>３月１８日</h2>
+<p>実行ファイルの名前を Minotaur から Thunderbird に変更しました。しかし元に戻すかもしれません。メニューバーにヘルプメニューを追加しました。リリースノートのメニュー項目を追加しました。これは今のところこのプロジェクトのページにリンクしています。ツリー表示の幅を修正しました。</p>
+<h2>３月１７日</h2>
+<p>トランクから <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=191042">Bug #191042</a> と <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=194238">Bug #194238</a> のパッチを持ってきました。この二つは junk mail の動作をいくらか改善します。</p>
+<h2>３月１４日</h2>
+<p>xpfe/components/find をビルドしたのでメッセージ中で検索ができるようになりました。メールのデフォルトスタートページを<a href="http://www.mozilla.org/mailnews/minotaur/">ホームページ</a>にリンクしました。トランクから<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=193416">Bug 193416</a> をパッチを持ってきました。このバグはデフォルトのスタートページの設定が失われてしまうというものです。</p>
+<h2>３月１３日</h2>
+<p>Mozilla 1.3 ブランチへの統合が完了しました。新しいブランチ名は MINOTAUR_0_1_BRANCH です。私たちの以前のブランチよりも安定したバージョンの Mozilla への移行は Minotaur ０.１リリースへの大きな一歩です。</p>
+<h2>３月１０日</h2>
+<p>ツールバーが Windows XP のツールバーに似たものになりました（例えば、色の階調度）。 classic をデフォルトのテーマにしました。classic のスレッドペインでオフラインのアイコンを使用するのをやめ、見た目を簡素化しました。</p>
+<h2>３月９日</h2>
+<p>Bryner が Mac 用に Mach O ビルドを改良してくれました！modern テーマのツールバーカスタマイズのダイアログに関する問題を解決しました。これはツールバーカスタマイズのダイアログをしまう時にボタンが誤った順番で挿入されてしまうというバグでした。preferences を表示した時に pref ツリーでカテゴリーを正しく選択できるようになりました。</p>
+<h2>３月８日</h2>
+<p>classic テーマ用の新しい open / close ツリーツイストをつくりました。classic 用にアカウントのウインドウをすっきりさせて見栄えを良くしました。設定 UI 用の新しい、prefinverted という名称の属性を追加しました。この属性は、pref が UI とは逆の情報を保持する時にチェックボックスに対して適用されるものです（例えば、pref が disableFoo をコールされていて、UI には "check here to enable foo（foo を有効にするにはここをチェック）" が表示される）。この新しい属性の使用による新しい設定 UI のバグをいくつか修正。</p>
+<h2>３月７日</h2>
+<p>Bryner が Linux 上で Minotaur をビルドできるようにパッチを入れてくれました！</p>
+<h2>３月６日</h2>
+<p>mailnews の chrome から tasksOverlay.xul/.dtd を取り除きました。同じように mailTasksOverlay も取り除きました。Windows のメニュー項目を取り除き、 mail と address book 用の項目を Tools メニューに移動させました。Get Mail ボタンからメニューボタンプロパティを取り除いたのでドロップダウンリストがなくなりました。HTML メッセージ用に色をコントロールするための設定 UI を追加しました。</p>
+<h2>３月５日</h2>
+<p>preferences を大きく変更しました。mail に関係ない設定をすべて取り除きました。複雑なツリーがなくなり設定のカテゴリのリストがとてもシンプルになりました。セキュリティの管理をする UI を取り付ける必要があります。Privacy パネルもまだ作動しません。ユーザエージェントに Minotaur のベンダーストリングとサブストリングを加えました。Get Msgs ボタンを Get Mail に名称を変えました。Tools メニューのリストから Switch Profiles を取り除きました。</p>
+<h2>３月３日</h2>
+<p>client.mk を調整したので libpr0n のタブつきバージョンが引き出せるようになりアクセシビリティが向上しましたがトランクバージョンではありません。３ ペインでの Tools メニューを再構築して、java コンソール、web デベロップメ ントメニュー項目、そしてダウンロードマネージャーを含む余計な項目の多くを取り除きました。editorTasksOverlay.xul を読み込まないようにしました。タスクの  command/key セットから navigator のコマンドとキーコンビネーションを取り除きました。</p>
+<h2>２月２７日</h2>
+<p>アドレスブックとメール作成時のツールバーのカスタマイズを可能にしました。メール３ペインでのツールバー項目名 "Compose Msg" を "Write" に変えました。この３ペインウインドウにアドレスブックのアイコンを追加しました。これはツールバーのカスタマイズオプションで追加することができます。</p>
+<h2>２月２５日</h2>
+<p>Phoenix toolkit からカスタムツールバーを移植し、xpfe でうまく作動するように改造しました。カスタムツールバーがうまく作動するようにメール３ペインを修正しました。残念ながら modern テーマにはおかしなバグがあります。ツールバーをカスタマイズした後、ボタンの順序が入れ替わってしまいます。対処法：そのウインドウを閉じて再び開けば、そのツールバーは正しい順序で表示されます。Classic テーマではこの問題は見られません。よりすっきりした UI の為にツールバーのグリップを取り除きました。設定パネルから Navigator と Composer の chrome を取り除きましたが、まだ設定ウインドウの掃除が必要です。</p>
+<h2>２月２１日</h2>
+<p>肥大したコードを縮小。xpfe\components のほとんどと ftp 等のネットワーク関連、それから view source はビルドしないで下さい。添付書類とリンククリックをデフォルトのアプリケーションで開くように URI の取り扱いを変更しました。</p>
+<h2>２月２０日</h2>
+<p>スタンドアロンメールとしてビルドするために config とビルドを変更しました。XRE アプリケーションのように動作します。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/thunderbird/changes.html">英語版</a> 2003/06/25</span> - <span>和訳版 2006/02/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/thunderbird/changes.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

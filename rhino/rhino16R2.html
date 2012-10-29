@@ -1,0 +1,533 @@
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1/GPL 2.0
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Rhino code, released May 6, 1999.
+   -
+   - The Initial Developer of the Original Code is
+   - Netscape Communications Corporation.
+   - Portions created by the Initial Developer are Copyright (C) 1997-1999
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   -
+   - Alternatively, the contents of this file may be used under the terms of
+   - the GNU General Public License Version 2 or later (the "GPL"), in which
+   - case the provisions of the GPL are applicable instead of those above. If
+   - you wish to allow use of your version of this file only under the terms of
+   - the GPL and not to allow others to use your version of this file under the
+   - MPL, indicate your decision by deleting the provisions above and replacing
+   - them with the notice and other provisions required by the GPL. If you do
+   - not delete the provisions above, a recipient may use your version of this
+   - file under either the MPL or the GPL.
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  
+  <meta name="Author" content="Igor Bukanov">
+  <meta name="KeyWords" content="Rhino, JavaScript, Java">
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>Rhino 1.6R2 変更ログ</title>
+<link rel="alternate" hreflang="en" modified="November 13, 2006">
+<!--
+
+オリジナル
+題名: Change Log / Change Log for Rhino
+URL: http://www.mozilla.org/rhino/rhino16R2.html
+
+和訳
+2005-08-27  作成: RxOrca Rev.:1.1
+                Rhino 1.6R1 の変更ログが, Rhino 1.6R2, つまりコレ自身を指していた
+2005-09-19  更新: RxOrca Rev.:1.2
+                bugzilla項目は追加されたけど未だ変な部分は直らず
+2006-09-10  更新: RxOrca Rev.:1.3
+2007-02-23  更新: RxOrca Rev.:1.4
+
+
+訳注:
+  Bugzilla レポートは, 英文もあった方が分かりやすいかも
+  なので, title属性として付けてみた
+-->
+  <style>
+#mBody P { text-align: justify; }
+  </style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/rhino/rhino16R2.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1 align="center">
+Rhino の変更ログ</h1>
+
+<h2>Rhino 1.6R2、2005-09-19 にリリース</h2>
+
+<h3>リリース概要</h3>
+
+<p>
+Rhino 1.6R2 は、Rhino の新しいメンテナンスリリースです。Rhino 1.6Rx は ECMAScript for XML (E4X) を新しくサポートします。
+詳しくは、<a href="rhino16R1.html">Rhino 1.6R1 の変更ログ</a>を参照してください。
+</p>
+
+<p>
+このバージョンの Rhino は、公開 <a href="apidocs/index.html">API</a> のみを使用しているのなら、
+<!--
+  unless the code use the previously deperected classes as documented <a href="#Rhino1.5R1-deprecation-removal">below</a>.
+  のトコは 1.6R1 変更ログの文そのままなので, たぶん紛れ込んだものと思われる
+  -->
+現在 組み込んでいるものと、バイナリー互換のはずです。
+何か互換性に関する問題があれば、<a href="http://bugzilla.mozilla.org/enter_bug.cgi?product=Rhino" hreflang="en">Bugzilla</a> に報告してください。
+</p>
+
+<h3>Rhino 1.6R2 で FIXED として解決されたバグ (<a href="https://bugzilla.mozilla.org/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;product=Rhino&amp;long_desc_type=substring&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;status_whiteboard_type=allwordssubstr&amp;status_whiteboard=&amp;keywords_type=allwords&amp;keywords=&amp;resolution=FIXED&amp;emailassigned_to1=1&amp;emailtype1=exact&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailqa_contact2=1&amp;emailtype2=exact&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=2004-11-29&amp;chfieldto=2005-08-21&amp;chfield=resolution&amp;chfieldvalue=FIXED&amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">query</a>)</h3>
+
+<table str="" style="border-collapse: collapse; table-layout: fixed; width: 378pt;" border="0" cellpadding="0" cellspacing="0" width="504">
+
+  <tbody>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl24" style="height: 12.75pt; width: 48pt; font-weight: bold;" height="17" width="64">ID</td>
+
+      <td class="xl24" style="width: 330pt; font-weight: bold;" width="440">要約</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=238649" title="Removal of deprecated features after 1.5R5">238649</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">1.5R5 の後の非推奨の機能の除去</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=243057" title="enhancement - ability to assign to Java function result a...">243057</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">拡張 - Java 関数戻り値<!-- とデフォルトプロパティー -->へ割り当てを行う能力</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=252122" title="double expansion of error message">252122</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">エラーメッセージの二重拡張</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=255595" title="Factory class for Context creation">255595</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">Context 生成用の Factory クラス</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=258844" title="Continuation support in interpreter">258844</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">インタープリターで「継続」のサポートを</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=264637" title="InterpretedFunction memory footprint could be lighter">264637</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">InterpretedFunction はメモリー占有領域をより少なくできる</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=271401" title="JS prototypes for superclasses with ScriptableObject.defi...">271401</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">スーパークラスと ScriptableObject.defineClass の JS プロトタイプ</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=274467" title="Add JavaScript stack trace to exceptions">274467</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">例外へ JavaScript スタックトレースを追加</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=274996" title="Exceptions with multiple interpreters on stack may lead t...">274996</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">スタック上に複数のインタープリターがあるときの例外は<!-- ArrayIndexOutOfBoundsException へ導いてもよい？ -->〜</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=277537" title="isXMLName() should be properly implemented">277537</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">isXMLName() は適切に実装されるべき</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=277935" title="Assignments to descendants like &quot;msg..s = something&quot; =&gt; f...">277935</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">&quot;msg..s = 何か&quot; のような子孫への割り当てが<!-- failed assertion になってしまう-->〜</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=278701" title="Minimised windows don't indicate that breakpoints have be...">278701</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440"><!-- デバッガーにおいて, -->最小化された窓はブレークポイントにヒットしても分からない<!--知らせることができない--></td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=280047" title="Not implementing Scriptable in Undefined">280047</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">Undefined で Scriptable が実装されていない</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=280629" title="When using the debugger within another program the only w...">280629</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">他のプログラムでデバッガーを使用しているときに<!-- それを閉じる唯一の方法は JVM を kill する -->〜</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=281067" title="ThreadLocal in Context prevents class unloading">281067</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">Context の ThreadLocal でクラスのアンロードが起こらないように</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=281247" title="JDK compatibility via special class">281247</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">特別なクラスによって JDK の互換性を</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=281537" title="ScriptRuntime.toNumber warns on Undefined">281537</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">ScriptRuntime.toNumber は Undefined のとき警告が出る</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=282447" title="NPE trying to report error when trying to convert null to...">282447</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">NPE は、<!-- null をプリミティブ型に-->〜変換しようとするときエラーをレポートしようとする</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=282595" title="Patch for BeanProperties to work with several setters for...">282595</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">BeanProperty へのパッチは<!-- ？ -->それぞれのセッターと共に行う</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=286251" title="initFunction can be called twice">286251</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">initFunction は 2 度呼び出すことができてしまう</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=289294" title="Infinite loop during a script compilation">289294</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">スクリプトを翻訳中に無限ループ</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=289603" title="Update rhino-n.tests to eliminate spidermonkey only tests">289603</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">rhino-n.tests を更新して spidermonkey 用のテストを排除</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=290034" title="Cannot catch in JavaScript the original exception thrown ...">290034</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">〜<!-- Java で実装されたホストオブジェクト(ScriptableObject サブクラス) によって --> throw された元の例外は JavaScript で catch できない</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=291591" title="Rhino has differing behaviour to spidermonkey, and does n...">291591</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">Rhino は、spidermonkey とは振る舞いが異なり、しかも<!-- ECMA262に適合していない -->〜</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=292324" title="ArrayIndexOutOfBoundsException while compiling a script">292324</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">スクリプトを翻訳中に<!-- ←インタープリターでの話なので --> ArrayIndexOutOfBoundsException</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=298786" title="Infinite loop when compiling with optimization">298786</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">最適化指定でのコンパイル時、無限ループ</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=299539" title="Bad bytecode for function assignments">299539</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">関数割り当て(代入)に対してバイトコードが良くない</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=299613" title="Runtime support for function-results-as-lvalue">299613</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">左辺値 (lvalue) での関数戻り値のためのランタイムサポート</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=302501" title="constructor property shouldn't be readonly">302501</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">コンストラクタープロパティーは readonly であってはならない</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=303572" title="Need access to underlying RhinoException in rethrown erro...">303572</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">〜<!-- エラーオブジェクトの-->再スローについては下層の RhinoException へアクセスの必要がある</td>
+
+    </tr>
+
+    <tr>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=305323" title="Rhino fails to select the appropriate overloaded method">305323</a></td>
+      <td>Rhino は適切なオーバーロードメソッドの選択に失敗する</td>
+    </tr>
+    <tr>
+      <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=305753" title="&nbsp;NativeJavaMethod objects have incorrect parent when using...">305753</a></td>
+      <td><!-- 親スコープを使用するとき、-->NativeJavaMethod オブジェクトは適切でない親を持つ</td>
+    </tr>
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=306258" title="Can not compile using Ant scripts under JDK 1.5">306258</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">JDK 1.5 以前のものでは Ant スクリプトでのコンパイルができない</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=306268" title="Decompilation of E4X dot query is broken">306268</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">E4X dot query の逆コンパイルが崩れる</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=306308" title="JS function as Java interface via reflect.Proxy">306308</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">reflect.Proxy 経由での、Java インターフェースのような JS 関数</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=306419" title="Add serialVersionUID to Serializable">306419</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">Serializable インターフェースへ serialVersionUID を追加</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=306584" title="Crashes parsing .jsp page with javascripts">306584</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">JavaScript での .jsp ページで、パースでクラッシュ</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=303460" title="Enhance Rhino's shell to execute compiled script .class f...">303460</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">Rhino シェルでのコンパイル済みスクリプトの実行機能を向上</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=306825" title="Allow to use shell.Global in servlets">306825</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">サーブレットで shell.Global を利用可能に</td>
+
+    </tr>
+
+    <tr style="height: 12.75pt;" height="17">
+
+      <td class="xl26" style="height: 12.75pt; width: 48pt; text-align: left;" num="" height="17" width="64"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=309029" title="Exception when evaluating recursive function">309029</a></td>
+
+      <td class="xl25" style="width: 330pt;" width="440">再帰関数の評価 (evaluate) での例外</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<h2>以前の Rhino リリースからの変更ログ</h2>
+<ul>
+  <li><a href="rhino16R1.html">Rhino 1.6R1</a></li>
+  <li><a href="rhino15R5.html">Rhino 1.5R5</a></li>
+  <li><a href="rhino15R41.html">Rhino 1.5R4.1</a></li>
+  <li><a href="rhino15R4.html">Rhino 1.5R4</a></li>
+  <li><a href="rhino15R3.html">Rhino 1.5R3</a></li>
+  <li><a href="rhino15R2.html">Rhino 1.5R2</a></li>
+  <li><a href="rhino15R1.html">Rhino 1.5R1</a></li>
+</ul>
+
+<hr width="100%"><br>
+<a href="index.html">トップに戻る</a>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/rhino/rhino16R2.html">英語版</a> 2006/11/13</span> - <span>和訳版 2007/02/25</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/rhino/rhino16R2.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Thunderbird テーマの探求</title>
+<link rel="alternate" hreflang="en" modified="April 25, 2003">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/thunderbird/themes.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Thunderbird テーマの探求</h1>
+<p>現在、Thunderbird は  <a href="http://lxr.mozilla.org/mozilla/source/themes/classic/messenger">mozilla classic theme</a> を使用しています。不幸なことに、classic のメールアイコンは Netscape 4.0 時代のものです。それらは極端に古く、早急に新しくすることが必要です。これは<a href="icons/thunderbird.jpg">現在のテーマ</a>のスクリーンショットです。私たちは、<a href="/projects/phoenix">Firebird browser テーマ</a>で標準として使われている UI にマッチした Thunderbird 用の新しいテーマを製作したいと思っています。しかし、メールソフト用の UI を開発することは、ブラウザ用のそれを開発することよりも大変な作業です。特に、メールソフトのアイコンの数は、ブラウザのそれよりもはるかに多いのです。まず初めに、それぞれ独自のツールバーを持っている、三つのアプリケーションウインドウがあります。それらはメール、メール作成、アドレス帳です。それに加えて、フォルダ表示部やスレッド表示部に使われる、全てのこまごましたアイコンも必要です。メールアイコン作成の途中でこの事に気づいても、無駄になった人生は取り戻せません。</p>
+<p>私たちは、Thunderbird のデフォルトテーマを作ってくれる貢献者を心から欲しています(まず手始めに、デフォルトのアイコンを作ることによって)。私たちはやる気に満ちているのですが、これを実行するほどの芸術的才能を持ち合わせていません。しかしながら、おそらく私たちは、その作業を苦しくないものにして、あなたが Thunderbird のデフォルトテーマ用のアイコンを作ってくれるようにはできると思います。この文書は、テーマを作るのに必要な作業をあなたに一通りめぐってもらう目的で書かれています。最初の焦点はアイコンであって、UI のデザイン全体ではありません。アイコンにおける難局をのりきったら、焦点が変更されるだろうと思います。実際のところ、私たちがアイコンさえ手に入れたら、それらを全てテーマに採用するつもりです。</p>
+<p><i>短期的な目標：</i>一人で全ての Thunderbird 用アイコンをデザインすることは、荷が重過ぎるでしょう。数が多すぎます。もし私たちが、誰か UI 経験の豊富な方に、メールやアドレス帳、メール作成のような非常に重要かつよく見られる部分のアイコンをデザインしてもらえれば素晴らしいと思います。それはアイコンのために見かけやテーマを確立するのに役立つでしょう。そうすれば、私たちは他のデザイナーに、たくさんの小さいアイコンの作成を委任し始めることができます。そのようにすれば、作業も分配されますし、私たちも素晴らしい Thunderbird 用のテーマを作る手助けもできます。</p>
+<p><i>更新：Arvid Axelsson、Firebird 用 <a href="http://www.quadrone.org/phoenix/">Qute テーマ</a> のデザイナーが、Firebird 用のそれにマッチした Thunderbird 用のテーマを作ることに同意しました！彼が作成するものを見るのを待ちきれません。</i></p>
+<p>以下のトピックは Thunderbird 用のデフォルトテーマを作る際の優先度順に並べられています。さらに、私たちは全てのアイコンをここに掲げているわけではなく、まず初めに片付けたいものだけを並べてあります。
+<h2>メールの三画面表示部</h2>
+<p>これらは、私たちの製品でもっとも見られるウインドウです。最初のステップは、三画面表示部のツールバーボタンのアイコンを全て仕上げることです。それぞれのツールバーボタンは四つの画像状態値を持ち得ます：normal, hover, hover active(ボタンが押されている状態), それと disabled です。それぞれのボタンが、四つの画像のバリエーションを持ちます(それぞれの状態に一つずつ)。パフォーマンスに関する理由から、私たちは小さな画像ファイルを全てロードする代わりに、これら全てのアイコンを一つの大きな画像ファイルに配置します。以下は現在の classic テーマ用の画像ファイルです。しかし、 <a href="icons/modern3pane.gif">modern toolbar</a> も見たほうが良いでしょう。三画面表示部のアイコンがどういう見た目になるべきか、さらなるアイデアを得られるかもしれません。
+<table>
+  <tr>
+     <td><ul><li>メールを取得</li><li>メールを取得</li><li>メールを作成</li><li>アドレス帳</li><li>返信</li><li>全員に返信</li><li>転送</li><li>次へ (次のメッセージへ移動)</li><li>ファイル (メッセージをファイルに保存)</li><li>削除</li><li>停止</li><li>印刷</li></ul></td>  
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/btn1.gif"><img border="none" src="icons/classic3pane.gif"/></a></td>
+  </tr>
+  <tr>
+    <td>ジャンク (メッセージにジャンクとして印をつける) *これは新しく、私たちのテンプレート例には含まれていません*</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/junk.gif"><img border="none" src="icons/junk.gif"/></a>
+  </tr>
+  <tr>
+    <td>Thunderbird Throbber (動画)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/communicator/brand/throbber-single.gif"><img border="none" src="icons/throbber-single.gif"/></a>
+  </tr>
+</table>
+<h2>メール作成ウインドウ</h2>
+<p>メール作成ウインドウは三画面表示部ほどたくさんのツールバーボタンを持っていません。アイコンはすでに上の画像の中にリストされています (それらは同じ大きな画像の一部です)。</p>
+<ul>
+  <li>送信
+  <li>アドレス (アドレス選択画面を表示します)
+  <li>添付 (添付ファイルを追加します。普通はペーパークリップのようなもので表されます)
+  <li>セキュリティ (メッセージに署名する、暗号化するなどのセキュリティに関する情報のドロップダウンリスト)
+  <li>保存 (メッセージの下書きを保存)
+  <li>スペリング?? (いつか私たちはスペルチェッカーを搭載します)
+</ul>
+<h3>フォルダ表示部のアイコン</h3>
+<p>たくさんの小さなアイコンがフォルダ表示部にあります。これらのアイコンのサイズは重要なので、新しいものをデザインする前に、オリジナルバージョンの大きさを調べることを忘れないでください。次の表は最初に注力すべき、より重要なものを示しています。注：私たちは必ずしもこれらのアイコンが新しいテーマと共に変更されるべきといっているわけではありません。これはアーティスト次第です。もしかしたら、私たちは classic よりも少しだけ粋な modern テーマを掘り下げて、ペイントショップで、Thunderbird のテーマに合うように改良するかもしれません。</p>
+<table>
+  <tr>
+    <td>受信箱フォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-inbox.gif"><img border="none" src="icons/folder-inbox.gif"></a></td>
+  </tr>
+  <tr>
+    <td>新着メールのある受信箱フォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-inbox-new.gif"><img border="none" src="icons/folder-inbox-new.gif"></a></td>
+  </tr>
+  <tr>
+    <td>開いている受信箱フォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-inbox-open.gif"><img border="none"  src="icons/folder-inbox-open.gif"></a></td>
+  </tr>
+  <tr>
+    <td>ジャンクフォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-junk.gif"><img border="none" src="icons/folder-junk.gif"></a></td>
+  </tr>
+  <tr>
+    <td>ゴミ箱フォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-trash.gif"><img border="none" src="icons/folder-trash.gif"></a></td>
+  </tr>
+  <tr>
+    <td>新着メールのあるフォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-new.gif"><img border="none" src="icons/folder-new.gif"></a></td>
+  </tr>
+  <tr>
+    <td>新着メールがあって、開いているフォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-new-open.gif"><img border="none" src="icons/folder-new-open.gif"></a></td>
+  </tr>
+  <tr>
+    <td>開いているフォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-open.gif"><img border="none" src="icons/folder-open.gif"></a></td>
+  </tr>
+  <tr>
+    <td>オンラインメールサーバ(すなわち IMAP)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/server-mail.gif"><img border="none" src="icons/server-mail.gif"></a></td>
+  </tr>
+  <tr>
+    <td>新着メールのあるオンラインメールサーバ (すなわち IMAP)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/server-mail-new.gif"><img border="none" src="icons/server-mail-new.gif"></a></td>
+  </tr>
+  <tr>
+    <td>ローカルメールサーバ (すなわち POP)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/server-local.gif"><img border="none" src="icons/server-local.gif"></a></td>
+  </tr>
+  <tr>
+    <td>新着メールのあるローカルメールサーバ (すなわち POP)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/server-local-new.gif"><img border="none" src="icons/server-local-new.gif"></a></td>
+  </tr>
+  <tr>
+    <td>ニューズサーバ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/server-news.gif"><img border="none" src="icons/server-news.gif"></a></td>
+  </tr>
+  <tr>
+    <td>下書きフォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-draft.gif"><img border="none" src="icons/folder-draft.gif"></td>
+  </tr>
+  <tr>
+    <td>送信済みフォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-sent.gif"><img border="none" src="icons/folder-sent.gif"></td>
+  </tr>
+  <tr>
+    <td>未送信メッセージフォルダ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/folder-outbox.gif"><img border="none" src="icons/folder-outbox.gif"></td>
+  </tr>
+</table>
+<h2>スレッド表示部のアイコン</h2>
+<p>たくさんの小さなアイコンがフォルダ表示部にあります。これらのアイコンのサイズは重要なので、新しいものをデザインする前に、オリジナルバージョンの大きさを調べることを忘れないでください。次の表は最初に注力すべき、より重要なものを示しています。</p>
+<table>
+  <tr>
+    <td>メール メッセージ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/message-mail.gif"><img border="none" src="icons/message-mail.gif"></td>
+  </tr>
+  <tr>
+    <td>添付ファイル付きメール メッセージ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/message-mail-attach.gif"><img border="none" src="icons/message-mail-attach.gif"></td>
+  </tr>
+  <tr>
+    <td>新着メール メッセージ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/message-mail-new.gif"><img border="none" src="icons/message-mail-new.gif"></td>
+  </tr>
+  <tr>
+    <td>ジャンクメッセージ</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/message-junk-other.gif"><img border="none" src="icons/message-junk-other.gif"></td>
+  </tr>
+  <tr>
+    <td>スレッド欄 (スレッド表示部の列アイコンの一つです。)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/unthreadcol.gif"><img border="none" src="icons/unthreadcol.gif"></td>
+  </tr>
+</table>
+<h2>その他のよく見られるアイコン</h2>
+<p>この項では、ツールバーの一部でも、スレッド/フォルダ表示部の一部でもないが、よく見られると思われる全てのカテゴリのアイコンを取り上げます。</p>
+<table>
+  <tr>
+    <td>新着メールのお知らせアイコン (新着メールがあるときにデスクトップに表示されるアニメーション警告の一部です)。現在この部分には modern アイコンを使っています。</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/icons/new-mail-alert.png"><img border="none" src="icons/new-mail-alert.png"></td>
+  </tr>
+  <tr>
+    <td>アドレス帳カード (メール作成画面の To/cc 部、それぞれの受信者の名前のところと、アドレス帳のスレッド表示部に表示されます)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/addressbook/icons/abcard.gif"><img border="none" src="icons/abcard.gif"></td>
+  </tr>
+  <tr>
+    <td>アドレス帳 メーリングリストカード (メール作成画面とアドレス帳のスレッド表示部にも表示されます)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/addressbook/icons/ablist.gif"><img border="none" src="icons/ablist.gif"></td>
+  </tr>
+  <tr>
+    <td>ユーザーが新しいメールを受信したときの Windows のシステムトレイアイコン (16 x 16 .ico ファイル) (modern テーマ由来です)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/build/newmail.ico"><img border="none" src="icons/newmail.ico"></td>
+  </tr>
+</table>
+<h2>アドレス帳</h2>
+<p>ツールバーウインドウでいちばん重要度が低いのはアドレス帳です。だから一番最後に注力します。</p>
+<table>
+  <tr>
+    <td>新規カード</td>
+  </tr>
+  <tr>
+    <td>新規リスト</td>
+  </tr>
+  <tr>
+    <td>新規作成 (メールをアドレスに送信します)</td>
+  </tr>
+  <tr>
+    <td>カードのプロパティ</td>
+  </tr>
+  <tr>
+    <td>削除</td>
+  </tr>
+  <tr>
+    <td>インスタントメッセージ (インスタントメッセージを送信します)</td>
+    <td><a href="http://lxr.mozilla.org/seamonkey/source/themes/classic/messenger/addressbook/icons/im.gif"><img border="none" src="icons/im.gif"></td>
+  </tr>
+</table>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/thunderbird/themes.html">英語版</a> 2003/04/25</span> - <span>和訳版 2005/05/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/thunderbird/themes.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

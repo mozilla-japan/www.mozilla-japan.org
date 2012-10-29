@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<title>Mozilla 1.6 の新機能</title>
+
+<style type="text/css" media="screen,tv">
+	table.diff { width: 100%; }
+	table.diff td { width: 50%; vertical-align: top; }
+	.modified { background-color: lightblue; }
+	.added, .removed { background-color: lightgreen; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="February 24, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.6/README.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+
+
+
+<h1>Mozilla 1.6 の新機能</h1>
+<p>このドキュメントには、Mozilla 1.6 で実装された新機能や、重要なバグの修正、その他新しい問題の一部が書かれています。決して、新機能や修正、バグの完全なリストではありません。より詳細な修正のリストは「<a href="http://www.mozilla.org/releases/mozilla1.6/changelog.html">大まかな変更ログ</a>」をご覧ください。</p>
+
+<h2><a name="new">新機能と修正</a></h2>
+<p>(訳注: Mozilla 1.5 以降)</p>
+<ul>
+	<li>Gecko レンダリングエンジンは今回のリリースサイクルで大きな注目を集め、標準準拠の向上と、かつてないページ読み込み時間の高速化につながりました。</li>
+	<li>Mozilla Mail で最もリクエストが多かった機能の 1 つ、スレッドペインの受取人と差出人のカラムを別々に分けるオプションが実装されました。</li>
+	<li>Mozilla Mail に関して多数のリクエストがあったもう 1 つの機能である、ユーザの署名を引用テキストの前に配置する設定が追加されました。</li>
+	<li>POP3 メールアカウントに「指定した日数を経過した既読メールをサーバから削除する」オプションが実装されました。</li>
+	<li>Mozilla Mail に vCard (電子名刺) サポートが追加されました。</li>
+	<li>Mozilla 1.6 には新しいクロスプラットフォームの NTLM 認証機構が含まれています。これによって、Windows 版以外の Mozilla で初めて NTLM 認証を利用できるようになり、また Windows 版でも、従来のバージョンよりさらに強力で機能的な NTLM サポートを受けられるようになりました。</li>
+	<li>Ask Jeeves の検索機能が Mozilla 1.6 に追加されました。</li>
+	<li>今回のリリースより「ページ翻訳」機能が復活しました。</li>
+	<li>ソース表示 (View Source) ウィンドウにリロード機能が付きました。</li>
+	<li>いくつかのセキュリティ関連のバグが修正されました。</li>
+	<li>ChatZilla 0.9.48 が統合され、RPL_ISUPPORT とハーフ Op モードのサポートが追加されました。また、パスワードダイアログ入力の際に適切なマスクが掛けられるようになりました。</li>
+	<li>多くのクラッシュバグが修正されました。</li>
+	<li>キッチンシンクに近付く一歩となる about:about が実装されました。アドレスバーの中で about:about と入力すれば、利用可能な about: コマンドの親切なリストが表示されます。</li>
+	<li>不透過率の実装が抜本的に見直され、すべての子要素の不透過率を、グループとして正しく変更できるようになりました。</li>
+	<li>CSS の継承がアップデートされ、CSS 2.1 として機能するようになりました。(算出値が継承されるようになりました)</li>
+</ul>
+
+<h2><a name="new-issues">新しい問題</a></h2>
+<p>ここには、前回のマイルストーン以降 <a href="known-issues.html">既知の問題</a> のページに追加された事項が載っていますが、バグ自体は以前からあったものである可能性もあります。</p>
+<ul>
+	<li>Mozilla 1.6 には Palm Sync サポートが含まれていません。Palm Sync は Mozilla 1.7 Alpha で復活しました。</li>
+	<li>IMAP アカウントの File (ファイル) メニューの Compact Folders (フォルダの圧縮) から、アカウント内の IMAP フォルダをすべて圧縮できるようになりました。また、オフライン利用に設定されているフォルダがある場合、オフラインの保存内容も圧縮できます。これまでこのコマンドは、選択したフォルダだけしか圧縮できませんでした。選択したフォルダのみを圧縮するには、フォルダのコンテキストメニューから Compact this Folder (このフォルダを圧縮) コマンドを使ってください。(<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=230672">Bug 230672</a>)</li>
+	<li>Windows 以外の OS では、Composer と HTML メッセージ作成ウィンドウ内で、行の最初の文字の貼り付けに失敗します。(<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=228688">Bug 228688</a>)</li>
+</ul>
+
+
+
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.6/README.html">英語版</a> 2004/02/24</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.6/README.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

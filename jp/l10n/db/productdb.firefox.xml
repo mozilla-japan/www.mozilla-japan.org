@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database xml:lang="ja-JP" lang="ja" type="productdb"
+	xmlns="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:tt="http://dynamis.jp/2003/TransTools">
+
+
+
+<!-- * Mozilla Firebird/Firefox * -->
+<product id="firebird" name="Mozilla Firebird" shortname="Firebird">
+	<version full="0.7" major="0" minor="7" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firebird/releases/0.7/checksum.md5"/>
+		</checksum>
+		<package creatorid="motohiko" platform="win" type="zip" md5="f8acf118a7e09ad2843794344c079f09">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firebird/releases/0.7/MozillaFirebird-0.7-win32-jaJP.zip"/>
+			<file serverid="core.ring.gr.jp"
+				url="http://core.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-win32-jaJP.zip"/>
+			<file serverid="www.ring.gr.jp"
+				url="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-win32-jaJP.zip"/>
+		</package>
+		<package creatorid="motohiko" platform="win" type="installer" md5="4bbc80ff2de662cd0697228a8278c3e4">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firebird/releases/0.7/MozillaFirebird-0.7-win32-jaJP-installer.exe"/>
+			<file serverid="core.ring.gr.jp"
+				url="http://core.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-win32-jaJP-installer.exe"/>
+			<file serverid="www.ring.gr.jp"
+				url="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-win32-jaJP-installer.exe"/>
+		</package>
+		<package platform="linux" type="tar.gz" md5="0a35fd7b64c5bd2837e626663b3a71f2">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firebird/releases/0.7/MozillaFirebird-0.7-i686-pc-linux-gnu-jaJP.tar.gz"/>
+			<file serverid="core.ring.gr.jp"
+				url="http://core.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-i686-pc-linux-gnu-jaJP.tar.gz"/>
+			<file serverid="www.ring.gr.jp"
+				url="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-i686-pc-linux-gnu-jaJP.tar.gz"/>
+		</package>
+		<package platform="mac" type="dmg.gz" md5="8a079606c70ae6fbd56a8c3d37dc9f53">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firebird/releases/0.7/MozillaFirebird-0.7-mac-jaJP.dmg.gz"/>
+			<file serverid="core.ring.gr.jp"
+				url="http://core.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-mac-jaJP.dmg.gz"/>
+			<file serverid="www.ring.gr.jp"
+				url="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7-mac-jaJP.dmg.gz"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.7.1" major="0" minor="7" micro="1" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firebird/releases/0.7.1/checksum.md5"/>
+		</checksum>
+		<package platform="mac" type="zip" md5="cf9051104b2c77f9e9724d915e51aa99">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firebird/releases/0.7.1/MozillaFirebird-0.7.1-mac-jaJP.dmg.gz"/>
+			<file serverid="core.ring.gr.jp"
+				url="http://core.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7.1-mac-jaJP.dmg.gz"/>
+			<file serverid="www.ring.gr.jp"
+				url="http://www.ring.gr.jp/archives/net/www/mozilla/firebird/releases/0.7/contrib-localized/MozillaFirebird-0.7.1-mac-jaJP.dmg.gz"/>
+		</package>
+	</version>
+</product>
+
+
+<product id="firefox" name="Mozilla Firefox" shortname="Firefox">
+	<version full="0.8" major="0" minor="8" stage="release">
+		<tt:note>MacOSX 版の Firefox 0.8 は<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=233574">クラッシュバグが報告されている</a>など安定性が不十分であるため、日本語版のリリースは見合わせる事となりました。ご了承下さい。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.8/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.8/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1.1" platform="all" type="xpi" md5="a0386a65c9d3f646c7122f14e0a86cd4">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.8/firefox-0.8-langjajp-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.8/firefox0.8-langjajp-tm0.1.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1.1" platform="win" type="zip" md5="f22a73fad6a2c6bd64bec8e8d0e0f0b9">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.8/Firefox-win32-0.8-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.8/contrib-localized/firefox-0.8-win32-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.8/Firefox-0.8-jaJP.zip"/>
+		</package>
+		<package creatorid="shiten" revision="0.1.1" platform="win" type="installer" md5="2d5c3bd54315fee65c15bd603f33ba0a">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.8/FirefoxSetup-0.8-jaJP-3.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.8/contrib-localized/firefox-0.8-win32-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.8/FirefoxSetup-0.8-jaJP-3.exe"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="linux" type="tar.gz" md5="aad373f7fd914eb46fb7b70ffbc23939">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.8/firefox-0.8-i686-pc-linux-gnu-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.8/contrib-localized/firefox-0.8-i686-pc-linux-gnu-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.8/MozFox0.8-jaJP-0.1.1-i686-pc-linux-gnu.tar.gz"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.9" major="0" minor="9" stage="release">
+		<tt:note>MacOSX 版の Firefox 0.9 も 0.8 同様に安定性が不十分であるため、日本語版 ZIP パッケージのリリースは見合わせる事となりました。ご了承下さい。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.8/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1.1" platform="win" type="xpi" md5="4f7554054919d836f5e0082d037febcf">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9/firefox-0.9-langjajp-win-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9/contrib-localized/firefox-0.9-jaJP-langpack-win.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9/firefox0.9-langjajp-win-tm0.1.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1.1" platform="win" type="installer" md5="db780204de651970be652d26f6b2adca">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9/FirefoxSetup-0.9-jaJP-2.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9/contrib-localized/firefox-0.9-win32-jaJP-installer.exe "/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9/FirefoxSetup-0.9-jaJP-2.exe"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="linux" type="xpi" md5="a372928cad44c3d339bcdd9535de4b30">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9/firefox-0.9-langjajp-unix-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9/contrib-localized/firefox-0.9-jaJP-langpack-unix.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9/firefox0.9-langjajp-unix-tm0.1.1.xpi"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="linux" type="tar.gz" md5="a9108bea021db2125596d563b880aea6">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9/firefox-0.9-i686-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9/contrib-localized/firefox-0.9-i686-pc-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9/MozFox0.9-jaJP-0.1.1-i686-linux-gtk2+xft.tar.gz"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="mac" type="xpi" md5="bfefbbba6f0f6ebc9f144df39043670c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9/firefox-0.9-langjajp-mac-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9/contrib-localized/firefox-0.9-jaJP-langpack-mac.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9/firefox0.9-langjajp-mac-tm0.1.1.xpi"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.9.1" major="0" minor="9" micro="1" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.1/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.1/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="win" type="xpi" md5="2b5096df7ff47e9e9f6114a8781f2ae0">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.1/firefox-0.9.1-langjajp-win-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9.1/contrib-localized/firefox-0.9.1-jaJP-langpack-win.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.1/firefox0.9.1-langjajp-win-tm0.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="installer" md5="bf4837f9c0ed9e10da1e98c477205d13">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.1/FirefoxSetup-0.9.1-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.1/FirefoxSetup-0.9.1-jaJP.exe"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="xpi" md5="9aa555cc2c420746d852f22eb9f0c69e">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.1/firefox-0.9.1-langjajp-unix-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9.1/contrib-localized/firefox-0.9.1-jaJP-langpack-unix.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.1/firefox0.9.1-langjajp-unix-tm0.1.xpi"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="tar.gz" md5="1516e1df5e4528bf4763ac17170d6dfc">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.1/firefox-0.9.1-i686-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9.1/contrib-localized/firefox-0.9.1-i686-pc-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.1/MozFox0.9.1-jaJP-0.1-i686-linux-gtk2+xft.tar.gz"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="mac" type="xpi" md5="9dda0b4ce5c90ef82d11ce93f4aa6340">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.1/firefox-0.9.1-langjajp-mac-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9.1/contrib-localized/firefox-0.9.1-jaJP-langpack-mac.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.1/firefox0.9.1-langjajp-mac-tm0.1.xpi"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.9.2" major="0" minor="9" micro="2" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.2/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.2/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="win" type="xpi" md5="40e6fa10342ffb994001c5cd319e8883">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.2/firefox-0.9.2-langjajp-win-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.2/firefox0.9.2-langjajp-win-tm0.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="installer" md5="4571b5f984f986cd47d9b8f7c51fd6ee">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.2/FirefoxSetup-0.9.2-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9.2/contrib-localized/firefox-0.9.2-win32-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.2/FirefoxSetup-0.9.2-jaJP.exe"/>
+		</package>
+		<package creatorid="toyama" revision="0.1" platform="win" type="zip" md5="ba1da803f52326ed1701f1b3f61e0c69">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.2/Firefox-win32-0.9.2-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/0.9.2/contrib-localized/firefox-0.9.2-win32-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.2/Firefox-win32-0.9.2.zip"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.9.3" major="0" minor="9" micro="3" stage="release">
+		<tt:note>MacOSX 版の Firefox 0.9 も 0.8 同様に安定性が不十分であるため、日本語版 ZIP パッケージのリリースは見合わせる事となりました。ご了承下さい。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.3/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.3/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="win" type="xpi" md5="8e5d6b55e86236bc41a3543273687edf">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.3/firefox-0.9.3-langjajp-win-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.3/firefox0.9.3-langjajp-win-tm0.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="installer" md5="0bca4e068d9a792735edeea10d6187fc">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.3/FirefoxSetup-0.9.3-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.3/FirefoxSetup-0.9.3-jaJP.exe"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="zip" md5="af86bf43bbda81bfddfca0b2856e23e7">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.3/Firefox-win32-0.9.3-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.3/Firefox-win32-0.9.3-jaJP.zip"/>
+		</package>
+		<package creatorid="toyama" revision="0.1" platform="win" type="zip" md5="77a368aa37fa6f0bb8729bb300a2e5d6">
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.3/Firefox-win32-0.9.3JP.zip"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="xpi" md5="bcfe850283b57a6aca523df5d4cfdaf1">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.3/firefox-0.9.3-langjajp-unix-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.3/firefox0.9.3-langjajp-unix-tm0.1.xpi"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="tar.gz" md5="2e2a9f88fe93afced6c1952e935c98ce">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.3/firefox-0.9.3-i686-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.3/MozFox0.9.3-jaJP-0.1-i686-linux-gtk2+xft.tar.gz"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="mac" type="xpi" md5="6e1f638e7e1d3747335ee7c369c04b49">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.9.3/firefox-0.9.3-langjajp-mac-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/firefox/0.9.3/firefox0.9.3-langjajp-mac-tm0.1.xpi"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.10" major="0" minor="10" stage="preview release">
+		<tt:note xmlns="${ns.xhtml}">Firefox 0.10 (Preview Release) では言語リソースや拡張機能の扱いが大きく変わっており、既存のプロファイルや拡張機能がある状態でインストールすると問題が発生することがあります。ユーザプロファイルをバックアップした上でインストールすることをお勧めします。<br/>
+			また、本体のバグにより拡張機能などから言語の切替はできません。<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=259750">拡張機能をインストールすると全体が英語になってしまう</a>というバグなどもあるため、XPI を使用する場合や拡張機能を利用する場合には<br/>
+			<code class="indent">firefox -UILocale ja-JP -contentLocale JP</code><br/>
+			のように毎回引数をつけて起動する必要があります。その場合はショートカットなどを作って起動するようにして下さい。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10/checksum.md5"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.3.8" platform="all" type="xpi" md5="6ba18db86fe84871069c80039a7e7137">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10/firefox-0.10-langjajp.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="shiten" revision="0.3.8" platform="win" type="installer" md5="25ca2bc81706a913e511b625a2ada0f6">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10/Firefox Setup 1.0PR-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="shiten" revision="0.3.8" platform="win" type="zip" md5="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10/Firefox 1.0PR-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="shiten" revision="0.3.8" platform="linux" type="installer" md5="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10/firefox-1.0PR-i686-linux-gtk2+xft-installer-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+	</version>
+	<version full="0.10+" major="0" minor="10" stage="development">
+		<tt:note xmlns="${ns.xhtml}">Firefox PR は拡張の挙動があやしいため、JLP を更新する際は一度アンインストールしてからにすることをお勧めします。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10/checksum.md5"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.4.2" platform="win+linux" type="xpi" md5="ba9698c1207b311d7ea74ac231522a81">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10/firefox-0.10-langjajp-0.4.2.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5" platform="win+linux" type="xpi" md5="1f0e1e3c87ed99aed5f266021a4b8ee9">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10/firefox-0.10-langjajp-0.5.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5" platform="mac" type="xpi" md5="f3a838386e74f399b35706140774d1c1">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10/firefox-0.10-langjajp-mac-0.5.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.1" platform="win+linux" type="xpi" md5="e376908d44ead179a4b5d2b3a7c83a19">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10/firefox-0.10-langjajp-0.5.1.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.1" platform="mac" type="xpi" md5="e9cbd60d0ee0e0e5d928e2146176d3c3">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10/firefox-0.10-langjajp-mac-0.5.1.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.2" platform="win+linux" type="xpi" md5="808399b7825a277568f69fb039c79a75">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10/firefox-0.10-langjajp-0.5.2.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.2" platform="mac" type="xpi" md5="0c3de67662478577e817d5892a508373">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10/firefox-0.10-langjajp-mac-0.5.2.xpi"/>
+		</package>
+	</version>
+	
+	<version full="0.10.1" major="0" minor="10" micro="1" stage="preview release">
+		<tt:note xmlns="${ns.xhtml}">Firefox 0.10 と 0.10.1 の差は英語版では<a href="http://www.mozilla-japan.org/press/foundation-2004-10-01-02.html">セキュリティパッチ</a>があてられているかどうかの違いだけですが、日本語版ではリビジョンが違うことから分かるとおり、JLP に数多くの修正や改良が含められています。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10.1/checksum.md5"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.5.8" platform="win+linux" type="xpi" md5="505bd931e375d84db09f965ce47ac640">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10.1/firefox-0.10.1-langjajp.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.8" platform="mac" type="xpi" md5="3e1eb4aa6f5b8127256be74dca0f3efa">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10.1/firefox-0.10.1-langjajp-mac.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="shiten" revision="0.5.8" platform="win" type="installer" md5="91a41654049e8af45300c1fb14d26085">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/0.10.1/Firefox Setup 1.0PR-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+	</version>
+	<version full="0.10.1+" major="0" minor="10" micro="1" stage="development">
+		<tt:note xmlns="${ns.xhtml}">Firefox PR は拡張の挙動があやしいため、JLP を更新する際は一度アンインストールしてからにすることをお勧めします。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/checksum.md5"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.5.11" platform="win+linux" type="xpi" md5="35f72ee6b18487751b93c01f74b2c1f3">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-0.10.1-langjajp-0.5.11.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.11" platform="mac" type="xpi" md5="7917ed747b04436003c8797a8497b817">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-0.10.1-langjajp-mac-0.5.11.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.13" platform="win+linux" type="xpi" md5="ddb5f72efac74d89aa56714f3524a5c8">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-0.10.1-langjajp-0.5.13.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.13" platform="mac" type="xpi" md5="57fb4b8846fa92d53ed8d747575a724e">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-0.10.1-langjajp-mac-0.5.13.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.14" platform="win+linux" type="xpi" md5="139d114a908a10b656be9914110cf1f3">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-0.10.1-langjajp-0.5.14.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.14" platform="mac" type="xpi" md5="fab7b456d0eec4b3bf2fff4802fde384">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-0.10.1-langjajp-mac-0.5.14.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.15" platform="win+linux" type="xpi" md5="fce4d763e96de85f6b5222c1d2acffa6">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-0.10.1-langjajp-0.5.15.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.15" platform="mac" type="xpi" md5="6147b56138171bec270ed7db803aad9d">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-0.10.1-langjajp-mac-0.5.15.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.4" platform="win+linux" type="xpi" md5="82e78f273788938bc72d033ffd721122">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-1.0.ja-JP.langpack-0.6.4.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.4" platform="mac" type="xpi" md5="ad7b105f7f2c9753db24ec0d8c6dd905">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/0.10.1/firefox-1.0.ja-JPM.langpack-0.6.4.xpi"/>
+		</package>
+	</version>
+	
+	
+	<version full="1.0rc1" major="1" minor="0" micro="rc1" stage="release candidate">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0rc1/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0rc1/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.6.4" platform="win" type="installer"
+			md5="c8c81e1168ac91c15070374853aa657a" sha1="fa327077c7569da84f25aae29d56e4b53d9c5bc4">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0rc1/Firefox Setup (1.0rc1, ja-JP).exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="cvs" revision="0.6.4" platform="win" type="zip"
+			md5="2fb859bef96d77d5714a1fb387927e61" sha1="75588481d8b569e287ae9f783b91c1d61db898e3">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0rc1/Firefox (1.0rc1, ja-JP).zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="cvs" revision="0.6.4" platform="linux" type="tar.gz"
+			md5="66478181e1cf7a9e48aea708230a3faf" sha1="53935324f6122856e8125a095772be4d07295a4b">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0rc1/firefox-1.0rc1.ja-JP.linux-i686.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="cvs" revision="0.6.4" platform="mac" type="dmg.gz"
+			md5="4f8747b2e323cb8093c2509c4ac16919" sha1="c470843d8377e8be53772e17f87a9f07a6bf3dff">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0rc1/Firefox (1.0rc1, ja-JPM).dmg.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+	</version>
+	<version full="1.0rc1+" major="1" minor="0" micro="rc1" stage="development">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.6.5" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JP.langpack-0.6.5.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.5" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JPM.langpack-0.6.5.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.7" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JP.langpack-0.6.7.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.7" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JPM.langpack-0.6.7.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.9" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JP.langpack-0.6.9.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.9" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JPM.langpack-0.6.9.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.11" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JP.langpack-0.6.11.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.11" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JPM.langpack-0.6.11.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.12" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JP.langpack-0.6.12.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.12" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JPM.langpack-0.6.12.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.14" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JP.langpack-0.6.14.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.14" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JPM.langpack-0.6.14.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.15" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JP.langpack-0.6.15.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.15" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc1/firefox-1.0rc1.ja-JPM.langpack-0.6.15.xpi"/>
+		</package>
+	</version>
+
+
+	<version full="1.0rc2+" major="1" minor="0" micro="rc2" stage="development">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.6.16" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/firefox-1.0rc2.ja-JP.langpack-0.6.16.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.16" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/firefox-1.0rc2.ja-JPM.langpack-0.6.16.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.19" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/firefox-1.0rc2.ja-JP.langpack-0.6.19.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.19" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/firefox-1.0rc2.ja-JPM.langpack-0.6.19.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.20" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/firefox-1.0rc2.ja-JP.langpack-0.6.20.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.20" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0rc2/firefox-1.0rc2.ja-JPM.langpack-0.6.20.xpi"/>
+		</package>
+	</version>
+
+
+	<version full="1.0" major="1" minor="0" stage="release">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="cvs" revision="0.7.7" platform="win+linux" type="xpi"
+			md5="ba1f6b8d980b60320f150f54658005f7" sha1="333742a559164292a2d5c7e1cc93cfd23d1b9b01">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/ja-JP.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="cvs" revision="0.7.7" platform="mac" type="xpi"
+			md5="bd5d04388c4d3f0344805b132d01fdc1" sha1="cf7092ee06dc6e177c2cc10b2802034a6adcd720">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/ja-JPM.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="dynamis" revision="0.7.7" platform="win" type="installer"
+			md5="f16b008a7924d7cdfcff362990016684" sha1="95501b1c10e6c322d0912bcdc29f605dc1b8dba8">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/win32/ja-JP/Firefox Setup 1.0.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="cvs" revision="0.7.7" platform="win" type="zip"
+			md5="ff0fd22e0bd178b571a599c9510bd4cf" sha1="e1d8b6aed15fa5c57afff9049f06bcd6eca39c4d">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/win32/Firefox 1.0.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="cvs" revision="0.7.7" platform="linux" type="installer"
+			md5="9830b159e477b5a37a8cf1ffe6c4cba5" sha1="8d9223ee68ddd9a27fd47a6d4a660ed3585a2806">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/linux-i686/firefox-1.0.installer.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="cvs" revision="0.7.7" platform="linux" type="tar.gz"
+			md5="a81b5efadd18eb86776b0929fa39c543" sha1="21b41029ebd98a51f76ac9fc69c645f4b175a79f">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/linux-i686/firefox-1.0.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="cvs" revision="0.7.7" platform="mac" type="dmg.gz"
+			md5="a0442c0d5fcf7c778e1f0b78801dfd87" sha1="6596e28f35c9f965495d9f8c40c750a4284acdb9">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/releases/1.0/mac/Firefox 1.0.dmg.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+	</version>
+	<version full="1.0+" major="1" minor="0" micro="" stage="development">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.7.7" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0/firefox-1.0.ja-JP.langpack-0.7.7.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.7.7" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0/firefox-1.0.ja-JPM.langpack-0.7.7.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.7.8" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0/firefox-1.0.ja-JP.langpack-0.7.8.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.7.8" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/1.0/firefox-1.0.ja-JPM.langpack-0.7.8.xpi"/>
+		</package>
+	</version>
+</product>
+
+
+
+</database>

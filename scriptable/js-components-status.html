@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>JavaScript XPCOM コンポーネントの状況</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/scriptable/js-components-status.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/scriptable/js-components-status.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h2><center>JavaScript XPCOM コンポーネントの状況</center></h2>
+<h3><center>第 2 草稿</center></h3>
+
+
+<h3>はじめに</h3>
+<blockquote>
+
+私は、 <a href="xpjs-components.html">XPJS Components Proposal</a> の中で、 JavaScript を使って xpcom コンポーネントとサービスを実装するシステムの構築を提案しました。他の xpcom コンポーネントは、このコンポーネントを透過的に使うことができます。
+
+<p>
+
+その後、 <a href="mailto:shaver@mozilla.org">Mike Shaver</a> は、このシステムが動作するようにしてくれました。
+このドキュメントでは、その作業の状態と現在の実装におけるシステムの制限を示すことにします。
+
+</blockquote>
+
+<h3>実装</h3>
+<blockquote>
+
+当然のことながら、システムは、全面的に <a href="index.html">XPConnect</a> をベースにしています。目玉は、システムにおいて、コンポーネントのインスタンス化に xpcom を使うようにしたことです。
+以前は、組み込みのコンポーネントローダーが存在していました。このローダーは、すべてのコンポーネントが C/C++ で実装されていて、そして DLL からロードされたか、または実行時に(非永続的に)登録されたファクトリーインスタンスから作られたと仮定していました。
+Mike は、このコードを切替え可能なコンポーネントローダーシステムに組み立て直しました。
+その後、彼は DLL からロードするネイティブなコンポーネント用のローダーを作成しました。また、 .jsファイルからロードする JavaScript コンポーネント用のローダーを作成しました。
+これは拡張可能なシステムであり、将来、他の人が追加のローダーを書いてくれることを期待できます。
+
+<p>
+
+JS コンポーネントローダーの実装は、 <a
+href="/lxr/seamonkey/source/js/src/xpconnect/loader/">/js/src/xpconnect/loader/</a> にあります。
+私の知る限り、 Mike Shaver は、その使い方について詳細な文書を書いていません。
+簡単に言うと、JS コンポーネントローダーは、自動登録時に、コンポーネントとして登録して使用するために、 'components' ディレクトリにあるすべての .js ファイルをロードしようとします。
+つまり、DLL のネイティブコンポーネントがあるのと同じディレクトリーです。
+アプリケーションが起動するたびにこれらのファイルを探すのか、それとも自動登録時だけに探すのかは、良く分かりません。[shaver がはっきりさせてくれるのかな ?]
+
+<p>
+
+私が知っている最良のドキュメントは、サンプルにある<a
+href="http://lxr.mozilla.org/seamonkey/source/xpcom/sample/nsSample.js">xpcom/sample/nsSample.js</a> です。
+ただ、これがサンプルであり、同時にちょっとしたテストベッドであるのは意味がないと思います。
+この中には、不要なデバッグコードがいくつかあります。そして、定型的なコードは、もう少し再構成し、カスタマイズ可能な部分は変数として分離するべきだと思います。そうすれば、将来の JS コンポーネント実装者は、単に共通のブロックをコピーして、自分自身の progid と iid などの文字列を埋めるだけでよくなります。
+それでもやはり、このサンプルは現に使えるものであり、サンプルにあるコメントを読めば、どのようにシステムを使えば良いのかが理解できます。
+
+<p> 
+
+この他のシステムの進化についての情報元として(ハードコアな好奇心のために)、
+<a
+href="news://news.mozilla.org/netscape.public.mozilla.xpcom">xpcom ニュースグループ
+</a>があります。JS components、component loader といったキーワードで題名を探してください。
+
+<p>
+
+JS コンポーネントの適切な例としては、 components ディレクトリーにある .js ファイルを挙げることができます。
+現在のところ、例えば、サイドバーコンポーネントがあります。Mike Shaver は、 JS を使って、カテゴリーマネージャを実装しました。もっともこれは、後で C++ を使って再実装されています。
+別に JS での実装が実用的でなかったわけではなく、ただ単に XPCOM のコアサービスが JavaScript と XPConnect を必要とするのは良くない、と判断されたためでした。
+これは、ブラウザ以外の用途の埋め込みの場合、これ以外には JavaScript を必要としないので、 xpcom の有用性を損なってしまう恐れがあるためです。
+
+</blockquote>
+
+<h3>実装の公開</h3>
+<blockquote>
+
+2000 年 8 月 1 日まで、JS コンポーネントには、重大な問題がありました... JS コードから JS コンポーネントを使った場合、他の xpcom コンポーネントとは見え方が違っていたのです。
+この問題は、xpconnect が JS コードから、実装の JS コンポーネントの JSObject へ直接アクセスすることを許していたことが元になっています。
+つまり、呼び出し側は、宣言されたインタフェースに限定されず、すべてのメソッドとプロパティにアクセスすることができた、ということです。
+これは同時に、他の xpconnect 基盤が実装公開された JS コンポーネントを任意の xpcom インタフェースとして認識できないということも意味します。
+これらの問題の議論については、<a
+href="http://bugzilla.mozilla.org/show_bug.cgi?id=25180">ここ</a>を見てください。
+ 
+<p>
+
+長期的な対策としては、この問題は、この目的に特化した第 3 の xpconnect ラッパーにより修正されるでしょう。
+短期的な対策として、ネイティブコードから JS コードに対して JS コンポーネントが渡される時に、JS コンポーネントの '二重ラップ' を行うことにしました。
+つまり、 JS コンポーネントが作成されて、ネイティブコードに渡される時、 xpconnect はネイティブコードが使うためのラッパーを作ります。そして、そのラッパーが後で JS コードに渡される時、 xpconnect は、そのラッパーの周りに JS から使うためのラッパーを作ります。
+これにより、JS コンポーネントはネイティブな xpcom コンポーネントとほとんど区別がつかなくなりました。
+ただし、一つ違いがあります。
+
+<p>
+
+まれに、JS コードの呼び出しから、実装している JS コンポーネントの JSObjectに実際にアクセスする<b>必要</b>がある可能性があります。
+このため、 xpcom コンポーネントの回りの xpconnect ラッパーは、現在 <i>wrappedJSObject</i> というプロパティをサポートしています。
+これにより、 JS コードでは、以下のようなことができます...
+
+<pre>// 'foo' は、JS で実装されている可能性がある xpcom オブジェクトです。
+var underlyingObject = foo.wrappedJSObject;
+if(underlyingObject) {
+   underlyingObject.somePropertyThatIsNotPartOfTheInterface = 'bar';    
+}
+</pre>
+
+もし 'foo' が JS で実装されていない場合、<i>foo.wrappedJSObject</i>は、<i>undefined</i> を返します。
+また、'foo' が JSで実装されて<i>いる</i>場合でも、これは実装の JSObjectが 'wrappedJSObject' というプロパティを持っている場合だけ成功します(このプロパティには、たいてい JSObject 自身の <i>this</i> が設定されています)。
+つまり、実装の JSObject を明示したい JS コンポーネントだけがこのように実装を公開することができます。
+これにより、それらのオブジェクトが<b>他の</b> JSObject を返すことも(望めば)できるようになります。
+XPConnect は、セキュリティシステムの使用もサポートしており、この動作を続ける前に特別なチェックを行うことができます。
+ただし、今のところ、すべての XPConnect アクティビティーは <i>UniversalXPConnect</i> '超特権'を持っているものとして、チェックされています。(訳者注: 原文あやまりか ? )<!--  But, for now, all such XPConnect activities are gated only they the
+<i>UniversalXPConnect</i> 'super-privilege'. -->
+
+</blockquote>
+
+<h3>バグ</h3>
+<blockquote>
+
+<ul>
+
+<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=24688">24688</a> - 
+ラップされた JS での実行時エラーが分からない。
+
+<blockquote> 
+
+今は、JS コンソールサービスがあるので、実行時エラーをそこに送ることができます。
+Mike McCabe は、このバグを修正するパッチを持っています。現在、JS コンポーネントでの JS エラーは、xpconnect の層でつかまえられ、デバッグビルドにおけるネイティブコンソールに表示されます。ただし、エラーは、リリースビルドでは落とされます。
+これは、 JS コンポーネントの開発とテストを遅らせることになります。
+
+</blockquote>
+
+
+<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=25180">25180</a> -
+xpconnect で、JS -> JS の通信のためのラッパーが必要。
+
+<blockquote> 
+
+私は、暫定的解決策を(実装して)チェックインしました。これは、JS コンポーネントが JS コードに渡された時に JS コンポーネントを '二重ラップ' するものです。
+これは、特に効率的というわけではありません。しかし、以前の方法のように 単純に JSObject をそのまま見せるよりは良い方法です
+
+</blockquote>
+
+
+<li><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=27867">27867</a> - 
+xpconnect が DOM オブジェクトをうまく扱えない場合がある。
+
+<blockquote>
+
+JS コンポーネントを使って行いたいことの一つとして、DOMやその他のユーザインタフェースの操作があります。
+JS コンポーネントと DOM オブジェクトの間のやり取りは、ほとんどの場合可能です。
+ただし、現在のシステムでは、いくつかの場合が全くサポートされていません。
+このパスを通るような処理をすると、やりたいことがある時点でできなくなることがあり得ます。
+最終的には、DOM システムが xpconnect を使うように実装しなおして、これらの制限がなくなるようにする予定です。 
+
+<p>
+
+我々は、DOM ラッパーと xpconnect ラッパーの間のやり取りを改善しましたが、しかし、まだ、"ある場所から他の場所へ進めない"場合があります。
+
+<p>
+
+ある DOM コードをメイン UI スレッド以外のスレッドで動作させないようにも気をつけなければいけません。
+JS コンポーネントは、一般的にどのスレッド上で動作するかを制御できません。
+
+</blockquote>
+
+
+</ul>
+
+</blockquote>
+
+<h3>結論と推奨</h3>
+<blockquote>
+
+JavaScrip コンポーネントの未来は明るいと思います。気をつけなければいけない制限、特に DOM を扱う際の制限がありますが、JS コンポーネントは、いろいろなタスクに適しています。
+
+</blockquote>
+
+<hr>
+<b>ドキュメントの履歴...</b>
+<font size="-1">
+<ul>
+<li><code>2000年2月15日 - <a href="mailto:jband@netscape.com">John Bandhauer &lt;jband@netscape.com&gt;</a> - </code>ドキュメントの初稿
+<li><code>2000年8月1日 - <a href="mailto:jband@netscape.com">John Bandhauer &lt;jband@netscape.com&gt;</a> - </code>二重ラッパーの仕組みについての議論の追加
+</ul>
+</font>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/scriptable/js-components-status.html">英語版</a> 2000/08/01</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/scriptable/js-components-status.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

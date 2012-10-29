@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tt:database xml:lang="ja" lang="ja" type="faqdb"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:tt="http://dynamis.jp/2003/TransTools">
+
+<tt:meta>
+	<tt:title>L10N FAQ</tt:title>
+	<tt:output basepath="http://www.mozilla-japan.org/jp/l10n/faq/">
+		<tt:page type="index" filename="index.html"/>
+		<tt:page type="section" idref="about" filename="about.html"/>
+		<tt:page type="section" idref="jlp" filename="jlp.html"/>
+		<tt:page type="section" idref="jajp" filename="jajp.html"/>
+		<tt:page type="section" idref="general" filename="general.html"/>
+		<tt:page type="section" idref="help" filename="help.html"/>
+		<!-- <tt:page type="section" idref="bug" filename="bug.html"/> -->
+	</tt:output>
+</tt:meta>
+
+<!-- 
+<tt:section id="" filename="">
+	<tt:title></tt:title>
+	<tt:entry id="">
+		<tt:question></tt:question>
+		<tt:answer>
+			html fragment
+		</tt:answer>
+	</tt:entry>
+</tt:section>
+ -->
+
+
+<!-- * ローカライズセンターについて * -->
+
+<tt:section id="about">
+	<tt:title>ローカライズセンターについて</tt:title>
+	<tt:entry id="who_are_we">
+		<tt:question>ローカライズセンターとは何ですか</tt:question>
+		<tt:answer>
+			<p>以前はもじら組 のプロジェクトとして活動してきた JLP プロジェクト が、Mozilla Japan の設立を機に合流し、名称を改めて Mozilla Japan の下で活動するようになったものがローカライズセンターです。あるいは組織名でなく単にサイト(<tt:url idref="l10n" type="link"/>)をさしてローカライズセンターということもあります。<br/>
+				ローカライズセンターでは Mozilla 製品の<span title="要するに日本語化">日本語ローカライズ</span>をはじめとして、関連ソフトウェアのローカライズ支援やサポートツールの提供などを行っています。まだまだ至らないところがありますが、温かく見守りご支援ご協力頂ければ幸いです。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_l10n">
+		<tt:question>L10N とは何ですか</tt:question>
+		<tt:answer>
+			<p>一般的な学習者用の辞書などにはあまり掲載されていませんが、L10N というのは Localization の慣例的な略記法です。これは地域化、具体的には英語のソフトを日本語化することなどを意味する言葉です。<br/>
+				Localization は長い単語であるため、L と N の間に 10 文字あるという意味で L10N と表記されます。l10n とするとアルファベットの l と数字の 1 とが区別しにくいため L10n と大文字にします。ローカライズセンターでは n も大文字で表記していますが、これは単に<span title="単なる趣味ともいう">デザイン上の理由</span>によるものです。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_mojifo">
+		<tt:question>もじふぉ とは何ですか</tt:question>
+		<tt:answer>
+			<p>「もじふぉ」は <a href="${l10n-forum}">L10N フォーラム</a> の愛称です。このフォーラムについて詳しくは <tt:faqlink entryid="about_forum"/> をご参照ください。</p>
+			<p>名前の意味や由来についてはご想像にお任せします。(^^; - by dynamis</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="about_forum">
+		<tt:question>L10N フォーラムについて</tt:question>
+		<tt:answer>
+			<p><a href="${l10n-forum}">L10N フォーラム</a> は Mozilla Japan ローカライズセンターの公式フォーラムであり、リリース告知やフィードバックの受付をはじめ、Mozilla とその関連ソフトウェアの日本語化に関することを幅広く話題にするフォーラムです。<br/>
+				ローカライズに関する専門フォーラムであり、独自の JLP の作成方法や拡張機能の日本語化の仕方についての質問などは歓迎しますが、個別の製品の使用法などのユーザサポートは行っておりません。ご了承ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="about_ml">
+		<tt:question>L10N ML について</tt:question>
+		<tt:answer>
+			<p>L10N ML は Mozilla Japan のスタッフとローカライズセンターの QA 協力者が参加して情報交換や連絡と取り合うためのメーリングリストです。ローカライズセンターの活動の殆どは <a href="${l10n-forum}">L10N フォーラム</a>にて行っておりますが、緊急に連絡が必要な案件やマーケティングスタッフとの情報共有が必要な件については L10N ML にてやりとりしております。</p>
+			<p><a href="http://moz.skillup.jp/jlp/viewtopic.php?t=268">QA 協力者として登録</a>して頂ければ、誰でも L10N ML に参加して頂けます。ローカライズ作業により積極的に関わってみたい方や、最新情報が欲しい方などは是非ご参加ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="join">
+		<tt:question>ローカライズセンターに参加するには</tt:question>
+		<tt:answer>
+			<p>詳しい文書は現在準備中です。<br/>
+				随時協力者を募集しておりますので、関心のある方は<a href="${l10n-forum}">フォーラム</a>やメールでローカライズセンターのスタッフまでお知らせください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="xml_page">
+		<tt:question>XML 版のページとは</tt:question>
+		<tt:answer>
+			<p>ローカライズセンターは XSLT のデモサイトでもあります。というのも、ローカライズセンターでは大半のページが <a href="http://www.w3.org/TR/xml11/"><abbr title="eXtensible Markup Language">XML</abbr></a> ドキュメントを元に <a href="http://www.w3.org/TR/xslt"><abbr title="Extensible Stylesheet Language Transformations">XSLT</abbr></a> によって <a href="http://www.w3.org/TR/html4/"><abbr title="HyperText Markup Language">HTML</abbr></a> に変換出力したものとなっているのです。<br/>
+				各ページの XML 版というのは、HTML の元となる XML ページのことで、各ページの拡張子を .html から .page.xml へと書き換えることでご覧になれます。XSLT に対応しているブラウザであれば、XML ページを開くとブラウザ内蔵の XSLT パーサにより HTML が生成され、通常の HTML ページと同じものが表示されます。このページも XSLT により自動変換されたものです。興味のある方はソースコードを眺めてみてください。</p>
+			<p>XML と XSLT から HTML ページを生成する変換処理は <a href="http://ant.apache.org/">Apache Ant</a> によるビルドスクリプトを使用しています。ローカライズセンターでは全ての元データとビルドスクリプトを公開しておりますので、そちらについても関心のある方は以下のファイルなどを眺めてみて下さい。</p>
+			<ul>
+				<li><a href="${l10n-tt}">メインのビルドスクリプト</a></li>
+				<li><a href="${l10n-tt-library}">スクリプトライブラリ (lot と共通)</a></li>
+				<li><a href="${l10n-xsl-parser}">基本変換処理用 XSL</a></li>
+				<li><a href="${l10n-xsl-page}">ページ構成要素生成用 XSL</a></li>
+				<li><a href="${l10n-xsl-mj}">ローカライズセンター用 XSL</a></li>
+			</ul>
+		</tt:answer>
+	</tt:entry>
+</tt:section>
+
+
+<!-- * 日本語パックについて * -->
+
+<tt:section id="jlp">
+	<tt:title>日本語パックについて</tt:title>
+	<tt:entry id="what_is_jlp">
+		<tt:question>JLP とは何ですか</tt:question>
+		<tt:answer>
+			<p>JLP とは Japanese Language Pack の略語であり、日本語パックのことです。<br/>
+				Firefox や Thunderbird などの Mozilla 製品では言語リソース部がプログラムから分離されており、好きな言語に対応する言語パックを導入することで表示言語を変更することが出来ます。そして、日本語の言語パックを JLP と呼んでいるのです。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_xpi">
+		<tt:question>XPI とは何ですか</tt:question>
+		<tt:answer>
+			<p>XPI とは X(Cross) Platform Install の略語であり、拡張機能やテーマあるいはセキュリティパッチなどを追加インストールするための Mozilla 独自の技術です。それを利用したパッケージやファイル形式を表すこともあります。<br/>
+				Cross Platform というのは、Windows や Linux あるいは Mac OS などといった OS (Platform) が異なればアプリケーションはそれぞれに合わせて別のものを用意しなければならないのが普通なのですが、XPI では OS の種類に依らず同じものを利用できるということです。ローカライズセンターで作成している <tt:faqlink entryid="what_is_jlp" text="JLP"/> も XPI 形式で作成・配布しているため、原則的にはどの OS でも利用できます。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_ja-JP-mac">
+		<tt:question>ja-JP-mac というのは何ですか</tt:question>
+		<tt:answer>
+			<p>Firefox/Thunderbird 1.5 以降の日本語リソースには ja と ja-JP-mac という 2つの異なるロケールを使用しており、これは順に Windows/Unix 向けのものと、Mac OS X ユーザ向けのものとなります。</p>
+			<p>英語では同じ用語であっても日本語にするといろいろな訳語や表記があり、その選択は OS によって異なります。そのためローカライズセンターでは各 OS 別に合わせた用語を採用した JLP をそれぞれ別に用意しているわけです。これらのロケールの差異については <tt:faqlink entryid="ja_vs_ja-JP-mac"/> をご参照ください。</p>
+			<p>なお、日本語だけがこのようになっているのは、CVS の導入や Mozilla Japan の設立以前から用語の違いや日本の Mac ユーザの要望について Mozilla Foundation 側に伝えて来た結果、例外的に 2つのロケールを管理することになったものです。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_ja-JPM">
+		<tt:question>ja-JPM というのは何ですか</tt:question>
+		<tt:answer>
+			<p>Firefox/Thunderbird 1.0.x で使用されていた、Mac OS X ユーザ向けの日本語ロケール名です。Firefox/Thunderbird 1.5 以降では ja-JP-mac へと変更されました。このロケールについて詳しくは <tt:faqlink entryid="what_is_ja-JP-mac"/> をご覧ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="ja_vs_ja-JP-mac">
+		<tt:question>ja と ja-JP-mac の違いは</tt:question>
+		<tt:answer>
+			<p>ja と ja-JP-mac という 2つの言語リソースはそれぞれ Windows/Unix 用と Mac OS X 用のものであり、以下のような違いがあります。</p>
+			<ul>
+				<li>それぞれの OS 用に適した用語を使用する</li>
+				<li>ヘルプ中のスクリーンショットなどで別のものを使用する</li>
+				<li>拡張機能固有の ID (EID または guid) が異なる</li>
+				<li>ウィンドウの画面サイズ指定などが異なる</li>
+				<li>その他本体のバグに一時的に対処するための記述</li>
+			</ul>
+			<p>原理的にはインストールしようとすればどの OS でも好きな方(あるいは両方)を利用できますが、細部で問題が発生することがありますので特別な理由がない限り各 OS 用に用意されたものをご利用ください(ローカライズセンターでは別 OS での動作確認はとっていません)。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="ja-JP_vs_ja-JPM">
+		<tt:question>ja-JP と ja-JPM の違いは</tt:question>
+		<tt:answer>
+			<p>ja-JP と ja-JPM は共に、Firefox/Thunderbird 1.0.x で使用されていた日本語ロケール名です。これらは Firefox/Thunderbird 1.5 以降ではそれぞれ順に ja と ja-JP-mac へと変更されました。これらのロケールの違いについて詳しくは <tt:faqlink entryid="ja_vs_ja-JP-mac"/> をご覧ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="why_localename_changed">
+		<tt:question>どうしてロケール名が変更されたのですか</tt:question>
+		<tt:answer>
+			<p>日本語のロケール名は Firefox/Thunderbird 1.5 以降、ja-JP については ja に、<tt:faqlink entryid="what_is_ja-JPM" text="ja-JPM"/> については <tt:faqlink entryid="what_is_ja-JP-mac" text="ja-JP-mac"/> へと変更されましたが、これはそれぞれ異なる理由で変更されたものです。<br/>
+				まず全世界的な変更として、各言語について世界的に共通の言語リソースを使用する場合、または日本語のようにその言語を使用する国が 1 つしかない場合、国コードを省略して ja-JP や fr-FR ではなく単に ja や fr とすることになりました。更に、ロケール名を <a href="http://www.ietf.org/rfc/rfc2070.txt">RFC 2070</a> で定義された国および言語コードと、<a href="http://www.ietf.org/rfc/rfc3066.txt">RFC 3066</a> で規定されている dialect に従ったものとするために、ja-JPM については ja-JP-mac へと変更されたのです。</p>
+			<p>ja-JPM は最初から RFC に適合したものであるべきだったのに、何故そうならなかったか疑問に思う方もいらっしゃるでしょう。これは単に、当時のビルドシステムの都合上 dialect が使用できず、あくまでも内部的に使用されるものだから RFC には従っていなくても構わないだろうと判断されただけでした。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_langresouce">
+		<tt:question>言語リソースとは何ですか</tt:question>
+		<tt:answer>
+			<p>Mozilla 製品では画面に表示されるメニュー項目名や設定画面の説明文などは原則としてプログラム本体から分離し、言語設定に応じたものを読み込んで表示しています。言語リソースとはこれらユーザインターフェイスに表示されるメッセージを格納している dtd ファイルや properties ファイルなどのことです。<br/>
+				技術的な背景から locale ファイルと呼ばれることが多いですが、英語表記は極力減らし知らない人でも分かるようにするという基本方針通り、技術的に locale フォルダや登録名などを意識する場合を除き言語リソースという表記を使用しています。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="where_is_latest_jlp">
+		<tt:question>最新 JLP の入手先は</tt:question>
+		<tt:answer>
+			<p>ローカライズセンターでは各マイルストーンリリース対応の公式リリース以外にも随時<tt:faqlink entryid="dev_release" text="開発リリース"/>として更新版の JLP を作成しています。公式リリースについては公開と同時に Mozilla Japan トップページや製品情報ページが更新されますが、開発リリースについては製品情報ページなどには案内を出しません。次の順番で公開およびお知らせをしていっておりますので、テストにご協力頂ける方は是非ダウンロードしてご試用ください。</p>
+			<ol>
+				<li><a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/">ftp.mozilla.org</a> にファイルをアップロード</li>
+				<li><a href="${l10n-forum}">L10N フォーラム</a> の <a href="${l10n-forum-info-release}">Release Announcement</a> にてリリースを告知</li>
+				<!-- <li><a href="${l10n}">ローカライズセンター</a>の各製品ローカライズページにて公開</li> -->
+			</ol>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="jlp_for_nightly">
+		<tt:question>Nightly 対応 JLP はありますか</tt:question>
+		<tt:answer>
+			<p>ローカライズセンターで作成している JLP は Final ビルドだけでなく Nightly ビルドにも対応して更新していきますが、これはあくまでも Final ビルドでの完成度を高めるための事前テストを目的としたものです。従って随時 Nightly ビルドに追従していくわけではなく、対応が遅れることが多々ありますのでご了承ください。</p>
+			<p>これは Nightly については一切報告を受け付けないという意味ではありません。最新 Nightly での動作状況なども遠慮することなく <a href="${l10n-forum}">L10N フォーラム</a>までお知らせください。最新 Nightly でも動作するという報告があれば安心できますし、動かないという報告を頂ければ対応が必要でありかつ需要もあるのだと認識できます。報告を頂いてもなかなかすぐには対応できないことが多いですが、それをご了承の上で報告して頂けると助かります。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="dev_release">
+		<tt:question>開発リリース(開発版)とは</tt:question>
+		<tt:answer>
+			<p>ローカライズセンターでは各マイルストーンリリースに対応する Mozilla Japan 公式リリースを作成するだけでなく、その後もご利用の皆さんからのフィードバックを反映したりしながら次のリリースへ向けて積極的に更新版を作成していきます。公式リリース作成後に更新したものや Nightly 対応版として作成されたものが開発リリースということです。製品本体のバージョンなどとは関係ありません。<br/>
+				最新の Nightly を日本語で試したい場合や最新の日本語版の動作確認にご協力頂ける方は是非開発リリースをご利用頂き、見つかった問題点をお知らせください。開発リリース JLP の入手先については <tt:faqlink entryid="where_is_latest_jlp"/> をご参照ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="contribute_release">
+		<tt:question>貢献リリース(貢献版)とは</tt:question>
+		<tt:answer>
+			<p>ローカライズセンターでは一部の製品やバージョンについてスタッフ以外の協力者から提供(貢献)して頂いた日本語版ビルドや JLP を公開しています。提供頂いたものをそのまま公式リリースとして採用する場合はローカライズセンターのスタッフが作成するものと区別せずに公開していますが、提供者の希望や<span title="Alpha 版など">製品の安定性</span>などの理由により公式リリースとして扱わないものについては、貢献リリースとして区別しています。<br/>
+				Mozilla Japan のトップページや製品情報ページでは公式リリースのみを取り扱うため、貢献リリースは<tt:faqlink entryid="dev_release" text="開発リリース"/>同様にローカライズセンターでのみで公開しています。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="original_jlp">
+		<tt:question>独自の JLP を作成したい</tt:question>
+		<tt:answer>
+			<p>どんどん作ってください。(^^;<br/>
+				ローカライズを支援するツールやドキュメントなどを <a href="${l10n-library}">L10N ライブラリ</a> にて順次公開していきますので必要に応じてご活用ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="problem_of_jlp_found">
+		<tt:question>JLP に問題があります</tt:question>
+		<tt:answer>
+			<p>ローカライズセンターで作成する JLP に問題点がありましたら <a href="${l10n-forum-dev-main}">L10N フォーラム</a>までお知らせください。その際には速やかに原因を特定して修正できるようにするため、お手数ですが問題の内容と再現条件の他に利用ソフトウェアのバージョンや OS などの環境についても併記して頂くようにお願いします。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="license_of_jlp">
+		<tt:question>JLP のライセンスは</tt:question>
+		<tt:answer>
+			<p>ローカライズセンターで作成して公開している JLP のライセンスは基本的に、そのもととなっている英語版と同様です。言語パックに関してのみ特別なライセンスを定めるようなことはありません。公式リリース版であっても、開発リリース版であっても、ライセンスはすべて同じです。<br/>
+				具体的なライセンスとしては MPL/GPL/LGPL トリプルライセンスになっています。但し、Mozilla 製品に含まれるすべてのコードやファイルが MPL/GPL/LGPL トリプルライセンスになっているわけではなく、一部については例外的に異なるライセンスのものも含まれています。 Mozilla 製品のライセンスについて、より詳しくは <a href="http://www.mozilla-japan.org/foundation/licensing.html">Mozilla ライセンス方針</a>をご覧ください。</p>
+		</tt:answer>
+	</tt:entry>
+</tt:section>
+
+
+<!-- * 日本語版について * -->
+
+<tt:section id="jajp">
+	<tt:title>日本語版について</tt:title>
+	<tt:entry id="which_should_i_use">
+		<tt:question>どれを使えばよいのでしょうか</tt:question>
+		<tt:answer>
+			<p>初めて Mozilla 製品をご利用頂く皆さんは Mozilla Japan のトップページや製品情報ページで扱っている公式日本語版をご利用ください。アーカイブ版とインストーラ版については特に理由がなければインストーラ版のご利用をお勧めします。<br/>
+				トップページや製品情報ページに掲載されておらず、ローカライズセンターや <a href="${l10n-forum}">L10N フォーラム</a>でのみ公開されているものは上級者用またはテスト用のものになります。開発者としては<tt:faqlink entryid="dev_release" text="開発リリース"/>をご利用頂きその問題点をフィードバックして頂けると大変有り難いのですが、初心者には公式日本語版以外のご利用はお勧めできません。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question>～で配布されているものと公式リリースの違いは</tt:question>
+		<tt:answer>
+			<p>もじら組や Ring サーバには Mozilla Japan の公式リリースがミラーされており、違いはありません。<br/>
+				窓の杜、Vector を始めとするソフトウェア配布サイトや雑誌などの出版物付録 CD に収録されているものについても同じ公式リリースであるはずですが、確認が必要な場合は各サイト管理者や出版社にお問い合わせ頂くか、FTP サーバ上で公開している md5/sha1 チェックサムをご利用ください。<br/>
+				個人のサイトで独自ビルドやコミュニティリリースなどと書かれて配布されているものについてはすべて公式リリースとは別のものです。どのような違いがあるかは各配布元にお問い合わせください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question>公式日本語版の訳は修正されないのですか</tt:question>
+		<tt:answer>
+			<p>Mozilla Japan では安定した製品を提供することを重要視しており、十分にテストをせずに頻繁に修正版をリリースし続けるよりも、集中的にテストしたものを一度だけリリースする方が安定した製品を提供するできると考えています。<br/>
+				そのため Mozilla Foundation によりリリースされたマイルストーンビルドに対応する Mozilla Japan 公式リリースは、各バージョン毎に一度だけリリースすることを原則としています。致命的な問題が見つかった場合は速やかに修正版をリリースしますが、誤訳への対応などのために修正版をリリースすることはありません。</p>
+			<p>とはいえ一旦リリースしたらそれで終わりというわけではなく、公式日本語版の公開後も次のバージョンへ向けて<tt:faqlink entryid="dev_release" text="開発リリース"/>を作成し続けています。言語リソースを最新のものにしてご利用になりたい場合は<tt:faqlink entryid="where_is_latest_jlp" text="最新の JLP"/> をご利用ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question>指摘した問題が修正されていません</tt:question>
+		<tt:answer>
+			<p>開発リリースに対して頂いた指摘はできる限り速やかに対応していくようにしておりますが、修正をし忘れていることがあります。お手数ですが <a href="${l10n-forum}">L10N フォーラム</a>のフィードバック用トピックで再度ご報告ください。</p>
+			<p>公式リリースに対して頂いた問題については、致命的な問題以外は修正して再リリースすることはできません。開発リリースのみに修正を反映する形になります。これは Mozilla Foundation の方針により、単なるタイプミスや変換ミスなどであっても、次のメジャーバージョンまで変更を加えることが認められていないためです。</p>
+		</tt:answer>
+	</tt:entry>
+	<!-- <tt:entry id="inspector_in_japanese">
+		<tt:question>Firefox 1.5 の DOM Inspector を日本語で使いたい</tt:question>
+		<tt:answer>
+			<p>Firefox 1.5 日本語版には DOM Inspector の日本語リソースが同梱されていません。</p>
+		</tt:answer>
+	</tt:entry> -->
+	<tt:entry id="license_in_japanese">
+		<tt:question>使用許諾を日本語にして欲しい</tt:question>
+		<tt:answer>
+			<p>インストーラなどで表示される<a href="${mj-mpl}">使用許諾</a>(ライセンス)は<a href="${org-mpl-11}">英語原文</a>のみが有効な法的文書であり、日本語の使用許諾に替えることは出来ません。法的効力は一切無いものとなりますが Mozilla Japan で<a href="${mj-mpl-11}">参考和訳</a>を用意しておりますので必要に応じてご参照ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="problem_of_jp_edition_found">
+		<tt:question>日本語版に問題があります</tt:question>
+		<tt:answer>
+			<p>日本語環境特有の問題やローカライズセンターで作成する日本語版特有の問題点がありましたら <a href="${l10n-forum-dev-main}">L10N フォーラム</a>までお知らせください。その際には速やかに原因を特定して修正できるようにするため、お手数ですが問題の内容と再現条件の他に利用ソフトウェアのバージョンや OS などの環境についても併記して頂くようにお願いします。</p>
+		</tt:answer>
+	</tt:entry>
+</tt:section>
+
+
+<!-- * その他の質問 * -->
+
+<tt:section id="general">
+	<tt:title>その他の質問</tt:title>
+	<tt:entry id="what_is_mj_mf">
+		<tt:question>MoFo や MoCo あるいは MF や MJ とは何ですか</tt:question>
+		<tt:answer>
+			<p>Mozilla Foundation や Mozilla Corporation のことを <abbr title="Mozilla Foundation">MoFo</abbr> や <abbr title="Mozilla Corporation">MoCo</abbr> と略したり、Mozilla Foundation や  Mozilla Japan のことを <abbr title="Mozilla Foundation">MF</abbr> や <abbr title="Mozilla Japan">MJ</abbr> と略して書くことがあります。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_lot">
+		<tt:question>lot や Localization Tools とは何ですか</tt:question>
+		<tt:answer>
+			<p>ローカライズセンターで JLP のメンテナンスに使用している Ant ビルドスクリプトベースのツールキット <a href="${l10n-lot}">Localization Tools</a> のことを略して lot と呼ぶことがあります。<br/>
+				Localization Tools の最も基本的な使用法は <code>ant</code> とタイプするだけで言語リソースファイルから全自動でプラットフォーム別の XPI パッケージを生成するというものです。まだよちよち歩きの赤ちゃんのようなものですが、可愛がってあげてください。(^^;  - by dynamis</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_xul">
+		<tt:question>XUL とは何ですか</tt:question>
+		<tt:answer>
+			<p><acronym title="XML-based User Interface Language">XUL</acronym> とは Mozilla のユーザインターフェイス定義に使用されている XML ベースの言語です。ユーザインターフェイスにプラットフォーム固有の GUI API を使用せず XUL を使用することで Mozilla 製品の処理は多少重くなりますが、言語やプラットフォームに依存することなくあまり専門的な知識が無くとも簡単に拡張機能などを作成できる柔軟性が実現されています。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="what_is_chrome">
+		<tt:question>chrome とは何ですか</tt:question>
+		<tt:answer>
+			<p>chrome (クロム)とは言語リソースを含め <tt:faqlink entryid="what_is_xul"><acronym title="XML-based User Interface Language">XUL</acronym></tt:faqlink> で動作する拡張機能など、 Mozilla の外観や操作性などを規定するもの全体、あるいはそれが格納されるフォルダのことを表す Mozilla の専門用語です。<br/>
+				コンピュータ関連の俗語として chrome は一般的に、システム本体の能力としては殆ど影響がないがユーザを惹き付けるために含められた追加的あるいは装飾的な機能を表します。Mozilla では XUL を採用したことでレイアウトエンジンなどコアの部分以外ユーザインターフェイスに関わるものは全て chrome に含められてることとなり、やや拡大解釈気味と言えるかも知れません。<br/>
+				なお、語源としては表面を飾るメッキの代表的金属としてのクロムが、自動車や戦争ゲームを通じてコンピュータ関連の俗語として広まったと言われています。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="where_is_glossary">
+		<tt:question>用語集はありませんか</tt:question>
+		<tt:answer>
+			<p>勿論あります。大小新旧いろいろありますが、中でも次の用語集が代表的かつ網羅的です。ご参照ください。</p>
+			<ul>
+				<li><a href="http://www.mozilla.gr.jp/docs/words.html">もじら組 - 用語集</a></li>
+				<li><a href="http://www.mozilla-japan.org/docs/jargon.html">Mozilla の Jargon 集 (和訳)</a></li>
+			</ul>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question>拡張機能～を日本語で使いたい</tt:question>
+		<tt:answer>
+			<p><a href="https://update.mozilla.org/">update.mozilla.org</a> で公開されているものを始めとして膨大な数の拡張機能が公開されていますが、残念ながら日本語で使用できるものはそのごく一部でしかありません。日本語で使用できる拡張機能についての情報が網羅されているサイトは存在しませんが、次のページが参考になります。</p>
+			<ul>
+				<li><a href="http://firefox.geckodev.org/index.php?%C6%FC%CB%DC%B8%EC%C2%D0%B1%FE%A4%CE%B3%C8%C4%A5%B0%EC%CD%F7">Firefox まとめサイト - 日本語対応の拡張一覧</a></li>
+			</ul>
+			<p>日本語版が用意されていない拡張機能については、是非あなたが日本語化してください。多言語対応が不十分である拡張機能も少なくありませんが、Mozilla 製品のマナーに則って作成されている拡張機能については比較的簡単に日本語化できます。是非チャレンジしてみてください。<br/>
+				日本語化に取り組んでいて分からない点や困ったことなどがありましたら、<a href="${l10n-forum-info-free}">L10N フォーラム</a> などに遠慮無く質問しに来てください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="list_of_dev_release">
+		<tt:question>開発リリースの一覧はありませんか</tt:question>
+		<tt:answer>
+			<p>申し訳ありませんが、開発リリースとして作成したすべての JLP や日本語版などの一覧は用意しておりません。直接 <a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/">FTP サーバ</a>の製品別開発リリースディレクトリをご確認ください。</p>
+			<ul>
+				<li><a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/firefox/development/">Firefox 開発リリースディレクトリ</a></li>
+				<li><a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/">Thunderbird 開発リリースディレクトリ</a></li>
+				<li><a href="http://ftp.mozilla-japan.org/pub/mozilla-japan/mozilla/development/">Mozilla Suite 開発リリースディレクトリ</a></li>
+			</ul>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="redistribute_dev_release">
+		<tt:question>開発リリースを再配布したい</tt:question>
+		<tt:answer>
+			<p><tt:faqlink entryid="dev_release" text="開発リリース"/>はテスト目的でのみ公開しており、英語版では Nightly ビルドに相当するものです。十分にテストされていないものですので、サイトや出版物で不特定多数に対して配布するのはご遠慮頂ければと思います。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="howto">
+		<tt:question>～する方法が分かりません</tt:question>
+		<tt:answer>
+			<p>申し訳ありませんがこの FAQ ではローカライズに関することのみを取り扱っています。<br/>
+				Firefox/Thunderbird/Mozilla などの各製品の機能や使い方については以下の文書やサイトなどを参考にしてください。</p>
+			<ul>
+				<li><a href="http://www.mozilla-japan.org/support/firefox/">Firefox Help</a></li>
+				<li><a href="http://www.mozilla-japan.org/support/firefox/faq.html">Firefox FAQ</a></li>
+				<li><a href="http://www.nidelven-it.no/articles/introduction_to_firefox_japanese">Mozilla Firefox入門</a></li>
+				<li><a href="http://shiten.s13.xrea.com/install.htm">Firefox インストールガイド</a></li>
+				<li><a href="http://firefox.geckodev.org/">Firefox まとめサイト</a></li>
+				<li><a href="http://texturizer.net/mozilla/jp/firefox/">firefox help 日本語版</a></li>
+				<li><a href="http://www.mozilla-japan.org/products/firefox/why/">Mozilla Firefox ブラウザに乗り換える理由</a></li>
+				
+				<li><a href="http://www.nidelven-it.no/articles/introduction_to_thunderbird_japanese">はじめての Thunderbird</a></li>
+				<li><a href="http://texturizer.net/mozilla/jp/thunderbird/">thunderbird help 日本語版</a></li>
+				<li><a href="http://www.mozilla-japan.org/products/thunderbird/why/">Mozilla Thunderbird メールを使う理由</a></li>
+				
+				<li><a href="http://www.mozilla.gr.jp/docs/beginmoz-1.4/">はじめての Mozilla 1.4</a></li>
+				<li><a href="http://www.mozilla-japan.org/start/1.5/faq/">Mozilla 1.5 よくある質問</a></li>
+				<li><a href="http://www.mozilla.gr.jp/docs/guide/">Mozilla 導入クイックガイド</a></li>
+				<li><a href="http://www.mozilla-japan.org/catalog/end-user/">Mozilla 資料集 - エンドユーザ</a></li>
+				<li><a href="http://www.mozilla-japan.org/docs/command-line-args.html">Mozilla のコマンドラインオプション</a></li>
+				<li><a href="http://www.mozilla-japan.org/why/">Mozilla を使う理由</a></li>
+			</ul>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="news">
+		<tt:question>Mozilla の最新情報が知りたい</tt:question>
+		<tt:answer>
+			<p>日本での Mozilla 関連ニュースサイトはいくつかありますが、日本語でご覧になれる代表的な情報源を挙げますので参考にしてください。</p>
+			<ul>
+				<li><a href="${m-mozilla}">えむもじら</a>
+					<a href="${m-mozilla-rss}"><img class="rss" src="${mj-icon-rss}" alt="RSS"/></a></li>
+				<li><a href="${mozillazine-j}">mozillaZine 日本語版</a>
+					<a href="${mozillazine-j-rss}"><img class="rss" src="${mj-icon-rss}" alt="RSS"/></a></li>
+				<li><a href="${mj}">Mozilal Japan トップページ</a>
+					<a href="${mj-rdf-news}"><img class="rss" src="${mj-icon-rss}" alt="RSS"/></a></li>
+			</ul>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="about_mj">
+		<tt:question>Mozilla Japan について</tt:question>
+		<tt:answer>
+			<p>申し訳ありませんがこの FAQ ではローカライズに関することのみを取り扱っています。<br/>
+				Mozilla Japan についてのご質問については別途 <a href="${mj-about-faq}">Mozilla Japan FAQ</a> としてまとめられていますので、そちらをご参照ください。</p>
+		</tt:answer>
+	</tt:entry>
+</tt:section>
+
+
+<!-- * トラブルシューティング * -->
+
+<tt:section id="help">
+	<tt:title>トラブルシューティング</tt:title>
+	<tt:entry id="where_is_profile_dir">
+		<tt:question>プロファイルフォルダは何処ですか</tt:question>
+		<tt:answer>
+			<p>OS のユーザ別に設定を変更したり複数の環境設定を利用する場合にはそれぞれ個別のプロファイルを作成して管理します。そしてそのプロファイル設定データが格納されるフォルダは標準では以下のようなフォルダとなります。</p>
+			<ul>
+				<li>Windows<br/>
+				<code class="indent">C:\Documents and Settings\{ユーザ名}\Application Data\Mozilla\Firefox\Profiles\{プロファイル名}\</code><br/>
+				<code class="indent">C:\Documents and Settings\{ユーザ名}\Application Data\Thunderbird\Profiles\{プロファイル名}\</code><br/>
+				<code class="indent">C:\Documents and Settings\{ユーザ名}\Application Data\Mozilla\Profiles\{プロファイル名}\</code></li>
+				<li>Windows 2000/XP<br/>
+				<code class="indent">%AppData%\Mozilla\Firefox\Profiles\{プロファイル名}\</code><br/>
+				<code class="indent">%AppData%\Thunderbird\Profiles\{プロファイル名}\</code><br/>
+				<code class="indent">%AppData%\Mozilla\Profiles\{プロファイル名}\</code></li>
+				<li>Mac OS X<br/>
+				<code class="indent">/Users/{ユーザ名}/Library/Mozilla/Firefox/Profiles/{プロファイル名}/</code><br/>
+				<code class="indent">/Users/{ユーザ名}/Library/Thunderbird/Profiles/{プロファイル名}/</code><br/>
+				<code class="indent">/Users/{ユーザ名}/Library/Mozilla/Profiles/{プロファイル名}/</code></li>
+				<li>Linux<br/>
+				<code class="indent">~/.mozilla/firefox/{プロファイル名}/</code><br/>
+				<code class="indent">~/.thunderbird/{プロファイル名}/</code><br/>
+				<code class="indent">~/.mozilla/{プロファイル名}/</code></li>
+			<p>環境設定やユーザデータ、インストールした拡張機能など多くの重要なデータが入っていますので、取り扱いには十分にご注意ください。手作業で設定ファイルを編集したり製品をバージョンアップする前には、予めこのフォルダのバックアップをとっておくことをお薦めします。</p>
+			</ul>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="how_to_change_language">
+		<tt:question>表示言語の変更の仕方が分からない</tt:question>
+		<tt:answer>
+			<p>Mozilla では UI で使用する言語を設定画面で変更できますが、Firefox や Thunderbird には UI で使用する言語の設定画面がありません。Nightly ビルドに JLP をインストールしたり複数言語を使い分けたりする場合にはそれぞれ次のようにして変更してください。</p>
+			<dl>
+				<dt>Firefox/Thunderbird の言語切り替え</dt>
+				<dd><a href="http://www.saintpatrickdc.org/bsmedberg/locale-switcher/">Locale-Switcher Extension</a> を使用して表示言語を切り替えてください。この拡張機能をインストールすることで表示言語をメニューから変更できるようになります。詳細については <a href="http://moz.skillup.jp/jlp/viewtopic.php?t=269">L10N フォーラムでのアナウンス</a> をご覧ください。<br/>
+					Locale-Switcher Extension が上手く動作しない場合は<tt:faqlink entryid="where_is_profile_dir" text="プロファイルフォルダ"/>中のユーザ設定ファイル user.js に次の行を追加してみてください。<br/>
+					<code class="indent">user_pref("general.useragent.locale", "ja-JP");</code><br/>
+					なお Mac 用 JLP をご利用になる場合は "ja-JP" ではなく "ja-JPM" を指定してください。</dd>
+				<dt>Firefox PR, Thunderbird 0.8 の言語切り替え</dt>
+				<dd>Firefox PR は本体のバグのため言語の切り替えは設定ファイルを手動で変更するか、起動時に毎回引数で日本語を指定するかしなければなりません。XPI を使用する場合などには<br/>
+					<code class="indent">firefox -UILocale ja-JP</code><br/>
+					のように毎回引数をつけて起動する必要があります。その場合はショートカットなどを作って起動するようにしてください。</dd>
+				<dt>Mozilla の言語切り替え</dt>
+				<dd>Mozilla の表示言語は設定画面にて変更できます。ツールバーの 編集 -&gt; 設定 を選び、表示 -&gt; 言語/コンテンツ 画面で "インストールされている言語パック" から Japanese(Japan) を選択し、Mozilla を再起動してください。<br/>
+					既に選択されているのに日本語で表示されない(あるいは英語と日本語が混ざっている)場合には一旦 English(US) へと変更して再起動した後、改めて Japanese(Japan) を選び再起動してください。</dd>
+			</dl>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="jlp_not_enabled">
+		<tt:question>JLP をインストールしても日本語になりません</tt:question>
+		<tt:answer>
+			<p>残念ながら XPI をインストールするだけで同時に言語設定も変更するという方法がありませんので、JLP をインストールするだけでは日本語に切り替わりません。XPI 形式の JLP をご利用の場合はお手数ですが手動で言語設定を変更する必要があります。<br/>
+				言語設定の変更方法については <tt:faqlink entryid="how_to_change_language"/> をご参照ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="cannot_start_firefox">
+		<tt:question>Firefox が起動しません</tt:question>
+		<tt:answer>
+			<p>Firefox はプロファイルや拡張機能の管理などが不安定であり、古いプロファイルを使用したまま新しいバージョンにアップグレードインストールした場合や、拡張機能をバージョンアップした際に Firefox が起動しなくなることがあります。その原因の多くは Firefox の起動を高速化するために自動作成されているデータベースファイルが破損し、正常にコンポーネントが読み込めなくなっていることによるものです。</p>
+			<p>このような場合は<tt:faqlink entryid="where_is_profile_dir" text="プロファイルフォルダ"/>中の次のファイルをファイルを削除してみてください。<br/>
+				<code class="indent">.../XUL.mfl</code><br/>
+				<code class="indent">.../chrome/chrome.rdf</code><br/>
+				次の Firefox 起動時にこれらのファイルは自動的に正常なものが作成され、それ以降正常に Firefox が起動できるようになります。</p>
+			<p>より親切で詳しい作業手順については<a href="http://www.mozilla-japan.org/products/firefox/support/troubleshooting/startup-dtderror.html">トラブルシューティング</a>にてスクリーンショット付で説明しておりますのでご参照ください。</p>
+			<p>また、最新の Firefox と互換性のない拡張機能がインストールされている状態で Firefox をアップグレードした場合<br/>
+				<code>Error launching browser window:no XBL binding for browser</code><br/>
+				などのエラーメッセージが表示されるだけで起動しなくなることがあります。このような場合は原因となる拡張機能がインストールされているプロファイルを丸ごと削除(名前変更)しなければなりません。詳しい作業手順については<a href="http://www.mozilla-japan.org/products/firefox/support/troubleshooting/startup-xblerror.html">トラブルシューティング</a>ページをご参照ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="cannot_start_after_uninstall_jlp">
+		<tt:question>JLP をアンインストールしたら起動しなくなりました</tt:question>
+		<tt:answer>
+			<p>英語版の Firefox や Thunderbird に JLP をインストールして使用している場合、<em>言語設定を ja-JP/ja-JPM に変更している状態で JLP をアンインストールすると起動できなくなります</em>。<br/>
+				これは存在しない言語リソースを使用して画面を表示しようとしているからであり、次のようにして UI で使用する言語を en-US に変更して起動させる必要があります。</p>
+			<ul>
+				<li>コマンドライン引数で en-US を指定する<br/>
+					<code class="indent">firefox -UILocale en-US</code><br/>
+					のように en-US を指定すると英語で起動します。</li>
+				<li>設定ファイルを直接書き換える<br/>
+					UI で使用する言語の設定は<tt:faqlink entryid="where_is_profile_dir" text="プロファイルフォルダ"/>の pref.js に保存されています。<br/>
+					<code class="indent">user_pref("general.useragent.locale", "ja-JP");</code><br/>
+					のような行を見つけて ja-JP/ja-JPM を en-US へと書き換えると英語で起動するようになります。</li>
+			</ul>
+			<p>いずれかの方法により英語で起動したら、再度 JLP をインストールし直してください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question>HTML メールの作成時の画像挿入ダイアログで XML パースエラーが表示される</tt:question>
+		<tt:answer>
+			<p>2004/12/24 ～ 2004/12/27 の間に公開されていた Thunderbird 1.0 日本語版には HTML メール作成時に画像を挿入しようとすると XML パースエラーが発生する問題がありました。ローカライズセンターでは 27日に問題の報告を受けて即日修正し、28日には改めて<a href="http://moz.skillup.jp/jlp/viewtopic.php?t=318">修正版を再リリースしました</a>ので、上記期間に Thunderbird をダウンロードされた方は修正版をインストールし直してください。</p>
+			<p class="detail">問題の原因は JLP の単純なミスであったため、0.6.10 以降の JLP を使用することで解決します。この問題修正前後の日本語版の違いは Thunderbird インストール先の chrome フォルダにある ja-JP-mail.jar ファイルだけです。このファイルだけを置き換えるための <a href="http://moz.skillup.jp/jlp/viewtopic.php?t=321">JLP 置き換えパッチ XPI も公開しています</a>。但しこのパッチは非公式のものでサポートなどは行いませんので、自己責任でご利用ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="rss_account_foldername_garbled">
+		<tt:question>RSS アカウントのフォルダ名が文字化けしています</tt:question>
+		<tt:answer>
+			<p>RSS (ニュースとブログ)アカウントを新規作成したときのデータフォルダ名が文字化けしたものになってしまう問題が Thunderbird 1.0 日本語版の Windows および Linux で発見されました。この問題に対応する<a href="http://moz.skillup.jp/jlp/viewtopic.php?t=318">修正パッチを公開しています</a>ので、RSS アカウントを作成する前にインストールしてください。修正パッチをインストールする前に RSS アカウントを作成して文字化けしたデータフォルダが作られてしまっている場合でも、利用上の支障はありませんのでそのままご利用いただけます。</p>
+			<p>ローカライズセンターでテストした限りフォルダ名が文字化けしている場合も利用上の問題は一切ありませんでしたが、文字化けしたフォルダにデータが保存されるのが不安である方は修正パッチをインストールした上で新しいアカウントを作成し、新規アカウントにデータや設定を移行してください。</p>
+			<p class="detail">Thunderbird は新規 RSS アカウントの作成時に rss.rdf で定義されている rss.hostName という実体で指定された名前のフォルダを作成しています。しかしこの処理がマルチバイト文字に対応できておらず、rss.hostName に英数字以外が含まれていると文字化けしたアカウントデータフォルダが作成されてしまうようです。修正パッチでは rss.hostName 以外をローカライズした rss.rdf ファイルをインストールしています。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question>Thunderbird の RSS アカウントで印刷すると文字化けする</tt:question>
+		<tt:answer>
+			<p>Thunderbird の RSS アカウントで日本語などのページを印刷すると文字化けしてしまいます。<br/>
+				残念ながら現時点でこの問題の解決策はありません。</p>
+			<p>参照: <a href="http://www.mozilla-japan.org/products/thunderbird/troubleshooting.html">Thunderbird トラブルシューティング</a> - <a href="http://www.mozilla-japan.org/products/thunderbird/kb/bug-jp_0004141.html">日本語 RSS 記事プレビューで文字化けする</a></p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question>Thunderbird で表示されないフォルダデータがあります</tt:question>
+		<tt:answer>
+			<p>Thunderbird にはデータフォルダの扱いにいくつか問題があることが分かっています。問題の種類毎に分けて説明していますので、個別の項目をご覧ください。</p>
+			<dl>
+				<dt><tt:faqlink entryid="foldername_end_with_tilda"/></dt>
+				<dd>チルダで終わるフォルダは作成できますが再起動後に表示されなくなります。</dd>
+				<dt><tt:faqlink entryid="only_sbd_folder_left"/></dt>
+				<dd>サブフォルダのないフォルダの名前を変更するとゴミフォルダが残ります。</dd>
+			</dl>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="only_sbd_folder_left">
+		<tt:question>フォルダ名を変更する前の .sbd フォルダが残っている</tt:question>
+		<tt:answer>
+			<p>Thunderbird でサブフォルダのないフォルダの名前を変更した場合、新しい名前のフォルダに対応する .sbd フォルダが作成されて古い名前のフォルダに対応する .sbd フォルダが削除されずに残されます。残っていても利用上問題はありませんので気にしないでください。勿論、中に何もデータがないことを確認した上で削除してしまっても構いません。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="foldername_end_with_tilda">
+		<tt:question>フォルダ名がチルダで終わるフォルダが表示されなくなった</tt:question>
+		<tt:answer>
+			<p>Thunderbird は最後の文字がチルダ ~ であるフォルダ名を正しく扱うことができません。チルダで終わる名前のフォルダは再起動後表示されなくなるため、Thunderbird を終了する前に名前を変更するようにしてください。<br/>
+				共通受信トレイ(ローカルフォルダ)アカウントの直下に foo~ というフォルダを作成していた場合を例に、既に表示されなくなってしまった場合のデータ復元手順を説明します。</p>
+			<ol>
+				<li>Thunderbird を終了してください。</li>
+				<li><tt:faqlink entryid="where_is_profile_dir" text="{プロファイルフォルダ}"/>/Mail/Local Folders/ を表示してください。</li>
+				<li>foo~, foo~.msf というファイルと foo.sbd というフォルダの名前をそれぞれ順に foo, foo.msf, foo.sbd へと変更してください。</li>
+				<li>Thunderbird を起動してください。</li>
+				<li>共通受信トレイアカウントの直下に foo~ フォルダが復活しているので、foo~ と foo 以外に名前を変更してください。</li>
+				<li>Thunderbird を終了してください。</li>
+				<li>foo~ にサブフォルダがない場合は foo.sbd フォルダがデータフォルダに残りますので、必要に応じて foo.sbd フォルダを削除してください。</li>
+				<li>Thunderbird を起動してください。</li>
+				<li>メッセージフィルタのうち foo~ フォルダ配下に移動するよう指定していたフィルタがあれば、移動先の指定を修正してください。</li>
+				<li>迷惑メールフィルタや受信データ保存先の設定についても同様に確認してください。</li>
+			</ol>
+			<p class="detail">Thunderbird はデータを Unix 標準の mbox 形式をベースに独自の管理用ファイルなどを追加した形で保存管理しており、example フォルダに対応するデータは example, example.msf, example.sbd などに保存されます。このうち .msf ファイル (Mail Summary File) は管理用のファイルであり削除しても自動的に再生成されます。このため foo~ ファイルと foo.sbd ディレクトリの名前を変更して foo.msf ファイルは削除してしまえば Thunderbird の起動後に改めてフォルダ名を変えずとも直接新しい名前で復活させることができますが、フォルダ中のメッセージの既読管理や迷惑メール判別などに関するデータがすべて失われてしまいます。</p>
+			<p>参照: <a href="http://www.mozilla-japan.org/products/thunderbird/troubleshooting.html">Thunderbird トラブルシューティング</a> - <a href="http://www.mozilla-japan.org/products/thunderbird/kb/bug-jp_0004122.html">メールフォルダ名がチルダで終わると再起動後にフォルダーが見えなくなる</a></p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question>Thunderbird のメッセージフィルタを無効化できない</tt:question>
+		<tt:answer>
+			<p>Thunderbird はメッセージフィルタの名前が日本語である場合、そのフィルタの有効/無効を切り替えることが出来ません。フィルタの有効/無効を切り替える必要がある場合は半角英数字のみのフィルタ名を使用してください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="install_by_non_root">
+		<tt:question>Unix で拡張機能やテーマがインストールできません</tt:question>
+		<tt:answer>
+			<p>Mozilla や以前の Firefox/Thunderbird では拡張機能などはユーザの<tt:faqlink entryid="where_is_profile_dir" text="プロファイルフォルダ"/>ではなくプログラムのインストールフォルダに直接インストールされます。インストールフォルダの書き込み権限によっては root でしか拡張機能などのインストールが行えませんのでご注意ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="latest_nightly">
+		<tt:question>最新の Nightly で JLP を使うと XML パースエラーが表示されます</tt:question>
+		<tt:answer>
+			<p>Nightly では随時言語リソースが更新されており、最新の <tt:faqlink entryid="jlp_for_nightly" text="Nightly に対応する JLP"/> を使用しないと、言語リソースの定義が一部足りないために XML パースエラーなどが表示されることがあります。ローカライズセンターでは随時 Nightly についても追従して開発リリースを公開していきますが、基本的に Nightly はサポート外であり対応が遅れることもありますのでご了承ください。<br/>
+				なお、これは古いバージョンに対して新しい JLP を使用する場合も同様ですので、適切な対応バージョンの JLP をご利用ください。</p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="other_help">
+		<tt:question>その他のトラブルシューティング</tt:question>
+		<tt:answer>
+			<p>Thunderbird 0.9 以降については Mozilla Japan で独自に日本語で使用するときの既知の問題点をまとめています。その他各所で公開されているトラブルシューティングのうち、代表的なものを紹介しますのでご参照ください。</p>
+			<ul>
+				<li><a href="http://www.mozilla-japan.org/products/thunderbird/troubleshooting.html">Mozilla Thunderbird トラブルシューティング</a></li>
+				<li><a href="http://www.mozilla-japan.org/support/firefox/faq.html">Firefox FAQ</a></li>
+				<li><a href="http://firefox.geckodev.org/?FAQ">Firefox まとめサイト - FAQ</a></li>
+				<li><a href="http://www.mozilla-japan.org/start/1.5/troubleshooting/">Mozilla 1.5 トラブルシューティングガイド</a></li>
+			</ul>
+		</tt:answer>
+	</tt:entry>
+</tt:section>
+
+
+<!-- 
+<tt:section id="bug">
+	<tt:title>既知のバグ</tt:title>
+	<tt:entry id="">
+		<tt:question></tt:question>
+		<tt:answer>
+			<p></p>
+		</tt:answer>
+	</tt:entry>
+	<tt:entry id="">
+		<tt:question></tt:question>
+		<tt:answer>
+			<p></p>
+		</tt:answer>
+	</tt:entry>
+</tt:section>
+ -->
+
+
+
+
+
+
+
+
+</tt:database>

@@ -1,0 +1,49 @@
+@charset "EUC-JP";
+
+/*	width/height と box-sizing
+width/height の指定は padding の内側のコンテンツ領域というのが仕様で、Mozilla は正しいが IE は border まで含めて width/height
+従って仕様では width: 100% で padding を指定するとはみ出てしまう。width/height 指定対象を IE 解釈に変えるのが CSS3 の box-sizing
+
+	float 要素開始位置
+Mozilla ではそれまでの float 要素の中で最も下にあるものの下端、IE では自分自身の真上にある要素の下端(左右にある float 要素の下端は無視)
+	非 float 要素開始位置
+Mozilla では float 要素のないところに流し込み、IE では直前の float 要素と同じ高さに描画する
+どちらが仕様なのかは不明だが dd について Mozilla では float (と clear) 指定し、IE では指定しないようにすると目的のデザインが得られる */
+
+dl.terminology			{ float: left; width: 100%;
+				  margin: 1em 0 1.5em; padding: 0; }
+/* box-sizing が正式採用されれば padding を em 指定可能になる
+dl.terminology.en-ja dt		{ float: left; clear: both;
+				  box-sizing: border-box; -moz-box-sizing: border-box; width: 30%;
+				  margin: 0; padding: 0 0.5em 0.6em 1.5em; }
+dl.terminology.en-ja > dd	{ float: right; clear: right; width: 70%; } */
+
+dl.terminology.en-ja dt		{ float: left; clear: both; width: 30%;
+				  margin: 0; padding: 0 0 0.6em 3%; }	/* padding-right: 1% でもよいが、ボックス外にした方がテストに便利 */
+dl.terminology.en-ja > dd	{ float: right; clear: right; width: 66%; }		/* Mozilla 必須、IE 不可、仕様不明 */
+dl.terminology.en-ja dd		{ margin: 0; padding: 0.1em 0 0.5em 0; }
+
+dl.terminology.en-ja dt:after	{ content: ": "; }
+dl.terminology.en-ja .relate	{ font-size: 80%; }
+
+/* テスト用
+dl.terminology.en-ja dt,
+dl.terminology.en-ja dd		{ border: solid 1px; } */
+
+
+.en-ja span.example		{ font-size: 100%; color: #20A040; margin: 0; }
+.en-ja span.example:before	{ content: ""; }
+.en-ja span.jlp			{  }
+.en-ja span.obsolete		{ text-decoration: line-through; }
+.en-ja span.wrong		{ text-decoration: line-through; }
+
+
+
+ul.termlist-index		{ font-size: 80%;
+				  margin: 1em 1.5em; padding: 0;
+				  list-style-type: none; }
+ul.termlist-index li		{ display: inline; margin-left: 0.5em; }
+ul.termlist-index > li		{ margin-left: 0; }
+ul.termlist-index li:first-child:before	{ content: ""; }
+ul.termlist-index li:before	{ content: ", "; }
+

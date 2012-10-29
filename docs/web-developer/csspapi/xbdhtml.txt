@@ -1,0 +1,888 @@
+/* 和訳 by dynamis  LastUpdate: 2001/09/09 */
+
+/* [訳注] 著作権等に僅かでも関係する部分の記述は全て原文のまま残してあります。
+          また、意訳なども比較的多くしました。ご了承下さい。 */
+
+
+// 単独行コメント末尾の空白はWin9xのバグ対策です。取り除かないほうが無難です。 
+
+
+/* xbdhtml.js (Cross-Browser Nav4/Gecko/IE DHTML API) 
+   14 May 98, Eric Krock, Copyright Netscape Communications
+   Permission is granted to reuse, redistribute, and modify 
+   without charge.
+	
+   Updated 18 July 2000 by Vladimir Ermakov, Netscape Communications,
+   and Marcell Ortutay, Plugged in Enterprises, to include support of 
+   the new Netscape Gecko layout engine.
+
+   Updatated 15 of February 2001 by Vladimir Ermakov, Netscape Communications:
+       New Features
+        -showElt/hideElt                -convenience functions to use insead of setEltVisibility
+        -setEltWidth/setEltHeight       -Set the width/height of a layer
+        -getEltPageLeft/getEltPageTop   -XBrowser version of Nav4 pageX/pageY 
+        -stringToNumber                 -Returns 0 instead of NaN
+       Improved: 
+        -getEltWidth/getEltHeight       -Return offsetWidth if width not specified.
+        -Also, where possible, replaced detection by browser with detection by property 
+
+   DOM の違いを橋渡しして、いずれのブラウザ上でも利用できる一連の関数群を用意する
+   ことにより、Navigator 4.x, IE 及び Gecko レイアウトエンジンを搭載した
+   ユーザーエージェントで JavaScriptから位置指定される名前付要素の CSSP 機能と
+   プロパティを操作可能にします。
+
+   Nav4+/IE4+/Gecko で JavaScript から次のことを可能にします。
+   - 名前を指定して要素のオブジェクトを取得する
+   - 要素の表示非表示切り換え
+   - 要素の X, Y, Z 位置の取得と設定
+   - 要素の高さと幅の取得
+   - 要素の切り抜き部分 (表示領域) の取得と設定
+   - 要素の背景色と背景画像の取得と設定
+
+   document.write() 分を介して HTML マークアップの動的な条件付生成を簡単に
+   行うための簡易 JavaScript クライアント判別と関数を含めています。
+
+   設計目標：
+   - 将来の DOM 拡張に対する前方互換
+     - 再定義可能な小さな関数による API
+   - 他のライブラリとの平和共存
+     - cbdhtml.js などと関数名の衝突を一切起こさない
+   - 関数の明快さを保ち、引数は値の指定に使用する
+   - 覚えやすく思い出しやすい関数の命名規則
+     - できる限り短いものに
+   - Nav3 は (実行はできないのに!) <script language="JavaScript1.2" src="___.js">
+     を読み込むので、Nav3 でもエラー無しで読み込み可能に 
+   - 部分的にも全体でも利用可能に  全てを利用しなくてもよいように
+     - 個々の関数を既存のコード中にコピーアンドペースト可能
+       この規則の例外：
+       1) Is() コンストラクタと、グローバル変数にそのインスタンス "is" が必須と
+          なります。全ての関数がこれに依存しているからです。
+       2) getEltBackgroundColor は他の色関係の関数に依存しています。
+          ですから、使用するには他の関数も一緒に含める必要があります。
+       3) 切り抜き部分を取得する全ての関数は IE4 で利用するために temoClipObj 
+          に依存します。(getEltClipXXXX という6つの関数が該当します)
+
+   利用上の注意:
+   - この JavaScript ファイルにリンクする script 要素を、ここに含まれる関数を
+     呼び出すよりも前に置いておくこと。
+
+     正しい使用例：head 中に以下の HTML マークアップを置きます：
+
+     <!-- この外部スクリプトでは CSSP と要素のプロパティを操作する
+          クロスブラウザ関数群を定義しています。 -->
+     <script language="JavaScript1.2" src="xbdhtml.js"> </script>
+     <!-- 既に関数群は読み込まれているので、要素を操作する
+         関数呼び出しを次の script タグ中に置いて下さい。 -->
+     <script language="JavaScript1.2"><!--
+     //-*** ここに任意の関数呼び出しを書きます。 ***
+     //--></script>
+*/
+
+
+// これは"究極の JavaScript クライアント判別"の簡易バージョンです。 
+// 参照：http://developer.nextscape.com/docs/examples/javascript/browser_type.html
+
+function Is ()
+{   // テストの簡易化のために全ての文字を小文字に統一します。 
+    var agt=navigator.userAgent.toLowerCase()
+
+    // --- ブラウザバージョン ---
+    this.major = stringToNumber(navigator.appVersion)
+    this.minor = parseFloat(navigator.appVersion)
+
+    this.nav  = ((agt.indexOf('mozilla')!=-1) && ((agt.indexOf('spoofer')==-1)
+                && (agt.indexOf('compatible') == -1)))
+    this.nav2 = (this.nav && (this.major == 2))
+    this.nav3 = (this.nav && (this.major == 3))
+    this.nav4 = (this.nav && (this.major == 4))
+	
+	//Netscape 6
+	this.nav5 =	(this.nav && (this.major == 5))
+	this.nav6 = (this.nav && (this.major == 5))
+	this.gecko = (this.nav && (this.major >= 5))
+
+    this.ie   = (agt.indexOf("msie") != -1)
+    this.ie3  = (this.ie && (this.major == 2))
+    this.ie4  = (this.ie && (this.major == 3))
+    this.ie5  = (this.ie && (this.major == 4))
+
+
+    this.opera = (agt.indexOf("opera") != -1)
+     
+    this.nav4up = this.nav && (this.major >= 4)
+    this.ie4up  = this.ie  && (this.major >= 4)
+}
+
+
+var is = new Is();
+
+// ブラウザのベンダー/バージョン/OS に依存するマークアップを動的/条件付で手軽に 
+// 生成するための関数集です。 
+
+
+// document.write("文字列");  とタイプする手間を省きます。 
+// 第2引数(省略可) minVersion が渡されると、それ以降のバージョンで、 
+// 第3引数(省略可) maxVersion が渡されると、それ以前のバージョンでのみ実行します。 
+
+function dw(str, minVersion, maxVersion)
+{   if ( ((dw.arguments.length < 3) || (is.major <= maxVersion)) 
+         && ((dw.arguments.length < 2) || (is.major >= minVersion)))
+    document.write(str)  
+}
+
+
+// document write boolean
+// if (条件) document.write("文字列");  とタイプする手間を省きます。 
+// 第2引数(省略可) aBoolean が真の時のみ document.write("文字列"); します。 
+
+function dwb (str, aBoolean)
+{   if  ((dwb.arguments.length < 2) || aBoolean)
+    document.write(str)  
+}
+
+
+
+// string version
+// バージョンによって str か "" を返します。 
+// 第2引数(省略可) minVersion が渡されると、それ以降のバージョンで、 
+// 第3引数(省略可) maxVersion が渡されると、それ以前のバージョンで str を返します。 
+
+function sv(str, minVersion, maxVersion)
+{   if ( ((sv.arguments.length < 3) || (is.major <= maxVersion)) 
+         && ((sv.arguments.length < 2) || (is.major >= minVersion)))
+    return str;
+    else return "";
+}
+
+
+// string boolean
+// (条件)?"文字列":""  とタイプする手間を省きます。 
+// 第2引数(省略可) aBoolean が真の時のみ str を返します。 
+
+function sb (str, aBoolean)
+{   if  ((sb.arguments.length < 2) || aBoolean)
+    return str;
+    else return "";
+}
+
+
+
+
+/* The following stub function API for cross-browser HTML 
+   element positioning and visibility (CSSP access) was
+   derived from Mike Hall's excellent CBDHTML API.
+
+   Thanks also to Danny Goodman (http://www.dannyg.com/)
+   and Dan Steinman (http://members.xoom.com/dynduo/).
+
+   利用上の注意：要素の CSSP プロパティを取得する関数(getEltLeft, getEltTop 等)
+   を利用する場合、IE4 の CSSP プロパティ初期設定の問題を覚えておいて下さい。
+   もし、JavaScript から初期設定するのではなく、
+     例: var fooElt = getElt("foo");
+         setEltLeft(fooElt, 100);
+   CSSP マークアップでプロパティ値を初期設定した場合、
+     例: #foo { left: 100px; }
+   その要素のスタイルオブジェクトのプロパティ値(例: document.foo.style.left)は
+   初期値に設定されていません。left, top, clip 等を始めとし、IE4 では多くの
+   プロパティでこの現象が起きます。IE4 でこれらのプロパティを取得する前に、
+   最初に JavaScript からプロパティを設定しておかねばなりません。
+   対策：CSSP マークアップではなく JavaScript からプロパティを設定するか、両方で
+   同じ値を設定するかします。
+*/
+
+
+/*     genElt, writeElt, layerClipOrder の3つの関数について
+
+   利用されているブラウザに最適化したマークアップを動的に生成することが時には
+   開発を簡単にします。genElt は IE4 や Netspace6 では名前付 div を、Nav4 では
+   layer/ilayer タグを文字列として生成します。
+   writeElt は同じ文字列を生成して書き出します。
+
+   これらの3つの関数は一括りで再利用する必要があります。writeElt は genElt を
+   呼び出し、その両方ともが layerClipOrder を呼び出します。
+
+
+       genElt と writeElt の引数について
+
+   genElt と writeElt は全く同じ引数リストをとります。
+
+   第1引数 name は必須です。他の引数は全て false がデフォルトであり、明示的に
+   false にするか、省略することができます。これらのプロパティは、引数が与えられ
+   れば HTML マークアップ中にハードコーディングされ、false に設定または省略した
+   場合は設定されないままとなります。
+
+   例えば、以下の関数呼び出しは共に同じものとなります。どちらも、何もプロパティが
+   設定されていない、位置指定する名前付要素を生成し、Nav3/IE3 やそれ以前の環境で
+   あっても要素を書き出します。
+   writeElt ("foo");
+   writeElt ("foo", false, false, false);
+
+   name     文字列  要素の id 名
+   content  文字列  要素中に含まれるコンテンツ
+   left     整数値  ピクセル単位で要素の左端位置
+   top      整数値  ピクセル単位で要素の上端位置
+   z        整数値  要素の z-index
+   width    整数値  ピクセル単位で要素の幅
+   height   整数値  ピクセル単位で要素の高さ
+   visibility        文字列  "visible", "hidden", "inherit" のいずれか
+   backgroundColor   文字列  要素の背景色
+   backgroundImage   文字列  要素の背景画像
+   clip              文字列  切り抜き部分を指定する、上右下左の順にコンマ区切りで
+                             並べた(スペースを含まないこと!)四つの整数値
+   relative          真偽値  真であれば相対位置指定、そうでなければ絶対位置指定
+                             Nav4 では layer/ilayer(真/偽) いずれを生成するか
+   hideEltOnOlderBrowsers  真偽値  真であれば Nav3/IE3 以前では "" を返す
+   useDivInsteadOfLayer    真偽値  真であれば、Nav4 でも I/LAYER でなく div 生成
+   classname               文字列  要素の class 属性値
+   
+   'genElt' は 'generate element markup' の省略です
+*/
+
+// CSS 仕様の順である、上右下左から layer の順である 左上右下 に並び替える 
+
+function layerClipOrder (cssClipString)
+{  var commaPos = cssClipString.lastIndexOf(",");
+   return (cssClipString.substring(commaPos+1) + "," + cssClipString.substring(0,commaPos));
+}
+
+function genElt (name, content, left, top, z, width, height, visibility, 
+                 backgroundColor, backgroundImage, clip, relative, 
+                 hideEltOnOlderBrowsers, useDivInsteadOfLayer, classname) 
+{ var markup = "";
+  if (is.gecko)
+  {
+    markup = '<DIV ID="' + name + '"' +  
+        ((classname)?' CLASS="' + classname + '"':'') + 
+        ' STYLE="position:' + ((relative)?'relative;':'absolute;') + 
+        ' overflow:none;' + 
+        ((left)?' left:' + left + 'px;':'') + 
+        ((top)?' top:' + top + 'px;':'') + 
+        ((height)?' height:' + height + 'px;':'') + 
+        ((width)?' width:' + width + 'px;':'') + 
+        ((visibility && (visibility!='')) ? ' visibility:' + visibility + ';' : '') + 
+        ((z)?' z-index:' + z + ';':'') + 
+        ((backgroundColor)?' background-color:' + backgroundColor + ';':'') + 
+        ((backgroundImage)?' background-image:url("' + backgroundImage + '");':'') +  
+        ((clip)?' clip:rect("' + clip + '");':'') + 
+        '">' + ((content)?content:'') + '</DIV>';
+  }
+
+  else if (is.nav && (is.major == 4 || !hideEltOnOlderBrowsers) && 
+      !useDivInsteadOfLayer)
+  { var tagname = (relative)?'ILAYER':'LAYER';
+    if (visibility && (visibility!=''))
+    {  if (visibility=="hidden") visibility = "hide";
+       else if (visibility=="visible") visibility = "show";
+    }
+    markup = '<' + tagname + ' ID="' + name + '"' + ((classname)?' CLASS="' + 
+        classname + '"':'') + ((left)?' LEFT="' + left + '"':'') + 
+        ((top)?' TOP="' + top + '"':'') + ((width)?' WIDTH="' + width + '"':'') + 
+        ((height)?' HEIGHT="' + height + '"':'') + 
+        ((visibility && (visibility!='')) ? ' VISIBILITY="' + visibility + '"' : '') + 
+        ((z)?' Z-INDEX="' + z + '"':'') + 
+        ((backgroundColor)?' BGCOLOR="' + backgroundColor + '"':'') + 
+        ((backgroundImage)?' BACKGROUND="' + backgroundImage + '"':'') +  
+        ((clip)?' CLIP="' + layerClipOrder(clip) + '"':'') + 
+        '>' + ((content)?content:'') + '</' + tagname + '>';
+  }
+ 
+  else if ((is.ie || (is.nav && useDivInsteadOfLayer)) && (is.major>=4 || !hideEltOnOlderBrowsers))
+  { markup = '<DIV ID="' + name + '"' +  
+        ((classname)?' CLASS="' + classname + '"':'') + 
+        ' STYLE="position:' + ((relative)?'relative;':'absolute;') + 
+        ' overflow:none;' + 
+        ((left)?' left:' + left + 'px;':'') + 
+        ((top)?' top:' + top + 'px;':'') + 
+        ((height)?' height:' + height + 'px;':'') + 
+        ((width)?' width:' + width + 'px;':'') + 
+        ((visibility && (visibility!='')) ? ' visibility:' + visibility + ';' : '') + 
+        ((z)?' z-index:' + z + ';':'') + 
+        ((backgroundColor)?' background-color:' + backgroundColor + ';':'') + 
+        ((backgroundImage)?' background-image:url("' + backgroundImage + '");':'') +  
+        ((clip)?' clip:rect("' + clip + '");':'') + 
+        '">' + ((content)?content:'') + '</DIV>';
+  }
+
+  return markup;
+}
+
+function writeElt (name, content, left, top, z, width, height, visibility, 
+                   backgroundColor, backgroundImage, clip, relative, 
+                   hideEltOnOlderBrowsers, useDivInsteadOfLayer, classname) 
+{ if (writeElt.arguments.length < 15) classname = false;
+  if (writeElt.arguments.length < 14) useDivInsteadOfLayer = false;
+  if (writeElt.arguments.length < 13) hideEltOnOlderBrowsers = false;
+  if (writeElt.arguments.length < 12) relative = false;
+  if (writeElt.arguments.length < 11) clip = false;
+  if (writeElt.arguments.length < 10) backgroundImage = false;
+  if (writeElt.arguments.length < 9) backgroundColor = false;
+  if (writeElt.arguments.length < 8) visibility = false;
+  if (writeElt.arguments.length < 7) height = false;
+  if (writeElt.arguments.length < 6) width = false;
+  if (writeElt.arguments.length < 5) z = false;
+  if (writeElt.arguments.length < 4) top = false;
+  if (writeElt.arguments.length < 3) left = false;
+  if (writeElt.arguments.length < 2) content = false;
+  document.write (genElt (name, content, left, top, z, width, height, visibility, 
+                    backgroundColor, backgroundImage, clip, relative, 
+                 hideEltOnOlderBrowsers, useDivInsteadOfLayer, classname));
+}
+
+
+/*     呼び出し構文
+   それぞれの名前は要素の id 属性値または layer タグの name 属性値の文字列
+
+   getElt (最上位要素名, 第１入れ小要素名, 第２入れ小要素名 ...
+                 目的の要素名)
+
+   トップレベル要素を取得する例：
+   var fooElement = getElt ("foo")
+
+   ネストした要素を取得する例：
+   var fooElement = getElt ("bar", "baz", "foo")
+    ･･･ baz は foo を含んでいる親で、bar はトップレベル要素で、baz を含む親
+*/
+
+function getElt () 
+{ if (is.nav4)
+  {
+    var currentLayer = document.layers[getElt.arguments[0]];
+    for (var i=1; i<getElt.arguments.length && currentLayer; i++)
+    {   currentLayer = currentLayer.document.layers[getElt.arguments[i]];
+    }
+    return currentLayer;
+  } 
+  else if(document.getElementById && document.getElementsByName)
+  { 
+    var name = getElt.arguments[getElt.arguments.length-1];
+    if(document.getElementById(name))                      //最初は id で 
+       return document.getElementById(name);
+    else if (document.getElementsByName(name))             //見つからなければ次は name で 
+	   return document.getElementsByName(name)[0];
+  }
+  else if (is.ie4up) {
+    var elt = eval('document.all.' + getElt.arguments[getElt.arguments.length-1]);
+    return(elt);
+  }
+
+}
+
+function showElt(elt)
+{
+	setEltVisibility(elt,'visible');
+}
+
+function hideElt(elt)
+{
+	setEltVisibility(elt);
+}
+
+/* value は "visible", "hidden", "inherit" のいずれかでなければならない。
+   これらの値が Nav4, Gecko, IE で共通して visibility の設定に利用できる。
+*/
+function setEltVisibility (elt, value)
+{  if (is.nav4) elt.visibility = value;
+   else if (elt.style) elt.style.visibility = value;
+}
+
+
+/* 返り値は"visible", "hidden", "inherit" のいずれかの文字列。
+   この値は CSS1 や IE4 のものに合わせてあり、3つのブラウザ全てで設定可能なもの
+   です。Nav4 はデフォルトでは "show" と "hide" を返すので、ブラウザ間で一貫した
+   値を返すために、それぞれ "visible" と "hidden" に書き換えています。
+*/
+function getEltVisibility (elt)
+{  if (is.nav4) 
+   {  var value = elt.visibility;
+      if (value == "show") return "visible";
+      else if (value == "hide") return "hidden";
+      else return value;
+   }
+   else if (elt.style) return elt.style.visibility;
+}
+
+
+
+/* elt をそれが置かれた座標系での x,y ピクセル位置に移動させる。トップレベル要素
+   ではウィンドウ表示領域座標系に、絶対位置指定の親要素でネストした要素では親要素
+   の座標系になります。
+*/
+function moveEltTo (elt, x, y) 
+{ if (is.nav4) elt.moveTo(x, y);
+  else if (is.ie4up) {
+    elt.style.pixelLeft = x;
+    elt.style.pixelTop  = y;
+  }
+  else if (is.gecko) {
+    elt.style.left = x;
+    elt.style.top  = y;
+  }
+}
+
+
+/* elt のオフセット位置を x,y のピクセル値で指定する。 */
+
+function moveEltBy (elt, x, y) 
+{ if (is.nav4) elt.moveBy(x, y);
+  else if (is.ie4up)  {
+    elt.style.pixelLeft += x;
+    elt.style.pixelTop  += y;
+  }
+  else if (is.gecko)  {
+    elt.style.left = (stringToNumber(elt.style.left) + x + "px");
+    elt.style.top  = (stringToNumber(elt.style.top)  + y + "px");
+  }
+}
+
+/* Nav4 の pageX と同機能のクロスブラウザ関数。 */
+function getEltPageLeft(elt) {
+  var x;
+
+  if (is.nav4)
+    return elt.pageX;
+  if (is.ie4up) {
+    x = 0;
+    while (elt.offsetParent != null) {
+      x += elt.offsetLeft;
+      elt = elt.offsetParent;
+    }
+    x += elt.offsetLeft;
+    return x;
+  }
+  if (is.gecko) {
+    x = 0;
+    while (elt.offsetParent != null) {
+      x += elt.offsetLeft;
+      elt = elt.offsetParent;
+    }
+    x += elt.offsetLeft;
+    return x;
+  }
+  return -1;
+}
+
+/* Nav4 の pageY と同機能のクロスブラウザ関数。 */
+function getEltPageTop(elt) {
+  var y;
+
+  if (is.nav4)
+    return elt.pageY;
+  if (is.ie4up) {
+    y = 0;
+    while (elt.offsetParent != null) {
+      y += elt.offsetTop;
+      elt = elt.offsetParent;
+    }
+    y += elt.offsetTop;
+    return y;
+  }
+  if (is.gecko) {
+    y = 0;
+    while (elt.offsetParent != null) {
+      y += elt.offsetTop;
+      elt = elt.offsetParent;
+    }
+    y += elt.offsetTop;
+    return y;
+  }
+  return -1;
+}
+
+/* elt の左端位置をピクセル値で指定する。 */
+function setEltLeft (elt, x) {
+  if (is.nav4)     elt.left=x;
+  else if (is.ie4up) elt.style.pixelLeft=x;
+  else if (is.gecko) elt.style.left = (x + "px");
+}
+
+
+/* elt の左端位置をピクセル値で返す。 */
+function getEltLeft (elt) {
+  if (is.nav4)     return (elt.left);
+  else if (is.ie4up) return (elt.style.pixelLeft);
+  else if (is.gecko) return stringToNumber(elt.style.left);
+}
+
+/* elt の上端位置をピクセル値で指定する。 */
+function setEltTop (elt, y) 
+{ if (is.nav4)     elt.top=y;
+  else if (is.ie4up) elt.style.pixelTop=y;
+  else if (is.gecko) elt.style.top= (y + "px");
+}
+
+/* elt の上端位置をピクセル値で返す。 */
+function getEltTop (elt) 
+{ if (is.nav4)     return (elt.top);
+  else if (is.ie4up) return (elt.style.pixelTop);
+  else if (is.gecko) return stringToNumber(elt.style.top);
+}
+
+/* elt の幅をピクセル値で返す。 */
+function getEltWidth(elt) {
+
+  if (is.nav4) {
+    if (elt.document.width)
+      return elt.document.width;
+    else
+      return elt.clip.right - elt.clip.left;
+  }
+  if (is.ie4up) {
+    if (elt.style.pixelWidth)
+      return elt.style.pixelWidth;
+
+    else
+      return elt.offsetWidth;
+  }
+  if (is.gecko) {
+    if (elt.style.width)
+      return stringToNumber(elt.style.width);
+    else
+      return stringToNumber(elt.offsetWidth);
+  }
+  return -1;
+}
+
+/* elt の幅をピクセル値で指定する。 */
+function setEltWidth(elt,wdth)
+{
+	if(is.nav4)
+    { 
+	     elt.document.width = wdth;
+    }
+    else if(elt.style)
+    { 
+        elt.style.width = wdth;
+    }
+}
+
+/* elt の高さをピクセル値で返す。 */
+function getEltHeight(elt) {
+  if (is.nav4) {
+    if (elt.document.height)
+      return elt.document.height;
+    else
+      return elt.clip.bottom - elt.clip.top;
+  }
+  if (is.ie4up) {
+    if (elt.style.pixelHeight)
+      return elt.style.pixelHeight;
+    else
+      return elt.clientHeight;
+  }
+  if (is.gecko) {
+    if (elt.style.height)
+      return stringToNumber(elt.style.height);
+    else
+      return stringToNumber(elt.offsetHeight);
+  }
+  return -1;
+}
+
+/* elt の高さをピクセル値で指定する。 */
+
+function setEltHeight(elt,hght)
+{
+	if(is.nav4)
+    { 
+		elt.document.height = hght;
+    }
+    else if(elt.style)
+    { 
+        elt.style.height = hght;
+    }
+}
+
+/* elt の切り抜き部分を指定する。
+   注意：上右下左の順序は CSS に従ったもの。
+   cliptop, clipright, clipbottom, clipleft は全て整数値で指定する。
+*/
+function setEltClip (elt, cliptop, clipright, clipbottom, clipleft) 
+{ if (is.nav4) {
+    elt.clip.left   = clipleft;
+    elt.clip.top    = cliptop;
+    elt.clip.right  = clipright;
+    elt.clip.bottom = clipbottom;
+  }
+  else if (is.ie4up)  elt.style.clip = 'rect(' + cliptop + ' ' +  
+       clipright + ' ' + clipbottom + ' ' + clipleft +')';
+  else if (is.gecko)  elt.style.clip = 'rect(' + cliptop + ' ' +  
+       clipright + ' ' + clipbottom + ' ' + clipleft +')';
+}
+
+/* IE の為だけの関数
+   Nav3 でパースされても構文エラーにならないように、正規表現を用いていない。
+*/
+function tempClipObj (elt)
+{  var clipStr = elt.style.clip;
+  
+   clipStr = clipStr.substring (clipStr.indexOf("(") + 1);
+   this.top = stringToNumber(clipStr);
+   clipStr = clipStr.substring (clipStr.indexOf(" ") + 1);
+   this.right = stringToNumber(clipStr);
+   clipStr = clipStr.substring (clipStr.indexOf(" ") + 1);
+   this.bottom = stringToNumber(clipStr);
+   clipStr = clipStr.substring (clipStr.indexOf(" ") + 1);
+   this.left = stringToNumber(clipStr);
+}
+
+/* elt の切り抜き部分の左端をピクセル値で返す。 */
+function getEltClipLeft (elt) 
+{ if (is.nav4)     return (elt.clip.left);
+  else if (elt.style) 
+  {  var tempClip = new tempClipObj (elt);
+     return tempClip.left;
+  }
+}
+
+/* elt の切り抜き部分の上端をピクセル値で返す。 */
+function getEltClipTop (elt) 
+{ if (is.nav4)     return (elt.clip.top);
+  else if (elt.style) 
+  {  var tempClip = new tempClipObj (elt);
+     return tempClip.top;
+  }
+}
+
+/* elt の切り抜き部分の右端をピクセル値で返す。 */
+function getEltClipRight (elt) {
+  if (is.nav4)     return (elt.clip.right);
+  else if (elt.style) 
+  {  var tempClip = new tempClipObj (elt);
+     return tempClip.right;
+  }
+
+}
+
+/* elt の切り抜き部分の下端をピクセル値で返す。 */
+function getEltClipBottom (elt) 
+{ if (is.nav4)     return (elt.clip.bottom);
+  else if (elt.style) 
+  {  var tempClip = new tempClipObj (elt);
+     return tempClip.bottom;
+  }
+}
+
+/* elt の切り抜き部分の幅をピクセル値で返す。 */
+
+function getEltClipWidth (elt) 
+{
+    return (getEltClipRight(elt) - getEltClipLeft(elt));
+}
+
+
+/* elt の切り抜き部分の高さをピクセル値で返す。 */
+
+function getEltClipHeight (elt) 
+{
+    return (getEltClipBottom(elt) - getEltClipTop(elt));
+}
+
+
+/* 現在のウィンドウの表示領域の幅をピクセル値で返す。 */
+
+function getCurrentWinWidth() 
+{ if (is.nav4)     return(window.innerWidth);
+  else if (is.ie4up) return(document.body.clientWidth);
+  else if (is.gecko) return(window.innerWidth);
+}
+
+
+
+/* 現在のウィンドウの表示領域の高さをピクセル値で返す。 */
+function getCurrentWinHeight() 
+{ if (is.nav4)     return(window.innerHeight);
+  else if (is.ie4up) return(document.body.clientHeight);
+  else if (is.gecko) return(window.innerHeight);
+
+}
+
+/* elt の z-index (正の整数) を返す。  */
+
+function getEltZIndex (elt) 
+{ if (is.nav4) return(elt.zIndex);
+  else if (elt.style) return (elt.style.zIndex);
+}
+
+/* elt の z-index を指定する。 z は正の整数。 */
+
+function setEltZIndex (elt, z) 
+{ if (is.nav4) elt.zIndex = z;
+  else if (elt.style) elt.style.zIndex = z;
+}
+
+
+/* end CBDHTML derivative functions  */
+/* elt の背景に設定する画像のパスを imageFilePath で指定する。
+
+   注意：これと次の関数は Nav4/Gecko/IE4+ で要素の背景画像プロパティの取得と設定
+   を可能にしますが、背景画像サポートの実装の違いから、同じ視覚効果を得るには
+   HTML/CSS マークアップとその中身をかなり試行錯誤する必要があるかも知れません。
+*/
+function setEltBackgroundImage (elt, imageFilePath) 
+{ if (is.nav4) elt.background.src = imageFilePath;
+  else if (is.ie4up) elt.style.backgroundImage = "url(" + imageFilePath + ")";
+  else if (is.gecko) elt.style.backgroundImage = "url(" + imageFilePath + ")";
+}
+
+/* elt の背景画像のパスまたは URL を返します。
+   注意：返される文字列値は Navigator 4.x, Internet Explorer, Gecko で同じでは
+   ありません。Navigator 4.x では
+   "file:///F|/DHTML/xbdhtml/xbdhtml/images/redpole.gif"
+   のような値が読み出せますが、Internet Explorer と Gecko では
+   "url(images/redpole.gif)" のような値が読み出せるので、"images/redpole.gif"
+   のような部分だけを切り取って返します。
+*/
+
+function getEltBackgroundImage (elt) 
+{ if (is.nav4) return (elt.background.src);
+  else if (elt.style) { 
+     var theURL = elt.style.backgroundImage;
+     if (typeof(theURL) == "string")
+     {  var URLlen = theURL.length;
+        return (theURL.substring (4, URLlen-1));
+     }
+     else return(theURL);
+  }
+}
+
+/* elt の背景色を colorNumber に設定します。
+   colorNumber は白を 0xffffff とするような整数表現の色か、"red"などの 16 の CSS1
+   標準色名のいずれか。
+   (Nav4 ではサポートされないので IE の拡張色名リストの文字列は使用しないこと)
+
+   注意：CSS1 標準16色名 ("red"など) を設定した場合でも、getEltBackgroundColor
+   では常に相当する整数コードが返されます。(例えば、"red" に対して 0xff0000)
+   getEltBackgroundColor は IE4 や Gecko では自動的に色名から整数に変換し、Nav4
+   ではブラウザ自体が変換を行うからです。
+   文字列に設定したのに整数が返されるという混乱をさける為、色番号のみを用いるのが
+   一番です。
+
+   注意：これと次の関数は Nav4/Gecko/IE4+ で要素の背景色プロパティの取得と設定を
+   可能にしますが、背景色サポートの実装の違いから、同じ視覚効果を得るには HTML/CSS
+   マークアップとその中身をかなり試行錯誤する必要があるかも知れません。
+*/
+
+function setEltBackgroundColor (elt, colorNumber) 
+{ if (is.nav4) elt.bgColor = colorNumber;
+  else if (elt.style) elt.style.backgroundColor = colorNumber;
+}
+
+/* ----------------------------------------------------------
+                   要素の背景色取得関数
+   これらは相互に依存しているので纏めて再利用せねばなりません。
+   ---------------------------------------------------------- */
+
+var colorNameString = "aqua,black,blue,fuchsia,gray,green,lime,maroon,navy,olive,purple,red,silver,teal,yellow,white";
+var colorNames   = new Array ("aqua", "black", "blue", "fuchsia", "gray",   "green", "lime", "maroon", "navy", "olive",  "purple", "red",    "silver", "teal", "yellow", "white");
+var colorNumbers = new Array (0xffff, 0,       0xff,   0xff00ff,  0x808080, 0x8000,  0xff00, 0x800000, 0x80,   0x808000, 0x800080, 0xff0000, 0xc0c0c0, 0x8080, 0xffff00, 0xffffff);
+
+
+
+/* aString 文字列が CSS1 で定義された 16 の色名に含まれるかテストします */
+function isColorName (aString)
+{ return ( (typeof(aString) == "string") && (colorNameString.indexOf(aString) != -1));
+}
+
+/* "white" などの色名文字列を 0xffffff などの数値に変換します。
+   IE4 の拡張リストではなく、CSS1 標準16色 のみをサポートします。
+*/
+function colorNameToNumber (colorName)
+{ for (var i=0; i<16; i++) if (colorNames[i]==colorName) return colorNumbers[i];
+  // 見つからなければ何もせずに文字列を返す。 
+  // これにより IE4 のCSS1 標準外色指定を礼節をもって扱います。 
+  return colorName;
+}
+
+/* 0xffffff などの数値を "white" などの色名文字列に変換します。
+   IE4 の拡張リストではなく、CSS1 標準16色 のみをサポートします。
+*/
+function colorNumberToName (colorNumber)
+{ for (var i=0; i<16; i++) if (colorNumbers[i]==colorNumber) return colorNames[i];
+  return null;
+}
+
+/* elt の背景色を整数値で返します。
+   ("red"等の色名や IE4 の "#ffffff"ではありません)
+   Nav4 はデフォルトで整数値を返します。IE4 は次のいずれかを返します：
+   a) "#" につづく RGB 値を示す6桁の16進数。
+   b) "red" などの 16 の色名の1つ
+   また、Geckoは次のいずれかを返します。
+   a) an rgb string like "rgb(255,0,255)"
+   b) one of the 16 string color names like red.
+   それで、互換性のために整数に揃えて返します。
+   
+   警告：Netscape6 (Gecko) には、10進数の数値を16進数として解釈するバグがあり、
+         65280 と設定すると実際には 0x065280 となってしまいます。
+         10進数を使用しないで下さい！ 標準ではありません。
+   警告：CSS1 標準16色のみが 整数に変換されます。
+*/
+
+function getEltBackgroundColor (elt) 
+{
+  if (is.nav4) return (elt.bgColor);
+  else if (is.ie4up) 
+  {
+     var colorVal = elt.style.backgroundColor;
+     if (isColorName(colorVal)) return colorNameToNumber (colorVal);
+     else if (typeof(colorVal) == "string") 
+          return (("0x" + colorVal.substring(1)) - 0);
+     else return colorVal;
+  }
+  else if (is.gecko) {
+    var colorVal = elt.style.backgroundColor;
+    
+	 if (typeof(colorVal) == "string")
+	 { 	
+		if (isColorName(colorVal)) 	
+		{
+			return colorNameToNumber (colorVal);
+		}
+		else if (colorVal.indexOf(["rgb"]) != -1) 
+		{	
+			var sR,sG,sB;
+			var iR,iG,iB;
+			var i=0;
+
+			ColorString = (elt.style.backgroundColor);
+			//ColorString = "rgb(255,20,255)";
+			ColorString = ColorString.slice(4,-1);
+
+			while(ColorString[i] != ',' && i < 20){i++;}
+			sR = ColorString.slice(0,-(ColorString.length - i));
+			i++;
+			j = i;
+			while(ColorString[j] != ',' && j < 20){j++;}
+			sG = ColorString.slice(i,0-(ColorString.length - j));
+			j++;
+			sB = ColorString.slice(j);
+			iR = stringToNumber(sR);
+			iG = stringToNumber(sG);
+			iB = stringToNumber(sB);
+			sR = iR.toString(16);if(sR.length < 2)sR = "0" + sR;if(sR.length < 2)sR = "0" + sR;
+			sG = iG.toString(16);if(sG.length < 2)sG = "0" + sG;if(sG.length < 2)sG = "0" + sG;
+			sB = iB.toString(16);if(sB.length < 2)sB = "0" + sB;if(sB.length < 2)sB = "0" + sB;
+
+			sRGB = sR.toUpperCase()+sG.toUpperCase()+sB.toUpperCase();
+			return (("0x" + sRGB)-0);
+		}
+	 }
+     else return colorVal;
+  }
+}
+
+/* 100px などの文字列の先頭部分を取り出し、数値でなければ 0 を返す文字列の数値変換
+*/
+function stringToNumber(s)
+{
+        return parseInt(('0' + s), 10)
+}
+
+/*  訳者： dynamis <translator@skillup.jp>
+    このドキュメントのオリジナルは mozilla.org において英語で公布されています。
+    http://www.mozilla.org/docs/web-developer/csspapi/xbdhtml.txt
+    またドキュメントの管理の言語は現在も英語です。この日本語訳は、
+    利用者の利便のために mozilla.org 和訳プロジェクトによって提供されたものです。
+    フィードバックは英語で、元の著者に送って下さい。
+    翻訳された文書の一覧は、現在以下の URL で見ることが出来ます。
+    http://www.mozilla.gr.jp/jt/index.html */
+

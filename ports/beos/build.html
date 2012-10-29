@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+<TITLE>Bezilla: How to Build</TITLE>
+
+<META content="MSHTML 6.00.2800.1170" name=GENERATOR>
+
+<link rel="alternate" hreflang="en" modified="August 2, 2001">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/ports/beos/build.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+      <TABLE width=507 border=0>
+        <TBODY>
+        <TR>
+          <TD width=96><IMG height=73 alt="Bezilla logo" 
+            src="bz_logo_sm.gif" width=95 
+border=0></TD>
+          <TD width=395>
+            <TABLE cellSpacing=0 cellPadding=0 width=350 bgColor=#000000 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD width="100%">
+                  <TABLE cellPadding=1 width=350 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=middle width="10%" bgColor=#c0c0c0><B><FONT 
+                        face=Arial size=1>&nbsp;|||&nbsp;</FONT></B></TD>
+                      <TD align=middle width="30%" bgColor=#c0c0c0><A 
+                        href="/ports/beos/index.html"><B><FONT 
+                        face=Arial size=1>Home</FONT></B></A></TD>
+                      <TD align=middle width="30%" bgColor=#c0c0c0><A 
+                        href="/ports/beos/team.html"><B><FONT 
+                        face=Arial size=1>Team BeZilla</FONT></B></A></TD>
+                      <TD align=middle width="30%" bgColor=#c0c0c0><A 
+                        href="/ports/beos/contact.html"><B><FONT 
+                        face=Arial size=1>Contact 
+                  Us</FONT></B></A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+            <P><B><FONT size=5><FONT color=#000080>B</FONT><FONT 
+            color=#ff0000>e</FONT>zilla</FONT><FONT size=3>:  ビルドの方法</FONT></B></P></TD></TR></TBODY></TABLE>
+      <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD width="100%">
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD width="100%" bgColor=#990000 height=21><FONT color=#ffffff><B>お知らせ</B></FONT></TD></TR>
+              <TR>
+                <TD align=left bgColor=#dddddd><FONT size=2>私たちはあなたの援助を必要としています。時間を割いていただけるのであれば宜しくお願いします。
+まずは mozilla.org のサイトを読むことから始めてください。 "<A 
+                  href="/get-involved.html">Get 
+                  Involved</A>" や "<A href="/hacking/">Hacking</A>" は必読です。
+</FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>&nbsp; 
+      <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD width="100%">
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" bgColor=#000000 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD width="100%" bgColor=#990000 height=21><FONT color=#ffffff><B>必要なもの</B></FONT></TD></TR>
+              <TR>
+                <TD bgColor=#dddddd><FONT size=2>開発版の Bezilla をビルドするために必要なハードウェアとソフトウェアがあります。
+実際にソフトウェアを実行する必要条件はもっと少ないです。
+しかし、利用可能な安定版のリリースが現在は存在しないので、
+私たちが開発している環境をお知らせします。</FONT> 
+                  <H3><FONT size=3>ハードウェア</FONT></H3>
+                  <UL>
+                    <LI><A 
+                    href="http://www.be.com/products/freebeos/beosreadylist.html"><FONT size=2>BeOS が動作するコンピュータやハードウェア</FONT></A> 
+<BR>
+<FONT size=2><SPAN class="comment">（訳注：現在は上記リンク先に情報はありません。日本語の情報は<A href=http://www.be-in.org/hardware/>こちら</A>で入手可能です。）</SPAN></FONT>
+                    <LI><FONT size=2>BeOS R5 <A 
+                    href="http://www.be.com/products/freebeos/">Personal Edition （開発ツールがインストールされていること） 
+ 
+
+</A> または <A href="http://www.be.com/products/freebeos/distributors.html">同 Pro Edition 
+                    </A>
+<BR>[ いずれも x86版 のみ。 PPC 版はボランティアを募集中です。 ]</FONT> 
+<BR><FONT size=2><SPAN class="comment">（訳注：現在は上記リンク先に情報はありません。 Personal Edition および開発ツールは<A href="http://www.bebits.com/app/2680">こちら</A>より入手可能です。 Pro Edition は販売終了して流通在庫のみとなっています。）</SPAN></FONT>
+                    <LI><FONT size=2>大量の RAM が必要です！最低 128MB の<B>仮想メモリ</B>および最低 128MB 以上の物理メモリも！</FONT> 
+                    <LI><FONT size=2>1.5GB または 2.0GB の空きディスクスペースが全ソースのコンパイルとデバッグに必要です。
+ソースコードだけで 380MB もあります！</FONT> 
+                    <LI><FONT size=2>ソースコードを同期させるためのBeOSから接続できる良好なネット環境。
+ケーブル接続で CVS を経由してのフルダウンロードにはおよそ 60 分かかります。</FONT> </LI></UL>
+                  <H3><FONT size=3>ソフトウェア</FONT></H3>
+                  <UL>
+                    <LI><FONT face=Arial size=2><B>CVS</B></FONT> 
+                    <UL>
+                      <P><FONT size=2><A 
+                      href="http://www.bebits.com/app/1610">cvs</A> [ 548 kB ] をダウンロードして、ディスクの任意の場所に展開してください。
+home/config/bin ディレクトリに CVS のバイナリのリンクを作成します。
+インストールが成功したかをテストします。
+"Terminal" を起動して、home ディレクトリから cvs --version とタイプしてください。
+
+成功していれば以下のような結果になるでしょう。</FONT></P>
+                      <UL><PRE>Concurrent Versions System (CVS) 1.11 (client/server)
+
+Copyright (c) 1989-2000 Brian Berliner, david d `zoo' zuhn,
+                        Jeff Polk, and other authors
+
+CVS may be copied only under the terms of the GNU General Public License,
+a copy of which can be found with the CVS distribution kit.
+
+Specify the --help option for further information about CVS</PRE></UL></UL>
+                    <LI><FONT face=Arial size=2><B>Perl</B></FONT> 
+                    <UL>
+                      <P><FONT size=2><A 
+                      href="http://www.bebits.com/app/658">perl</A> [ 2.27 MB ] 
+                      をダウンロードして、ディスクの任意の場所に展開してください。
+"Terminal" を起動して、展開したディレクトリへ cd して、 install-perl を実行します。
+インストールが完了したら、 home/config/bin ディレクトリへ Perl のバイナリのリンクを作成します。
+インストールが成功したかをテストします。
+"Terminal" を起動して、 home ディレクトリから perl --version とタイプしてください。
+
+成功していれば以下のような結果になるでしょう。</FONT></P>
+                      <UL><PRE>This is perl, version 5.005_03 built for BePC-beos
+
+Copyright 1987-1999, Larry Wall
+BeOS port Copyright Tom Spindler, 1997-1998
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5.0 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using `man perl' or `perldoc perl'.  If you have access to the
+Internet, point your browser at http://www.perl.com/, the Perl Home Page.
+</PRE></UL></UL>
+                    <LI><FONT face=Arial size=2><B>glib &amp; libIDL</B></FONT> 
+                    <UL>
+                      <P><FONT size=2><A 
+                      href="ftp://ftp.mozilla.org/pub/mozilla/contrib/beos/glib-libIDL-beos.zip">glib 
+                      &amp; libIDL</A> [ 837.8 kB ] をダウンロードして、ディスクの任意の場所に展開してください。
+"Terminal" を起動して、展開したディレクトリの glib-libIDL-beos へ cd して、
+以下のようにタイプします。
+
+</FONT></P>
+                      <UL><PRE>buildscript</PRE></UL>
+                      <P><FONT size=2>ライブラリ群の作成が始まり、成功したら以下のような結果になります。</FONT></P>
+                      <UL><PRE>**********************************************
+The support libraries have been built and installed, please set these environment
+vabiables before running the main Mozilla 'configure' script:
+export GLIB_CONFIG=/boot/home/glib-libIDL-beos/glib/bin/glib-config
+export LIBIDL_CONFIG=/boot/home/glib-libIDL-beos/libIDL/bin/libIDL-config
+**********************************************
+</PRE></UL>
+                      <P><FONT size=2>"/boot/home/glib-libIDL-beos/glib/bin/" の部分は、あなたのマシンでは違う表示になることがあります。</FONT></P></UL>
+                    <LI><FONT face=Arial size=2><B>~/.mozconfig</B></FONT> 
+                    <UL>
+                      <P><FONT size=2>Bezilla はさまざまなプラットホームでコンパイルされるため、 "configure" というツールを使います。 
+		      "configure" はプラットホームごとに異なる環境に応じてコードをコンパイルできるようにするためのもので、テンプレートに基づいて makefile を作成し、コンパイルするプラットホームに適合する大量の DEFINE 文を作ります。</FONT></P>
+                      <P><FONT size=2>Bezilla のビルドシステムを適切に設定するために、ホームディレクトリ内に .mozconfig という新しいファイルを作成する必要があります。このファイルの内容は次の内容であるべきです</FONT></P>
+                      <UL><PRE># sh
+# Build configuration script
+#
+# See http://www.mozilla.org/build/unix.html for build instructions.
+#
+# Options for 'configure' (same as command-line options).
+ac_add_options --enable-cpp-rtti
+# Remove the # in the next line for building a Mozilla without debug info.
+#ac_add_options --disable-debug
+</PRE></UL>
+                      <P><FONT size=2>これは、ビルドシステムに RTTI ( Be のライブラリの1つによって要求される ) 機能を有効にするものです。
+この作業を行わなければ mozilla/gfx/beos セクションをコンパイルすることができません。</FONT></P></UL>
+                    <LI><FONT face=Arial size=2><B>~/setupbezilla</B></FONT> 
+                    <UL>
+                      <P><FONT size=2>ビルドプロセスを単純化するために、あなたのホームディレクトリ内に setupbezilla と呼ばれるファイルを作成する必要があります。このファイルを実行することで、ビルドシステムが要求する glib や libIDL のようなライブラリの場所や、
+CVS へ Bezilla のソース・コードを保持しているサーバーを見つけるためにどこを探せばよいかを伝えるための環境変数が設定されます。
+テキストエディターでこのファイルを作成してこのテキストをコピー＆ペーストしてください</FONT></P>
+                      <UL><PRE>export GLIB_CONFIG=/boot/home/glib-libIDL-beos/glib/bin/glib-config
+export LIBIDL_CONFIG=/boot/home/glib-libIDL-beos/libIDL/bin/libIDL-config
+export CVSROOT=:pserver:anonymous@cvs-mirror.mozilla.org:/cvsroot
+</PRE></UL>
+                      <P><FONT size=2>最初の 2 行を glib & libIDL のインストーラが出力したものと同じになる必要があります。
+(実際、 /boot/home/glib-libIDL-beos の部分は、あなたの環境では異なっている場合が多いです。）
+ホームディレクトリ以下に setupbezilla というファイル名で保存してください。</FONT></P></UL></LI></UL></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>&nbsp; 
+
+      <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD width="100%">
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" bgColor=#000000 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD width="100%" bgColor=#990000 height=21><FONT color=#ffffff><B>Bezillaのビルド</B></FONT></TD></TR>
+              <TR>
+                <TD bgColor=#dddddd><FONT size=2>Bezilla をビルドするときは毎回、 "Terminal" を起動し、home ディレクトリから "setupbezilla" スクリプトを実行します。
+
+ソフトウェアの要求に適切に従った場合は以下のようにします。
+（ "〜" は /boot/home と等価です。あなたが setupbezilla ファイルを他のどこかに保存したならば、それを実際のパスにする必要があります。最初のドットはシェルのバックグラウンドと環境変数を交換するために重要です。）
+
+                  <UL><PRE>. ~/setupbezilla</PRE></UL>
+                  <P>今や環境変数は glib や libIDL ライブラリ群や Bezilla のソースコードを持っているサーバがどこにあるかを知っています。ソース・コードを得るために、私たちはサーバーにログインする必要があります。以下のようにタイプします。
+                  <UL><PRE>cvs login</PRE></UL>
+                  <P>パスワードを要求されたら、 anonymous と入力します。
+
+適切に行えば、あなたは Terminal のプロンプトに戻るでしょう。
+その後、以下のコマンドを入力することでコード・サーバーから主要なメイクファイルを取り出せます。
+
+                  <UL><PRE>cvs -z3 checkout mozilla/client.mk</PRE></UL>
+                  <P>"mozilla" ディレクトリを作ります。（ただし同名のファイルやディレクトリが既にある場合や読み出せない場合はエラーになります。）
+
+ "mozilla" ディレクトリ内にはソースコードと "client.mk" というメイクファイルがあります。
+メイクファイルはソースコードのダウンロード方法の指示を含み、
+ビルドシステムの設定し、コードのコンパイルを行います。
+あなたはそれらの作業を行って欲しいときにただ "client.mk" を呼び出せばよいのです。
+
+最初にビルドする場合、全てのソースを取り出して、ビルドシステムを設定してコンパイルします。
+あなたにとって幸運なことに、それはまさに client.mk のデフォルト動作です。 
+
+引数を渡さずに実行すると、ソースをダウンロードしてビルドシステムを設定して Bezilla をコンパイルします。それではやってみましょう。
+                  <UL><PRE>cd mozilla
+make -f client.mk
+</PRE></UL>
+                  <P>CVS 経由でハードディスクにダウンロードされたソースツリーを見てください。
+
+configure スクリプトが終了したら、最後に自動的にコンパイルが始まります。
+実行される場合、編集は始まるでしょう。
+
+256MB の RAM を持つ Pentium 500 MHz のマシンで 2 時間近くかかるので、リラックスして忍耐強く待ちましょう。
+                  <P></FONT></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>&nbsp; 
+      <BR>
+      <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#000000 
+        border=0><TBODY>
+        <TR>
+          <TD width="100%">
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" bgColor=#000000 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD width="100%" bgColor=#990000 height=21><FONT color=#ffffff><B>Bezillaの実行</B></FONT></TD></TR>
+              <TR>
+                <TD bgColor=#dddddd><FONT size=2>実行するためには mozilla/dist/bin へ cd して、以下のようにタイプします。
+                  <UL><PRE>./run-mozilla.sh mozilla</PRE></UL>
+間違いなく “Terminal” から始めるべきです、多くのデバッグ情報がウィンドウ内に表示さわれるでしょう。さあ仕事を始める時間です。デバッグするか支援を求めてください。
+私たちに連絡する方法についてのより多くの情報を得るためには 
+<A href="/ports/beos/contact.html">contact us</A> セクションを見てください。</FONT> 
+                </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/ports/beos/build.html">英語版</a> 2001/08/02</span> - <span>和訳版 2006/03/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/ports/beos/build.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

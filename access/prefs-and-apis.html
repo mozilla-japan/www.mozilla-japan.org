@@ -1,0 +1,568 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>アクセシビリティ用 API を埋め込む</title>
+<style>
+<!--
+.api {color: green; background-color: beige;}
+-->
+</style>
+
+<link rel="alternate" hreflang="en" modified="September 9, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/prefs-and-apis.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+ <h1>アクセシビリティ用 API を埋め込む</h1>
+<ul>
+<p>コメント/質問は <a href="mailto:aaronleventhal@moonset.net">aaronleventhal@moonset.net</a> へ連絡お願いします。
+</p><p> Mozilla はアクセシビリティの方向へ向かって進む必要があります。Mozilla のような<a href="http://www.w3.org/wai/ua"><i>ユーザーエージェント</i>用の W3C によるアクセシビリティ定義</a>がここにあります。 
+
+</p><p>ひとつには、アクセシビリティがあるとは Linux や UNIX デスクトップ用に <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/msaa/msaastart_9w2t.asp">Microsoft Active Accessibility</a> や <a href="http://developer.gnome.org/projects/gap/">ATK</a> などのプラットフォーム用に埋め込まれたアクセシビリティの API をサポートすることを言います。
+</p>
+<p>ユーザーが前景色や背景色、フォントサイズを変更できる設定など他にも多くの API が存在します。 Mozilla はこれらのオプションのいくつかをすでにサポートしています。この文書はアクセシビリティをサポートする API を埋め込む際に、すでに実現している事、これから必要になる事を提示します。</p>
+
+</ul>
+<h2>Window ごとのテキストズーム</h2>
+<ul>
+<p>メソッド <code>nsIDOMWindow::GetTextZoom(float *zoomFactor)</code> と <code>nsIDOMWindow::SetTextZoom(float zoomFactor)</code> は、コンテンツウィンドウ上に幅広いテキストズーム要素を設定するために使用できます。ズーム要素 1.0 は 100% すなわち、通常ズームを表します。二倍のサイズにするには <code>nsIDOMWindow::SetTextZoom(2.0);</code> を使って下さい。</p>
+
+</ul>
+
+<h2>アクセシビリティを設定する</h2>
+<ul>
+<p>アクセシビリティに関連する設定はたくさんあります。大部分は<strong>これらの設定のひとつが変更されると自動リフレームが実行されます</strong>。リフレームとは、ネットワークから文書を再ロードすることなく、ページの表示を新しい設定に合わせることです。なお、デバックビルドにおいては、これによって非常に多くのアサーションが発生します。 
+(bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=71598">71598</a>)</p>
+<p>埋め込み時に設定を使用するには、以下のようなコードを使用して下さい:</p>
+<pre>#include "nsIPref.h";
+nsresult rv;
+
+nsCOMPtr<nsipref> prefs(do_GetService(NS_PREF_CONTRACTID, &rv));
+prefs->SetBoolPref("bool.pref.name", PR_TRUE /* or PR_FALSE */);
+prefs->SetIntPref("int.pref.name", newValue);
+prefs->SetCharPref("string.pref.name", newCharStarValue);
+
+</nsipref></pre>
+設定をマニュアルで追加するには、prefs.js へ以下のような一行を追加して下さい:<br>
+<pre>user_pref("accessibility.browsewithcaret", true);
+</pre>
+</ul>
+
+<h2>アクセシビリティ設定項目参照リスト</h2>
+<ul>
+<p>以下のリストは、アクセシビリティのための設定項目（未実装のものもあり）の説明です :</p>
+
+<table style="text-align: left;" border="1" cellspacing="0">
+<thead>
+<tr>
+<th>
+
+  機能
+</th>
+<th>
+ 実装
+</th>
+<th>
+適用バージョン
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>
+    画像
+  </td>
+
+  <td>
+    <div class="api">SetIntPref("network.image.imageBehavior", behavior);</div>
+    <div>/* behavior: 0=全ての画像を読み込む、1=同じ Web サイトにある画像のみ読み込む、 2= 画像なし */</div>
+  </td>
+  <td>
+    Moz 0.8
+  </td>
+</tr>
+<tr>
+
+  <td>
+  クッキー
+  </td>
+  <td>
+  <div class="api">SetIntPref("network.cookie.cookieBehavior", behavior);</div>
+  <div>/* behavior: 0=全ての Cookie を保存する、1=元の Web サイトからの Cookie のみ保存する、 2= クッキーなし  */ </div>
+  <div class="api">SetBoolPref("network.cookie.warnAboutCookies", boolWarn);</div>
+  </td>
+
+  <td>
+  Moz 0.8
+  </td>
+</tr>
+<tr>
+  <td>
+    フォント
+  </td>
+  <td>
+    <div class="api">SetCharPref("font.name.monospace.x-western", newFontName);</div>
+
+    <div class="api">SetCharPref("font.name.serif.x-western", newFontName);</div>
+    <div class="api">SetCharPref("font.name.sans-serif.x-western", newFontName);</div>
+    <div>/*
+他の i18n charsets では、x-western を以下に変更すること:  x-central-euro、
+x-cyrillic、 x-unicode、 x-user-def、 x-baltic、 el、 tr、 he、 ar、 th、 ja、
+zh-CN、zh-TW へ*/</div>
+    <div> </div>
+    <div class="api">SetIntPref("font.size.fixed.x-western", newFontSize);</div>
+    <div class="api">SetIntPref("font.size.variable.x-western", newFontSize);</div>
+
+    <div>/* 他の i18n charsets は、フォントフェース用に上記で説明した名前を変更すること*/</div>
+    <div> </div>
+    <div class="api">SetCharPref("font.default","serif"); /* or "sans-serif" */</div>
+    <div> </div>
+    <div class="api">SetIntPref("browser.use_document_fonts", whichFonts);</div>
+    <div>/* whichFonts: 0=ドキュメントで指定されたフォントを使用する、 1=常に自分の設定を使用する */</div>
+
+  </td>
+  <td>
+    Moz 0.8
+  </td>
+</tr>
+<tr>
+  <td>
+  OS からのフォント？
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.use_system_fonts", useSystemFonts);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+    ページ用の色
+  </td>
+  <td>
+    <div class="api">SetCharPref("browser.display.foreground_color", "#abcdef" /* hex color value */);</div>
+
+    <div class="api">SetCharPref("browser.display.background_color", "#abcdef" /* hex color value */);</div>
+    <div class="api">SetBoolPref("browser.display.use_system_colors", boolSystemColors);</div>
+    <div class="api">SetBoolPref("browser.display.use_document_colors", boolUseAuthorColors);</div>
+    <div>/* Setting use_document_colors を設定すると、背景画像のロードも行われなくなる。*/ </div>
+  </td>
+  <td>
+    Moz 0.8
+  </td>
+
+</tr>
+<tr>
+  <td>
+    リンク表示
+  </td>
+  <td>
+    <div class="api">SetCharPref("browser.anchor_color", "#abcdef" /* hex color value */);</div>
+    <div class="api">SetCharPref("browser.visited_color", "#abcdef" /* hex color value */);</div>
+    <div class="api">SetBoolPref("browser.underline_anchors", boolUnderlineLinks);</div>
+
+  </td>
+  <td>
+    Moz 0.8
+  </td>
+</tr>
+<tr>
+  <td>
+  フォーカス表示
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.display.use_focus_colors", useFocusColors);</div>
+
+  <div class="api">SetCharPref("browser.display.focus_background_color", colorString);</div>
+  <div class="api">SetCharPref("browser.display.focus_text_color", colorString);</div>
+  <div class="api">SetCharPref("browser.display.focus_ring_width", numPixels); /* 0-4 */</div>
+  </td>
+  <td>
+  Moz 0.9.2
+  </td>
+</tr>
+
+<tr>
+  <td>
+  テキスト選択表示
+  </td>
+  <td>
+  <div class="api">SetCharPref("browser.selection.background_color", colorString);</div>
+  <div class="api">SetCharPref("browser.selection.foreground_color", colorString);</div>
+  <div class="api">SetCharPref("browser.selection.border", cssBorderStyleString);</div>
+
+  <div>/* selection border は実装が困難だろうか? W3C UAAG の要件である。*/</div>
+  <div class="api">SetBoolPref("browser.selection.use_system_colors", useSystemColors);</div>
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+
+  コンテンツを待つ時の警告
+  </td>
+  <td>
+  <div class="api">SetCharPref("alert.audio.mail_waiting", pathToSoundFile);</div>
+  <div class="api">SetCharPref("alert.audio.background_image_waiting", pathToSoundFile);</div>
+  <div class="api">SetCharPref("alert.audio.popup_waiting", pathToSoundFile);</div>
+  <div class="api">SetCharPref("alert.audio.applet_waiting", pathToSoundFile);</div>
+
+  <div class="api">SetCharPref("alert.audio.script_waiting", pathToSoundFile);</div>
+  <div class="api">SetCharPref("alert.audio.redirect_waiting", pathToSoundFile);</div>
+  <div class="api">SetCharPref("alert.audio.refresh_waiting", pathToSoundFile);</div>
+  <div class="api">SetCharPref("alert.audio.plugin_content_waiting", pathToSoundFile);</div>
+  <div class="api">SetCharPref("alert.audio.video_waiting", pathToSoundFile);</div>
+  <div class="api">SetCharPref("alert.audio.audio_waiting", pathToSoundFile);</div>
+
+  <div class="api">SetCharPref("alert.audio.timed_event_waiting", pathToSoundFile);</div>
+  <div>/* これらの警告はまた、ステータスバーかどこかに画像で表示されるだろう。 */</div>
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+
+  背景画像
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.background_images", acceptBackgroundImages);</div>
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+
+  <td>
+  ブリンクするテキスト
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.blink_allowed", acceptBlinkText);</div>
+  </td>
+  <td>
+  未実装
+  </td>
+
+</tr>
+<tr>
+  <td>
+  アニメーション
+  </td>
+  <td>
+  <div class="api">SetCharPref("image.animation_mode", animationMode);</div>
+  <div class="api">animationMode: "normal", "none", "once"</div>
+  </td>
+
+  <td>
+  Moz 0.8
+  </td>
+</tr>
+<tr>
+  <td>
+  アプレット
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.applets", acceptApplets);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  スクリプト
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.scripts", acceptScripts);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  ポップアップするウィンドウ
+  </td>
+  <td>
+      <div>// window.open を特定のサイトでオフにする:</div>
+
+      <div class="api">user_pref("capability.policy.popupsites.sites",
+                "http://www.annoyingsite1.com http://www.popupsite2.com");</div>
+      <div class="api">user_pref("capability.policy.popupsites.windowinternal.open","noAccess");</div>
+      <div> </div>
+      <div>// あるいは全てのサイトでオフにする: </div>
+      <div class="api">user_pref("capability.policy.default.windowinternal.open","noAccess");</div>
+      <div> </div>
+
+      <div>// target=anything で新しいウィンドウをポップアップすることをオーバーライドする。</div>
+      <div class="api">user_pref("browser.block.target_new_window", true);</div>
+      <div> </div>
+      <div>// 新しいページロード開始時にポップアップウィンドウをオーバーライドする（ほとんどのポップアップ広告を阻止する）。
+      <div class="api">user_pref("dom.disable_open_during_load", true);</div>
+
+
+  </div></td>
+
+  <td>
+  Moz 0.8
+  </td>
+</tr>
+<tr>
+  <td>
+  クライアント側リダイレクト
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.redirects", acceptRedirects);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  コンテンツのリフレッシュ
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.refreshes", acceptRefreshes);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  プラグインコンテンツ
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.plugin_content.[plugin_name_goes_here]", acceptPluginContent);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  ビデオ
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.video", acceptVideo);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  オーディオ
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.audio", acceptAudio);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  時間設定イベント
+  </td>
+  <td>
+  <div class="api">SetBoolPref("browser.accept.timed_events", acceptTimedEvents);</div>
+
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  タイマー速度
+  </td>
+  <td>
+  <div class="api">SetIntPref("timer.relative_speed", percent);</div>
+
+  /* 100 が通常速度に対応、200 は 2 倍速 */
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  リストやリンクにおける循環
+  </td>
+  <td>
+
+  <div class="api">SetBoolPref("keyboardnav.allow_cycling", allowCycling);</div>
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+  キーボードフォーカスによって動くマウスポインター
+  </td>
+
+  <td>
+  <div class="api">SetBoolPref("keyboardnav.mouse_follows_keyboard_focus", mouseFollows);</div>
+  /* この機能が設定されると、キーボードの現在フォーカスのあるフレームの 0、0 ピクセルへマウスポインターが必ず移動する。*/
+  </td>
+  <td>
+  未実装
+  </td>
+</tr>
+<tr>
+  <td>
+
+  キャレットによるブラウジング
+  </td>
+  <td>
+  <div class="api">SetBoolPref("accessibility.browsewithcaret", useCaret);</div>
+  /* この機能が設定されるとキャレットがブラウザのテキストに現れ、ユーザーは読み取り専用のエディターの中でのように HTML のコンテンツをカーソルで順に移動出来る。*/
+  </td>
+  <td>
+  Moz 0.9
+  </td>
+</tr>
+
+</tbody>
+</table>
+</ul>
+
+<h2>特別なコンテンツの通知</h2>
+<ul>
+<p>W3C UAAG はオプションになるべきコンテンツの種類を決めています。これは、ユーザが選択可能なコンテンツの存在を知らされた後に、ある時点でそれをロードできるようにすることを意図しています。これは、各ページ、各コンテンツの形式ごとに、ユーザに長いチェックボックスのリストを見せるよりも、はるかによい方法です。</p>
+<p>各 "browser.accept.*" という設定には、対応する "alert.audio.*" という設定があります。これは、各コンテンツの形式に対応する音声ファイルの設定を行うものです。音声ファイルは「ビデオの準備ができました」と言う人間の声のクリップでも単なるビープ音のクリップでも可能です。ユーザーインターフェイスを通してどのようにこれを伝えるかは別の問題になります。
+</ul>
+<h2>インスタンスごとに特別なコンテンツを受け入れる</h2>
+<ul>
+特別なコンテンツの存在を知らされたユーザが、ロードされていないものの中からロードしたいものを選択できるようにしなければなりません。 
+<p></p>
+<p>
+
+そのセッションのそのページ限定で、コンテンツの種類に応じてロードする事ができるメソッドを持つ nsIWebBrowserAccessible インターフェースを作り上げる事が、実現方法の一つです。
+</ul>
+<h2>未解決の問題: URL ごとのアクセシビリティの設定</h2>
+<ul>
+<p>私たちは、URL に基づいて特定の設定を行うためのインターフェイスを設計するでしょう 。それをユーザーに提示する明瞭な手段が見出せるならば、大変役立ちます。例えば、URL ごとの設定によって、ユーザーはおなじみの害のないウェブページから得たスクリプトは受け入れ、そうでないウェブページからは受け入れないようにすることができます。アプレット、背景画像、スタイルシートなどと同類の機能をユーザーは欲しがるかもしれません。
+<p>
+URL に基づくクッキーや画像用の許可システムは既にあります。それを拡張してアクセシビリティの設定を保持する事がおそらく可能でしょう。これは UI の問題で、アクセシビリティ・インターフェイスの埋め込みへどう取り組むか決める前に解決しなければなりません。 
+</p>
+</ul>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/prefs-and-apis.html">英語版</a> 2004/09/09</span> - <span>和訳版 2005/04/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/prefs-and-apis.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

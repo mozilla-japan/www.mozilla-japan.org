@@ -1,0 +1,1816 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+
+            "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+
+   <title>JavaScriptによるブラウザの種類とバージョン判断</title>
+
+
+<!--     [ 和訳履歴 ]
+
+訳者: dynamis <translator@skillup.jp>
+
+和訳初版(2002/04/30): 最初の完成稿。
+
+
+-->
+
+
+<!-- CSSの利用などは訳者による独自追加です -->
+
+<style type="text/css" media="screen,tv">
+
+H1, H2, H3, H4, H5, H6	{ margin: 1em 3em 0.5em; }
+
+.comment	{ color: #20A040;
+
+		  font-size: 80%; }
+
+</style>
+
+<link rel="alternate" hreflang="en" modified="July  7,  2003">
+
+<script language="JavaScript" type="text/javascript">
+
+//<!--
+
+// Ultimate client-side JavaScript client sniff. Version 3.03
+
+// (C) Netscape Communications 1999.  Permission granted to reuse and distribute.
+
+// Revised 17 May 99 to add is_nav5up and is_ie5up (see below).
+
+// Revised 20 Dec 00 to add is_gecko and change is_nav5up to is_nav6up
+
+//                      also added support for IE5.5 Opera4&5 HotJava3 AOLTV
+
+// Revised 22 Feb 01 to correct Javascript Detection for IE 5.x, Opera 4, 
+
+//                      correct Opera 5 detection
+
+//                      add support for winME and win2k
+
+//                      synch with browser-type-oo.js
+
+// Revised 26 Mar 01 to correct Opera detection
+
+// Revised 02 Oct 01 to add IE6 detection
+
+
+// Everything you always wanted to know about your JavaScript client
+
+// but were afraid to ask. Creates "is_" variables indicating:
+
+// (1) browser vendor:
+
+//     is_nav, is_ie, is_opera, is_hotjava, is_webtv, is_TVNavigator, is_AOLTV
+
+// (2) browser version number:
+
+//     is_major (integer indicating major version number: 2, 3, 4 ...)
+
+//     is_minor (float   indicating full  version number: 2.02, 3.01, 4.04 ...)
+
+// (3) browser vendor AND major version number
+
+//     is_nav2, is_nav3, is_nav4, is_nav4up, is_nav6, is_nav6up, is_gecko, is_ie3,
+
+//     is_ie4, is_ie4up, is_ie5, is_ie5up, is_ie5_5, is_ie5_5up, is_ie6, is_ie6up, is_hotjava3, is_hotjava3up,
+
+//     is_opera2, is_opera3, is_opera4, is_opera5, is_opera5up, is_aol3, is_aol4, is_aol5, is_aol6
+
+// (4) JavaScript version number:
+
+//     is_js (float indicating full JavaScript version number: 1, 1.1, 1.2 ...)
+
+// (5) OS platform and version:
+
+//     is_win, is_win16, is_win32, is_win31, is_win95, is_winnt, is_win98, is_winme, is_win2k
+
+//     is_os2
+
+//     is_mac, is_mac68k, is_macppc
+
+//     is_unix
+
+//     is_sun, is_sun4, is_sun5, is_suni86
+
+//     is_irix, is_irix5, is_irix6
+
+//     is_hpux, is_hpux9, is_hpux10
+
+//     is_aix, is_aix1, is_aix2, is_aix3, is_aix4
+
+//     is_linux, is_sco, is_unixware, is_mpras, is_reliant
+
+//     is_dec, is_sinix, is_freebsd, is_bsd
+
+//     is_vms
+
+//
+
+// See http://www.it97.de/JavaScript/JS_tutorial/bstat/navobj.html and
+
+// http://www.it97.de/JavaScript/JS_tutorial/bstat/Browseraol.html
+
+// for detailed lists of userAgent strings.
+
+//
+
+// Note: you don't want your Nav4 or IE4 code to "turn off" or
+
+// stop working when new versions of browsers are released, so
+
+// in conditional code forks, use is_ie5up ("IE 5.0 or greater") 
+
+// is_opera5up ("Opera 5.0 or greater") instead of is_ie5 or is_opera5
+
+// to check version in code which you want to work on future
+
+// versions.
+
+
+    // convert all characters to lowercase to simplify testing
+
+    var agt=navigator.userAgent.toLowerCase();
+
+
+    // *** BROWSER VERSION ***
+
+    // Note: On IE5, these return 4, so use is_ie5up to detect IE5.
+
+    var is_major = parseInt(navigator.appVersion);
+
+    var is_minor = parseFloat(navigator.appVersion);
+
+
+    // Note: Opera and WebTV spoof Navigator.  We do strict client detection.
+
+    // If you want to allow spoofing, take out the tests for opera and webtv.
+
+    var is_nav  = ((agt.indexOf('mozilla')!=-1) && (agt.indexOf('spoofer')==-1)
+
+                && (agt.indexOf('compatible') == -1) && (agt.indexOf('opera')==-1)
+
+                && (agt.indexOf('webtv')==-1) && (agt.indexOf('hotjava')==-1));
+
+    var is_nav2 = (is_nav && (is_major == 2));
+
+    var is_nav3 = (is_nav && (is_major == 3));
+
+    var is_nav4 = (is_nav && (is_major == 4));
+
+    var is_nav4up = (is_nav && (is_major >= 4));
+
+    var is_navonly      = (is_nav && ((agt.indexOf(";nav") != -1) ||
+
+                          (agt.indexOf("; nav") != -1)) );
+
+    var is_nav6 = (is_nav && (is_major == 5));
+
+    var is_nav6up = (is_nav && (is_major >= 5));
+
+    var is_gecko = (agt.indexOf('gecko') != -1);
+
+
+
+    var is_ie     = ((agt.indexOf("msie") != -1) && (agt.indexOf("opera") == -1));
+
+    var is_ie3    = (is_ie && (is_major < 4));
+
+    var is_ie4    = (is_ie && (is_major == 4) && (agt.indexOf("msie 4")!=-1) );
+
+    var is_ie4up  = (is_ie && (is_major >= 4));
+
+    var is_ie5    = (is_ie && (is_major == 4) && (agt.indexOf("msie 5.0")!=-1) );
+
+    var is_ie5_5  = (is_ie && (is_major == 4) && (agt.indexOf("msie 5.5") !=-1));
+
+    var is_ie5up  = (is_ie && !is_ie3 && !is_ie4);
+
+    var is_ie5_5up =(is_ie && !is_ie3 && !is_ie4 && !is_ie5);
+
+    var is_ie6    = (is_ie && (is_major == 4) && (agt.indexOf("msie 6.")!=-1) );
+
+    var is_ie6up  = (is_ie && !is_ie3 && !is_ie4 && !is_ie5 && !is_ie5_5);
+
+
+    // KNOWN BUG: On AOL4, returns false if IE3 is embedded browser
+
+    // or if this is the first browser window opened.  Thus the
+
+    // variables is_aol, is_aol3, and is_aol4 aren't 100% reliable.
+
+    var is_aol   = (agt.indexOf("aol") != -1);
+
+    var is_aol3  = (is_aol && is_ie3);
+
+    var is_aol4  = (is_aol && is_ie4);
+
+    var is_aol5  = (agt.indexOf("aol 5") != -1);
+
+    var is_aol6  = (agt.indexOf("aol 6") != -1);
+
+
+    var is_opera = (agt.indexOf("opera") != -1);
+
+    var is_opera2 = (agt.indexOf("opera 2") != -1 || agt.indexOf("opera/2") != -1);
+
+    var is_opera3 = (agt.indexOf("opera 3") != -1 || agt.indexOf("opera/3") != -1);
+
+    var is_opera4 = (agt.indexOf("opera 4") != -1 || agt.indexOf("opera/4") != -1);
+
+    var is_opera5 = (agt.indexOf("opera 5") != -1 || agt.indexOf("opera/5") != -1);
+
+    var is_opera5up = (is_opera && !is_opera2 && !is_opera3 && !is_opera4);
+
+
+    var is_webtv = (agt.indexOf("webtv") != -1); 
+
+
+    var is_TVNavigator = ((agt.indexOf("navio") != -1) || (agt.indexOf("navio_aoltv") != -1)); 
+
+    var is_AOLTV = is_TVNavigator;
+
+
+    var is_hotjava = (agt.indexOf("hotjava") != -1);
+
+    var is_hotjava3 = (is_hotjava && (is_major == 3));
+
+    var is_hotjava3up = (is_hotjava && (is_major >= 3));
+
+
+    // *** JAVASCRIPT VERSION CHECK ***
+
+    var is_js;
+
+    if (is_nav2 || is_ie3) is_js = 1.0;
+
+    else if (is_nav3) is_js = 1.1;
+
+    else if (is_opera5up) is_js = 1.3;
+
+    else if (is_opera) is_js = 1.1;
+
+    else if ((is_nav4 && (is_minor <= 4.05)) || is_ie4) is_js = 1.2;
+
+    else if ((is_nav4 && (is_minor > 4.05)) || is_ie5) is_js = 1.3;
+
+    else if (is_hotjava3up) is_js = 1.4;
+
+    else if (is_nav6 || is_gecko) is_js = 1.5;
+
+    // NOTE: In the future, update this code when newer versions of JS
+
+    // are released. For now, we try to provide some upward compatibility
+
+    // so that future versions of Nav and IE will show they are at
+
+    // *least* JS 1.x capable. Always check for JS version compatibility
+
+    // with > or >=.
+
+    else if (is_nav6up) is_js = 1.5;
+
+    // NOTE: ie5up on mac is 1.4
+
+    else if (is_ie5up) is_js = 1.3
+
+
+    // HACK: no idea for other browsers; always check for JS version with > or >=
+
+    else is_js = 0.0;
+
+
+    // *** PLATFORM ***
+
+    var is_win   = ( (agt.indexOf("win")!=-1) || (agt.indexOf("16bit")!=-1) );
+
+    // NOTE: On Opera 3.0, the userAgent string includes "Windows 95/NT4" on all
+
+    //        Win32, so you can't distinguish between Win95 and WinNT.
+
+    var is_win95 = ((agt.indexOf("win95")!=-1) || (agt.indexOf("windows 95")!=-1));
+
+
+    // is this a 16 bit compiled version?
+
+    var is_win16 = ((agt.indexOf("win16")!=-1) || 
+
+               (agt.indexOf("16bit")!=-1) || (agt.indexOf("windows 3.1")!=-1) || 
+
+               (agt.indexOf("windows 16-bit")!=-1) );  
+
+
+    var is_win31 = ((agt.indexOf("windows 3.1")!=-1) || (agt.indexOf("win16")!=-1) ||
+
+                    (agt.indexOf("windows 16-bit")!=-1));
+
+
+    var is_winme = ((agt.indexOf("win 9x 4.90")!=-1));
+
+    var is_win2k = ((agt.indexOf("windows nt 5.0")!=-1));
+
+
+    // NOTE: Reliable detection of Win98 may not be possible. It appears that:
+
+    //       - On Nav 4.x and before you'll get plain "Windows" in userAgent.
+
+    //       - On Mercury client, the 32-bit version will return "Win98", but
+
+    //         the 16-bit version running on Win98 will still return "Win95".
+
+    var is_win98 = ((agt.indexOf("win98")!=-1) || (agt.indexOf("windows 98")!=-1));
+
+    var is_winnt = ((agt.indexOf("winnt")!=-1) || (agt.indexOf("windows nt")!=-1));
+
+    var is_win32 = (is_win95 || is_winnt || is_win98 || 
+
+                    ((is_major >= 4) && (navigator.platform == "Win32")) ||
+
+                    (agt.indexOf("win32")!=-1) || (agt.indexOf("32bit")!=-1));
+
+
+    var is_os2   = ((agt.indexOf("os/2")!=-1) || 
+
+                    (navigator.appVersion.indexOf("OS/2")!=-1) ||   
+
+                    (agt.indexOf("ibm-webexplorer")!=-1));
+
+
+    var is_mac    = (agt.indexOf("mac")!=-1);
+
+    // hack ie5 js version for mac
+
+    if (is_mac && is_ie5up) is_js = 1.4;
+
+    var is_mac68k = (is_mac && ((agt.indexOf("68k")!=-1) || 
+
+                               (agt.indexOf("68000")!=-1)));
+
+    var is_macppc = (is_mac && ((agt.indexOf("ppc")!=-1) || 
+
+                                (agt.indexOf("powerpc")!=-1)));
+
+
+    var is_sun   = (agt.indexOf("sunos")!=-1);
+
+    var is_sun4  = (agt.indexOf("sunos 4")!=-1);
+
+    var is_sun5  = (agt.indexOf("sunos 5")!=-1);
+
+    var is_suni86= (is_sun && (agt.indexOf("i86")!=-1));
+
+    var is_irix  = (agt.indexOf("irix") !=-1);    // SGI
+
+    var is_irix5 = (agt.indexOf("irix 5") !=-1);
+
+    var is_irix6 = ((agt.indexOf("irix 6") !=-1) || (agt.indexOf("irix6") !=-1));
+
+    var is_hpux  = (agt.indexOf("hp-ux")!=-1);
+
+    var is_hpux9 = (is_hpux && (agt.indexOf("09.")!=-1));
+
+    var is_hpux10= (is_hpux && (agt.indexOf("10.")!=-1));
+
+    var is_aix   = (agt.indexOf("aix") !=-1);      // IBM
+
+    var is_aix1  = (agt.indexOf("aix 1") !=-1);    
+
+    var is_aix2  = (agt.indexOf("aix 2") !=-1);    
+
+    var is_aix3  = (agt.indexOf("aix 3") !=-1);    
+
+    var is_aix4  = (agt.indexOf("aix 4") !=-1);    
+
+    var is_linux = (agt.indexOf("inux")!=-1);
+
+    var is_sco   = (agt.indexOf("sco")!=-1) || (agt.indexOf("unix_sv")!=-1);
+
+    var is_unixware = (agt.indexOf("unix_system_v")!=-1); 
+
+    var is_mpras    = (agt.indexOf("ncr")!=-1); 
+
+    var is_reliant  = (agt.indexOf("reliantunix")!=-1);
+
+    var is_dec   = ((agt.indexOf("dec")!=-1) || (agt.indexOf("osf1")!=-1) || 
+
+           (agt.indexOf("dec_alpha")!=-1) || (agt.indexOf("alphaserver")!=-1) || 
+
+           (agt.indexOf("ultrix")!=-1) || (agt.indexOf("alphastation")!=-1)); 
+
+    var is_sinix = (agt.indexOf("sinix")!=-1);
+
+    var is_freebsd = (agt.indexOf("freebsd")!=-1);
+
+    var is_bsd = (agt.indexOf("bsd")!=-1);
+
+    var is_unix  = ((agt.indexOf("x11")!=-1) || is_sun || is_irix || is_hpux || 
+
+                 is_sco ||is_unixware || is_mpras || is_reliant || 
+
+                 is_dec || is_sinix || is_aix || is_linux || is_bsd || is_freebsd);
+
+
+    var is_vms   = ((agt.indexOf("vax")!=-1) || (agt.indexOf("openvms")!=-1));
+
+
+//--> end hide JavaScript
+
+</script>
+
+</head>
+
+
+<body text="#000000" bgcolor="#FFFFFF">
+
+<p class="comment">[訳註] Linkタイトルも一部和訳しましたが、実際のLink先に和訳があるとは限りません。和訳が用意されている場合でも、本文書での和訳と異なる題名となっていることがあります。</p>
+
+<ul class="comment">
+
+  <li>Sniffer と Detection : 前者は&quot;嗅ぎ分け&quot;と直訳されることが多いですが、あまり好きな表現ではないので(^^; 前者を&quot;判別&quot;とし、後者は&quot;判断&quot;というように使い分けました。</li>
+
+</ul>
+
+<p class="comment">以下、このような緑色の小さな文字(要CSS対応)となっている部分が訳註です。</p>
+
+<hr size="1" width="100%">
+
+
+<center>
+
+  <b><font size="+2">究極の JavaScript クライアント判別, Version 3.03</font></b>
+
+<br>
+
+  <font size="+1">JavaScriptによってブラウザのベンダ、バージョン、オペレーティングシステムを判断</font>
+
+</center>
+
+
+<p>ウェブページの作成にあたっては、閲覧者が多くのベンダーによる様々なバージョンのブラウザを使用している可能性を考慮に入れる必要があります。プラグインを必要とするような特定のページ要素が全てのオペレーティングシステムで利用可能ではないかも知れない可能性もまた、考慮に入れる必要があるかも知れません。
+
+<p>ここにあるサンプルコードによりブラウザのベンダ、バージョン番号、及びオペレーティングシステムを判断することが出来ます。このコードは次のブラウザでテストされています。Navigator 2, 3, 4、Netscape 6、Internet Explorer 3, 4, 5, 5.5, 6、Opera 3, 4, 5、HotJava 3.0 を Windows 98, Windows NT, Macintosh, RedHat Linux, SunOS5 上で。このコードはJavaScript互換ブラウザの全てのバージョン及びプラットフォームでの互換性があると考えられます。このコードはその名前が &quot;is_&quot; で始まる一連の変数群を生成します。これらの変数はブラウザのベンダ、バージョン番号、JavaScriptバージョン、オペレーティングシステムを示したものとなります。
+
+<p>ブラウザのベンダやバージョンを確認して、最適化したマークアップを動的に生成したり、動的生成ページ或いは使用されているブラウザやバージョン番号に合わせた JavaScript コードを実行する条件分岐をしたりすることが出来ます。
+
+<p>この手法は全てのブラウザでサポートされているわけではない機能を使用したページを作成する上で便利です。例えば、Navigator 4 を使用しているユーザは layer タグを含んだものを表示し、他のユーザは &quot;非レイヤ&quot; 版の同じものを表示することが出来ます。
+
+
+<p>別の例としては、Navigator 4 と Internet Explorer は同じ Dynamic HTML 機能を異なるオブジェクトやメソッドで実装していることが多くあります。ブラウザベンダを確認の後、使用されたブラウザに適した JavaScript コード分岐を行うことが出来ます。Netscape 6 の Gecko レイアウトエンジンの登場により、初めて W3C 標準の DOM Level1,2 を使用したコードを書けるようになりました。将来的には、全てのユーザエージェントが標準準拠となりブラウザやプラットフォームを確認する必要はなくなることでしょうが、Navigator 4 や IE5 がまだ広く使用されている現状では、スクリプトには常にコード分岐を含めるべきです。
+
+<p>
+
+<hr SIZE=1 NOSHADE>
+
+<b>HTMLマークアップの動的生成</b>
+
+<p>ページを多くのブラウザに最適化する場合、ブラウザベンダ及び/或いはバージョンを確認した上で、使用されているブラウザに最適化したHTMLマークアップを動的生成するためにページの body 要素中の script 要素で document.write() 文を使用した方が簡単なことがあります。ベンダやバージョン別の HTML マークアップを動的生成するのに必要なコードの一例を用意しました。このコードは後述するブラウザベンダとバージョンを確認する為の JavaScript コードサンプルによって定義された &quot;is_&quot; 変数を使用します。
+
+<p>注 : Internet Explorer の将来のバージョンで私たちのコードが確実に正しく動作するようにするため、ここでは is_ie5 ではなく is_ie5up 変数を使用しています。しかし、Netscape 6 と Mozilla は Netscape 4 との互換性がないため、Navigator 4 を確認し、Netscape 6, Mozilla や他の Gecko レイアウトエンジンを搭載したユーザエージェントのために is_gecko を使用するべきです。条件分岐コードを書く場合にはいつも将来のブラウザへの前方互換に気を配るのを忘れないように!!
+
+<pre><tt>&lt;SCRIPT>
+
+&lt;!--
+
+&nbsp; if (is_gecko)&nbsp;
+
+&nbsp; {
+
+   // Gecko レイアウトエンジン使用のユーザエージェント用マークアップを生成する document.write()
+
+
+&nbsp; }
+
+&nbsp; else if (is_nav4)
+
+&nbsp; {
+
+   // Navigator 4用マークアップを生成する document.write()
+
+&nbsp; }
+
+&nbsp; else if (is_ie5up)
+
+&nbsp; {
+
+   // IE4 以降用マークアップを生成する document.write()
+
+&nbsp; }
+
+&nbsp; else
+
+&nbsp; {
+
+   // 初期のバージョン用の静的HTMLを生成する document.write()
+
+
+&nbsp; }
+
+// -->
+
+&lt;/SCRIPT></tt></pre>
+
+
+<hr SIZE=1 NOSHADE>
+
+<b>ブラウザ別 JavaScript コード分岐</b>
+
+<p>これで、あなたのページのコア JavaScript 関数中の必要なところでベンダやバージョン別のコード分岐をすることが出来ます。以下のコード分岐は、特定のブラウザでのみ使用可能なオブジェクト、プロパティ、メソッド、関数を使用します。分岐したコードは、その HTML マークアップが特定のブラウザバージョンでのみ動的に生成される HTML ページ要素もまた使用することが出来ます。
+
+<p>この断片的コードは後述するブラウザベンダとバージョンを確認する為の JavaScript コードサンプルによって定義された &quot;is_&quot; 変数を使用し、条件的に別の分岐コードを評価します。
+
+<p>注 : Internet Explorer の将来のバージョンで私たちのコードが確実に正しく動作するようにするため、ここでは is_ie5 ではなく is_ie5up 変数を使用しています。しかし、Netscape 6 と Mozilla は Netscape 4 との互換性がないため、Navigator 4 を確認し、Netscape 6, Mozilla や他の Gecko レイアウトエンジンを搭載したユーザエージェントのために is_gecko を使用するべきです。条件分岐コードを書く場合にはいつも将来のブラウザへの前方互換に気を配るのを忘れないように!!<br>
+
+  <span class="comment">[訳註] 原文では
+
+  ie4up instead of is_ie4 (is_ie4 ではなく is_ie4up) となっていましたが、明らかに間違いであるために訂正しました。</span>
+
+
+<pre><tt>if (is_gecko)
+
+{
+
+   // Gecko レイアウトエンジン搭載のユーザエージェント用の JavaScript をここに
+
+}
+
+else if (is_nav4)
+
+{
+
+   // Navigator 4 用の JavaScript をここに
+
+}
+
+else if (is_ie5up)
+
+{
+
+   // IE4 以降用の JavaScript をここに
+
+}
+
+else if (is_nav3 || is_opera)
+
+{
+
+   // Nav3 と Opera 用の JavaScript をここに
+
+}
+
+else&nbsp;
+
+{
+
+   // IE3 と Nav2 用の JavaScript をここに
+
+}</tt></pre>
+
+
+<hr SIZE=1 NOSHADE>
+
+<b>クライアント判断における古典的ミスその１: 将来のバージョンのブラウザのことを考えない</b>
+
+<p>Y2Kバグについて聞いたことがあるはずです。1999年以降の年を扱うように設計されていないコンピューターソフトウェアが2000年にエラーを起こしてしまうというあれです。では、V5.0 バグについて聞いたことはありますか？
+
+<p>V5.0 バグでは、バージョン 4.ｘ 以降のバージョンのブラウザに備えて設計されていない JavaScript コードがエラーを起こしてしまうのです。年が変わっても誤動作しないようにするために 2000 年までにソフトウェアを再確認するべきであるのと丁度同じように、新しいブラウザで誤動作をしないように Internet Explorer 5 や Netscape 6 を使用する前にソフトウェアを見直すべきです。
+
+<p>この V5.0 はごくありふれたミスによって引き起こされ得ます。これらの問題の犠牲になってしまわぬよう、今すぐコードを確認して下さい。・・・
+
+<p><i>１．コードがヴァージョンN以降のブラウザで動作するなら、== ではなく &gt;= でブラウザバージョンチェックをしていることを確認して下さい。</i>
+
+<p>例えば、Navigator 4 以降と Internet Explorer 4 以降で動作するコードがあるとしましょう。次の2つのクライアント判別の仕方を比較して下さい。・・・<br>
+
+  &nbsp;
+
+
+<center><table BORDER >
+
+<tr>
+
+      <td><b>間違った方法</b></td>
+
+      <td><b>正しい方法</b></td>
+
+</tr>
+
+
+<tr>
+
+      <td><tt>if (is_nav4 || is_ie4) {</tt>
+
+        <p><tt>/* Nav4+, IE4+ で動作するコード。if節が Nav4 と IE4 の時のみ true を返すので、コードは Netscape 6 や IE5 以降では決して実行されません。おおっと！ is_major &gt;= 4 とするべきでしたね。 */<br>
+
+
+          <span class="comment">/* [訳註] 原文のまま訳しましたが、&quot;is_major &gt;= 4とするべき&quot;ではなく、&quot;is_nav4up || is_ie4up とするべき&quot;というのが正しいはずです。 */</span></tt>
+
+        <p><tt>}</tt>
+
+        </td>
+
+
+      <td><tt>if (is_nav4up || is_ie4up) {</tt>
+
+
+        <p><tt>/* Nav4+, IE4+ で動作するコード。if 節は Nav4 以降と IE4 以降で true を返すので、サポートされる全てのブラウザでコードが実行されます。 */</tt>
+
+<p><tt>}</tt></td>
+
+</tr>
+
+</table></center>
+
+
+<p>後述のコードサンプルによる is_major 変数を使用した例も用意しました。
+
+<center><table BORDER>
+
+<tr>
+
+      <td><b>間違った方法</b></td>
+
+      <td><b>正しい方法</b></td>
+
+
+</tr>
+
+
+<tr>
+
+      <td><tt>if (is_major == 4) {</tt>
+
+        <p><tt>/* Nav4+, IE4+ で動作するコード。if節が Nav4 と IE4 の時のみ true を返すので、コードは Netscape 6 や IE5 以降では決して実行されません。おおっと！ is_major &gt;= 4 とするべきでしたね。 */</tt>
+
+        <p><tt>}</tt></td>
+
+
+      <td><tt>if (is_major >= 4) {</tt>
+
+
+        <p><tt>/* Nav4+, IE4+ で動作するコード。if 節は Nav4 以降と IE4 以降で true を返すので、サポートされる全てのブラウザでコードが実行されます。 */</tt>
+
+        <p><tt>}</tt></td>
+
+</tr>
+
+</table></center>
+
+
+<p><i>２．コードを新しいブラウザや W3C DOM に合わせて更新する必要があるのでしたら、今すぐサポートとバージョンチェックを組み込んで下さい。</i>
+
+<p>Gecko レイアウトエンジンは Netscape 6 と Mozilla を W3Cドキュメントオブジェクトモデルレベル1 (DOM1) とレベル2 （DOM2) のような主な標準をサポートする初のブラウザとするでしょう。今に至るまで、先進の JavaScript アプリケーションや Dynamic HTML を書きたいと思うウェブ開発者は Navigator 4 DOM と Internet Explorer 4 DOM を使用するほかありませんでした。これらの DOM はいずれも独占的なものであり、W3C DOM 非準拠であり、相互互換性もありません。同じ機能を2つの異なった DOM で開発しデバッグすることの難しさ、苛立ち、手間から、ウェブ開発者達は全てのブラウザベンダが W3C DOM を完全にサポートし、一度書けばどこでも動くようにすることを求めました。
+
+<p>Netscape 6 と Mozilla は少なくともウェブ開発者達の要求する W3C 標準を提供します。W3C DOM の能力とクスプラットフォーム互換性の利点を全て享受するには、アプリケーションがそれをサポートするように改良する必要があります。W3C DOM を学ぶのには少々時間がかかるが、少なくともベンダー非依存、プラットフォーム非依存、アプリケーション非依存のドキュメントオブジェクトモデルについて学んでいるんだということを忘れないように。W3C DOM は21世紀の DOM なのだから。使い方を学ぶことであなたは、以降の生涯ずっと使用できる、現代のウェブサイトデザインと開発技術の最先端に位置することができるでしょう。
+
+<p>あるユーザエージェントが Gecko レイアウトエンジンを搭載しているか判断するためには、ユーザエージェント文字列が &quot;Gecko&quot; を含んでいるか確認すべきです。現在の Mozilla のユーザエージェント文字列規則についてはこの<a href="http://www.mozilla.org/build/revised-user-agent-strings.html">テクニカルノート</a>をご覧下さい。<br>
+
+
+<hr SIZE=1 NOSHADE>
+
+<b>クライアント判断における古典的ミスその２:  オブジェクト判断とクライアント判断を混同する</b>
+
+<p>クライアント判断の有名な方法の一つにオブジェクト判断があります。オブジェクト判断の支持者は、新しいクライアントは絶えず出てくるのだから、クライアントを明確に判断してクライアント専用のオブジェクトとメソッドを使用するよりも、単に必要なオブジェクトが存在するか確認し、存在すれば使えばいいのだと主張します。
+
+<p>この手法は、その論理の極限までつきつめて、全ての個々のオブジェクトとメソッドを使用前に確実にテストする場合に限って上手くいきます。
+
+<p>この手法の問題は、多くの人が次のようなことをしてしまうことです…
+
+<ul>
+
+  <li>document.all の存在を確認し、存在すれば、IE4 が使用されており document.all それ自体のみならず Internet Explorer の DOM 全てが使用可能だと決めつける。</li>
+
+  <li>document.layers の存在を確認し、存在すれば、Nav4 が使用されており document.layers それ自体のみならず Navigator 4 の DOM 全てが使用可能だと決めつける。</li>
+
+</ul>
+
+例えば、このような感じです。<br>
+
+&nbsp;
+
+
+<center><table BORDER>
+
+<tr>
+
+      <td><b>間違った方法</b></td>            <td><b>正しい方法</b></td>
+
+</tr>
+
+
+<tr>
+
+      <td>
+
+        <tt>if (document.getElementById) {</tt>
+
+        <p><tt>/* document.getElementById に加えてその他多くの Netscape 6 や W3C DOM1 の機能を、それらのオブジェクトやメソッドも同様にテストせずに使用したコード。しまった！ 個々のオブジェクトとメソッド使用前に一度確かめなくては。 */</tt></p>
+
+
+        <p><tt>}&nbsp;
+
+else if (document.layers) {</tt></p>
+
+        <p><tt>/* document.layers に加えてその他多くの Nav4 の機能を、それらのオブジェクトやメソッドも同様にテストせずに使用したコード。しまった！ 個々のオブジェクトとメソッド使用前に一度確かめなくては。 */</tt></p>
+
+        <tt>}&nbsp;
+
+else if (document.all) {</tt>
+
+        <p><tt>/* document.all に加えてその他多くの IE4 の機能を、それらのオブジェクトやメソッドも同様にテストせずに使用したコード。しまった！ 個々のオブジェクトとメソッド使用前に一度確かめなくては。 */</tt></p>
+
+        <tt>}</tt></td>
+
+
+      <td>
+
+        <tt>if (document.getElementById) {</tt>
+
+        <p><tt>/* テストによって存在を確認したのはそれだけなのだから、document.getElementById のみを使用したコード。良いオブジェクト判断コードは個々のオブジェクトとメソッド使用前に一度確認する。 */</tt></p>
+
+        <tt>}&nbsp;else if (document.layers) {</tt>
+
+        <p><tt>/* テストによって存在を確認したのはそれだけなのだから、document.layers のみを使用したコード。良いオブジェクト判断コードは個々のオブジェクトとメソッド使用前に一度確認する。 */</tt></p>
+
+        <tt>}&nbsp;else if (document.all) {</tt>
+
+
+        <p><tt>/* テストによって存在を確認したのはそれだけなのだから、document.all のみを使用したコード。良いオブジェクト判断コードは個々のオブジェクトとメソッド使用前に一度確認する。 */</tt></p>
+
+        <tt>}</tt></td>
+
+</tr>
+
+</table></center>
+
+
+<p>左列のコードが問題であるのは、document.all が定義されていても Internet Explorer 4 であるという保証はどこにもなく、document.layers が定義されていても Netscape Navigator 4 であるという保証はどこにもなく、document.getElementById が定義されていても Netscape 6, Mozilla や他の DOM1 準拠ブラウザであるという保証はどこにもないということです。
+
+<p>新しいブラウザは (Opera や iCAT のように) 絶えず出てくるのです。Netscape や Microsoft のブラウザ以外が Navigator と Internet Explorer の2つの DOM を混合した機能を持つかも知れません。例えば、非Netscape 非Microsoft ブラウザ DOM が document.layers と document.all の<em>両方を</em>サポートし、しかしながらどちらの機能も完全にはサポートしないかも知れません。もし document.all の存在を確認し、そして (document.all が定義されていたら) document.all の他の多くの IE の機能を使用したコードを書けば、そのコードは document.all をサポートするが他の IE の機能をサポートしないブラウザ全てでエラーを起こしてしまうことでしょう。同様に、document.layers の存在を確認し、そして (document.layers が定義されていたら) document.layers の他多くの Navigator 4 の機能を使用したコードを書けば、そのコードは document.layers をサポートするが他の Navigator 4 の機能をサポートしないブラウザ全てでエラーを起こしてしまうことでしょう。
+
+<p>既存のブラウザの新しいバージョンも絶えず出てきます。Netscape 6 や Mozilla は document.getElementById のような DOM1 の機能を完全にサポートしていますが、この機能をサポートする唯一のブラウザではありません。IE5 もまた document.getElementById を実装していますが、他の多くの W3C DOM 機能のサポートが欠けています。この特定のメソッドを判断することで、ブラウザがドキュメントオブジェクトの getElementById をサポートしていることは分かりますが、Netscape 6, Mozilla や IE5 であるかは分からないわけです。
+
+<p>以上による教訓 : 特定のオブジェクトを判断しても、その特定のオブジェクトを判断したに過ぎない。いずれのブラウザであるかは確実には分からない。特定のオブジェクトを判断したことで分かるのは現在のクライアントでその特定のオブジェクトが存在するということに過ぎない。
+
+<p>
+
+<hr SIZE=1 NOSHADE>
+
+
+<b>Internet Explorer の navigator.appVersion に関する変な挙動</b>
+
+<p>Internet Explorer には navigator.appVersion プロパティについて注意すべきおかしなことが2つあります。・・・
+
+<ul>
+
+  <li>navigator.appVersion プロパティを Internet Explorer 3.0 で調べると、Windowsに於いては Internet Explorer 3.0 は自身が Navigator 2.0 だとして navigator.appVersion プロパティが 2 を返すことが分かります。Macintosh に於いては Internet Explorer 3.0 は自身が Navigator 3.0 だとして navigator.appVersion は 3 を返しますが。</li>
+
+  <li>Internet Explorer 5.0 で navigator.appVersion プロパティ を調べれば、4 を返します。</li>
+
+</ul>
+
+結果として、後述のサンプルを使用するときは is_major 及び is_minor 変数の値は額面通りの値として受け取ってはいけません。これらの変数はクライアントの報告する appVersion に過ぎず、正確かも知れませんし、正確でないかも知れません。信頼に足るバージョン判断をするには、is_nav6up, is_nav4, is_ie5up, is_ie4 などといった真偽値変数を使用してください。
+
+<p>
+
+<hr SIZE=1 NOSHADE>
+
+<b>Ameria Online 4.0 の navigator.userAgent に関する変な挙動</b>
+
+<p>AOL のユーザエージェント文字列は必ず &quot;AOL #.#&quot; という文字列を含んでいます。シャープ記号が 3.0 や 4.0 といったバージョンを表します。これは実際ＨＴＴＰヘッダで報告されるユーザエージェント文字列に関しては常に成り立ちます。常に &quot;AOL #.#&quot; が含まれるのです。
+
+
+<p>しかしながら、JavaScript で報告される navigator.userAgent 文字列については、次のような場合 &quot;AOL #.#&quot; がユーザエージェント文字列に含まれないというバグが AOL 4.0 にあります。
+
+<ul>
+
+  <li>AOL のセッションで最初に開かれたブラウザウィンドウである場合。</li>
+
+  <li>組み込みブラウザが MSIE 3.x である場合。</li>
+
+</ul>
+
+このように、navigator.userAgent 文字列の &quot;AOL #.#&quot; を探すことで AOL クライアントを判断しようとするクライアントサイド JavaScript コードは 100% 信頼できるものではありません。今のところ AOL クライアントをクライアントサイド JavaScript で 100% 信頼できる判断ができる対応策は知られていませんので、AOL クライアント判断が必要な場合にで推奨されるのは HTTP ユーザエージェント文字列によるサーバサイドでの判断です。
+
+<p>
+
+
+<hr SIZE=0 WIDTH="100%">
+
+<br>
+
+<b>Netscape 6 の navigator.userAgent に関する変な挙動</b>
+
+<p>Netscape 6 は 6 と呼ばれていますが、ユーザエージェント文字列の含むバージョン番号は 5 であることに注意しなければなりません。そして、このブラウザを判断する場合には is_major == 6 ではなく is_major == 5 として確認しなければなりません。
+
+<p>
+
+<hr SIZE=0 NOSHADE WIDTH="100%">
+
+<b>ブラウザベンダ、バージョン、オペレーティングシステム を判断するJavaScript コード</b>
+
+<p>ブラウザベンダ、バージョン番号、オペレーティングシステムを判断するのに必要な JavaScript コードを用意しました。このコードはブラウザベンダ、バージョン番号、JavaScript バージョン、オペレーティングシステムを示す一連の変数群を生成します。
+
+<p>このコードはJavaScript互換ブラウザの全てのバージョン及びプラットフォームでの互換性があると考えられます。このコードは次のオペレーティングシステムとブラウザでテストされています。・・・
+
+<ul>
+
+<li>
+
+Windows NT:&nbsp; Navigator
+
+4, Navigator 3, and Navigator 2; Internet Explorer 5; Internet Explorer
+
+3; Opera 3</li>
+
+
+<li>
+
+Windows 98: Netscape 6;Navigator
+
+4.76; Internet Explorer 4; Internet Explorer 5; Internet Explorer 5.5;
+
+Opera 5; HotJava 3</li>
+
+
+<li>
+
+Macintosh: Navigator 4, Internet
+
+Explorer 3.01, Internet Explorer 4.02</li>
+
+
+<li>
+
+RedHat Linux 6.2: Navigator
+
+4.6; Netscape 6</li>
+
+
+<li>
+
+SunOS5: Navigator 3</li>
+
+</ul>
+
+
+<pre><tt>
+
+//&lt;!--
+
+// 究極の JavaScript クライアント判別 バージョン 3.03
+
+// (C) Netscape Communications 1999-2001.  再利用と変更を認めます。
+
+// 修正 17 May 99 :  is_nav5up と is_ie5up を追加(後述).
+
+// 修正 20 Dec 00 :  is_gecko を追加、 is_nav5up を is_nav6up に変更
+
+//                   IE5.5 Opera4&amp;5 HotJava3 AOLTV のサポートも追加
+
+// 修正 22 Feb 01 :  IE 5.x, Opera 4, の JavaScript 判断を修正
+
+//                   Opera 5 の判断を修正
+
+//                   winME と win2k のサポートを追加
+
+//                   browser-type-oo.js と同期
+
+<span class="comment">//           [訳註]  非オブジェクト指向バージョンを修正していったあと最後にオブジェクト指向バージョン
+
+//                   にも変更点を纏めて一気に反映させた、ということではないかと予想します。(^^;</span>
+
+// 修正 26 Mar 01 :  Opera の判断を修正
+
+// 修正 02 Oct 01 :  IE6 の判断を追加
+
+
+// JavaScript クライアントについて知りたいがなかなか聞けないもの全て。
+
+// 生成する "is_" 変数が示すのは以下の通り:
+
+// (1) ブラウザベンダ:
+
+//     is_nav, is_ie, is_opera, is_hotjava, is_webtv, is_TVNavigator, is_AOLTV
+
+// (2) ブラウザージョン番号:
+
+//     is_major (integer indicating major version number: 2, 3, 4 ...)
+
+//     is_minor (float   indicating full  version number: 2.02, 3.01, 4.04 ...)
+
+// (3) ブラウザベンダとメジャーバージョン
+
+//     is_nav2, is_nav3, is_nav4, is_nav4up, is_nav6, is_nav6up, is_gecko, is_ie3,
+
+//     is_ie4, is_ie4up, is_ie5, is_ie5up, is_ie5_5, is_ie5_5up, is_ie6, is_ie6up, is_hotjava3, is_hotjava3up,
+
+//     is_opera2, is_opera3, is_opera4, is_opera5, is_opera5up
+
+// (4) JavaScript バージョン番号:
+
+//     is_js (float indicating full JavaScript version number: 1, 1.1, 1.2 ...)
+
+// (5) OS プラットフォームとバージョン:
+
+//     is_win, is_win16, is_win32, is_win31, is_win95, is_winnt, is_win98, is_winme, is_win2k
+
+//     is_os2
+
+//     is_mac, is_mac68k, is_macppc
+
+//     is_unix
+
+//     is_sun, is_sun4, is_sun5, is_suni86
+
+//     is_irix, is_irix5, is_irix6
+
+//     is_hpux, is_hpux9, is_hpux10
+
+//     is_aix, is_aix1, is_aix2, is_aix3, is_aix4
+
+//     is_linux, is_sco, is_unixware, is_mpras, is_reliant
+
+//     is_dec, is_sinix, is_freebsd, is_bsd
+
+//     is_vms
+
+//
+
+// ユーザエージェント文字列の詳細については次を参照してください。
+
+// http://www.it97.de/JavaScript/JS_tutorial/bstat/navobj.html
+
+// http://www.it97.de/JavaScript/JS_tutorial/bstat/Browseraol.html
+
+//
+
+// 注: 新しいブラウザがリリースされてもNav4 や IE4 のコードを&quot;首&quot;に
+
+// したりはしたくないでしょうから、条件分岐する際、将来のバージョン
+
+// でも動作して欲しいコードでは、is_ie5 や is_opera5 ではなく
+
+// is_ie5up (IE5以降)や is_opera5up (Opera5.0 以降) を使用してください。
+
+
+    // テストを簡単にするために全文字列を小文字に変換
+
+    var agt=navigator.userAgent.toLowerCase();
+
+
+    // *** ブラウザージョン ***
+
+    // 注: IE5 ではこの値で 4 が返されるので IE5 の判断には is_ie5up を使用する。
+
+    var is_major = parseInt(navigator.appVersion);
+
+    var is_minor = parseFloat(navigator.appVersion);
+
+
+    // 注: Opera と WebTV は Navigator のマネをしますが、厳密に判断します。
+
+    // マネをするのを認めるなら、opera と webtv のコードを除外してください。
+
+    var is_nav  = ((agt.indexOf('mozilla')!=-1) &amp;&amp; (agt.indexOf('spoofer')==-1)
+
+                &amp;&amp; (agt.indexOf('compatible') == -1) &amp;&amp; (agt.indexOf('opera')==-1)
+
+                &amp;&amp; (agt.indexOf('webtv')==-1) &amp;&amp; (agt.indexOf('hotjava')==-1));
+
+    var is_nav2 = (is_nav &amp;&amp; (is_major == 2));
+
+    var is_nav3 = (is_nav &amp;&amp; (is_major == 3));
+
+    var is_nav4 = (is_nav &amp;&amp; (is_major == 4));
+
+    var is_nav4up = (is_nav &amp;&amp; (is_major &gt;= 4));
+
+    var is_navonly      = (is_nav &amp;&amp; ((agt.indexOf(";nav") != -1) ||
+
+                          (agt.indexOf("; nav") != -1)) );
+
+    var is_nav6 = (is_nav &amp;&amp; (is_major == 5));
+
+    var is_nav6up = (is_nav &amp;&amp; (is_major &gt;= 5));
+
+    var is_gecko = (agt.indexOf('gecko') != -1);
+
+
+
+    var is_ie     = ((agt.indexOf("msie") != -1) &amp;&amp; (agt.indexOf("opera") == -1));
+
+    var is_ie3    = (is_ie &amp;&amp; (is_major &lt; 4));
+
+    var is_ie4    = (is_ie &amp;&amp; (is_major == 4) &amp;&amp; (agt.indexOf("msie 4")!=-1) );
+
+    var is_ie4up  = (is_ie &amp;&amp; (is_major &gt;= 4));
+
+    var is_ie5    = (is_ie &amp;&amp; (is_major == 4) &amp;&amp; (agt.indexOf("msie 5.0")!=-1) );
+
+    var is_ie5_5  = (is_ie &amp;&amp; (is_major == 4) &amp;&amp; (agt.indexOf("msie 5.5") !=-1));
+
+    var is_ie5up  = (is_ie &amp;&amp; !is_ie3 &amp;&amp; !is_ie4);
+
+    var is_ie5_5up =(is_ie &amp;&amp; !is_ie3 &amp;&amp; !is_ie4 &amp;&amp; !is_ie5);
+
+    var is_ie6    = (is_ie &amp;&amp; (is_major == 4) &amp;&amp; (agt.indexOf("msie 6.")!=-1) );
+
+    var is_ie6up  = (is_ie &amp;&amp; !is_ie3 &amp;&amp; !is_ie4 &amp;&amp; !is_ie5 &amp;&amp; !is_ie5_5);
+
+
+    // 既知のバグ: AOL4 では IE3 が組み込まれている場合や最初に開かれたブラウザ
+
+    // ウィンドウである場合には false を返します。であるから、is_aol, is_aol3,
+
+    // is_aol4 は 100% 信頼できるものではありません。
+
+    var is_aol   = (agt.indexOf("aol") != -1);
+
+    var is_aol3  = (is_aol &amp;&amp; is_ie3);
+
+    var is_aol4  = (is_aol &amp;&amp; is_ie4);
+
+    var is_aol5  = (agt.indexOf("aol 5") != -1);
+
+    var is_aol6  = (agt.indexOf("aol 6") != -1);
+
+
+    var is_opera = (agt.indexOf("opera") != -1);
+
+    var is_opera2 = (agt.indexOf("opera 2") != -1 || agt.indexOf("opera/2") != -1);
+
+    var is_opera3 = (agt.indexOf("opera 3") != -1 || agt.indexOf("opera/3") != -1);
+
+    var is_opera4 = (agt.indexOf("opera 4") != -1 || agt.indexOf("opera/4") != -1);
+
+    var is_opera5 = (agt.indexOf("opera 5") != -1 || agt.indexOf("opera/5") != -1);
+
+    var is_opera5up = (is_opera &amp;&amp; !is_opera2 &amp;&amp; !is_opera3 &amp;&amp; !is_opera4);
+
+
+    var is_webtv = (agt.indexOf("webtv") != -1); 
+
+
+    var is_TVNavigator = ((agt.indexOf("navio") != -1) || (agt.indexOf("navio_aoltv") != -1)); 
+
+    var is_AOLTV = is_TVNavigator;
+
+
+    var is_hotjava = (agt.indexOf("hotjava") != -1);
+
+    var is_hotjava3 = (is_hotjava &amp;&amp; (is_major == 3));
+
+    var is_hotjava3up = (is_hotjava &amp;&amp; (is_major &gt;= 3));
+
+
+    // *** JAVASCRIPT バージョン ***
+
+    var is_js;
+
+    if (is_nav2 || is_ie3) is_js = 1.0;
+
+    else if (is_nav3) is_js = 1.1;
+
+    else if (is_opera5up) is_js = 1.3;
+
+    else if (is_opera) is_js = 1.1;
+
+    else if ((is_nav4 &amp;&amp; (is_minor &lt;= 4.05)) || is_ie4) is_js = 1.2;
+
+    else if ((is_nav4 &amp;&amp; (is_minor &gt; 4.05)) || is_ie5) is_js = 1.3;
+
+    else if (is_hotjava3up) is_js = 1.4;
+
+    else if (is_nav6 || is_gecko) is_js = 1.5;
+
+    // 注: 将来的には、新しいバージョンのJSが出たらこのコードを更新します。
+
+    // 今のところ、将来のバージョンの Nav や IE が&quot;少なくとも&quot; JS 1.x 互換
+
+    // であることを示します。JS バージョン互換のチェックには常に &gt; や &gt;=
+
+    // を使用するようにしてください。
+
+    else if (is_nav6up) is_js = 1.5;
+
+    // 注: マックでの ie5up は 1.4
+
+    else if (is_ie5up) is_js = 1.3
+
+
+    // HACK: 他のブラウザは分かりません。JS バージョンチェックは &gt; や&gt;= で。
+
+    else is_js = 0.0;
+
+
+    // *** プラットフォーム ***
+
+    var is_win   = ( (agt.indexOf("win")!=-1) || (agt.indexOf("16bit")!=-1) );
+
+    // 注: Opera 3.0 では Win32 環境全てでユーザエージェント文字列に "Windows 95/NT4"
+
+    // が含まれており、Win95 と WinNT の区別が出来ません。
+
+    var is_win95 = ((agt.indexOf("win95")!=-1) || (agt.indexOf("windows 95")!=-1));
+
+
+    // 16 bit バージョンと思われる。
+
+    var is_win16 = ((agt.indexOf("win16")!=-1) || 
+
+               (agt.indexOf("16bit")!=-1) || (agt.indexOf("windows 3.1")!=-1) || 
+
+               (agt.indexOf("windows 16-bit")!=-1) );  
+
+
+    var is_win31 = ((agt.indexOf("windows 3.1")!=-1) || (agt.indexOf("win16")!=-1) ||
+
+                    (agt.indexOf("windows 16-bit")!=-1));
+
+
+    var is_winme = ((agt.indexOf("win 9x 4.90")!=-1));
+
+    var is_win2k = ((agt.indexOf("windows nt 5.0")!=-1));
+
+
+    // 注: Win98 の信頼できる判断法は存在しないようです。次のようだから:
+
+    //      - Nav4.x 以前ではユーザエージェントで &quot;Windows&quot; だけしか得られない。
+
+    //      - Win98 上の Mercury では 32 bit バージョンは &quot;Win98&quot; を返すが、
+
+    //        16 bit バージョンは &quot;Win95&quot; を返す。
+
+    var is_win98 = ((agt.indexOf("win98")!=-1) || (agt.indexOf("windows 98")!=-1));
+
+    var is_winnt = ((agt.indexOf("winnt")!=-1) || (agt.indexOf("windows nt")!=-1));
+
+    var is_win32 = (is_win95 || is_winnt || is_win98 || 
+
+                    ((is_major &gt;= 4) &amp;&amp; (navigator.platform == "Win32")) ||
+
+                    (agt.indexOf("win32")!=-1) || (agt.indexOf("32bit")!=-1));
+
+
+    var is_os2   = ((agt.indexOf("os/2")!=-1) || 
+
+                    (navigator.appVersion.indexOf("OS/2")!=-1) ||   
+
+                    (agt.indexOf("ibm-webexplorer")!=-1));
+
+
+    var is_mac    = (agt.indexOf("mac")!=-1);
+
+    // hack: マックでの ie5 の JavaScript バージョン
+
+    if (is_mac &amp;&amp; is_ie5up) is_js = 1.4;
+
+    var is_mac68k = (is_mac &amp;&amp; ((agt.indexOf("68k")!=-1) || 
+
+                               (agt.indexOf("68000")!=-1)));
+
+    var is_macppc = (is_mac &amp;&amp; ((agt.indexOf("ppc")!=-1) || 
+
+                                (agt.indexOf("powerpc")!=-1)));
+
+
+    var is_sun   = (agt.indexOf("sunos")!=-1);
+
+    var is_sun4  = (agt.indexOf("sunos 4")!=-1);
+
+    var is_sun5  = (agt.indexOf("sunos 5")!=-1);
+
+    var is_suni86= (is_sun &amp;&amp; (agt.indexOf("i86")!=-1));
+
+    var is_irix  = (agt.indexOf("irix") !=-1);    // SGI
+
+    var is_irix5 = (agt.indexOf("irix 5") !=-1);
+
+    var is_irix6 = ((agt.indexOf("irix 6") !=-1) || (agt.indexOf("irix6") !=-1));
+
+    var is_hpux  = (agt.indexOf("hp-ux")!=-1);
+
+    var is_hpux9 = (is_hpux &amp;&amp; (agt.indexOf("09.")!=-1));
+
+    var is_hpux10= (is_hpux &amp;&amp; (agt.indexOf("10.")!=-1));
+
+    var is_aix   = (agt.indexOf("aix") !=-1);      // IBM
+
+    var is_aix1  = (agt.indexOf("aix 1") !=-1);    
+
+    var is_aix2  = (agt.indexOf("aix 2") !=-1);    
+
+    var is_aix3  = (agt.indexOf("aix 3") !=-1);    
+
+    var is_aix4  = (agt.indexOf("aix 4") !=-1);    
+
+    var is_linux = (agt.indexOf("inux")!=-1);
+
+    var is_sco   = (agt.indexOf("sco")!=-1) || (agt.indexOf("unix_sv")!=-1);
+
+    var is_unixware = (agt.indexOf("unix_system_v")!=-1); 
+
+    var is_mpras    = (agt.indexOf("ncr")!=-1); 
+
+    var is_reliant  = (agt.indexOf("reliantunix")!=-1);
+
+    var is_dec   = ((agt.indexOf("dec")!=-1) || (agt.indexOf("osf1")!=-1) || 
+
+           (agt.indexOf("dec_alpha")!=-1) || (agt.indexOf("alphaserver")!=-1) || 
+
+           (agt.indexOf("ultrix")!=-1) || (agt.indexOf("alphastation")!=-1)); 
+
+    var is_sinix = (agt.indexOf("sinix")!=-1);
+
+    var is_freebsd = (agt.indexOf("freebsd")!=-1);
+
+    var is_bsd = (agt.indexOf("bsd")!=-1);
+
+    var is_unix  = ((agt.indexOf("x11")!=-1) || is_sun || is_irix || is_hpux || 
+
+                 is_sco ||is_unixware || is_mpras || is_reliant || 
+
+                 is_dec || is_sinix || is_aix || is_linux || is_bsd || is_freebsd);
+
+
+    var is_vms   = ((agt.indexOf("vax")!=-1) || (agt.indexOf("openvms")!=-1));
+
+
+// JavaScript隠蔽終了 --&gt;</tt></pre>
+
+
+<hr SIZE=1 NOSHADE>
+
+<b>あなたのブラウザプロファイル</b>
+
+<p>これはあなたがお使いのブラウザでこのコードを使用した結果です。以下のテキストはご利用のブラウザベンダ、バージョン、オペレーティングシステムを JavaScript で判別して動的生成したものです。
+
+<p><b>元となるデータ</b>
+
+<br>
+
+  <script language="JavaScript" type="text/javascript">
+
+<!--
+
+
+document.write("navigator.appName " + navigator.appName + "<BR>");
+
+document.write("navigator.userAgent " + navigator.userAgent + "<BR>");
+
+document.write("navigator.appVersion " + navigator.appVersion + "<BR>");
+
+//-->
+
+</script>
+
+
+<p><b>バージョン番号</b>
+
+<br>
+
+  <script language="JavaScript" type="text/javascript">
+
+<!--
+
+	document.write("major:" + is_major + "<BR>");
+
+	document.write("minor:" + is_minor + "<BR>");
+
+
+//--></script>
+
+
+<p><b>ブラウザバージョン</b><br>
+
+  <script language="JavaScript" type="text/javascript">
+
+<!--
+
+
+	document.write("nav:" + is_nav + "<BR>");
+
+	document.write("nav2:" + is_nav2 + "<BR>");
+
+	document.write("nav3:" + is_nav3 + "<BR>");
+
+	document.write("nav4:" + is_nav4 + "<BR>");
+
+	document.write("nav4up:" + is_nav4up + "<BR>");
+
+	document.write("nav6:" + is_nav6 + "<BR>");
+
+	document.write("nav6up:" + is_nav6up + "<BR>");
+
+    	document.write("gecko:" + is_gecko + "<BR>");
+
+	document.write("navonly:" + is_navonly + "<BR>");
+
+	document.write("<P>" + "ie:" + is_ie + "<BR>");
+
+	document.write("ie3:" + is_ie3 + "<BR>");
+
+	document.write("ie4:" + is_ie4 + "<BR>");
+
+	document.write("ie4up:" + is_ie4up + "<BR>");
+
+	document.write("ie5:" + is_ie5 + "<BR>");
+
+	document.write("ie5up:" + is_ie5up + "<BR>");
+
+    	document.write("ie5_5:" + is_ie5_5 + "<BR>");
+
+    	document.write("ie5_5up:" + is_ie5_5up + "<BR>");
+
+    	document.write("ie6:" + is_ie6 + "<BR>");
+
+    	document.write("ie6up:" + is_ie6up + "<BR>");
+
+	document.write("<P>" + "aol:" + is_aol + "<BR>");
+
+	document.write("aol3:" + is_aol3 + "<BR>");
+
+	document.write("aol4:" + is_aol4 + "<BR>");
+
+	document.write("aol5:" + is_aol5 + "<BR>");
+
+	document.write("aol6:" + is_aol6 + "<BR>");
+
+	document.write("<P>" + "opera:" + is_opera + "<BR>");
+
+	document.write("opera2:" + is_opera2 + "<BR>");
+
+	document.write("opera3:" + is_opera3 + "<BR>");
+
+	document.write("opera4:" + is_opera4 + "<BR>");
+
+	document.write("opera5:" + is_opera5 + "<BR>");
+
+	document.write("opera5up:" + is_opera5up + "<BR>");
+
+	document.write("<P>" + "webtv:" + is_webtv + "<BR>");
+
+	document.write("<P>" + "hotjava:" + is_hotjava + "<BR>");
+
+	document.write("hotjava3:" + is_hotjava3 + "<BR>");
+
+	document.write("hotjava3up:" + is_hotjava3up + "<BR>");
+
+	document.write("<P>" + "AOL TV(TVNavigator):" + is_TVNavigator + "<BR>");
+
+//-->
+
+</script>
+
+
+<p><b>JavaScript バージョン</b>
+
+<br>
+
+  <script language="JavaScript" type="text/javascript">
+
+<!--
+
+	document.write("js:" + is_js + "<BR>");
+
+//-->
+
+</script>
+
+
+<p><b>OS</b>
+
+<br><script language="JavaScript" type="text/javascript">
+
+<!--
+
+	document.write("win:" + is_win + "<BR>");
+
+	document.write("win16:" + is_win16 + "<BR>");
+
+	document.write("win31:" + is_win31 + "<BR>");
+
+	document.write("win32:" + is_win32 + "<BR>");
+
+	document.write("win95:" + is_win95 + "<BR>");
+
+	document.write("win98:" + is_win98 + "<BR>");
+
+	document.write("winme:" + is_winme + "<BR>");
+
+	document.write("winnt:" + is_winnt + "<BR>");
+
+	document.write("win2k:" + is_win2k + "<BR>");
+
+
+	document.write("<P>" + "os2:" + is_os2 + "<BR>");
+
+
+	document.write("<P>" + "mac:" + is_mac + "<BR>");
+
+	document.write("mac68k:" + is_mac68k + "<BR>");
+
+	document.write("macppc:" + is_macppc + "<BR>");
+
+
+	document.write("<P>" + "unix:" + is_unix + "<BR>");
+
+	document.write("sun:" + is_sun + "<BR>");
+
+	document.write("sun4:" + is_sun4 + "<BR>");
+
+	document.write("sun5:" + is_sun5 + "<BR>");
+
+	document.write("suni86:" + is_suni86 + "<BR>");
+
+	document.write("irix:" + is_irix + "<BR>");
+
+	document.write("irix5:" + is_irix5 + "<BR>");
+
+	document.write("irix6:" + is_irix6 + "<BR>");
+
+	document.write("hpux:" + is_hpux + "<BR>");
+
+	document.write("hpux9:" + is_hpux9 + "<BR>");
+
+	document.write("hpux10:" + is_hpux10 + "<BR>");
+
+	document.write("aix:" + is_aix + "<BR>");
+
+	document.write("aix1:" + is_aix1 + "<BR>");
+
+	document.write("aix2:" + is_aix2 + "<BR>");
+
+	document.write("aix3:" + is_aix3 + "<BR>");
+
+	document.write("aix4:" + is_aix4 + "<BR>");
+
+	document.write("linux:" + is_linux + "<BR>");
+
+	document.write("sco:" + is_sco + "<BR>");
+
+	document.write("unixware:" + is_unixware + "<BR>");
+
+	document.write("mpras:" + is_mpras + "<BR>");
+
+	document.write("reliant:" + is_reliant + "<BR>");
+
+	document.write("dec:" + is_dec + "<BR>");
+
+	document.write("sinix:" + is_sinix + "<BR>");
+
+	document.write("bsd:" + is_bsd + "<BR>");
+
+	document.write("freebsd:" + is_freebsd + "<BR>");
+
+
+	document.write("<P>" + "vms:" + is_vms + "<BR>");
+
+//-->
+
+
+</script>
+
+
+<p>
+
+<hr SIZE=1 NOSHADE>
+
+<dl>
+
+  <dt>
+
+<b>で、何故オブジェクト指向にしないのかって？</b></dt>
+
+  <dd>
+
+    <p>以下のようにもう少し美しい手法ではなく、どうして似たような名前の変数群を生成するのか疑問なのでしょう。・・・
+
+    <pre><tt>function Is ()
+
+{&nbsp;&nbsp; var agt=navigator.userAgent.toLowerCase();
+
+
+&nbsp;&nbsp;&nbsp; this.major = parseInt(navigator.appVersion);
+
+
+&nbsp;&nbsp;&nbsp; this.minor = parseFloat(navigator.appVersion);
+
+
+&nbsp;&nbsp;&nbsp; this.nav&nbsp; = ((agt.indexOf('mozilla')!=-1) &amp;&amp; ((agt.indexOf('spoofer')==-1)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;&amp; (agt.indexOf('compatible') == -1)));
+
+&nbsp;&nbsp;&nbsp; this.nav2 = (this.nav &amp;&amp; (this.major == 2));
+
+&nbsp;&nbsp;&nbsp; this.nav3 = (this.nav &amp;&amp; (this.major == 3));
+
+
+
+&nbsp;&nbsp;&nbsp; <i>・・・ 中略 ・・・</i>
+
+&nbsp;&nbsp;&nbsp; this.vms&nbsp;&nbsp; = (agt.indexOf("vax")!=-1) || (agt.indexOf("openvms")!=-1);
+
+}
+
+
+var is = new Is();&nbsp;
+
+
+if (is.nav) {&nbsp; <i>・・・ navigator 用コードをここに ・・・</i> }
+
+else if (is.ie) {&nbsp; <i>・・・ explorer 用コードをここに ・・・</i> }</tt></pre>
+
+
+    簡単なことです。&quot;is&quot; オブジェクトに纏めることでカプセル化した変数を提供するこのコードの方が遙かに美しいですが、Macintosh の Internet Explorer 3 では破綻します。Mac の IE3 で &quot;is&quot; オブジェクトを生成する場合、最初の読み込み時は上手くコードが動作しますが、ページをリロードすればブラウザがクラッシュします。Mac の IE3 でのこの問題を回避するため、&quot;is&quot; オブジェクトは生成しないのです。その代わり、同じような名前の真偽値変数群を生成します。これは汚いですが、Macintosh IE3 での JScript のこのバグに対応させる代償なのです。
+
+    <p>もう一つ考えられる対策は全てのブラウザでオブジェクト指向のコードを使用するが、Mac の IE3 ではオブジェクト指向コードの実装を避けるようにするチェックで囲うことです。これによりオブジェクト指向の設計を保ちますが、is オブジェクトを参照する度に if (!isIE3Mac &amp;&amp; is_nav4up) といった追加の真偽判断が必要となります。こういった追加の真偽判断は面倒なので、諦めて上のような単純な非オブジェクト指向としたのです。しかしながら、オブジェクト指向の手法が好きでしたら、<a href="browser_type_oo.html">Macでの安全確認付オブジェクト指向クライアント判別</a>を用意していますのでご利用下さい。最後に、Mac の IE3 をサポートする必要が<em>ない</em>のでしたら、オブジェクト指向コードを用いつつ、Macでの安全確認を省くことも出来ます。<br>
+
+
+      &nbsp;
+
+  </dd>
+
+  <dt>
+
+</dl>
+
+<hr SIZE=1 NOSHADE>
+
+<dl>
+
+  <dt>
+
+<b>他のブラウザ判別に関する情報源</b></dt>
+
+  <dd>
+
+&nbsp;<a href="http://www.gemal.dk/browserspy/" TARGET="_top">BrowserSpy</a></dd>
+
+
+  <dd>
+
+&nbsp;<a href="http://www.mozilla.org/build/revised-user-agent-strings.html" TARGET="_top">userAgent
+
+Strings on Browsers Based on Mozilla and Applications That Embed Gecko
+
+Layout Engine</a></dd>
+
+</dl>
+
+<hr SIZE=1 NOSHADE>
+
+<dl>
+
+
+  <dt>
+
+<b>更に詳しく</b></dt>
+
+  <dd>
+
+<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/support/bugs/index.html?content=known/javascript.html" TARGET="_top">JavaScript
+
+Known Bug List</a>
+
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/examples/javascript.html">Sample
+
+Code Area</a>
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/articles/index.html?content=javascript.html" TARGET="_top">Articles</a>
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/support/courses/index.html?content=courses.html" TARGET="_top">JavaScript
+
+Course</a>
+
+    <!--
+
+<BR><A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/communicator/stylesheets/jssindex.htm" TARGET=content>Dynamic Style Sheets</A>
+
+-->
+
+    <br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/jsresource.html">Other
+
+JavaScript Resources</a>
+
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/tech/javascript/index.html?content=/docs/manuals/javascript.html" TARGET="_top">JavaScript
+
+Documentation</a>
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/communicator/jsguide/js1_2.htm" TARGET="_top">What's
+
+New in JavaScript for Navigator 4.0</a>
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/software/tools/index.html?content=listing/application/javascript/javascript.html" TARGET="_top">JavaScript
+
+Scripting Tools</a>
+
+</dd>
+
+</dl>
+
+
+<hr SIZE=1 NOSHADE>
+
+
+<dl>
+
+  <dt>
+
+<b>VIEW SOURCE の記事</b></dt>
+
+  <dd>
+
+<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=kuslich_javascript.html" TARGET="_top">Beyond
+
+Data Basics: Writing JavaScript Database Applications, Part 1</a>
+
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=jjfinal.html" TARGET="_top">Beyond
+
+Data Basics: Writing JavaScript Database Applications, Part 2</a>
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_dateobject.html" TARGET="_top">JavaScript
+
+Date Object Techniques</a>
+
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=angus_layers/angus_layers.html" TARGET="_top">Scripting
+
+Layer Effects and Transitions</a>
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=goodman_javascript.html" TARGET="_top">Detecting
+
+a JavaScript Client</a>
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/viewsource/index_frame.html?content=angus.html" TARGET="_top">Bringing
+
+Images to Life with JavaScript</a></dd>
+
+</dl>
+
+
+<hr SIZE=1 NOSHADE>
+
+<dl>
+
+  <dt>
+
+
+<b>会員情報源</b></dt>
+
+  <dd>
+
+<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/support/newsgroups/index.html?content=newsgrp.html#javascript" TARGET="_top">JavaScript
+
+Newsgroups</a>
+
+
+<br>
+
+    <a href="http://web.archive.org/web/20041111155627/developer.netscape.com/support/faqs/index.html?content=champions/javascript.html" TARGET="_top">JavaScript
+
+FAQ</a></dd>
+
+</dl>
+
+<script language="JavaScript" type="text/javascript"><!--
+
+var atSign="@"
+
+var mailProtocol="mailto:"
+
+document.write('<HR SIZE=1 NOSHADE><h4>このテクニカルノートにコメントがあるのですか？</h4>');
+
+document.write('<p>JavaScript、Dynamic HTML や その他の Netscape の技術や製品に関してテクニカルサポートやその他の支援が欲しいのでしたら、<a href="http://web.archive.org/web/20041111155627/developer.netscape.com/support/index.html" TARGET="_top">サポートエリア</a>を訪れてください。');
+
+document.write('このコードサンプルに対するコメントや提案は<a href="' + mailProtocol + 'xbrowser' + atSign + 'netscape.com?SUBJECT=client sniffer comments (DON&#039;T CHANGE THIS SUBJECT!)">' +
+
+'xbrowser' + atSign + 'netscape.com</a>にメールを送って下さい。');
+
+document.write('問題を報告してくださったり質問をされる場合、以下の情報を含んでいることをご確認下さい。・・・');
+
+document.write('<UL><LI>ハードウェアプラットフォームと OS のバージョン (例: iMac with MacOS 8.5)</LI>');
+
+document.write('<LI>ブラウザのベンダとバージョン番号 (例: Navigator 4.08)</LI>');
+
+document.write('<LI>問題の詳細</LI>');
+
+document.write('<LI>上の "あなたのブラウザプロファイル" 章すべてを、問題のあるというブラウザで表示したもののコピー。</LI></UL>');
+
+document.write('<p class="comment">[訳註] 勿論ですが、英語でお願いします。(^^;</p>');
+
+
+document.write('<p>提案が多数あるので私たちは通常は個別に応答することができませんが、送られたコメントはこのサイトの将来のコンテンツ作成に取り入れていきます。</p>');
+
+//--></script>
+
+
+<!--<script language="JavaScript" type="text/javascript">
+
+//[訳註] この部分の原文はコメントアウトして残すことにしました。
+
+
+// Try to be sneaky and prevent spam-bots from seeing this email address.
+
+// If they're smart enough to include a JavaScript interpreter which
+
+// parses the page before they scan it, this won't help.
+
+var atSign="@";
+
+var mailProtocol="mailto:";
+
+
+document.write('<P><HR SIZE=1 NOSHADE><B>COMMENTS ABOUT THIS CODE SAMPLE? </B>');
+
+document.write('<P>If you would like technical support or other assistance regarding JavaScript, Dynamic HTML, or other Netscape technologies and products, please visit the <A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/support/index.html" TARGET="_top">support area</A>. ');
+
+document.write('Email comments and suggestions about this code sample to <A HREF="' + mailProtocol + 'xbrowser' + atSign + 'netscape.com?SUBJECT=client sniffer comments (DON&#039;T CHANGE THIS SUBJECT!)">' + 'xbrowser' + atSign + 'netscape.com</A>. If you report a problem or ask a question, be sure to include the following information: ');
+
+document.write('<UL><LI>hardware platform and OS version (e.g. iMac with MacOS 8.5)</LI>');
+
+document.write('<LI>browser vendor and version number (e.g. Navigator 4.08)</LI>');
+
+document.write('<LI>a detailed description of the problem</LI>');
+
+document.write('<LI>the entire "Profile of Your Browser" section above, displayed in the browser you&#039;re having a problem with and copied and pasted into the email message</LI></UL>');
+
+
+document.write('<P>Because of the volume of submissions, we usually can&#039;t respond personally, but we will take your comments into consideration when planning future content for the site.');
+
+//</script> -->
+
+<center>
+
+
+  <p>Sun-Netscapeアライアンスの成果についての最新の技術情報を得るには、<a href="http://developer.iplanet.com/index.html" target="_top">http://developer.iplanet.com</a> へどうぞ。
+
+  <p>更なるインターネット開発の情報源を得るには、<a href="http://home.netscape.com/computing/techsearch/index.html?cp=dev01bnts" target="_top">Netscape
+
+TechSearch</a> をお試し下さい。
+
+</center>
+
+
+<hr SIZE=1>
+
+<center><font size="-1">Copyright &copy;
+
+1999-2001 <a href="http://home.netscape.com/misc/trademarks.html" TARGET="_top">Netscape
+
+Communications Corporation</a>.</font>
+
+
+<br><font size="-1">This site powered by: <a href="http://home.netscape.com/servers/index.html" TARGET="_top">Netscape
+
+Enterprise Server</a> and <a href="http://home.netscape.com/compass/v3.0/index.html" TARGET="_top">Netscape
+
+Compass Server</a>.</font></center>
+
+
+<hr size="1" width="100%">
+
+<div align="right"><font size="-1">
+
+訳者： dynamis &lt;<a href="mailto:translator@skillup.jp">translator@skillup.jp</a>&gt;<br>
+
+  <a href="http://www.mozilla.org/docs/web-developer/sniffer/browser_type.html">このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。</a><br>
+
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。</p>
+
+</body>
+
+</html>

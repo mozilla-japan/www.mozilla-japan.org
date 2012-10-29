@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>SeaMonkey 持ち込みシリーズ</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/seamonkey/brownbag.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/seamonkey/brownbag.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<center><h1>SeaMonkey 持ち込みトレーニングシリーズ</h1></center>
+
+<p>
+SeaMonkey 持ち込みトレーニングシリーズは、Netscape 技術者によって Netscape 技術者のために制作された、Netscape 6 の多様な側面に関するプレゼンテーションシリーズです。
+この Netscape 6 は Mozilla をベースとしています。
+その Mozilla 関係のプレゼンテーションが、ここで公開され見られるようになっています。
+これらのビデオは RealVideo 形式で録画されており、<a HREF="http://www.real.com/player/">RealPlayer</a> 6.0 以上で見ることができます。
+<p>
+<b>正しく見られるようにするためには、ビデオを見る前にファイルをローカルに保存してください。</b>
+
+<p>
+<center>
+<table CELLSPACING="6">
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume1.rm">
+1 巻</a>
+
+</td>
+
+<td>
+<b>アーキテクチャ／デザイン／コーディングの原則</b>
+<br>
+1 時間 20 分 - 25.5 MB
+</td>
+
+<td align="right">2000 年 4 月 11 日</td>
+
+<td>
+ <a HREF="mailto:rickg@netscape.com?subject=Architecture/Design/Coding Principles">Rick Gessner</a>
+</td>
+
+</tr>
+
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume2.rm">
+2 巻</a>
+</td>
+
+<td>
+<b>XPCOM のすばらしい世界</b>
+<br>
+1 時間 40 分 - 32 MB
+</td>
+
+<td align="right">2000 年 4 月 18 日</td>
+
+<td>
+ <a HREF="mailto:scc@netscape.com?subject=The Wonderful World of XPCOM">Scott Collins</a>
+</td>
+</tr>
+
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume3.rm">
+3 巻</a>
+</td>
+
+<td>
+<b>Netscape 6.0 による産業革命の工場、コンポーネント、その他の発明</b>
+
+<br>
+1 時間 26 分 - 28.1 MB
+</td>
+
+<td align="right">2000 年 4 月 25 日</td>
+
+<td>
+ <a HREF="mailto:dp@netscape.com?subject=Factories, Components and Other Inventions of the 6.0 Industrial Revolution">Suresh Duddi</a>
+</td>
+</tr>
+
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume4.rm">
+
+4 巻</a>
+</td>
+
+<td>
+<b>XPCom III - JavaScript + コンポーネント : 次のフロンティア</b>
+<br>
+1 時間 9 分 - 28.9 MB
+</td>
+
+<td align="right">2000 年 5 月 2 日</td>
+
+<td>
+ <a HREF="mailto:mike+mozilla@meer.net?subject=XPCom III - Javascript + Components: The Next Frontier">Mike McCabe</a>
+
+</td>
+</tr>
+
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume5.rm">
+5 巻</a>
+</td>
+
+<td>
+<b>ドキュメントのビル : URL からあなたのスクリーンまで</b>
+<br>
+1 時間 26 分 - 35.9 MB
+</td>
+
+<td align="right">2000 年 5 月 9 日</td>
+
+<td>
+ <a HREF="mailto:rickg@netscape.com?subject=The Building of a Document: From URL to your Screen">Rick Gessner</a>
+</td>
+</tr>
+
+<tr valign="top">
+<td align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume6.rm">
+6 巻</a>
+</td>
+
+<td>
+<b>Necko - Netscape 6.0 のパイプ</b>
+<br>
+1時間 13 分 - 23.4 MB
+</td>
+
+<td align="right">2000 年 5 月 16 日</td>
+
+<td>
+ <a HREF="mailto:gagan@netscape.com, warren@netscape.com?subject=Necko - The Pipes of Netscape 6.0">Gagan Saksena
+ <br>
+ Warren Harris</a>
+
+</td>
+</tr>
+
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume8.rm">
+8 巻</a>
+</td>
+
+<td>
+<b>メール／ニュース</b>
+<br>
+1 時間 6 分 - 27.9 MB
+</td>
+
+<td align="right">2000 年 6 月 15 日</td>
+
+<td>
+<a HREF="mailto:alecf@netscape.com?subject=Mail/News">Alec Flett</a>
+</td>
+</tr>
+
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume11.rm">
+11 巻</a>
+</td>
+
+<td>
+
+<b>ビルド／リリース</b>
+<br>
+54 分 - 22.5MB - <a HREF="./brownbag/buildrelease.txt">メモ</a>
+</td>
+
+<td align="right">2000 年 7 月 18 日</td>
+
+<td>
+ <a HREF="mailto:leaf@netscape.com?subject=Build/Release">
+Daniel (<i>Leaf</i>) Nunes</a>
+
+</td>
+</tr>
+
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume12.rm">
+12 巻</a>
+</td>
+
+<td>
+<b>Mozilla と Seamonkey における暗号化</b>
+<br>
+55 分 - 23.1 MB
+</td>
+
+<td align="right">2000 年 8 月 8 日</td>
+
+<td>
+ <a HREF="mailto:thayes@netscape.com?subject=Crypto in Mozilla and Seamonkey">
+ Terry Hayes
+ </a>
+</td>
+</tr>
+
+<tr valign="top">
+<td NOWRAP align="right">
+<a HREF="ftp://ftp.mozilla.org/pub/mozilla/brownbag/volume13.rm">
+13 巻</a>
+
+</td>
+
+<td>
+<b>NSPR によるマルチスレッド・プログラミング</b>
+<br>
+40 分 - 15.5 MB - <a HREF="./brownbag/threads/">メモ</a>
+</td>
+
+<td align="right">2000 年 8 月 15 日</td>
+
+<td>
+ <a HREF="mailto:larryh@netscape.com?subject=Multithreaded Programming with NSPR"> Larry Hardiman </a>
+
+</td>
+</tr>
+</table></center>
+
+連絡先 : <a HREF="mailto:marcia@mozilla.org?cc=endico@mozilla.org&subject=SeaMonkey BrownBag Series">Marcia Knous</a>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/seamonkey/brownbag.html">英語版</a> 2002/05/29</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/seamonkey/brownbag.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

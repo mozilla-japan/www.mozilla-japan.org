@@ -1,0 +1,919 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>古いリリース（0.6 〜 0.9.1）</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/releases/old-releases.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/old-releases.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<H1>古いリリース（0.6 〜 0.9.1）</H1>
+
+<p>
+ここにあるのは古いビルドです。あなたが リグレッション-テスト をしようとしているのでなければ 
+本当はたぶんもっと <A HREF="./index.html">最近の</A> を試したいはずです。
+</p>
+
+<blockquote><i><b>
+このソースコードは、アメリカ合衆国の 輸出管理規制、およびその他の合衆国法の対象であり、
+いくつかの国へは輸出、および再輸出できません
+（現在は、アフガニスタン（タリバン勢力域）、キューバ、イラン、イラク、リビア、
+北朝鮮（朝鮮民主主義人民共和国）、スーダン および シリア）。
+また 合衆国からの輸入を禁止されている人や団体 への輸出、および再輸出もできません
+（輸出管理局のリストに記載された非合法団体、組織、 および 特別指定外国人を含みます）。
+</b></i></blockquote>
+
+<blockquote>
+私たちは mozilla.org ドメインから利用可能な すべてのソースソード および
+実行可能コードについて 2000年問題対応であることを 保証しません。
+</blockquote>
+<!-- 和訳オリジナル ここから -->
+<hr>
+<A HREF="index.html" title="別ドキュメントになります">最新の Mozilla</A> || 
+<A HREF="old-releases-0.9.2-1.0rc3.html" title="別ドキュメントになります">Mozilla 0.9.2 以降 1.0 RC3 まで</A> || 
+<A HREF="#mozilla0.9.1">Mozilla 0.9.1</A> | 
+<A HREF="#mozilla0.9">Mozilla 0.9</A> | 
+<A HREF="#mozilla0.8.1">Mozilla 0.8.1</A> | 
+<A HREF="#mozilla0.8">Mozilla 0.8</A> | 
+<A HREF="#mozilla0.7">Mozilla 0.7</A> | 
+<A HREF="#mozilla0.6">Mozilla 0.6</A> 
+<!-- 和訳オリジナル ここまで -->
+
+<hr><A NAME="mozilla0.9.1"></A><!-- 和訳オリジナル -->
+<p><b>
+Mozilla 0.9.1</b> - 2001年 6月 7日 完了
+<ul>
+  <li><a href="mozilla0.9.1/index.html">リリースノート</a> - リリースノートには
+    インストール手順、システムの必要条件、新着情報と
+    わかっている問題のリスト が記載されています。
+  <li> ソースコード Tarball 
+    <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/src/mozilla-source-0.9.1.tar.gz">(gzip, 32.6M)</a>
+    <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/src/mozilla-source-0.9.1.tar.bz2">(bzip2, 23.9 MB)</a>
+    <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/src/Mozilla-source-0.9.1.sit.bin">(sit.bin, 49.9 MB)</a>
+  <li> この <A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/README">
+    README</A> ファイルは Mozilla 0.9.1 を CVS から取り込む手順を説明しています。
+  <li> <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_0.91"> 
+    ローカライズされたビルドと言語パック</a> - Mozilla を オーストリア語、中国語(TW)、ギリシア語、
+    ドイツ語(AT)、イタリア語、日本語、マレー語(Bahasa Melayu)、スコットランド語、スロバキア語、ウェールズ語(Cymraeg) 
+    で使ってください。（<a href="http://www.mozilla.org/projects/l10n/">Mozilla 
+    ローカリゼーションプロジェクト</a>）
+    <BR>（訳者注：もじら組 - <A HREF="http://www.mozilla-japan.org/jp/l10n/">日本語パックのページはこちら</A>）
+  <li>Win32 と x86 Linux のインストーラ ビルドのユーザーは Java ランタイム環境 (JRE) v1.3 
+    プラグイン（<a 
+    href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/windows/win32/smartupdate/jre.xpi">Win32</a>／<a 
+    href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/unix/linux22/xpi/jre.xpi">x86 
+    Linux</a>）をインストールして Mozilla に Java サポートを追加することができます。
+    Macintosh では Mozilla はシステムにインストールされている JRE を使います。
+  <li><A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/">ftp サイト mozilla0.9.1/</a> <!-- 和訳オリジナル-->
+    <br>
+    <br>
+      <dl> 
+        <dt><b>Win32</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-win32-0.9.1-installer.exe"> 
+          Installer .exe</a> (8.1 MB) クラッシュデータを報告できます。他の Win32 
+          ビルドがなんなのかわからなければ このビルドをゲットしてください。
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-win32-0.9.1-talkback.zip"> 
+          talkback が有効な Zipfile</a> (9.1 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-win32-0.9.1.zip"> 
+          Zipfile</a> (8.8 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/embed-win32-0.9.1.zip"> 
+          Zipfile</a> win-embed ビルド (3.1 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-AlphaNT-0.9.1-installer.exe"> 
+          Alpha NT</a> (11.5 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-win32-0.9.1-MathML-SVG.zip"> 
+          Zipfile</A> MathML、SVG つき (8.0 MB) 
+      </dl>
+      <dl> 
+        <dt><b>MacOS</b> 8.5 - 9.0 
+        <dd> <b>MacBinary ファイルには Stuffit expander 4.5 以降が必要です</b> 
+        <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-mac-0.9.1-TB.sea.bin"> 
+          talkback が有効な .bin</a> (11.1 MB) クラッシュデータを報告できます。ほかの MacOS 
+          ビルドがなんなのかわからなければ このビルドをゲットしてください。
+        <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/MacMozillaInstaller-0.9.1.sea.bin"> 
+          ネット-インストーラ </a> (240 KB) 
+        <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/MacMozillaFullInstaller-0.9.1.sea.bin"> 
+          フル-インストーラ </a> (11.5 MB) 
+        <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-mac-0.9.1.sea.bin">.bin</a> 
+          (10.1 MB) 
+      </dl>
+      <dl> 
+        <dt><b>MacOS X</b> 
+        <dd> 
+        <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-macosx-0.9.1.sit">.sit</a> 
+          (10.8 MB) Stuffit expander 5.0 以降が必要
+      </dl>
+      <dl> 
+        <dt><b>Linux</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i686-pc-linux-gnu-0.9.1-installer.tar.gz"> 
+          x86 Talkback が有効な ネット-インストーラ</a> (84K) <br>
+          このビルドは あなたが指定したコンポーネントだけをダウンロードし、インストールします。
+          ほかの x86 Linux ビルドがなんなのかわからなければ、このビルドをゲットしてください。
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i686-pc-linux-gnu-0.9.1-sea.tar.gz"> 
+          x86 Talkback が有効な フル-インストーラ </a> (すべてのコンポーネントを一括ダウンロード) (12.2 MB)
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i686-pc-linux-gnu-0.9.1.tar.gz"> 
+          x86 tar.gz フォーマット</a> (9.4 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/embed-i686-pc-linux-gnu-0.9.1.tar.gz"> 
+          x86 Zipfile</a> gtk-embed ビルド (5.6 MB) 開発者向け 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/Red_Hat_7x_RPMS/"> 
+          Red Hat Linux 7.x RPMS </a> (i386, alpha) (7.2 - 11.6 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/Red_Hat_6x_RPMS/"> 
+          Red Hat Linux 6.x RPMS </a> (i386, alpha, sparc) (7.3 - 11.8 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i686-pc-linux-gnu-0.9.1-MathML-SVG.tar.gz"> 
+          x86 tar.gz フォーマット</a> MathML、SVG つき (9.7 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/experimental/mozilla-i686-pc-linux-gnu-xlib-0.9.1-MathML-SVG.tar.gz"> 
+          x86 tar.gz フォーマット</a> 試験的 xlib ビルド MathML、SVG つき (9.6 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i686-pc-linux-gnu-0.9.1-MathML-SVG.tar.gz"> 
+          x86 tar.gz フォーマット</a> SuSE 7.1 向け MathML、SVG つき (9.0 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-powerpc-unknown-linux-gnu-PSM-0.9.1.tar.gz">  
+          PPC tar.gz フォーマット</a> PSM つき (<a href="http://www.thecodefactory.org/neillm/linuxppc.php3#mozilla-0-9.1">README</A>) 
+          (10.6 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-powerpc-unknown-linux-gnu-0.9.1-PSM-MathML.tar.gz"> 
+          PPC tar.gz フォーマット</a> PSM、MathML つき 
+      </dl>
+      <dl> 
+        <dt><b>AIX</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-powerpc-ibm-aix4.3.3.0-0.9.1-freewarelibs.tar.gz"> 
+          AIX 4.3.3 tar.gz フォーマット</a> (15.2 MB) - ブラウザ、メール／ニュース、全部！ 
+          <a href="http://www-1.ibm.com/servers/aix/products/aixos/linux/download.html">IBM の gtk+/glib/gettext</a> ベース
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-powerpc-ibm-aix4.3.3.0-0.9.1.tar.gz"> 
+          AIX 4.3.3 tar.gz フォーマット</a> (12.7 MB) - ブラウザのみ
+      </dl>
+      <dl> 
+        <dt><b>BeOS</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i586-pc-beos-0.9.1.tar.gz"> 
+          x86 tar.gz ファイル</a> (24.0 MB)
+      </dl>
+      <dl> 
+        <dt><b>OpenVMS</b> 
+        <dd>Compaq OpenVMS Enginerreing Group 提供。OpenVMS に関しては そちらの 
+          <A HREF= "http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html"> 
+          リリースノート</A> を見てください。
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-openvms-alpha-m091.sfx_axpexe"> 
+          自己展開 PCSI</a> (23.8 MB)
+      </dl>
+      <dl> 
+        <dt><b>OS/2</b> 
+        <dd>IBM 提供。
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i386-pcos2-vacpp-0.9.1.zip"> 
+          i386 zip ファイル</a> (17.9 MB) 
+      </dl>
+      <dl> 
+        <dt><b>HPUX</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-hppa2.0w-hp-hpux11.00-0.9.1-1.2.7.tar.gz"> 
+          HP11.00 tar.gz フォーマット </a> - <a href="http://hpux.connect.org.uk/hppd/hpux/Gtk/alpha.html">Connect の gtk+/glib</a> 
+          ベース (21.0 MB)
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-hppa2.0w-hp-hpux11.00-0.9.1-1.2.8.tar.gz"> 
+          HP11.00 tar.gz フォーマット </a> - 
+          <a href="http://www.software.hp.com/cgi-bin/swdepot_parser.cgi/cgi/displayProductInfo.pl?productNumber=B6848AA"> 
+          HP の gtk+/glib/gettext</a> ベース (22.0 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-hppa2.0-hp-hpux10.20-0.9.1.tar.gz"> 
+          HP10.20 tar.gz フォーマット </a> (20.5 MB)
+      </dl>
+      <dl> 
+        <dt><b>FreeBSD</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i386-unknown-freebsd4.3-0.9.1.tar.gz"> 
+          4.3 tar.gz フォーマット</a> (10.9 MB)
+      </dl>
+      <dl> 
+        <dt><b>BSD/OS</b> (bsdi) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/BSDOS/"> 
+          4.2 tar.gz フォーマット</a> 
+      </dl>
+      <dl> 
+        <dt><b>Solaris</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-sparc-sun-solaris2.8-0.9.1.tar.gz"> 
+          sparc Solaris 2.8 tar.gz フォーマット</a> (11.2 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i386-pc-solaris2.8-0.9.1.tar.gz"> 
+          x86 Solaris 2.8 tar.gz フォーマット</a> (11.1 MB) 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9.1/mozilla-i686-pc-solaris2.8.tar.gz"> 
+          i686 Solaris 2.8 tar.gz フォーマット</a> (11.5 MB) 
+      </dl>
+</ul>
+
+<hr><A NAME="mozilla0.9"></A><!-- 和訳オリジナル -->
+<p><b>
+Mozilla 0.9</b> - 2001年 5月 7日 完了
+<ul>
+<li><a href="mozilla0.9/index.html">リリースノート</a> - リリースノートには
+インストール手順、システムの必要条件、新着情報と
+わかっている問題のリスト が記載されています。
+<li> ソースコード Tarball 
+  <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/src/mozilla-source-0.9.tar.gz">(gzip, 31.3M)</a>
+  <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/src/mozilla-source-0.9.tar.bz2">(bzip2, 23.9 MB)</a>
+<li>
+この <A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/README">
+README</A> ファイルは Mozilla 0.9 を CVS から取り込む手順を説明しています。
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_0.9">ローカライズされたビルドと言語パック</a> - 
+    Mozilla を オーストリア語、ドイツ語(AT)、ギリシア語、イタリア語、  日本語、スコットランド語、スロバキア語、ウェールズ語(Cymraeg) 
+    で 使ってください。(<a href="http://www.mozilla.org/projects/l10n/">Mozilla ローカリゼーションプロジェクト</a>)
+    <BR>（訳者注：もじら組 - <A HREF="http://www.mozilla-japan.org/jp/l10n/">日本語パックのページはこちら</A>）
+  <li><a href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/windows/win32/smartupdate/jre.xpi">
+Win32</a> と 
+<a href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/unix/linux22/xpi/jre.xpi">
+x86 Linux</a> 
+のインストーラ ビルドのユーザーは Java ランタイム環境 (JRE) v1.3 
+プラグインをインストールして Mozilla に Java サポートを追加することができます。
+Macintosh では Mozilla はシステムにインストールされている JRE を使います。
+<li>
+<A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/">ftp サイト mozilla0.9/</a> <!-- 和訳オリジナル-->
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-win32-0.9-talkback.zip">
+<FONT SIZE="+1">この</FONT> talkback が有効な Zipfile <FONT SIZE="+1">を使ってください</FONT></a> 
+(9.1 MB) クラッシュデータを報告できます。ほかの Win32 ビルドがなんなのかわからなければ
+このビルドをゲットしてください。
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-win32-0.9-installer.exe">
+Installer .exe</a> (8.1 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-win32-0.9.zip">
+Zipfile</a> (8.8 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/embed-win32-0.9.zip">
+Zipfile</a> win-embed ビルド (3.1 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-alphant-0.9-installer.exe">
+Alpha NT</a> (10.9 MB)
+
+</dl>
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+<dd>
+<b>MacBinary ファイルには Stuffit expander 4.5 以降が必要です</b>
+<dd> 
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-mac-0.9-TB.sea.bin">
+<FONT SIZE="+1">この</FONT> talkback が有効な .bin を <FONT SIZE="+1">使ってください</FONT></a>。
+(11.1 MB) クラッシュデータを報告できます。ほかの MacOS ビルドがなんなのかわからなければ
+このビルドをゲットしてください。
+
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/MacMozillaInstaller-0.9.sea.bin">ネット-インストーラ </a> (240 KB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/MacMozillaFullInstaller-0.9.sea.bin">フル-インストーラ </a> (11.5 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-mac-0.9.sea.bin">.bin</a> (10.1 MB)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-i686-pc-linux-gnu-0.9-installer.tar.gz">
+<FONT SIZE="+1">x86 Talkback が有効な ネット-インストーラ</a></FONT> (84K) を使ってください。
+<br>このビルドは あなたが指定したコンポーネントだけをダウンロードし、インストールします。
+ほかの x86 Linux ビルドがなんなのかわからなければ
+このビルドをゲットしてください。
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-i686-pc-linux-gnu-0.9-sea.tar.gz">
+x86 Talkback が有効な フル-インストーラ </a> (すべてのコンポーネントを一括ダウンロード) (12.2 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-i686-pc-linux-gnu-0.9.tar.gz">
+x86 tar.gz フォーマット</a> (9.4 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/embed-i686-pc-linux-gnu-0.9.tar.gz">
+x86 Zipfile</a> gtk-embed ビルド (5.6 MB) 開発者向け
+
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-powerpc-unknown-linux-gnu-0.9.tar.gz">
+ppc tar.gz フォーマット</a>.
+(10.2 MB)
+
+<dd>
+x86／alpha <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/Red_Hat_7x_RPMS/">Red Hat 7 RPM</a>
+<dd>
+x86／alpha／sparc <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/Red_Hat_6x_RPMS/">Red Hat 6.x RPM</a>
+<dd>
+x86<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/Mandrake_RPMS/">Mandrake RPM</a>
+<dd>
+<a href="http://www.thecodefactory.org/neillm/linuxppc.php3">ppc PSM なし</a>
+</dl>
+
+<dl>
+<dt><b>AIX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-powerpc-ibm-aix4.3.2.0-0.9-PSM-MathML-SVG.tar.gz">AIX 4.3.2 tar.gz フォーマット</a> (11.8 MB) - ブラウザのみ
+</dl>
+
+<dl>
+<dt><b>DG/UX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-0.9-dgux-bin.tar.gz">tar.gz フォーマット</a> (16.1 MB)
+</dl>
+
+<dl>
+<dt><b>Irix</b>
+<dd><a href="http://oss.sgi.com/projects/mozilla/">SGI</A> による。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/irix/">Irix 6.5 tar.gz</a>
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/irix/README">README</A>)
+</dl>
+
+<dl>
+<dt><b>OpenVMS</b>
+<dd>Compaq の OpenVMS エンジニアリンググループ提供。OpenVMS に関してはそちらの
+<A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+リリースノート</A> を見てください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-openvms-alpha-m09.sfx_axpexe">自己展開 PCSI</a> (22.5 MB)
+</dl>
+
+<dl>
+<dt><b>OS/2</b>
+<dd>IBM 提供
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-i386-pcos2-vacpp-0.9.zip">i386 zip ファイル</a> (14.8 MB)
+</dl>
+
+<dl>
+<dt><b>HPUX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-hppa2.0w-hp-hpux11.00-0.9-PSM-MathML-SVG.tar.gz"> HP11.00 tar.gz フォーマット</a> PSM、MathML、SVG つき (19.0 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-hppa2.0-hp-hpux10.20-0.9-MathML-SVG.tar.gz"> HP10.20 tar.gz フォーマット</a> MathML、SVG つき (18.5 MB)
+</dl>
+
+<dl>
+<dt><b>FreeBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-i386-unknown-freebsdelf4.1-0.9.tar.gz"> 4.1 tar.gz フォーマット</a> (8.8 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-i386-unknown-freebsd4.0-0.9.tar.gz"> 4.0-0.9 tar.gz フォーマット</a> (10.1 MB)
+</dl>
+
+<dl>
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/BSDOS/"> 4.2 tar.gz フォーマット</a> 
+</dl>
+
+<dl>
+<dt><b>Solaris</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-sparc-sun-solaris2.8-0.9.tar.gz"> sparc Solaris 2.8 tar.gz フォーマット</a> (13.9 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-i386-pc-solaris2.8.tar.gz"> x86 Solaris 2.8 tar.gz フォーマット</a> (11.1 MB)
+</dl>
+
+
+<dl>
+<dt><b>Tru64 Unix</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-alpha-dec-osf4.0f.tar.gz"> OSF 4.0 tar.gz フォーマット</a> (17.0 MB) 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-alphaev5-dec-osf4.0d-0.9.tar.gz"> OSF 4.0d tar.gz フォーマット</a> (13.8 MB) 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.9/mozilla-alphaev56-dec-osf5.0-0.9.tar.gz"> OSF 5.0 tar.gz フォーマット</a> (15.1 MB) 
+</dl>
+
+</ul>
+
+<hr><A NAME="mozilla0.8.1"></A><!-- 和訳オリジナル -->
+<p><b>
+Mozilla 0.8.1</b> - 2001年 3月 26日 完了
+<ul>
+  <li><a href="mozilla0.8.1/index.html">リリースノート</a> - リリースノートには
+    インストール手順、システムの必要条件、新着情報と わかっている問題のリスト が記載されています。
+  <li> ソースコード Tarball 
+    <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/src/mozilla-source-0.8.1.tar.gz">(gzip, 
+    31.3M)</a> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/src/mozilla-source-0.8.1.tar.bz2">(bzip2, 
+    23.9 MB)</a>
+  <li> この <A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/README">
+    README</A> ファイルは Mozilla 0.8.1 を CVS から取り込む手順を説明しています。
+  <li> <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_0.81">ローカライズされたビルドと言語パック</a> - 
+    Mozilla を 中国語(TW)、クロアチア語、英語(Canada)、ドイツ語(AT)、イタリア語、日本語、ノルウェー語(Nynorsk)、ロシア語 
+    で使ってください。
+    (<a href="http://www.mozilla.org/projects/l10n/">Mozilla ローカリゼーションプロジェクト</a>)
+    <BR>（訳者注：もじら組 - <A HREF="http://www.mozilla-japan.org/jp/l10n/">日本語パックのページはこちら</A>）
+  <li><a href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/windows/win32/smartupdate/jre.xpi">
+    Win32</a> と <a href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/unix/linux22/xpi/jre.xpi">
+    x86 Linux</a> のインストーラービルドのユーザーは Java ランタイム環境 (JRE) v1.3 
+    プラグインをインストールして Mozilla に Java サポートを追加することができます。Macintosh
+    では Mozilla はシステムにインストールされている JRE を使います。
+  <li><A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/">ftp サイト mozilla0.8.1/</a> <!-- 和訳オリジナル-->
+    <P>
+    <dl>
+      <dt><b>Win32</b>
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-win32-0.8.1-talkback.zip">
+        talkback が有効な Zipfile</a> クラッシュデータを報告できます (10.9 MB)
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-win32-0.8.1-installer.exe">
+        Installer .exe</a> (7.6 MB)
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-win32-0.8.1.zip">
+        Zipfile</a> (10.6 MB)
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/embed-win32-0.8.1.zip">
+        Zipfile</a> win-embed ビルド (3.0 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-win32-0.8.1-MathML-SVG.zip">
+        Zipfile</A> MathML、SVG つき (9.9 MB)
+  </dl>
+  <dl> 
+    <dt><b>MacOS</b> 8.5 - 9.0
+    <dd> MacBinary ファイルには Stuffit expander 4.5 以降が必要です
+    <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-mac-0.8.1-TB.sea.bin">talkback 
+      が有効な .bin</a> クラッシュデータを報告できます (11.3 MB)
+    <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/MacMozillaInstaller-0.8.1.sea.bin">インストーラ 
+      </a> (11.6 MB)
+    <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-mac-0.8.1.sea.bin">.bin</a> 
+      (10.9 MB)
+    </dl>
+    <dl>
+      <dt><b>Linux</b>
+      <dd> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-i686-pc-linux-gnu-0.8.1-installer.tar.gz"> 
+        x86 ネットインストーラ </a> (77K) (指定したコンポーネントだけをダウンロード、インストールします)
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-i686-pc-linux-gnu-0.8.1-sea.tar.gz"> 
+        x86 フルインストーラ </a> (11.7 MB)
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-i686-pc-linux-gnu-0.8.1.tar.gz"> 
+        x86 tar.gz フォーマット</a> (11.0 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/embed-i686-pc-linux-gnu-0.8.1.tar.gz"> 
+        x86 Zipfile</a> gtk-embed ビルド (5.7 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-i686-pc-linux-gnu-0.8.1-MathML-SVG-0.8.1.tar.gz"> 
+        x86 tar.gz フォーマット</a> MathML、SVG つき (10.0 MB)  <!--
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-powerpc-unknown-linux-gnu-0.8.1-psm.tar.gz"> 
+        ppc tar.gz フォーマット</a> (12.1 MB) <!--
+    </dl>
+    <dl> 
+      <dt><b>AIX</b>
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-powerpc-ibm-aix4.3.2.0-0.8.1-PSM-MathML-SVG.tar.gz"> 
+        AIX 4.3.2 tar.gz フォーマット</a> (36.2 MB) - ブラウザのみ （訳注：え？）
+      </dl>
+    <dl> 
+      <dt><b>OpenVMS</b> 
+      <dd>Compaq の OpenVMS エンジニアリンググループ提供。OpenVMS に関してはそちらの <A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html"> 
+        リリースノート</A> を見てください。
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-openvms-alpha-m081.sfx_axpexe">自己展開 
+        PCSI</a> (22.2 MB)
+      </dl>
+    <dl> 
+      <dt><b>HPUX</b> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-hppa2.0w-hp-hpux11.00-0.8.1-PSM-MathML-SVG.tar.gz"> 
+        HP11.00 tar.gz フォーマット</a> PSM、MathML、SVG つき (22.5 MB)
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-hppa2.0-hp-hpux10.20-0.8.1-PSM-MathML-SVG.tar.gz"> 
+        HP10.20 tar.gz フォーマット</a> PSM、MathML、SVG つき (20.5 MB)
+      </dl>
+      <dl> 
+        <dt><b>FreeBSD</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8.1/mozilla-i386-unknown-freebsdelf4.1-0.8.1.tar.gz"> 
+          4.1 tar.gz フォーマット</a> (12.9 MB) <!--
+    </dl>
+</ul>
+
+
+<hr><A NAME="mozilla0.8"></A><!-- 和訳オリジナル -->
+<p><b>
+Mozilla 0.8</b> - 2001年2月14日 完了
+<ul>
+<li><a href="mozilla0.8/index.html">リリースノート</a> - リリースノートにはインストール手順、システムの必要条件、新着情報と
+わかっている問題のリスト が記載されています。
+<li> ソースコード Tarball 
+  <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/src/mozilla-source-0.8.tar.gz">(gzip &nbsp;28.7 MB)</a>
+  <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/src/mozilla-source-0.8.tar.bz2">(bzip2 &nbsp;22.1 MB)</a>
+<li>
+この <A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/README">
+README</A> ファイルは Mozilla 0.8 を CVS から取り込む手順を説明しています。
+  <li> <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_0.8">ローカライズされたビルドと言語パック</a> - 
+    Mozilla を アフリカーンス語、中国語(semplified:China or traditional:Taiwan)、クロアチア語、エストニア語、
+    ドイツ語(AT)、ギリシア語、イタリア語、日本語、マレー語(Bahasa Melayu)、ノルウェー語(Nynorsk)、ロシア語、
+    スコットランド語、スロバキア語 で 使ってください。
+    (<a href="http://www.mozilla.org/projects/l10n/">Mozilla ローカリゼーションプロジェクト</a>)
+    <BR>（訳者注：もじら組 - <A HREF="http://www.mozilla-japan.org/jp/l10n/">日本語パックのページはこちら</A>）
+  <li><a href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/windows/win32/smartupdate/jre.xpi">
+Win32</a> と 
+<a href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/unix/linux22/xpi/jre.xpi">
+x86 Linux</a>
+のインストーラービルドのユーザーは Java ランタイム環境 (JRE) v1.3 
+プラグインをインストールして Mozilla に Java サポートを追加することができます。Macintosh
+では Mozilla はシステムにインストールされている JRE を使います。
+  <li> <A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/">ftp サイト mozilla0.8/</a> <!-- 和訳オリジナル-->
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-win32-0.8-talkback.zip">
+talkback が有効な Zipfile</a> クラッシュデータを報告できます (10.3 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-win32-0.8-installer.exe">
+インストーラ .exe</a> (7.2 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-win32-0.8.zip">
+Zipfile</a> (10.0 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-win32-0.8-MathML-SVG-XSLT.zip">
+Zipfile</A> MathML、SVG、XSLT つき (10.5 MB)
+</dl>
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+<dd>
+MacBinary ファイル Stuffit expander 4.5 以降が必要です
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-mac-0.8-TB.sea.bin">talkback が有効な .bin</a> クラッシュデータを報告できます (11.5 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/MacMozillaInstaller-0.8.sea.bin">インストーラ </a> (10.9 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-mac-0.8.sea.bin">.bin</a> (10.4 MB)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i686-pc-linux-gnu-0.8-talkback.tar.gz">
+x86 talkback が有効な tar.gz フォーマット</a>  クラッシュデータを報告できます (11.3 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i686-pc-linux-gnu-0.8-installer.tar.gz">
+x86 フルインストーラ </a> (10.9 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i686-pc-linux-gnu-0.8.tar.gz">
+x86 tar.gz フォーマット</a> (11.0 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i686-pc-linux-gnu-0.8-MathML-SVG-XSLT.tar.gz">
+x86 tar.gz フォーマット</a> MathML、SVG、XSLT つき (10.4 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i686-pc-0.8-gcc-2.95.2-glibc-2.2-slackware-linux-gnu-mathml-svg-xslt.tar.bz2">
+x86 tar.gz フォーマット</a> Slackware でビルドされた MathML、SVG、XSLT つき (10.2 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-powerpc-unknown-linux-gnu-0.8-PSM.tar.gz">
+ppc tar.gz フォーマット</a> PSM つき
+(12.0 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/RH7/RPMS/i386/0.8-2/">Red Hat 7 RPM</a>&nbsp; 
+<a href="http://people.redhat.com/blizzard/software/RH7/RPMS/">（そのほか）</a>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/RH6/RPMS/i386/0.8-2/">Red Hat 6.x RPM</a>&nbsp; 
+<a href="http://people.redhat.com/blizzard/software/RH6/RPMS/">（そのほか）</a>
+<dd>
+<a href="http://www.thecodefactory.org/neillm/linuxppc.php3">ppc PSM なし</a>
+
+</dl>
+
+<dl>
+<dt><b>AIX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-powerpc-ibm-aix4.3.2.0-0.8.tar.gz">AIX 4.3.2 tar.gz フォーマット</a> (36.2 MB) - ブラウザのみ
+</dl>
+
+<dl>
+<dt><b>BeOS</b>
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i586-pc-beos-0.8.tar.gz">x86 tar.gz file</a> PSM なし (13.2 MB)
+</dl>
+
+<dl>
+<dt><b>OpenVMS</b>
+<dd>Compaq の OpenVMS エンジニアリンググループ によって寄与されました。
+OpenVMS に関しては、そちらの <A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+リリースノート</A> を参照してください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-openvms-alpha-m08.sfx_axpexe">自己展開 PCSI</a> (21.0 MB)
+</dl>
+
+<dl>
+<dt><b>HPUX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-hppa2.0-hp-hpux11.00-0.8-PSM-MathML-SVG.tar.gz"> HP11.00 tar.gz フォーマット</a> PSM、MathML、SVG つき (22.5 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-hppa2.0-hp-hpux10.20-PSM-MathML-SVG.tar.gz"> HP10.20 tar.gz フォーマット</a> PSM、MathML、SVG つき (19.5 MB)
+</dl>
+
+<dl>
+<dt><b>FreeBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i386-unknown-freebsdelf4.2-0.8.tar.gz"> 4.2-0.8 tar.gz フォーマット</a> (10.4 MB)
+</dl>
+
+<dl>
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i386-pc-bsdi4.2-0.8.tar.gz"> 4.2 tar.gz フォーマット</a> (12.5 MB) 
+</dl>
+
+<dl>
+<dt><b>Solaris</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-sparc-sun-solaris2.8-0.8-MathML-SVG-XSLT.tar.gz"> sparc Solaris 2.8 tar.gz フォーマット</a> MathML、SVG、XSLT つき (12.2 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-sparc-sun-solaris2.8-0.8-MathML.tar.gz"> sparc Solaris 2.8 tar.gz フォーマット</a> MathML つき (12.2 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-sparc-sun-solaris2.8.tar.gz"> sparc Solaris 2.8 tar.gz フォーマット </a> (11.9 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-i386-pc-solaris2.8.tar.gz"> x86 Solaris 2.8 tar.gz フォーマット </a> (12.2 MB)
+</dl>
+
+
+<dl>
+<dt><b>Tru64 Unix</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-alphaev5-dec-osf4.0d.tar.gz">OSF 4.0D tar.gz フォーマット</a> (24.1 MB) 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.8/mozilla-alphaev56-dec-osf5.0.tar.gz">OSF 5.0 tar.gz フォーマット</a> (21.1 MB) 
+</dl>
+
+</ul>
+
+<hr><A NAME="mozilla0.7"></A><!-- 和訳オリジナル -->
+<p><b>
+Mozilla 0.7</b> - 2001年1月9日 完了
+<ul>
+　　<li><a href="mozilla0.7/index.html">リリースノート</a> - リリースノートにはインストール手順、システムの必要条件、新着情報と 
+　　  わかっている問題のリスト が記載されています。
+　　<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/src/mozilla-source-0.7.tar.gz">ソースコード</a> 
+　　  全プラットフォームに対応した Tarball。 (26.8 MB) 
+　　<li> この <A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/README"> 
+　　  README</A> ファイルは Mozilla 0.7 を CVS から取り込む手順を説明しています。
+　　<li> <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_0.7">ローカライズされたビルドと言語パック</a> - 
+　　  Mozilla を 中国語(semplified:China or traditional:Taiwan)、クロアチア語、英語(Canada)、イタリア語、日本語、ドイツ語(AT)、
+　　  マレー語(Bahasa Melayu)、ノルウェー語(Nynorsk)、スコットランド語、セルビア語、スロバキア語、ウェールズ語(Cymraeg) 
+　　  で使ってください。(<a href="http://www.mozilla.org/projects/l10n/">Mozilla ローカリゼーションプロジェクト</a>)
+　　  <BR>（訳者注：もじら組 - <A HREF="http://www.mozilla-japan.org/jp/l10n/">日本語パックのページはこちら</A>）
+  <li><a href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/windows/win32/smartupdate/jre.xpi">
+    Win32</a> と 
+    <a href="ftp://ftp.netscape.com/pub/netscape6/english/6.0/unix/linux22/xpi/jre.xpi">
+    x86 Linux</a> のインストーラービルドのユーザーは Java ランタイム環境 (JRE) v1.3 
+    プラグインをインストールして Mozilla に Java サポートを追加することができます。Macintosh 
+    では Mozilla はシステムにインストールされている JRE を使います。
+  <li><A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/">ftp サイト mozilla0.7/</a> <!-- 和訳オリジナル-->
+    <P> 
+    <dl> 
+      <dt><b>Win32</b> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-win32-0.7-installer.exe">
+        インストーラ .exe</a> (7.4 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-win32-0.7.zip"> 
+        Zipfile</a> (14.2 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-alphaNT-0.7.exe"> 
+        Alpha NT</a> (10.1 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-win32-0.7-MathML-SVG.zip"> 
+        Zipfile &nbsp;MathML、SVG つき</A> (9.6 MB) 
+    </dl>
+    <dl> 
+      <dt><b>MacOS</b> 8.5 - 9.0 
+      <dd> MacBinary ファイル Stuffit expander 4.5 以降が必要です 
+      <dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-mac-M0.7.sea.bin">.bin</a> 
+        (9.1 MB) 
+    </dl>
+    <dl> 
+      <dt><b>Linux</b> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-i686-pc-linux-gnu-0.7.tar.gz"> 
+        x86 tar.gz フォーマット</a> (10.5 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-i686-pc-linux-gnu-0.7-MathML-SVG-XSLT.tar.gz"> 
+        x86 tar.gz フォーマット</a> MathML、SVG、XSLT つき (10.6 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-sparc64-unknown-linux-gnu-0.7.tar.gz"> 
+        sparc tar.gz フォーマット</a> (15.6 MB)
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-powerpc-unknown-linux-gnu-0.7-PSM.tar.gz"> 
+        ppc tar.gz フォーマット</a> PSM と bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=63846">63846</a> の修正入り 
+        (12.0 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-powerpc-unknown-linux-gnu-0.7.tar.gz"> 
+        ppc tar.gz フォーマット</a> (9.1 MB) <a href="http://www.thecodefactory.org/neillm/linuxppc.php3">詳しくは...</a> 
+    </dl>
+    <dl> 
+      <dt><b>ほかの Linux ビルド</b> 
+      <dd> <a href="http://people.redhat.com/blizzard/software/RH7/RPMS/"> 
+        Red Hat 7 RPM</a> 
+      <dd> <a href="http://people.redhat.com/blizzard/software/RH6/RPMS/"> 
+        Red Hat 6.x RPM</a> 
+    </dl>
+    <dl> 
+      <dt><b>BeOS</b> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-i586-pc-beos-0.7.zip"> 
+        x86 zip file</a> PSM なし (15.1 MB) 
+    </dl>
+    <dl> 
+      <dt><b>DG/UX</b> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-dgux-v0.7-bin.tar.gz"> 
+        tar.gz フォーマット</a> (15.0 MB) 
+      </dl>
+      <dl> 
+        <dt><b>Irix</b> 
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-mips-sgi-irix6.5-0.7.tar.gz"> 
+          Irix 6.5 tar.gz</a> (20 MB) 
+      </dl>
+      <dl> 
+        <dt><b>OpenVMS</b> 
+        <dd>Compaq の OpenVMS エンジニアリンググループ によって寄与されました。
+          OpenVMS に関しては、そちらの <A HREF="http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html"> 
+          リリースノート</A> を参照してください。
+        <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-openvms-alpha-m07.sfx_axpexe">
+          自己展開 PCSI</a> (20.6 MB)
+      </dl>
+    <dl> 
+      <dt><b>FreeBSD</b> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-i386-unknown-freebsdelf4.0-07-MathML.tar.gz"> 
+        4.0 tar.gz フォーマット</a> MathML つき (9.3 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-i386-unknown-freebsdelf4.1-0.7.tar.gz"> 
+        4.1 tar.gz フォーマット</a> (12.6 MB) 
+    </dl>
+    <dl> 
+      <dt><b>Solaris</b> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-sparc-sun-solaris2.8-0.7.tar.gz"> 
+        sparc Solaris 2.8 tar.gz フォーマット</a> (11.7 MB) 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-i386-pc-solaris2.8-0.7.tar.gz"> 
+        x86 Solaris 2.8 tar.gz フォーマット</a> (11.9 MB) 
+    </dl>
+    <dl> 
+      <dt><b>Tru64 Unix</b> 
+      <dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.7/mozilla-alpha-dec-osf4.0f-0.7.tar.gz"> 
+        OSF 4.0 tar.gz フォーマット</a> (PSM なし) (15.9 MB) 
+    </dl>
+</ul>
+
+
+<hr><A NAME="mozilla0.6"></A><!-- 和訳オリジナル -->
+<p><b>
+Mozilla 0.6</b> - 2000年12月6日 完了
+<ul>
+<li><a href="mozilla0.6/index.html">リリースノート</a> - リリースノートにはインストール手順、システムの必要条件、新着情報と 
+わかっている問題のリスト が記載されています。
+<li> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/src/mozilla-source-0.6.tar.gz">ソースコード</a> 全プラットフォームに対応した Tarball。 (26.8 MB)
+
+  <li> <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_0.6">ローカライズされたビルドと言語パック</a> - 
+    Mozilla を クロアチア語、英語(Canada)、日本語、韓国語、マレー語(Bahasa Melayu)、ノルウェー語(Nynorsk)
+    で使ってください。(<a href="http://www.mozilla.org/projects/l10n/">Mozilla ローカリゼーションプロジェクト</a>)
+    <BR>（訳者注：もじら組 - <A HREF="http://www.mozilla-japan.org/jp/l10n/">日本語パックのページはこちら</A>）
+  <li>Win32 と x86 Linux で Mozilla に SSL サポートを追加するには 
+<a href="http://docs.iplanet.com/docs/manuals/psm/psm-mozilla/index.html">
+PSM</A> をインストールしてください。
+<li>Win32 と x86 Linux で Mozilla に Java サポートを追加するには
+<a href="http://home.netscape.com/plugins/jvm.html">
+Java ランタイム環境 (JRE) v1.3 プラグイン</A> をインストールしてください。
+<li> <A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/">ftp サイト mozilla0.6/</a> <!-- 和訳オリジナル-->
+<P>
+<dl>
+<dt><b>Win32</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-win32-0.6-installer.exe">
+インストーラ .exe</a> (8.5 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-win32-0.6.zip">
+Zipfile</a> (9.5 MB)
+
+</dl>
+
+<dl>
+<dt><b>MacOS</b> 8.5 - 9.0
+<dd>
+すべて MacBinary -- Stuffit expander 4.5 以降が必要です
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/MacMozillaInstaller-0.6.sea.bin">インストーラ </a> (9.5 MB)
+<dd> <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-mac-0.6.sea.bin">.bin</a> (9.1 MB)
+</dl>
+
+<dl>
+<dt><b>Linux</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-i686-pc-linux-gnu-0.6-installer.tar.gz">
+x86 フルインストーラ </a> (8.5 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-i686-pc-linux-gnu-0.6.tar.gz">
+x86 tar.gz フォーマット</a> (10.5 MB) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-sparc-unknown-linux-gnu.tar.gz">
+sparc tar.gz フォーマット</a> (9.9 MB)
+
+</dl>
+
+<dl>
+<dt><b>OpenVMS</b>
+<dd>Compaq の OpenVMS エンジニアリンググループ によって寄与されました。
+OpenVMS に関しては、そちらの <A HREF=
+"http://www.openvms.digital.com/openvms/products/ips/mozilla_relnotes.html">
+リリースノート</A> を参照してください。
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-openvms-alpha-m06.sfx_axpexe">自己展開 PCSI</a> (21.6 MB)
+</dl>
+
+<dl>
+<dt><b>OS/2</b>
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-i386-pcos2-vacpp-0.6.zip">i386 zip ファイル</a> (17.1 MB)
+<dd> <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-i386-pcos2-vacpp-opt-0.6.zip">i386 zip ファイル - 最適化</a> (13.4 MB)
+</dl>
+
+<dl>
+<dt><b>Solaris</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-sparc-sun-solaris2.8-0.6.tar.gz"> sparc Solaris 2.8 tar.gz フォーマット</a> (11.8 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla0.6/mozilla-i386-pc-solaris2.8-0.6.tar.gz"> x86 Solaris 2.8 tar.gz フォーマット</a> (11.9 MB)
+</dl>
+
+
+</ul>
+
+<hr>
+さらに古いビルドについては
+<A HREF="../projects/seamonkey/release-notes/index.html">SeaMonkey プロジェクト</A>
+を見てください。
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/old-releases.html">英語版</a> 2002/06/05</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/old-releases.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

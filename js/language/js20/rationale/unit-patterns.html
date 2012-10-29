@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>JavaScript 2.0 単位パターン</title>
+<meta http-equiv="Content-Type" content="text/html;charset=EUC-JP">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rev="alternate" lang="en-us" href="http://www.mozilla.org/js/language/js20/rationale/unit-patterns.html">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="Start" href="../index.html">
+<link rel="Contents" href="../index.html">
+<link rel="Prev" href="units.html">
+<link rel="Next" href="syntax.html">
+<script type="text/javascript" language="JavaScript1.2" src="../../unicodeCompatibility.js"></script>
+<style type="text/css" media="screen,tv">
+<!--
+	body {
+		font-family:Tahoma,sans-serif;
+		font-size:90%;
+	}
+	div.clsTransFooter {
+		background-color:#FFFFE0;padding:3px;
+		font-size:80%;
+		text-align:right;
+		line-height:1.2em;
+		margin-top:1em;
+		border:1px dashed #996;
+	}
+	p, ul, ol {
+		line-height:1.2em;
+	}
+	ins.clsByTranslator {
+		color:#090;
+		font-size:0.8em;
+		text-decoration:none;
+	}
+	ins code {
+		color:inherit;
+		background:transparent none;
+		font-size:1.1em;
+	}
+-->
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr>
+  <td style="vertical-align:top;white-space:nowrap;">
+    <div class="title2"><span class="top-title">JavaScript 2.0</span></div>
+    <div class="title2">根拠</div>
+    <div class="title1">単位パターン</div>
+  </td>
+  <td style="text-align:right;vertical-align:top;white-space:nowrap"><a href="units.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="syntax.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+</tr>
+</table>
+
+<p class="mod-date">06/30/2003 (Mon)</p>
+
+<p>以下の LALR(1) 文法は引用符付き<a href="units.html#unit-expression">単位パターン</a>の構文を記述するものである。セマンティクスはレキシカルアナライザが<a href="units.html#unit-expression">単位パターン</a>を解釈するためにとるアクションを示す。この文法とセマンティクスに対する入力は文字列リテラルが処理された後は単位文字列リテラルの内容である。「<a href="../formal/notation.html">セマンティクス表記法</a>」も見よ。</p>
+
+<p>このドキュメントは <a href="unit-patterns.rtf">RTF 版</a> <ins class="clsByTranslator">[英語]</ins> も用意した。</p>
+
+<!--SEMANTICS-->
+
+<p>開始非終端記号は <a href="#N-UnitPattern" class="nonterminal">UnitPattern</a> である。</p>
+
+<h2>空白類文字</h2>
+
+<h4>構文</h4>
+
+<div class="grammar-argument"><span class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></span>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;{<span class="nonterminal-attribute">wsopt</span>,&nbsp;<span class="nonterminal-attribute">wsreq</span>}</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-WhiteSpaceCharacter"></a><span class="nonterminal">WhiteSpaceCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code><span class="control">&#171;TAB&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;VT&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;FF&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;SP&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u00A0&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u2000&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2001&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2002&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2003&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2004&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2005&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2006&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2007&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u2008&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2009&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u200A&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u200B&#187;</span></code></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code><span class="control">&#171;u3000&#187;</span></code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-LineTerminator"></a><span class="nonterminal">LineTerminator</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code><span class="control">&#171;LF&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;CR&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u0085&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2028&#187;</span></code>&nbsp;|&nbsp;<code><span class="control">&#171;u2029&#187;</span></code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-RequiredWhiteSpace"></a><span class="nonterminal">RequiredWhiteSpace</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-WhiteSpaceCharacter" class="nonterminal">WhiteSpaceCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RequiredWhiteSpace" class="nonterminal">RequiredWhiteSpace</a>&nbsp;<a href="#N-WhiteSpaceCharacter" class="nonterminal">WhiteSpaceCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-RequiredWhiteSpace" class="nonterminal">RequiredWhiteSpace</a>&nbsp;<a href="#N-LineTerminator" class="nonterminal">LineTerminator</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-WhiteSpace"></a><span class="nonterminal">WhiteSpace</span><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-RequiredWhiteSpace" class="nonterminal">RequiredWhiteSpace</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;&#171;empty&#187;</div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><span class="nonterminal">WhiteSpace</span><sup class="nonterminal-attribute">wsreq</sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-RequiredWhiteSpace" class="nonterminal">RequiredWhiteSpace</a></div>
+</div>
+
+<h2>単位パターン</h2>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnitPattern"></a><span class="nonterminal">UnitPattern</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-UnitQuotient" class="nonterminal">UnitQuotient</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnitQuotient"></a><span class="nonterminal">UnitQuotient</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<code>/</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnitProduct"></a><span class="nonterminal">UnitProduct</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<code>*</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsreq</sup>&nbsp;<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnitFactor"></a><span class="nonterminal">UnitFactor</span><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<code>1</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>1</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<code>^</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<code>^</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><a name="D-UnitFactor"></a><span class="semantic-keyword">tuple</span>&nbsp;<span class="domain-name">UnitFactor</span></div>
+  <div class="lvl">
+    <div class="stmt"><span class="field-name">identifier</span>:&nbsp;<a href="../formal/notation.html#D-String" class="domain-name">String</a>,</div>
+    <div class="stmt"><span class="field-name">exponent</span>:&nbsp;<a href="../formal/notation.html#D-Integer" class="domain-name">Integer</a></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">tuple</span>;</div>
+</div>
+<div class="algorithm-stmt"><a name="D-UnitList"></a><span class="domain-name">UnitList</span>&nbsp;=&nbsp;<a href="#D-UnitFactor" class="domain-name">UnitFactor</a>[];</div>
+<div class="algorithm">
+  <div class="stmt"><a name="V-unitReciprocal"></a><span class="semantic-keyword">proc</span>&nbsp;<span class="global-variable">unitReciprocal</span>(<var>value</var>:&nbsp;<a href="#D-UnitList" class="domain-name">UnitList</a>):&nbsp;<a href="#D-UnitList" class="domain-name">UnitList</a></div>
+  <div class="lvl">
+    <div class="stmt"><span class="semantic-keyword">return</span>&nbsp;<b>[</b><A href="#D-UnitFactor" class="domain-name">UnitFactor</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">identifier</span>:&nbsp;<var>f</var>.<a href="#D-UnitFactor" class="field-name">identifier</a>,&nbsp;<span class="field-name">exponent</span>:&nbsp;&#8211;<var>f</var>.<A href="#D-UnitFactor" class="field-name">exponent</a><b><script type="text/javascript">document.write(U_rang)</script></b>&nbsp;<b>|</b>&nbsp;<script type="text/javascript">document.write(U_forall)</script><var>f</var>&nbsp;<script type="text/javascript">document.write(U_isin)</script>&nbsp;<var>value</var><b>]</b></div>
+  </div>
+  <div class="stmt"><span class="semantic-keyword">end</span>&nbsp;<span class="semantic-keyword">proc</span>;</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitPattern" class="nonterminal">UnitPattern</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-UnitQuotient" class="nonterminal">UnitQuotient</a>]:&nbsp;<a href="#D-UnitList" class="domain-name">UnitList</a>&nbsp;=&nbsp;<span class="action-name">Value</span>[<a href="#N-UnitQuotient" class="nonterminal">UnitQuotient</a>];</div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitQuotient" class="nonterminal">UnitQuotient</a>]:&nbsp;<a href="#D-UnitList" class="domain-name">UnitList</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitQuotient" class="nonterminal">UnitQuotient</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup>]&nbsp;=&nbsp;<span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitQuotient" class="nonterminal">UnitQuotient</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup><sub class="nonterminal-sub">1</sub>&nbsp;<code>/</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup><sub class="nonterminal-sub">2</sub>]
+      =&nbsp;<span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup><sub class="nonterminal-sub">1</sub>]&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<a href="#V-unitReciprocal" class="global-variable">unitReciprocal</a>(<span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup><sub class="nonterminal-sub">2</sub>]);</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]:&nbsp;<a href="#D-UnitList" class="domain-name">UnitList</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]&nbsp;=&nbsp;<span class="action-name">Value</span>[<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup><sub class="nonterminal-sub">1</sub>&nbsp;<code>*</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]
+      =&nbsp;<span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsopt</sup><sub class="nonterminal-sub">1</sub>]&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<span class="action-name">Value</span>[<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsreq</sup><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]
+      =&nbsp;<span class="action-name">Value</span>[<a href="#N-UnitProduct" class="nonterminal">UnitProduct</a><sup class="nonterminal-attribute">wsreq</sup><sub class="nonterminal-sub">1</sub>]&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<span class="action-name">Value</span>[<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]:&nbsp;<a href="#D-UnitList" class="domain-name">UnitList</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>1</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]&nbsp;=&nbsp;<b>[]</b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>1</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<code>^</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]
+      =&nbsp;<b>[]</b>;</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]
+      =&nbsp;<b>[</b><a href="#D-UnitFactor" class="domain-name">UnitFactor</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">identifier</span>:&nbsp;<span class="action-name">Name</span>[<a href="#N-Identifier" class="nonterminal">Identifier</a>],&nbsp;<span class="field-name">exponent</span>:&nbsp;1<b><script type="text/javascript">document.write(U_rang)</script></b><b>]</b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Value</span>[<a href="#N-UnitFactor" class="nonterminal">UnitFactor</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<code>^</code>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-attribute">wsopt</sup>&nbsp;<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>&nbsp;<a href="#N-WhiteSpace" class="nonterminal">WhiteSpace</a><sup class="nonterminal-argument"><script type="text/javascript">document.write(U_sigma)</script></sup>]
+      =&nbsp;<b>[</b><a href="#D-UnitFactor" class="domain-name">UnitFactor</a><b><script type="text/javascript">document.write(U_lang)</script></b><span class="field-name">identifier</span>:&nbsp;<span class="action-name">Name</span>[<a href="#N-Identifier" class="nonterminal">Identifier</a>],&nbsp;<span class="field-name">exponent</span>:&nbsp;<span class="action-name">IntegerValue</span>[<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>]<b><script type="text/javascript">document.write(U_rang)</script></b><b>]</b>;</div>
+  </div>
+</div>
+
+<h2>符号付き整数</h2>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-SignedInteger"></a><span class="nonterminal">SignedInteger</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>+</code>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<code>-</code>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-DecimalDigits"></a><span class="nonterminal">DecimalDigits</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ASCIIDigit"></a><span class="nonterminal">ASCIIDigit</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>0</code>&nbsp;|&nbsp;<code>1</code>&nbsp;|&nbsp;<code>2</code>&nbsp;|&nbsp;<code>3</code>&nbsp;|&nbsp;<code>4</code>&nbsp;|&nbsp;<code>5</code>&nbsp;|&nbsp;<code>6</code>&nbsp;|&nbsp;<code>7</code>&nbsp;|&nbsp;<code>8</code>&nbsp;|&nbsp;<code>9</code></div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">IntegerValue</span>[<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>]:&nbsp;<a href="../formal/notation.html#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">IntegerValue</span>[<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]&nbsp;=&nbsp;<span class="action-name">IntegerValue</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>];</div>
+  </div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">IntegerValue</span>[<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>+</code>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]&nbsp;=&nbsp;<span class="action-name">IntegerValue</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">IntegerValue</span>[<a href="#N-SignedInteger" class="nonterminal">SignedInteger</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<code>-</code>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]&nbsp;=&nbsp;&#8211;<span class="action-name">IntegerValue</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>];</div>
+  </div>
+</div>
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">IntegerValue</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>]:&nbsp;<a href="../formal/notation.html#D-Integer" class="domain-name">Integer</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">IntegerValue</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]&nbsp;=&nbsp;<span class="action-name">DecimalValue</span>[<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>];</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">IntegerValue</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]
+      =&nbsp;10<script type="text/javascript">document.write(U_times)</script><span class="action-name">IntegerValue</span>[<a href="#N-DecimalDigits" class="nonterminal">DecimalDigits</a><sub class="nonterminal-sub">1</sub>]&nbsp;+&nbsp;<span class="action-name">DecimalValue</span>[<A href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>];</div>
+  </div>
+</div>
+<div class="algorithm-stmt"><span class="action-name">DecimalValue</span>[<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>]:&nbsp;<a href="../formal/notation.html#D-Integer" class="domain-name">Integer</a>&nbsp;=&nbsp;<a href="../formal/notation.html#V-digitValue" class="global-variable">digitValue</a>(<a href="#N-ASCIIDigit" class="nonterminal">ASCIIDigit</a>);</div>
+
+<h2>識別子</h2>
+
+<h4>構文</h4>
+
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-Identifier"></a><span class="nonterminal">Identifier</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script></div>
+  <div class="grammar-rhs">&nbsp;&nbsp;&nbsp;<a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a></div>
+  <div class="grammar-rhs">|&nbsp;&nbsp;<a href="#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-InitialIdentifierCharacter"></a><span class="nonterminal">InitialIdentifierCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeInitialAlphabetic" class="nonterminal">UnicodeInitialAlphabetic</a>&nbsp;|&nbsp;<code>$</code>&nbsp;|&nbsp;<code>_</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-ContinuingIdentifierCharacter"></a><span class="nonterminal">ContinuingIdentifierCharacter</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-UnicodeAlphanumeric" class="nonterminal">UnicodeAlphanumeric</a>&nbsp;|&nbsp;<code>$</code>&nbsp;|&nbsp;<code>_</code></div>
+</div>
+<div class="grammar-rule">
+  <div class="grammar-lhs"><a name="N-UnicodeInitialAlphabetic"></a><span class="nonterminal">UnicodeInitialAlphabetic</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;Any
+    Unicode initial alphabetic character (includes ASCII <code>A</code>-<code>Z</code> and
+    <code>a</code>-<code>z</code>)</div>
+</div>
+<div class=grammar-rule>
+  <div class=grammar-lhs><A name="N-UnicodeAlphanumeric"></A><span class=nonterminal>UnicodeAlphanumeric</span>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;Any
+    Unicode alphabetic or decimal digit character (includes ASCII <code>0</code>-<code>9</code>,
+    <code>A</code>-<code>Z</code>, and <code>a</code>-<code>z</code>)</div>
+</div>
+
+<h4>セマンティクス</h4>
+
+<div class="algorithm">
+  <div class="stmt"><span class="action-name">Name</span>[<a href="#N-Identifier" class="nonterminal">Identifier</a>]:&nbsp;<a href="../formal/notation.html#D-String" class="domain-name">String</a>;</div>
+  <div class="lvl-wide">
+    <div class="stmt"><span class="action-name">Name</span>[<a href="#N-Identifier" class="nonterminal">Identifier</a>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a>]&nbsp;=&nbsp;<b>[</b><a href="#N-InitialIdentifierCharacter" class="nonterminal">InitialIdentifierCharacter</a><b>]</b>;</div>
+  </div>
+  <div class="lvl">
+    <div class="stmt"><span class="action-name">Name</span>[<a href="#N-Identifier" class="nonterminal">Identifier</a><sub class="nonterminal-sub">0</sub>&nbsp;<script type="text/javascript">document.write(U_rArr)</script>&nbsp;<a href="#N-Identifier" class="nonterminal">Identifier</a><sub class="nonterminal-sub">1</sub>&nbsp;<a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a>]
+      =&nbsp;<span class="action-name">Name</span>[<a href="#N-Identifier" class="nonterminal">Identifier</a><sub class="nonterminal-sub">1</sub>]&nbsp;<script type="text/javascript">document.write(U_oplus)</script>&nbsp;<b>[</b><a href="#N-ContinuingIdentifierCharacter" class="nonterminal">ContinuingIdentifierCharacter</a><b>]</b>;</div>
+  </div>
+</div>
+<!--/SEMANTICS-->
+
+<hr>
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td style="vertical-align:bottom;white-space:nowrap">
+      <address><a href="mailto:waldemar@netscape.com">Waldemar Horwat</a><br>
+      最終更新: 2003年6月30日 (月)</address>
+    </td>
+    <td style="text-align:right;vertical-align:top;white-space:nowrap;"><a href="units.html"><img src="../../arrows/left.gif" width="37" height="37" alt="previous"></a><a href="../index.html"><img src="../../arrows/up.gif" width="37" height="37" alt="up"></a><a href="syntax.html"><img src="../../arrows/right.gif" width="37" height="37" alt="next"></a></td>
+  </tr>
+</table>
+
+<div class="clsTransFooter">
+	訳者: exeal &lt;<a href="mailto:exeal&#64;student.interq.or.jp">exeal&#64;student.interq.or.jp</a>&gt;<br>
+	<a href="http://www.mozilla.org/js/language/js20/rationale/unit-patterns.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</div>
+
+</body>
+</html>

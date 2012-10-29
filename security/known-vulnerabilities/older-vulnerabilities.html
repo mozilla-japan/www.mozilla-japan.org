@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>Mozilla Foundation セキュリティアドバイザリ (アーカイブ)</title>
+<link rel="alternate" hreflang="en" modified="July 15, 2008">
+<style type="text/css" media="screen,tv">
+  #mainContent { line-height: 160%; }
+  table { width: 100%; background-color: #eee; }
+  table .number { width: 1em; }
+  table .type { width: 5em; }
+  table .fixed { width: 5em; }
+  table .milestone { width: 7em; }
+  table .severity { width: 8em; }
+  table .description { width: auto; }
+  table .bugid { width: 4em; }
+  table .workaround { width: 9em; }
+  table .date { width: 5em; }
+  .critical { background-color: #ffa0a0; }
+  .high   { background-color: #ffd8a0; }
+  .moderate { background-color: #ffffa0; }
+  td { text-align: center; vertical-align: top; }
+  h2 { margin-top: 2em; }
+  .logo { vertical-align: middle; }
+  .vulnlist { margin: 0 2em; }
+  .vulnlist  dl dt { margin: 0; width: 8em; font-weight: normal; float: left; }
+  .vulnlist  dl dd { margin: 0 0 0 8em; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/known-vulnerabilities/">Mozilla 製品における既知の脆弱性</a> &gt; 過去の脆弱性</p>
+<h1>Mozilla 製品における過去の脆弱性</h1>
+<p>このページでは、Mozilla 製品の過去のバージョンに関して公表されたセキュリティ脆弱性をまとめています。より最近のセキュリティアドバイザリについては <a href="known-vulnerabilities.html">既知の脆弱性</a> をご覧ください。</p>
+<ul>
+  <li><a href="#firefox0.10.1">Firefox Preview Release アップデート (0.10.1) で修正済み</a></li>
+  <li><a href="#mozilla1.7.3">Firefox Preview Release / Mozilla 1.7.3 / Thunderbird 0.8 で修正済み</a></li>
+  <li><a href="#mozilla1.7.2">Mozilla 1.7.2 / Firefox 0.9.3 / Thunderbird 0.7.3 で修正済み</a></li>
+  <li><a href="#mozilla1.7.1">Mozilla 1.7.1 / Firefox 0.9.2 / Thunderbird 0.7.2 で修正済み</a></li>
+  <li><a href="#mozilla1.7">Mozilla 1.7 / Firefox 0.9 / Thunderbird 0.7 で修正済み</a></li>
+  <li><a href="#mozilla1.6">Mozilla 1.6 で修正済み</a></li>
+  <li><a href="#nov-2003">2003 年 11 月 更新</a></li>
+  <li><a href="#jul-2003">2003 年 7 月 更新</a></li>
+  <li><a href="#feb-2003">2003 年 2 月 更新</a></li>
+  <li><a href="#dec-2002">2002 年 12 月 以前の更新</a></li>
+</ul>
+
+<h3 id="firefox0.10.1">Firefox Preview Release アップデート (0.10.1) で修正済み</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="workaround">タイトル</th>
+    <th class="type">重要度 / リスク</th>
+    <th class="type">タイプ</th>
+    <th class="description">概要</th>
+    <th class="workaround">報告者</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr class="high">
+    <td>94</td>
+    <td>ダウンロードリンクによってファイルが削除される</td>
+    <td>高 / 高</td>
+    <td>データ消失</td>
+    <td>Firefox は、オリジナルのリンクを元にしたファイル名を自動的に用いることで、ファイルの保存処理を簡素化しています。特定のリンク形式によって、この機能にバグが引き起こされ、ユーザのダウンロードディレクトリにあるファイルが削除される可能性があります。攻撃者は、自分たちのサイトからファイルをダウンロードさせるには、ユーザに [保存] (Save) ボタンをクリックさせるよう仕向ける必要があります。<br><strong>回避策</strong>: 予期しないファイル保存ダイアログが表示されたら、必ずキャンセルしてください。また、信頼できないサイトからは何もダウンロードしてはいけません。ファイルを保存する際は、リンクを右クリックして、コンテキストメニューから [リンク先を名前を付けて保存...] (Save Link As...) を選択してください。</td>
+    <td>Alex Vincent</td>
+    <td>2004-09-29</td>
+  </tr>
+</table>
+
+<h3 id="mozilla1.7.3">Firefox Preview Release / Mozilla 1.7.3 / Thunderbird 0.8 で修正済み</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="workaround">タイトル</th>
+    <th class="type">重要度 / リスク</th>
+    <th class="type">タイプ</th>
+    <th class="description">概要</th>
+    <th class="workaround">報告者</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr class="high">
+    <td>93</td>
+    <td>「ページ送信」ヒープオーバーラン (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=258005">258005</a>)</td>
+    <td>高 / 中</td>
+    <td>リモートコード実行</td>
+    <td>「ページ送信」機能が、非常に長いリンクの場合、ヒープオーバーランを引き起こす場合があります。友人全員に転送したいと思わせるような興味深いコンテンツがあって、そのページ (リンク) を右クリックから送信しようとすると、任意のコード実行に利用される可能性があります。</td>
+    <td>Georgi Guninski</td>
+    <td>2004-09-07</td>
+  </tr>
+  <tr class="moderate">
+    <td>92</td>
+    <td>JavaScript クリップボードアクセス (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=257523">257523</a>)</td>
+    <td>中 / 高</td>
+    <td>クリップボードリーク</td>
+    <td>信用できない JavaScript コードがクリップボードを読み書きできてしまうため、ユーザがコピーしている可能性のある機密データを盗まれる可能性があります。<strong>回避策</strong>: JavaScript を無効にする</td>
+    <td>Wladimir Palant</td>
+    <td>2004-09-01</td>
+  </tr>
+  <tr class="moderate">
+    <td>91</td>
+    <td>特権リクエストの混乱 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=253942">253942</a>)</td>
+    <td>中 / 低</td>
+    <td>リモートコード実行</td>
+    <td>強化機能を要求する署名済みスクリプトが、分かりづらい許可ダイアログを表示させるリクエストを出し、その特権リクエストが重要なものではないとユーザに思い込ませながら、実際にはソフトウェアを実行、インストールする明示的な許可を得る可能性があります。<strong>回避策</strong>: 信頼できない Web ページでは、いかなる種類の強化機能であっても許可しない</td>
+    <td>Jesse Ruderman</td>
+    <td>2004-09-01</td>
+  </tr>
+  <tr class="critical">
+    <td>90</td>
+    <td>VCard 表示の際のバッファオーバーフロー (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=257314">257314</a>)</td>
+    <td>高 / 高</td>
+    <td>リモートコード実行</td>
+    <td>VCard 表示ルーチンにおけるスタックバッファオーバーランが、攻撃者が用意した任意のコード実行に利用される可能性があります。<strong>回避策</strong>: 添付ファイルのインライン表示を無効にする、添付された VCard を開かない</td>
+    <td>Georgi Guninski</td>
+    <td>2004-08-30</td>
+  </tr>
+  <tr class="critical">
+    <td>89</td>
+    <td>BMP 整数オーバーフロー (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=255067">255067</a>)</td>
+    <td>高 / 高</td>
+    <td>ヒープオーバーラン</td>
+    <td>極端に幅が広いビットマップ (BMP) 画像が整数オーバーフローを引き起こし、潜在的には任意のコード実行に利用されかねないヒープオーバーランにつながる可能性があります。<strong>回避策</strong>: 画像を無効にする</td>
+    <td>Gael Delalleau</td>
+    <td>2004-08-27</td>
+  </tr>
+  <tr class="high">
+    <td>88</td>
+    <td>javascript: リンクドラッグ (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=250862">250862</a>)</td>
+    <td>高 / 中</td>
+    <td>クロスドメインスクリプティング、リモートコード実行の可能性も</td>
+    <td class="bugdesc">javascript: で始まるリンクが別のフレームやページにドラッグされると、攻撃者が他のサイトから機密情報を盗み出したり改ざんすることが可能になります。ユーザは、ゲームのような状況、あるいは偽のスクロールバーといったもので、隠しリンクをドラッグするよう説得されてしまう可能性があります。また、2 つのリンクを順番に (フレームではなく) 別々のウィンドウにドラッグするよう仕向けられた場合、攻撃者は任意のプログラムを実行できるようになります。</td>
+    <td>Jesse Ruderman</td>
+    <td>2004-08-26</td>
+  </tr>
+  <tr class="critical">
+    <td>87</td>
+    <td>非アスキー文字を含むホスト名によるヒープオーバーラン (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=256316">256316</a>)</td>
+    <td>高 / 高</td>
+    <td>リモートコード実行</td>
+    <td>非アスキー文字を含むホスト名のリンクが、潜在的には任意のコード実行に利用されかねないヒープバッファオーバーランを引き起こす可能性があります。</td>
+    <td>Mats Palmgren, Gael Delalleau</td>
+    <td>2004-08-24</td>
+  </tr>
+  <tr class="high">
+    <td>86</td>
+    <td>悪質な POP3 サーバ III (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=245066">245066</a>, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=226669">226669</a>)</td>
+    <td>高 / 中</td>
+    <td>リモートコード実行</td>
+    <td>悪質な POP3 メールサーバからの応答が、任意のコード実行に利用されかねないヒープオーバーランを引き起こす可能性があります。</td>
+    <td>Gael Delalleau</td>
+    <td>2004-08-17</td>
+  </tr>
+  <tr>
+    <td>85</td>
+    <td>Linux へインストール後の誤ったファイルパーミッション (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=231083">231083</a>, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=235781">235781</a>)</td>
+    <td>中 / 低</td>
+    <td>ローカル攻撃</td>
+    <td>Linux 版インストーラが、読み取り・書き込み可能なファイルを作成するため、別のローカルユーザがそれらを悪質なものに置き換えることができます。<strong>回避策</strong>: インストールしたファイルのパーミッションを変更する (chmod)</td>
+    <td>Daniel Koukola, Andrew Schultz</td>
+    <td>2004-08-16</td>
+  </tr>
+  <tr>
+    <td>84</td>
+    <td>Linux 版アーカイブに含まれる誤ったファイルパーミッション (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=254303">254303</a>)</td>
+    <td>中 / 低</td>
+    <td>ローカル攻撃</td>
+    <td>Linux 版の .tar.gz アーカイブに含まれるファイルのパーミッションとオーナーが誤って設定されています。ユーザの umask 設定を無視するオプション (または permissive umask) で展開した場合、展開されたファイルがシステム上の他のユーザによって密かに悪質なものに置き換えられる可能性があります。<strong>回避策</strong>: 展開後、ファイルのパーミッションとオーナーを変更する (chmod, chown)</td>
+    <td>Harald Milz</td>
+    <td>2004-08-16</td>
+  </tr>
+  </tbody>
+</table>
+
+<h3 id="mozilla1.7.2">Mozilla 1.7.2 / Firefox 0.9.3 / Thunderbird 0.7.3 で修正済み</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="workaround">タイトル</th>
+    <th class="type">重要度 / リスク</th>
+    <th class="type">タイプ</th>
+    <th class="description">概要</th>
+    <th class="workaround">報告者</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr class="critical">
+    <td>83</td>
+    <td>libpng のバッファ・整数オーバーフロー (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=251381">251381</a>)</td>
+    <td>高 / 高</td>
+    <td>リモートコード実行</td>
+    <td>libpng に存在する複数のフローが公表されました。最悪の場合、バッファオーバーフローを通じてリモートコードを実行される可能性があります。<a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0597">CAN-2004-0597</a>、<a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0598">CAN-2004-0598</a>、<a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0599">CAN-2004-0599</a></td>
+    <td>Chris Evans</td>
+    <td>2004-08-03</td>
+  </tr>
+  <tr class="moderate">
+    <td>82</td>
+    <td>onunload ハンドラで document.write を使った鍵アイコンと証明書の偽装 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=253121">253121</a>)</td>
+    <td>中 / 中</td>
+    <td>なりすまし</td>
+    <td>onunload ハンドラを使ってページが書き直された場合、前の安全なサイトの鍵アイコンと証明書が残ってしまう場合があります。これとリダイレクトを組み合わせると、安全なサイトへのなりすましに利用される可能性があります。ロケーションバーが表示されていれば、正しい URL が表示されます。<a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0763">CAN-2004-0763</a></td>
+    <td>Emmanouel Kellinis</td>
+    <td>2004-07-27</td>
+  </tr>
+  <tr class="critical">
+    <td>81</td>
+    <td>悪質な証明書によって HTTPS/SSL が永久的に遮断される (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=249004">249004</a>)</td>
+    <td>高 / 高</td>
+    <td>永続的 DOS</td>
+    <td>悪質な電子メール証明書によって、組み込みの認証局 (CA) 証明書が偽装されてしまう可能性があります。偽装された認証局によって署名された何らかの内容がインポートされ、それが認証されないと、その認証局によって発行された証明書を持つすべての SSL (https:) サイトが完全に利用できなくなる可能性があります。<a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0758">CAN-2004-0758</a></td>
+    <td>Marcel Boesch</td>
+    <td>2004-07-27</td>
+  </tr>
+</table>
+
+<h3 id="mozilla1.7.1">Mozilla 1.7.1 / Firefox 0.9.2 / Thunderbird 0.7.2 で修正済み</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="workaround">タイトル</th>
+    <th class="type">重要度 / リスク</th>
+    <th class="type">タイプ</th>
+    <th class="description">概要</th>
+    <th class="workaround">報告者</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr class="critical">
+    <td>80</td>
+    <td>Windows の shell: プロトコルハンドラ (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=250180">250180</a>)</td>
+    <td>高 / 高</td>
+    <td>リモートコード実行</td>
+    <td>「shell:」で始まる URL は、Windows に処理が渡され、結果として何らかのプログラムが起動します。これにより、Windows の一部のデフォルトファイルタイプハンドラに含まれる、パッチ未適用の脆弱性と組み合わせることで、理論上、任意のコードを実行される可能性があります。</td>
+    <td>Keith McCanless</td>
+    <td>2004-07-07</td>
+  </tr>
+</table>
+
+<h3 id="mozilla1.7">Mozilla 1.7 / Firefox 0.9 / Thunderbird 0.7 で修正済み</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="workaround">タイトル</th>
+    <th class="type">重要度 / リスク</th>
+    <th class="type">タイプ</th>
+    <th class="description">概要</th>
+    <th class="workaround">報告者</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr class="moderate">
+    <td>79</td>
+    <td>フレーム使用サイトでのコンテンツ偽装 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=246448">246448</a>)</td>
+    <td>中 / 中</td>
+    <td>なりすまし</td>
+    <td>ドキュメント内のフレームコンテンツが、ロケーションバーに元のアドレスを残しながら、攻撃者によってそのウィンドウの参照先に置き換えられる可能性があります。安全なサイト上では、鍵のアイコンが壊れたマークになりますが、そうでないサイトでは完全に偽装することができます。</td>
+    <td>Jesse Ruderman</td>
+    <td>2004-06-16</td>
+  </tr>
+  <tr class="critical">
+    <td>78</td>
+    <td>セキュリティダイアログポップアップ (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=162020">162020</a>)</td>
+    <td>高 / 高</td>
+    <td>リモートコード実行</td>
+    <td>攻撃者が、ある特定の場所をクリックしたり、特定のテキストを入力するよう、ユーザを仕向けることで、セキュリティ許可やソフトウェアインストールのダイアログが、ユーザのマウスクリックによってポップアップし、許可 (あるいはインストール) ボタンをクリックさせる可能性があります。</td>
+    <td>Jesse Ruderman</td>
+    <td>2004-06-05</td>
+  </tr>
+  <tr>
+    <td>77</td>
+    <td>「クローム」フラグを使った信頼できないコンテンツの表示 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=244965">244965</a>)</td>
+    <td>中 / 低</td>
+    <td>なりすまし</td>
+    <td>信頼できない Web コンテンツが、「クローム」形式でウィンドウを開く可能性があります。これにより、通常のブラウザフレームを隠し、偽装ダイアログ (マスターパスワードダイアログなど) を簡単に出せるようになります。この脆弱性は、Mozilla 1.6 から 1.7 RC2 までの各バージョンに影響します。</td>
+    <td>James Ross</td>
+    <td>2004-06-02</td>
+  </tr>
+  <tr class="moderate">
+    <td>76</td>
+    <td>POP3 メールサーバのヒープオーバーラン (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=229374">229374</a>)</td>
+    <td>高 / 低</td>
+    <td>ヒープオーバーラン</td>
+    <td>Bug 157644 (下の #27 参照) の異種で、悪質な POP サーバによってメモリを上書きされ、任意のコードを実行される可能性があります。</td>
+    <td>zen parse</td>
+    <td>2004-05-29</td>
+  </tr>
+  <tr class="critical">
+    <td>75</td>
+    <td>help: および disk: プロトコルを通じた Mac 上でのリモートコード実行 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=243699">243699</a>)</td>
+    <td>高 / 高</td>
+    <td>リモートコード実行</td>
+    <td>Mac OS X の一部のバージョンに含まれる、help: や disk: URL スキーマに関する脆弱性が lixlpixel によって報告されました。Web コンテンツが Mozilla を通じて、これらのスキーマにアクセスする可能性があります。<br><strong>回避策</strong>: 最新の OS セキュリティパッチをインストールしてください。</td>
+    <td>Mike Calmus</td>
+    <td>2004-05-17</td>
+  </tr>
+  <tr>
+    <td>74</td>
+    <td>PNG 画像による境界外のメモリアクセス (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=242915">242915</a>)</td>
+    <td>低 / 低</td>
+    <td>DOS</td>
+    <td>サービス妨害 (DOS) 攻撃に悪用される可能性のあるバグが libpng プロジェクトによって公表されました。詳しくは <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0421">CAN-2004-0421</a> をご覧ください。</td>
+    <td>Glenn Randers-Pehrson</td>
+    <td>2004-05-07</td>
+  </tr>
+  <tr class="high">
+    <td>73</td>
+    <td>自動ファイルアップロード (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=241924">241924</a>)</td>
+    <td>高 / 中</td>
+    <td>ファイルアクセス</td>
+    <td>Mozilla 1.7 Beta のみのリグレッション: document.write() と innerHTML を使って、ファイルアップロードコントロールの値をあらかじめ入力することが可能なため、攻撃者がプログラムを通じてフォームを送信させ、既知の場所にあるファイルを入手する可能性があります。<br><strong>回避策</strong>: JavaScript を無効にする</td>
+    <td>Met - Martin Hassman</td>
+    <td>2004-04-28</td>
+  </tr>
+  <tr class="high">
+    <td>72</td>
+    <td>SSL 証明書偽装 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=240053">240053</a>)</td>
+    <td>高 / 高</td>
+    <td>なりすまし</td>
+    <td>悪質なページが、リダイレクトを利用して SSL の鍵アイコンを表示させ、安全なページであるかのように装うことが可能です。この脆弱性は、フィッシング詐欺の助長に悪用される可能性があります。</td>
+    <td>Tolga Tarhan</td>
+    <td>2004-04-10</td>
+  </tr>
+  <tr class="moderate">
+    <td>71</td>
+    <td>DNS 偽装を通じた安全な HTTP 認証パスワードの読み取り (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=226278">226278</a>)</td>
+    <td>高 / 低</td>
+    <td>パスワード読み取り</td>
+    <td>HTTP 認証パスワードは、サイトとポートによってキャッシュされますが、使われているプロトコルが安全 (SSL) かどうかは記憶されません。攻撃者は、ユーザの DNS になりすますことで、ユーザが安全なサイトで認証するのを待って、そのセッション間の、そのサイトとポートへの以降の接続を、自分たちの管理下にある非 SSL マシンにリダイレクトすることができます。これにより、安全なパスワードを読み取られる可能性があります。</td>
+    <td>Christopher Nebergall</td>
+    <td>2004-04-07</td>
+  </tr>
+  <tr>
+    <td>70</td>
+    <td>不完全なドメインの証明書名確認が安全でない (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=234058">234058</a>)</td>
+    <td>低 / 低</td>
+    <td>なりすまし</td>
+    <td>完全に記述されていない URL のホスト名が、警告ダイアログを出さずに証明書名の一部にマッチする可能性があります。ユーザのデフォルト DNS 参照パス上にあるマシンが攻撃者の管理下に置かれていた場合、なりすましに利用される可能性があります。</td>
+    <td>Tim Dierks</td>
+    <td>2004-04-07</td>
+  </tr>
+  <tr class="high">
+    <td>69</td>
+    <td>Liveconnect を通じたローカルファイルへのリモートアクセス (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=239122">239122</a>)</td>
+    <td>高 / 高</td>
+    <td>リモート読み取り</td>
+    <td>Mozilla 1.7 Beta では、リモートの Web ページが Liveconnect を利用して、既知の場所にあるローカルファイルを読み取ることが可能です。(Java が必要で、1.7 Alpha 以前のバージョンは問題ありません)</td>
+    <td>Darin Fisher</td>
+    <td>2004-04-05</td>
+  </tr>
+  <tr>
+    <td>68</td>
+    <td>別ウィンドウでの focus() と blur() の再定義 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=86028">86028</a>)</td>
+    <td>低 / 低</td>
+    <td>DOS</td>
+    <td>攻撃者は、自ら開いたウィンドウ上で、一部の関数を書き換えることが可能です。書き換えられた関数は攻撃者のドメインで実行され、データを盗み出すことはできませんが、他のウィンドウの操作を妨げる可能性があります。</td>
+    <td>Jesse Ruderman</td>
+    <td>2004-03-25</td>
+  </tr>
+  <tr class="critical">
+    <td>67</td>
+    <td>SOAPParameter オーバーフロー (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=236618">236618</a>)</td>
+    <td>高 / 高</td>
+    <td>リモートコード実行</td>
+    <td>巨大な JavaScript 配列を SOAPParameter コンストラクタに渡すことで生じる整数オーバーフローによって、ヒープの上書きをコントロールされ、攻撃者が選択した任意のコード実行に悪用される可能性があります。<br><strong>回避策</strong>: JavaScript を無効にする</td>
+    <td>zen parse / iDEFENSE</td>
+    <td>2004-03-08</td>
+  </tr>
+  <tr>
+    <td>66</td>
+    <td>ファイルアップロードコントロールへのドラッグ (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=206859">206859</a>)</td>
+    <td>高 / 低</td>
+    <td>ファイルアクセス</td>
+    <td>賢い攻撃者が、偽装したテキストを隠しファイルアップロードコントロールにドラッグするよう、ユーザに仕向けることで、既知の場所にあるユーザのファイルを入手することが可能になります。</td>
+    <td>Jesse Ruderman</td>
+    <td>2004-02-11</td>
+  </tr>
+</table>
+
+<h3 id="mozilla1.6">Mozilla 1.6 で修正済み</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="workaround">タイトル</th>
+    <th class="type">重要度 / リスク</th>
+    <th class="type">タイプ</th>
+    <th class="description">概要</th>
+    <th class="workaround">報告者</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr>
+    <td>65</td>
+    <td>%00 を使ったステータスバー偽装 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=228176">228176</a>)</td>
+    <td>低 / 低</td>
+    <td>なりすまし</td>
+    <td>href 属性に含まれる %00 という文字列によって、リンクにマウスを載せたときステータスバーに表示されるリンク先 URL の一部が切り捨てられてしまいます。これは、JavaScript が無効になっていて、通常の Web コンテンツよりもステータスバーを信頼できるはずの、メールによるフィッシング詐欺の助長に悪用される可能性があります。</td>
+    <td><a href="http://secunia.com/advisories/10419/">Secunia</a></td>
+    <td>2004-01-06</td>
+  </tr>
+  <tr class="moderate">
+    <td>64</td>
+    <td>イベントハンドラを使った不明ドキュメント上でのクロスドメイン脆弱性 (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=227417">227417</a>)</td>
+    <td>中 / 低</td>
+    <td>同一生成元ポリシー違反</td>
+    <td>ページ遷移の間、新しいページのコンテキスト内にある前のページからイベントハンドラを実行することが可能でした。これにより、Cookie の盗み取りが可能になることが実証されており、潜在的にはあらゆる機密アカウント情報が新たに開いたサイトで表示されてしまう可能性があります。</td>
+    <td><a href="http://www.sandblad.com/security/advisories/">Andreas Sandblad</a></td>
+    <td>2003-12-03</td>
+  </tr>
+</table>
+
+<h3 id="nov-2003">2003 年 11 月 更新</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="type">タイプ</th>
+    <th class="fixed">修正済み<br>バージョン</th>
+    <th class="milestone">影響を受ける<br>マイルストーン</th>
+    <th class="severity">重要度</th>
+    <th class="description">概要</th>
+    <th class="bugid">バグ<br>ナンバー</th>
+    <th class="workaround">代替策</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr>
+    <td>63</td>
+    <td>ヒープオーバーフロー</td>
+    <td>1.5<br>1.4.2</td>
+    <td>1.4 以前</td>
+    <td>任意のコード実行</td>
+    <td>悪質な PPM 画像がヒープオーバーランを引き起こし、場合によっては任意のコードを実行される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=220721">220721</a></td>
+    <td>画像を無効にする</td>
+    <td>2003-12-16</td>
+  </tr>
+  <tr>
+    <td>62</td>
+    <td>JavaScript</td>
+    <td>1.5<br>1.4.1</td>
+    <td>M1 - 1.4</td>
+    <td>任意のコード実行</td>
+    <td>Script.prototype.freeze/thaw によって、攻撃者がユーザのコンピュータ上で任意のコードを実行することが可能になります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=221526">221526</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-10-07</td>
+  </tr>
+  <tr>
+    <td>61</td>
+    <td>実行ファイルの実行</td>
+    <td>1.5<br>1.4.2</td>
+    <td>M1 - 1.4.1</td>
+    <td>Windows 上で *.hta ファイルが実行される可能性</td>
+    <td>*.hta ファイルが実行ファイルとして処理されず、ユーザのシステムへの完全なアクセスを得る可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=220257">220257</a></td>
+    <td>*.hta あるいは application/hta ファイルを開かない</td>
+    <td>2003-09-29</td>
+  </tr>
+  <tr>
+    <td>60</td>
+    <td>ネットワーク</td>
+    <td>1.5<br>1.4.2</td>
+    <td>M1 - 1.4.1</td>
+    <td>パスワードの読み取り</td>
+    <td>悪質な Web サイトがユーザのプロキシサーバ証明書にアクセスする可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=220122">220122</a></td>
+    <td>なし</td>
+    <td>2003-09-24</td>
+  </tr>
+  <tr>
+    <td>59</td>
+    <td>JavaScript</td>
+    <td>Firebird 0.7<br>
+    <td>Firebird 0.6</td>
+    <td>任意のコード実行</td>
+    <td>HTML リンク上でプロパティのセッターを上書きすることで、ユーザがそのリンク上でクリックするよう説得させられた場合、Web サイトがクローム特権を手に入れる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=217195">217195</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-09-23</td>
+  </tr>
+  <tr>
+    <td>58</td>
+    <td>メール</td>
+    <td>1.5</td>
+    <td>M1 - 1.4</td>
+    <td>ディスクへのパスワード保存</td>
+    <td>ユーザが POP3 アカウントのパスワードを保存しないよう明示的に要求した場合でも、パスワードがディスク上に保存されてしまいます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=217625">217625</a></td>
+    <td>パスワードマネージャを無効にする</td>
+    <td>2003-08-28</td>
+  </tr>
+  <tr>
+    <td>57</td>
+    <td>Cookie</td>
+    <td>1.5<br>1.4.1</td>
+    <td>M1 - 1.4</td>
+    <td>異なるパスによってセットされた Cookie の読み取り</td>
+    <td>エスケープ文字列 &quot;%2E%2E&quot; を含むパスで Cookie を要求することによって、悪質な Web サイトが異なるパスからの Cookie を読み取ることが可能になります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=213012">213012</a></td>
+    <td>Cookie を無効にする</td>
+    <td>2003-07-28</td>
+  </tr>
+  <tr>
+    <td>56</td>
+    <td>JavaScript</td>
+    <td>1.4</td>
+    <td>M1 - 1.3</td>
+    <td>異なるドメイン上にある変数が存在するかどうかの割り出し</td>
+    <td>スコープ (eval、with) を利用することで、クロスドメインの変数検出が可能になります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=158049">158049</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-06-02</td>
+  </tr>
+  <tr>
+    <td>55</td>
+    <td>JavaScript</td>
+    <td>1.4</td>
+    <td>M1 - 1.3</td>
+    <td>クロスドメインスクリプト実行</td>
+    <td>異なるドメイン上のカスタムセッター、ゲッターの実行が可能になります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=92773">92773</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-03-06</td>
+  </tr>
+  <tr>
+    <td>54</td>
+    <td>DOM</td>
+    <td>1.4</td>
+    <td>M1 - 1.3</td>
+    <td>URL が訪問されたどうかの割り出し</td>
+    <td>Web サイトが、history.goURL を利用して、ある URL が以前に訪問されたかどうかを割り出すことができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=163549">163549</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-02-25</td>
+  </tr>
+  <tr>
+    <td>53</td>
+    <td>Cookie</td>
+    <td>1.3</td>
+    <td>M1 - 1.2</td>
+    <td>異なるパスによってセットされた Cookie の読み取り</td>
+    <td>パス &quot;abc&quot; に対してセットされた Cookie が、パス &quot;abcd&quot; を持つページに読み取られる可能性があります。</td>
+    <td> <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=155114">155114</a></td>
+    <td>Cookie を無効にする</td>
+    <td>2002-08-11</td>
+  </tr>
+</table>
+
+<h3 id="jul-2003">2003 年 7 月 更新</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="type">タイプ</th>
+    <th class="milestone">影響を受ける<br>マイルストーン</th>
+    <th class="severity">重要度</th>
+    <th class="description">概要</th>
+    <th class="bugid">バグ<br>ナンバー</th>
+    <th class="workaround">代替策</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr>
+    <td>52</td>
+    <td>DOM</td>
+    <td>M1 - 1.3</td>
+    <td>ローカル JavaScript ファイルの読み取り</td>
+    <td>XUL スクリプトがローカルの JavaScript ファイルを読み取ることができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=180748">180748</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-06-02</td>
+  </tr>
+  <tr>
+    <td>51</td>
+    <td>DOM</td>
+    <td>M1 - 1.3</td>
+    <td>ページ上で任意の JavaScript 実行</td>
+    <td>IMG タグが不正に利用されて、ページ上で任意の JavaScript が読み込まれ、実行される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=195201">195201</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-05-29</td>
+  </tr>
+  <tr>
+    <td>50</td>
+    <td>XBL</td>
+    <td>M1 - 1.3</td>
+    <td>ローカルファイルの読み取り</td>
+    <td>XBL 処理のバグと、よく知られている場所に既知の名前でファイルを作成する外部アプリケーションの機能によって、ローカルファイルが読み取られ、悪用される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=200691">200691</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-05-01</td>
+  </tr>
+  <tr>
+    <td>49</td>
+    <td>DOM</td>
+    <td>M1 - 1.3</td>
+    <td>第三者のサイトからのデータ読み取り</td>
+    <td>document.domain が第三者のサイトにアクセスするために不正に設定される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=204682">204682</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-05-09</td>
+  </tr>
+  <tr>
+    <td>48</td>
+    <td>DOM</td>
+    <td>M1 - 1.3</td>
+    <td>訪問された URL の追跡</td>
+    <td>javascript: URL の戻り値が、セキュリティチェックを受けずに文字列に変換されてしまいます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=202994">202994</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-05-02</td>
+  </tr>
+  <tr>
+    <td>47</td>
+    <td>XUL</td>
+    <td>M1 - 1.3</td>
+    <td>既知の場所からの XML ファイル読み取り</td>
+    <td>XUL オーバーレイが、第三者のサイトから読み取られる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=159450">159450</a></td>
+    <td>なし</td>
+    <td>2003-05-02</td>
+  </tr>
+  <tr>
+    <td>46</td>
+    <td>なりすまし</td>
+    <td>M1 - 1.3</td>
+    <td>パスワードの読み取り</td>
+    <td>HTTP 認証のパスワードプロンプトが、メールサーバのパスワードプロンプトと混同される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=51631">51631</a></td>
+    <td>本物のメールサーバのパスワードプロンプトを覚えて、ダイアログがまったく同じではない場合はパスワードを入力しない</td>
+    <td>2003-04-25</td>
+  </tr>
+  <tr>
+    <td>45</td>
+    <td>バッファオーバーラン</td>
+    <td>M1 - 1.3</td>
+    <td>任意のコード実行</td>
+    <td>悪質に作り込まれたメールを読むと、悪用されかねないバッファオーバーランを引き起こす可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=202546">202546</a></td>
+    <td>なし</td>
+    <td>2003-04-25</td>
+  </tr>
+  <tr>
+    <td>44</td>
+    <td>バッファオーバーラン</td>
+    <td>M1 - 1.3</td>
+    <td>任意のコード実行</td>
+    <td>悪質に作り込まれたメールを読むと、悪用されかねないバッファオーバーランを引き起こす可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=201547">201547</a></td>
+    <td>なし</td>
+    <td>2003-04-23</td>
+  </tr>
+  <tr>
+    <td>43</td>
+    <td>DOM</td>
+    <td>M1 - 1.3</td>
+    <td>第三者のサイトからのデータ読み取り</td>
+    <td>ページの読み込み中に javascript: のリンクをクリックすると、誤った特権で JavaScript が実行され、第三者のサイトからのデータ読み取りが可能になります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=201839">201839</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-04-18</td>
+  </tr>
+  <tr>
+    <td>42</td>
+    <td>DOM</td>
+    <td>M1 - 1.3</td>
+    <td>第三者のサイトからのデータ読み取り</td>
+    <td>find() コマンドを利用して、別のホストのページから少量のデータを読み取ることができます。実際には処理が非常に遅く困難です。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=118657">118657</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-04-18</td>
+  </tr>
+  <tr>
+    <td>41</td>
+    <td>DOM</td>
+    <td>M1 - 1.3</td>
+    <td>第三者のサイトからのデータ読み取り</td>
+    <td>悪質なスクリプトが、イベントハンドラを利用して、第三者のサイトからデータを盗み出すことができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=201132">201132</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-04-17</td>
+  </tr>
+  <tr>
+    <td>40</td>
+    <td>Java</td>
+    <td>M1 - 1.3</td>
+    <td>ローカルファイルの読み取り</td>
+    <td>Sun JRE がシステムにインストールされている場合、Java アプレットがローカルファイルを読み取ることが可能です。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=59767">59767</a></td>
+    <td>Java を無効にする</td>
+    <td>2003-04-03</td>
+  </tr>
+  <tr>
+    <td>39 </td>
+    <td>バッファオーバーラン </td>
+    <td>M1 - 1.3</td>
+    <td>任意のコード実行</td>
+    <td>バージョン 1.4.1 以前の Sun JRE がシステムにインストールされている場合、JavaScript から Java を呼び出すことで、悪用されかねないバッファオーバーランを引き起こす可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=183092">183092</a></td>
+    <td>Java を無効にする</td>
+    <td>2003-03-31</td>
+  </tr>
+  <tr>
+    <td>38</td>
+    <td>DOM</td>
+    <td>M1 - 1.3</td>
+    <td>第三者のサイトからの限られたデータの読み取り</td>
+    <td>第三者のページにあるスクリプト定義プロパティのゲッターとセッターが、限られたデータの盗み取りを可能にするスクリプトによって読み取られる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=92773">92773</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2003-03-06</td>
+  </tr>
+  <tr>
+    <td>37</td>
+    <td>IRC/メール</td>
+    <td>0.8 - 1.2</td>
+    <td>ユーザが知らないうちに偽のメールを送信</td>
+    <td>IRC プロトコルが SMTP サーバをだまして、ユーザの名前でメールを送信するように利用される可能性があります。ChatZilla がインストールされている場合のみ影響します。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=190532">190532</a></td>
+    <td>なし</td>
+    <td>2003-02-04</td>
+  </tr>
+  <tr>
+    <td>36</td>
+    <td>なりすまし</td>
+    <td>M1 - 1.2</td>
+    <td>URL バーが不正なアドレスを表示</td>
+    <td>HTTP 305 リダイレクトが、攻撃者によって他のサイトのページに見せかけるよう利用される可能性があります。プロキシ経由でブラウズしている場合のみ影響します。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=187996">187996</a></td>
+    <td>プロキシを利用しない。あるいは、Web ページで機密データを入力する前に、ページ情報ダイアログと鍵マークのセキュリティアイコンを確認する</td>
+    <td>2003-01-28</td>
+  </tr>
+  <tr>
+    <td>35</td>
+    <td>設定可能なセキュリティポリシー</td>
+    <td>M1 - 1.2</td>
+    <td>任意の設定可能なセキュリティポリシーが回避される</td>
+    <td>URL のユーザ名欄を利用して、ユーザが作成した任意の設定可能なセキュリティポリシーを回避することが可能になります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=189799">189799</a></td>
+    <td>設定可能なセキュリティポリシーを追加・変更しない。デフォルトが安全です</td>
+    <td>2003-01-24</td>
+  </tr>
+  <tr>
+    <td>34</td>
+    <td>なりすまし</td>
+    <td>M1 - 1.0.1/1.2</td>
+    <td>URL バーが不正なアドレスを表示</td>
+    <td>XUL が URL バーに不正なアドレスを表示するために利用される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=171274">171274</a></td>
+    <td>Web ページで機密データを入力する前に、ページ情報ダイアログと鍵マークのセキュリティアイコンを確認する</td>
+    <td>2003-01-10</td>
+  </tr>
+  <tr>
+    <td>33</td>
+    <td>ネットワーク</td>
+    <td>M1 - 1.2</td>
+    <td>一部のプラットフォームで古いキャッシュデータが利用される</td>
+    <td>一部の非 Tier1 プラットフォーム (BeOS) が、キャッシュファイルのプロパティを切り捨てず、結果としてページに新旧のデータが混在し、不要な買い物などをしてしまう可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=162588">162588</a></td>
+    <td>以前訪れたページを見る前にキャッシュをクリアする</td>
+    <td>2002-12-18</td>
+  </tr>
+  <tr>
+    <td>32</td>
+    <td>XSLT</td>
+    <td>0.8 - 1.2</td>
+    <td>ファイアウォール内の既知の場所からの XSLT ファイルの読み取り</td>
+    <td>XML ファイルが異なるホストから XSLT スタイルシートを読み込むことができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=165532">165532</a></td>
+    <td>XSLT を無効にする</td>
+    <td>2002-12-03</td>
+  </tr>
+  <tr>
+    <td>31</td>
+    <td>DOM</td>
+    <td>M1 - 1.0.1/1.1</td>
+    <td>他のページの改ざん・読み取り</td>
+    <td>他のページを読み込み中にスクリプトが document.write を呼び出すと、第三者のサイトからデータを盗み出すことができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=91043">91043</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-11-14</td>
+  </tr>
+</table>
+
+<h3 id="feb-2003">2003 年 2 月更新</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="type">タイプ</th>
+    <th class="milestone">影響を受ける<br>マイルストーン</th>
+    <th class="severity">重要度</th>
+    <th class="description">概要</th>
+    <th class="bugid">バグ<br>ナンバー</th>
+    <th class="workaround">代替策</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr>
+    <td>30</td>
+    <td>メール</td>
+    <td>M1 - 1.2</td>
+    <td>任意のコード実行</td>
+    <td>悪質なメールメッセージを受信した際、添付ファイルをダブルクリックすると、攻撃者が任意のコードを実行できてしまう可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=191817">191817</a></td>
+    <td>信用できない送信者からの添付ファイルを開かない</td>
+    <td>2003-02-06</td>
+  </tr>
+  <tr>
+    <td>29</td>
+    <td>ネットワーク</td>
+    <td>0.9.1 - 1.2</td>
+    <td>ファイアウォール内部の既知の場所からのファイル読み取り</td>
+    <td>リクエストへの応答として「305 リダイレクト」メッセージを送信することで、悪質な Web サーバによるファイアウォール内部からのファイル読み取りが可能になります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=187996">187996</a></td>
+    <td>なし</td>
+    <td>2003-01-28</td>
+  </tr>
+  <tr>
+    <td>28</td>
+    <td>ネットワーク</td>
+    <td>M1 - 1.2</td>
+    <td>任意のコード実行</td>
+    <td>悪質に作り込まれた .jar アーカイブファイルへのリンクをたどると、攻撃者が任意のコードを実行できてしまう可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=164695">164695</a></td>
+    <td>なし</td>
+    <td>2002-10-30</td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td>メール</td>
+    <td>M1 - 1.2</td>
+    <td>任意のコード実行</td>
+    <td>悪質に改ざんされた POP3 メールサーバに接続すると、攻撃者がユーザのコンピュータ上で任意のコードを実行できるようになります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=157644">157644</a></td>
+    <td>信用できない POP3 メールサーバに接続しない</td>
+    <td>2002-10-21</td>
+  </tr>
+  <tr>
+    <td>26</td>
+    <td>なりすまし</td>
+    <td>0.9.9 - 1.2</td>
+    <td>悪質な Web ページを正当なページと誤認</td>
+    <td>wyciwyg:// の URL が URL バーをだますために利用される可能性があります。これによって不正な URL が表示されます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=159659">159659</a></td>
+    <td>Web ページで機密データを入力する前に、ページ情報ダイアログと鍵マークのセキュリティアイコンを確認する</td>
+    <td>2002-09-20</td>
+  </tr>
+</table>
+
+<h3 id="dec-2002">2002 年 12 月 以前の更新</h3>
+<table border="1" cellspacing="0" cellpadding="4">
+  <tr>
+    <th class="number">#</th>
+    <th class="type">タイプ</th>
+    <th class="milestone">影響を受ける<br>マイルストーン</th>
+    <th class="severity">重要度</th>
+    <th class="description">概要</th>
+    <th class="bugid">バグ<br>ナンバー</th>
+    <th class="workaround">代替策</th>
+    <th class="date">修正日</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>DOM</td>
+    <td>1.0 RC1 以前</td>
+    <td>ローカルファイルの読み取り</td>
+    <td>ユーザが悪意を持った攻撃者の管理する Web サイトを訪れると、その Web サイトは Mozilla をユーザのシステムにあるローカルファイルへリダイレクトさせることができます。それによって、攻撃者にファイルの内容を読み取られる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=141061">141061</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-05-01</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>DOM</td>
+    <td>0.9.5 以前</td>
+    <td>ユーザによる入力 (キー操作) の読み取り</td>
+    <td>ユーザが悪意を持った攻撃者の管理する Web サイトを訪れると、そのページは他のウィンドウで起こったキーボードイベントを傍受することができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=18553">18553</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2001-10-04</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Cookie</td>
+    <td>1.0.1 以前</td>
+    <td>他のサイトによって作成された Cookie の読み取り</td>
+    <td>様々な攻撃者が、Cookie のデータに不正な文字を書き込むことによって、正規のサーバによって作成された他の Cookie を攻撃者のサーバへ送るように仕掛けることができます。これらの攻撃の一部はプロキシサーバを通じてブラウズしたときにのみ実行されます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=104495">104495</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=146094">146094</a></td>
+    <td>Cookie を<br>無効にする</td>
+    <td>2002-05-22</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>スクリプトの書き込み</td>
+    <td>1.0.1 以前</td>
+    <td>任意のコード実行</td>
+    <td>様々な攻撃者が、現在のページの情報を表示するダイアログに悪質なスクリプトを導入する可能性があります。それらのページからスクリプトがダイアログに書き込まれると、スクリプトは完全なシステム特権で実行されます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=143420">143420</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=144704">144704</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=123383">123383</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=149777">149777</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=123383">123383</a></td>
+    <td>ダイアログの &quot;javascript:&quot; リンクをクリックしたり、それらをブックマークしない</td>
+    <td>2002-05-21</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>DOM</td>
+    <td>0.9.5 以前</td>
+    <td>ブラウザ設定の改ざん</td>
+    <td>悪質な Web ページが、メニューコマンドとしてブラウザに解釈されるキーイベントを作成する可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=108104">108104</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-03-11</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>ネットワーク</td>
+    <td>1.0.1 以前</td>
+    <td>メールの改ざん・削除</td>
+    <td>悪質な Web ページやメールメッセージが imap:// URL を含んでいると、それが IMAP メールサーバに任意のコマンドを実行させるために使われる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=127702">127702</a></td>
+    <td>JavaScript を無効にした上で imap: リンクをクリックしない</td>
+    <td>2002-05-20</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>バッファオーバーラン</td>
+    <td>1.0.1 以前</td>
+    <td>任意のコード実行</td>
+    <td>特殊な形式のファイルをメッセージに添付すると、悪用されかねないバッファオーバーランを引き起こす可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=140133">140133</a></td>
+    <td>メール・ニュースのメッセージに内容が不明なファイルを添付しない</td>
+    <td>2002-04-25</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>ネットワーク</td>
+    <td>1.0.1 以前</td>
+    <td>メールアカウントへのアクセス拒絶</td>
+    <td>悪質なメールメッセージをダウンロードすると、それ以降の POP メッセージのダウンロードがすべて機能しなくなり、他の手段によって悪質なメールメッセージが削除されるまで、事実上 POP メールアカウントへのアクセスが拒絶される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=144228">144228</a></td>
+    <td>POP メールを使用しない</td>
+    <td>2002-06-05</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>バッファオーバーラン</td>
+    <td>1.0.1 以前</td>
+    <td>任意のコード実行</td>
+    <td>悪質な Web ページに載っている一部の種類の異常な画像ファイルを表示させると、多数の不正利用が実行可能になる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=155222">155222</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=157989">157989</a></td>
+    <td>画像を表示しない</td>
+    <td>2002-07-10</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>DOM</td>
+    <td>1.0.1 以前</td>
+    <td>任意のファイル改ざん</td>
+    <td>悪質なページを表示させると、スペースキーが押されたときにインストール操作が実行される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=161721">161721</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-08-08</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td>DOM</td>
+    <td>1.0.2/1.2 以前</td>
+    <td>ブラウズの追跡</td>
+    <td>悪質なページがそのページの次に訪れたページの URL を特定することができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=145579">145579</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-09-17</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>DOM</td>
+    <td>1.0.1 以前</td>
+    <td>第三者の Web サイトからのデータ読み取り</td>
+    <td>悪質なページが、XMLSerializer インターフェイスを使って、(おそらくファイアウォール内部の) 第三者の Web ページにあるデータを読み取ることができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=147754">147754</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-10-14</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>DOM</td>
+    <td>0.9.6 - 1.0.1/1.2</td>
+    <td>第三者の Web サイトからのデータ読み取り</td>
+    <td>悪質なページが、DOM TreeWalker インターフェイスを使って、第三者の Web ページにあるデータを読み取ることができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=156452">156452</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-08-01</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>DOM</td>
+    <td>0.9.5 - 1.0.1/1.2</td>
+    <td>第三者の Web サイトからのデータ読み取り</td>
+    <td>悪質なページが、XMLSerializer インターフェイスを使って、(おそらくファイアウォール内部の) 第三者の Web ページにあるデータを読み取ることができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=169982">169982</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-09-30</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>ネットワーク</td>
+    <td>M17 - 1.0.1/1.2</td>
+    <td>ローカルファイルの消去、任意のコード実行</td>
+    <td>悪質な vbscript: や vnd: プロトコルの URL を訪れると、Windows をセキュリティ問題にさらし、任意のコード実行に利用される可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=163648">163648</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=161357">161357</a></td>
+    <td>JavaScript を無効にする／信頼できないソースの vbscript: や vnd: URL を訪れない</td>
+    <td>2002-10-10</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>ネットワーク</td>
+    <td>0.9.7 - 1.0.1/1.2</td>
+    <td>比較的重要ではない - 機密データのローカルへの保存</td>
+    <td>安全なページにあるスクリプトの document.write コマンドによって生成された Web ページが、元のページが保存されないのにもかかわらず、ブラウザキャッシュに保存されてしまいます。これによって、個人情報がローカルディスクに保存されてしまう可能性があります (この情報はネットワーク上の第三者によってアクセスされることはありません)</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=151478">151478</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-10-21</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>DOM</td>
+    <td>M1 - 1.0.1/1.2</td>
+    <td>第三者の Web サイトからのデータ読み取り</td>
+    <td>悪質な Java アプレットによって、第三者の Web サイトからデータを読み取ることができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=168316">168316</a></td>
+    <td>Java を<br>無効にする</td>
+    <td>2002-10-29</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>ネットワーク</td>
+    <td>M1 - 1.0.1/1.2</td>
+    <td>パスワードの読み取り</td>
+    <td>「プリンストンアタック」 による DNS なりすましがパスワードの盗み取りに利用される可能性があります。この不正利用は多くの前提条件を必要とするため、おそらく実際に使用されることはありません。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=162520">162520</a></td>
+    <td>パスワードを<br>保存しない</td>
+    <td>2002-10-30</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td>なりすまし</td>
+    <td>M1 - 1.0.1/1.2</td>
+    <td>URL バーが不正なアドレスを表示</td>
+    <td>悪質なページが、ブラウザの URL バーに誤った URL を表示させる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=171274">171274</a></td>
+    <td>なし</td>
+    <td>2002-11-04</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>DOM</td>
+    <td>0.9.7 - 1.0.1/1.2</td>
+    <td>第三者の Web サイトからのデータ読み取り</td>
+    <td>悪質なページが、第三者のページにスクリプトや他の内容を注入したり、情報を読み取り・改ざんする可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=91043">91043</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-11-14</td>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td>XSLT</td>
+    <td>0.9.1 - 1.0.1/1.2</td>
+    <td>第三者 Web サイトからの XML ファイル読み取り</td>
+    <td>悪質なページが、XSLT プロセッサを利用して、第三者の Web サイトから XML データを読み取ることができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=113351">113351</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-06-14</td>
+  </tr>
+  <tr>
+    <td>22</td>
+    <td>パスワードマネージャ</td>
+    <td>M1 - 1.0.1/1.2</td>
+    <td>パスワードの読み取り</td>
+    <td>悪質なページが、特別に巧妙に作られた javascript: URL を利用して、ユーザが他のサイトで保存したパスワードを盗み出すことができます。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=159484">159484</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-07-30</td>
+  </tr>
+  <tr>
+    <td>23</td>
+    <td>DOM／フォーム</td>
+    <td>M1 - 1.0.1/1.2</td>
+    <td>既知の場所からのローカルファイル読み取り</td>
+    <td>特別に巧妙に作られたフォーム要素名を利用して、悪質なページがファイルアップロード用のフォームコントロールの値を設定することができます。これによって、ユーザのディスクからファイルがアップロードされる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=162409">162409</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-08-14</td>
+  </tr>
+  <tr>
+    <td>24</td>
+    <td>DOM／フォーム</td>
+    <td>M1 - 1.0.1/1.2</td>
+    <td>既知の場所からのローカルファイル読み取り</td>
+    <td>特別に巧妙に作られたイベントオブジェクトを利用して、悪質なページがファイルアップロード用のフォームコントロールの値を設定することができます。これによって、ユーザのディスクからファイルがアップロードされる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=164086">164086</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=164023">164023</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=163598">163598</a></td>
+    <td>JavaScript を無効にする</td>
+    <td>2002-08-28</td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td>HTML</td>
+    <td>M1 - 1.0.1/1.2</td>
+    <td>ブラウザ設定の消失</td>
+    <td>悪質なページが Mozilla の設定ファイルを改ざんすることができます。これによって、ユーザの設定が失われる可能性があります。</td>
+    <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=143459">143459</a></td>
+    <td>なし</td>
+    <td>2002-09-13</td>
+  </tr>
+</table>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/known-vulnerabilities/older-vulnerabilities.html">英語版</a> 2008/07/15 &mdash; 和訳版 2011/01/06 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/known-vulnerabilities/older-vulnerabilities.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:space="preserve">
+<head><tt:htmlheader/></head>
+<body>
+<h1><tt:meta mode="title"/></h1>
+<tt:htmlbody/>
+<tt:meta mode="address"/>
+</body>
+</html>

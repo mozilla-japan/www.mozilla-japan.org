@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+   <meta NAME="KeyWords" CONTENT="client, source, documentation, i18n, l10n, l12y, guidelines">
+   <meta NAME="Author" CONTENT="Rick Elliott">
+   <title>Mozilla の i18n と L10n ガイドライン</title>
+   <link rel="alternate" hreflang="en" modified="July 29, 2003">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/docs/refList/i18n/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla 国際化と地域化ガイドライン</h1>
+
+<center>最終更新日：1998年 4月 22日</center>
+
+<center>コンタクト：Frank Tang
+&lt;<a HREF="mailto:ftang@netscape.com">ftang@netscape.com</a>&gt;</center>
+
+<center>ディスカッション：<a HREF="news://news.mozilla.org/netscape.public.mozilla.i18n">netscape.public.mozilla.i18n</a> または
+<a HREF="mailto:mozilla-i18n@mozilla.org">mozilla-i18n@mozilla.org</a></center>
+
+<h2>目次</h2>
+
+
+<ul>
+<li>
+
+<a HREF="scripts.html">Mozilla 言語利用可能化・拡張プロジェクト</a>
+</li>
+<li>導入</li>
+
+<ul>
+<li>
+<a HREF="#overview">国際化および地域化の概観</a></li>
+
+<li>
+
+<a HREF="#definitions">定義</a></li>
+
+<li>
+<a HREF="#justifications">根拠</a></li>
+</ul>
+</ul>
+
+<ul>
+<li>ガイドライン</li>
+
+<ul>
+
+<li>
+<a HREF="i18n-guidelines.html">国際化ガイドライン</a></li>
+
+<li>
+<a HREF="libi18n/">国際ライブラリレファレンス</a></li>
+
+<li>
+<a HREF="allxpstr-h.html">プラットフォーム独立文字列リソース - include/allxpstr.h ファイル（草稿）について</a></li>
+
+<li>
+
+<a HREF="addcharset.html">追加のキャラクタセットの追加方法（未完成草稿）</a></li>
+
+<li>
+<a HREF="l12yGuidelines.html">地域化ガイドライン</a></li>
+
+<li>
+<a HREF="../../docs/l10n/l10nkitintro.html">地域化キット</a></li>
+</ul>
+</ul>
+
+<ul>
+<li>API レファレンスおよびモジュール定義</li>
+
+<ul>
+<li>
+<a HREF="libi18n-desc.html">libi18n モジュール定義</a></li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+
+<h2><a NAME="overview"></a>国際化および地域化の概観</h2>
+
+<p>昔々のこと、ソフトウェア開発の薄暗い揺籃期には、多くのソフトウェアは一度に一つの言語しか「話す」ことができなかった。各国・各地域には独自のバージョンが必要だったわけだ。ある場合には、国際的に重要な機能が、英語圏製品に追加導入されることもあった。また別の場合には、英語圏のバージョンと国際バージョンが完全に切り離された別個の製品になることもあった。もしかすると、基本的なコードのいくらかは共有されていたかもしれないが、多くの場合、共有されるのはその製品名くらいのものだった。この傾向は、北米やヨーロッパで開発された製品のアジア圏向けのバージョンで著しかった。いずれの場合においても、販売製品に遡及的な変更を施すにせよ、平行バージョンの開発を行うにせよ、その結果は通常、長たらしく費用ばかりがかかる製品サイクルしか生み出さなかった。</p>
+
+<p>たとえソフトウェアが複数の国でも問題なく使えるような機能を持っていたとしても、その製品の適切な言語バージョンを製造するのは難しかった。なぜなら、製品のユーザーインタフェース（UI）を構成するメニューやダイアログボックス、メッセージが、（printf タイプの構文を使って）プログラムソースコードに直接書き込まれていたからだ。そうしたソースファイルをうまい具合に翻訳するというのは、多くの理由から、かなり難しく、費用がかかり、時間がかかった。そうした作業には、言語的な知識と技術的な知識の両方が必要だが、そうした知識を備えた人は多くはいない。ミスをするのは簡単だった。そして翻訳されたコードは多くの場合期待通りには機能しない。なぜならコードの著者は、UI の言語、英単語の長さや位置（これらは他の言語に翻訳されれば変わる）といったことについては単に推測するだけだったからだ。</p>
+
+<p>これはまずい。</p>
+
+<p>幸運にも、多くのソフトウェア開発者が、もし初めから複数のロケールによるコンピューティングで必要とされる条件を理解して製品を設計するれば、製品をより少ないコストでより早く世界市場に配布することができ、「古臭いやり方」で設計された製品よりもより多くの成功を収めることができる、ということをだんだんと理解し始めた。こうした複数ロケールに対応した製品は、「世界規模で利用できるソフトウェア」と呼ぶこともできるだろう。世界規模で利用できるソフトウェアとは、一つの国・地域だけでなく、世界的に幅広い言語や文化的な習慣、フォント、エンコーディングその他の便利な機能をサポートできるソフトウェアのことだ。さらに、世界規模で利用できる製品のユーザーインターフェースは、コアの命令コードから切り離されており、ソフトウェアを再コンパイルをすることなく翻訳できるようでなければならない。世界的に利用できるソフトウェアではユーザーインターフェースの言語について推測をしないので、翻訳されたプログラムはより頑強で、多くの「修正」や個々の言語をサポートするための特殊な拡張を必要としない。これで、翻訳されたプログラムのリリースを加速することができる。</p>
+
+<p>これはいい。</p>
+
+<p>Mozilla ファミリー（Navigator と Communicator）は世界的に利用できる（またそうあり続けなければならない）。各プラットフォームに向けたコアの Mozilla バイナリ実行ファイルは、北米英語圏や西ヨーロッパ、中央ヨーロッパ、中国、日本、韓国のロケールでのコンピューティングをサポートしている。ユーザーインターフェースは、リソースファイルに収められており、多くの部分でコアバイナリーから完全に切り離されている。コアコードから UI を切り離しておくことで、日本語の Web ページを閲覧するのに Mozilla の日本語版を使わなくても済むことになる。Mozilla の英語版やフランス語版、どのバージョンを使っても日本語のページを閲覧することができる（またその逆も然り）。もちろんそれに適したフォントや設定がされていることが必要だが。</p>
+
+<p>これはとてもいい。</p>
+
+<p>このドキュメントの残りの部分では、Mozilla を世界的に利用可能なソフトウェアプロジェクトとして維持できるような、十分な情報を提供しよう。将来の Mozilla 製品は、少なくとも、現在の国際化レベルを維持していかなければならない。我々は将来 Mozilla を拡張して、より多くの言語やエンコーディングなどの、世界的に重要な機能をサポートしたいと考えている。</p>
+
+<p>これはまったくすばらしいことになるだろう。</p>
+
+<h3><a NAME="definitions"></a>定義</h3>
+
+<p>先に進む前に、ここで使われている主な専門用語やコンセプトの定義を確立しておこう：</p>
+<table BORDER WIDTH="100%" >
+ <tr>
+  <td>
+
+国際化（Internationalization）
+<br>（または Globalization、あるいは Enabling）
+  </td>
+  <td>
+ソフトウェア製品が多様なロケールで作動するように設計・開発することを指す。このプロセスには、サポートするロケールを識別し、そのロケールをサポートする機能を盛り込み、サポートするロケールではどれもきちんと動くようなコードを書くという作業が含まれる。
+  </td>
+ </tr>
+ <tr>
+  <td>地域化・ローカライゼーション（Localization）</td>
+
+  <td>
+ソフトを特定のロケールの要求に合わせることを指す。例えばユーザーインタフェースの翻訳、ドキュメント作成、パッケージ化、ダイアログボックスの位置の変更、（必要に応じて）機能のカスタマイズ、そしてそうやってできた製品の動作（最低でもオリジナルと同じ動きをするか）を保証するためのテスト、その他もろもろの作業が含まれる。
+  </td>
+ </tr>
+ <tr>
+  <td>地域化度（Localizability）</td>
+  <td>
+あるソフトウェア製品のローカライズできる度合。地域化度の高い製品では、データとコードがしっかり分けられており、目的の言語を表示し、ローカライズされた後にも適切に動作する。
+  </td>
+ </tr>
+ <tr>
+  <td>i18n</td>
+  <td>
+「internationalization（国際化）」を縮めて「i」+ 18 文字 +「n」としたもの。i が小文字なのは数字の 1 （いち）と区別するため。
+  </td>
+
+ </tr>
+ <tr>
+  <td>L10n</td>
+  <td>
+「localization（地域化）」を縮めて「L」+ 10 文字 +「n」としたもの。L が大文字なのは数字の 1 （いち）と区別するため。
+  </td>
+ </tr>
+ <tr>
+
+  <td>L12y</td>
+  <td>
+「localizability」を縮めて「L」+ 12 文字 +「y」としたもの。L が大文字なのは数字の 1 （いち）と区別するため。
+  </td>
+ </tr>
+ <tr>
+  <td>ロケール（Locale）</td>
+
+  <td>
+特定の地政学的な区域で決まっている、言葉や習慣から来るきまりごと。書き言葉や日付・数字・金額の表記方法、そして文字の並び順など 。（必ずしもこれだけにとどまらない）
+  </td>
+ </tr>
+ <tr>
+  <td>リソース（Resource）</td>
+  <td>
+1．ユーザに見える部分、あるいはユーザによって変更または設定できるあらゆるプログラムの部分。<br>
+
+2．プログラムのデータのあらゆる断片。プログラムのコードと相対するもの。
+  </td>
+ </tr>
+ <tr>
+  <td>コア製品（Core product）</td>
+  <td>
+言語とは無関係なソフトウェア製品の部分（英語版を含めて、ローカライズされた特定のバージョンのことではない）。ただし、時にはこの言葉は、他のローカライズド版に対する英語版製品を指すために使われることもある。
+  </td>
+ </tr>
+</table>
+
+<h3><a NAME="justifications"></a>根拠（または「なぜ気を配る必要があるのか？」）</h3>
+
+<p>おそらくインターネットは、空洞になった丸太を叩いて部族の仲間たちに合図を送ることを知った名も知れない石器人以来、人類のコミュニケーションにおける最も大きな革命だろう。インターネットは、世界に散らばる人々を繋げる力を持つ世界規模の媒体だ。しかしそれには、あらゆる言語やエンコーディング、我々の異なる文化を成り立たせている習慣の寄せ集めである、混沌とした状態を適切に処理できるように通信手段が整備されていることが前提となる。単一言語しか理解しない製品を再エンジニアし、異なるロケールをサポートできるようにしようとする試みに付きまとう問題は、このドキュメントの冒頭で触れた。適切に設計されたソフトウェア、というのがその答えだ。それぞれ異なる単一言語しか理解しないアプリケーションを次から次へと繰出すことではない。</p>
+
+<p>もし、言語やロケールという点から、アプリケーションが本当の意味においてある限られた対象にしか重要でない場合、国際化や地域化の問題に注意を払う必要はないかもしれない。しかし、アプリケーションが世界のどこででも役に立ち、ターゲットユーザが複数の国、地域、言語に散らばっているのなら、ユーザの手へと届きにくくするする必要がどこにあるだろう？これらのガイドラインに従えば、世界規模で優れた製品をリリースすることがはるかに簡単になるのだ。</p>
+
+<p>コア製品の開発途上で近道をしたりミスを犯したりすれば、地域化作業の際に修正に時間と費用がかかることになりかねない。このような遅れや出費は、地域化されたリリースからの利益を（金銭的にも機会の損失という意味でも）削いでしまう。適切に国際化された製品なら、地域化という過程を、混乱に満ちた代償の高い「ゲーム」から油の良く効いたスムーズなマシーンへと変えてくれる。</p>
+
+
+<p>このようなガイドラインを示すことの意義は、つまり、国際的に通用する、地域化可能な製品ができるだけ速やかにリリースできるような環境を整えるということだ。さまざまなプロジェクトで作業をする中で、次の簡単に覚えられるキャッチフレーズを頭に入れておいてほしい：</p>
+
+<ul>
+<li>
+<font COLOR="#3333FF"><font SIZE=+1>ひとつのコードベースを全世界に</font></font></li>
+
+<li>
+<font COLOR="#3333FF"><font SIZE=+1>英語は単なる一言語でしかない</font></font></li>
+</ul>
+
+<center>
+<hr WIDTH="100%">Copyright &copy; 1998 <a HREF="http://home.netscape.com/misc/contact_info.html">Netscape
+Communications Corporation</a></center>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/docs/refList/i18n/index.html">英語版</a> 2003/07/29</span> - <span>和訳版 2004/10/25</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/docs/refList/i18n/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

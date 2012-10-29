@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>
+Mozilla 開発ロードマップ
+</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/roadmapold.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/roadmapold.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+<h1>mozilla 開発ロードマップ</h1>
+
+<p>
+<center><a href="mailto:brendan@mozilla.org">Brendan Eich</a></center>
+
+<p>
+Mozilla 開発ロードマップへようこそ。このドキュメントは Mozilla 
+プロジェクトがたどってきた道のりを簡単に述べた後、どこへ向かっているか 
+を詳しく述べます。鍵である『ロードルール』と 進行中である Mozilla-ブラウザ 
+ソース マイルストーンリリース
+（マイルストーンリリースからはだれでも商用やその他の製品をビルドすることができます）
+のリリーススケジュールを提案します。また、Mozilla-プラットフォーム 
+がどのように進化するべきか、再び 活動上の 
+また『リリースプロセス』の視点からヒントを示します。
+
+<p>
+よく寄せられる質問に対しての最新情報を取り入れた回答は
+<a href="roadmap/faq.html">roadmap FAQ</a> 
+を見てください。
+<!--<BR>（訳者注：2000年12月21日現在、やっぱり中身はありません）-->
+
+<h2 align=center>バックグラウンド</h2>
+
+<p>
+<a href="roadmap/roadmap-26-Oct-1998.html">オリジナルのロードマップ</a>
+には Mozilla プロジェクトを次のものを使って組み直すという 
+1998年10月の重大な決定を記録しています。すなわち
+<a href="newlayout/">新しいレイアウトエンジン</a>（現在は Gecko 
+と呼んでいます）、クロスプラットフォーム フロントエンド（<a 
+href="xpfe/">XPFE</a>）、<a href="xpfe/xptoolkit/">XP ツールキット</a> 
+でビルドした <a href="editor/">現在は</a> <a href="mailnews/">いくつかの</a>
+<a href="xpapps/">XP Apps</a>、そして 
+スクリプタブルコンポーネントアーキテクチャ（<a href="projects/xpcom/">XPCOM</a>
+と <a href="scriptable/">XPConnect</a>）です。
+
+<p>
+<a href="roadmap/roadmap-25-Sep-2000.html">以前のロードマップ</a> は
+<a href="http://home.netscape.com/browsers/6/">Netscape 6</a>
+（訳者注：日本語ページは<A HREF="http://home.netscape.com/ja/browsers/6/">こちら</A>）
+のリリースを経て その先、Mozilla 1.0 マイルストーンをリリースするというゴールに向かう
+Mozilla の道筋を図解していました。その更新版でわたしは『Mozilla にはパフォーマンス、安定性、正確さが必要』で、特別新しい機能は必要ない と書きました。
+（誤解のないように）わたしがここではっきりさせたいことは 
+有益かつ適切な（コミュニティによって限定された）機能拡張はいつでも歓迎ですが
+それが提供されるには 1.0 のハックを手伝ってくれるだろう貢献者たちには十分な機会（時間）がない ということです。
+
+<p>
+このロードマップの更新版では マイルストーンスケジュールを
+2001年カレンダーに向けてリファインするとともに
+Mozilla 1.0 を把握するために コミュニティの助けを呼び掛けています。すなわち
+<a href="http://bugzilla.mozilla.org/">bugzilla</a> のオープンバグに
+<tt>mozilla1.0</tt> のマイルストーンキーワードを指定することです。
+バグを編集できるコミュニティのメンバーは バグの <i>ターゲットマイルストーン</i>
+を設定するのではなく（これはバグ担当者の役割です）、<tt>mozilla1.0</tt> <i>キーワード</i> 
+を設定するべきであることを忘れないでください。
+
+<h2 align=center>ツリーマネージメント</h2>
+
+<p>
+これはツリーマネージメントにおける最新の考え方のイメージです:
+
+<!-- <center><img src="roadmap-images/branching-15-Dec-2000.png"></center> 1.23_1.24 -->
+<!-- <center><img src="roadmap-images/branching-13-Feb-2001.png"></center> 1.24_1.25 -->
+<center><img src="roadmap-images/branching-01-Mar-2001.png"></center>
+
+<p>
+<a href="roadmap/roadmap-25-Sep-2000.html#new-milestones">前のプラン</a> からの変更点:
+<ol>
+
+<li>6週間にかえて 5週間のマイルストーンサイクル、2001年開始。
+
+<li>新しく Mozilla 0.7 を 12月のベストビルドとして リリース。このリリースは
+みなさんの <a href="http://www.mozillazine.org/build_comments/">QA フィードバック</a>
+<!--
+（日本語版は <A HREF="http://www.mozilla.to/mozillazine/build_comments/">こちら</A>）
+-->
+にもとづいて <a href="mailto:asa@mozilla.org">asa@mozilla.org</a>
+が 過去にさかのぼって定義したもので、bugzilla のターゲットマイルストーンや
+キーワードはありません。
+
+<li><tt>mozilla0.8</tt> &nbsp;&nbsp;1月3日に開始、2月12日頃にリリース。
+
+<!--
+<li><tt>mozilla0.9</tt> を 2月9日に trunk で開始、3月19日頃にリリース。
+
+<li><tt>mozilla0.9.1</tt> （わたしたちがハードに働いて、女神が微笑めば 1.0）を 3月16日以降に開始し 4月23日頃にリリース。
+
+<li><tt>mozilla0.9.2</tt> （または 1.0）を 4月20日に開始し 5月28日頃にリリース。
+-->
+<li><tt>mozilla0.8.1</tt> 2月9日に trunk で開始、3月19日頃リリース。
+
+<li><tt>mozilla0.9</tt> &nbsp;&nbsp;3月16日以降に開始、4月23日頃リリース。
+
+<li><tt>mozilla0.9.1</tt> （もしくは わたし達がハードに働いて、女神が微笑めば 1.0）
+4月20日開始、5月28日頃リリース。
+
+<li>Mozilla を組み込む（ベンダー）にはその &quot;ベータリリース&quot; 
+マイルストーンとして <tt>mozilla0.9</tt> をターゲットにすることを奨励します。
+
+</ol>
+
+いつものように、各マイルストーンは短いツリーの終結期間で終わり、そこでの QA や 
+&quot;要修正&quot; の安定化作業ののち ブランチは切られます。マイルストーンが
+&quot;完了&quot; したら、わたし達はソースにタグ付けし、バイナリーをアップロードし、リリースをアナウンスします。
+
+<p>
+trunk フリーズ、ブランチ作成、マイルストーンリリースを分けて盛り込んだ 
+マイルストーン予定表<BR>（マイルストーンの開始日は 前のマイルストーンのブランチ日です）:
+
+<a name="new-milestones">
+<table align=center border=1 bgcolor="#EEEEEE">
+<tr><th align=center>マイルストーン</th>
+    <th align=center>開始</th>
+    <th align=center>フリーズ</th>
+    <th align=center>ブランチ</th>
+    <th align=center>リリース</th>
+</tr>
+<tr><td align=center><tt>mozilla0.8</tt></td>
+    <td align=center>2001年1月3日</td>
+    <td align=center>2001年2月7日</td>
+    <td align=center>2001年2月9日</td>
+    <td align=center>2001年2月12日</td>
+</tr>
+<tr><td align=center><tt>mozilla0.8.1</tt></td>
+    <td align=center>2001年2月9日</td>
+    <td align=center>2001年3月14日</td>
+    <td align=center>2001年3月16日</td>
+    <td align=center>2001年3月19日</td>
+</tr>
+<tr><td align=center><tt>mozilla0.9</tt></td>
+    <td align=center>2001年3月16日</td>
+    <td align=center>2001年4月18日</td>
+    <td align=center>2001年4月20日</td>
+    <td align=center>2001年4月23日</td>
+</tr>
+<tr><td align=center><tt>mozilla0.9.1</tt> (<i>あるいは <tt>1.0</tt>?</i>)</td>
+    <td align=center>2001年4月20日</td>
+    <td align=center>2001年5月23日</td>
+    <td align=center>2001年5月25日</td>
+    <td align=center>2001年5月28日</td>
+</tr>
+</table>
+</a>
+
+<p>
+通例として、マイルストーンのフリーズ時刻は水曜の午前0時です。フリーズ期間には 
+みなさんが日々のビルドをブランチの価値のあるものとして適合させようとするように
+&quot;そのマイルストーンで要修正&quot; と考えられるバグや
+一般的な（ケースで影響が出る）リグレッションだけが trunk 上で修正されます。
+リリーススタッフ（<a href="mailto:staff@mozilla.org">staff@mozilla.org</a>）は
+マイルストーンブランチを作り、月曜にひかえたリリースに先立ち
+週末にかけて集中的な品質保証を行います。わたし達は 
+リリースを遅らせること、マイルストーンブランチを長引かせて trunk 
+とブランチの間でへたに労力を分散させること を避けようとしています。
+月曜までに修正されない not-quite-showstopper バグは 次の Mozilla 
+マイルストーンにターゲットされ、できるだけはやく修正されることになります。
+
+<p>
+<a href="#project-management">Drivers</a>（プロジェクトをコントロールするひとびと）は
+&quot;より明解な&quot; マイルストーンナンバーを使うために
+ほんの少し（6週に代えて 5週）ペースを引き上げるために そして
+いくつかのわかっている企業貢献者の暫定的なリリースプランに沿うように、
+前のロードマップのプランに対してこの変更を提案します。
+あなたが Mozilla ベースの製品リリースを計画していて 
+そのスケジュールが上記のマイルストーンに合わないなら、あなたの
+<a href="mailto:drivers@mozilla.org">フィードバック</a> を歓迎します。
+（機密情報は遵守します。必要なら 機密保持契約書にサインします。）
+
+<a name="#howyoucanhelp"><!-- 和訳オリジナル（/roadmap/mozilla-1.0.html との整合） -->
+<h2 align=center>手伝うには</h2>
+</a>
+
+<p>
+<b>Mozilla embedders</b>（Mozilla 組込み製品をつくるひと）: bugzilla 
+へ <tt>embed</tt>、<tt>footprint</tt>、<tt>mlk</tt>、<tt>perf</tt>、
+<tt>mozilla0.8.1</tt>、<tt>mozilla0.9</tt>、そのほかの適切なキーワードをつけて
+入力してください。<a href="#project-management">Mozilla プロジェクトマネージメント</a> 
+は バグがその修正に取り組むことのできるハッカーにアサインされ、
+できるだけ多くのマイルストーンキーワード指定を満足させるように お手伝いします。
+
+<p>
+<b>Bug 担当者</b>、そしてとくに <tt>Future</tt> にされたバグや 
+ターゲット指定されていないバグを 任命されている担当者から受け継いで修正してくれるひと: 
+どうか あなたにアサインされたバグのターゲットを <tt>mozilla0.8.1</tt> や 
+<tt>mozilla0.9</tt> マイルストーンの先にまわしてください。進捗に応じて 
+<tt>mozilla0.9.1</tt> にターゲットすることも考えてください。そして どうか
+バグを協力者に引き継いでください。あなたの &quot;future&quot; にしたバグや
+ターゲット指定のないバグの修正を引き受けてくれるひとがだれも見つからなければ
+<a href="mailto:drivers@mozilla.org">drivers@mozilla.org</a> に問い合わせてください。
+
+<p>
+<b>コミュニティメンバー</b>: どうか <tt>mozilla1.0</tt> 
+マイルストーンキーワードを指定するしくみを賢明に使ってください。ほかのひとのバグの
+ターゲットマイルストーンを 担当者の承諾なしに変更しないでください。
+この キーワード指定／タ−ゲットマイルスト−ン処理のしくみは
+<tt>mozilla0.9.1</tt>、<tt>mozilla0.9.2</tt>、あるいは その後の 0.9.x
+リリースに mozilla ブランドの &quot;Mozilla 1.0&quot; としての価値があるかどうかの
+判断材料になります。もちろん、いつものとおり バグに投票して優先順位づけに役立てることは
+かまいません。
+
+<a name="#code-review">
+<h2 align=center>コードレビュー</h2>
+</a>
+
+<p>
+mozilla.org は Mozilla コードベースの大部分へのチェックインを是正するために
+全面的な <a href="hacking/reviewers.html">コードレビュー</a> 
+の要求を継続しています。
+<!--
+<a href="hacking/">ハッキングドキュメント</a> は更新されつつあります。
+-->
+Mozilla コードレビュワードキュメントが
+モジュールオーナーによる別のポリシーをもつ 
+cvs.mozilla.org でホストされているコードエリアから この &quot;スーパーレビュー&quot; 
+と呼ぶコードレビューが必要なコードエリアを
+<a href="hacking/reviewers.html#what-code-needs-super-review">区別</a>
+します。mozilla.org によってホストされているすべてのコードには 
+積極的なオーナーシップが必要です。貢献者が 'cvs commit' を打ち込む前に 
+モジュールオーナーによる変更のレビューが求められるからです。
+
+<p>
+デザインレビューは明らかにコードレビューより大切なはずです！ 設計上の疑問や
+事柄を発言するには <a href="mailto:porkjockeys@mozilla.org">porkjockeys</a>
+メーリングリスト（<a 
+href="news://news.mozilla.org/netscape.public.mozilla.porkjockeys">ニュースゲートウェイ
+</a>があります）を使ってください。
+
+
+<a name="project-management">
+<h2 align=center>プロジェクトマネージメント</h2>
+</a>
+
+<p>
+助力を必要としているバグに対して タイムリーなかたちで 
+開発者をふりむけるため、リスクを減らすため、そして Mozilla 
+にもとづく商業プロジェクトが製品リリースを管理するのを援助するために 
+mozilla.org はプロジェクトマネージャ
+<a href="mailto:drivers@mozilla.org">drivers@mozilla.org</a>
+のグループを作りました。
+
+<p>
+現在の driver は:
+<ul>
+<li>David Baron, <a href="mailto:dbaron@fas.harvard.edu">dbaron@fas.harvard.edu</a>
+<li>Chris Blizzard, <a href="mailto:blizzard@redhat.com">blizzard@redhat.com</a>
+<li>Asa Dotzler, <a href="mailto:asa@mozilla.org">asa@mozilla.org</a>
+<li>Brendan Eich, <a href="mailto:brendan@mozilla.org">brendan@mozilla.org</a>
+<li>Chris Hofmann, <a href="mailto:chofmann@netscape.com">chofmann@netscape.com</a>
+<li>Robert O'Callahan, <a href="mailto:roc+moz@cs.cmu.edu">roc+moz@cs.cmu.edu</a>
+<li>Tim Rowley, <a href="mailto:tor@cs.brown.edu">tor@cs.brown.edu</a>
+</ul>
+
+<!--
+<p>
+Please see the draft "Mozilla 1.0"
+<a href="roadmap/mozilla-1.0.html">definition document</a>,
+which will be supplemented and revised based on bugzilla <tt>mozilla1.0</tt>
+keyword nominations and other input from the community.
+Your ideas to drivers@mozilla.org and -- better for scaling up to thousands
+of ideas -- your bugzilla milestone keyword nominations, thoughtful additional
+comments, and bug-targeting triage help are welcome.
+-->
+<p>
+&quot;Mozilla 1.0&quot; の <a href="roadmap/mozilla-1.0.html">定義文書</a> 
+草稿を御覧下さい。このドキュメントは bugzilla の <tt>mozilla1.0</tt> キーワード指定
+や コミュニティからのインプットにもとづいて 補足、修正されます。あなたから
+drivers@mozilla.org へのアイディア -- 幾千ものアイディアにスケールアップするのに好ましい 
+-- や bugzilla マイルストーンキーワードのノミネート、思慮深い追加コメント、そして
+バグ-ターゲットの優先順位づけの協力を歓迎します。
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/roadmapold.html">英語版</a> 2001/03/09</span> - <span>和訳版 2006/07/20</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/roadmapold.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

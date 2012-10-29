@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla キーボードプランニング FAQ とクロスリファレンス</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/access/keyboard/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/access/keyboard/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla キーボード・プラン FAQ とクロスリファレンス</h1>
+      <P>この FAQ とクロスリファレンスは、未使用のキーストロークを見つけたり、パターンを探したり、何が実現され何が実現されていないかを見たり、私たちの
+      UI との整合をとったりするのに役に立つでしょう。私たちは開発者がこの仕様に従って作業することを希望します。そして、もしあなたがここにあること以外の何かを望むならば、この仕様に何が足りないかを教えてください。変更を提案する前に、私たちの現在のポリシーとその理由を明示したこの
+      FAQ 全体を読んでください。</P>
+      <P>将来の拡張性のために、可能な限り多くのキーストロークを未使用にしておくことはよい考えだと思います。もしあなたがこの仕様書に余分なキーストロークを見つけたならば、スペースをもっと空けることができるよう連絡してください。いくつかのホットキーは、最終的にはそれを必要とする特別なユーザのために、特別なコンフィギュレーションファイルか、プレファランスに追いやることになるかもしれません。</P>
+      <P><i>付録:</i> <a href="newnav.html">タブブラウザモード、サイドバー、リンクとフォームのナビゲーションに関する最新の設計</a></P>
+      <h2>もくじ</h2>
+<ul>
+  <li><a href="#xref">クロスリファレンス</a></li>
+  <li><a href="#definitions">定義</a></li>
+  <li><a href="#platforms">4つの主要なプラットフォーム</a></li>
+  <li><a href="#modifiers">モディファイヤキー・ポリシー</a></li>
+  <li><a href="#tab">タブの動作</a></li>
+  <li><a href="#userdefn">ファンクションキーには重要な機能を割り当てない</a></li>
+  <li><a href="#destructive">潜在的に危険なキー</a></li>
+  <li><a href="#macintosh">Macintoshキーボードの違い</a></li>
+  <li><a href="#accesskeyconflicts">アクセスキーの衝突</a></li>
+  <li><a href="#configurability">キーボードの設定機能</a></li>
+  <li><a href="#codersummary">プログラマのための要約</a></li>
+  <li><a href="#links">情報へのリンク</a></li>
+  <li><a href="#mailinglist">キーボード UI メーリングリスト</a></li>
+  <li><a href="#meetings">フライデーミーティング</a></li>
+      </ul>
+
+
+<h2><a name="xref"></a>クロスリファレンス</h2>
+      <P>これは Mozilla のブラウザ、エディタ、メールニュース、ウィジットのすべてのグローバル・ホットキーの概要です。このドキュメントは下線付きのメニューのアクセラレータやそれに関することは扱いません。なぜなら、それらは
+      i18n （訳注：国際化、Internationalizationの略）に含まれるからです。</P>
+      <TABLE border="1" cellspacing="0" cellpadding="5">
+        
+          <tr>
+            <td>
+            <h4>変更の提案をする前に FAQ 全体を読んでください。</h4>
+            <ul>
+              <li><A href="mozkeyplan.html">インタラクティブ・フレーム・バージョン</A> - このページは Gecko ベースのブラウザでのみ動作します。そう、私たちはあなたのキーボードが違って見えることを知っています。Mac
+              のキーボードは Windows キーを持ちませんが、Cmd キーを持ちます。多くの UNIX
+              キーボードは Meta キーを持ちます。</li>
+              <li><A href="mozkeylist.html">ノン・フレーム・バージョン</A> - 基本的なリファレンスです。</li>
+            </ul>
+            </td>
+          </tr>
+        
+      </TABLE>
+      <h2><a name="definitions"></a>定義</h2>
+<ul>
+<li><i>キーバインディング</i>: キーストロークとコマンドの結合を定義するひとかたまりのデータです。</li>
+        <li><i>モディファイヤ（修飾子）</i>: ほかのキーと組み合わせて使用されるキー、例えば Alt, Ctrl, Shift または
+        Cmd （Appleキー）です。</li>
+        <li><i>ホットキー</i>: ウィジット境界をまたがってバインディングするキーであり、カレントウィンドウでグローバルに動作することができます。</li>
+        <li><i>アクセラレータ</i>: 現在のフォーカスにあるウィジットにより、その動作がローカルに定義されているキーです。</li>
+        <li><i>アクセルキー</i>: ホットキーコマンドのために、そのプラットフォーム上で文字と数字キーを結合するのに使用されるモディファイヤです。</li>
+        <li><i>ショートカット</i>: あいまいな単語であり、あらゆる種類のキーストロークコマンドの意味に取られます。この仕様書の中では使用されません。</li>
+        <li><i>アクセスキー</i>: アクセレーターを定義するための HTML や XUL の属性です。通常、アクセスキーに対応するコマンド名の中の1文字が下線付きで表示されます。（訳注：日本語化されている場合、ファイル(<U>F</U>) のように表示されます。）</li>
+      </ul>
+
+<h2><a name="platforms"></a>４つの主要なプラットフォーム</h2>
+      <P>４つの主要なプラットフォームグループ毎にキーボード・コンビネーションを定義します。この仕様書は現在最初の3つのみを扱い、OS/2
+      には言及しません。いくつかの点で、OS/2 キーボード情報を省略するかもしれません。</P>
+      <UL>
+        <li>Windows (BeOS を含む)</li>
+        <li>UNIX (Linux を含む)</li>
+        <li>Mac OS</li>
+        <li>OS/2 (これらのキーバインドは IBM によって設定されます)</li>
+      </UL>
+      <h2><a name="modifiers"></a>モディファイヤキー・ポリシー</h2>
+      <P>モディファイヤキーを使用する場面は何でしょうか？どのようなときに Ctrl/Shift/Alt/Cmd
+      が使用されるのでしょうか？</P>
+      <H3>&quot;アクセル&quot;キーはプラットフォームに一つだけ</H3>
+      ホットキーに関して、通常は1文字に対して1つのアクセラレータキーを用います。Mac
+      では Cmd をデフォルトに、その他では Ctrl をデフォルトにします。関連するコマンドのために、アクセル文字の組み合わせが
+      Shift キーとともに使用されます。XBL でキーストロークを定義する場合、modifier=&quot;accel&quot;
+      はそのプラットフォームにおける適切なキーにマッピングされます。
+      <P>このただ１つのアクセルキーの制限にはいくつかの理由があります。第一に、Mac
+      OS は Alt+文字の組み合わせがテキストに特殊な文字を入力するために予約されているために、アクセラレーションのためには
+      Cmd キーのみを提供します。Mac OS のアプリケーションは Ctrl キーをコマンドのモディファイヤとして使用することは想定されていませんし、Mac
+      ユーザはそのようなキーの組み合わせを使うよう言われると驚いてしまうものです。</P>
+      <P>UNIX システムは特別な問題、Mozilla のキーバインディングと競合するかもしれない伝統的な
+      Emacs のキーバインディングをサポートする必要性、をもたらします。例えば、Emacs
+      では Ctrl+A はキャレットを行の先頭に移動しますが、Mozilla では、Accel+A
+      は「すべて選択」コマンドです。どちらが勝つべきでしょうか。4.7 （訳注：Netscape
+      4.7 のことか？）ではこれを Alt キーをデフォルトのアクセレータキーとすることで回避しました。しかしながら、これはデフォルトの
+      Gnome や KDE 環境のみならず、多くの新規ユーザにとって期待に反するものでした。もし
+      Unix システムのために第二のアクセルキーを考慮する場合、すでに Emacs のキーバインディングで使用されていないかを考慮すべきです。</P>
+      <P>最後の項目は HTML がアクセスキー属性を定義していることです、それはページの作者がウェブページのアクセラレーションキーを定義することを許します。通常それは下線付きの文字で表示されます。可能であれば、ひとつのモディファイヤキーがアクセスキーのために予約されているべきです。</P>
+      <P>このため、Windows プラットフォームで第二のアクセルキーとして Alt キーを使うことが好ましいとしても、これはこのバインディングのただ一人の受益者のためにとっておき、他の二つのプラットフォームのために、矛盾のないキーの組み合わせを見つける必要があるでしょう。今までのところ、すべてのプラットフォームで同時に動作する矛盾のないキーの組み合わせを見つけることは容易です。これはホットキーにおいて、一つの文字に対して、シフトの有無を別にして、ただ一つのモディファイヤーを仮定できることを意味します。</P>
+      <H3>Mac OS では Ctrl キーの組み合わせは使わない</H3>
+      Mac ヒューマン・インターフェース・ガイドラインは開発者に対して Ctrl ではなく
+      Cmd キーを使うことを要求しています。ホットキーとして Ctrl キーを使うことは多くの
+      Mac ユーザを混乱させます。しかしながら、（キーボード定義機能が提供された場合には）
+      Ctrl の組み合わせをユーザ定義のキーストロークとして提供することができます。
+      <H3>&quot;Accel&quot;キーを文字および数字キーと一緒に使う、ほかのキーに関しては明確なモディファイヤを定義する</H3>
+      <P>この仕様書では、アクセルキーは Ctrl、Alt、Cmd キーの中で変更できるものとします。つまり、異なる文字に対して、どんなモディファイヤを使用するかを変更できます。ほかのすべてのキー（数字、ファンクションキー、ナビゲーションキー、デリートやバックスペースなどの編集キー）においては、この仕様書ではそれぞれのコマンドの組み合わせに対してどんなモディファイヤを使うかを明確に述べます。例えば、Alt+Left
+      は常に「履歴のひとつ前のページに行く」を意味します。Ctrl との組み合わせ、これを一般的に
+      Ctrl/Cmd (Mac) と呼びます、においては、これはこのコマンドでは Windows と
+      UNIX では Ctrl が 使用され、Mac では Cmd が使用されることを表します。</P>
+      <H3>Ctrl+Alt の組み合わせは使わない</H3>
+      <P>国際キーボードにおいては、Ctrl+Alt はアクセントまたは他の特別な文字を入力するために使用されます。UK キーボードですら6通り(大文字を含めれば11通り): &aacute;, &eacute;, &iacute;, &oacute;, &uacute; (鋭アクセント母音)および EUR (ユーロ通貨記号 Ctrl+Alt+4)の Ctrl+Alt キーストロークを持ちます。</P>
+      <P>さらに、Ctrl+Alt+文字の組み合わせは伝統的に Windows におけるユーザアプリケーションの起動ホットキーを定義するために予約されています。これは規則として決まっているわけではありません。したがって、もし本当にキーを使うことなく起動するのであれば、おそらくこの方針は変えることができます。一貫性を保つため、またこれらを必要としていないので、現在は使用していません。</P>
+      <H3>関連する機能を同じキーでグループ化する</H3>
+      <P>例えば、私たちは Accel+Shift+文字を、可能であれば、Accel+文字に関係するコマンドに予約しようとします。これは、インターフェースをより洗練させ、またホットキーを覚えやすくします。</P>
+      <A name="punctuation"></A>
+      <H3>修飾された記号キーは避ける</H3>
+      <P>世界中の多くのキーボードは、あなたが期待する記号をサポートしません（あるものはセミコロンでさえ持ちません）。また、二つの記号が二つのキーに割り当てられていることも仮定することはできません。例えば、コンマはピリオドとは異なるキーに割り当てられているかもしれないし、同じキーかもしれません。また、記号キーはあるキーボードではシフトキーを必要とするかもしれないし、別のキーボードでは必要としないかもしれません。よって、シフトしないキーのバインドはシフトキーが押されていると動作しないでしょうし、逆のケースもあります。そのため、ホットキーが国際化チームによって再設定される場合、あまり重要でないケースで記号との組み合わせを使用することは良いアイデアです。もしそれが機能しないとしても、失われることは多くはありません。ここに<A href="http://www.macromedia.com/support/fontographer/ts/documents/master.htm">国際キーボードの配置集</A>があります。</P>
+      <H3>Emacs エディタのバインディングは常に Ctrl を使用する</H3>
+      <P>Emacs バインディングは現在は UNIX プラットフォームでのみ有効です。いくつかの文字において、アクセルバインディングと
+      ctrl(unix) バインディングが存在します。これら二つのバインディングが衝突する場合（Ctrl-A
+      や Ctrl-H など） Emacs バインディングが有効になります。ほとんどの期間、バインディングはフォーカスに従います。つまり、フォーカスが編集エリアにある場合は編集バインディングが使用され、フォーカスがブラウザエリアにある場合はブラウザバインディングが使用されます。これに関する追加情報は以下のオープン・イシューにあります。</P>
+      <H3>オープン・イシュー: デフォルトの UNIX アクセルキーは Ctrl</H3>
+      <P>Netscape 4.7ではデフォルトのアクセルキーは Alt でした。Ctrl を使用しつづける利点は
+      Gnome や KDE との一貫性です。Alt に変更する利点はより多くの Emacs キーが利用できることです。合理的な人々はこの件に同意しません。あなたがどのようにアクセスキーを変更するかは、<A href="/unix/customizing.html#accelkey">カスタマイズ・ドキュメント</A>を参照してください。そこには純粋な Emacs スタイルの制御を好むユーザのためにキーボード初期設定ファイルの作り方が述べられています。Akkana Peck はこの件の責任者です。もしどちらか一方が特に好きならば、mozilla-accessibility@mozilla.org にあなたの好みをメールしてください。</P>
+      <h2><a name="macintosh"></a>Macintosh キーボードの違い</h2>
+      <P>Macintosh のすべてのキーボードが同じというわけではありません。例えば、古い
+      Mac はファンクションキーを持ちませんし、新しい Mac は F1-F12 を持ち、極一部の
+      Mac は F13-F15 を持ちます（F13-F15 は PC では通常 Print Screen, Break などのラベルがついています）。ファンクションキーが押された場合、Mac
+      OS はユーザが定義した動作（マクロ）を使うことができます。これらの理由により、私たちはファンクションキーにだけ機能を割り当てるのを避けたいと思っています。もしその機能が重要もしくは一般的であれば、起動させる別の手段を持つべきです。</P>
+      <P>あるタイプの Mac は &quot;insert&quot;, &quot;end&quot;, &quot;pageup&quot;,
+      &quot;del&quot; などのキーを持ちません。バックスペースキーは &quot;delete&quot;
+      とラベルされていて、アイコンによってメニューの中で表現されます。&quot;enter&quot;
+      は数字キーパッドの中のキーであり、PC ユーザが &quot;enter&quot; と呼ぶものは
+      &quot;return&quot; とラベルされています。分割された複数の &quot;help&quot;
+      キーをもつものもあり、それ以外は &quot;insert&quot; キーの上に &quot;help&quot;
+      を持ちます。&quot;clear&quot; キーを持つものもあります。Insert, Delete,
+      Home, End などのキーの配置はキーボードごとに異なっているかもしれません。それはただの
+      US 英語キーボードだけでありうるのです。言い換えれば、キーボードに対して多くを仮定しなければ、その分ユーザーを幸せにするのです。</P>
+      <P>Mac OS はキーボードによりメニューバーを移動する組み込みの機能を持っていません。Mac OS は Alt （オプション）と Alt+Shift 文字の組み合わせを、英語以外で必要とされる特殊文字の入力のために予約しています。</P>
+      <h3>オープン・イシュー： OS X が横取りするキーは置き換えられるべきか？</h3>
+      <P>OS X では、Cmd+M と Cmd+H はシステムによって、ウィンドウの最小化とウィンドウを隠すコマンドのために横取りされます。Mozilla と Netscape 4.7 はこれらを新規メールと履歴のために使用していました。私たちは Cmd+M は Mac OS X では Mozilla をクラッシュさせるとも聞いています。これらのコマンドは Mac では今や、そして永久に、プルダウンメニューからマウスを使うように格下げされるのでしょうか？ OS X ではこれらのコマンドのために新しいキーを捜すべきでしょうか？ 例外ケースとして Ctrl を使用するべきでしょうか？ 私たちはこれらの問題を解決するためにキーボードコマンドを愛する熱心な Mac ユーザーを必要としています。</P>
+      <P>もう一つの重要な事実は、私たちは Accel+N の動作に関してすでにプラットフォーム
+      UI ガイドラインに従っているということです。Windows と Mac OS の標準では
+      Accel+N は新規ドキュメントを開いたり、アプリケーションごとに適切なウィンドウを開いたりします。例えば、Accel+N
+      はナビゲーターでは新規ブラウザウィンドウを、コンポーザーでは新規空白ドキュメントを、メールニュースでは新規メッセージ編集を、アドレス帳では新規カードを開くべきです。もし異なるアプリケーションに直接ジャンプするキーボードコマンドが必要であれば、ユーザは
+      Accel+数字ホットキーを使用するでしょう。</P>
+      <UL>
+        <li>変更に対する論点は、人々がすでに使っているものを変えようとしていることです。おそらく、最初からこのようにすべきでしょう。しかし、もしこれらの共通のことを足元から変えてしまったら、いったい何が起こるのでしょうか？</li>
+        <li>変更に対する論点は、新規メッセージ編集のために Mac ユーザ用に後で変えてしまうような変なキーストロークを割り当てるよりは、今すぐ正しい行動を取るほうがよいということです。私たちはプラットフォーム標準に従い、Accel+N の変な使い方を取り除くべきです。</li>
+      </UL>
+      <h2><a name="tab"></a>コンテンツウィンドウにおける現在および未来のタブキーの動作</h2>
+      <P>現在、タブはページ内のすべてのリンクとフォーム要素をナビゲートします。</P>
+      <h2><a name="userdefn"></a>ファンクションキーに重要な機能を割り当てない</h2>
+      <P>重要な機能ではファンクションキーの使用を避けてください。さもなくば Mac
+      OS では別のキーを提供してください。それは Macintosh では一般にファンクションキーをユーザ定義動作に予約しているからです。またある種の
+      Mac はファンクションキーをまったく持ちません。</P>
+      <h2><a name="destructive"></a>潜在的に有害なキー</h2>
+      <P>ある種のキーストロークの組み合わせは、何か別のタイプをしようとしてしばしば間違ってタイプされると報告されています。これらのキーは取り消し可能か無害な動作にのみ割り当てるべきです。</P>
+      <P>これは間違えやすいキーストロークの現在のリストです。</P>
+      <UL>
+        <li>修飾された Enter</li>
+        <li>修飾されたスペース</li>
+      </UL>
+      <P>誤ってタイプしやすいキーには即実行され、取り消しのできない、破壊的な動作を割り当てるべきではありません。例えば、もし
+      Ctrl+Enter がメールを直ちに送信するために使用されていたならば、誰かが失礼なメールを、それを修正する機会を得る前に送信してしまうことでしょう。これを避けるために、Ctrl+Enter
+      を「今送信しますか?」というダイアログ、それには今後同様の問い合わせを避けるためのチェックボックス付き、を表示するでしょう。</P>
+      <h2><a name="accesskeyconflicts"></a>アクセスキーの衝突</h2>
+      <P>ウェブページはキーボードアクセラレータを定義するためのアクセスキー属性を使うことができます。例えば、www.microsoft.com/enable では Alt+S はサイト検索を初期化します。しかしながら、Alt+S は Mozilla メニューバーの検索メニューを表示するためにも使用されています。</P>
+      <P>現在この点に関しては、私たちの解決策は Internet Explorer のやり方と同じです。もし衝突があれば、ウェブページのアクセスキーがキーを取ります。もしユーザが明示的にメインメニューに行きたければ、メニューアクセスキー（通常は
+      Alt）をまずタイプし、次にアクセスキーに対応するキー（例えば S）をタイプするでしょう。</P>
+      <P>現在 UNIX では キー Alt はメニューアクセスとしては禁止しています。というのも、Alt+クリックが使われる場合があるからです。これを回避するために
+      Alt キーによるメニューアクセスコードを、クリックをチェックするよう修正する必要があります。</P>
+      <h2><a name="configurability"></a>キーボートの設定機能</h2>
+      <P>現在では、あなた専用のキーボード設定を作ることが可能になっています。私たちは今なお Mozilla が特定のキーをハードコーディングしている何箇所かを修正する必要があります。例えば、TAB キーは nsEventStateManager.cpp の中でリンクとフォームの移動のためにハードコーディングされています。クロームの中で定義されているものの、.jar ファイルにパッケージされていない多くのキーがあります。私たちはこれらを簡単に修正する手段をまだ持ち合わせていません。</P>
+      <P>いくつかの点において、誰かがキーボード設定のフロントエンドを作る余地があります。現在の解決策はユーザがテキストファイルを編集することです。また、あらかじめ定義された設定ファイルを提供することが可能です（だれかボランティアはいませんか？）。例えば、誰かが
+      Emacs, Opera または Lynx ユーザのために設定を提供できます。Opera と Lynx
+      はブラウザ上に多くのシングルキーストロークコマンドを持っています。シングルキーバインディングはタイピングに障害をもつユーザにとっては非常にありがたいものです。それはまた制御キーを必要としないキーを使うことが要求されます。</P>
+      <P>ユーザが javascript と特定のキーを結合させることが可能です。これは、ユーザーがお気に入りの
+      URL を特別なキーに対応させることを可能にします。私たちは、だれかが Mozilla
+      にエンドユーザがマクロを生成する簡単な手法を作ってくれることをとくに望んでいます。</P>
+      <P>キーボード設定機能をどう使うか知りたい場合は<A href="/unix/customizing.html#keys">カスタマイズのドキュメント</A>を参照してください。</P>
+      <h2>プログラマのためのサマリー</h2>
+      <P>文字と数字キーの組み合わせに関して、<A href="mozkeyplan.html">主クロスリファレンス表</A>には修飾子としてしばしばアクセル(accel)が出現します。XBL の中で &quot;accel&quot;
+      を使う場合、ユーザがプレファレンスでそれを変更していても Mozilla は自動的に正しいキーを選択します。他のキー（ファンクション、記号など）に関しては、accel
+      が別のキーに再割り当てされていても、それが常に使用されているキーであることを示すために、明示的に
+      &quot;Ctrl(Win+Unix) or Cmd(Mac)&quot; と呼びます。このようなケースでも、わたしたちはMacに関しては
+      Control ではなく Comand を好みます。それは Control はコンテキストメニューのために使用されているのと、ごく一部のエンドユーザプログラマが修飾キーとして使用しているからです。</P>
+      <H3>明らかになった修飾キー</H3>
+      <TABLE class="keys">
+        
+          <tr>
+            <th>Mozilla XBL</th>
+            <th>Windows</th>
+            <th>Unix</th>
+            <th>Mac</th>
+          </tr>
+          <tr>
+            <td>shift</td>
+            <td>Shift</td>
+            <td>Shift</td>
+            <td>Shift</td>
+          </tr>
+          <tr>
+            <td>control</td>
+            <td>Ctrl</td>
+            <td>Ctrl</td>
+            <td>Control</td>
+          </tr>
+          <tr>
+            <td>alt</td>
+            <td>Alt</td>
+            <td>Alt</td>
+            <td>Option</td>
+          </tr>
+          <tr>
+            <td>meta</td>
+            <td>
+            <div>Windows Key</div>
+            <div>(無効)</div>
+            </td>
+            <td>Meta</td>
+            <td>
+            <div>Command</div>
+            <div>(Apple Key)</div>
+            </td>
+          </tr>
+          <tr>
+            <td>accel</td>
+            <td>Ctrl</td>
+            <td>Ctrl or Alt</td>
+            <td>Command</td>
+          </tr>
+        
+        <caption>主要なプラットフォームにおける Mozilla の修飾キーの名称</caption>
+      </TABLE>
+      <H3>キーボードコーディング規則</H3>
+      <UL>
+        <li>決してキーの名前をハードコーディングしないでください。ストリングバンドルを使ってください。これはまたローカライゼーションにおいても重要であり、例外はありません。</li>
+        <li>重要な機能を非英数キー（記号、数字、ファンクションキー）だけで使えるようにしないでください。それらは、Mac や非 US キーボードでは存在しなかったりタイプしづらかったりするかもしれません。</li>
+        <li>文字か数字を使った組み合わせは、XBL の中では &quot;accel&quot; か &quot;shift,accel&quot;
+        を使ってください。</li>
+        <li>他のキーの組み合わせに関して、Windows と Unix では &quot;ctrl&quot;、&quot;alt&quot;、&quot;shift&quot;
+        を、Mac キーバインディングファイルでは &quot;meta&quot;、&quot;alt&quot;、&quot;shift&quot;
+        を使ってください。
+      </UL>
+      <H3><a name="codersummary"></a>キーバインディングファイル</H3>
+      <P>キーバインディングは Mozilla の中の多くの場所で定義されています。あなたの欲しいものは以下のリストの中、または
+      <A href="http://lxr.mozilla.org/seamonkey">LXR</A> 使って見つけることができるでしょう。<A href="/unix/customizing.html#keys">カスタマイズ文書</A>を読んでください。</P>
+      <H4>コンテント領域のバインディング</H4>
+      <UL>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/content/xbl/builtin/htmlBindings.xml">htmlBindings.xml</a> - コンテント領域の一般キーバインディング</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/content/xbl/builtin/mac/platformHTMLBindings.xml">mac/platformHTMLBindings.xml</a> - Mac OS プラットフォーム固有のバインディング</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/content/xbl/builtin/os2/platformHTMLBindings.xml">os2/platformHTMLBindings.xml</a> - OS/2 プラットフォーム固有のバインディング</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/content/xbl/builtin/unix/platformHTMLBindings.xml">unix/platformHTMLBindings.xml</a> - UNIX プラットフォーム固有のバインディング</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/content/xbl/builtin/win/platformHTMLBindings.xml">win/platformHTMLBindings.xml</a> - Windows プラットフォーム固有のバインディング</li>
+      </UL>
+      <H4>タスク固有のバインディング</H4>
+      <UL>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/xpfe/browser/resources/locale/en-US/navigator.dtd">navigator.dtd</a></li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/xpfe/communicator/resources/locale/en-US/tasksOverlay.dtd">tasksOverlay.dtd</a></li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/xpfe/communicator/resources/locale/en-US/contentAreaCommands.dtd">contentAreaCommands.dtd</a></li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/xpfe/communicator/resources/locale/en-US/viewZoomOverlay.dtd">viewZoomOverlay.dtd</a> - テキストの拡大と縮小 (現在では Ctrl+- と Ctrl+= )</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/locale/en-US/messenger.dtd">messenger.dtd</a> - メールコマンドがセットされている</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/mailnews/base/resources/locale/en-US/mailTasksOverlay.dtd">mailTasksOverlay.dtd</a> - Ctrl+2 がMeilaNewsを起動するコマンドとしてセットされている</li>
+      </UL>
+      <H4>ウィジットのバインディング</H4>
+      <UL>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/xpfe/global/resources/content/treeBindings.xml">treeBindings.xml</a> - ツリーウィジット</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/xpfe/global/resources/content/tabBindings.xml">tabBindings.xml</a> - タブウィジット</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/xpfe/global/resources/content/radioBindings.xml">radioBindings.xml</a> - ラジオボタン</li>
+        <li><a href="http://lxr.mozilla.org/seamonkey/source/xpfe/global/resources/content/xulBindings.xml">xulBindings.xml</a> - チェックボックスのような簡単なウィジット</li>
+      </UL>
+      （訳注：これらのファイルは現在は存在しません。おそらく<A href="http://lxr.mozilla.org/seamonkey/source/xpfe/global/resources/content/bindings/">ここに移動</A>したものと思われます。）
+      <h2><a name="links"></a>情報へのリンク</h2>
+
+<ul>
+
+  <li>Opera ブラウザのキーボードナビゲーションの情報
+        <UL>
+          <li><a href="http://opera.com/linux/keyboard.html">Linux</a> のマップ</li>
+          <li><a href="http://opera.com/mac/keyboard.html">Mac OS</a> のマップ</li>
+          <li><a href="http://opera.com/windows/keyboard.html">Win32</a> のマップ</li>
+        </UL>
+        </li>
+        <li><a href="http://www.microsoft.com/enable/products/keyboard/keyboardsearch.asp">
+    Microsoft keyboard UI</a> 全ての Microsoft 製品および Windows 一般について。</li>
+
+  <li><a href="http://web.archive.org/web/20010428094628/http://www.critique.net.nz/project/mozilla/general/interface/keys/">
+ Alternative keyboad plan</a> 2000年10月、Matthew Thomas による。</li>
+
+  <li><a href="http://www.macromedia.com/support/fontographer/ts/documents/master.htm">
+  International keyboard layout diagrams</a>. 国際化(i18n)が取り扱う巨大な差分を見るのに良い例です。たくさんのキーを当然と思うことはできません。.
+  <li><a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;component=Keyboard+Navigation">Bugzillaのキーボードバグのリスト</a> </li>
+ <li><A href="/unix/customizing.html#keys">カスタマイズ文書</A> - Mozilla のキーバインディングをグローバルまたはプロファイルローカルに変更するやり方に関する説明</li>
+</ul>
+
+
+<h2><a name="mailinglist"></a>キーボード UI メーリングリスト</h2>
+      <P>一般的なキーボードに関する議論は <A href="mailto:mozilla-accessibility-request@mozilla.org?subject=subscribe">Mozilla-Accessibility メーリングリスト</A>で行ってください。私たちは人々がキーボードプランを遵守することを望んでいます。もしこのプランと異なる Bugzilla のバグを見つけたならば、そのバグ上で、そしてメーリングリストで指摘してください。</P>
+      <h2><a name="meetings"></a>フライデーミーティング</h2>
+      <P>キーボードミーティングは毎週金曜 3 時に行われています。時には一般的なアクセスビリティについて話をします。あなたも参加することができます。もしミーティングの通知が必要であれば
+      Aaron Leventhal - aaronleventhal&#64;moonset.net にメールしてください。</P>
+      <p>&nbsp;</p>
+<p align="right"><b>Maintained by Aaron Leventhal and Sarah Liberman.</b></p>
+
+<hr class="hide" />
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/access/keyboard/index.html">英語版</a> 2004/04/06</span> - <span>和訳版 2005/01/10</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/access/keyboard/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

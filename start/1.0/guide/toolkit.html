@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=EUC-JP" />
+<!--nobanner-->
+<title>Mozilla 1.0 ガイド : Mozilla ツールキット</title>
+<link rel="stylesheet" title="Orange" href="../defaultstyle.css" type="text/css" />
+<link rel="alternate stylesheet" title="Very Simple" href="../basicstyle.css" type="text/css" />
+  <link rel="alternate stylesheet" title="Light Blue" href="../bluestyle.css" type="text/css" />
+<link rel="icon" href="../images/mozilla-16.png" type="image/png" />
+<script src="../detect-problems.js" type="text/javascript"></script>
+  <script src="../stylesheets.js" type="text/javascript"></script>
+
+<style type="text/css" media="screen,tv">
+<!--
+ul { list-style-type: circle; }
+-->
+</style>
+</head>
+
+<body onload="loadStyle();silentlyFixErrors('../')">
+<div id="mainHeaderContainer" class="sectionHeaderContainer">
+<img src="../images/dino.png" alt="" id="dinoHead" />
+<div id="mainHeader" class="sectionHeader"><a href="../"><img src="../images/mozillaLogo.png" id="mozillaLogo" alt="Mozilla 1.0" /></a></div>
+</div>
+<div class="section" id="mainSection">
+<div style="padding: 1em">
+
+<h1><a id="section">Mozilla ツールキット</a></h1>
+
+<p><br /></p>
+
+<h2><a id="index">インデックス</a></h2>
+
+<ul>
+<li><a href="#gecko">Gecko とは何ですか？</a></li>
+<li><a href="#xul">XUL とは何ですか？</a></li>
+<li><a href="#xpcom">XPCOM とは何ですか？</a></li>
+<li><a href="#necko">Necko とは何ですか？</a></li>
+<li><a href="#imagelib">Imagelib とは何ですか？</a></li>
+<li><a href="#javascript">なぜ JavaScript (ECMAScript) が Mozilla ツールキットの大変重要な部分なのですか？</a></li>
+<li><a href="#benefits">Mozilla ツールキットを使うことの主要な利益とは何ですか？</a></li>
+<li><a href="#developer-tools">Mozilla にはどんな開発者ツールが組み込まれていますか？</a></li>
+<li><a href="#security">ツールキットはどんなセキュリティを使っていますか？</a></li>
+<li><a href="#contact">Mozilla コードベースを利用したいと思っている OEM は、追加の情報を得るには誰にコンタクトしたらいいですか？</a></li>
+</ul>
+
+<ul>
+<li><a href="index.html#index">メイン インデックス</a></li>
+</ul>
+
+<p><br /></p>
+
+
+
+<h3><a id="gecko">Gecko とは何ですか？</a></h3>
+
+<p>埋め込み可能な、クロスプラットフォームの Gecko レンダリングエンジンは Mozilla の心臓です。
+これにはユーザインターフェースがありません。ただ Web コンテンツを理解し、表示するだけです。
+この能力は広範なアプリケーションのセットにとって価値のあるもので、その一部は「ブラウザ」と少し関係があります。
+たとえば、Gecko は （XUL と協力して（下をご覧ください）） Mozilla アプリケーションのユーザインターフェースの表示に使われています。</p>
+
+<p>Gecko は 1997 年に開発が始まり、<strong>公開で移植性・拡張性があり、カスタマイズ可能なアーキテクチャ</strong>を特徴とした、やせた、高速で強壮なレイアウトエンジンに進化しました。
+それは、HTML-PNG コンバータから市販用 IDE まで、様々なサードパーティーのソフトウェア・ハードウェア製品に組み込まれています。
+Gecko は最新の Compuserve 7.0 サービスのためにレンダリングエンジンとして役立ち、また近頃リリースされた Netscape 7.0 Preview Release や AOL サービスにおいて、ベータテストのエンジンにもなっています。</p>
+
+<p>いくつかの純粋なブラウザのプロジェクトを含むその他の例 :</p>
+
+<ul>
+<li><a href="http://galeon.sourceforge.net/">Galeon</a> （XUL 無視、Unix/Linux 向けの GNOME デスクトップの特徴、過去数年で普及）</li>
+<li><a href="http://chimera.mozdev.org/">Chimera</a> （XUL 無視、MacOS X 専用）</li>
+<li><a href="http://kmeleon.sourceforge.net/">K-Meleon</a> （XUL 無視、Windows 専用）</li>
+<li><a href="http://lxr.mozilla.org/mozilla/source/browser/">m/b</a> （XUL 使用、クロスプラットフォーム）</li>
+</ul>
+
+<p>組み込み Gecko に関する詳しい技術情報は <a href="../../../projects/embedding/" title="組み込み Gecko">mozilla.org</a> と <a href="http://www.codeguru.com/controls/iemozilla.html" title="組み込み Gecko の詳細">codeguru.com</a> の両方のページで入手できます。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="xul">XUL とは何ですか？</a></h3>
+
+<p><a href="../../../projects/xul/">XUL</a> （eXtensible User-interface Language） は Mozilla の <strong>XML ベースのクロスプラットフォーム・ユーザインターフェース技術</strong>です。</p>
+
+<p>この技術は、開発者が XML、CSS、ECMAScript (JavaScript) を混ぜて使って、クロスプラットフォームのグラフィカル ユーザ インターフェースを定義できるようにします。
+ユーザは、スタンダードな Web ページ構文を使用しているファイルを変更することによって、簡単に（Mozilla 製品そのもののような）XUL ベースの Mozilla アプリケーションのユーザインターフェースの外観をいくらでも変更できます。</p>
+
+<p>XUL は定義されたユーザインターフェースを実装するために Gecko を使っています。
+Gecko/XUL の組み合わせは、Mozilla アプリケーションを、Web ページのようにシンプルなものから Mozilla 1.0 製品のように洗練されたものまで拡張させる基礎となっています。
+これは、メニュー、入力コントロール、ダイアログ、（たとえば設定ダイアログに見られるような）ツリーコントロール、キーボードショートカットを含め、<strong>現代のグラフィカル ユーザ インターフェースに見られる基礎的な要素</strong>をすべてサポートしています。</p>
+
+<p>XUL のチュートリアルは <a href="http://www.xulplanet.com/tutorials/xultu/index.shtml" title="XUL Planet の XUL に関するチュートリアル">XUL Planet</a> でご覧いただけます。
+また、<a href="http://www.hacksrus.com/%7Eginda/devday2001/contents.html">XUL と JavaScript によるアプリケーション制作</a> に関するスライドもあり、
+さらに詳細な技術情報（<a href="http://www.hacksrus.com/%7Eginda/xulkit/doc/README-new-from-template.html" title="テンプレート化されたソースと可変定義ファイルから新しいコードを生成する">1</a>、<a href="http://www.hacksrus.com/%7Eginda/xulkit/doc/README-makexpi.html" title="XUL アプリケーションのソースツリーから XPI ファイルを生成する">2</a>）も付いています。
+詳しい情報は <a href="http://mozilla.org/projects/xul/joy-of-xul.html" title="XUL の喜び">mozilla.org</a> でも入手できます。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="xpcom">XPCOM とは何ですか？</a></h3>
+
+<p>Mozilla コンポーネントは XPCOM コンポーネントです。
+<a href="../../../projects/xpcom/">XPCOM</a> （Cross-Platform Component Object Model） は、最初 Mozilla プロジェクトの一部として制作され、現在いくつかの他のプロジェクトで利用されています。
+XPCOM は、よく知られた Component Object Model （COM） の<strong>軽量なクロスプラットフォームの変形</strong>です。
+IBM の Web サイトにある <a href="http://www.ibm.com/developerworks/webservices/library/co-xpcom.html">論説記事</a> がそれについてさらに論じています。</p>
+
+<p>すべての XPCOM オブジェクトは自動的に ECMAScript （JavaScript） の送り込みを増やすので、大部分の Mozilla 開発者は XPCOM そのものについて頭を悩ます必要なしに、クロスプラットフォームや XPCOM が供給するその他の開発関係の恩恵を享受するでしょう。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="necko">Necko とは何ですか？</a></h3>
+
+<p>Necko （「Gecko」と韻（いん）を踏んでいます）は Mozilla のネットワークライブラリです。
+これは、トランスポート層からプレゼンテーション層まで、ネットワーク値域の各層のために<strong>プラットフォーム独自の API</strong>を提供します。
+ライブラリ内部のコンポーネントは、プロトコルハンドラ（HTTP、FTP など）のスタンダードベースの実装や、DNS、ユーザ識別、プロキシ接続、キャッシュを含めた、いくつかの主要なネットワーク機能を含んでいます。</p>
+
+<p>API は Mozilla 製品の中で使用され、その他のネットワーククライアントの書き込みにも利用できます。
+Necko ネットワークライブラリに関する詳しい情報は <tt><a href="../../../projects/netlib/">http://mozilla.org/projects/netlib/</a></tt> で入手できます。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="imagelib">Imagelib とは何ですか？</a></h3>
+
+<p>イメージ レンダリング ライブラリ （Imagelib） は多くの画像フォーマットをデコードし、Mozilla で表示できるようにします。
+これは<strong>完全なモジュラー式</strong>で、スタンダードに準拠し、JPEG、PNG、GIF、PPM （Portable Pixel Map） といった一般的な画像フォーマットのサポートを含んでいます。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="javascript">なぜ JavaScript (ECMAScript) が Mozilla ツールキットの大変重要な部分なのですか？</a></h3>
+
+<p>JavaScript は当初 Netscape で開発された、広く使われているスクリプト言語です。
+現在 <a href="http://www.ecma.ch/ecma1/STAND/ECMA-262.HTM" title="ECMA の JavaScript 標準化に関する情報">ECMA-262 委員会</a> によって「ECMAScript」として標準化されています。
+Web ページ上だけではなく、サーバアプリケーションなど、至る所にあります。</p>
+
+<p>Mozilla は 2 つの JavaScript の実装を備えています。
+オリジナルでもっとも広がっている実装は C 言語で書かれ、Mozilla ブラウザに組み込まれており、それに対して 2 つ目の実装は Java で記述されています。
+JavaScript の実装、規格、テストスイート、チュートリアル、ニュースグループについての情報、は <tt><a href="../../../js/">http://mozilla.org/js/</a></tt> でご覧いただけます。</p>
+
+<p>Mozilla ツールキットによって、<strong>JavaScript デバッガ</strong> Venkman は、Mozilla ベースのブラウザ（K-Meleon や Galeon といった Gecko のみのブラウザを除く）向けに、強力な JavaScript <b>デバッグ環境</b>を提供します。</p>
+
+<p>今日まで開発されてきた結果、Venkman は開発者が次のようなことをできるようにしました。</p>
+
+<ul>
+<li>ブレークポイントのセット／クリア</li>
+<li>単独のステップ・イントゥー、ステップ・オーバー、ステップ・アウト</li>
+<li>スタック・フレームのリスト</li>
+<li>例外が投げられたときの中断／追跡</li>
+<li>エラーが発生したときの中断／追跡 （捕まえられていない例外）</li>
+<li>あらゆるスタック・フレームでの局所変数の検査</li>
+<li>数えられないプロパティを含む、オブジェクトのプロパティの列挙</li>
+<li>あらゆるスタック・フレームでの任意の JavaScript の評価</li>
+<li>時計のセット</li>
+<li>JavaScript の描画 （呼び出し時間での収集と報告）</li>
+<li>JavaScript の「プリティ・プリント」 （余白と復帰改行の「修正」）</li>
+<li>生成子の場所の特定、任意のオブジェクトのための位置の生成</li>
+</ul>
+
+<p><a href="../../../projects/venkman/venkman-walkthrough.html">ウォークスルー</a> を含む Venkman に関する追加の情報は <tt><a href="../../../projects/venkman/">http://mozilla.org/projects/venkman/</a></tt> でご覧いただけます。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="benefits">Mozilla ツールキットを使うことの主要な利益とは何ですか？</a></h3>
+
+<p>Mozilla アプリケーションは、<strong>サポートされている<i>どんな</i> Mozilla プラットフォームでも、変わらず、十分機能的に実行します</strong>。</p>
+
+<p>Mozilla は完全なオープンソース／フリーソフトで、これは必然的に多くの開発者の利益を提供します。
+たとえば、広く使われているオープンソースコードは、私有ソフトウェアよりも <a href="http://www.gnu.org/software/reliability.html" title="なぜフリーソフトはより信頼できるのか">より強壮で安全</a> という傾向があります。</p>
+
+<p>そしてバグが<b>ある</b>ときは、開発者はコードを調べて問題を修正する権限を与えられます（そしてむしろすべての利益を得るために好んで変更をチェックするでしょう。「コードに与えれば、それは自分に帰ってくる」）。</p>
+
+<p>Mozilla はデスクトップ アプリケーションと Web ページの区別をほとんど取り除きます。これはいくつかのさらなる利益へ帰着します。
+普及している、コンポーネント、API、オブジェクト、イベント、メソッド、プロパティ、洗練されたグラフィカル ユーザ インターフェースのような要素に信頼をおいて、現在デスクトップアプリケーションのプログラミングをしている開発者は、快適なプログラミング環境を見つけるでしょう。
+しかしながら、より多くのテクノロジーは合意によるスタンダードに基づくようになるでしょうし、Web デザインの最大限のパワーはユーザ体験を豊かにすることにまもなく役に立つようになるでしょうし、アプリケーションはクロスプラットフォームになるでしょう。</p>
+
+<p>逆に、多くの Web デザイナーは、自分がよく知っている分野の外へ飛び出す必要なしに、成熟したアプリケーションを開発する技術を発達させることができる、ということに気付くでしょう。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="developer-tools">Mozilla にはどんな開発者ツールが組み込まれていますか？</a></h3>
+
+<p>Mozilla 1.0 には、DOM Inspector （この <a href="http://grayrest.com/moz/evangelism/tutorials/dominspectortutorial.shtml" title="greyrest の DOM Inspector チュートリアル">チュートリアル</a> も入手できます）や
+<a href="../../../projects/venkman/" title="Venkman JavaScript デバッガ">JavaScript デバッガ</a>、Java/JavaScript コンソール、構文ハイライトソース表示が含まれています。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="security">ツールキットはどんなセキュリティを使っていますか？</a></h3>
+
+<p>Mozilla のセキュリティは、Netscape の技術者によって書かれた <a href="../../../projects/security/pki/nss/">NSS</a> （Network Security Services ライブラリ）から始まっています。
+このライブラリは、1998 年の「Free the Lizard」キャンペーンを見越したもので、次のような利益を受けています :</p>
+
+<ul>
+<li><b>公開検査</b> : セキュリティのエキスパートはたいてい <a href="http://www-106.ibm.com/developerworks/linux/library/l-oss.html" title="オープンソースソフトのセキュリティの意味">優れたセキュリティ</a> はコードを公開しておくことで成し遂げられる、ということに同意します。</li>
+<li><b>経験</b> : Netscape は Secure Sockets Layer （SSL） プロトコルを開発しました。それは現在 Web 中のソケットベースの暗号化と認証のスタンダードで、最初に広まった商業利用の X.509 v3 公開鍵証明書が実装されています。</li>
+</ul>
+
+<p>NSS の一番上位の層を成しているのは <a href="../../../projects/security/pki/psm/" title="PSM に関する情報">Personal Security Manager</a> （PSM） です。
+PSM は Mozilla のようなクライアントに代わって暗号化演算を行い、ECMAScript （JavaScript） を利用しているコンポーネントのように近づきやすいのです。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+
+
+<h3><a id="contact">Mozilla コードベースを利用したいと思っている OEM は、追加の情報を得るには誰にコンタクトしたらいいですか？</a></h3>
+
+<p>Mozilla コードベースの利用に興味のある OEM は、mozilla.org の Chief Lizard Wrangler である <a href="mailto:%20Mitchell%20Baker%20%3Cmitchell@mozilla.org%3E">Mitchell Baker</a> にコンタクトするといいでしょう。</p>
+
+<p style="text-align: right;"><a href="index.html#index"><img src="back.png" alt="" title="インデックスに戻る" /></a>&emsp;<a href="#index"><img src="top.png" alt="" title="トップに戻る" /></a></p>
+
+<!-- 和訳プロジェクト コメント -->
+<p align="right"><font size="-1">
+<a href="http://www.mozilla.org/start/1.0/guide/toolkit.html">このドキュメントのオリジナルは mozilla.org において英語で公布されています。</a><br>
+この和訳は、利用者の利便のために <a href="../../../jp/td/">Mozilla Japan 翻訳部門</a> によって提供されています。<br>
+内容に関してご不明な点がありましたら <a href="mailto:webmaster&#64;mozilla-japan.org">webmaster</a> までお問い合わせください。
+</font></p>
+<!-- 和訳プロジェクト コメント -->
+
+</div>
+<div id="footer">
+<img src="../images/dino_tail.png" id="dinoTail" alt="" />
+</div>
+</div>
+<div class="doubleSpacer"></div>
+</body>
+</html>

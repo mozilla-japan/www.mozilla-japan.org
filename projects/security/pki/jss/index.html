@@ -1,0 +1,248 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE>Java のための Network Security Services (JSS)</TITLE>
+<link rel="alternate" hreflang="en" modified="October 13, 2003">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/jss/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<center>
+<h2>Java のための Network Security Services（JSS）</h2>
+<i><FONT SIZE="-1">
+
+ニュースグループ：
+<A HREF="news://news.mozilla.org/netscape.public.mozilla.crypto">netscape.public.mozilla.crypto</A><BR>
+
+管理者：
+<A HREF="mailto:wtc@netscape.com?subject=JSS Feedback">Wan-Teh Chang</A></FONT></i>
+</center>
+
+<!-- - - - - - - - - - - - D E S C R I P T I O N - - - - - - - - - - - - - - -->
+
+<h3>定義</h3>
+
+<UL>
+<p>Network Security Services for Java（JSS）は、<a href="../nss/">NSS</a> への Java インターフェースです。これはほとんどのセキュリティ標準や、<a href="../nss/overview.html">NSS によってサポートされている</a>暗号化テクノロジーをサポートしています。JSS はまた、ASN.1 タイプや BER/DER エンコーディングのための純粋な Java インターフェースも提供します。</p>
+
+<p>JSS はまた、Java で暗号化をする Netscape と iPlanet の製品内部にも使用されています。</p>
+
+</UL>
+
+<!-- - - - - - - - - - - - - - W H A T S  N E W  - - - - - - - - - - - - - - -->
+<h3>お知らせ</h3>
+<ul>
+<li>JSS 3.4 が<a href="jss_release_3.4.html">リリース</a>されました。</li>
+<li>JSS についての <a href="faq.html">FAQ</a> があります。</li>
+</ul>
+
+<!-- - - - - - - - - - - -  A C Q U I S I T I O N - - - - - - - - - - - - - - -->
+
+<h3>手に入れる</h3>
+
+<UL>
+
+<p>JSS は <tt>mozilla/security/jss/</tt> ディレクトリ内の CVS に棲息しています。ソースをビルドしたい場合は、<a href="jss_build_3.4.html">ビルドガイド</a>に従ってください。</p>
+
+<p>CVS でアクセスができない場合、FTP サイトからソースの tarball をつかんでくることができます：
+<a href="ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/ ">ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/ </a></p>
+
+
+<p>同じ FTP サイトからプリコンパイルされたバイナリをダウンロードすることもできます。</p>
+
+<p>あるいは<a href="http://lxr.mozilla.org/mozilla/source/security/jss/">オンラインでソースを閲覧する</a>こともできます。</p>
+</UL>
+
+<!-- - - - - - - - - - -  D O C U M E N T A T I O N - - - - - - - - - - - - - -->
+
+<h3>資料</h3>
+
+<ul>
+
+<p>JSS を使用する前に、JSS が利用している暗号化テクノロジーをよく理解していることが求められます。以下にあげる資料が役に立つかもしれません：</p>
+<ul>
+    <li><A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/security/pkin/index.htm">公開鍵暗号入門</A>：NSS や JSS の基礎となっている公開鍵暗号の基本的なコンセプトについて説明します</li>
+    <li><A HREF="http://web.archive.org/web/20041111155627/developer.netscape.com/docs/manuals/security/sslin/index.htm">SSL 入門</A>：SSL プロトコルへの入門。SSL によってサポートされている暗号化方式や SSL ハンドシェークに関係する手順についての情報も含まれます。</li>
+</ul>
+
+<p>質問や問題を抱えている場合は、<a href="faq.html">FAQ</a> をチェックしてください。</p>
+
+<p><a name="version_docs">ここに</a>バージョン特有の資料があります： </p>
+<ul>
+<table>
+<tr>
+    <td bgcolor="#ccccff"><b>JSS 3.4</td>
+    <td bgcolor="#ffffcc">
+        <ul>
+	        <li><a href="jss_release_3.4.html">リリースノート</a>
+	        <li><a href="jss_build_3.4.html">ビルドガイド</a>
+	        <li>Javadoc <a href="javadoc/">［オンライン］</a>
+                <a href="ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_3_4_RTM/doc/jss-3.4-doc.zip ">［zip 版］</a>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td bgcolor="#ccccff"><b>JSS 3.3</td>
+    <td bgcolor="#ffffcc">
+        <ul>
+	        <li><a href="jss_release_3.3.html">リリースノート</a>
+	        <li><a href="jss_build_3.3.html">ビルドガイド</a>
+	        <li>Javadoc
+                <a href="ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_3_3_RTM/doc/jss-3.3-doc.zip">［zip 版］</a>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td bgcolor="#ccccff"><b>JSS 3.2</td>
+    <td bgcolor="#ffffcc">
+        <ul>
+	        <li><a href="jss_release_3.2.html">リリースノート</a>
+	        <li><a href="jss_build_3.2.html">ビルドガイド</a>
+	        <li>Javadoc
+                <a href="ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_3_2_RTM/doc/jss-3.2-doc.zip">［zip 版］</a>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td bgcolor="#ccccff"><b>JSS 3.1.1</td>
+    <td bgcolor="#ffffcc">
+        <ul>
+	        <li><a href="jss_release_3.1.1.html">リリースノート</a>
+	        <li><a href="jss_build_3.1.1.html">ビルドガイド</a>
+	        <li>Javadoc <a href="ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_3_1_1_RTM/doc/jss-3.1.1-doc.zip">［zip 版］</a>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td bgcolor="#ccccff"><b>JSS 3.1</td>
+    <td bgcolor="#ffffcc">
+        <ul>
+	        <li><a href="jss_release_3.1.html">リリースノート</a>
+	        <li><a href="jss_build_3.1.html">ビルドガイド</a>
+	        <li>Javadoc
+                <a href="ftp://ftp.mozilla.org/pub/mozilla.org/security/jss/releases/JSS_3_1_RTM/doc/jss-3.1-doc.zip">［zip 版］</a>
+        </ul>
+    </td>
+</tr>
+</table>
+</ul>
+
+<p>ダウンロードやビルドをし終わった後に、開発を始めるにあたって <a href="using_jss.html"><b>JSS を利用する</b></a>を読んでください。</p>
+
+<p><a href="provider_notes.html">JCA プロバイダノート</a>：JSS を JCA プロバイダとして利用している場合は、この資料を読んで、JSS がどのように JCS 使用をサポートしているのか（サポートしていないのか）を理解してください。</p>
+
+<p><a href="http://lxr.mozilla.org/mozilla/source/security/jss/">ソースを HTML で見る</a>こともできます。</p>
+
+<p><a href="../nss/index.html#Documentation">NSS ページ</a>にはあらゆる種類のセキュリティや暗号についての優れた資料があります。</p>
+
+</ul>
+
+<!-- - - - - - - - - - - - - - - C O N T A C T - - - - - - - - - - - - - - - -->
+
+<h3>コミュニケーション</h3>
+<ul>
+
+<p>JSS に関連する進行中のテクニカルな議論に参加するには、<tt>netscape.public.mozilla.crypto</tt> ニュースグループを利用するか、<tt>irc.mozilla.org</tt> サーバにある <tt>#mozcrypto</tt> チャンネルに参加してください。</p> 
+
+</ul>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/jss/index.html">英語版</a> 2003/10/13</span> - <span>和訳版 2004/12/18</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/jss/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

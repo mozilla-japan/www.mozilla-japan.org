@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database xml:lang="ja-JP" lang="ja" type="productdb"
+	xmlns="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:tt="http://dynamis.jp/2003/TransTools">
+
+
+<!-- 
+
+	[ミラーサーバ情報]
+
+<server id="" mame=""
+	baseurl=""/>
+<server id="" mame=""
+	baseurl="">
+	<mirror id="" mame=""
+		baseurl=""/>
+</server>
+
+baseurl がサーバ固有のファイルパス。
+サーバ単位で丸ごとミラーされている場合、ミラーサーバの URL はその baseurl にオリジナルサーバの baseurl 以降を付加すればよい。
+
+
+	[製品情報]
+
+<product id="" name="" shortname="" creatorid="">
+	<note>about this product</note>
+	<version full="" major="" minor="" micro="" stage="" date="">
+		<tt:note xmlns="${xn.xhtml}">about this version</tt:note>
+		<checksum>
+			<file serverid="" type="">
+				url="">
+		</checksum>
+		<package creatorid="" revision="" date="" platform="" type="" md5="" sha1="">
+			<file serverid=""
+				url=""/>
+			<file serverid=""
+				url="">
+				<mirror serverid=""/>
+			</file>
+		</package>
+	</version>
+</product>
+
+サーバ間ミラーについては mirror 属性というのも考えたが、一般に複数値を格納するには要素の方が適しているし、処理の柔軟性と今後の将来拡張性を考えて mirror 子要素で表した。
+
+url list  ==replace with hidemaru==> file element list
+ftp://.+\f\n
+\t\t\t<file serverid="mozilla-japan"\n\t\t\t\turl="\0"/>\n
+ -->
+
+
+<server id="mozilla-japan" mame="Mozilla Japan FTP Server"
+	baseurl="http://ftp.mozilla-japan.org/pub/mozilla-japan/"/>
+
+<server id="ftp.mozilla.org" mame="Mozilla Foundation FTP Server"
+	baseurl="http://ftp.mozilla.org/pub/mozilla.org/">
+	<mirror id="mj.mozilla.org" name="Mozilla Japan FTP Server - mozilla.org"
+		baseurl="http://ftp.mozilla-japan.org/pub/mozilla.org/"/>
+	<mirror id="core.ring.gr.jp" mame="Ring Server - core"
+		baseurl="http://core.ring.gr.jp/archives/net/www/mozilla/"/>
+	<mirror id="www.ring.gr.jp" mame="Ring Server - www"
+		baseurl="http://www.ring.gr.jp/archives/net/www/mozilla/"/>
+</server>
+
+<server id="sourceforge.net" mame="SourceForge Download Server"
+	baseurl="http://prdownloads.sourceforge.net/jlpmoz/"/><!-- filename only -->
+
+<server id="moz.skillup.jp" mame="dynamis' Mirror Archive"
+	baseurl="http://moz.skillup.jp/archive/"/>
+
+
+
+<!-- * Localization Tools *
+<product id="lot" name="Localization Tools" shortname="lot" creatorid="dynamis">
+	<note></note>
+	<version full="" major="" minor="" micro="" stage="" date="">
+		<tt:note xmlns="${xn.xhtml}">about this version</tt:note>
+		<checksum>
+			<file serverid="" type="">
+				url="">
+		</checksum>
+		<package creatorid="" revision="" date="" platform="" type="" md5="" sha1="">
+			<file serverid=""
+				url=""/>
+		</package>
+	</version>
+</product> -->
+
+
+
+
+
+<!-- * LpDiff * -->
+<product id="lpdiff" name="LpDiff">
+	<checksum>
+		<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/checksum.md5" type="md5"/>
+	</checksum>
+	<version full="0.20010110" major="0" minor="20010110" stage="alpha" date="2001/01/10">
+		<creator>古川 良一</creator>
+		<note>古川さんによる最終版</note>
+		<package type="jar" md5="30fc00dc35e5ded1447b8803bee77bf3">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20010110.jar"/>
+		</package>
+		<package type="source" md5="ac4e398f6060698829cb2b95e69bf05b">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20010110.src.jar"/>
+		</package>
+	</version>
+	
+	<version full="0.20020924" major="0" minor="20020924" stage="alpha" date="2002/09/24">
+		<creator>dynamis</creator>
+		<note>properties ファイルの比較に関するバグなどを修正</note>
+		<package type="jar" md5="16f3a1519329c5090ebb5a06221e5785">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20020924.jar"/>
+		</package>
+		<package type="source" md5="19d393bd4c3b3f7fffb5965d3d05a876">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20020924.src.jar"/>
+		</package>
+	</version>
+	
+	<version full="0.20040118" major="0" minor="20040118" stage="alpha" date="2004/01/18">
+		<creator>dynamis</creator>
+		<note>dtd ファイルの読み込みに関するバグを修正</note>
+		<package type="jar" md5="1c1959d39288dd30addd8c22b2e243fe">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040118.jar"/>
+		</package>
+		<package type="source" md5="5ad5203223c657c7d2621a291aff7487">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040118.src.jar"/>
+		</package>
+	</version>
+	
+	<version full="0.20040119" major="0" minor="20040119" stage="alpha" date="2004/01/19">
+		<creator>kozawa</creator>
+		<note>不正なパスの読み込みで異常終了するバグを修正</note>
+		<package type="jar" md5="ed139692201ee95acd77d1987e9f89e0">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040119.jar"/>
+		</package>
+		<package type="source" md5="6d3e4dc847fc1e6a76835b085139e78c">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040119.src.jar"/>
+		</package>
+	</version>
+	
+	<version full="0.20040202" major="0" minor="20040202" stage="alpha" date="2004/02/02">
+		<creator>kozawa</creator>
+		<note>欠落していた css を同梱し、不正なコマンドライン引数や不正な保存先パスで異常終了するバグを修正</note>
+		<package type="jar" md5="c9574fc03bf6b1c046323bf302b897a2">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040202.jar"/>
+		</package>
+		<package type="source" md5="3bb4cf383e2b6d16eef6a3929b37bd18">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040202.src.jar"/>
+		</package>
+	</version>
+	
+	<version full="0.20040211" major="0" minor="20040211" stage="alpha" date="2004/02/11">
+		<creator>dynamis</creator>
+		<note>新規フォルダ中のファイルを表示しないバグを修正<!-- 前回のソースコードに java.IOException というミスが残っていたのもこっそり修正(^^; --></note>
+		<package type="jar" md5="4abf0a9a5598c8bfa28d9ca7eb4ba1bc">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040211.jar"/>
+		</package>
+		<package type="source" md5="7a9045d5a3295aee4e5a6f31ab281376">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040211.src.jar"/>
+		</package>
+	</version>
+	
+	<version full="0.20040211.1" major="0" minor="20040211" micro="1" stage="alpha" date="2004/02/11">
+		<creator>dynamis</creator>
+		<note>新規ファイルのパス出力が間違っているバグを修正</note>
+		<package type="jar" md5="462642cc2a106ff43a52ee062b32aea0">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040211.1.jar"/>
+		</package>
+		<package type="source" md5="ec2a89096e646c499af504bb29a16762">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040211.1.src.jar"/>
+		</package>
+	</version>
+	
+	<version full="0.20040621" major="0" minor="20040621" stage="alpha" date="2004/06/21">
+		<creator>kozawa</creator>
+		<note>Ant による自動ビルドに対応(LpDiff本体の変更は無し)</note>
+		<package type="source" md5="44272d13f8670d66cd892afd9fd8bb3c">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040621.zip"/>
+		</package>
+	</version>
+
+	<version full="0.20040922" major="0" minor="20040922" stage="alpha" date="2004/09/22">
+		<creator>kozawa</creator>
+		<note>&quot;&gt;&quot; を含む dtd の実体定義パースに失敗する問題を修正</note>
+		<package type="jar" md5="4839e39ceb761b13e0b59501becc7f90">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040922.jar"/>
+		</package>
+		<package type="source" md5="17a928f5d2a39489a40723a48b61029f">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040922.zip"/>
+		</package>
+	</version>
+
+	<version full="0.20040923" major="0" minor="20040923" stage="alpha" date="2004/09/23">
+		<creator>kozawa</creator>
+		<note>&quot;×&quot; ボタンで終了時にプロセスが残るバグを修正</note>
+		<package type="jar" md5="5047e1b4b31fc90e4a0dbde1ee99c71d">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040923.jar"/>
+		</package>
+		<package type="source" md5="0d811a72598f35b915a8f3d06f33f843">
+			<file url="http://www.mozilla-japan.org/jp/l10n/lpdiff/LpDiff.20040923.zip"/>
+		</package>
+	</version>
+</product>
+
+
+
+</database>

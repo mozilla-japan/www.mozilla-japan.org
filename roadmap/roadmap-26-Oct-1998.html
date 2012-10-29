@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>
+Mozilla 開発ロードマップ
+（Mozilla Development Roadmap）
+</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/roadmap/roadmap-26-Oct-1998.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/roadmap/roadmap-26-Oct-1998.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+
+<h1>開発ロードマップ</h1><p>
+
+<center>1998年10月26日 <a href="mailto:brendan@mozilla.org">Brendan Eich</a></center>
+<p>
+
+Mozilla ブラウザ 開発ロードマップへようこそ。最新の FAQ に対する回答は
+<a href="faq.html">ここ</a> をクリック。
+<p>
+経験上、充実したロードマップは、歴史にもとづいた注意書きと
+見る価値のある助言を含んでいます。
+ソフトウェアの詳細なロードマップは、それがたどってきた状況を
+組み込み続けなければ、すぐに役に立たないものになってしまいます。
+この種のロードマップは、設計上の決定や、その根拠を記録しています。
+さらに重要なことに、このようなロードマップは、(非現実的な) 改良された
+アーキテクチャから始めて普通の実装に進むよりむしろ、予想しなかった
+<!--
+良い状況や期待していなかった工夫の出現をもたらします。
+--（和訳修正1-1）-->
+良い状況や期待していなかった工夫の出現を反映します。
+
+<h2 ALIGN=CENTER>略歴</h2><p>
+わたしが、
+<a href="news://news.mozilla.org/netscape.public.mozilla.general">
+mozilla.general</a> ニュースグループに、
+Mozilla ブラウザの開発スケジュールについての
+ <a href="http://x10.dejanews.com/getdoc.xp?AN=353682358&search=thread&threaded=1&CONTEXT=909447215.1764950304&HIT_CONTEXT=909447062.1837563924&HIT_NUM=33&hitnum=0">
+当時の考え</a> を投稿してから５ヶ月以上になります。
+スケジュールは、ただひとつの大きな部品、すなわち mail/news の組み込みを挙げ、
+<!--
+残りを数えあげることは、&quot;後に、あるより良いアイデアを妨げる&quot; まで延期しました。
+--（和訳修正1-1）-->
+残りを挙げていくのは後に延期しました（他にいい考えもなかったので...）。
+<p>
+それ以来、すべての mozilla.org 開発者たちによって、たくさんのすばらしい作業
+がなされました。
+すなわち、警告（を発する問題）とバグの修正、コードの移植（porting）と
+整理（cleaning up）、性能の向上、ダウンロード可能なクローム（chrome）の洗練、
+autoconf ビルドシステムの作成、などなど。
+しかし、Netscape からの mail/news のコードは、今だに間にあっていません。
+コンテンツ開発者にもっとも求められている機能（reflow による
+インクリメンタルレイアウト、修正された CSS、レベル１ DOM）を、
+古いコードベース上に実装することは困難でした。
+そして <a href="http://www.xemacs.org">Emacs</a> やその拡張言語風の 
+&quot;hook を単に追加&quot; したかった開発者たちは、彼らの希望に反して、
+古いレイアウトと FE コードが非常に扱いにくいものであることに気づきました。
+<p>
+さぁ、そして今、私達は、より良いアイデアをたくさん持っているのです。
+
+<h2 align=center>私達が向かうところ</h2><p>
+
+古いレイアウトと FE コードベースに頭を悩ませるのをやめるときがきました。
+私達は、それらの表現手段を捨てて、人々がほんとうに期待していたより
+さらに有益なものを手に入れました。
+私達の手には今、何百ものトップウェブサイトを見ることのできる、すばらしい
+<a href="../newlayout/">新レイアウトエンジン</a> があります。
+<!--（和訳修正2-1）--
+私達は、<a href="xpfe/">XPFE</a> によって proof-of-concept を確信しています。
+----（和訳修正2-1）-->
+私達は、<a href="../xpfe/">XPFE</a> による コンセプトの実証（proof-of-concept）を確信しています。
+長く続いた問題の束を解決するために、これらふたつの新しいプロジェクトを
+Mozilla で使わない理由はありません。以下のすべてが、Mozilla
+ブラウザプロジェクトに、XPFE と NGLayout を使うときがきたといっています。
+<ul>
+<li>
+<a href="../owners.html">module owners</a> の判断
+<p>
+<li>
+ウェブコンテンツ作者達の熱意
+<p>
+<li>
+mozilla.org の技術顧問としてのわたしの個人的判断
+<p>
+</ul>
+多くのバグだけでなく、不足も解決され、完全なメールクライアント、
+ユーザースクリプタブルな（user-scriptable）hook、
+そして多くの他のクライアントやプロキシのようなモジュールを
+よりよくサポートできるようになります。
+<p>
+XPFE と NGLayout に移行することは、すべての旧式 FE と、もちろん、
+<tt>mozilla/lib/layout</tt> やその仲間たちをしまい込むことを意味します。
+<a href="../layout/">古いレイアウト</a>コード、<a href="../xfe/classic.html">XFE</a>、
+そしてそのほかの FE でコーディネートされたすべての開発は、すぐに中止されます。
+<p>
+いくらかのものは <tt>#ifdef</tt> （でハードコーディング）されていますが、
+ほとんどの back-end モジュールは、XPFE と NGLayout を使って進展し続けていること、
+すなわち、NGLayout によってすでに多くの作業が進められていることに注意してください。
+私達が古いレイアウトや FE を意図的に破棄しなかったとしても、
+新旧のレイアウトに共通しているすべての back-end モジュールの進化は、
+古いコードベースを陳腐なものにしてしまいます。
+私達はすでに、しまい込みや掘り返しを容易にするために、CVS の mozilla ツリーに
+<tt>MozillaSourceClassic_19981026_BASE</tt> のラベルをつけました（逆行する開発のための 
+<tt>MozillaSourceClassic_19981026_BRANCH</tt> というブランチタグもあります）。
+
+<h2 align=center>改めて イントロダクション</h2><p>
+
+このドキュメントは、mozilla ブラウザ開発の物語風なロードマップとしての役割を
+果たすでしょう。ここには、履歴やプロジェクトの状況に言及するスケジュールが
+書かれるべきかもしれませんが、そうはなりません。
+開発上のルール、いいかえれば、私達が採用しようとする設計の原則、
+すなわち XPFE、NGLayout、そして 
+<a href="../docs/modunote.htm">XPCOM を使ったモジュール方式（modularity using XPCOM）</a> 
+の価値を踏まえてビルドすることを述べます。
+主な作業項目を列挙します。そしてわたしは、現実を反映するべく、何度も更新します。
+<p>
+このロードマップに書かれている、いずれの事柄も（確かな履歴は別として）、
+変更されないものとして受け取られるべきではありません。
+私達は決定を過度に見直すことはさけようとしていますが、
+すべての開発者のコメントや修正は歓迎します。
+必要なら、議論を膨らませましょう。
+あなたがたが証拠と理由を与えてくれるなら、私達 mozilla.org は
+方向性とこのロードマップをより実情に合ったものに修正します。
+
+<h2 align=center>設計の原則</h2><p>
+
+ここではブラウザ開発上のルールを示します。
+これらのいくつかは、おおげさな原則よりさらに具体的な設計上の決定です。
+しかし私達は、それらは十分なアイデアを反映する
+（例えば、autoconf 取り込み機能が私達の古い Unix のビルドシステムの
+プラットフォームマクロや、<tt>#if defined(linux) || ...</tt> のコードが
+テストする結果より信頼できる）と考えています。
+<p>
+
+<ul>
+
+  <li>
+    外部開発は Netscape 内部の開発者にとって、便利であったり、
+    気軽であったりする以上のことが期待できます。
+    たとえば Netscape X-heads は、そのメールの扱いの全てが 
+    I'm-out-sick-today（今日は病欠）や真に独占権のあるメッセージを除いて
+    <a href="news://news.mozilla.org/netscape.public.mozilla.unix">
+    mozilla.unix</a> ニュースグループに移されました。
+    NGLayout についても同様に、ハッカー達と
+    <a href="news://news.mozilla.org/netscape.public.mozilla.layout">
+    mozilla.layout</a> グループに移されました。
+    すべての開発がこのようになるでしょう。
+  <p>
+
+  <li>
+    新鮮な mail/news クライアントが Netscape と外部開発者たちによって、
+    現段階ではオープンソースデータベース（わたしは
+    <a href="http://lxr.mozilla.org/mozilla/source/db/">
+    Berkeley DB</a> のようなものであることが望ましいと考えている）
+    を使ったオープンソースの手法によって、共同で設計・実装されます。
+    新しい mail/news コードは、HTML レンダリングに NGLayout を使います。
+    それは可能な限り XPFE のような、クロスプラットフォーム 
+    ウィジェットを使うべきです。すなわち、
+    <a href="../mailnews/demo/compose.html">Ender</a> や
+    <a href="../rdf/doc/shack.html">Shack</a> のような、thin-mail テクニックを
+    使うべきです。
+  <p>
+
+  <li>
+    UI 構造は可能な限り、HTML や XML、そして、NGLayout エンジンを使って
+    実装されなければなりません。
+    スタイルは、次の部分では CSS を使って表現されるべきです。
+    すなわち、そうすることに意味があり、かつ、
+    CSS にスタンダードから外れた拡張を必要としない部分です。
+    リモートソースから（に）呼び出されたり、変更されたり、
+    上書きされたりすることのできる構造は、
+    その XML 文法で表現された RDF である必要があるかもしれません。
+    <a href="http://www.w3.org/TR/NOTE-AS">アクション（Actions）</a>は、
+    明確なイベントとそのための JavaScript ハンドラによって実装され
+    （るか、少なくとも実装できるようにされ）なければなりません。
+  <p>
+
+  <li>
+    モジュールは、プログラム化されたインタフェースを指定したり、
+    問い合わせたりするために、<a href="../scriptable/">XP-IDL と XPCOM</a>
+    を使います。
+    そうすることで、すべてのモジュールは、すべてのインタフェースクリエータに、
+    くり返し-その上-手の込んだ スクリプトエンジン接続の手書き
+    を強いることのないスクリプタブルなものになります。
+    また、システムの部品は、自動的に生成される stub (stubs) を利用して
+<!--
+    スレッド、プロセス、そしてマシンバウンダリにまたがって分配される
+--（和訳修正1-1）-->
+    スレッド、プロセス、そしてマシンバウンダリにまたがって分散される
+    かもしれません。
+    この分配の発展性は、シングルスレッド コードの制限によって
+    <a href="http://www.microsoft.com/workshop/components/com/comthread.asp">
+    apartment</a> スレッドモデル の実装が必要な部分を除いた
+    遠い第２のゴールです。
+  <p>
+
+  <li>
+    XP-IDL を使って私達が得る
+    scriptable-C++ entry points より上位のどの scripting hooks も
+    IDL 拡張を使って設計されたり、指定されたりしなければなりません。
+    この重大な原則は、ブラウザのすべての有用な部品を
+    スクリプトしやすくするためのものです。
+    さらに、イベントは、JavaScript を使った柔軟な方法で &quot;hook&quot; 
+    しやすく、扱いやすくなければなりません。
+    この点についてのより詳しいことは、
+    <a href="../scriptable/">XPCOM-Connect ドキュメント</a> に記述されます。
+  <p>
+
+  <li>
+    <a href="../projects/autoconf/">autoconf</a>
+    は、あなたがたが Unix 上で動作するブラウザを make するために
+<!--
+    モジュールをチェックし、<i>en masse</i> をビルドすることのできる、
+--（和訳修正1-1）-->
+    モジュールをチェックし、<i>全部いっしょ</i> にビルドすることのできる、
+    ひとつの 真に Unix-hosted なビルドシステムになります。
+    
+    Module owners は、彼らのモジュール用の Unix スクリプト
+    <tt>Makefile.in</tt> と <tt>configure.in</tt> だけを維持（管理）
+    すればよく、
+    これらに加えて gmake の <tt>Makefiles</tt> を維持する必要はありません。
+    （この原則は、NSPR には適用されません。
+    Berkeley DB が NSPR を独立ビルド必須ステータスにし続けるせいか、
+    結局 NSPR は、ブラウザからの独立ビルドが前提条件になっています。）
+  <p>
+
+  <li>
+    <a href="mailto:ramiro@netscape.com?cc=mcafee@netscape.com">
+    X-heads</a> は、
+    Motif から、先行するフルオープンソースの X ベース UI ツールキットである
+    <a href="http://www.gtk.org">GTK+</a> に移行する時期であると信じています。
+    ここにある一般的な原則、すなわち、
+    先に mail/news の段で述べた Berkeley DB の関係や
+    そしてもちろん、autoconf 採用の背景
+    は、Mozilla がよく知られた問題を解決するために、
+    最良のオープンソースソリューションを使わなければならないということです。
+  <p>
+
+</ul>
+
+<h2 align=center>主な作業項目</h2><p>
+これから述べるそれぞれの作業（task）は、主なマイルストーンを構成しています。
+このリストは、依存性をあらわすために、整理されるべきですが、
+まだ部分的に整理されていません。
+このリストはまた、（いずれ）相関的に分類され、スケジュールされるでしょう。
+このリストは副作業（sub-task）や抜けている作業項目を含めて洗練されるでしょう。
+いまのところ、このリストは、わたしが考える、
+私達みんながこれから何ヶ月かのうちにやろうとしていることを
+思い付くままおおまかに書き出したものです。
+
+<ul>
+
+  <li>
+    NGLayout は完成しました。
+    詳細なアクションアイテムとスケジュールは
+    <a href="../newlayout/">NGLayout プロジェクトページ</a>
+    を御覧下さい。
+    <p>
+    &quot;オープンソースソリューション&quot; の原則に照らして、NGLayout 
+    によって使われる ウィジェットライブラリは、Motif から GTK+ に移植される
+    必要があります。
+  <p>
+
+  <li>
+    古い composer/editor は、古いレイアウトとかたく結びついていました。
+    NGLayout はぜいたくな DOM API を持っていて、たぶん（よりイベントが働く）
+    新しいエディタの基礎を築くことができます。
+    とにかく、Mozilla は HTML composer/editor を装備するべきであり、
+    それは  <tt>OBJECT</tt> や <tt>TEXTAREA TYPE="text/html"</tt> タグ
+    を使って、組み込み可能なものでなければなりません。
+  <p>
+
+  <li>
+    XPFE を使った設計と実装。まだまだ準備中の
+    <a href="../xpfe/">設計ドキュメントのセット</a> がありますが、
+    それらは上の設計の原則と、関係する開発者たちの仕事（input）にもとづいて、
+    変化し、発展するべきものです。
+  <p>
+
+  <li>
+    RDF や JavaScript のような バックエンドモジュールは、
+    およそ準備ができていますが、それらの相互作用、とりわけその実行モデルの
+    相互作用は、分析が必要です。
+<!--
+    また、メモリ消費や ゴミ収集作業計画のようなものが、&quot;全システム&quot;
+--（和訳修正1-1）-->
+    また、メモリ消費や ガベージコレクターのようなものが、&quot;全システム&quot;
+    の分析を必要としています。
+  <p>
+
+  <li>
+    Mail/news XPFE と モジュラーバックエンドは、設計・実装される必要が
+    あり、いくつかのケースでは、<tt>mozilla/lib/libmime</tt> のような
+    既存の Mozilla コードから進化する必要があります。
+  <p>
+
+  <li>
+    すべてのインタフェースのための XP-IDL コンパイラと IDL の仕様が書かれ、
+    テストされ、ビルドシステムの一部として配置されなければなりません。
+  <p>
+
+  <li>
+    JavaScript XPCOM-Connect ランタイムがビルドされなければなりません。
+    それによって JS が ランタイムの type 情報を使って C++ のメソッドを call し、
+    結果を JS の type に変換することができます。
+    よいニュースは、そのうちのあるものが、LiveConnect に類似していることです。
+    悪い（それを楽しんでいるハッカー達にとってはよい）ニュースは、
+    プラットフォームが組み合わさっている部分
+    （cpu 命令セットのアーキテクチャ、コンパイラと cpu が決定する呼出しの慣習）
+    では、それぞれのプラットフォームに <tt>Invoke</tt> メソッドを実装するために
+    いくらかのアッセンブリーコードが必要なことです。
+  <p>
+
+  <li>
+    すべての Unix ビルドの autoconf への変換。
+    現在のところ、NGLayout は <tt>mozilla/nglayout.mk</tt> によって
+    ビルドされています。
+    既存のブラウザ ビルドモデルを踏襲するのなら、
+    <tt>mozilla/Makefile.in</tt> と <tt>mozilla/configure.in</tt> から
+    生成される、<tt>Makefile</tt> によってビルドされなければなりません。
+  <p>
+
+  <li>
+    Windows ビルドでは、後の名前で統一するために、少なくとも 
+    <tt>mozilla/nglayout.mak</tt> と <tt>mozilla/client.mak</tt> が必要です。
+    しかし、cygwin32 があれば、Win32 でも autoconf を使うことができるようです。
+    おそらく、いくつかの ATL-ライクな属性はそれを妨げるかもしれませんが、
+    正しい結果が得られなければなりません。
+  <p>
+</ul>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/roadmap/roadmap-26-Oct-1998.html">英語版</a> 2000/12/15</span> - <span>和訳版 2004/09/23</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/roadmap/roadmap-26-Oct-1998.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

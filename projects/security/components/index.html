@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="keywords" content="Mozilla, セキュリティ, ブラウザセキュリティ, JavaScript, Java, HTML">
+<title>Mozilla のためのコンポーネントセキュリティ</title>
+
+<style type="text/css" media="screen,tv">
+	h1 { margin: 1em 0em; text-align: center; }
+	h2 { margin: 1em 0em; font-size: 120%; }
+	p, li, dt, dd { line-height: 1.5; }
+	address { font-style: normal; }
+	.image { text-align: center; }
+	.start { font-weight: bold; font-size: 130%; color:#ff4040; text-align: center; }
+	.documentinfo { margin: 1em; text-align: right; font-size: small; line-height: 1.6; }
+</style>
+
+<link rel="alternate" hreflang="en" modified="November 26, 2002">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/components/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h1>Mozilla のためのコンポーネントセキュリティ</h1>
+<p class="image"><img src="spy1.gif" width="385" height="326" alt=""></p>
+<p class="start">私たちは、Mozilla をよりセキュアなプラットフォームにするために、あなたの協力を<br>必要としています。参加方法については以下をご覧ください。</p>
+<address><a href="mailto:mstoltz&#64;netscape.com">Mitch Stoltz</a></address>
+
+<hr>
+
+<h2><a name="intro">「コンポーネントセキュリティ」とは</a></h2>
+<p>以下のページでは、Mozilla のコンポーネントにセキュリティを追加するプロジェクトについて説明します。私たちは暗号化セキュリティ (SSL、認証、S/MIME など) は扱って <strong>いません</strong>。そのようなテーマについては <a href="../pki/">オープンソース PKI プロジェクト</a> をご覧ください。</p>
+<p>その代わりに、Java や JavaScript のセキュリティを Mozilla のコンポーネントに追加する方法、主に、この 2 つの言語で作成されたプログラムに使用できる、移植可能なコードやブラウザインターフェイスについて解説します。</p>
+<p>これはとにかく難しい作業ですが、Mozilla については特に慎重を要するものです。これは、Mozilla が、ブラウザ自体を実装するために、ますます多くのインターネット技術を利用しているためです。これは、モジュール方式、クロスプラットフォームな開発、幅広い人々による活発な開発にとっては多くの利点があります。しかし、ブラウザのセキュリティを保証するプロセスをより困難なものにしている面もあります。なぜなら、信用できるブラウザと、それが表示する信用できないコンテンツのあいだに壁を築く必要があるからです。</p>
+
+<h2><a name="docs">ドキュメント</a></h2>
+<ul>
+	<li><a href="reviewguide.html">Mozilla のセキュリティ評価と最良実践ガイド</a></li>
+	<li><a href="same-origin.html">同一生成元ポリシー</a></li>
+	<li><a href="signed-scripts.html">署名済みスクリプトポリシー</a></li>
+	<li><a href="ConfigPolicy.html">設定可能なセキュリティポリシー (CAPS)</a></li>
+	<li><a href="signed-script-example.html">署名済みスクリプトと特権: 実例</a></li>
+	<li><a href="master-cert.html">リモート信用許可にマスター証明書を使用する</a></li>
+	<li><a href="per-file.html">ファイルごとの特権を設定する</a></li>
+	<li><a href="../security-bugs-policy.html">mozilla.org のセキュリティバグ取り扱いに関する指針</a></li>
+	<li><a href="../secgrouplist.html">Mozilla セキュリティグループの現在のメンバー</a></li>
+	<li><a href="../known-vulnerabilities.html">Mozilla における既知の脆弱性</a></li>
+	<li><a href="sectalk/slide1.xml">2002 年 3 月 4 日に行われた「Mozilla セキュリティ入門」会議からのスライド (XML)</a></li>
+</ul>
+
+<h2><a name="people">担当者</a></h2>
+<ul>
+	<li><a href="mailto:mstoltz@netscape.com">Mitch Stoltz</a> - Mozilla の「消防士」 (技術、アーキテクチャ)<ul><li><a href="mstoltz-pgp-key.txt">PGP 公開鍵</a></li></ul></li>
+	<li><a href="mailto:bsharma@netscape.com">Bindu Sharma</a> - 「消防隊長」 (品質保証)</li>
+</ul>
+<p><a href="news://news.mozilla.org/netscape.public.mozilla.security">Mozilla セキュリティニュースグループ</a> は、セキュリティに関する問題を提起するのに適した場所です。</p>
+
+<h2><a name="wishlist">希望リスト・今後のプロジェクト</a></h2>
+<ul>
+	<li>バッファオーバーランの問題 - 私たちは、このセキュリティ問題のしつこい原因を一掃するために、広範囲にわたるイニシアチブをまもなく立ち上げる予定です。あなたのコードに潜むバッファオーバーランの可能性を発見する方法についてのヒントを得るために、この場所をご覧ください。</li>
+	<li>署名済み XPI - <a href="../../xpinstall/">XPInstall エンジン</a> に暗号による署名検証を追加したいと思っています。</li>
+	<li>CheckLoadURI ポリシーのやり直し - 一部のエリアでは適用されない場合があり、他方ではとても限定的です。このポリシーが必要な場所や、どんな規制を実行すべきかといったことを再検証する必要があります。</li>
+	<li>より優れた Java 互換性 - 今のところ、JavaScript は署名済みアプレットの特権関数を呼び出すことができません。Mozilla セキュリティマネージャと Java プラグインのよりよい統合が必要です。</li>
+</ul>
+
+<p>あなたの協力を必要としています! 上にあるプロジェクトで 1 つでも興味を持ったものがあれば、<a href="mailto:mstoltz@netscape.com">ぜひお知らせください</a>。また、もっとコミュニティ的なセキュリティ評価も必要です。あなたが知っている Mozilla モジュールを選んで、バッファオーバーランや特権の不正利用、その他のセキュリティ問題がないか探してみてください。なにかあったらすぐに、注意して探し出したもののリストをここで再確認してください。オープンソース開発が安全なソフトウェアにつながるということを世界に証明しましょう!</p>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/components/index.html">英語版</a> 2002/11/26</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/components/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

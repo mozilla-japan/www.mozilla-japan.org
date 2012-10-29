@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>ftp.mozilla.org をミラーするには</title>
+<link rel="alternate" hreflang="en" modified="February 19, 2008">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/mirroring.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+<h1>ftp.mozilla.org をミラーするには</h1>
+<p>私たちのファイルアーカイブは <a href="http://ftp.mozilla.org/pub/mozilla.org">http://ftp.mozilla.org/pub/mozilla.org</a> で公開されており、私たちのリリースアーカイブは <a href="http://releases.mozilla.org/pub/mozilla.org">http://releases.mozilla.org/pub/mozilla.org</a> と、世界中にある <a href="mirrors.html">多くのミラーサーバ</a> から入手可能になっています。最新の Mozilla 製品を入手するにはこれらのミラーのいずれかを利用するよう強くお勧めします。</p>
+<p>もしあなたがアーカイブの内容をミラーしたいときは、rsync アクセスを利用することができます。私たちは 2 つの異なるモジュールを提供しています。</p>
+<ul>
+  <li>releases-rsync.mozilla.org::mozilla-current/ - Firefox と Thunderbird の現行バージョンのみが含まれます。約 10 GB です。</li>
+  <li>releases-rsync.mozilla.org::mozilla-releases/ - Firefox、Thunderbird、Sunbird のリリースが含まれます。100 から 130 GB です。</li>
+</ul>
+<p>使い方は以下の通りです。</p>
+<p>現行バージョンのみ:<br /><code>rsync -a --delete --delete-after releases-rsync.mozilla.org::mozilla-current/ /your/local/mirror/path/</code></p>
+<p>すべてのリリース:<br /><code>rsync -a --delete --delete-after releases-rsync.mozilla.org::mozilla-releases/ /your/local/mirror/path/</code></p>
+<p>完全なアーカイブである mozilla-all モジュール (<a href="http://ftp.mozilla.org/pub/mozilla.org/">ftp.mozilla.org</a> で参照可能、2.2 TB を超えてさらに増加中) は、サイズの問題により、rsync での公開は打ち切られました。もしどうしても必要な場合は、連絡をいただければ手配します。</p>
+<p>私たちは今のところ HTTP ミラーのみを受け付けています。<p>
+<p>上記のモジュールを正しくミラーするには、以下のディレクティブを、あなたのミラーサーバの VirtualHost または Directory 設定ブロックに追加してください。そうすれば、Apple ディスクイメージ、Mozilla XPInstaller パック、差分更新、JAR ファイルが、エンドユーザのブラウザに正しくダウンロードされます。</p>
+<p><code><pre>
+  AddType application/x-apple-diskimage dmg
+  AddType application/x-xpinstall xpi
+  AddType application/x-java-archive jar
+  AddType application/octet-stream mar
+  AddType application/octet-stream msi</pre></code>
+</p>
+<p>または、適切な設定ブロックに「AllowOverride FileInfo」を追加すれば、<a href="ftp://ftp.mozilla.org/pub/mozilla.org/.htaccess">/pub/mozilla.org/.htaccess</a> ファイルによって自動的にディレクティブが設定されます。</p>
+<p><a href="mirrors.html">ミラーサーバの一覧</a> への掲載、または、私たちの自動リダイレクトプールへの追加を希望される場合は、<a href="mailto:mirrors-announce&#64;mozilla.org">mirrors-announce&#64;mozilla.org</a> まで以下の情報をお知らせください。</p>
+<ul>
+  <li>ミラーサーバの場所 (国、都市、州、地方)</li>
+  <li>ミラーの接続速度 (および許容可能な最大トラフィック)</li>
+  <li>HTTP ミラーの URL (例: http://example.com/pub/mozilla.org/)</li>
+</ul>
+<p>ミラーサーバの更新間隔は 15 分に設定してください。これにより、ミラーネットワークをできる限り最新の状態に保つことができます。私たちは、反応と有効性を確認するため、1 日数回、ミラーの状態を監視します。</p>
+<p><a href="https://mail.mozilla.org/listinfo/mirrors">メーリングリスト mirrors&#64;mozilla.org</a> に登録してください。このメーリングリストは、近い将来のリリースや、ミラーポリシーの変更などをミラーサーバの管理者に通知するために使われます。</p>
+<p>フィードバックは <a href="mailto:mirrors-announce&#64;mozilla.org">mirrors-announce&#64;mozilla.org</a> までお寄せください。私たちの FTP サイトには、アメリカ合衆国を含む一部の国で規制下におかれている、暗号化に関するソースコードや、これらのコードに由来するバイナリが含まれています。FTP サイトをミラーする前に、<a href='http://developer.mozilla.org/ja/docs/Mozilla_Crypto_FAQ#Mozilla_FTP_.E3.82.B5.E3.82.A4.E3.83.88.E3.82.92.E3.83.9F.E3.83.A9.E3.83.BC.E3.81.97.E3.81.9F.E3.81.84.E3.81.AE.E3.81.A7.E3.81.99.E3.81.8C.E3.80.81.E5.90.88.E8.A1.86.E5.9B.BD.E6.9A.97.E5.8F.B7.E5.8C.96.E6.A9.9F.E8.83.BD.E8.BC.B8.E5.87.BA.E8.A6.8F.E5.88.B6.E3.81.AB.E9.96.A2.E3.81.97.E3.81.A6.E4.BD.95.E3.81.8B.E5.AF.BE.E7.AD.96.E3.82.92.E3.81.99.E3.82.8B.E5.BF.85.E8.A6.81.E3.81.8C.E3.81.82.E3.82.8A.E3.81.BE.E3.81.99.E3.81.8B.EF.BC.9F'>暗号化に関する FAQ</a> に目を通してください。</p>
+<p><blockquote><b>このソフトウェアは、合衆国輸出管理規則および他の米国法の対象となり、特定の国 (現時点では、キューバ、イラン、イラク、リビア、北朝鮮、スーダン、およびシリア)、または、米国輸出品の受領を禁止された個人または団体に対しては輸出・再輸出ができない場合があります (次に該当する個人または団体を含む: (a) 米国商務省産業安全保障局 (Bureau of Industry and Security) 禁輸対象者リストまたは禁輸対象団体リスト (Denied Parties List or Entity List) に記載がある、(b) 米国財務省外国資産管理局 (Office of Foreign Assets Control) 特定国籍業者リスト (Specially Designated Nationals and Blocked Persons) に記載がある、(c) ミサイル技術または核・化学・生物兵器と関連がある)。</b></blockquote></p>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/mirroring.html">英語版</a> 2008/02/19</span> - <span>和訳版 2008/03/19</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/mirroring.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta http-equiv="Content-Type" content=
+"text/html; charset=EUC-JP">
+<title>ElectricFire を Windows でビルドする手引</title>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/ef/winbuild.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+<center><b>ElectricalFire コンパイラ</b></center>
+
+<center>
+<h1>Windows でビルドする手引</h1>
+</center>
+
+<center>著者: <a href=
+"mailto:Scott Furman &lt;fur@netscape.com&gt;">Scott Furman</a><br>
+Last Modified:
+
+<script type="text/javascript">
+<!--
+document.write(document.lastModified);
+// -->
+</script>
+
+<br>
+<hr width="30%">
+</center>
+
+<h2>必要なもの</h2>
+
+<blockquote>Windows での canonical な開発環境は NT 4.0、だが
+Win95/98 も動けるようにできます。きっと approximately 175M
+の空きディスク容量を必要とします。次のツールがインストールされている必要
+があります。
+
+<ul>
+<li>MSVC 5.0<br>
+<br>
+</li>
+
+<li>GNU Tools for Microsoft Windows, <a href=
+"http://www.cygnus.com/misc/gnu-win32">Cygnus</a>
+からダウンロードできます。(あなたはもしかしたら full.exe
+をダウンロードしてインストールしたいかもしれません)<br>
+<br>
+ とくに、必要なのが:
+
+<ul>
+<li><tt>rm.exe</tt></li>
+
+<li><tt>uname.exe</tt></li>
+
+<li><tt>flex.exe</tt></li>
+
+<li><tt>bison.exe</tt></li>
+</ul>
+
+<br>
+</li>
+
+<li>Netscape は Unix 版 gmake
+と同期をとる際の問題を取り除くために、内部で改変したバージョンの
+gmake と shmsdos と win32gnu を持っています。gmake
+のこのバージョンは Windows Build Tools
+パッケージから見つけることができ、 <a href=
+"http://www.mozilla.org/download-mozilla.html">the Mozilla Download
+page</a> から ftp
+でダウンロードできます。次の三つのファイルを必要とします:
+
+<ul>
+<li><tt>gmake.exe</tt></li>
+
+<li><tt>shmsdos.exe</tt></li>
+
+<li><tt>uname.exe</tt></li>
+</ul>
+
+<br>
+</li>
+
+<li>Perl5 (<a href=
+"http://www.activestate.com/ActivePerl/download.htm">ダ
+ウンロード</a>)</li>
+</ul>
+</blockquote>
+
+<h2>コードの取得</h2>
+
+<blockquote><a href="http://www.mozilla.org/cvs.html">CVS</a>
+を使って コードをダウンロードしなさい:</blockquote>
+
+<blockquote>
+<blockquote><tt>cvs co mozilla/ef</tt><br>
+<tt>cvs co mozilla/nsprpub</tt></blockquote>
+</blockquote>
+
+<h2>ビルド環境を整える</h2>
+
+<ul>
+<li>環境変数 <tt>MOZ_TOOLS&gt;</tt> を、GNU tool 'bin'
+ディレクトリの親をさすように設定しなさい。ビルドするときは <tt>
+%MOZ_TOOLS%bin\gmake.exe</tt> を参照するので、 the Windows Build
+Tools パッケージからの gmake.exe
+がそこにあることを確認しなさい。<br>
+<br>
+<tt>set MOZ_TOOLS=C:\moztools</tt><br>
+<br>
+</li>
+
+<li>perl5 を <tt>%MOZ_TOOLS%/perl5/perl.exe</tt>
+にインストールしなさい。<br>
+<br>
+</li>
+
+<li>
+ビルドに用いるドライブのルートディレクトリにテンポラリファイルのための
+<tt>\tmp</tt> ディレクトリを作成しなさい、例えば <tt>D:\tmp</tt>
+(環境変数 <tt>TEMP</tt> か <tt>TMP</tt>
+を設定していても同様にしなければならない、bison
+は明らかにこの変数を無視するからです)。<br>
+<br>
+</li>
+
+<li><tt>mozilla\dist\$(OBJDIR)\bin</tt> をあなたの <tt>PATH</tt>
+に加えなさい。<br>
+<br>
+</li>
+
+<li>Sun's JDK1.2 を <a href=
+"http://java.sun.com/products/jdk/1.2/">Download</a>
+してインストールしなさい。rt.jar ファイルをあなたの環境の <tt>
+mozilla/ef/Package</tt> ディレクトリのコピーしなさい。</li>
+</ul>
+
+<h2>ElectricalFire のビルド</h2>
+
+<ul>
+<li>the NSPR library をビルドしなさい:
+
+<ul>
+<li><tt>cd mozilla\nsprpub;gmake</tt><br>
+<br>
+</li>
+
+<li>もしあなたが Win95 上でビルドしているなら、 mozilla/dist
+の中にある NSPR が作成されているディレクトリの名前を <tt>
+WIN95_DBG.OBJ</tt> から <tt>WINNT40_DBG.OBJ</tt> に変えなさい。<br>
+<br>
+</li>
+
+<li>一度 NSPR20 をビルドしたら、あなたは NSPR DLL
+があるディレクトリを MSVC 5.0
+が実行ファイルを探すパスに加えなければならないかもしれない。MSVC
+5.0
+の「ツール」メニューからオプションダイアログを開いて「ディレクトリ」タブを選択しなさい。そして
+NSPR DLL へのパスを加えなさい、例えば <tt>
+D:\fur\mozilla\dist\WINNT4.0_DBG.OBJ\bin</tt><br>
+<br>
+</li>
+</ul>
+</li>
+
+<li>MSVC 5.0 を起動して次のワークスペースを読み込みなさい:
+
+<pre>
+mozilla\ef\Driver\StandAloneJava\winbuild\ElectricalFire.dsw
+</pre>
+</li>
+
+<li>MSVC の「ビルド」メニューの下から、 "Build sajava.exe"
+を選びなさい。</li>
+</ul>
+
+<div align="right">
+<p><font size="-1"><a href=
+"http://www.mozilla.org/projects/ef/winbuild.html">
+このドキュメントのオリジナルはmozilla.orgにおいて英語で公布されています。</a><br>
+
+ またドキュメントの管理の言語は現在も英語です。この日本語訳は、<br>
+利用者の利便のためにmozilla.org
+和訳プロジェクトによって提供されたものです。<br>
+フィードバックは英語で、元の著者に送って下さい。<br>
+翻訳された文書の一覧は、現在以下のURLで見ることが出来ます。<br>
+<a href=
+"http://www.mozilla-japan.org/jp/td/index.html">http://www.mozilla-japan.org/jp/td/index.html</a></font></p>
+</div>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/ef/winbuild.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/ef/winbuild.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<!--   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">-->
+   <meta name="GENERATOR" content="Mozilla/4.72 [en]C-NSCP  (WinNT; U) [Netscape]">
+   <meta name="Author" content="Norris Boyd">
+   <meta name="KeyWords" content="Rhino, JavaScript, Java">
+   <title>Rhino を使う</title>
+
+<link rel="alternate" hreflang="en" modified="May  4,  2000">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/rhino/users.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<script src="owner.js"></script>
+
+<center>
+<h1>Rhino をどのようにして使っているの？</h1></center>
+
+ここでは、人々が Rhino をどのようにして使っているのか、その一部を紹介します。最初のリストは Netscape 社のマーケティング部によって集められました。それで、Rhino は Netscape 社の Java ベースな JavaScript と呼ばれています。私達は、貴方が Rhino をどのようにして使っているのか、聞ける事が大好きです。ここにメール <a href="mailto:nboyd@atg.com">Norris Boyd </a>をしてください
+<p><a href="http://www.attachmate.com">Attachmate</a>
+<br>
+「 Java 実行環境を含む Netscape JavaScript 1.5 は MacroRecorder を開発するのに完璧な解決法でした。なぜなら、Rhino は私達の開発プロセスを、より早く、より良くしてくれました。そして、私達の顧客は、より能率的で、より信頼できる、スタンダードな製品を得ることができました。」と、Attachmate の製品開発ディレクター、Rob Clark さんは言っています。Attachmate は Netscape の Java ベースな JavaScript 1.5 インタープリターを100% ピュアな Java で、 e-Vantage Viewers と呼ばれる、ウェブ・ホスト型で小型軽量なクライアントに統合しまています。Netscape の Java ベースな JavaScript 1.5 インタープリターは MacroRecorder の特徴として ブラウザー・ベースのユーザーが効果的にメイン・フレームや中型システム上のアプリケーションを効果的に使えるように誘導します。
+<p>
+<a href="http://www.bristowhill.com/">Bristow Hill Software</a>
+<br>
+「私達は、多くの仕事とスクリプト能力が Bristow Hill サーバー・ページに必要と思っていた。しかし、Java 実行環境を含む Netscape の JavaScript 1.5 が、僅か二、三行のコードの初期設定と、 私達のスタンダード・オブジェクトをエクスポートする為に名前を変えた一行のコード変更で、適合してしまうことを発見し歓喜させられた。また、埋め込まれたスクリプトを引き出し、そのスクリプトを速いスピードで直接 Java クラスにコンパイルできることも、私達を大いに喜ばした。Netscape の JavaScript エンジンは石のようにしっかりした、スタンダードに準拠している。私のたった一つ悔しく思う事は、私達がそれをすぐに使わなかったことだった。」と、Bristow Hill Software の取締役社長である Don Anderson さんは言った。
+<p><a href="http://www.icesoft.no/">ICEsoft</a>
+<br>
+ICEsoft は JavaScript のサポートを彼らの Rhino を使った <a href="http://www.icesoft.no/ICEBrowser/">ICE Browser </a>に追加した。
+<p>
+<a href="http://www.vmeng.com/beard/JShell/Release_Notes.html">JShell</a>
+<br>
+Rhino は Patrick Beard さんに書かれたオープン・ソース・コマンド・シェル、JShell にスクリプト言語として使われている。
+<p>
+<a href="http://www.softcom.com">Softcom</a>
+<br>
+Netscape の Java ベースな JavaScript 1.5 と Softcom の Java ベースな RealPlayer プラグイン（RJ）との密接な統合は、Softcom を、メディアやエンターテインメントの為のダイナミックで双方向性なビデオ・アプリケーション、小売りやプロフェッショナルな教育関係の顧客、ウェブ上の完全な双方向性とストリーミング・ビデオでの電子商取引との同期を迅速に生産する事を可能にした。と、Softcom の取締役社長で最高執行責任者の Chris O'Brien さんは言いました。アカデミー賞の授賞式中、オスカー賞の為に作成された、E! Online で、Softcom は Netscape の JavaScript 1.5 を RealPlayer に埋め込む為に RJ を使い、双方向性なチャット、Java ゲーム、ビデオのストリーミングに成功した。
+<p>
+<a href="http://www.tdiinc.com/">Technology Deployment International</a>
+<br>
+「 Technology Deployment International は 、私達の eBusiness Management System (eBMS) のワーク・フロウ・モジュール（仕事の流れ）が、顧客のビジネス原理を、彼らのアプリケーションのどのようなワーク･ステップにも取り込む事ができるように、 Java ベースな Netscape の JavaScript エンジン を選択しました。」と、Technology Deployment International の eBMS Development で取締役副社長、Kelvin Liu 博士は言っています。「それは、簡単に組み込むこめるし、エンジニア・チームから受け取ったサポートは抜群であるし、JavaScript コードの性能は殆ど Java に等しい。
+<p>
+<A href="http://www.xypoint.com/">XYPOINT</A>
+<BR>
+XYPOINT は、彼らのサービス <A href="http://www.webwirelessnow.com/">WebWirelessNow</A> で使われている Java クラスを 自動的にテストする為に、Rhino を使いました。Abraham Backus さんは、 Rhino を使える事は幸せで、「私はいつでもこの様な JavaScript サポートが欲しかったのだ」と、言いました。
+<h3>
+<hr WIDTH="100%"><br>
+<a href="index.html">戻る</a></h3>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/rhino/users.html">英語版</a> 2000/05/04</span> - <span>和訳版 2004/10/02</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/rhino/users.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>拡張機能のインストール</title>
+<link rel="alternate" hreflang="en" modified="March 5, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/extensions/installation.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>拡張機能のインストール</h1>
+<h2>はじめに</h2>
+<h2>前提条件</h2>
+<p>このドキュメントを読む前に、<a href="structure.html">拡張機能の構造</a> と <a href="manifest.html">拡張機能マニフェスト</a> をご覧ください。</p>
+<p>このドキュメントは、<a href="structure.html">拡張機能の構造</a> で説明した、マニフェストファイルだけを使って設計された拡張機能 XPI の自動インストールについて取り上げます。カスタムインストールスクリプトを使った拡張機能のインストール方法については <a href="installation-custom.html">拡張機能のカスタムインストール</a> をご覧ください。</p>
+<h2>Web ページからのインストール</h2>
+<p>ブラウザクライアントは、XPInstall が有効なものとそうでないものという 2 種類に分けられます。XPInstall が有効なクライアントは、ソフトウェアインストールが有効になっている Firefox で、XPInstall が有効でないクライアントは、Internet Explorer など他のブラウザや、ソフトウェアインストールが無効にされている Firefox です。以下、XPInstall が有効なクライアントを XPI+、そうでないクライアントを XPI- と呼びます。</p>
+<p>ターゲットアプリケーションにも 2 種類のクラスがあります。ひとつは XPInstall が有効なブラウザ (Firefox)、もうひとつは拡張機能をサポートした他の XUL アプリケーションです。前者の場合、Web ページから XPInstall API を使って直接インストールできます。後者の場合、ホスト環境が提供するコンテンツタイプ処理機能を使ってインストールする必要があります。詳しくは <a href="targets.html">ターゲットアプリケーション</a> をご覧ください。以下、前者の場合を TA+、後者を TA- と呼びます。</p>
+<p>2 種類の拡張機能を考えてみます。拡張機能 A は至ってシンプルで、他のアプリケーションには依存せず、1 つの XPI にパッケージされています。拡張機能 B は別の拡張機能 C (バージョン 3.2 から 3.5 まで) に依存します。これはよくある例で、多くの拡張機能は JSLib に依存します。この依存関係の鎖は再帰的な構成が可能で (理論上、拡張機能 C はまた別の拡張機能 D にも依存できます)、複数の依存関係も考えられます。ただし今回は A と B->C の場合だけを想定します。</p>
+<h3>ダウンロードするパッケージの特定</h3>
+<table border="1">
+  <tr><th>クライアント</th><th>ターゲット</th><th>拡張機能</th><th>生成されるコンテンツ</th></tr>
+  <tr><td>XPI+</td><td>TA+</td><td>A</td><td><code>InstallTrigger.install({&quot;A&quot;:&quot;a.xpi&quot;});</code></td></tr>
+    <tr><td>XPI-</td><td>TA+</td><td>A</td><td>&lt;a href=&quot;a.xpi&quot;&gt;A&lt;/a&gt;</td></tr>
+    <tr><td>XPI+</td><td>TA-</td><td>A</td><td>&lt;a href=&quot;a.xpi&quot;&gt;A&lt;/a&gt;</td></tr>
+    <tr><td>XPI-</td><td>TA-</td><td>A</td><td>&lt;a href=&quot;a.xpi&quot;&gt;A&lt;/a&gt;</td></tr>
+    <tr><td>XPI+</td><td>TA+</td><td>B</td><td><code>if (versionExists(&quot;C&quot;, &quot;3.2&quot;, &quot;3.5&quot;))<br>&nbsp;&nbsp;InstallTrigger.install({&quot;B&quot;:&quot;b.xpi&quot;});<br>else<br>&nbsp;&nbsp;InstallTrigger.install({&quot;C&quot;:&quot;c.xpi&quot;, &quot;B&quot;:&quot;b.xpi&quot;});</code></td></tr>
+  <tr><td>XPI-</td><td>TA+</td><td>B</td><td>&lt;a href=&quot;c35.xpi&quot;&gt;C v3.5&lt;/a&gt;<br>&lt;a href=&quot;b.xpi&quot;&gt;B&lt;/a&gt;</td></tr>
+  <tr><td>XPI+</td><td>TA-</td><td>B</td><td>&lt;a href=&quot;c35.xpi&quot;&gt;C v3.5&lt;/a&gt;<br>&lt;a href=&quot;b.xpi&quot;&gt;B&lt;/a&gt;</td></tr>
+  <tr><td>XPI-</td><td>TA-</td><td>B</td><td>&lt;a href=&quot;c35.xpi&quot;&gt;C v3.5&lt;/a&gt;<br>&lt;a href=&quot;b.xpi&quot;&gt;B&lt;/a&gt;</td></tr>
+</table>    
+<p>XPInstall が有効なブラウザクライアントの場合、基本的に、ブラウザから直接依存関係を特定して (下の versionExists 関数を参照) インストールを一括処理できます。そうでない場合は、XPI のリストを用意しておき、ユーザにひとつずつインストールさせることになります。今後、おそらく XRE レジストリを使うことによって、このプロセスを改良できると思います。</p>
+<p><code><pre>
+  function versionExists(aInstallRegKey, aMinVersion, aMaxVersion)
+  {
+    var minRV = InstallTrigger.compareVersion(aInstallRegKey, aMinVersion);
+    var maxRV = InstallTrigger.compareVersion(aInstallRegKey, aMaxVersion);
+    return (minRV >= 0 && maxRV <= 0);
+  }
+</pre></code></p> 
+<h3>ファイルのインストール</h3>
+<p>InstallTrigger によって、あるいはホスト環境のコンテンツ処理システムによって、ターゲットアプリケーションの XPInstall システムが呼び出されます。</p>
+<p>XPInstall システムは XPI ファイルのトップレベルにある <em>install.js</em> ファイルを探します。これが見つかった場合は <a href="installation-custom.html">拡張機能のカスタムインストール</a> が呼び出されます。見つからなかった場合は XPI ファイルのトップレベルにある拡張機能マニフェスト RDF ファイルへのストリームを開き、それを拡張機能マネージャに渡します。</p>
+<p>拡張機能マネージャはこのストリームを読み込んで RDF データソースに書き込みます。それから以下のアクションを実行します。</p>
+<ul>
+  <li><em>chrome:targetApplication</em> アークの確認 - これによって、他のアプリケーション用の拡張機能や、必要なバージョンの範囲がターゲットアプリケーションと重ならない拡張機能 (例えば、Firefox 1.0 以上 1.5 未満が必要なのに、インストールされているバージョンが Firefox 0.9 だった場合など) がインストールされるのを防ぐことができます。</li>
+   <li><em>chrome:requires</em> アークの確認 - 依存関係にある拡張機能がすべてインストールされていなければ、その拡張機能をインストールしません。これによって、スクリプトやバージョンの非互換性などによって引き起こされる問題を防ぐことができます。</li>
+  <li>以下のアクションはいずれも、拡張機能フォルダにある <em>install.log</em> ファイルにログが記録されます。</li>
+  <li>拡張機能フォルダの中に、マニフェストに書かれた拡張機能の ID から生成された固有の ID が付けられたフォルダが作成されます。</li>
+  <li>それから、トップレベルのマニフェストを除く XPI アーカイブの内容が、目的の拡張機能フォルダに展開されます。</li>
+  <li><em>chrome:file</em> アークが列挙され、各パッケージが提供するそれぞれのパッケージ、スキン、ロケールについて registerChrome が呼び出されます。</li>
+  <li>ここまでの処理がすべてうまくいったら、マニフェストデータソースの内容がアプリケーションの拡張機能データソースにマージされます。</li>
+  <li>与えられた拡張機能の <em>chrome:toBeEnabled</em> アークが <em>true</em> に設定されます。 これで、次回起動時に拡張機能のオーバーレイが有効になり、デフォルト設定が読み込まれます。</li>
+  <li>プロファイルディレクトリに .autoreg ファイルが置かれます。これで、次回起動時にコンポーネントが再登録され、拡張機能コンポーネントがすべて登録されます。</li>
+</ul>
+<p>ここで説明した標準的な方法や <a href="installation-custom.html">カスタムインストール</a> でインストールされた拡張機能のアンインストール方法については、<a href="uninstallation.html">拡張機能のアンインストール</a> をご覧ください。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/extensions/installation.html">英語版</a> 2004/03/05</span> - <span>和訳版 2005/05/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/extensions/installation.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

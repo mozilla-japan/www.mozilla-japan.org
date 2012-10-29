@@ -1,0 +1,14 @@
+
+br.clear { clear: left; }
+
+ul.tablelist-4cols li { width: 25%; float: left; }
+
+dl.history dt { width: 7em; float: left; clear: right; }
+dl.history dd { margin-left: 8em; }
+dl.history dd.other { color: #666; background: #f3f3f3; }
+dl.history dd.other:before { content: "# "; }
+
+div.screenshot-250px { margin: 1em 0 1em 1em; border: 1px solid #ccc; padding: 4px; width: 250px; float: right; background-color: #fff; }
+div.screenshot-250px img { border: 0 !important; width: 250px; height: 172px; }
+
+.url { font-family: Courier New; }

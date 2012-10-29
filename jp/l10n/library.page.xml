@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n" basename="library" pathtoroot="../../">
+
+<meta>
+	<dc:title>ライブラリ</dc:title>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1 title="同じアイディアが世にあらわれるのは一度ではない。二度でもない。無数に何度もあらわれるのだ。 － Aristotle"><tt:meta mode="title"/></h1>
+	<p>ローカライズセンターでは Mozilla 製品の日本語化を行う上で必要に応じて独自のガイドラインやツールを用意して、高品位な日本語版を効率的かつ継続的に作成していけるように努めております。Mozilla 製品の日本語化に興味のある方や独自に JLP を作成される方にも役立つよう、随時整理してここに公開していきますので必要に応じてご利用ください。</p>
+	
+	
+	<tt:section id="tool">
+		<h2>ローカライズ支援ツール</h2>
+		<dl>
+			<dt><a href="${l10n-lot}">Localization Tools</a></dt>
+			<dd>ローカライズセンターで JLP のメンテナンスに使用する Ant ビルドスクリプト。通称 lot<br/>
+				現在仮公開中ですが、Firefox/Thunderbird 用にそれぞれ分かれているものの統合作業が完了したら簡単なドキュメントをつけて正式公開とする予定です。</dd>
+			<dt><a href="${l10n-lpdiff}">LpDiff</a></dt>
+			<dd>言語リソースファイルをフォルダ単位で一括比較し、差分を出力するためのツール。<br/>
+				このツールは lot にも同梱されており、差分出力は既に lot の一機能として統合されています。</dd>
+			<dt><a href="${mozillatranslator}">Mozilla Translator</a> <span class="comment">(英語)</span></dt>
+			<dd>Mozilla 製品のローカライズを行うための統合ツール。<br/>
+				非常に手軽にローカライズが出来るようになる、Mozilla ローカライズの標準ツール。但しマルチバイトの対応が不十分であったりコメントを取り扱うことが出来ないなどといった問題があるため、ローカライズセンターでは採用しておりません。<br/>
+				更に、開発やメンテナンスも止まってしまっている様子です…</dd>
+		</dl>
+	</tt:section>
+	
+	<tt:section id="document">
+		<h2>ドキュメント</h2>
+		<dl>
+			<dt><a href="${l10n-faq}">よくある質問</a></dt>
+			<dd>ローカライズセンターとその製品についてよくある質問をまとめました。何か分からないことがありましたら取りあえずこちらをご参照ください。</dd>
+			<dt><a href="${l10n-guide}">ガイドライン</a></dt>
+			<dd>日本語化を行う上での表記や訳語選択などのガイドラインです。ローカライズセンターで日本語化を行っている製品は全てこのガイドラインに従って作業していっています。</dd>
+			<dt><a href="${l10n-term}">用語データベース</a></dt>
+			<dd>Mozilla 製品の日本語化や関連ドキュメントで使用する語句について日英用語対照表などを用意しています。</dd>
+			<dt><a href="${l10n-filename}">ファイル名規則</a></dt>
+			<dd>ローカライズセンターで公開するファイルで使用する名前規則について説明しています。</dd>
+			<dt><a href="${l10n-links}">関連リンク</a></dt>
+			<dd>Mozilla のローカライズに関係するサイトや資料のリンク集を用意する予定です。</dd>
+		</dl>
+	</tt:section>
+</tt:htmlbody>
+
+</page>
+</contents>

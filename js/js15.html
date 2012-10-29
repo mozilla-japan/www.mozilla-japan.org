@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+    <title>JavaScript 1.5</title>
+    <link rel="alternate" hreflang="en" modified=July 23,  2000">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/js/js15.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+    <h1>JavaScript 1.5 には何があるのか?</h1>
+    <p>
+      JavaScript 1.5 は、ECMA Technical Committee <a href="http://www2.hursley.ibm.com/tc39/">TC39</a> が作成した
+      ECMA-262 改定3版 (仕様書へのリンクについては、
+      <a href="http://www.mozilla-japan.org/js/language/futures.html">JavaScript の将来のページ</a>を見なさい)
+      に忠実である。
+      次のような新しい特徴を含んでいる:
+    <ul>
+      <li>
+        <b>ECMA 3 の特徴</b>
+        <ul>
+          <li>ランタイムエラーを例外として報告する
+          <li>数字の書式 (<code>Number.prototype.toFixed</code> と
+            <code>Number.prototype.toExponential</code>)
+          <li>正規表現の強化
+        </ul>
+        <br>
+      <li>
+        <b>追加の特徴</b> (<i>SpiderMonkey と Rhino</i>)
+        <ul>
+          <li>条件文内の関数宣言。 (別名 Function Expression 
+            Statements)
+            [<a href="http://x34.deja.com/[ST_rn=ps,S0=906c1d141821dfd]/viewthread.xp?AN=549818397&search=thread&svcclass=dnyr&ST=PS&CONTEXT=945295136.511836228&HIT_CONTEXT=945295136.511836228&HIT_NUM=9&recnum=%3cv04210101b458abfb4a92@%5b208.12.38.207%5d%3e%231/1&group=netscape.public.mozilla.jseng&frpage=getdoc.xp&back=clarinet">議論</a>]
+          <li>複数の catch 節 (別名 catchguards)
+            [<a href="http://x42.deja.com/[ST_rn=ps,S0=906c1d141821dfd]/viewthread.xp?AN=552152975&search=thread&svcclass=dnyr&ST=PS&CONTEXT=945294608.269615190&HIT_CONTEXT=945294608.269615190&HIT_NUM=15&recnum=%3c383AD5DA.49A436C1@mozilla.org%3e%231/1&group=netscape.public.mozilla.jseng&frpage=getdoc.xp&back=clarinet">議論</a>]
+        </ul>
+        <br>
+      <li>
+        <b>追加の特徴</b> (<i>SpiderMonkey のみ</i>)
+        <ul>
+          <li>ゲッターとセッター
+            [<a href="http://x45.deja.com/[ST_rn=ps,S0=906c1d141821dfd]/viewthread.xp?AN=525226033.1&search=thread&svcclass=dnyr&ST=PS&CONTEXT=945294209.1111621632&HIT_CONTEXT=945294209.1111621632&HIT_NUM=41&recnum=%3c37DEF86D.CC68E813@meer.net%3e%231/23&group=netscape.public.mozilla.jseng&frpage=getdoc.xp&back=clarinet">議論</a>]
+          <li><code>const</code> キーワード。
+          <li>新たな警告メッセージつきの "Strict" モード。
+            [<a href="http://x30.deja.com/[ST_rn=ps,S0=906c1d141821dfd]/viewthread.xp?AN=550687115.1&search=thread&svcclass=dnyr&ST=PS&CONTEXT=945296584.1100873801&HIT_CONTEXT=945296584.1100873801&HIT_NUM=0&recnum=%3c3835B347.D370F70@meer.net%3e%231/2&group=netscape.public.mozilla.dom&frpage=getdoc.xp&back=clarinet">議論</a>]
+        </ul>
+    </ul>
+    <p>
+      <a href="http://bonsai.mozilla.org/cvsquery.cgi?treeid=default&module=SeaMonkeyAll&branch=HEAD&branchtype=match&dir=mozilla%2Fjs%2Fsrc&file=js*&filetype=regexp&who=&whotype=match&sortby=Date&hours=2&date=explicit&mindate=12%2F1%2F1998&maxdate=12%2F14%2F1999&cvsroot=%2Fcvsroot">check-in ログ</a>
+      と
+      <a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&resolution=FIXED&resolution=---&email1=&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&changedin=&votes=&chfieldfrom=12%2F1%2F98&chfieldto=Now&chfieldvalue=&component=Javascript+Engine&short_desc=&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&status_whiteboard=&status_whiteboard_type=substring&cmdtype=doit&newqueryname=&order=%22Importance%22&form_name=query">バグ報告</a>
+      を一年間にわたって
+      閲覧できる。現在の
+      <a href="http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&email1=&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&component=Javascript+Engine&short_desc=&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&status_whiteboard=&status_whiteboard_type=substring&cmdtype=doit&newqueryname=&order=%22Importance%22&form_name=query">open bug list</a> も同様。
+        
+    <h1>いつ JavaScript 1.5 はリリースされるのか?</h1>
+    <p>
+      <b>SpiderMonkey</b> と <b>Rhino</b> の実装の JavaScript 1.5 バージョンは、
+      <b><big>今</big></b>リリース案 (Release Candidate) だ!
+      Linux, Solaris, Windows, と Mac  プラットフォームでの存在するテストケースすべて
+      (LiveConnect を除く) にエンジン両方とも合格していると、
+      私たちの内部テストは示している。
+      最終リリースは、RC1 の後、安定していると検証してから行う。
+
+    <h1>どこで JavaScript 1.5 を入手できるのか?</h1>
+    <p>
+      
+      <a href="http://www.mozilla-japan.org/rhino">Rhino</a> と
+      <a href="http://www.mozilla-japan.org/js/spidermonkey">Spidermonkey</a> のページに、
+      予めパッケージ化されたソースコードのバージョンの入手方法に関する
+      情報がある。
+      まったく最新のソースについては、両方の JavaScript 1.5 engine が、
+      <a href='http://www.mozilla-japan.org/cvs.html'>Mozilla CVS Repository</a>
+      から直接入手可能である。
+      JavaScript 1.5 は、
+      <a href="http://www.mozilla-japan.org/">Mozilla</a> クライアントの一部でもある。
+
+    <p>
+      ツリーの JavaScript セクションのみチェックアウトするためには、
+      マシンに適切な設定をした後、
+      <code>cvs co mozilla/js</code> とコマンドを実行しなさい。
+
+    <p>
+
+      JS engine のビルドの仕方に関する詳細については、
+      <a href="http://www.mozilla-japan.org/lxr/mozilla/source/js/src/README.html">JavaScript README</a> を見なさい。
+
+    <p>
+      <a href="http://www.mozilla-japan.org/js/tests/library.html">JavaScript のテスト一式</a>
+      は、
+      <a href="http://www.mozilla-japan.org/lxr/mozilla/source/js/tests/">mozilla/js/tests</a>
+      サブディレクトリーで使用可能である。
+      <a href="http://www.mozilla-japan.org/lxr/mozilla/source/js/tests/README-jsDriver.html">テストドライバのドキュメンテーション</a>
+      はその配布物に含まれている。
+
+    <h1>どうすれば JavaScript 1.5 に貢献できるのか?</h1>
+    <p>
+      JavaScript を自分の環境に組み込むのか?
+      その環境で JavaScript engine に対して行う一連のテストがあるか?
+      もしそうなら、新しい JS Engine に対してあなたのテストを行うことができ、結果を共有できる。
+      <a href="mailto:rginda@netscape.com">Rob Ginda</a>
+      に直接結果を送ることも出来るし、
+      公開議論をするために、<a href="news:netscape.public.mozilla.jseng">JS Engine のニュースグループ</a>
+      に投稿することも出来る。
+      あなたのフィードバックは、可能な限り JavaScript 1.5 ファイナルをバグの無い状態に保つのに、大いに貢献することになる。
+
+    <p>
+      私たちがテストを行っていないプラットフォームを持っているか?
+      もしあるのなら、あなたのプラットフォームで
+      <a href="http://www.mozilla-japan.org/js/tests/library.html">テストを行い</a>、
+      結果を
+      <a href="mailto:rginda@netscape.com?subject=JS Test Results">報告</a>しなさい。
+ 
+    <p>
+      テストケースを書くのに興味があるか?興味があるのなら、
+      <a href="http://www.mozilla-japan.org/js/tests/library.html">テストライブラリのページ</a>
+      を確認しなさい。
+      現在あるテストケースの書式と新しいテストケースを作るための指針を説明している。
+      多くのテストケースをECMA の規格に準拠させる事が出来る。
+
+    <h1>JavaScript 1.5 の後には何が来るのか?</h1>
+    <p>
+      JavaScript の次のバージョンは、2.0 リリースとなる。
+      2.0 という事は、後方互換性を強く意識しながら、
+      言語仕様と JS engine の両方を書きなおす事を表している。
+      より一般的に静的な言語で見られるクラス、型、その他の特徴を期待しなさい。
+      JavaScript 1.X リリースの現存する動的な特徴と
+      同じように。
+      <a href="http://x34.deja.com/[ST_rn=ps,S0=906c1d141821dfd]/viewthread.xp?AN=552247596.1&search=thread&svcclass=dnyr&ST=PS&CONTEXT=945295136.511836228&HIT_CONTEXT=945295136.511836228&HIT_NUM=4&recnum=%3cv04210104b460b0623d7a@%5b208.12.38.207%5d%3e%231/2&group=netscape.public.mozilla.jseng&frpage=getdoc.xp&back=clarinet">設計の議論</a>
+      が、
+      <a href="news:netscape.public.mozilla.jseng">JS Engine のニュースグループ</a>
+      と ECMA TC39 の会議で始まっている。
+      JavaScript 1.5 が完成したら、
+      完全に標準に忠実な JavaScript 2.0 をつくるのに完全に集中するというのが私たちの計画です。
+      Waldemar の
+      <a href="http://www.mozilla-japan.org/js/language/js20/index.html">JavaScript 2.0 の案</a>
+      と、JavaScript 2.0 に関するより詳しい情報について、
+      <a href="http://www.mozilla-japan.org/js/language/futures.html">将来の方向</a>のページを見なさい。
+      <br>
+      [ <a href="http://www.mozilla-japan.org/js">JS Home</a> ]
+      <br>
+    <hr>
+    <address><a href="mailto:rginda@netscape.com">Robert Ginda</a></address>
+<!-- Created: Tue Dec 14 14:09:36 PST 1999 -->
+<!-- hhmts start -->
+Last modified: Tue Mar 21 17:29:13 PST 2000
+<!-- hhmts end -->
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/js/js15.html">英語版</a></span> - <span>和訳版 2004/10/04</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/js/js15.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

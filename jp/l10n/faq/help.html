@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+
+
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tt="http://dynamis.jp/2003/TransTools" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/">
+<head>
+	
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP"/>
+	<link href="../../../news.rdf" rel="alternate" type="application/xml" title="RSS"/>
+	<link href="../../../" rel="home" title="Home"/>
+	<link href="../../../css/print.css" rel="stylesheet" type="text/css" media="print"/>
+	<link href="../../../css/base/content.css" rel="stylesheet" type="text/css" media="all"/>
+	<link href="../../../css/cavendish/content.css" rel="stylesheet" type="text/css" title="Cavendish" media="all"/>
+	<link href="../../../css/base/template.css" rel="stylesheet" type="text/css" media="screen"/>
+	<link href="../../../css/cavendish/template.css" rel="stylesheet" type="text/css" title="Cavendish" media="screen"/>
+	<link href="../../../images/mozilla-16.png" rel="icon" type="image/png"/>
+
+	<link href="../../../jp/l10n/css/l10n.css" rel="stylesheet" type="text/css"/>
+	<meta name="keywords" content="localization, JLP, L10N, japanese, mozilla, firefox, thunderbird"/>
+
+	<title>L10N FAQ - トラブルシューティング</title>
+</head>
+<body>
+<div id="container">
+	<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+	
+	<div id="header">
+		<h1><a href="../../../" title="ホームページへ戻る" accesskey="1">Mozilla</a></h1>
+		<ul>
+			<li><a href="../../../about/" title="Mozilla Japan について">組織概要</a></li>
+			<li><a href="../../../developer/" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+
+			<li><a href="../../../support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+			<li><a href="../../../products/" title="Mozilla 製品概要">製品情報</a></li>
+		</ul>
+		<form id="search" method="get" action="http://www.google.co.jp/custom" title="mozilla-japan.org 検索">
+			<div>
+				<label for="q" title="mozilla-japan.org サイトの検索">サイト内検索:</label>
+				<input type="hidden" name="domains" value="mozilla-japan.org"/>
+				<input type="hidden" name="sitesearch" value="mozilla-japan.org"/>
+				<input type="hidden" name="client" value="pub-8666734350947173"/>
+				<input type="hidden" name="forid" value="1"/>
+				<input type="hidden" name="channel" value="2059762724"/>
+				<input type="hidden" name="ie" value="EUC-JP"/>
+
+				<input type="hidden" name="oe" value="EUC-JP"/>
+				<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;LH:37;LW:175;L:http://www.mozilla-japan.org/images/mozilla-logo.gif;S:http://www.mozilla-japan.org/;FORID:1;"/>
+				<input type="hidden" name="hl" value="ja"/>
+				<input type="text" id="q" name="q" accesskey="s" size="30"/>
+				<input type="submit" id="submit" value="検索"/>
+			</div>
+		</form>
+	</div>
+
+	<hr class="hide"/>
+	<div id="mBody">
+		
+	<div id="side">
+		<ul id="nav">
+			<li><a href="../../../jp/l10n/"><strong>ローカライズセンター</strong></a></li>
+			
+	<li title="日本語化に関する総合フォーラム"><a href="http://forums.firehacks.org/l10n/"><strong>L10N フォーラム</strong></a>
+	<ul>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=1" title="Release Announcement フォーラム">リリース告知</a></li>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=4" title="Main Products フォーラム">フィードバック</a></li>
+	</ul>
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/firefox/" title="次世代ブラウザを日本へ"><strong>Firefox</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/thunderbird/" title="次世代メールクライアントの日本語化"><strong>Thunderbird</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/suite/" title="成熟したインターネットスイートを日本語に"><strong>Mozilla</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/library.html" title="日本語化に関するツールとドキュメント"><strong>L10N ライブラリ</strong></a>
+	<ul>
+		<li><a href="../../../jp/l10n/lot/" title="JLP メンテナンス用 Ant スクリプト">Localization Tools</a></li>
+		
+		<li><a href="../../../jp/l10n/faq/" title="ローカライズセンターとその製品についてよくある質問">L10N FAQ</a></li>
+		<li><a href="../../../jp/l10n/guide.html" title="ローカライズセンターでの日本語化ガイドライン">L10N ガイドライン</a></li>
+		<li><a href="../../../jp/l10n/term/" title="ローカライズセンター指定訳語など">用語データベース</a></li>
+		<li><a href="../../../jp/l10n/links.html" title="ローカライズ関連リンク集">関連リンク</a></li>
+	</ul>
+	</li>
+
+			
+	<li><span><strong>活動内容と参加方法</strong></span>
+	<ul>
+		<li><a href="../../../jp/l10n/about.html">ローカライズセンターについて</a></li>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=3" title="準備中 (取りあえずフォーラムへのリンク)">協力者募集</a></li>
+		<li><a href="../../../jp/l10n/thanks.html" title="謝辞">Acknowlegement</a></li>
+	</ul>
+	</li>
+
+		</ul>
+	</div>
+
+		<hr class="hide"/>
+		<div id="mainContent">
+			
+	<h1>L10N FAQ - トラブルシューティング</h1><address>
+				author: 
+				<dc:creator>dynamis</dc:creator><br/></address>
+	<ol><li><a href="../../../jp/l10n/faq/about.html">ローカライズセンターについて</a></li><li><a href="../../../jp/l10n/faq/jlp.html">日本語パックについて</a></li><li><a href="../../../jp/l10n/faq/jajp.html">日本語版について</a></li><li><a href="../../../jp/l10n/faq/general.html">その他の質問</a></li><li>トラブルシューティング<ol id="index_help"><li><a href="../../../jp/l10n/faq/help.html#where_is_profile_dir">プロファイルフォルダは何処ですか</a></li><li><a href="../../../jp/l10n/faq/help.html#how_to_change_language">表示言語の変更の仕方が分からない</a></li><li><a href="../../../jp/l10n/faq/help.html#jlp_not_enabled">JLP をインストールしても日本語になりません</a></li><li><a href="../../../jp/l10n/faq/help.html#cannot_start_firefox">Firefox が起動しません</a></li><li><a href="../../../jp/l10n/faq/help.html#cannot_start_after_uninstall_jlp">JLP をアンインストールしたら起動しなくなりました</a></li><li><a href="../../../jp/l10n/faq/help.html#q5.6">HTML メールの作成時の画像挿入ダイアログで XML パースエラーが表示される</a></li><li><a href="../../../jp/l10n/faq/help.html#rss_account_foldername_garbled">RSS アカウントのフォルダ名が文字化けしています</a></li><li><a href="../../../jp/l10n/faq/help.html#q5.8">Thunderbird の RSS アカウントで印刷すると文字化けする</a></li><li><a href="../../../jp/l10n/faq/help.html#q5.9">Thunderbird で表示されないフォルダデータがあります</a></li><li><a href="../../../jp/l10n/faq/help.html#only_sbd_folder_left">フォルダ名を変更する前の .sbd フォルダが残っている</a></li><li><a href="../../../jp/l10n/faq/help.html#foldername_end_with_tilda">フォルダ名がチルダで終わるフォルダが表示されなくなった</a></li><li><a href="../../../jp/l10n/faq/help.html#q5.12">Thunderbird のメッセージフィルタを無効化できない</a></li><li><a href="../../../jp/l10n/faq/help.html#install_by_non_root">Unix で拡張機能やテーマがインストールできません</a></li><li><a href="../../../jp/l10n/faq/help.html#latest_nightly">最新の Nightly で JLP を使うと XML パースエラーが表示されます</a></li><li><a href="../../../jp/l10n/faq/help.html#other_help">その他のトラブルシューティング</a></li></ol></li></ol>
+	<div id="help" class="section"><h3>5. トラブルシューティング</h3><dl><dt id="where_is_profile_dir">5.1 プロファイルフォルダは何処ですか</dt><dd>
+			<p>OS のユーザ別に設定を変更したり複数の環境設定を利用する場合にはそれぞれ個別のプロファイルを作成して管理します。そしてそのプロファイル設定データが格納されるフォルダは標準では以下のようなフォルダとなります。</p>
+			<ul>
+				<li>Windows<br/>
+				<code class="indent">C:\Documents and Settings\{ユーザ名}\Application Data\Mozilla\Firefox\Profiles\{プロファイル名}\</code><br/>
+				<code class="indent">C:\Documents and Settings\{ユーザ名}\Application Data\Thunderbird\Profiles\{プロファイル名}\</code><br/>
+				<code class="indent">C:\Documents and Settings\{ユーザ名}\Application Data\Mozilla\Profiles\{プロファイル名}\</code></li>
+				<li>Windows 2000/XP<br/>
+				<code class="indent">%AppData%\Mozilla\Firefox\Profiles\{プロファイル名}\</code><br/>
+				<code class="indent">%AppData%\Thunderbird\Profiles\{プロファイル名}\</code><br/>
+				<code class="indent">%AppData%\Mozilla\Profiles\{プロファイル名}\</code></li>
+				<li>Mac OS X<br/>
+				<code class="indent">/Users/{ユーザ名}/Library/Mozilla/Firefox/Profiles/{プロファイル名}/</code><br/>
+				<code class="indent">/Users/{ユーザ名}/Library/Thunderbird/Profiles/{プロファイル名}/</code><br/>
+				<code class="indent">/Users/{ユーザ名}/Library/Mozilla/Profiles/{プロファイル名}/</code></li>
+				<li>Linux<br/>
+				<code class="indent">~/.mozilla/firefox/{プロファイル名}/</code><br/>
+				<code class="indent">~/.thunderbird/{プロファイル名}/</code><br/>
+				<code class="indent">~/.mozilla/{プロファイル名}/</code></li>
+			<p>環境設定やユーザデータ、インストールした拡張機能など多くの重要なデータが入っていますので、取り扱いには十分にご注意ください。手作業で設定ファイルを編集したり製品をバージョンアップする前には、予めこのフォルダのバックアップをとっておくことをお薦めします。</p>
+			</ul>
+		</dd><dt id="how_to_change_language">5.2 表示言語の変更の仕方が分からない</dt><dd>
+			<p>Mozilla では UI で使用する言語を設定画面で変更できますが、Firefox や Thunderbird には UI で使用する言語の設定画面がありません。Nightly ビルドに JLP をインストールしたり複数言語を使い分けたりする場合にはそれぞれ次のようにして変更してください。</p>
+			<dl>
+				<dt>Firefox/Thunderbird の言語切り替え</dt>
+				<dd><a href="http://www.saintpatrickdc.org/bsmedberg/locale-switcher/">Locale-Switcher Extension</a> を使用して表示言語を切り替えてください。この拡張機能をインストールすることで表示言語をメニューから変更できるようになります。詳細については <a href="http://moz.skillup.jp/jlp/viewtopic.php?t=269">L10N フォーラムでのアナウンス</a> をご覧ください。<br/>
+					Locale-Switcher Extension が上手く動作しない場合は<a href="../../../jp/l10n/faq/help.html#where_is_profile_dir">プロファイルフォルダ</a>中のユーザ設定ファイル user.js に次の行を追加してみてください。<br/>
+					<code class="indent">user_pref("general.useragent.locale", "ja-JP");</code><br/>
+					なお Mac 用 JLP をご利用になる場合は "ja-JP" ではなく "ja-JPM" を指定してください。</dd>
+				<dt>Firefox PR, Thunderbird 0.8 の言語切り替え</dt>
+				<dd>Firefox PR は本体のバグのため言語の切り替えは設定ファイルを手動で変更するか、起動時に毎回引数で日本語を指定するかしなければなりません。XPI を使用する場合などには<br/>
+					<code class="indent">firefox -UILocale ja-JP</code><br/>
+					のように毎回引数をつけて起動する必要があります。その場合はショートカットなどを作って起動するようにしてください。</dd>
+				<dt>Mozilla の言語切り替え</dt>
+				<dd>Mozilla の表示言語は設定画面にて変更できます。ツールバーの 編集 -&gt; 設定 を選び、表示 -&gt; 言語/コンテンツ 画面で "インストールされている言語パック" から Japanese(Japan) を選択し、Mozilla を再起動してください。<br/>
+					既に選択されているのに日本語で表示されない(あるいは英語と日本語が混ざっている)場合には一旦 English(US) へと変更して再起動した後、改めて Japanese(Japan) を選び再起動してください。</dd>
+			</dl>
+		</dd><dt id="jlp_not_enabled">5.3 JLP をインストールしても日本語になりません</dt><dd>
+			<p>残念ながら XPI をインストールするだけで同時に言語設定も変更するという方法がありませんので、JLP をインストールするだけでは日本語に切り替わりません。XPI 形式の JLP をご利用の場合はお手数ですが手動で言語設定を変更する必要があります。<br/>
+				言語設定の変更方法については <a href="../../../jp/l10n/faq/help.html#how_to_change_language">表示言語の変更の仕方が分からない</a> をご参照ください。</p>
+		</dd><dt id="cannot_start_firefox">5.4 Firefox が起動しません</dt><dd>
+			<p>Firefox はプロファイルや拡張機能の管理などが不安定であり、古いプロファイルを使用したまま新しいバージョンにアップグレードインストールした場合や、拡張機能をバージョンアップした際に Firefox が起動しなくなることがあります。その原因の多くは Firefox の起動を高速化するために自動作成されているデータベースファイルが破損し、正常にコンポーネントが読み込めなくなっていることによるものです。</p>
+			<p>このような場合は<a href="../../../jp/l10n/faq/help.html#where_is_profile_dir">プロファイルフォルダ</a>中の次のファイルをファイルを削除してみてください。<br/>
+				<code class="indent">.../XUL.mfl</code><br/>
+				<code class="indent">.../chrome/chrome.rdf</code><br/>
+				次の Firefox 起動時にこれらのファイルは自動的に正常なものが作成され、それ以降正常に Firefox が起動できるようになります。</p>
+			<p>より親切で詳しい作業手順については<a href="../../../products/firefox/support/troubleshooting/startup-dtderror.html">トラブルシューティング</a>にてスクリーンショット付で説明しておりますのでご参照ください。</p>
+			<p>また、最新の Firefox と互換性のない拡張機能がインストールされている状態で Firefox をアップグレードした場合<br/>
+				<code>Error launching browser window:no XBL binding for browser</code><br/>
+				などのエラーメッセージが表示されるだけで起動しなくなることがあります。このような場合は原因となる拡張機能がインストールされているプロファイルを丸ごと削除(名前変更)しなければなりません。詳しい作業手順については<a href="../../../products/firefox/support/troubleshooting/startup-xblerror.html">トラブルシューティング</a>ページをご参照ください。</p>
+		</dd><dt id="cannot_start_after_uninstall_jlp">5.5 JLP をアンインストールしたら起動しなくなりました</dt><dd>
+			<p>英語版の Firefox や Thunderbird に JLP をインストールして使用している場合、<em>言語設定を ja-JP/ja-JPM に変更している状態で JLP をアンインストールすると起動できなくなります</em>。<br/>
+				これは存在しない言語リソースを使用して画面を表示しようとしているからであり、次のようにして UI で使用する言語を en-US に変更して起動させる必要があります。</p>
+			<ul>
+				<li>コマンドライン引数で en-US を指定する<br/>
+					<code class="indent">firefox -UILocale en-US</code><br/>
+					のように en-US を指定すると英語で起動します。</li>
+				<li>設定ファイルを直接書き換える<br/>
+					UI で使用する言語の設定は<a href="../../../jp/l10n/faq/help.html#where_is_profile_dir">プロファイルフォルダ</a>の pref.js に保存されています。<br/>
+					<code class="indent">user_pref("general.useragent.locale", "ja-JP");</code><br/>
+					のような行を見つけて ja-JP/ja-JPM を en-US へと書き換えると英語で起動するようになります。</li>
+			</ul>
+			<p>いずれかの方法により英語で起動したら、再度 JLP をインストールし直してください。</p>
+		</dd><dt id="q5.6">5.6 HTML メールの作成時の画像挿入ダイアログで XML パースエラーが表示される</dt><dd>
+			<p>2004/12/24 ~ 2004/12/27 の間に公開されていた Thunderbird 1.0 日本語版には HTML メール作成時に画像を挿入しようとすると XML パースエラーが発生する問題がありました。ローカライズセンターでは 27日に問題の報告を受けて即日修正し、28日には改めて<a href="http://moz.skillup.jp/jlp/viewtopic.php?t=318">修正版を再リリースしました</a>ので、上記期間に Thunderbird をダウンロードされた方は修正版をインストールし直してください。</p>
+			<p class="detail">問題の原因は JLP の単純なミスであったため、0.6.10 以降の JLP を使用することで解決します。この問題修正前後の日本語版の違いは Thunderbird インストール先の chrome フォルダにある ja-JP-mail.jar ファイルだけです。このファイルだけを置き換えるための <a href="http://moz.skillup.jp/jlp/viewtopic.php?t=321">JLP 置き換えパッチ XPI も公開しています</a>。但しこのパッチは非公式のものでサポートなどは行いませんので、自己責任でご利用ください。</p>
+		</dd><dt id="rss_account_foldername_garbled">5.7 RSS アカウントのフォルダ名が文字化けしています</dt><dd>
+			<p>RSS (ニュースとブログ)アカウントを新規作成したときのデータフォルダ名が文字化けしたものになってしまう問題が Thunderbird 1.0 日本語版の Windows および Linux で発見されました。この問題に対応する<a href="http://moz.skillup.jp/jlp/viewtopic.php?t=318">修正パッチを公開しています</a>ので、RSS アカウントを作成する前にインストールしてください。修正パッチをインストールする前に RSS アカウントを作成して文字化けしたデータフォルダが作られてしまっている場合でも、利用上の支障はありませんのでそのままご利用いただけます。</p>
+			<p>ローカライズセンターでテストした限りフォルダ名が文字化けしている場合も利用上の問題は一切ありませんでしたが、文字化けしたフォルダにデータが保存されるのが不安である方は修正パッチをインストールした上で新しいアカウントを作成し、新規アカウントにデータや設定を移行してください。</p>
+			<p class="detail">Thunderbird は新規 RSS アカウントの作成時に rss.rdf で定義されている rss.hostName という実体で指定された名前のフォルダを作成しています。しかしこの処理がマルチバイト文字に対応できておらず、rss.hostName に英数字以外が含まれていると文字化けしたアカウントデータフォルダが作成されてしまうようです。修正パッチでは rss.hostName 以外をローカライズした rss.rdf ファイルをインストールしています。</p>
+		</dd><dt id="q5.8">5.8 Thunderbird の RSS アカウントで印刷すると文字化けする</dt><dd>
+			<p>Thunderbird の RSS アカウントで日本語などのページを印刷すると文字化けしてしまいます。<br/>
+				残念ながら現時点でこの問題の解決策はありません。</p>
+			<p>参照: <a href="../../../products/thunderbird/troubleshooting.html">Thunderbird トラブルシューティング</a> - <a href="../../../products/thunderbird/kb/bug-jp_0004141.html">日本語 RSS 記事プレビューで文字化けする</a></p>
+		</dd><dt id="q5.9">5.9 Thunderbird で表示されないフォルダデータがあります</dt><dd>
+			<p>Thunderbird にはデータフォルダの扱いにいくつか問題があることが分かっています。問題の種類毎に分けて説明していますので、個別の項目をご覧ください。</p>
+			<dl>
+				<dt><a href="../../../jp/l10n/faq/help.html#foldername_end_with_tilda">フォルダ名がチルダで終わるフォルダが表示されなくなった</a></dt>
+				<dd>チルダで終わるフォルダは作成できますが再起動後に表示されなくなります。</dd>
+				<dt><a href="../../../jp/l10n/faq/help.html#only_sbd_folder_left">フォルダ名を変更する前の .sbd フォルダが残っている</a></dt>
+				<dd>サブフォルダのないフォルダの名前を変更するとゴミフォルダが残ります。</dd>
+			</dl>
+		</dd><dt id="only_sbd_folder_left">5.10 フォルダ名を変更する前の .sbd フォルダが残っている</dt><dd>
+			<p>Thunderbird でサブフォルダのないフォルダの名前を変更した場合、新しい名前のフォルダに対応する .sbd フォルダが作成されて古い名前のフォルダに対応する .sbd フォルダが削除されずに残されます。残っていても利用上問題はありませんので気にしないでください。勿論、中に何もデータがないことを確認した上で削除してしまっても構いません。</p>
+		</dd><dt id="foldername_end_with_tilda">5.11 フォルダ名がチルダで終わるフォルダが表示されなくなった</dt><dd>
+			<p>Thunderbird は最後の文字がチルダ ~ であるフォルダ名を正しく扱うことができません。チルダで終わる名前のフォルダは再起動後表示されなくなるため、Thunderbird を終了する前に名前を変更するようにしてください。<br/>
+				共通受信トレイ(ローカルフォルダ)アカウントの直下に foo~ というフォルダを作成していた場合を例に、既に表示されなくなってしまった場合のデータ復元手順を説明します。</p>
+			<ol>
+				<li>Thunderbird を終了してください。</li>
+				<li><a href="../../../jp/l10n/faq/help.html#where_is_profile_dir">{プロファイルフォルダ}</a>/Mail/Local Folders/ を表示してください。</li>
+				<li>foo~, foo~.msf というファイルと foo.sbd というフォルダの名前をそれぞれ順に foo, foo.msf, foo.sbd へと変更してください。</li>
+				<li>Thunderbird を起動してください。</li>
+				<li>共通受信トレイアカウントの直下に foo~ フォルダが復活しているので、foo~ と foo 以外に名前を変更してください。</li>
+				<li>Thunderbird を終了してください。</li>
+				<li>foo~ にサブフォルダがない場合は foo.sbd フォルダがデータフォルダに残りますので、必要に応じて foo.sbd フォルダを削除してください。</li>
+				<li>Thunderbird を起動してください。</li>
+				<li>メッセージフィルタのうち foo~ フォルダ配下に移動するよう指定していたフィルタがあれば、移動先の指定を修正してください。</li>
+				<li>迷惑メールフィルタや受信データ保存先の設定についても同様に確認してください。</li>
+			</ol>
+			<p class="detail">Thunderbird はデータを Unix 標準の mbox 形式をベースに独自の管理用ファイルなどを追加した形で保存管理しており、example フォルダに対応するデータは example, example.msf, example.sbd などに保存されます。このうち .msf ファイル (Mail Summary File) は管理用のファイルであり削除しても自動的に再生成されます。このため foo~ ファイルと foo.sbd ディレクトリの名前を変更して foo.msf ファイルは削除してしまえば Thunderbird の起動後に改めてフォルダ名を変えずとも直接新しい名前で復活させることができますが、フォルダ中のメッセージの既読管理や迷惑メール判別などに関するデータがすべて失われてしまいます。</p>
+			<p>参照: <a href="../../../products/thunderbird/troubleshooting.html">Thunderbird トラブルシューティング</a> - <a href="../../../products/thunderbird/kb/bug-jp_0004122.html">メールフォルダ名がチルダで終わると再起動後にフォルダーが見えなくなる</a></p>
+		</dd><dt id="q5.12">5.12 Thunderbird のメッセージフィルタを無効化できない</dt><dd>
+			<p>Thunderbird はメッセージフィルタの名前が日本語である場合、そのフィルタの有効/無効を切り替えることが出来ません。フィルタの有効/無効を切り替える必要がある場合は半角英数字のみのフィルタ名を使用してください。</p>
+		</dd><dt id="install_by_non_root">5.13 Unix で拡張機能やテーマがインストールできません</dt><dd>
+			<p>Mozilla や以前の Firefox/Thunderbird では拡張機能などはユーザの<a href="../../../jp/l10n/faq/help.html#where_is_profile_dir">プロファイルフォルダ</a>ではなくプログラムのインストールフォルダに直接インストールされます。インストールフォルダの書き込み権限によっては root でしか拡張機能などのインストールが行えませんのでご注意ください。</p>
+		</dd><dt id="latest_nightly">5.14 最新の Nightly で JLP を使うと XML パースエラーが表示されます</dt><dd>
+			<p>Nightly では随時言語リソースが更新されており、最新の <a href="../../../jp/l10n/faq/jlp.html#jlp_for_nightly">Nightly に対応する JLP</a> を使用しないと、言語リソースの定義が一部足りないために XML パースエラーなどが表示されることがあります。ローカライズセンターでは随時 Nightly についても追従して開発リリースを公開していきますが、基本的に Nightly はサポート外であり対応が遅れることもありますのでご了承ください。<br/>
+				なお、これは古いバージョンに対して新しい JLP を使用する場合も同様ですので、適切な対応バージョンの JLP をご利用ください。</p>
+		</dd><dt id="other_help">5.15 その他のトラブルシューティング</dt><dd>
+			<p>Thunderbird 0.9 以降については Mozilla Japan で独自に日本語で使用するときの既知の問題点をまとめています。その他各所で公開されているトラブルシューティングのうち、代表的なものを紹介しますのでご参照ください。</p>
+			<ul>
+				<li><a href="../../../products/thunderbird/troubleshooting.html">Mozilla Thunderbird トラブルシューティング</a></li>
+				<li><a href="../../../support/firefox/faq.html">Firefox FAQ</a></li>
+				<li><a href="http://firefox.geckodev.org/?FAQ">Firefox まとめサイト - FAQ</a></li>
+				<li><a href="../../../start/1.5/troubleshooting/">Mozilla 1.5 トラブルシューティングガイド</a></li>
+			</ul>
+		</dd></dl><p class="note right">[<a href="./">FAQ 一覧に戻る</a>]</p></div>
+
+		</div>
+	</div>
+	<hr class="hide"/>
+	
+	<div id="footer">
+		<ul id="bn" style="margin-bottom: .6em;">
+			<li><a href="../../../security/">セキュリティ情報</a></li>
+			<li><a href="../../../press/">プレスルーム</a></li>
+			<li><a href="../../../contact/">お問い合わせ</a></li>
+			<li><a href="../../../sitemap.html">サイトマップ</a></li>
+		</ul>
+		<p>© 2005 Mozilla Japan and <a href="http://www.mozilla.org/">Mozilla Foundation</a> - Mozilla Japan は Mozilla Foundation の公式アフィリエイトです。</p>
+		<p>このドキュメントは Mozilla Japan ローカライズセンターにより作成・管理されています。<br/>
+			このドキュメントに関するお問い合わせは <a href="http://forums.firehacks.org/l10n/viewforum.php?f=10">L10N フォーラム</a>までお寄せください。</p>
+	</div>
+
+</div>
+</body>
+</html>
+

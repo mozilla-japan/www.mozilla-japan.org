@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+  <title>Mozilla 1.4 トラブルシューティングガイド</title>
+  <link rel="stylesheet" title="オレンジ" href="../defaultstyle.css" type="text/css">
+  <link rel="alternate stylesheet" title="シンプル" href="../basicstyle.css" type="text/css">
+  <link rel="alternate stylesheet" title="太平洋" href="../bluestyle.css" type="text/css">
+  <link rel="icon" href="../images/mozilla-16.png" type="image/png">
+  <script src="../detect-problems.js" type="text/javascript"></script>
+  <script src="../stylesheets.js" type="text/javascript"></script>
+ </head>
+ <body onload="loadStyle();silentlyFixErrors('../')">
+  <div id="mainHeaderContainer" class="sectionHeaderContainer">
+   <img src="../images/dino.png" alt="" id="dinoHead">
+   <div id="mainHeader" class="sectionHeader"><a href="../" id="mozillaLogo"></a></div>
+  </div>
+  <div id="mainSection" class="section">
+   <h1><a name="top">トラブルシューティングガイド</a></h1>
+   <ol class="toc">
+    <li><a href="#layout">私のページが Mozilla で正しく見えないのはなぜ?</a></li>
+    <li><a href="#garbage">ある Web サイトのファイルを見ようとしていて、アドレスに間違いはありませんが、スクリーンに表示されるのは文字化けの塊だけです。</a></li>
+    <li><a href="#bank">私の取引銀行のサイトが Mozilla で見られません。</a></li>
+    <li><a href="#lock">自分のプロファイルで Mozilla を開けません。自分のプロファイルは使用中だと言われます。</a></li>
+    <li><a href="#https">セキュアな (https://) Web サイトにアクセスできないのはなぜ? (Linux)</a></li>
+    <li><a href="#junkbuster">私は、透過プロキシ (たとえば Junkbuster) を使っていて、ブラウズすると奇妙な問題が生じます。何が起こっているのでしょう?</a></li>
+    <li><a href="#middle-click">リンク上で中クリック (または Ctrl + クリック) しても新しいタブが開かれません。</a></li>
+    <li><a href="#theme">今使用しているテーマが気に入っていますが、奇妙な現象が発生します。修正する方法はありますか?</a></li>
+    <li><a href="#brokeninstall">Mozilla のアドオン XPI をウェッブページから直接インストールしようとしたのですが、「インストール」のリンクをクリックしても動作しません。</a></li>
+    <li><a href="#install">Mozilla アドオンの XPI をダウンロードしましたが、どうやってインストールしたらいいのかわかりません。</a></li>
+    <li><a href="#uninstall">XPI でインストールしたものをアンインストールするには?</a></li>
+    <li><a href="#sidebar">サイドバーの中身が表示されません。</a></li>
+    <li><a href="#email">助けて! e-メールにアクセスできなくなっちゃった!</a></li>
+    <li><a href="#nautils">私は GNOME を使っています。mozilla.org のバイナリから Mozilla をインストールしたら、Nautilus がうまく動作しなくなりました。</a></li>
+    <li><a href="#virus">アンチウィルスソフトが、INBOX にウィルスがいると考え、INBOX へアクセスさせてくれません!</a></li>
+    <li><a href="#menubar">ツールバー/メニューバーが消えてしまいました! 元に戻すには?</a></li>
+    <li><a href="#personaltoolbar">パーソナルツールバーの中身が空になって、ブックマークを追加できません。どうすれば直りますか?</a></li>
+    <li><a href="#download">大きいファイルをダウンロードできません。</a></li>
+    <li><a href="#download.rdf">最近ファイルのダウンロードが非常に遅いです。なぜ?</a></li>
+    <li><a href="#restore-mail">Mozilla を終了したらシステムがクラッシュして、メールがすべて消えてしまいました。どうすればいいの?</a></li>
+    <li><a href="#bookmarks-gone">助けて! ブックマークがすべて消えてしまいました!</a></li>
+   </ol>
+   <div class="content">
+    <p>あなたがお使いの OS の一般的な既知の問題については <b><a href="/releases/mozilla1.4.1/">Mozilla 1.4.1 リリースノート</a></b> をお読みください。</p>
+    <dl class="faqs">
+
+<dt><a onclick="return false;" name="layout" href="#layout">1. 私のページが Mozilla で正しく見えないのはなぜ?</a></dt>
+<dd>
+<p>Mozilla は、できる限り完全にインターネット標準をサポートするよう設計されています。サイトの中には (Mozilla や Opera、Internet Explorer 6 といった、どの最新のブラウザでも理解できる、標準に準拠したコードではなく) 古い非標準のブラウザに合わせて書かれているページもありますし、Mozilla をブロックするために <a href="http://devedge-temp.mozilla.org/viewsource/2002/browser-detection/">誤ったブラウザ判別法</a> を使用しているものもあります。このような場合は、サーバ設定とページのソースコードをアップデートするよう、サイトの管理者に連絡してください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="garbage" href="#garbage">2. ある Web サイトのファイルを見ようとしていて、アドレスに間違いはありませんが、スクリーンに表示されるのは文字化けの塊だけです。</a></dt>
+<dd>
+<p>これに対する通常の対処法は、リンクを右クリックして、「リンク先を名前を付けて保存」 (Save Link Target As)  を選択し、ファイルをディスクに保存してから、保存したファイルをローカルで見る事です。</p>
+<p>最もよくある原因は、Web サーバが、そのファイルをプレーンテキストファイルとして送信している事です。設定の間違いをサイトの管理者に連絡してください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="bank" href="#bank">3. 私の取引銀行のサイトが Mozilla で見られません。</a></dt>
+<dd>
+<p>一部の金融機関のサイトは、Mozilla からのアクセスをブロックしています。これは、サイトの管理者が Mozilla のセキュリティ機能を理解していないことが原因です。Mozilla は安全であり、サイト側が拒否した場合にはパスワードなどの機密情報を保存しません。Mozilla に対するブロックを取り除くよう、銀行に掛け合ってください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="lock" href="#lock">4. 自分のプロファイルで Mozilla を開けません。自分のプロファイルは使用中だと言われます。</a></dt>
+<dd>
+<p><a href="../faq/profile.html#location">プロファイルディレクトリ</a> の中にある <tt>parent.lock</tt> あるいは <tt>lock</tt>、<tt>.parentlock</tt> というファイルを探してください。そのファイルを削除してください。(このファイルは、Mozilla や Mozilla ベースとしたブラウザの複数インスタンスが同時に同じプロファイルにアクセスするのを防ぐため、起動時に作成され、終了時に削除されます)</p>
+</dd>
+
+<dt><a onclick="return false;" name="https" href="#https">5. セキュアな (https://) Web サイトにアクセスできないのはなぜ? (Linux)</a></dt>
+<dd>
+<p>最もありがちな原因は、あなたが Mozilla をインストールした時に、Personal Security Manager (PSM) をインストールしなかった、という事です。Mozilla をアンインストールして、PSM を含めて再インストールしてください。また、<a href="http://core.ring.gr.jp/archives/net/www/mozilla/mozilla/releases/mozilla1.4.1/linux-xpi/psm.xpi">直接インストール</a> する事もできます。</p>
+</dd>
+
+<dt><a onclick="return false;" name="junkbuster" href="#junkbuster">6. 私は、透過プロキシ (たとえば Junkbuster) を使っていて、ブラウズすると奇妙な問題が生じます。何が起こっているのでしょう?</a></dt>
+<dd>
+<p>透過プロキシ (transparent proxy) の中には、<abbr title="Hypertext Transfer Protocol">HTTP</abbr>/1.1 を正しく扱えないもの (Junkbuster のいくつかのバージョンを含む) があります。最初に試すべきことは、編集｜設定｜詳細｜HTTP ネットワーク (Edit | Preferences | Advanced | HTTP Networking) を開いて、「HTTP 1.0 を使う」 (Use HTTP 1.0) を選択することです。</p>
+</dd>
+
+<dt><a onclick="return false;" name="middle-click" href="#middle-click">7. リンク上で中クリック (または Ctrl + クリック) しても新しいタブが開かれません。</a></dt>
+<dd>
+<p>中クリック (または Ctrl + クリック) で新しいタブにリンクを開くオプションはデフォルトで無効になっています。このオプションを有効にするには、Edit メニューを開いて Preferences を選択してください。左ペインの Navigator &gt; Tabbed Browsing カテゴリを開きます。<q>Middle-click, Control+click or Control+Enter on links in a Web page</q> をチェックしてください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="theme" href="#theme">8. 今使用しているテーマが気に入っていますが、奇妙な現象が発生します。修正する方法はありますか?</a></dt>
+<dd>
+<p>サードパーティのテーマの中には、<tt>fakeAccount.css</tt> という名称のファイルがないものがあります。このファイルがないと、ウィンドウの最小化が正常に行なえないなどの不具合が生じる事があります。そのテーマのより新しいバージョンがあるかチェックしてください。</p>
+<p>テーマファイルで実験してみたいのであれば、<tt>fakeAccount.css</tt> という名称のファイルを作成して、それを該当するテーマの JAR に入れてみましょう。JAR は標準的な zip ファイルですから、お好みの zip ユーティリティで開いたり書き直したりできます。問題が生じたときのために、オリジナルの JAR ファイルは手元に保存しておきましょう。</p>
+<p>これでも問題が解決せず、そのテーマをアンインストールして Classic か Modern を使用すれば問題が生じないのであれば、そのテーマの作者に報告してください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="brokeninstall" href="#brokeninstall">9. Mozilla のアドオン XPI をウェッブページから直接インストールしようとしたのですが、「インストール」のリンクをクリックしても動作しません。</a></dt>
+<dd>
+<p>これが動作するためには、JavaScript (編集｜設定｜詳細｜スクリプト＆ウィンドウ) とソフトウェアインストール (編集｜設定｜詳細｜ソフトウェアインストール) の両方が有効になっていなければなりません。</p>
+<p>もしこれでもダメなら、XPI をダウンロードして直接インストールしてみてください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="install" href="#install">10. Mozilla アドオンの XPI をダウンロードしましたが、どうやってインストールしたらいいのかわかりません。</a></dt>
+<dd>
+<p>ソフトウェアインストールが有効になっていることを確認した上で、そのファイルを Mozilla で開きます。ブラウザウィンドウにドラッグするか、ファイル｜ファイルを開く (File |  Open File) で開くか、アドレスバーにそのファイルがある場所を入力するか、あるいは (Windows なら) XPI をダブルクリックして Windows が <tt>.xpi</tt> ファイルを Mozilla で開くように設定します。</p>
+</dd>
+
+<dt><a onclick="return false;" name="uninstall" href="#uninstall">11. XPI でインストールしたものをアンインストールするには?</a></dt>
+<dd>
+<p>テーマ以外のものでは、自動的に XPI をアンインストールする方法はまだありません。しかし、新しいビルドをインストールする前に古い Mozilla をアンインストールする時に、不要な XPI を手動で削除できます。</p>
+</dd>
+
+<dt><a onclick="return false;" name="sidebar" href="#sidebar">12. サイドバーの中身が表示されません。</a></dt>
+<dd>
+<p>F9 キーを使用して、いったんサイドバーを閉じた後、再び開いてみてください。もしこれがうまく行かなければ、<a href="../faq/profile.html#rescue">プロファイルが壊れている</a> のかも知れません - 新規のプロファイルを作成して、サイドバーが動作するか確認してください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="email" href="#email">13. 助けて! e-メールにアクセスできなくなっちゃった!</a></dt>
+<dd>
+<p>Mozilla メールで e-メールの問題を生じる一般的な原因は二つあります: </p>
+<ol>
+ <li><p>Mozilla のテストビルドの中に、メールフォルダの圧縮が正しく行なえず、圧縮すると中のメールが Mozilla メール/ニュースで読み込めなくなるものがある事が知られています。</p></li>
+ <li><p>メールの要約ファイル (拡張子が <tt>.msf</tt> のファイル) が壊れた。</p></li>
+</ol>
+<p>1 番目の場合: メールファイルはプレインテキストで保存されているので、メールファイルをテキストエディタ (またはワードプロセッサ) で開いて、手作業で編集して回復を試みる事ができます。</p>
+<p>2 番目の場合: Mozilla を (高速起動も含めて) 終了し、<a href="../faq/profile.html#location">ユーザープロファイル</a> で、e-メールを含んでいるフォルダ  (<tt>Mail</tt>   と、もし <abbr title="Internet Message Access Protocol">IMAP</abbr> を使用していれば、<tt>ImapMail</tt> フォルダ) を見つけます。メールフォルダをバックアップし、 <tt>.msf</tt> ファイルを削除します。拡張子のないファイルは削除<b>しない</b>こと &#8211; これは e-メール本体を保存しているファイルです。Mozilla メールを再起動すれば、新しい要約ファイルが自動的に作成されるでしょう。</p>
+</dd>
+
+<dt><a onclick="return false;" name="nautils" href="#nautils">14. 私は GNOME を使っています。mozilla.org のバイナリから Mozilla をインストールしたら、Nautilus がうまく動作しなくなりました。</a></dt>
+<dd>
+<p>もし Nautilus が、Mozilla Gecko レンダリング・エンジンを使うように設定されていると、その上に  mozilla.org のバイナリをインストールした時に奇妙な問題とコンフリクトが生じるかも知れません。あなたの Unix または GNU/Linux のディストリビューターから供給される Mozilla のパッケージを使用するべきで、彼らのバージョンはその GNOME のパッケージで正常に動作<b>する筈</b>です。</p>
+<p>Mozilla の <a href="http://ftp.mozilla.org/pub/mozilla.org/mozilla/nightly/">テストビルド</a> をインストールしたいのであれば、それをデフォルト以外の場所 (例えば、あなたの home ディレクトリ) にインストールして、システムのデフォルトが古いディストリビューターのバージョンを使用するようにしてください。&#160;</p>
+</dd>
+
+<dt><a onclick="return false;" name="virus" href="#virus">15. アンチウィルスソフトが、INBOX にウィルスがいると考え、INBOX へアクセスさせてくれません!</a></dt>
+<dd>
+<p>これが生じるのは、アンチウィルスソフトが、 (実際に悪意のあるコードが侵入しうるものだけではなく) <b>全ての</b>ファイルをチェックし、それがウィルスの兆候と思うファイルは全てロックあるいは検疫するように設定されている場合です。</p>
+<p>アンチウィルスソフトをオフにして、inbox を開き (ウィルスを含んでいる可能性のある添付ファイル付きのメールを全て削除し) 、スキャンするファイルの種類を実際に悪意のあるコードが侵入しうるものだけにし、もしそうなっていればアンチウィルスソフトの「偏執狂」モードを解除して、再びオンにします。</p>
+<p>Mozilla Mail は、既知の e-メールウィルスには感染しません。</p>
+</dd>
+
+<dt><a onclick="return false;" name="menubar" href="#menubar">16. ツールバー/メニューバーが消えてしまいました! 元に戻すには?</a></dt>
+<dd>
+<p>View &gt; Show/Hide メニューでツールバーが元に戻らない場合、メニューバー/ツールバーエリアのあった辺りを見てください。小さな長方形のボックスが見つかるはずです。ボタンをクリックすればツールバーが表示されます。</p>
+</dd>
+
+<dt><a onclick="return false;" name="personaltoolbar" href="#personaltoolbar">17. パーソナルツールバーの中身が空になって、ブックマークを追加できません。どうすれば直りますか?</a></dt>
+<dd>
+<p>Bookmark Manager を開いてください (Bookmarks メニューを開いて Manage Bookmarks を選択)。ウィンドウの中にある Personal Toolbar Folder を選択してください。View メニューを開いて、Set as Personal Toolbar Folder を選択してください。</p>
+<p>これでも直らない場合、Mozilla を完全に終了し、<a href="../faq/profile.html#location">プロファイル</a> の中にある localstore.rdf というファイルを削除してください。(注意: これによって、ツールバーのボタンや Sidebar の表示など、一部の UI 設定が失われますが、これらは簡単にリセットできます)</p>
+</dd>
+
+<dt><a onclick="return false;" name="download" href="#download">18. 大きいファイルをダウンロードできません。</a></dt>
+<dd>
+<p>Mozilla にファイルをダウンロードする場合、ファイルはまず一時ディレクトリに保存され、それから目的のディレクトリに移動されます。一時ディレクトリのスペースが制限されている場合、そのスペースを増やすか、大きいファイルのダウンロードについてはダウンロードマネージャを使うことを考えてください。</p>
+</dd>
+
+<dt><a onclick="return false;" name="download.rdf" href="#download.rdf">19. 最近ファイルのダウンロードが非常に遅いです。なぜ?</a></dt>
+<dd>
+<p>ダウンロードの履歴リストが巨大になると、ファイルのダウンロード開始・完了が遅くなってしまいます。このリストをクリアするには、Tools メニューを開いて Download Manager を選択してください。削除したいエントリーを選択してください (Shift キーを押しっぱなしにすると続けて選択できます。Ctrl キーを押すと複数のエントリーを飛び飛びに選択できます)。それから Remove をクリックすれば、選択したエントリーがリストから削除されます。</p>
+</dd>
+
+<dt><a onclick="return false;" id="restore-mail" href="#restore-mail">20. Mozilla を終了したらシステムがクラッシュして、メールがすべて消えてしまいました。どうすればいいの?</a></dt>
+<dd>
+<p>設定ファイルが破損して、デフォルトにリセットされてしまったようです。プロファイルフォルダに <a href="../faq/profile.html#backup">バックアップ</a> コピーがあれば、最も簡単な方法は <tt>prefs.js</tt> ファイルを修復することです。</p>
+<p>プロファイルのバックアップがない場合は、以下の手順に従ってください。</p>
+<ol>
+ <li>
+  <p>まず、<a href="../faq/profile.html#location">プロファイル</a> を別の場所にコピーしてください。</p>
+ </li>
+ <li>
+  <p>それから、<a href="../faq/profile.html#location">プロファイル</a> ディレクトリの <tt>Mail</tt> サブディレクトリに移動してください。サブディレクトリ名をすべて見られるようにするには (エクスプローラの) 表示設定を変更してください。</p>
+  <p><img src="mail-folder-1.png" alt="アカウント作成前の Mail ディレクトリ" width="305" height="311"></p>
+ </li>
+ <li>
+  <p>Mozilla の Mail &amp; Newsgroup を起動します。File (ファイル) メニューを開いて Offline (オフライン) を選択し、サブメニューから Work Offline (オフライン作業) を選択してください。</p>
+ </li>
+ <li>
+  <p>メールアカウントを再作成してください。</p>
+  <p>POP3 アカウントの場合 (メールはお使いのコンピュータにダウンロードされます): 受信サーバを入力するよう求められたら、Mail ディレクトリに表示されているフォルダ名とまったく同じ名前を入力してください。アカウント設定の最後で、メッセージをダウンロードするチェックボックスを見て、チェックが入っていないことを確認してください。</p>
+  <p>IMAP アカウントの場合 (メールはサーバに保存されます): 特別は手順は必要ありません。</p>
+ </li>
+ <li>
+  <p>再度 Mail ディレクトリに戻ります。POP3 アカウントをお持ちであれば、そのアカウントと重複したフォルダが作成されているはずです。</p>
+  <p><img src="mail-folder-2.png" alt="アカウント作成後の Mail ディレクトリ" width="305" height="311"></p>
+ </li>
+ <li>
+  <p>これまでのニュースグループアカウントを復元したい場合は、プロファイルの <tt>News</tt> ディレクトリに移動します。</p>
+  <p>Mail &amp; Newsgroup でニュースグループアカウントを再作成してください。ニュースグループサーバを入力するよう求められたら、News ディレクトリに表示されているフォルダ名とまったく同じ名前を入力してください。</p>
+  <p>再度 News ディレクトリに戻ります。ニュースグループアカウントと重複したフォルダとファイルが作成されているはずです。</p>
+ </li>
+ <li>
+  <p>Mozilla を完全に終了してください。</p>
+ </li>
+ <li>
+  <p>プロファイルの中にある <tt>prefs.js</tt> ファイルをテキストエディタで開いてください。</p>
+ </li>
+ <li>
+  <p>新規アカウントのディレクトリ名が書かれている行を探してください。例:</p>
+  <p class="screen">user_pref(&quot;mail.server.server2.directory&quot;, &quot;C:\\...\\Mail\\<strong>Local Folders-1</strong>&quot;);<br>user_pref(&quot;mail.server.server3.directory&quot;, &quot;C:\\...\\Mail\\<strong>pop.isp-1.com</strong>&quot;);<br>user_pref(&quot;mail.server.server4.directory&quot;, &quot;C:\\...\\News\\<strong>news.isp-1.com</strong>&quot;);</p>
+  <p>この行の最後の部分を元のアカウントディレクトリ名に変えてください。例:</p>
+  <p class="screen">user_pref(&quot;mail.server.server2.directory&quot;, &quot;C:\\...\\Mail\\<strong>Local Folders</strong>&quot;);<br>user_pref(&quot;mail.server.server3.directory&quot;, &quot;C:\\...\\Mail\\<strong>pop.isp.com</strong>&quot;);<br>user_pref(&quot;mail.server.server4.directory&quot;, &quot;C:\\...\\News\\<strong>news.isp.com</strong>&quot;);</p>
+ </li>
+ <li>
+  <p>ファイルを保存してください。Mozilla を再起動すると、メールとニュースグループのデータがすべて復活しているはずです。</p>
+ </li>
+</ol>
+<p>このようなトラブルを防ぐために、定期的にプロファイルを <a href="../faq/profile.html#backup">バックアップ</a> するようお勧めします。</p>
+</dd>
+
+<dt><a onclick="return false;" id="bookmarks-gone" href="#bookmarks-gone">21. 助けて! ブックマークがすべて消えてしまいました!</a></dt>
+<dd>
+<p>大変不運なトラブルが起きて、あなたのブックマークは失われてしまいました。バックアップがない限り元に戻すことはできません。ブラウズの履歴からその一部を復元してみてください。(Go (移動) メニューの History (履歴) から) 履歴ウィンドウを開いて、ブックマークしたい URL の上で右クリックし (Mac OS ではオプションクリック)、Bookmark this Link (このリンクをブックマーク) を選択してください。</p>
+<p>このようなトラブルを防ぐために、定期的にプロファイルを <a href="../faq/profile.html#backup">バックアップ</a> するようお勧めします。</p>
+</dd>
+
+   </dl>
+   </div>
+   <div id="footer"><img src="../images/dino_tail.png" id="dinoTail" alt="A tail length ahead of the rest!"></div>
+  </div>
+  <div id="documentinfo">
+   <p>
+    訳者: 池田 譲治<br>
+    <a href="http://www.mozilla.org/start/1.4/troubleshooting/index.html" class="style">このドキュメントのオリジナルは、mozilla.org において、英語で管理・公開されています。</a><br>
+    この和訳は、利用者の利便のために <a href="http://www.mozilla-japan.org/jp/td/" class="style">もじら組 和訳プロジェクト</a> によって提供されています。<br>
+    ドキュメントの内容に関するフィードバックは、英語で、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=214845" title="Bug 214845 - The new mozilla 1.4.1 homepage">Bugzilla</a> にお願いします。<br>
+    和訳ドキュメント一覧など、詳しい情報は <a href="http://www.mozilla-japan.org/jp/td/" class="style">www.mozilla.gr.jp/jt</a> をご覧ください。
+   </p>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>mozilla.org マークアップ参考資料</title>
+  <link rel="alternate" hreflang="en" modified="September 13, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/contribute/writing/markup.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<h1>mozilla.org マークアップ参考資料</h1>
+<address class="author"><a href="http://fantasai.inkedblade.net/contact">fantasai</a></address>
+<p>このドキュメントの目的は、セマンティッククラスの豊富なボキャブラリーを定義するこ
+とです。サイト全体のスタイルシート内に指定するこ
+とができ、CSS
+の規則を書かなくても長く複雑でよく整えられたスタイルのドキュメントを記述することができるほど十分なボキャブラリーを定義します。こうしたクラスは古
+い「見栄え」テンプレートに取って代わります；今では「見栄え」はスタイルシート内に定義されるようになり、マークアップをセ
+マンティックに保つこと
+ができます。これによって HTML
+のコードを書く人の仕事が簡素化され、ページのスタイリングに関してさらに優れた柔軟性を可能にし、一貫した仕様でサイト全体の体裁を整えます。<br>
+</p>
+<p>これらのクラスは必要に応じて使用できるように定義されています。これらのクラスを必要としないのであれば、これらを学んだり使用したりする必要は
+ありません。しかし、「見栄え」を伴ったマークアップもしくは CSS
+が必要であれば、このドキュメントを読んでください -
+おそらくあなたが探しているものはすでに定義済みです。（もしまだであれは、それはたぶん定義されているべきものでしょう。もし自分のスタイルルールが他
+の作者にとっても有益であろうと思うのなら、fantasai.bugs@inkedblade.net に対してバグ報告をしてください。）<br>
+</p>
+<ol class="toc">
+  <li><a href="#structure">一般構造</a> </li>
+  <li><a href="#quotations">引用</a> </li>
+  <li><a href="#notes">いろいろな種類の注釈</a> </li>
+  <li><a href="#emphasis">強調</a> </li>
+  <li><a href="#figures">例と図形</a> </li>
+  <li><a href="#computers">コンピュータ</a> </li>
+  <li><a href="#navigation">ナビゲーション</a> </li>
+</ol>
+<div class="section">
+<h2><a name="structure">一般構造</a></h2>
+<div class="section">
+<h3><a name="para">段落（パラグラフ）</a>：<code><em>&lt;p&gt;</em></code>
+と <code>&lt;div class="<em>para</em>"&gt;</code></h3>
+<p>段落をマークするには <code>&lt;p&gt;</code> を使用します。このタグは段落を分ける為ではなく <em>囲む</em>
+為に使用します<br>
+</p>
+<p><code>&lt;div class="para"&gt;</code> は、HTML DTD
+では <code>&lt;p&gt;</code>
+に許されていないブロックレベル要素を論理的に囲んでいる段落のためのものです。例えば <code>&lt;blockquote&gt;</code>
+に
+よって分割された段落があったとします。このとき段落の各半分は別個の <code>&lt;p&gt;</code> を持ち、その構成物全体は
+<code>&lt;div class="para"&gt; </code>によって囲まれます。ブロックとしてレンダリングしたいインラインの図
+形には使用しないでください。ただし <code>&lt;p&gt; </code>内での<code> &lt;img&gt; </code>は
+使用可能であり、NS4.x でもこのスタイルシートはそれをブロックとしてレンダリングすることができます。</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;div class="para"&gt;</em>
+<!-- --> <em>&lt;p&gt;</em>技術文書、特にオンラインの文書を書く時には、厳密な構成が重要な <br> 役割を担います。たいていの場合読者は、単にいくつかの特定の情報を<br> 見つけるためにその文書を読むのであって、その文書を精読するというよりは<br> むしろざっと読み取る方が一般的です。これをより容易にするためには、<em>&lt;/p&gt;</em>
+<!-- --> <em>&lt;ul&gt;</em>
+<!-- --> <em>&lt;li&gt;</em>文書を細かく分け、見出しで概説する<br><!-- --> <em>&lt;li&gt;</em>強固な構造を体系化する<br><!-- --> <em>&lt;li&gt;</em>黒丸つきリストを使用する<br><!-- --> <em>&lt;li&gt;</em>簡潔に書く；とりとめもなく書かない<br><!-- --> <em>&lt;li&gt;</em>最初に要点を、次に詳細を<br><!-- --> <em>&lt;li&gt;</em>"はじめに" の章以外では長々と紹介文を書かない<br><!-- --> <em>&lt;li&gt;</em>説明は明快に<br><!-- --> <em>&lt;li&gt;</em>そしてその文章を明らかにする具体的な例を挙げる。 <br><!-- --> (一つの例は千の単語に匹敵する)<br><!-- --> <em>&lt;/ul&gt;</em>
+<!-- --> <em>&lt;p&gt;</em>文書の重要な箇所を目立たせることによって、読者は正しい箇所を<br> すばやく簡単に見つけることができます。最初に要点をざっと提示し、<br> それから説明します。<em>&lt;/p&gt;</em>
+<!-- --><em>&lt;/div&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<div class="para">
+<p>技術文書、特にオンラインの文書を書く時には、厳密な構成が重要な役割を担います。たいていの場合読者は、単にいくつかの特定の情報を見つけるため
+にその文書を読むのであって、その文書を精読するというよりはむしろざっと読み取る方が一般的です。これをより容易にするためには、</p>
+<ul>
+  <li>文書を細かく分け、見出しで概説する </li>
+  <li>強固な構造を体系化する </li>
+  <li>黒丸つきリストを使用する </li>
+  <li>簡潔に書く；とりとめもなく書かない </li>
+  <li>最初に要点を、次に詳細を </li>
+  <li>"はじめに" の章以外では長々と紹介文を書かない </li>
+  <li>説明は明快に </li>
+  <li>そしてその文章を明らかにする具体的な例を挙げる。 (一つの例は千の単語に匹敵する) </li>
+</ul>
+<p>文書の重要な箇所を目立たせることによって、読者は正しい箇所をすばやく簡単に見つけることができます。最初に要点をざっと提示し、それから説明し
+ます。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="section">節（セクション）</a><code>&lt;div class="<em>section</em>"&gt;</code></h3>
+<p>文書中の「節（セクション）」をマークするには <code>&lt;div class="section"&gt;</code>
+を使用します。これには見出しと内容が含まれます。通常「節（セクション）」は周りのテキストに比べて少しだけインデントされます。&nbsp;<br>
+</p>
+<div class="example">
+<pre class="code"><!--   --><em>&lt;div class="section"&gt;</em>
+<!--   -->  <em>&lt;h2&gt;</em><em>&lt;a name="structure"&gt;</em>一般構造<em>&lt;/a&gt;</em><em>&lt;/h2&gt;</em><br><br><!--   -->  ...<br><!--   --><em>&lt;/div&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<div class="section">
+<h2><a name="structure">一般構造</a></h2>
+... </div>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="data">データテーブル</a> <code>：&lt;table class="<em>data</em>"&gt;
+　</code></h3>
+<p>ある HTML
+テーブルがデータテーブルであることをハッキリさせるにはこのクラスを使用します。これによってスタイルシートは色と枠線を追加す
+ることができます。（mozilla.org
+ではまだレイアウトにテーブルを使用しているので、無差別にテーブルを色付けすることができません。）偶数／奇数のストライプが必要なら、自分で作成せず
+に <code>even</code> と <code>odd</code> クラスを使用します。
+</p>
+</div>
+</div>
+<div class="section">
+<h2><a name="quotations">引用</a></h2>
+<div class="section">
+<h3><a name="blockquote">長文引用（Block Quotes）</a>: <code><em>&lt;blockquote&gt;</em></code>
+（付属要素： <code>&lt;<em>address</em>&gt;</code>）</h3>
+<p>長文引用（Block Quotes）- 段落もしくは他のブロックレベルのコンテン
+ツの引用にはこれを使用します。終了タグの前に <code>&lt;address&gt;</code>
+を伴って引用元を明示することができます。<br>
+</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;blockquote cite="http://www.faqs.org/rfcs/rfc1866.html"&gt;</em>
+<!-- --> <em>&lt;p&gt;</em>BLOCKQUOTE 要素には、別の書類から引用された文章が含まれます。<em>&lt;/p&gt;</em>
+<!-- --> <em> &lt;p&gt;</em>典型的なレンダリングとしては、左右を少し字下げした上で、またはそのまま、<br> 斜体で表示されるようです。BLOCKQUOTE では一般的に引用部分の前後に<br> 余白を空けます。<em>&lt;/p&gt;</em>
+<!-- --> <em> &lt;p&gt;</em>Single-fontでは、左端に大なり記号(&gt;)のような記号を縦に並べるという、<br> 電子メールでの引用のスタイルを使うことができます。<em>&lt;/p&gt;</em>
+<!-- --> <em>&lt;address&gt;</em><em>&lt;a href="http://www.faqs.org/rfcs/rfc1866.html"&gt;</em>HTML<br><!-- --> 2.0<em>&lt;/a&gt;</em><em>&lt;/address&gt;</em>
+<!-- --><em>&lt;/blockquote&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<blockquote cite="http://www.faqs.org/rfcs/rfc1866.html">
+  <p>BLOCKQUOTE 要素には、別の書類から引用された文章が含まれます。</p>
+  <p>典型的なレンダリングとしては、左右を少し字下げした上で、またはそのまま、斜体で表示されるようです。BLOCKQUOTE では一般
+的に引用部分の前後に余白を空けます。</p>
+  <p>Single-fontでは、左端に大なり記号(&gt;)のような記号を縦に並べるという、電子メールでの引用のスタイルを使うことができま
+す。</p>
+  <address><a href="http://www.faqs.org/rfcs/rfc1866.html">HTML 2.0</a></address>
+</blockquote>
+</div>
+<span class="comment">（訳注：訳文は<a
+ href="http://hp.vector.co.jp/authors/VA014833/RFC1866SJ/5.html#5.5.4">超
+越書類表記法 第2.0版</a>を参考）</span>
+</div>
+</div>
+<div class="section">
+<h3><a name="quote">短文引用</a>：<code>&lt;div class="<em>quote</em>"&gt;</code>
+（付属要素： <code>&lt;<em>q</em>&gt;</code> と <code>&lt;<em>cite</em>&gt;）</code></h3>
+<p>短文引用 -
+長文引用ほどの大きさではない、フレーズからセンテンスの引用にはこれを使用します。引用文は <code>&lt;q&gt;</code>
+内に、引用元があればその後ろの <code>&lt;cite&gt;</code> に入れます。<br>
+</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;div class="quote"&gt;</em>
+<!-- --> <em>&lt;q&gt;</em>Mozilla は Microsoft IE に代わる最高でフリーのブラウザであり、 <br><!-- --> そして起動もより速い。<em>&lt;/q&gt;</em>
+<!-- --> <em>&lt;cite&gt;</em>Rex Baldazo, C|Net<em>&lt;/cite&gt;</em>
+<!-- --><em>&lt;/div&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<div class="quote"> <q>Mozilla は Microsoft IE
+に代わる最高でフリーのブラウザであり、そして起動も
+より速い。</q> <cite>Rex Baldazo, C|Net</cite>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="ephigraph">エピグラフ</a>：<code>&lt;<em>blockquote
+class="epigraph"</em>&gt;</code> もしくは <code>&lt;div class="<em>epigraph</em>"&gt;<br>
+</code></h3>
+<p><a href="http://dictionary.reference.com/search?q=epigraph">エピグラフ</a>と
+はモットーもしくは引用であり、通常は文書の冒頭に置かれ、文書の主題に通じます。エピグラフタグの使用法は上記の <code>&lt;blockquote&gt;</code>
+と <code>&lt;div class="quote"&gt;</code> と同じです。<br>
+</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;h2&gt;</em>MLP とは何<span
+ style="font-family: mon;">？</span><em>&lt;/h2&gt;</em>
+<!-- --><em>&lt;div class="epigraph"&gt;</em>
+<!-- --> <em>&lt;q&gt;</em>英語は単なる一言語でしかない。<em>&lt;/q&gt;</em>
+<!-- --> <em>&lt;cite&gt;</em>Mozilla i18n and l10n Guidelines<em>&lt;/cite&gt;</em>
+<!-- --><em>&lt;/div&gt;</em>
+<!-- --><em>&lt;p&gt;</em>Mozilla Organization は標準に準拠して...<em>&lt;/p&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<h2>MLP とは何？</h2>
+<div class="epigraph"> <q>英語は単なる一言語でしかない。</q> <cite>Mozilla
+i18n and l10n Guidelines</cite> </div>
+<p>Mozilla Organization は標準に準拠して...</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2><a name="notes">いろいろな種類の注釈</a></h2>
+<div class="section">
+<h3><a name="remark">著者／編者のコメント</a>：<code>&lt;div
+class="<em>remark</em>"&gt;</code> と <code>&lt;span class="<em>remark</em>"&gt;<br>
+</code></h3>
+<p>草稿中の著者もしくは編者のコメントを明示するにはこれを使用します。（これはまた、コードブロック中のコメントにも使用されます。）目立たせるた
+めに句読点等を追加しないこと；それらはスタイルシートが生成します。<br>
+</p>
+<div class="example">
+<pre class="code"><!-- -->このフラグは、子フレームの合計領域がフレームの固定ボックスを<br>超えた場合にセットされる。<em> &lt;span class="remark"&gt;"固定ボックス"って</em><br><!-- -->なんだ？)<em>&lt;/span&gt;</em> このフラグがセットされ、そして...<br><!-- --></pre>
+<div class="screen">このフラグは、子フレームの合計領域がフレームの固定ボックスを超えた場合にセットされる。<span
+ class="remark">"固定ボックス"ってなんだ？</span> このフラグがセットされ、そして... </div>
+</div>
+</div>
+<div class="section">
+<h3><a name="note">一般的な"注釈"</a>：<code>&lt;span class="<em>note</em>"&gt;</code>、<code>&lt;p
+class="<em>note</em>"&gt;</code> と <code>&lt;div class="<em>note</em>"&gt;<br>
+</code></h3>
+<p>注釈をマークするにはこれを使用します。<strong>注釈の前に置かれるテキスト "Note："
+はスタイルシートが生成し</strong>、たいていはフォントや色の変更も行われます。<br>
+</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;p&gt;</em>このリリースノートでは、Mozilla 1.2.1 に関する、システム必要条件、<br> インストール手順、既知の問題について記述しています。<em>&lt;/p&gt;</em>
+<!-- --><em>&lt;p class="note"&gt;</em>バグナンバーを参照すると（マウスポインタを当てると）、<br> 該当する問題や機能に関する情報（バグレポートの詳細（英語））を<br> 見ることができます。<em>&lt;/p&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<p>このリリースノートでは、Mozilla 1.2.1 に関する、システム必要条件、インストール手順、既知の問題について記述しています。</p>
+<p class="note">バグナンバーを参照すると（マウスポインタを当てると）、該当する問題や機能に関する情報（バグレポートの詳細（英
+語））を見ることができます。</p>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="sidenote">補足項目</a>：<code>&lt;div
+class="<em>sidenote</em>"&gt;<br>
+</code></h3>
+<p>このクラスは本文とは直接関連のない、したがって議論の主な流れから離しておくべき短い項目の情報（もしくはリンク）に使用します。一般的にサイ
+ドバーは横にフ
+ロートされますが、フロート無しでもテキストを無理なく読めるようにしなければなりません：単純に別の背景か枠線によって分離するとよいでしょう（あるい
+は何もしない；例えば Lynx 上で）。</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;p&gt;</em>PLDHash インプリメンテーションはとても低レベルなインプリメンテーションで、<br> Cで書かれています。これは大変柔軟ですが、理解して使用するにはいくらか<br> 時間がかかります。基本的なガイドはここに含まれていますが、多くの潜在的な<br> キャスティングエラーを簡単に回避するには C++ で書かれた ... を読まなくては<br> なりません。<em>&lt;/p&gt;</em>
+<!-- --><em>&lt;p class="sidenote"&gt;</em>PLDHash の 'D' は pldhash の "double-hashing"<br> インプリメンテーションのことで、PLDHash がハッシュの衝突を解決する方法です。<em>&lt;/p&gt;</em>
+<!-- --><em>&lt;p&gt;</em><em>&lt;code&gt;</em>PLDHashEntryHdr<em>&lt;/code&gt;</em> から派生したエントリー構造タイプを必ず宣言します。<br> この入力構造にはあなたがハッシュテーブル（すべてのポインタもしくは固定長データ形式）<br> に保存を望むどんなデータでも含むことができるべきです。<em>&lt;span class="note"&gt;</em><br> 二重ハッシュ・インプリメンテーションの為に、ハッシュテーブルが変更された際は<br> エントリーがメモリーに入ってくるかもしれません。エントリーのポインターを<br> 変えないようにするには、代わりに <em>&lt;a href="#PLHashTable"&gt;</em>PLHashTable<em>&lt;/a&gt;</em> の使用<br> を検討するのもよいでしょう<em>&lt;/p&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<p>PLDHash インプリメンテーションはとても低レベルなインプリメンテーションで、C
+で書かれています。これは大変柔軟ですが、理解して使用するにはいくらか時間がかかります。基本的なガイドはここに含まれていますが、多くの潜在的なキャ
+スティングエラーを簡単に回避するには C++ で書かれた ... を読まなくてはなりません。</p>
+<p class="sidenote">PLDHash の 'D' は pldhash の "double-hashing"
+インプリメンテーションのことで、PLDHash がハッシュの衝突を解決する方法です。</p>
+<p><code>PLDHashEntryHdr</code>
+から派生したエントリー構造タイプを必ず宣言します。この入力構造にはあなたがハッシュテーブル（すべてのポインタもしくは固定長データ形式）に保存を望
+むどんなデータでも含むことができるべきです。 <span class="note">二重ハッシュ・インプリメンテーションの為に、ハッシュテーブ
+ルが変更された際はエントリーがメモリーに入ってくるかもしれません。エン
+トリーのポインターを変えないようにするには、代わりに <a href="#PLHashTable">PLHashTable</a>
+の使用を検討するのもいいでしょう</span></p>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="key-point">主要な注釈</a><code>：&lt;div class="<em>key-point</em>"&gt;<br>
+</code></h3>
+<p>テキスト中の重要な箇所を囲みます - 目立たせたり、あるいは引き離したりする時に使用します。（しかし、重大なお知らせには <a
+ href="#important">important</a> を使用します）
+</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;div class="key-point"&gt;</em>
+<!-- --> <em>&lt;h2&gt;</em>Mozilla 1.7 ベータが出ました！<em>&lt;/h2&gt;</em>
+<!-- --> <em>&lt;p&gt;</em>このリリースには新しくすばらしい機能と不具合の修正が含まれます... <em>&lt;/p&gt;</em>
+<!-- --><em>&lt;/div&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<div class="key-point">
+<h2>Mozilla 1.7 ベータが出ました！</h2>
+<p>このリリースには新しくすばらしい機能と不具合の修正が含まれます...</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="important">重要な（「必ず読むべき」）：</a><code>&lt;*
+class="<em>important</em>"&gt;</code></h3>
+<p>絶対に見逃してはいけない重要なお知らせを明示するにはこれを使用します。通常 <code>important</code>
+はより大きなフォントと明るい色、もしくはどちらかで表示されます。また、そのテキストが <code>&lt;strong&gt;</code>
+に挟まれるようにしてください。</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;p class="important"&gt;</em>Netscape Communicator に問題があってここに<br> 来たのですか？もしそうなら、間違った場所にいます。次の場所を<br> 訪れてください、...<em>&lt;/p&gt;</em><br> </pre>
+<div class="screen">
+<p class="important">Netscape Communicator
+に問題があってここに来たのですか？もしそうなら、間違った場所にいます。次の場所を訪れてください、...</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2><a name="emphasis">強調</a></h2>
+<div class="section">
+<h3><a name="">通常の強調</a>：<code><em>&lt;em&gt;</em></code></h3>
+<h3><a name="">強い強調</a>：<code><em>&lt;strong&gt;</em></code></h3>
+<h3><a name="">より強い強調</a>：<code>&lt;strong class="<em>stronger</em>"&gt;</code>　
+</h3>
+<h3><a name="">とても強い強調</a>：<code>&lt;strong class="<em>very-strong</em>"&gt;</code>　
+</h3>
+<p>これらは様々なレベルの強調を明示します。例えば典型的な表示様式として、イタリック、ボールド、ボールド・イタリック、ボールド大文字があげら
+れます。</p>
+<div class="example">
+<pre class="code"><!-- -->Some <em>&lt;em&gt;</em>more<em>&lt;/em&gt;</em>, <em>&lt;strong&gt;</em>more<em>&lt;/strong&gt;</em>,<br><!-- --><em>&lt;strong class="stronger"&gt;</em>more<em>&lt;/strong&gt;</em>,<br><!-- --><em>&lt;strong class="very-strong"&gt;</em>more emphasis<em>&lt;/strong&gt;</em>!<br><!-- --></pre>
+<div class="screen"> Some <em>more</em>, <strong>more</strong>, <strong
+ class="stronger">more</strong>, <strong class="very-strong">more
+emphasis</strong>! </div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2><a name="figures">例と図形</a><br>
+</h2>
+<div class="section">
+<h3><a name="figure">図形：</a><code>&lt;div class="<em>figure</em>"&gt;</code></h3>
+<p>図形やダイアグラムとしてイメージをマークするにはこれを使用します。通常 <code>figure</code>
+は中央に置かれるブロックとしてレンダリングされます。<br>
+</p>
+</div>
+<div class="section">
+<h3><a name="example">例：</a><code>&lt;div class="<em>example</em>"&gt;</code></h3>
+<p>すべてのタイプの「例」に使用します。（しかし、<a href="#blockcode">コード</a>ブロックは &lt;code&gt;
+タグで忘れずに囲むこと。）<code>title</code> 属性でキャプションテキストを与えることができます。<br>
+</p>
+</div>
+<div class="section">
+<h3><a name="good">良い用法：</a><code>&lt;div class="<em>good
+example</em>"&gt;</code> と <code>&lt;pre class="<em>good code</em>"&gt;</code></h3>
+<p>良い用法として用いられる例とコードを特にマークするにはこの <code>good</code>
+クラスを使用します。（そのコードサンプル
+が <code>good example</code> 内にあるのであれば、そのコード自身は <code>good</code>
+を必要としません。）</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;p&gt;</em>この例ではメソッドが多すぎます：<em> &lt;/p&gt;</em>
+<!-- --><em>&lt;pre class="bad code"&gt;</em>
+<!-- -->interface nsIFoo : nsISupports {<br><!-- --> long getLength();<br><!-- --> void setLength(in long length);<br><!-- --> long getColor();<br><!-- -->};<br><!-- --><em>&lt;/pre&gt;</em>
+<!-- --><em>&lt;p&gt;</em>以下のコードはまったく同じ c++ 識別記号を生成しますが、<br>よりスクリプトフレンドリーです。<em>&lt;/p&gt;</em>
+<!-- --><em>&lt;pre class="good code"&gt;</em>
+<!-- -->interface nsIFoo : nsISupports {<br><!-- --> attribute long length;<br><!-- --> readonly attribute long color;<br><!-- -->};<br><!-- --><em>&lt;/pre&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<p>この例ではメソッドが多すぎます：</p>
+<pre class="bad code"><!-- -->interface nsIFoo : nsISupports {<br><!-- --> long getLength();<br><!-- --> void setLength(in long length);<br><!-- --> long getColor();<br><!-- -->};<br><!-- --></pre>
+<p>以下のコードはまったく同じ c++ 識別記号を生成しますが、よりスクリプトフレンドリーです。</p>
+<pre class="good code"><!-- -->interface nsIFoo : nsISupports {<br><!-- --> attribute long length;<br><!-- --> readonly attribute long color;<br><!-- -->};<br><!-- --><br></pre>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="bad">悪い用法：</a><code>&lt;div class="<em>bad example</em>"&gt;</code>
+と <code>&lt;pre class="<em>bad code</em>"&gt;</code></h3>
+<p>無効あるいは悪い用法として例やコードを特にマークするにはこの <code>bad</code> クラスを使用します。
+（そのコードサンプルが <code>bad example</code> 内にあるのであれば、そのコード自身は <code>bad</code>
+を必要としません。）</p>
+</div>
+</div>
+<div class="section">
+<h2><a name="computers">コンピュータ</a></h2>
+<div class="section">
+<h3><a name="input">キーボード入力：</a><code><em>&lt;kbd&gt;</em></code></h3>
+<p><q cite="http://www.w3.org/TR/html40/">ユーザによって入力されるテキスト</q> &mdash;
+ユーザが入力すべきテキストとキーの組み合わせのマーキングにはこれを使用します。</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;kbd&gt;</em>Esc<em>&lt;/kbd&gt;</em> を押して <em>&lt;kbd&gt;</em>:wq<em>&lt;/kbd&gt;</em> を入力する。<br><!-- --></pre>
+<div class="screen"><kbd>Esc</kbd> を押して <kbd>:wq</kbd> を入力する。</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="var">変数とプレースホルダーテキスト：</a><code><em>&lt;var&gt;</em></code></h3>
+<p>プレースホルダーをマークするにはこれを使用します。</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;kbd&gt;</em>Esc<em>&lt;/kbd&gt;</em> を押して <em>&lt;kbd&gt;</em>:w <em>&lt;var&gt;</em>filename<em>&lt;/var&gt;</em><em>&lt;/kbd&gt; を入力します。</em><br><!-- --></pre>
+<div class="screen"> <kbd>Esc</kbd>&nbsp;を押して<kbd>:w <var>filename</var></kbd>
+を入力します。</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="command">コマンド：</a><code>&lt;code class="<em>command</em>"&gt;</code></h3>
+<p>コマンド名をマークするにはこれを使用します。</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;code class="command"&gt;</em>ls<em>&lt;/code&gt;</em> コマンドはカレントディレクトリ内の<br>すべてのファイルの一覧を表示します。<br><!-- --></pre>
+<div class="screen"> <code class="command">ls</code>
+コマンドはカレントディレクトリ内のすべての
+ファイルの一覧を表示します。 </div>
+</div>
+</div>
+<div class="section">
+<h3><a name="filename">ファイル名と URI：<abbr
+ class="uniform resource identifier"></abbr></a><code>&lt;code
+class="<em>filename</em>"&gt;</code></h3>
+<p>ファイル名、パス、そして URI にはこれを使用します。</p>
+<div class="example">
+<pre class="code"><!-- -->ファイルを次のように保存します<br><!-- --><em>&lt;code class="filename"&gt;</em>/home/<em>&lt;var&gt;</em>your_username<em>&lt;/var&gt;</em>/.bashrc<em>&lt;/code&gt;</em>
+<!-- --></pre>
+<div class="screen">ファイルを次のように保存します <code class="filename">/home/<var>your_username</var>/.bashrc</code>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="icode">インラインコード：</a><code><em>&lt;code&gt;</em></code></h3>
+<p>コードのインラインフラグメントはどんなものでもこれでマークします。これはテキストを固定幅のフォントで表示し、他のコード-スタイルへの変更を
+行いま
+す（生成されたコンテンツスタイルの使用停止など）。</p>
+</div>
+<div class="section">
+<h3><a name="blockcode">コードブロック：</a><code>&lt;pre class="<em>code</em>"&gt;</code></h3>
+<p>すべてのコードブロックはこれでマークします。周りのテキストから視覚的にコードを離すのに加えて、<code>&lt;span
+class="<em>remark</em>"&gt;</code> や <code>&lt;var&gt;</code>
+等のマークアップ用にシンタックス・ハイライトモー
+ドをスタイルシートに示唆し、生成されたコンテンツを無効にします。重要なフラグメントを強調表示させるには&nbsp;<a
+ href="#emphasis">強調</a>
+を使用します。</p>
+<p>無効なコードは <code>bad code</code> でマーク
+します。</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;pre class="code"&gt;</em>
+<!-- -->ファイルを次のように保存します<br><!-- --><em>&lt;em&gt;</em>&lt;code class="filename"&gt;<em>&lt;/em&gt;</em>/home/<em>&lt;em&gt;</em>&lt;var&gt;<em>&lt;/em&gt;</em>your_username<em>&lt;em&gt;</em>&lt;/var&gt;<em>&lt;/em&gt;</em>/.bashrc<em>&lt;em&gt;</em>&lt;/code&gt;<em>&lt;/em&gt;</em>
+<!-- --><em>&lt;/pre&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<pre class="code"><!-- -->ファイルを次のように保存します<br><!-- --><em>&lt;code class="filename"&gt;</em>/home/<em>&lt;var&gt;</em>your_username<em>&lt;/var&gt;</em>/.bashrc<em>&lt;/code&gt;</em>
+<!-- --></pre>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="screen">テキスト・スクリーン・キャプチャー（ブロック出力）：</a><code>&lt;pre
+class="<em>screen</em>"&gt;</code> と<code>&lt;div class="<em>screen</em>"&gt;</code></h3>
+<p>ターミナルウインドウやアスキーアート GUI
+デザインからのスクリーン・キャプチャー等、コンピュータテキスト出力のブロックをマークするには <code>pre</code> に <code>screen</code>
+クラスを使用します。また、<code>&lt;div&gt;</code> にこのクラスをセットして HTML
+マークアップを使い、こうした出力を表現することもできます。ページコードの例を参照してください。</p>
+</div>
+<div class="section">
+<h3><a name="ouput">インライン出力：</a><code><em>&lt;samp&gt;</em></code></h3>
+<p>テキスト出力のインライン・フラグメントをマークするにはこれを使用します。</p>
+<div class="example">
+<pre class="code"><!-- -->プロンプトで <em>&lt;kbd&gt;</em>c:<em>&lt;/kbd&gt;</em> を入力し、<em>&lt;kbd&gt;</em>enter<em>&lt;/kbd&gt;</em> を押します。<br><!-- -->プロンプトが <em>&lt;samp&gt;</em>C:\&gt;<em>&lt;/samp&gt;</em> になるはずです。<br><!-- --></pre>
+<div class="screen"> プロンプトで <kbd>c:</kbd> を入力し、<kbd>enter</kbd>
+を押します。プロンプトが <samp>C:\&gt;</samp> になるはずです。 </div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2><a name="navigation">ナビゲーション</a></h2>
+<div class="section">
+<h3><a name="toc">目次（table of contents）：</a><code>&lt;ol class="<em>toc</em>"&gt;、</code><code>&lt;ul class="<em>toc</em>"&gt;</code> と <code>&lt;dl class="<em>toc</em>"&gt;</code></h3>
+<p><code>"toc"</code> は目次（table of
+contents）としてのリストをマークします。単数もしくは複数のレベルの単純なリストには <code>&lt;ol&gt;</code>
+を使用します。（複数レベルのリストには最も外側のリストにのみこのクラスをセットします。）リスト内エントリーの順番が重要でない<strong>時だ
+け</strong> <code>&lt;ol&gt;</code>
+の代わりに <code>&lt;ul&gt;</code> を使用します。</p>
+<p><code>&lt;dl&gt;</code> 使用時には、項目（<code>&lt;dt&gt;</code>）に項目/ページ名を与え、
+定義（<code>&lt;dd&gt;</code>）
+には短い説明もしくはその項目/ページの概要を与えます。</p>
+</div>
+<div class="section">
+<h3><a name="snav">ローカルな（ミニ）ナビゲーション：</a><code>&lt;ul class="<em>snav</em>"&gt;</code></h3>
+<p>snav とは、どちらでもお好きな方でかまいませんが、"short navigation" もしくは "sectional
+navigation"
+のことで、ローカルなナビゲーション（すべて同一ページの各部へのリンク）の短いリスト用です。この使用は（テンプレートデザイ
+ナーとは逆に）各ページの著者の自由裁量にまかされますが、正式な目次では<em>ありません</em>。</p>
+<div class="example">
+<pre class="code"><!-- --><em>&lt;ul class="snav"&gt;</em>
+<!-- --> <em>&lt;li&gt;</em><em>&lt;a href="1.4/"&gt;</em>1.4<em>&lt;/a&gt;</em>
+<!-- --> <em>&lt;li&gt;</em><em>&lt;a href="1.5/"&gt;</em>1.5<em>&lt;/a&gt;</em>
+<!-- --> <em>&lt;li&gt;</em><em>&lt;a href="1.6/"&gt;</em>1.6<em>&lt;/a&gt;</em>
+<!-- --> <em>&lt;li&gt;</em><em>&lt;a href="1.7/"&gt;</em>1.7<em>&lt;/a&gt;</em>
+<!-- --><em>&lt;/ul&gt;</em>
+<!-- --></pre>
+<div class="screen">
+<ul class="snav">
+  <li><a href="1.4/">1.4</a> </li>
+  <li><a href="1.5/">1.5</a> </li>
+  <li><a href="1.6/">1.6</a> </li>
+  <li><a href="1.7/">1.7</a> </li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section">
+<h3><a name="ex-ref">外部（外部サイト）への参照</a>：<code>&lt;a
+class="<em>ex-ref</em>"&gt;</code></h3>
+<p>別サイトへのリンクを意味するには <code>ex-ref</code> を使用します。例えば <a
+ href="http://mozillazine.org" class="ex-ref">MozillaZine</a> は <code>ex-ref</code>
+としてマークされるでしょう。<code>ex-ref</code>
+リンクの典型的なフォーマットは、標準のリンクとは少しだけ違った形になります。訪問者に mozilla
+のページから離れることを通告するのが目的です。<br>
+</p>
+</div>
+</div>
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/contribute/writing/markup.html">英語版</a> 2004/09/13</span> - <span>和訳版 2004/12/12</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/contribute/writing/markup.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

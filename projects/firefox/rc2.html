@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla Firefox プロジェクト (開発情報)</title>
+<link rel="alternate" hreflang="en" modified="November 17, 2005">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/rc2.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla Firefox プロジェクト</h1>
+<p class="comment">【訳注: このページは、英語版のページを参考のために和訳したものです。】</p>
+<img src="../../images/firefox-1.5-rc2.png" alt="" style="float:right; height:192px; width:358px" />
+<h3>Firefox 1.5 Release Candidate 2</h3>
+<p><strong>Firefox 1.5 Release Candidate 2</strong> が公開されました。これは、今年末にリリースが予定されている Firefox 1.5 の 2 番目のリリース候補であり、互換性調査の実施とフィードバック収集のため、開発者およびテスター向けに提供されるものです。</p>
+<!-- #BeginSection "mj-mktg" -->
+<p><strong>注意</strong>: これは Firefox 1.5 の最終版ではなく、<strong>テスト目的に限って</strong> 利用できる開発途上版で、ユーザコミュニティ等を通じたエンドユーザサポートはありません。エンドユーザの方は安定版の <a href="/products/firefox/">Firefox 1.0.7</a> をご利用ください。</p>
+<p>詳しくは <a href="/products/firefox/releases/1.5rc2.html">Firefox 1.5 RC 2 リリースノート</a> をご覧ください。</p>
+<h4>RC 2 日本語版</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/1.5rc2/win32/ja/Firefox%20Setup%201.5rc2.exe">Firefox 1.5 RC 2 for Windows</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/1.5rc2/linux-i686/ja/firefox-1.5rc2.tar.gz">Firefox 1.5 RC 2 for Linux</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/firefox/releases/1.5rc2/mac/ja-JP-mac/Firefox%201.5rc2.dmg">Firefox 1.5 RC 2 for Mac OS X</a></li>
+</ul>
+<!-- #EndSection "mj-mktg" -->
+<h3>これまでのアルファ版とベータ版</h3>
+<ul>
+  <li><a href="/products/firefox/releases/1.5beta2.html">Deer Park Beta 2</a> (2005/10/06)</li>
+  <li><a href="/products/firefox/releases/1.5beta1.html">Deer Park Beta 1</a> (2005/09/08)</li>
+  <li><a href="../deerpark/releases/alpha2.html">Deer Park Alpha 2</a> (2005/07/12)</li>
+  <li><a href="../deerpark/releases/alpha1.html">Deer Park Alpha 1</a> (2005/05/31)</li>
+</ul>
+<h3>現在のリリース</h3>
+<ul>
+  <li><a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/2.0.0.14/">Firefox 2.0.0.14</a> (2005/09/20)</li>
+</ul>
+<h3>次期メジャーリリース</h3>
+<ul>
+  <li><a href="roadmap.html">Firefox 1.5</a></li>
+</ul>
+<h3>プロジェクトのリンク</h3>
+<p><a href="roadmap.html">2.0 開発ロードマップ</a> - Firefox 2.0 に向けた計画と優先順位を解説しています。</p>
+<p><a href="charter.html">Firefox 1.0 開発憲章</a> - このプロジェクトが始められた理由と、プロジェクトの目標を概説しています。</p>
+<h3>開発者向けリンク</h3>
+<p><a href="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/2.0.0.14/source/firefox-2.0.0.14-source.tar.bz2">Firefox 2.0.0.14 ソース tarball</a> - Firefox 固有のソースは、レポジトリの mozilla/browser と mozilla/toolkit、mozilla/chrome 以下にあります。</p>
+<p><a href="build.html">Firefox のビルド方法</a> - 解説と設定について</p>
+<p><a href="l10n/">Firefox のローカライズ</a> - その手順</p>
+<p><a href="extensions/">Firefox 拡張機能</a> - 新しい拡張機能システムに関する開発ノートです。</p>
+<p><a href="system/">シェルの統合</a> - 新しいクロスプラットフォームなシェルの統合システムです。</p>
+<p><a href="review.html">Firefox レビュー要件</a> - mozilla/browser ディレクトリへのすべてのチェックインについて<br><a href="../toolkit/review.html">ツールキットレビュー要件</a> - mozilla/toolkit、mozilla/chrome ディレクトリへのすべてのチェックインについて</p>
+<h3>品質保証</h3>
+<p>様々な機能の <a href="qa/">品質保証テスト</a> - 作業中です。</p>
+<h3>ユーザインターフェイス</h3>
+<p><a href="ue/">ユーザインターフェイス</a> に関するドキュメントです。</p>
+<h3>過去の資料</h3>
+<p><a href="roadmap-1.0.html">1.0 開発ロードマップ</a> - Firefox 1.0 に向けたマイルストーンと計画を解説しています。</p>
+<h3>協力者募集中</h3>
+<p>私たちは「縁の下の力持ち」になってコードの作業を行ってくれる方を常に募集しています。Web ブラウザ技術に興味があるなら、一流のオープンソース・ブラウザプロジェクトに参加してみませんか? 特に、Mac OS X プログラミングのスキルを持った人と Windows 開発者を探しています。何かバグを見つけて修正することから始めてみましょう。その手順を理解することは「参加に必要な条件」の一部と考えていますので、ここでは特に解説していません ;-)</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/rc2.html">英語版</a> 2005/11/17</span> - <span>和訳版 2005/11/21</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/rc2.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

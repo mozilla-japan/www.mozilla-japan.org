@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="tpl/mozilla-japan/mozilla-japan.xsl" type="text/xsl"?>
+
+<contents xml:lang="ja" lang="ja"
+	xmlns:tt="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns="http://dynamis.jp/2003/TransTools">
+
+<page id="l10n-thanks" basename="thanks" pathtoroot="../../">
+
+<meta>
+	<dc:title>Acknowlegement</dc:title>
+	<dc:creator>dynamis</dc:creator>
+	<dc:language>ja</dc:language>
+</meta>
+
+
+<tt:htmlheader xmlns="http://www.w3.org/1999/xhtml">
+	<tt:include idref="htmlheader-l10n"/>
+</tt:htmlheader>
+
+
+<tt:htmlbody xmlns="http://www.w3.org/1999/xhtml">
+	<h1><tt:meta mode="title"/></h1>
+	<p>Same as all other open source works, localization is the collaboration work with contributers, bug reporters and QA testers. We sincerely appreciate their help and I hope all of you're enjoying your sweet fruits.<br/>
+		Though not complete, here is the list of cooperators' name in alphabetical order. If you have done well but not in this list or you want to fix the representation of your name, so sorry and tell us please...</p>
+	<p class="note">Each list for the same product contains only names who contributed after the previous version.</p>
+	
+	<!-- * Firefox 1.5.x.x * -->
+	<tt:section id="Firefox1.5">
+		<h2>Firefox 1.5</h2>
+		<h3>contributers</h3>
+		<dl>
+			<dt>help translation</dt>
+			<dd>mar</dd>
+			<dt>Mac locale adviser</dt>
+			<dd>Joker</dd>
+		</dl>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li title="あ">a</li>
+			<li>btm</li>
+			<li>Cai</li>
+			<li>Chase Phillips</li>
+			<li title="えむけい">emukei</li>
+			<li title="ふぉーちゅん">fortune</li>
+			<li>fu7mu4</li>
+			<li>harunaga</li>
+			<li title="秀の介">hide-no-suke</li>
+			<li>hir</li>
+			<li title="池田">ikeda</li>
+			<li>Ivarn</li>
+			<li>kiyo</li>
+			<li title="小沢">kozawa</li>
+			<li>Kunihiro</li>
+			<li>level</li>
+			<li>Makoto</li>
+			<li>mi</li>
+			<li>moru</li>
+			<li title="レポなしテスター">no-repo tester</li>
+			<li>Norah</li>
+			<li title="のり">nori</li>
+			<li>Northfox</li>
+			<li title="おこめ">okome</li>
+			<li>pal</li>
+			<li tile="Axel Hecht">Pike</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>pswf</li>
+			<li>Rafael Ebron</li>
+			<li title="Sun Microsystems, Inc.">Reiko Saito</li>
+			<li>RGV</li>
+			<li>RSZ</li>
+			<li>Ryuzi Kambe</li>
+			<li>shimono</li>
+			<li title="ただの通行人">tada-no-tsukonin</li>
+			<li>takeshi</li>
+			<li>v v v</li>
+			<li title="山口">yama</li>
+			<li>yn_</li>
+			<li title="夜人">yohito</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	
+	<!-- * Firefox 1.0.x * -->
+	<tt:section id="Firefox1.0">
+		<h2>Firefox 1.0</h2>
+		<h3>contributers</h3>
+		<dl>
+			<dt>base localization</dt>
+			<dd>furu, kazu, mal, kozawa and snip</dd>
+			<dt>Mac locale adviser</dt>
+			<dd>Joker</dd>
+			<dt>help translation</dt>
+			<dd>mar</dd>
+			<dt>help win screenshots</dt>
+			<dd>level, Makoto</dd>
+			<dt>help mac screenshots</dt>
+			<dd>Joker</dd>
+		</dl>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li title="あおもりくま">aomorikuma</li>
+			<li title="Benjamin Smedberg">bsmedberg</li>
+			<li>btm</li>
+			<li>deegg</li>
+			<li title="カスベァ">casbear</li>
+			<li>cmp</li>
+			<li>egota</li>
+			<li title="ふぉーちゅん">fortune</li>
+			<li title="裸電球">hadakadenkyu</li>
+			<li>haruha</li>
+			<li title="池田">ikeda</li>
+			<li>Makoto</li>
+			<li>Motohiko</li>
+			<li>noririty</li>
+			<li>NPK</li>
+			<li title="おこめ">okome</li>
+			<li>papineau</li>
+			<li tile="Axel Hecht">Pike</li>
+			<li>Pink</li>
+			<li>pswf</li>
+			<li title="Rafael Ebron">rebron</li>
+			<li>Ryuzi Kambe</li>
+			<li>shimono</li>
+			<li>shiten</li>
+			<li>tomomi</li>
+			<li title="とおやま">tooyama</li>
+			<li>Unghost</li>
+			<li title="山口">yama</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Firefox1.0.1">
+		<h2>Firefox 1.0.1</h2>
+		<h3>contributers</h3>
+		<dl>
+			<dt>total supporter</dt>
+			<dd>kozawa</dd>
+			<dt>Mac locale adviser</dt>
+			<dd>HARUNAGA Hirotoshi, Joker</dd>
+		</dl>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li title="あおもりくま">aomorikuma</li>
+			<li title="ある日本人">aru nihon-jin</li>
+			<li title="Benjamin Smedberg">bsmedberg</li>
+			<li title="Chase Phillips">cmp</li>
+			<li title="David Baron">dbaron</li>
+			<li>deegg</li>
+			<li>enokazu</li>
+			<li title="ふぉーちゅん">fortune</li>
+			<li title="Zbigniew Braniecki">gandalf</li>
+			<li title="ゲストM">guest M</li>
+			<li title="ぐえすと">guesuto</li>
+			<li>huruha</li>
+			<li title="池田">ikeda</li>
+			<li title="Robert Kaiser">KaiRo</li>
+			<li>leva</li>
+			<li>Maeda</li>
+			<li>Makoto</li>
+			<li>mar</li>
+			<li>nochi</li>
+			<li>Norah</li>
+			<li>NorthFox</li>
+			<li title="Axel Hecht">Pike</li>
+			<li>Pink</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>pswf</li>
+			<li title="Rafael Ebron">rebron</li>
+			<li>rhoads</li>
+			<li>Ryuzi Kambe</li>
+			<li>shin</li>
+			<li>tenpuru</li>
+			<li title="とおやま">tooyama</li>
+			<li title="夜人">yohito</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Firefox1.0.2">
+		<h2>Firefox 1.0.2</h2>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li>ALX</li>
+			<li title="あおもりくま">aomorikuma</li>
+			<li title="池田">ikeda</li>
+			<li title="小沢">kozawa</li>
+			<li>Maeda</li>
+			<li>Makoto</li>
+			<li>nochi</li>
+			<li>Norah</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>RGV</li>
+			<li>Ryuzi Kambe</li>
+			<li title="とおやま">tooyama</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Firefox1.0.3">
+		<h2>Firefox 1.0.3</h2>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li>A1_Works</li>
+			<li>ALX</li>
+			<li title="池田">ikeda</li>
+			<li>Joker</li>
+			<li title="小沢">kozawa</li>
+			<li>kz7</li>
+			<li>Makoto</li>
+			<li>Norah</li>
+			<li>pswf</li>
+			<li>RGV</li>
+			<li>Sassy</li>
+			<li>touji</li>
+			<li title="夜人">yohito</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Firefox1.0.4">
+		<h2>Firefox 1.0.4</h2>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li title="小沢">kozawa</li>
+			<li>Makoto</li>
+			<li>Norah</li>
+			<li>pswf</li>
+			<li>shimono</li>
+			<li title="とおやま">tooyama</li>
+			<li title="山口">yama</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Firefox1.0.6">
+		<h2>Firefox 1.0.6</h2>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li>ALX</li>
+			<li>btm</li>
+			<li>Cai</li>
+			<li>enokazu</li>
+			<li>fu7mu4</li>
+			<li title="伊織">iori</li>
+			<li title="カモノハシ">kamonohashi</li>
+			<li title="小沢">kozawa</li>
+			<li>Makoto</li>
+			<li>Norah</li>
+			<li>RGV</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>pswf</li>
+			<li title="とおやま">tooyama</li>
+			<li>usadii3</li>
+			<li>mar</li>
+			<li title="山口">yama</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Firefox1.0.7">
+		<h2>Firefox 1.0.7</h2>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li>Cai</li>
+			<li>Norah</li>
+			<li>Maeda</li>
+			<li>Makoto</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>pswf</li>
+			<li>render</li>
+			<li>suga</li>
+			<li title="とおやま">tooyama</li>
+			<li title="山口">yama</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<!-- * Thunderbird 1.5.x.x * -->
+	<tt:section id="Thunderbird1.5">
+		<h2>Thunderbird 1.5</h2>
+		<h3>contributers</h3>
+		<dl>
+			<dt>Mac locale adviser</dt>
+			<dd>Joker</dd>
+		</dl>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li title="あ">a</li>
+			<li>Cai</li>
+			<li title="ふぉーちゅん">fortune</li>
+			<li title="池田">ikeda</li>
+			<li title="小沢">kozawa</li>
+			<li>level</li>
+			<li>Makoto</li>
+			<li>mar</li>
+			<li>Norah</li>
+			<li>RGV</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>pswf</li>
+			<li>v v v</li>
+			<li title="山口">yama</li>
+			<li>yn_</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	
+	<!-- * Thunderbird 1.0.x * -->
+	<tt:section id="Thunderbird1.0">
+		<h2>Thunderbird 1.0</h2>
+		<h3>contributers</h3>
+		<dl>
+			<dt>base localization</dt>
+			<dd>furu, kazu, mal, kozawa and snip</dd>
+			<dt>localization partner</dt>
+			<dd>pink</dd>
+			<dt>Mac locale adviser</dt>
+			<dd>Joker</dd>
+		</dl>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li>^2</li>
+			<li>ahndalsoo</li>
+			<li title="あおもりくま">aomorikuma</li>
+			<li>btm</li>
+			<li>deegg</li>
+			<li title="カスベァ">casbear</li>
+			<li>cho-san</li>
+			<li>d'Arc</li>
+			<li title="江後田">egota</li>
+			<li title="ふぉーちゅん">fortune</li>
+			<li>funya-</li>
+			<li>gorobie</li>
+			<li>huruha</li>
+			<li title="池田">ikeda</li>
+			<li>kmsh</li>
+			<li>Kuden</li>
+			<li>Kunihiro</li>
+			<li>level</li>
+			<li>Makoto</li>
+			<li>mar</li>
+			<li>Norah</li>
+			<li>NPK</li>
+			<li title="おこめ">okome</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>pswf</li>
+			<li>Ryuzi Kambe</li>
+			<li>SCOTT/TIGER</li>
+			<li>shimono</li>
+			<li>shiten</li>
+			<li>szk_kn</li>
+			<li>tama-chan</li>
+			<li>tenpuru</li>
+			<li>testest</li>
+			<li title="とおやま">tooyama</li>
+			<li>Tone</li>
+			<li title="山口">yama</li>
+			<li>Yukitomi</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Thunderbird1.0.2">
+		<h2>Thunderbird 1.0.2</h2>
+		<h3>contributers</h3>
+		<dl>
+			<dt>Mac locale adviser</dt>
+			<dd>Joker</dd>
+		</dl>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li title="あおもりくま">aomorikuma</li>
+			<li>enokazu</li>
+			<li title="池田">ikeda</li>
+			<li>kakkih</li>
+			<li title="小沢">kozawa</li>
+			<li>Kuden</li>
+			<li>Maeda</li>
+			<li>Makoto</li>
+			<li title="日本語化">nihongoka</li>
+			<li>Norah</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>Ryuzi Kambe</li>
+			<li title="とおやま">tooyama</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Thunderbird1.0.6">
+		<h2>Thunderbird 1.0.6</h2>
+		<h3>contributers</h3>
+		<dl>
+			<dt>Mac locale adviser</dt>
+			<dd>Joker</dd>
+		</dl>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li>Joker</li>
+			<li>Norah</li>
+			<li>Cai</li>
+			<li title="江後田">egota</li>
+			<li title="ぷれみあ">Premier</li>
+			<li title="とおやま">tooyama</li>
+			<li>Maeda</li>
+			<li>Kaz</li>
+			<li>ALX</li>
+			<li>kiyo4_k</li>
+			<li>pswf</li>
+			<li>Mi</li>
+			<li title="山口">yama</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+	
+	<tt:section id="Thunderbird1.0.7">
+		<h2>Thunderbird 1.0.7</h2>
+		<h3>contributers</h3>
+		<dl>
+			<dt>Mac locale adviser</dt>
+			<dd>Joker</dd>
+		</dl>
+		<h3>thanks to</h3>
+		<ul class="personlist">
+			<li>Cai</li>
+			<li>Maeda</li>
+			<li>Makoto</li>
+			<li title="ぷれみあ">Premier</li>
+			<li>pswf</li>
+			<li title="山口">yama</li>
+		</ul>
+		<tt:include idref="contributer-list-footer"/>
+	</tt:section>
+</tt:htmlbody>
+
+</page>
+</contents>

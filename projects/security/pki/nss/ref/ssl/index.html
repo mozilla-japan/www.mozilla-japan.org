@@ -1,0 +1,497 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<TITLE>SSL リファレンス</TITLE>
+
+<!---
+オリジナル文書：SSL Reference
+オリジナルURL ：http://www.mozilla.org/projects/security/pki/nss/ref/ssl/
+
+
+和訳１版：2001/01/26  山口（syamagu@mozilla.gr.jp）
+         （Rev: 1.8 October 18 2000）
+2版：新スタイル適用：午後の紅茶b-victory さんに感謝！
+--->
+
+<link rel="alternate" hreflang="en" modified="April 12,  2003">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/security/pki/nss/ref/ssl/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<div class="trinfo">
+  <p class="em">この文書は鋭意更新中です。</p>
+  <!--p class="text">現在、<a href="">草稿</a> を公開しています。</p>
+
+  <p class="text">コメントは Mozilla Japan 翻訳部門 <a href="http://moz.skillup.jp/jtp/"> フォーラム </a> の <a href="http://moz.skillup.jp/jtp/viewtopic.php?p=3544">該当スレッド</a> にお願いします。</p-->
+  <p class="text">原文 &quot;<a href="http://www.mozilla.org/projects/security/pki/nss/ref/ssl/index.html">SSL Reference</a>&quot; は <a href="http://www.mozilla.org/">mozilla.org</a> をご覧ください。</p>
+
+  <p class="td"><a href="http://www.mozilla-japan.org/">Mozilla Japan</a> - <a href="http://www.mozilla-japan.org/jp/td">翻訳部門</a></p>
+</div>
+
+
+<FONT SIZE="-1"><A HREF="sslintro.html">Next</A>
+ | <A HREF="bklast.html">Index</A></FONT>
+
+<HR>
+
+<CENTER><H2>
+<A NAME="43011">
+ SSL リファレンス
+</A>
+</H2></CENTER>
+
+<FONT SIZE=-1>
+
+<P><A NAME="66305"><center>
+ニュースグループ： 
+<A href="news://news.mozilla.org/netscape.public.mozilla.crypto">
+netscape.public.mozilla.crypto</A><br>
+
+著者： 
+<A href="mailto:cotter@netscape.com?subject=Open Source SSL Ref Feedback">
+Sean Cotter</A><br>
+
+管理者： 
+<A href="mailto:wtc@netscape.com?subject=Open Source SSL Ref Feedback">
+Wan-Teh Chang</A>
+</center></A></P>
+</FONT>
+
+<A HREF="sslintro.html#1028068">
+<H4>第 1 章 &nbsp; SSL アプリケーション概観</H4></A>
+
+<BLOCKQUOTE>
+SSL および関連する API は、準拠するアプリケーションが、認証され、
+干渉されていないことが証明され（tamper-proof）、
+そして暗号化された通信のためにソケットをカスタマイズできるようにしています。
+この章では、いくつかの SSL の基本的な機能についての紹介します。
+第二章 「SSL を使ってみる」 では、サンプルのクライアントおよびサーバ
+アプリケーションでの利用法を解説します。
+</BLOCKQUOTE><dl>
+
+<A HREF="sslintro.html#1027662"><dt><dd>イニシャライズ</A><dl>
+<A HREF="sslintro.html#1039943"><DT><DD>キャッシュのイニシャライズ</A></dl>
+<A HREF="sslintro.html#1027742"><dt><dd>設定</A>
+
+<A HREF="sslintro.html#1027816"><dt><dd>通信</A>
+<A HREF="sslintro.html#1027820"><dt><dd>コールバックで利用される機能</A>
+<A HREF="sslintro.html#1030535"><dt><dd>クリーンアップ</A></dl>
+
+<A HREF="gtstd.html#1005439">
+<H4>第 2 章 &nbsp; SSL を使ってみる</H4>
+</A>
+
+<BLOCKQUOTE>
+この章では、認証および暗号鍵データベース、 NSS サンプルコードを走らせることを含めて、
+どのように環境を設定するか解説します。サンプルコードと makefile は、
+LXR 経由で SSLSamples ディレクトリから入手できます。
+</BLOCKQUOTE><dl>
+
+<A HREF="gtstd.html#1011970">
+<dt><dd> SSL、 PKCS #11、およびディフォルト セキュリティ データベース</A>
+<A HREF="gtstd.html#1011987">
+<dt><dd>認証および暗号鍵データベースを設定する</A>
+<dl>
+<A HREF="gtstd.html#1012301">
+<DT><DD>CA （認証局） とサーバ証明を設定する</A>
+<dl>
+<A HREF="gtstd.html#1012302">
+<DT><DD>データベースを構築し、暗号鍵を生成する</A>
+<A HREF="gtstd.html#1012285">
+
+<DT><DD>認証局証明を生成し、それをデータベースに登録する</A>
+<A HREF="gtstd.html#1012053">
+<DT><DD>サーバ証明を生成し、それをデータベースに登録する</A>
+</dl>
+<A HREF="gtstd.html#1012067">
+<DT><DD>クライアント証明を設定する
+</A><dl>
+<A HREF="gtstd.html#1012305">
+<DT><DD>データベースを構築し、暗号鍵を生成する</A>
+<A HREF="gtstd.html#1012671">
+<DT><DD>クライアント証明を生成し、それをデータベースに登録する</A>
+<A HREF="gtstd.html#1012099">
+<DT><DD>認証局証明をデータベースに登録する</A>
+
+</dl>
+<A HREF="gtstd.html#1012108">
+<DT><DD>サーバおよびクライアント証明を検査する</A>
+</dl>
+<A HREF="gtstd.html#1013274">
+<dt><dd>NSS プログラムをビルドする</A>
+</dl>
+
+<A HREF="ssltyp.html#1029792">
+<H4>第 3 章 &nbsp; 重要な SSL タイプと構造</H4>
+</A>
+
+<BLOCKQUOTE>
+この章では、この文書の後の部分で触れている機能で利用される、
+いくつかの最も重要なタイプと構造について、そして、
+それに利用されるメモリーをどう管理するかを解説します。
+それ以外のタイプは、利用される機能と共に紹介されるか、
+やヘッダーファイルにあります。
+</BLOCKQUOTE><dl>
+
+<A HREF="ssltyp.html#1030559"><dt><dd>タイプと構造</A>
+<dl>
+<dl>
+<A HREF="ssltyp.html#1028465"><DT><DD> CERTCertDBHandle </A>
+<A HREF="ssltyp.html#1027387"><DT><DD> CERTCertificate </A>
+<A HREF="ssltyp.html#1028593"><DT><DD> PK11SlotInfo </A>
+
+<A HREF="ssltyp.html#1026076"><DT><DD> SECItem </A>
+<A HREF="ssltyp.html#1026727"><DT><DD> SECKEYPrivateKey </A>
+<A HREF="ssltyp.html#1026722"><DT><DD> SECStatus </A>
+</dl>
+</dl>
+<A HREF="ssltyp.html#1029645">
+<dt><dd> SECItem メモリーを管理する</A>
+<dl>
+<dl>
+
+<A HREF="ssltyp.html#1030620"><DT><DD> SECItem_FreeItem </A>
+<A HREF="ssltyp.html#1030773"><DT><DD> SECItem_ZfreeItem </A>
+</dl>
+</dl>
+</dl>
+
+<A HREF="sslfnc.html#1047959">
+<H4>第 4 章 &nbsp; SSL の機能</H4>
+</A>
+
+<BLOCKQUOTE>この章では、SSL の主要機能 （core function） について解説します。</BLOCKQUOTE>
+
+<dl>
+<A HREF="sslfnc.html#1022864"><dt><dd> SSL イニシャライズ機能</A>
+<dl>
+<dl>
+<A HREF="sslfnc.html#1067601"><DT><DD> NSS_Init </A>
+<A HREF="sslfnc.html#1237143"><DT><DD> NSS_InitReadWrite </A>
+<A HREF="sslfnc.html#1234224"><DT><DD> NSS_NoDB_Init </A>
+
+<A HREF="sslfnc.html#1068466"><DT><DD> SSL_OptionSetDefault </A>
+<A HREF="sslfnc.html#1204897"><DT><DD> SSL_OptionGetDefault </A>
+<A HREF="sslfnc.html#1084747"><DT><DD> SSL_CipherPrefSetDefault </A>
+<A HREF="sslfnc.html#1208119"><DT><DD> SSL_CipherPrefGetDefault </A>
+<A HREF="sslfnc.html#1138601"><DT><DD> SSL_ClearSessionCache </A>
+<A HREF="sslfnc.html#1143851"><DT><DD> SSL_ConfigServerSessionIDCache</A>
+
+</dl>
+</dl>
+<dl>
+<A HREF="sslfnc.html#1154189">
+<DT><DD>共有 SSL サーバキャッシュを利用してマルチ プロセスをイニシャライズする 
+<!--Initializing Multi-Processing with a Shared SSL Server Cache --></A>
+<dl>
+<A HREF="sslfnc.html#1142625"><DT><DD> SSL_ConfigMPServerSIDCache </A>
+<A HREF="sslfnc.html#1162055"><DT><DD> SSL_InheritMPServerSIDCache </A>
+</dl>
+</dl>
+<A HREF="sslfnc.html#1098841">
+<dt><dd>SSL エクスポート ポリシー機能</A>
+
+<dl>
+<dl>
+<A HREF="sslfnc.html#1228530"><DT><DD> NSS_SetDomesticPolicy </A>
+<A HREF="sslfnc.html#1100285"><DT><DD> NSS_SetExportPolicy </A>
+<A HREF="sslfnc.html#1105952"><DT><DD> NSS_SetFrancePolicy </A>
+<A HREF="sslfnc.html#1104647"><DT><DD> SSL_CipherPolicySet </A>
+<A HREF="sslfnc.html#1210463"><DT><DD> SSL_CipherPolicyGet </A>
+
+</dl>
+</dl>
+<A HREF="sslfnc.html#1163855">
+<dt><dd>SSL 環境設定機能</A>
+<dl>
+<A HREF="sslfnc.html#1090577"><DT><DD> SSL の環境設定</A>
+<dl>
+<A HREF="sslfnc.html#1085950"><DT><DD> SSL_ImportFD </A>
+<A HREF="sslfnc.html#1086543"><DT><DD> SSL_OptionSet </A>
+<A HREF="sslfnc.html#1194921"><DT><DD> SSL_OptionGet </A>
+
+<A HREF="sslfnc.html#1214758"><DT><DD> SSL_CipherPrefSet </A>
+<A HREF="sslfnc.html#1214800"><DT><DD> SSL_CipherPrefGet </A>
+<A HREF="sslfnc.html#1217647"><DT><DD> SSL_ConfigSecureServer </A>
+<A HREF="sslfnc.html#1087792"><DT><DD> SSL_SetURL </A>
+<A HREF="sslfnc.html#1088040"><DT><DD> SSL_SetPKCS11PinArg </A>
+</dl>
+<A HREF="sslfnc.html#1089578">
+
+<DT><DD>コールバック設定</A>
+<dl>
+<A HREF="sslfnc.html#1088805"><DT><DD> SSL_AuthCertificateHook </A>
+<A HREF="sslfnc.html#1088888"><DT><DD> SSL_AuthCertificate </A>
+<A HREF="sslfnc.html#1088928"><DT><DD> SSL_BadCertHook </A>
+<A HREF="sslfnc.html#1126622"><DT><DD> SSL_GetClientAuthDataHook </A>
+<A HREF="sslfnc.html#1106762"><DT><DD> NSS_GetClientAuthData </A>
+
+<A HREF="sslfnc.html#1112702"><DT><DD> SSL_HandshakeCallback </A>
+</dl>
+</dl>
+<A HREF="sslfnc.html#1127321"><dt><dd> SSL 通信機能</A>
+<dl>
+<dl>
+<A HREF="sslfnc.html#1089420"><DT><DD> SSL_InvalidateSession </A>
+<A HREF="sslfnc.html#1092785"><DT><DD> SSL_DataPending </A>
+<A HREF="sslfnc.html#1092805"><DT><DD> SSL_SecurityStatus </A>
+
+<A HREF="sslfnc.html#1092869"><DT><DD> SSL_GetSessionID </A>
+<A HREF="sslfnc.html#1124562"><DT><DD> SSL_SetSockPeerID </A>
+</dl>
+</dl>
+<A HREF="sslfnc.html#1127893"><dt><dd>コールバックを利用した SSL 機能</A>
+<dl>
+<dl>
+<A HREF="sslfnc.html#1096168"><DT><DD> SSL_PeerCertificate </A>
+<A HREF="sslfnc.html#1081175"><DT><DD> SSL_RevealURL </A>
+
+<A HREF="sslfnc.html#1123385"><DT><DD> SSL_RevealPinArg </A>
+</dl>
+</dl>
+<A HREF="sslfnc.html#1061582"><dt><dd>SSL ハンドシェーク機能</A>
+<dl>
+<dl>
+<A HREF="sslfnc.html#1133431"><DT><DD> SSL_ForceHandshake </A>
+<A HREF="sslfnc.html#1232052"><DT><DD> SSL_ReHandshake </A>
+<A HREF="sslfnc.html#1058001"><DT><DD> SSL_ResetHandshake </A>
+
+</dl>
+</dl>
+<A HREF="sslfnc.html#1095840"><dt><dd>NSS シャットダウン機能</A>
+<dl>
+<dl>
+<A HREF="sslfnc.html#1061858"><DT><DD> NSS_Shutdown </A>
+</dl>
+</dl>
+<A HREF="sslfnc.html#1198429"><dt><dd>利用すべきでない機能 （Deprecated Functions）</A>
+<dl>
+<dl>
+<A HREF="sslfnc.html#1206365"><DT><DD> SSL_EnableDefault </A>
+
+<A HREF="sslfnc.html#1220189"><DT><DD> SSL_Enable </A>
+<A HREF="sslfnc.html#1207298"><DT><DD> SSL_EnableCipher </A>
+<A HREF="sslfnc.html#1207350"><DT><DD> SSL_SetPolicy </A>
+<A HREF="sslfnc.html#1231825"><DT><DD> SSL_RedoHandshake </A>
+</dl>
+</dl>
+</dl>
+
+<A HREF="sslcrt.html#1047959">
+
+<H4>第 5 章 &nbsp; 認証機能</H4>
+</A>
+
+<BLOCKQUOTE>
+この章では、 Communicator によって提供される cert7.db データベースのような、
+認証データベースと共に作動する際に利用される機能と関連するタイプについて解説します。
+</BLOCKQUOTE><dl>
+
+<!--This chapter describes the functions and related types used to work with a certificate database such as the cert7.db database provided with Communicator.-->
+
+<A HREF="sslcrt.html#1060423"><dt><dd>認証を検査する</A>
+<dl>
+<dl>
+<A HREF="sslcrt.html#1058011"><DT><DD> CERT_VerifyCertNow </A>
+
+<A HREF="sslcrt.html#1050342"><DT><DD> CERT_VerifyCertName </A>
+<A HREF="sslcrt.html#1056662"><DT><DD> CERT_CheckCertValidTimes </A>
+<A HREF="sslcrt.html#1056760"><DT><DD> NSS_CmpCertChainWCANames </A>
+</dl>
+</dl>
+<A HREF="sslcrt.html#1056436"><dt><dd>認証を取り扱う</A>
+<dl>
+<dl>
+<A HREF="sslcrt.html#1058344"><DT><DD> CERT_DupCertificate </A>
+
+<A HREF="sslcrt.html#1050532"><DT><DD> CERT_DestroyCertificate </A>
+</dl>
+</dl>
+<A HREF="sslcrt.html#1056475"><dt><dd>認証情報を入手する</A>
+<dl>
+<dl>
+<A HREF="sslcrt.html#1050345"><DT><DD> CERT_FindCertByName </A>
+<A HREF="sslcrt.html#1050346"><DT><DD> CERT_GetCertNicknames </A>
+<A HREF="sslcrt.html#1050349"><DT><DD> CERT_FreeNicknames </A>
+
+<A HREF="sslcrt.html#1052308"><DT><DD> CERT_GetDefaultCertDB </A>
+<A HREF="sslcrt.html#1056950"><DT><DD> NSS_FindCertKEAType </A>
+</dl>
+</dl>
+<A HREF="sslcrt.html#1055384"><dt><dd>SecItem オブジェクトを比較する</A>
+<dl>
+<dl>
+<A HREF="sslcrt.html#1057028"><DT><DD> SECITEM_CompareItem </A>
+</dl>
+</dl>
+
+</dl>
+<A HREF="sslkey.html#1047959">
+<H4>第 6 章 &nbsp; 暗号鍵機能</H4>
+</A>
+
+<BLOCKQUOTE>
+この章では、 Communicator により提供される key3.db データベースのような、
+プライベート鍵と暗号鍵データベースを取り扱う際に利用される二つの機能について解説します。
+</BLOCKQUOTE><dl>
+
+<dl>
+<dl>
+<A HREF="sslkey.html#1051479"><DT><DD> SECKEY_GetDefaultKeyDB </A>
+
+<A HREF="sslkey.html#1051017"><DT><DD> SECKEY_DestroyPrivateKey </A>
+</dl>
+</dl>
+</dl>
+
+<A HREF="pkfnc.html#1027946">
+<H4>第 7 章 &nbsp; PKCS #11 の機能</H4>
+</A>
+
+<BLOCKQUOTE>
+この章では、アプリケーションが暗号化モジュールと通信する際に必要とする主要な
+ PKCS #11 機能について解説します。この機能は特に、認証、暗号鍵、
+およびパスワードを取り込む際に必要とされます。
+</BLOCKQUOTE><dl>
+
+<dl>
+<dl>
+<A HREF="pkfnc.html#1035673"><DT><DD> PK11_FindCertFromNickname </A>
+<A HREF="pkfnc.html#1026891"><DT><DD> PK11_FindKeyByAnyCert </A>
+<A HREF="pkfnc.html#1030779"><DT><DD> PK11_GetSlotName </A>
+<A HREF="pkfnc.html#1026964"><DT><DD> PK11_GetTokenName </A>
+<A HREF="pkfnc.html#1026762"><DT><DD> PK11_IsHW </A>
+
+<A HREF="pkfnc.html#1022948"><DT><DD> PK11_IsPresent </A>
+<A HREF="pkfnc.html#1022991"><DT><DD> PK11_IsReadOnly </A>
+<A HREF="pkfnc.html#1023128"><DT><DD> PK11_SetPasswordFunc </A>
+</dl>
+</dl>
+</dl>
+<A HREF="sslerr.html#1013897">
+<H4>第 8 章 &nbsp;NSS 及び SSL のエラーコード</H4>
+</A>
+
+<BLOCKQUOTE>
+NSS は、 NSPR の PR_GetError 機能を利用して引き出します。
+NSPR によって定義されるエラーコードに加えて、 PR_GetError 
+はこの章で解説されているエラーコードを引き出します
+</BLOCKQUOTE><dl>
+
+<A HREF="sslerr.html#1040263"><dt><dd> SSL エラーコード</A>
+<A HREF="sslerr.html#1039257"><dt><dd> SEC エラーコード</A>
+</dl>
+<A HREF="bklast.html#1940">
+<H4>インデックス</H4>
+</A>
+<HR>
+
+<FONT SIZE=-1><A HREF="sslintro.html">Next</A>
+ | <A HREF="bklast.html">Index</A>
+</FONT>
+<P ALIGN=right>
+<FONT SIZE=-2>最終更新日： 2000 年 10 月 18 日 09:40:23</FONT>
+<P> 
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/security/pki/nss/ref/ssl/index.html">英語版</a> 2003/04/12</span> - <span>和訳版 2005/02/16</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/security/pki/nss/ref/ssl/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

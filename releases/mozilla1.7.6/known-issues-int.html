@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>既知の問題 - 国際化</title>
+<link rel="alternate" hreflang="en" modified="March 21, 2005">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.7.6/known-issues-int.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla 1.7.6 に関する既知の問題 - 国際化</h1>
+<ul>
+	<li><a href="#intl_general">一般</a></li>
+	<li><a href="#intl_display">表示</a></li>
+	<li><a href="#intl_nav">Navigator と Composer</a></li>
+	<li><a href="#intl_mail">メール</a></li>
+	<li><a href="#intl_print">印刷</a></li>
+	<li><a href="#intl_java">Java</a></li>
+	<li><a href="#intl_flash">Flash プラグイン</a></li>
+</ul>
+
+<h2><a name="intl_general">一般</a></h2>
+<p>Mozilla は、追加手順を踏むことなく多言語を表示できるように設計されています。システム上で必要なフォントが利用可能な状態にあれば、ユーザは面倒な設定や努力をすることなく、ブラウジングやメールの利用をできるはずです。</p>
+<p>Mozilla は複数の言語パックで使うことができ、ユーザはメニューの言語や関連 URL を切り替えることができます。</p>
+<p>別のリージョン (ローカライズされたコンテント) を選んでも、サイドバータブとブックマークは変わりません。これらは固有のプロファイルに依存します。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=87939" title="Bug 87939 - Sidebar region does not change when non-default region is selected">87939</a>)</p>
+<p>中国語、韓国語、日本語の Windows 9<em>x</em>/ME を使っていて、Mozilla の起動に失敗したりクラッシュする場合、後述の <a href="#intl_java">Java の項目</a> に該当するものがないか見てみてください。</p>
+<p>Unicode ファイル名をサポートしているプラットフォームでは、その名前にシステムロケールから外れた文字を使ったファイルやフォルダをつくることが可能です。そうした名前を持つフォルダやファイルにかかわるブラウザ操作はうまくいかないかもしれません。たとえば、そういったフォルダへの保存やそういった文字をパスに含むファイルを開くことです。デフォルトのシステム言語でサポートされている文字だけを使っていれば この種の問題を避けて通れます。(詳細は Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=58866" title="Bug 58866 - Files are not opened, if the path or file name contains some high-ascii or double-byte characters">58866</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=100243" title="Bug 100243 - Cannot install NS into directory with some double-byte characters name">100243</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=100344" title="Bug 100344 - Installation failed when creating directory with some double-byte characters name">100344</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=100364" title="Bug 100364 - Some double-byte characters are corrupted in Program Folder input box">100364</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=100396" title="Bug 100396 - Program Folder name with some double-byte characters is corrupted">100396</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=101573" title="Bug 101573 - Cannot choose some double-byte chars folder name to create user profile">101573</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=128380" title="Bug 128380 - Cannot create user profile names in unicode when using DOS command">128380</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=104305" title="Bug 104305 - P option doesn't work with double-byte char profile names">104305</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=162361" title="Unicode file/io in XPCOM/IO">162361</a> をご覧ください) UTF-8 ロケール下の Linux/Unix では、これらの問題はほとんどありません。</p>
+
+<h2><a name="intl_display">表示</a></h2>
+<p>ウィンドウのタイトルバーに表示できる文字はプラットフォームに依存します。Unicode がネイティブでサポートされているプラットフォーム (Windows 2000/XP、UTF-8 ロケール付き Unix/Linux、Mac OS X) では、タイトルバーに使われる文字を含むフォントを設定してあれば、すべての Unicode 文字がタイトルバーに表示されます。その他のプラットフォーム (Windows 9x/ME、非 UTF-8 ロケール付き Unix/Linux) では、現在のロケールの範囲内の文字だけを表示できます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9449" title="window titlebar does not render non-English [unicode] text properly">9449</a>。Linux で Unicode を認識する Windows Manager を選択し、フォントを適切に設定することでこの問題を回避する方法については Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=150131" title="how to make a WM render chars. outside the char repertoire of the locale  properly in Window title bar">150131</a> をご覧ください)</p>
+<p>文脈上の数値変更のデフォルトが Mozilla 1.4 以降変更されました。アラビア語ドキュメントの <a href="http://unicode.org/glossary/#western_digits">西洋数字</a> が、文脈に応じた方法で <a href="http://unicode.org/glossary/index.html#arabic_digits">アラビア数字</a> に自動的に置換されなくなりました。西洋数字からアラビア数字への文脈的な置換を有効にするには、アドレスバーに about:config と入力して、設定アイテム bidi.numeral の値を 1 にしてください (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=181711" title="A pref to not convert Arabic Numerals to Hindi">181711</a>)。または、文字コード UTF-8 が使えるテキストエディタで user.js ファイルを編集し、プロファイルディレクトリに置いてください。</p>
+<p>デーバナーガリー文字、タミル語、タイ語、ハングル字母など <strong>複雑な筆記体活字のレンダリング</strong> は、プラットフォーム・ツールキットに依存します。</p>
+<ul>
+	<li>Windows 2000/XP では、デーバナーガリー文字、タミル語、タイ語、その他の南・東南アジアの筆記体活字、ハングル字母は、一度それらの筆記体活字のサポートを有効にしてしまえば、ネイティブの OS API で正しくレンダリングされます。Windows 2000/XP のすべてのバージョンには、Windows OS の言語バージョンに関わらず、それらの筆記体活字のためのサポートツールとフォントが付属しています。</li>
+	<li>Windows 9x/ME では、タイ語はタイ語版の Windows でのみ正しくレンダリングされます。これに対し、タミル語、ハングル字母は、Windows 9x/ME のすべての言語バージョンでサポートされています。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=140013" title="Incorrect Display of Character Encoding Unicode UTF-8 (Tamil)">140013</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=177877" title="extending non-Unicode (custom-encoding) TTF support for multibyte converters">177877</a>) しかし、デーバナーガリー文字、その他のインド語筆記体活字 (タミル語を除く) は正しくレンダリングされません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=166520" title="Rendering of Devanagari (Hindi) charachters in Mozilla on Windows 98 Operating system on Mozilla 1.1b">166520</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=218887" title="Use Uniscribe APIs in GFX:Win and layout/editor">218887</a>)</li>
+	<li>Linux/Unix 版の Mozilla は、必要なフォントが入っていて、CTL (複合テキストレイアウト) が有効になっているビルドなら、デーバナーガリー文字とタイ語をレンダリングします。Linux バイナリのデフォルトリリースでは、CTL は <strong>無効</strong> になっています。CTL を有効にすれば、Windows 9x/ME でも Mozilla がデーバナーガリー文字をレンダリングできます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=201746" title="RFE: Enable Complex Text Layout in the default build">201746</a>)</li>
+	<li>複雑な筆記体活字のレンダリングには、以下のフォントが必要です。
+		<ul>
+			<li>デーバナーガリー文字 (Linux/Unix): sun.unicode.india-0 (TrueType と BDF) のフォント - <a href="http://developer.sun.com/techtopics/global/">developer.sun.com/techtopics/global</a> からダウンロードできます。また、Solaris 9 にバンドルされています。</li>
+			<li>韓国語ハングル字母 (Linux/Unix および Windows): <a href="http://chem.skku.ac.kr/%7Ewkpark/project/font/GSUB/UnbatangOdal">UnBatang フォント</a></li>
+			<li>タミル語 (Linux/Unix および Windows): TSCII (TrueType) フォント - <a href="http://www.tamil.net/tscii/">Tamil.net</a> で入手できます。Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=204039" title="write a converter for Tamil rendering with TSCII-encoded TTFs">204039</a> に書かれている説明もご覧ください。</li>
+			<li>タイ語 (Linux/Unix): 文字コード <a href="http://linux.thai.net/~thep/thaisupp/">tis620-2</a> の BDF フォントや、タイ語版 Windows で使われている TrueType フォントは、ネット上で入手できます。また、多くの Linux ディストリビューションに付属しています。詳しくは <a href="http://linux.thai.net/~thep/thaisupp/">linux.thai.net/~thep/thaisupp</a> をご覧ください。</li>
+		</ul>
+	</li>
+	<li>Mac OS X では、今のところ、複雑な筆記体活字は正しくレンダリングされません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=205476" title="Devanagari (Hindi) script support">205476</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=121540" title="Use ATSUI for Text rendering">121540</a>)</li>
+	<li>ZWJ/ZWNJ は、今のところ、期待通りに動きません。デーバナーガリー文字 (インド語筆記体活字) のレンダリングには、これ以外の問題もあります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=202352" title="ZWJ, ZWNJ with devanagari characters does not display correct glyphs">202352</a>)</li>
+	<li>Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=176290" title="enabling custom font encoding support in Xft-enabled Mozilla (mathml on xft)">176290</a> が解決しました。Mozilla の Xft ビルドは、タミル語や韓国語をデフォルトでレンダリングします。また CTL が有効になっていれば、タイ語も正しくレンダリングできます。ただし、デーバナーガリー文字やその他インド語筆記体活字はまだサポートされていません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=203406" title="Performace enhancement in CTL code">203406</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=204286" title="support Devanagari rendering with existing hindi shaper on Xft build">204286</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=215219" title="add a bridge to Pango from Xft rendering code for CTL">215219</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=214715" title="add a port to use pango for font rendering">214719</a>)</li>
+	<li>カーソルの動きや選択・ハイライトは、まだ期待通りに動きません。複雑な筆記体活字の構成単位として通常認識される単語を削除・移動するには、キーストロークに複数回かかります。これは、Mozilla が <a href="http://www.unicode.org/reports/tr29">簡略図記号</a> の代わりに Unicode 文字に置き換えて動作するためです。同じ理由で、テキストの選択・ハイライトの境界は、1 つの簡略図記号をマークアップした Unicode 文字の間で欠ける可能性があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=79286" title="caret movement is not display-cell based for arabic">79286</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=85420" title="Need Bidi UI">85420</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=100173" title="Thai language selection broken.">100173</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=122552" title="Caret cannot move all along the text, got stucked at some position">122552</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=157534" title="Edit-&gt;Find in Page found substring in Thai display cell, but it shouldn't be">157534</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=229896" title="we need a generic grapheme cluster breaker/iterator">229896</a>)</li>
+</ul>
+<p>フォントの選択は、ドキュメント内で指定された <code>lang</code> (HTML) や <code>xml:lang</code> (XML) の値に依存します。しかし、言語指定のない Unicode で、ドキュメントの言語を設定する方法はまだありません。これには [View] &gt; [Set Language] オプションが必要です。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=121193" title="Need a way to let user specify language for unicode encoded webpages.">121193</a>) この機能が実装されているとはいえ、HTML/XML ドキュメントの作者は、<code>lang</code> (HTML) や <code>xml:lang</code> (XML) でドキュメントやその一部の言語を明示することを強くお勧めします。</p>
+<p>なお、HTTP ヘッダの <code>Content-Language</code> は無視されます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=122779" title="Use fonts according to Content-Language/lang attribute in Unicode page">122779</a>)</p>
+<p>正式に認められていない言語タグは x-western (Latin) と同じように解釈されます。このため、言語タグでページをレンダリングするためのフォントのコントロールは Mozilla では処理されず、western 用のフォントとして設定されるはずです。さらに、一部のプラットフォームでは、Unicode 用のフォント設定が無視され、現在のロケール用のフォント設定が言語タグのない Unicode のドキュメントに使われます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=91190" title="Locale font is used for Unicode, UI font pref is ignored.">91190</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=204586" title="unrecognized lang tag should be regarded as x-unicode instead of x-western">204586</a>)</p>
+<p>改行のアルゴリズムは <a href="http://www.unicode.org/reports/tr14"><acronym title="Unicode Technical Report">UTR</acronym> 14 (改行)</a> ではなく JIS X 4051 を元にしています。これは、<abbr title="中国語、日本語、韓国語">CJK</abbr> とタイ語以外は言語に依存していません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=206152" title="[meta] line breaking bugs">206152</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=203016" title="make line/word breaker lang-dependent">203016</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=164759" title="Line wrapping issues with some punctuations">164759</a>)</p>
+<p>見分けのつかない文字は、システム上にそれらの文字のための明らかな象形文字フォントがあったとしても、見分けのつかない文字としてレンダリングされる必要があります。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=205387" title="need to exclude truly invisible default_ignorable_code_point's from draw_string">205387</a>、なお、このバグは Windows 版では修正されました)</p>
+<p>Mozilla に zh-HK (繁体字中国語・香港) の個別フォント選択メニューが実装されました。香港特別行政区特有の文字が含まれた Web ページを見るには、XFree86 CVS から <a href="http://cvsweb.xfree86.org/cvsweb/xc/fonts/encodings/large/big5hkscs-0.enc">big5hkscs-0.enc</a> をダウンロードし、このファイルを gzip で圧縮して /usr/X11R6/lib/X11/fonts/encodings/large にインストールする必要があります。(詳しい手順とフォントのダウンロード情報については、bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=226183" title="add a note about Big5HKSCS fonts and the performance">226183</a> と <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=152264" title="font pick up issue for zh-TW lang group (and make zh-HK lang group)">152264</a> をご覧ください)</p>
+
+<h2><a name="intl_nav">Navigator と Composer</a></h2>
+<p>Mozilla はダイナミックフォントをサポートしません。(注: Communicator 4.x ではサポートされていました)</p>
+<p>ドキュメントの文字コード情報を提供していないページでは、全/汎用の自動判別は、文字コードを判別できないかもしれません。判別範囲をせばめた別の自動判別モジュールを選ぶと判別の正確性が高まります。たとえば 中国語、簡体字中国語、東アジアなどです。</p>
+<p>Windows 2000 <acronym title="Input Method Editor">IME</acronym> では、新しい日本語 <acronym title="Input Method Editor">IME</acronym> 機能 (たとえば再変換) のほとんどはサポートされていますが、一部の機能は正常に動作しないかもしれません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=18680" title="Bug 18680 - [IME 2000] Modifying characters in conversion mode does not work.">18680</a>)</p>
+<p>マルチバイトのフォルダ名をもつフォルダ配下のファイルを開く際、Composer ウィンドウのタイトルバーでは マルチバイトキャラクタのパスネームはエスケープされます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=136221" title="Bug 136221 - In composer window title, DBCS characters are in escaped characters for path,file name.">136221</a>)</p>
+<p>メニューやツールバーのないウィンドウでは、文字コードを変える方法がありません。また、(フォーカスされた) フレームの文字コードを変える方法もありません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=63054" title="Character Coding menu should affect currently focussed frame">63054</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=70830" title="Can't change page encoding in the windows without menu &amp; toolbar">70830</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=98395" title="Need the separate character coding menu in the different frame">98395</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=26353" title="Can't turn chrome back on in chromeless window">26353</a>)</p>
+<p>検索 Sidebar (デフォルトでは Google) は、現在のロケールに関わらず、すべての言語で正しく動作します。Mozilla 1.7.6 の時点で、デフォルトのキーワードサーバが Google になっており、アドレスバーからの非 ASCII 文字のキーワード検索は正しく機能するようになりました。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=119825" title="URL (location) bar Search Feature ignores national encoding (google)">119825</a>)</p>
+<p><strong>Linux のみ:</strong> <abbr title="Chinese, Japanese, and Korean">CJK</abbr> ページ編集時、ASCII キャラクタに対してボールド／イタリックのスタイルは効きません。これは いい ASCII フォントを持たない <abbr title="Chinese, Japanese, and Korean">CJK</abbr> ロケール上で 多分に起こります。たとえば あなたは オープンソースの <abbr title="Chinese, Japanese, and Korean">CJK</abbr> 言語サポートファイルを使っているかもしれません。コマーシャルな 特に最近の Linux ディストリビューションでは、サポートファイルはいくぶんベターな CJK フォントを持っていて こうした問題は起こりにくくなっています。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=91145" title="Bug 91145 - bold and italics do not work on ASCII strings when editing a CJK page">91145</a>)</p>
+<p>Red Hat Linux 8 では、デフォルトの Kinput2 <acronym title="X Input Method">XIM</acronym> サーバで日本語の文字を入力できません。デフォルトの on-the-spot 入力形式を使うときにかなりの問題があります。これは Red Hat 8 の Windows Manager である Metacity のバグが原因であることが分かっています。Red Hat 9 は Metacity のより新しいバージョンを使っており、この問題は起こりません。解決策は、Metacity Windows Manager の最新版にアップグレードするか、over-the-spot 入力形式を使ってください。(詳しくは Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=210134" title="JA-IME: can not commit the non-first candidate un-commit character by hit enter on linux RH8.0">210134</a> をご覧ください)</p>
+<p>Mozilla は、<abbr title="中国語、日本語、韓国語">CJK</abbr> <acronym title="X Input Method">XIM</acronym> の 1 つが使われている場合、<abbr title="中国語、日本語、韓国語">CJK</abbr> UTF-8 ロケール下でクラッシュします。これは XFree86 4.2.0 以前のバグが原因です。解決策は、on-the-spot の代わりに over-the-spot 入力形式を利用することです。XFree86 4.2.0 以降にはこの問題はありません。(詳しくは Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=128875" title="Mozilla crashes when invoking IME in UTF-8 locale">128875</a> をご覧ください)</p>
+<p><strong>Mac OS:</strong> Internet Config に格納された ASCII でも Latin 1 でもない情報は、メールアカウント設定ダイアログの [Your name] のような自動挿入フィールドに正確に表示されません。このような場合は、自動挿入されたエントリーを自分で修正してください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=5721" title="Bug 5721 - Need more Mac Internet Config support">5721</a>)</p>
+
+<h2><a name="intl_mail">メール</a></h2>
+<p>本文中のキーワードによるフィルタリングは実装されていません。</p>
+<p>文字コードセットメニューは、MIME エンコードされていないヘッダのスレッドペイン表示を訂正することができません。(<a href="http://www.faqs.org/rfcs/rfc2047">RFC 2047</a> をご覧ください) また、それらのヘッダが (Content-Type ヘッダで指定された) メッセージ本文の文字コードを使っていると見なすような代替システムも利用しません。表示されたメッセージに MIME 文字コードセット情報がない場合、スレッドペインの表示は [フォルダのプロパティ] ダイアログ ([編集] &gt; [フォルダのプロパティ...] から設定します) で設定されたデフォルトのメッセージ表示文字コードセットに従います。ユーザがこのオプションでメールを読むのに最もよく使う文字コードセットに正しく設定することでこの種の問題を回避することができます。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=5721" title="charset=... must be applied to non-MIME Subject:/From:/To:/etc. fields">90584</a>)</p>
+<p>メールに添付されたファイルの非 ASCII 文字を含む名前は、<a href="http://www.faqs.org/rfcs/rfc2231">RFC 2231</a> に準拠した形でエンコードされません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=193439" title="RFC 2231 style encoding should be used for filename parameter of attachment (instead of RFC 2047 style)">193439</a>)</p>
+<p><strong>Windows:</strong> メールメッセージに添付された非 ASCII 名のファイルは、添付ファイルリストに表示されません。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=229872" title="The filename with non-ascii characters doesn't show up in the attachment window.">229872</a>)</p>
+<p>メール編集ウィンドウで、指定されている文字コードにない文字が含まれていた場合、Mozilla は UTF-8 で送信するかどうかをユーザに尋ねます。このオプションが選択されると、Mozilla はメッセージを UTF-8 に変換せず、表示できない文字をクエスチョンマークに変換します。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=233361" title="content destroyed without warning when accepting option to automatically send as UNICODE (UTF-8)">223361</a>)</p>
+
+<h2><a name="intl_print">印刷</a></h2>
+<p><strong>Windows:</strong> HP レーザージェットドライバ (日本語版) で、日本語版 Windows 98 から日本語の文字を印刷できない可能性があります。解決策: 日本語版 Windows 98 インストール CD に付属しているドライバをインストールしてください。または、印刷プロパティを開き、[詳細] タブ &gt; [スプールの設定] &gt; [プリンタに直接印刷データを送る] オプションを選択してください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=86989" title="Unable to print out Japanese characters from Win98-J with HP Laser Jet driver (Japanese version)">86989</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=130083" title="unable to print on Win 98/ME with default spool setting">130083</a>)</p>
+<p><strong>Windows:</strong> 日本語版 Window ME では、HP レーザージェット 5Si/5Si MX PS 印刷ドライバを使って HP レーザージェット 5Si/5Si MX で印刷できない可能性があります。この場合、ドライバを HP レーザージェット 5Si/MX に変えてください。または、印刷プロパティを開き、[詳細] タブ &gt; [スプールの設定] &gt; [プリンタに直接印刷データを送る] オプションを選択してください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=86989" title="Unable to print out Japanese characters from Win98-J with HP Laser Jet driver (Japanese version)">86989</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=130083" title="unable to print on Win 98/ME with default spool setting">130083</a>)</p>
+<p><strong>Linux/Unix:</strong> 直接的な <a href="#postscript">PostScript</a> と <a href="#xprint">Xprint</a> という 2 種類の異なる印刷モジュールがあります。</p>
+<dl>
+	<dt id="postscript"><strong>PostScript</strong></dt>
+	<dd>
+		直接的な PostScript 印刷方法は 2 つのモードに分類されます。
+		<dl>
+			<dt id="postscript_normal">ノーマルモード</dt>
+			<dd>(PostScript レベル 2 プリンタと (あるいは) <a href="http://www.cs.wisc.edu/~ghost/">Ghostscript</a> が必要です)<br>非 Latin 1 言語で PostScript モジュールを使うには、アドレスバーに about:config と入力するか user.js ファイルを編集して、print.postscript.nativefont.x-cyrillic にシステム上のキリル文字 PostScript フォントを設定してください。(x-cyrillic はキリル文字のことを指します。他の筆記体活字については、それに対応する言語グループを使ってください。例えば、zh-CN は簡体字中国語、el はギリシア語です) <abbr title="中国語、日本語、韓国語">CJK</abbr> については、手持ちの PostScript (合成または CID 適合) フォントに使われている文字コード (EUC-JP、EUC-KR、Big5、gb18030、UTF-8) を print.postscript.nativecode.ja (または zh-TW、zh-CN、ko) に設定する必要があります。これは、各筆記体活字・言語には 1 つのフォントだけしか指定できないためで、異なるフォントファミリー、フォントの太さ、スタイルの違いは印刷出力では失われます。<br>なお、print.postscript.nativefont.* を使う場合には、参照されるフォントが組み込みのプリンタフォントであるか、<a href="http://www.cs.wisc.edu/~ghost/">Ghostscript</a> や <a href="http://ttt.esperanto.org.uy/programoj/angle/wprint.html">WPrint</a> といった外部フィルタでダウンロード・組み込み可能であることを前提としています。</dd>
+			<dt id="postscript_freetype2">FreeType2 モード</dt>
+			<dd>(PostScript レベル 3 プリンタと (あるいは) <a href="http://www.cs.wisc.edu/~ghost/">Ghostscript</a> + <a href="http://www.freetype.org/">FreeType2</a> 共有ライブラリが必要です)<br>デフォルトの Linux バイナリでは FreeType2 印刷モジュールが有効になっています。このモジュールは、Latin 1 の範囲外の文字 (キリル文字、ギリシア語、<abbr title="中国語、日本語、韓国語">CJK</abbr>) を使ったドキュメントの印刷結果を格段に高めます。さらに、印刷出力のフォントファミリー・スタイルが、ノーマルモードよりも、画面の表示により近い形で表示されます。詳しくは <a href="/projects/fonts/unix/enabling_truetype.html">Mozilla FreeType プロジェクトのページ</a> をご覧ください。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=144668" title="Code Mozilla TrueType Printing Code">144668</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=144669" title="Code subsetted Postscript Font Code">144669</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=185935" title="improve Type8 subset management">185935</a>)<br>なお、このモードで生成された PostScript ファイルは、<acronym title="Postscript">PS</acronym> プリンタを持っていても、<a href="http://www.cs.wisc.edu/~ghost/">Ghostscript</a> でフィルタをかける必要があります。最新の Linux ディストリビューションをお使いなら、必要なことはほとんど、あるいは少ししかありませんが、他の Unix システムでは、<a href="http://www.cups.org/">www.cups.org</a> や <a href="http://www.linuxprinting.org/">www.linuxprinting.org</a> を参照すると役に立つかもしれません。FreeType2 印刷は Xft ビルドでも機能するようになりました。(Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=190031" title="use xft for font lookups with new postscript/freetype code">190031</a>、<a href="http://bugzilla.mozilla.org/show_bug.cgi?id=219060" title="Freetype printing does not work for Xft build">219060</a>)</dd>
+		</dl>
+	</dd>
+	<dt id="xprint"><strong>Xprint</strong></dt>
+	<dd>(Xprint サーバが必要です)<br>デフォルトの Unix/Linux バイナリには、Xprint と呼ばれる代替印刷モジュールが付属しています。Xprint モジュールは、<a title="Common Unix Printing System" href="http://www.cups.org/">CUPS</a>、<a href="http://www.lprng.com/">LPRng</a>、<a title="Mathematical Markup Language" href="/projects/mathml/">MathML</a>、TrueType フォント、PostScript/<acronym title="Adobe Portable Document Format">PDF</acronym>/<acronym title="Printer Control Language">PCL</acronym> 出力サポートを含みます。詳しい情報は、詳細なガイドを用意している <a href="http://xprint.mozdev.org">xprint.mozdev.org</a> や、mozilla.org の <a href="/projects/xprint/">Xprint プロジェクトのページ</a> をご覧ください。</dd>
+</dl>
+
+<h2><a name="intl_java">Java</a></h2>
+<p>Windows 9x/ME 日本語版のユーザが OS に古い JDK や JRE を先にインストールして使っていると Mozilla の起動に問題が起こるケースが報告されています。Mozilla ユーザが Netscape の ftp サイトからダウンロードできる JRE 130_02 (以降) には JRE 1.3 オフィシャルリリース以降の修正が多数含まれています。日本語版、中国語版、韓国語版の Windows で JRE 1.3 の古いバージョンや US バージョンを使っている場合、こうした Mozilla が起動しない問題に遭遇するかもしれません。</p>
+<p>この問題が Java のインストレーションによるものかどうかを見極めるためには、次の手順にしたがってください:</p>
+<ol>
+	<li>Plugins ディレクトリを見つけてください (Mozilla 実行ファイルと同じディレクトリにあります)。</li>
+	<li>Plugins ディレクトリから、名前が「npjava...」ではじまる Java プラグインファイルをすべて取り除いてください。NPOJI610.dll があればそれも取り除いてください。あとで元に戻すことができるようにこれらのファイルを別のディレクトリにバックアップしてください。</li>
+	<li>Mozilla を再起動してください。これで Mozilla がスタートするようなら Java に関連して起動しない問題に直面していることになります。</li>
+</ol>
+<p>前述のような Java の問題がある もしくは Netscape の ftp サイトからダウンロードできる アップデートされた JRE 130_02 (以降) をインストールしたい場合は、次の手順にしたがってください (注: この種の問題は Windows NT4/2000 では報告されていませんがそうしたプラットフォーム上でもこの問題に遭遇したらやはりこの手順にしたがってください):</p>
+<ol>
+	<li>[スタート] ボタンをクリックして [設定メニュー] を開き、[コントロールパネル] を選んでください。</li>
+	<li>[アプリケーションの追加と削除] のアイコンをダブルクリックして [インストールと削除] のタブを選んでください。</li>
+	<li>古い JRE のインストレーション (Java Runtime Environment) を見つけて削除してください。</li>
+	<li>古い JRE が削除できたら あらためて Mozilla を起動してください。そして Java を必要とするどこかのサイトへ行ってください。そのようなページではプラグインアイコンが出てきて Java プラグインをダウンロードするべくアイコンをクリックするように促されるでしょう。</li>
+	<li>&quot;get Java Plugin&quot; アイコンをクリックすると Mozilla プラグインをダウンロードするために Netscape サイトに連れていかれます。</li>
+	<li>インターナショナルなキャラクタを表示させたいなら &quot;International&quot; バージョンをダウンロードしてください (推奨)。</li>
+	<li>インスーラの指示にしたがって Java 2 のインストレーションを完了してください。</li>
+</ol>
+
+<h2><a name="intl_flash">Flash プラグイン</a></h2>
+<p><a href="http://www.xfree86.org">XFree86</a> が使われている Linux やその他のプラットフォームでは、<abbr title="X Input Method">XIM</abbr> サーバがアクティブになっていると、Flash アニメーションを含む Web ページをレンダリングしているあいだに Mozilla がクラッシュします (Bug <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=211213" title="[meta] flash crash bugs with linux">211213</a>)。このクラッシュは、<a href="http://bugs.xfree86.org/show_bug.cgi?id=618">最近修正された XFree86 のバグ</a> が原因です。Mozilla 1.7.6 リリースの時点で、XFree86.org はこのバグを修正した新しいバージョンをまだリリースしていません。しかし、Linux ディストリビューション開発元のほとんどが、このバグを修正した XFree86 のアップデートをリリースしていますので、XFree86 関連のパッケージをアップデートすることでクラッシュを回避できます。あなたのディストリビューションで利用できる最新の XFree86 パッケージにこの修正が含まれていない場合、以下のような解決策を取ることが可能です:</p>
+<ul>
+	<li>XIM サーバが起動していないロケールで Mozilla を実行してください。例えば、env LC_ALL=C mozilla というコマンドで Mozilla を実行すれば、クラッシュを避けることが可能です。</li>
+	<li>Mozilla を実行する前に XIM サーバを無効にしてください。env XMODIFIERS= mozilla というコマンドを使えばいいでしょう。</li>
+</ul>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.7.6/known-issues-int.html">英語版</a> 2005/03/21</span> - <span>和訳版 2005/03/22</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.7.6/known-issues-int.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>拡張機能の起動</title>
+<link rel="alternate" hreflang="en" modified="March 5, 2004">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/firefox/extensions/startup.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>拡張機能の起動</h2>
+<h2>主な目的</h2>
+<p><strong>起動時に拡張機能マネージャのデータソースを読み込ませないようにすること</strong></p>
+<p>起動時への影響を最小限に抑えるため、アプリケーション (Firefox) が起動する前に多くの処理を行うことは避けなければなりません。拡張機能のために必要な初期化機能の大半は、現在すでにサポートされているものであったり、あるいはこれを実現するための仕組み (.autoreg によるコンポーネントの再登録など) があります。この上さらに複雑な処理を追加すること、特にサイズが巨大になってしまう恐れのある RDF データソース (text/xml) の読み込みは極力避ける必要があります。しかし以下のようにやむを得ない時もあります。例えば、拡張機能が新たにインストールされたり、有効化、無効化、アンインストールされた場合、あるいは新しいバージョンのアプリケーションがインストールされた場合です。これらのイベントはいずれも起動時に毎回起きるわけではないので、起動時間が多少延びたとしても許容範囲内でしょう。</p>
+<p>拡張機能には、アプリケーションとプロファイルという <strong>2 種類のクラス</strong> があります。アプリケーション拡張機能はアプリケーションがインストールされているフォルダに存在し、プロファイルが選択される前に初期化できます。一方、プロファイル拡張機能はユーザのプロファイルフォルダ (たいていの場合、ここが書き込み権限がある唯一の場所です) に存在し、プロファイルが選択されてから初めて初期化できるようになります。</p>
+<h2>起動から最初のウィンドウが開くまで</h2>
+<p>拡張機能の初期化は initExtensions という関数に含まれ、プロファイルが選択される前後に呼び出すことが可能です。アプリケーション拡張機能の場合は前、プロファイル拡張機能の場合は後になります。以下に、それぞれの場合における、この関数を呼び出すタイムラインを示します。</p>
+<ol>
+  <li>アプリケーションが起動されます。</li>
+  <li>カテゴリマネージャで <tt>app-startup</tt> リスナーとして登録されている拡張機能マネージャが初期化され、アプリケーション拡張機能が初期化されます。</li>
+  <li>プロファイルが選択されると、<tt>profile-initial-state</tt> 通知が送られてからプロファイル拡張機能が初期化されます。</li>
+</ol>
+<p>拡張機能の初期化ルーチンは次のようになります。</p>
+<ol>
+  <li>ここでは、尋ねるべき質問が 2 つあります。まず、<strong>拡張機能がインストール、アンインストール、有効化、無効化されているかどうか</strong> (つまり、拡張機能マネージャのデータソースを読み込む必要があるか - この場合、許容範囲内で起動時間が延びることになります)、そして、<strong>現在のターゲットアプリケーションのバージョンと、拡張機能マネージャのデータソースが持つバージョンが一致するかどうか</strong> (つまり、ユーザが新しいバージョンのアプリケーションをインストールしていないかどうかを確認すること) です。</li>
+  <li>どちらか片方でも質問の答えが Yes なら、拡張機能マネージャの RDF データソースが読み込まれ、適切なアクションが実行されます。<a href="obsolete/extensions.txt">いくつかの例の</a> 疑似コードをご覧ください。2 番目の質問の答えが Yes の場合は、<a href="autoupdate.html">自動アップデート</a> が実行されます。</li>
+  <li>どちらの答えも No なら、アプリケーションは拡張機能マネージャのデータソースを <strong>読み込むことなく</strong> 起動できます。XUL クロームは既にこれまでの起動時にクロームレジストリに登録されており、ここで必要な処理はありません。XPCOM コンポーネントも既に同じように登録されているので、ここで必要な処理はありません。デフォルト設定は、extensions 以下のディレクトリ構造を検索するか、あらかじめデフォルト設定ファイルが含まれるフォルダの場所を示したテキストファイルを作成するインストール手順を踏むことによって読み込むことができます。</li>
+</ol>
+<p><br><br><em>&mdash; Ben Goodger (2004/03/05)</em></p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/firefox/extensions/startup.html">英語版</a> 2004/03/05</span> - <span>和訳版 2005/05/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/firefox/extensions/startup.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

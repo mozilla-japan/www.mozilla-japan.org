@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database xml:lang="ja-JP" lang="ja" type="productdb"
+	xmlns="http://dynamis.jp/2003/TransTools"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:tt="http://dynamis.jp/2003/TransTools">
+
+
+
+<!-- * Mozilla Thunderbird * -->
+<product id="thunderbird" name="Mozilla Thunderbird" shortname="Thunderbird">
+	<version full="0.4" major="0" minor="4" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.4/checksum.md5"/>
+		</checksum>
+		<package platform="win" type="zip">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.4/thunderbird-0.4-win32-jaJP.zip"/>
+			<file serverid="core.ring.gr.jp"
+				url="http://core.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-win32-jaJP.zip"/>
+			<file serverid="www.ring.gr.jp"
+				url="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-win32-jaJP.zip"/>
+		</package>
+		<package platform="win" type="installer">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.4/ThunderbirdSetup-0.4-jaJP.exe"/>
+			<file serverid="core.ring.gr.jp"
+				url="http://core.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-win32-jaJP-installer.exe"/>
+			<file serverid="www.ring.gr.jp"
+				url="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-win32-jaJP-installer.exe"/>
+		</package>
+		<package platform="linux" type="tar.gz">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.4/thunderbird-0.4-i686-pc-linux-gtk2-gnu-jaJP.tar.bz2"/>
+			<file serverid="core.ring.gr.jp"
+				url="http://core.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-i686-pc-linux-gtk2-gnu-jaJP.tar.bz2"/>
+			<file serverid="www.ring.gr.jp"
+				url="http://www.ring.gr.jp/archives/net/www/mozilla/thunderbird/releases/0.4/contrib-localized/thunderbird-0.4-i686-pc-linux-gtk2-gnu-jaJP.tar.bz2"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.5" major="0" minor="5" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.5/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.5/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="7011ebe31a481972551a10b9788f9fce">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.5/thunderbird-0.5-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.5/thunderbird0.5-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="zip" md5="b187b28e01ac549ce6af56734c052b8c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.5/thunderbird-0.5-win32-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.5/contrib-localized/thunderbird-0.5-win32-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.5/thunderbird-0.5-win32-jaJP.zip"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="zip" md5="5acccebd031d8b539779e78260465159">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.5/thunderbird-0.5-i686-pc-linux-gtk2-gnu-jaJP.tar.bz2"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.5/contrib-localized/thunderbird-0.5-linux-gtk2-xft-jaJP.tar.bz2"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.5/MozMail0.5-jaJP-0.1-i686-pc-linux-gtk2-gnu.tar.bz2"/>
+		</package>
+		<package creatorid="joker" revision="0.1" platform="mac" type="dmg.gz" md5="02989ebbb01c35a6653cb404daaed968">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.5/thunderbird-0.5-mac-jaJP.dmg.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.5/contrib-localized/thunderbird-0.5-macosx-jaJP.dmg.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.5/thunderbird-0.5-mac-jaJP.dmg.gz"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.6" major="0" minor="6" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.6/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.6/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="all" type="xpi" md5="e3a96ae1234010873ddc4ef4e02937a1">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.6/thunderbird-0.6-langjajp-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-jaJP-langpack.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.6/thunderbird0.6-langjajp-tm0.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="zip" md5="efc937b4b7b6221d846f200bd4844ca6">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.6/thunderbird-0.6-win32-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-win32-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.6/thunderbird-0.6-win32-jaJP.zip"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="installer" md5="1269cc05fd9732d59e27570744eee1fc">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.6/ThunderbirdSetup-0.6-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-win32-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.6/ThunderbirdSetup-0.6-jaJP.exe"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="tar.gz" md5="0c49793fe43128cb14f42a3b15cea2ef">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.6/thunderbird-0.6-i686-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-i686-pc-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.6/MozMail0.6-jaJP-0.1-i686-linux-gtk2+xft.tar.gz"/>
+		</package>
+		<package creatorid="joker" revision="0.1" platform="mac" type="dmg.gz" md5="c5433fb623d0e66c0e363d9eeb80b16c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.6/thunderbird-0.6-mac-jaJP.dmg.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.6/contrib-localized/thunderbird-0.6-macosx-jaJP.dmg.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.6/thunderbird-0.6-mac-jaJP.dmg.gz"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.7" major="0" minor="7" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1.1" platform="win" type="xpi" md5="0c9bf7a0695dd105f39d86fb4eb32127">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7/thunderbird-0.7-langjajp-win-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7/contrib-localized/thunderbird-0.7-jaJP-langpack-win.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7/thunderbird0.7-langjajp-win-tm0.1.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1.1" platform="win" type="installer" md5="0ea3e225e7142f66d8944a9df9712d2e">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7/ThunderbirdSetup-0.7-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7/contrib-localized/thunderbird-0.7-win32-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7/ThunderbirdSetup-0.7-jaJP.exe"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="linux" type="xpi" md5="94bfd7002394f5127c1f95cc1818eb59">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7/thunderbird-0.7-langjajp-unix-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7/contrib-localized/thunderbird-0.7-jaJP-langpack-unix.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7/thunderbird0.7-langjajp-unix-tm0.1.1.xpi"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="linux" type="tar.gz" md5="4743d4954ec8f7a247002f3a8c497a12">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7/thunderbird-0.7-i686-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7/contrib-localized/thunderbird-0.7-i686-pc-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7/MozMail0.7-jaJP-0.1.1-i686-linux-gtk2+xft.tar.gz"/>
+		</package>
+		<package creatorid="snip" revision="0.1.1" platform="mac" type="xpi" md5="1655f7f746b0fcd45cae6731b486d269">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7/thunderbird-0.7-langjajp-mac-tm0.1.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7/contrib-localized/thunderbird-0.7-jaJP-langpack-mac.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7/thunderbird0.7-langjajp-mac-tm0.1.1.xpi"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.7.1" major="0" minor="7" micro="1" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.1/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.1/checksum.md5"/>
+		</checksum>
+		<package creatorid="snip" revision="0.1" platform="win" type="xpi" md5="d05bafa6c8321a578fda6d535e026c3a">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.1/thunderbird-0.7.1-langjajp-win-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7.1/contrib-localized/thunderbird-0.7.1-jaJP-langpack-win.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.1/thunderbird0.7.1-langjajp-win-tm0.1.xpi"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="installer" md5="e790eb6c375cd52c31f23997fd565240">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.1/ThunderbirdSetup-0.7.1-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.1/ThunderbirdSetup-0.7.1-jaJP.exe"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="xpi" md5="517405e3594b9d45fe11b2f3735dfba3">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.1/thunderbird-0.7.1-langjajp-unix-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7.1/contrib-localized/thunderbird-0.7.1-jaJP-langpack-unix.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.1/thunderbird0.7.1-langjajp-unix-tm0.1.xpi"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="tar.gz" md5="6f2f2da40cdc32ea0d737641e3de97f3">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.1/thunderbird-0.7.1-i686-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7.1/contrib-localized/thunderbird-0.7.1-i686-pc-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.1/MozMail0.7.1-jaJP-0.1-i686-linux-gtk2+xft.tar.gz"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="mac" type="xpi" md5="428f52d45b1242a5fa7704b495242d5d">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.1/thunderbird-0.7.1-langjajp-mac-tm0.1.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7.1/contrib-localized/thunderbird-0.7.1-jaJP-langpack-mac.xpi"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.1/thunderbird0.7.1-langjajp-mac-tm0.1.xpi"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.7.2" major="0" minor="7" micro="2" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.2/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.2/checksum.md5"/>
+		</checksum>
+		<package creatorid="shiten" revision="0.1" platform="win" type="installer" md5="5f5d8a09c60fb31689461ff4edc0f285">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.2/ThunderbirdSetup-0.7.2-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7.2/contrib-localized/thunderbird-0.7.2-win32-jaJP-installer.exe"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.2/ThunderbirdSetup-0.7.2-jaJP.exe"/>
+		</package>
+		<package creatorid="toyama" revision="0.1" platform="win" type="zip" md5="c0458a868cdb066ebb141f17f3e984f0">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.2/thunderbird-win32-0.7.2-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url="http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/0.7.2/contrib-localized/thunderbird-0.7.2-win32-jaJP.zip"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.2/Thunderbird-win32-0.7.2.zip"/>
+		</package>
+	</version>
+	
+	
+	<version full="0.7.3" major="0" minor="7" micro="3" stage="release">
+		<tt:note xmlns="${ns.xhtml}">XPI については 0.7.1 と変更ありません。0.7.1 用のものをそのままご利用頂けます。</tt:note>
+
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.3/checksum.md5"/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.3/checksum.md5"/>
+		</checksum>
+		<package creatorid="shiten" revision="0.1" platform="win" type="installer" md5="bd44a6e66c3990f95fd311453218b984">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.3/ThunderbirdSetup-0.7.3-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.3/ThunderbirdSetup-0.7.3-jaJP.exe"/>
+		</package>
+		<package creatorid="shiten" revision="0.1" platform="win" type="zip" md5="f3edf50c416e0be8b0c7f0b68f0d0843">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.3/thunderbird-0.7.3-win32-jaJP.zip"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.3/thunderbird-0.7.3-win32-jaJP.zip"/>
+		</package>
+		<package creatorid="toyama" revision="0.1" platform="win" type="zip" md5="eddaddaf607c2cef80ef37d439f2088d">
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.3/Thunderbird-win32-0.7.3JP.zip"/>
+		</package>
+		<package creatorid="snip" revision="0.1" platform="linux" type="tar.gz" md5="794d553eb017c565b6011c942b26b91c">
+			<file serverid="mozilla-japan"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.7.3/thunderbird-0.7.3-i686-linux-gtk2+xft-jaJP.tar.gz"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+			<file serverid="moz.skillup.jp"
+				url="http://moz.skillup.jp/archive/thunderbird/0.7.3/MozMail0.7.3-jaJP-0.1-i686-linux-gtk2+xft.tar.gz"/>
+		</package>
+	</version>
+
+
+	<version full="0.8" major="0" minor="8" stage="release">
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="ftp://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.8/checksum.md5"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.2.2" platform="win" type="xpi" md5="80e9411e7fdaf88ed07ce884500ac6ab">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.8/thunderbird-0.8-langjajp-win.xpi"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+		<package creatorid="shiten" revision="0.2.2" platform="win" type="installer" md5="8ea071515033e6f814107089f6995777">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/0.8/ThunderbirdSetup-0.8-jaJP.exe"/>
+			<file serverid="ftp.mozilla.org"
+				url=""/>
+		</package>
+	</version>
+	
+	
+	<version full="0.9-" major="0" minor="9" stage="contribute">
+		<tt:note xmlns="${ns.xhtml}">rev.0.3.x は Pink さんにより提供されている貢献リリースとなります。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/contribute/0.9/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/contribute/0.9/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="pink" revision="0.3.6" platform="all" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/contribute/0.9/thunderbird-0.9.ja-JP.langpack-pink-0.3.6.xpi"/>
+		</package>
+		<package creatorid="pink" revision="0.3.7" platform="all" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/contribute/0.9/thunderbird-0.9.ja-JP.langpack-pink-0.3.7.xpi"/>
+		</package>
+	</version>
+	<version full="0.9-" major="0" minor="9" stage="development">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.4.2" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.2.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.2" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.2.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.4" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.4.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.4" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.4.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.6" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.6.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.6" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.6.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.8" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.8.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.8" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.8.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.9" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.9.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.9" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.9.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.11" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.11.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.11" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.11.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.15" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.15.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.15" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.15.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.17" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.17.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.17" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.17.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.18" platform="win+linux" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.langpack-0.4.18.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.18" platform="mac" type="xpi" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JPM.langpack-0.4.18.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.18" platform="win" type="installer" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.win32.installer-0.4.18.exe"/>
+		</package>
+		<package creatorid="dynamis" revision="0.4.18.1" platform="win" type="installer" md5="" sha1="">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.9/thunderbird-0.9.ja-JP.win32.installer-0.4.18.1.exe"/>
+		</package>
+	</version>
+	
+	
+	<version full="1.0rc-" major="1" minor="0" micro="rc" stage="development">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.10/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/0.10/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.5.2" platform="win" type="installer"
+			md5="d3d046a066ba3c33d5650a2d4e9ce9f0" sha1="a722cd803895227fc567adfed4a8493af6f3af0b">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0rc/thunderbird-1.0rc.ja-JP.win32.installer-0.5.2.exe"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.2" platform="win+linux" type="xpi"
+			md5="57f9a3e7e9fd45d96dd7d9fc421e3fe2" sha1="7f1a581bc0876af1af34d92dcac577cdc3ce4248">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0rc/thunderbird-1.0rc.ja-JP.langpack-0.5.2.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.2" platform="mac" type="xpi"
+			md5="a8909e6a8c367b2d3e227512466993bf" sha1="f5f00dcc3fe7e3872a11dee15b6ab3fb88c66fbe">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0rc/thunderbird-1.0rc.ja-JPM.langpack-0.5.2.xpi"/>
+		</package>
+	</version>
+	
+	
+	<version full="1.0-" major="1" minor="0" stage="development">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5" stage="development"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1" stage="development"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.5.3" platform="win+linux" type="xpi"
+			md5="caba65f654d80ead624f32178c0729c5" sha1="92beeb39117bf87b41c77fa1a49fdea693185c09">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.langpack-0.5.3.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.3" platform="mac" type="xpi"
+			md5="23f9b5f311db2c1f00ed294c26e7bfe6" sha1="6b218c7fb614f8dfd3dd935aaf2100c7a8fa35bd">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.langpack-0.5.3.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.5.3" platform="win" type="installer"
+			md5="2442a62d9b22254b3bf5884cf715c000" sha1="7c1e6537d41aae311b76eb162758be6c643cb802">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.win32.installer-0.5.3.exe"/>
+		</package>
+		<package creatorid="joker" revision="0.5.3" platform="mac" type="installer"
+			md5="9d969c1793a48e01c6f9dae95209bfd0" sha1="2534f10da79d0189f5ec07f837319126ef724bf9">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.mac-0.5.3.dmg.bz2"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.5" platform="win+linux" type="xpi"
+			md5="71f61b4598fc0be7aac01048a6d1ed30" sha1="5f553e842e069a346ddc31c4910152d8886870a1">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.langpack-0.6.5.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.5" platform="mac" type="xpi"
+			md5="3616b6fc402e12d7de6c99f2e015e123" sha1="9302e8780bb72e133e47fcd1f1ebb4bb650af699">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.langpack-0.6.5.xpi"/>
+		</package>
+		<package creatorid="toyama" revision="0.6.5" platform="win" type="zip"
+			md5="4b99ef036edfc1d5d516ebf97686ee1e" sha1="6bc227f15955b642fa33fa1857468557be780a25">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.win32-0.6.5.zip"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.6" platform="win+linux" type="xpi"
+			md5="b8f4dab61f1ffdcb936a934931846d66" sha1="ec8858157e880e11d274825634a71c5f842c03c3">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.langpack-0.6.6.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.6" platform="mac" type="xpi"
+			md5="e403690b88a1a7e5c3e88e4b58b13bfe" sha1="d9e9b79a03f7f7fe20c94b81aeb0fbd97635a9a8">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.langpack-0.6.6.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.6" platform="win" type="installer"
+			md5="2ec1ef79aa5b79bb7399a2f9ea8d1d8f" sha1="ca0e81f43492ca64e021119d0fc24bcafe93bc95">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.win32.installer-0.6.6.exe"/>
+		</package>
+		<package creatorid="toyama" revision="0.6.6" platform="win" type="zip"
+			md5="e5b42d610858fbb8c91202306400e27e" sha1="13d0a0f36818d55494d6601e86f92b35fa343f76">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.win32-0.6.6.zip"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.6" platform="linux" type="tar.gz"
+			md5="589a05b46199fac6e32dc90e54442907" sha1="e52bd6eec5d801ad1ea16e2f2b255be343769860">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.linux-i686-0.6.6.tar.gz"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.7" platform="win+linux" type="xpi"
+			md5="dfd10c6b8b4a3fb6b99389473d201426" sha1="b2669f8846b2f630182a7b1f81c5837225757021">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.langpack-0.6.7.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.7" platform="mac" type="xpi"
+			md5="53766c1ac2c4756cb3051e519c4268b7" sha1="8ecbf623ecb242e37424fade088fdf74162a10a1">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.langpack-0.6.7.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.7" platform="win" type="installer"
+			md5="a68367714ed8e94c5c444cb8838dd114" sha1="3b5d786ecf1b42307d67bd19704f6dd309efcefb">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.win32.installer-0.6.7.exe"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.6" platform="linux" type="tar.gz"
+			md5="1445d1d97009a32a7bb58f5e72051e84" sha1="0c126bbf6bcc734900c1d8f94d8f1c0cfb42a75c">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP+en-US.linux-i686-0.6.7.tar.gz"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.6" platform="linux" type="tar.gz"
+			md5="fe34df596a58cb3649424ab750b7ce1e" sha1="8ff39294221659077abf4c6da6198f3376dabdc7">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.linux-i686-0.6.7.tar.gz"/>
+		</package>
+		<package creatorid="joker" revision="0.6.7" platform="mac" type="installer"
+			md5="1d3342af0a688a68a942de5dcefdec85" sha1="8ff39294221659077abf4c6da6198f3376dabdc7">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.mac-0.6.7.dmg.bz2"/>
+		</package>
+	</version>
+	<version full="1.0" major="1" minor="0" stage="release">
+		<tt:note xmlns="${ns.xhtml}">初回リリースの Thunderbird 1.0 日本語版には問題が見つかったため再リリースされました。12/28 以前にダウンロードされた方は修正版をダウンロードしてください。詳細については <a href="http://moz.skillup.jp/jlp/viewtopic.php?t=318">L10N フォーラムでのリリース告知</a>をご覧ください。</tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/1.0/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/1.0/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.6.10" platform="win+linux" type="xpi"
+			md5="6bf61c43e984f95acb8b87f84c294a2d" sha1="643be5fab0f1b7e117a800e6d4f6c8db5a797f10">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/1.0/win32/xpi/ja-JP.fix.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.10" platform="mac" type="xpi"
+			md5="a7567fb540abb074631dc43ba0a8a635" sha1="3bf5b310fcb35ee27a5705f6147c075b6ad6762c">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/1.0/mac/xpi/ja-JPM.fix.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.10" platform="win" type="installer"
+			md5="3c159ae68f01ca8e716148506b0fd93b" sha1="a35faada75d52b766f752e3fa6e46da27736665c">
+			<file serverid="-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/1.0/win32/ja-JP/Thunderbird Setup 1.0.fix.exe"/>
+		</package>
+		<package creatorid="toyama" revision="0.6.10" platform="win" type="zip"
+			md5="1599b07093dafa99b4fdb78c884cf418" sha1="4db3dd50bf615bb027fc1b47023e7521a52f75de">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/1.0/win32/ja-JP/Thunderbird 1.0.fix.zip"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.10" platform="linux" type="tar.gz"
+			md5="fb55678394ae0f76ecde547682b26fd8" sha1="7a20744002510d917327f01f4aa414735ea2dafe">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/1.0/linux-i686-gtk2+xft/ja-JP/thunderbird-1.0.fix.tar.gz"/>
+		</package>
+		<package creatorid="joker" revision="0.6.10" platform="mac" type="dmg.gz"
+			md5="48a6355627a57cf4bf37d2654cedbc8d" sha1="336321f940d2fff1e015de8ca4c048b0ec2ac713">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/releases/1.0/mac/ja-JPM/Thunderbird 1.0.fix2.dmg.gz"/>
+		</package>
+	</version>
+	<version full="1.0+" major="1" minor="0" stage="development">
+		<tt:note xmlns="${ns.xhtml}"></tt:note>
+		<checksum>
+			<file serverid="mozilla-japan" type="md5" stage="development"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/MD5SUMS"/>
+			<file serverid="mozilla-japan" type="sha1" stage="development"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/SHA1SUMS"/>
+		</checksum>
+		<package creatorid="dynamis" revision="0.6.8" platform="win+linux" type="xpi"
+			md5="9a3fb99252f6a0039b35b84dd27288d0" sha1="6cf1ad325b48b11346136f9aa1f5e4a4fe9dde99">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.langpack-0.6.8.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.8" platform="mac" type="xpi"
+			md5="51e04eeb55c43ad279449c56f47ec856" sha1="9b7b0089cadaaf688d22a071d043608092ce7395">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.langpack-0.6.8.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.9" platform="win+linux" type="xpi"
+			md5="7143cc33110157cfd2a73a7d3029f66c" sha1="af62acc770ed623899aec941aec4a7e5c9f9cfe1">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.langpack-0.6.9.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.9" platform="mac" type="xpi"
+			md5="94176af9ef5a556617ee138374e2ec0c" sha1="f289856ec52c4c62a5d5ae54af4a171befd30054">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.langpack-0.6.9.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.9.1" platform="win+linux" type="xpi"
+			md5="e1be0663a2f0e661e75923c8bceb27cc" sha1="1f5adba5468bfc8c3270fd0b597d454094a53ce7">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.langpack-0.6.9.1.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.9.1" platform="mac" type="xpi"
+			md5="56cb543351349dcf9e30b0090270b916" sha1="937f0119f78f05b7eccb9fa619456e46b0652277">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.langpack-0.6.9.1.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.10" platform="win+linux" type="xpi"
+			md5="081c216f62d1414cef05ff2a91cc2ef5" sha1="b6505f4338ab277f463b3bd8c493f319a7e00938">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JP.langpack-0.6.10.xpi"/>
+		</package>
+		<package creatorid="dynamis" revision="0.6.10" platform="mac" type="xpi"
+			md5="c8f1c0c214a00ba6d6094c3d02d0ec2b" sha1="cf8704600092e5bc9f30f00800ee3f025f189238">
+			<file serverid="mozilla-japan"
+				url="http://ftp.mozilla-japan.org/pub/mozilla-japan/thunderbird/development/1.0/thunderbird-1.0.ja-JPM.langpack-0.6.10.xpi"/>
+		</package>
+	</version>
+</product>
+
+
+
+</database>

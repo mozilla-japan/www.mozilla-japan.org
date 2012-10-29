@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<TITLE>ライセンス （mozilla &amp; netscape public licenses）</TITLE>
+
+<!--
+***************************************** 覚え書き **************************************
+
+2001/1/8  和訳１版：山口　syamagu@mozilla.gr.jp
+
+オリジナル文書：mozilla &amp; netscape public licenses
+                (Rev.:1.4   23 August 2000 14:19)
+オリジナルURL ：http://www.mozilla.org/MPL/
+
+和訳履歴
+更新：2001/10/07 山口（Rev.:1.5 Sep 19 12:19 2001）新ライセンス
+
+更新：2003/10/30 山口  ライセンス和訳公開
+更新：Rev.: 1.8 Jan 22 15:11 2004 山口
+更新：NPL 和訳追加
+更新：Rev.: 1.9 Mar 8 15:02 2004 山口
+
+Rev.: 1.11
+
+***************************************** 覚え書き **************************************
+-->
+
+<link rel="alternate" hreflang="en" modified="November 8, 2004">
+
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/MPL/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+<h1>Mozilla &amp; Netscape Public Licenses</h1>
+
+<p>このページでは、 Mozilla ソースコードがどのようなライセンス下で手に入れられるかを詳細に解説します。現在、ソースの一部は Netscape Public License （NPL） または the Mozilla Public License （MPL） の下で得られます。多くの場合は GNU General Public License （GPL） または GNU Lesser General Public License （LGPL） のいずれか、または両者との組み合わせとなっています。 mozilla.org はツリーに登録されている全てのコードに MPL/LGPL/GPL のトリプルライセンスを与えるように作業中です。より詳しい情報は、 <a href="relicensing-faq.html">Relicensing FAQ</a> をご覧下さい。
+
+<p>CVS ツリーに登録されたあらゆるコードは <a href="license-policy.html">ライセンス方針</a> に準拠していなければなりません。</p>
+
+<p>Mozilla Foundation によって提供される公式バイナリ−ビルドは、<a href="/foundation/EULA">Mozilla End-User License Agreements</a> （Mozilla エンドユーザライセンス許諾） の条項下でリリースされます。</p>
+
+
+<h2>現在有効なドキュメント</h2>
+
+<dl class="toc">
+
+<DT><A HREF="http://www.mozilla.org/MPL/MPL-1.1.html">The Mozilla Public License, version 1.1.</A>（<a href="MPL-1.1J.html">参考和訳</a>）</DT>
+
+	  <DD>この文書には、一般的な利用に適したオープンソースライセンスである
+        Mozilla Public License が収められています。
+        <A HREF="http://www.mozilla.org/MPL/MPL-1.1.txt">テキスト形式</A> でもご覧頂けます。
+	  </DD>
+
+<DT><A HREF="http://www.mozilla.org/MPL/MPL-1.1-annotated.html">解釈付き Mozilla Public License, version 1.1.</A></DT>
+
+	  <DD>法律の知識に詳しくない人が法律文書を読むのは辛いので、ここにライセンスの様々なセクションについて、ハイパーリンクのかたちで平易な説明をつけたバージョンを用意しました。<em>説明文自体はライセンスではない</em> という事にご注意下さい。また説明文は法律文書ではなく、法律面でのアドバイスでもありません。ライセンスにより何が求められているのか <em>正確に</em> 知りたい場合は、ライセンスそのものを読み、理解することが求められます。もし法律面のアドバイスが必要な場合は、弁護士にご相談下さい。注釈は、ライセンスをより解りやすい言葉で説明しようとする善意の表れでしかありません。
+	  </DD>
+
+<DT><A HREF="mpl-faq.html">MPL FAQ</A></DT>
+
+	  <DD>このドキュメントは MPL 化されたコードを使用・配布するにあたり、多くの人の共通の疑問に答えようとするものです。
+	  </DD>
+
+<DT><A HREF="http://www.mozilla.org/MPL/boilerplate-1.1/">Preformatted versions of the
+		MPL v1.1 boilerplate text.</A></DT>
+
+	  <DD>新たに mozilla.org ソースツリーに組み込まれるファイルには、
+        その最初の部分にライセンス条文が書き込まれていなければなりません。
+        こちらにあるのは、様々なファイル形式に対応した条文のリストです。
+        ツリーにファイルを加える際には、必ずこちらのテンプレートをご利用下さい。
+        これらテンプレートは将来条文が改変された場合に備えてフォーマットされています。
+	  </DD>
+    </dl>
+</ul>
+
+<h2>過去のドキュメント</h2>
+
+<ul>
+<dl class="toc">
+
+<DT><A HREF="http://www.mozilla.org/MPL/NPL-1.1.html">The Netscape Public License, version 1.1.</A>（<a href="NPL-1.1J.html">参考和訳</a>）</DT>
+
+	  <DD>この文書には、 Mozilla Public License と共に MPL の修正という形式で、
+        Netscape Public License が収められています。
+	    <A HREF="http://www.mozilla.org/MPL/NPL-1.1.txt">テキスト形式</A> でもご覧頂けます。
+	  </DD>
+
+<DT><A HREF="FAQ.html">The Netscape Public License, version 1.0 FAQ</A></dt>
+ <DD>これは、 NPL 及び MPL そしてこの二つのライセンスの成立過程についてのよくある質問
+            （FAQ） です。
+            </dd>
+
+            <DT><A HREF="http://www.mozilla.org/MPL/annotated.html">The Annotated Netscape Public License, version 1.0</A>、および
+    <BR><A HREF="http://www.mozilla.org/MPL/MPL-1.0-annotated-fs.html">
+     The Annotated Mozilla Public License, version 1.0</A>.</dt>
+ <DD>法律の知識に詳しくない人が法律文書を読むのは辛いので、ここにライセンスの様々なセクションについて、ハイパーリンクのかたちで平易な説明をつけたバージョンを用意しました。<em>説明文自体はライセンスではない</em> という事にご注意下さい。また説明文は法律文書ではなく、法律面でのアドバイスでもありません。ライセンスにより何が求められているのか <em>正確に</em> 知りたい場合は、ライセンスそのものを読み、理解することが求められます。もし法律面のアドバイスが必要な場合は、弁護士にご相談下さい。注釈は、ライセンスをより解りやすい言葉で説明しようとする善意の表れでしかありません。
+            </dd>
+
+            <DT><A HREF="http://www.mozilla.org/MPL/NPL-1.0.html">The Netscape Public License, version 1.0.</A></dt>
+ <DD>これは、オリジナルの Mozilla ソースコードが公開された際のライセンスです。
+            法律用語が満載です。テキスト形式は <A HREF="http://www.mozilla.org/MPL/NPL-1.0.txt">こちら</A> です。
+ </dd>
+<DT><A HREF="http://www.mozilla.org/MPL/MPL-1.0.html">The Mozilla Public License, version 1.0.</A></dt>
+ <DD>MPL のオリジナルバージョンです。 <a href="http://www.mozilla.org/MPL/MPL-1.0.txt">テキスト形式</a> でもご覧になれます。
+            </dd>
+</DL>
+</ul>
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/MPL/index.html">英語版</a> 2004/11/08</span> - <span>和訳版 2004/11/09</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/MPL/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

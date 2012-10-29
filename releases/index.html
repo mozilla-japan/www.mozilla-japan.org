@@ -1,0 +1,1997 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>Mozilla 1.x リリース</title>
+<link rel="alternate" hreflang="en" modified="April 21, 2006">
+<style type="text/css" media="screen,tv">
+  .trinfo { border: 1px dashed #999; background-color: #f3f3f3; color: #000; padding: 1em; font-size: small; }
+  h2 { font-size: 100%; font-weight: normal; color: #000; background-color: transparent; }
+  h2 a { font-size: 120%; font-weight: bold; color: #f00; background-color: transparent; }
+</style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<h1>Mozilla 1.x リリース</h1>
+<p>ダウンロードについて質問がありますか? <a href="faq.html">よくある質問</a> をご覧ください。</p>
+<p class="comment">【訳注: 特に注釈のないものはすべて英語版です。他の言語については <a href="http://www.mozilla.org/releases/">mozilla.org のリリースページ</a> を参照してください】</p>
+<p style="font-size: smaller;"><a href="cvstags.html">主要な公式リリースに関する CVS タグの履歴</a></p>
+<hr>
+
+<h2><a name="1.7.13">Mozilla 1.7.13</a> - 2006 年 4 月 21 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.13/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/source/mozilla-1.7.13-source.tar.bz2">bzip</a> - 29 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/source/mozilla-1.7.13-source.tar.gz">gzip</a> - 37 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/gecko-sdk-i586-pc-msvc-1.7.13.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/gecko-sdk-i686-pc-linux-gnu-1.7.13.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/README">Readme</a> ファイルでは、Mozilla 1.7.13 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/mozilla-win32-1.7.13-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/mozilla-win32-1.7.13-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/mozilla-win32-1.7.13.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/mozilla-mac-1.7.13.dmg">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/mozilla-i686-pc-linux-gnu-1.7.13-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/mozilla-i686-pc-linux-gnu-1.7.13-stub-installer.tar.gz">ネットインストーラ</a> (106  KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.13/mozilla-i686-pc-linux-gnu-1.7.13.tar.gz">tar.gz フォーマット</a> (13.3 MB)</li>
+</ul>
+<hr>
+
+<h2><a name="1.7.12">Mozilla 1.7.12</a> - 2005 年 9 月 21 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.12/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/source/mozilla-1.7.12-source.tar.bz2">bzip</a> - 29 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/source/mozilla-1.7.12-source.tar.gz">gzip</a> - 37 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/gecko-sdk-i586-pc-msvc-1.7.12.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/gecko-sdk-i686-pc-linux-gnu-1.7.12.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/README">Readme</a> ファイルでは、Mozilla 1.7.12 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/mozilla-win32-1.7.12-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/mozilla-win32-1.7.12-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/mozilla-win32-1.7.12.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/mozilla-mac-1.7.12.dmg">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/mozilla-i686-pc-linux-gnu-1.7.12-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/mozilla-i686-pc-linux-gnu-1.7.12-stub-installer.tar.gz">ネットインストーラ</a> (106  KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/mozilla-i686-pc-linux-gnu-1.7.12.tar.gz">tar.gz フォーマット</a> (13.3 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux (x86) GTK2+Xft</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla-i686-pc-linux-gnu-1.7.12-gtk2+xft.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (13.0 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla-1.7.12-os2-installer.exe">インストーラ</a> (13 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla-1.7.12-os2.zip">ZIP ファイル</a> (13 MB)</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7.12/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<h4>Solaris (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.10-gtk2+xft.tar.bz2">mozilla1.7.12-i386-pc-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.8-gtk2.tar.bz2">mozilla1.7.12-i386-pc-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.8.tar.bz2">mozilla1.7.12-i386-pc-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.10-gtk2+xft.tar.bz2">mozilla1.7.12-sparc-sun-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.8-gtk2.tar.bz2">mozilla1.7.12-sparc-sun-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.8.tar.bz2">mozilla1.7.12-sparc-sun-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.12/contrib/mozilla1.7.12-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<hr>
+
+<h2><a name="1.7.11">Mozilla 1.7.11</a> - 2005 年 8 月 1 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.11/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/source/mozilla-1.7.11-source.tar.bz2">bzip</a> - 29 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/source/mozilla-1.7.11-source.tar.gz">gzip</a> - 37 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/gecko-sdk-i586-pc-msvc-1.7.11.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/gecko-sdk-i686-pc-linux-gnu-1.7.11.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/README">Readme</a> ファイルでは、Mozilla 1.7.11 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/mozilla-win32-1.7.11-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/mozilla-win32-1.7.11-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/mozilla-win32-1.7.11.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/mozilla-mac-1.7.11.dmg">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/mozilla-i686-pc-linux-gnu-1.7.11-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/mozilla-i686-pc-linux-gnu-1.7.11-stub-installer.tar.gz">ネットインストーラ</a> (106  KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/mozilla-i686-pc-linux-gnu-1.7.11.tar.gz">tar.gz フォーマット</a> (13.3 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux (x86) GTK2+Xft</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla-i686-pc-linux-gnu-1.7.11-gtk2+xft.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (13.0 MB)</li>
+</ul>
+<h4>Solaris (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.10-gtk2+xft.tar.bz2">mozilla1.7.11-i386-pc-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.8-gtk2.tar.bz2">mozilla1.7.11-i386-pc-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.8.tar.bz2">mozilla1.7.11-i386-pc-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.10-gtk2+xft.tar.bz2">mozilla1.7.11-sparc-sun-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.8-gtk2.tar.bz2">mozilla1.7.11-sparc-sun-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.8.tar.bz2">mozilla1.7.11-sparc-sun-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.11/contrib/mozilla1.7.11-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<hr>
+
+<h2><a name="1.7.10">Mozilla 1.7.10</a> - 2005 年 7 月 21 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.10/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/source/mozilla-1.7.10-source.tar.bz2">bzip</a> - 29 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/source/mozilla-1.7.10-source.tar.gz">gzip</a> - 37 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/gecko-sdk-i586-pc-msvc-1.7.10.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/gecko-sdk-i686-pc-linux-gnu-1.7.10.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/README">Readme</a> ファイルでは、Mozilla 1.7.10 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/mozilla-win32-1.7.10-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/mozilla-win32-1.7.10-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/mozilla-win32-1.7.10.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/mozilla-mac-1.7.10.dmg">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/mozilla-i686-pc-linux-gnu-1.7.10-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/mozilla-i686-pc-linux-gnu-1.7.10-stub-installer.tar.gz">ネットインストーラ</a> (106  KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/mozilla-i686-pc-linux-gnu-1.7.10.tar.gz">tar.gz フォーマット</a> (13.3 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux (x86) GTK2+Xft</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla-i686-pc-linux-gnu-1.7.10-gtk2+xft.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (13.0 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla-1.7.10-os2-installer.exe">インストーラ</a> (14 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla-1.7.10-os2.zip">ZIP ファイル</a> (14 MB)</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7.10/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<h4>Solaris (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.10-gtk2+xft.tar.bz2">mozilla1.7.10-i386-pc-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.8-gtk2.tar.bz2">mozilla1.7.10-i386-pc-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.8.tar.bz2">mozilla1.7.10-i386-pc-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.10-gtk2+xft.tar.bz2">mozilla1.7.10-sparc-sun-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.8-gtk2.tar.bz2">mozilla1.7.10-sparc-sun-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.8.tar.bz2">mozilla1.7.10-sparc-sun-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.10/contrib/mozilla1.7.10-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<hr>
+
+<h2><a name="1.7.8">Mozilla 1.7.8</a> - 2005 年 5 月 11 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.8/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/source/mozilla-1.7.8-source.tar.bz2">bzip</a> - 29 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/source/mozilla-1.7.8-source.tar.gz">gzip</a> - 37 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/gecko-sdk-i586-pc-msvc-1.7.8.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/gecko-sdk-i686-pc-linux-gnu-1.7.8.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/README">Readme</a> ファイルでは、Mozilla 1.7.8 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/mozilla-win32-1.7.8-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/mozilla-win32-1.7.8-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/mozilla-win32-1.7.8.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/mozilla-mac-1.7.8.dmg">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/mozilla-i686-pc-linux-gnu-1.7.8-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/mozilla-i686-pc-linux-gnu-1.7.8-stub-installer.tar.gz">ネットインストーラ</a> (106  KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/mozilla-i686-pc-linux-gnu-1.7.8.tar.gz">tar.gz フォーマット</a> (13.3 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux (x86) GTK2+Xft</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla-i686-pc-linux-gnu-1.7.8-gtk2+xft.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (13.0 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla-1.7.8-os2-installer.exe">インストーラ</a> (14 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla-1.7.8-os2.zip">ZIP ファイル</a> (14 MB)</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7.8/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<h4>Solaris (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.8-gtk2.tar.bz2">mozilla1.7.8-sparc-sun-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.8.tar.bz2">mozilla1.7.8-sparc-sun-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.8.tar.bz2">mozilla1.7.8-i386-pc-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.8-gtk2.tar.bz2">mozilla1.7.8-i386-pc-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.10-gtk2+xft.tar.bz2">mozilla1.7.8-sparc-sun-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-sparc-sun-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.10-gtk2+xft.tar.bz2">mozilla1.7.8-i386-pc-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i386-pc-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>JDS (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz">mozilla1.7.8-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i686-pc-linux-gnu-jds2-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz">mozilla1.7.8-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i686-pc-linux-gnu-jds3-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.8/contrib/mozilla1.7.8-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<hr>
+
+<h2><a name="1.7.7">Mozilla 1.7.7</a> - 2005 年 4 月 15 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.7/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/source/mozilla-source-1.7.7.tar.bz2">bzip</a> - 33 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/source/mozilla-source-1.7.7.tar.gz">gzip</a> - 41 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/gecko-sdk-i586-pc-msvc-1.7.7.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/gecko-sdk-i686-pc-linux-gnu-1.7.7.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/README">Readme</a> ファイルでは、Mozilla 1.7.7 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/mozilla-win32-1.7.7-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/mozilla-win32-1.7.7-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/mozilla-win32-1.7.7.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/mozilla-mac-1.7.7.dmg">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/mozilla-i686-pc-linux-gnu-1.7.7-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/mozilla-i686-pc-linux-gnu-1.7.7-stub-installer.tar.gz">ネットインストーラ</a> (106  KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/mozilla-i686-pc-linux-gnu-1.7.7.tar.gz">tar.gz フォーマット</a> (13.3 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux (x86) GTK2+Xft</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i686-pc-linux-gnu-1.7.7-gtk2+xft.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (13.0 MB)</li>
+</ul>
+<h4>Solaris (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2">mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2">mozilla-i386-pc-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.8.tar.bz2">mozilla-i386-pc-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2">mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2">mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2">mozilla-sparc-sun-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>JDS (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz">mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz">mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-1.7.7-os2-installer.exe">インストーラ</a> (14 MB) - カレンダー付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.7/contrib/mozilla-1.7.7-os2.zip">ZIP ファイル</a> (14 MB) - カレンダー付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7.7/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.7.6">Mozilla 1.7.6</a> - 2005 年 3 月 21 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.6/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/source/mozilla-source-1.7.6.tar.bz2">bzip</a> - 33 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/source/mozilla-source-1.7.6.tar.gz">gzip</a> - 41 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/gecko-sdk-i586-pc-cygwin-1.7.6.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/gecko-sdk-i686-pc-linux-gnu-1.7.6.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/README">Readme</a> ファイルでは、Mozilla 1.7.6 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/mozilla-win32-1.7.6-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/mozilla-win32-1.7.6-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/mozilla-win32-1.7.6.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/mozilla-mac-1.7.6.dmg">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/mozilla-i686-pc-linux-gnu-1.7.6-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/mozilla-i686-pc-linux-gnu-1.7.6-stub-installer.tar.gz">ネットインストーラ</a> (106  KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/mozilla-i686-pc-linux-gnu-1.7.6.tar.gz">tar.gz フォーマット</a> (13.3 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux (x86) GTK2+Xft</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i686-pc-linux-gnu-1.7.6-gtk2+xft.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (13.0 MB)</li>
+</ul>
+<h4>Solaris (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2">mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2">mozilla-i386-pc-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.8.tar.bz2">mozilla-i386-pc-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2">mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2">mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2">mozilla-sparc-sun-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>JDS (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz">mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz">mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-1.7.6-os2-installer.exe">インストーラ</a> (14 MB) - カレンダー付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.6/contrib/mozilla-1.7.6-os2.zip">ZIP ファイル</a> (14 MB) - カレンダー付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7.6/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.8b1">Mozilla 1.8 Beta 1</a> - 2005 年 2 月 26 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.8b1/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/source/mozilla-source-1.8b1.tar.bz2">bzip</a> - 33 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/source/mozilla-source-1.8b1.tar.gz">gzip</a> - 41 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/gecko-sdk-i586-pc-msvc-1.8b1.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/gecko-sdk-i686-pc-linux-gnu-gtk2+xft-1.8b1.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/README">Readme</a> ファイルでは、Mozilla 1.7.3 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Win32</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/mozilla-win32-1.8b1-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/mozilla-win32-1.8b1-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/mozilla-win32-1.8b1.zip">Zip ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/mozilla-mac-1.8b1.dmg">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/mozilla-i686-pc-linux-gnu-gtk2+xft-1.8b1.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (12.9 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/mozilla-i686-pc-linux-gnu-1.8b1-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/mozilla-i686-pc-linux-gnu-1.8b1-stub-installer.tar.gz">ネットインストーラ</a> (106 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/mozilla-i686-pc-linux-gnu-1.8b1.tar.gz">tar.gz 形式</a> (13.3 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Solaris (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.8.tar.bz2">mozilla-i386-pc-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2">mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2">mozilla-i386-pc-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2">mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2">mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2">mozilla-sparc-sun-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>JDS (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz">mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz">mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.8b1/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<hr>
+
+<h2><a name="1.8a6">Mozilla 1.8 Alpha 6</a> - 2005 年 1 月 12 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.8a6/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/source/mozilla-source-1.8a6.tar.bz2">bzip</a> - 33 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/source/mozilla-source-1.8a6.tar.gz">gzip</a> - 41 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/gecko-sdk-i586-pc-msvc-1.8a6.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/gecko-sdk-i686-pc-linux-gnu-gtk2+xft-1.8a6.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/README">Readme</a> ファイルでは、Mozilla 1.7.3 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Win32</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/mozilla-win32-1.8a6-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/mozilla-win32-1.8a6-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/mozilla-win32-1.8a6.zip">Zip ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/mozilla-mac-1.8a6.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/mozilla-i686-pc-linux-gnu-gtk2+xft-1.8a6.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (12.9 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/mozilla-i686-pc-linux-gnu-1.8a6-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/mozilla-i686-pc-linux-gnu-1.8a6-stub-installer.tar.gz">ネットインストーラ</a> (106 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/mozilla-i686-pc-linux-gnu-1.8a6.tar.gz">tar.gz 形式</a> (13.3 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86 プロセッサ)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-i386-pc-solaris2.8.tar.bz2">x86 Solaris 8 用 bz2 フォーマット</a> - Sun 提供のフォルテビルド - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2">x86 Solaris 8 用 bz2 フォーマット (GTK2)</a> - Sun 提供のフォルテビルド - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>Solaris sparc</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2">sparc Solaris 8 用 bz2 フォーマット</a> - Sun 提供のフォルテビルド - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2">sparc Solaris 8 用 bz2 フォーマット (GTK2)</a> - Sun 提供のフォルテビルド - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a6/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<hr>
+
+<h2><a name="1.7.5">Mozilla 1.7.5</a> - 2004 年 12 月 17 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.5/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/source/mozilla-source-1.7.5.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/source/mozilla-source-1.7.5.tar.gz">gzip</a> - 41MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/gecko-sdk-i586-pc-msvc-1.7.5.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/gecko-sdk-i686-pc-linux-gnu-1.7.5.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/README">Readme</a> ファイルでは、Mozilla 1.7.5 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/mozilla-win32-1.7.5-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/mozilla-win32-1.7.5-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/mozilla-win32-1.7.5.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/mozilla-mac-1.7.5.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/mozilla-i686-pc-linux-gnu-1.7.5-full-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/mozilla-i686-pc-linux-gnu-1.7.5-installer.tar.gz">ネットインストーラ</a> (99  KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/mozilla-i686-pc-linux-gnu-1.7.5.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux (x86) GTK2+Xft</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i686-pc-linux-gnu-1.7.5-gtk2+xft.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (12.9 MB)</li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-alphaev6-dec-osf5.0-1.7.5.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.1 MB) - HP 提供</li>
+</ul>
+<h4>Solaris (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.8.tar.bz2">mozilla-i386-pc-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2">mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2">mozilla-i386-pc-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i386-pc-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2">mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.10-gtk2+xft.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2">mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.8-gtk2.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.8-gtk2.tar.bz2.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2">mozilla-sparc-sun-solaris2.8.tar.bz2</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.8.readme">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-sparc-sun-solaris2.8.tar.bz2.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>JDS (Sun 北京チーム提供)</h4>
+<ul>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz">mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i686-pc-linux-gnu-jds2-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+  <li><a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz">mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.readme">Readme</a> - 
+      <a href="ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-i686-pc-linux-gnu-jds3-gtk2+xft.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-1.7.5-os2-installer.exe">インストーラ</a> (14 MB) - カレンダー付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/contrib/mozilla-1.7.5-os2.zip">ZIP ファイル</a> (14 MB) - カレンダー付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7.5/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.8a5">Mozilla 1.8 Alpha 5</a> - 2004 年 11 月 22 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.8a5/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/source/mozilla-source-1.8a5.tar.bz2">bzip</a> - 33 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/source/mozilla-source-1.8a5.tar.gz">gzip</a> - 41 MB)</li>
+  <li>SDK (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/gecko-sdk-i586-pc-msvc-1.8a5.zip">Windows</a>) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/gecko-sdk-i686-pc-linux-gnu-gtk2+xft-1.8a5.tar.gz">Linux</a>) - Mozilla 組み込み・コンポーネント開発者向け</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/README">Readme</a> ファイルでは、Mozilla 1.7.3 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Win32</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/mozilla-win32-1.8a5-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/mozilla-win32-1.8a5-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/mozilla-win32-1.8a5.zip">Zip ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/mozilla-mac-1.8a5.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/mozilla-i686-pc-linux-gnu-gtk2+xft-1.8a5.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (13 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/mozilla-i686-pc-linux-gnu-1.8a5-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/mozilla-i686-pc-linux-gnu-1.8a5-stub-installer.tar.gz">ネットインストーラ</a> (99 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/mozilla-i686-pc-linux-gnu-1.8a5.tar.gz">tar.gz 形式</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/contrib/mozilla-alphaev6-dec-osf5.0-1.8a5.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.1 MB) - HP 提供</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/contrib/mozilla-os2-1.8a5-installer.exe">インストーラ</a> (14 MB) - カレンダー付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a5/contrib/mozilla-os2-1.8a5.zip">ZIP ファイル</a> (14 MB) - カレンダー付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.8a5/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.8a4">Mozilla 1.8 Alpha 4</a> - 2004 年 9 月 28 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.8a4/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/src/mozilla-source-1.8a4.tar.bz2">bzip</a> - 33 MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/src/mozilla-source-1.8a4.tar.gz">gzip</a> - 41 MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/README">Readme</a> ファイルでは、Mozilla 1.7.3 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Win32</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/mozilla-win32-1.8a4-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/mozilla-win32-1.8a4-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/mozilla-win32-1.8a4.zip">Zip ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/mozilla-mac-1.8a4.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/mozilla-i686-pc-linux-gnu-1.8a4-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/mozilla-i686-pc-linux-gnu-1.8a4-stub-installer.tar.gz">ネットインストーラ</a> (99 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/mozilla-i686-pc-linux-gnu-1.8a4.tar.gz">tar.gz 形式</a> (13 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/contrib/mozilla-i686-pc-linux-gnu-1.8a4-gtk2+xft.tar.gz">tar.gz 形式 XFT+GTK2 ビルド</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Solaris sparc</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/contrib/mozilla-sparc-sun-solaris2.8_1.8a4.tar.bz2">sparc Solaris 8 用 bz2 フォーマット</a> (14 MB) - Sun 提供のフォルテビルド - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/contrib/mozilla-solaris2.8_1.8a4.readme">Readme</a></li>
+</ul>
+<!--
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86 プロセッサ)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/contrib/mozilla-i386-pc-solaris2.8_1.8a4.tar.bz2">x86 Solaris 8 用 bz2 フォーマット</a> (14 MB) - Sun 提供のフォルテビルド - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/contrib/mozilla-solaris2.8_1.8a4.readme">Readme</a></li>
+</ul>
+-->
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/contrib/mozilla-os2-1.8a4-installer.exe">インストーラ</a> (14 MB) - カレンダー付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a4/contrib/mozilla-os2-1.8a4.zip">ZIP ファイル</a> (14 MB) - カレンダー付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.8a4/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.7.3">Mozilla 1.7.3</a> - 2004 年 9 月 13 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.3/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/src/mozilla-source-1.7.3.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/src/mozilla-source-1.7.3.tar.gz">gzip</a> - 41MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/README">Readme</a> ファイルでは、Mozilla 1.7.3 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/mozilla-win32-1.7.3-installer.exe">フルインストーラ</a> (12.0 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/mozilla-win32-1.7.3-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/mozilla-win32-1.7.3.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/mozilla-mac-1.7.3.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/mozilla-i686-pc-linux-gnu-1.7.3-full-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/mozilla-i686-pc-linux-gnu-1.7.3-installer.tar.gz">ネットインストーラ</a> (100 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/mozilla-i686-pc-linux-gnu-1.7.3.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux (x86) GTK+XFT</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-i686-pc-linux-gnu-1.7.3-gtk2+xft.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h4>Solaris sparc</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-sparc-sun-solaris2.8_1.7.3.tar.bz2">sparc Solaris 8 用 bz2 フォーマット</a> (14 MB) - Sun 提供のフォルテビルド - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-solaris2.8_1.7.3.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-sparc-sun-solaris-2.8-1.7.3.tar.gz">sparc Solaris 8 用 tar.gz フォーマット</a> (14 MB) - Sun 提供のフォルテビルド - カレンダー付き (ファイル消失のため SVG サポートなし) - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-sparc-sun-solaris-2.8-1.7.3.tar.gz.README">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-sparc-sun-solaris-2.8-1.7.3.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86 プロセッサ)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-i386-pc-solaris2.8_1.7.3.tar.bz2">x86 Solaris 8 用 bz2 フォーマット</a> (14 MB) - Sun 提供のフォルテビルド - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-solaris2.8_1.7.3.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-i386-pc-solaris-2.8-1.7.3.tar.gz">x86 Solaris 8 用 tar.gz フォーマット</a> (14 MB) - Sun 提供のフォルテビルド - カレンダー付き (ファイル消失のため SVG サポートなし) - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-i386-pc-solaris-2.8-1.7.3.tar.gz.README">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-i386-pc-solaris-2.8-1.7.3.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>Linux 版 Sun Java Desktop バージョン 2 および 3</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-1.7.3-i686-jds2-linux.tar.gz">Linux 版 Sun Java Desktop バージョン 2 および 3 用</a> (14 MB) - Sun 提供 - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-1.7.3-i686-jds2-linux.tar.gz.README">Readme</a> - 
+      <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-1.7.3-i686-jds2-linux.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-alphaev6-dec-osf5.0-1.7.3.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.1 MB) - HP 提供</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-1.7.3-os2-installer.exe">インストーラ</a> (14 MB) - カレンダー付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.3/contrib/mozilla-1.7.3-os2.zip">ZIP ファイル</a> (14 MB) - カレンダー付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7.3/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.8a3">Mozilla 1.8 Alpha3</a> - 2004 年 8 月 18 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.8a3/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.8a3">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/src/mozilla-source-1.8a3.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/src/mozilla-source-1.8a3.tar.gz">gzip</a> - 41MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/README">Readme</a> ファイルでは、Mozilla 1.8 Alpha3 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/mozilla-win32-1.8a3-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/mozilla-win32-1.8a3-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/mozilla-win32-1.8a3.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/mozilla-mac-1.8a3.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/mozilla-i686-pc-linux-gnu-1.8a3-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/mozilla-i686-pc-linux-gnu-1.8a3-stub-installer.tar.gz">ネットインストーラ</a> (99 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/mozilla-i686-pc-linux-gnu-1.8a3.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Solaris/SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/contrib/mozilla-sparc-sun-solaris2.8_1.8a3.tar.bz2">Solaris 8 用 bz2 フォーマット</a> (16.2 MB) - Sun 提供のフォルテビルド - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/contrib/mozilla-solaris2.8_1.8a3.readme">Readme</a></li>
+</ul>
+<!--
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/contrib/mozilla-i386-pc-solaris2.8_1.8a3.tar.bz2">x86 Solaris 8 用 bz2 フォーマット</a> (16.2 MB) - Sun 提供のフォルテビルド - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/contrib/mozilla-solaris2.8_1.8a3.readme">Readme</a></li>
+</ul>
+-->
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/contrib/mozilla-alphaev6-dec-osf5.0-1.8a3.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.1 MB) - HP 提供</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/contrib/mozilla-os2-1.8a3-installer.exe">インストーラ</a> (14 MB) - カレンダー付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a3/contrib/mozilla-os2-1.8a3.zip">ZIP ファイル</a> (14 MB) - カレンダー付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.8a3/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.7.2">Mozilla 1.7.2</a> - 2004 年 8 月 4 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.2/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.7.2">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/src/mozilla-source-1.7.2.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/src/mozilla-source-1.7.2.tar.gz">gzip</a> - 41MB)</li>
+  <!-- <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/README">Readme</a> ファイルでは、Mozilla 1.7.2 を CVS から取り込む手順を説明しています。</li> -->
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/mozilla-win32-1.7.2-installer.exe">フルインストーラ</a> (12.0 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/mozilla-win32-1.7.2-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/mozilla-win32-1.7.2.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/mozilla-mac-1.7.2.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/mozilla-i686-pc-linux-gnu-1.7.2-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/mozilla-i686-pc-linux-gnu-1.7.2-stub-installer.tar.gz">ネットインストーラ</a> (99 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/mozilla-i686-pc-linux-gnu-1.7.2.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Solaris x86 (32 ビットモードの AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/contrib/mozilla-i386-pc-solaris2.8-1.7.2.tar.gz">x86 Solaris 8 用 bz2 フォーマット</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/contrib/mozilla-i386-pc-solaris2.8-1.7.2.tar.gz.README">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/contrib/mozilla-i386-pc-solaris2.8-1.7.2.tar.gz.md5">MD5SUM</a></li>
+</ul>
+<h4>Solaris/SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/contrib/mozilla-sparc-sun-solaris-2.8-1.7.2.tar.gz">Solaris 8 用 tar.gz フォーマット</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/contrib/mozilla-sparc-sun-solaris-2.8-1.7.2.tar.gz.README">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/contrib/mozilla-sparc-sun-solaris-2.8-1.7.2.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.2/contrib/mozilla-alphaev6-dec-osf5.0-1.7.2.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.1 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.8a2">Mozilla 1.8 Alpha2</a> - 2004 年 7 月 14 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.8a2/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.8a2">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/src/mozilla-source-1.8a2.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/src/mozilla-source-1.8a2.tar.gz">gzip</a> - 41MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/README">Readme</a> ファイルでは、Mozilla 1.8 Alpha2 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/mozilla-win32-1.8a2-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/mozilla-win32-1.8a2-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/mozilla-win32-1.8a2.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/mozilla-mac-1.8a2.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/mozilla-i686-pc-linux-gnu-1.8a2-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/mozilla-i686-pc-linux-gnu-1.8a2-stub-installer.tar.gz">ネットインストーラ</a> (99 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/mozilla-i686-pc-linux-gnu-1.8a2.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>LinuxPPC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-powerpc-unknown-linux-gnu-1.8a2.tar.gz">Linux PowerPC 用 tar.gz フォーマット</a> (13.0 MB) - SSL、Xft、GTK2 付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-powerpc-unknown-linux-gnu-1.8a2.README">Readme</a></li>
+</ul>
+<h4>FreeBSD</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-i386-unknown-freebsd4.8.tar.gz">FreeBSD 4.8 用 tar.gz フォーマット</a> (14.0 MB) - Calendar 付き - 詳しくは添付ファイル README.pkg をご覧ください。</li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-powerpc-ibm-aix4.3.3.0-1.8a2.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (15.0 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-powerpc-ibm-aix5.1.0.0-1.8a2.tar.gz">AIX 5.1.0 用 tar.gz フォーマット</a> (16.0 MB) - GTK2</li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-hppa2.0w-hp-hpux11.00-1.8a2.tar.gz">HP11.00 用 tar.gz フォーマット</a> (20.0 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-os2-1.8a2-installer.exe">インストーラ</a> (14 MB) - Calendar 付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-os2-1.8a2.zip">ZIP ファイル</a> (14 MB) - Calendar 付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.8a2/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<h4>Solaris/SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-sparc-sun-solaris2.8_1.8a2.tar.bz2">Solaris 8 用 bz2 フォーマット</a> (16.2 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-solaris2.8_1.8a2.readme">Readme</a></li>
+</ul>
+<!--
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-i386-pc-solaris2.8_1.8a2.tar.bz2">x86 Solaris 8 用 bz2 フォーマット</a> (16.2 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a2/contrib/mozilla-solaris2.8_1.8a2.readme">Readme</a></li>
+</ul>
+-->
+<hr>
+
+<h2><a name="1.7.1">Mozilla 1.7.1 </a> - 2004 年 7 月 8 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7.1/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.7">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/src/mozilla-source-1.7.1.tar.bz2">bzip</a> - 33MB) <!-- (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/src/mozilla-source-1.7.1.tar.gz">gzip</a> - 41MB) --></li>
+  <!-- <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/README">Readme</a> ファイルでは、Mozilla 1.7.1 を CVS から取り込む手順を説明しています。</li> -->
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/mozilla-win32-1.7.1-installer.exe">フルインストーラ</a> (12.0 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/mozilla-win32-1.7.1-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7.1/mozilla-win32-1.7.1.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<p>その他のプラットフォームについては <a href="#1.7">Mozilla 1.7</a> をご覧ください。Mozilla 1.7.1 は Windows のみのセキュリティアップデートです。</p>
+<hr>
+
+<h2><a name="1.7">Mozilla 1.7 </a> - 2004 年 6 月 17 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.7">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/src/mozilla-source-1.7.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/src/mozilla-source-1.7.tar.gz">gzip</a> - 41MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/README">Readme</a> ファイルでは、Mozilla 1.7 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-win32-1.7-installer.exe">フルインストーラ</a> (12.0 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-win32-1.7-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-win32-1.7.zip">ZIP ファイル</a> (11 MB)</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=%0Et%D5f%FC%2C%CE%A6%8C%A3j%27%DB%D5%8D%0As%99%A0-">フルインストーラ via BitTorrent</a> (11.4 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-mac-1.7.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=%17%90%7E%3D%2B%85%17vb%19%21%2BF%D2R%E1%85%DD%8E4">ディスクイメージ via BitTorrent</a> (14.1 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-i686-pc-linux-gnu-1.7-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-i686-pc-linux-gnu-1.7-stub-installer.tar.gz">ネットインストーラ</a> (100 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/mozilla-i686-pc-linux-gnu-1.7.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=%AA%86k%1E-x%CD%EB%C1%606%3E%5B%E6%15%1CXZ%CF%11">フルインストーラ via BitTorrent</a> (12.9 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-1.7-i686-pc-linux-gnu-gtk2-xft-pango.tar.gz">Linux/GTK2/XFT/Pango 用 tar.gz フォーマット</a> (12.6 MB) - Pango で複雑な筆記体活字のレンダリングを可能にした Bug 215219 のパッチが適用されています - 詳しくは <a href="http://www.ring.gr.jp/pub/net/www/mozilla/mozilla/releases/mozilla1.7/contrib/mozilla-1.7-i686-pc-linux-gnu-gtk2-xft-pango.readme">Readme</a> をご覧ください。</li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-powerpc-ibm-aix4.3.3.0-1.7.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (15.0 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-powerpc-ibm-aix5.1.0.0-1.7.tar.gz">AIX 5.1.0 用 tar.gz フォーマット</a> (16.0 MB) - GTK2</li>
+</ul>
+<h4>FreeBSD</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-1.7-i386-unknown-freebsd4.8.tar.gz">FreeBSD 4.8 用 tar.gz フォーマット</a> (14.0 MB) - Calendar 付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-1.7-i386-unknown-freebsd4.8.README">Readme</a></li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-hppa2.0w-hp-hpux11.00-1.7.tar.gz">HP11.00 用 tar.gz フォーマット</a> (20.0 MB)</li>
+</ul>
+<h4>Solaris/SPARC</h4>
+<ul>
+  <li>Solaris 2.8/SPARC 以降用 <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-sparc-sun-solaris2.8-1.7.tar.gz">tar.gz フォーマット</a> (17.0 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-sparc-sun-solaris2.8-1.7.tar.bz2">tar.bz2 フォーマット</a> (15.1 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-sparc-sun-solaris2.8-1.7.readme">Readme</a></li>
+  <li>Solaris 2.8/SPARC 以降用 <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7.tar.gz">tar.gz フォーマット</a> (17.0 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7.tar.bz2">tar.bz2 フォーマット</a> (15.1 MB) - <a href="http://www.sun.com/software/gnome/">Sun Gnome Desktop</a> 用 GTK2 フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-sparc-sun-solaris2.8_1.7.tar.bz2">Solaris 8 用 bz2 フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-sparc-sun-solaris2.8_1.7.readme">Readme</a></li>
+</ul>
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-i386-pc-solaris2.8-1.7.tar.gz">x86 Solaris 8 以降用 tar/gzip フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems の Solaris x86 Engineering Group 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-i386-pc-solaris2.8-1.7.tar.gz.README">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-i386-pc-solaris2.8-1.7.tar.gz.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-i386-pc-solaris2.8_1.7.tar.bz2">x86 Solaris 8 用 bz2 フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-i386-pc-solaris2.8_1.7.README">Readme</a></li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-os2-1.7-installer.exe">インストーラ</a> (14 MB) - Calendar 付き</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-os2-1.7.zip">ZIP ファイル</a> (14 MB) - Calendar 付き</li>
+  <li>いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<h4>OpenVMS</h4>
+<ul>
+  <li>HP の OpenVMS Engineering Group 提供 - OpenVMS 版固有の情報については、グループが出している <a href="http://h71000.www7.hp.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-openvms-alpha-m170.sfx_axpexe">自動展開 PCSI</a> (25.4 MB)</li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7/contrib/mozilla-alphaev6-dec-osf5.0-1.7.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.1 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.7rc3">Mozilla 1.7 RC3</a> - 2004 年 6 月 8 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7rc3/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.7rc3">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/src/mozilla-source-1.7rc3.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/src/mozilla-source-1.7rc3.tar.gz">gzip</a> - 41MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/README">Readme</a> ファイルでは、Mozilla 1.7 rc3 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+d<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/mozilla-win32-1.7rc3-installer.exe">フルインストーラ</a> (12.0 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/mozilla-win32-1.7rc3-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/mozilla-win32-1.7rc3.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/mozilla-mac-1.7rc3.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/mozilla-i686-pc-linux-gnu-1.7rc3-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/mozilla-i686-pc-linux-gnu-1.7rc3-stub-installer.tar.gz">ネットインストーラ</a> (100 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/mozilla-i686-pc-linux-gnu-1.7rc3.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/contrib/mozilla-i386-pc-solaris2.8-1.7rc3.tar.gz">x86 Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/contrib/mozilla-i386-pc-solaris2.8-1.7rc3.tar.gz.README">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc3/contrib/mozilla-i386-pc-solaris2.8-1.7rc3.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<hr>
+
+<h2><a name="1.8a1">Mozilla 1.8 Alpha1</a> - 2004 年 5 月 20 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.8a1/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.8a1">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/src/mozilla-source-1.8a1.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/src/mozilla-source-1.8a1.tar.gz">gzip</a> - 41MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/README">Readme</a> ファイルでは、Mozilla 1.8 Alpha1 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/mozilla-win32-1.8a1-installer.exe">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/mozilla-win32-1.8a1-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/mozilla-win32-1.8a1.zip">ZIP ファイル</a> (11 MB)</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=%CDj%DD%BC%3B%B3%2B%C6%3F%B9%8FK%14%FC%CA%B5%F4%91%94j">フルインストーラ via BitTorrent</a> (11.4 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/mozilla-mac-1.8a1.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=-%A5CU%11%E3%EB%8F%24n%C7%5D%D6I%3F%AD%08%EE%05%22">ディスクイメージ via BitTorrent</a> (14.1 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/mozilla-i686-pc-linux-gnu-1.8a1-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/mozilla-i686-pc-linux-gnu-1.8a1-stub-installer.tar.gz">ネットインストーラ</a> (99 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/mozilla-i686-pc-linux-gnu-1.8a1.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=%D2%B6%8B%BF%A2R%7D%FC%C6%AC%F9%E0%94wM%05%D4%7E%C8%8D">フルインストーラ via BitTorrent</a> (12.9 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>FreeBSD</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-1.8a1-i386-unknown-freebsd4.8.tar.gz">FreeBSD 4.8 用 tar.gz フォーマット</a> (14.0 MB) - Calendar 付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-1.8a1-i386-unknown-freebsd4.8.README">Readme</a></li>
+</ul>
+<h4>LinuxPPC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-powerpc-unknown-linux-gnu-1.8a1.tar.gz">Linux PowerPC 用 tar.gz フォーマット</a> (12.0 MB) - SSL、Xft、GTK2 付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-powerpc-unknown-linux-gnu-1.8a1.README">Readme</a></li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-os2-1.8a1-installer.exe">インストーラ</a> (14 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-os2-1.8a1.zip">ZIP ファイル</a> (14 MB) - いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.8a1/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<h4>Solaris/SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-sparc-sun-solaris2.8_1.8a1.tar.bz2">sparc Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-sparc-sun-solaris2.8_1.8a1.readme">Readme</a></li>
+</ul>
+<!--
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-i386-pc-solaris2.8_1.8a1.tar.bz2">x86 Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.8a1/contrib/mozilla-i386-pc-solaris2.8_1.8a1.readme">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-i386-pc-solaris2.8-1.7_RC2.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+-->
+<hr>
+
+<h2><a name="1.7rc2">Mozilla 1.7 RC2</a> - 2004 年 5 月 17 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7rc2/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.7rc2">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/src/mozilla-source-1.7rc2.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/src/mozilla-source-1.7rc2.tar.gz">gzip</a> - 41MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/README">Readme</a> ファイルでは、Mozilla 1.7 RC2 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版、Linux 版、Mac OS 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/mozilla-win32-1.7rc2-installer.exe">フルインストーラ</a> (12.0 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/mozilla-win32-1.7rc2-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/mozilla-win32-1.7rc2.zip">ZIP ファイル</a> (11 MB)</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=mz%9F%2AF%C6%24%F84C%27%7F%A1%D6%AC%C8%96%EE%ADe">フルインストーラ via BitTorrent</a> (11.4 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/mozilla-mac-1.7rc2.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=%D4%DD%09%3C%FA%D7%CE%E7%AC%9F%D3%A2%1FXX%DB%7BQ%5C%22">ディスクイメージ via BitTorrent</a> (14.1 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/mozilla-i686-pc-linux-gnu-1.7rc2-installer.tar.gz">フルインストーラ</a> (13 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/mozilla-i686-pc-linux-gnu-1.7rc2-stub-installer.tar.gz">ネットインストーラ</a> (100 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/mozilla-i686-pc-linux-gnu-1.7rc2.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+  <li><a href="http://bittorrent.mozilla.org:6969/file?info_hash=%90%84%13M%DE%F4%07%A3C%91%7FC%E4%9C%8E%09v%3C%80F">フルインストーラ via BitTorrent</a> (12.9 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Solaris x86 (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-i386-pc-solaris2.8-1.7_RC2.tar.gz">x86 Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-i386-pc-solaris2.8-1.7_RC2.tar.gz.README">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-i386-pc-solaris2.8-1.7_RC2.tar.gz.MD5SUM">MD5SUM</a></li>
+</ul>
+<h4>Solaris/SPARC</h4>
+<ul>
+  <li>Solaris 2.8/SPARC 用 <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-sparc-sun-solaris2.8-1.7rc2.tar.gz">tar.gz フォーマット</a> (17.0 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-sparc-sun-solaris2.8-1.7rc2.tar.bz2">tar.bz2 フォーマット</a> (15.1 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-sparc-sun-solaris2.8-1.7rc2.readme">Readme</a></li>
+</ul>
+<h4>FreeBSD</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-1.7RC2-i386-unknown-freebsd4.8.tar.gz">FreeBSD 4.8 用 tar.gz フォーマット</a> (14.0 MB)</li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-powerpc-ibm-aix4.3.3.0-1.7rc2.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (15.0 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-powerpc-ibm-aix5.1.0.0-1.7rc2.tar.gz">AIX 5.1.0 用 tar.gz フォーマット</a> (16.0 MB) - GTK2</li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-hppa2.0w-hp-hpux11.00-1.7rc2.tar.gz">HP11.00 用 tar.gz フォーマット</a> (20.0 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-os2-1.7rc2-installer.exe">インストーラ</a> (14 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc2/contrib/mozilla-os2-1.7rc2.zip">ZIP ファイル</a> (14 MB) - いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7rc2/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.7rc1">Mozilla 1.7 RC1</a> - 2004 年 4 月 21 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7rc1/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.7rc1">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/src/mozilla-source-1.7rc1.tar.bz2">bzip</a> - 33MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/src/mozilla-source-1.7rc1.tar.gz">gzip</a> - 41MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/README">Readme</a> ファイルでは、Mozilla 1.7 RC1 を CVS から取り込む手順を説明しています。</li>
+  <li>Windows 版と Linux 版の公式ビルドには、すべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/mozilla-win32-1.7rc1-installer.exe">フルインストーラ</a> (12.0 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/mozilla-win32-1.7rc1-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/mozilla-win32-1.7rc1.zip">ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/mozilla-mac-1.7rc1.dmg.gz">ディスクイメージ</a> (14 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/mozilla-i686-pc-linux-gnu-1.7rc1-installer.tar.gz">フルインストーラ</a> (15 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/mozilla-i686-pc-linux-gnu-1.7rc1-stub-installer.tar.gz">ネットインストーラ</a> (100 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/mozilla-i686-pc-linux-gnu-1.7rc1.tar.gz">tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li>フルインストーラ: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc1/mozilla-win32-1.7rc1-jaJP-installer.exe">日本語版</a></li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li>圧縮バイナリ: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc1/mozilla-mac-1.7rc1-jaJP.zip">日本語版</a></li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li>tar.gz フォーマット: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7rc1/mozilla-i686-pc-linux-gnu-1.7rc1-jaJP.tar.gz">日本語版</a></li>
+</ul>
+<h4>FreeBSD</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-1.7rc1-i386-unknown-freebsd4.8.tar.gz">FreeBSD 4.8 用 tar.gz フォーマット</a> (14.0 MB)</li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-powerpc-ibm-aix4.3.3.0-1.7rc1.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (16.1 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-powerpc-ibm-aix5.1.0.0-1.7rc1.tar.gz">AIX 5.1.0 用 tar.gz フォーマット</a> (16.2 MB) - GTK2</li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-hppa2.0w-hp-hpux11.00-1.7rc1.tar.gz">HP11.00 用 tar.gz フォーマット</a> (21.5 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-os2-1.7rc1-installer.exe">インストーラ</a> (14 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-os2-1.7rc1.zip">ZIP ファイル</a> (14 MB) - いずれも <a href="http://www.innotek.de/products/gccos2/download/gccos2download_e.html">libc05</a> が必要です。インストールの前に <a href="mozilla1.7rc1/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<h4>Solaris/SPARC</h4>
+<ul>
+  <li>Solaris 2.8/SPARC 用 <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-sparc-sun-solaris2.8-1.7rc1.tar.gz">tar.gz フォーマット</a> (17.0 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-sparc-sun-solaris2.8-1.7rc1.tar.bz2">tar.bz2 フォーマット</a> (15.1 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-sparc-sun-solaris2.8-1.7rc1.readme">Readme</a></li>
+  <li>Solaris 2.8/SPARC 用 <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7rc1.tar.gz">tar.gz フォーマット</a> (16.8 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7rc1.tar.bz2">tar.bz2 フォーマット</a> (14.9 MB) - <a href="http://www.sun.com/software/gnome/">Sun Gnome Desktop</a> 用 GTK2 フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7rc1/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7rc1.readme">Readme</a></li>
+</ul>
+<hr>
+
+<h2><a name="1.7b">Mozilla 1.7 Beta</a> - 2004 年 3 月 18 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7b/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.7b">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/src/mozilla-source-1.7b-source.tar.bz2">bzip</a> - 28MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/src/mozilla-source-1.7b-source.tar.gz">gzip</a> - 36MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/README">Readme</a> ファイルでは、Mozilla 1.7 Beta を CVS から取り込む手順を説明しています。</li>
+  <li>特に断りのない限り、公式ビルドにはすべて <a href="/quality/qfa.html">Talkback クラッシュ報告ユーティリティ</a> が付属しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/mozilla-win32-1.7b-installer.exe">フルインストーラ</a> (11.4 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/mozilla-win32-1.7b-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/mozilla-win32-1.7b.zip">ZIP ファイル</a> (10.5 MB) - Talkback クラッシュ報告ユーティリティは付属していません。</li>
+  <li><a href="http://bt.mozilla.org:6969/file?info_hash=t%B1%D1%1E%E9Z%FB%8F%08%95%096%15%0E%26%C3%20%2A%5C%A4">フルインストーラ via BitTorrent</a> (11.4 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/mozilla-mac-1.7b.dmg.gz">ディスクイメージ</a> (14.1 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+  <li><a href="http://bt.mozilla.org:6969/file?info_hash=%5C%88%3D%FAU%C9%7F%9A%8CQg%071%BE%80%FB%3D%B7%FB%A3">ディスクイメージ via BitTorrent</a> (14.1 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/mozilla-i686-pc-linux-gnu-1.7b-installer.tar.gz">フルインストーラ</a> (12.9 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/mozilla-i686-pc-linux-gnu-1.7b-stub-installer.tar.gz">ネットインストーラ</a> (99 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/mozilla-i686-pc-linux-gnu-1.7b.tar.gz">tar.gz フォーマット</a> (12.4 MB) - Talkback クラッシュ報告ユーティリティは付属していません。</li>
+  <li><a href="http://bt.mozilla.org:6969/file?info_hash=%AC%D6%09%CBQ%AC%AC%83%D1%BE%CD%DAA6%CB%E5%01Q%B0%AD">フルインストーラ via BitTorrent</a> (12.9 MB) - <a href="http://dessent.net/btfaq/">BitTorrent について</a></li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li>フルインストーラ: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7beta/mozilla-win32-1.7b-jaJP-installer.exe">日本語版</a></li>
+</ul>
+<h4>Solaris (SPARC)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-sparc-sun-solaris2.8-1.7b.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.6 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-sparc-sun-solaris2.8-1.7b.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7b.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.4 MB) - <a href="http://www.sun.com/software/gnome/">Sun Gnome Desktop</a> 用 GTK2 フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7b.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-sparc-sun-solaris2.8_1.7b.tar.gz">sparc Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-sparc-sun-solaris2.8_1.7b.readme">Readme</a></li>
+</ul>
+<h4>Solaris (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-i386-pc-solaris2.8_1.7b.tar.gz">x86 Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-i386-pc-solaris2.8_1.7b.tar.gz.README">Readme</a></li>
+</ul>
+<h4>LinuxPPC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-powerpc-unknown-linux-gnu-1.7b.tar.gz">Linux PowerPC 用 tar.gz フォーマット</a> (12.0 MB) - Neill Miller 氏提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-powerpc-unknown-linux-gnu-1.7b.README">Readme</a></li>
+</ul>
+<h4>FreeBSD</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-1.7b-i386-unknown-freebsd4.8.tar.gz">FreeBSD 4.8 用 tar.gz フォーマット</a> (14.0 MB) - Ravi 氏提供 - Calendar 付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-1.7b-i386-unknown-freebsd4.8.README">Readme</a></li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-os2-1.7b-installer.exe">インストーラ</a> (14 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7b/contrib/mozilla-os2-1.7b.zip">ZIP ファイル</a> (14 MB) - いずれも <a href="http://download.innotek.de/gccos2/runtime/libc-0.5.0.exe">libc05</a> が必要です。インストールの前に <a href="mozilla1.7b/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<hr>
+
+<h2><a name="1.7a">Mozilla 1.7 Alpha</a> - 2004 年 2 月 23 日 リリース</h2>
+<div style="border: 1px solid #ccc; padding: .5em; color: #000; background-color: #f9f9f9;">
+<ul>
+  <li><a href="mozilla1.7a/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.7a">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。(<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/src/mozilla-source-1.7a.tar.bz2">bzip</a> - 28MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/src/mozilla-source-1.7a.tar.gz">gzip</a> - 36MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/README">Readme</a> ファイルでは、Mozilla 1.7 Alpha を CVS から取り込む手順を説明しています。</li>
+</ul>
+</div>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/mozilla-win32-1.7a-installer.exe">フルインストーラ</a> (11.8 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/mozilla-win32-1.7a-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/mozilla-win32-1.7a.zip">ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/mozilla-mac-1.7a.dmg.gz">ディスクイメージ</a> (14.8 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/mozilla-i686-pc-linux-gnu-1.7a-installer.tar.gz">フルインストーラ</a> (12.4 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/mozilla-i686-pc-linux-gnu-1.7a-stub-installer.tar.gz">ネットインストーラ</a> (100 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/mozilla-i686-pc-linux-gnu-1.7a.tar.gz">tar.gz フォーマット</a> (12.8 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li>フルインストーラ: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7alpha/mozilla-win32-1.7a-jaJP-installer.exe">日本語版</a></li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li>tar.gz フォーマット: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.7alpha/mozilla-i686-pc-linux-gnu-1.7a-jaJP.tar.gz">日本語版</a></li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-os2-1.7a-installer.exe">インストーラ</a> (14 MB) / <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-os2-1.7a.zip">ZIP ファイル</a> (14 MB) - いずれも <a href="http://download.innotek.de/gccos2/runtime/libc04fix1.zip">libc04fix1</a> が必要です。インストールの前に <a href="mozilla1.7a/installation-ports.html#ports_os2">インストール手順</a> をお読みください。</li>
+</ul>
+<h4>Solaris (SPARC)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-sparc-sun-solaris2.8-1.7a.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.6 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-sparc-sun-solaris2.8-1.7a.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7a.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.4 MB) - <a href="http://www.sun.com/software/gnome/">Sun Gnome Desktop</a> 用 GTK2 フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.7a.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-sparc-sun-solaris2.8_1.7a.tar.gz">sparc Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-sparc-sun-solaris2.8_1.7a.readme">Readme</a></li>
+</ul>
+<h4>Solaris (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-i386-pc-solaris2.8-1.7a.tar.gz">x86 Solaris 2.8 以降用 tar.gz フォーマット</a> (21.3 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-i386-pc-solaris2.8-1.7a.tar.gz.README">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-i386-pc-solaris2.8-1.7a.tar.gz.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-i386-pc-solaris2.8_1.7a.tar.gz">x86 Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-i386-pc-solaris2.8_1.7a.tar.gz.README">Readme</a></li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.7a/contrib/mozilla-alphaev6-dec-osf5.0-1.7a.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.6 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.6">Mozilla 1.6</a> - 2004 年 1 月 15 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.6/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.6">ローカライズ (地域化) ビルドと言語パック</a> - <strong>非公式な</strong> ローカライズビルドをダウンロード、または <strong>公式</strong> ビルドに言語パックを追加できます。現在利用可能な言語: アラビア語 / バスク語 / ベラルーシ語 / ブレトン語 / 簡体字中国語 (中国) / 繁体字中国語 (台湾) / オランダ語 / 英語 (イギリス) / エストニア語 / ドイツ語 / ガリシア語 / ヘブライ語 / ハンガリー語 / イタリア語 / 日本語 / 韓国語 / ノルウェー・ブークモール語 / ノルウェー・ニューノシュク語 / ポーランド語 / ロシア語 / スロバキア語 / スロベニア語 / スペイン語 (スペイン) (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/src/mozilla-source-1.6.tar.bz2">bzip</a> - 28MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/src/mozilla-source-1.6.tar.gz">gzip</a> - 36MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/README">Readme</a> ファイルでは、Mozilla 1.6 Beta を CVS から取り込む手順を説明しています。</li>
+</ul>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-win32-1.6-installer.exe">フルインストーラ</a> (12.0 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-win32-1.6-stub-installer.exe">ネットインストーラ</a> (235 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-win32-1.6.zip">ZIP ファイル</a> (10.8 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-mac-MachO-1.6.dmg.gz">ディスクイメージ</a> (15.2 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-i686-pc-linux-gnu-1.6-installer.tar.gz">フルインストーラ</a> (13.9 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-i686-pc-linux-gnu-1.6-stub-installer.tar.gz">ネットインストーラ</a> (101 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-i686-pc-linux-gnu-1.6.tar.gz">tar.gz フォーマット</a> (13.2 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li>フルインストーラ: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6/mozilla-win32-1.6-jaJP-installer.exe">日本語版</a></li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li>ZIP ファイル: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6/mozilla-mac-MachO-1.6-jaJP.zip">日本語版</a></li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li>tar.gz フォーマット: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6/mozilla-i686-pc-linux-gnu-1.6-jaJP.tar.gz">日本語版</a></li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-powerpc-ibm-aix4.3.3.0-1.6.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (16.0 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-powerpc-ibm-aix4.3.3.0-1.6-noXp.tar.gz">Xprint が無効な AIX 4.3.3 用 tar.gz フォーマット</a> (17.0 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/mozilla-powerpc-ibm-aix5.1.0.0-1.6.tar.gz">AIX 5.1.0 用 tar.gz フォーマット</a> (17.1 MB) - GTK2</li>
+</ul>
+<h4>BSD</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-i386-freebsd4.8.tar.gz">Calendar 付き FreeBSD 4.8/i386 用 tar.gz フォーマット</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-i386-freebsd4.8.README">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6/mozilla-i386-freebsd4.8-jaJP.tar.gz">日本語版</a> もあります。</li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-hppa2.0w-hp-hpux11.00-1.6.tar.gz">HP11.00 用 tar.gz フォーマット</a> (23.0 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-os2-1.6.zip">ZIP ファイル</a> (14 MB) - 注意: <a href="http://download.innotek.de/gccos2/runtime/libc04fix1.zip">libc04fix1</a> が必要です。</li>
+</ul>
+<h4>Solaris (SPARC)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-sparc-sun-solaris2.8-1.6.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.2 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-sparc-sun-solaris2.8-1.6.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.6.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.2 MB) - <a href="http://www.sun.com/software/gnome/">Sun Gnome Desktop</a> 用 GTK2 フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-sparc-sun-solaris2.8-gtk2-1.6.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-sparc-sun-solaris2.8_1.6.tar.gz">sparc Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-sparc-sun-solaris2.8_1.6.readme">Readme</a></li>
+</ul>
+<h4>Solaris (AMD Opteron を含む、すべての 32 ビット x86)</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-i386-pc-solaris2.8-1.6.tar.gz">x86 Solaris 8 以降用 tar.gz フォーマット</a> (15.3 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-i386-pc-solaris2.8-1.6.README.MOZ">Readme</a> - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-i386-pc-solaris2.8-1.6.MD5SUM">MD5SUM</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-i386-pc-solaris2.8-1.6.pkg.tar.gz">x86 Solaris 8 以降用 pkg.tar.gz フォーマット</a> (15.3 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-i386-pc-solaris2.8-1.6.pkg.README-mozilla">Readme</a> - MD5SUM 同梱</li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6/contrib/mozilla-alphaev6-dec-osf5.0-1.6.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.6 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.6b">Mozilla 1.6 Beta</a> - 2003 年 12 月 9 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.6b/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.6b">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - 簡体字中国語 (中国) / オランダ語 / ガリシア語 / ドイツ語 / 英語 (イギリス) / 日本語 / ポーランド語 / スロバキア語 / スロベニア語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/src/mozilla-source-1.6b.tar.bz2">bzip</a> - 28MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/src/mozilla-source-1.6b.tar.gz">gzip</a> - 36MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/README">Readme</a> ファイルでは、Mozilla 1.6 Beta を CVS から取り込む手順を説明しています。</li>
+</ul>
+<h3>公式ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-win32-1.6b-installer.exe">フルインストーラ</a> (11 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-win32-1.6b-stub-installer.exe">ネットインストーラ</a> (228 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-win32-1.6b.zip">ZIP ファイル</a> (10 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-mac-MachO-1.6b.dmg.gz">ディスクイメージ</a> (15 MB) - Mozilla Application Suite がすべて含まれた自動マウントディスクイメージです。</li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li><strong>Linux 版公式ビルドは、当初、間違ったコンパイラでビルドされてしまったため、一部のプラグインや拡張機能と互換性がありません。</strong> このため、12 月 11 日 1:00 (協定世界時) に新しいビルドに置き換えられました。ビルドを識別するには、about:buildconfig を開いて、&quot;Build tools&quot; セクションの &quot;c++&quot; で始まっている行の次の行を見てください。古い不正なビルドは &quot;gcc version 2.96 20000731 (Red Hat Linux 7.1 2.96-81)&quot; となっています。一方、新しく置き換えられた正しいビルドは &quot;gcc version 3.2.3&quot; (前の行にあるものと同じ) になっています。</li>
+</ul>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-i686-pc-linux-gnu-full-installer-1.6b.tar.gz">フルインストーラ</a> (12 MB) - すべてのコンポーネントをダウンロードした上で、インストールオプションを指定できます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-i686-pc-linux-gnu-installer-1.6b.tar.gz">ネットインストーラ</a> (80 KB) - 指定したコンポーネントだけをダウンロードできます。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-i686-pc-linux-gnu-1.6b.tar.gz">tar.gz フォーマット</a> (12 MB)</li>
+</ul>
+<h3>その他のシステム・言語用の提供ビルド</h3>
+<h4>Windows</h4>
+<ul>
+  <li>フルインストーラ: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6beta/mozilla-win32-1.6b-jaJP-installer.exe">日本語版</a></li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li>圧縮ディスクイメージ: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6beta/mozilla-mac-MachO-1.6b-jaJP.tgz">日本語版 (tar.gz)</a></li>
+</ul>
+<h4>Linux (x86)</h4>
+<ul>
+  <li>フルインストーラ: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6beta/mozilla-i686-pc-linux-gnu-1.6b-jaJP-sea.tar.gz">日本語版</a></li>
+  <li>tar.gz フォーマット: <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6beta/mozilla-i686-pc-linux-gnu-1.6b-jaJP.tar.gz">日本語版</a></li>
+</ul>
+<h4>LinuxPPC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/contrib/mozilla-powerpc-unknown-linux-gnu-1.6b.tar.gz">SSL が有効な GNU Linux/PowerPC 用ビルド</a> (Neill Miller 氏提供)</li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-powerpc-ibm-aix4.3.3.0-1.6b.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (16.0 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-powerpc-ibm-aix5.1.0.0-1.6b.tar.gz">AIX 5.1.0 用 tar.gz フォーマット</a> (16.3 MB) - GTK2</li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-os2-1.6b.zip">HP11.00 用 tar.gz フォーマット</a> (22.0 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-os2-1.6b.zip">ZIP ファイル</a> (14 MB) - 注意: <a href="http://download.innotek.de/gccos2/runtime/libc04fix1.zip">libc04fix1</a> が必要です。</li>
+</ul>
+<h4>Solaris SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-sparc-sun-solaris2.8-1.6b.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.2 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-sparc-sun-solaris2.8-1.6b.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-sparc-sun-solaris2.8_1.6b.tar.gz">sparc Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-sparc-sun-solaris2.8_1.6b.readme">Readme</a></li>
+</ul>
+<h4>Solaris x86</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/contrib/mozilla-i386-pc-solaris2.8-1.6b.tar.gz">x86 Solaris 2.8+ 用 tar.gz フォーマット</a> (17.3 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/contrib/mozilla-i386-pc-solaris2.8-1.6b.README">Readme</a></li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6b/mozilla-alphaev6-dec-osf5.0-1.6b.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.6 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.5.1">Mozilla 1.5.1</a> - 2003 年 11 月 26 日 リリース</h2>
+<ul>
+  <li>Mozilla 1.5.1 は、Mac OS X 10.1 で見られたダウンロード時のクラッシュを修正するための <strong>Mac OS X 版限定</strong> のリリースです。</li>
+  <li><a href="mozilla1.5/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.5">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - アラビア語 / バスク語 / ベラルーシ語 / ブレトン語 / ブルガリア語 / カタロニア語 / チェコ語 / 簡体字中国語 (中国) / デンマーク語 / オランダ語 / 英語 (イギリス) / エスペラント / エストニア語 / フィン語 / フランス語 / ガリシア語 / ドイツ語 / ギリシア語 / ヘブライ語 / ハンガリー語 / イタリア語 / 日本語 / 韓国語 / モンゴル語 / ノルウェー・ブークモール語 / ノルウェー・ニューノシュク語 / ポーランド語 / ロシア語 / スロバキア語 / スロベニア語 / ソルビア語 / スペイン語 (スペイン) / タミル語 / トルコ語 / ウェールズ語 / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5.1/src/mozilla-source-1.5.1.tar.bz2">bzip</a> - 30MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5.1/src/mozilla-source-1.5.1.tar.gz">gzip</a> - 40MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5.1/README">Readme</a> ファイルでは、Mozilla 1.5.1 を CVS から取り込む手順を説明しています。</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5.1/mozilla-mac-MachO-1.5.1.dmg.gz">OS X 用ディスクイメージ</a> (15.4 MB) - 自動マウントディスクイメージ - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.51/mozilla-mac-MachO-1.5.1-jaJP.tgz">日本語版 (tar.gz)</a> もあります。</li>
+</ul>
+<hr>
+
+<h2><a name="1.6a">Mozilla 1.6 Alpha</a> - 2003 年 10 月 31 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.6a/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.6a">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - オランダ語 / 英語 (イギリス) / ドイツ語 / 日本語 / ポーランド語 / スロバキア語 / スロベニア語 / ソルビア語 / トルコ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/src/mozilla-source-1.6a.tar.bz2">bzip</a> - 30MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/src/mozilla-source-1.6a.tar.gz">gzip</a> - 40MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/README">Readme</a> ファイルでは、Mozilla 1.6 Alpha を CVS から取り込む手順を説明しています。</li>
+</ul>
+<h4>Windows</h4>
+<ul>
+  <li>Windows 版 Mozilla 1.6 Alpha は、当初、暗号化サポート (https、セキュア IMAP など) が含まれていない不正なビルドでしたが、<strong>2003/11/01 17:00 (太平洋標準時) 以降、新しいビルドが利用可能になっています。</strong></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-win32-1.6a-installer.exe">フルインストーラ</a> (11.7 MB) - すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6alpha/mozilla-win32-1.6a-jaJP-installer.exe">日本語版</a> もあります。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-win32-1.6a-stub-installer.exe">ネットインストーラ</a> (226 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-win32-1.6a.zip">ZIP ファイル</a> (10.4 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6alpha/mozilla-win32-1.6a-jaJP.zip">日本語版</a> もあります。</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-mac-MachO-1.6a.dmg.gz">OS X 用ディスクイメージ</a> (15.4 MB) - 自動マウントディスクイメージ - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6alpha/mozilla-mac-MachO-1.6a-jaJP.dmg">日本語版</a> もあります。</li>
+</ul>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-i686-pc-linux-gnu-1.6a-sea.tar.gz">x86 フルインストーラ</a> (13.8 MB) - すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6alpha/mozilla-i686-pc-linux-gnu-1.6a-jaJP-sea.tar.gz">日本語版</a> もあります。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-i686-pc-linux-gnu-1.6a-installer.tar.gz">x86 ネットインストーラ</a> (101 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-i686-pc-linux-gnu-1.6a.tar.gz">x86 tar.gz フォーマット</a> (13.2 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6alpha/mozilla-i686-pc-linux-gnu-1.6a-jaJP.tar.gz">日本語版</a> もあります。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/contrib/mozilla-1.6a-xft-pc-linux-gnu.tar.bz2">XFT が有効な PC Linux 用ビルド</a> (提供ビルド) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/contrib/mozilla-1.6a-xft-pc-linux-README">Readme</a> をご覧ください。 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.6alpha/mozilla-i686-pc-linux-gnu-1.6a-xft-jaJP-sea.tar.gz">日本語版 (フルインストーラ)</a> もあります。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/contrib/mozilla-1.6a-xft-pc-linux-installer.tar.gz">XFT が有効な PC Linux 用インストーラビルド</a> (提供ビルド) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/contrib/mozilla-1.6a-xft-pc-linux-README">Readme</a> をご覧ください。</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-os2-1.6a.zip">ZIP ファイル</a> (14.4 MB) - 注意: <a href="http://download.innotek.de/gccos2/runtime/libc04.zip">libc04</a> が必要です。</li>
+</ul>
+<h4>Solaris SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-sparc-sun-solaris2.8-1.6a.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.2 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-sparc-sun-solaris2.8-1.6a.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-sparc-sun-solaris2.8_1.6a.tar.gz">sparc Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-sparc-sun-solaris2.8_1.6a.readme">Readme</a></li>
+</ul>
+<h4>Solaris x86</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-i386-pc-solaris2.8-1.6a.tar.gz">x86 Solaris 2.8/2.9 用 tar.gz フォーマット</a> (17.3 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き</li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.6a/mozilla-alphaev6-dec-osf5.0-1.6a.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.6 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.5">Mozilla 1.5</a> - 2003 年 10 月 15 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.5/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.5">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - アラビア語 / バスク語 / ベラルーシ語 / ブレトン語 / ブルガリア語 / カタロニア語 / チェコ語 / 簡体字中国語 (中国) / デンマーク語 / オランダ語 / 英語 (イギリス) / エスペラント / エストニア語 / フィン語 / フランス語 / ガリシア語 / ドイツ語 / ギリシア語 / ヘブライ語 / ハンガリー語 / イタリア語 / 日本語 / 韓国語 / モンゴル語 / ノルウェー・ブークモール語 / ノルウェー・ニューノシュク語 / ポーランド語 / ロシア語 / スロバキア語 / スロベニア語 / ソルビア語 / スペイン語 (スペイン) / タミル語 / トルコ語 / ウェールズ語 / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/src/mozilla-source-1.5.tar.bz2">bzip</a> - 30MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/src/mozilla-source-1.5.tar.gz">gzip</a> - 40MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/README">Readme</a> ファイルでは、Mozilla 1.5 を CVS から取り込む手順を説明しています。</li>
+</ul>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-win32-1.5-installer.exe">フルインストーラ</a> (11.7 MB) - すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/mozilla-win32-1.5-jaJP-installer.exe">日本語版</a> もあります。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-win32-1.5-stub-installer.exe">ネットインストーラ</a> (226 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-win32-1.5.zip">ZIP ファイル</a> (10.4 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/mozilla-win32-1.5-jaJP.zip">日本語版</a> もあります。</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-mac-MachO-1.5.dmg.gz">OS X 用ディスクイメージ</a> (15.4 MB) - 自動マウントディスクイメージ</li>
+</ul>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-i686-pc-linux-gnu-1.5-sea.tar.gz">x86 フルインストーラ</a> (13.8 MB) - すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/mozilla-i686-pc-linux-gnu-1.5-jaJP-sea.tar.gz">日本語版</a> もあります。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-i686-pc-linux-gnu-1.5-installer.tar.gz">x86 ネットインストーラ</a> (101 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-i686-pc-linux-gnu-1.5.tar.gz">x86 tar.gz フォーマット</a> (13.2 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/mozilla-i686-pc-linux-gnu-1.5-jaJP.tar.gz">日本語版</a> もあります。</li>
+  <li>Xft、GTK2 付き Red Hat Linux 9 用 <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/yum/SeaMonkey/releases/1.5/redhat/9/">RPM</a></li>
+  <li>Xft、GTK2 付き Fedora Core 用 <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/yum/SeaMonkey/releases/1.5/redhat/9/">RPM</a></li>
+  <li>デフォルトビルド設定の Red Hat Linux 8 用 <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-RH8-RPMs.tar.gz">RPMS</a> (提供ビルド)</li>
+  <li>Mozilla <a href="http://linux.duke.edu/projects/yum/">yum</a> レポジトリ追加に関する <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/yum/readme.yum">解説</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-xft-optimizedi686-pc-linux-gnu.tar.bz2">XFT が有効な i686 Linux 用ビルド</a> (提供ビルド) - 詳しくは <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-xft-optimizedi686-pc-linux-README">Readme</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-xft-optimizedi686-pc-linux-installer.tar.gz">XFT が有効な i686 Linux に最適化したインストーラビルド</a> (提供ビルド) - 詳しくは <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-xft-optimizedi686-pc-linux-README">Readme</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-xft-pc-linux-gnu.tar.bz2">XFT が有効な PC Linux 用ビルド</a> (提供ビルド) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-xft-pc-linux-README">Readme</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-xft-pc-linux-installer.tar.gz">XFT が有効な PC Linux 用インストーラビルド</a> (提供ビルド) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-xft-pc-linux-README">Readme</a> をご覧ください。 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.5/mozilla-i686-pc-linux-gnu-1.5-xft-jaJP-sea.tar.gz">日本語版 (フルインストーラ)</a> もあります。</li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-powerpc-ibm-aix4.3.3.0-1.5.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (16.0 MB)</li>
+</ul>
+<h4>FreeBSD</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-1.5-FreeBSD4.8-gcc3.3.tgz">GCC 3.3 付き FreeBSD 4.8 用 tar.gz フォーマット</a> (15.0 MB)</li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-hppa2.0w-hp-hpux11.00-1.5.tar.gz">HP11.00 用 tar.gz フォーマット</a> (22.0 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-os2-1.5.zip">ZIP ファイル</a> (15 MB) - 注意: Innotek から C ランタイム DLL (<a href="http://download.innotek.de/gccos2/runtime/libc04.zip">libc04</a>) のアップデートが必要です。</li>
+</ul>
+<h4>Solaris SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-sparc-sun-solaris2.8_1.5.tar.gz">sparc Solaris 8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-sparc-sun-solaris2.8_1.5.readme">Readme</a></li>
+</ul>
+<h4>Solaris x86</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/contrib/mozilla-i386-pc-solaris2.8-1.5.tar.gz">x86 Solaris 用 tar.gz フォーマット</a> (16.2 MB) - Solaris 8 上でビルドされています。Solaris 8 以上で動作します - Sun Microsystems 提供</li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5/mozilla-alphaev6-dec-osf5.0-1.5.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.6 MB) - HP 提供</li>
+</ul>
+<p><a href="http://store.mozilla.org/">CD で Mozilla 1.5 を Get!</a></p>
+<hr>
+
+<h2><a name="1.4.1">Mozilla 1.4.1</a> - 2003 年 10 月 10 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.4.1/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.41">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - アラビア語 / オーストリア語 / バスク語 / ブレトン語 / ブルガリア語 / カタロニア語 / 簡体字中国語 (中国) / 繁体字中国語 (台湾) / チェコ語 / デンマーク語 / オランダ語 / 英語 (イギリス) / エスペラント / エストニア語 / フィンランド語 / フランス語 / ガリシア語 / ドイツ語 / ギリシア語 / ヘブライ語 / ハンガリー語 / イタリア語 / 日本語 / 韓国語 / リトアニア語 / ノルウェー・ブークモール語 / ノルウェー・ニューノシュク語 / ポーランド語 / ルーマニア語 / スロバキア語 / スロベニア語 / ソルビア語 / スペイン語 (スペイン) タミル語 / トルコ語 / ウクライナ語 / ウェールズ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/README">Readme</a> ファイルでは、Mozilla 1.4.1 を CVS から取り込む手順を説明しています。</li>
+</ul>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/mozilla-win32-1.4.1-installer.exe">フルインストーラ</a> (11.7 MB) - すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.41/mozilla-win32-1.4.1-jaJP-installer.exe">日本語版</a> もあります。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/mozilla-win32-1.4.1.zip">ZIP ファイル</a> (10.4 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.41/mozilla-win32-1.4.1-jaJP.zip">日本語版</a> もあります。</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/mozilla-mac-MachO-1.4.1.dmg.gz">Talkback が有効なディスクイメージ</a> (15.4 MB) - 自動マウントディスクイメージ - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.41/mozilla-mac-MachO-1.4.1-jaJP.dmg">日本語版</a> もあります。</li>
+</ul>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/mozilla-i686-pc-linux-gnu-1.4.1-sea.tar.gz">x86 フルインストーラ</a> (13.8 MB) - すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/mozilla-i686-pc-linux-gnu-1.4.1.tar.gz">x86 tar.gz フォーマット</a> (13.2 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/l10n/lang/moz1.41/mozilla-i686-pc-linux-gnu-1.4.1-jaJP.tar.gz">日本語版</a> もあります。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/contrib/mozilla-1.4.1-gtk2-xft-svg-calendar-suse82.tar.bz2">SuSE 8.2 提供ビルド</a> (GTK 2、XFT サポート、カレンダー付き)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/contrib/mozilla-i686-pc-redhat71-linux-gnu.tar.gz">Red Hat Linux 7.1 提供ビルド</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/contrib/mozilla-i686-pc-redhat72-linux-gnu.tar.gz">Red Hat Linux 7.2 提供ビルド</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/contrib/mozilla-i686-pc-redhat73-linux-gnu.tar.gz">Red Hat Linux 7.3 提供ビルド</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/contrib/mozilla-i686-pc-suse73-linux-gnu.tar.gz">SuSE 7.3 提供ビルド</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/contrib/mozilla-i686-pc-suse80-linux-gnu.tar.gz">SuSE 8.0 提供ビルド</a></li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/contrib/mozilla-os2-1.4.1-installer.exe">フルインストーラ .exe</a> (16.5 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/contrib/mozilla-os2-1.4.1.zip">ZIP ファイル</a> (16.2 MB)</li>
+</ul>
+<h4>Solaris SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/mozilla-sparc-sun-solaris2.8-1.4.1.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.2 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/mozilla-sparc-sun-solaris2.8-1.4.1.readme">Readme</a></li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4.1/mozilla-alphaev6-dec-osf5.0-1.4.1.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (19 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.5rc2">Mozilla 1.5 Release Candidate 2</a> - 2003 年 9 月 26 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.5rc2/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.5rc2">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - 簡体字中国語 (中国) / オランダ語 / イタリア語 / スロベニア語 / スペイン語 (スペイン) / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/README">Readme</a> ファイルでは、Mozilla 1.5rc2 を CVS から取り込む手順を説明しています。</li>
+</ul>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-win32-1.5rc2-installer-sea.exe">Talkback が有効なフルインストーラ</a> (11.9 MB) - すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-win32-1.5rc2-installer.exe">Talkback が有効なネットインストーラ</a> (226 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-win32-1.5rc2-talkback.zip">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-mac-MachO-1.5rc2.dmg.gz">Talkback が有効なディスクイメージ</a> (15 MB) - 自動マウントディスクイメージ</li>
+</ul>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-i686-pc-linux-gnu-1.5rc2-sea.tar.gz">x86 Talkback が有効なフルインストーラ</a> (15.4 MB) - すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-i686-pc-linux-gnu-1.5rc2-installer.tar.gz">x86 Talkback が有効なネットインストーラ</a> (100 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-i686-pc-linux-gnu-1.5rc2.tar.gz">x86 tar.gz フォーマット</a> (13 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-sparc64-unknown-linux-gnu-1.5rc2.tar.gz">sparc64 tar.gz フォーマット</a> (12.7 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/contributed/mozilla-sparc-sun-solaris2.8-1.5rc2.tar.gz">Solaris 2.8 SPARC (提供ビルド)</a> (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/contributed/mozilla-sparc-sun-solaris2.8-1.5rc2.readme">Readme</a>)</li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-powerpc-ibm-aix4.3.3.0-1.5rc2.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (16.1 MB)</li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-hppa2.0w-hp-hpux11.00-1.5rc2.tar.gz">HP11.00 用 tar.gz フォーマット</a> (22.8 MB)</li>
+</ul>
+<h4>OpenVMS</h4>
+<ul>
+  <li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://h71000.www7.hp.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-openvms-alpha-d150.sfx_axpexe">自動展開 PCSI</a> (26.5 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc2/mozilla-os2-1.5rc2.zip">ZIP ファイル</a> (14.5 MB)</li>
+</ul>
+<hr>
+
+<h2><a name="1.5rc1">Mozilla 1.5 Release Candidate 1</a> - 2003 年 9 月 17 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.5rc1/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.5rc1">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - オランダ語 / イタリア語 / ノルウェー・ブークモール語 / スロバキア語 / スロベニア語 / スペイン語 (スペイン) (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/README">Readme</a> ファイルでは、Mozilla 1.5rc1 を CVS から取り込む手順を説明しています。</li>
+</ul>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-win32-1.5rc1-installer-sea.exe">Talkback が有効なフルインストーラ</a> (11.9 MB) - すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-win32-1.5rc1-installer.exe">Talkback が有効なネットインストーラ</a> (226 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-win32-1.5rc1-talkback.zip">Talkback が有効な ZIP ファイル</a> (10.6 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-mac-MachO-1.5rc1.dmg.gz">Talkback が有効なディスクイメージ</a> (15 MB) - 自動マウントディスクイメージ</li>
+</ul>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-i686-pc-linux-gnu-1.5rc1-sea.tar.gz">x86 Talkback が有効なフルインストーラ</a> (15.4 MB) - すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-i686-pc-linux-gnu-1.5rc1-installer.tar.gz">x86 Talkback が有効なネットインストーラ</a> (100 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-i686-pc-linux-gnu-1.5rc1.tar.gz">x86 tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h4>OpenVMS</h4>
+<ul>
+  <li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://h71000.www7.hp.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-openvms-alpha-c150.sfx_axpexe">自動展開 PCSI</a> (26.4 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5rc1/mozilla-os2-1.5rc1.zip">ZIP ファイル</a> (15 MB)</li>
+</ul>
+<hr>
+
+<h2><a name="1.5b">Mozilla 1.5 Beta</a> - 2003 年 8 月 27 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.5b/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.5b">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - アラビア語 / 簡体字中国語 (中国) / バスク語 / オランダ語 / ドイツ語 / イタリア語 / ポーランド語 / スロバキア語 / スロベニア語 / スペイン語 (スペイン) / タミル語 / ウクライナ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+</ul>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-win32-1.5b-installer-sea.exe">Talkback が有効なフルインストーラ</a> (12 MB) - すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-win32-1.5b-installer.exe">Talkback が有効なネットインストーラ</a> (226 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-win32-1.5b-talkback.zip">Talkback が有効な ZIP ファイル</a> (11 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-mac-MachO-1.5b.dmg.gz">Talkback が有効なディスクイメージ</a> (15 MB) - 自動マウントディスクイメージ</li>
+</ul>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-i686-pc-linux-gnu-1.5b-sea.tar.gz">x86 Talkback が有効なフルインストーラ</a> (15 MB) - すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-i686-pc-linux-gnu-1.5b-installer.tar.gz">x86 Talkback が有効なネットインストーラ</a> (1.1 MB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-i686-pc-linux-gnu-1.5b.tar.gz">x86 tar.gz フォーマット</a> (13 MB)</li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-powerpc-ibm-aix4.3.3.0-1.5b.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (17.1 MB)</li>
+</ul>
+<h4>OpenVMS</h4>
+<ul>
+  <li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://h71000.www7.hp.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-openvms-alpha-b150.sfx_axpexe">自動展開 PCSI</a> (26.4 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-os2-1.5b.zip">ZIP ファイル</a> (14.4 MB)</li>
+</ul>
+<h4>Solaris SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-sparc-sun-solaris2.8_1.5b.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-sparc-sun-solaris2.8_1.5b.readme">Readme</a></li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5b/mozilla-alphaev6-dec-osf5.0-1.5b.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.9 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.5a">Mozilla 1.5 Alpha</a> - 2003 年 7 月 22 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.5a/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.5a">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - アラビア語 / バスク語 / 簡体字中国語 (中国) / オランダ語 / イタリア語 / ノルウェー・ニューノシュク語 / ポーランド語 / スロバキア語 / スロベニア語 / ソルビア語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>ソースコード Tarball (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/src/mozilla-source-1.5a.tar.bz2">bzip</a> - 30MB) (<a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/src/mozilla-source-1.5a.tar.gz">gzip</a> - 40MB)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/README">Readme</a> ファイルでは、Mozilla 1.5a を CVS から取り込む手順を説明しています。</li>
+  <li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Sun J2SE v1.4.1</a> [<a href="http://java.sun.com/j2se/1.4.1/ja/download.html">日本語版</a>] (以降の) プラグインをインストールしてください。mozilla.org がコンパイルしている Linux バイナリは、さらに新しい <a href="http://java.sun.com/j2se/1.4.2/download.html">Sun J2SE v1.4.2</a> [<a href="http://java.sun.com/j2se/1.4.2/ja/download.html">日本語版</a>] または GCC 3.2 でコンパイルされている Blackdown JDK 1.5a.1 が必要です。Macintosh では、Mozilla はすでにシステムにインストールされているバージョンの Java を利用します。</li>
+</ul>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-win32-1.5a-installer-sea.exe">Talkback が有効なフルインストーラ</a> (11.6 MB) - すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-win32-1.5a-installer.exe">Talkback が有効なネットインストーラ</a> (224 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-win32-1.5a-talkback.zip">Talkback が有効な ZIP ファイル</a> (10.3 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-mac-MachO-1.5a.dmg.gz">Talkback が有効なディスクイメージ</a> (14.9 MB) - 自動マウントディスクイメージ</li>
+</ul>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-i686-pc-linux-gnu-1.5a-sea.tar.gz">x86 Talkback が有効なフルインストーラ</a> (14.7 MB) - すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-i686-pc-linux-gnu-1.5a-installer.tar.gz">x86 Talkback が有効なネットインストーラ</a> (101 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-i686-pc-linux-gnu-1.5a.tar.gz">x86 tar.gz フォーマット</a> (12.7 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-i686-pc-linux-gnu-ctl-svg-1.5a.tar.gz">x86 tar.gz フォーマット</a> (13.2 MB) - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-i686-pc-linux-gnu-ctl-svg-1.5a.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-powerpc-linux-gnu-1.5a.tar.gz">PowerPC tar.gz フォーマット</a> (13.0 MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-powerpc-linux-gnu-1.5a.readme">Readme</a></li>
+</ul>
+<h4>OpenVMS</h4>
+<ul>
+  <li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://h71000.www7.hp.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-openvms-alpha-a150.sfx_axpexe">自動展開 PCSI</a> (26.1 MB)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-os2-1.5a.zip">ZIP ファイル</a> (15.4 MB)</li>
+</ul>
+<h4>Solaris SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-sparc-sun-solaris2.7-1.5a.tar.gz">sparc Solaris 2.7 用 tar.gz フォーマット</a> (17.2 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-sparc-sun-solaris2.7-1.5a.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-sparc-sun-solaris2.8-1.5a.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.2 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-sparc-sun-solaris2.8-1.5a.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-sparc-sun-solaris2.8_1.5a.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-sparc-sun-solaris2.8_1.5a.readme">Readme</a></li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.5a/mozilla-alphaev6-dec-osf5.0-1.5a.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (18.7 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<h2><a name="1.4">Mozilla 1.4</a> - 2003 年 6 月 30 日 リリース</h2>
+<ul>
+  <li><a href="mozilla1.4/">リリースノート</a> - インストール手順、システム必要条件、新機能、新しいバグを報告する前に読むべき既知の問題のリストが載っています。</li>
+  <li><a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.4">ローカライズ (地域化) ビルドと言語パック</a> - 各国語版の Mozilla をダウンロードしたり、言語パックを適用することができます - アラビア語 / オーストリア語 / バスク語 / ベラルーシ語 / ブレトン語 / ブルガリア語 / カタロニア語 / 簡体字中国語 (中国) / 繁体字中国語 (台湾) / チェコ語 / デンマーク語 / オランダ語 / 英語 (イギリス) / エスペラント / エストニア語 / フィンランド語 / フランス語 / ガリシア語 / ドイツ語 / ギリシア語 / ヘブライ語 / ハンガリー語 / イタリア語 / 韓国語 / リトアニア語 / ノルウェー・ブークモール語 / ノルウェー・ニューノシュク語 / ポーランド語 / ルーマニア語 / スロバキア語 / スロベニア語 / ソルビア語 / スペイン語 (スペイン) / タミル語 / トルコ語 / ウクライナ語 / ウェールズ語 (<a href="/projects/l10n/">Mozilla 地域化プロジェクト</a>)</li>
+  <li>この <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/README">Readme</a> ファイルでは、Mozilla 1.4 を CVS から取り込む手順を説明しています。</li>
+  <li>Linux / Windows / Solaris 版の Mozilla に Java サポートを追加するには、<a href="http://java.sun.com/j2se/1.4.1/download.html">Sun J2SE v1.4.1</a> [<a href="http://java.sun.com/j2se/1.4.1/ja/download.html">日本語版</a>] プラグインをインストールしてください。</li>
+  <li>mozilla.org がコンパイルしている Linux バイナリは、さらに新しい <a href="http://java.sun.com/j2se/1.4.2/download.html">Sun J2SE v1.4.2</a> [<a href="http://java.sun.com/j2se/1.4.2/ja/download.html">日本語版</a>] または GCC 3.2 でコンパイルされている Blackdown JDK 1.4.1 が必要です。</li>
+  <li>Mac OS では、Mozilla はすでにシステムにインストールされているバージョンの Java を利用します。</li>
+</ul>
+<h4>Windows</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-win32-1.4-installer.exe">Talkback が有効なフルインストーラ</a> (12 MB) - すべてのコンポーネントを一括ダウンロード - 他の Windows ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-win32-1.4-stub-installer.exe">Talkback が有効なネットインストーラ</a> (222 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-win32-1.4-talkback.zip">Talkback が有効な ZIP ファイル</a> (10 MB)</li>
+</ul>
+<h4>Mac OS X</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-mac-MachO-1.4.dmg.gz">Talkback が有効なディスクイメージ</a> (15 MB) - 自動マウントディスクイメージ</li>
+</ul>
+<h4>Linux</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-i686-pc-linux-gnu-1.4-sea.tar.gz">x86 Talkback が有効なフルインストーラ</a> (13 MB) - すべてのコンポーネントを一括ダウンロード - 他の Linux x86 ビルドが何か分からなければ、このビルドを入手してください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-i686-pc-linux-gnu-1.4-installer.tar.gz">x86 Talkback が有効なネットインストーラ</a> (95 KB) - このビルドは、指定したコンポーネントだけをダウンロード・インストールできます。(最小で 6 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-i686-pc-linux-gnu-1.4.tar.gz">x86 tar.gz フォーマット</a> (12 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/contributed/Red_Hat_8x_RPMS/gtk2/">Xft/GTK2 付き Red Hat Linux 8.x 用 RPMS</a> - GCC 3.2 でコンパイルしています - Java 関連のバグを報告する前に <a href="mozilla1.4/known-issues.html#java">リリースノート</a> をお読みください! (Xprint サポートなし)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/contributed/Red_Hat_7x_RPMS/">Red Hat Linux 7.x 用 RPMS</a> (Xprint サポートなし)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-powerpc-linux-gnu-1.4.tar.gz">PowerPC tar.gz フォーマット</a> (13.0MB) - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-powerpc-linux-gnu-1.4.readme">Readme</a></li>
+</ul>
+<h4>AIX</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-powerpc-ibm-aix4.3.3.0-1.4.tar.gz">AIX 4.3.3 用 tar.gz フォーマット</a> (17.1 MB)</li>
+</ul>
+<h4>HPUX</h4>
+<ul>
+  <li><a href="http://www.hp.com/products1/unix/java/mozilla/">HP の Mozilla ディレクトリ</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-hppa2.0w-hp-hpux11.00-1.4.tar.gz">HP11.00 用 tar.gz フォーマット</a> (24.7 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-hppa2.0-hp-hpux10.20-1.4.tar.gz">HP10.20 用 tar.gz フォーマット</a> (23.7 MB)</li>
+</ul>
+<h4>Irix</h4>
+<ul>
+  <li><a href="http://oss.sgi.com/projects/mozilla/">SGI</a> 提供</li>
+  <li><a href="ftp://oss.sgi.com/projects/mozilla/download/irix/1.4/">Irix 6.5 用 tar.gz</a></li>
+</ul>
+<h4>OpenVMS</h4>
+<ul>
+  <li>HP の OpenVMS Engineering Group 提供 - OpenVMS 固有の情報については、彼らの <a href="http://h71000.www7.hp.com/openvms/products/ips/mozilla_relnotes.html">リリースノート</a> をご覧ください。</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-openvms-alpha-m140.sfx_axpexe">自動展開 PCSI</a> (26.6 MB) (2003 年 7 月 8 日更新 - 上級者向け設定に関するバグが修正されました)</li>
+</ul>
+<h4>OS/2</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-os2-vacpp-1.4-installer.exe">フルインストーラ .exe</a> (17.3 MB)</li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-os2-vacpp-1.4.zip">ZIP ファイル</a> (17.0 MB)</li>
+</ul>
+<h4>Solaris SPARC</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-sparc-sun-solaris2.7-1.4.tar.gz">sparc Solaris 2.7 用 tar.gz フォーマット</a> (17.2 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-sparc-sun-solaris2.7-1.4.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-sparc-sun-solaris2.8-1.4.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (17.3 MB) - フォルテビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-sparc-sun-solaris2.8-1.4.readme">Readme</a></li>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-sparc-sun-solaris2.8_1.4.tar.gz">sparc Solaris 2.8 用 tar.gz フォーマット</a> (16.2 MB) - フォルテビルド - Sun Microsystems 提供 - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-sparc-sun-solaris2.8_1.4.readme">Readme</a></li>
+</ul>
+<h4>Solaris x86</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-i386-pc-solaris2.8-1.4.tar.gz">x86 Solaris 2.8/2.9 用 tar.gz フォーマット</a> (17.3 MB) - フォルテ x86 ビルド - <acronym title="Complex Text Layout">CTL</acronym> / <a href="/projects/svg/">SVG</a> / <a href="/projects/calendar/">Calendar</a> サポート付き - <a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-i386-pc-solaris2.8-1.4.readme">Readme</a></li>
+</ul>
+<h4>Tru64 Unix</h4>
+<ul>
+  <li><a href="http://ftp.mozilla-japan.org/pub/mozilla.org/mozilla/releases/mozilla1.4/mozilla-alphaev56-dec-osf5.0_1.4.tar.gz">OSF 5.0 用 tar.gz フォーマット</a> (20 MB) - HP 提供</li>
+</ul>
+<hr>
+
+<p><a name="old-releases">古いビルド</a>については、<a href="old-releases-1.1-1.4rc3.html">Mozilla 1.4 RC3 - Mozilla 1.1</a> / <a href="mozilla1.0.2.html">Mozilla 1.0.2</a> / <a href="mozilla1.0.1.html">Mozilla 1.0.1</a> / <a href="mozilla1.0.html">Mozilla 1.0</a> / <a href="old-releases-0.9.2-1.0rc3.html">Mozilla 1.0 RC3 - Mozilla 0.9.2</a> / <a href="old-releases.html">Mozilla 0.9.1 - Mozilla 0.6</a> / <a href="../projects/seamonkey/release-notes/">Milestone 18 - Milestone 3</a> からダウンロードできます。</p>
+<p class="mice">このソースコードは、アメリカ合衆国の輸出管理規制及びその他合衆国法の適用対象であり、いくつかの国 (現在は、アフガニスタン (タリバン支配地域)、キューバ、イラン、イラク、リビア、北朝鮮、スーダン、シリア) へは輸出、再輸出することができません。また、合衆国からの輸入を禁止されている個人や組織 (輸出管理局のリストに記載された非合法団体・組織及び特別指定外国人を含む) への輸出、再輸出もできません。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/index.html">英語版</a> 2006/04/21</span> - <span>和訳版 2008/01/31</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

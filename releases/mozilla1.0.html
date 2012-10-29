@@ -1,0 +1,520 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>安定化リリース（Mozilla 1.0）</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/releases/mozilla1.0.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/releases/mozilla1.0.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+<H1>安定化リリース（Mozilla 1.0）</H1>
+
+<p>
+Mozilla 1.0 は もはや 最新のリリースではありません。あなたが使っているプラットフォーム用のビルドが 
+まだ存在していない場合をのぞいては。そうでなければ たぶん あなたは 最新の 
+<a href="./stable.html">安定化</a> リリースを試すほうがいいはずです。わたし達は 
+Mozilla のバイナリーバージョンを <B>テスト用途のためだけに！</B>
+公開しています。エンドユーザーサポートは行っていません。ダウンロードに際しては 
+<A HREF="../mirrors.html">ミラー</A>（<a href="../mirrors_jp.html">国内ミラー</a>）の中から好きなのを気軽に利用してください。
+</p>
+
+<blockquote><font size="-1">訳注: 
+<strong>安定化リリース</strong> ということばは 単に アプリケーションの動作が安定している 
+という意味ではありません。もちろん、日々更新されている ナイトリー・ビルド に比べれば 
+そういう意味でも安定しているはずですが、決してフリーズしない とか 不正確な動作をしない 
+ということではありません。このリリースがもとづいている 各種仕様、API、ライブラリ 
+といったものを固定して、Mozilla をベースにした製品を計画している ベンダーやデベロッパが 
+腰を据えて開発作業に当たれるようにする ためのリリース - というのが主眼です。
+</font></blockquote>
+
+<blockquote><i><b>
+このソースコードは、アメリカ合衆国の 輸出管理規制、およびその他の合衆国法の対象であり、
+いくつかの国へは輸出、および再輸出できません
+（現在は、アフガニスタン（タリバン勢力域）、キューバ、イラン、イラク、リビア、
+北朝鮮（朝鮮民主主義人民共和国）、スーダン および シリア）。
+また 合衆国からの輸入を禁止されている人や団体 への輸出、および再輸出もできません
+（輸出管理局のリストに記載された非合法団体、組織、 および 特別指定外国人を含みます）。
+</b></i></blockquote>
+
+<blockquote>
+わたし達は mozilla.org ドメインから利用可能な すべてのソースソード および
+実行可能コードについて 2000年問題対応であることを 保証しません。
+</blockquote>
+
+<blockquote>
+<table border="0" WIDTH="70%" CELLSPACING="0" >
+ <tr>
+  <td bgcolor="cacaca" colspan="2">
+   <FONT SIZE="+2">Mozilla 1.0 をダウンロード</FONT><br>
+   これは Mozilla 1.0 のもっともポピュラーなビルドのリストです。たいていなら 
+   あなたはこのなかのどれかを求めていることでしょう。
+  </td>
+ </tr>
+ <tr>
+  <td width="15%"  bgcolor="cacaca">&nbsp;</td>
+  <td  bgcolor="cacaca">
+   <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-win32-1.0-installer.exe">Microsoft Windows</a> (95,98,ME,NT,2000,XP)
+   <br>
+   <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-macosX-10.smi.bin">Mac OS X</a> 
+   <br>
+   <a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-mac-10-full-instal.bin">Mac OS 8.5, 8.6, 9.x</a>
+   <br>
+   <a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i686-pc-linux-gnu-1.0-sea.tar.gz">x86 Linux</a>
+  </td>
+ </tr>
+</table>
+</blockquote>
+
+<!-- 和訳オリジナル ここから -->
+<!--
+<hr>
+<A HREF="#1.0.1">Mozilla 1.0.1</A> | 
+<A HREF="#1.0">Mozilla 1.0</A>
+-->
+<!-- 和訳オリジナル ここまで -->
+
+<hr>
+<p>
+<a name="1.0">
+<b>Mozilla 1.0</b> - 2002年 6月 5日 リリース
+</a>
+<ul>
+
+<li>
+<a href="mozilla1.0/index.html">リリースノート</a> - リリースノートには
+インストール手順、システムの必要条件、新着情報と
+新しいバグを報告する前に読むべき
+わかっている問題のリスト が記載されています。
+</li>
+
+<li>
+ソースコード Tarball 
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/src/mozilla-source-1.0.tar.gz">gzip</a>, 40 MB)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/src/mozilla-source-1.0.tar.bz2">bzip2</a>, 29.6 MB)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/src/mozilla-source-1.0.sit.bin">sit.bin</a>, 62 MB)
+</li>
+
+<li> 
+この 
+<A HREF="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/README"> 
+README</A> ファイルは Mozilla 1.0 を CVS から取り込む手順を説明しています。
+</li>
+
+<!--
+<li> <a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0">
+  Localized builds and language packs</a> - Download or update Mozilla to
+  Asturian, Breton, Simplified Chinese (China), Traditional Chinese (Taiwan),
+  Danish, Dutch, English (United Kingdom), Esperanto, Estonian, French,
+  Galician, German, Greek, Hebrew, Hungarian, Italian, Japanese, Korean, Malay,
+  Norwegian Nyorsk, Polish, Portuguese (Brazil), Russian, Scots, Slovak,
+  Sorbian, Spanish (Argentina), Spanish (for Latin America), Turkish,
+  Ukrainian and Welsh.
+  
+  (<a href="http://www.mozilla.org/projects/l10n/">Mozilla Localization Project</a>) 
+</li>
+-->
+<li>
+<a href="http://www.mozilla.org/projects/l10n/mlp_status.html#moz_1.0">ローカライズされたビルド と 言語パック</a> 
+- 各国語版の Mozilla をダウンロード、または 言語パックを適用することができます - 
+オーストリア語、ブルトン語、簡体字中国語（中国）、繁体字中国語（台湾）、デンマーク語、オランダ語、英語（英国）、エスペラント語、エストニア語、フランス語、ガリシア語、ドイツ語、ギリシア語、ヘブライ語、ハンガリー語、イタリア語、日本語、韓国語、マレー語、ノルウェー語（Nynorsk）、ポルトガル語、ポルトガル語（ブラジル）、ロシア語、スコットランド語、スロバキア語、ソルビア語、スペイン語（アルゼンチン）、スペイン語（ラテンアメリカ）、トルコ語、ウクライナ語、ウェ−ルズ語
+  （<a href="http://www.mozilla.org/projects/l10n/">ローカリゼーション プロジェクト</a>）
+（訳注: もじら組 - <A HREF="http://mozilla.gr.jp/jlp/">日本語パックのページはこちら</A>）
+<!-- 
+オーストリア語、ブルトン語、簡体字中国語（中国）、繁体字中国語（台湾）、デンマーク語、オランダ語、エスペラント語、エストニア語、ガリシア語、グルジヤ語、ドイツ語、ギリシア語、ヘブライ語、ハンガリー語、イタリア語、日本語、韓国語、マレー語、ポルトガル語、ロシア語、スコットランド語、スロバキア語、ソルビア語、スペイン語（アルゼンチン）、スペイン語（ラテンアメリカ）、スペイン語（スペイン）、クロアチア語、チェコ語、リトアニア語、トルコ語、ウクライナ語、ウェ−ルズ語、
+-->
+</li>
+
+<li>
+Win32 と x86 Linux のインストーラビルドのユーザーは Java ランタイム環境 (JRE) v1.3 
+プラグイン（<a 
+href="ftp://ftp.netscape.com/pub/netscape6/english/6.2/windows/win32/plugins/jre131i.xpi">Win32</a>／<a 
+href="ftp://ftp.netscape.com/pub/netscape6/english/6.2/unix/linux22/xpi/jre.xpi">x86 Linux</a>）を
+インストールして Mozilla に Java サポートを追加することができます。Macintosh 
+では Mozilla はシステムにインストールされている JRE（MRJ）を使います。
+</li>
+
+<li><A HREF="http://download.mozilla.org/pub/mozilla/releases/mozilla1.0/">ftp サイト mozilla1.0/</a> <!-- 和訳オリジナル-->
+</li>
+
+<br>
+
+<dl> 
+<dt><b>Win32</b></dt>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-win32-1.0-installer.exe">talkback が有効な フルインストーラ .exe</a>
+(9.8 MB) クラッシュデータを報告できます。
+他の Win32 ビルドがなんなのかわからなければ このビルドをゲットしてください。
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-astES-installer.exe">オーストリア語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-zhCN-installer.exe">簡体字中国語（中国）</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-zhTW-installer.exe">繁体字中国語（台湾）</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-frFR-installer.exe">フランス語</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-deAT-installer.exe">ドイツ語</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-elGR-installer.exe">ギリシア語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-heIL-installer.exe">ヘブライ語</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-huHU-installer.exe">ハンガリー語</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-jaJP-installer.exe">日本語</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-koKR-installer.exe">韓国語</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-msMY-installer.exe">マレー語</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-plPL-installer.exe">ポルトガル語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-ruRU-installer.exe">ロシア語</a> , 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-esHN-installer.exe">スペイン語<font size="-1">（ラテンアメリカ）</font></a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-cyGB-installer.zip">ウェールズ語</a>
+にローカライズされたビルドもあります）
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-win32-1.0-stub-installer.exe">talkback が有効な ネットインストーラ .exe</a>
+(214 KB)
+このビルドは あなたが指定したコンポーネントだけをダウンロード、インストールします（最小構成で 6MB）。
+
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-deAT-stub-installer.exe">ドイツ語</a> 
+にローカライズされたビルドもあります）
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-win32-1.0-talkback.zip">talkback が有効な Zipfile</a> (10.6 MB) 
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-zhCN-talkback.zip">簡体字中国語（中国）</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-deAT-talkback.zip">ドイツ語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-itIT-talkback.zip">イタリア語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-jaJP-talkback.zip">日本語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-win32-1.0-trTR-talkback.zip">トルコ語</a> 
+にローカライズされたビルドもあります）
+</dl>
+
+<dl> 
+<dt><b>MacOS</b> 8.5, 8.6, 9.x</dt>
+<dd>
+<b>MacBinary ファイルには 
+<a href="http://www.stuffit.com/expander/macindex.html">
+Stuffit Expander</a> 4.5 以降が必要です</b> 
+（訳注: 日本語版最新バージョンは <A HREF="http://www.act2.co.jp/">アクト・ツー</A> 
+のダウンロードページから入手できますが、OS のバージョンとの互換性に注意してください）
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-mac-10-full-instal.bin">talkback が有効な フルインストーラ </a> (12.8 MB)
+クラッシュデータを報告できます。ほかの MacOS 
+ビルドがなんなのかわからなければ このビルドをゲットしてください。
+
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-mac-10-stub-instal.bin">talkback が有効な ネットインストーラ</a> (257 KB)
+このビルドは あなたが指定したコンポーネントだけをダウンロードし、インストールします（最小構成で 6MB）。
+
+</dl>
+
+<dl> 
+<dt><b>MacOS X</b> 
+<dd>
+<a href="ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-macosX-10.smi.bin">Disk Image</a> 
+(14.9 MB) - 自動マウント ディスクイメージ
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-macosX-10-itIT.dmg.sit">イタリア語</a> 
+にローカライズされたビルドもあります）
+</dl>
+
+<dl> 
+<dt><b>Linux</b> 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i686-pc-linux-gnu-1.0-sea.tar.gz">x86 talkback が有効な フルインストーラ</a>
+(すべてのコンポーネントを一括ダウンロード) (11.6 MB)
+ほかの x86 Linux ビルドがなんなのかわからなければ、このビルドをゲットしてください。
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-zhCN-sea.tar.gz">簡体字中国語（中国）</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-zhTW-sea.tar.gz">繁体字中国語（台湾）</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-frFR-sea.tar.gz">フランス語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-deAT-sea.tar.gz">ドイツ語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-msMY-sea.tar.gz">マレー語</a> 
+にローカライズされたビルドもあります）
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i686-pc-linux-gnu-1.0-installer.tar.gz">x86 talkback が有効な ネットインストーラ</a> (93K)
+<br>
+このビルドは あなたが指定したコンポーネントだけをダウンロードし、インストールします（最小構成で 6MB）。
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-daAT-installer.tar.gz">ドイツ語</a> 
+にローカライズされたビルドもあります）
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i686-pc-linux-gnu-1.0.tar.gz">x86 tar.gz フォーマット</a> (11.9 MB)
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-zhTW.tar.gz">繁体字中国語（台湾）</a>,
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-deAT.tar.gz">ドイツ語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-elGR.tar.gz">ギリシア語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-itIT.tar.gz">イタリア語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-jaJP.tar.gz">日本語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-koKR.tar.gz">韓国語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-plPL.tar.gz">ポルトガル語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-ruRU.tar.gz">ロシア語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i686-pc-linux-gnu-1.0-trTR.tar.gz">トルコ語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-i586-pc-linux-gnu-1.0-ukUA.tar.bz2">ウクライナ語 <font size="-2">(bz2 圧縮)</font></a>
+にローカライズされたビルドもあります）
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-sparc64-unknown-linux-gnu-1.0.tar.gz">sparc64 tar.gz フォーマット</a> (12.7 MB)
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/Red_Hat_7x_RPMS/">
+Red Hat Linux 7.x RPMS</a> (i386, alpha プラットフォーム) TrueType, Xprint は未サポート
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/Mozilla-1.0-1-deAT.rpm">ドイツ語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/it-IT_rpms/">イタリア語</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/tr-TR/">トルコ語</a> 
+にローカライズされたビルドもあります）
+
+<!--
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/Red_Hat_6x_RPMS/">
+RPMS for Red Hat Linux 6.x</a> (i386) Does not support TrueType
+-->
+
+<dd>
+<a href="http://packages.debian.org/unstable/web/mozilla-browser.html">
+Debian .deb パッケージ</a> (i386) 
+
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-powerpc-unknown-linux-gnu-1.0.tar.gz"> 
+PowerPC tar.gz フォーマット</a> (13.9 MB) 
+
+<!--
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-alpha-unknown-linux-gnu-1.0.tar.gz"> 
+alpha tar.gz フォーマット</a> (23 MB) 
+-->
+
+</dl>
+
+<dl> 
+<dt><b>AIX</b> 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-powerpc-ibm-aix4.3.3.0-1.0.tar.gz">AIX 4.3.3 tar.gz フォーマット</a> (16.7 MB) 
+        - <a href="http://www-1.ibm.com/servers/aix/products/aixos/linux/download.html">IBM の 
+        gtk+, glib, gettext</a> が必要
+</dl>
+
+<dl> 
+<dt><b>BeOS</b> 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i586-pc-beos-1.0.zip">
+  x86 zip ファイル</a> (18 MB)
+</dl>
+
+
+
+<dl> 
+<dt><b>BSD/OS</b> (bsdi)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i386-pc-bsdi4.2-1.0.tar.gz"> 
+        x86 4.2 tar.gz フォーマット</a> (16.8 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i386-pc-bsdi4.3-1.0.tar.gz"> 
+        x86 4.3 tar.gz フォーマット</a> (16.9 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-sparc-unknown-bsdi4.2-1.0.tar.gz"> 
+        Sparc 4.2 tar.gz フォーマット</a> (17 MB)
+(<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/README-bsdos">README</a>) 
+</dl>
+
+<!--
+<dl>
+<dt><b>DG/UX</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-1.0-dgux-bin.tar.gz">tar.gz フォーマット</a> with MathML (16.7 MB)
+</dl>
+-->
+
+<dl> 
+<dt><b>FreeBSD</b> 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i386-unknown-freebsd4.5_1.0.tar.gz">
+        i386 FreeBSD 4.5 tar.gz フォーマット</a> (13.9 MB)
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-freebsd4.5-1.0-zhTW.tgz">繁体字中国語（台湾）</a> 
+にローカライズされたビルドもあります）
+</dl>
+
+<dl> 
+<dt><b>HPUX</b> 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-hppa2.0w-hp-hpux11.00-1.0.tar.gz"> 
+        HP11.00 tar.gz フォーマット</a> - <a href="http://www.hp.com/workstations/support/software/hpux/gnome/downloads.html">HP の 
+        GNOME 1.2 Desktop</a> または 
+        <a href="http://hpux.connect.org.uk/hppd/hpux/Gtk/Development/gtk+-1.2.10/">
+        Connect の 1.2.10 Gtk</a> で動作します (22.9 MB)
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-hppa2.0-hp-hpux10.20-1.0.tar.gz"> 
+        HP10.20 tar.gz フォーマット</a> - <a href="http://hpux.connect.org.uk/hppd/hpux/Gtk/Development/gtk+-1.2.10">Connect の 
+        10.20 Gtk</a> が必要 (23.5 MB) 
+</dl>
+
+<dl>
+<dt><b>Irix</b>
+<dd>
+<a href="http://oss.sgi.com/projects/mozilla/">SGI</A> 提供。
+<dd> <a href="ftp://oss.sgi.com/projects/mozilla/download/irix/1.0/">Irix 6.5 tar.gz</a>
+(<a href="ftp://oss.sgi.com/projects/mozilla/download/irix/1.0/DIR_readme">README</A>)
+</dl>
+
+<!-- 
+<dl>
+<dt><b>NetBSD</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i386-unknown-netbsdelf1.5.2.tar.gz">NetBSD 1.5 i386 tar.gz フォーマット</a> (12.5 MB)
+</dl>
+-->
+
+<!--
+<dl>
+<dt><b>Caldera OpenUNIX8 and Unixware 7.1.1.</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-openUNIX8-Unixware7.1.1/mozilla-1.0.0-.pkg.gz"> package for Caldera OpenUNIX8 and Unixware 7.1.1</a> (21 MB) (unzip and apply with pkgadd -d)
+</dl>
+-->
+
+
+<dl> 
+<dt><b>OpenVMS</b> 
+<dd>Compaq の OpenVMS エンジニアリンググループ 提供。OpenVMS 特有の情報は そちらの<A HREF=
+"http://www.openvms.compaq.com/openvms/products/ips/mozilla_relnotes.html">
+  リリースノート</A> をみてください。
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-openvms-alpha-m100.sfx_axpexe">自己展開 PCSI</a> (26.3 MB)
+</dl>
+
+<dl> 
+<dt><b>OS/2</b> 
+<dd>IBM 提供。
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-os2-vacpp-1.0.zip">x86 zip ファイル</a> (16.0 MB)
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-os2-1.0-zhTW.zip">繁体字中国語（台湾）</a>, 
+イタリア語（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-os2-1.0-itIT.zip">zipfile</a>, 
+<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-os2-1.0-itIT.wpi">WarpIN インストーラ</a>）
+にローカライズされたビルドもあります）
+</dl>
+
+<dl> 
+<dt><b>Solaris</b> 
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-sparc-sun-solaris2.7-1.0.tar.gz"> 
+sparc Solaris tar.gz フォーマット</a> (14.8 MB)
+（<a href="http://ftp.mozilla.org/pub/mozilla/l10n/lang/moz1.0/mozilla-sparc-sun-solaris2.7-1.0-zhCN.tar.gz">簡体字中国語（中国）</a>
+にローカライズされたビルドもあります）
+<!--
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-i386-pc-solaris2.8-1.0.tar.gz"> 
+tar.gz format for x86 Solaris 8</a> (14.3 MB)
+-->
+</dl>
+
+<dl>
+<dt><b>Tru64 Unix</b>
+<dd>
+<a href="http://ftp.mozilla.org/pub/mozilla/releases/mozilla1.0/mozilla-alphaev6-dec-osf4.0f-1.0.tar.gz">OSF 4.0 tar.gz フォーマット</a> (19 MB) 
+</dl>
+
+</ul>
+
+
+<hr>
+<p>
+古いビルドは 
+<A HREF="old-releases-0.9.2-1.0rc3.html">Mozilla 0.9.2 - Mozilla 1.0 RC3</A>, 
+<A HREF="old-releases.html">Mozilla 0.6 - Mozilla 0.9.1</A>, 
+<A HREF="../projects/seamonkey/release-notes/">Milestone 3 - Milestone 18</A> 
+からダウンロードできます。
+</p>
+
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/releases/mozilla1.0.html">英語版</a> 2002/09/30</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/releases/mozilla1.0.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

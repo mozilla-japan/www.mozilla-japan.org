@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD html 4.0 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+<! ---
+   原題：SilentDownload in Seamonkey
+   URL ：http://www.mozilla.org/projects/silentdl/index.html
+   2000/11/06  和訳草稿１  山口
+   2000/12/07  和訳草稿２　山口、渡邊
+   2000/12/16  和訳完成稿　山口
+（桃井さん、カズさん、吉岡さん、たにーさんどうもありがとうございました。）
+ --->
+
+<link rel="alternate" hreflang="en" modified="January 15, 1999">
+<title>Seamonkey の SilentDownload 機能 </title>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/silentdl/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<center><H1>Seamonkey の SilentDownload 機能</H1></center>
+<div align="right">
+<br>作成日：1998 年 12 月 18 日
+<br>最終更新日：1999 年 1 月 13 日
+<br>連絡先： <a href="mailto:dougt@netscape.com">Doug Turner</a> 
+</div>
+
+<p>
+<br><b>概要</b>
+
+<p>SilentDownload とはバックグラウンドでファイルを転送する機能の事で、
+利用者がネットワークを不必要に混雑させる事なくファイルをダウンロード
+できるようにするものです。どうしてこのようなことが可能なのかというと、
+SilentDownload はネットワークが混雑していないときにのみファイルを
+ダウンロードするためです。利用者は長時間にわたって大きなサイズのファイルを
+「静かにダウンロード」 でき、転送が完了した際には通知を受け取る事ができます。
+
+<p>SilentDownload は JavaScript API を備えおり、これによってサイトが
+新たなファイル転送を SilentDownload に 「加える」 ことができるように
+なっています。こうした SilentDownload API は、API の発信者がデジタル認証され、
+SilentDownload する許可を受ける、という一連のセキュリティ認証を全て行います。
+一旦新たなファイル転送が予約されると、
+ユーザーインターフェイスを通して認証者かエンドユーザーしか
+変更を加える事ができません。
+
+<p>SilentDownload はまた XPCOM からもアクセスが可能です。つまり、Seamonkey 
+のどこからでも SilentDownload のコントロールが可能なのです。例えば、
+コンテキスト・メニュー （右クリックすると出てくるメニュー） 
+を利用する事によってユーザーがアイテムを SilentDownload するよう予約する事も
+できます。
+
+<p><b>摘要</b>
+
+<p>エンドユーザーにソフトウェアを送りたい、という場合について考えてください。
+現在の方法ですと、エンドユーザー自身がリンクをクリックするか、 SmartUpdate 
+立ち上げなければなりません。どちらの方法も、ダウンロードの間その進展状況を
+表示し、できるだけ大きなネットワーク転送容量を確保しようとします。
+SilentDownload はこうした方法の単なる代替手段以上の優れた機能を提供します。
+
+<p>SilentDownload は何でもダウンロードする事ができますが、
+基本的には native installer をダウンロードするためか、SmartUpdate 
+用に作られています。その JavaScript は次のような感じに記述されているはずです。
+
+
+
+<center><table BORDER COLS=1 WIDTH="100%" BGCOLOR="#CCCCCC" >
+<tr>
+<td>
+<pre>
+<tt>
+
+au = SilentDownload.find("CoolSoftware")
+if (au == null)
+{
+  au = new SilentDownloadTask();
+  au.Init("CoolSoftware",
+    "http://home.foo.com/download/5.1/SilentDownload.jar",
+    "http://home.foo.com/download/5.1/SilentDownload.html"); 
+}
+
+switch (au.state)
+{
+  case SilentDownloadTask.SDL_ERROR:
+    au.Remove();
+    break;
+  case SilentDownloadTask.SDL_COMPLETE:
+    au.Remove();
+    // open the downloaded jar file, which puts up the
+    // UI and does the install break;
+}
+
+</tt>
+</pre>
+</td>
+</tr>
+</table></center>
+
+<p>ご覧のように、スクリプトはきわめて簡単なもの （また部分的には
+ psudo-code ） です。ユーザーが始めてこのスクリプトを作動させた場合、
+CoolSoftware に対しての問い合わせ （query） は失敗するでしょう。
+というのも、au が NULL となっているためで、この場合は新しく 
+SilentDownloadTask を生成します。次に SilentDownloadTask を、キー値 
+（key value） 、ダウンロードする URL 、そしてコールバック用のスクリプト
+を読み込んで初期化します。
+キー値 （key value） は人間が読めるような文字列でなければなりません。
+この数値はユーザーインターフェイス上で利用者に表示されます。
+ダウンロードする URL は説明不要ですね。
+コールバック用のスクリプト、またはコールバック・スクリプトとは、
+SilentDownloadTask の状況が変化したり、
+SilentDownload を始めに立ち上げた際に呼び出されるスクリプトのことです。
+
+
+<p>SielntDownload は定期的に、SilentDownloadTask の Init() 関数
+に引き渡された JavaScript を読み込みます。この JavaScript は、
+普通上に書かれた例と同じフォーマットになります。このスクリプトは、
+SilentDownload の Find() 関数を利用してキー値 （key value）を探そうとします。
+この試みに失敗した場合、スクリプトは新たな SilentDownloadTask を始めます。
+問題のなく SilentDownload のタスクを始められたら、
+次にそのタスクの state value をチェックします。
+これにより、対象のタスクがどういう状態になっているのかが分かります。
+
+
+<p>SilentDownloadTask は、変にいじらない限り大抵問題は起きません。
+しかし、次の二つのことは大切です。一つは、SDL_COMPLETE について。
+タスクの state value がこの SDL_COMPLETE と同じになった時に、
+ダウンロードが完了したことになります。この場合はどのようなことをしても
+問題はありません。例えば、ダウンロードしたものが SmartUpdate の場合、
+ダウンロードしたものの新しい画面を表示することもできます。
+二つ目に気をつけなければならないのは、SDL_ERROR についてです。
+これが現われたときには、ダウンロード作業に何か問題が起きて、
+作業が回復不可能になってしまっているのです。
+この二つのことが起こった場合には、SilentDownloadTask の 
+Remove() 関数を呼び出し、SilentDownloadTask() を取り除かなければ
+なりません。
+
+
+<p>このスクリプトを書いて、ソフトウェアをパッケージ化してしまったら、
+それを Byte Range 対応のサーバにアップロードします。
+利用しているサーバのタイプが分からない場合には、
+管理者の方に確認をして下さい。また、もし SmartUpdate の 
+jar 形式のファイルを扱おうと考えているのであれば、
+サーバ上の JAR アーカイブの MIME 形式が application/java-archive 
+と設定されているか確認をして下さい。
+
+
+<p><b>API</b>
+
+<p>SilentDownloadTask
+<UL>
+<p>コンストラクター （Constructor）。 新たな SilentDownloadTask を始めます。 
+SilentDownloadTask オブジェクトの状態は SDL_NOT_INITED となります。 
+</UL>
+
+
+<p>SilentDownloadTask.Init(ID, download_URL, callbackJavascript_URL);
+<UL>
+<p>SilentDownload によるダウンロードを設定します。このメソッド （method） 
+に伝えられた情報は、全て持続的な記憶領域 （persistent store） に格納されます。
+ID は人が目で確認できる一意の文字列で、callbackJavascript_URL と 
+the download_URL は文字列です。SilentDownloadTask の状態は、SDL_STARTED 
+となります。
+</UL>
+
+
+<p>SilentDownloadTask.Suspend();
+<UL>
+<p> SilentDownloadTask をサスペンドします。
+サスペンドされた SilentDownload を再開させるのは、ダウンロード・スクリプト
+製作者の責任です。 SilentDownload オブジェクトの状態は SUSPEND となります。
+</UL>
+
+
+<p>SilentDownloadTask.Resume();
+<UL>
+<p>SilentDownloadTask を再開します。 
+（i.e. ユーザーのディスクにデータのダウンロードを開始しますが、
+バックグラウンドで行われます。） SilentDownload オブジェクトの状態は、
+ダウンロード中は常に、SDL_STARTED となります。
+</UL>
+
+<p>SilentDownloadTask.Remove();
+<UL>
+<p>ダウンロードされたデータを取り除いたり、
+このオブジェクトに関する持続的な記憶領域 （persistent store） 
+からのエントリーを削除します。
+この API は、SilentDownloadTask が完全に終了した段階で呼び出されなければ
+なりません。この API が呼び出されることにより、JavaScript コールバック 
+が作動しなくなります。
+</UL>
+
+
+<p>SilentDownloadTask.DownloadNow();
+<UL>
+<p>その時点でのネットワークの混雑状況に関係なく、
+ダウンロードを直ちに開始します。SilentDownload オブジェクトの状態は、
+DOWNLOADING_NOW となります。
+</UL>
+
+<p>SilentDownloadTask.ID
+<UL>
+<p>SilentDownloadTask を探す際の手がかりとなる読取専用の文字列。
+</UL>
+
+<p>SilentDownloadTask.URL
+<UL>
+<p>ダウンロードされる URL を示した読取専用の文字列。
+</UL>
+
+<p>SilentDownloadTask.Script
+<UL>
+<p>進行中の SilentDownloadTask のための JavaScript コールバック。
+</UL>
+
+<p>SilentDownloadTask.State
+<UL>
+<p>SilentDownloadTask の状態を示す読取専用の整数 （integer）。
+</UL>
+
+<p>SilentDownloadTask.NextByte
+<UL>
+<p>次に<!--回線が?-->アイドル状態になったときに、SilentDownload が読み込むべき
+ファイルのバイト情報。
+</UL>
+
+
+<p>SilentDownloadTask.OutFile
+<UL>
+<p>ファイルがユーザーのコンピュータに保存される際のディレクトリ情報。
+</UL>
+
+
+<p>SilentDownloadTask.ErrorMsg
+<UL>
+<p>人が読んで理解可能な最後の文字列メッセージ。
+</UL>
+
+
+<p>SilentDownload
+<UL>
+<p>全ての SilentDownload タスクのデータや機能をつかさどる state class 。
+</UL>
+
+
+<p>SilentDownload.Find(id)
+<UL>
+<p>パラメーター ID に一致する SilentDownloadTask を返します。
+一致する値がない場合は、null が返されます。
+</UL>
+
+
+<p>SilentDownload.Range
+<UL>
+<p>アイドル・タイムの間にダウンロードするバイト・カウント。
+</UL>
+
+<p>SilentDownload.Interval
+<UL>
+<p>アイドル時間をチェックする間隔を表したマイクロ秒。
+（単なる秒単位にした方がいいでしょうか？）
+</UL>
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/silentdl/index.html">英語版</a> 1999/01/15</span> - <span>和訳版 2004/10/26</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/silentdl/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

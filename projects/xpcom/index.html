@@ -1,0 +1,340 @@
+
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>XPCOM</title>
+<link rel="alternate" hreflang="en" href="http://www.mozilla.org/projects/xpcom/index.html">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/projects/xpcom/index.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+
+
+
+
+<h1>
+XPCOM</h1>
+
+<P>
+XPCOMページへようこそ。ここは、XPCOMに関する情報を集めている場所です。
+<!--
+現在のところ、XPCOMのドキュメントは mozilla.org全体に散らばっています。
+それをできるだけここに持って来る予定です(あるいはここからリンクする予定です)。
+-->
+</P>
+
+<H3>一般</H3>
+<UL>
+
+<li>
+<a href="book/cxc">XPCOM コンポーネントの作成</a> XPCOM の紹介と Gecko ベースのアプリケーションに対して
+どのように XPCOM コンポーネントを作るかの例証を Doug Turner と Ian Oeschger によって書かれています。
+
+<li>Rick Parrish による IBM Webサイト上での XPCOM
+<a href="http://www-106.ibm.com/developerworks/components/library/co-xpcom.html">紹介</a>。</li>
+
+<li>
+<a href="xpcom-intro/xpcom-intro.htm">XPCOMへの紹介</a> Alec Flett (2002年2月4日)</li>
+
+<li>
+<a href="xpcom-inside/index.htm">発表資料: XPCOM ライブラリ</a> Alec Flett (2002年2月11日)</li>
+
+<li>
+<a href="xpcom-standalone.html">スタンドアロン XPCOM</a> : スタンドアロン XPCOM のビルドについての文書</li>
+
+<li>
+メモリリークの見地のための<a href="MemoryTools.html">サポート</a>を埋め込むことについての情報</li>
+
+
+<!-- なくなった
+<li>
+<a href="../../lxr/mozilla/source/xpcom/doc/xpcom-code-faq.html">XPCOM
+コード FAQ</a>は、XPCOMコンポーネントを実装する人達からよくある質問を載せています。</li>
+-->
+
+<li>
+<a href="interface-rules.html">IDL インタフェース規則</a> インタフェースを書くためのガイドライン。フリーズのために必要。
+
+<li>
+<a href="../../scriptable/interface-rules-we-break.html">我々が破っている規則</a>
+は、我々のコードベースにおいて破られているxpcomの規則の一覧と注釈です。</li>
+
+</UL>
+
+<H3>マニュアルとガイド</H3>
+<UL>
+
+<li>
+<a href="Ownership.html">COM所有権ガイドライン</a> は、うまく働く所有権モデルの作成のための簡潔なガイドラインです。
+</li>
+
+<li>
+<code><a href="nsCOMPtr.html">nsCOMPtr</code> ユーザマニュアル
+</a> は、XPCOMのための`スマートポインタ'を説明します。より詳しいドキュメントは、<a href="nsCOMPtr/"><code>nsCOMPtr</code>のホームページ</a>を見てください。
+</li>
+
+<LI>
+<a href="weak_references.html"><code>nsIWeakReference</code>ユーザマニュアル
+</a> は、XPCOMといっしょに使うことができ、安全でダングリングせず、かつ所有によらないポインタの実装について説明します。
+</LI>
+
+      <!-- I think this doc is outdated
+      <li>
+      <a href="XPCOM_plans.html">XPCOM Plans</a>
+	</li>
+      -->
+
+</UL>
+
+<h3>マイルストーン</h3>
+<ul>
+<li>
+<a href="string-guide.html">Strings</a> Mozilla の string（文字列）ガイド
+<li>
+<a href="hashtable-guide.html">Hashtables</a> - Mozilla の Hashtable ガイド
+<li>
+<a href="array-guide.html">Arrays</a> - Mozilla の配列ガイド
+<!--
+<li>
+<a href="mozIRegistry.html">mozIRegistry</a> は、"レジストリ"インタフェースとそれをインタフェース実装への動的な結合のために使う方法を説明しています。
+</li>
+-->
+
+<li>
+<a href="generic-factory.html">総称ファクトリ</a> は、総称ファクトリのリファレンスドキュメントです。
+</li>
+
+<li>
+<a href="QI.html"><code>QueryInterface</code>のリファレンス実装</a>
+は、<code>QueryInterface()</code>の一つの良い実装方法を示しています。</li>
+
+<li>
+<a href="Proxies.html">nsISupport プロキシ</a> は、 スレッドをまたがる XPCOMプロキシの使い方を説明しています。
+</li>
+
+<li>
+<a href="nsIClassInfo.html">nsIClassInfo</a> インフラの一般的な概要</li>
+
+
+<li>
+スクリプトエラーとユーザに見えるその他のメッセージを記録するには、<a href="consoleservice.html">コンソールサービス</a> を使ってください。
+</li>
+<li>XPCOM 文書<a href="style-guide.html">スタイルガイド</a>   
+</ul>
+
+<h3>技術文書</h3>
+<ul>
+
+<li>コンパイラのバージョンをまたいでの XPCOMインタフェースの<a href="binary-compatibility.html">バイナリ互換性</a>の説明書。
+</ul>
+
+
+<H3>XPIDL, XPConnect, 関連事項</H3>
+
+
+<ul>
+<li>
+<a href="../../scriptable/roadmap.html">XPCOM, XPConnect, XPTCallと XPIDLのロードマップ</a> は、それらがお互いにどう適合するかを説明してます。</li>
+
+<li>
+<a href="../../scriptable/index.html">XPConnect</a> は、JavaScriptから XPCOMベースのクラスにアクセスする方法を説明しています。
+</li>
+
+<li>
+<a href="../../scriptable/xpidl/index.html">XPIDL</a> は、XPCOMインタフェースクラスを指定するのに使うXPインタフェース定義言語です。
+</li>
+
+<ul>
+<li>
+<a href="../../scriptable/xpidl/syntax.html">XPIDL構文</a></li>
+
+<li>
+<a href="../../scriptable/xpidl/idl-authors-guide/index.html">XPIDL 作成者ガイド
+</a></li>
+</ul>
+
+<li>
+<a href="../../scriptable/xptcall-faq.html">xptcall</a> は、任意のxpcomオブジェクトのメソッドの実行と任意のxpcomインタフェースを実装しているように見せかけるクラスの実装を支援するライブラリです。
+</li>
+
+<ul>
+<li>
+<a href="../../lxr/mozilla/source/xpcom/reflect/xptcall/status.html">移植状況
+</a> は、現在サポートしているプラットフォームの一覧です。我々は、現在、多くのプラットフォームで支援を必要としています。
+</li>
+
+<li>
+<a href="../../lxr/mozilla/source/xpcom/reflect/xptcall/porting.html">移植ガイド
+</a> は、xptcallの実装で必要となるアセンブラコードについて説明しています。</li>
+</ul>
+
+<li>
+<a href="../../scriptable/typelib_file.html">タイプライブラリ・フォーマット</a> は、 XPCOMインタフェースのバイナリ表現のタイプライブラリ(.xptファイル)について説明しています。
+</li>
+
+<ul>
+<li>
+<a href="../../scriptable/typelib_tools.html">タイプライブラリのためのツール</a> - xpt_dumpは、タイプライブラリの情報をスクリーンにダンプします。xpt_linkは、タイプライブラリファイルをマージします。
+</li>
+
+</ul>
+
+</ul>
+
+<h3>まもなく削除されます</h3>
+<ul>
+
+<li>
+<a href="../../docs/modunote.htm">モジュール化方法
+</a> は、XPCOMとその使い方を説明しています。</li>
+
+<!-- なくなった
+<li>
+<a href="../../lxr/mozilla/source/xpcom/doc/xpcom-brownbag-1.html">XPCOM Brown Bag 1（XPCOM について語る食事会 1） (1999年8月17日)
+</a></li>
+-->
+</ul>
+
+<h2>
+参考</h2>
+
+<ul>
+<li>
+<a href="http://www.amazon.com/exec/obidos/ISBN%3D0201634465/donboxincA/002-4633383-7514654">Essential
+COM by Don Box</a> COMの設計思想を説明した本 
+</li>
+
+<!--
+<li>
+<a href="nsCOMPtr/">The <span class="source-code">nsCOMPtr</span>ホームページ
+</a></li>
+-->
+
+<li>
+<a href="../../../hacking/portable-cpp.html">C++移植性ガイド
+</a> 移植性のあるコードを書くための一般的なガイドライン</li>
+</ul>
+
+<!--
+<h2>古くなったもの</h2>
+<ul>
+<li>
+<a href="eventloop/index.html">XP イベントループ Event Loop</a> は、XPイベントループを説明しています。
+</li>
+
+<li>
+<a href="porting/index.html">XPCOMの移植</a> は、XPCOMを他のプラットフォームへ移植する際に必要になることについて述べています。
+</li>
+
+<li>
+<span class="source-code"><a href="nsString.html">nsString</span> 提案</a>
+ XPCOM のための string（文字列）クラスについての提案。</li>
+-->
+</ul>
+
+<div class=author-note>
+<hr><!-- P -->コメントと寄稿は、<a href="news://news.mozilla.org/netscape.public.mozilla.xpcom">news:netscape.public.mozilla.xpcom</a>
+または<a href="mailto:dougt@netscape.com">Doug Turner &lt;dougt@meer.net></a>まで直接送ってください。<!-- /P --></div>
+
+
+
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/projects/xpcom/index.html">英語版</a> 2003/06/06</span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/projects/xpcom/index.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

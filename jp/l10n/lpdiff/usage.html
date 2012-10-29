@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+
+
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tt="http://dynamis.jp/2003/TransTools" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/">
+<head>
+	
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP"/>
+	<link href="../../../news.rdf" rel="alternate" type="application/xml" title="RSS"/>
+	<link href="../../../" rel="home" title="Home"/>
+	<link href="../../../css/print.css" rel="stylesheet" type="text/css" media="print"/>
+	<link href="../../../css/base/content.css" rel="stylesheet" type="text/css" media="all"/>
+	<link href="../../../css/cavendish/content.css" rel="stylesheet" type="text/css" title="Cavendish" media="all"/>
+	<link href="../../../css/base/template.css" rel="stylesheet" type="text/css" media="screen"/>
+	<link href="../../../css/cavendish/template.css" rel="stylesheet" type="text/css" title="Cavendish" media="screen"/>
+	<link href="../../../images/mozilla-16.png" rel="icon" type="image/png"/>
+
+	<link href="../../../jp/l10n/css/l10n.css" rel="stylesheet" type="text/css"/>
+	<meta name="keywords" content="localization, JLP, L10N, japanese, mozilla, firefox, thunderbird"/>
+
+<title>ローカライズセンター - LpDiff の使い方</title></head>
+<body>
+<div id="container">
+	<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+	
+	<div id="header">
+		<h1><a href="../../../" title="ホームページへ戻る" accesskey="1">Mozilla</a></h1>
+		<ul>
+			<li><a href="../../../about/" title="Mozilla Japan について">組織概要</a></li>
+			<li><a href="../../../developer/" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+
+			<li><a href="../../../support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+			<li><a href="../../../products/" title="Mozilla 製品概要">製品情報</a></li>
+		</ul>
+		<form id="search" method="get" action="http://www.google.co.jp/custom" title="mozilla-japan.org 検索">
+			<div>
+				<label for="q" title="mozilla-japan.org サイトの検索">サイト内検索:</label>
+				<input type="hidden" name="domains" value="mozilla-japan.org"/>
+				<input type="hidden" name="sitesearch" value="mozilla-japan.org"/>
+				<input type="hidden" name="client" value="pub-8666734350947173"/>
+				<input type="hidden" name="forid" value="1"/>
+				<input type="hidden" name="channel" value="2059762724"/>
+				<input type="hidden" name="ie" value="EUC-JP"/>
+
+				<input type="hidden" name="oe" value="EUC-JP"/>
+				<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;LH:37;LW:175;L:http://www.mozilla-japan.org/images/mozilla-logo.gif;S:http://www.mozilla-japan.org/;FORID:1;"/>
+				<input type="hidden" name="hl" value="ja"/>
+				<input type="text" id="q" name="q" accesskey="s" size="30"/>
+				<input type="submit" id="submit" value="検索"/>
+			</div>
+		</form>
+	</div>
+
+	<hr class="hide"/>
+	<div id="mBody">
+		
+	<div id="side">
+		<ul id="nav">
+			<li><a href="../../../jp/l10n/"><strong>ローカライズセンター</strong></a></li>
+			
+	<li title="日本語化に関する総合フォーラム"><a href="http://forums.firehacks.org/l10n/"><strong>L10N フォーラム</strong></a>
+	<ul>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=1" title="Release Announcement フォーラム">リリース告知</a></li>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=4" title="Main Products フォーラム">フィードバック</a></li>
+	</ul>
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/firefox/" title="次世代ブラウザを日本へ"><strong>Firefox</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/thunderbird/" title="次世代メールクライアントの日本語化"><strong>Thunderbird</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/suite/" title="成熟したインターネットスイートを日本語に"><strong>Mozilla</strong></a>
+	
+	</li>
+
+			
+	<li><a href="../../../jp/l10n/library.html" title="日本語化に関するツールとドキュメント"><strong>L10N ライブラリ</strong></a>
+	<ul>
+		<li><a href="../../../jp/l10n/lot/" title="JLP メンテナンス用 Ant スクリプト">Localization Tools</a></li>
+		
+		<li><a href="../../../jp/l10n/faq/" title="ローカライズセンターとその製品についてよくある質問">L10N FAQ</a></li>
+		<li><a href="../../../jp/l10n/guide.html" title="ローカライズセンターでの日本語化ガイドライン">L10N ガイドライン</a></li>
+		<li><a href="../../../jp/l10n/term/" title="ローカライズセンター指定訳語など">用語データベース</a></li>
+		<li><a href="../../../jp/l10n/links.html" title="ローカライズ関連リンク集">関連リンク</a></li>
+	</ul>
+	</li>
+
+			
+	<li><span><strong>活動内容と参加方法</strong></span>
+	<ul>
+		<li><a href="../../../jp/l10n/about.html">ローカライズセンターについて</a></li>
+		<li><a href="http://forums.firehacks.org/l10n/viewforum.php?f=3" title="準備中 (取りあえずフォーラムへのリンク)">協力者募集</a></li>
+		<li><a href="../../../jp/l10n/thanks.html" title="謝辞">Acknowlegement</a></li>
+	</ul>
+	</li>
+
+		</ul>
+	</div>
+
+		<hr class="hide"/>
+		<div id="mainContent">
+			
+	<h1 title="無駄な手間を省いて言語リソースを効率的にメンテナンス">LpDiff の使い方</h1><address>
+				author: 
+				<dc:creator>dynamis</dc:creator><br/>
+				target: 
+				<dcterms:audience>developers</dcterms:audience><br/></address>
+	
+	<h2>Graphical User Interface</h2>
+	<ol>
+		<li>
+			<h3>起動 : Launch LpDiff</h3>
+			<a href="lpdiff.png"><img src="lpdiff.small.png" class="screenshot" alt="起動直後の LpDiff ウィンドウ"/></a>
+			<div class="ja">
+				<p>コマンドプロンプトなどのコンソールから以下のコマンドを入力してください。</p>
+				<p class="indent"><kbd>java -jar LpDiff.jar</kbd></p>
+				<p class="note">Windows 環境であれば jar ファイルをダブルクリックしても起動します。</p>
+			</div>
+			<hr class="dotted"/>
+			<div class="en">
+				<p>Type this command on your console.</p>
+				<p class="indent"><code>java -jar LpDiff.jar</code></p>
+				<p class="note">If you are working on Windows, you can launch by double click on the jar file.</p>
+			</div>
+		</li>
+		<li class="clearright">
+			<h3>読込 : Load Directories</h3>
+			<a href="loaddir.png"><img src="loaddir.small.png" class="screenshot" alt="リソースディレクトリ選択ダイアログ"/></a>
+			<a href="loaddir.cvs.png"><img src="loaddir.cvs.small.png" class="screenshot" alt="リソースディレクトリ選択ダイアログ(入力後)"/></a>
+			<div class="ja">
+				<p>"Load Directories" メニューを選択してください。ダイアログが表示されるので差分比較をする言語リソースが収められているディレクトリを入力して下さい。</p>
+				<p>指定されたディレクトリ配下のファイルが左ペインにツリー表示されます。</p>
+			</div>
+			<hr class="dotted"/>
+			<div class="en">
+				<p>Select "Load Directories" menu. In the dialog shown, type target directories which contains the language resource files you want to compare.</p>
+				<p>Then directory and file tree are shown in the left pane.</p>
+			</div>
+		</li>
+		<li class="clearright">
+			<h3>表示 : Show Diff Tables</h3>
+			<a href="lpdiff.firefox.png"><img src="lpdiff.firefox.small.png" class="screenshot" alt="リソース読み込み後のウィンドウ"/></a>
+			<a href="lpdiff.browser.dtd.png"><img src="lpdiff.browser.dtd.small.png" class="screenshot" alt="リソースの比較表示"/></a>
+			<div class="ja">
+				<p>変更や追加または削除されたファイル名の末尾にはそれぞれ順に "(*)" や "(+)" または "(-)" が表示されます。ディレクトリ名の末尾に表示されている数字はそのディレクトリ中のファイルのうち過不足や変更のあったファイル数です。</p>
+				<p>ファイル名をダブルクリックするとそのファイルで定義されている言語リソースの差分表が右ペインに表示されます。変更されたものは青、追加されたものは赤、削除されたものは緑で表示されます。</p>
+			</div>
+			<hr class="dotted"/>
+			<div class="en">
+				<p>Modified, added or deleted files have postfix of "(*)", "(+)" or "(-)". At the end of the directory names you can see the numbers, which indicate how many files in the directory don't match.</p>
+				<p>Double click on filename in the left pane, then language resouce diff of the file will be shown in the right pane. Modified entity are shown in blue text, added ones are in red and deleted ones are in green.</p>
+			</div>
+		</li>
+		<li class="clearright">
+			<h3>出力 : Print Diff HTML</h3>
+			<a href="printdiff.png"><img src="printdiff.small.png" class="screenshot" alt="Print difference 出力先指定ダイアログ"/></a>
+			<a href="printall.png"><img src="printall.small.png" class="screenshot" alt="Print all 出力先指定ダイアログ"/></a>
+			<div class="ja">
+				<p>言語リソースの差分出力には "Print difference" と "Print all" の 2 通りの形式があります。前者は差分のみをまとめて 1 つの HTML ファイルに出力し、後者は変更のないものも含めて全リソースの比較表を言語リソースファイル毎の HTML に出力します。</p>
+				<dl>
+					<dt>Print difference</dt>
+					<dd>"Print difference" メニューを選択するとダイアログが表示されるので、差分出力を書き込む <em>HTML ファイル</em>を指定して下さい。"Write defaut CSS" のチェックを入れると出力 HTML 用の CSS ファイルが一緒に保存されます。</dd>
+					<dt>Print all</dt>
+					<dd>"Print all" メニューを選択しても同じようなダイアログが表示されますが、この場合はリソース比較 HTML を保存する <em>ディレクトリ</em>を指定して下さい。</dd>
+				</dl>
+			</div>
+			<hr class="dotted"/>
+			<div class="en">
+				<p>Lpdiff have two methods to output diff of language resources: "Print difference" and "Print all". Former one outputs only differences into the single HTML file, latter one generates all resources' diff table into HTML files corresponding to each language resource files.</p>
+				<dl>
+					<dt>Print difference</dt>
+					<dd>You'll see a dialog when you select "Print difference" menu, then specify <em>HTML file</em> you want to write diff into. When you check "Write default CSS", style file for the output HTML will be saved too.</dd>
+					<dt>Print all</dt>
+					<dd>You'll also see the similar dialog when you select "Print all" menu, but here you should specify <em>directory</em> you want to save HTMLs.</dd>
+				</dl>
+			</div>
+		</li>
+	</ol>
+
+	<h2>Character User Interface</h2>
+	<div class="ja">
+		<p>LpDiff はコマンドラインツールとして使用することもできます。次のように入力すると "Print difference" および "Print all" メニューと同じ出力が得られます。</p>
+		<p class="indent"><kbd>java -jar LpDiff.jar -diff [比較元ディレクトリ] [比較先ディレクトリ] [出力ファイル名]</kbd><br/>
+			<kbd>java -jar LpDiff.jar -all [比較元ディレクトリ] [比較先ディレクトリ] [出力ディレクトリ名]</kbd></p>
+	</div>
+	<hr class="dotted"/>
+	<div class="en">
+		<p>You can also use LpDiff from your console. Type below commands to print the same output as "Print dirrerence" or "Print all" menu.</p>
+		<p class="indent"><kbd>java -jar LpDiff.jar -diff [compare dir 1] [compare dir 2] [output file]</kbd><br/>
+			<kbd>java -jar LpDiff.jar -all [compare dir 1] [compare dir 2] [output dir]</kbd></p>
+		<p class="indent"><kbd/></p>
+	</div>
+
+		</div>
+	</div>
+	<hr class="hide"/>
+	
+	<div id="footer">
+		<ul id="bn" style="margin-bottom: .6em;">
+			<li><a href="../../../security/">セキュリティ情報</a></li>
+			<li><a href="../../../press/">プレスルーム</a></li>
+			<li><a href="../../../contact/">お問い合わせ</a></li>
+			<li><a href="../../../sitemap.html">サイトマップ</a></li>
+		</ul>
+		<p>© 2005 Mozilla Japan and <a href="http://www.mozilla.org/">Mozilla Foundation</a> - Mozilla Japan は Mozilla Foundation の公式アフィリエイトです。</p>
+		<p>このドキュメントは Mozilla Japan ローカライズセンターにより作成・管理されています。<br/>
+			このドキュメントに関するお問い合わせは <a href="http://forums.firehacks.org/l10n/viewforum.php?f=10">L10N フォーラム</a>までお寄せください。</p>
+	</div>
+
+</div>
+</body>
+</html>
+

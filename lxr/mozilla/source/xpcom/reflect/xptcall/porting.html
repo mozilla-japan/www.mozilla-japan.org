@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+<title>xptcall Porting ガイド</title>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/lxr/mozilla/source/xpcom/reflect/xptcall/porting.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../../../../../../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../../../../../../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../../../../../../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../../../../../../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../../../../../../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../../../../../../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../../../../../../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../../../../../../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+<h2><center>xptcall Porting ガイド</center></h2>
+
+<h3>概観</h3>
+
+<blockquote>
+
+<a href="http://www.mozilla.org/scriptable/xptcall-faq.html"> xptcall</a> は、arbitrary xpcomオブジェクトのinvoking methodsとxpcomインターフェイスに沿ったclassのオブジェクト実装をサポートするライブラリです。これは、各プラットフォームのアセンブラ言語で書かれています。 This code needs to be
+ported to all platforms that want to support xptcall (and thus mozilla).
+
+</blockquote>
+
+<h3>The tree</h3>
+
+<blockquote>
+<pre>
+<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall">mozilla/xpcom/reflect/xptcall</a>
+  +--<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/public">public</a>  // exported ヘッダ
+  +--<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src">src</a>  // core ソース
+  |  \--<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md">md</a>  // 環境依存部分
+  |     +--<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/mac">mac</a>  // mac ppc
+  |     +--<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/unix">unix</a>  // all unix
+  |     \--<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/win32">win32</a>  // win32
+  |     +--<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/test">test</a>  // simple tests to get started
+  \--<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/tests">tests</a>  // full tests via api
+</pre>
+
+移植者は、base <code>md</code> directoryの下に各プラットフォームに必要な好きなサブディレクトリを作って、各プラットフォーム用のシステムを構築できます。
+
+</blockquote>
+
+<h3>Theory of operation</h3>
+
+<blockquote>
+
+There are really two pieces of functionality: <i>invoke</i> and <i>stubs</i>...
+
+<p>
+
+The <b><i>invoke</i></b> functionality requires the implementation of the
+following on each platform (from <a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/public/xptcall.h#131">xptcall/public/xptcall.h</a>):
+
+<pre>
+XPTC_PUBLIC_API(nsresult)
+XPTC_InvokeByIndex(nsISupports* that, PRUint32 methodIndex,
+                   PRUint32 paramCount, nsXPTCVariant* params);
+</pre>
+
+Calling code is expected to supply an array of <code>nsXPTCVariant</code>
+structs. These are discriminated unions describing the type and value of each
+parameter of the target function. The platform specific code then builds a call
+frame and invokes the method indicated by the index <code>methodIndex</code> on
+the xpcom interface <code>that</code>.
+
+<p>
+
+ここに、
+<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/win32/xptcinvoke.cpp">Win32</a>
+および 
+<a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/unix/xptcinvoke_unixish_x86.cpp">Linux x86, NetBSD x86, and FreeBSD</a> のためのインプリメンテーションの例があります。
+
+Both of these implementations use the basic strategy of: figure out how much
+stack space is needed for the params, make the space in a new frame, copy the
+params to that space, invoke the method, cleanup and return. C++ is used where
+appropriate, Assembly language is used where necessary. Inline assembly language is used here,
+but it is equally valid to use separate assembly language source files. Porters
+can decide how best to do this for their platforms.
+
+<p>
+
+The <b><i>stubs</i></b> functionality is more complex. The goal here is a class
+whose vtbl can look like the vtbl of any arbitrary xpcom interface. Objects of
+this class can then be built to impersonate any xpcom object. The base interface
+for this is (from <a href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/public/xptcall.h#109">xptcall/public/xptcall.h</a>):
+
+<pre>
+class nsXPTCStubBase : public nsISupports
+{
+public:
+    // Include generated vtbl stub declarations.
+    // These are virtual and *also* implemented by this class..
+#include "xptcstubsdecl.inc"
+
+    // The following methods must be provided by inheritor of this class.
+
+    // return a refcounted pointer to the InterfaceInfo for this object
+    // NOTE: on some platforms this MUST not fail or we crash!
+    NS_IMETHOD GetInterfaceInfo(nsIInterfaceInfo** info) = 0;
+
+    // call this method and return result
+    NS_IMETHOD CallMethod(PRUint16 methodIndex,
+                          const nsXPTMethodInfo* info,
+                          nsXPTCMiniVariant* params) = 0;
+};
+</pre>
+
+Code that wishes to make use of this <i>stubs</i> functionality (such as 
+<a href="http://www.mozilla.org/scriptable/">XPConnect</a>) implement a class
+which inherits from <code>nsXPTCStubBase</code> and implements the
+<code>GetInterfaceInfo</code> and <code>CallMethod</code> to let the
+platform specific code know how to get interface information and how to dispatch methods
+once their parameters have been pulled out of the platform specific calling
+frame.
+
+<p>
+
+Porters of this functionality implement the platform specific code for the
+<i>stub</i> methods that fill the vtbl for this class. The idea here is that the
+class has a vtbl full of a large number of generic stubs. All instances of this
+class share that vtbl and the same stubs. The stubs forward calls to a platform
+specific method that uses the interface information supplied by
+the overridden <code>GetInterfaceInfo</code> to extract the parameters and build
+an array of platform independent <code>nsXPTCMiniVariant</code> structs which
+are in turn passed on to the overridden <code>CallMethod</code>. The
+platform dependent code is responsible for doing any cleanup and returning.
+
+<p>
+
+The stub methods are declared in <a
+href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/public/xptcstubsdecl.inc">xptcall/public/xptcstubsdecl.inc</a>.
+These are '#included' into the declaration of <code>nsXPTCStubBase</code>. A
+similar include file (<a
+href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/public/xptcstubsdef.inc">xptcall/public/xptcstubsdef.inc</a>)
+is expanded using platform specific macros to define the stub functions. These
+'.inc' files are checked into cvs. However, they can be regenerated as necessary
+(i.e. to change the number of stubs or to change their specific declaration)
+using the Perl script  <a
+href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/public/genstubs.pl">xptcall/public/genstubs.pl</a>.
+
+<p>
+
+Here are examples of this implementation for  <a
+href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/win32/xptcstubs.cpp">Win32</a>
+and  <a
+href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/unix/xptcstubs_unixish_x86.cpp">Linux x86, NetBSD x86, and FreeBSD</a>.
+Both of these examples use inline assembly language. That is just how I
+decided to do it. You can do it as you choose.
+
+<p>
+
+The Win32 version is somewhat tighter because the __declspec(naked) feature
+allows for very small stubs. However, the __stdcall requires the callee to clean
+up the stack, so it is imperative that the interface information scheme allow
+the code to determine the correct stack pointer fixup for return without fail,
+else the process will crash.
+
+<p>
+
+I opted to use inline assembler for the gcc Linux x86 port. I ended up with
+larger stubs than I would have preferred rather than battle the compiler over
+what would happen to the stack before my asm code began running.
+
+<p>
+
+I believe that the non-assembly parts of these files can be copied and reused
+with minimal (but not zero) platform specific tweaks. Feel free to copy and
+paste as necessary. Please remember that safety and reliability are more
+important than speed optimizations. This code is primarily used to connect XPCOM
+components with JavaScript; function call overhead is a <b>tiny</b> part of the
+time involved.
+
+<p>
+
+I put together 
+<a
+href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/src/md/test">xptcall/src/md/test
+</a> as a place to evolve the basic functionality as a port is coming together.
+Not all of the functionality is exercised, but it is a place to get started. 
+<a
+href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/tests">xptcall/tests
+</a> has an api level test for <code>XPTC_InvokeByIndex</code>, but no tests for
+the <i>stubs</i> functionality. Such a test ought to be written, but this has not
+yet been done.
+
+<p>
+
+A full 'test' at this point requires building the client and running the
+XPConnect test called <i>TestXPC</i> in
+<a
+href="http://lxr.mozilla.org/mozilla/source/js/src/xpconnect/tests">mozilla/js/src/xpconnect/tests
+</a>.
+
+<p>
+
+Getting these ports done is very important. Please let <a
+href="mailto:jband@netscape.com">me</a> know if you are interested in doing one.
+I'll answer any questions as I get them.
+
+<p>
+
+<a
+href="http://lxr.mozilla.org/mozilla/source/xpcom/reflect/xptcall/status.html">
+Porting Status
+</a>
+
+</blockquote>
+
+<hr>
+<b>Author:</b> <a href="mailto:jband@netscape.com">John Bandhauer &lt;jband@netscape.com&gt;</a><br>
+<b>Last modified:</b> 31 May 1999
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/lxr/mozilla/source/xpcom/reflect/xptcall/porting.html">英語版</a></span> - <span>和訳版 2004/09/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/lxr/mozilla/source/xpcom/reflect/xptcall/porting.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

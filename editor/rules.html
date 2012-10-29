@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+  <meta http-equiv="Content-Language" content="en"> 
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <meta name="DC.author" content="Joe Francis"> 
+  <meta name="DC.creator" content="Joe Francis"> 
+  <meta name="DC.title" content="Ender HTML Typing Rules"> 
+  <meta name="DC.subject" content="Ender HTML Typing Rules"> 
+  <meta name="DC.date.created" content="1999-04-16T14:49:03+11:00" scheme="W3CDTF"> 
+  <meta name="DC.date.modified" content="2006-11-04T09:54:03+11:00" scheme="W3CDTF">
+  <title>Ender の HTML タイピング規則</title>
+  <link rel="alternate" hreflang="en" modified="November 4, 2006">
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/editor/rules.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<p class="crumbs"><em>You are here:</em> <a href="./">Editor project page</a> &gt; <strong>Ender HTML Typing Rules</strong></p>
+
+<h1>Ender の HTML タイピング規則</h1>
+
+<p>新しいタイピング規則セットを書くためのドキュメントとしては、 <a href="writing-rules.html">ここ</a> をごらんください。</p>
+
+<p>ここでは、 HTML エディターのためのタイピング規則について現在考えられていることを述べています。
+これらがプレーンテキストのエディター規則とは異なることに注意してください。そしてまたいつの日にか、別の風味をもつエディター規則が出てきて、もっとスタイル重視のエディター向けに作られるかもしれません。これらのエディター規則の目的は、ユーザーが HTML
+ドキュメントを編集するときに、例えばメール作成ウィンドウのようにワードプロセッサーを使っているような感覚を与えることです。</p>
+
+<h3>スペースの規則：</h3>
+<p>「ワード」 とは空白でない文字列の一続きを指します。あらゆる種類のことばが空白ではない文字列として数えられます。その中にはインライン画像や &amp;nbsp も含みます。空白はスペース、タブ、または改行（さらにゼロ幅スペース文字）です。</p>
+
+<table class="data">
+
+<thead>
+<tr>
+<th scope="col"><big>選択の状態</big></th>
+
+<th scope="col"><big>結果</big></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>折りたたまれた ； スタイル <code>white-space: pre;</code> のブロックの中</td>
+
+<td>スペースが挿入されます</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ； ワードの途中</td>
+
+<td>スペースが挿入されます</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ； ワードの後で空白の前</td>
+
+<td>&amp;nbsp が挿入されます</td>
+</tr>
+
+<tr>
+<td>折りたたまれた； 空白の後でワードの前</td>
+
+<td>既存のスペースは nbsp + スペース に置換されます</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ； 前後ともに空白</td>
+
+<td>&amp;nbsp が挿入されます</td>
+</tr>
+
+<tr>
+<td>折りたたまれていない</td>
+
+<td>選択範囲が削除され、折りたたまれた選択が得られることになります。後は上と同じです</td>
+</tr>
+
+<tr>
+<td>上記以外</td>
+
+<td>スペースが挿入されます</td>
+</tr>
+</tbody>
+</table>
+
+<h3>タブの規則：</h3> 
+<p>タブの規則では、 <b>N</b> がタブ幅を示します。これはユーザー環境設定に基づいています。</p>
+
+<table class="data">
+
+<thead>
+<tr>
+<th scope="col"><big>選択の状態</big></th>
+
+<th scope="col"><big>結果</big></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>折りたたまれた ; 最後以外のテーブルセルの中</td>
+
+<td>次のテーブルセルに選択をセットします</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ; 最後のテーブルセルの中</td>
+
+<td>新しいテーブル列を挿入して最後の列の最初のセルに選択をセットします</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ; スタイル <code>white-space: pre;</code> を指定しているブロックの中</td>
+
+<td>タブが挿入されます</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ; 単語の真ん中</td>
+
+<td><b>N</b>-1 個の &amp;nbsp を挿入してスペース 1 個を付けます</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ; 単語の直後で空白の直前</td>
+
+<td><b>N</b> 個の &amp;nbsp を挿入します</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ; 空白の直後で単語の直前</td>
+
+<td>既存のスペースを <b>N</b> 個の &amp;nbsp と 1 個のスペースで置換します</td>
+</tr>
+
+<tr>
+<td>折りたたまれた ; 空白で取り巻かれている</td>
+
+<td><b>N</b> 個の &amp;nbsp を挿入します</td>
+</tr>
+
+<tr>
+<td>折りたたまれていない ; テーブルのどの部分も選択されていない</td>
+
+<td>選択を削除してから、折りたたみ選択規則を適用します</td>
+</tr>
+
+<tr>
+<td>折りたたまれていない ; テーブルセル一つの内部</td>
+
+<td>そのセル内の折りたたまれた選択に準じた動作をします</td>
+</tr>
+
+<tr>
+<td>折りたたまれていない ; テーブルセル一つに含まれてない</td>
+
+<td>何もしません</td>
+</tr>
+
+<tr>
+<td>上記以外</td>
+
+<td><b>N</b> 個の &amp;nbsp を挿入します</td>
+</tr>
+</tbody>
+</table>
+
+<h3>リターンの規則：</h3>
+
+<p>「ブロックの親」はブロックを初期化した最初の先行ノード（またはそのノード自身）を参照します。言いかえれば、インラインではないということです。折りたたまれた選択にはリターンの規則が適用されます。</p>
+
+<table class="data">
+
+<thead>
+<tr>
+<th scope="col"><big>選択の状態</big></th>
+
+<th scope="col"><big>結果</big></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ブロックの親に <code>white-space: pre;</code> がある</td>
+
+<td>改行文字を挿入します</td>
+</tr>
+
+<tr>
+<td>ブロックの親が {OL,UL} である</td>
+
+<td>&lt;li&gt; の中に入っていればどんなものでも閉じて、新しい &lt;li&gt; を挿入します</td>
+</tr>
+
+<tr>
+<td>ブロックの親が &lt;dl&gt; である</td>
+
+<td>&lt;dt&gt; の中にあれば、 &lt;dt&gt; を閉じてから &lt;dd&gt; を挿入します
+<br>&lt;dd&gt; の中にあれば、 &lt;br&gt; を挿入します
+<br>そうでなければ &lt;dt&gt; を 1 個挿入します</td>
+</tr>
+
+<tr>
+<td>ブロックの親が次のどれかである： {H1, ... H6}</td>
+
+<td>ブロックを閉じます</td>
+</tr>
+
+<tr>
+<td>ブロックの親が次のどれかである： {P, BODY, DIV, NOSCRIPT, BLOCKQUOTE, ADDRESS}
+<br>挿入点に隣接している &lt;br&gt; タグは 1 つもない</td>
+
+<td>&lt;br&gt; を 1 個挿入します</td>
+</tr>
+
+<tr>
+<td>ブロックの親が &lt;p&gt;
+である<br>&lt;br&gt; タグ 1 個が挿入点に隣接している</td>
+
+<td>&lt;br&gt; を除去してから &lt;p&gt; を分割して、最初の &lt;p&gt; の中にある挿入点の前にあるコンテンツと、 2 番目の &lt;p&gt; の中にある残りのコンテンツに従います</td>
+</tr>
+
+<tr>
+<td>ブロックの親が次のどれかである： {BODY, DIV, NOSCRIPT, BLOCKQUOTE, ADDRESS}
+<br>&lt;br&gt; タグ 1 個が挿入点に隣接している</td>
+
+<td>&lt;br&gt; を除去して &lt;p&gt; を挿入します</td>
+</tr>
+
+<tr>
+<td>上記以外</td>
+
+<td>&lt;br&gt; を挿入します</td>
+</tr>
+</tbody>
+</table>
+
+<h3>バックスペースの規則：</h3>
+
+<p>折りたたまれた選択にはバックスペースの規則を適用します。<br>以下のタグについて私が述べていない場合には、インラインと削除がそのタグを通過している（例えば &lt;a&gt; タグなど）と考えられることに注意してください。</p>
+
+<table class="data">
+
+<thead>
+<tr>
+<th scope="col"><big>選択の状態</big></th>
+
+<th scope="col"><big>結果</big></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&amp;nbsp とスペースの組み合わせ 1 個の後（同じブロックの親の中）</td>
+
+<td>&amp;nbsp とスペースをスペースに置換します</td>
+</tr>
+
+<tr>
+<td>空白スペース以外の文字の後（同じブロックの親の中）</td>
+
+<td>それまでの文字を削除します</td>
+</tr>
+
+<tr>
+<td>&lt;table&gt; を閉じた後</td>
+
+<td>何もしません</td>
+</tr>
+
+<tr>
+<td>&lt;td&gt; 2 個の間、または &lt;td&gt; の開始地点</td>
+
+<td>何もしません</td>
+</tr>
+
+<tr>
+<td>{HR, IMG, BR, MAP, OBJECT, form element} を閉じた後</td>
+
+<td>要素を削除します</td>
+</tr>
+
+<tr>
+<td>{DIV, BLOCKQUOTE, NOSCRIPT, ADDRESS, FORM} を閉じた後</td>
+
+<td>あなたと同じブロックにいるかのように、つまり、これらのカウント内部のテキストが、削除目的のためにあなたのカーソルと同じブロックにいるようにみなします。</td>
+</tr>
+
+<tr>
+<td>&lt;/p&gt;&lt;p&gt; の後</td>
+
+<td>&lt;p&gt; をつなぎ合わせて、&lt;br&gt; を挿入します</td>
+</tr>
+
+<tr>
+<td> {H*,LI} のうちのどれか 1 つの要素 2 個の間</td>
+
+<td>要素をつなぎ合わせます</td>
+</tr>
+
+<tr>
+<td>上記以外</td>
+
+<td>何もしません</td>
+</tr>
+</tbody>
+</table>
+
+<p>削除規則を前進させることはバックスペースの規則に似てくるかもしれません。（もちろん、前方へ削除していくだけです）</p>
+
+<p>もし、インラインブロックを通して完全にバックスペース /
+削除を行えば、そのブロックは取り除かれます。しかしエディターはカーソル位置の「タイピング規則」を覚えているでしょうから、バックスペースで最後の
+文字、たとえば、 &lt;b&gt; タグ 1 個まで達して、けれどもそれ以上は進まず、さらにタイプし直した場合、 &lt;b&gt; が再び挿入されるので、タイプしたテキストは太字になります（あなたのスタイルシートを法とします）。</p>
+
+<p>HTML エディターはスタイルシート重視というわけではなく、どのタイピング規則についても、 <code>white-space: pre;</code> スタイルの決定以外にスタイルを使って規則を決定する計画は全く立てられていません。</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/editor/rules.html">英語版</a> 2006/11/04</span> - <span>和訳版 2009/05/15</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/editor/rules.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

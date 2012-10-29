@@ -1,0 +1,246 @@
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1/GPL 2.0
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - http://www.mozilla.org/MPL/
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is Rhino code, released May 6, 1999.
+   -
+   - The Initial Developer of the Original Code is
+   - Netscape Communications Corporation.
+   - Portions created by the Initial Developer are Copyright (C) 1997-1999
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   -
+   - Alternatively, the contents of this file may be used under the terms of
+   - the GNU General Public License Version 2 or later (the "GPL"), in which
+   - case the provisions of the GPL are applicable instead of those above. If
+   - you wish to allow use of your version of this file only under the terms of
+   - the GPL and not to allow others to use your version of this file under the
+   - MPL, indicate your decision by deleting the provisions above and replacing
+   - them with the notice and other provisions required by the GPL. If you do
+   - not delete the provisions above, a recipient may use your version of this
+   - file under either the MPL or the GPL.
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+
+
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="Author" content="Igor Bukanov">
+  <meta name="KeyWords" content="Rhino, JavaScript, Java">
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>Rhino のダウンロード</title>
+
+<link rel="alternate" hreflang="en" modified="March 26, 2009">
+<link rel="up" href="./" title="Rhino プロジェクト・ページ">
+<link rel="section" href="#binaries" title="Rhino バイナリ">
+<link rel="section" href="#source" title="Rhino ソースコードを得る">
+<!--
+
+オリジナル
+題名: Rhino Downloads
+URL: http://www.mozilla.org/rhino/download.html
+
+和訳
+2004-07-23より以前: 石井さん
+2004-07-23  更新: RxOrca Rev.:1.22
+2004-08-13  更新: RxOrca Rev.:1.23
+2004-10-08  更新: RxOrca Rev.:1.24
+2004-11-03  更新: RxOrca Rev.:1.25
+2004-11-30  更新: RxOrca Rev.:1.26
+2004-12-01  更新: RxOrca Rev.:1.27
+2005-08-27  更新: RxOrca Rev.:1.28
+2005-09-19  更新: RxOrca Rev.:1.29
+2006-08-11  更新: RxOrca Rev.:1.30
+                「最新は」 1.6R3のはずなので, 途中の文書も変更した
+2006-09-10  更新: RxOrca Rev.:1.31
+2006-11-20  更新: RxOrca Rev.:1.36
+2007-08-23  更新: RxOrca Rev.:1.38
+2008-03-12  更新: RxOrca Rev.:1.40-1.41
+                1.39で修正された日付はすでに直してた
+2008-04-22  更新: RxOrca Rev.:1.42
+2008-06-18  更新: RxOrca Rev.:1.43
+2009-04-13  更新: RxOrca Rev.:1.44-1.45
+
+-->
+<style type="text/css" media="screen,tv">
+a[hreflang]:after { content: "[" attr(hreflang) "]"; }
+a[hreflang='en']:after { color: rgb(32, 160, 64); content: " (英語)"; }
+</style>
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/rhino/download.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+<div id="side">
+
+<ul id="nav">
+<li><a title="ロードマップ"  href="../roadmap.html"><strong>ロードマップ</strong></a></li>
+<li><a title="プロジェクト"  href="../projects/"><strong>プロジェクト</strong></a></li>
+<li><a title="開発者向け"  href="../developer/index.html"><strong>コーディング</strong></a>
+<ul>
+<li><a title="モジュールオーナー"  href="../owners.html">モジュールオーナー</a></li>
+<li><a title="ハック"  href="../hacking/">ハック</a></li>
+<li><a title="ソースの入手"  href="http://developer.mozilla.org/ja/Download_Mozilla_Source_Code">ソースの入手</a></li>
+<li><a title="Mozilla のビルド"  href="http://developer.mozilla.org/ja/Build_Documentation">ビルド</a></li>
+</ul>
+</li>
+<li><a title="テスト"  href="http://quality.mozilla.org/"><strong>テスト</strong></a>
+<ul>
+<li><a title="リリース"  href="../download.html">リリース</a></li>
+<li><a title="テスター向け最新ビルド"  href="../developer/index.html">ナイトリービルド</a></li>
+<li><a title="テスター向けバグ報告窓口"  href="https://bugzilla.mozilla.org/">問題の報告</a></li>
+</ul>
+</li>
+<li><a title="Mozilla 開発者向けツール"  href="http://developer.mozilla.org/ja/Mozilla_Development_Tools"><strong>ツール</strong></a>
+<ul>
+<li><a title="テスター向けバグ追跡システム"  href="https://bugzilla.mozilla.org/">Bugzilla</a></li>
+<li><a title="Mozilla ビルドの最新状況"  href="http://tinderbox.mozilla.org/showbuilds.cgi?tree=Firefox">Tinderbox</a></li>
+<li><a title="最新のチェックイン"  href="http://bonsai.mozilla.org/cvsqueryform.cgi">Bonsai</a></li>
+<li><a title="ソースコードクロスリファレンス"  href="http://mxr.mozilla.org/">MXR</a></li>
+</ul>
+</li>
+<li><a title="よくある質問"  href="../faq.html"><strong>FAQ</strong></a></li></ul>
+
+<ul id="nav">
+<li><a title="Mozilla Developer Center 日本語版：最新開発情報用 wiki"  href="http://developer.mozilla.org/ja/"><strong>MDC 日本語版</strong></a></li></ul>
+
+</div>
+<hr class="hide">
+<div id="mainContent">
+
+
+
+<p class="crumbs"><em>現在位置:</em> <a href="./">Rhino プロジェクト・ページ</a> &gt; <strong>Rhino ダウンロード</strong></p>
+
+<h1>Rhino のダウンロード</h1>
+<p>Rhino は、ソースとコンパイル済み形式、両方をダウンロード可能です。</p>
+
+<h2><a name="binaries" id="binaries">バイナリ</a></h2>
+
+<p>
+最新リリースは Rhino 1.7R2 です。
+</p>
+<table class="data">
+<thead>
+<tr>
+<th scope="col">リリース</th>
+<th scope="col">リリース日</th>
+<th scope="col">リリースノート</th>
+<th scope="col">ダウンロード</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Rhino 1.7R2</td>
+<td>2009-03-22</td>
+<td><a href="http://developer.mozilla.org/en/docs/New_in_Rhino_1.7R2">新しい
+Rhino 1.7R2</a></td>
+<td><a href="ftp://ftp.mozilla.org/pub/mozilla.org/js/rhino1_7R2.zip">rhino1_7R2.zip</a></td>
+</tr>
+
+
+</tbody>
+</table>
+
+<p>
+より古いバージョンの Rhino をダウンロードするには、<a href="http://developer.mozilla.org/en/docs/Rhino_downloads_archive" hreflang="en">Rhino
+ダウンロード・アーカイブ</a> を参照してください。
+</p>
+
+<h2><a name="license" id="license">ライセンス</a></h2>
+Rhino はオープンソースです。<p>Rhino のライセンスに関する情報については <a href="http://developer.mozilla.org/en/docs/Rhino
+_License">Rhino ライセンス</a> を参照してください。
+<p>Rhino のソースコードは <a href="../MPL/">MPL</a> 1.1/GPL 2.0 ライセンスに基づいて利用できます。
+<h2><a name="source" id="source">ソース</a></h2>
+<p>上記 zip ファイルからソースを得ることに加え、
+CVS ツリー mozilla/js/rhino からも Rhino ソースコードを見つけることができます。
+CVS をセットアップする方法、CVSROOT のセット、そしてログイン、についての詳細は <a href="http://developer.mozilla.org/ja/docs/Mozilla_Source_Code_Via_CVS">cvs を介してのソースコード (入手)</a> を参照してください。
+ログインしたら、次のコマンドを実行すればソースを入手できます。
+</p>
+
+<pre class="code">&nbsp;&nbsp;&nbsp; cvs co mozilla/js/rhino
+</pre>
+
+<p>最新ソースコードは <a href="http://lxr.mozilla.org/mozilla/source/js/rhino/">http://lxr.mozilla.org/mozilla/source/js/rhino/</a> で LXR を使って見ることができます。
+</p>
+<p>
+Rhino のビルド・システムには <a class="ex-ref" href="http://ant.apache.org/" hreflang="en">Ant</a><span class="comment">【訳注: <a href="http://www.jajakarta.org/ant/">Ant 日本語マニュアル</a>】</span>を利用しています。
+Rhino ディストリビューションのトップディレクトリで <tt>ant</tt> コマンドを走らせれば、利用可能なビルド対象のリストが表示されるはずです。
+</p>
+
+
+
+<hr class="hide">
+</div>
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/rhino/download.html">英語版</a> 2009/03/26</span> - <span>和訳版 2009/04/13</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/rhino/download.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="home" href="http://mozilla.jp/" title="Home" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan ブログ (RSS)" href="http://mozilla.jp/blog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Japan プレスリリース (RSS)" href="http://mozilla.jp/press/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Foundation 最新情報 (RSS)" href="/news.rdf">
+<link rel="stylesheet" type="text/css" href="/css/print.css"  media="print">
+<link rel="stylesheet" type="text/css" href="/css/base/content.css"  media="all">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/content.css" title="Cavendish" media="all">
+<link rel="stylesheet" type="text/css" href="/css/base/template.css"  media="screen">
+<link rel="stylesheet" type="text/css" href="/css/cavendish/template.css" title="Cavendish" media="screen">
+<link rel="icon" href="/images/mozilla-16.png" type="image/png">
+
+  <title>Mozilla リリースステータス</title>
+  <style>
+  body  {
+      margin-left: 2em;
+      margin-right: 3em;
+      background: #FFF;
+  	  color: #000;
+  	  font-family: Verdana,Sans-serif;
+      }
+
+  h1  {
+      text-align: center;
+      }
+
+  li.bugs  {
+      list-style-type: none;
+      border: thin solid black;
+      padding: .2em;
+      margin: .2em .5em .2em -1em;
+      }
+
+  #calendar  {
+      margin: 1em;
+      border: 1px solid black;
+      background-color: #F4DAA2;
+      color: #A57B46;
+      }
+  .calrow {
+      font-size: smaller;
+      color: black;
+      background-color: #FFF;
+      border: 1px solid #6F6F6F;
+      padding: .1em;
+      }
+  </style>
+<link rel="home" title="Home" href="/">
+<link rel="alternate" hreflang="en" modified="July 20, 2005">
+
+<!--
+Rev: 1.12 山口 syamagu@mozilla.gr.jp
+
+Rev: 1.24 山口
+
+Rev: 1.43
+Rev: 1.44
+Rev: 1.45
+
+-->
+
+</head>
+
+<body id="www-mozilla-japan-org" class="deepLevel nomenu">
+<div id="container">
+<p class="important">現在、当サイト「mozilla.org 日本語版」の和訳文書は更新されておらず、<a href="http://www.mozilla.org/roadmap/release-status.html">mozilla.org の原文</a> よりも内容が古くなっている可能性があります。ご不便をお掛けしますが、最新の情報は原文をご確認ください。</p>
+
+<p class="skipLink"><a href="#mainContent" accesskey="2">メインコンテンツへスキップ</a></p>
+<div id="header">
+<h1><a href="http://mozilla.jp/" title="Mozilla Japan ホームページへ戻る" accesskey="1">Mozilla Japan</a></h1>
+<ul>
+<li id="menu_aboutus"><a href="http://mozilla.jp/about/" title="Mozilla Japan について">組織概要</a></li>
+<li id="menu_developers"><a href="/developer/index.html" title="Mozilla 製品をあなたのアプリケーションにも">開発情報</a></li>
+<li id="menu_support"><a href="http://mozilla.jp/support/" title="個人および法人向けのサービス・サポート">サポート</a></li>
+<li id="menu_products"><a href="http://mozilla.jp/products/" title="Mozilla 製品概要">製品情報</a></li>
+</ul>
+<form action="http://www.google.com/cse">
+  <div id="lang_form">
+    <input type="hidden" name="cx" value="004119830362093040131:jpn2pz-pybe" />
+    <input type="hidden" name="cof" value="FORID:0" />
+    <input type="hidden" name="ie" value="EUC-JP" />
+    <input type="hidden" name="oe" value="UTF-8" />
+    <label>サイト内検索: <input type="text" name="q" size="30" /></label>
+    <input type="submit" name="sa" value="検索" />
+  </div>
+</form>
+
+</div>
+
+<hr class="hide">
+<div id="mBody">
+
+
+
+
+
+
+
+
+
+<h1>Mozilla リリースステータス</h1>
+
+<p>このページでは、作成中の次期 Mozilla リリースの状態についての情報を提供します。さらに、進捗状況を追跡するために使用する主な Bugzilla クエリーおよび Bonsai クエリーも掲載し、リリースプロセスのどの地点にいるのかを示す手助けとします。</p>
+
+<h2>一般的なリリース情報</h2>
+
+<p>各 Mozilla リリースは三つの部分に分割されています：アルファサイクル、ベータサイクル、そしてファイナルサイクルです。アルファ開発では、機能開発に集中します。ベータ開発ではクリーンアップをし、全般的なバグ修正に集中します。ファイナルサイクルでは、極めてリスクの低い変更に留め、アルファおよびベータ期間で逃した深刻なバグの修正を行います。</p>
+
+<p>あなたの組織が特定の Mozilla リリースや特定のバグ修正または特定のタイムフレームに依存している場合、<a href="mailto:drivers@mozilla.org">drivers@mozilla.org</a> と連絡を取ってください。</p>
+
+<table id="calendar">
+  <tbody>
+    <th colspan="2">リリースカレンダー</th>
+    <tr>
+<td class="data">2003-12-12</td>
+<td class="data">Mozilla 1.7a リリースサイクル開始 -- 重要なバグおよび機能に焦点</td>
+</tr>
+<tr>
+<td class="data">2004-02-04</td>
+<td class="data">driver が毎日連絡を取り、アルファブロッカを選別し、承認要求を審査</td>
+</tr>
+    <tr>
+      <td class="data">2004-02-11</td>
+      <td class="data">Mozilla 1.7 Alpha 開発フリーズ</td>
+
+    </tr>
+<tr>
+<td class="data">2004-02-16</td>
+<td class="data">Mozilla 1.7 アルファのリリース</td>
+</tr>
+<tr>
+<td class="data">2004-02-16</td>
+<td class="data">ベータ開発期間開始 -- クリーンアップに焦点</td>
+</tr>
+    <tr>
+
+      <td class="data">2004-03-03</td>
+      <td class="data">ニュースグループ／tinderbox に Beta フリーズの予告</td>
+    <tr>
+<tr>
+<td class="data">2004-03-05</td>
+<td class="data">Massive Beta Planning Blow Out Cantina (MBPBOC)- driver が大規模な未決定事項を評価し、ベータストッパや先送りされたバグを評価し、リリースサイクルの残りの期間の予定を立てる</td>
+</tr>
+<tr>
+<td class="data">2004-03-10</td>
+<td class="data">ベータフリーズ</td>
+</tr>
+<tr>
+<td class="data">2004-03-15</td>
+<td class="data">Mozilla 1.7 ベータのリリース</td>
+</tr>
+<tr>
+<td class="data">2004-03-15</td>
+<td class="data">ローカライゼーション部分のフリーズ - これ以降の文字列変更は容易ではない</td>
+</tr>
+<tr>
+<td class="data">2004-04-02</td>
+<td class="data">1.8 に向けてのブランチを切り、トランクを開放する予定（MOZILLA_1_7_BRANCH が作成される）</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="3" class="data"></td>
+<td class="data"><div style="text-align: center; font-weight: bolder;">四半期のローカライゼーション会議：電話・IRC ミーティングは <em>延期</em></div></td>
+</tr>
+<tr>
+<td class="data">6月 11日（金）午前 8時 PDT</td>
+</tr>
+<tr>
+<td class="data">6月 10日（木）午後 6時 PDT</td>
+</tr>
+<tr>
+<td class="data">2004-04-23</td>
+<td class="data">最初のテストリリース <em>候補</em> 完了</td>
+</tr>
+<tr>      
+      <td class="data">2004-05-07</td>
+      <td class="data">二番目のテストリリース <em>候補</em> 完了</td>
+
+    </tr>
+    <tr>
+      <td class="data">2004-06-07</td>
+      <td class="data">Mozilla 1.7 RC3</td>
+    </tr>
+    <tr>
+      <td class=completed>2004-06-15</td>
+      <td class=completed>Mozilla 1.7</td>
+    </tr>
+    <tr>
+      <td class=completed>次の日</td>
+      <td class=completed>Mozilla CD での出荷に向けた言語パックの完成</td>
+    </tr>
+    <tr>
+      <td class=completed>三日後</td>
+      <td class="ccompleted">CD 製造開始</td>
+    </tr>
+    <tr>
+      <td class=completed>十日後</td>
+      <td class=completed >CD 出荷開始</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>リクエストと承認</h2>
+
+<p>アルファおよびベータサイクル期間中に問題を突き止め、できるだけ早く修正を施すためにあらゆる努力をしなければなりません。リリースサイクルの終盤にリグレッションや深刻な問題が明らかになった場合、driver はリリースを以前のものよりも優れたものするために必要な変更を特定するために、開発・テストコミュニティに頼ることになります。リリースストッパーとしての認定は、リグレッション、テストおよびレビューがされたパッチの付いたバグ、そして低いリスクで高い効果が得られる時に限る必要があります。</p>
+
+<p>テスターらは、Bugzilla にある <q>blocking?</q> フラッグを利用して、バグをリリースブロッカーとしての認定を行わなければなりません。driver はこれらの認定を評価して、フラッグを <q>+</q> または <q>-</q> に設定します。こうすることで、そのバグがリリースに対してブロッカーであるか、またはリリースに対してブロッカーではないということを示すことになります。</p>
+
+<p><q>approval?</q> パッチフラッグは、driver による管理期間にレビューされたパッチを該当リリースにチェックインする許可をリクエストするために利用されます。driver はこうしたリクエストを吟味し、フラッグを <q>+</q> または <q>-</q> と設定します。<a href="#flags">フラッグについてのより詳しい情報 ...</a></p>
+
+<ul>
+  <li class="bugs">現在オープンなリリースブロッカー：<a href="http://bugzilla.mozilla.org/buglist.cgi?keywords_type=nowords&keywords=fixed1.7+verified1.7&bugidtype=exclude&bug_id=180364%2C238881%2C238219%2C238945%2C224649%2C229200%2C236590%2C239122%2C226278%2C174709%2C237947%2C192022%2C238218%2C240053%2C237407%2C237421%2C240339&chfieldto=Now&field0-0-0=flagtypes.name&type0-0-0=substring&value0-0-0=blocking1.7%2B">（ブランチ作成以前には修正されておらず、blocking1.7+ フラグが付き fixed1.7 キーワードのついていないオープンなバグのための Bugzilla クエリー）</a></li>
+
+  <li class="bugs">リリースブロッカーとなり得るバグ：<a href="http://bugzilla.mozilla.org/buglist.cgi?&field0-0-0=flagtypes.name&type0-0-0=equals&value0-0-0=blocking1.7%3F">（blocking1.7? フラッグの付いたオープンバグのための  Bugzilla クエリー）</a></li>
+
+  <li class="bugs">チェックインが承認されたパッチ：<a href="http://bugzilla.mozilla.org/buglist.cgi?keywords_type=nowords&keywords=fixed1.7+verified1.7&field0-0-0=flagtypes.name&type0-0-0=changedto&value0-0-0=approval1.7%2B&field0-1-0=flagtypes.name&type0-1-0=changedafter&value0-1-0=2004-04-11&field0-2-0=flagtypes.name&type0-2-0=equals&value0-2-0=approval1.7%2B">（ブランチが作成以降、fixed1.7 キーワードあるいは approval1.7+ フラグのついていないオープンなバグのための Bugzilla クエリー）</a></li>
+  <li class="bugs">driver の承認を待っているバグ：<a href="http://bugzilla.mozilla.org/buglist.cgi?&field0-0-0=flagtypes.name&type0-0-0=equals&value0-0-0=approval1.7%3F">（approval1.7? フラッグの付いたオープンバグのための  Bugzilla クエリー）</a></li>
+</ul>
+
+<h2>その他の注意すべき変更点</h2>
+
+<p>私たちは Mozilla ローカライゼーションをビルドしている人たちに作業がしやすくなるように懸命な努力をしています。Beta　のリリースをもって、Mozilla アプリケーションスイート内の全てのローカライゼーションリソースはフリーズされました。稀に Mozilla ローカライゼーションに影響する変更を行う必要が出てくる可能性もあります。このような場合、driver は問題となっているバグに <q>late-l10n</q> というキーワードを付けてフラッグを立てると共に、該当するニュースグループにその変更を伝えます。</p>
+
+<ul>
+  <li class="bugs"><a href="http://bugzilla.mozilla.org/buglist.cgi?query_format=&short_desc_type=allwordssubstr&short_desc=&long_desc_type=substring&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=fixed1.7&emailassigned_to1=1&emailtype1=exact&email1=&emailassigned_to2=1&emailreporter2=1&emailqa_contact2=1&emailtype2=exact&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=">"fixed1.7" keyword</a> フラグの付いたバグ -- これらの修正をテストして検証するための手助けが必要</li>
+
+  <li class="bugs"><a href="http://bugzilla.mozilla.org/buglist.cgi?keywords_type=allwords&keywords=verified1.7">"verfied1.7" keyword</a> フラグの付いたバグ -- これらの修正は最近のテストビルドで検証済</li>
+</ul>
+
+<p>私たちは Mozilla ローカライゼーションを作成している人たちに作業が楽なるように懸命な努力をしています。ベータ版のリリースを持って、Mozilla Application Suite 内のローカライゼーション文字列は全てフリーズされます。稀に Mozilla ローカライゼーションに影響するような変更を行わなければならないこともあります。そうした事態が発生した場合は、driver らが「late-l10n」というキーワードと共に問題のバグにフラグを立てると共に、適切なニュースグループでアナウンスをする予定です。</p>
+
+<ul>
+  <li class="bugs">締め切り後のローカラズ可能な文字列への変更：<a href="http://bugzilla.mozilla.org/buglist.cgi?&amp;field0-0-0=flagtypes.name&amp;type0-0-0=substring&amp;value0-0-0=approval1.7%2B&amp;keywords_type=allwords&amp;keywords=late-l10n">（late-l10n キーワードが付いた認証済 1.7 パッチのための Bugzilla クエリー）</a></li>
+</ul>
+
+<p>特定のリリースサイクル内に Mozilla に対して行われた変更を 100% 正確に反映するような簡単なクエリーを作成することは難しいのですが、大まかな推定はそれほど難しいことではありません。サイクル内でどのような変更が行われたかを見やすくするために、Bonsai と Bguzilla が役立ってくれます。</p>
+
+<ul>
+  <li class="bugs">最近三日間にチェックインされた全ての変更：<a href="http://bonsai.mozilla.org/cvsquery.cgi?treeid=default&amp;module=MozillaTinderboxAll&amp;sortby=Date&amp;date=hours&amp;hours=96">（最近の 96 時間に行われた変更のための Bonsai クエリー）</a></li>
+  <li class="bugs">1.7 サイクル内で修正されたバグ：<a href="http://bugzilla.mozilla.org/buglist.cgi?product=Browser&amp;product=Directory&amp;product=MailNews&amp;product=NSPR&amp;product=NSS&amp;product=PSM&amp;resolution=FIXED&amp;chfield=resolution&amp;chfieldfrom=2003-12-18&amp;chfieldto=Now&amp;chfieldvalue=fixed">（2003年 9月 10日から現在に至る間にされた修正の決定のための Bugzilla クエリー）</a></li>
+  <li class="bugs">Mozilla 1.7 に向けたトランクへの全てのチェックイン：<a href="http://bonsai.mozilla.org/cvsquery.cgi?treeid=default&amp;module=MozillaTinderboxAll&amp;branch=HEAD&amp;branchtype=match&amp;sortby=Date&amp;date=explicit&amp;mindate=12%2F18%2F2003&amp;maxdate=12%2F31%2F9999">（2003年 12月 18日から現在に至る間にトランクへチェックインされた修正への Bonsai クエリー）</a></li>
+
+  <li class="bugs">Mozilla 1.7 Final に向けたブランチへのチェックイン：<a href="http://bonsai.mozilla.org/cvsquery.cgi?treeid=default&amp;module=MozillaTinderboxAll&amp;branch=MOZILLA_1_7_BRANCH&amp;branchtype=match&amp;sortby=Date&amp;date=all">（MOZILLA_1_7_BRANCH へのチェックインのための Bonsai クエリー）</a></li>
+</ul>
+
+
+<h2><a name="flags">フラッグについてより詳しく</a></h2>
+
+<p>先に述べたように、drivers@mozilla.org は二つのタイプのフラッグを利用して、リリース、バグフラッグそしてパッチフラッグを管理しています。</p>
+
+<p>一番目のタイプとして、（バグの Cc: セクションの下に表示される）バグフラッグがあり、現在は <q>blocking1.7[? + -]</q> のように表示されます。全ての Browser および MailNews バグ（NSPR、NSS、PSM および Directory を含む）で、このフラッグを見かけることでしょう。バグを drivers@mozilla.org に推薦する際に利用されます。これまではキーワードや追跡バグを使って同様のことをしていました。</p>
+
+<p>あるバグをリリースのブロッカーとして推薦するには、フラッグを <q>blocking1.7<strong>?</strong></q> と設定してください。<q>?</q> とは、1.7 ブロッカーとしてこのバグを評価するように driver にリクエストすることを示します。このバグが原因でリリースを止める場合は、driver がそのバグを <q>blocking1.7<strong>+</strong></q> とします。このバグではリリースを止めない場合は、そのバグを <q>blocking1.7<strong>-</strong></q> のようにします。あるバグが <q>-</q> とされたからといって、driver がその修正を必要としていない、あるいは修正に値しないと考えているわけではありません。これは単に driver がその修正のためにリリースを止めることはないということを示しているに過ぎません。</p>
+
+<p>二番目のタイプのフラッグは、パッチフラッグです（添付フラッグとも呼ばれます）。<a href="../roadmap.html#milestone-schedule">開発ロードマップ</a> の図の中で赤く示されているように、開発フリーズ期間内にある場合、このフラッグは、<q>review[? + -]</q> および <q>superreview[? + -]</q> フラッグの下にあるパッチマネージャの中にあるフラッグリスト内に <q>approval1.7[? + -]</q> として表示されます。認定フラッグは、driver が管理するマイルストーン閉鎖期間内にパッチをチェックインするための認定をリクエストするために使用されます。これまでは、電子メールを使って認定を管理してきましたが、量が増えたために電子メールは実用的ではなくなってしまいました。</p>
+
+<p>driver が管理する 1.7 ツリーの中にチェックインする必要のあるパッチを認定するようにリクエストするには、自分のパッチのところに行き、フラッグを <q>approval1.7?</q> に設定してコメント欄に、パッチをチェックインすることの重要性、その修正に伴うリスク、そして行われたテストについて説明したコメントを入力してください。drivers@mozilla.org がパッチがブランチ・リリースにとって重要だと合意した場合は、フラッグが <q>approval1.7<strong>+</strong></q> に設定されます。これは、パッチをチェックインしても良いという明示的な許可になります。認定をもらったら、最初の <strong>ツリー開放</strong> 時にチェックインしてください。そのリリースに対してパッチを受け入れたくない場合は、drivers はそのパッチを <q>approval1.7<strong>-</strong></q> として設定します。
+
+
+
+
+
+
+
+<hr class="hide">
+<hr class="hide">
+</div>
+<div id="footer">
+<ul>
+<li><a href="http://mozilla.jp/">ホーム</a></li>
+<li><a href="/security/">セキュリティ情報</a></li>
+<li><a href="http://mozilla.jp/legal/privacy/">個人情報保護方針</a></li>
+<li><a href="http://mozilla.jp/about/contact">お問い合わせ</a></li>
+</ul>
+<p class="copyright">&copy; 2004-2008 Mozilla Japan, Mozilla Foundation and Mozilla Corporation<br>Mozilla Japan は <a href="http://www.mozilla.org/">Mozilla Foundation</a> と <a href="http://www.mozilla.com/en-US/">Mozilla Corporation</a> の公式アフィリエイトです。</p>
+<p><span><a href="http://www.mozilla.org/roadmap/release-status.html">英語版</a> 2005/07/20</span> - <span>和訳版 2005/08/17</span> - <span><a href="http://bonsai-www.mozilla.org/cvslog.cgi?file=mozilla-org/html/roadmap/release-status.html">英語版更新履歴</a></span></p>
+<p>この文書は翻訳で、原文は <a href="http://www.mozilla.org/">mozilla.org</a> において英語で管理・公開されています。<br>この翻訳文書は、利用者の利便のために <a href="/jp/td/">Mozilla Japan 翻訳部門</a> により提供されています。<br>翻訳文書についてのコメントは <a href="http://forums.firehacks.org/trans/viewforum.php?f=2">mozilla.org 日本語版について</a> までお寄せください。</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -12,7 +12,7 @@
 
 
 <title>MFSA 2012-98: Firefox インストーラの DLL ハイジャック</title>
-<link rel="alternate" hreflang="en" modified="November 20, 2012">
+<link rel="alternate" hreflang="en" modified="January 8, 2013">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
 </style>
@@ -50,10 +50,14 @@
 <br>
 <span class="label">修正済みのバージョン:</span>   Firefox 17.0<br>
 <span class="label">&nbsp;</span>      Firefox ESR 10.0.11<br>
+<span class="label">&nbsp;</span>      Firefox 18.0<br>
+<span class="label">&nbsp;</span>      Firefox ESR 17.0.1<br>
+<span class="label">&nbsp;</span>      Firefox ESR 10.0.12<br>
 </p>
 
 <h3>概要</h3>
 <p>Windows コンピュータ上で、Firefox のインストーラが保存される既定のダウンロードディレクトリに特定の名前の DLL ファイルが置かれていた場合、Firefox のインストーラが起動時にその DLL を読み込んでしまうことが、セキュリティ研究者の <strong>Robert Kugler</strong> 氏によって報告されました。インストーラが管理者権限のアカウントで実行された場合、ダウンロードされたその DLL ファイルが管理者権限で実行されることになります。これは特権付きアカウントによる任意のコード実行につながる恐れがありました。</p>
+<p class="note">別の脆弱な DLL ファイル名が Firefox 18.0、Firefox ESR 17.0.1、Firefox ESR 10.0.12 に見つかり修正されました。</p>
 
 <h3>参考資料</h3>
 <ul>
@@ -69,7 +73,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2012 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2012/mfsa2012-98.html">英語版</a> 2012/11/20 &mdash; 和訳版 2012/11/21 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2012/mfsa2012-98.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2012/mfsa2012-98.html">英語版</a> 2013/01/08 &mdash; 和訳版 2013/01/09 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2012/mfsa2012-98.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

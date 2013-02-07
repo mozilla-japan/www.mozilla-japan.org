@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule !participation.html /about/policies/participation.html [R,L]

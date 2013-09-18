@@ -12,7 +12,7 @@
 
 
 <title>Mozilla Foundation セキュリティアドバイザリ</title>
-<link rel="alternate" hreflang="en" modified="August 6, 2013">
+<link rel="alternate" hreflang="en" modified="September 17, 2013">
 <style type="text/css" media="screen,tv">
   dl.table dt { margin: 0; width: 8em; font-weight: normal; float: left; }
   dl.table dd { margin: 0 0 0 8em; }
@@ -53,6 +53,27 @@
   <li><span class="moderate">中</span>: デフォルトではない特殊な設定を行った場合のみ攻撃可能であったり、複雑な操作や思いも寄らない手順を必要とする点を除けば、「高」または「最高」に分類されるであろう脆弱性</li>
   <li><span class="low">低</span>: サービス妨害 (DoS) 攻撃、少量のデータの漏えい、なりすましなど、比較的重要でないセキュリティ脆弱性 (SSL 利用サイトの検知不可能な偽装は、たいていの場合、他のサイトで入力されるはずの機密データを盗み取るために利用されるため、「高」に分類されます)</li>
 </ul>
+
+<h3>2013 年 9 月 17 日</h3>
+<dl class="table">
+  <dt><a href="/security/announce/2013/mfsa2013-92.html" class="critical">MFSA 2013-92</a></dt><dd>既定コンパートメントとフレームチェーン復元による GC 問題</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-91.html" class="moderate">MFSA 2013-91</a></dt><dd>DOM プロキシ上のユーザ定義プロパティによって誤った this オブジェクトが取得される</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-90.html" class="critical">MFSA 2013-90</a></dt><dd>スクロールに関するメモリ破壊</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-89.html" class="critical">MFSA 2013-89</a></dt><dd>マルチカラム、リスト、フロートによるバッファオーバーフロー</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-88.html" class="high">MFSA 2013-88</a></dt><dd>XBL 製ノードの再配置によるコンパートメント不一致</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-87.html" class="high">MFSA 2013-87</a></dt><dd>書き込み可能な場所から共有オブジェクトライブラリが読み込まれる</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-86.html" class="moderate">MFSA 2013-86</a></dt><dd>OS&nbsp;X の NVIDIA グラフィックスドライバを通じた WebGL 情報漏えい</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-85.html" class="moderate">MFSA 2013-85</a></dt><dd>IonMonkey における未初期化データ</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-84.html" class="moderate">MFSA 2013-84</a></dt><dd>シンボリックリンクを通じた同一生成元回避</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-83.html" class="high">MFSA 2013-83</a></dt><dd>Mozilla Updater が署名検証後に MAR ファイルをロックしない</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-82.html" class="high">MFSA 2013-82</a></dt><dd>新しい JavaScript オブジェクトの呼び出しスコープによるメモリ破壊</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-81.html" class="critical">MFSA 2013-81</a></dt><dd>select 要素による解放後使用</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-80.html" class="moderate">MFSA 2013-80</a></dt><dd>NativeKey がウィジェット破棄後もキーメッセージの処理を続ける</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-79.html" class="critical">MFSA 2013-79</a></dt><dd>Animation Manager におけるスタイルシート複製時の解放後使用</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-78.html" class="critical">MFSA 2013-78</a></dt><dd>ANGLE ライブラリにおける整数オーバーフロー</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-77.html" class="moderate">MFSA 2013-77</a></dt><dd>HTML5 Tree Builder におけるテンプレート使用時の不適切な状態</dd>
+  <dt><a href="/security/announce/2013/mfsa2013-76.html" class="critical">MFSA 2013-76</a></dt><dd>様々なメモリ安全性の問題 (rv:24.0 / rv:17.0.9)</dd>
+</dl>
 
 <h3>2013 年 8 月 6 日</h3>
 <dl class="table">
@@ -1101,7 +1122,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/index.html">英語版</a> 2013/08/06 &mdash; 和訳版 2013/08/07 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/index.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/index.html">英語版</a> 2013/09/17 &mdash; 和訳版 2013/09/18 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/index.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

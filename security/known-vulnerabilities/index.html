@@ -12,7 +12,7 @@
 
 
 <title>Mozilla Foundation セキュリティアドバイザリ</title>
-<link rel="alternate" hreflang="en" modified="February 10, 2012">
+<link rel="alternate" hreflang="en" modified="December 13, 2013">
 <style type="text/css" media="screen,tv">
   h2 { margin-top: 2em; }
   td { padding: 1em 0 1em 0; }
@@ -47,10 +47,9 @@
 
 
 <p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; Mozilla 製品における既知の脆弱性</p>
-<h1>Mozilla 製品における既知の脆弱性</h1>
+<h1>Mozilla 製品における<br>既知の脆弱性</h1>
 <p>このページには、Mozilla 製品の特定のバージョンに影響を及ぼすことが知られているセキュリティ脆弱性のリストと、ユーザが自分自身の身を守るためにできることについての説明が載っています。新しいセキュリティの問題が見つかった場合は、このリストに追加されます。製品やバージョンごとに分類されていない完全なリストは <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> をご参照ください。</p>
 <p>私たちがこれらのバグをどう取り扱うかについては <a href="/projects/security/security-bugs-policy.html">mozilla.org のセキュリティバグ指針</a> をお読みください。もしこのリストに未掲載で公開の <a href="https://bugzilla.mozilla.org/query.cgi">Bugzilla バグ</a> として登録されていないセキュリティの問題を見つけたり、このリストに間違いや矛盾を見つけたら、<a href="mailto:security&#64;mozilla.org">私たちにメールで情報提供を</a> (英語で) お願いします。<a href="/security/#pgpkey">セキュリティのメインページ</a> で PGP 鍵を公開していますので、必要に応じてご利用ください。</p>
-<p>これは、セキュリティ関連のバグをすべて網羅した完全なリストというわけではありません。セキュリティ関連のバグに関する技術的な議論について知りたければ <a href="https://bugzilla.mozilla.org/query.cgi">Bugzilla</a> をご覧ください。このページは、ユーザに直接影響のあるセキュリティ脆弱性を一覧にしたものです。これらの脆弱性はすべて最新のマイルストーンリリース以前に修正されています。</p>
 
 <table border="0">
  <tr id="Firefox">
@@ -58,16 +57,9 @@
      <img class="logo" width="60" height="60" alt="" src="/images/product-firefox.png">
    </td>
    <td>
-     <span class="sectionhead">Firefox のアドバイザリ</span>
+     <span class="sectionhead"><a href="firefox.html">Firefox のアドバイザリ</a></span>
      <ul class="versionlist">
        <li><a href="firefoxESR.html">Firefox ESR</a></li>
-       <li><a href="firefox.html">Firefox 4 以上</a></li>
-       <li><a href="firefox36.html">Firefox 3.6</a></li>
-       <li><a href="firefox35.html">Firefox 3.5</a></li>
-       <li><a href="firefox30.html">Firefox 3.0</a></li>
-       <li><a href="firefox20.html">Firefox 2.0</a></li>
-       <li><a href="firefox15.html">Firefox 1.5</a></li>
-       <li><a href="firefox10.html">Firefox 1.0</a></li>
      </ul>
     </td>
   </tr>
@@ -77,15 +69,9 @@
       <img class="logo" width="60" height="60" alt="" src="/images/product-thunderbird.png">
     </td>
     <td>
-      <span class="sectionhead">Thunderbird のアドバイザリ</span>
+      <span class="sectionhead"><a href="thunderbird.html">Thunderbird のアドバイザリ</a></span>
       <ul class="versionlist">
         <li><a href="thunderbirdESR.html">Thunderbird ESR</a></li>
-        <li><a href="thunderbird.html">Thunderbird 5 以上</a></li>
-        <li><a href="thunderbird31.html">Thunderbird 3.1</a></li>
-        <li><a href="thunderbird30.html">Thunderbird 3.0</a></li>
-        <li><a href="thunderbird20.html">Thunderbird 2.0</a></li>
-        <li><a href="thunderbird15.html">Thunderbird 1.5</a></li>
-        <li><a href="thunderbird10.html">Thunderbird 1.0</a></li>
       </ul>
     </td>
   </tr>
@@ -95,29 +81,42 @@
       <img class="logo" width="60" height="60" alt="" src="/images/product-seamonkey.png">
     </td>
     <td>
-      <span class="sectionhead">SeaMonkey のアドバイザリ</span>
-      <ul class="versionlist">
-        <li><a href="seamonkey.html">SeaMonkey 2.2 以上</a></li>
-        <li><a href="seamonkey20.html">SeaMonkey 2.0</a></li>
-        <li><a href="seamonkey11.html">SeaMonkey 1.1</a></li>
-        <li><a href="seamonkey10.html">SeaMonkey 1.0</a></li>
-      </ul>
-    </td>
-  </tr>
-
-  <tr id="older">
-    <td>
-      <img class="logo" width="60" height="60" alt="" src="/images/product-mozilla.png">
-    </td>
-    <td>
-      <span class="sectionhead">過去のアドバイザリ</span>
-      <ul class="versionlist">
-        <li><a href="suite17.html">Mozilla Suite 1.7</a></li>
-        <li><a href="older-vulnerabilities.html">より古いアドバイザリ</a></li>
-      </ul>
+      <span class="sectionhead"><a href="seamonkey.html">SeaMonkey のアドバイザリ</a></span>
     </td>
   </tr>
 </table>
+
+<div id="older">
+  <h2>旧製品のアドバイザリ</h2>
+  <h3>Firefox</h3>
+  <ul class="versionlist">
+    <li><a href="firefox36.html">Firefox 3.6</a></li>
+    <li><a href="firefox35.html">Firefox 3.5</a></li>
+    <li><a href="firefox30.html">Firefox 3.0</a></li>
+    <li><a href="firefox20.html">Firefox 2.0</a></li>
+    <li><a href="firefox15.html">Firefox 1.5</a></li>
+    <li><a href="firefox10.html">Firefox 1.0</a></li>
+  </ul>
+  <h3>Thunderbird</h3>
+  <ul class="versionlist">
+    <li><a href="thunderbird31.html">Thunderbird 3.1</a></li>
+    <li><a href="thunderbird30.html">Thunderbird 3.0</a></li>
+    <li><a href="thunderbird20.html">Thunderbird 2.0</a></li>
+    <li><a href="thunderbird15.html">Thunderbird 1.5</a></li>
+    <li><a href="thunderbird10.html">Thunderbird 1.0</a></li>
+  </ul>
+  <h3>SeaMonkey</h3>
+  <ul class="versionlist">
+    <li><a href="seamonkey20.html">SeaMonkey 2.0</a></li>
+    <li><a href="seamonkey11.html">SeaMonkey 1.1</a></li>
+    <li><a href="seamonkey10.html">SeaMonkey 1.0</a></li>
+  </ul>
+  <h3>過去のアドバイザリ</h3>
+  <ul class="versionlist">
+    <li><a href="suite17.html">Mozilla Suite 1.7</a></li>
+    <li><a href="older-vulnerabilities.html">より古いアドバイザリ</a></li>
+  </ul>
+</div>
 
 
 </div></div>
@@ -128,7 +127,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2011 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/known-vulnerabilities/index.html">英語版</a> 2012/02/10 &mdash; 和訳版 2012/02/11 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/known-vulnerabilities/index.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/known-vulnerabilities/index.html">英語版</a> 2013/12/13 &mdash; 和訳版 2013/12/16 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/known-vulnerabilities/index.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

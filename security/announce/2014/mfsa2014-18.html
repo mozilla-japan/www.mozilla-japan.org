@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="/images/mozilla-16.png" />
 
 
-<title>MFSA 2014-01: 様々なメモリ安全性の問題 (rv:27.0 / rv:24.3)</title>
+<title>MFSA 2014-18: crypto.generateCRMFRequest がキーの型を検証していない</title>
 <link rel="alternate" hreflang="en" modified="March 18, 2014">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
@@ -38,37 +38,25 @@
 <div id="main-content">
 
 
-<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2014-01</strong></p>
-<h1>Mozilla Foundation セキュリティアドバイザリ 2014-01</h1>
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2014-18</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2014-18</h1>
 <p>
-<span class="label">タイトル:</span>      様々なメモリ安全性の問題 (rv:27.0 / rv:24.3)<br>
-<span class="label">重要度:</span>     最高<br>
-<span class="label">公開日:</span>  2014/02/04<br>
-<span class="label">報告者:</span>   Mozilla 開発者<br>
-<span class="label">影響を受ける製品:</span>   Firefox、Thunderbird、SeaMonkey<br>
+<span class="label">タイトル:</span>      crypto.generateCRMFRequest がキーの型を検証していない<br>
+<span class="label">重要度:</span>     低<br>
+<span class="label">公開日:</span>  2014/03/18<br>
+<span class="label">報告者:</span>   David Keeler<br>
+<span class="label">影響を受ける製品:</span>   Firefox、SeaMonkey<br>
 <br>
-<span class="label">修正済みのバージョン:</span>   Firefox 27<br>
-<span class="label">&nbsp;</span> Firefox ESR 24.3<br>
-<span class="label">&nbsp;</span> Thunderbird 24.3<br>
-<span class="label">&nbsp;</span> SeaMonkey 2.24<br>
+<span class="label">修正済みのバージョン:</span>   Firefox 28<br>
+<span class="label">&nbsp;</span> SeaMonkey 2.25<br>
 </p>
 
 <h3>概要</h3>
-<p>Firefox やその他の Mozilla ベースの製品に搭載されているブラウザエンジンに含まれていたメモリ安全性に関するいくつかのバグを、Mozilla の開発者が特定、修正しました。これらの問題の一部は、特定状況下でメモリ破壊の形跡が見られ、条件が整えば任意のコード実行に悪用可能と思われるものでした。</p>
-<p class="note">Thunderbird と SeaMonkey では JavaScript が初期設定で無効になっているため、一般的にこれらの脆弱性はメールを通じた悪用が不可能です。ただしこれらの製品でも、ブラウザもしくはブラウザに類似した機能を利用した場合、潜在的なリスクが生じます。</p>
+<p><code>crypto.generateCRFMRequest</code> メソッドが電子制御二重用途リクエストの生成時に <code>KeyParams</code> 引数のキーの型を適切に検証していないことが、Mozilla 開発者の <strong>David Keeler</strong> によって報告されました。これはクラッシュとサービス妨害 (DOS) 攻撃につながる恐れがありました。</p>
 
 <h3>参考資料</h3>
-<p>Firefox ESR 24.2 と Firefox 26 に影響するメモリ安全性の問題とクラッシュが、Christian Holler、Terrence Cole、Jesse Ruderman、Gary Kwong、Eric Rescorla、Jonathan Kew、Dan Gohman、Ryan VanderMeulen、Sotaro Ikeda によって報告されました。</p>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=921470,937697,951366,953114,945939,950000,950438,925896,937132,936808,945334">メモリ安全性の問題 &ndash; Firefox ESR 24.3、Firefox 27.0 で修正済み</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1477" class="ex-ref">CVE-2014-1477</a>)</li>
-</ul>
-<p>Firefox 26 に影響するメモリ安全性の問題とクラッシュが、Gary Kwong、Christian Holler、Jesse Ruderman、Carsten Book、Andrew Sutherland、Byron Campen、Nicholas Nethercote、Paul Adenot、David Baron、Julian Seward、Dan Gohman によって報告されました。</p>
-<ul>
-  <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=944321,911707,938431,944278,922603,925308,950452,939472,944851,924348,932162,942940,945585,946733,953373,867597,911845,916635">メモリ安全性の問題 &ndash; Firefox 27.0 で修正済み</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1478" class="ex-ref">CVE-2014-1478</a>)</li>
-</ul>
-<p>Firefox ESR 24.3 に影響し Firefox ESR 24.4 で修正されたメモリ安全性の問題とクラッシュが、Carsten Book によって報告されました。</p>
-<ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=942152">Bug 942152 &ndash; Assertion failure: ss->ssl3.hs.hashType == handshake_hash_unknown</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1495" class="ex-ref">CVE-2014-1495</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=935618">Bug 935618 &ndash; nsConvertToActualKeyGenParams uses the union in a SECKEYPublicKey without checking its type</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1498" class="ex-ref">CVE-2014-1498</a>)</li>
 </ul>
 
 
@@ -80,7 +68,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2014 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2014/mfsa2014-01.html">英語版</a> 2014/03/18 &mdash; 和訳版 2014/03/19 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2014/mfsa2014-01.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2014/mfsa2014-18.html">英語版</a> 2014/03/18 &mdash; 和訳版 2014/03/19 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2014/mfsa2014-18.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

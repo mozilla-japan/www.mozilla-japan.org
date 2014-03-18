@@ -12,7 +12,7 @@
 
 
 <title>MFSA 2014-14: HTML メールへの返信におけるスクリプト実行</title>
-<link rel="alternate" hreflang="en" modified="February 6, 2014">
+<link rel="alternate" hreflang="en" modified="February 23, 2014">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
 </style>
@@ -54,12 +54,13 @@
 <h3>概要</h3>
 <p>メッセージ内に <code>data:</code> URL で &lt;iframe&gt; を埋め込むことにより、メッセージ内での JavaScript 実行に関する制限を回避できることが、セキュリティ研究者の <strong>Fabi&aacute;n Cuchietti</strong> 氏によって発見されました。被害者がメッセージを受け取り、Thunderbird の HTML メールエディタを使って「インライン」で引用し、返信もしくは転送すると、添付されたスクリプトが実行されてしまいます。実行されるスクリプトはメッセージ編集ウィンドウ内に制限され、メッセージの送信前にその内容を監視したり編集したりといったことが潜在的に可能でした。受信者が単にメッセージを表示しただけではスクリプトは実行されず、HTML 形式で編集した場合のみ実行されます。HTML 編集を無効化することでこの問題を防ぐことができ、またメッセージを「添付ファイルとして」転送しても回避可能です。</p>
 <p>&lt;object&gt; タグを用いたこの攻撃の類似例が、Vulnerability Labs の <strong>Ateeq ur Rehman Khan</strong> 氏によって報告されました。これは、画像、音声、動画などのオブジェクトデータ形式を添付するのに使用される可能性がありました。</p>
-<p class="note">この問題は、バージョン 17.0.8 を含む Thunderbird 17 ブランチにも影響します。Gecko 23 以降のプラットフォームをベースとしたすべてのバージョンで修正されています。Thunderbird 24 以降のバージョンはこの脆弱性の影響を受けません。</p>
+<p class="note">この問題は Thunderbird 17 ブランチに影響するもので、Gecko 23 以降のプラットフォームをベースとしたすべてのバージョンで修正されています。Thunderbird 24 以降のバージョンはこの脆弱性の影響を受けません。</p>
 
 <h3>参考資料</h3>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=868267">Bug 868267 &ndash; HTML mail compose self-XSS due to signature text</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-6674" class="ex-ref">CVE-2013-6674</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=875818">Bug 875818 &ndash; HTML compose window XSS via &lt;object&gt; tag on Reply/Forward ("wiretap" is back)</a> </li>         
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=868267">Bug 868267 &ndash; HTML mail compose self-XSS due to signature text</a></li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=875818">Bug 875818 &ndash; HTML compose window XSS via &lt;object&gt; tag on Reply/Forward ("wiretap" is back)</a></li>
+  <li><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-6674" class="ex-ref">CVE-2013-6674</a></li>
 </ul>
 
 
@@ -71,7 +72,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2014 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2014/mfsa2014-14.html">英語版</a> 2014/02/06 &mdash; 和訳版 2014/02/09 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2014/mfsa2014-14.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2014/mfsa2014-14.html">英語版</a> 2014/02/23 &mdash; 和訳版 2014/03/19 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2014/mfsa2014-14.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

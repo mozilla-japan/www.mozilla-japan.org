@@ -12,7 +12,7 @@
 
 
 <title>MFSA 2015-09: DOM オブジェクトを通じた XrayWrapper の回避</title>
-<link rel="alternate" hreflang="en" modified="January 13, 2015">
+<link rel="alternate" hreflang="en" modified="February 12, 2015">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
 </style>
@@ -42,9 +42,9 @@
 <h1>Mozilla Foundation セキュリティアドバイザリ 2015-09</h1>
 <p>
 <span class="label">タイトル:</span>      DOM オブジェクトを通じた XrayWrapper の回避<br>
-<span class="label">重要度:</span>     中<br>
+<span class="label">重要度:</span>     最高<br>
 <span class="label">公開日:</span>  2015/01/13<br>
-<span class="label">報告者:</span>   Bobby Holley<br>
+<span class="label">報告者:</span>   Bobby Holley、Joe Vennix<br>
 <span class="label">影響を受ける製品:</span>   Firefox、SeaMonkey<br>
 <br>
 <span class="label">修正済みのバージョン:</span>   Firefox 35<br>
@@ -53,10 +53,12 @@
 
 <h3>概要</h3>
 <p>いくつかの特定のプロパティを持った Document Object Model (DOM) オブジェクトが XrayWrappers を回避できてしまうことが、Mozilla 開発者の <strong>Bobby Holley</strong> によって報告されました。これにより、Web コンテンツが特権コードを混乱させることが可能となり、潜在的には特権昇格を許す恐れがありました。</p>
+<p><strong>2015 年 2 月 12 日更新:</strong> この同じ問題によって引き起こされる別のバグが Rapid7 のセキュリティ研究者 <strong>Joe Vennix</strong> 氏からも報告されました。プロキシオブジェクトへプロトタイプを設定することで、Web コンテンツから <code>chrome</code> プロパティ付きの特権ウィンドウを開いて特権昇格を実行できることが同氏によって発見されました。</p>
 
 <h3>参考資料</h3>
 <ul>
   <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=987794">Bug 987794 &ndash; named getters can fool Xrays</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-8636" class="ex-ref">CVE-2014-8636</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1120261">Bug 1120261 &ndash; Setting prototype to a Proxy object allows content to influence chrome:// code</a></li>
 </ul>
 
 
@@ -68,7 +70,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2015 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-09.html">英語版</a> 2015/01/13 &mdash; 和訳版 2015/01/14 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-09.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-09.html">英語版</a> 2015/02/12 &mdash; 和訳版 2015/02/16 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-09.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

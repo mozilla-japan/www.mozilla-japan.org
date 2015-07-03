@@ -12,7 +12,7 @@
 
 
 <title>Mozilla Foundation セキュリティアドバイザリ</title>
-<link rel="alternate" hreflang="en" modified="May 12, 2015">
+<link rel="alternate" hreflang="en" modified="July 2, 2015">
 <style type="text/css" media="screen,tv">
   dl.table dt { margin: 0; width: 9em; font-weight: normal; float: left; clear: both; }
   dl.table dd { margin: 0 0 0 10em; }
@@ -53,6 +53,23 @@
   <li><span class="moderate">中</span>: デフォルトではない特殊な設定を行った場合のみ攻撃可能であったり、複雑な操作や思いも寄らない手順を必要とする点を除けば、「高」または「最高」に分類されるであろう脆弱性</li>
   <li><span class="low">低</span>: サービス妨害 (DoS) 攻撃、少量のデータの漏えい、なりすましなど、比較的重要でないセキュリティ脆弱性 (SSL 利用サイトの検知不可能な偽装は、たいていの場合、他のサイトで入力されるはずの機密データを盗み取るために利用されるため、「高」に分類されます)</li>
 </ul>
+
+<h3>2015 年 7 月 2 日</h3>
+<dl class="table">
+  <dt><a href="/security/announce/2015/mfsa2015-71.html" class="moderate">MFSA 2015-71</a></dt><dd>NSS で ServerKeyExchange のスキップが誤って許容されている</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-70.html" class="moderate">MFSA 2015-70</a></dt><dd>NSS の通常 DHE 暗号化スイートで輸出長の DHE 鍵が許容されている</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-69.html" class="high">MFSA 2015-69</a></dt><dd>PDF.js における特権昇格</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-68.html" class="low">MFSA 2015-68</a></dt><dd>OS X のクラッシュレポートに入力されたキー押下情報が含まれる場合がある</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-67.html" class="moderate">MFSA 2015-67</a></dt><dd>上書き可能なエラーが生じた場合にキーピンニングが無視される</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-66.html" class="critical">MFSA 2015-66</a></dt><dd>コード監査を通じて発見された一連の脆弱性</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-65.html" class="critical">MFSA 2015-65</a></dt><dd>XMLHttpRequest 使用時のワーカーにおける解放後使用</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-64.html" class="moderate">MFSA 2015-64</a></dt><dd>ECDSA 署名検証が一部署名を適切に処理できない</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-63.html" class="critical">MFSA 2015-63</a></dt><dd>マイクロタスク実行エラーに起因した Content Policy における解放後使用</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-62.html" class="moderate">MFSA 2015-62</a></dt><dd>Web Audio における振動子レンダリング範囲計算中の境界外読み取り</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-61.html" class="high">MFSA 2015-61</a></dt><dd>Indexed Database Manager における型混同</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-60.html" class="moderate">MFSA 2015-60</a></dt><dd>ページ内のローカルファイルリンクや特権付き URL を新しいタブに開けてしまう</dd>
+  <dt><a href="/security/announce/2015/mfsa2015-59.html" class="critical">MFSA 2015-59</a></dt><dd>様々なメモリ安全性の問題 (rv:39.0 / rv:31.8 / rv:38.1)</dd>
+</dl>
 
 <h3>2015 年 5 月 12 日</h3>
 <dl class="table">
@@ -1384,7 +1401,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2015 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/index.html">英語版</a> 2015/05/12 &mdash; 和訳版 2015/05/13 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/index.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/index.html">英語版</a> 2015/07/02 &mdash; 和訳版 2015/07/03 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/index.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

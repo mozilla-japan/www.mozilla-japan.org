@@ -12,7 +12,7 @@
 
 
 <title>MFSA 2015-65: XMLHttpRequest 使用時のワーカーにおける解放後使用</title>
-<link rel="alternate" hreflang="en" modified="July 2, 2015">
+<link rel="alternate" hreflang="en" modified="July 22, 2015">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
 </style>
@@ -44,7 +44,7 @@
 <span class="label">タイトル:</span>      XMLHttpRequest 使用時のワーカーにおける解放後使用<br>
 <span class="label">重要度:</span>     最高<br>
 <span class="label">公開日:</span>  2015/07/02<br>
-<span class="label">報告者:</span>   Looben Yan<br>
+<span class="label">報告者:</span>   Looben Yang<br>
 <span class="label">影響を受ける製品:</span>   Firefox、Firefox ESR<br>
 <br>
 <span class="label">修正済みのバージョン:</span>   Firefox 39<br>
@@ -53,7 +53,7 @@
 </p>
 
 <h3>概要</h3>
-<p>XMLHttpRequest を共有もしくは専用のワーカーと合わせて使用した場合に生じる 2 件の関連した解放後使用問題が、セキュリティ研究者の <strong>Looben Yan</strong> 氏による Address Sanitizer ツールを使った調査で発見されました。これらの問題は、XMLHttpRequest オブジェクトがワーカーに配属されたものの、そのオブジェクトがまだ使用中に誤って削除されてしまうことで生じていました。これは悪用可能なクラッシュを引き起こすものでした。</p>
+<p>XMLHttpRequest を共有もしくは専用のワーカーと合わせて使用した場合に生じる 2 件の関連した解放後使用問題が、セキュリティ研究者の <strong>Looben Yang</strong> 氏による Address Sanitizer ツールを使った調査で発見されました。これらの問題は、XMLHttpRequest オブジェクトがワーカーに配属されたものの、そのオブジェクトがまだ使用中に誤って削除されてしまうことで生じていました。これは悪用可能なクラッシュを引き起こすものでした。</p>
 
 <h3>参考資料</h3>
 <ul>
@@ -70,7 +70,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2015 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-65.html">英語版</a> 2015/07/02 &mdash; 和訳版 2015/07/03 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-65.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-65.html">英語版</a> 2015/07/22 &mdash; 和訳版 2015/07/23 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-65.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

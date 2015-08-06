@@ -12,7 +12,7 @@
 
 
 <title>MFSA 2014-87: HTML5 解析中の解放後使用</title>
-<link rel="alternate" hreflang="en" modified="December 9, 2014">
+<link rel="alternate" hreflang="en" modified="August 6, 2015">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
 </style>
@@ -44,7 +44,7 @@
 <span class="label">タイトル:</span>      HTML5 解析中の解放後使用<br>
 <span class="label">重要度:</span>     最高<br>
 <span class="label">公開日:</span>  2014/12/02<br>
-<span class="label">報告者:</span>   Berend-Jan Wever<br>
+<span class="label">報告者:</span>   SkyLined<br>
 <span class="label">影響を受ける製品:</span>   Firefox、Firefox ESR、Thunderbird<br>
 <br>
 <span class="label">修正済みのバージョン:</span>   Firefox 34<br>
@@ -54,7 +54,7 @@
 </p>
 
 <h3>概要</h3>
-<p><code>document.open()</code> によって生成されたドキュメントへ書き込まれる HTML の解析中に 2 つ目のルート要素の生成を引き起こすことによって解放後使用が生じることが、セキュリティ研究者の <strong>Berend-Jan Wever</strong> 氏によって報告されました。これは潜在的に悪用可能なクラッシュにつながるものでした。</p>
+<p><code>document.open()</code> によって生成されたドキュメントへ書き込まれる HTML の解析中に 2 つ目のルート要素の生成を引き起こすことによって解放後使用が生じることが、セキュリティ研究者の <strong>SkyLined</strong> 氏によって報告されました。これは潜在的に悪用可能なクラッシュにつながるものでした。</p>
 <p class="note">Thunderbird では JavaScript が初期設定で無効になっているため、一般的にこれらの脆弱性はメールを通じた悪用が不可能です。ただしこれらの製品でも、ブラウザもしくはブラウザに類似した機能を利用した場合、潜在的なリスクが生じます。</p>
 
 <h3>参考資料</h3>
@@ -71,7 +71,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2014 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2014/mfsa2014-87.html">英語版</a> 2014/12/09 &mdash; 和訳版 2014/12/10 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2014/mfsa2014-87.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2014/mfsa2014-87.html">英語版</a> 2015/07/31 &mdash; 和訳版 2015/08/07 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2014/mfsa2014-87.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

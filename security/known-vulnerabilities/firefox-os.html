@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>Firefox セキュリティアドバイザリ</title>
+<link rel="alternate" hreflang="en" modified="August 6, 2015">
+<style type="text/css" media="screen,tv">
+  #mainContent { line-height: 160%; }
+  table { width: 100%; background-color: #eee; }
+  table .number { width: 1em; }
+  table .type { width: 5em; }
+  table .fixed { width: 5em; }
+  table .milestone { width: 7em; }
+  table .severity { width: 8em; }
+  table .description { width: auto; }
+  table .bugid { width: 4em; }
+  table .workaround { width: 9em; }
+  table .date { width: 5em; }
+  .critical { background-color: #ff8080; }
+  .high { background-color: #ffc080; }
+  .moderate { background-color: #ffff80; }
+  td { text-align: center; vertical-align: top; }
+  h2 { margin-top: 2em; }
+  .logo { vertical-align: middle; }
+  .vulnlist { margin: 0 2em; }
+  .vulnlist  dl dt { margin: 0; width: 9em; font-weight: normal; float: left; clear: both; }
+  .vulnlist  dl dd { margin: 0 0 0 10em; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/known-vulnerabilities/">Mozilla 製品における既知の脆弱性</a> &gt; Firefox セキュリティアドバイザリ</p>
+<h1><img class="logo" src="/images/product-firefox.png"> Firefox<br>セキュリティアドバイザリ</h1>
+
+<p>重要度の区分け:</p>
+<ul>
+  <li><span class="critical">最高</span>: 任意のコードを実行したり、ソフトウェアをインストールすることが可能な脆弱性で、通常のブラウジングの範囲を超えるユーザの操作を必要としないもの</li>
+  <li><span class="high">高</span>: ユーザが訪れた他のサイトから機密データを集めたり、それらのサイトにデータやコードを注入することが可能な脆弱性で、通常のブラウジングの範囲を超えるユーザの操作を必要としないもの</li>
+  <li><span class="moderate">中</span>: デフォルトではない特殊な設定を行った場合のみ攻撃可能であったり、複雑な操作や思いも寄らない手順を必要とする点を除けば、「高」または「最高」に分類されるであろう脆弱性</li>
+  <li><span class="low">低</span>: サービス妨害 (DoS) 攻撃、少量のデータの漏えい、なりすましなど、比較的重要でないセキュリティ脆弱性 (SSL 利用サイトの検知不可能な偽装は、たいていの場合、他のサイトで入力されるはずの機密データを盗み取るために利用されるため、「高」に分類されます)</li>
+</ul>
+
+<div class="vulnlist">
+  <h3 id="firefox-os-2.2">Firefox OS 2.2 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2015/mfsa2015-77.html" class="low">MFSA 2015-77</a></dt><dd>SharedBufferManagerParent::RecvAllocateGrallocBuffer における signed 比較による上界チェック回避</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-76.html" class="low">MFSA 2015-76</a></dt><dd>Wi-Fi ダイレクトシステムメッセージが許可設定を必要としない</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-75.html" class="moderate">MFSA 2015-75</a></dt><dd>Firefox アカウント登録における COPPA エラー画面により任意の Web コンテンツを B2G ルートプロセスへ読み込めてしまう</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-74.html" class="high">MFSA 2015-74</a></dt><dd>UMS (USB) が再起動後にロック解除せずともマウントされてしまう</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-73.html" class="high">MFSA 2015-73</a></dt><dd>Gaia システムアプリにおけるリモート HTML タグ注入</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-72.html" class="high">MFSA 2015-72</a></dt><dd>Gaia 検索アプリにおけるリモート HTML タグ注入</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-71.html" class="moderate">MFSA 2015-71</a></dt><dd>NSS で ServerKeyExchange のスキップが誤って許容されている</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-70.html" class="moderate">MFSA 2015-70</a></dt><dd>NSS の通常 DHE 暗号化スイートで輸出長の DHE 鍵が許容されている</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-69.html" class="high">MFSA 2015-69</a></dt><dd>内部ワーカーを通じた特権昇格</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-66.html" class="critical">MFSA 2015-66</a></dt><dd>コード監査を通じて発見された一連の脆弱性</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-65.html" class="critical">MFSA 2015-65</a></dt><dd>XMLHttpRequest 使用時のワーカーにおける解放後使用</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-64.html" class="moderate">MFSA 2015-64</a></dt><dd>ECDSA 署名検証が一部署名を適切に処理できない</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-62.html" class="moderate">MFSA 2015-62</a></dt><dd>Web Audio における振動子レンダリング範囲計算中の境界外読み取り</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-61.html" class="high">MFSA 2015-61</a></dt><dd>Indexed Database Manager における型混同</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-59.html" class="critical">MFSA 2015-59</a></dt><dd>様々なメモリ安全性の問題 (rv:39.0 / rv:31.8 / rv:38.1)</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-56.html" class="high">MFSA 2015-56</a></dt><dd>信頼されたページをホストしている信頼できないサイトが webchannel レスポンスを傍受できてしまう</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-55.html" class="high">MFSA 2015-55</a></dt><dd>MP4 動画メタデータ解析時のバッファオーバーフローと境界外読み取り</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-54.html" class="critical">MFSA 2015-54</a></dt><dd>圧縮 XML 解析時のバッファオーバーフロー</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-53.html" class="moderate">MFSA 2015-53</a></dt><dd>シャットダウン中の Media Decoder Thread 作成による解放後使用</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-51.html" class="critical">MFSA 2015-51</a></dt><dd>縦書き有効時の文字列処理中の解放後使用</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-48.html" class="critical">MFSA 2015-48</a></dt><dd>SVG コンテンツと CSS によるバッファオーバーフロー</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-46.html" class="critical">MFSA 2015-46</a></dt><dd>様々なメモリ安全性の問題 (rv:38.0 / rv:31.7)</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-42.html" class="moderate">MFSA 2015-42</a></dt><dd>非特権ページへの遷移時にウィンドウが特権付きコンテンツへのアクセスを保持できてしまう</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-40.html" class="high">MFSA 2015-40</a></dt><dd>アンカー遷移を通じた同一オリジン制限回避</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-38.html" class="critical">MFSA 2015-38</a></dt><dd>メインスレッド外合成におけるメモリ破壊クラッシュ</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-37.html" class="high">MFSA 2015-37</a></dt><dd>CORS リクエストがプリフライト後に 30x リダイレクトを辿ってしまう</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-34.html" class="moderate">MFSA 2015-34</a></dt><dd>QCMS ライブラリにおける境界外読み取り</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-33.html" class="moderate">MFSA 2015-33</a></dt><dd>resource:// ドキュメントが特権付きページを読み込めてしまう</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-30.html" class="critical">MFSA 2015-30</a></dt><dd>様々なメモリ安全性の問題 (rv:37.0 / rv:31.6)</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-24.html" class="high">MFSA 2015-24</a></dt><dd>フォーム自動補完の操作を通じたローカルファイルの読み取り</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-21.html" class="moderate">MFSA 2015-21</a></dt><dd>MP3 再生中のバッファアンダーフロー</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-19.html" class="high">MFSA 2015-19</a></dt><dd>SVG コンテンツ描画中の境界外読み書き</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-17.html" class="critical">MFSA 2015-17</a></dt><dd>libstagefright における MP4 動画再生中のバッファオーバーフロー</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-16.html" class="critical">MFSA 2015-16</a></dt><dd>IndexedDB における解放後使用</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-15.html" class="low">MFSA 2015-15</a></dt><dd>TLS TURN と STUN への接続が許可なく単純な TCP 接続に切り替えられる</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-14.html" class="moderate">MFSA 2015-14</a></dt><dd>悪質な WebGL コンテンツの文字列書き込みによるクラッシュ</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-13.html" class="moderate">MFSA 2015-13</a></dt><dd>ホスト名へ付加されたピリオドによって HPKP と HSTS の保護が回避される</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-11.html" class="critical">MFSA 2015-11</a></dt><dd>様々なメモリ安全性の問題 (rv:36.0 / rv:31.5)</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-06.html" class="critical">MFSA 2015-06</a></dt><dd>WebRTC における解放後読み取り</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-05.html" class="moderate">MFSA 2015-05</a></dt><dd>Web Audio 内の未初期化メモリ読み取り</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-03.html" class="moderate">MFSA 2015-03</a></dt><dd>sendBeacon の Origin ヘッダ欠落</dd>
+    <dt><a href="/security/announce/2015/mfsa2015-01.html" class="critical">MFSA 2015-01</a></dt><dd>様々なメモリ安全性の問題 (rv:35.0 / rv:31.4)</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-89.html" class="high">MFSA 2014-89</a></dt><dd>BasicThebesLayer から BasicContainerLayer への問題あるキャスト</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-88.html" class="critical">MFSA 2014-88</a></dt><dd>メディアコンテンツ解析中のバッファオーバーフロー</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-87.html" class="critical">MFSA 2014-87</a></dt><dd>HTML5 解析中の解放後使用</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-86.html" class="high">MFSA 2014-86</a></dt><dd>CSP 違反報告を通じたリダイレクトデータの漏えい</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-85.html" class="moderate">MFSA 2014-85</a></dt><dd>一部の入力ストリームによる XMLHttpRequest のクラッシュ</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-83.html" class="critical">MFSA 2014-83</a></dt><dd>様々なメモリ安全性の問題 (rv:34.0 / rv:31.3)</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-79.html" class="critical">MFSA 2014-79</a></dt><dd>テキスト方向設定時の解放後使用</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-78.html" class="high">MFSA 2014-78</a></dt><dd>GIF 描画中の未初期化メモリ使用 (追加報告)</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-76.html" class="high">MFSA 2014-76</a></dt><dd>独自波形による Web Audio のメモリ破壊</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-74.html" class="critical">MFSA 2014-74</a></dt><dd>様々なメモリ安全性の問題 (rv:33.0 / rv:31.2)</dd>
+    <dt><a href="/security/announce/2014/mfsa2014-73.html" class="critical">MFSA 2014-73</a></dt><dd>NSS における RSA 署名偽造</dd>
+  </dl>
+</div>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2015 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="https://www.mozilla.org/en-US/security/known-vulnerabilities/firefox-os/">英語版</a> 2015/08/06 &mdash; 和訳版 2015/08/07 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/known-vulnerabilities/firefox.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

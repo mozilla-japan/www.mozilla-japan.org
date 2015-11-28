@@ -12,7 +12,7 @@
 
 
 <title>MFSA 2015-111: CORS 事前リクエストヘッダ処理における間違い</title>
-<link rel="alternate" hreflang="en" modified="October 19, 2015">
+<link rel="alternate" hreflang="en" modified="November 27, 2015">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
 </style>
@@ -49,6 +49,7 @@
 <br>
 <span class="label">修正済みのバージョン:</span>   Firefox 41<br>
 <span class="label">&nbsp;</span> Firefox ESR 38.3<br>
+<span class="label">&nbsp;</span> Thunderbird 38.3<br>
 <span class="label">&nbsp;</span> SeaMonkey 2.38<br>
 </p>
 
@@ -56,6 +57,7 @@
 <p>クロスオリジンリソース共有 (CORS) の「事前リクエスト」に関する 2 件の問題が、Mozilla の開発者 <strong>Ehsan Akhgari</strong> によって報告されました。</p>
 <p>最初の問題は、特定の状況において、ひとつのサイト上で 2 回の事前リクエストのために同じキャッシュキーが生成されてしまう可能性があるというものでした。結果として、1 回目のリクエストによって生成されたキャッシュキーと一致する 2 回目のリクエストが行われた場合、システムが既にキャッシュされたリクエストを適切であると見なし、CORS 検査が回避されてしまいます。</p>
 <p>2 つ目の問題は、一部の <code>Access-Control-</code> ヘッダが CORS レスポンスに欠けていた場合、同じレスポンスに含まれる別の <code>Access-Control-</code> ヘッダの値が使われてしまう可能性があるというものでした。</p>
+<p class="note">Thunderbird では JavaScript が初期設定で無効になっているため、一般的にメールを通じたこれらの脆弱性の悪用は不可能です。ただしこれらの製品でも、ブラウザもしくはブラウザに類似した機能を利用した場合、潜在的なリスクが生じます。</p>
 
 <h3>参考資料</h3>
 <ul>
@@ -72,7 +74,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2015 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-111.html">英語版</a> 2015/10/19 &mdash; 和訳版 2015/10/20 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-111.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-111.html">英語版</a> 2015/11/27 &mdash; 和訳版 2015/11/28 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-111.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

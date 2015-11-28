@@ -12,7 +12,7 @@
 
 
 <title>MFSA 2015-113: ANGLE グラフィックスライブラリの libGLES におけるメモリ安全性問題</title>
-<link rel="alternate" hreflang="en" modified="October 19, 2015">
+<link rel="alternate" hreflang="en" modified="November 27, 2015">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
 </style>
@@ -49,12 +49,14 @@
 <br>
 <span class="label">修正済みのバージョン:</span>   Firefox 41<br>
 <span class="label">&nbsp;</span> Firefox ESR 38.3<br>
+<span class="label">&nbsp;</span> Thunderbird 38.3<br>
 <span class="label">&nbsp;</span> SeaMonkey 2.38<br>
 </p>
 
 <h3>概要</h3>
 <p>Windows システム上で WebGL と OpenGL コンテンツに使われている、ANGLE グラフィックスライブラリの libGLES 部分における 2 件の問題が、セキュリティ研究者の <strong>Ronald Crane</strong> 氏によって報告されました。最初の問題は、境界検査の欠落によってシェーダー操作時にメモリ安全性問題が発生し、非所有メモリへの書き込みにつながる恐れがあるというものでした。2 つ目の問題もシェーダーに影響し、シェーダー属性配列に割り当てられたメモリが不足していた場合にバッファオーバーフローにつながる恐れがありました。いずれの問題も潜在的に悪用可能なクラッシュにつながる可能性がありました。</p>
 <p class="note">これらの問題は Windows に限られ、Linux や OS X システムは影響を受けません。</p>
+<p class="note">Thunderbird では JavaScript が初期設定で無効になっているため、一般的にメールを通じたこれらの脆弱性の悪用は不可能です。ただしこれらの製品でも、ブラウザもしくはブラウザに類似した機能を利用した場合、潜在的なリスクが生じます。</p>
 
 <h3>参考資料</h3>
 <ul>
@@ -71,7 +73,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2015 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-113.html">英語版</a> 2015/10/19 &mdash; 和訳版 2015/10/20 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-113.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-113.html">英語版</a> 2015/11/27 &mdash; 和訳版 2015/11/28 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-113.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

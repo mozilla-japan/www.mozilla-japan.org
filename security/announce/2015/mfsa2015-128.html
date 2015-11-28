@@ -12,7 +12,7 @@
 
 
 <title>MFSA 2015-128: ZIP ファイルを通じた libjar におけるメモリ破壊</title>
-<link rel="alternate" hreflang="en" modified="November 3, 2015">
+<link rel="alternate" hreflang="en" modified="November 27, 2015">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
 </style>
@@ -49,10 +49,12 @@
 <br>
 <span class="label">修正済みのバージョン:</span>   Firefox 42<br>
 <span class="label">&nbsp;</span> Firefox ESR 38.4<br>
+<span class="label">&nbsp;</span> Thunderbird 38.4<br>
 </p>
 
 <h3>概要</h3>
 <p>悪意を持って作り込まれた ZIP 形式のファイルによって引き起こされる、<code>libjar</code> におけるバッファアンダーフローが、セキュリティ研究者の <strong>Gustavo Grieco</strong> 氏によって報告されました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+<p class="note">Thunderbird では JavaScript が初期設定で無効になっているため、一般的にメールを通じたこれらの脆弱性の悪用は不可能です。ただしこれらの製品でも、ブラウザもしくはブラウザに類似した機能を利用した場合、潜在的なリスクが生じます。</p>
 
 <h3>参考資料</h3>
 <ul>
@@ -68,7 +70,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2015 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-128.html">英語版</a> 2015/11/03 &mdash; 和訳版 2015/11/04 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-128.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-128.html">英語版</a> 2015/11/27 &mdash; 和訳版 2015/11/28 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-128.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

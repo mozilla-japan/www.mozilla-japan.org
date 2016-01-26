@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="/images/mozilla-16.png" />
 
 
-<title>MFSA 2015-150: サーバ署名における TLS 1.2 ServerKeyExchange 内で MD5 署名が許容されている</title>
+<title>MFSA 2016-10: コード監査を通じて発見された安全でないメモリ操作</title>
 <link rel="alternate" hreflang="en" modified="January 26, 2016">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
@@ -38,25 +38,27 @@
 <div id="main-content">
 
 
-<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2015-150</strong></p>
-<h1>Mozilla Foundation セキュリティアドバイザリ 2015-150</h1>
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2016-10</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2016-10</h1>
 <p>
-<span class="label">タイトル:</span>      サーバ署名における TLS 1.2 ServerKeyExchange 内で MD5 署名が許容されている<br>
-<span class="label">重要度:</span>     中<br>
-<span class="label">公開日:</span>  2015/12/22<br>
-<span class="label">報告者:</span>   Karthikeyan Bhargavan<br>
-<span class="label">影響を受ける製品:</span>   Firefox、Firefox ESR<br>
+<span class="label">タイトル:</span>      コード監査を通じて発見された安全でないメモリ操作<br>
+<span class="label">重要度:</span>     最高<br>
+<span class="label">公開日:</span>  2016/01/26<br>
+<span class="label">報告者:</span>   Ronald Crane<br>
+<span class="label">影響を受ける製品:</span>   Firefox<br>
 <br>
-<span class="label">修正済みのバージョン:</span>   Firefox 43.0.2<br>
-<span class="label">&nbsp;</span> Firefox ESR 38.6<br>
+<span class="label">修正済みのバージョン:</span>   Firefox 44<br>
 </p>
 
 <h3>概要</h3>
-<p>Network Security Services (NSS) において、TLS 1.2 ServerKeyExchange メッセージ内部でサーバ署名用の MD5 署名が未だに許容されているという問題が、セキュリティ研究者の <strong>Karthikeyan Bhargavan</strong> 氏によって報告されました。これは、NSS が 2011 年以来 MD5 を署名内ハッシュアルゴリズムとして受け付けることを正式に禁止してきたことから問題と見なされました。この問題は、Firefox など NSS を実装したクライアントを、理論的な衝突ベースの偽装攻撃にさらすもので、NSS のバージョン 3.20.2 で修正されました。</p>
+<p>コード監査を通じて発見された、公開済みのコードに影響する 3 件の脆弱性が、セキュリティ研究者の <strong>Ronald Crane</strong> 氏によって報告されました。これらには、ANGLE グラフィックスライブラリにおけるメモリ安全性問題 (重要度: 高)、ZIP ファイル処理時の潜在的なワイルドポインタ問題 (重要度: 中)、libstagefright ライブラリを使用したメタデータ解析中に生じる整数オーバーフロー (重要度:  最高) が含まれます。</p>
+<p>最初の 2 件の問題に関しては、Web コンテンツを通じて悪用できるはっきりした仕組みは見つかっていませんが、引き金となる仕組みが見つかった場合に脆弱なものでした。libstagefright の使用方法に関する問題は、悪質な MP4 形式の動画ファイルによって引き起こされ、任意のコード実行につながる潜在的な可能性がありました。</p>
 
 <h3>参考資料</h3>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1158489">Bug 1158489 &ndash; Prevent MD5 Downgrade in TLS 1.2 Signatures</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-7575" class="ex-ref">CVE-2015-7575</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1186621">Bug 1186621 &ndash; Memory-safety bug in Buffer11::NativeBuffer11::map</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1944" class="ex-ref">CVE-2016-1944</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1214782">Bug 1214782 &ndash; Latent wild-pointer/bounds bug in nsZipArchive</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1945" class="ex-ref">CVE-2016-1945</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1232069">Bug 1232069 &ndash; Truncation in MoofParser::Metadata causes writing beyond buffer's end</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1946" class="ex-ref">CVE-2016-1946</a>)</li>
 </ul>
 
 
@@ -68,7 +70,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2016 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-150.html">英語版</a> 2016/01/26 &mdash; 和訳版 2016/01/27 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-150.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2016-10.html">英語版</a> 2016/01/26 &mdash; 和訳版 2016/01/27 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2016-10.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

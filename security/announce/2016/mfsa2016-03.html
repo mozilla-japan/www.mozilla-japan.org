@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="/images/mozilla-16.png" />
 
 
-<title>MFSA 2015-150: サーバ署名における TLS 1.2 ServerKeyExchange 内で MD5 署名が許容されている</title>
+<title>MFSA 2016-03: WebGL におけるメモリ割り当て不足によるバッファオーバーフロー</title>
 <link rel="alternate" hreflang="en" modified="January 26, 2016">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
@@ -38,25 +38,25 @@
 <div id="main-content">
 
 
-<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2015-150</strong></p>
-<h1>Mozilla Foundation セキュリティアドバイザリ 2015-150</h1>
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2016-03</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2016-03</h1>
 <p>
-<span class="label">タイトル:</span>      サーバ署名における TLS 1.2 ServerKeyExchange 内で MD5 署名が許容されている<br>
-<span class="label">重要度:</span>     中<br>
-<span class="label">公開日:</span>  2015/12/22<br>
-<span class="label">報告者:</span>   Karthikeyan Bhargavan<br>
+<span class="label">タイトル:</span>      WebGL におけるメモリ割り当て不足によるバッファオーバーフロー<br>
+<span class="label">重要度:</span>     最高<br>
+<span class="label">公開日:</span>  2016/01/26<br>
+<span class="label">報告者:</span>   Aki Helin<br>
 <span class="label">影響を受ける製品:</span>   Firefox、Firefox ESR<br>
 <br>
-<span class="label">修正済みのバージョン:</span>   Firefox 43.0.2<br>
+<span class="label">修正済みのバージョン:</span>   Firefox 44<br>
 <span class="label">&nbsp;</span> Firefox ESR 38.6<br>
 </p>
 
 <h3>概要</h3>
-<p>Network Security Services (NSS) において、TLS 1.2 ServerKeyExchange メッセージ内部でサーバ署名用の MD5 署名が未だに許容されているという問題が、セキュリティ研究者の <strong>Karthikeyan Bhargavan</strong> 氏によって報告されました。これは、NSS が 2011 年以来 MD5 を署名内ハッシュアルゴリズムとして受け付けることを正式に禁止してきたことから問題と見なされました。この問題は、Firefox など NSS を実装したクライアントを、理論的な衝突ベースの偽装攻撃にさらすもので、NSS のバージョン 3.20.2 で修正されました。</p>
+<p>一部の WebGL コンテキストを描画中に生じるバッファオーバーフローの書き込みが、セキュリティ研究者の <strong>Aki Helin</strong> 氏による Address Sanitizer ツールを使った調査で発見されました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
 
 <h3>参考資料</h3>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1158489">Bug 1158489 &ndash; Prevent MD5 Downgrade in TLS 1.2 Signatures</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-7575" class="ex-ref">CVE-2015-7575</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1220450">Bug 1220450 &ndash; global-buffer-overflow (write) at BufferSubData</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1935" class="ex-ref">CVE-2016-1935</a>)</li>
 </ul>
 
 
@@ -68,7 +68,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2016 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-150.html">英語版</a> 2016/01/26 &mdash; 和訳版 2016/01/27 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-150.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2016-03.html">英語版</a> 2016/01/26 &mdash; 和訳版 2016/01/27 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2016-03.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="/images/mozilla-16.png" />
 
 
-<title>MFSA 2015-136: perfomance.getEntries と履歴遷移を通じた同一オリジンポリシー違反</title>
+<title>MFSA 2015-136: performance.getEntries と履歴遷移を通じた同一オリジンポリシー違反</title>
 <link rel="alternate" hreflang="en" modified="March 8, 2016">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
@@ -41,7 +41,7 @@
 <p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2015-136</strong></p>
 <h1>Mozilla Foundation セキュリティアドバイザリ 2015-136</h1>
 <p>
-<span class="label">タイトル:</span>      perfomance.getEntries と履歴遷移を通じた同一オリジンポリシー違反<br>
+<span class="label">タイトル:</span>      performance.getEntries と履歴遷移を通じた同一オリジンポリシー違反<br>
 <span class="label">重要度:</span>     高<br>
 <span class="label">公開日:</span>  2015/12/15<br>
 <span class="label">報告者:</span>   cgvwzq<br>
@@ -52,7 +52,7 @@
 </p>
 
 <h3>概要</h3>
-<p>ページの配信にインラインフレームとともに <code>perfomance.getEntries()</code> が使われていた場合、リダイレクト後のクロスオリジン URL を読み取れることが、セキュリティ研究者の <strong>cgvwzq</strong> 氏によって報告されました。スクリプトを通じて履歴を戻った場合、元の場所に行かず、リダイレクト後の場所のコンテンツがブラウザキャッシュから引き出されていました。これは同一オリジンポリシー違反であり、データ搾取に悪用される恐れがありました。</p>
+<p>ページの配信にインラインフレームとともに <code>performance.getEntries()</code> が使われていた場合、リダイレクト後のクロスオリジン URL を読み取れることが、セキュリティ研究者の <strong>cgvwzq</strong> 氏によって報告されました。スクリプトを通じて履歴を戻った場合、元の場所に行かず、リダイレクト後の場所のコンテンツがブラウザキャッシュから引き出されていました。これは同一オリジンポリシー違反であり、データ搾取に悪用される恐れがありました。</p>
 <p class="note">この問題は、Mozilla 製品に限らず、他のブラウザにも影響します。</p>
 
 <h3>参考資料</h3>

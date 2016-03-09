@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="/images/mozilla-16.png" />
 
 
-<title>MFSA 2016-29: perfomance.getEntries とセッション復元による履歴遷移を用いた同一オリジンポリシー違反</title>
+<title>MFSA 2016-29: performance.getEntries とセッション復元による履歴遷移を用いた同一オリジンポリシー違反</title>
 <link rel="alternate" hreflang="en" modified="March 8, 2016">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
@@ -41,7 +41,7 @@
 <p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2016-29</strong></p>
 <h1>Mozilla Foundation セキュリティアドバイザリ 2016-29</h1>
 <p>
-<span class="label">タイトル:</span>      perfomance.getEntries とセッション復元による履歴遷移を用いた同一オリジンポリシー違反<br>
+<span class="label">タイトル:</span>      performance.getEntries とセッション復元による履歴遷移を用いた同一オリジンポリシー違反<br>
 <span class="label">重要度:</span>     高<br>
 <span class="label">公開日:</span>  2016/03/08<br>
 <span class="label">報告者:</span>   Jordi Chancel<br>
@@ -51,7 +51,7 @@
 </p>
 
 <h3>概要</h3>
-<p>Firefox 43 で修正された <a href="/security/announce/2015/mfsa2015-136.html">Mozilla Foundation セキュリティアドバイザリ 2015-136</a> に類似した問題が、セキュリティ研究者の <strong>Jordi Chancel</strong> 氏によって発見されました。元のバグでは、<code>perfomance.getEntries()</code> がページをホストするため iframe とともに用いられた場合に、リダイレクト後のクロスオリジン URL を読み取ることが可能でした。スクリプトを通じて履歴を戻った場合、元の場所へ行く代わりに、リダイレクトされた場所のブラウザキャッシュからコンテンツが引き出されていました。新たに報告された類似の問題では、ブラウザセッションが復元された場合に、ブラウザキャッシュからコンテンツが復元されるため、履歴遷移でまだ同じ攻撃が可能というものでした。これは同一オリジンポリシー違反であり、データ搾取などに悪用される恐れがありました。</p>
+<p>Firefox 43 で修正された <a href="/security/announce/2015/mfsa2015-136.html">Mozilla Foundation セキュリティアドバイザリ 2015-136</a> に類似した問題が、セキュリティ研究者の <strong>Jordi Chancel</strong> 氏によって発見されました。元のバグでは、<code>performance.getEntries()</code> がページをホストするため iframe とともに用いられた場合に、リダイレクト後のクロスオリジン URL を読み取ることが可能でした。スクリプトを通じて履歴を戻った場合、元の場所へ行く代わりに、リダイレクトされた場所のブラウザキャッシュからコンテンツが引き出されていました。新たに報告された類似の問題では、ブラウザセッションが復元された場合に、ブラウザキャッシュからコンテンツが復元されるため、履歴遷移でまだ同じ攻撃が可能というものでした。これは同一オリジンポリシー違反であり、データ搾取などに悪用される恐れがありました。</p>
 
 <h3>参考資料</h3>
 <ul>

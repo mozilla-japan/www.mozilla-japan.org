@@ -44,7 +44,7 @@
 <span class="label">タイトル:</span>      Graphite 2 ライブラリにおけるフォント脆弱性<br>
 <span class="label">重要度:</span>     最高<br>
 <span class="label">公開日:</span>  2016/03/08<br>
-<span class="label">報告者:</span>   Francis Gabriel<br>
+<span class="label">報告者:</span>   Holger Fuhrmannek、Tyson Smith<br>
 <span class="label">影響を受ける製品:</span>   Firefox、Firefox ESR<br>
 <br>
 <span class="label">修正済みのバージョン:</span>   Firefox 45<br>
@@ -59,20 +59,20 @@
 
 <h3>参考資料</h3>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1248876">Graphite2 Machine::Code::decoder::analysis::set_ref stack out of bounds bit set</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1977" class="ex-ref">CVE-2016-1977</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243464">Use of uninitialised memory in [@graphite2::TtfUtil::GetTableInfo]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2790" class="ex-ref">CVE-2016-2790</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243473">graphite2: heap-buffer-overflow read in [@graphite2::GlyphCache::glyph]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2791" class="ex-ref">CVE-2016-2791</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243482">graphite2: heap-buffer-overflow read in [@graphite2::Slot::getAttr] Slot.cpp:232</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2792" class="ex-ref">CVE-2016-2792</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243513">graphite2: heap-buffer-overflow read in CachedCmap.cpp</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2793" class="ex-ref">CVE-2016-2793</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243526">graphite2: heap-buffer-overflow read in [@graphite2::TtfUtil::CmapSubtable12NextCodepoint] </a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2794" class="ex-ref">CVE-2016-2794</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243597">Use of uninitialised memory in [@graphite2::FileFace::get_table_fn]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2795" class="ex-ref">CVE-2016-2795</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243816">graphite2: heap-buffer-overflow write in [@graphite2::vm::Machine::Code::Code]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2796" class="ex-ref">CVE-2016-2796</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243823">graphite2: heap-buffer-overflow read in [@graphite2::TtfUtil::CmapSubtable12Lookup]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2797" class="ex-ref">CVE-2016-2797</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1248805">graphite2: heap-buffer-overflow read in [@graphite2::GlyphCache::Loader::Loader]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2798" class="ex-ref">CVE-2016-2798</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1249081">graphite2: heap-buffer-overflow write in [@graphite2::Slot::setAttr]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2799" class="ex-ref">CVE-2016-2799</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1249338">graphite2: heap-buffer-overflow read in [@graphite2::Slot::getAttr] Slot.cpp:234</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2800" class="ex-ref">CVE-2016-2800</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1249920">graphite2: heap-buffer-overflow read in [@graphite2::TtfUtil::CmapSubtable12Lookup] TtfUtil.cpp:1126</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2801" class="ex-ref">CVE-2016-2801</a>)</li>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1248804">graphite2: heap-buffer-overflow read in [@graphite2::TtfUtil::CmapSubtable4NextCodepoint] </a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2802" class="ex-ref">CVE-2016-2802</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1248876">Bug 1248876 &ndash; Graphite2 Machine::Code::decoder::analysis::set_ref stack out of bounds bit set</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1977" class="ex-ref">CVE-2016-1977</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243464">Bug 1243464 &ndash; Use of uninitialised memory in [@graphite2::TtfUtil::GetTableInfo]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2790" class="ex-ref">CVE-2016-2790</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243473">Bug 1243473 &ndash; graphite2: heap-buffer-overflow read in [@graphite2::GlyphCache::glyph]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2791" class="ex-ref">CVE-2016-2791</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243482">Bug 1243482 &ndash; graphite2: heap-buffer-overflow read in [@graphite2::Slot::getAttr] Slot.cpp:232</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2792" class="ex-ref">CVE-2016-2792</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243513">Bug 1243513 &ndash; graphite2: heap-buffer-overflow read in CachedCmap.cpp</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2793" class="ex-ref">CVE-2016-2793</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243526">Bug 1243526 &ndash; graphite2: heap-buffer-overflow read in [@graphite2::TtfUtil::CmapSubtable12NextCodepoint] </a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2794" class="ex-ref">CVE-2016-2794</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243597">Bug 1243597 &ndash; Use of uninitialised memory in [@graphite2::FileFace::get_table_fn]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2795" class="ex-ref">CVE-2016-2795</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243816">Bug 1243816 &ndash; graphite2: heap-buffer-overflow write in [@graphite2::vm::Machine::Code::Code]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2796" class="ex-ref">CVE-2016-2796</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243823">Bug 1243823 &ndash; graphite2: heap-buffer-overflow read in [@graphite2::TtfUtil::CmapSubtable12Lookup]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2797" class="ex-ref">CVE-2016-2797</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1248805">Bug 1248805 &ndash; graphite2: heap-buffer-overflow read in [@graphite2::GlyphCache::Loader::Loader]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2798" class="ex-ref">CVE-2016-2798</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1249081">Bug 1249081 &ndash; graphite2: heap-buffer-overflow write in [@graphite2::Slot::setAttr]</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2799" class="ex-ref">CVE-2016-2799</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1249338">Bug 1249338 &ndash; graphite2: heap-buffer-overflow read in [@graphite2::Slot::getAttr] Slot.cpp:234</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2800" class="ex-ref">CVE-2016-2800</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1249920">Bug 1249920 &ndash; graphite2: heap-buffer-overflow read in [@graphite2::TtfUtil::CmapSubtable12Lookup] TtfUtil.cpp:1126</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2801" class="ex-ref">CVE-2016-2801</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1248804">Bug 1248804 &ndash; graphite2: heap-buffer-overflow read in [@graphite2::TtfUtil::CmapSubtable4NextCodepoint] </a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2802" class="ex-ref">CVE-2016-2802</a>)</li>
 </ul>
 
 

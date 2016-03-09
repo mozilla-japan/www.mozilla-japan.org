@@ -51,11 +51,11 @@
 </p>
 
 <h3>概要</h3>
-<p>解放後使用につながる、WebRTC の <code>GetStaticInstance</code> 関数における競合状態が、セキュリティ研究者の <strong>Ronald Crane</strong> 氏によって報告されました。これは潜在的に悪用可能なクラッシュにつながる問題でした。この問題はコード監査を通じて発見され、いずれも Web コンテンツを通じて悪用可能な確かな仕組みはありませんが、引き金となる仕組みが見つかった場合に脆弱なものでした。</p>
+<p>解放後使用につながる、WebRTC の <code>GetStaticInstance</code> 関数における競合状態が、セキュリティ研究者の <strong>Ronald Crane</strong> 氏によって報告されました。これは潜在的に悪用可能なクラッシュにつながる問題でした。この問題はコード監査を通じて発見され、Web コンテンツを通じて悪用可能な確かな仕組みはありませんが、引き金となる仕組みが見つかった場合に脆弱なものでした。</p>
 
 <h3>参考資料</h3>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1219339">Race condition in GetStaticInstance can cause use after free</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1973" class="ex-ref">CVE-2016-1973</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1219339">Bug 1219339 &ndash; Race condition in GetStaticInstance can cause use after free</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1973" class="ex-ref">CVE-2016-1973</a>)</li>
 </ul>
 
 

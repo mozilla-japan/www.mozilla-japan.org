@@ -52,11 +52,11 @@
 </p>
 
 <h3>概要</h3>
-<p>悪意のあるページが Content Security Policy (CSP) 違反レポートを用いてユーザのマシン上のファイルを上書きできてしまうことが、セキュリティ研究者の <strong>Nicolas Golubovic</strong> 氏によって報告されました。ファイルの内容はレポートの JSON 形式に制限されます。多くの場合、ローカルファイルの上書きは単純に破壊的で、そのファイルの機能を失わせることになるでしょう。CSP エラーレポートには、ブラウザが描画できる HTML の断片が含まれる場合があります。ユーザがアドオンの署名を無効化し、なおかつ「パッケージされていない」アドオンをインストールしていた場合、悪意のあるページがそのアドオンのリソースのいずれかを上書きできる可能性がありました。そのリソースの使用状況によっては、この問題は特権昇格に繋がる恐れがありました。</p>
+<p>悪意のあるページが Content Security Policy (CSP) 違反レポートを用いてユーザのマシン上のファイルを上書きできてしまうことが、セキュリティ研究者の <strong>Nicolas Golubovic</strong> 氏によって報告されました。ファイルの内容はレポートの JSON 形式に制限されます。多くの場合、ローカルファイルの上書きは単純に破壊的で、そのファイルの機能を失わせることになるでしょう。CSP エラーレポートには、ブラウザが描画できる HTML の断片が含まれる場合があります。ユーザがアドオンの署名を無効化し、なおかつ「パッケージされていない」アドオンをインストールしていた場合、悪意のあるページがそのアドオンのリソースのいずれかを上書きできる可能性がありました。そのリソースの使用状況によっては、この問題は特権昇格につながる恐れがありました。</p>
 
 <h3>参考資料</h3>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243178">CSP's report-uri (over-)writes files</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1954" class="ex-ref">CVE-2016-1954</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1243178">Bug 1243178 &ndash; CSP's report-uri (over-)writes files</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1954" class="ex-ref">CVE-2016-1954</a>)</li>
 </ul>
 
 

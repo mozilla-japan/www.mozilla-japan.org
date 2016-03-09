@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="/images/mozilla-16.png" />
 
 
-<title>MFSA 2015-136: perfomance.getEntries と履歴遷移を通じた同一オリジンポリシー違反</title>
+<title>MFSA 2016-21: 表示されているページのアドレスが上書きされてしまう問題</title>
 <link rel="alternate" hreflang="en" modified="March 8, 2016">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
@@ -38,27 +38,25 @@
 <div id="main-content">
 
 
-<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2015-136</strong></p>
-<h1>Mozilla Foundation セキュリティアドバイザリ 2015-136</h1>
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2016-21</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2016-21</h1>
 <p>
-<span class="label">タイトル:</span>      perfomance.getEntries と履歴遷移を通じた同一オリジンポリシー違反<br>
-<span class="label">重要度:</span>     高<br>
-<span class="label">公開日:</span>  2015/12/15<br>
-<span class="label">報告者:</span>   cgvwzq<br>
+<span class="label">タイトル:</span>      表示されているページのアドレスが上書きされてしまう問題<br>
+<span class="label">重要度:</span>     中<br>
+<span class="label">公開日:</span>  2016/03/08<br>
+<span class="label">報告者:</span>   Abdulrahman Alqabandi<br>
 <span class="label">影響を受ける製品:</span>   Firefox、Firefox ESR<br>
 <br>
-<span class="label">修正済みのバージョン:</span>   Firefox 43<br>
+<span class="label">修正済みのバージョン:</span>   Firefox 45<br>
 <span class="label">&nbsp;</span> Firefox ESR 38.7<br>
 </p>
 
 <h3>概要</h3>
-<p>ページの配信にインラインフレームとともに <code>perfomance.getEntries()</code> が使われていた場合、リダイレクト後のクロスオリジン URL を読み取れることが、セキュリティ研究者の <strong>cgvwzq</strong> 氏によって報告されました。スクリプトを通じて履歴を戻った場合、元の場所に行かず、リダイレクト後の場所のコンテンツがブラウザキャッシュから引き出されていました。これは同一オリジンポリシー違反であり、データ搾取に悪用される恐れがありました。</p>
-<p class="note">この問題は、Mozilla 製品に限らず、他のブラウザにも影響します。</p>
+<p>攻撃者が任意の Web ページを読み込み、一方でロケーションバーに表示されている URL を空白もしくはそのページによって定義された内容に置き換えられることが、セキュリティ研究者の <strong>Abdulrahman Alqabandi</strong> 氏によって報告されました。この問題は、現在読み込まれているページの場所をごまかすために用いられ、攻撃者はその悪意のあるページのアドレスを正しく表示させることなく他のページを偽装することが可能でした。</p>
 
 <h3>参考資料</h3>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1185256">Bug 1185256 &ndash; performance.getEntries() shows x-domain URLs after a redirect when loading from cache</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-7207" class="ex-ref">CVE-2015-7207</a>)</li>
-  <li><a href="https://github.com/w3c/resource-timing/issues/29">Cached redirects + History traversal reveal cross-origin URLs</a></li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1228754">Show about:blank using javascript URI scheme</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1958" class="ex-ref">CVE-2016-1958</a>)</li>
 </ul>
 
 
@@ -67,10 +65,10 @@
   <div id="footer" class="cols">
     <div class="six-col">
       <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
-      <p id="copyright">Portions of this content are &copy;1998&ndash;2015 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2016 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2015-136.html">英語版</a> 2016/03/08 &mdash; 和訳版 2016/03/09 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2015-136.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2016-21.html">英語版</a> 2016/03/08 &mdash; 和訳版 2016/03/09 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2016-21.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

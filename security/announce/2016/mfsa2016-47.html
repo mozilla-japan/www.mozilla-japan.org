@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="/images/mozilla-16.png" />
 
 
-<title>MFSA 2016-15: 低メモリ下での SSL 接続中に生じる NSS の解放後使用</title>
+<title>MFSA 2016-47: JavaScript .watch() を通じた不正な HashMap エントリーへの書き込み</title>
 <link rel="alternate" hreflang="en" modified="April 26, 2016">
 <style type="text/css">
   .label { width: 12em; font-weight: bold; float: left; }
@@ -38,27 +38,26 @@
 <div id="main-content">
 
 
-<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2016-15</strong></p>
-<h1>Mozilla Foundation セキュリティアドバイザリ 2016-15</h1>
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2016-47</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2016-47</h1>
 <p>
-<span class="label">タイトル:</span>      低メモリ下での SSL 接続中に生じる NSS の解放後使用<br>
-<span class="label">重要度:</span>     中<br>
-<span class="label">公開日:</span>  2016/03/08<br>
-<span class="label">報告者:</span>   Eric Rescorla<br>
-<span class="label">影響を受ける製品:</span>   Firefox、Firefox ESR、NSS<br>
+<span class="label">タイトル:</span>      JavaScript .watch() を通じた不正な HashMap エントリーへの書き込み<br>
+<span class="label">重要度:</span>     高<br>
+<span class="label">公開日:</span>  2016/04/26<br>
+<span class="label">報告者:</span>   CESG<br>
+<span class="label">影響を受ける製品:</span>   Firefox、Firefox ESR<br>
 <br>
-<span class="label">修正済みのバージョン:</span>   Firefox 44<br>
+<span class="label">修正済みのバージョン:</span>   Firefox 46<br>
+<span class="label">&nbsp;</span> Firefox ESR 45.1<br>
 <span class="label">&nbsp;</span> Firefox ESR 38.8<br>
-<span class="label">&nbsp;</span> NSS 3.21<br>
-<span class="label">&nbsp;</span> NSS 3.19.2.4<br>
 </p>
 
 <h3>概要</h3>
-<p>DHE および ECDHE ハンドシェイク中のメモリ割り当て失敗が解放後使用の脆弱性につながる恐れのあることが、Mozilla 開発者の <strong>Eric Rescorla</strong> によって報告されました。</p>
+<p>JavaScript の <code>.watch()</code> メソッドを使って、その根底にある HashMap の 32 ビット生成カウントをオーバーフローさせ、不正なエントリーへ書き込みできてしまうという問題が、GCHQ のセキュリティ部門 <strong>CESG</strong> によって報告されました。条件が整えば、この書き込みは任意のコード実行につながる恐れがありました。このオーバーフローはかなりの時間を必要とし、悪意のあるページは攻撃継続中、ユーザにそれを開いたままにさせておく必要があります。</p>
 
 <h3>参考資料</h3>
 <ul>
-  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1209546">Potential UAF in ssl3_HandleECDHServerKeyExchange</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-1978" class="ex-ref">CVE-2016-1978</a>)</li>
+  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1246061">Bug 1246061 &ndash; null-byte written out of bounds using .watch() due to generation count overflow</a> (<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2808" class="ex-ref">CVE-2016-2808</a>)</li>
 </ul>
 
 
@@ -70,7 +69,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2016 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2016-15.html">英語版</a> 2016/04/26 &mdash; 和訳版 2016/04/27 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2016-15.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2016-47.html">英語版</a> 2016/04/26 &mdash; 和訳版 2016/04/27 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2016-47.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

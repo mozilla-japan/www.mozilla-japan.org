@@ -186,6 +186,12 @@ RewriteRule ^about/licensing                                            http://m
 RewriteRule ^about/partners                                             http://mozilla.jp/about/japan [R=permanent,L]
 RewriteRule ^contact                                                    http://mozilla.jp/about/contact [R=permanent,L]
 
+# ===== Foundation
+RewriteRule ^foundation/feed-icon-guidelines/?$                         https://www.mozilla.org/ja/foundation/feed-icon-guidelines/ [R=permanent,L]
+RewriteRule ^foundation/feed-icon-guidelines/faq\.html$                 https://www.mozilla.org/ja/foundation/feed-icon-guidelines/faq/ [R=permanent,L]
+RewriteRule ^(?:foundation/)?trademarks/?$                              https://www.mozilla.org/ja/foundation/trademarks/ [R=permanent,L]
+RewriteRule ^foundation/trademarks/(.*)\.html$                          https://www.mozilla.org/ja/foundation/trademarks/$1/ [R=permanent,L]
+
 # ===== Misc.
 RewriteRule ^about\.html                                                /about/roles.html [R=permanent,L]
 RewriteRule ^binaries\.html                                             /releases/ [R=permanent]
@@ -197,7 +203,6 @@ RewriteRule ^get-involved\.html                                         /contrib
 RewriteRule ^old-roadmap\.html                                          /roadmap/ [R=permanent]
 RewriteRule ^projects/distros\.html                                     /university/HOF.html [R=permanent]
 RewriteRule ^README-cvs\.html                                           /contribute/writing/cvs.html [R=permanent]
-RewriteRule ^trademarks/?$                                              /foundation/trademarks/ [R=permanent]
 RewriteRule ^NPL/                                                       /MPL/ [R=permanent]
 RewriteRule ^developers/                                                /developer/ [R=permanent]
 RewriteRule ^feedback\.html                                             http://mozilla.jp/about/contact [R=permanent,L]

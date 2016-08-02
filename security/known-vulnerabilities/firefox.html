@@ -12,7 +12,7 @@
 
 
 <title>Firefox セキュリティアドバイザリ</title>
-<link rel="alternate" hreflang="en" modified="June 7, 2016">
+<link rel="alternate" hreflang="en" modified="August 2, 2016">
 <style type="text/css" media="screen,tv">
   #mainContent { line-height: 160%; }
   table { width: 100%; background-color: #eee; }
@@ -69,6 +69,32 @@
 </ul>
 
 <div class="vulnlist">
+  <h3 id="firefox48">Firefox 48 で修正済み</h3>
+  <dl class="table">
+    <dt><a href="/security/announce/2016/mfsa2016-84.html" class="moderate">MFSA 2016-84</a></dt><dd>ページ遷移時の Resource Timing API 使用を通じた情報漏えい</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-83.html" class="low">MFSA 2016-83</a></dt><dd>内部エラーページヘのテキスト注入を通じた偽装攻撃</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-82.html" class="moderate">MFSA 2016-82</a></dt><dd>Android 版 Firefox 上での RTL 文字によるロケーションバー偽装</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-81.html" class="moderate">MFSA 2016-81</a></dt><dd>ドラッグ＆ドロップを通じた情報漏えいとローカルファイル改変</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-80.html" class="moderate">MFSA 2016-80</a></dt><dd>ローカル HTML ファイルと保存されたショートカットファイルを用いた同一配信元ポリシー違反</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-79.html" class="high">MFSA 2016-79</a></dt><dd>SVG 効果適用時の解放後使用</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-78.html" class="high">MFSA 2016-78</a></dt><dd>表示変換における型混同</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-77.html" class="high">MFSA 2016-77</a></dt><dd>ClearKey Content Decryption Module (CDM) における動画再生中のバッファオーバーフロー</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-76.html" class="moderate">MFSA 2016-76</a></dt><dd>marquee タグ上のスクリプトがサンドボックス化された iframe 上で実行可能となっている</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-75.html" class="high">MFSA 2016-75</a></dt><dd>WebSockets におけるデータバッファリング中の整数オーバーフロー</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-74.html" class="moderate">MFSA 2016-74</a></dt><dd>フォーム input type を password から text へ変更することで、セッション復元ファイルに平文パスワードが保存されてしまう</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-73.html" class="critical">MFSA 2016-73</a></dt><dd>入れ子になった同期イベントを伴ったサービスワーカーにおける解放後使用</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-72.html" class="critical">MFSA 2016-72</a></dt><dd>WebRTC セッション終了時の DTLS における解放後使用</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-71.html" class="moderate">MFSA 2016-71</a></dt><dd>JavaScript の増分ガベージコレクションにおけるクラッシュ</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-70.html" class="moderate">MFSA 2016-70</a></dt><dd>Alt キーとトップレベルメニュー併用時の解放後使用</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-69.html" class="moderate">MFSA 2016-69</a></dt><dd>Mozilla アップデータとコールバックアプリケーションパス引数を通じたローカルユーザによる任意のファイル改変</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-68.html" class="moderate">MFSA 2016-68</a></dt><dd>Expat ライブラリにおける XML 解析中の境界外読み取り</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-67.html" class="high">MFSA 2016-67</a></dt><dd>2 次元グラフィックス描画時のスタックアンダーフロー</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-66.html" class="low">MFSA 2016-66</a></dt><dd>不正なメディアタイプの data URL を通じたロケーションバーの偽装</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-65.html" class="moderate">MFSA 2016-65</a></dt><dd>FFmpeg 0.10 のメモリ割り当て問題に起因する Cairo の描画時クラッシュ</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-64.html" class="high">MFSA 2016-64</a></dt><dd>双方向コンテンツを含む SVG 描画中のバッファオーバーフロー</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-63.html" class="high">MFSA 2016-63</a></dt><dd>ページが閉じられた後も favicon のネットワーク接続が持続可能となっている</dd>
+    <dt><a href="/security/announce/2016/mfsa2016-62.html" class="critical">MFSA 2016-62</a></dt><dd>様々なメモリ安全性の問題 (rv:48.0 / rv:45.3)</dd>
+  </dl>
   <h3 id="firefox47">Firefox 47 で修正済み</h3>
   <dl class="table">
     <dt><a href="/security/announce/2016/mfsa2016-61.html" class="moderate">MFSA 2016-61</a></dt><dd>Network Security Services (NSS) の脆弱性</dd>
@@ -820,7 +846,7 @@
       <p id="copyright">Portions of this content are &copy;1998&ndash;2016 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
     </div>
     <div class="col-span">
-      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/known-vulnerabilities/firefox.html">英語版</a> 2016/06/07 &mdash; 和訳版 2016/06/08 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/known-vulnerabilities/firefox.html">英語版更新履歴</a>
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/known-vulnerabilities/firefox.html">英語版</a> 2016/08/02 &mdash; 和訳版 2016/08/03 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/known-vulnerabilities/firefox.html">英語版更新履歴</a>
     </div>
     <div class="five-col">
       <h5 class="footer-nav-title"><strong>About Us</strong></h5>

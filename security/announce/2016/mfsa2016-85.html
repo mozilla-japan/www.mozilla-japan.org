@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2016-85: Firefox 49 で修正されたセキュリティ脆弱性</title>
+<link rel="alternate" hreflang="en" modified="September 20, 2016">
+<style type="text/css">
+  .label { width: 12em; font-weight: bold; float: left; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2016-85</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2016-85</h1>
+<p>
+<span class="label">タイトル:</span>      Firefox 49 で修正されたセキュリティ脆弱性<br>
+<span class="label">重要度:</span>     最高<br>
+<span class="label">公開日:</span>  2016/09/13<br>
+<span class="label">影響を受ける製品:</span>   Firefox<br>
+<br>
+<span class="label">修正済みのバージョン:</span>   Firefox 49<br>
+</p>
+
+<h3>概要</h3>
+
+<p id="CVE-2016-2827">mozilla::net::IsValidReferrerPolicy における境界外読み取り <span class="level low">[低]</span><br />
+<strong>報告者:</strong> Atte Kettunen<br />
+<strong>概要:</strong> 値を伴わない <code>referrer</code> ディレクティブを含んだ content security policy (CSP) が、悪用不能なクラッシュを発生させる可能性がありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1289085">1289085</a>]
+</p>
+
+<p id="CVE-2016-5270">CVE-2016-5270 - nsCaseTransformTextRunFactory::TransformString におけるヒープバッファオーバーフロー <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Atte Kettunen<br />
+<strong>概要:</strong> 特定の Unicode 文字を含んだテキストの変換中に真偽値の境界外読み取りが発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1291016">1291016</a>]
+</p>
+
+<p id="CVE-2016-5271">CVE-2016-5271 - PropertyProvider::GetSpacingInternal における境界外読み取り <span class="level low">[低]</span><br />
+<strong>報告者:</strong> Abhishek Arya<br />
+<strong>概要:</strong> <code>display:contents</code> を使った特定のページにおける一連のテキスト処理中に境界外読み取りが発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1288946">1288946</a>]
+</p>
+
+<p id="CVE-2016-5272">CVE-2016-5272 - nsImageGeometryMixin における誤った型変換 <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Abhishek Arya<br />
+<strong>概要:</strong> <code>input</code> 要素を含むレイアウトの処理中に誤った型変換が行われ、潜在的に悪用可能なクラッシュが発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1297934">1297934</a>]
+</p>
+
+<p id="CVE-2016-5273">CVE-2016-5273 - mozilla::a11y::HyperTextAccessible::GetChildOffset におけるクラッシュ <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Nils<br />
+<strong>概要:</strong> アクセシビリティ関連コード内で潜在的に悪用可能なクラッシュが発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1280387">1280387</a>]
+</p>
+
+<p id="CVE-2016-5276">CVE-2016-5276 - mozilla::a11y::DocAccessible::ProcessInvalidationList における解放後ヒープ使用 <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Nils<br />
+<strong>概要:</strong> <code>aria-owns</code> 属性の設定によって開放後使用の脆弱性が発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1287721">1287721</a>]
+</p>
+
+<p id="CVE-2016-5274">CVE-2016-5274 - nsFrameManager::CaptureFrameState における解放後使用 <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Nils<br />
+<strong>概要:</strong> Web アニメーション関連コード内でスタイル再計算中に開放後使用の問題が発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1282076">1282076</a>]
+</p>
+
+<p id="CVE-2016-5277">CVE-2016-5277 - nsRefreshDriver::Tick における解放後ヒープ使用 <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Nils<br />
+<strong>概要:</strong> Web アニメーション関連コード内でタイムライン破棄時に開放後使用の問題が発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1291665">1291665</a>]
+</p>
+
+<p id="CVE-2016-5275">CVE-2016-5275 - mozilla::gfx::FilterSupport::ComputeSourceNeededRegions におけるグローバルバッファオーバーフロー <span class="level critical">[最高]</span><br />
+<strong>報告者:</strong> Nils<br />
+<strong>概要:</strong> Canvas 描画中に空のフィルタを処理する際、バッファオーバーフローが発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1287316">1287316</a>]
+</p>
+
+<p id="CVE-2016-5278">CVE-2016-5278 - nsBMPEncoder::AddImageFrame におけるヒープバッファオーバーフロー <span class="level critical">[最高]</span><br />
+<strong>報告者:</strong> Nils<br />
+<strong>概要:</strong> 画像フレームを画像へエンコードする際にバッファオーバーフローが生じ、潜在的に悪用可能なクラッシュが発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1294677">1294677</a>]
+</p>
+
+<p id="CVE-2016-5279">CVE-2016-5279 - ドラッグ＆ドロップ後にファイルのフルローカルパスが Web ページに露呈される <span class="level moderate">[中]</span><br />
+<strong>報告者:</strong> Rafael Gieschke<br />
+<strong>概要:</strong> ローカルファイルが Firefox 内へドラッグ＆ドロップされた際に、スクリプトでそのファイルのフルパスを取得することが可能でした。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1249522">1249522</a>]
+</p>
+
+<p id="CVE-2016-5280">CVE-2016-5280 - mozilla::nsTextNodeDirectionalityMap::RemoveElementFromMap における解放後使用 <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Mei Wang<br />
+<strong>概要:</strong> テキスト方向の変更時に解放後使用の脆弱性が発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1289970">1289970</a>]
+</p>
+
+<p id="CVE-2016-5281">CVE-2016-5281 - DOMSVGLength における解放後使用 <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Brian Carpenter<br />
+<strong>概要:</strong> スクリプトを通じた SVG 形式のコンテンツの操作時に解放後使用の脆弱性が発生する恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1284690">1284690</a>]
+</p>
+
+<p id="CVE-2016-5282">CVE-2016-5282 - ホワイトリストに含まれないスキーマからお気に入りアイコンをリクエストできてしまう <span class="level moderate">[中]</span><br />
+<strong>報告者:</strong> Richard Newman<br />
+<strong>概要:</strong> <code>jar:</code> などホワイトリストに含まれないプロトコルを通じてお気に入りアイコンが読み込まれる可能性がありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=932335">932335</a>]
+</p>
+
+<p id="CVE-2016-5283">CVE-2016-5283 - &lt;iframe src&gt; フラグメントタイミング攻撃によりクロスオリジンデータが露呈される <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Gavin Sharp<br />
+<strong>概要:</strong> iframe を用いたタイミング攻撃の脆弱性が、ドキュメントリサイズとリンク色を用いたプライベートデータの潜在的な露呈につながる恐れがありました。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=928187">928187</a>]
+</p>
+
+<p id="CVE-2016-5284">CVE-2016-5284 - アドオン更新サイト証明書のピンが期限切れとなっている <span class="level high">[高]</span><br />
+<strong>報告者:</strong> Ryan Duff<br />
+<strong>概要:</strong> 製品の <a href="https://blog.mozilla.org/security/2016/09/16/update-on-add-on-pinning-vulnerability/">「同梱公開鍵ピンニング」更新プロセスの問題</a> により、アドオン更新のピンニングが 9 月上旬に効果を発揮しなくなっていました。Mozilla の Web サイト向けに誤発行された証明書を取得できた攻撃者は、自ら管理するネットワーク上のユーザに対して悪質なアドオンの更新を送信することが可能でした。アドオンを一切インストールしていないユーザは影響を受けません。[<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1303127">1303127</a>]
+</p>
+
+<p id="CVE-2016-5256">CVE-2016-5256 - Firefox 49 で修正されたメモリ安全性問題 <span class="level critical">[最高]</span><br />
+<strong>報告者:</strong> Mozilla 開発者<br />
+<strong>概要:</strong> Firefox 48 に存在していたメモリ安全性の問題が、Mozilla の開発者である Christoph Diehl、Christian Holler、Gary Kwong、Nathan Froyd、Honza Bambas、Seth Fowler、Michael Smith によって報告されました。これらの問題の一部は特定状況下でメモリ破壊の形跡が見られ、潜在的に任意のコード実行に悪用可能と思われるものでした。[<a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1290244,1282746,1268034,1296078,1297099,1276413,1296087">Firefox 49 で修正されたメモリ安全性の問題</a>]
+</p>
+
+<p id="CVE-2016-5257">CVE-2016-5257 - Firefox 49 と Firefox ESR 45.4 で修正されたメモリ安全性問題 <span class="level critical">[最高]</span><br />
+<strong>報告者:</strong> Mozilla 開発者<br />
+<strong>概要:</strong> Firefox 48 と Firefox ESR 45.3 に存在していたメモリ安全性の問題が、Mozilla の開発者とコミュニティメンバーである Christoph Diehl、Andrew McCreight、Dan Minor、Byron Campen、Jon Coppeard、Steve Fink、Tyson Smith、Philipp、Carsten Book によって報告されました。これらの問題の一部はメモリ破壊の形跡が見られ、少なくともその一部は十分な労力をかければ任意のコード実行に悪用可能と思われるものでした。[<a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1288588,1287204,1294407,1293347,1288780,1288555,1289280,1294095,1277213">Firefox 49 と Firefox ESR 45.4 で修正されたメモリ安全性の問題</a>]
+</p>
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2016 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2016-85.html">英語版</a> 2016/09/20 &mdash; 和訳版 2016/09/21 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2016-85.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

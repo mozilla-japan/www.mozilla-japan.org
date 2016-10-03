@@ -185,6 +185,7 @@ RewriteRule ^about/japan-faq                                            http://m
 RewriteRule ^about/licensing                                            http://mozilla.jp/about/licensing [R=permanent,L]
 RewriteRule ^about/partners                                             http://mozilla.jp/about/japan [R=permanent,L]
 RewriteRule ^contact                                                    http://mozilla.jp/about/contact [R=permanent,L]
+RewriteRule ^about/policies/participation\.html$                        https://www.mozilla.org/ja/about/governance/policies/participation/ [R=permanent,L]
 
 # ===== Foundation
 RewriteRule ^foundation/feed-icon-guidelines/?$                         https://www.mozilla.org/ja/foundation/feed-icon-guidelines/ [R=permanent,L]

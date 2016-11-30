@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2016-93: Thunderbird 45.5 で修正されたセキュリティ脆弱性</title>
+<link rel="alternate" hreflang="en" modified="November 30, 2016">
+<style type="text/css">
+  .label { width: 12em; font-weight: bold; float: left; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2016-93</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2016-93</h1>
+<p>
+<span class="label">タイトル:</span>      Thunderbird 45.5 で修正されたセキュリティ脆弱性<br>
+<span class="label">公開日:</span>  2016/11/18<br>
+<span class="label">影響を受ける製品:</span>   Thunderbird<br>
+<br>
+<span class="label">修正済みのバージョン:</span>   Thunderbird 45.5<br>
+</p>
+
+<section class="cve">
+  <h4 id="CVE-2016-5296" class="level-heading">
+    <a href="#CVE-2016-5296">CVE-2016-5296: rasterize_edges_1 におけるヒープバッファオーバーフローの書き込み</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Abhishek Arya</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>コンパイラ最適化が原因で、Cairo 内部で SVG コンテンツの処理中にヒープバッファオーバーフローが発生し、潜在的に悪用可能なクラッシュにつながる恐れがありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1292443">Bug 1292443</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2016-5294" class="level-heading">
+    <a href="#CVE-2016-5294">CVE-2016-5294: 更新プロセスの結果ファイルに任意のターゲットディレクトリーが設定されてしまう</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Holger Fuhrmannek</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Mozilla Updater が、更新プロセス結果ファイルの出力先として任意のターゲット作業ディレクトリーを選択するよう設定される恐れがありました。この脆弱性を悪用するにはローカルシステムへのアクセスが必要となります。<br><em>注: この問題は Windows システムにのみ影響します。</em></p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1246972">Bug 1246972</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2016-5297" class="level-heading">
+    <a href="#CVE-2016-5297">CVE-2016-5297: JavaScript における引数の長さの誤検査</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Andr&#x00E9; Bargull</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>JavaScript における引数の長さ検査にミスがあり、潜在的な整数オーバーフローあるいはその他の境界検査の問題につながる恐れがありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1303678">Bug 1303678</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2016-9066" class="level-heading">
+    <a href="#CVE-2016-9066">CVE-2016-9066: nsScriptLoadHandler におけるバッファオーバーフローにつながる整数オーバーフロー</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Samuel Gro&#x00DF;</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>大量の受信データを処理する際のメモリー割り当ての問題により、整数オーバーフローが生じ、潜在的に悪用可能なクラッシュにつながる恐れがありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1299686">Bug 1299686</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2016-5291" class="level-heading">
+    <a href="#CVE-2016-5291">CVE-2016-5291: ローカル HTML ファイルと保存されたショートカットファイルを用いた同一オリジンポリシー違反</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Yuyang Zhou</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>ローカルショートカットファイルを用いて同一オリジンポリシーを回避し、ディスクから任意のローカルコンテンツを読み込むことが可能でした。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1292159">Bug 1292159</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2016-9074" class="level-heading">
+    <a href="#CVE-2016-9074">CVE-2016-9074: divSpoiler におけるタイミングサイドチャンネル抵抗力不足</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Franziskus Kiefer</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>タイミングサイドチャンネル攻撃に対する既存の緩和策が、特定の状況で不十分でした。この問題は Network Security Services (NSS) 3.26.1 で修正されました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1293334">Bug 1293334</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2016-5290" class="level-heading">
+    <a href="#CVE-2016-5290">CVE-2016-5290: Thunderbird 45.5 で修正されたメモリー安全性の問題</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Mozilla 開発者</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Thunderbird 45.4 に存在していたメモリ安全性の問題が、Mozilla の開発者とコミュニティメンバーである Olli Pettay、Christian Holler、Ehsan Akhgari、Jon Coppeard、Gary Kwong、Tooru Fujisawa、Philipp、Randell Jesup によって報告されました。これらの問題の一部はメモリー破壊の形跡が見られ、少なくともその一部は十分な労力をかければ任意のコード実行に悪用可能と思われるものでした。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1309720%2C1297062%2C1303710%2C1018486%2C1292590%2C1301343%2C1301496%2C1308048%2C1308346%2C1299519%2C1286911%2C1298169">Thunderbird 45.5 で修正されたメモリー安全性の問題</a></li>
+  </ul>
+</section>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2016 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2016-93.html">英語版</a> 2016/11/30 &mdash; 和訳版 2016/12/01 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2016-93.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

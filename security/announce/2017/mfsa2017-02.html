@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2017-02: Firefox ESR 45.7 で修正されたセキュリティ脆弱性</title>
+<link rel="alternate" hreflang="en" modified="January 24, 2017">
+<style type="text/css">
+  .label { width: 12em; font-weight: bold; float: left; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2017-02</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2017-02</h1>
+<p>
+<span class="label">タイトル:</span>      Firefox ESR 45.7 で修正されたセキュリティ脆弱性<br>
+<span class="label">重要度:</span>     最高<br>
+<span class="label">公開日:</span>  2017/01/24<br>
+<span class="label">影響を受ける製品:</span>   Firefox ESR<br>
+<br>
+<span class="label">修正済みのバージョン:</span>   Firefox ESR 45.7<br>
+</p>
+
+<section class="cve">
+  <h4 id="CVE-2017-5375" class="level-heading">
+    <a href="#CVE-2017-5375"><span class="anchor">#</span>CVE-2017-5375: 過度な JIT コードの割り当てによる ASLR と DEP の回避</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Rh0</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>JIT コードの割り当てによって ASLR と DEP の保護を回避することが可能であり、潜在的なメモリ破壊攻撃につながる恐れがありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1325200">Bug 1325200</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5376" class="level-heading">
+    <a href="#CVE-2017-5376"><span class="anchor">#</span>CVE-2017-5376: XSL における開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nicolas Grégoire</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>XSLT ドキュメント内での XSL 操作中に開放後使用が生じる恐れがありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1311687">Bug 1311687</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5378" class="level-heading">
+    <a href="#CVE-2017-5378"><span class="anchor">#</span>CVE-2017-5378: JavaScript オブジェクトのポインターとフレームデータ漏えい</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Jann Horn</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>JavaScript オブジェクトのハッシュコードがページ間で共有されていました。ハッシュコードを通じてオブジェクトのアドレスを発見できることから、これはポインターの漏えいにつながる恐れがありました。また、それらのハッシュコードを用いたオブジェクト内容のデータ漏えいにつながる恐れもありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1312001">Bug 1312001</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1330769">Bug 1330769</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5380" class="level-heading">
+    <a href="#CVE-2017-5380"><span class="anchor">#</span>CVE-2017-5380: DOM 操作中の潜在的な開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>SVG コンテンツの DOM 操作中に生じる潜在的な開放後使用が、ファジングを通じて発見されました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1322107">Bug 1322107</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5390" class="level-heading">
+    <a href="#CVE-2017-5390"><span class="anchor">#</span>CVE-2017-5390: 開発者ツールの JSON ビューアーにおける安全でない通信方式</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Jerri Rice</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>開発者ツールの JSON ビューアーが、安全でない方法を用いて通信チャンネルを生成し、JSON あるいは HTTP ヘッダーのデータをコピー、表示しており、特権昇格につながる恐れがありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1297361">Bug 1297361</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5396" class="level-heading">
+    <a href="#CVE-2017-5396"><span class="anchor">#</span>CVE-2017-5396: メディアデコーダーによる開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Filipe Gomes</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>メディアデコーダーにおいて、メディアファイルの操作中、メディア要素がメモリから開放された後に一部のイベントが呼び出されることによって生じる開放後使用の脆弱性が発見されました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1329403">Bug 1329403</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5383" class="level-heading">
+    <a href="#CVE-2017-5383"><span class="anchor">#</span>CVE-2017-5383: Unicode 文字を用いたロケーションバー偽装</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Armin Razmjou</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>代替ハイフンや代替引用符用の特定の Unicode グリフを含んだ URL で Punycode 表示が適切に行われておらず、ロケーションバーにおけるドメイン名偽装攻撃が発生する恐れがありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1323338">Bug 1323338</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1324716">Bug 1324716</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5386" class="level-heading">
+    <a href="#CVE-2017-5386"><span class="anchor">#</span>CVE-2017-5386: WebExtension が他の拡張機能に影響を及ぼす <code>data:</code> プロコルを使用できてしまう</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Muneaki Nishimura</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>WebExtension のスクリプトが、<code>data:</code> プロトコルを用いて、このプロトコルを採用している他の WebExtension によって読み込まれたページに影響を及ぼすことが可能であり、影響を受ける拡張機能において潜在的なデータ漏えいや特権昇格につながる恐れがありました。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1319070">Bug 1319070</a></li>
+  </ul>
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5373" class="level-heading">
+    <a href="#CVE-2017-5373"><span class="anchor">#</span>CVE-2017-5373: Firefox 51 と Firefox ESR 45.7 で修正されたメモリ安全性の問題</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Mozilla の開発者とコミュニティ</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Firefox 50.1 と Firefox ESR 45.6 に存在していたメモリ安全性の問題が、Mozilla の開発者とコミュニティメンバーである Christian Holler、Gary Kwong、André Bargull、Jan de Mooij、Tom Schuster、Oriol によって報告されました。これらの問題の一部はメモリー破壊の形跡が見られ、少なくともその一部は十分な労力をかければ任意のコード実行に悪用可能と思われるものでした。</p>
+  <h5>参考資料</h5>
+  <ul>
+    <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1322315%2C1328834%2C1322420%2C1285833%2C1285960%2C1328251%2C1331058%2C1325938%2C1325877">Firefox 51 と Firefox ESR 45.7 で修正されたメモリ安全性の問題</a></li>
+  </ul>
+</section>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2017 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2017-02.html">英語版</a> 2017/01/24 &mdash; 和訳版 2017/03/04 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2017-02.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

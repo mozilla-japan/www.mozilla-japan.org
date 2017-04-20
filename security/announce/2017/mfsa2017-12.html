@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2017-12: Firefox ESR 52.1 で修正されたセキュリティ脆弱性</title>
+<link rel="alternate" hreflang="en" modified="April 19, 2017">
+<style type="text/css">
+  .label { width: 12em; font-weight: bold; float: left; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2017-12</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2017-12</h1>
+<p>
+<span class="label">タイトル:</span>      Firefox ESR 52.1 で修正されたセキュリティ脆弱性<br>
+<span class="label">重要度:</span>     最高<br>
+<span class="label">公開日:</span>  2017/04/19<br>
+<span class="label">影響を受ける製品:</span>   Firefox<br>
+<br>
+<span class="label">修正済みのバージョン:</span>   Firefox ESR 52.1<br>
+</p>
+
+<section class="cve">
+  <h4 id="CVE-2017-5433" class="level-heading">
+    <a href="#CVE-2017-5433"><span class="anchor">#</span>CVE-2017-5433: SMIL アニメーション関数における解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>SMIL アニメーション関数において、配列内のアニメーション要素へのポインターがまだ使用中にも関わらずアニメーションコントローラーから外れた場合に、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1347168">Bug 1347168</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5435" class="level-heading">
+    <a href="#CVE-2017-5435"><span class="anchor">#</span>CVE-2017-5435: エディターにおけるトランザクション処理中の解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>エディター内のトランザクション処理中、デザインモードインタラクションが発生した場合に解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1350683">Bug 1350683</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5436" class="level-heading">
+    <a href="#CVE-2017-5436"><span class="anchor">#</span>CVE-2017-5436: Graphite 2 における悪意のあるフォントによる境界外書き込み</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Holger Fuhrmannek</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Graphite 2 ライブラリ内で、悪意を持って作り込まれた Graphite フォントによって境界外書き込みが引き起こされる可能性がありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。この問題は Graphite 2 ライブラリと Mozilla 製品のいずれにおいても修正済みです。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1345461">Bug 1345461</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5461" class="level-heading">
+    <a href="#CVE-2017-5461"><span class="anchor">#</span>CVE-2017-5461: NSS の Base64 エンコーディングにおける境界外書き込み</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Ronald Crane</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Network Security Services (NSS) ライブラリの Base64 デコーディング操作中、バッファーに割り当てられるメモリーの不足により境界外書き込みが生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。NSS ライブラリはこの問題を修正するため更新され、Firefox ESR 52.1 に含まれている NSS のバージョンは 3.29.5 へ更新されました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1344380">Bug 1344380</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5459" class="level-heading">
+    <a href="#CVE-2017-5459"><span class="anchor">#</span>CVE-2017-5459: WebGL におけるバッファーオーバーフロー</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Atte Kettunen</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>WebGL におけるバッファーオーバーフローをウェブコンテンツから引き起こすことが可能でした。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1333858">Bug 1333858</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5466" class="level-heading">
+    <a href="#CVE-2017-5466"><span class="anchor">#</span>CVE-2017-5466: 単独の data:text/html URL を再読み込みした際のオリジン混同</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Takeshi Terada</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>あるページが元のサイトからハイパーリンクを通じて読み込まれ、そのページに <code>data:text/html</code> URL へのリダイレクトが含まれていた場合に、ブラウザーの再読み込みを行うと、その再読み込みされた <code>data:text/html</code> ページに間違ったオリジンが設定されてしまいます。この問題はクロスサイトスクリプティング (XSS) 攻撃に悪用される恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1353975">Bug 1353975</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5434" class="level-heading">
+    <a href="#CVE-2017-5434"><span class="anchor">#</span>CVE-2017-5434: フォーカス処理中の解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>フォーカス処理のリダイレクト時に解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1349946">Bug 1349946</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5432" class="level-heading">
+    <a href="#CVE-2017-5432"><span class="anchor">#</span>CVE-2017-5432: テキスト入力選択における解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>特定のテキスト入力選択時に解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1346654">Bug 1346654</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5460" class="level-heading">
+    <a href="#CVE-2017-5460"><span class="anchor">#</span>CVE-2017-5460: フレーム選択における解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>悪意のあるスクリプトとユーザーによるキー押下の組み合わせにより、フレーム選択時に解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1343642">Bug 1343642</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5438" class="level-heading">
+    <a href="#CVE-2017-5438"><span class="anchor">#</span>CVE-2017-5438: XSLT 処理中の nsAutoPtr における解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nicolas Grégoire</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>XSLT 処理中、結果ハンドラーが開放されたハンドラーによってその操作中保持され続けてしまうため、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1336828">Bug 1336828</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5439" class="level-heading">
+    <a href="#CVE-2017-5439"><span class="anchor">#</span>CVE-2017-5439: XSLT 処理中の nsTArray Length() における解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nicolas Grégoire</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>XSLT 処理中、テンプレート引数の誤った処理が原因で、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1336830">Bug 1336830</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5440" class="level-heading">
+    <a href="#CVE-2017-5440"><span class="anchor">#</span>CVE-2017-5440: XSLT 処理中の txExecutionState デストラクターにおける解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nicolas Grégoire</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>XSLT 処理中、コンテキストの評価においてマッチングを行っている間に、エラー状態が正しく伝播されず、既に存在しないオブジェクトが使用され、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1336832">Bug 1336832</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5441" class="level-heading">
+    <a href="#CVE-2017-5441"><span class="anchor">#</span>CVE-2017-5441: スクロールイベント中の選択による解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>スクロールイベント中に選択範囲を維持することで、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1343795">Bug 1343795</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5442" class="level-heading">
+    <a href="#CVE-2017-5442"><span class="anchor">#</span>CVE-2017-5442: スタイル変更中の解放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>DOM 要素操作中にスタイルに変更が行われた場合、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1347979">Bug 1347979</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5464" class="level-heading">
+    <a href="#CVE-2017-5464"><span class="anchor">#</span>CVE-2017-5464: アクセシビリティと DOM 操作によるメモリー破壊</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>スクリプトを通じたアクセシビリティツリーの DOM 操作中、その DOM ツリーがアクセシビリティツリーと一致しなくなり、メモリー破壊と潜在的に悪用可能なクラッシュにつながる恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1347075">Bug 1347075</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5443" class="level-heading">
+    <a href="#CVE-2017-5443"><span class="anchor">#</span>CVE-2017-5443: BinHex デコーディング中の境界外書き込み</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Chamal De Silva</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>不正な形式の BinHex アーカイブをデコードする際に、境界外書き込みの脆弱性が生じる恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1342661">Bug 1342661</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5444" class="level-heading">
+    <a href="#CVE-2017-5444"><span class="anchor">#</span>CVE-2017-5444: application/http-index-format コンテンツ解析中のバッファーオーバーフロー</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Chamal De Silva</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p><code>application/http-index-format</code> 形式のコンテンツ解析中、そのヘッダーに不正なデータが含まれてい場合、バッファーオーバーフローの脆弱性が生じる恐れがありました。この問題はメモリーからの境界外データ読み取りに悪用される恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1344461">Bug 1344461</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5446" class="level-heading">
+    <a href="#CVE-2017-5446"><span class="anchor">#</span>CVE-2017-5446: HTTP/2 DATA フレームが不正なデータとともに送られた場合の境界外読み取り</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Chun Han Hsiao</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>サーバーへの HTTP/2 接続によって不正なデータコンテンツを含む <code>DATA</code> フレームが送られた場合、境界外読み取りが生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1343505">Bug 1343505</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5447" class="level-heading">
+    <a href="#CVE-2017-5447"><span class="anchor">#</span>CVE-2017-5447: グリフ処理中の境界外読み取り</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Google Project Zero の Ivan Fratric</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>テキストレイアウト調整時のグリフ幅の処理中に境界外読み取りが生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題で、攻撃者によって本来参照不可能なメモリーの読み取りに悪用される恐れもありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1343552">Bug 1343552</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5465" class="level-heading">
+    <a href="#CVE-2017-5465"><span class="anchor">#</span>CVE-2017-5465: ConvolvePixel における境界外読み取り</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Google Project Zero の Ivan Fratric</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p><code>ConvolvePixel</code> において、SVG コンテンツの処理中に境界外読み取りが生じる恐れがありました。これはクラッシュにつながる問題で、本来参照不可能なメモリーを後から表示できる SVG グラフィックコンテンツへコピーするのに悪用される恐れもありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1347617">Bug 1347617</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5448" class="level-heading">
+    <a href="#CVE-2017-5448"><span class="anchor">#</span>CVE-2017-5448: ClearKeyDecryptor における境界外書き込み</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Trend Micro の Zero Day Initiative に参加している匿名の研究者</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p><code>ClearKeyDecryptor</code> において、Clearkey で暗号化された特定のメディアコンテンツ解読中に境界外書き込みが生じる恐れがありました。<code>ClearKeyDecryptor</code> コードは Gecko Media Plugin (GMP) サンドボックス内で実行されます。サンドボックスを逃れる別の仕組みが発見された場合、この脆弱性はメモリーへの任意のデータ書き込みに悪用され、潜在的に悪用可能なクラッシュにつながる恐れもありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1346648">Bug 1346648</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5437" class="level-heading">
+    <a href="#CVE-2017-5437"><span class="anchor">#</span>CVE-2017-5437: Libevent library における脆弱性</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Huzaifa Sidhpurwala</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Libevent library に、境界外読み取りやサービス妨害 (DoS) 攻撃に悪用される恐れのある 3 件の脆弱性が、<a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10195">CVE-2016-10195</a>、<a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10196">CVE-2016-10196</a>、<a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10197">CVE-2016-10197</a> として報告されました。これらは Libevent library 内で修正され、それらの変更は Mozilla のコードへ移植されました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1343453">Bug 1343453</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5454" class="level-heading">
+    <a href="#CVE-2017-5454"><span class="anchor">#</span>CVE-2017-5454: ファイルピッカーを通じたファイルシステム読み取りアクセスを許すサンドボックス回避</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Haik Aftandilian</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>ファイルピッカーを使って、サンドボックス内のファイルシステムアクセス保護を回避する仕組みが報告されました。相対パスを用いることで、ファイルピッカーで選択されたのとは異なるファイルへアクセスすることが可能でした。この問題はローカルファイルシステムへの読み取り専用アクセスに悪用される恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1349276">Bug 1349276</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5455" class="level-heading">
+    <a href="#CVE-2017-5455"><span class="anchor">#</span>CVE-2017-5455: 内部フィードリーダー API を通じたサンドボックス回避</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Paul Theriault</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>サンドボックスの障壁を超える内部フィードリーダー API が、サンドボックス化されたプロセス内でのリモードコード実行につながる他の脆弱性と組み合わされた場合、サンドボックス回避や特権昇格に悪用される恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1341191">Bug 1341191</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5456" class="level-heading">
+    <a href="#CVE-2017-5456"><span class="anchor">#</span>CVE-2017-5456: ローカルファイルシステムアクセスを許すサンドボックス回避</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Julian Hector</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>IPC メッセージを通じてファイルシステムリクエストコンストラクターを用いることで、サンドボックス内のファイルシステムアクセス保護を回避する仕組みが報告されました。この問題はローカルファイルシステムの読み取りや書き込みアクセスに悪用される恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1344415">Bug 1344415</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5469" class="level-heading">
+    <a href="#CVE-2017-5469"><span class="anchor">#</span>CVE-2017-5469: Flex によって生成されたコードにおける潜在的なバッファーオーバーフロー</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Petr Cerny</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Flex における <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6354">CVE-2016-6354</a> の問題に起因する、Firefox の自動生成コードにおける潜在的なバッファーオーバーフローを修正しました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1292534">Bug 1292534</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5445" class="level-heading">
+    <a href="#CVE-2017-5445"><span class="anchor">#</span>CVE-2017-5445: application/http-index-format コンテンツ解析中の未初期化値の使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Chamal De Silva</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p><code>application/http-index-format</code> 形式のコンテンツ解析中、未初期化値が配列の生成に使用される脆弱性が報告されました。この問題は、影響を受ける配列内の未初期化メモリ読み取りに悪用される恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1344467">Bug 1344467</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5449" class="level-heading">
+    <a href="#CVE-2017-5449"><span class="anchor">#</span>CVE-2017-5449: アニメーションによる双方向 Unicode 操作中のクラッシュ</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>CSS アニメーションとの組み合わせにより、双方向 Unicode テキストのレイアウト調整中や操作中に潜在的に悪用可能なクラッシュが引き起こされる恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1340127">Bug 1340127</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5451" class="level-heading">
+    <a href="#CVE-2017-5451"><span class="anchor">#</span>CVE-2017-5451: onblur イベントによるロケーションバー偽装</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Jordi Chancel</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>ロケーションバー上でのユーザーインタラクションと <code>onblur</code> イベントの組み合わせを通じてロケーションバーを偽装する仕組みが報告されました。このイベントをスクリプトによって用いることで、テキスト表示に影響を及ぼし、読み込まれたサイトをロケーションバー内で実際に読み込まれたサイトとは別物に見せかけることが可能でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1273537">Bug 1273537</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5462" class="level-heading">
+    <a href="#CVE-2017-5462"><span class="anchor">#</span>CVE-2017-5462: NSS における DRBG 脆弱性</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Vladimir Klebanov、Franziskus Kiefer</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Network Security Services (NSS) ライブラリの DRBG 数値生成に脆弱性があり、内部状態の V が適切にビットを持ち越していませんでした。NSS ライブラリはこの問題を修正するため更新され、Firefox ESR 52.1 に含まれている NSS のバージョンは 3.29.5 へ更新されました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1345089">Bug 1345089</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5467" class="level-heading">
+    <a href="#CVE-2017-5467"><span class="anchor">#</span>CVE-2017-5467: Skia コンテンツ描画中のメモリー破壊</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Google Skia チームの Heather Miller</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Skia コンテンツ使用時に、クリッピング領域外にコンテンツを描画することで生じる潜在的なメモリー破壊とクラッシュが報告されました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1347262">Bug 1347262</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5430" class="level-heading">
+    <a href="#CVE-2017-5430"><span class="anchor">#</span>CVE-2017-5430: Firefox 53 と Firefox ESR 52.1 で修正されたメモリー安全性の問題</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Mozilla developers and community</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Firefox 52 と Firefox ESR 52 に存在していたメモリー安全性の問題が、Mozilla の開発者とコミュニティメンバーである Christian Holler、Jon Coppeard、Milan Sreckovic、Tyson Smith、Ronald Crane、Randell Jesup、Philipp、Tooru Fujisawa、Kan-Ru Chen によって報告されました。これらの問題の一部はメモリー破壊の形跡が見られ、少なくともその一部は十分な労力をかければ任意のコード実行に悪用可能と思われるものでした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1342101%2C1340482%2C1344686%2C1329796%2C1346419%2C1349621%2C1344081%2C1344305%2C1348143%2C1349719%2C1353476%2C1337418%2C1346140%2C1339722">Firefox 53 と Firefox ESR 52.1 で修正されたメモリー安全性の問題</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5429" class="level-heading">
+    <a href="#CVE-2017-5429"><span class="anchor">#</span>CVE-2017-5429: Firefox 53、Firefox ESR 45.9 と Firefox ESR 52.1 で修正されたメモリー安全性の問題</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Mozilla developers and community</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Firefox 52、Firefox ESR 45.8 と Firefox ESR 52 に存在していたメモリー安全性の問題が、Mozilla の開発者とコミュニティメンバーである Christian Holler、Jon Coppeard、Marcia Knous、David Baron、Mats Palmgren、Ronald Crane、Bob Clary、Chris Peterson によって報告されました。これらの問題の一部はメモリー破壊の形跡が見られ、少なくともその一部は十分な労力をかければ任意のコード実行に悪用可能と思われるものでした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1343261%2C1350844%2C1341096%2C1342823%2C1348894%2C1348941%2C1349340%2C1352926%2C1353088%2C">Firefox 53、Firefox ESR 45.9 と Firefox ESR 52.1 で修正されたメモリー安全性の問題</a></li>
+    </ul>
+
+</section>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2017 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2017-12.html">英語版</a> 2017/04/19 &mdash; 和訳版 2017/04/20 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2017-12.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noodp,noydir" />
+<link rel="stylesheet" type="text/css" href="/style/kildare/screen.css" media="screen,tv" />
+<style>
+@font-face { font-family: 'MetaBold'; src: url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.eot'); src: local('_'), url('//www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; }
+</style>
+<link rel="icon" type="image/png" href="/images/mozilla-16.png" />
+
+
+<title>MFSA 2017-16: Firefox ESR 52.2 で修正されたセキュリティ脆弱性</title>
+<link rel="alternate" hreflang="en" modified="June 13, 2017">
+<style type="text/css">
+  .label { width: 12em; font-weight: bold; float: left; }
+</style>
+
+</head>
+<body id="www-mozilla-japan-org">
+  <ul id="skip">
+    <li><a href="#localnav">Skip to Sub Navigation</a></li>
+    <li><a href="#main">Skip to Content</a></li>
+  </ul>
+<div id="header">
+  <h1 class="unitPng"><a href="http://www.mozilla.org/" title="Back to home page">mozilla</a></h1>
+  <div id="header-contents">
+    <ul id="nav">
+      <li class=" first"><a href="http://www.mozilla.org/about/">About Us</a></li>
+      <li><a href="http://www.mozilla.org/community/">Community Map</a></li>
+      <li><a href="http://www.mozilla.org/projects/">Our Projects</a></li>
+      <li><a href="http://www.mozilla.org/contribute/">Get Involved</a></li>
+    </ul>
+  </div>
+</div>
+<div id="main" class="with-menu">
+<div id="main-content">
+
+
+<p class="crumbs"><em>現在地:</em> <a href="/security/">セキュリティセンター</a> &gt; <a href="/security/announce/">Mozilla Foundation セキュリティアドバイザリ</a> &gt; <strong><abbr title="Mozilla Foundation セキュリティアドバイザリ">MFSA</abbr> 2017-16</strong></p>
+<h1>Mozilla Foundation セキュリティアドバイザリ 2017-16</h1>
+<p>
+<span class="label">タイトル:</span>      Firefox ESR 52.2 で修正されたセキュリティ脆弱性<br>
+<span class="label">重要度:</span>     最高<br>
+<span class="label">公開日:</span>  2017/06/13<br>
+<span class="label">影響を受ける製品:</span>   Firefox ESR<br>
+<br>
+<span class="label">修正済みのバージョン:</span>   Firefox ESR 52.2<br>
+</p>
+
+<section class="cve">
+  <h4 id="CVE-2017-5472" class="level-heading">
+    <a href="#CVE-2017-5472"><span class="anchor">#</span>CVE-2017-5472: ツリー再生成中の破棄済みノード使用による開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>フレームローダーにおける CSS レイアウト再生成中のツリー再構築時に、既に存在しないツリー内のノードを使用しようとすることで、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1365602">Bug 1365602</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7749" class="level-heading">
+    <a href="#CVE-2017-7749"><span class="anchor">#</span>CVE-2017-7749: docshell 再読み込み中の開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>docshell の再読み込み中に間違った URL を用いた場合に、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1355039">Bug 1355039</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7750" class="level-heading">
+    <a href="#CVE-2017-7750"><span class="anchor">#</span>CVE-2017-7750: track 要素における開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>動画コントロールの操作中、<code>&lt;track&gt;</code> 要素が古いウィンドウへの参照を保ち続けて、そのウィンドウが DOM 内で置き換えられた場合に、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1356558">Bug 1356558</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7751" class="level-heading">
+    <a href="#CVE-2017-7751"><span class="anchor">#</span>CVE-2017-7751: コンテンツビューアーリスナーにおける開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>コンテンツビューアーリスナーにおいて、潜在的に悪用可能なクラッシュにつながる解放後使用の脆弱性が生じる恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1363396">Bug 1363396</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7752" class="level-heading">
+    <a href="#CVE-2017-7752"><span class="anchor">#</span>CVE-2017-7752: IME 入力による開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nils</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>一部言語のインプットメソッドエディター (IME) による特定の操作時に、イベントの処理方法が原因で、解放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でしたが、問題を引き起こすには特定のユーザー操作が必要となります。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1359547">Bug 1359547</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7754" class="level-heading">
+    <a href="#CVE-2017-7754"><span class="anchor">#</span>CVE-2017-7754: ImageInfo オブジェクトを伴う WebGL における境界外読み取り</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Tobias Klein</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>WebGL 演算中に、悪意を持って作り込まれた <code>ImageInfo</code> オブジェクトを伴う WebGL において境界外読み取りが生じる恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1357090">Bug 1357090</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7755" class="level-heading">
+    <a href="#CVE-2017-7755"><span class="anchor">#</span>CVE-2017-7755: Firefox のインストーラーと同一ディレクトリー上の DLL ファイルを通じた特権昇格</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Yuji Tounai (NTT Communications)</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Windows 上で Firefox インストーラーを実行中に、そのインストーラーと同じディレクトリーに保存されている悪意を持った DLL ファイルを読み込ませることが可能でした。インストーラーがより高度な特権で実行されていた場合、特権昇格につながる恐れがありました。<br><em>注: この攻撃は Windows にのみ影響します。他の OS は影響を受けません。</em></p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1361326">Bug 1361326</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7756" class="level-heading">
+    <a href="#CVE-2017-7756"><span class="anchor">#</span>CVE-2017-7756: XHR ヘッダーエラー記録中の開放後使用と調査後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Abhishek Arya</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>XMLHttpRequest (XHR) のヘッダーからのエラーを記録する際に、開放後使用と調査後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1366595">Bug 1366595</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7757" class="level-heading">
+    <a href="#CVE-2017-7757"><span class="anchor">#</span>CVE-2017-7757: IndexedDB における開放後使用</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>F. Alonso (revskills)</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>IndexedDB のオブジェクトが、そこに含まれるメソッドがまだ実行中にも関わらずメモリー内で破棄され、開放後使用の脆弱性が生じる恐れがありました。これは潜在的に悪用可能なクラッシュにつながる問題でした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1356824">Bug 1356824</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7778" class="level-heading">
+    <a href="#CVE-2017-7778"><span class="anchor">#</span>CVE-2017-7778: Graphite 2 ライブラリにおける脆弱性</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Holger Fuhrmannek、Tyson Smith</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Graphite 2 ライブラリにおける様々なセキュリティ脆弱性が報告されました。これには、境界外読み取り、バッファオーバーフローの読み取りと書き込み、未初期化メモリーの使用が含まれます。これらの問題は Graphite 2 のバージョン 1.3.10 で解決済みです。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1349310">Graphite2 lz4::decompress out of bounds write (CVE-2017-7778)</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1350047">Graphite2 out of bounds read [@ graphite2::Pass::readPass] (CVE-2017-7771)</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1352745">Graphite2 heap-buffer-overflow write [@ lz4::decompress] (CVE-2017-7772)</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1352747">Graphite2 heap-buffer-overflow write [@ lz4::decompress] src/Decompressor (CVE-2017-7773)</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1355174">Graphite2 out of bounds read [@ graphite2::Silf::readGraphite] (CVE-2017-7774)</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1355182">Graphite2 Assertion 'size() > n' failed (CVE-2017-7775)</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1356607">Graphite2 heap-buffer-overflow read [@ graphite2::Silf::getClassGlyph] (CVE-2017-7776)</a></li><li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1358551">Graphite2 use of uninitialized memory [@ graphite2::GlyphCache::Loader::read_glyph] (CVE-2017-7777)</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7758" class="level-heading">
+    <a href="#CVE-2017-7758"><span class="anchor">#</span>CVE-2017-7758: Opus エンコーダーにおける境界外読み取り</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Nicolas Trippar (Zimperium zLabs)</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Opus エンコーダーにおいて、音声ストリーム内のチャンネル数がエンコーダー使用中に変わった場合に、境界外読み取りの脆弱性が生じる恐れがありました。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1368490">Bug 1368490</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7760" class="level-heading">
+    <a href="#CVE-2017-7760"><span class="anchor">#</span>CVE-2017-7760: Mozilla Windows Updater と Maintenance Service のコールバック引数を通じたファイル改ざんと特権昇格</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Holger Fuhrmannek</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Mozilla Windows Updater は、一部のファイルを読み込んで変更を適用し、そのファイルを更新します。その元ファイルの場所が、悪意を持ったユーザーが Mozilla Maintenance Service を通じてコールバック引数へ特別なパスを渡すことで変更可能となっており、特権アクセスを持った Mozilla Maintenance Service を改ざんすることによってインストール先ディレクトリー内のファイル改ざんや特権昇格を許す恐れがありました。<br><em>注: この攻撃はローカルシステムアクセスを必要とし、Windows にのみ影響します。他の OS は影響を受けません。</em></p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1348645">Bug 1348645</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7761" class="level-heading">
+    <a href="#CVE-2017-7761"><span class="anchor">#</span>CVE-2017-7761: Mozilla Maintenance Service の helper.exe アプリケーションを通じたファイルの削除と特権昇格</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Holger Fuhrmannek</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Mozilla Maintenance Service の <code>helper.exe</code> アプリケーションは、特権を持たないユーザーも書き込み可能な一時ディレクトリーを生成します。これが (シンボリックリンクの形で) 接点の作成と組み合わされた場合、その接点のターゲットディレクトリー内にある保護されたファイルが、特権アクセスを持った Mozilla Maintenance Service によって削除される可能性がありました。<br><em>注: この攻撃はローカルシステムアクセスを必要とし、Windows にのみ影響します。他の OS は影響を受けません。</em></p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1215648">Bug 1215648</a></li><li><a href="https://sourceforge.net/p/nsis/bugs/1125/">Code execution / Privilege escalation problems with NSIS installers</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7763" class="level-heading">
+    <a href="#CVE-2017-7763"><span class="anchor">#</span>CVE-2017-7763: Mac 上のフォントが一部の Unicode 文字を空白として描画してしまう</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Michał Bentkowski</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>OS X 上の既定フォントが、一部のチベット語文字を空白として表示していました。ロケーションバー内で IDN の一部としてこれらの文字が用いられた場合、この問題はドメイン名偽装攻撃に悪用される恐れがありました。<br><em>注: この攻撃は OS X にのみ影響します。他の OS は影響を受けません。</em></p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1360309">Bug 1360309</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7764" class="level-heading">
+    <a href="#CVE-2017-7764"><span class="anchor">#</span>CVE-2017-7764: カナダ音節文字など Unicode ブロックの組み合わせによるドメイン偽装</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Samuel Erb</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>「カナダ音節」の Unicode ブロックに含まれる文字を他の Unicode ブロックに含まれる文字と組み合わせて用いた場合に、ロケーションバー内で生の「Punycode」形式で表示されず、文字の混同によるドメイン名偽装攻撃を許す恐れがありました。現行の Unicode 標準では、「中程度に制限的」な IDN プロフィールにおいては、カナダ音節などの「Aspirational Use Scripts」に含まれる文字をラテン文字と組み合わせることが可能です。Mozilla では Firefox の挙動を変更して、現在策定中の Unicode バージョン 10.0 へ準拠させました。新バージョンではこのカテゴリーが削除されており、それらの文字は「Limited Use Scripts」として扱われます。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1364283">Bug 1364283</a></li><li><a href="http://www.unicode.org/reports/tr31/tr31-26.html#Aspirational_Use_Scripts">Proposed Update to Unicode Standard Annex</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7765" class="level-heading">
+    <a href="#CVE-2017-7765"><span class="anchor">#</span>CVE-2017-7765: 実行ファイル保存時の「Mark of the Web」回避</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Jonathan Birch および Microsoft Vulnerability Research</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Windows 上で、非常に長い名前を持ったファイルがインターネットからダウンロードされた際、「Mark of the Web」が適切に保存されていませんでした。この「Mark of the Web」データがないと、インターネットからダウンロードされた実行ファイルの起動前に Windows が表示するはずのセキュリティ警告が表示されません。<br><em>注: この攻撃はローカルシステムアクセスを必要とし、Windows にのみ影響します。他の OS は影響を受けません。</em></p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1273265">Bug 1273265</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7766" class="level-heading">
+    <a href="#CVE-2017-7766"><span class="anchor">#</span>CVE-2017-7766: updater.ini、Mozilla Windows Updater および Mozilla Maintenance Service を通じたファイルの実行と特権昇格</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Seb Patane</dd>
+    <dt>重要度</dt>
+    <dd><span class="level high">高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Mozilla Windows Updater によって使用される <code>updater.ini</code> の内容改ざんと、Mozilla Maintenance Service を通じた特権昇格を組み合わせた攻撃により、特権アクセスを持った Maintenance Service によって任意のファイルが実行あるいは削除される恐れがありました。<br><em>注: この攻撃はローカルシステムアクセスを必要とし、Windows にのみ影響します。他の OS は影響を受けません。</em></p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1342742">Bug 1342742</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7767" class="level-heading">
+    <a href="#CVE-2017-7767"><span class="anchor">#</span>CVE-2017-7767: Mozilla Windows Updater と Mozilla Maintenance Service を通じた特権昇格と任意のファイル上書き</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Seb Patane</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>特権を持たないユーザーが Mozilla Maintenance Service を実行し、Maintenance Service の特権アクセスで実行される Mozilla Windows Updater を用いて任意のファイルを無意味なデータで上書きすることが可能でした。<br><em>注: この攻撃はローカルシステムアクセスを必要とし、Windows にのみ影響します。他の OS は影響を受けません。</em></p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1336964">Bug 1336964</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-7768" class="level-heading">
+    <a href="#CVE-2017-7768"><span class="anchor">#</span>CVE-2017-7768: Mozilla Maintenance Service を通じた任意のファイルからの 32 バイトの読み取り</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Seb Patane</dd>
+    <dt>重要度</dt>
+    <dd><span class="level moderate">中</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>特権を持たないユーザーが Mozilla Maintenance Service を実行し、Mozilla Windows Updater によって提供されたステータスファイルを読み取っているかのようにそのサービスを誤解させることで、ローカルシステム上の任意のファイルから 32 バイトを読み取ることが可能でした。Mozilla Maintenance Service は特権アクセス付きで実行されるため、非特権ユーザーに対するシステム保護が回避されてしまいます。<br><em>注: この攻撃はローカルシステムアクセスを必要とし、Windows にのみ影響します。他の OS は影響を受けません。</em></p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1336979">Bug 1336979</a></li>
+    </ul>
+
+</section>
+
+<section class="cve">
+  <h4 id="CVE-2017-5470" class="level-heading">
+    <a href="#CVE-2017-5470"><span class="anchor">#</span>CVE-2017-5470: Firefox 54 と Firefox ESR 52.2 で修正されたメモリー安全性の問題</a>
+  </h4>
+  <dl class="summary">
+    <dt>報告者</dt>
+    <dd>Mozilla の開発者とコミュニティ</dd>
+    <dt>重要度</dt>
+    <dd><span class="level critical">最高</span></dd>
+  </dl>
+  <h5>概要</h5>
+  <p>Firefox 53 と Firefox ESR 52.1 に存在していたメモリー安全性の問題が、Mozilla の開発者とコミュニティメンバーである Mozilla developers and community members Tyson Smith、Mats Palmgren、Philipp、Masayuki Nakano、Christian Holler、Andrew McCreight、Gary Kwong、André Bargull、Carsten Book、Jesse Schwartzentruber、Julian Hector、Marcia Knous、Ronald Crane、Nils Ohlmeier によって報告されました。これらの問題の一部はメモリー破壊の形跡が見られ、少なくともその一部は十分な労力をかければ任意のコード実行に悪用可能と思われるものでした。</p>
+
+    <h5>参考資料</h5>
+    <ul>
+      <li><a href="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1359639%2C1349595%2C1352295%2C1352556%2C1342552%2C1342567%2C1346012%2C1366140%2C1368732%2C1297111%2C1362590%2C1357462%2C1363280%2C1349266%2C1352093%2C1348424%2C1347748%2C1356025%2C1325513%2C1367692">Firefox 54 と Firefox ESR 52.2 で修正されたメモリー安全性の問題</a></li>
+    </ul>
+
+</section>
+
+
+</div></div>
+<div id="footer-wrap">
+  <div id="footer" class="cols">
+    <div class="six-col">
+      <a id="logo-footer" href="http://www.mozilla.org/"><img src="http://www.mozilla.org/images/template/screen/logo_footer.png" /></a>
+      <p id="copyright">Portions of this content are &copy;1998&ndash;2017 by individual mozilla.org contributors. Content available under a Creative Commons <a href="http://www.mozilla.org/foundation/licensing/website-content.html">license</a>.</p>
+    </div>
+    <div class="col-span">
+      これは <a href="http://mozilla.jp/">Mozilla Japan</a> が提供する <a href="http://www.mozilla.org/">mozilla.org</a> の翻訳文書です。<br><a href="http://www.mozilla.org/security/announce/2015/mfsa2017-16.html">英語版</a> 2017/06/12 &mdash; 和訳版 2017/06/13 &mdash; <a href="http://viewvc.svn.mozilla.org/vc/projects/mozilla.org/trunk/security/announce/2015/mfsa2017-16.html">英語版更新履歴</a>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>About Us</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/about/mission.html">Our Mission</a></li><li><a href="http://www.mozilla.org/about/forums/">Forums</a></li><li><a href="http://www.mozilla.org/about/governance.html">Governance</a></li><li><a href="http://www.mozilla.org/about/organizations.html">Organizations</a></li><li><a href="http://www.mozilla.org/grants/">Grants</a></li><li><a href="http://www.mozilla.org/about/history.html">History</a></li><li><a href="http://www.mozilla.org/about/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Community Map</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.mozilla.org/community/index.html#applications">Applications</a></li><li><a href="http://www.mozilla.org/community/index.html#code">Code</a></li><li><a href="http://www.mozilla.org/community/index.html#incubators">Incubators</a></li><li><a href="http://www.mozilla.org/community/index.html#community-sites">Community Sites</a></li><li><a href="http://www.mozilla.org/community/directory.html">Directory</a></li><li><a href="http://www.mozilla.org/community/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col">
+      <h5 class="footer-nav-title"><strong>Our Projects</strong></h5>
+      <ul class="footer-nav"><li><a href="http://www.firefox.com">Firefox</a></li><li><a href="http://www.getthunderbird.com">Thunderbird</a></li><li><a href="http://www.drumbeat.org/projects">Drumbeat</a></li><li><a href="http://www.mozillalabs.com/projects">Mozilla Labs</a></li><li><a href="http://www.mozilla.org/support">Support</a></li><li><a href="https://addons.mozilla.org">Add-ons</a></li><li><a href="http://input.mozilla.com">Feedback</a></li><li><a href="http://www.mozilla.org/security/announce">Security Advisories</a></li><li><a href="http://www.mozilla.org/projects/">More&hellip;</a></li></ul>
+    </div>
+    <div class="five-col last">
+      <h5 class="footer-nav-title"><strong>Get Involved</strong></h5>
+      <ul class="footer-nav"><li><a href="https://developer.mozilla.org/En/Developer_Guide">Developing</a></li><li><a href="https://developer.mozilla.org/Project:en/How_to_Help">Documentation</a></li><li><a href="https://donate.mozilla.org/page/contribute/openwebfund">Donate</a></li><li><a href="https://wiki.mozilla.org/L10n">Localization</a></li><li><a href="http://contribute.mozilla.org/Marketing">Marketing</a></li><li><a href="http://quality.mozilla.org/">Testing</a></li>  <li><a href="http://blog.mozilla.com/webdev/get-involved/">Webdev</a></li><li><a href="http://www.mozilla.org/contribute">More&hellip;</a></li></ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
